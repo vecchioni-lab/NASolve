@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Import explicit metal restraint recipes and compact their review
+
+- Add offline `metal import-restraints`: inspect a supported add-only PHIL subset,
+  then explicitly map legacy selectors to immutable logical recipe nodes. Preserve
+  exact source, targets, sigma and ordered angle vertices; reject unsupported
+  semantics instead of guessing. Existing recipe schemas need no migration.
+- Add expandable read-only recipe inspection and term highlighting. Keep primary
+  structure/view controls visible; collapse filters, explanations and secondary
+  details. Collect trial row groups into one compact table per geometry while
+  retaining every source link and the Q/f-double-prime/expected/ratio columns.
+- Keep editing, native launch, scientific acceptance and checkpoint selection
+  outside the viewer. No changes to native refinement or frozen-fdp protocols.
+
 ### Capture phase-restrained metal XYZ/ADP review endpoints
 
 - Add the API-only `metal.xyz.run_xyz` / `verify_xyz` adapter and immutable schema-1

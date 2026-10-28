@@ -117,11 +117,12 @@ results** clears the navigation scope. The initial view opens the first saved
 row in catalog order as a viewing convenience, without ranking or checkpoint
 selection. Selecting a dataset or structure fills its first available descendant
 in catalog order; the underlying controller still clears children on parent
-changes. Snapshot boxes group metals by exact dataset/structure/candidate/trial
-identity, including aliases when comparison and scan reports reuse one trial.
+changes. One table per dataset/structure/candidate contains numbered trial row
+groups. Each group retains its metals and aliases when comparison and scan
+reports reuse the same exact trial identity.
 The compact columns show **Q (occ)**, refined f-double-prime, expected wavelength
 reference and their ratio. B, fixed f-prime, wavelength and source links expand
-beneath each box. This ratio is descriptive, not a fitted calibration or ranking. Missing values display
+beneath the table, grouped by trial. This ratio is descriptive, not a fitted calibration or ranking. Missing values display
 an em dash rather than zero. Human-reference rows display the candidate q/B;
 the inspector separates the reference snapshot and retains exact source values.
 Complete reports expose pending scan points, failures and unmapped scatterers.
@@ -130,8 +131,8 @@ The molecular panel projects the verified candidate PDB coordinates in 3D.
 Automatic fitting uses principal axes to open the broadest molecular plane,
 then fits the projected bounds. Rotate controls two axes; Roll controls the third;
 Pan controls both screen axes. Shift-drag pans and scrolling zooms; a zoom slider
-and keyboard arrows provide alternatives. These are view operations. Clicking an atom opens
-its exact identity, XYZ/q/B and ANISOU presence. These are **geometry-model**
+and keyboard arrows provide alternatives. These are view operations. Clicking an atom selects
+its exact identity, XYZ/q/B and ANISOU presence in **Show details**. These are **geometry-model**
 values; the selected frozen trial may use different Q and prepared B, shown separately above.
 A selected result/coordinate atom remains visible even outside all named groups
 (for example an unassigned background scatterer); this is display focus only.
@@ -140,8 +141,11 @@ changing group membership, restraints or fitted parameters. Surrounding residues
 means residues containing the selected site's atoms (including exact alternate,
 model and symmetry identity), not a distance-neighbor or symmetry expansion.
 Blue dotted lines represent enabled, resolved saved **distance restraints**;
-all saved terms, including angles and disabled terms, are available in the
-inspector. Faint lines show captured component bonds when available; otherwise
+an expandable **Coordination recipe** section lists all saved terms, including
+angles and disabled terms, with current values, targets and sigma. Selecting a
+term highlights its distance or ordered angle arms in orange without changing
+its enabled state. The middle atom is labelled as the angle vertex. Exact atom
+identities, restraint sets and provenance remain expandable. Faint lines show captured component bonds when available; otherwise
 conservative within-residue distance contacts are explicitly display-only.
 Neither contact source changes the recipe or environmental B selection. Metals
 are larger lilac markers and have their own inspector list. Ligand/metal labels
@@ -152,7 +156,9 @@ A reference's Cartesian displacement remains absent when its coordinate frame
 has not been explicitly established.
 
 The dark panels are separate renderers for navigation, geometry, inspector and
-results. The inspector can be hidden and the scene/inspector resized vertically;
+results. Dataset, structure, candidate and camera controls stay visible. Site/result
+filters, view help, recipe terms and result explanations are collapsed until
+requested; **Show details** opens the initially hidden inspector. The scene/inspector can be resized vertically;
 responsive layouts stack panels on narrow windows. Camera/context state is kept
 per exact candidate and geometry identity in browser memory. Reloading clears
 that local state. No camera or layout field enters the scientific selection.
@@ -164,12 +170,13 @@ existing offline verifier/controller, then imports checksummed geometry-model
 and preview bytes. `Viewer.present` supplies detached presentation values;
 `Viewer.navigate` delegates every selection transition to the shared controller.
 The transient `metal-workbench-presentation` schema 1 adds a selected scene and
-campaign label around the existing view; existing catalogs, scientific artifact
+campaign label around the existing view; the scene now also includes recipe
+id/name/revision/sets for inspection. Existing catalogs, scientific artifact
 schemas and CLI behavior do not change. The pure JavaScript projection preserves
 all three input coordinates, applies camera rotations and scales around the
 projected bounds. Camera bases, three rotations and two pan coordinates stay in
 browser memory. Pure presentation helpers group exact trial IDs and lay out
-labels; no fitted values or scientific normalizations are invented. Environmental
+labels and preserve angle-vertex order; no fitted values or scientific normalizations are invented. Environmental
 B previews are computed offline from the geometry, with contributing atoms and
 unavailable-method reasons; they do not retrofit any existing result.
 
@@ -179,7 +186,9 @@ flowchart LR
     G[Checksummed model and recipe preview] --> S[Read-only scene snapshot]
     W --> V[Local presentation adapter]
     S --> V
-    V --> P[Navigator / geometry / inspector / results]
+    V --> P[Compact navigator / geometry / grouped results]
+    P --> D[Expandable recipe terms / details / filters]
+    D -. display-only term highlight .-> P
     P --> N[Shared controller navigation]
     N --> V
     L[Browser camera and panel state] -.-> P
@@ -203,7 +212,7 @@ controls open without native processes, preserving their input files. Browser
 automation was blocked by the host's administrator policy for local URLs, so no
 automated rendered-layout or browser-interaction pass is claimed. The initial
 manual review supplied screenshots; this revision awaits manual review. See the [current
-handoff](development-handoff.md#local-metal-results-viewer-2026-10-28) for commands
+handoff](development-handoff.md#recipe-import-and-compact-review-2026-10-28) for commands
 and receipts. These generated controls remain scientifically unqualified;
 viewing them does not resolve geometry, identity, occupancy or model quality.
 

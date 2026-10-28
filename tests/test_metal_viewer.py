@@ -33,6 +33,7 @@ def test_row_navigation_projects_exact_model_and_recipe_without_writes(tmp_path,
     assert [a['key'] for a in scene['atoms']] == [a.key.to_dict() for a in model.snapshot.atoms]
     assert [a['xyz'] for a in scene['atoms']] == [list(a.xyz) for a in model.snapshot.atoms]
     preview = json.loads((run / 'Metal/geometry_001/preview.json').read_text())
+    assert scene['recipe'] == {k:preview['inputs']['recipe'][k] for k in ('id','name','revision','sets')}
     assert scene['restraints'] == preview['restraints']
     assert scene['nodes'] == preview['nodes']
     assert scene['status'] == 'GEOMETRY_REVIEW'

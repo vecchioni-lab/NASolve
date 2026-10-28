@@ -13,6 +13,108 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Recipe import and compact review 2026-10-28
+
+**Before and after.** Existing PHIL coordination examples required manual graph
+transcription, and the viewer repeated a full card for each fitted snapshot.
+The new offline `metal import-restraints` command inspects a guarded PHIL subset
+and, with a complete explicit selector-to-node mapping, creates a reusable
+immutable recipe. Original source bytes/hash, targets, sigma and ordered angle
+vertices remain captured. Legacy residue numbers never bind a new model
+implicitly. The [feature descriptor and editable pipeline figure](metal-restraint-builder.md#import-existing-coordination-recipes)
+explain the interface, algorithm and scientific boundary.
+
+The read-only viewer now keeps dataset/structure/candidate and camera controls
+visible while collapsing site/result filters, help, provenance and the inspector.
+An expandable coordination recipe table shows measured/target values, sigma and
+angle vertices; selecting a term highlights its distance or ordered angle arms.
+One compact table per geometry contains numbered trial groups with exact source
+aliases and all site rows. Q (occ), fitted/expected f-double-prime and their ratio
+remain primary. Disabled terms remain disabled when highlighted. These are view
+operations; recipe editing and native launch from the GUI remain unimplemented.
+The [viewer descriptor and figure](metal-anomalous-doctor.md#implemented-local-saved-results-viewer)
+were updated. Final table/plot design remains open pending broader real results.
+
+**Native evidence.** All 20 supplied local examples passed offline inspection,
+preserving 72 terms. Two distinct imported hypotheses were rebound through the
+existing NARestraints roles and built from the same generated FT_Hg scaffold and
+AutoSol site. Both completed three-cycle **Phenix 2.2.1-6174** MLHL geometry runs,
+then passed `verify_xyz`. These were complete native executions, not dry runs;
+**Coot was not invoked**. Native Custom bonds/Custom angles entries identify the
+new exact atoms and supplied targets/sigmas. The bond distances responded, but
+substantial angle residuals remain. A separate full-model symmetry lookup also
+finds a short unrestrained contact in one branch: near-target selected bonds do
+not suffice to qualify the environment. Neither recipe is accepted or automatically
+ranked. No maps or frozen f-double-prime trials were generated. The native worker,
+phase policy and fixed-state audits were unchanged.
+
+Nucleobase B means were previewed from each completed endpoint, excluding sugar
+and phosphate, and retained separately for both bases. No prepared model was
+saved and no B was assigned to a downstream quantitation trial. Native endpoint
+B/overall-scale sensitivity and the maintained XYZ-to-fdp bridge remain open.
+The local setup initially refused an explicit-supplied-role context because its
+provenance differed from the original NARestraints source; the unchanged original
+context was then loaded and matched exactly before any hypothesis/native work.
+The initial setup stopped before allocating a native attempt.
+
+**Files, formats and compatibility.** New `src/nasolve/metal/phil_import.py` and
+`tests/test_metal_import.py`; updates to CLI, viewer presentation, four packaged
+web assets, Python/JavaScript viewer tests and scientific docs. Inspection adds
+schema-1 `metal-restraint-import` / `metal-phil-import-v1`; mapped recipes retain
+schema 1 with historical `extensions.phil_import` provenance. Subsequent recipe
+revisions may change their active graph while retaining that original import.
+The transient viewer scene adds recipe id/name/revision/sets. Existing recipes,
+catalogs, native protocols, scientific artifacts and checkpoints need no migration.
+No new HTTP write, upload or job route was added.
+
+**Validation.** The import regression failed before implementation with missing
+`nasolve.metal.phil_import`. The focused command
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_metal_import.py tests/test_metal_model.py tests/test_metal_materialize.py tests/test_metal_geometry.py tests/test_metal_xyz.py tests/test_metal_viewer.py tests/test_metal_workbench.py tests/test_cli.py`
+passed **235 tests and 14 subtests in 33.35 s** before the final unused-root-field
+control; the final import-only run passed **24 tests in 0.27 s**.
+`node --test tests/metal_viewer_ui.test.mjs` passed **11 tests**; `node --check
+src/nasolve/metal/web/app.mjs` passed. A separate local synthetic-DOM smoke
+executes the actual renderer and checks grouped tables, primary/advanced controls,
+inspector toggling, angle highlighting and unchanged input data without a browser
+or network. This is not a rendered-layout check. Import controls cover source capture,
+explicit rebinding/export, unsupported semantics, cluster topology and replay
+after the synthetic dataset's original path is removed. The existing viewer
+control relocates both source checkout and dataset and reopens them in a fresh
+interpreter. The final complete command,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`,
+passed **6,083 tests and 276 subtests in 749.15 s**, with all **457** inventoried
+source/test/asset/intent files unchanged. It ran with the OS socket/process-group
+permissions needed by existing campaign tests. Final documentation checks pass
+**76** local file/anchor links, **five** Python 3.10 grammar checks and whitespace;
+workflow intent checks pass **25 tests**.
+
+The revised viewer reopens the existing numerical-control catalog with **37**
+linked rows and **907** unchanged source files, without native processes; new native
+XYZ probes remain in the separate local report, not that catalog. Rendered
+browser automation remains blocked by the administrator's local-URL policy;
+manual review of this compact revision is pending. No visual pass is claimed.
+
+**Artifacts and remaining work.** Source/tests/docs only are delivered to
+**Alder**, based on `ceb108f`; the integration target remains the reviewed main
+NASolve development line after the independent metal gates are met. Everyday
+Pine and Cedar working files remain untouched. All 610 inventoried previous
+rehearsal files and all 20 supplied original recipe files remained byte-identical. New immutable FT_Hg siblings are
+`live-20261028-06/FT_Hg/AutoMR/run_001/Metal/hypothesis_002` and `hypothesis_003`,
+with `xyz_004` and `xyz_005`. Both new XYZ bundles are about 1.03 MB including
+retained inputs/evidence. No evidence was pruned. Local-only import records,
+`native-receipt.json`, `recipe-review.md`, review/validation/viewer receipts live
+in ignored `branch-artifacts/Alder/recipes-20261028-01/`; A28-prefixed local
+runners remain in `branch-artifacts/Alder/runners/`. Scientific source files,
+models, reflection/phase data, numeric endpoints and local state are excluded
+from Git.
+
+Next qualify recipe/weight/phase sensitivity and native restraint residuals,
+then connect the exact reviewed XYZ endpoint to environmental B preparation and
+frozen anomalous branches. The future editor should use this same immutable
+recipe API and require explicit save-as-hypothesis; it must not mutate a saved
+result when a panel, overlay or selection changes. Map evidence, chemistry-aware
+library suggestions, campaign orchestration and automatic ranking remain planned.
+
 ## Phase-restrained XYZ review adapter 2026-10-28
 
 **Behavior before and after.** Metal hypotheses previously stopped at recipe-only

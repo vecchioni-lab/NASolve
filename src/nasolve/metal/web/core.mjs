@@ -88,3 +88,23 @@ export function labelLayout(items, pixelsPerA, width, height) {
   }
   return placed;
 }
+
+
+// Presentation-only summaries preserve the ordered middle atom as angle vertex.
+export function recipeRows(scene) {
+  const nodes=new Map((scene?.nodes||[]).map(n=>[n.node_id,n]));
+  return (scene?.restraints||[]).map(r=>({...r,
+    labels:r.node_ids.map(id=>nodes.get(id)?.atom ? atomLabel(nodes.get(id).atom.key) : id),
+    vertex:r.kind==='angle'?r.node_ids[1]:null,
+    keys:r.node_ids.map(id=>nodes.get(id)?.atom?.key).filter(Boolean)
+  }));
+}
+export function geometrySnapshots(rows) {
+  const groups=new Map();
+  for(const trial of groupSnapshots(rows)) {
+    const key=JSON.stringify([trial.dataset_id,trial.structure_id,trial.hypothesis_id]);
+    if(!groups.has(key))groups.set(key,{...trial,trials:[]});
+    groups.get(key).trials.push(trial);
+  }
+  return [...groups.values()];
+}

@@ -16,6 +16,13 @@ from .scattering import inspect_observations, reference_scattering
 def configure(subparsers):
     metal = subparsers.add_parser('metal', help='inspect generated models and preview explicit metal restraints')
     actions = metal.add_subparsers(dest='metal_action', required=True)
+    legacy = actions.add_parser('import-restraints', help='inspect legacy PHIL edits or rebind them to a reusable recipe')
+    legacy.add_argument('source', type=Path, help='explicit local PHIL edits file')
+    legacy.add_argument('--mapping', type=Path, help='JSON mapping of every selector ID to a logical node')
+    legacy.add_argument('--id', dest='recipe_id', help='stable ID for the imported recipe')
+    legacy.add_argument('--name', help='display name for the imported recipe')
+    legacy.add_argument('--output', type=Path, help='new import record or recipe JSON; never overwrite')
+    legacy.add_argument('--json', action='store_true')
     capture = actions.add_parser('capture-workbench', help='capture an explicit offline campaign catalog')
     browse = actions.add_parser('inspect-workbench', help='replay a catalog and inspect linked saved results offline')
     serve = actions.add_parser('serve-workbench', help='open a local read-only viewer of verified saved metal results')
@@ -116,6 +123,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'import-restraints':
+            return _import_restraints(args)
         if args.metal_action in {'capture-workbench', 'inspect-workbench', 'serve-workbench'}:
             return _workbench(args)
         if args.metal_action in {'plan-fdp-scan', 'run-fdp-scan', 'verify-fdp-scan'}:
@@ -497,4 +506,30 @@ def _workbench(args):
             if 'pending' in report:
                 print(f'{detail["dataset_id"]} / {detail["result_id"]}: {report["pending"]} pending scan points')
         print('Navigation snapshot only; reopen to reverify sources. No jobs, ranking or checkpoint selection.')
+    return 0
+
+
+def _import_restraints(args):
+    from .phil_import import inspect_restraints, import_recipe
+    raw = args.source.read_bytes()
+    if args.mapping:
+        if not args.recipe_id or not args.name:
+            raise RecipeError('Mapping requires --id and --name')
+        result = import_recipe(raw, _json(args.mapping), recipe_id=args.recipe_id, name=args.name).to_dict()
+    else:
+        if args.recipe_id or args.name:
+            raise RecipeError('--id and --name require --mapping')
+        result = inspect_restraints(raw)
+    serialized = json.dumps(result, indent=2, allow_nan=False) + '\n'
+    if args.output:
+        with args.output.open('x') as handle:
+            handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    else:
+        print(f"Imported {len(result['restraints'])} restraint terms; chemistry unqualified.")
+        if not args.mapping:
+            for selector in result['selectors']:
+                print(f"{selector['id']}: {selector['selection']}")
+            print('Map selectors explicitly before reuse; old residue numbers are not applied automatically.')
     return 0

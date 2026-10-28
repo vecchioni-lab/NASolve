@@ -29,7 +29,7 @@ hypothesis on the generated scaffold.
 | M2c: reference endpoints | Capture human XYZ/q/ADP snapshots and compare explicit atom correspondences without trusting stored anomalous values | Implemented offline; no alignment, symmetry expansion or target learning |
 | M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Partial: single trials and matched endpoint comparisons implemented; initial start/cycle controls and explicit bounded occupancy sweeps implemented; optimizer convergence qualification and adaptive search remain planned |
 | M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables, disk-budgeted retention/recovery and selection | Partial: explicit grids, job budgets and finalized-pass resume with exact seed/ancestor reuse implemented; GUI, adaptive centers, general cache and storage policies planned |
-| M5: campaign workbench | Switch datasets/structures/site groups/hypotheses in one GUI; independently owned jobs, failures and lineage | Partial: verified offline catalog, linked rows and pure scope navigation implemented; rendered panels and campaign scheduling planned |
+| M5: campaign workbench | Switch datasets/structures/site groups/hypotheses in one GUI; independently owned jobs, failures and lineage | Partial: verified offline catalog, linked rows, read-only rendered panels and scope navigation implemented; editing and campaign scheduling planned |
 | M6: solution-space search and decision logic | Explore budgeted structural/scattering alternatives; retain promising families and provisional choices; separately validate correct choices and appropriate deferral | Planned; construction controls do not validate selection logic |
 
 Supplied human endpoints are optional [reference snapshots](metal-anomalous-doctor.md#implemented-human-reference-snapshots). Their exact source bytes and explicitly mapped internal geometry can be compared with generated candidates; stored anomalous values are ignored. This does not qualify the candidate geometry or adopt the reference checkpoint.
@@ -48,6 +48,86 @@ metadata, with explicit field provenance. A missing processing CIF must not
 invalidate capabilities that are available from the authoritative MTZ. These
 fallbacks are planned; ordinary AutoMR discovery still requires its current
 companions. The first two controls contain those companions.
+
+### Import existing coordination recipes
+
+`metal import-restraints` reads an explicitly named local PHIL edits file without
+running Phenix or looking up atoms. Inspection returns numbered selectors and
+ordered distance/angle terms. A separate explicit mapping assigns **every** old
+selector to a logical donor, metal or exact-bound atom node. It never applies an
+old residue number to a new structure automatically.
+
+```sh
+nasolve metal import-restraints /path/to/legacy.params.txt --output inspection.json
+nasolve metal import-restraints /path/to/legacy.params.txt --mapping nodes.json --id bridge --name "Bridge hypothesis" --output recipe.json
+```
+
+The first command prints selector IDs for the second command's mapping. A
+mapping entry such as `"s1": {"id":"m1","kind":"metal","element":"Hg"}`
+explicitly declares an element; a donor entry supplies `id`, `kind="donor"`,
+`residue_slot` and `role`. Review the inspected selection before assigning its
+logical role. This is a declared rebinding, not a claim that the old and new
+atoms are chemically equivalent. Ordinary source-bound preview/materialization
+still resolves the new inventory and exports exact native selectors.
+
+The implemented subset accepts one multiline
+`refinement.geometry_restraints.edits` scope, local selection aliases, add-only
+bonds and angles, finite targets and positive sigma. It rejects unsupported
+scopes/fields/directives, unused root settings, duplicate fields, cyclic or
+compound variables, nonidentity symmetry and non-None slack. It is deliberately
+not a general PHIL interpreter. Unsupported files require an explicit adapter;
+terms are never silently dropped. Outputs must be new files.
+
+Angle atom order is preserved: **the second atom is the vertex**. A supplied
+zero-degree metal–donor–donor term remains donor-centred; it is not silently
+rewritten as a metal-centred 180-degree term. Four-donor recipes retain their
+actual distance/angle graph; a filename containing “square” does not add
+unprovided square-planarity restraints. Cluster distance links likewise do not
+impose a plane. Numeric targets and their uncertainty describe a hypothesis,
+not a universal metal-distance library or chemical acceptance.
+
+**Methods and formats.** The bounded offline parser validates the complete
+supported input, resolves only local whole-value variables, deduplicates identical
+selector text and preserves term order. Inspection uses schema-1
+`metal-restraint-import`, protocol `metal-phil-import-v1`. Rebinding produces the
+existing schema-1 immutable recipe and captures exact UTF-8 source bytes, SHA-256,
+size, inspected terms and the original logical mapping in
+`extensions.phil_import`. Subsequent recipe revisions retain this historical
+import provenance; their current graph is authoritative. The source is embedded,
+not an operational absolute path. No native defaults, elemental identities,
+oxidation state or missing geometric targets are inferred. Existing recipes and
+artifacts require no migration.
+
+```mermaid
+flowchart LR
+    F[Explicit local PHIL edits] --> I[Validate and inspect ordered terms]
+    I --> M[Explicit selector to logical-node mapping]
+    M --> R[Immutable recipe with captured source]
+    R --> P[Bind to verified new atom inventory]
+    P --> H[Independent hypothesis]
+    H --> X[Bounded phase-restrained XYZ review]
+    R --> V[Expandable read-only recipe inspection]
+    X -. pending reviewed endpoint bridge .-> B[Environmental B then frozen f-double-prime trials]
+```
+
+Twenty supplied working examples were inspected locally, preserving 72 terms.
+Two imported coordination hypotheses completed separate three-cycle FT_Hg
+Phenix 2.2.1-6174 refinements from the same AutoSol-derived input and phases.
+The native logs identify the added bonds/angle with the requested atoms and
+numeric parameters. The distances responded, but substantial angle residuals
+remain, and a full-model contact lookup exposes an additional unrestrained
+short contact in one branch. Completion or selected-bond agreement is not geometry
+qualification. Exact scientific results,
+source files and local receipts are excluded from Git; the current handoff
+records their locations. No map evaluation, f-double-prime trial, automatic
+recipe ranking or accepted checkpoint was produced by this check.
+
+The viewer now exposes a compact **Coordination recipe** section with measured
+and target distances/angles, sigma, ordered atom names, angle vertex and selected
+term overlays. It remains read-only. The next editor should reuse this importer
+and immutable recipe API: choose a saved recipe, bind donor/metal slots, preview
+and explicitly save a new hypothesis. Target/sigma/set editing belongs in an
+expanded editor; view visibility must never change scientific enabled flags.
 
 ### Generated-run API and commands
 
@@ -384,7 +464,7 @@ flowchart LR
     L -.-> S
 ```
 
-The recipe editor controller and rendered panels in this figure remain planned.
+The editing controller in this figure remains planned. Read-only recipe inspection and term highlighting are implemented in the saved-results viewer.
 A separate [offline evidence controller](metal-anomalous-doctor.md#implemented-offline-workbench-controller)
 now supplies catalog-bound navigation and linked saved-result rows. Reordering panels or replacing the rendering toolkit
 requires no change to the scientific graph, binding or geometry calculations.

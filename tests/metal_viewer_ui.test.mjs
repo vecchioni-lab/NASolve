@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {autoCamera, groupSnapshots, labelLayout, ratio, keyOf, number, projector, rowValues, scopeKey, visibleAtoms} from '../src/nasolve/metal/web/core.mjs';
+import {recipeRows, geometrySnapshots, autoCamera, groupSnapshots, labelLayout, ratio, keyOf, number, projector, rowValues, scopeKey, visibleAtoms} from '../src/nasolve/metal/web/core.mjs';
 const key = (name, residue='1', altloc='') => ({chain_id:'A',residue_id:residue,component_id:'DF',model_id:'1',atom_name:name,altloc,insertion_code:'',segment_id:'',symmetry:'x,y,z'});
 const atoms = [
  {key:key('S1'),xyz:[0,0,0]}, {key:key('C1'),xyz:[1,0,0]},
@@ -75,4 +75,19 @@ test('labels disappear when distant and do not overlap at close range',()=>{
    const a=labels[i],b=labels[j];assert.ok(a.x+a.width<=b.x||b.x+b.width<=a.x||a.y+a.height<=b.y||b.y+b.height<=a.y);
  }
  assert.ok(labels.some(l=>l.text==='AG'));
+});
+
+
+test('recipe inspection keeps a donor-centred zero angle and exact atom order',()=>{
+ const s={nodes:[{node_id:'m',atom:atoms[0]},{node_id:'d1',atom:atoms[1]},{node_id:'d2',atom:atoms[2]}],
+  restraints:[{restraint_id:'angle',kind:'angle',node_ids:['m','d1','d2'],target:0,sigma:3,enabled:false}]};
+ const before=JSON.stringify(s),rows=recipeRows(s);
+ assert.equal(rows[0].vertex,'d1');assert.equal(rows[0].target,0);assert.equal(rows[0].enabled,false);
+ assert.deepEqual(rows[0].keys,atoms.slice(0,3).map(a=>a.key));assert.equal(JSON.stringify(s),before);
+});
+test('one geometry table retains distinct trial groups and cross-dataset boundaries',()=>{
+ const r=(trial,node,dataset='one')=>({row_id:trial+node+dataset,dataset_id:dataset,structure_id:'s',hypothesis_id:'h',result_id:'scan',data:{trial_id:trial,node_id:node}});
+ const groups=geometrySnapshots([r('a','m1'),r('a','m2'),r('b','m1'),r('b','m2'),r('a','m1','two')]);
+ assert.equal(groups.length,2);assert.equal(groups[0].trials.length,2);
+ assert.equal(groups[0].trials[0].sites.length,2);assert.equal(groups[1].trials.length,1);
 });

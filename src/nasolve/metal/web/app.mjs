@@ -1,11 +1,11 @@
-import {keyOf, atomLabel, number, scopeKey, visibleAtoms, projector, autoCamera, groupSnapshots, labelLayout, ratio} from './core.mjs';
+import {keyOf, atomLabel, number, scopeKey, visibleAtoms, projector, autoCamera, groupSnapshots, geometrySnapshots, recipeRows, labelLayout, ratio} from './core.mjs';
 
 const $ = id => document.getElementById(id);
 const make = (tag, text, cls) => { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; };
 const svg = (tag, attrs) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [k,v] of Object.entries(attrs)) e.setAttribute(k,v); return e; };
 const defaults = () => autoCamera(presentation?.scene ? visibleAtoms(presentation.scene,presentation.view.selection.site_id,'residues',selectedAtom) : []);
 const cameras = new Map();
-let presentation, selectedAtom = null, busy = false;
+let presentation, selectedAtom = null, selectedRestraint = null, busy = false;
 const camera = () => { const key = scopeKey(presentation?.scene); if (!cameras.has(key)) cameras.set(key, defaults()); return cameras.get(key); };
 const atomData = row => row?.data.candidate || row?.data;
 function message(text, error = false) { $('message').textContent = text; $('message').classList.toggle('error', error); }
@@ -21,8 +21,9 @@ async function request(action) {
     if (changed || next.view.selection.row_id !== presentation?.view.selection.row_id) {
       selectedAtom = next.view.selected_row ? keyOf(atomData(next.view.selected_row).key) : null;
     }
+    if(changed)selectedRestraint=null;
     presentation = next;
-    render(); message('Saved snapshot verified at opening. Navigation is read-only.');
+    render(); message('Verified saved evidence · Read-only');
   } catch (error) {
     message(error.message || 'Local viewer disconnected. Restart it to reconnect.', true);
     if (presentation) renderNavigation();
@@ -30,12 +31,12 @@ async function request(action) {
 }
 function lockNavigation(value) {
   $('all').disabled = value;
-  document.querySelectorAll('#navigation select, #rows button').forEach(e => { e.disabled = value || e.dataset.empty === 'true'; });
+  document.querySelectorAll('#navigation select, #navigation-extra select, #rows button').forEach(e => { e.disabled = value || e.dataset.empty === 'true'; });
 }
 function action(name, fields = {}) { return {action:name, selection:presentation.view.selection, ...fields}; }
 function renderNavigation() {
   const labels = {dataset_id:'Dataset',structure_id:'Structure',hypothesis_id:'Candidate',site_id:'Site group',result_id:'Result set'};
-  const root = $('navigation'); root.replaceChildren();
+  const root = $('navigation'), extra=$('navigation-extra'); root.replaceChildren();extra.replaceChildren();
   for (const [field,label] of Object.entries(labels)) {
     const wrap = make('label', label), select = make('select'); select.id = field;
     const all = make('option', 'All / none selected'); all.value = ''; select.append(all);
@@ -44,44 +45,47 @@ function renderNavigation() {
     select.dataset.empty = String(!presentation.view.options[field].length);
     select.disabled = select.dataset.empty === 'true';
     select.addEventListener('change', () => request(action('select',{field,value:select.value || null})));
-    wrap.append(select); root.append(wrap);
+    wrap.append(select); (['site_id','result_id'].includes(field)?extra:root).append(wrap);
   }
 }
 function renderRows() {
   const root=$('rows');root.replaceChildren();
   const groups=groupSnapshots(presentation.view.rows);
   $('row-count').textContent=`(${groups.length} snapshots · ${presentation.view.rows.length} source links)`;
-  for(const [index,group] of groups.entries()) {
+  for(const geometry of geometrySnapshots(presentation.view.rows)) {
     const box=make('section',undefined,'snapshot');
-    const heading=make('div',undefined,'snapshot-heading');
-    heading.append(make('h3',group.trial_id?`Trial ${index+1} · ${group.trial_id.slice(0,8)}`:'Coordinate reference comparison'));
-    heading.append(make('p',`${group.dataset_id} › ${group.structure_id} › ${group.hypothesis_id}`,'scope'));
-    heading.append(make('p',`Saved in: ${group.sources.join(', ')}${group.sources.length>1?' · same trial, reused evidence':''}`,'muted'));box.append(heading);
+    box.append(make('h3',`${geometry.dataset_id} › ${geometry.structure_id} › ${geometry.hypothesis_id}`));
     const table=make('table'),head=make('thead'),hr=make('tr');
-    for(const name of ['Site','Element','Q (occ)','f″ obs (e)','f″ calc (e)','obs / calc'])hr.append(make('th',name));
-    head.append(hr);table.append(head);const body=make('tbody');
-    for(const site of group.sites) {
-      const row=site.rows.find(r=>r.row_id===presentation.view.selection.row_id)||site.rows[0],d=row.data,a=atomData(row);
-      const tr=make('tr');tr.classList.toggle('selected',site.rows.some(r=>r.row_id===presentation.view.selection.row_id));tr.dataset.rowId=row.row_id;
-      const td=make('td'),button=make('button',d.node_id);
-      button.setAttribute('aria-label',`Inspect ${group.dataset_id}, ${d.node_id}, Q ${a.occupancy}, trial ${index+1}`);
-      button.setAttribute('aria-pressed',String(tr.classList.contains('selected')));
-      button.addEventListener('click',()=>request(action('row',{row_id:row.row_id})));td.append(button);tr.append(td);
-      for(const value of [a.element,number(a.occupancy,2),number(d.f_double_prime),number(d.reference_f_double_prime),number(ratio(d),2)])tr.append(make('td',value));
-      tr.addEventListener('click',event=>{if(!event.target.closest('button'))request(action('row',{row_id:row.row_id}));});body.append(tr);
+    for(const name of ['Trial','Site','Element','Q (occ)','f″ obs (e)','f″ calc (e)','obs / calc'])hr.append(make('th',name));
+    head.append(hr);table.append(head);
+    const detail=make('details');detail.append(make('summary','B, wavelength and source links'));
+    for(const [index,group] of geometry.trials.entries()) {
+      const body=make('tbody',undefined,'trial-group');
+      for(const [siteIndex,site] of group.sites.entries()) {
+        const row=site.rows.find(r=>r.row_id===presentation.view.selection.row_id)||site.rows[0],d=row.data,a=atomData(row);
+        const tr=make('tr');tr.classList.toggle('selected',site.rows.some(r=>r.row_id===presentation.view.selection.row_id));tr.dataset.rowId=row.row_id;
+        if(siteIndex===0){const trial=make('th',group.trial_id?String(index+1):'Ref');trial.rowSpan=group.sites.length;trial.scope='rowgroup';trial.title=group.trial_id||'Coordinate reference comparison';tr.append(trial);}
+        const td=make('td'),button=make('button',d.node_id);
+        button.setAttribute('aria-label',`Inspect ${group.dataset_id}, ${d.node_id}, Q ${a.occupancy}, trial ${index+1}`);
+        button.setAttribute('aria-pressed',String(tr.classList.contains('selected')));
+        button.addEventListener('click',()=>request(action('row',{row_id:row.row_id})));td.append(button);tr.append(td);
+        for(const value of [a.element,number(a.occupancy,2),number(d.f_double_prime),number(d.reference_f_double_prime),number(ratio(d),2)])tr.append(make('td',value));
+        tr.addEventListener('click',event=>{if(!event.target.closest('button'))request(action('row',{row_id:row.row_id}));});body.append(tr);
+      }
+      table.append(body);
+      const saved=make('details');saved.append(make('summary',`Trial ${index+1} · ${group.trial_id?.slice(0,8)||'Reference'} · ${group.sources.join(', ')}`));
+      for(const site of group.sites) {
+        const d=site.rows[0].data,a=atomData(site.rows[0]);
+        saved.append(make('p',`${d.node_id}: B ${number(a.b_iso??a.reported_b_A2,2)} Å² · λ ${number(d.wavelength_A,5)} Å · f′ ${number(d.f_prime)} e · B policy: ${d.b_calibration?.policy||'original model B (legacy)'}`,'scope'));
+        for(const row of site.rows) {const b=make('button',`${row.result_id} / ${d.node_id}`);b.addEventListener('click',()=>request(action('row',{row_id:row.row_id})));saved.append(b);}
+        if(d.settings)fold(saved,`${d.node_id} fit settings`,d.settings);
+      }
+      detail.append(saved);
     }
-    table.append(body);const scroll=make('div',undefined,'table-scroll');scroll.append(table);box.append(scroll);
-    const detail=make('details');detail.append(make('summary','B, wavelength, fit settings and source links'));
-    for(const site of group.sites) {
-      const d=site.rows[0].data,a=atomData(site.rows[0]);
-      detail.append(make('p',`${d.node_id}: B ${number(a.b_iso??a.reported_b_A2,2)} Å² · λ ${number(d.wavelength_A,5)} Å · f′ ${number(d.f_prime)} e · B policy: ${d.b_calibration?.policy||'original model B (legacy)'}`,'scope'));
-      for(const row of site.rows) {const b=make('button',`${row.result_id} / ${d.node_id}`);b.addEventListener('click',()=>request(action('row',{row_id:row.row_id})));detail.append(b);}
-      if(d.settings)fold(detail,`${d.node_id} fit settings`,d.settings);
-    }
-    box.append(detail);root.append(box);
+    const scroll=make('div',undefined,'table-scroll');scroll.append(table);box.append(scroll,detail);root.append(box);
   }
   if(!groups.length)root.append(make('p','No saved rows in this scope. Pending points remain in the reports.','muted'));
-  $('result-note').textContent='Each box is one saved trial: its metals share a fitted snapshot. f″ obs is the fitted value; f″ calc is the wavelength reference. The ratio is descriptive, not a correction or ranking. — means absent.';
+  $('result-note').textContent='Each table is one geometry; numbered row groups keep all metals from the same trial together. f″ obs is the fitted value; f″ calc is the wavelength reference. The ratio is descriptive, not a correction or ranking. — means absent.';
   const pending=$('pending');pending.replaceChildren();
   for(const detail of presentation.view.details.filter(d=>d.report)) {
     const report=detail.report;
@@ -102,7 +106,8 @@ function renderInspector() {
     const d = row.data, a = atomData(row);
     root.append(make('h3','Selected result'),make('p',`${row.dataset_id} / ${row.structure_id} / ${row.hypothesis_id} / ${row.result_id}`, 'scope'));
     root.append(make('p',`${d.node_id} · ${a.element} · ${atomLabel(a.key)}`, 'scope'));
-    values(root, [['Q (occ)',number(a.occupancy)],['Reported B (Å²)',number(a.b_iso ?? a.reported_b_A2)],['Fixed f′ (e)',number(d.f_prime)],['Refined f″ (e)',number(d.f_double_prime)],['Expected f″ (e)',number(d.reference_f_double_prime)],['Wavelength (Å)',number(d.wavelength_A,5)]]);
+    values(root, [['Q (occ)',number(a.occupancy)],['Refined f″ (e)',number(d.f_double_prime)],['Expected f″ (e)',number(d.reference_f_double_prime)]]);
+    const secondary=make('details');secondary.append(make('summary','B, f′ and wavelength'));values(secondary,[['B (Å²)',number(a.b_iso??a.reported_b_A2)],['Fixed f′ (e)',number(d.f_prime)],['λ (Å)',number(d.wavelength_A,5)]]);root.append(secondary);
     values(root,[['f″ obs / calc',number(ratio(d),2)]]);
     if(d.b_calibration)fold(root,'Applied environmental B assumption',d.b_calibration);
     else if(d.f_double_prime!==undefined)root.append(make('p','Legacy trial: original model B was retained. Environmental B has not been applied to this saved fit.','note'));
@@ -135,9 +140,33 @@ function renderInspector() {
       if(item.atoms)fold(environment,`${item.node_id} / ${item.policy} · contributing atoms`,item);
     }
     root.append(environment);
-    fold(root,'Saved restraint terms (distances and angles)',scene.restraints);
+
     fold(root,'Geometry source', {geometry_id:scene.geometry_id,model:scene.model,status:scene.status});
   }
+}
+function renderRecipe() {
+  const scene=presentation.scene, root=$('recipe');root.replaceChildren();
+  const rows=recipeRows(scene),active=rows.filter(r=>r.enabled);
+  $('recipe-title').textContent=scene ? `Coordination recipe · ${scene.recipe?.name||'Saved recipe'} · ${active.length} active terms` : 'Coordination recipe';
+  if(!scene)return;
+  if(!active.length)root.append(make('p','No active coordination restraints. This geometry has no recipe guardrails.','note'));
+  const clear=make('button','Clear highlight');clear.addEventListener('click',()=>{selectedRestraint=null;drawScene();renderRecipe();});root.append(clear);
+  const table=make('table'),head=make('thead'),hr=make('tr');
+  for(const label of ['Term / ordered atoms','Current','Target','σ'])hr.append(make('th',label));head.append(hr);table.append(head);
+  const body=make('tbody');
+  for(const row of rows) {
+    const tr=make('tr');tr.classList.toggle('selected',row.restraint_id===selectedRestraint);
+    const td=make('td'),button=make('button',`${row.kind==='angle'?'Angle':'Distance'} · ${row.node_ids.join(' – ')}${row.enabled?'':' · off'}`);
+    button.title=row.labels.join(' → ');button.setAttribute('aria-pressed',String(row.restraint_id===selectedRestraint));
+    button.addEventListener('click',()=>{selectedRestraint=row.restraint_id;drawScene();renderRecipe();});td.append(button);
+    if(row.vertex)td.append(make('div',`Vertex: ${row.vertex}`,'muted'));tr.append(td);
+    for(const value of [row.measured,row.target,row.sigma])tr.append(make('td',`${number(value,row.kind==='angle'?1:3)} ${row.unit==='degree'?'°':'Å'}`));body.append(tr);
+  }
+  table.append(body);const scroll=make('div',undefined,'table-scroll');scroll.append(table);root.append(scroll);
+  const selected=rows.find(r=>r.restraint_id===selectedRestraint);
+  if(selected){root.append(make('p',selected.labels.join(' → '),'scope'));if(selected.status!=='resolved')root.append(make('p',`Status: ${selected.status}`,'note'));}
+  root.append(make('p','Targets are hypotheses. The middle atom is the angle vertex; displayed angles are not converted to a metal-centred convention.','muted'));
+  fold(root,'Sets, exact terms and target sources',{recipe:scene.recipe,terms:scene.restraints});
 }
 function syncCamera() {
   const c=camera();$('zoom').value=c.zoom;$('context').value=c.context;$('camera-mode').value=c.mode;
@@ -170,6 +199,12 @@ function drawScene() {
     const [a,b]=endpoints.map(a=>project(a.xyz));const line=svg('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#80bbfa','stroke-width':1.6,'stroke-dasharray':'3 5'});
     const title=svg('title',{});title.textContent=`${r.restraint_id}: target ${r.target} ± ${r.sigma} ${r.unit}`;line.append(title);canvas.append(line);
   }
+  const picked=scene.restraints.find(r=>r.restraint_id===selectedRestraint);
+  if(picked) {
+    const ends=picked.node_ids.map(id=>nodes.get(id)).map(a=>a&&inventory.get(keyOf(a.key)));
+    const pairs=picked.kind==='angle'?[[0,1],[1,2]]:[[0,1]];
+    for(const [i,j] of pairs)if(ends[i]&&ends[j]){const [a,b]=[ends[i],ends[j]].map(a=>project(a.xyz));canvas.append(svg('line',{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:'#ffc18c','stroke-width':2.5,'stroke-dasharray':picked.enabled?'5 4':'2 5'}));}
+  }
   const labels=[];
   for(const atom of [...atoms].sort((a,b)=>project(a.xyz)[2]-project(b.xyz)[2])) {
     const key=keyOf(atom.key),[x,y]=project(atom.xyz),chosen=key===selectedAtom,metal=metals.has(key),donor=donors.has(key);
@@ -184,9 +219,9 @@ function drawScene() {
   }
   root.append(canvas);
 }
-function render(){ $('campaign').textContent=presentation.campaign_label;renderNavigation();renderRows();syncCamera();drawScene();renderInspector(); }
+function render(){ $('campaign').textContent=presentation.campaign_label;renderNavigation();renderRows();renderRecipe();syncCamera();drawScene();renderInspector(); }
 $('all').addEventListener('click',()=>request({action:'reset'}));
-$('toggle-inspector').addEventListener('click',()=>{const hidden=$('workbench').classList.toggle('no-inspector');$('toggle-inspector').textContent=hidden?'Show inspector':'Hide inspector';$('toggle-inspector').setAttribute('aria-expanded',String(!hidden));drawScene();});
+$('toggle-inspector').addEventListener('click',()=>{const hidden=$('workbench').classList.toggle('no-inspector');$('toggle-inspector').textContent=hidden?'Show details':'Hide details';$('toggle-inspector').setAttribute('aria-expanded',String(!hidden));drawScene();});
 $('zoom').addEventListener('input',()=>{camera().zoom=Number($('zoom').value);drawScene();});
 $('camera-mode').addEventListener('change',()=>{camera().mode=$('camera-mode').value;});
 $('context').addEventListener('change',()=>{camera().context=$('context').value;fitCamera();});

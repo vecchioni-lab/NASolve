@@ -1319,6 +1319,12 @@ automation but do not replace visual inspection or user approval.
 
 ## Metal authoring core and frozen anomalous diagnostics
 
+The offline `metal.phil_import` adapter inspects a bounded add-only PHIL edits
+subset and explicitly rebinds every historical selector to a logical recipe
+node. It captures source bytes/hash and preserves ordered angle vertices. It
+does not evaluate legacy selectors, infer chemistry or invoke native software.
+See the [import descriptor](metal-restraint-builder.md#import-existing-coordination-recipes).
+
 The run integration adapter now consumes an explicit generated W checkpoint,
 its inherited resources and source-bound PDB inventory. It maps first/second
 pair slots to A:12/B:4 and reuses PostMR's effective donor-role corrections.
@@ -1409,7 +1415,10 @@ controller through `metal serve-workbench`. A loopback-only, capability-URL HTTP
 server accepts stateless bounded navigation and serves fixed assets. Verified
 model coordinates and saved restraint terms form a detached scene; the browser
 only projects coordinates and renders reports. Camera/context/panel state stays
-outside scientific selection. No artifact schema migration or native job route
+outside scientific selection. Expandable recipe inspection preserves term order
+and highlights angles without rewriting them; compact tables group trials within
+each geometry. Secondary controls and the inspector start collapsed. No artifact
+schema migration or native job route
 is added. See the [viewer methods and limits](metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
 
 Environmental metal B preparation is an optional derivation between fixed geometry

@@ -103,6 +103,7 @@ def open_viewer(catalog, mounts):
                     hypothesis_id=hypothesis['hypothesis_id'], geometry_id=geometry['geometry_id'],
                     model=geometry['files']['model'], status=geometry['status'], atoms=atoms,
                     nodes=preview['nodes'], restraints=preview['restraints'],
+                    recipe={k:preview['inputs']['recipe'][k] for k in ('id','name','revision','sets')},
                     connections=display_connections(atoms,chemistry),connectivity_note=chemistry_note,
                     b_environment=preparation,
                     site_atoms={s['site_id']:s['atoms'] for s in hypothesis['sites']}))
