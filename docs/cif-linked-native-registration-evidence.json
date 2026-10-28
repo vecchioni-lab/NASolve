@@ -35832,7 +35832,7 @@
       "PNA operations, terminal reconstruction and PDU C104 numerical gates remain open",
       "No optimization, adoption, Coot execution or Pine/main merge"
     ],
-    "publication": "Validation complete; exact tested-file hashes recorded. Commit/push pending.",
+    "publication": "Tested implementation published and remote verified; this follow-up records continuity only.",
     "native_version": {
       "full_installation_version": "2.2.1-6174",
       "dispatcher_reported_version": "2.2.1",
@@ -35854,6 +35854,7 @@
       ],
       "observation": "The installed _get_mappings implementation records literal-to-effective name changes and maps effective IDs to native atoms; assign_from_monomer_mapping uses those atoms to assign energy symbols.",
       "next_validation": "Capture explicit per-site native IDs/index mappings and prove uniqueness/binding before accepting any alias. Missing hydrogens/protonation remain a distinct policy question. Preserve C109 worker-version compatibility when extending captures."
-    }
+    },
+    "tested_implementation_commit": "7907eca49db0803b4c694bc58ffb5aff8024d88a"
   }
 }
