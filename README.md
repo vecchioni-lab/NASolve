@@ -1405,6 +1405,20 @@ and native policy, and leaves untested axes explicit. Endpoint agreement does
 not prove convergence or select the correct structure. See the
 [comparison guide](docs/metal-anomalous-doctor.md#implemented-matched-endpoint-comparisons).
 
+Run an explicit occupancy sweep from one audited seed, with bounded new work:
+
+```sh
+nasolve metal plan-fdp-scan /path/to/dataset/AutoMR/run_001 --seed Metal/fdp_001 --occupancies m1=0.40,0.60,0.80 --max-trials 3
+nasolve metal run-fdp-scan /path/to/dataset/AutoMR/run_001 --plan Metal/fdp_scan_plan_001 --job-budget 1
+nasolve metal run-fdp-scan /path/to/dataset/AutoMR/run_001 --plan Metal/fdp_scan_plan_001 --job-budget 1 --resume Metal/fdp_scan_001
+nasolve metal verify-fdp-scan /path/to/dataset/AutoMR/run_001 --scan Metal/fdp_scan_002
+```
+
+Repeat `--occupancies` for independent metal sites; omitted sites retain seed q.
+The runner reuses exact verified seed/resume results, keeps all other experimental
+settings fixed and saves each pass separately. It reports pending points and
+stops on errors. See [bounded sweeps and resume limits](docs/metal-anomalous-doctor.md#implemented-bounded-occupancy-sweeps).
+
 Inspect a supplied human endpoint and compare explicitly mapped geometry:
 
 ```sh

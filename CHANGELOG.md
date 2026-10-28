@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Run bounded occupancy sweeps from audited metal seeds
+
+- Add offline `metal plan-fdp-scan`, bounded sequential `metal run-fdp-scan`
+  and offline `metal verify-fdp-scan`. Explicit per-site values form a Cartesian
+  grid with a caller-selected total limit; each pass has a trial-attempt budget.
+- Reuse exact verified seed/ancestor results, preserve full occupancy vectors
+  and fixed experimental settings, and reject changed native identities.
+  Handled failures stop further jobs; finalized partial passes resume into new
+  immutable artifacts without overwriting earlier runs.
+- Add schema-1 plans, passes, per-point receipts and linked reports with anchored
+  lineage and relocation replay. Existing fitter/worker/formats are unchanged.
+  Adaptive selection, general caching, hard-kill recovery and GUI remain planned.
+
 ### Show recorded atomic states in reference comparison text
 
 - Display candidate/reference q and reported B with signed differences, exact

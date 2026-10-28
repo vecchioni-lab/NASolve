@@ -1,11 +1,113 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, human reference snapshots, explicit construction and bounded recipe-only preparation implemented**.
-Implementation updated 2026-10-28. Occupancy scans and scientific decision qualification remain planned.
+Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, bounded occupancy sweeps, human reference snapshots, explicit construction and bounded recipe-only preparation implemented**.
+Implementation updated 2026-10-28. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
 Solution-space search, decision logic, maps and GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
+
+## Implemented bounded occupancy sweeps
+
+`metal plan-fdp-scan` freezes an explicit Cartesian occupancy grid from one
+verified frozen f-double-prime seed trial. `metal run-fdp-scan` executes a bounded
+sequential pass; `metal verify-fdp-scan` replays its saved results offline. The
+shared API is `metal.fdp_scan.create_plan`, `verify_plan`, `pending_count`,
+`run_scan` and `verify_scan`. This supplies a controlled experiment runner for
+later GUI panels. It does not choose occupancy values, converge a structure or
+refine occupancy and f-double-prime simultaneously.
+
+```sh
+nasolve metal plan-fdp-scan /path/to/dataset/AutoMR/run_001 --seed Metal/fdp_008 --occupancies m1=0.50,0.60,0.70 --occupancies m2=0.70,0.80 --max-trials 6
+nasolve metal run-fdp-scan /path/to/dataset/AutoMR/run_001 --plan Metal/fdp_scan_plan_001 --job-budget 2
+nasolve metal run-fdp-scan /path/to/dataset/AutoMR/run_001 --plan Metal/fdp_scan_plan_001 --job-budget 3 --resume Metal/fdp_scan_001
+nasolve metal verify-fdp-scan /path/to/dataset/AutoMR/run_001 --scan Metal/fdp_scan_002
+```
+
+Use the exact plan/pass paths printed by each command. A broad or focused grid
+uses explicit per-site values; the seed supplies all omitted sites' fixed q.
+A singleton axis locks that site to the declared value. Values require PDB's
+two-decimal representation, are sorted deterministically and cannot repeat.
+Fitted sites require positive occupancy. Independent metal sites do not share
+an occupancy sum constraint. Mixed alternate species at one physical site still
+require a future explicit mixture policy.
+
+The complete product must fit the caller's `--max-trials` limit, between 1 and
+128 points. Each execution pass requires `--job-budget` between 0 and 128;
+this caps **trial attempts**, including failed requests, without counting reused
+results. Zero permits an offline progress snapshot. The seed's timeout applies
+to each trial; there is no total-wall-time or disk-byte budget yet. Native identity
+probes and input inspection accompany a new fit and are not additional refinement
+experiments. Execution is sequential with the existing one-process fitting policy.
+
+Every point uses the same geometry, model, observations, original Free-R,
+restraints, dictionary resources, fitted groups, wavelength references, nuisance
+policy, starting f-double-prime and iteration budgets as its seed. Only the
+complete placed-metal q vector varies between independent trials. XYZ/ADPs/q
+stay fixed within each fit and f-prime remains fixed. The runner checks the
+installed native version, worker, refinement-source and compiled-kernel hashes
+against the seed before launching jobs. Completed trials must match the seed's
+full comparison basis, settings and planned q vector, including actual reflection
+selection. A mismatch stops the pass and cannot become a completed point.
+
+Reuse is deliberately scoped: an exactly matching **explicit seed** or a verified
+completed point from the **explicit resume lineage** can satisfy a grid point.
+There is no directory search or general experiment cache. Reuse retains the
+original trial ID, manifest and unresolved scientific status. Every referenced
+trial and its input lineage must remain available and verify. A completed resume
+can run entirely offline, even with a nonzero budget. Missing/corrupt evidence
+fails validation rather than silently rerunning or accepting a summary alone.
+
+Plans use schema-1 `metal-fdp-scan-plan` under `Metal/fdp_scan_plan_NNN`.
+Execution passes use schema-1 `metal-fdp-scan` / `metal-fdp-scan-report` under
+`Metal/fdp_scan_NNN`, protocol `metal-fdp-scan-v1`. A pass stores immutable
+per-point receipts, a report and manifest with checksummed run anchors. The
+report links each full q vector to per-site f-double-prime/reference values and
+states `REUSED_SEED`, `REUSED_SCAN`, `EXECUTED` or `PENDING`. Native trials remain
+ordinary `fdp_NNN` bundles; existing formats and fit defaults need no migration.
+
+A full pass is `SCAN_REVIEW`; a budget-limited or handled-error pass is
+`PARTIAL_REVIEW`. Trial failure or a handled keyboard interrupt stops further
+work, preserves completed results and records the failed point/error. Resume
+creates a **new** numbered pass and retries only pending points, leaving its
+predecessor untouched. Resume lineage verification accepts at most 128 passes. A hard kill, power loss or publication failure may leave
+an unfinalized pass with per-point receipts. Such a pass is retained but is not
+accepted by `--resume`; automatic recovery of unfinalized passes remains planned.
+The existing native fitter retains its failed numbered attempts separately.
+
+**Evidence and limits.** Synthetic controls cover Cartesian/locked vectors,
+zero and positive budgets, exact seed/resume reuse, failures and interrupts,
+incompatible trials/native identities, rehashed tampering, offline CLI use and
+source-removed fresh-process relocation. Complete native controls use the
+existing generated one-Hg and mixed Au/Ag geometries with Phenix 2.2.1-6174.
+They exercise five new fits across two resumed grids and a later fully reused
+offline pass. These are numerical workflow controls, not qualified human
+endpoints. Native anisotropic qualification, optimizer stopping/conditioning,
+geometry/identity/count decisions, automatic recentering, conditional occupancy
+refinement, general caching, pruning and GUI attachment remain separate work.
+See the [validation handoff](development-handoff.md#bounded-occupancy-sweeps-2026-10-28).
+
+**Methods.** NASolve derives a deterministic occupancy product from a fully
+audited seed experiment, retaining the full experimental basis. Bounded passes
+reuse exact verified seed/ancestor results and submit remaining points as
+independent frozen-coordinate fixed-q fits. Each successful result is re-audited
+and matched to its requested vector before a durable receipt is written. A
+new pass resumes finalized progress through anchored references; offline replay
+reconstructs every row from the original trial evidence.
+
+```mermaid
+flowchart LR
+    S[Audited seed trial] --> P[Explicit occupancy grid and total point limit]
+    P --> V[Verify seed and optional prior pass]
+    V --> R[Reuse exact completed points]
+    V --> J[Native identity check and bounded new fits]
+    J --> A[Freeze audit and full experiment match]
+    R --> T[New immutable pass and linked per-site table]
+    A --> T
+    T --> O[Offline verification]
+    T --> N[New pass for pending points]
+    N --> V
+```
 
 ## Implemented human reference snapshots
 
@@ -198,7 +300,7 @@ scientific acceptance `NOT_ASSESSED`. Native completion alone does not establish
 an optimizer endpoint. Negative fitted values are retained with a warning.
 Initial start/cycle and occupancy controls now accompany the comparison layer
 below. Conditioning, optimizer stopping/gradient qualification, weak/correlated-site
-controls, scientific ranking, scan orchestration, caching and GUI integration
+controls, scientific ranking, adaptive scan orchestration, general caching and GUI integration
 remain follow-up work.
 See the current [validation handoff](development-handoff.md#metal-frozen-f-double-prime-diagnostic-2026-10-28)
 for exact commands, results and retained failed attempts.
@@ -220,7 +322,8 @@ flowchart LR
     A --> R[Numbered FDP_REVIEW table and evidence]
     R --> V[Offline checksum and audit replay]
     R --> C[Matched offline endpoint comparison]
-    C -. planned .-> S[Independent scans and linked comparison GUI]
+    C --> S[Explicit bounded occupancy sweeps]
+    S -. planned .-> U[Linked comparison GUI]
 ```
 
 ## Implemented matched endpoint comparisons
@@ -653,6 +756,8 @@ with their own assumptions, not a guarantee of unbiased truth. See the
 and [polder-map methods](https://journals.iucr.org/d/issues/2017/02/00/ba5254/ba5254.pdf).
 
 ## Broad scans, focused iteration and occupancy refinement
+
+Explicit seed-bound occupancy grids and finalized-pass resume are now [implemented](#implemented-bounded-occupancy-sweeps). Automatic recentering, coupled occupancy refinement and the broader GUI workflow below remain planned.
 
 The guided sequence below retains explicit user-selected centers. Future auto
 mode may choose exact saved centers under the solution-space policy and budget;

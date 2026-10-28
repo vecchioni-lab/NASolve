@@ -386,6 +386,35 @@
       "scientific_acceptance": "NOT_ASSESSED",
       "automatic_checkpoint_selection": false,
       "production_gui_connected": false
+    },
+    "fdp_scan": {
+      "status": "implemented explicit bounded occupancy sweeps; no adaptive choices",
+      "contract": "docs/metal-anomalous-doctor.md#implemented-bounded-occupancy-sweeps",
+      "commands": [
+        "metal plan-fdp-scan",
+        "metal run-fdp-scan",
+        "metal verify-fdp-scan"
+      ],
+      "schema_version": 1,
+      "protocol": "metal-fdp-scan-v1",
+      "maximum_grid_points": 128,
+      "explicit_total_point_limit": true,
+      "explicit_trial_attempt_budget": true,
+      "sequential_execution": true,
+      "full_vector_cartesian_product": true,
+      "omitted_sites_locked_to_seed": true,
+      "seed_settings_fixed": true,
+      "native_identity_checked_before_new_fits": true,
+      "reuse_scope": "explicit verified seed and finalized resume lineage only",
+      "general_cache_search": false,
+      "resume_creates_new_pass": true,
+      "hard_kill_recovery": false,
+      "per_trial_timeout_inherited": true,
+      "whole_pass_wall_time_limit": false,
+      "disk_byte_budget": false,
+      "scientific_acceptance": "NOT_ASSESSED",
+      "automatic_checkpoint_selection": false,
+      "production_gui_connected": false
     }
   },
   "solution_search": {

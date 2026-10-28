@@ -1367,7 +1367,18 @@ execution. `metal verify-fdp-comparison` revalidates the source trials and
 reconstructs the report offline. The summary references existing artifacts
 without copying scientific inputs, and cannot replace a missing trial or serve
 as a full-artifact cache hit. General cross-geometry and cross-identity
-comparisons, optimizer qualification and automatic scans remain separate.
+comparisons, optimizer qualification and adaptive scans remain separate.
+
+The `metal.fdp_scan` controller builds an immutable seed-bound Cartesian q grid
+and executes bounded sequential passes through the existing fitter. Omitted
+metal occupancies and all non-q settings remain fixed to the audited seed.
+Explicit seed/ancestor trial reuse requires identical full experiment evidence.
+A native identity probe precedes new fits; all completed points must pass the
+ordinary freeze audit and comparison-basis match. Schema-1 plans, passes and
+reports use `metal-fdp-scan-v1`; each resume creates new artifacts with anchored
+lineage. Handled failures retain finalized partial progress. Hard-kill recovery,
+general caching, adaptive selection and disk budgeting remain planned. See the
+[descriptor and methods](metal-anomalous-doctor.md#implemented-bounded-occupancy-sweeps).
 
 The independent `metal.reference` consumer captures optional human PDB snapshots
 and compares explicit one-to-one node correspondences to verified geometry.

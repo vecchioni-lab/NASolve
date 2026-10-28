@@ -13,6 +13,92 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Bounded occupancy sweeps 2026-10-28
+
+**Current additive milestone: M3c / M4 execution foundation.** Before this
+change, each frozen f-double-prime trial needed a separate request. The new
+`metal plan-fdp-scan`, `metal run-fdp-scan` and `metal verify-fdp-scan` commands
+plan explicit per-metal Cartesian q grids, execute bounded sequential passes,
+and replay them offline. Omitted metal occupancies and all non-q experimental
+settings remain fixed to an audited seed. Exact seed or finalized-ancestor
+results are reused with original trial identities. New fits require matching
+native identity and complete experimental evidence. Each resume creates a new
+numbered pass; no checkpoint or structural winner is selected.
+
+See the [human descriptor, commands, methods and editable figure](metal-anomalous-doctor.md#implemented-bounded-occupancy-sweeps).
+Grid limits and per-pass trial-attempt budgets are mandatory. Failed attempts
+count against the budget; handled errors/interrupts stop new work and retain a
+finalized partial pass. Unfinalized hard-killed passes remain preserved but do
+not qualify for automatic resume. Reuse is scoped to explicit seed/ancestor
+lineage; there is no general cache search or disk compaction.
+
+**Files and compatibility.** New `src/nasolve/metal/fdp_scan.py` and
+`tests/test_metal_fdp_scan.py`; additive CLI commands; synchronized README,
+docs index, architecture, builder/milestones, anomalous descriptor, nonruntime
+intent, changelog and this handoff. New schema-1 `metal-fdp-scan-plan`,
+`metal-fdp-scan` and `metal-fdp-scan-report` use `metal-fdp-scan-v1`. Plans and
+passes have separate numbered directories. Per-point receipts and reports refer
+to ordinary original fdp artifacts through checksummed anchors. The existing
+fitter, native worker, scientific defaults and prior formats are unchanged;
+no dependency or migration is required.
+
+**Focused validation.** Python 3.12.14. The initial regression failed before
+implementation (`ModuleNotFoundError: nasolve.metal.fdp_scan`, exit 2), retained
+in `/private/tmp/alder-scan-red.log`. Final functional command:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_fdp_scan.py tests/test_metal_reference.py tests/test_metal_fdp_compare.py tests/test_metal_fdp.py tests/test_metal_geometry.py tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_refine_doctor.py tests/test_autorefine.py
+```
+
+**376 tests and 27 subtests passed in 52.87 s; exit 0.** The new 37 cases cover
+Cartesian and locked vectors, PDB precision/zero/duplicate guards, preallocation
+budget validation, zero-job and completed offline passes, failure/interrupt
+resume, incompatible native/trial evidence, source mutation, rehashed tampering,
+CLI output and preserved JSON/artifacts. A relocated temporary source/input tree
+replays a resumed scan in a fresh interpreter after the original root is gone,
+with native subprocesses forbidden. This is offline evidence replay, not an
+optimizer rerun. The unrelated complete suite was not run under the agreed
+focused-validation policy. Python 3.10 grammar and local links/whitespace pass.
+The nonruntime intent checks are rerun after the documentation update.
+
+**Complete native controls.** Phenix **2.2.1-6174**, five complete refinement
+executions with the unchanged maintained worker; no Coot invocation. Each
+nonempty execution pass checks current native version/source/kernel identity
+before fitting. From the everyday checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A22_occupancy_scan_controls.py
+```
+
+Exit 0. Both cases use the existing generated numerical `geometry_001` controls
+under `branch-artifacts/Alder/live-20261028-01/`, not human endpoint substitutions.
+
+| Case | Explicit seed | Planned points | New complete trials | Resumed comparison |
+| --- | --- | --- | --- | --- |
+| FT_Hg | fdp_013 | 3 | fdp_019, fdp_020 | fdp_comparison_003 |
+| FF_AuAg | fdp_008 | 4 | fdp_010, fdp_011, fdp_012 | fdp_comparison_002 |
+
+For each case, `fdp_scan_plan_001` feeds pass `fdp_scan_001` (one new trial),
+then `fdp_scan_002` (remaining one/two trials). All fits pass freeze audits,
+full-basis/vector matching and saved-evidence verification. An additional
+`fdp_scan_003` reuses every completed point with native subprocesses forbidden;
+it launches zero new jobs. Linked standard comparisons verify independently.
+All **692 prior run files** and **433 source/test hashes** remain unchanged.
+
+Native logs, reports, local runners and validation receipts remain ignored under
+`branch-artifacts/Alder/scan-20261028-01/`, `runners/` and the original numbered
+run directories. Only source/tests/docs are committed; no scientific input,
+model, fitted value or generated run is included. Preserve the fixed-output
+receipt runner; use a new explicit output location for a later experiment.
+
+**Remaining work.** These grids validate execution/reuse mechanics, not geometry,
+identity/count decisions or optimizer convergence. Native anisotropic human
+endpoint qualification, better geometry, gradients/conditioning, adaptive
+centers and conditional occupancy refinement remain separate. The next GUI
+controller can consume stable plan/point/trial IDs and explicit pending/reused
+states. General caching, campaign scheduling, unfinalized-pass recovery and
+reference-aware pruning require their own bounded implementations.
+
 ## Reference comparison text readback 2026-10-28
 
 The ordinary `compare-reference` / `verify-reference-comparison` view previously

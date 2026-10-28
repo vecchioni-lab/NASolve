@@ -33,7 +33,17 @@ def configure(subparsers):
     inspect_ref.add_argument('--output', type=Path)
     compare_ref = actions.add_parser('compare-reference', help='compare explicitly mapped candidate/reference internal geometry')
     verify_ref = actions.add_parser('verify-reference-comparison', help='replay a captured reference comparison offline')
-    for parser in (inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
+    scan_plan = actions.add_parser('plan-fdp-scan', help='plan an explicit occupancy grid from one audited seed trial')
+    scan = actions.add_parser('run-fdp-scan', help='execute a bounded pass or resume an existing occupancy scan')
+    scan_verify = actions.add_parser('verify-fdp-scan', help='verify saved scan results without native execution')
+    scan_plan.add_argument('--seed', type=Path, required=True)
+    scan_plan.add_argument('--occupancies', action='append', required=True, metavar='NODE=Q,Q,...')
+    scan_plan.add_argument('--max-trials', type=int, required=True)
+    scan.add_argument('--plan', type=Path, required=True)
+    scan.add_argument('--job-budget', type=int, required=True)
+    scan.add_argument('--resume', type=Path)
+    scan_verify.add_argument('--scan', type=Path, required=True)
+    for parser in (scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -86,6 +96,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action in {'plan-fdp-scan', 'run-fdp-scan', 'verify-fdp-scan'}:
+            return _fdp_scan(args)
         if args.metal_action in {'inspect-reference', 'compare-reference', 'verify-reference-comparison'}:
             return _reference_snapshot(args)
         if args.metal_action in {'compare-fdp', 'verify-fdp-comparison'}:
@@ -367,3 +379,51 @@ def _reference_state_lines(report):
     lines.append('Recorded fields only; reported-B differences do not compare ANISOU tensors.')
     lines.append('Stored anomalous parameters: untrusted and ignored.')
     return lines
+
+
+def _fdp_scan(args):
+    from .fdp_scan import create_plan, pending_count, run_scan, verify_scan
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'plan-fdp-scan':
+        axes = {}
+        for value in args.occupancies:
+            node,sep,values = value.partition('=')
+            if not sep or not node or node in axes:
+                raise RecipeError('Use distinct NODE=Q,Q,... occupancy axes')
+            axes[node] = [float(q) for q in values.split(',')]
+        result = create_plan(args.run,args.seed,axes,max_trials=args.max_trials)
+        report = None
+    elif args.metal_action == 'run-fdp-scan':
+        native = None
+        if args.job_budget > 0 and pending_count(args.run,args.plan,args.resume):
+            native = discover_phenix(load_config(),explicit=args.phenix_root)
+        result = run_scan(args.run,args.plan,native=native,job_budget=args.job_budget,resume=args.resume)
+        report = _json(args.run.expanduser().resolve()/result['files']['report']['relative_path'])
+    else:
+        result = verify_scan(args.run,args.scan)
+        report = _json(args.run.expanduser().resolve()/result['files']['report']['relative_path'])
+    serialized = json.dumps(result,indent=2,allow_nan=False)+'\n'
+    if args.output:
+        with args.output.open('x') as handle: handle.write(serialized)
+    if args.json:
+        print(serialized,end='')
+    elif report is None:
+        print(f'Occupancy scan planned: {len(result["points"])} points; limit {result["max_trials"]}')
+        print('Plan: '+str(args.run.expanduser().resolve()/result['directory']['relative_path']))
+        print('Plan ID: '+result['plan_id'])
+        for point in result['points']:
+            print('  '+', '.join(f'{n}={q:.2f}' for n,q in point['occupancies'].items()))
+        print('Fitting settings fixed to the seed; no native jobs run.')
+    else:
+        print(f'Occupancy scan: {report["status"]}; {report["new_completed"]} new, {report["reused"]} reused, {report["pending"]} pending')
+        for point in report['points']:
+            vector=', '.join(f'{n}={q:.2f}' for n,q in point['occupancies'].items())
+            trial=Path(point['trial']['relative_path']).parent.name if point['trial'] else '-'
+            print(f'{point["state"]:<13} {trial:<12} {vector}')
+            for site in point['sites']:
+                print(f'  {site["node_id"]} {site["element"]}: fdp={site["f_double_prime"]:.6g}; reference={site["reference_f_double_prime"]:.6g}')
+        if report['failure']: print('Stopped: '+report['failure']['error'])
+        print('Report: '+str(args.run.expanduser().resolve()/result['files']['report']['relative_path']))
+        print('Fixed-q diagnostic grid; no automatic structural choice or convergence claim.')
+    return 2 if report and report['failure'] else 0
