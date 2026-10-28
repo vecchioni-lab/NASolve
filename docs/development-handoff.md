@@ -13,8 +13,8 @@ not general production support. Earlier wording remains in Git and the
 
 ## C113 hydrogen attachment inventories
 
-Implementation, focused/full regression and saved/cold replay pass. Publication
-is the remaining step; source/tests are frozen and no job is active.
+Implementation, focused/full regression and saved/cold replay pass. Tested implementation `8cf70b6f571c4c853eb4387cd0faf452d32fb756` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 Base: `d57fbb8b163ec280eb9e4ce812050c04bfdf2f91`; continue on existing `cedar`.
 Local capsule: `live_tests_directory/113_Cedar_hydrogen-inventory-0oqtyb6c`.
 

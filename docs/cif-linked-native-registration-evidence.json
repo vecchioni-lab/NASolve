@@ -37149,6 +37149,7 @@
       "Sticky-end stitching remains parked; no automatic adoption or Pine/main merge."
     ],
     "next_step": "Establish explicit source- and site-authorized chemical-state operations across held-out components; use this inventory to verify permitted deltas before bounded numerical recovery and qualification.",
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "tested_implementation_commit": "8cf70b6f571c4c853eb4387cd0faf452d32fb756"
   }
 }

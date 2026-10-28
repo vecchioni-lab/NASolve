@@ -26974,7 +26974,8 @@
       "next_step": "Establish explicit source- and site-authorized chemical-state operations across held-out components; use this inventory to verify permitted deltas before bounded numerical recovery and qualification.",
       "contract": "docs/cif-doctor.md#bound-hydrogen-inventories-c113",
       "automatic_adoption": false,
-      "validation": "6077 passed, 276 subtests passed in 933.58s (0:15:33); 258 focused tests and five cold replay cases pass."
+      "validation": "6077 passed, 276 subtests passed in 933.58s (0:15:33); 258 focused tests and five cold replay cases pass.",
+      "tested_implementation_commit": "8cf70b6f571c4c853eb4387cd0faf452d32fb756"
     }
   },
   "audience": [
