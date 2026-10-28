@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### View saved metal results with linked coordinates and modular panels
+
+- Add `metal serve-workbench`, a local read-only viewer over the existing verified
+  controller, with explicit dataset mounts and exact row/candidate/site linkage.
+- Show actual candidate atoms, zoom/rotation/context controls and saved distance
+  restraint overlays. Keep trial q/f-double-prime separate from geometry-model
+  q/B; retain full reports, pending points and source identities.
+- Package browser assets without runtime web dependencies. Keep camera/layout in
+  browser memory and scientific navigation in Python. Add a transient schema-1
+  presentation envelope; existing catalogs and scientific artifacts need no migration.
+- Bind the server to loopback with a random URL, strict origin/route checks and
+  no write/native-job endpoints. Browser visual review remains pending because
+  the host's automation policy blocks local URLs. Editable GUI and maps remain planned.
+
 ### Navigate verified metal evidence across explicit datasets
 
 - Add offline `metal capture-workbench` / `metal inspect-workbench` and a shared

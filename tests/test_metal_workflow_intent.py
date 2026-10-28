@@ -241,3 +241,12 @@ def test_workbench_navigation_is_separate_from_execution_and_scientific_state():
     assert workbench['row_opens_exact_parent_scope']
     assert not any(workbench[k] for k in ('mount_paths_persisted','groups_change_scientific_parameters',
         'camera_and_layout_in_scientific_state','native_execution','checkpoint_adoption','ranking','production_gui'))
+
+
+def test_local_viewer_keeps_presentation_outside_scientific_authority():
+    viewer=intent()['integration']['campaign']['viewer']
+    assert viewer['shared_navigation_controller'] and viewer['verified_actual_coordinates']
+    assert viewer['exact_atom_keys'] and viewer['saved_distance_restraint_overlays']
+    assert viewer['camera_state_separate'] and viewer['loopback_only']
+    assert not any(viewer[k] for k in ('scientific_edits','native_execution','checkpoint_adoption',
+                                      'reference_coordinate_overlay'))

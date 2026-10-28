@@ -1404,6 +1404,14 @@ scientific state remain separate. It starts no jobs and performs no checkpoint
 adoption, ranking or cross-candidate science. Existing scientific artifacts and
 schemas are unchanged. See the [controller descriptor and methods](metal-anomalous-doctor.md#implemented-offline-workbench-controller).
 
+The additive `metal.viewer` adapter and packaged HTML/CSS/ES modules expose that
+controller through `metal serve-workbench`. A loopback-only, capability-URL HTTP
+server accepts stateless bounded navigation and serves fixed assets. Verified
+model coordinates and saved restraint terms form a detached scene; the browser
+only projects coordinates and renders reports. Camera/context/panel state stays
+outside scientific selection. No artifact schema migration or native job route
+is added. See the [viewer methods and limits](metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
+
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
 independent, with no implicit joint fitting or inherited chemical qualification.

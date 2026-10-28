@@ -1,11 +1,107 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation, explicit construction and bounded recipe-only preparation implemented**.
+Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only results viewer, explicit construction and bounded recipe-only preparation implemented**.
 Implementation updated 2026-10-28. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
-Solution-space search, decision logic, maps and GUI behavior below remain planned. This contract
+Solution-space search, decision logic, maps and editable GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
+
+## Implemented local saved-results viewer
+
+`metal serve-workbench` presents the shared verified controller in a local,
+read-only browser interface. It is an initial comparison viewer, not the full
+NASolve GUI or an editable restraint builder. Browser visual acceptance remains
+pending; the implementation, scientific navigation and HTTP boundary have
+regression coverage.
+
+```sh
+nasolve metal serve-workbench --catalog /path/to/local/catalog.json --dataset hg=/path/to/HgDataset --dataset mixed=/path/to/AuAgDataset
+```
+
+Supply exactly the dataset IDs in the existing catalog. After verification, open
+the printed local URL in a browser. Keep the terminal running; Ctrl-C stops the
+viewer. `--port 0` (the default) chooses a free loopback port. An explicit port is
+optional. No Node installation, internet service, Phenix discovery or Coot process
+is required to use the viewer. Node is used only for presentation-helper tests.
+
+The navigator selects dataset, structure, candidate, site group and result set.
+A result row opens its exact parents through `Workbench.select_row`; **All
+results** clears the navigation scope. The initial view opens the first saved
+row in catalog order as a viewing convenience, without ranking or checkpoint
+selection. Rows display q, reported B, fixed f-prime, refined/reference
+f-double-prime and wavelength when those values exist. Missing values display
+an em dash rather than zero. Human-reference rows display the candidate q/B;
+the inspector separates the reference snapshot and retains exact source values.
+Complete reports expose pending scan points, failures and unmapped scatterers.
+
+The molecular panel projects the verified candidate PDB coordinates in 3D.
+Zoom, rotation, tilt and fit/reset are view operations. Clicking an atom opens
+its exact identity, XYZ/q/B and ANISOU presence. These are **geometry-model**
+values; the selected frozen trial may use a different q, shown separately above.
+A selected result/coordinate atom remains visible even outside all named groups
+(for example an unassigned background scatterer); this is display focus only.
+Site, surrounding-residue and whole-model contexts expand the display without
+changing group membership, restraints or fitted parameters. Surrounding residues
+means residues containing the selected site's atoms (including exact alternate,
+model and symmetry identity), not a distance-neighbor or symmetry expansion.
+Blue dotted lines represent enabled, resolved saved **distance restraints**;
+all saved terms, including angles and disabled terms, are available in the
+inspector. Chemical bonds, maps and reference-coordinate overlays are not drawn.
+A reference's Cartesian displacement remains absent when its coordinate frame
+has not been explicitly established.
+
+The dark panels are separate renderers for navigation, geometry, inspector and
+results. The inspector can be hidden and the scene/inspector resized vertically;
+responsive layouts stack panels on narrow windows. Camera/context state is kept
+per exact candidate and geometry identity in browser memory. Reloading clears
+that local state. No camera or layout field enters the scientific selection.
+General panel docking, saved layouts, cross-candidate plots, editing and job
+controls remain later milestones.
+
+**Methods and compatibility.** `open_viewer(catalog, mounts)` first calls the
+existing offline verifier/controller, then imports checksummed geometry-model
+and preview bytes. `Viewer.present` supplies detached presentation values;
+`Viewer.navigate` delegates every selection transition to the shared controller.
+The transient `metal-workbench-presentation` schema 1 adds a selected scene and
+campaign label around the existing view; existing catalogs, scientific artifact
+schemas and CLI behavior do not change. The pure JavaScript projection preserves
+all three input coordinates, applies camera rotations and scales around the
+visible bounding sphere. No chemical connectivity, coordinates, fitted values
+or new scientific normalizations are inferred in JavaScript.
+
+```mermaid
+flowchart LR
+    C[Catalog and explicit dataset mounts] --> W[Existing verified workbench]
+    G[Checksummed model and recipe preview] --> S[Read-only scene snapshot]
+    W --> V[Local presentation adapter]
+    S --> V
+    V --> P[Navigator / geometry / inspector / results]
+    P --> N[Shared controller navigation]
+    N --> V
+    L[Browser camera and panel state] -.-> P
+```
+
+The stdlib HTTP server binds only `127.0.0.1`, serves a fixed package-resource
+allowlist behind a random per-process URL, checks Host/Origin, accepts bounded
+same-origin JSON navigation requests, emits no access logs and disables browser
+caching. It has no filesystem, upload, job, editing or checkpoint endpoint. Tabs
+send their own selections; the server does not share mutable selection state.
+Stop and reopen to refresh/reverify source evidence. No scientific data is
+uploaded or written into the package. Keep the local URL and all resulting views
+private with the dataset.
+
+**Evidence and limits.** Tests cover exact scene/row linkage, colliding dataset
+IDs, snapshot isolation, tampered input, rejected HTTP origins/routes/bodies,
+CLI mounts and fresh-interpreter relocation after the original source tree is
+gone. Pure JavaScript tests cover exact identities, context expansion, 3D
+projection, missing values and camera scopes. The saved Hg/AuAg numerical
+controls open without native processes, preserving their input files. Browser
+automation was blocked by the host's administrator policy for local URLs, so no
+rendered-layout or browser-interaction pass is claimed. See the [current
+handoff](development-handoff.md#local-metal-results-viewer-2026-10-28) for commands
+and receipts. These generated controls remain scientifically unqualified;
+viewing them does not resolve geometry, identity, occupancy or model quality.
 
 ## Implemented offline workbench controller
 
@@ -136,8 +232,8 @@ for exact validation and local receipts. A snapshot describes evidence verified
 at opening; reopen before relying on current source availability. This is not a
 cache hit, independent scientific qualification, automatic solution decision,
 campaign scheduler, editable recipe controller or production graphical panel.
-The next bounded UI step can consume this API without duplicating scientific
-logic; rendering and visual review remain separate.
+The local viewer above now consumes this API without duplicating scientific
+logic; rendered visual review remains outstanding.
 
 ## Implemented bounded occupancy sweeps
 

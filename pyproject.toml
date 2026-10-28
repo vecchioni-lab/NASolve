@@ -31,6 +31,9 @@ nasolve = [
   "data/restraints/*.eff",
   "data/restraints/*.txt",
   "data/*.json",
+  "metal/web/*.html",
+  "metal/web/*.css",
+  "metal/web/*.mjs",
 ]
 
 [tool.pytest.ini_options]

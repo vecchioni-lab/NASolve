@@ -13,6 +13,102 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Local metal results viewer 2026-10-28
+
+**Current additive milestone: M5 initial comparison interface.** Before this
+change, the shared workbench exposed JSON/terminal navigation only. The new
+`metal serve-workbench` serves verified saved results through local modular
+navigation, coordinate, inspector and table panels. Row selection opens its
+exact dataset, structure, candidate and result through the existing controller.
+Camera controls preserve 3D coordinates; view expansion and selected background
+scatterers never join or alter scientific site membership. Geometry-model q/B
+and selected-trial q/f-double-prime are shown separately. Complete reports retain
+pending points and reference limitations. This is a read-only initial interface;
+**browser visual acceptance remains pending**.
+
+See the [human descriptor, methods, command and editable figure](metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
+The server binds only to loopback and exposes fixed packaged resources plus
+stateless guarded navigation. No new jobs, fitted values, recipes, checkpoints,
+chemical bonds, reference alignment or maps are produced. All scientific replay
+still belongs to the shared workbench. Initial selection means first saved row
+in catalog order, never a scientific ranking.
+
+**Changed files and schemas.** New `src/nasolve/metal/viewer.py` loads verified
+scenes and provides the local server. Four assets in `src/nasolve/metal/web/`
+provide the page, styling, modular panel renderers and pure projection helpers.
+`metal/cli.py` and `pyproject.toml` add the command and packaged assets.
+`tests/test_metal_viewer.py`, `tests/metal_viewer_ui.test.mjs` and the existing
+intent tests cover behavior and declared boundaries. README, documentation
+index, GUI/architecture contracts, anomalous methods, intent JSON, changelog and
+this handoff describe the same implementation. A transient
+`metal-workbench-presentation` schema-1 envelope contains the existing view plus
+the current coordinate scene. Existing catalogs, scientific bundles, frozen
+trial settings and explicit CLI paths are unchanged; **no migration** is needed.
+
+**Validation.** The new Python tests first failed on the absent viewer module.
+Six new integration regressions subsequently pass in 33.01 s. The focused run
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest tests/test_metal*.py tests/test_cli.py -q`
+passes **370 tests and 14 subtests in 60.71 s** before the final intent assertion
+and selected-background-scatterer presentation fix. Final JavaScript validation
+with `node --test tests/metal_viewer_ui.test.mjs` passes **six tests**. Node is a
+development test dependency only, with no browser library or runtime web service.
+
+The final complete suite,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q`, passes
+**5,998 tests and 276 subtests in 791.35 s**, exit 0. The validation runner checks
+**465 source/test/package/intent hashes**, all unchanged throughout that final
+run. Python checks use the existing Python **3.12.14** NASolve environment;
+JavaScript checks use Node **24.22.1**. Four changed Python files also parse with
+Python 3.10 grammar, both modules pass Node syntax checks, eight added local
+documentation links resolve, and whitespace checks pass. An earlier full run was
+interrupted intentionally after 2,077 tests and 151 subtests passed to include
+the final selected-scatterer display fix; its separate logs are retained, and it
+is not counted as final validation.
+
+The relocation regression copies the source/input tree, removes the original
+location and opens the same catalog/scene in a fresh interpreter with native
+subprocess creation forbidden. Separately, a setuptools wheel built from a
+temporary source copy includes all four browser assets and loads them from the
+extracted installed package after that build source is removed. No network
+package installation is needed. The wheel's import check uses the existing
+NASolve environment for its declared scientific dependencies; the bundled
+build-only Python lacks Biopython and is not a standalone NASolve runtime.
+
+**Saved controls and visual boundary.** Local runner
+`branch-artifacts/Alder/runners/A24_viewer_controls.py` opens the prior Hg/AuAg
+catalog in **19.42 s**, exposing **31 linked rows**. All **823 files** inventoried
+under those two dataset folders remain unchanged at both opening and closing.
+Subprocess creation is forbidden: **zero native executions, zero Coot calls**.
+The evidence comes from previously completed **Phenix 2.2.1-6174** experiments;
+this check is offline replay, neither a dry-run nor a new complete refinement.
+These generated numerical controls remain scientifically unqualified.
+
+CUA browser automation explicitly refused the localhost URL under the host's
+administrator policy. No alternate browser, raw automation or other workaround
+was attempted. Therefore rendered layout, real-browser interactions and user
+visual acceptance are **not tested or claimed**. Unit/protocol checks do not
+replace that review. A final-source local viewer can be opened manually for
+layout inspection. The final-source restart opens the same 31 rows in 22.97 s,
+preserving all 823 inventoried files at opening; its local receipt contains the
+current per-process URL. That server remains running for manual review.
+
+**Artifacts and delivery.** Requests, catalog, numerical evidence, local URL,
+receipts, logs, package smoke checks and runners stay ignored under
+`branch-artifacts/Alder/`, principally `viewer-20261028-01/` and `runners/`.
+No model, reflection, manuscript, native output or user-local workspace state
+belongs in this source-only delivery. The active branch remains **Alder**, based
+for this step on `9f12eaa`; integration remains **pine**, then **main**, with
+normal reviewed integration and later worktree retirement. The everyday checkout
+and other active development lines are unchanged.
+
+**Next bounded step.** Review the local panels visually and adjust layout using
+these independent renderers. Then add explicit restraint-authoring interactions
+or selected occupancy-plan controls through the existing backends. General-site
+construction, maps, cross-candidate plots, asynchronous loading, large-campaign
+performance, scheduling, cache/prune recovery, scientific geometry qualification
+and automatic decisions remain separate. Browser review is the outstanding gate
+for visual claims, not a new scientific or Cedar integration gate.
+
 ## Offline workbench controller 2026-10-28
 
 **Current additive milestone: M5 navigation foundation.** Before this change,

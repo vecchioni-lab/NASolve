@@ -1445,6 +1445,17 @@ groups to verified saved results. Selecting a row changes the view only. Supply
 new dataset mounts after moving folders; no native jobs or graphical review are
 needed. See the [request format, API and limits](docs/metal-anomalous-doctor.md#implemented-offline-workbench-controller).
 
+A local read-only comparison interface uses the same verified catalog:
+
+```sh
+nasolve metal serve-workbench --catalog /path/to/local/catalog.json --dataset hg=/path/to/HgDataset
+```
+
+Open the printed URL in your browser and keep the terminal running; stop with
+Ctrl-C. Repeat `--dataset ID=PATH` for each catalog dataset. Linked result rows,
+actual candidate coordinates, camera controls and exact-value inspectors share
+the existing controller. See the [viewer guide and limits](docs/metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
+
 ## AutoRefine and checkpoints
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It

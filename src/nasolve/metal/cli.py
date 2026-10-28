@@ -18,6 +18,10 @@ def configure(subparsers):
     actions = metal.add_subparsers(dest='metal_action', required=True)
     capture = actions.add_parser('capture-workbench', help='capture an explicit offline campaign catalog')
     browse = actions.add_parser('inspect-workbench', help='replay a catalog and inspect linked saved results offline')
+    serve = actions.add_parser('serve-workbench', help='open a local read-only viewer of verified saved metal results')
+    serve.add_argument('--catalog', type=Path, required=True)
+    serve.add_argument('--port', type=int, default=0, help='loopback port; 0 chooses a free port')
+    serve.set_defaults(output=None)
     capture.add_argument('--request', type=Path, required=True)
     capture.add_argument('--output', type=Path, required=True, help='new local catalog JSON file')
     browse.add_argument('--catalog', type=Path, required=True)
@@ -25,10 +29,11 @@ def configure(subparsers):
     browse.add_argument('--row', help='open an exact linked result row')
     browse.add_argument('--site', help='explicit site membership when opening a row')
     browse.add_argument('--output', type=Path, help='save view JSON to a new local file')
-    for parser in (capture, browse):
+    for parser in (capture, browse, serve):
         parser.add_argument('--dataset', action='append', required=True, metavar='ID=PATH',
                             help='explicit dataset mount; repeat for each catalog dataset')
-        parser.add_argument('--json', action='store_true')
+        if parser is not serve:
+            parser.add_argument('--json', action='store_true')
     inspect = actions.add_parser('inspect', help='read one generated W checkpoint and its observation wavelength')
     preview = actions.add_parser('preview', help='bind a recipe to an explicit generated W checkpoint')
     build = actions.add_parser('build', help='add explicitly placed metal sites in a new review bundle')
@@ -109,7 +114,7 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
-        if args.metal_action in {'capture-workbench', 'inspect-workbench'}:
+        if args.metal_action in {'capture-workbench', 'inspect-workbench', 'serve-workbench'}:
             return _workbench(args)
         if args.metal_action in {'plan-fdp-scan', 'run-fdp-scan', 'verify-fdp-scan'}:
             return _fdp_scan(args)
@@ -454,6 +459,10 @@ def _workbench(args):
         if not sep or not key or not path or key in mounts:
             raise RecipeError('Use distinct ID=PATH dataset mounts')
         mounts[key] = Path(path)
+    if args.metal_action == 'serve-workbench':
+        from .viewer import open_viewer, serve
+        serve(open_viewer(_json(args.catalog), mounts), port=args.port)
+        return 0
     if args.metal_action == 'capture-workbench':
         result = capture_catalog(_json(args.request), mounts)
     else:

@@ -280,6 +280,23 @@
         "checkpoint_adoption": false,
         "ranking": false,
         "production_gui": false
+      },
+      "viewer": {
+        "status": "IMPLEMENTED_VISUAL_REVIEW_PENDING",
+        "module": "nasolve.metal.viewer",
+        "contract": "docs/metal-anomalous-doctor.md#implemented-local-saved-results-viewer",
+        "presentation_schema_version": 1,
+        "shared_navigation_controller": true,
+        "verified_actual_coordinates": true,
+        "exact_atom_keys": true,
+        "saved_distance_restraint_overlays": true,
+        "camera_state_separate": true,
+        "loopback_only": true,
+        "scientific_edits": false,
+        "native_execution": false,
+        "checkpoint_adoption": false,
+        "reference_coordinate_overlay": false,
+        "visual_review_passed": false
       }
     },
     "milestones": [

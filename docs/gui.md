@@ -1,6 +1,8 @@
 # NASolve GUI design contract
 
-Status: **planned, not implemented**. This document defines the durable shell and
+Status: **general shell planned; initial local metal-results viewer implemented,
+visual review pending**. See the [viewer guide](metal-anomalous-doctor.md#implemented-local-saved-results-viewer)
+for its bounded read-only scope. This document defines the durable shell and
 interaction model for a future NASolve GUI. The GUI must expose existing guarded
 NASolve capabilities without creating a second scientific state model, a second
 checkpoint history, or a parallel set of inference rules.
@@ -116,7 +118,8 @@ An experimental-prior panel may declare elements, iodine/bromine sites, possible
 clusters and other evidence for future bounded proposals; these are visible
 hypotheses, not additional diffraction observations or automatic acceptance.
 The implemented `metal inspect`/`metal preview` backend is the initial adapter;
-this campaign GUI and automatic proposal stage are not yet implemented.
+the local saved-results viewer now consumes the shared campaign controller.
+Editable campaign panels and the automatic proposal stage remain planned.
 The shared `prepare_geometry` backend accepts a verified hypothesis, selected
 mobile metal nodes and explicit movement/iteration bounds. Its before/after
 rows, stopping notes and local unconstrained dimensions can feed independent
