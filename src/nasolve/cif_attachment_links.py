@@ -5,7 +5,7 @@ from pathlib import Path, PurePosixPath
 import json
 import re
 
-from .cif_attachment_sites import inspect_attachment_site, _model, _object, _pairs
+from .cif_attachment_sites import inspect_attachment_site, STATE_POLICY_ID, _model, _object, _pairs
 from .cif_catalogue import _digest
 
 POLICY_ID = 'cif-reciprocal-source-links-v1'
@@ -171,6 +171,10 @@ def inspect_attachment_links(manifest):
             'Source formula/descriptors remain parent provenance; no final linked chemical identity is generated.',
         ],
     }
+    if any(site['policy_id'] == STATE_POLICY_ID for site in sites.values()):
+        report['policy_id'] = 'cif-reciprocal-source-links-v2'
+        report['limitations'][2] = ('Explicit neutral PNA amide operations require both source states; '
+                                    'charged reaction sites and free-OH reconstruction remain unresolved.')
     if any(path.read_bytes() != data for path, data in snapshots.items()):
         raise ValueError('Attachment-link input changed during inspection')
     report['input_integrity'] = 'UNCHANGED'

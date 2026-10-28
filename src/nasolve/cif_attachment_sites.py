@@ -14,6 +14,7 @@ from .cif_stereochemistry_audit import _graph, _stereo
 from .ligand_profiles import _blocks
 
 POLICY_ID = 'cif-explicit-attachment-site-v1'
+STATE_POLICY_ID = 'cif-explicit-attachment-site-v2'
 
 
 def _site(value):
@@ -113,7 +114,8 @@ def _projection_values(path, code):
 def inspect_attachment_site(source, code, *, workbook, model, context, candidate=None):
     """Explain one explicitly selected site and optionally compare its projection.
 
-    Only neutral, explicitly protonated furanose ports support deletion planning.
+    Neutral furanose ports and explicitly opted-in neutral PNA amide ports
+    support bounded deletion planning. Other chemical states remain unresolved.
     A projection match is not native typing, partner chemistry or bond validation.
     The caller declares intended links; coordinates and residue adjacency do not.
     """
@@ -163,7 +165,7 @@ def inspect_attachment_site(source, code, *, workbook, model, context, candidate
         stereo = _stereo(values)
         ports = declaration['ports']
         _object(ports, tuple(profile['ports']))
-        removed, external = set(), []
+        removed, external, operations = set(), [], []
         expected_partner = {'phosphate': 'O', 'alcohol': 'P', 'amine': 'C', 'carboxyl': 'N'}
         for name, source_port in profile['ports'].items():
             intent = ports[name]
@@ -179,7 +181,15 @@ def inspect_attachment_site(source, code, *, workbook, model, context, candidate
                 continue
             if state != 'linked':
                 raise ValueError('Unsupported attachment port state: ' + name)
-            _object(intent, ('state', 'partner', 'symmetry_operation') + (('leaving_atom',) if name == 'phosphate' else ()))
+            pna_operation = name in {'amine', 'carboxyl'} and 'operation' in intent
+            extra = ('operation', 'leaving_atom') if pna_operation else (('leaving_atom',) if name == 'phosphate' else ())
+            _object(intent, ('state', 'partner', 'symmetry_operation') + extra)
+            if pna_operation:
+                report['policy_id'] = STATE_POLICY_ID
+                report['limitations'][2:4] = [
+                    'Source-state retention, neutral furanose deletions and explicit neutral-pna-amide-v1 operations only.',
+                    'Charged PNA reaction sites and free-5prime-OH reconstruction require separate chemical-state authority.',
+                ]
             if intent['symmetry_operation'] != 'x,y,z':
                 raise ValueError('Require explicitly declared identity-symmetry attachment')
             partner = intent['partner']
@@ -193,7 +203,18 @@ def inspect_attachment_site(source, code, *, workbook, model, context, candidate
             external.append({'site_atom': source_port['atom_id'], 'partner': partner,
                              'bond_order': 'SINGLE', 'symmetry_operation': 'x,y,z'})
             if name in {'amine', 'carboxyl'}:
-                report['review_reasons'].append('PNA_LINK_STATE_AUTHORITY_REQUIRED')
+                if not pna_operation:
+                    report['review_reasons'].append('PNA_LINK_STATE_AUTHORITY_REQUIRED')
+                    continue
+                from .cif_pna_operations import plan_amide_deletion, POLICY_ID as operation_policy
+                deletion = plan_amide_deletion(name, intent, profile, elements, bonds, charges, neighbors)
+                if deletion is None or stereo[source_port['atom_id']] not in {'N', '?'}:
+                    report['review_reasons'].append('PNA_NEUTRAL_AMIDE_STATE_UNRESOLVED:' + name)
+                    continue
+                removed.update(deletion)
+                operations.append({'policy_id': operation_policy, 'port': name,
+                                   'site_atom': source_port['atom_id'], 'deleted_atoms': sorted(deletion),
+                                   'added_atoms': [], 'formal_charge_changes': []})
                 continue
             atom = source_port['atom_id']
             if name == 'phosphate':
@@ -234,6 +255,8 @@ def inspect_attachment_site(source, code, *, workbook, model, context, candidate
                 'table_rule': 'Preserve all columns and retained rows; delete rows referencing removed atoms and update existing atom counts only.',
                 'native_energy_type_changes': 'NOT_ASSIGNED',
             }
+            if operations:
+                report['permitted_source_projection']['chemical_state_operations'] = operations
             if candidate is not None:
                 wanted = _tables(expected)
                 try:

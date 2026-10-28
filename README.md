@@ -70,6 +70,9 @@ and adds a separate alias-aware comparison. Hydrogen/charge changes remain
 visible; observed renaming grants no chemical authority.
 C113 [separates hydrogen counts/attachments from label differences](docs/cif-doctor.md#bound-hydrogen-inventories-c113)
 through those bindings, without inferring protonation or individual H aliases.
+C114 [adds explicit neutral PNA amide projections](docs/cif-doctor.md#explicit-neutral-pna-amide-operations-c114)
+under source-checked state and exact leaving-atom choices. Charged reactive
+amines remain unresolved; native PNA dictionaries/linkage still need qualification.
 Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c109)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and

@@ -30041,7 +30041,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "bound_hydrogen_inventory_2026_10_28",
+  "current_diagnostic_record": "neutral_pna_amide_operations_2026_10_28",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -37151,5 +37151,508 @@
     "next_step": "Establish explicit source- and site-authorized chemical-state operations across held-out components; use this inventory to verify permitted deltas before bounded numerical recovery and qualification.",
     "author": "Rowan · Codex desktop",
     "tested_implementation_commit": "8cf70b6f571c4c853eb4387cd0faf452d32fb756"
+  },
+  "neutral_pna_amide_operations_2026_10_28": {
+    "delivery": "C114",
+    "status": "NEUTRAL_PNA_OPERATION_FOCUSED_TRANSFER_COLD_AND_FULL_REGRESSION_PASS",
+    "base_commit": "49e0d9298f636dfca78646b88df076aa38bd5862",
+    "before": "All PNA linked-site operations remain unresolved even for fully explicit neutral source groups.",
+    "after": "Explicit neutral-pna-amide-v1 contexts can propose exact local H/D and hydroxyl deletions; reciprocal source ports and candidate tables must agree. Charged reaction states stay unresolved and unreacted charged termini stay intact.",
+    "policy": "neutral-pna-amide-v1",
+    "schema_version": 1,
+    "report_policies": [
+      "cif-explicit-attachment-site-v2",
+      "cif-reciprocal-source-links-v2"
+    ],
+    "context_fields": [
+      "ports[amine|carboxyl].operation",
+      "ports[amine|carboxyl].leaving_atom"
+    ],
+    "report_field": "permitted_source_projection.chemical_state_operations",
+    "commands": [
+      "nasolve cif-doctor site-plan SOURCE --code CODE --workbook BOOK --model MODEL --context CONTEXT [--candidate CIF] [--json]",
+      "nasolve cif-doctor link-plan MANIFEST [--json]"
+    ],
+    "compatibility": "Schema-1 contexts/reports extended only under explicit operation; old contexts retain v1 policy identifiers and exact reports. Older readers reject new fields. Run/checkpoint schemas, workers and preparation unchanged; no migration.",
+    "execution": "Read-only API/CLI source-projection validation. No Phenix, Coot, ReadySet, Phaser, optimizer or refinement execution or dry-run.",
+    "software": {
+      "python": "3.12.14",
+      "NARestraints": "1.1.3"
+    },
+    "source_capsule": {
+      "anchor": "live_tests_directory",
+      "path": "106_Cedar_attachment-profiles-m0dbk_bw"
+    },
+    "legacy_capsule": {
+      "anchor": "live_tests_directory",
+      "path": "108_Cedar_reciprocal-links-q9_ey4g1"
+    },
+    "source_authorities": {
+      "ccd/4/data_40A.cif": {
+        "mtime_ns": 1793116404069306801,
+        "sha256": "a68e1a3ff04ff6cdbdc7744d1cdd1add155d1cdef706495b0486f51effd1bcbe",
+        "size": 9456
+      },
+      "ccd/4/data_40C.cif": {
+        "mtime_ns": 1793116404069995136,
+        "sha256": "68664389eb657e4fdca7e7c157af06a160047f1b4304f7505d509fa2664f6d3b",
+        "size": 9206
+      },
+      "ccd/4/data_40G.cif": {
+        "mtime_ns": 1793116404071674973,
+        "sha256": "91a17bf4baf8005477730448735b65b77cfec77899859aa8d69762f82d147d76",
+        "size": 9655
+      },
+      "ccd/4/data_40T.cif": {
+        "mtime_ns": 1793116404072011557,
+        "sha256": "feac17cb36000224a1455680f550092bd3c94929a1d607e0735669ba3d624960",
+        "size": 9505
+      },
+      "ccd/a/data_APN.cif": {
+        "mtime_ns": 1793116404079355782,
+        "sha256": "efde6f9bd04461d7cf054316a9bf7cd00d1f8f21f8099b320aa85e6de2e18597",
+        "size": 9147
+      },
+      "ccd/c/data_CPN.cif": {
+        "mtime_ns": 1793116404081288786,
+        "sha256": "b691beacbe650abd8df6c02d17486ac6ec0d947a9fc87ae784da2279f5da65f3",
+        "size": 8888
+      },
+      "ccd/o/data_OPN.cif": {
+        "mtime_ns": 1793116404113190234,
+        "sha256": "cc117bf4eaf9a7668681517338951a76b3cee0e55f15c61070374476428f2426",
+        "size": 8289
+      },
+      "ccd/t/data_TPN.cif": {
+        "mtime_ns": 1793116404122724422,
+        "sha256": "cfb71da99b4e06ba0ac86275d49379970a5e8d5c733109b3b1df9857c0cdc157",
+        "size": 9160
+      },
+      "workbook/Ligands.xlsx": {
+        "mtime_ns": 1793116404061682783,
+        "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5",
+        "size": 164458
+      }
+    },
+    "source_integrity": "All 38 frozen C106 source/workbook input hashes, sizes and timestamps unchanged.",
+    "controls": {
+      "40A_40A": {
+        "codes": [
+          "40A",
+          "40A"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40A_40C": {
+        "codes": [
+          "40A",
+          "40C"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40C_40G": {
+        "codes": [
+          "40C",
+          "40G"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40G_40T": {
+        "codes": [
+          "40G",
+          "40T"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40T_40A": {
+        "codes": [
+          "40T",
+          "40A"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40A_40C_40G": {
+        "codes": [
+          "40A",
+          "40C",
+          "40G"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 2,
+        "reasons": []
+      },
+      "APN_40A": {
+        "codes": [
+          "APN",
+          "40A"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40A_APN": {
+        "codes": [
+          "40A",
+          "APN"
+        ],
+        "plan_status": "UNRESOLVED",
+        "projection_status": "NOT_REQUESTED",
+        "reciprocal_links": 1,
+        "reasons": [
+          "SITE_OPERATION_UNRESOLVED:A:2"
+        ]
+      },
+      "CPN_40C": {
+        "codes": [
+          "CPN",
+          "40C"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40C_CPN": {
+        "codes": [
+          "40C",
+          "CPN"
+        ],
+        "plan_status": "UNRESOLVED",
+        "projection_status": "NOT_REQUESTED",
+        "reciprocal_links": 1,
+        "reasons": [
+          "SITE_OPERATION_UNRESOLVED:A:2"
+        ]
+      },
+      "TPN_40G": {
+        "codes": [
+          "TPN",
+          "40G"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40G_TPN": {
+        "codes": [
+          "40G",
+          "TPN"
+        ],
+        "plan_status": "UNRESOLVED",
+        "projection_status": "NOT_REQUESTED",
+        "reciprocal_links": 1,
+        "reasons": [
+          "SITE_OPERATION_UNRESOLVED:A:2"
+        ]
+      },
+      "OPN_40T": {
+        "codes": [
+          "OPN",
+          "40T"
+        ],
+        "plan_status": "PROPOSED",
+        "projection_status": "MATCH",
+        "reciprocal_links": 1,
+        "reasons": []
+      },
+      "40T_OPN": {
+        "codes": [
+          "40T",
+          "OPN"
+        ],
+        "plan_status": "UNRESOLVED",
+        "projection_status": "NOT_REQUESTED",
+        "reciprocal_links": 1,
+        "reasons": [
+          "SITE_OPERATION_UNRESOLVED:A:2"
+        ]
+      }
+    },
+    "interpretation": "10 exact matching projections, four charged-amine reaction states unresolved; 14 synthetic source-ideal translated contexts, not native or experimental structures. Cases predeclared before execution, not blinded.",
+    "legacy": "Eight exact historical C108 reports/errors retained, including unresolved unopted PNA and two expected input rejections.",
+    "cold_replay": {
+      "status": "PASS",
+      "cases": {
+        "40A_40A": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40A_40C": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40A_40C_40G": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40A_APN": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40C_40G": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40C_CPN": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40G_40T": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40G_TPN": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40T_40A": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "40T_OPN": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "APN_40A": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "CPN_40C": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "OPN_40T": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "TPN_40G": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "legacy_APN_40A": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "legacy_ATL_DA": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "legacy_DA_ATL": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "legacy_DA_ATL_nonreciprocal": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 1
+        },
+        "legacy_DA_ATL_wrong_partner": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 1
+        },
+        "legacy_DA_DT": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "legacy_DA_LCC": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        },
+        "legacy_DA_PDU": {
+          "api": "MATCH",
+          "cli": "MATCH",
+          "exit": 2
+        }
+      },
+      "files_unchanged": 361,
+      "blocked_attempts": [],
+      "original_owned_path_absent": true,
+      "native_execution": "NOT_RUN",
+      "relocated_module": "cold-relocated/src/nasolve/cif_pna_operations.py"
+    },
+    "validation": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "before_result": "26 failed, 6 passed in 3.58s (initial 32 cases against unmodified implementation); two further cases added before final code freeze.",
+      "new_regression_cases": 34,
+      "focused_command": "python -m pytest -q -p no:cacheprovider --durations=20 tests/test_cif_pna_operations.py tests/test_cif_attachment_sites.py tests/test_cif_attachment_profiles.py tests/test_cif_attachment_links.py tests/test_cif_attachment_native.py tests/test_cif_native_atom_mapping.py tests/test_cif_native_hydrogens.py",
+      "focused_result": "264 passed in 14.25s",
+      "full_command": "python -m pytest -q -p no:cacheprovider --durations=20",
+      "full_result": "6111 passed, 276 subtests passed in 965.99s (0:16:05)",
+      "transfer_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python CAPSULE/runners/c114_transfer.py",
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CAPSULE/cold-relocated/src python CAPSULE/runners/c114_cold.py CAPSULE",
+      "runner_development_failures": "Two finished attempts retained unchanged: case-sensitive CIF coordinate-column spelling, then copying the CIF block-name string as a list. Corrected independent runner passes in a fresh owned tree. Production policy/source freeze unchanged.",
+      "logs": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/before.log",
+          "sha256": "292b2d3a52f1ff4bf67e3fbfe2eaa2f8530eed2d3d9da2b7a5df09a210a341e7",
+          "size": 56502
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/before.json",
+          "sha256": "7384ef2e5b4cc866ed9a3f4efb154871268e82b7667892b79ccdc2fbae53ed18",
+          "size": 261
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/focused-02/pytest.log",
+          "sha256": "7f482a1b6f39298cb4597f0964551106d0e5fe93c9ed6447b8a27207f26575f0",
+          "size": 2950
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/focused-02/result.json",
+          "sha256": "2e6741502c715b23d983fc1a8d4c2aa159705384e10a12d36ef1a826b8e6cbab",
+          "size": 698
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/predeclared-cases.json",
+          "sha256": "54e29bf8944f268e6c4bbf1ecc8814a77c2abf5aa26945d502a8311eb8b80db9",
+          "size": 1106
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/transfer-summary.json",
+          "sha256": "74acd6853d2e2481bfb2ce81d7f3b53d3bda6d1e0450ddd99bfd37911a853e7f",
+          "size": 2710
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/cold-result.json",
+          "sha256": "d0b062b3a8449a21f5b6c7748c234b98f75eb519e021785f874de8e4973d16dd",
+          "size": 2165
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/relocation-manifest.json",
+          "sha256": "6aced60150a98ee140eb2380e31731aa0a5b71c90e555cae8e92547b751164a6",
+          "size": 65836
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/transfer-failed-01/result.json",
+          "sha256": "66bb4b98689a7e6d857824d63afd1b2b4afda9eb7b5b547d89f14fe09b19bb67",
+          "size": 205
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/transfer-failed-02/result.json",
+          "sha256": "446aef4d23445a5fb015b157c4660b84749e2a71d886109f7794d4a5b71444e4",
+          "size": 130
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/full-01/pytest.log",
+          "sha256": "2fb2d1b727d3f35b5a4f48bce004a78d36398a812c6f57312bab8d65a3e82beb",
+          "size": 9406
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/full-01/result.json",
+          "sha256": "c93994d8a6a626ae18e0c77132ee6d858c8fb582fd2c5d83394b0cce388c8150",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/full-01/source-hashes.json",
+          "sha256": "a7bb1adf8e8167c712fd665f6acb058206e36392ac092280e33690480b1d9e7d",
+          "size": 49561
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "114_Cedar_PNA-state-ciy0qgj4/validation/static-checks.json",
+          "sha256": "6dd62a369bd5af152f7f2177d9e31cf950ee7b542df5b2a4fda3e98b544d44f4",
+          "size": 322
+        }
+      ],
+      "full_elapsed_seconds": 966.5142523329705,
+      "source_and_tests_preserved": true,
+      "source_test_files": 459,
+      "static_checks": {
+        "documentation": {
+          "relative_links_checked": 259,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "diff_check": "PASS",
+        "compileall": "PASS: PYTHONPYCACHEPREFIX=/private/tmp/c114-compile-cache python -m compileall -q src tests",
+        "svg": "XML valid; visible elements unchanged; description/caption updated"
+      }
+    },
+    "changed_files": [
+      "src/nasolve/cif_pna_operations.py",
+      "src/nasolve/cif_attachment_sites.py",
+      "src/nasolve/cif_attachment_links.py",
+      "tests/test_cif_pna_operations.py",
+      "README.md",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "tested_code_hashes": {
+      "src/nasolve/cif_pna_operations.py": "d5ee8bb8d7dc90740350723e560a6c9236dac64629807b9953b42493a2b7274f",
+      "src/nasolve/cif_attachment_sites.py": "530ef44593f0a80ee9e46ebe389e26d9756b22375adcf6882bbb94cac8319026",
+      "src/nasolve/cif_attachment_links.py": "ad92ba3099898662e4c7a19eda48c9f53c5e557f46141a081a52e8e7fc882954",
+      "tests/test_cif_pna_operations.py": "cf7d27420afc59b97b9b3e9efec5e2ef725bfda402cfd46feca3546260bf8920"
+    },
+    "artifacts_included": "Source, synthetic regression fixtures in tests, maintained docs, figure description/caption and compact technical evidence.",
+    "artifacts_excluded": "CCD CIFs/workbook, synthetic coordinate models, candidate projections, detailed reports/logs, failed attempts and runners stay local in owned capsules. No unpublished experimental dataset touched.",
+    "limitations": [
+      "This is a source projection, not a final linked chemical identity or synthesis mechanism; parent formulas/descriptors/coordinates remain provenance.",
+      "No charge conversion, protonation inference, hydrogen alias, native energy type, amide numerical target, product CIP assignment or automatic adoption.",
+      "Charged reacting PNA ports, free-OH reconstruction and the ATL/L-DNA/PDU qualification gates remain open.",
+      "Sticky-end stitching remains parked; no new branch or Pine/main merge."
+    ],
+    "next_step": "Source-preserving numerical candidate generation and exact native qualification against these explicit permitted deltas; separately establish authority for charged reaction states.",
+    "author": "Rowan · Codex desktop"
   }
 }

@@ -52,6 +52,9 @@ without confusing observed renaming with hydrogen/charge changes. Both new and
 legacy captures replay after relocation; automatic adoption remains disabled.
 C113 adds [bound hydrogen inventories](cif-doctor.md#bound-hydrogen-inventories-c113),
 distinguishing count/isotope/attachment changes from equal-count label differences.
+C114 adds [explicit neutral PNA amide operations](cif-doctor.md#explicit-neutral-pna-amide-operations-c114)
+to these read-only contracts, preserving charged terminal states and withholding
+unresolved reaction states. Native PNA support remains a separate gate.
 ATL retains its separate validation fixture, and joins PNA/other backbones inside
 the programme. ChemDraw-derived chemical references remain future input scope.
 

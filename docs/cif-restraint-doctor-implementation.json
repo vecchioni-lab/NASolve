@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-27",
+    "updated_date": "2026-10-28",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -26195,7 +26195,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "bound_hydrogen_inventory_2026_10_28",
+    "current_diagnostic_record": "neutral_pna_amide_operations_2026_10_28",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -26976,6 +26976,25 @@
       "automatic_adoption": false,
       "validation": "6077 passed, 276 subtests passed in 933.58s (0:15:33); 258 focused tests and five cold replay cases pass.",
       "tested_implementation_commit": "8cf70b6f571c4c853eb4387cd0faf452d32fb756"
+    },
+    "neutral_pna_amide_operations": {
+      "status": "FOCUSED_TRANSFER_COLD_AND_FULL_REGRESSION_PASS",
+      "policy": "neutral-pna-amide-v1",
+      "contract": "docs/cif-doctor.md#explicit-neutral-pna-amide-operations-c114",
+      "report_policies": [
+        "cif-explicit-attachment-site-v2",
+        "cif-reciprocal-source-links-v2"
+      ],
+      "compatibility": "Opt-in schema-1 context extension; v1 contexts and reports unchanged. Older readers reject new fields. No run/checkpoint or preparation migration.",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#neutral_pna_amide_operations_2026_10_28",
+      "limitations": [
+        "No implicit deprotonation or charge conversion; charged reacting amines remain unresolved.",
+        "Native PNA numerical definitions, targets, polymer linkage and final stereochemistry need separate qualification.",
+        "ATL/L-DNA/PDU gates remain open; sticky-end stitching is parked; no automatic adoption or integration merge."
+      ],
+      "next_step": "Qualify source-preserving numerical candidates against these permitted deltas, then exact native definitions/links; retain separate charged-state authority.",
+      "automatic_adoption": false,
+      "validation": "6111 passed, 276 subtests passed in 965.99s (0:16:05); 264 focused tests and 22 cold API/CLI controls pass."
     }
   },
   "audience": [

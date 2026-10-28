@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Plan explicit neutral PNA amide source projections (C114)
+
+- Add opt-in `neutral-pna-amide-v1` to PNA attachment contexts, requiring
+  source-defined neutral reactive groups and an exact leaving atom at each end.
+  Retain all other atoms, formal charges and source stereochemical declarations.
+- Compose both operations through existing reciprocal-link contracts and exact
+  candidate-table checks. Charged/unknown reaction states withhold the complete
+  proposal; an untouched charged terminus remains in its original source state.
+- Keep legacy contexts/reports unchanged. Extended schema-1 contexts use v2
+  site/link policy IDs and an operation ledger; older readers reject new fields.
+  No preparation, native typing, numerical targets, coordinates or adoption change.
+
 ### Distinguish bound hydrogen inventories from name differences (C113)
 
 - Extend mapped source/native reports with hydrogen attachment, isotope/count

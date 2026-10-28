@@ -66,7 +66,17 @@ repair is added. C113 groups hydrogen definitions by their observed heavy-atom
 parent, distinguishing counts/isotopes and moved attachments from equal-count
 label differences. The DNA methyl group has three H on each side under different
 names, while phosphate/O3′ hydrogen deficits remain separate. No individual
-H alias or protonation state is inferred. Native numerical typing, chemical-state reconciliation and terminal
+H alias or protonation state is inferred.
+C114 adds a named, optional PNA amide operation: source-declared neutral NH2
+loses one explicitly chosen H/D, while its partner's source COOH loses only
+the selected hydroxyl O and H/D. Reciprocal source ports, local charge/valence,
+retained stereo and exact candidate tables must agree. Ten of 14 frozen-source
+controls produce matching proposals; four charged reactive amines stay unresolved.
+Unreacted charged termini are preserved. All 22 new/legacy controls replay after
+relocation, without native execution. This expands the general source-operation
+contract; it supplies no PNA numerical dictionary or refinement proof. See the
+[operation policy](cif-doctor.md#explicit-neutral-pna-amide-operations-c114).
+Native numerical typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
 checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
@@ -732,7 +742,10 @@ The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. C112 adds observed native name bindings to
 the source/native comparison layer, preserving literal findings and keeping
 hydrogen/charge changes outside alias authority. C113 reports hydrogen parent/count
-and label differences separately within that same comparison layer. A separate fixed-definition geometry trial
+and label differences separately within that same comparison layer. C114 adds an
+explicit neutral PNA amide operation to the source/site contract, preserving
+all unrelated chemical state; native numerical support remains a later gate.
+A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom
 identity and fresh native proxy generation are assessed separately. A read-only

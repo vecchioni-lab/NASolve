@@ -3421,3 +3421,22 @@ permission. Charge/stereo/numerical qualification and C109/C112 outcomes stay
 independent. The C109 reader exposes this additive report only for C112 mapped
 comparisons; old default captures retain their results. No worker or preparation
 change is involved. See the [C113 contract](cif-doctor.md#bound-hydrogen-inventories-c113).
+
+
+## Explicit neutral PNA chemical-state operations (C114)
+
+The optional `neutral-pna-amide-v1` operation extends C107/C108 with local
+neutral-amine/carboxylic-acid source deletion rules. The source graph and unique
+PNA core bind the ports; the context must select exact leaving identities and
+reciprocal endpoints. `cif_pna_operations.py` checks reactive formal charge,
+explicit H/D count/attachment and complete local neighborhoods. Site inspection
+retains the existing model/table/stereo gates; network composition withholds all
+permitted projections when any operation is unresolved or candidate mismatches.
+Unreacted charged termini retain their original source state. No general charge
+conversion, numerical generator or production linkage path is added.
+
+Schema-1 contexts with the new fields use v2 site/link policy identifiers;
+proposed sites include a policy-bound operation ledger. Omission preserves v1
+behavior and exact legacy reports. Parent source descriptors/coordinates remain
+provenance, not a generated linked chemical identity. See the
+[C114 contract](cif-doctor.md#explicit-neutral-pna-amide-operations-c114).

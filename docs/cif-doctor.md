@@ -29,7 +29,9 @@
 
 <a id="current-capability-boundary-c112"></a>
 
-## Current capability boundary (C113)
+<a id="current-capability-boundary-c113"></a>
+
+## Current capability boundary (C114)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -43,8 +45,8 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
-| Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; PNA operations stay unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
-| Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention or neutral furanose deletions, and compares exact projected tables. | Partner chemistry, PNA link states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
+| Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
+| Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention, neutral furanose deletions or C114 opt-in neutral PNA amide deletions, and compares exact projected tables. | Partner chemistry at a single site, charged PNA reaction states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
 | Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. C107 covers bounded one-site source projections; additional cores, complete linkage and native consumers remain open. |
 | Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
 | Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
@@ -618,6 +620,95 @@ run/checkpoint schemas and default legacy reports require no migration. See
 
 <a id="next-attachment-profile-milestone-g2-planned"></a>
 
+### Explicit neutral PNA amide operations (C114)
+
+The same read-only `site-plan` and `link-plan` commands now accept one explicit
+chemical-state operation for the matched uncapped aminoethylglycine PNA core:
+`neutral-pna-amide-v1`. This is a **source-table projection policy**, not a
+synthesis mechanism, experimental protonation assignment or native dictionary.
+The neutral amine and carboxylic-acid source declarations are the authority for
+the local deletion rule; the context supplies the intended bond and leaving
+identities. PNA's polyamide backbone is established independently of phosphate
+chemistry; the [40A CCD record](https://www.rcsb.org/ligand/40A) records the
+corresponding neutral amino/carboxylic-acid monomer. Runtime evidence uses the
+frozen, hashed CCD files, not a live web lookup or a component-code allowlist.
+
+At each linked PNA port, add `operation` and `leaving_atom` to the existing
+schema-1 context. For example, at the receiving amine of a 40C site:
+
+```json
+{
+  "schema_version": 1,
+  "site": "A:2",
+  "ports": {
+    "amine": {
+      "state": "linked",
+      "operation": "neutral-pna-amide-v1",
+      "leaving_atom": "H",
+      "partner": {"site": "A:1", "component": "40A", "atom_id": "C"},
+      "symmetry_operation": "x,y,z"
+    },
+    "carboxyl": {"state": "source"}
+  }
+}
+```
+
+The partner's carboxyl context must declare the same operation, its exact
+source hydroxyl oxygen (OXT in these frozen sources), and the reciprocal
+40C A:2 N endpoint. Names in this example are not defaults.
+
+- The amine N must have explicit zero formal charge, exactly one source carbon
+  neighbor and two singly attached neutral H/D. Delete only the specifically
+  selected H/D; retain the other one. No individual hydrogen is chosen by order,
+  distance, a native alias or a missing coordinate.
+- The carboxyl C, carbonyl O and selected hydroxyl O must have explicit zero
+  formal charges. The source core must declare the C=O and C–OH bonds; carbonyl
+  O has only C as neighbor, hydroxyl O has C and one neutral single-bonded H/D,
+  and C has only its declared backbone C and the two O neighbors. Delete that
+  hydroxyl O and its H/D; retain C=O.
+- Preserve all other source rows, charges and stereo declarations. Reacting
+  ports and deleted atoms with declared R/S require separate authority. No
+  charge conversion, additional H loss, invented H or numerical typing is allowed.
+  Final product CIP assignment and amide geometry remain unqualified.
+
+A charged NH3+ reaction site, unknown charge, incomplete hydrogen state or
+contradictory candidate withholds the complete network proposal. A charged
+**unreacted** amine can remain unchanged while the other end of that component
+participates: the policy applies locally, not as a blanket neutralization rule.
+Missing operation declarations preserve the earlier unresolved PNA behavior.
+Unsupported operations, extra fields and invalid leaving identities are input
+errors. All existing model inventory, source hash, reciprocal partner and
+candidate-coverage checks still apply; no coordinate is edited or bond inferred.
+
+Opt-in reports use `cif-explicit-attachment-site-v2` and
+`cif-reciprocal-source-links-v2`, retaining report schema 1. A fully proposed
+site adds `permitted_source_projection.chemical_state_operations`, listing each
+policy, port, retained port atom and exact deleted atoms, with empty addition
+and formal-charge-change lists. There is no partial permitted projection for
+an unresolved site/network. Legacy contexts keep their v1 policy IDs and exact
+reports; older readers reject the new context fields. Existing run/checkpoint
+schemas and ordinary preparation need no migration.
+
+Fourteen synthetic intended-link controls over frozen 40A/40C/40G/40T/APN/CPN/
+TPN/OPN sources test a homodimer, four base transfers, a three-site chain and
+both orientations of four charged-terminal pairs. **Ten projections match**;
+the four attempts to react a charged amine remain unresolved. These controls
+are declared before execution, but are not blinded or native experiments.
+The other direction retains the charged terminal N and its three H unchanged.
+Eight original C108 cases, including two expected errors, retain exact reports.
+All 22 cases replay through API and JSON CLI after owned source/inputs move and
+the original path is absent; original capsule/SDK reads and subprocesses are
+blocked. The 38 C106 input files retain bytes and timestamps. No Phenix or Coot
+executes. Full validation and retained runner attempts are recorded under
+`neutral_pna_amide_operations_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+This advances G2's explicit operation/delta gate. It does not supply native PNA
+energy types, amide bond/angle/plane targets, polymer perception or refinement
+proof. Those require source-preserving numerical generation and exact native
+qualification before recovery/adoption. Charged reaction-state operations,
+free-OH reconstruction and the ATL/L-DNA/PDU gates remain open.
+
 ### Remaining attachment-profile milestone (G2)
 
 
@@ -631,13 +722,15 @@ C106 binds source cores; C107 adds single-site source projections; C108 requires
 reciprocal source-bound ports and complete declared-link scope. C109 compares
 literal endpoints with preserved native captures. C112 captures and checks actual
 model-bound native aliases; C113 separates bound hydrogen counts/attachments
-from label differences. Next, establish explicit source-preserving protonation
-and unmodelled-name policies using independent DNA and held-out controls.
+from label differences. C114 adds explicit neutral PNA amide source operations
+with exact permitted deltas and retained charged termini. Next, establish the
+remaining protonation and unmodelled-name policies using independent DNA and
+transfer controls, and qualify source-preserving numerical PNA candidates.
 Keep missing formal-charge readback distinct from contradictions. Generate and
 qualify a source-preserving numerical ATL candidate before repeating native
 transfer; installed-library failure is not a blanket ATL exclusion. Numerical
 types, complete effective definitions and proxies still need qualification.
-Then extend terminal reconstruction and PNA state operations. Preserve original
+Then extend terminal reconstruction and the still-unsupported charged PNA reaction states. Preserve original
 and candidate definitions separately and test every newly permitted delta. Conflicting
 profile matches stay unresolved instead of choosing the first matching name.
 No universal phosphorus field or unconditional OP3 deletion is required of an

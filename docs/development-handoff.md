@@ -11,6 +11,47 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C114 explicit neutral PNA amide operations
+
+Implementation, focused/full regression and frozen/cold transfer controls pass.
+Publication is the remaining step; source/tests are frozen and no job is active.
+Base: `49e0d9298f636dfca78646b88df076aa38bd5862`; continue on existing `cedar`.
+Local capsule: `live_tests_directory/114_Cedar_PNA-state-ciy0qgj4`.
+
+Before C114, all PNA link operations remained unresolved. The opt-in
+`neutral-pna-amide-v1` policy now requires explicit source-neutral reactive
+groups, exact leaving identities and reciprocal ports. It deletes only the
+selected amine H/D and carboxyl hydroxyl O/H/D in a proposed source projection.
+All other charges, atoms and source stereo declarations remain. Charged reacting
+amines stay unresolved; an untouched charged terminal amine stays intact.
+
+Fourteen synthetic intended-link controls over eight frozen PNA CCD components
+give ten matching projections and four correctly unresolved charged-amine cases.
+Eight legacy reports/errors are exact. All 22 agree through API/JSON CLI after
+relocation, with original capsule/SDK reads and subprocesses blocked. Original
+C106 inputs retain bytes/timestamps. No native execution or dry-run occurred.
+
+Validation: **264 focused tests pass in 14.25 s** (34 new cases); full suite:
+**6111 passed, 276 subtests passed in 965.99s (0:16:05)**. All 459 source/test files retain pre-suite hashes.
+Compilation, whitespace, 259 documentation links/JSON and SVG checks pass.
+Two completed transfer-runner development failures are preserved locally; the
+corrected independent runner passed in a fresh owned tree. Exact commands,
+files, policies and hashes are in `neutral_pna_amide_operations_2026_10_28`
+in the [evidence ledger](cif-linked-native-registration-evidence.json).
+
+New fields extend explicit schema-1 contexts; opted-in reports use v2 site/link
+policy identifiers and an operation ledger. Legacy contexts/reports are unchanged;
+older readers reject new fields. No run/checkpoint or preparation migration.
+Raw CIFs/workbook, synthetic models, projections, logs and runners remain local.
+
+Next: source-preserving numerical generation and exact native qualification
+against these deltas; charged reaction states require separate authority.
+This is no claim of native PNA support, amide targets, final CIP or refinement.
+ATL/L-DNA/PDU gates remain open. Sticky-end stitching is parked; no new branch
+or Pine/main merge.
+
+— Rowan · Codex desktop
+
 ## C113 hydrogen attachment inventories
 
 Implementation, focused/full regression and saved/cold replay pass. Tested implementation `8cf70b6f571c4c853eb4387cd0faf452d32fb756` is published and verified
@@ -205,7 +246,7 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; PNA and terminal reconstruction remain open. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations; charged reaction states, numerical PNA qualification and terminal reconstruction remain open. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | Decision/reuse pieces exist; general orchestration remains open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |
