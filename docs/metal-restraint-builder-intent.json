@@ -296,7 +296,15 @@
         "native_execution": false,
         "checkpoint_adoption": false,
         "reference_coordinate_overlay": false,
-        "visual_review_passed": false
+        "visual_review_passed": false,
+        "initial_manual_review_received": true,
+        "revision_visual_review_pending": true,
+        "automatic_camera_fit": true,
+        "three_rotations_two_pan_axes": true,
+        "trial_snapshot_groups": true,
+        "zoom_dependent_labels": true,
+        "display_connectivity_changes_restraints": false,
+        "environmental_b_preview": true
       }
     },
     "milestones": [
@@ -453,6 +461,23 @@
       "scientific_acceptance": "NOT_ASSESSED",
       "automatic_checkpoint_selection": false,
       "production_gui_connected": false
+    },
+    "environmental_metal_b": {
+      "status": "IMPLEMENTED",
+      "stage": "after_fixed_geometry_before_fdp_occupancy_trials",
+      "default_cli_policy": "base-mean",
+      "policies": [
+        "base-mean",
+        "donor-mean",
+        "keep"
+      ],
+      "base_excludes_sugar_phosphate": true,
+      "retain_separate_base_means": true,
+      "weighted_by_occupancy": false,
+      "native_worker_changed": false,
+      "legacy_api_default": "keep_original_B",
+      "new_trial_field": "b_calibration",
+      "scientific_qualification": "NOT_ASSESSED"
     }
   },
   "solution_search": {

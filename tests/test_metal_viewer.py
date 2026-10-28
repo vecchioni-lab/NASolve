@@ -60,7 +60,8 @@ def test_colliding_candidate_ids_in_different_datasets_keep_scene_scope(tmp_path
     assert out['scene']['dataset_id'] == 'two'
     assert out['scene']['hypothesis_id'] == row['hypothesis_id']
     out = viewer.navigate({'action': 'select', 'selection': out['view']['selection'], 'field': 'dataset_id', 'value': 'one'})
-    assert out['scene'] is None and out['view']['selection']['row_id'] is None
+    assert out['scene']['dataset_id'] == 'one'
+    assert out['view']['selection']['hypothesis_id'] is not None
 
 
 def test_invalid_actions_and_changed_geometry_fail_closed(tmp_path, monkeypatch):
@@ -149,3 +150,14 @@ print(json.dumps(v.present()))
         env=dict(os.environ,PYTHONPATH=str(moved/'src'),PYTHONDONTWRITEBYTECODE='1'),capture_output=True,text=True,timeout=30)
     assert done.returncode == 0, done.stderr
     assert json.loads(done.stdout) == expected
+
+
+def test_viewer_defaults_do_not_change_controller_clear_contract(tmp_path, monkeypatch):
+    run, catalog, mounts, viewer = setup(tmp_path, monkeypatch)
+    selected=viewer.workbench.initial_selection()
+    cleared=viewer.workbench.select(selected, 'dataset_id', 'one')
+    assert cleared['hypothesis_id'] is None
+    out=viewer.navigate(dict(action='select',selection=selected,field='dataset_id',value='one'))
+    assert out['scene'] is not None
+    assert out['view']['scientific_acceptance']=='NOT_ASSESSED'
+    assert viewer.navigate(dict(action='reset'))['scene'] is None

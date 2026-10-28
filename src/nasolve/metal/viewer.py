@@ -11,6 +11,8 @@ from pathlib import Path
 import secrets
 
 from .context import parse_pdb
+from .chemistry import dictionaries, display_connections
+from .environment import calibrate_b
 from .materialize import _json, _source
 from .recipe import RecipeError, canonical
 from .workbench import Workbench, _fields, open_workbench
@@ -27,12 +29,22 @@ class Viewer:
             rows = self.workbench.to_dict()['rows']
             if rows:
                 selection = self.workbench.select_row(selection, rows[0]['row_id'])
+            else:
+                selection = self._defaults(selection)
         view = self.workbench.view(selection)
         scene = next((s for s in json.loads(self._scenes) if all(
             s[k] == selection[k] for k in ('dataset_id','structure_id','hypothesis_id'))), None)
         catalog = self.workbench.to_dict()['catalog']
         return dict(kind='metal-workbench-presentation', schema_version=1,
                     campaign_label=catalog['label'], catalog_id=catalog['catalog_id'], view=view, scene=scene)
+
+    def _defaults(self, selection):
+        # Catalog order is a browsing convenience, never a scientific ranking.
+        for field in ('dataset_id','structure_id','hypothesis_id'):
+            view=self.workbench.view(selection)
+            if selection[field] is None and view['options'][field]:
+                selection=self.workbench.select(selection,field,view['options'][field][0][field])
+        return selection
 
     def navigate(self, message):
         if not isinstance(message, dict):
@@ -44,6 +56,8 @@ class Viewer:
         elif action == 'select':
             _fields(message, {'action','selection','field','value'}, 'select')
             selection = self.workbench.select(message['selection'], message['field'], message['value'])
+            if message['value'] is not None and message['field'] in {'dataset_id','structure_id','hypothesis_id'}:
+                selection = self._defaults(selection)
         elif action == 'row':
             _fields(message, {'action','selection','row_id'} | ({'site_id'} if 'site_id' in message else set()), 'row')
             selection = self.workbench.select_row(message['selection'], message['row_id'], site_id=message.get('site_id'))
@@ -56,7 +70,7 @@ def open_viewer(catalog, mounts):
     """Replay all scientific evidence, then freeze checked coordinates/overlays.
 
     The existing workbench schema is unchanged. Scenes are presentation values,
-    with exact atom keys and saved recipe terms; no inferred chemical bonds.
+    with exact atom keys, saved terms and separately marked display connectivity.
     """
     workbench = open_workbench(catalog, mounts)
     scenes = []
@@ -66,15 +80,31 @@ def open_viewer(catalog, mounts):
             run = root / structure['run']['relative_path']
             for hypothesis in structure['hypotheses']:
                 geometry = _json(_source(hypothesis['geometry'], run))
-                model = parse_pdb(_source(geometry['files']['model'], run))
+                raw = _source(geometry['files']['model'], run)
+                model = parse_pdb(raw)
                 preview = _json(_source(geometry['files']['preview'], run))
                 states = model.to_dict()['atomic_state']
                 atoms = [dict(atom.to_dict(), **{k:v for k,v in state.items() if k != 'key'})
                          for atom, state in zip(model.snapshot.atoms, states)]
+                resources=[(ref['relative_path'],_source(ref,run)) for ref in geometry['inputs']['restraints']]
+                chemistry={};chemistry_note=None
+                try:chemistry=dictionaries(resources)
+                except RecipeError as exc:chemistry_note=str(exc)
+                parent=_json(_source(geometry['parent']['manifest'],run))
+                preparation=[]
+                for site in parent['sites']:
+                    for policy in ('base-mean','donor-mean'):
+                        try:
+                            report,_=calibrate_b(raw,parent['sites'],preview,[site['node_id']],policy,resources=resources)
+                            preparation.append(dict(status='PREVIEW_ONLY',**report['sites'][0]))
+                        except RecipeError as exc:
+                            preparation.append(dict(node_id=site['node_id'],policy=policy,status='UNAVAILABLE',reason=str(exc)))
                 scenes.append(dict(dataset_id=dataset['dataset_id'], structure_id=structure['structure_id'],
                     hypothesis_id=hypothesis['hypothesis_id'], geometry_id=geometry['geometry_id'],
                     model=geometry['files']['model'], status=geometry['status'], atoms=atoms,
                     nodes=preview['nodes'], restraints=preview['restraints'],
+                    connections=display_connections(atoms,chemistry),connectivity_note=chemistry_note,
+                    b_environment=preparation,
                     site_atoms={s['site_id']:s['atoms'] for s in hypothesis['sites']}))
     return Viewer(workbench, canonical(scenes))
 

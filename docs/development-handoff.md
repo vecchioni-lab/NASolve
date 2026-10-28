@@ -13,6 +13,104 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Environmental B preparation and revised viewer 2026-10-28
+
+**Current change.** The user reviewed the initial viewer with screenshots and
+requested improved camera control, connectivity/labels, grouped trial results
+and environmental B preparation. Metal B is now derived after fixed geometry and
+before conditional f-double-prime/Q trials. The CLI default is `base-mean`:
+compute each connected nucleobase mean separately, then average those means with
+equal base weights. **Sugar and phosphate are excluded.** `donor-mean` and
+explicit `keep` are alternatives. This is a declared environmental assumption;
+it does not establish a correct occupancy or scattering scale independently.
+
+Before this change the frozen diagnostic retained placed metal B, including
+placeholder values. New plans record exact donor/base source atoms, base means
+and mismatch, original metal B and applied B; repeat trials reuse that basis.
+High B values (170–400 Å²) are covered without a low-B clamp. Modified components
+use captured connectivity across the glycosidic attachment; unavailable/ambiguous
+chemistry requires an explicit alternative. Anisotropic targets require separate
+handling. Old trials replay unchanged, and the native worker remains unchanged.
+
+The viewer now auto-orients/fits coordinates and offers rotate, pan and roll
+modes, scroll/slider zoom and keyboard arrows. Faint captured bonds, or explicitly
+marked distance-only display contacts, maintain continuity. Zoom-dependent,
+collision-aware labels cover ligand residues and metals; metal markers/lists are
+visually distinct. Parent navigation fills useful descendants in catalog order,
+with the base controller unchanged. Each actual trial gets a box containing its
+metals; aliases in scan/comparison reports remain linked without duplicate site
+rows. Primary columns are Q (occ), observed/expected f-double-prime and their
+ratio, with secondary values expandable. The workflow strip is explanatory,
+not a claimed complete solution tree or execution history. B previews are
+read-only; existing results explicitly retain their original B policy.
+
+**Files and formats.** New `metal/environment.py`, `metal/chemistry.py` and
+`tests/test_metal_b_environment.py`; updates to `fdp.py`, `fdp_compare.py`, CLI,
+viewer and its four packaged assets; viewer/JavaScript/intent regression updates.
+Methods, editable workflow figure, architecture, intent, documentation index,
+changelog and this handoff agree. Schema-1 trial plans gain optional
+`b_calibration` and `options.metal_b_policy`; results gain per-site preparation
+provenance. Comparison bases include that preparation. Existing readers must be
+updated for these new trials, but no existing files require migration. Calls to
+`run_fdp` without a policy preserve API behavior; new CLI calls default to base
+means. Explicit CLI paths remain supported. See the
+[methods and limitations](metal-anomalous-doctor.md#implemented-environmental-metal-b-preparation).
+
+**Validation.** Python 3.12.14, Node 24.22.1. The environmental regression first
+failed on the absent module; new camera/grouping tests first failed on the missing
+`autoCamera` export. Focused command
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_metal*.py tests/test_cli.py`
+passes **381 tests and 14 subtests in 63.19 s**. An earlier attempt found one test
+setup error (selecting an unchanged parent correctly preserves its children) and
+one sandbox socket restriction; the test now changes the scope, and the approved
+focused run includes actual HTTP socket checks. `node --test tests/metal_viewer_ui.test.mjs`
+passes **9 tests**; both ES modules pass syntax checks. Six changed Python
+modules parse with Python 3.10 grammar. The source-removed fresh-interpreter
+regressions cover prepared-trial replay and viewer relocation without native
+processes. An installed wheel loads all four exact packaged assets and the new
+policies from a relocated temporary build with its original source path gone.
+
+The final full command,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`,
+passes **6,008 tests and 276 subtests in 769.14 s**, exit 0. All **451** inventoried
+source, test, packaged-asset and intent files remain unchanged throughout that
+run. The revised local viewer opens in **45.08 s**, including catalog capture
+and verification. No automated browser visual pass is claimed.
+
+**Native controls.** Four new complete **Phenix 2.2.1-6174** executions, two each
+for Hg and Au/Ag, pass native and serialized freeze audits plus offline replay.
+They vary one occupancy at a time and compare within their own B basis. The
+runtime discovery label is `2.2.1`; the native evidence records the complete
+`2.2.1-6174` identity. This is complete execution, not dry-run; **zero new Coot
+calls**. All **823** pre-existing dataset files remain byte-identical. The new
+viewer reopens **37** linked rows and preserves all **907** dataset files at
+opening with native subprocess creation forbidden.
+
+These generated controls have **B = 20 Å² throughout their nucleobases**. Sugar
+and phosphate have different inherited values and are deliberately excluded.
+The trials establish pipeline mechanics only. Credible occupancy quantitation
+still needs a suitable refined parent base-B field; neither high expected B nor
+human-reference B is silently substituted. The initial manual visual review is
+recorded; revised visuals remain pending. Browser automation is still blocked by
+the host's explicit localhost policy, and no alternate automation was attempted.
+
+**Artifacts and continuity.** Local-only runners, native receipts, request/catalog,
+viewer URL and validation logs are under ignored
+`branch-artifacts/Alder/viewer-20261028-02/` and `branch-artifacts/Alder/runners/`.
+Four numbered trials and two comparisons were added to the existing local control
+runs without overwriting anything. All models, reflections, native output,
+screenshots, local paths and scientific result tables are excluded from Git.
+The previous viewer was stopped and the revised read-only viewer is running.
+Source development remains isolated on **Alder**, based for this step on
+`287880c8e5d8a0edb5190ee731fe9df9a46b5aea`; the everyday checkout and other branches
+are unchanged. Delivery remains source-only to Alder, with later reviewed
+integration through pine/main.
+
+**Next step.** Review the revised controls visually, then qualify preparation
+from an appropriate refined parent model before interpreting f-double-prime/Q.
+Editable plan controls, measured-map comparison, a true branching solution tree,
+general-site construction and automatic scientific decisions remain later work.
+
 ## Local metal results viewer 2026-10-28
 
 **Current additive milestone: M5 initial comparison interface.** Before this

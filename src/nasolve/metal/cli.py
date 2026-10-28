@@ -84,6 +84,8 @@ def configure(subparsers):
     fdp.add_argument('--geometry', type=Path, required=True)
     fdp.add_argument('--fit', action='append', required=True, help='placed metal node to fit independently; repeat for additional sites')
     fdp.add_argument('--occupancy', action='append', default=[], metavar='NODE=Q', help='explicit input occupancy override; all q stays fixed during fitting')
+    fdp.add_argument('--metal-b-policy', choices=('base-mean','donor-mean','keep'), default='base-mean',
+                     help='prepare metal B before frozen trials: equal nucleobase means (no sugar/phosphate), donor mean, or explicit keep')
     fdp.add_argument('--cycles', type=int, default=3)
     fdp.add_argument('--start-fdp', type=float, default=0.)
     fdp.add_argument('--free-r-test-value', type=int, default=0)
@@ -255,7 +257,7 @@ def _fdp(args):
             occupancies[node] = float(q)
         native = discover_phenix(load_config(), explicit=args.phenix_root)
         result = run_fdp(args.run, args.geometry, native=native, fit_nodes=args.fit,
-                         occupancies=occupancies, cycles=args.cycles, start_fdp=args.start_fdp,
+                         occupancies=occupancies, cycles=args.cycles, start_fdp=args.start_fdp, metal_b_policy=args.metal_b_policy,
                          free_r_test_value=args.free_r_test_value, timeout=args.timeout)
     else:
         result = verify_fdp(args.run, args.trial)

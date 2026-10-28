@@ -1412,6 +1412,16 @@ only projects coordinates and renders reports. Camera/context/panel state stays
 outside scientific selection. No artifact schema migration or native job route
 is added. See the [viewer methods and limits](metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
 
+Environmental metal B preparation is an optional derivation between fixed geometry
+and frozen f-double-prime fitting. The CLI defaults to equal nucleobase means
+excluding sugar/phosphate; unique-donor means and explicit keep are alternatives.
+Exact connected donors and captured component graphs determine the source atoms.
+The plan/audit records the assumption and source B values; matching/reuse includes
+this preparation, while older trial replay retains its original B. See the
+[preparation methods](metal-anomalous-doctor.md#implemented-environmental-metal-b-preparation).
+Viewer auto fitting, display connectivity, labels, trial grouping and default
+navigation remain presentation operations. A preview never edits a saved trial.
+
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
 independent, with no implicit joint fitting or inherited chemical qualification.

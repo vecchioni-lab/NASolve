@@ -8,6 +8,26 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepare environmental metal B and clarify saved trial review
+
+- Prepare metal B after fixed geometry and before f-double-prime/occupancy trials.
+  The CLI defaults to equally weighted nucleobase means, excluding sugar and
+  phosphate; explicit donor means and keep-original are also supported. Retain
+  source atoms, separate base means, applied B and replayable provenance. Accept
+  high B values without a low-B clamp. Require a matching preparation for reuse.
+- Preserve old trial replay and the native frozen-coordinate protocol. Add optional
+  preparation fields to schema-1 plans/results; updated readers handle new trials.
+  Programmatic calls without a policy retain their prior behavior.
+- Auto-fit/orient the coordinate view; simplify three-axis rotation/two-axis pan;
+  add faint connectivity and collision-aware zoom-dependent ligand/metal labels.
+  Distinguish metals in the inspector. Select first available descendants on
+  dataset/structure navigation without changing the shared controller contract.
+- Box metals by actual trial, retain comparison/scan aliases, and prioritize
+  Q (occ), fitted/expected f-double-prime and their ratio. Expand secondary values
+  and show a workflow guide. Initial user review received; revised visuals await
+  review. The viewer remains read-only; prepared control values are not qualified
+  experimental occupancy estimates.
+
 ### View saved metal results with linked coordinates and modular panels
 
 - Add `metal serve-workbench`, a local read-only viewer over the existing verified

@@ -250,3 +250,11 @@ def test_local_viewer_keeps_presentation_outside_scientific_authority():
     assert viewer['camera_state_separate'] and viewer['loopback_only']
     assert not any(viewer[k] for k in ('scientific_edits','native_execution','checkpoint_adoption',
                                       'reference_coordinate_overlay'))
+
+
+def test_environmental_b_is_branch_preparation_not_posthoc_scaling():
+    policy=intent()['integration']['environmental_metal_b']
+    assert policy['stage']=='after_fixed_geometry_before_fdp_occupancy_trials'
+    assert policy['base_excludes_sugar_phosphate'] and policy['retain_separate_base_means']
+    assert policy['default_cli_policy']=='base-mean'
+    assert not policy['weighted_by_occupancy'] and not policy['native_worker_changed']

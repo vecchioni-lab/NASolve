@@ -10,6 +10,7 @@ import subprocess
 from .binding import AtomKey
 from .context import _reference, parse_pdb
 from .export import atom_selection
+from .environment import calibrate_b
 from .geometry import verify_geometry
 from .materialize import _json, _json_bytes, _source, verify_hypothesis
 from .recipe import RecipeError, canonical, checksum, digest, number
@@ -30,8 +31,12 @@ def _integer(value, low, high, name):
 
 
 def make_plan(raw, sites, metadata, references, *, fit_nodes, occupancies=None,
-              cycles=3, minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0):
-    """Build exact groups over all atoms and change only declared metal q values."""
+              cycles=3, minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0,
+              metal_b_policy=None, preview=None, resources=()):
+    """Prepare optional environmental B, then exact groups and declared metal Q."""
+    calibration = None
+    if metal_b_policy is not None:
+        calibration, raw = calibrate_b(raw, sites, preview, fit_nodes, metal_b_policy, resources=resources)
     parsed = parse_pdb(raw)
     atoms = parsed.snapshot.atoms
     state = parsed.to_dict()['atomic_state']
@@ -109,10 +114,15 @@ def make_plan(raw, sites, metadata, references, *, fit_nodes, occupancies=None,
                 bulk_solvent_and_scale=True,experimental_phases=False,free_r_test_value=free_r_test_value)
     options=dict(fit_nodes=fit_nodes,occupancies=occupancies,cycles=cycles,minimizer_cycles=minimizer_cycles,
                  max_iterations=max_iterations,start_fdp=start_fdp,free_r_test_value=free_r_test_value)
-    return dict(protocol=PROTOCOL,options=options,metadata=metadata,references=references,groups=groups,policy=policy,
+    if calibration is not None:
+        options["metal_b_policy"] = metal_b_policy
+    plan = dict(protocol=PROTOCOL,options=options,metadata=metadata,references=references,groups=groups,policy=policy,
                 tolerances=TOLERANCES,background_policy='fixed_Sasaki_reference_for_every_remaining_atom',
                 nuisance_policy='profile_bulk_solvent_and_overall_scales_allow_only_uniform_F_sigma_rescaling_without_atomic_ADP_backtrace',
-                phase_policy='model_phases_without_external_phase_restraints',input_model_sha256=hashlib.sha256(model).hexdigest()),model
+                phase_policy='model_phases_without_external_phase_restraints',input_model_sha256=hashlib.sha256(model).hexdigest())
+    if calibration is not None:
+        plan['b_calibration'] = calibration
+    return plan, model
 
 
 def parameters(plan, resource_names):
@@ -246,6 +256,10 @@ def audit_result(plan, model, native):
                          f_double_prime=a['fdp'],reference_f_double_prime=group['reference_f_double_prime'],
                          q_times_f_double_prime=a['occupancy']*a['fdp'],
                          warning='NEGATIVE_FDP' if a['fdp']<0 else None))
+    if 'b_calibration' in plan:
+        by_node={r['node_id']:r for r in plan['b_calibration']['sites']}
+        for row in rows:
+            row['b_calibration']=by_node.get(row['node_id'], {'policy':'keep'})
     return dict(status='FDP_REVIEW',freeze_audit='PASS',maximum_deltas=maxima,tolerances=TOLERANCES,
                 sites=rows,wavelength_A=plan['metadata']['wavelength_A'],native_version=native['native_version'],r_work=number(native['r_work'],'Rwork'),r_free=number(native['r_free'],'Rfree'),
                 reflection_signature=reflections,convergence='NOT_INDEPENDENTLY_ASSESSED',
@@ -291,7 +305,7 @@ def _input_bundle(run, geometry):
 
 
 def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
-            minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0, timeout=240):
+            minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0, timeout=240, metal_b_policy=None):
     """Run one independent trial. Failed attempts retain their numbered directory."""
     run=Path(run).expanduser().resolve();_integer(timeout,10,600,'timeout seconds')
     g,parent,raw,resources,parent_ref=_input_bundle(run,geometry)
@@ -301,7 +315,8 @@ def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
     references=reference_scattering({a.element for a in parse_pdb(raw).snapshot.atoms},metadata['wavelength_A'],
         executable=native.executables['phenix.python'],version=native.version,environment=native.environment)
     plan,model=make_plan(raw,parent['sites'],metadata,references,fit_nodes=fit_nodes,occupancies=occupancies,cycles=cycles,
-        minimizer_cycles=minimizer_cycles,max_iterations=max_iterations,start_fdp=start_fdp,free_r_test_value=free_r_test_value)
+        minimizer_cycles=minimizer_cycles,max_iterations=max_iterations,start_fdp=start_fdp,free_r_test_value=free_r_test_value,
+        metal_b_policy=metal_b_policy,preview=_json(_source(g['files']['preview'],run)),resources=resources)
     phil,args=parameters(plan,[name for name,_ in resources])
     directory=_allocate(run)
     try:
@@ -375,7 +390,8 @@ def verify_fdp(run, directory):
         if doc['execution']['phenix_version']!=NATIVE_VERSION:
             raise RecipeError('Saved native version is unsupported')
         checksum(doc['worker_sha256'],'native worker provenance')
-        replay,model=make_plan(raw,parent['sites'],plan['metadata'],plan['references'],**plan['options'])
+        replay,model=make_plan(raw,parent['sites'],plan['metadata'],plan['references'],
+            preview=_json(_source(g['files']['preview'],run)),resources=resources,**plan['options'])
         phil,args=parameters(replay,[name for name,_ in resources])
         expected={'input.pdb':model,'observations.mtz':_source(g['inputs']['observations'],run),
                   'plan.json':_json_bytes(replay),'parameters.phil':phil,

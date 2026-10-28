@@ -48,6 +48,8 @@ def _load_trial(run, directory):
                  native_version=native['native_version'], native_source_hashes=native['native_source_hashes'],
                  normal_scattering_types=native['normal_scattering_before'],
                  reflection_input_hash=native['reflection_before']['hash'])
+    if 'b_calibration' in plan:
+        basis['b_calibration'] = plan['b_calibration']
     return dict(ref=ref, trial_id=doc['trial_id'], basis=basis, result=result,
                 occupancy_vector=dict(sorted(q.items())),
                 settings={axis: plan['options'][axis] for axis in SETTING_AXES})

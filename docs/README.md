@@ -564,3 +564,6 @@ current Pine merge gate.
 pair-matrix progress; subsystem contract = actual behavior and safety;
 history/Git = how we arrived here. Updating documentation does **not**
 change scientific data, frozen inputs, user approvals or runtime capability.
+
+Environmental metal B preparation, revised trial grouping and camera behavior are
+described in the [metal anomalous methods](metal-anomalous-doctor.md#implemented-environmental-metal-b-preparation).

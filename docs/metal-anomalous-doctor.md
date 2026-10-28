@@ -7,13 +7,81 @@ defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
 
+## Implemented environmental metal B preparation
+
+Each fixed-geometry branch prepares metal B **before** fixed-occupancy
+f-double-prime quantitation. The assumption is that metal displacement resembles
+its local ligand environment; this is an explicit model assumption, not an
+independent measurement. XYZ, Q and f-prime remain frozen during each native
+f-double-prime fit. Occupancy trials from the same seed reuse the identical B
+preparation; changing geometry or policy requires a distinct seed/basis.
+
+`metal fdp --metal-b-policy base-mean` is the new CLI default. For each fitted
+metal, enabled resolved recipe distance terms select its exact coordinating donor
+atoms. **Base-mean** takes all available non-H/D atoms of each connected
+nucleobase, computes each base mean separately, then gives those base means equal
+weight. Sugar and phosphate are excluded. Captured component connectivity selects
+the modified base fragment across its C1-prime attachment; standard nucleobase
+inventories cover canonical components when no dictionary is supplied. Ambiguous
+or unavailable modified-component graphs require an explicit alternate policy.
+
+`donor-mean` averages each unique coordinating atom once. `keep` explicitly
+retains the input metal B. No proximity search or hidden fallback chooses ligands.
+High B values such as 170–400 Å² are valid; only the PDB representation limit
+applies. Both methods retain individual base means and their spread so a mismatch
+between bases is visible. These are arithmetic, unweighted means; each method's
+weighting is recorded. A branch needing a different environmental assumption
+must select it explicitly. Anisotropic target metals require separate ADP handling
+and are rejected by averaging policies rather than changing B while retaining Uij.
+
+The immutable trial records source-model checksum, exact contributing atom keys,
+reported B/ANISOU presence, method, previous metal B, separate base means, full
+mean and applied two-decimal PDB B. Parent coordinates/files remain unchanged.
+Replay independently regenerates this preparation from the checked geometry and
+CIF inputs. Comparison and scan reuse require the same preparation basis;
+legacy and prepared trials cannot silently enter one matched comparison.
+
+**Methods and compatibility.** `metal.environment.calibrate_b` implements the
+preparation, using `metal.chemistry` for captured component graphs. `fdp.make_plan`
+applies it before Q overrides and native execution. The native worker and frozen
+protocol remain unchanged. Trial schema 1 gains optional `b_calibration` plus
+`options.metal_b_policy`; replay of older files omits them and is byte-compatible.
+Programmatic `run_fdp` calls without the new argument retain legacy B behavior;
+new integrations should pass the intended policy explicitly. Updated readers are
+required for prepared trials. Existing data are neither migrated nor rescaled.
+The viewer is read-only and previews this step; it does not launch preparation or
+fitting. The process strip is a workflow guide, not a fabricated execution tree.
+
+```mermaid
+flowchart LR
+    G[Fixed geometry branch] --> E[Exact connected donors]
+    E --> B[Base means: exclude sugar and phosphate]
+    E --> D[Unique donor mean]
+    B --> P[Record assumption and metal B]
+    D --> P
+    P --> T[Fixed XYZ and B: independent Q / f-double-prime trials]
+    T --> C[Matched comparisons and user review]
+    C -. new geometry or B policy .-> G
+```
+
+**Evidence and limits.** Regression controls include high B, unequal base sizes,
+sugar/phosphate exclusion, source identity, missing chemistry, anisotropic metals,
+legacy replay, scan inheritance and source-removed relocation. Four complete
+Phenix **2.2.1-6174** trials on the saved Hg/AuAg controls exercised both independent
+Q changes and preserved input/final atomic-state audits; all prior files were
+preserved. Their generated nucleobase atoms all have B = 20 Å², so this validates
+mechanics, not experimental f-double-prime/occupancy inference. A credible refined
+parent base-B field is still required. Uniform contributing B values are flagged
+in the preview for inspection. No new Coot execution or scientific solution
+qualification is claimed.
+
 ## Implemented local saved-results viewer
 
 `metal serve-workbench` presents the shared verified controller in a local,
 read-only browser interface. It is an initial comparison viewer, not the full
-NASolve GUI or an editable restraint builder. Browser visual acceptance remains
-pending; the implementation, scientific navigation and HTTP boundary have
-regression coverage.
+NASolve GUI or an editable restraint builder. The initial interface received user visual review on 2026-10-28. The revised
+camera, labels and grouped tables await another visual review; scientific
+navigation and the HTTP boundary have regression coverage.
 
 ```sh
 nasolve metal serve-workbench --catalog /path/to/local/catalog.json --dataset hg=/path/to/HgDataset --dataset mixed=/path/to/AuAgDataset
@@ -29,16 +97,24 @@ The navigator selects dataset, structure, candidate, site group and result set.
 A result row opens its exact parents through `Workbench.select_row`; **All
 results** clears the navigation scope. The initial view opens the first saved
 row in catalog order as a viewing convenience, without ranking or checkpoint
-selection. Rows display q, reported B, fixed f-prime, refined/reference
-f-double-prime and wavelength when those values exist. Missing values display
+selection. Selecting a dataset or structure fills its first available descendant
+in catalog order; the underlying controller still clears children on parent
+changes. Snapshot boxes group metals by exact dataset/structure/candidate/trial
+identity, including aliases when comparison and scan reports reuse one trial.
+The compact columns show **Q (occ)**, refined f-double-prime, expected wavelength
+reference and their ratio. B, fixed f-prime, wavelength and source links expand
+beneath each box. This ratio is descriptive, not a fitted calibration or ranking. Missing values display
 an em dash rather than zero. Human-reference rows display the candidate q/B;
 the inspector separates the reference snapshot and retains exact source values.
 Complete reports expose pending scan points, failures and unmapped scatterers.
 
 The molecular panel projects the verified candidate PDB coordinates in 3D.
-Zoom, rotation, tilt and fit/reset are view operations. Clicking an atom opens
+Automatic fitting uses principal axes to open the broadest molecular plane,
+then fits the projected bounds. Rotate controls two axes; Roll controls the third;
+Pan controls both screen axes. Shift-drag pans and scrolling zooms; a zoom slider
+and keyboard arrows provide alternatives. These are view operations. Clicking an atom opens
 its exact identity, XYZ/q/B and ANISOU presence. These are **geometry-model**
-values; the selected frozen trial may use a different q, shown separately above.
+values; the selected frozen trial may use different Q and prepared B, shown separately above.
 A selected result/coordinate atom remains visible even outside all named groups
 (for example an unassigned background scatterer); this is display focus only.
 Site, surrounding-residue and whole-model contexts expand the display without
@@ -47,7 +123,13 @@ means residues containing the selected site's atoms (including exact alternate,
 model and symmetry identity), not a distance-neighbor or symmetry expansion.
 Blue dotted lines represent enabled, resolved saved **distance restraints**;
 all saved terms, including angles and disabled terms, are available in the
-inspector. Chemical bonds, maps and reference-coordinate overlays are not drawn.
+inspector. Faint lines show captured component bonds when available; otherwise
+conservative within-residue distance contacts are explicitly display-only.
+Neither contact source changes the recipe or environmental B selection. Metals
+are larger lilac markers and have their own inspector list. Ligand/metal labels
+are hidden at low magnification, show elements at intermediate magnification,
+and atom names close up, with collision avoidance. Maps and reference-coordinate
+overlays remain unimplemented.
 A reference's Cartesian displacement remains absent when its coordinate frame
 has not been explicitly established.
 
@@ -67,8 +149,11 @@ The transient `metal-workbench-presentation` schema 1 adds a selected scene and
 campaign label around the existing view; existing catalogs, scientific artifact
 schemas and CLI behavior do not change. The pure JavaScript projection preserves
 all three input coordinates, applies camera rotations and scales around the
-visible bounding sphere. No chemical connectivity, coordinates, fitted values
-or new scientific normalizations are inferred in JavaScript.
+projected bounds. Camera bases, three rotations and two pan coordinates stay in
+browser memory. Pure presentation helpers group exact trial IDs and lay out
+labels; no fitted values or scientific normalizations are invented. Environmental
+B previews are computed offline from the geometry, with contributing atoms and
+unavailable-method reasons; they do not retrofit any existing result.
 
 ```mermaid
 flowchart LR
@@ -98,7 +183,8 @@ gone. Pure JavaScript tests cover exact identities, context expansion, 3D
 projection, missing values and camera scopes. The saved Hg/AuAg numerical
 controls open without native processes, preserving their input files. Browser
 automation was blocked by the host's administrator policy for local URLs, so no
-rendered-layout or browser-interaction pass is claimed. See the [current
+automated rendered-layout or browser-interaction pass is claimed. The initial
+manual review supplied screenshots; this revision awaits manual review. See the [current
 handoff](development-handoff.md#local-metal-results-viewer-2026-10-28) for commands
 and receipts. These generated controls remain scientifically unqualified;
 viewing them does not resolve geometry, identity, occupancy or model quality.
