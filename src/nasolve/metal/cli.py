@@ -24,7 +24,9 @@ def configure(subparsers):
     verify_geometry = actions.add_parser('verify-geometry', help='replay a saved geometry trial without native execution')
     fdp = actions.add_parser('fdp', help='run one audited frozen-coordinate fixed-occupancy f-double-prime trial')
     verify_fdp = actions.add_parser('verify-fdp', help='verify saved fdp inputs and freeze audit without a native run')
-    for parser in (inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp):
+    compare_fdp = actions.add_parser('compare-fdp', help='compare audited fdp endpoints without native execution')
+    verify_comparison = actions.add_parser('verify-fdp-comparison', help='replay a saved fdp comparison offline')
+    for parser in (inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -52,6 +54,8 @@ def configure(subparsers):
     fdp.add_argument('--free-r-test-value', type=int, default=0)
     fdp.add_argument('--timeout', type=int, default=240)
     verify_fdp.add_argument('--trial', type=Path, required=True)
+    compare_fdp.add_argument('--trial', type=Path, action='append', required=True, help='exact trial directory; repeat for each existing result')
+    verify_comparison.add_argument('--comparison', type=Path, required=True)
 
 
 
@@ -71,6 +75,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action in {'compare-fdp', 'verify-fdp-comparison'}:
+            return _fdp_comparison(args)
         if args.metal_action in {'fdp', 'verify-fdp'}:
             return _fdp(args)
         if args.metal_action in {'build', 'verify'}:
@@ -222,4 +228,36 @@ def _fdp(args):
         for row in report['sites']:
             print(f'{row["node_id"]:<20} {row["element"]:<7} {row["occupancy"]:>8.2f} {row["b_iso"]:>10.2f} {row["f_prime"]:>14.6g} {row["f_double_prime"]:>14.6g} {row["reference_f_double_prime"]:>16.6g}')
         print('Conditional diagnostic only; geometry, count, identity and convergence require review. Checkpoint unchanged.')
+    return 0
+
+
+def _fdp_comparison(args):
+    from .fdp_compare import build_comparison, verify_comparison
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'compare-fdp':
+        result = build_comparison(args.run, args.trial)
+    else:
+        result = verify_comparison(args.run, args.comparison)
+    serialized = json.dumps(result, indent=2, allow_nan=False)+'\n'
+    if args.output:
+        with args.output.open('x') as handle:
+            handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    else:
+        path = args.run.expanduser().resolve()/result['files']['report']['relative_path']
+        report = _json(path)
+        print(f'F-double-prime comparison: {path.parent.name}; {len(report["trials"])} audited trials')
+        print('Trial        Site        q     Start  Cycles    Fitted fdp    Ref. deviation')
+        for row in report['rows']:
+            trial = Path(row['trial_manifest']['relative_path']).parent.name
+            deviation = row['reference_deviation_fraction']
+            label = f'{deviation:+.1%}' if deviation is not None else 'undefined'
+            print(f'{trial:<12} {row["node_id"]:<8} {row["occupancy"]:>5.2f} {row["settings"]["start_fdp"]:>9.3g} {row["settings"]["cycles"]:>7} {row["f_double_prime"]:>13.6g} {label:>17}')
+        for axis, groups in report['sensitivity'].items():
+            compared = sum(g['status']=='COMPARED' for g in groups)
+            print(f'{axis}: {compared} matched comparisons; {len(groups)-compared} groups not tested')
+        print(f'Full vectors, settings and endpoint ranges: {path}')
+        print('Endpoint agreement does not prove convergence or identify the correct structure. Checkpoint unchanged.')
     return 0

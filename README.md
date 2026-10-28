@@ -1392,6 +1392,19 @@ readback and saves a new review bundle. Phenix 2.2.1-6174 is the initial support
 version. A completed fit does not establish convergence, metal identity/count or
 correct geometry. See the [implemented diagnostic and limits](docs/metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
 
+Compare existing audited trials without another Phenix run:
+
+```sh
+nasolve metal compare-fdp /path/to/dataset/AutoMR/run_001 --trial Metal/fdp_001 --trial Metal/fdp_002
+nasolve metal verify-fdp-comparison /path/to/dataset/AutoMR/run_001 --comparison Metal/fdp_comparison_001
+```
+
+The table preserves each site's complete occupancy vector and reports matched
+start, cycle-budget and occupancy response. It requires the same geometry/data
+and native policy, and leaves untested axes explicit. Endpoint agreement does
+not prove convergence or select the correct structure. See the
+[comparison guide](docs/metal-anomalous-doctor.md#implemented-matched-endpoint-comparisons).
+
 ## AutoRefine and checkpoints
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It

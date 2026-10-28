@@ -1,6 +1,6 @@
 # Metal-coordination restraint builder
 
-Status: **recipe core, generated-run integration, explicit metal construction, bounded recipe-only metal preparation, PHIL export and single frozen f-double-prime trials implemented; GUI and whole-model scientific optimization planned**.
+Status: **recipe core, generated-run integration, explicit metal construction, bounded recipe-only metal preparation, PHIL export and single frozen f-double-prime trials and matched comparisons implemented; GUI and whole-model scientific optimization planned**.
 User request recorded 2026-10-06. This independent authoring feature is not a Pine
 merge prerequisite.
 Published examples and private cluster context have been supplied. The scope
@@ -26,7 +26,7 @@ hypothesis on the generated scaffold.
 | M1b: general site contexts | Explicit residue/atom mappings and multiple named metal-site groups per structure; view switching preserves scientific state | Planned; current W importer remains unchanged |
 | M2a: hypothesis materialization | Explicit coordinates/count/species/q/B, preserved parent atoms, immutable derived models and native consumption controls | Implemented; one Hg and mixed Au/Ag controls, including swapped identities |
 | M2b: geometry preparation | Qualified targets/chemistry, declared optimization protocol, audited derived endpoints | Partial: bounded metal-only recipe preparation implemented; chemical qualification and whole-model native optimization remain separate |
-| M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Partial: single-trial adapter implemented and native controls passed; convergence/start sensitivity and independent scans remain planned |
+| M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Partial: single trials and matched endpoint comparisons implemented; initial start/cycle controls passed; optimizer convergence qualification and scan orchestration remain planned |
 | M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables, disk-budgeted retention/recovery and selection | Planned |
 | M5: campaign workbench | Switch datasets/structures/site groups/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
 | M6: solution-space search and decision logic | Explore budgeted structural/scattering alternatives; retain promising families and provisional choices; separately validate correct choices and appropriate deferral | Planned; construction controls do not validate selection logic |
@@ -122,7 +122,8 @@ flowchart LR
     E -. planned .-> G
     Q --> F[Conditional frozen f-double-prime trial and audit]
     G -. planned .-> F
-    F -. planned .-> T[Campaign and site-group tables with molecular views]
+    F --> C[Matched endpoint tables and sensitivity ranges]
+    C -. planned .-> T[Campaign and site-group tables with molecular views]
     T -. planned .-> S[Budgeted solution tree and promising candidate families]
     S -. planned .-> U[User validation]
 ```

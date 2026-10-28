@@ -1357,6 +1357,18 @@ scientific acceptance explicitly unassessed. It does not select a checkpoint,
 cache results, schedule a scan or implement recovery/pruning. See the
 [methods and initial qualification boundary](metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
 
+`metal compare-fdp` adds a read-only consumer of 2–128 explicitly named audited
+trials with the same geometry/data/groups/references and native environment.
+It groups one changed start, budget or site occupancy at a time, conditioning
+occupancy response on every other placed metal's q. Linked rows and descriptive
+ranges enter a new schema-1 `metal-fdp-comparison` bundle; its
+`metal-fdp-comparison-v1` protocol has no stability threshold, ranking or native
+execution. `metal verify-fdp-comparison` revalidates the source trials and
+reconstructs the report offline. The summary references existing artifacts
+without copying scientific inputs, and cannot replace a missing trial or serve
+as a full-artifact cache hit. General cross-geometry and cross-identity
+comparisons, optimizer qualification and automatic scans remain separate.
+
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
 independent, with no implicit joint fitting or inherited chemical qualification.

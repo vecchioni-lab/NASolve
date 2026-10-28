@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare matched frozen metal diagnostics without rerunning refinement
+
+- Add `metal compare-fdp` and `metal verify-fdp-comparison` for explicit audited
+  trials with matching geometry, data, references, groups and native protocol.
+- Preserve complete per-site q vectors and trial-linked rows; report signed
+  reference deviations and matched start/budget/occupancy endpoint ranges.
+  Keep coupled q changes and untested axes explicit, without ranking solutions
+  or treating endpoint agreement as convergence.
+- Add schema-1 immutable comparison bundles referencing existing inputs and
+  evidence, with offline replay and source-removed relocation coverage.
+  Existing trial formats, fitting defaults and checkpoint choices are unchanged.
+
 ### Run audited fixed-occupancy metal f-double-prime diagnostics
 
 - Add `metal fdp` and `metal verify-fdp` over verified geometry trials, with

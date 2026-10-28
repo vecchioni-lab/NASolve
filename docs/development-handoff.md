@@ -13,6 +13,108 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Metal endpoint comparison and sensitivity controls 2026-10-28
+
+**Current additive milestone: M3b comparison foundation.** Before this change,
+individual frozen trials had no supported matched comparison artifact. The new
+`metal compare-fdp` / `metal verify-fdp-comparison` commands read explicit audited
+results, preserve per-site/full-vector lineage and group endpoint responses by
+one changed start, budget or occupancy at a time. They run entirely offline.
+Different geometry lineages, identities, datasets, references, groups, Free-R
+policies or native worker/kernel fingerprints are rejected. Every other placed
+metal's occupancy is held fixed when describing a site's q response.
+
+See the [human descriptor, methods and workflow figure](metal-anomalous-doctor.md#implemented-matched-endpoint-comparisons).
+No trial fitter, native worker, fitting default or scientific threshold changes.
+Endpoint agreement is not convergence proof; the report never ranks or selects a
+structure. Replicates remain visible, and fewer than two distinct values on an
+axis yields `NOT_TESTED`. Zero reference scattering produces undefined relative
+deviation rather than division by zero.
+
+**Files and compatibility.** New `src/nasolve/metal/fdp_compare.py` and
+`tests/test_metal_fdp_compare.py`; additive CLI integration; synchronized root
+README/changelog, documentation index, architecture, builder, anomalous descriptor,
+development intent and this handoff. Schema-1 `metal-fdp-comparison` artifacts
+use protocol `metal-fdp-comparison-v1` and status `COMPARISON_REVIEW`. They retain a
+checksummed report and references to original trials without duplicating models
+or observations. `verify-fdp-comparison` reconstructs the report and verifies all
+source trials; missing or changed evidence fails. Prior run, trial and checkpoint
+schemas require no migration. Scan scheduling, caching, GUI attachment and output
+pruning remain unimplemented. The nonruntime intent contract remains schema 1.
+
+**Focused validation.** Python 3.12.14. The new regression file fails against the
+previous source (`ModuleNotFoundError: nasolve.metal.fdp_compare`, exit 2), recorded
+in `/private/tmp/alder-compare-red.log`. Final focused command:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_fdp_compare.py tests/test_metal_fdp.py tests/test_metal_geometry.py tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_refine_doctor.py tests/test_autorefine.py
+```
+
+**305 tests and 27 subtests passed in 29.58 s**, exit 0. Coverage includes mismatched experimental bases, coupled
+multi-site q changes, replicated endpoints, zero references, duplicate/path
+aliases, rehashed tampering, failed-publication numbering, distinct geometry
+lineages, CLI execution and immutable parents. The relocation control removes
+the original temporary source/input location, imports the moved package in a
+fresh interpreter and prohibits native subprocesses during replay. It proves
+comparison and constituent-trial replay, not repeatability of an optimizer run.
+The focused scope includes shared metal/CLI/refinement dependencies; no unrelated
+complete suite was run under the user's validation policy. Final checks include
+Python 3.10 grammar, local links, whitespace and source/test/intent fingerprints.
+
+**Twelve additional complete native controls.** Phenix **2.2.1-6174**, native
+Python **3.11.15**; Coot was not invoked. The single-trial fitter/worker remain
+byte-identical to `91febce`; that revision's parser dry-run remains the relevant
+parser evidence. These new controls are complete refinements, not dry-runs.
+Each verifies active-model atomic freeze, independent PDB readback, exact
+HKL/Free-R membership, declared uniform F/sigma scaling, offline trial replay and
+unchanged pre-existing run files. All new attempts are siblings of the same
+explicit geometry, not continuations from another fitted endpoint.
+
+| Dataset and geometry | New trials | Controlled settings |
+| --- | --- | --- |
+| FT_Hg, geometry_001 | fdp_010–014 | q=0.6; start 10 at 3 cycles; starts 0/10 at 6 and 10 cycles |
+| FF_AuAg, geometry_001 | fdp_007–009 | q vector (0.6,0.8); start 10 at 3 cycles; starts 0/10 at 6 cycles |
+| FT_Hg, geometry_001 | fdp_015–018 | q=0.4 and 0.8; starts 0/10 at 10 cycles |
+
+Earlier q=0.6/0.4 Hg and mixed Au/Ag trials provide explicit three-cycle
+baselines. The Hg three-cycle endpoint was still moving; extra cycles reduce
+start dependence. Tested longer-budget endpoints from starts 0 and 10 are close
+for both examples. The Hg occupancy points respond under this fixed-coordinate
+protocol, but neither closeness nor response identifies the correct geometry,
+occupancy or metal count. Values remain conditional on generated numerical
+scaffolds and the existing profiled scale policy; no derivative/Hessian or global
+convergence qualification is claimed.
+
+Exact local native commands, from the everyday checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A17_fdp_start_cycle_controls.py
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A18_fdp_occupancy_controls.py
+```
+
+Both exit 0: eight start/cycle controls and four additional occupancy controls.
+Trial artifacts remain under `branch-artifacts/Alder/live-20261028-01/`; bounded
+receipts and runner output remain under `branch-artifacts/Alder/sensitivity-20261028-01/`.
+The final product checks use the new API with native subprocesses forbidden:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A19_fdp_comparison_delivery.py
+```
+
+Exit 0. FT_Hg produced `fdp_comparison_002` from 11 trials (11 site rows),
+and FF_AuAg produced `fdp_comparison_001` from four trials (eight site rows);
+both offline replays passed, with zero native calls. These checks reuse verified full trials without a new
+fit, preserve existing comparison attempts and reject the swapped-identity
+geometry from the matched group. No generated models, diffraction data, fitted
+result tables, manuscript material or native output enter Git; only source,
+tests and public technical documentation are included.
+
+**Next bounded work:** record actual optimizer stopping/gradient evidence and
+validate sensitivity/identifiability on qualified geometries before an automatic
+study controller makes decisions. The comparison API is ready for future linked
+views, but production GUI integration, cross-hypothesis ranking, campaign search,
+shared-artifact retention and PDU chemistry qualification remain separate.
+
 ## Metal frozen f-double-prime diagnostic 2026-10-28
 
 **Current additive milestone: M3a.** Before this change, metal hypotheses could

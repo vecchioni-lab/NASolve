@@ -335,6 +335,32 @@
       "production_gui_connected": false,
       "reuse_implemented": false,
       "pruning_implemented": false
+    },
+    "fdp_comparison": {
+      "status": "implemented; no native execution or ranking",
+      "contract": "docs/metal-anomalous-doctor.md#implemented-matched-endpoint-comparisons",
+      "commands": [
+        "metal compare-fdp",
+        "metal verify-fdp-comparison"
+      ],
+      "schema_version": 1,
+      "protocol": "metal-fdp-comparison-v1",
+      "maximum_trials": 128,
+      "same_geometry_and_data_required": true,
+      "same_native_worker_and_kernels_required": true,
+      "one_changed_variable_at_a_time": true,
+      "occupancy_response_fixes_other_site_occupancies": true,
+      "retain_replicates": true,
+      "untested_axes_explicit": true,
+      "normalization": "(fitted-reference)/reference; undefined for zero reference",
+      "ranges_are_uncertainty_estimates": false,
+      "convergence": "NOT_ESTABLISHED_BY_ENDPOINT_COMPARISON",
+      "automatic_checkpoint_selection": false,
+      "scientific_acceptance": "NOT_ASSESSED",
+      "copies_scientific_inputs": false,
+      "requires_original_trial_artifacts": true,
+      "production_gui_connected": false,
+      "automatic_scan_implemented": false
     }
   },
   "solution_search": {

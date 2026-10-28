@@ -1,6 +1,6 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **single-trial frozen f-double-prime diagnostics, explicit construction and bounded recipe-only preparation implemented**.
+Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, explicit construction and bounded recipe-only preparation implemented**.
 Implementation updated 2026-10-28. Occupancy scans and scientific decision qualification remain planned.
 Solution-space search, decision logic, maps and GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
@@ -82,8 +82,10 @@ that demonstrates response, not a solved geometry or correct metal count.
 The report deliberately labels convergence `NOT_INDEPENDENTLY_ASSESSED` and
 scientific acceptance `NOT_ASSESSED`. Native completion alone does not establish
 an optimizer endpoint. Negative fitted values are retained with a warning.
-Start sensitivity, additional cycles, conditioning, weak/correlated-site controls,
-scientific ranking, scans, caching and GUI integration remain follow-up work.
+Initial start/cycle and occupancy controls now accompany the comparison layer
+below. Conditioning, optimizer stopping/gradient qualification, weak/correlated-site
+controls, scientific ranking, scan orchestration, caching and GUI integration
+remain follow-up work.
 See the current [validation handoff](development-handoff.md#metal-frozen-f-double-prime-diagnostic-2026-10-28)
 for exact commands, results and retained failed attempts.
 
@@ -103,8 +105,74 @@ flowchart LR
     N --> A[Audit active atomic state and reflection scaling]
     A --> R[Numbered FDP_REVIEW table and evidence]
     R --> V[Offline checksum and audit replay]
-    R -. planned .-> S[Independent scans and linked comparison GUI]
+    R --> C[Matched offline endpoint comparison]
+    C -. planned .-> S[Independent scans and linked comparison GUI]
 ```
+
+## Implemented matched endpoint comparisons
+
+`metal compare-fdp` reads 2–128 explicit completed trials from one run, verifies
+their saved inputs and audits, and publishes a new `Metal/fdp_comparison_NNN`
+bundle. It launches no native process. The shared functions are
+`metal.fdp_compare.build_comparison` and `verify_comparison`.
+
+```sh
+nasolve metal compare-fdp /path/to/dataset/AutoMR/run_001 --trial Metal/fdp_001 --trial Metal/fdp_002
+nasolve metal verify-fdp-comparison /path/to/dataset/AutoMR/run_001 --comparison Metal/fdp_comparison_001
+```
+
+Each row links an exact trial ID, manifest and metal node to the complete
+placed-metal occupancy vector, starting f-double-prime, macrocycle/minimizer
+budgets, fitted/reference scattering, q times f-double-prime and wavelength.
+The signed reference deviation is `(fitted - reference) / reference`; a zero
+reference produces an explicitly undefined value. This is a display quantity,
+not a score or an acceptance cutoff. Rwork/Rfree remain contextual values.
+
+Comparability requires identical geometry lineage, observations and effective
+reflection selection, Free-R policy, groups, fixed background scattering,
+references, nuisance/phase policy and native worker/kernel fingerprints.
+Only placed-metal q, starting f-double-prime and the declared iteration budgets
+may vary. Different datasets, geometries or identity assignments require separate
+comparisons at this stage; broader hypothesis comparison is still planned.
+Trials with different environments or policies are not silently pooled.
+
+The report groups **one changed variable at a time**. Start sensitivity fixes the
+entire q vector and all budgets. Macrocycle/minimizer/iteration-budget sensitivity
+fixes all other settings. A site's occupancy response fixes every other placed
+metal's q and all optimizer settings. Changing both sites' q together therefore
+does not become an isolated occupancy response for either site. Replicate rows
+remain separate; no averaging hides disagreements. An axis with fewer than two
+distinct tested values is `NOT_TESTED`, including identical repeated runs.
+`COMPARED` means only that matched endpoints exist. Ranges describe observed
+endpoints and are neither confidence intervals nor a convergence test.
+
+The schema-1 `metal-fdp-comparison` manifest uses protocol
+`metal-fdp-comparison-v1` and status `COMPARISON_REVIEW`. A checksummed report
+references the original immutable trials, without copying their models or MTZs.
+Verification reconstructs the report from those trials after anchored-path
+resolution. Missing or changed evidence fails verification; a compact summary
+cannot stand in for the full trial. All parents are rechecked before publication,
+and failed publications retain their own numbered attempt. Existing trial
+formats, default fitting behavior and checkpoint selection remain unchanged.
+
+**Evidence and limits.** Additional complete Phenix 2.2.1-6174 controls compare
+starts of 0 and 10 electrons at 3/6/10 macrocycles for the one-Hg endpoint and
+3/6 cycles for one mixed Au/Ag endpoint. Longer-budget Hg controls also compare
+q=0.4, 0.6 and 0.8. Early Hg endpoints still move with extra cycles; the tested
+starts become much closer at the longer budgets. Mixed-metal endpoints also
+show reduced start dependence. These are conditional results on generated
+numerical geometries, with all original freeze audits passing. Endpoint agreement
+does not establish global convergence, identifiable occupancy or correct metal
+chemistry. The comparator never chooses a winning structure or a next q value.
+See the [current comparison handoff](development-handoff.md#metal-endpoint-comparison-and-sensitivity-controls-2026-10-28)
+for exact control inventory and validation commands.
+
+**Methods.** NASolve revalidates each explicit frozen-fit artifact, requires a
+shared experimental basis, and groups per-site endpoints by all fixed controls.
+It reports ranges across starts, budgets or one site's occupancy, preserving
+replicates and exact trial-to-row lineage. A new immutable summary is replayable
+from its source trials without Phenix. Its status deliberately leaves optimizer
+convergence and structural acceptance unresolved.
 
 ## Purpose and experimental stages
 
@@ -667,8 +735,9 @@ Implement in bounded stages:
    metal-only preparation boundaries; qualify whole-model preparation separately.
 2. Add explicit general site groups and overlapping neighborhood bindings;
    optional chi candidates need their own whole-base and restraint validation.
-3. Extend the implemented single-trial fixed-q/f'' adapter with convergence/start
-   sensitivity controls, then a small independent q grid.
+3. Extend the single-trial adapter and matched comparison layer with explicit
+   optimizer stopping/gradient checks, then a bounded occupancy-study scheduler.
+   Initial start/cycle and small occupancy controls are recorded in the handoff.
 4. Add linked comparison tables, verified reuse, disk-budgeted retention/recovery
    and user selection, including unresolved controls.
 5. Connect the campaign/site-group GUI, optional maps and linked response plots.
