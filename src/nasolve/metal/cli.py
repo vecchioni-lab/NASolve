@@ -22,7 +22,9 @@ def configure(subparsers):
     verify = actions.add_parser('verify', help='replay a saved hypothesis without native execution')
     geometry = actions.add_parser('geometry', help='prepare bounded metal-only coordinates against explicit recipe targets')
     verify_geometry = actions.add_parser('verify-geometry', help='replay a saved geometry trial without native execution')
-    for parser in (inspect, preview, build, verify, geometry, verify_geometry):
+    fdp = actions.add_parser('fdp', help='run one audited frozen-coordinate fixed-occupancy f-double-prime trial')
+    verify_fdp = actions.add_parser('verify-fdp', help='verify saved fdp inputs and freeze audit without a native run')
+    for parser in (inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -42,6 +44,15 @@ def configure(subparsers):
     geometry.add_argument('--max-iterations', type=int, default=100)
     geometry.add_argument('--max-shift', type=float, default=1., help='maximum displacement per metal in angstrom (default: 1)')
     verify_geometry.add_argument('--geometry', type=Path, required=True, help='exact geometry directory, absolute or relative to run')
+    fdp.add_argument('--geometry', type=Path, required=True)
+    fdp.add_argument('--fit', action='append', required=True, help='placed metal node to fit independently; repeat for additional sites')
+    fdp.add_argument('--occupancy', action='append', default=[], metavar='NODE=Q', help='explicit input occupancy override; all q stays fixed during fitting')
+    fdp.add_argument('--cycles', type=int, default=3)
+    fdp.add_argument('--start-fdp', type=float, default=0.)
+    fdp.add_argument('--free-r-test-value', type=int, default=0)
+    fdp.add_argument('--timeout', type=int, default=240)
+    verify_fdp.add_argument('--trial', type=Path, required=True)
+
 
 
 def _json(path):
@@ -60,6 +71,8 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action in {'fdp', 'verify-fdp'}:
+            return _fdp(args)
         if args.metal_action in {'build', 'verify'}:
             return _hypothesis(args)
         if args.metal_action in {'geometry', 'verify-geometry'}:
@@ -175,4 +188,38 @@ def _geometry(args):
         for initial, final in zip(evidence['initial']['restraints'], evidence['selected']['restraints']):
             print(f'{final["restraint_id"]:<24} {initial["measured"]:>10.4f} {final["measured"]:>13.4f} {final["target"]:>12.4f} {final["z"]:>12.4f} {final["unit"]}')
         print('Recipe-only metal preparation; chemical/clash assessment and diffraction refinement remain separate.')
+    return 0
+
+
+def _fdp(args):
+    from .fdp import run_fdp, verify_fdp
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'fdp':
+        occupancies = {}
+        for value in args.occupancy:
+            node, separator, q = value.partition('=')
+            if not separator or not node or node in occupancies:
+                raise RecipeError('Use distinct NODE=Q occupancy overrides')
+            occupancies[node] = float(q)
+        native = discover_phenix(load_config(), explicit=args.phenix_root)
+        result = run_fdp(args.run, args.geometry, native=native, fit_nodes=args.fit,
+                         occupancies=occupancies, cycles=args.cycles, start_fdp=args.start_fdp,
+                         free_r_test_value=args.free_r_test_value, timeout=args.timeout)
+    else:
+        result = verify_fdp(args.run, args.trial)
+    serialized = json.dumps(result, indent=2, allow_nan=False)+'\n'
+    if args.output:
+        with args.output.open('x') as handle: handle.write(serialized)
+    if args.json:
+        print(serialized, end='')
+    else:
+        path = args.run.expanduser().resolve()/result['files']['result.json']['relative_path']
+        report = _json(path)
+        print(f'Frozen f-double-prime trial: {path.parent.name}; {report["freeze_audit"]} freeze audit')
+        print(f'Observation wavelength: {report["wavelength_A"]:.8g} A; f-prime fixed to Sasaki reference')
+        print('Site                 Element        q          B         f-prime       fitted fdp    reference fdp')
+        for row in report['sites']:
+            print(f'{row["node_id"]:<20} {row["element"]:<7} {row["occupancy"]:>8.2f} {row["b_iso"]:>10.2f} {row["f_prime"]:>14.6g} {row["f_double_prime"]:>14.6g} {row["reference_f_double_prime"]:>16.6g}')
+        print('Conditional diagnostic only; geometry, count, identity and convergence require review. Checkpoint unchanged.')
     return 0

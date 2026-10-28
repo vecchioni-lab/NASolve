@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Metal integration updated **2026-10-27** in the section below. The following
+Metal integration updated **2026-10-28** in the section below. The following
 Cedar boundary is the retained **2026-10-26 snapshot**, not a new statement of
 the separate checkout's current status. It records native receipts, user visual
 review and verified geometry/DF bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
@@ -12,6 +12,118 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## Metal frozen f-double-prime diagnostic 2026-10-28
+
+**Current additive milestone: M3a.** Before this change, metal hypotheses could
+be constructed and recipe-prepared but had no dedicated audited frozen f-double-prime
+execution path. `metal fdp` now runs one bounded independent trial from a verified
+geometry artifact; `metal verify-fdp` replays its inputs and saved-evidence audit
+offline. Per-site output includes q, B, fixed f-prime, fitted/reference
+f-double-prime, wavelength and q times f-double-prime. XYZ, ADPs, q, identities
+and all f-prime values stay fixed during fitting. Background scattering covers
+every remaining atom. Existing refinement commands and checkpoint selection are
+unchanged. See the [human descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
+
+**Changed files and schemas.** New `src/nasolve/metal/fdp.py`,
+`src/nasolve/metal/_fdp_native.py` and `tests/test_metal_fdp.py`; additive commands
+in `src/nasolve/metal/cli.py`; synchronized root README, changelog,
+`docs/README.md`, architecture, builder, anomalous descriptor, development intent
+and this handoff. Schema-1 `metal-fdp-trial` uses `metal-frozen-fdp-v1` with
+`FDP_REVIEW`, no checkpoint adoption and no scientific acceptance claim. Earlier
+schemas/commands need no migration. Development-intent JSON remains schema 1,
+`runtime_authority: false`. Native support is deliberately version-gated to
+Phenix 2.2.1-6174; unsupported installations stop instead of inheriting a guessed
+protocol. Full source/test/intent hashes accompany the local delivery receipt.
+
+**Validation.** Python 3.12.14. The new regression file initially failed
+collection against the previous source with `ModuleNotFoundError:
+nasolve.metal.fdp` (exit 2; `/private/tmp/alder-fdp-red.log`). Final focused command:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_metal_fdp.py tests/test_metal_geometry.py tests/test_metal_materialize.py tests/test_metal_integration.py tests/test_metal_model.py tests/test_metal_workflow_intent.py tests/test_cli.py tests/test_refine_doctor.py tests/test_autorefine.py
+```
+
+**280 tests and 27 subtests passed in 19.86 s**, exit 0. This covers the metal pipeline, CLI and reused refinement
+boundary; unrelated full-suite subsystems were not rerun under the user's
+focused-validation policy. Regression coverage includes independent groups,
+fixed iodine/same-element neighbors, altered native state or flags, immutable
+failed attempts, tampered/rehashed artifacts, timeout and input validation.
+The relocation test renames the entire temporary source/input tree away,
+imports the relocated package in a fresh interpreter and verifies the trial
+with native subprocesses forbidden. This proves offline reference/derivation
+and audit replay; it does not repeat a scientific fit or establish bitwise
+native reproducibility. Final checks include Python 3.10 grammar compatibility,
+local documentation links and `git diff --check`.
+
+**Complete native controls.** Phenix **2.2.1-6174**, native Python **3.11.15**;
+Coot was not invoked. The maintained worker runs the standard Phenix Program,
+with active-fmodel readback plus model-state agreement and independent PDB
+readback. Four complete final controls passed freeze audits and offline replay:
+
+| Control | Explicit q | Geometry | Retained trial |
+| --- | --- | --- | --- |
+| FT_Hg | m1=0.6 | geometry_001 | fdp_008 |
+| FT_Hg | m1=0.4 | geometry_001 | fdp_009 |
+| FF_AuAg | m1=0.6, m2=0.8 | geometry_001, Au/Ag | fdp_005 |
+| FF_AuAg | m1=0.6, m2=0.8 | geometry_002, Ag/Au | fdp_006 |
+
+All prior run files were hashed before each trial and preserved afterward.
+Maximum full-precision XYZ/B drift was numerical roundoff (below 6e-14 in the
+respective units); q and fixed scattering terms were unchanged. Distinct metal
+selections remained distinct. The controls use generated scaffolds with
+seed-derived numerical recipe targets, not chemically qualified solved models.
+The Hg fits respond to q, but large conditional values and limited cycles are
+not grounds for choosing occupancy, identity or count. Native convergence is
+explicitly `NOT_INDEPENDENTLY_ASSESSED`; scientific acceptance is `NOT_ASSESSED`.
+
+Final native command, run from the everyday checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A14_frozen_fdp_native_controls.py
+```
+
+Exit 0, four passes. Local evidence lives under
+`branch-artifacts/Alder/live-20261028-01/<dataset>/AutoMR/run_001/Metal/` and
+`native-summary.json`; the final log is
+`/private/tmp/alder-fdp-active-model-controls.log`. The additional final parser
+check copies one trial's inputs to a separate directory and invokes the standard
+`phenix.refine` executable with the recorded argument list plus `--dry-run`:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/Alder/runners/A16_fdp_final_parser_and_receipt.py
+```
+
+Exit 0; final parser check, all four saved-trial replays and frozen source hashes passed. This parser check is a dry-run; the four controls above are
+complete refinement executions. Earlier local attempts are retained: fdp_001
+failed on an unquoted AutoType target (now explicit quoted ML), fdp_002 exposed
+a native tensor-readback API mismatch, and fdp_003 completed fitting but failed
+an overly strict internal-amplitude byte comparison. Phenix applies one common
+positive F/sigma scale during normal nuisance scaling. The final protocol
+records and verifies that factor across every observation and sigma while
+requiring exact HKL/Free-R membership and unchanged original MTZ bytes. A separate
+passive native probe confirmed that behavior; no installed native code was edited.
+The anomalous minimizer temporarily uses native least squares and restores the
+outer ML target; both atomic ADP transfer/backtrace paths are disabled.
+
+**Artifacts and limits.** No generated datasets, models, observations, maps,
+native results or private manuscripts are included in Git. Numbered attempts,
+parser output, runners and receipts remain local in the ignored branch archive.
+The successful bundles are approximately 0.8–1.0 MB each including inputs and
+compressed evidence; no broad storage claim follows. Maps and duplicate
+reflection/model exports are disabled, but deduplication, budgets and pruning
+are not implemented. Existing GUI sketches remain disconnected. The importer
+is still W-only; complete controls cover isotropic, H/D-free models. General
+site groups, clusters, mixed-site occupancy policies, alternate conformations,
+ANISOU qualification and campaign decisions remain unqualified.
+
+**Recommended next step:** characterize start/cycle sensitivity and convergence
+on these same explicit endpoints, then add a small independent occupancy grid
+with comparison records. Do not promote native completion or response alone to
+chemical acceptance. Keep whole-model preparation and upstream PDU restraint
+qualification separate; preserve the frozen-f-prime policy, independent q
+vectors, original observations and unresolved alternatives throughout.
+
 
 ## Parallel metal workflow
 

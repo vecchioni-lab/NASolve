@@ -1,6 +1,6 @@
 # Metal-coordination restraint builder
 
-Status: **recipe core, generated-run integration, explicit metal construction, bounded recipe-only metal preparation and PHIL export implemented; GUI and whole-model scientific optimization planned**.
+Status: **recipe core, generated-run integration, explicit metal construction, bounded recipe-only metal preparation, PHIL export and single frozen f-double-prime trials implemented; GUI and whole-model scientific optimization planned**.
 User request recorded 2026-10-06. This independent authoring feature is not a Pine
 merge prerequisite.
 Published examples and private cluster context have been supplied. The scope
@@ -26,7 +26,7 @@ hypothesis on the generated scaffold.
 | M1b: general site contexts | Explicit residue/atom mappings and multiple named metal-site groups per structure; view switching preserves scientific state | Planned; current W importer remains unchanged |
 | M2a: hypothesis materialization | Explicit coordinates/count/species/q/B, preserved parent atoms, immutable derived models and native consumption controls | Implemented; one Hg and mixed Au/Ag controls, including swapped identities |
 | M2b: geometry preparation | Qualified targets/chemistry, declared optimization protocol, audited derived endpoints | Partial: bounded metal-only recipe preparation implemented; chemical qualification and whole-model native optimization remain separate |
-| M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Planned |
+| M3: frozen anomalous diagnostics | Fixed f-prime; audited XYZ/ADP/q freeze; per-site f-double-prime and preserved Free-R | Partial: single-trial adapter implemented and native controls passed; convergence/start sensitivity and independent scans remain planned |
 | M4: interactive iteration | Broad/focused occupancy vectors, locks, exact result reuse, linked tables, disk-budgeted retention/recovery and selection | Planned |
 | M5: campaign workbench | Switch datasets/structures/site groups/hypotheses in one GUI; independently owned jobs, failures and lineage | Planned |
 | M6: solution-space search and decision logic | Explore budgeted structural/scattering alternatives; retain promising families and provisional choices; separately validate correct choices and appropriate deferral | Planned; construction controls do not validate selection logic |
@@ -120,7 +120,8 @@ flowchart LR
     B --> Q[Residual table and separate review model]
     Q -. planned .-> G[Qualified whole-model geometry]
     E -. planned .-> G
-    G -. planned .-> F[Fixed f-prime and audited f-double-prime trials]
+    Q --> F[Conditional frozen f-double-prime trial and audit]
+    G -. planned .-> F
     F -. planned .-> T[Campaign and site-group tables with molecular views]
     T -. planned .-> S[Budgeted solution tree and promising candidate families]
     S -. planned .-> U[User validation]
@@ -348,8 +349,10 @@ A preview input hash also includes the supplied inventory, role map, bindings an
 protocol. Neither is a complete native-experiment cache key. Neither proves that
 a source model file was parsed correctly or that a target is chemically suitable.
 The separate export adapter supplies proposed native selection strings/PHIL.
-Checkpoint adoption, coordinate/chemistry edits, occupancy scans, anomalous fits
-and target-library lookups remain unimplemented.
+Checkpoint adoption, general chemistry edits, occupancy scans and target-library
+lookups remain unimplemented. Separate source-bound construction and preparation
+adapters edit declared metal coordinates; the [single-trial anomalous adapter](metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic)
+now fits selected f-double-prime values with all atomic parameters frozen.
 
 ### Modular interface boundary
 

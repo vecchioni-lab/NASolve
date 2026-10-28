@@ -1,11 +1,110 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **anomalous fits planned; explicit hypothesis construction and bounded recipe-only preparation implemented**.
-Design expanded through 2026-10-27; construction and local preparation are implemented.
+Status: **single-trial frozen f-double-prime diagnostics, explicit construction and bounded recipe-only preparation implemented**.
+Implementation updated 2026-10-28. Occupancy scans and scientific decision qualification remain planned.
 Solution-space search, decision logic, maps and GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
+
+## Implemented single-trial frozen diagnostic
+
+`metal fdp` runs one conditional experiment from an explicit verified geometry
+trial. Select each fitted metal by its recipe node ID; optional occupancies
+change only that new trial's input. Repeat `--fit` or `--occupancy` for distinct
+sites. The default is three macrocycles, three anomalous minimizer cycles,
+20 iterations per minimizer, a zero f-double-prime start and a 240-second timeout.
+
+```sh
+nasolve metal fdp /path/to/dataset/AutoMR/run_001 --geometry Metal/geometry_001 --fit m1 --occupancy m1=0.40
+nasolve metal verify-fdp /path/to/dataset/AutoMR/run_001 --trial Metal/fdp_001
+```
+
+The shared API is `metal.fdp.run_fdp` / `verify_fdp`. Every attempt gets a new
+`Metal/fdp_NNN` directory; failures keep their inputs and available evidence.
+A successful schema-1 `metal-fdp-trial` uses protocol `metal-frozen-fdp-v1` and
+status `FDP_REVIEW`. It neither creates nor selects a refinement checkpoint.
+Older recipes, contexts, hypotheses and geometry artifacts need no migration.
+
+The initial native boundary is Phenix **2.2.1-6174**, model-1 H/D-free PDB inputs,
+one explicit standard anomalous amplitude quartet and its positive MTZ dataset
+wavelength. Select 1–12 explicitly placed metal nodes; that software bound does
+not qualify every count or cluster geometry. Fitted sites require positive q,
+and q overrides use PDB's two-decimal representation. The inherited W importer
+remains A:12/B:4; general site-group mapping is a separate milestone.
+
+Each fitted metal has an independent exact atom selection. All f-prime values
+are fixed to local CCTBX Sasaki references at the actual wavelength. Every other
+atom, including iodine and unfitted metals, has fixed reference f-prime and
+f-double-prime. The table provider, native version and binary checksum are saved.
+There is no automatic anomalous-site search, added solvent/hydrogen, N/Q/H flip,
+external phase restraint, coordinate/ADP refinement or occupancy refinement.
+The original Free-R column and explicit test value (default zero) are audited;
+invalid or unavailable flags stop the attempt. A usable noisy audit is retained
+with its warning. This does not use processing anomalous statistics as a gate.
+
+The maintained worker uses Phenix's standard refinement Program. Its explicit
+outer target is ML; this native version temporarily uses least squares for the
+anomalous-group minimizer, then restores ML. Bulk-solvent and overall scales
+remain profiled nuisance parameters. Both overall isotropic ADP transfer and
+bulk-scaling backtrace are disabled. Native Phenix can uniformly rescale all
+F and sigma values internally: the audit permits exactly one positive common
+factor, with identical HKL and Free-R membership. Every F and sigma must match
+that factor (relative tolerance 1e-10, absolute 1e-9). Original MTZ bytes remain
+unchanged. This is a declared scaling policy, not a promise of fixed nuisance
+parameters or byte-identical internal amplitudes.
+
+The worker captures the active fmodel and requires agreement with the model's
+atomic state. Readback checks every atom's identity, charge, normal scattering
+type, XYZ, q, isotropic B or anisotropic tensor, and fixed anomalous terms. It
+also checks exact anomalous-group membership and parameter freedoms. Freeze
+tolerances are 1e-7 Å for XYZ, 1e-10 for q, 1e-7 Å² for B, 1e-8 Å² for Ucart and
+1e-10 electrons for fixed scattering. A separate serialized PDB readback must
+preserve the complete input atomic state exactly. Current complete native
+controls cover isotropic models; ANISOU checking is not broad native qualification.
+
+Each bundle retains input model/observations/restraints, planned and effective
+parameters, native log, final PDB, per-site results and compressed full-precision
+atomic/reflection evidence. Native refinement/minimizer and compiled-kernel
+fingerprints accompany the worker hash. Maps, MTZ/reflection-CIF exports and
+duplicate model-CIF exports are disabled. Local example bundles occupy roughly
+0.8–1.0 MB each including their input copies; this is not a general size bound.
+Disk budgeting, shared-input deduplication and recovery-aware pruning remain
+planned. `verify-fdp` checks anchored hashes, reconstructs inputs and repeats the
+saved-evidence audit offline after relocation. It does not rerun the optimizer
+or establish bitwise reproducibility of a future native fit.
+
+**Evidence and limits.** One-Hg controls at q=0.6 and 0.4 and independent mixed
+Au/Ag and swapped Ag/Au controls completed on the declared native version with
+freeze audits and offline replay passing. They use generated scaffolds and
+seed-derived numerical geometry targets. The fitted Hg values changed with q;
+that demonstrates response, not a solved geometry or correct metal count.
+The report deliberately labels convergence `NOT_INDEPENDENTLY_ASSESSED` and
+scientific acceptance `NOT_ASSESSED`. Native completion alone does not establish
+an optimizer endpoint. Negative fitted values are retained with a warning.
+Start sensitivity, additional cycles, conditioning, weak/correlated-site controls,
+scientific ranking, scans, caching and GUI integration remain follow-up work.
+See the current [validation handoff](development-handoff.md#metal-frozen-f-double-prime-diagnostic-2026-10-28)
+for exact commands, results and retained failed attempts.
+
+**Methods.** From a verified recipe-prepared model, NASolve constructs an
+independent fixed-q experiment with complete per-atom anomalous coverage and
+wavelength-specific references. A version-gated standard Phenix refinement fits
+only the selected f-double-prime groups while profiling declared scale terms.
+Full-precision atomic and reflection readback is audited against the plan, with
+an independent PDB check and checksummed immutable lineage. The resulting table
+is a conditional diagnostic for review, not automatic structural acceptance.
+
+```mermaid
+flowchart LR
+    G[Verified geometry trial] --> I[New input copy and explicit q vector]
+    I --> P[Exact groups and fixed wavelength references]
+    P --> N[Bounded native f-double-prime fit]
+    N --> A[Audit active atomic state and reflection scaling]
+    A --> R[Numbered FDP_REVIEW table and evidence]
+    R --> V[Offline checksum and audit replay]
+    R -. planned .-> S[Independent scans and linked comparison GUI]
+```
 
 ## Purpose and experimental stages
 
@@ -123,8 +222,8 @@ consumption, not chemistry qualification. A separate
 now moves selected metals against explicit targets, preserves the scaffold and
 all q/ADPs, and reports residuals and unconstrained motion. It does not optimize
 the inherited whole-model objective or qualify chemistry/clashes. The
-f-double-prime workflow below still requires a separate audited
-geometry/experiment adapter. Identical targets and coordinates produce identical
+implemented single-trial adapter above probes these endpoints conditionally;
+whole-model qualification and comparison workflows remain separate. Identical targets and coordinates produce identical
 prepared geometry under an Au/Ag identity swap; element discrimination remains
 a task for experimental evidence.
 
@@ -568,7 +667,8 @@ Implement in bounded stages:
    metal-only preparation boundaries; qualify whole-model preparation separately.
 2. Add explicit general site groups and overlapping neighborhood bindings;
    optional chi candidates need their own whole-base and restraint validation.
-3. Complete one audited fixed-q/f'' control, then a small independent q grid.
+3. Extend the implemented single-trial fixed-q/f'' adapter with convergence/start
+   sensitivity controls, then a small independent q grid.
 4. Add linked comparison tables, verified reuse, disk-budgeted retention/recovery
    and user selection, including unresolved controls.
 5. Connect the campaign/site-group GUI, optional maps and linked response plots.
@@ -581,8 +681,8 @@ but broader workflows must not inherit its A:12/B:4 assumption.
 
 Core graph types should allow clusters now; native support is earned per tested
 policy rather than implied by drawing additional nodes. Keep upstream CIF
-acquisition and numerical-kernel work separate. No current CLI behavior,
-checkpoint schema, scientific threshold or old report changes with this design.
+acquisition and numerical-kernel work separate. The new single-trial commands are additive; existing checkpoint schemas,
+scientific thresholds and old reports remain unchanged.
 
 ## Validation cases and published precedents
 

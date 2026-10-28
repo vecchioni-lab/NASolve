@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Run audited fixed-occupancy metal f-double-prime diagnostics
+
+- Add `metal fdp` and `metal verify-fdp` over verified geometry trials, with
+  independent per-metal fits, actual-wavelength references and fixed f-prime,
+  XYZ, ADPs and occupancy. Initial native support is Phenix 2.2.1-6174.
+- Audit active native atomic state, exact group freedoms, serialized models,
+  original Free-R membership and the declared uniform F/sigma scaling policy.
+  Preserve every numbered attempt and keep checkpoint selection unchanged.
+- Add schema-1 review bundles with anchored lineage, compressed evidence and
+  offline derivation/audit replay. Disable unnecessary map/reflection exports;
+  existing artifact formats and commands require no migration.
+- Keep optimizer convergence and structural acceptance explicitly unassessed.
+  Occupancy scans, decision logic, GUI linkage, caching and pruning remain planned.
+
 ### Scope validation to the affected change
 
 - Update the collaboration contract: documentation-only changes use relevant

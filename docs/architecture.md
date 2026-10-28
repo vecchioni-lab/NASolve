@@ -1317,7 +1317,7 @@ Automatic readiness requires a successful Phenix exit, a compatible model,
 `Rwork < Rfree`, and `Rwork < 0.30`. These numerical tests permit continued
 automation but do not replace visual inspection or user approval.
 
-## Metal authoring core and planned anomalous diagnostics
+## Metal authoring core and frozen anomalous diagnostics
 
 The run integration adapter now consumes an explicit generated W checkpoint,
 its inherited resources and source-bound PDB inventory. It maps first/second
@@ -1343,6 +1343,20 @@ the objective. Schema-1 `metal-geometry-trial` bundles use protocol
 These numerical review proposals neither qualify chemistry nor substitute for
 Cedar's whole-model derivative/geometry checks or diffraction refinement.
 See the [implementation and milestone contract](metal-restraint-builder.md#integration-objectives-and-milestones).
+The additive `metal fdp` adapter verifies that geometry boundary and creates an
+independent numbered schema-1 `metal-fdp-trial` under protocol
+`metal-frozen-fdp-v1`. It uses explicit positive-q metal groups, fixed Sasaki
+f-prime and fixed reference background scattering over every other atom. The
+Phenix 2.2.1-6174 worker runs the standard Program and audits active atomic state,
+parameter freedoms, serialized PDB state and exact HKL/Free-R membership. Native
+common F/sigma scaling is explicitly measured; bulk/overall nuisance scales may
+change without atomic ADP transfer. Full compressed evidence, source/kernel
+fingerprints, relative input references and parent hashes support offline
+`metal verify-fdp` replay. Completion yields `FDP_REVIEW`, with convergence and
+scientific acceptance explicitly unassessed. It does not select a checkpoint,
+cache results, schedule a scan or implement recovery/pruning. See the
+[methods and initial qualification boundary](metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
+
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
 independent, with no implicit joint fitting or inherited chemical qualification.

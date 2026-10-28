@@ -308,7 +308,34 @@
       "native_ready": false,
       "report_local_underdetermination": true
     },
-    "ordered_pair_scope": "current_W_importer_only"
+    "ordered_pair_scope": "current_W_importer_only",
+    "frozen_fdp": {
+      "status": "single-trial implemented; scans and scientific qualification planned",
+      "contract": "docs/metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic",
+      "commands": [
+        "metal fdp",
+        "metal verify-fdp"
+      ],
+      "schema_version": 1,
+      "protocol": "metal-frozen-fdp-v1",
+      "native_version": "2.2.1-6174",
+      "fixed_atomic_parameters": [
+        "xyz",
+        "adp",
+        "occupancy",
+        "f_prime"
+      ],
+      "background_policy": "fixed Sasaki references for every remaining atom",
+      "nuisance_policy": "profile scales without atomic ADP transfer; audit common F/sigma factor",
+      "preserve_hkl_and_free_r_membership": true,
+      "automatic_checkpoint_selection": false,
+      "convergence": "NOT_INDEPENDENTLY_ASSESSED",
+      "scientific_acceptance": "NOT_ASSESSED",
+      "offline_verification": "input derivation and saved evidence audit; no optimizer replay",
+      "production_gui_connected": false,
+      "reuse_implemented": false,
+      "pruning_implemented": false
+    }
   },
   "solution_search": {
     "status": "PLANNED_NOT_IMPLEMENTED",
@@ -483,5 +510,5 @@
       "all_compaction_capabilities_are_planned": true
     }
   },
-  "updated": "2026-10-27"
+  "updated": "2026-10-28"
 }

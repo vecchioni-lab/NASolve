@@ -1380,6 +1380,18 @@ reports residuals and unconstrained motion. It does not assess chemistry, steric
 clashes or diffraction fit. See the [metal integration guide](docs/metal-restraint-builder.md#generated-run-api-and-commands)
 for exact inputs, limitations and campaign objectives.
 
+A separate frozen diagnostic fits selected metal f-double-prime values:
+
+```sh
+nasolve metal fdp /path/to/dataset/AutoMR/run_001 --geometry Metal/geometry_001 --fit m1 --occupancy m1=0.40
+nasolve metal verify-fdp /path/to/dataset/AutoMR/run_001 --trial Metal/fdp_001
+```
+
+This preserves XYZ, ADPs, q and wavelength-derived f-prime, audits native
+readback and saves a new review bundle. Phenix 2.2.1-6174 is the initial supported
+version. A completed fit does not establish convergence, metal identity/count or
+correct geometry. See the [implemented diagnostic and limits](docs/metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
+
 ## AutoRefine and checkpoints
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It
