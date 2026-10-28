@@ -622,6 +622,56 @@ run/checkpoint schemas and default legacy reports require no migration. See
 
 <a id="next-attachment-profile-milestone-g2-planned"></a>
 
+### Explicit connected atom ordering (C116)
+
+`nasolve.cif_connected_atom_order.prepare_connected_atom_order(source, code,
+output)` writes a fresh, separate single-component input. This explicit Python
+API belongs after source-dialect preparation and before native generation; it
+is not wired into ordinary generation or automatic retry. It traverses the
+declared connected heavy-atom graph breadth-first, starting at the lexical
+minimum atom ID and sorting each neighbour list. Terminal H/D/T follow in
+lexical ID order. Names break ordering ties, not chemical priorities.
+
+The adapter permutes **complete atom rows**. Coordinates, charge, isotope,
+stereo, unknown fields and original atom ordinals stay with their named atom;
+all other parsed tables remain exact. A legacy `comp_list` block stays byte
+identical, preserving its reader route. Source bytes are never changed.
+Duplicate/invalid identities or edges, conflicting bond/charge declarations,
+disconnected heavy graphs, nonterminal H/D/T and unreviewed extra blocks stop before output.
+An already ordered source is copied byte-for-byte; outputs cannot be overwritten.
+The schema-1 return under `cif-connected-heavy-atom-order-v1` records both hashes,
+the input/output atom orders and unchanged chemical declarations. No new CLI,
+worker, run/checkpoint schema or migration is involved.
+
+In Phenix **2.2.1-6174** (dispatcher **2.2.1**), C116's line trace observes
+`ZMatrix2Internal` append a chemical bond for the non-source C–N1 coordinate
+reference at line 1521. That reference already exists at `ConstructZMatrix`
+return. With the new order, the separate source-order-restoration diagnostic
+finishes 40A with all 39 atoms and 40 source edges, no added edge, preserved
+formal charges and source-relative handedness. Its ten purine order differences
+still fail the existing representation policy. APN likewise retains its source
+atoms, connectivity and charges but remains rejected for that representation.
+These local diagnostic workers do not authorize restoring orders in production.
+A fresh maintained-worker 40A attempt still stops before construction at the
+same bond-order gate, even with the ordered input.
+
+The ordered **40C** maintained candidate passes all 21 isolated native checks
+at source-seed and generated coordinates, with matching fixed covalent proxies.
+This is complete execution, not a dry-run: six bounded generation attempts,
+two isolated interpretations and one source probe. Each generation allows
+180 steps/300 seconds; each interpretation allows 60 seconds. Native optimization
+is not claimed deterministic or converged. Neither linked PNA numerical targets,
+absolute CIP nor automatic adoption follows from these controls.
+
+Ordering is a bounded workaround, **not a guarantee of native graph invariance**.
+Every candidate still needs source identity and native qualification. The next
+step is a separately reviewed fused-purine representation contract, followed by
+numerical generation in the C114-authorized linked chemical environment.
+Exact commands, failed-development evidence and portability checks are recorded
+under `connected_atom_order_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Raw data and
+native artifacts remain local.
+
 ### Candidate-generation diagnostics and PNA controls (C115)
 
 Complete source-native generation now includes `diagnostic`, a read-only

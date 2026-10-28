@@ -3453,3 +3453,17 @@ usability gates. `generate_source_candidate` emits the optional schema-1 field;
 This projection is not a standalone receipt validator. Native workers and all
 chemical acceptance policies remain unchanged. See the
 [C115 contract and controls](cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
+
+## Explicit connected atom-order preparation (C116)
+
+`cif_connected_atom_order.prepare_connected_atom_order` is a separate opt-in
+source adapter after dialect preparation. It canonically traverses the declared
+connected heavy graph and permutes complete atom rows, leaving all atom values,
+other tables and legacy metadata bytes intact. Terminal H/D/T are retained;
+ambiguous/disconnected inputs and existing outputs are refused. Its schema-1
+report binds source/output hashes and permutations. It changes neither the
+native worker nor default recovery/acceptance. A successful construction is
+still subject to the existing source-identity and native qualification gates.
+The [C116 contract](cif-doctor.md#explicit-connected-atom-ordering-c116) records
+the observed coordinate-reference promotion, bounded workaround and remaining
+purine/linked-PNA limits. No run/checkpoint migration is required.

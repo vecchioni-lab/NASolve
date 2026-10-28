@@ -11,6 +11,57 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C116 source-preserving connected atom ordering
+
+Implementation, focused/full regression, native controls and cold replay pass.
+Publication is the remaining step; no job is active.
+Base: `09c9e2f36ecfb8950941ec96fe2c24308668c996`; continue on existing `cedar`.
+Capsule: `live_tests_directory/116_Cedar_graph-order-ikzuri01`.
+
+Before C116, the 40A diagnostic acquired a non-source C–N1 bond and failed
+serialization at 8.917 Å. The line trace now observes its promotion from a
+coordinate reference by native ZMatrix2Internal at installed line 1521.
+An explicit connected-heavy-graph traversal avoids that extra edge in the
+bounded diagnostic. The new preparation API permutes complete atom rows only:
+all atom values, source ordinals, other tables and legacy comp_list bytes stay
+intact. Ambiguous/disconnected graphs and nonterminal H/D/T are refused.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1): six generation attempts, two isolated
+interpretations and one source probe completed, not dry-run. Generation was
+bounded to 180 steps/300 s; interpretation to 60 s. 40A retains 39 atoms/40
+source edges, charges and source-relative handedness in the ordered diagnostic;
+40A/APN output still fails the separate fused-purine representation gate. The
+maintained 40A worker remains blocked before construction. Ordered 40C passes
+all 21 isolated native checks at both coordinate sets, with matching fixed
+covalent proxies. No linked PNA targets or convergence claim follows.
+
+Validation: **166 focused tests pass in 24.97 s** (21 new cases, including all
+120 permutations of a synthetic five-atom source). Full suite:
+**6154 passed, 276 subtests passed in 957.15s (0:15:57)**. All 462 source/test hashes remain fixed.
+Three preparations, six generation outcomes and two native qualifications
+replay cold with 314 files unchanged and original/SDK reads/processes blocked.
+C106/C115/C116 source inputs retain bytes, sizes and timestamps. Compilation,
+whitespace, 272 documentation links/JSON and SVG checks pass. The initial
+focused run exposed one extra metadata separator newline; that failure is
+preserved and the corrected focused/full runs pass.
+
+The new explicit API returns schema-1 policy `cif-connected-heavy-atom-order-v1`.
+Default workers, acceptance, CLI and run/checkpoint schemas remain unchanged;
+no migration or automatic retry. Exact commands, twelve changed files, hashes
+and limitations are recorded under `connected_atom_order_2026_10_28` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Only source,
+synthetic tests, maintained contracts and compact evidence enter Git. Raw data,
+CIFs/models, SDK snapshots, logs, pickles, partial attempts and runners stay local.
+
+Next: a separately qualified source-declared fused-purine representation policy
+with exact atom/H/charge/stereo constraints; then native generation in the
+C114-authorized linked chemical environment. Ordering is not a universal proof
+of native graph invariance or deterministic optimization. Keep downstream gates.
+Charged reaction states, ATL/L-DNA/PDU and ordinary integration remain open;
+sticky-end stitching stays parked. No extra branch or Pine/main merge.
+
+— Rowan · Codex desktop
+
 ## C115 PNA native controls and precise candidate diagnostics
 
 Implementation, focused/full regression and cold replay pass.

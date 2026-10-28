@@ -84,6 +84,13 @@ orders. These attempts do not change production chemistry. New generic receipt
 diagnostics distinguish those stages and actual changed fields. Linked PNA
 numerical targets remain unqualified; see the
 [C115 controls](cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
+C116 separates coordinate bookkeeping from chemistry: a deterministic traversal
+of source heavy-atom connectivity reorders whole atom rows without changing
+any values. In a bounded 40A diagnostic it avoids native promotion of a
+nonbonded coordinate reference into an extra bond. Purine orders remain
+rejected, while ordered 40C passes both isolated native controls. This explicit
+preparation is not an automatic retry or a general native correctness proof;
+see the [ordering contract](cif-doctor.md#explicit-connected-atom-ordering-c116).
 Native linked typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
@@ -755,6 +762,9 @@ explicit neutral PNA amide operation to the source/site contract, preserving
 all unrelated chemical state. C115 adds precise generation-stage diagnostics and
 isolated 40C native evidence; purine representation and linked PNA targets remain
 open. The local diagnostic order-restoration trials grant no production support.
+C116 adds explicit source-table ordering before native construction, preserving
+all chemical declarations. Its bounded 40A extra-bond workaround leaves the
+purine representation and linked-PNA qualification gates open.
 A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom

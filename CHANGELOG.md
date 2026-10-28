@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepare connected source atom order explicitly (C116)
+
+- Add an opt-in preparation API that orders complete atom rows through the
+  declared heavy-atom graph and retains terminal H/D/T, coordinates, charges,
+  stereo, original ordinals, all other tables and the source reader dialect.
+- Refuse ambiguous, disconnected or unsupported inputs and existing outputs.
+  Record hashes and the exact permutation in a new schema-1 diagnostic result.
+- Trace 40A's extra bond to native promotion of a nonbonded coordinate reference;
+  the bounded ordered-input diagnostic avoids it. Purine representation remains
+  rejected; isolated ordered 40C passes native checks. Default generation,
+  workers, chemical acceptance, CLI and run/checkpoint schemas are unchanged.
+
 ### Explain candidate-generation failures precisely (C115)
 
 - Add a read-only diagnostic summary to complete source-native candidate receipts:

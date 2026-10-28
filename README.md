@@ -75,6 +75,9 @@ under source-checked state and exact leaving-atom choices. Charged reactive
 amines remain unresolved; native PNA dictionaries/linkage still need qualification.
 C115 [records isolated PNA controls and precise generation diagnostics](docs/cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
 40C passes isolated native checks; purine cases and linked PNA remain unresolved.
+C116 adds [explicit connected atom ordering](docs/cif-doctor.md#explicit-connected-atom-ordering-c116)
+without changing source chemistry. It avoids the observed 40A extra bond in a
+bounded diagnostic; purine representation and linked PNA remain unqualified.
 Read the [current capability map](docs/cif-doctor.md#current-capability-boundary-c109)
 for established results, unresolved chemistry, the separate ATL control and
 future chemical-reference inputs. Diffraction-run integration, checkpoints and

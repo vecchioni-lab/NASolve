@@ -27010,6 +27010,15 @@
       "next_step": "Qualify source-declared fused purine representation and test the 40A ZMatrix2Internal/OrderAnglesOnZMatrix extra-edge path with source graph invariance; generate final-state linked PNA numerics under C114 separately.",
       "validation": "6133 passed, 276 subtests passed in 939.33s (0:15:39); 290 focused tests; five generation and two native cold replays.",
       "tested_implementation_commit": "ce0485e1b59fed87bfa0188ed4385978092ac240"
+    },
+    "connected_atom_order": {
+      "status": "FOCUSED_FULL_NATIVE_AND_COLD_PASS_PUBLICATION_PENDING",
+      "api": "nasolve.cif_connected_atom_order.prepare_connected_atom_order(source, code, output)",
+      "policy": "cif-connected-heavy-atom-order-v1",
+      "evidence_key": "connected_atom_order_2026_10_28",
+      "scope": "Explicit source-table ordering only; default workers and chemistry unchanged.",
+      "next": "Qualify source-declared fused purine representation with exact atom/H/charge/stereo constraints; then final-environment linked PNA generation under C114 operations.",
+      "validation": "6154 passed, 276 subtests passed in 957.15s (0:15:57); 166 focused tests; three preparations, six generation outcomes and two native qualifications replay cold."
     }
   },
   "audience": [

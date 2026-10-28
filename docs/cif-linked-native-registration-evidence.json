@@ -38179,5 +38179,786 @@
       }
     },
     "tested_implementation_commit": "ce0485e1b59fed87bfa0188ed4385978092ac240"
+  },
+  "connected_atom_order_2026_10_28": {
+    "status": "FOCUSED_FULL_NATIVE_AND_COLD_PASS_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "base_commit": "09c9e2f36ecfb8950941ec96fe2c24308668c996",
+    "before": "40A source-order diagnostic acquired a non-source C–N1 edge and failed serialization at 8.917 Angstrom.",
+    "after": "Explicit connected heavy-atom ordering permutes complete atom rows only. The bounded diagnostic retains 39 atoms/40 source edges and finishes; unsupported purine orders remain rejected.",
+    "policy": "cif-connected-heavy-atom-order-v1",
+    "api": "nasolve.cif_connected_atom_order.prepare_connected_atom_order(source, code, output)",
+    "algorithm": "Breadth-first traversal of the connected declared heavy graph from lexical minimum atom identity, sorted neighbours; terminal H/D/T rows last in lexical identity order.",
+    "preserved": [
+      "all source bytes",
+      "all parsed fields within each atom row, including original ordinals",
+      "all non-atom tables",
+      "comp_list bytes and reader dialect",
+      "default worker bytes",
+      "chemical/native acceptance",
+      "run/checkpoint schemas"
+    ],
+    "unsupported": [
+      "extra blocks beyond one component plus optional exact comp_list",
+      "disconnected heavy graphs",
+      "nonterminal H/D/T",
+      "ambiguous or invalid atom/bond categories"
+    ],
+    "compatibility": "New explicit preparation API and schema-1 diagnostic return; no migration, default pipeline integration, CLI option or automatic retry.",
+    "native": {
+      "software": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "execution": "COMPLETE_EXECUTION_NOT_DRY_RUN",
+      "generation_attempts": 6,
+      "isolated_interpretations": 2,
+      "fresh_source_probes": 1,
+      "bounds": {
+        "generation_steps": 180,
+        "generation_seconds": 300,
+        "interpretation_seconds": 60
+      },
+      "controls": {
+        "40A/trace": {
+          "receipt": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/40A/trace/source_candidate_receipt.json",
+            "sha256": "02ce35636958c7554d4bcd63bdf64821c9ea5cdd5a02bcf7a914b124527a0260",
+            "size": 114872
+          },
+          "status": "FAILED",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "FAILED",
+            "candidate_state": "ABSENT",
+            "blocking_stage": "NATIVE_BUILDER",
+            "summary": "Native builder: Bond length too long : 8.92",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": {
+              "exception_type": "Sorry",
+              "message": "Bond length too long : 8.92"
+            },
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "candidate": null,
+          "worker_sha256": "406a4bee68b9f000e03adca9e8d59d41814fdae8eae3cf82168db026e81963ec",
+          "scope": "LOCAL_SOURCE_ORDER_RESTORATION_DIAGNOSTIC_ONLY",
+          "execution": {
+            "status": "COMPLETED",
+            "timeout_seconds": 300,
+            "returncode": 0,
+            "elapsed_seconds": 96.63544
+          },
+          "convergence_claimed": false
+        },
+        "40A/connected-order": {
+          "receipt": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/40A/connected-order/source_candidate_receipt.json",
+            "sha256": "9cae2ff14e463231b0f5b3d849278235da2469ee9aaa21069565a56d400b9273",
+            "size": 659056
+          },
+          "status": "REJECTED",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "REJECTED",
+            "candidate_state": "RETAINED_REJECTED",
+            "blocking_stage": "CANDIDATE_ASSESSMENT",
+            "summary": "Retained candidate rejected: generated-atom-bond-or-hydrogen-identity-changed. Changed identity fields: bond_orders.",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": null,
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [
+              "generated-atom-bond-or-hydrogen-identity-changed"
+            ],
+            "identity_change_fields": [
+              "bond_orders"
+            ],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "candidate": {
+            "anchor": "candidate_directory",
+            "path": "candidate.cif",
+            "sha256": "4ba1143443971f267b4817e1ef8424f4316fe6de6590e4927580fc90975b8ea5",
+            "size": 14030
+          },
+          "worker_sha256": "2c3eeee455706bdc5ecb7c4ef1274afaede501d63110ec4b621985de2c0bf3cc",
+          "scope": "LOCAL_SOURCE_ORDER_RESTORATION_DIAGNOSTIC_ONLY",
+          "execution": {
+            "status": "COMPLETED",
+            "timeout_seconds": 300,
+            "returncode": 0,
+            "elapsed_seconds": 17.153244
+          },
+          "convergence_claimed": false,
+          "graph": {
+            "source_atoms": 39,
+            "candidate_atoms": 39,
+            "source_bonds": 40,
+            "candidate_bonds": 40,
+            "elements_equal": true,
+            "connectivity_equal": true,
+            "charges_equal": true,
+            "changed_order_edges": [
+              [
+                "C2",
+                "N1"
+              ],
+              [
+                "C2",
+                "N3"
+              ],
+              [
+                "C4",
+                "C5"
+              ],
+              [
+                "C4",
+                "N3"
+              ],
+              [
+                "C4",
+                "N9"
+              ],
+              [
+                "C5",
+                "C6"
+              ],
+              [
+                "C5",
+                "N7"
+              ],
+              [
+                "C6",
+                "N1"
+              ],
+              [
+                "C8",
+                "N7"
+              ],
+              [
+                "C8",
+                "N9"
+              ]
+            ]
+          },
+          "finished_source_relative_stereo": "PRESERVED"
+        },
+        "APN/connected-order": {
+          "receipt": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/APN/connected-order/source_candidate_receipt.json",
+            "sha256": "139ca7a4121685d05d3fb91b54eff74c8e2d528f99babcbff236f3064459041b",
+            "size": 636824
+          },
+          "status": "REJECTED",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "REJECTED",
+            "candidate_state": "RETAINED_REJECTED",
+            "blocking_stage": "CANDIDATE_ASSESSMENT",
+            "summary": "Retained candidate rejected: generated-atom-bond-or-hydrogen-identity-changed. Changed identity fields: bond_orders.",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": null,
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [
+              "generated-atom-bond-or-hydrogen-identity-changed"
+            ],
+            "identity_change_fields": [
+              "bond_orders"
+            ],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "candidate": {
+            "anchor": "candidate_directory",
+            "path": "candidate.cif",
+            "sha256": "f750869e1a26c85d47cb5f502272b5a308d759c3844526ad46b950cba30267b8",
+            "size": 13277
+          },
+          "worker_sha256": "2c3eeee455706bdc5ecb7c4ef1274afaede501d63110ec4b621985de2c0bf3cc",
+          "scope": "LOCAL_SOURCE_ORDER_RESTORATION_DIAGNOSTIC_ONLY",
+          "execution": {
+            "status": "COMPLETED",
+            "timeout_seconds": 300,
+            "returncode": 0,
+            "elapsed_seconds": 16.011311
+          },
+          "convergence_claimed": false,
+          "graph": {
+            "source_atoms": 37,
+            "candidate_atoms": 37,
+            "source_bonds": 38,
+            "candidate_bonds": 38,
+            "elements_equal": true,
+            "connectivity_equal": true,
+            "charges_equal": true,
+            "changed_order_edges": [
+              [
+                "C2",
+                "N1"
+              ],
+              [
+                "C2",
+                "N3"
+              ],
+              [
+                "C4",
+                "C5"
+              ],
+              [
+                "C4",
+                "N3"
+              ],
+              [
+                "C4",
+                "N9"
+              ],
+              [
+                "C5",
+                "C6"
+              ],
+              [
+                "C5",
+                "N7"
+              ],
+              [
+                "C6",
+                "N1"
+              ],
+              [
+                "C8",
+                "N7"
+              ],
+              [
+                "C8",
+                "N9"
+              ]
+            ]
+          },
+          "finished_source_relative_stereo": "UNASSESSED"
+        },
+        "40C/connected-order": {
+          "receipt": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/40C/connected-order/source_candidate_receipt.json",
+            "sha256": "1a5535059b7a370f3fcde7a7c6f75765621879725b6282c69f5288474a3e68e4",
+            "size": 572114
+          },
+          "status": "CANDIDATE_REVIEW",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "CANDIDATE_REVIEW",
+            "candidate_state": "RETAINED_REVIEW",
+            "blocking_stage": null,
+            "summary": "Candidate retained for review; native usability requires separate qualification.",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": null,
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "candidate": {
+            "anchor": "candidate_directory",
+            "path": "candidate.cif",
+            "sha256": "11779bc62f533ad0d9f05243d63d905f78846e97ecb2d02ff47db60674e1fc76",
+            "size": 12323
+          },
+          "worker_sha256": "2c3eeee455706bdc5ecb7c4ef1274afaede501d63110ec4b621985de2c0bf3cc",
+          "scope": "LOCAL_SOURCE_ORDER_RESTORATION_DIAGNOSTIC_ONLY",
+          "execution": {
+            "status": "COMPLETED",
+            "timeout_seconds": 300,
+            "returncode": 0,
+            "elapsed_seconds": 7.196648
+          },
+          "convergence_claimed": false,
+          "graph": {
+            "source_atoms": 37,
+            "candidate_atoms": 37,
+            "source_bonds": 37,
+            "candidate_bonds": 37,
+            "elements_equal": true,
+            "connectivity_equal": true,
+            "charges_equal": true,
+            "changed_order_edges": []
+          },
+          "finished_source_relative_stereo": "PRESERVED"
+        },
+        "40A/maintained-ordered": {
+          "receipt": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/40A/maintained-ordered/source_candidate_receipt.json",
+            "sha256": "e7352ec884dec235386cb14bed3f1e4c39dce5b7cfb7c4b22fc9b6bc14d3be25",
+            "size": 44461
+          },
+          "status": "FAILED",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "FAILED",
+            "candidate_state": "ABSENT",
+            "blocking_stage": "SOURCE_HANDOFF",
+            "summary": "Source handoff blocked before construction: bond_orders.",
+            "builder_started": false,
+            "failed_handoff_checks": [
+              "bond_orders"
+            ],
+            "handoff_reason": null,
+            "native_exception": {
+              "exception_type": "ValueError",
+              "message": "Declared source charge handoff failed"
+            },
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "candidate": null,
+          "worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+          "scope": "MAINTAINED_WORKER",
+          "execution": {
+            "status": "COMPLETED",
+            "timeout_seconds": 300,
+            "returncode": 0,
+            "elapsed_seconds": 3.188384
+          },
+          "convergence_claimed": false
+        },
+        "40C/maintained-ordered": {
+          "receipt": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/40C/maintained-ordered/source_candidate_receipt.json",
+            "sha256": "d8f8258080cc5b3334ef99d8f0341bfe40fe130215663cf81bb8025599c5512e",
+            "size": 540131
+          },
+          "status": "CANDIDATE_REVIEW",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "CANDIDATE_REVIEW",
+            "candidate_state": "RETAINED_REVIEW",
+            "blocking_stage": null,
+            "summary": "Candidate retained for review; native usability requires separate qualification.",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": null,
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "candidate": {
+            "anchor": "candidate_directory",
+            "path": "candidate.cif",
+            "sha256": "296f889f8113ab511fa3393059d0896baef90765bcc90e8dc0f57c6a9d1ac6f4",
+            "size": 12323
+          },
+          "worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+          "scope": "MAINTAINED_WORKER",
+          "execution": {
+            "status": "COMPLETED",
+            "timeout_seconds": 300,
+            "returncode": 0,
+            "elapsed_seconds": 7.240336
+          },
+          "convergence_claimed": false,
+          "graph": {
+            "source_atoms": 37,
+            "candidate_atoms": 37,
+            "source_bonds": 37,
+            "candidate_bonds": 37,
+            "elements_equal": true,
+            "connectivity_equal": true,
+            "charges_equal": true,
+            "changed_order_edges": []
+          },
+          "finished_source_relative_stereo": "PRESERVED"
+        }
+      },
+      "source_capture": {
+        "anchor": "live_tests_directory",
+        "path": "116_Cedar_graph-order-ikzuri01/fresh_sources/source_capture.json",
+        "sha256": "ed78b7ca1aaa52b0c09ce895668b15362daa3ce94de86effd9ebae135b045495",
+        "size": 2010
+      },
+      "supplemental_source_pins": [
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/chemistry/GDIISClass.py",
+          "sha256": "62b397139c6b385a3f90ea1f071f065cc61e3d5375cbf738cbba654aa10b811f",
+          "size": 3745,
+          "snapshot": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/source-snapshots/lib/python3.11/site-packages/elbow/chemistry/GDIISClass.py",
+            "sha256": "62b397139c6b385a3f90ea1f071f065cc61e3d5375cbf738cbba654aa10b811f",
+            "size": 3745
+          },
+          "capture_timing": "AFTER_C116_EXECUTION; FIVE_MATCH_PRIOR_C115_SNAPSHOTS"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/chemistry/MolecularGeometryOptimserClass.py",
+          "sha256": "c5f8716014a8b1b04f01806d4045cee6235982c0ce302e3e4c0f0f4e51b1c820",
+          "size": 38897,
+          "snapshot": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/source-snapshots/lib/python3.11/site-packages/elbow/chemistry/MolecularGeometryOptimserClass.py",
+            "sha256": "c5f8716014a8b1b04f01806d4045cee6235982c0ce302e3e4c0f0f4e51b1c820",
+            "size": 38897
+          },
+          "capture_timing": "AFTER_C116_EXECUTION; FIVE_MATCH_PRIOR_C115_SNAPSHOTS"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/chemistry/ZMatrixMixins.py",
+          "sha256": "d65706be1e7c122bb1114e8971c1dca56305fcdb32eaedef037c809642eedc68",
+          "size": 57203,
+          "snapshot": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/source-snapshots/lib/python3.11/site-packages/elbow/chemistry/ZMatrixMixins.py",
+            "sha256": "d65706be1e7c122bb1114e8971c1dca56305fcdb32eaedef037c809642eedc68",
+            "size": 57203
+          },
+          "capture_timing": "AFTER_C116_EXECUTION; FIVE_MATCH_PRIOR_C115_SNAPSHOTS"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/command_line/builder.py",
+          "sha256": "7b2c0caf2f061d7fff65633da3add4e1b5176710ac2f7fee6c81a14c99789afd",
+          "size": 93791,
+          "snapshot": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/source-snapshots/lib/python3.11/site-packages/elbow/command_line/builder.py",
+            "sha256": "7b2c0caf2f061d7fff65633da3add4e1b5176710ac2f7fee6c81a14c99789afd",
+            "size": 93791
+          },
+          "capture_timing": "AFTER_C116_EXECUTION; FIVE_MATCH_PRIOR_C115_SNAPSHOTS"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/utilities/optimisation_manager.py",
+          "sha256": "92c11aa41be2823726448e7c541dc8a2145c195593da98f4b50742b367adcadf",
+          "size": 29570,
+          "snapshot": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/source-snapshots/lib/python3.11/site-packages/elbow/utilities/optimisation_manager.py",
+            "sha256": "92c11aa41be2823726448e7c541dc8a2145c195593da98f4b50742b367adcadf",
+            "size": 29570
+          },
+          "capture_timing": "AFTER_C116_EXECUTION; FIVE_MATCH_PRIOR_C115_SNAPSHOTS"
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/elbow/chemistry/ZMatrixClass.py",
+          "sha256": "fe3ca2086cdfd665a35b9456818a9a21665f5c44d668e3dc09704e5479ef29c0",
+          "size": 48616,
+          "snapshot": {
+            "anchor": "live_tests_directory",
+            "path": "116_Cedar_graph-order-ikzuri01/source-snapshots/lib/python3.11/site-packages/elbow/chemistry/ZMatrixClass.py",
+            "sha256": "fe3ca2086cdfd665a35b9456818a9a21665f5c44d668e3dc09704e5479ef29c0",
+            "size": 48616
+          },
+          "capture_timing": "AFTER_C116_EXECUTION; FIVE_MATCH_PRIOR_C115_SNAPSHOTS"
+        }
+      ],
+      "trace": {
+        "evidence": {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/40A/trace/coordinate_trace.json",
+          "sha256": "0e3f76956fd07ef1faab1fbdf1995c0faef6879c5a7c61509e25309b22c3e1cb",
+          "size": 19409
+        },
+        "method": "Line trace on the one prepared object",
+        "nonbonded_reference_observed": "ConstructZMatrix return; N1 references C",
+        "promotion": "ZMatrix2Internal appends BondClass at installed line 1521; first next-line event at 1522 records extra edge",
+        "limit": "Earlier fallback-reference construction is observed at method boundaries, not individually instruction-traced."
+      },
+      "40C_qualification": {
+        "anchor": "live_tests_directory",
+        "path": "116_Cedar_graph-order-ikzuri01/40C/native-qualification.json",
+        "sha256": "48bab3c14f38d57a9c5ee67a6432843f12bb3164464eb82d5ad1e92edce27c03",
+        "size": 2689416
+      },
+      "automatic_adoption": false,
+      "linked_PNA_qualification": "NOT_RUN",
+      "absolute_CIP": "NOT_RUN"
+    },
+    "validation": {
+      "regression_before": "21 failed; module absent",
+      "focused": "166 passed in 24.97s",
+      "focused_wall_seconds": 25.627603792003356,
+      "permutation_control": "120 synthetic input atom-row permutations give the same prepared table with exact H/D/stereo/charge fields",
+      "full": "6154 passed, 276 subtests passed in 957.15s (0:15:57)",
+      "cold": {
+        "status": "PASS",
+        "preparations": 3,
+        "generation_cases": {
+          "40A/trace": {
+            "diagnostic_and_assessment": "MATCH",
+            "outputs": "HASH_VERIFIED",
+            "captured_worker_execution": "NOT_RUN"
+          },
+          "40A/connected-order": {
+            "diagnostic_and_assessment": "MATCH",
+            "outputs": "HASH_VERIFIED",
+            "captured_worker_execution": "NOT_RUN"
+          },
+          "APN/connected-order": {
+            "diagnostic_and_assessment": "MATCH",
+            "outputs": "HASH_VERIFIED",
+            "captured_worker_execution": "NOT_RUN"
+          },
+          "40C/connected-order": {
+            "diagnostic_and_assessment": "MATCH",
+            "outputs": "HASH_VERIFIED",
+            "captured_worker_execution": "NOT_RUN"
+          },
+          "40A/maintained-ordered": {
+            "diagnostic_and_assessment": "MATCH",
+            "outputs": "HASH_VERIFIED",
+            "captured_worker_execution": "NOT_RUN"
+          },
+          "40C/maintained-ordered": {
+            "diagnostic_and_assessment": "MATCH",
+            "outputs": "HASH_VERIFIED",
+            "captured_worker_execution": "NOT_RUN"
+          }
+        },
+        "native_cases": 2,
+        "files_unchanged": 314,
+        "blocked_attempts": [],
+        "owned_original_absent": true,
+        "captured_worker_execution": "NOT_RUN",
+        "native_execution": "NOT_RUN",
+        "pickle_loading": "NOT_RUN"
+      },
+      "commands": {
+        "regression-before": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_connected_atom_order.py"
+        ],
+        "focused-01": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_connected_atom_order.py",
+          "tests/test_cif_source_candidate.py",
+          "tests/test_cif_candidate_diagnostics.py",
+          "tests/test_cif_elbow_input.py",
+          "tests/test_cif_candidate_usability.py"
+        ],
+        "focused-02": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20",
+          "tests/test_cif_connected_atom_order.py",
+          "tests/test_cif_source_candidate.py",
+          "tests/test_cif_candidate_diagnostics.py",
+          "tests/test_cif_elbow_input.py",
+          "tests/test_cif_candidate_usability.py",
+          "tests/test_cif_mixed_recovery.py"
+        ],
+        "full": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20"
+        ],
+        "cold": [
+          "env",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PYTHONPATH=<relocated>/src",
+          "python",
+          "c116_cold.py",
+          "<capsule>"
+        ]
+      },
+      "logs": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/regression-before/pytest.log",
+          "sha256": "fdf6185a24af9db36b817b0f87729122382439d4f63df2c97bf05b4203283557",
+          "size": 54121
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/regression-before/result.json",
+          "sha256": "7521f9fe0398cfde9692e74836e6b40fdc843a5d4b7b5656c6d782f7a4f636ee",
+          "size": 443
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/focused-01/pytest.log",
+          "sha256": "d342dfd0f13c6043a4bd33cb300b6f462cda052ea2426ff6390c350b020d7198",
+          "size": 5391
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/focused-01/result.json",
+          "sha256": "f0eab54b44c410a951843c45f9d427a8f88903a99e73723dab914d0668bd2a8c",
+          "size": 616
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/focused-02/pytest.log",
+          "sha256": "8343f00b6bc92a191dbbdd4ab00a625923a44ac8843a1cc14e91bfa96c774e99",
+          "size": 3136
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/focused-02/result.json",
+          "sha256": "7b800c9dd2413463e5bf68c161dd565bb7c6d18d7c6a03e7e17ce95a88f1c76d",
+          "size": 656
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/cold-result.json",
+          "sha256": "b3421f64f020789c59dbff283289b14ba171c6089e58524169ac3da7f08ac509",
+          "size": 1234
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/relocation-manifest.json",
+          "sha256": "b93c1d706cf94fc175cfa704171625dc7b1a233a8e9fc566e04ab6b8dea31881",
+          "size": 59302
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/source-integrity.json",
+          "sha256": "8b9a8a88bf4813dc71e310dc73693e6a4bd50ceaba69f64bb65027b0a5ad9a3f",
+          "size": 283
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/static-checks.json",
+          "sha256": "ca704961e45237b8b70be78a1cbca835710e09793eef8235cd527c1d80496b8e",
+          "size": 370
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/full-01/result.json",
+          "sha256": "8e8d2d4997662d12badcce2cbc13a50de872be93e9bc69461c0fe56136496384",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/full-01/source-hashes.json",
+          "sha256": "814e5f9717bc784facda4fc6e43908603aa6a645483dd9fc25deef8df3a82e4e",
+          "size": 49899
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/full-01/pytest.log",
+          "sha256": "85df4f3ee7ba3bf6fdea3cb67f80b1116fc3c28a9f39a34abc15a9e0ccb80e73",
+          "size": 9494
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "116_Cedar_graph-order-ikzuri01/validation/final-static-checks.json",
+          "sha256": "6814fcc4fbc6cacea6f70f8de942e68cc3798602526b51d647b2ddd8f0d3c126",
+          "size": 172
+        }
+      ],
+      "retained_development_failure": "Initial focused suite: metadata block gained one separator newline; fixed and final focused run passes.",
+      "source_integrity": [
+        {
+          "scope": "C106 inputs",
+          "files": 38,
+          "bytes_sizes_mtime_ns": "UNCHANGED"
+        },
+        {
+          "scope": "C115 copies",
+          "files": 3,
+          "bytes_sizes_mtime_ns": "UNCHANGED"
+        },
+        {
+          "scope": "C116 copies",
+          "files": 3,
+          "bytes_sizes_mtime_ns": "UNCHANGED"
+        }
+      ],
+      "static": {
+        "diff_check": "PASS",
+        "documentation_links": 271,
+        "json": "PASS",
+        "compileall": "PASS",
+        "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c116-compile-cache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+        "svg": "XML valid; visible elements unchanged; accessible description and caption updated"
+      },
+      "full_wall_seconds": 958.0870697500068,
+      "source_test_files": 462,
+      "source_tests_unchanged": true,
+      "final_static": {
+        "documentation": {
+          "relative_links_checked": 272,
+          "missing": [],
+          "json_parse": "PASS"
+        },
+        "diff_check": "PASS",
+        "source_test_hashes_unchanged": true
+      }
+    },
+    "included": "Code, synthetic tests, maintained feature documentation and compact technical evidence only.",
+    "excluded": "Raw scientific inputs, CIFs/PDBs, workbook, SDK snapshots, captured workers, native logs, partial outputs, pickles and runner scripts.",
+    "limitations": [
+      "Ordering is an explicit workaround, not a proof that every native construction preserves graph identity.",
+      "40A/APN need a separate reviewed fused-purine representation policy; local restoration workers are diagnostic only.",
+      "Repeated 40C native generation produces different numeric CIF bytes; this API guarantees deterministic source table order, not deterministic native optimization.",
+      "No linked amide numerical targets, terminal chemistry changes, refinement, ordinary adoption or sticky-end stitching."
+    ],
+    "next": "Qualify source-declared fused purine representation with exact atom/H/charge/stereo constraints; then final-environment linked PNA generation under C114 operations.",
+    "changed_files": [
+      "src/nasolve/cif_connected_atom_order.py",
+      "tests/test_cif_connected_atom_order.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ]
   }
 }
