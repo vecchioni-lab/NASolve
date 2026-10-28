@@ -27012,13 +27012,14 @@
       "tested_implementation_commit": "ce0485e1b59fed87bfa0188ed4385978092ac240"
     },
     "connected_atom_order": {
-      "status": "FOCUSED_FULL_NATIVE_AND_COLD_PASS_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "api": "nasolve.cif_connected_atom_order.prepare_connected_atom_order(source, code, output)",
       "policy": "cif-connected-heavy-atom-order-v1",
       "evidence_key": "connected_atom_order_2026_10_28",
       "scope": "Explicit source-table ordering only; default workers and chemistry unchanged.",
       "next": "Qualify source-declared fused purine representation with exact atom/H/charge/stereo constraints; then final-environment linked PNA generation under C114 operations.",
-      "validation": "6154 passed, 276 subtests passed in 957.15s (0:15:57); 166 focused tests; three preparations, six generation outcomes and two native qualifications replay cold."
+      "validation": "6154 passed, 276 subtests passed in 957.15s (0:15:57); 166 focused tests; three preparations, six generation outcomes and two native qualifications replay cold.",
+      "implementation_commit": "1171dc3d4e1eb80f3dbfc723cf317dcc883862fe"
     }
   },
   "audience": [

@@ -38181,7 +38181,7 @@
     "tested_implementation_commit": "ce0485e1b59fed87bfa0188ed4385978092ac240"
   },
   "connected_atom_order_2026_10_28": {
-    "status": "FOCUSED_FULL_NATIVE_AND_COLD_PASS_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "base_commit": "09c9e2f36ecfb8950941ec96fe2c24308668c996",
     "before": "40A source-order diagnostic acquired a non-source C–N1 edge and failed serialization at 8.917 Angstrom.",
@@ -38959,6 +38959,8 @@
       "docs/development-handoff.md",
       "docs/cif-linked-native-registration-evidence.json",
       "docs/cif-restraint-doctor-implementation.json"
-    ]
+    ],
+    "implementation_commit": "1171dc3d4e1eb80f3dbfc723cf317dcc883862fe",
+    "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
   }
 }

@@ -14,7 +14,8 @@ not general production support. Earlier wording remains in Git and the
 ## C116 source-preserving connected atom ordering
 
 Implementation, focused/full regression, native controls and cold replay pass.
-Publication is the remaining step; no job is active.
+Tested implementation `1171dc3d4e1eb80f3dbfc723cf317dcc883862fe` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 Base: `09c9e2f36ecfb8950941ec96fe2c24308668c996`; continue on existing `cedar`.
 Capsule: `live_tests_directory/116_Cedar_graph-order-ikzuri01`.
 
