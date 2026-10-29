@@ -27058,12 +27058,13 @@
       "implementation_commit": "3e08078fc27b8e7bbf6f5005bd35040246cf9fa9"
     },
     "oxo_purine_representation": {
-      "status": "VALIDATED_NOT_PUBLISHED",
+      "status": "PUBLISHED_VALIDATED",
       "policy": "cif-source-declared-neutral-6-oxo-purine-aromatic-v1",
       "evidence_key": "oxo_purine_representation_2026_10_29",
       "scope": "A separately selected graph/valence whitelist permits only the complete declared five-ring conversion, preserves carbonyl/spectator chemistry and threads that explicit policy through generation, assessment, FANA CLI and read-only replay.",
       "next": "Build whole modified-sugar/L-FANA model controls and linked PNA native construction; separately address DG standard-name hydrogen mapping. Independent CIP, native charge readback and ATL/L-DNA/PDU integration remain open.",
-      "validation": "6330 passed, 276 subtests passed in 990.98s (0:16:30); 308 focused pass; five generation attempts, six qualified native interpretations, two retained failures and 357-file cold replay."
+      "validation": "6330 passed, 276 subtests passed in 990.98s (0:16:30); 308 focused pass; five generation attempts, six qualified native interpretations, two retained failures and 357-file cold replay.",
+      "implementation_commit": "e05b8e8c14f09b97a512e90698c2536bc9a70298"
     }
   },
   "audience": [

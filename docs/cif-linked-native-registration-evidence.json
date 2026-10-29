@@ -41742,7 +41742,7 @@
     "implementation_commit": "3e08078fc27b8e7bbf6f5005bd35040246cf9fa9"
   },
   "oxo_purine_representation_2026_10_29": {
-    "status": "VALIDATED_NOT_PUBLISHED",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "base_commit": "fb6787640950514f079aa16dae4c8aea72a3a5e5",
     "changed_files": [
@@ -42176,6 +42176,7 @@
       "whitespace_command": "git diff --check",
       "documentation": "PASS; 300 relative links and both JSON ledgers",
       "svg_xml": "PASS"
-    }
+    },
+    "implementation_commit": "e05b8e8c14f09b97a512e90698c2536bc9a70298"
   }
 }

@@ -11,12 +11,12 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C121 validated: source-declared neutral 6-oxo purine representation
+## C121 published: source-declared neutral 6-oxo purine representation
 
 Base/last published head: `fb6787640950514f079aa16dae4c8aea72a3a5e5`; existing cedar only.
 Capsule: `live_tests_directory/121_Cedar_oxo-purine-uwk5e05g`. Implementation, focused/native/cold
-validation and docs are complete. Publication is next; no test or native job
-remains active.
+validation and docs are complete. Tested implementation `e05b8e8c14f09b97a512e90698c2536bc9a70298` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 
 The new explicit graph/valence policy resolves GFL's source-declared five-ring
 aromatic handoff, including the shared fusion bond, while preserving the
@@ -52,8 +52,8 @@ are included; all raw CIF/PDB/workbook, native captures/logs, candidates, failur
 and runners are excluded. Compilation, whitespace, 300 relative documentation
 links/both JSON ledgers and SVG XML pass. The existing C120 A5L receipt and both
 worker texts replay unchanged; the real GFL CLI returns candidate preservation
-with review exit 2 and unchanged inputs. Immediate next action: publish on
-cedar and record exact SHAs.
+with review exit 2 and unchanged inputs. Publication is complete; resume with
+the next bounded scope below.
 
 Next scope: whole modified-sugar model construction and the proposed L-DNA scaffold
 with explicit L-FANA substitutions; C119 linked PNA native construction remains
