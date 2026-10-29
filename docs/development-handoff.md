@@ -13,6 +13,118 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Native fit leverage and endpoint geometry diagnostics 2026-10-29
+
+**Before and after.** Native metal trials retained observations and final R
+factors but not the calculated factors needed to explain their scaling. New
+XYZ/fdp workers now passively capture final complex Fmodel, reflection spacings,
+partition scales and the diagnostic helper source hash. Offline audits reproduce
+native R and separately rank residual contributions and scalar leverage. A
+leave-group scalar calculation is explicitly sensitivity only: all observations
+and Free-R flags remain unchanged, and no corrected R, rejection advice or
+scientific acceptance is emitted. Exact Friedel mates share a diagnostic group
+without merging observations. Empty/zero-denominator statistics stay unavailable.
+
+New XYZ bundles also save final explicit recipe distances/angles and signed
+sigma deviations in `recipe-geometry.json`. The offline
+`xyz.recipe_diagnostics(run, directory)` API inspects old verified endpoints
+without editing them. Measurements use serialized PDB precision; inherited
+covalent/nonbonded terms and native proxy equivalence remain outside the generic
+report. See the [descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-native-fit-and-endpoint-recipe-diagnostics).
+
+**Native findings.** Read-only **Phenix 2.2.1-6174** inspection found original
+MTZ/AutoSol flags and active observation amplitudes consistent. The large work/free
+gap exists before cluster refinement; a very low-resolution free reflection has
+strong leverage on the native free-set scalar. Conditional sensitivity changes
+substantially, but does not establish that this reflection is erroneous or may
+be excluded. Independent scale-only calculations retained all observations.
+Model/HL agreement was close; the phases were model-assisted, so this is not
+independent validation or a full origin/phase-policy qualification. The original
+observation/reference wavelength and cell discrepancy remains an open user-context
+question; actual MTZ metadata is retained without substitution.
+
+One complete three-cycle XYZ/ADP run and one complete frozen-fdp run (10 macro
+cycles, five minimizer cycles, maximum 100 iterations, start 0) qualify the new
+capture. These are **complete native executions, not dry runs**. Coordinates,
+B, f-double-prime, R factors, final PDB bytes and native PHIL reproduce the earlier
+four-site sequence exactly. The explicit B environment has a different name in
+the local runner (`base-shell` versus `shell`); its membership, preparation and
+numeric values are unchanged. The source endpoints remain distinct comparison
+bases. Geometry residuals and mixed-sign individual responses remain unresolved;
+no count or geometry is accepted.
+
+Two further **native dry-run** readbacks directly inspected the input/endpoint
+Phenix bond proxies: all eight metal bonds are present with intended targets and
+sigmas. Two preliminary inspection attempts with an incorrect element-case filter
+are retained separately and are not qualification evidence. The native log also
+records a close starting metal/base contact. Missing bond export is therefore
+not supported as the explanation for this example; placement, surrounding
+contacts and refinement weights need controlled tests. **Coot was not invoked.**
+No additional geometry/count candidate, observation exclusion, weight change,
+map-based acceptance or GUI change was made.
+
+**Files and schemas.** New stdlib-only `metal/fit_diagnostics.py`; additive changes
+to `_xyz_native.py`, `_fdp_native.py`, `xyz.py` and `fdp.py`; two new regression
+files (`test_metal_fit_diagnostics.py`, `test_metal_endpoint_diagnostics.py`).
+README, documentation map, architecture, metal-screen/anomalous methods, intent,
+changelog and this handoff are updated. Optional `metal-fit-diagnostics-v1`
+capture/results and `metal-recipe-endpoint-v1` reports remain inside existing
+schema-1 trial bundles. Old results retain byte-compatible replay and no migration
+is performed. Updated readers are needed for new evidence. Worker fingerprints
+change: execute new scan points from a current seed; old scans remain replayable.
+Scattering, B preparation, minimizer policy, count/comparison/scan code and ordinary
+NASolve AutoSol eligibility are unchanged.
+
+**Validation.** Both new regressions failed before implementation with missing
+imports. The exact focused command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_*.py tests/test_cli.py`:
+**512 passed and 14 subtests passed**; the one remaining local-server test was
+blocked by sandbox socket binding. With loopback permission, the same command
+restricted to `tests/test_metal_viewer.py::test_http_is_local_authenticated_bounded_and_stateless`
+passed **1 test in 1.91 s**. Thus all **513 focused tests** pass. Coverage includes
+scale versus residual ranking, Friedel grouping, empty/zero denominators, finite
+values/indices, native R reconstruction, recipe term identity, disabled terms,
+legacy absence and tamper rejection. Both new XYZ and fdp bundles replay from a
+relocated temporary source/data checkout after the original path is gone.
+
+The complete command, with that interpreter and the same environment,
+`python -B -m pytest -q -p no:cacheprovider`, passed **6,150 tests and 276 subtests
+in 751.94 s**, exit 0; all **463** inventoried source/test/asset files remained
+unchanged. Existing integration tests used OS process/local-socket permissions.
+Final checks pass **seven** Python 3.10 grammar checks, **105** local documentation
+links, JSON and whitespace. No source/test changes followed the full-suite run.
+
+Offline replay passes **23** old/new hypotheses, XYZ endpoints, fdp/count reports,
+scan and comparison bundles. All **563** pre-existing cluster-rehearsal files,
+**778** earlier rehearsal files and original dataset inputs remain unchanged.
+Failed attempts remain intact. Numeric baseline equivalence explicitly permits
+only the declared environment-name difference and new diagnostic fields.
+
+Private commands use the everyday checkout's `.venv/bin/python -B` with
+`PYTHONDONTWRITEBYTECODE=1` and ignored runners `A31_reflection_diagnostic.py`,
+`A31_scaled_diagnostic.py`, `A31_native_capture.py`,
+`A31_proxy_setup_v2.py` / `A31_proxy_readback_v2.py`,
+`A31_final_replay_v2.py` and `A31_full_tests.py`. The two read-only native scripts
+run through configured `phenix.python -B`. Complete trials have 240-s limits;
+dry-run readbacks have 120-s limits. Initial runner attempts are preserved.
+
+**Artifacts and continuity.** Continue **Alder**, based on `4024ff1`, in its
+isolated checkout. Everyday Pine and separate Cedar work remain untouched.
+Source/tests/docs only go to Git. Ignored local
+`branch-artifacts/Alder/diagnostics-20261029-01/` contains diagnostic calculations,
+receipts, dry-run setup readbacks and validation logs. The existing cluster run
+adds immutable `xyz_004`, `fdp_003` and `fdp_count_003`; all earlier runs remain.
+No scientific inputs, models, manuscript material or generated runners are
+committed/uploaded. No scientific output was pruned.
+
+**Next boundary.** Test clash-aware starting placement and explicit native
+restraint/data-weight controls; inspect maps before widening the cluster-count
+search. Preserve the raw observations and free set while investigating their
+scale sensitivity. General native proxy auditing, independent optimizer stopping
+evidence, phase/B sensitivity, special-position multiplicity, six-site geometry,
+campaign orchestration and native-endpoint GUI integration remain open. The
+new reports explain conditional fits; they do not certify structural correctness.
+
 ## Shared cluster environments and native discovery 2026-10-29
 
 **Before and after.** Interior cluster metals without direct donor distances

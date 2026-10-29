@@ -269,11 +269,16 @@ def audit_result(plan, model, native):
         by_node={r['node_id']:r for r in plan['b_calibration']['sites']}
         for row in rows:
             row['b_calibration']=by_node.get(row['node_id'], {'policy':'keep'})
-    return dict(status='FDP_REVIEW',freeze_audit='PASS',maximum_deltas=maxima,tolerances=TOLERANCES,
+    result = dict(status='FDP_REVIEW',freeze_audit='PASS',maximum_deltas=maxima,tolerances=TOLERANCES,
                 sites=rows,wavelength_A=plan['metadata']['wavelength_A'],native_version=native['native_version'],r_work=number(native['r_work'],'Rwork'),r_free=number(native['r_free'],'Rfree'),
                 reflection_signature=reflections,convergence='NOT_INDEPENDENTLY_ASSESSED',
                 scientific_acceptance='NOT_ASSESSED',automatic_checkpoint_selection=False,
                 note='Completed conditional fit; geometry, identity, count and optimizer convergence remain review questions')
+
+    if 'fit_diagnostics' in native:
+        from .fit_diagnostics import summarize
+        result['fit_diagnostics']=summarize(native['fit_diagnostics'],native['reflection_after'],native['r_work'],native['r_free'])
+    return result
 
 
 def _allocate(run):

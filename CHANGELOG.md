@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explain native metal-fit scaling and endpoint coordination residuals
+
+- Capture final complex Fmodel and native partition scales in new XYZ/fdp trials;
+  replay R factors and show reflection residuals separately from scale leverage.
+  Retain every observation and label leave-group scalar sensitivity as diagnostic
+  only, with no corrected R, automatic exclusion or scientific acceptance.
+- Add final recipe distance/angle measurements and sigma deviations to new XYZ
+  bundles, plus offline inspection of older endpoints. Keep inherited/nonbonded
+  geometry and native proxy qualification outside this report's scope.
+- Add optional `metal-fit-diagnostics-v1` evidence/results and
+  `metal-recipe-endpoint-v1` reports within schema-1 bundles; preserve old replay.
+  Native policies stay unchanged; changed worker fingerprints require a new seed
+  for further scan execution. No generated scientific data is included.
+
+
 ### Share refined ligand B across cluster sites and audit native atom sorting
 
 - Add explicit `--metal-b-environments` / `metal_b_environments` declarations

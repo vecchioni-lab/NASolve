@@ -1451,11 +1451,20 @@ f-prime and zero f-double-prime for the geometry step only. `verify_xyz` replays
 inputs, phases, reflection membership and native fixed-state audits offline.
 The XYZ audit permits native/serialized atom sorting only through a complete
 atom-key bijection, remaps group indices and retains all fixed-state checks.
-Reordered results add `atom_order_mapping`; native workers remain unchanged.
+Reordered results add `atom_order_mapping`; atom sorting does not change the native fitting policy.
 Numbered failed attempts remain separate; no checkpoint is selected. The separate
 refined-endpoint diagnostic bridge now feeds environmental B and frozen fdp
 trials. Scientific qualification, site mapping and phase/scale-policy sensitivity
 remain explicit gaps.
+
+New metal workers passively capture final complex Fmodel and native partition
+scales through the stdlib-only `metal/fit_diagnostics.py` helper. Optional
+`metal-fit-diagnostics-v1` evidence/results reproduce native R and expose separate
+residual/scale-contribution ranks without deleting data. New XYZ bundles add
+`recipe-geometry.json` (`metal-recipe-endpoint-v1`), regenerated from the exact
+recipe and final PDB. Existing schema-1 bundles replay without migration; absent
+diagnostics mean not captured. Worker fingerprints change, so new scan execution
+requires a current seed. See the [methods and limits](metal-anomalous-doctor.md#implemented-native-fit-and-endpoint-recipe-diagnostics).
 
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain

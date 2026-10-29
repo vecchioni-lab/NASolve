@@ -208,6 +208,9 @@ def audit_result(plan, model, native, final_model):
                 native_version=native['native_version'],scientific_acceptance='NOT_ASSESSED',
                 automatic_checkpoint_selection=False,convergence='NOT_INDEPENDENTLY_ASSESSED',
                 fdp_quantitation_ready=False,environmental_b_applied=False)
+    if 'fit_diagnostics' in native:
+        from .fit_diagnostics import summarize
+        result['fit_diagnostics']=summarize(native['fit_diagnostics'],native['reflection_after'],native['r_work'],native['r_free'])
     identity = list(range(len(keys)))
     if native_order != identity or serialized_order != identity:
         result['atom_order_mapping'] = dict(input_to_native=native_order, input_to_serialized=serialized_order,
@@ -224,6 +227,35 @@ def _input_bundle(run, hypothesis):
         resources.append((f'resource_{len(resources):03d}'+path.suffix.lower(),_source(ref,run)))
     parent=run/Path(h['files']['model']['relative_path']).parent/'manifest.json'
     return h,_source(h['files']['model'],run),resources,_reference(parent,run)
+
+
+
+def _recipe_diagnostics(parent_preview, model):
+    """Measure explicit recipe terms at serialized endpoint precision."""
+    from .geometry import _preview
+    bound = _preview(parent_preview, model)
+    rows = []
+    for term in bound['restraints']:
+        z = None
+        if term['status'] == 'resolved':
+            z = number((term['measured']-term['target'])/term['sigma'], 'recipe sigma deviation')
+        rows.append(dict(term, signed_sigma_deviation=z))
+    values = [abs(r['signed_sigma_deviation']) for r in rows if r['signed_sigma_deviation'] is not None]
+    return dict(protocol='metal-recipe-endpoint-v1', model_sha256=hashlib.sha256(model).hexdigest(),
+                recipe_sha256=bound['inputs']['recipe_sha256'], restraints=rows,
+                active_resolved_count=len(values), maximum_absolute_sigma_deviation=max(values, default=None),
+                scope='explicit_recipe_only_excludes_inherited_and_nonbonded_terms',
+                coordinate_precision='serialized_PDB', native_proxy_equivalence='NOT_ASSESSED',
+                scientific_acceptance='NOT_ASSESSED', automatic_checkpoint_selection=False)
+
+
+def recipe_diagnostics(run, directory):
+    """Inspect a verified old/new XYZ endpoint offline; never edit its bundle."""
+    run = Path(run).expanduser().resolve()
+    doc = verify_xyz(run, directory)
+    h = verify_hypothesis(run, Path(doc['parent']['manifest']['relative_path']).parent)
+    return _recipe_diagnostics(_json(_source(h['files']['preview'], run)),
+                               _source(doc['files']['final.pdb'], run))
 
 
 def _allocate(run):
@@ -283,6 +315,9 @@ def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_val
         if any((directory/name).read_bytes()!=raw for name,raw in content.items()):raise RecipeError('Frozen XYZ input changed')
         _source(phases,run);_source(parent_ref,run);verify_hypothesis(run,hypothesis)
         (directory/'result.json').write_bytes(_json_bytes(result))
+        if 'fit_diagnostics' in evidence:
+            geometry = _recipe_diagnostics(_json(_source(h['files']['preview'],run)), (directory/'final.pdb').read_bytes())
+            (directory/'recipe-geometry.json').write_bytes(_json_bytes(geometry))
         if any(p.is_symlink() or not p.is_file() for p in directory.iterdir()):raise RecipeError('Unexpected native artifact')
         doc=dict(kind='metal-xyz-trial',schema_version=1,protocol=PROTOCOL,status='XYZ_REVIEW',
             parent=dict(hypothesis_id=h['hypothesis_id'],manifest=parent_ref),input_sources=dict(h['inputs'],phases=phases),
@@ -332,6 +367,9 @@ def verify_xyz(run,directory):
         if free.get('usable')is not True or free.get('status') not in {'VALID','NOISY'}:raise RecipeError('Invalid saved Free-R audit')
         result=audit_result(plan,model,_json(gzip.decompress((directory/'native-result.json.gz').read_bytes())),(directory/'final.pdb').read_bytes())
         if (directory/'result.json').read_bytes()!=_json_bytes(result):raise RecipeError('XYZ audit changed')
+        if 'fit_diagnostics' in result:
+            geometry = _recipe_diagnostics(_json(_source(h['files']['preview'],run)), (directory/'final.pdb').read_bytes())
+            if (directory/'recipe-geometry.json').read_bytes()!=_json_bytes(geometry):raise RecipeError('Endpoint recipe diagnostics changed')
         return doc
     except (OSError,ValueError,KeyError,TypeError,OverflowError) as exc:
         if isinstance(exc,RecipeError):raise

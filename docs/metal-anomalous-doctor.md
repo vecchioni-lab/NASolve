@@ -12,6 +12,65 @@ sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
 
+## Implemented native fit and endpoint recipe diagnostics
+
+New native XYZ and frozen-fdp trials capture the final complex model structure
+factors, reflection spacings and native work/free scalar scales. The resulting
+`fit_diagnostics` explains which reflections dominate a reported residual and
+which dominate its scalar calculation. It does not remove observations, change
+Free-R membership, alter refinement, or accept a geometry or metal count.
+
+**Methods.** Match captured calculated factors to the audited observation indices,
+then reproduce each native R using its own partition scale. Within each partition,
+rank reflection groups by absolute residual and separately by their contribution
+to `sum(abs(Fmodel)**2)`. Exact Friedel mates are grouped for display/sensitivity
+only; their original observations remain separate. For the five groups with the
+largest scale contributions, recompute a scalar after leaving out that group in
+memory, holding every calculated factor fixed. This conditional sensitivity is
+**not a replacement R factor or advice to exclude data**: it does not repeat
+refinement or scaling-mask optimization and must not guide free-set trimming.
+An empty or zero-denominator diagnostic remains unavailable, never zero.
+
+A local native cluster rehearsal reproduced the large work/free gap and located
+strong scalar leverage in a very low-resolution reflection. Original MTZ/AutoSol
+flags and active observation amplitudes matched. A separate phase readback found
+close model/HL agreement, but those AutoSol phases were model-assisted and cannot
+supply independent validation. The repeated native XYZ/fdp sequence reproduced
+its earlier endpoint exactly. Its recipe residuals and mixed-sign site responses
+remain unresolved. Detailed reflection/model data stay in private local receipts.
+
+New XYZ bundles also contain `recipe-geometry.json`: each explicit recipe term,
+its final PDB-coordinate measurement, target, sigma, status and signed deviation
+in sigma units. Disabled/incomplete terms are retained without an active score.
+This excludes inherited covalent/nonbonded terms and does not establish native
+restraint-proxy equivalence. The offline API
+`nasolve.metal.xyz.recipe_diagnostics(run, directory)` provides the same inspection
+for a verified older endpoint without modifying its bundle.
+
+```mermaid
+flowchart LR
+    N[Completed native fit] --> C[Capture final calculated factors and partition scales]
+    C --> V[Replay R against audited observations]
+    V --> L[Separate residual rank from scalar leverage]
+    L --> S[Conditional scalar sensitivity; retain every observation]
+    X[Verified final coordinates and exact recipe] --> G[Distance and angle residuals]
+    S --> R[Human review before geometry or count decisions]
+    G --> R
+```
+
+*Figure: implemented passive diagnostics. Reports explain fit behavior without
+changing a refinement or promoting its scientific status.*
+
+The optional `metal-fit-diagnostics-v1` capture/result and
+`metal-recipe-endpoint-v1` report live inside existing schema-1 trial bundles.
+Native capture includes the helper source hash; replay checks indices, finite
+values and reproduction of native R, then regenerates the summaries and recipe
+measurements. Legacy bundles without these fields remain byte-compatible and
+are not retroactively described as diagnosed. Native fitting policies are
+unchanged, but worker fingerprints change: new scan execution needs a current
+seed, while old trials/scans remain replayable. GUI presentation, independent
+convergence evidence, map evaluation and scientific decision gates remain open.
+
 ## Implemented shared cluster B environments
 
 The frozen-fdp adapter can assign one declared ligand environment to several

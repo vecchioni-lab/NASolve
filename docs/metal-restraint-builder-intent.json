@@ -581,6 +581,18 @@
       "integer_count_inferred": false,
       "native_cluster_qualification": "FOUR_SITE_MECHANICS_EXERCISED_SCIENCE_UNQUALIFIED_SIX_SITE_PENDING",
       "automatic_branching": false
+    },
+    "native_fit_diagnostics": {
+      "status": "IMPLEMENTED",
+      "protocol": "metal-fit-diagnostics-v1",
+      "native_r_replayed": true,
+      "all_observations_retained": true,
+      "automatic_exclusion": false,
+      "conditional_scalar_sensitivity_is_replacement_r": false,
+      "endpoint_recipe_protocol": "metal-recipe-endpoint-v1",
+      "native_proxy_equivalence": "NOT_ASSESSED",
+      "scientific_acceptance": "NOT_ASSESSED",
+      "legacy_replay_preserved": true
     }
   },
   "solution_search": {

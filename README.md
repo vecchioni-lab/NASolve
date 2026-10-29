@@ -1396,6 +1396,11 @@ readback and saves a new review bundle. Phenix 2.2.1-6174 is the initial support
 version. A completed fit does not establish convergence, metal identity/count or
 correct geometry. See the [implemented diagnostic and limits](docs/metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
 
+New native trials retain [fit and endpoint recipe diagnostics](docs/metal-anomalous-doctor.md#implemented-native-fit-and-endpoint-recipe-diagnostics):
+reflection residuals and scale sensitivity, plus measured coordination distances
+and angles after XYZ refinement. These reports preserve all data and do not
+replace the native R factors or establish a valid metal count.
+
 For cluster members sharing one ligand environment, add
 `--metal-b-environments environments.json`. The declaration names the fitted
 metal nodes and exact donor nodes; it preserves each base mean and applies their

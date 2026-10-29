@@ -104,6 +104,8 @@ def run(filename):
                         normal_scattering_before=self.scattering_before,
                         native_source_hashes=native_source_hashes(),
                         r_work=r.fmodel.r_work(),r_free=r.fmodel.r_free(),convergence='NOT_INDEPENDENTLY_ASSESSED')
+            from fit_diagnostics import capture
+            result['fit_diagnostics']=capture(r.fmodel)
             Path('native-result.json.gz').write_bytes(gzip.compress(canonical(result).encode(),mtime=0))
             Path('final.pdb').write_text(r.model.model_as_pdb(output_cs=True))
             Path('effective-final.phil').write_text(r.master_params.format(python_object=r.iparams).as_str())

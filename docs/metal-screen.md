@@ -51,6 +51,12 @@ model phases **without external phase restraints**. It cannot yet claim the
 complete phase-linked metal-screen workflow. Do not silently drop phases or
 change that worker's protocol to make the rehearsal appear complete.
 
+New native trials retain [fit and endpoint recipe diagnostics](metal-anomalous-doctor.md#implemented-native-fit-and-endpoint-recipe-diagnostics).
+Inspect reflection-scale sensitivity and actual coordination residuals before
+interpreting a response ratio as a count hypothesis. These reports do not trim
+Free-R reflections, substitute a corrected R, or validate model-assisted phases
+independently. Native completion remains distinct from scientific acceptance.
+
 ## Symmetry-aware distance lookup and cell mapping
 
 AutoSol can report the correct crystallographic site in another unit cell or
