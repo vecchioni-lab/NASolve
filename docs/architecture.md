@@ -1457,6 +1457,15 @@ refined-endpoint diagnostic bridge now feeds environmental B and frozen fdp
 trials. Scientific qualification, site mapping and phase/scale-policy sensitivity
 remain explicit gaps.
 
+The API-only XYZ `xyz_weight_scale` option adds explicit bounded native weight
+controls to schema-1 plans. Omission retains legacy bytes; explicit controls
+are read from native parameters both before and after refinement and replayed
+offline. Only the coordinate experimental multiplier varies; companion geometry
+and ADP controls remain declared and weight optimization stays disabled. The
+native base weight still adapts. See the [weight methods and limits](metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls).
+Contact screening and endpoint map evaluation have local experimental receipts,
+not production orchestration or scientific decision authority.
+
 New metal workers passively capture final complex Fmodel and native partition
 scales through the stdlib-only `metal/fit_diagnostics.py` helper. Optional
 `metal-fit-diagnostics-v1` evidence/results reproduce native R and expose separate

@@ -26,7 +26,7 @@ PROTOCOL = 'metal-phased-xyz-v1'
 PHASE_FAMILIES = (['HLAM','HLBM','HLCM','HLDM'], ['HLA','HLB','HLC','HLD'], ['HL_A','HL_B','HL_C','HL_D'])
 
 
-def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test_value=0):
+def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test_value=0, xyz_weight_scale=None):
     """Declare merged-observation MLHL geometry; anomalous data remain intact.
 
     Phenix 2.2.1 cannot combine MLHL with nonzero anomalous scattering. f-prime
@@ -49,7 +49,14 @@ def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test
     policy=dict(seed['policy'],strategy=['individual_sites','individual_adp'],target='mlhl',
                 experimental_phases=True,anomalous_observations=False,isotropic_selection='all',
                 anisotropic_selection=None,automatic_metal_linking=False,optimize_xyz_weight=False,optimize_adp_weight=False)
-    return dict(protocol=PROTOCOL,options=dict(cycles=cycles,free_r_test_value=free_r_test_value),
+    options=dict(cycles=cycles,free_r_test_value=free_r_test_value)
+    if xyz_weight_scale is not None:
+        scale=number(xyz_weight_scale,'XYZ experimental-weight scale')
+        if not .001 <= scale <= 10.:
+            raise RecipeError('Require XYZ experimental-weight scale between 0.001 and 10')
+        options['xyz_weight_scale']=scale
+        policy['weight_controls']=dict(wxc_scale=scale,wxu_scale=1.,wc=1.,wu=1.,fix_wxc=None,fix_wxu=None)
+    return dict(protocol=PROTOCOL,options=options,
         policy=policy,groups=groups,sites=sites,metadata=metadata,references=references,phases=phases,
         input_model_sha256=hashlib.sha256(raw).hexdigest(),
         observation_policy='native_merge_Bijvoet_mates_for_geometry_keep_original_anomalous_file',
@@ -76,7 +83,8 @@ def parameters(plan, resources):
             '  simulated_annealing = False','  find_and_add_hydrogens = False','  update_f_part1 = False',' }',
             ' bulk_solvent_and_scale { apply_back_trace = False }',' group_anomalous {',
             '  find_automatically = False','  number_of_minimizer_cycles = 3','  lbfgs_max_iterations = 20',' }',
-            ' target_weights {','  optimize_xyz_weight = False','  optimize_adp_weight = False',' }',
+            ' target_weights {','  optimize_xyz_weight = False','  optimize_adp_weight = False',
+            *[f'  {name} = {value}' for name,value in p.get('weight_controls',{}).items()],' }',
             ' pdb_interpretation.automatic_linking.link_metals = False',
             ' electron_density_maps { apply_default_maps = False }',' output {',
             '  write_geo_file = False','  write_final_geo_file = False','  write_maps = False',
@@ -290,7 +298,7 @@ def _native(directory,native,timeout):
     return _json(gzip.decompress((directory/'native-result.json.gz').read_bytes()))
 
 
-def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_value=0,timeout=240):
+def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_value=0,timeout=240,xyz_weight_scale=None):
     """Explicit API-only experiment; phases must have a declared portable anchor."""
     run=Path(run).expanduser().resolve();_integer(timeout,10,600,'timeout seconds')
     h,model,resources,parent_ref=_input_bundle(run,hypothesis)
@@ -300,7 +308,7 @@ def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_val
     metadata=inspect_observations(obs_path,executable=native.executables['phenix.mtz.dump'],environment=native.environment)
     references=reference_scattering({a.element for a in parse_pdb(model).snapshot.atoms},metadata['wavelength_A'],
         executable=native.executables['phenix.python'],version=native.version,environment=native.environment)
-    plan=make_plan(model,h['sites'],metadata,references,phase_meta,cycles=cycles,free_r_test_value=free_r_test_value)
+    plan=make_plan(model,h['sites'],metadata,references,phase_meta,cycles=cycles,free_r_test_value=free_r_test_value,xyz_weight_scale=xyz_weight_scale)
     phil,args=parameters(plan,[name for name,_ in resources]);directory=_allocate(run)
     try:
         content={'input.pdb':model,'observations.mtz':obs,'phases.mtz':phase_bytes,'parameters.phil':phil,

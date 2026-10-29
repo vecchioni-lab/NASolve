@@ -593,6 +593,29 @@
       "native_proxy_equivalence": "NOT_ASSESSED",
       "scientific_acceptance": "NOT_ASSESSED",
       "legacy_replay_preserved": true
+    },
+    "xyz_weight_controls": {
+      "status": "IMPLEMENTED_API_ONLY",
+      "option": "xyz_weight_scale",
+      "range_inclusive": [
+        0.001,
+        10.0
+      ],
+      "default": null,
+      "omission_preserves_legacy": true,
+      "native_companion_controls": {
+        "wxu_scale": 1.0,
+        "wc": 1.0,
+        "wu": 1.0,
+        "fix_wxc": null,
+        "fix_wxu": null
+      },
+      "native_wxc_remains_adaptive": true,
+      "preflight_and_endpoint_readback": true,
+      "automatic_weight_search": false,
+      "scientific_acceptance": "NOT_ASSESSED",
+      "contact_screening": "PRIVATE_EXPERIMENT_ONLY",
+      "map_evaluation": "PRIVATE_SCALE_ONLY_PROTOTYPE_NOT_FINAL_STATE_CAPTURE"
     }
   },
   "solution_search": {

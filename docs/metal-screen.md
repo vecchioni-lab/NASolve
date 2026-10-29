@@ -156,6 +156,12 @@ experimental step; it adds no CLI/campaign execution or automatic checkpoint
 selection. Explicit hypotheses may retain unrestrained sites, which remain
 chemically unqualified. Existing geometry/fdp formats are unchanged.
 
+The optional `xyz_weight_scale` argument creates a declared geometry/data-weight
+probe; its bounded scale, companion native controls and readback audits are
+specified in the [weight methods](metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls).
+Omission preserves prior behavior. Tightening geometry is a hypothesis test,
+not evidence that the metal count or recipe is correct.
+
 The native target is **MLHL with merged Bijvoet observations**. Phenix
 **2.2.1-6174** rejects MLHL combined with nonzero anomalous scattering in the
 attempted geometry protocol. Consequently this separate step fixes f-prime at

@@ -22,9 +22,9 @@ def reflection_signature(fmodel):
                 anomalous=bool(f.anomalous_flag()),free_count=sum(row[-1] for row in rows),rows=rows)
 
 
-def policy(params,dm,has_phases):
+def policy(params,dm,has_phases,weight_controls=False):
     data=dm.data_manager.fmodel.xray_data
-    return dict(strategy=list(params.refine.strategy),target=params.main.target,cycles=params.main.number_of_macro_cycles,
+    result=dict(strategy=list(params.refine.strategy),target=params.main.target,cycles=params.main.number_of_macro_cycles,
                 minimizer_cycles=params.group_anomalous.number_of_minimizer_cycles,
                 max_iterations=params.group_anomalous.lbfgs_max_iterations,random_seed=params.main.random_seed,
                 nproc=params.main.nproc,apply_overall_isotropic_scale_to_adp=params.main.apply_overall_isotropic_scale_to_adp,
@@ -40,6 +40,10 @@ def policy(params,dm,has_phases):
                 automatic_metal_linking=params.pdb_interpretation.automatic_linking.link_metals,
                 optimize_xyz_weight=params.target_weights.optimize_xyz_weight,
                 optimize_adp_weight=params.target_weights.optimize_adp_weight)
+    if weight_controls:
+        result['weight_controls']={name:getattr(params.target_weights,name)
+            for name in ('wxc_scale','wxu_scale','wc','wu','fix_wxc','fix_wxu')}
+    return result
 
 
 def symmetry_signature(symmetry):
@@ -75,7 +79,7 @@ def run(filename):
     class AuditedProgram(Program):
         def validate(self):
             super().validate()
-            actual=policy(self.params.refinement,self.data_manager.export_phil_scope().extract(),self.fmodel.hl_coeffs() is not None)
+            actual=policy(self.params.refinement,self.data_manager.export_phil_scope().extract(),self.fmodel.hl_coeffs() is not None,weight_controls='weight_controls' in plan['policy'])
             if canonical(actual)!=canonical(plan['policy']):
                 raise ValueError('Preflight native parameter mismatch: '+canonical(actual))
             from iotbx import pdb
@@ -137,7 +141,7 @@ def run(filename):
                 groups.append(group)
             result=dict(protocol=plan['protocol'],completed=True,execution='complete',native_version=version,
                         atoms=rows,groups=groups,input_symmetry=self.input_symmetry,
-                        symmetry_before=self.before_symmetry,symmetry_after=symmetry_signature(x),policy=policy(r.params,r.dm_working_phil.extract(),r.fmodel.hl_coeffs() is not None),
+                        symmetry_before=self.before_symmetry,symmetry_after=symmetry_signature(x),policy=policy(r.params,r.dm_working_phil.extract(),r.fmodel.hl_coeffs() is not None,weight_controls='weight_controls' in plan['policy']),
                         reflection_before=self.before,reflection_after=reflection_signature(r.fmodel),
                         phase_labels=self.phase_labels,phase_source=self.phase_source,
                         phases_before=self.phases_before,phases_after=phase_signature(r.fmodel.hl_coeffs()),

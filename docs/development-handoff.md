@@ -13,6 +13,121 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Explicit XYZ weights and bounded cluster probes 2026-10-29
+
+**Before and after.** XYZ probes previously relied on the native default
+experimental/geometry balance. `make_plan` and API-only `run_xyz` now accept
+`xyz_weight_scale=None` or an explicit finite numeric scale in 0.001–10.
+Omission preserves legacy options, policies, PHIL and replay. Explicit scales
+record `options.xyz_weight_scale` and six `policy.weight_controls` values,
+including companion geometry/ADP weights and disabled fixed-weight overrides.
+Both native preflight and endpoint readback must match. Native `wxc` still adapts
+between cycles; this option scales its experimental contribution rather than
+fixing the absolute weight. Weight optimization remains disabled. See the
+[descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls).
+
+**Native evidence.** Three complete three-cycle XYZ/ADP executions used
+**Phenix 2.2.1-6174**, each bounded to 240 s. Explicit scale 0.5 reproduces the
+previous implicit-default final PDB and result bytes exactly. At scale 0.05,
+the same four-site start reduces the maximum explicit recipe deviation from
+13.6267 to 4.4554 sigma. XYZ Rwork/Rfree changes from 0.315935/0.926385 to
+0.341925/0.932623; the improved restraint fit is not improved scientific evidence
+by itself. No observations or flags are excluded.
+
+A private deterministic rigid-tetrahedron search uses the mapped AutoSol center,
+8193 orientations, 13 bounded translations and local perturbations (106558
+scored candidates). All six 2.8-Angstrom edges and explicit donor assignments are
+preserved; the centroid may move at most 0.8 Angstrom. A native symmetry expansion
+retains 87 parent atoms/copies within 8 Angstrom and exact source/operator/shift
+provenance. A declared heuristic balances short contacts and donor distances.
+It is not native nonbonded energy, a diffraction search or a qualified auto-builder;
+cluster self-symmetry contacts and base motion are not scored. The closest
+unbonded contact improves from 0.9622 to 1.6810 Angstrom, still short. Starting
+donor distances worsen to 2.4577 and 2.5396 Angstrom. This tradeoff is retained,
+not presented as an accepted placement.
+
+The resulting new hypothesis, refined at 0.05, reaches maximum recipe deviation
+3.9854 sigma and XYZ Rwork/Rfree 0.343567/0.933392. Two complete frozen-fdp runs
+(10 macro cycles, five minimizer cycles, maximum 100 iterations, start 0;
+240-s bounds) use the separate refined base-shell means: 225.48 and 212.42
+Angstrom squared. XYZ/B/Q/f-prime audits pass, while individual f-double-prime
+values retain mixed signs in both branches. **No geometry, atom count or
+checkpoint is accepted.** The native executions are complete, not dry runs;
+independent convergence qualification remains absent. **Coot was not invoked.**
+
+**Map prototype boundary.** Three successful native endpoint dry-run readbacks
+export unscaled-initialization maps. Three separate native dry-run plus scale-only
+evaluations recompute masks/scales without XYZ/ADP refinement, outlier rejection,
+ADP backtrace or observation rescaling. Their R factors closely match but do not
+replace the original endpoint values. Each exports 2mFo-DFc and mFo-DFc MTZ
+coefficients on exactly 1201 work reflections; all 69 free reflections remain in
+the input and fit audit but are absent from displayed coefficients. No missing
+reflections are filled, no sharpening is applied, and sigma normalization is
+whole-cell. A 1.5-Angstrom sphere samples each explicit metal. MTZ complex-value
+readbacks, observation/flag/HL invariance and copied-input hashes pass.
+
+These maps retain model-assisted HL phases and are neither independent validation
+nor exact final native-state capture. Positive values at four proposed sites do
+not establish four resolved atoms. Map evaluation, local scoring and viewing are
+not added to the production API/GUI. A first contact-cloud attempt lost native
+hierarchy parent labels and was rejected before hypothesis creation; its output
+is retained. A first map readback rejected floating roundoff; corrected readbacks
+retain the measured maximum delta (2.84e-14) and a 1e-8 numeric bound. All failed
+and superseded private attempts remain separate.
+
+**Files, schemas and compatibility.** Changes are limited to `metal/xyz.py`,
+`metal/_xyz_native.py`, new `test_metal_xyz_weights.py`, README, documentation map,
+architecture, metal-screen/anomalous methods, development intent, changelog and
+this handoff. Explicit weight options/policies are additive inside schema-1 XYZ
+bundles; updated readers are required for them. Old bundles need no migration.
+The XYZ worker fingerprint changes. Frozen-fdp, count, comparison and scan
+implementations remain unchanged; exact XYZ endpoint identity still distinguishes
+comparison bases. No CLI, GUI, chemistry target, discovery gate or automatic
+weight/count selection changes.
+
+**Validation.** The initial 11 new cases failed before implementation because
+the option did not exist. Final coverage adds actual native-policy readback and
+immutable sibling relocation after the original temporary source/data path is
+removed. The exact focused command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_*.py tests/test_cli.py`:
+**526 passed and 14 subtests passed in 70.88 s**, including local-loopback tests.
+The direct XYZ/weight subset passes **51 tests**. The complete command, with
+that interpreter and environment, `python -B -m pytest -q -p no:cacheprovider`,
+passes **6163 tests and 276 subtests in 721.58 s**, exit 0. All **464** inventoried
+source/test/asset files remain unchanged; no source/test changes followed it.
+Existing process/socket integration tests ran with OS permissions.
+
+Offline replay passes **31** old/new hypotheses, XYZ endpoints, fdp/count reports,
+scan and comparison bundles. All **605** earlier cluster files, **778** earlier
+rehearsal files and original dataset inputs remain unchanged. Both explicit
+weight siblings replay from a relocated temporary source/data checkout after
+the old path is gone. Final checks pass **three** Python 3.10 grammar checks,
+**106** local documentation links, JSON and whitespace. Private map receipts
+verify parent/input checksums, MTZ readback and unchanged input state.
+
+Private commands use the everyday checkout's `.venv/bin/python -B` and
+`PYTHONDONTWRITEBYTECODE=1`: `A32_weights.py`, `A32_cloud_setup_v2.py` (read-only
+native helper `A32_contact_cloud_v2.py`), `A32_placement_v2.py`,
+`A32_placement_native.py`, `A32_map_setup_v2.py` / `A32_map_setup_v3.py` (matching
+native readback helpers), `A32_final_replay.py` and `A32_full_tests.py`.
+Native map evaluations have 120-s bounds. Scientific files stay in ignored local
+`branch-artifacts/Alder/geometry-20261029-01/`; the existing cluster dataset adds
+`hypothesis_003`, `xyz_005`–`xyz_007`, `fdp_004`–`fdp_005` and
+`fdp_count_004`–`fdp_count_005`. Inputs, earlier runs and failed attempts remain
+immutable. Only source/tests/docs go to Git; no generated models, maps, MTZs,
+private runners or manuscript material are committed/uploaded or pruned.
+
+**Next boundary.** Continue the current Alder branch; this change is based on
+`9c50ae5`. Before wider count searches,
+qualify capture of maps from the actual completed native state and inspect the
+coordination assumptions/alternative geometry families against those maps and
+frozen anomalous responses. Keep B and phase-policy sensitivity explicit; do
+not search weights solely to lower recipe deviations. Resolve the previously
+recorded wavelength/cell context question using actual dataset metadata.
+Independent stopping evidence, general placement/chemistry qualification,
+special-position multiplicity, six-site recipes, campaign execution and GUI
+integration remain open. Everyday Pine and separate Cedar work stay untouched.
+
 ## Native fit leverage and endpoint geometry diagnostics 2026-10-29
 
 **Before and after.** Native metal trials retained observations and final R

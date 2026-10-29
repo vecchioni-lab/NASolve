@@ -12,6 +12,63 @@ sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
 
+## Implemented explicit XYZ weight controls
+
+The API-only XYZ adapter accepts `xyz_weight_scale` in `make_plan` and `run_xyz`.
+This enables a declared sibling experiment when a low-resolution geometry departs
+from its recipe. It does not choose an optimal weight, change restraint targets,
+or qualify a geometry. Omit the argument (or use `None`) to preserve the legacy
+plan and PHIL exactly. An explicit finite numeric value must lie in **0.001–10**;
+booleans and numeric strings are rejected before allocating a trial.
+
+**Methods.** Phenix 2.2.1-6174 combines the experimental coordinate target as
+`wxc * wxc_scale * experimental_target` with `wc * geometry_target`. The option
+sets `wxc_scale`; smaller values give geometry more relative influence. The
+native `wxc` remains recalculated during refinement, so this is not a fixed
+absolute restraint weight. Explicit controls also fix `wxu_scale=1`, `wc=1`,
+`wu=1`, `fix_wxc=None` and `fix_wxu=None`; XYZ/ADP weight optimization remains
+disabled. Capture all six actual native controls before and after the fit and
+reject a policy mismatch. ADP fitting remains open under its existing policy.
+
+Plans add `options.xyz_weight_scale` and `policy.weight_controls` only when
+requested, within existing schema-1 XYZ trials. Explicit `0.5` records the native
+default as a declared experiment; it is deliberately distinct from omission.
+Verification reconstructs parameters from the saved plan without running native
+code. Old bundles need no migration. The worker fingerprint changes, while
+frozen-fdp worker/scan policies do not. Different XYZ endpoints remain distinct
+comparison bases, even when their scalar weight values match.
+
+```mermaid
+flowchart LR
+    H[Verified hypothesis and declared phases] --> W[Explicit weight sibling]
+    W --> X[Native XYZ and ADP fit; audit weight readback]
+    X --> G[Inspect recipe residuals and diffraction fit]
+    G --> B[Derive environmental B from this endpoint]
+    B --> F[Freeze XYZ B Q and f-prime; fit f-double-prime]
+    F --> R[Human review; no automatic winner or count]
+```
+
+*Figure: implemented weight-controlled branch. Better agreement with a recipe
+alone does not establish that the recipe describes the diffraction data.*
+
+A bounded native four-site rehearsal reproduced the previous endpoint exactly
+with explicit `0.5`. At `0.05`, the worst recipe residual fell from 13.63 to
+4.46 sigma; a separate rigid contact-screened start reached 3.99 sigma. Neither
+resolved the mixed-sign f-double-prime responses. These are conditional native
+mechanics results, not validation of the proposed four-site geometry. The
+private placement search used the AutoSol center as its anchor, bounded coherent motion,
+exact recipe and parent symmetry contacts; it still left a close contact and
+is not a general chemistry-aware placement implementation.
+
+Private map prototypes separately reload each serialized endpoint and recompute
+masks/scales without coordinate/ADP refinement. They export work-reflection-only
+2mFo-DFc and mFo-DFc coefficients, with no missing-data filling or sharpening,
+and record sigma-scaled local samples. They retain model-assisted HL phases.
+They are **not exact final-state map capture**, independent validation, an atom
+count, an automated score or a public API. Initial unscaled readbacks remain
+separate from the scale-only evaluations. Qualification of final-state maps,
+phase sensitivity and local peak interpretation remains open.
+
 ## Implemented native fit and endpoint recipe diagnostics
 
 New native XYZ and frozen-fdp trials capture the final complex model structure

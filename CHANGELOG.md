@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Declare and audit metal XYZ geometry/data weighting
+
+- Add optional API-only `xyz_weight_scale` to XYZ planning/execution. Explicit
+  scales record and audit the native experimental-weight multiplier plus fixed
+  companion controls before/after refinement; invalid values fail before trial
+  allocation. Omission preserves legacy plans, PHIL and offline replay.
+- Preserve numbered sibling lineages through refined-environment B preparation
+  and frozen-fdp fitting. No automatic weight search, geometry selection or count
+  acceptance is added. Existing fdp and scan policies remain unchanged.
+- Exercise controlled weight and rigid-placement probes on a local cluster;
+  retain residual geometry and mixed-sign f-double-prime concerns. Separate
+  map evaluation remains a private prototype, not an endpoint-map API.
+
 ### Explain native metal-fit scaling and endpoint coordination residuals
 
 - Capture final complex Fmodel and native partition scales in new XYZ/fdp trials;
