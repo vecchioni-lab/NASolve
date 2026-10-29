@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Attribute native nonbonded penalties to captured atom pairs (C127)
+
+- Add opt-in `nonbonded_inventory` to linked native energy inspection. Reuse
+  the actual native energy object's pair list and the existing bounded pair
+  evaluator; preserve default and legacy worker bytes.
+- Add read-only pair attribution with exact identity/coordinate binding,
+  per-pair residual/gradient replay, container sums, manager agreement and fixed
+  repeats. Retain zero-contribution pairs and group contributions by residue.
+  Unsupported symmetry/functions and inconsistent evidence cannot pass readback.
+- Add schema-1 `cif-native-nonbonded-attribution-v1`. This explains crowding in
+  the L-FANA construction control without moving atoms, changing chemistry or
+  granting geometry acceptance. Existing CLI/run/checkpoint contracts are unchanged.
+
 ### Fit a source-preserving FANA bridge seed (C126)
 
 - Add a separate immutable construction seed using three graph-checked acyclic

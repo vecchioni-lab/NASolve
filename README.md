@@ -95,6 +95,9 @@ placement and linked native qualification remain open.
 C124 adds [whole-residue FANA placement controls](docs/cif-doctor.md#whole-residue-fana-placement-control-c124):
 the L-FANA sugar survives placement, while measured junction gaps and a missing
 native incoming link keep the candidate under review. Ordinary mutation remains unchanged.
+C127 adds [native pair attribution](docs/cif-doctor.md#native-nonbonded-pair-attribution-c127):
+the bridge seed's crowding is localized to the next residue. Native topology
+must also match declared chemistry before candidate scores can be compared.
 C126 adds a [source-preserving bridge seed](docs/cif-doctor.md#source-preserving-fana-bridge-seed-c126):
 both native links and complete phosphate angle coverage now pass in the separate
 L-FANA-C control. Strain, clashes and linked chemistry still require qualification.

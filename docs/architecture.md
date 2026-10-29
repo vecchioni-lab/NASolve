@@ -3630,3 +3630,20 @@ replay unchanged. Source definitions and installed libraries remain untouched;
 there is no CLI, production mutation or run/checkpoint migration. See the
 [bridge contract](cif-doctor.md#source-preserving-fana-bridge-seed-c126) for search
 bounds, serialization, runtime portability and remaining chemistry/geometry gates.
+
+
+## Native nonbonded attribution (C127)
+
+The opt-in `nonbonded_inventory` extension requires linked energy evidence and
+freezes two fixed native pair snapshots under schema-1
+`cif-native-nonbonded-attribution-v1`. It reuses the existing bounded native cache
+evaluator and its actual energy-object pair lists. Default worker bytes remain
+unchanged. Offline review binds atom identities/coordinates, replays positive-
+parameter prolsq arithmetic, sums per-pair residuals/gradients, and matches the
+captured full manager and repeated membership. All pairs remain visible.
+Unsupported symmetry/functions fail the explicit diagnostic, without adding
+chemical or geometry approval. No production or run/checkpoint migration occurs.
+The FANA controls show why topology must precede score comparisons: the translated
+control lacks its outgoing backbone bond and has a native inferred base–base
+bond; the connected bridge has significant next-residue crowding. See the
+[pair contract](cif-doctor.md#native-nonbonded-pair-attribution-c127).

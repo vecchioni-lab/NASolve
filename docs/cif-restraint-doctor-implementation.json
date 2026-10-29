@@ -27102,16 +27102,24 @@
       "implementation_commit": "c865ed65c4104d10b95e81fc81ffac74c097cb94"
     },
     "fana_bridge_seed": {
-      "status": "PUBLISHED_FOCUSED_NATIVE_COLD_VALIDATED_FULL_PENDING",
+      "status": "PUBLISHED_VALIDATED_WITH_C127",
       "policy_ids": [
         "cif-fana-torsion-bridge-seed-v1",
         "cif-source-bound-fana-seed-junction-angles-v1"
       ],
       "evidence_key": "fana_bridge_seed_2026_10_29",
       "behavior": "Bounded torsion-only phosphate-arm fit with a virtual leaving-oxygen direction; both native links and complete incoming/outgoing phosphate coverage, preserving source geometry and exact flanks.",
-      "validation": "221 focused tests; two fresh Phenix interpretations; 301-file cold replay; legacy C125 replay. Full regression deferred/pending.",
-      "next": "Full regression, then native geometry/nonbonded and linked source/terminal chemistry qualification before integration.",
+      "validation": "221 C126 focused; combined C126/C127 full suite: 6528 passed, 276 subtests passed in 1028.87s (0:17:08); original native/cold controls preserved.",
+      "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles.",
       "implementation_commit": "45419432508aa4bc9b7184ce9a408936ca2119b5"
+    },
+    "native_nonbonded_attribution": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "policy_id": "cif-native-nonbonded-attribution-v1",
+      "evidence_key": "native_nonbonded_attribution_2026_10_29",
+      "behavior": "Explicit fixed-coordinate capture with actual energy-object membership, pair/container/manager proof and read-only per-residue attribution.",
+      "validation": "6528 passed, 276 subtests passed in 1028.87s (0:17:08); 194 focused; two actual Phenix interpretations; 375-file cold replay.",
+      "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles."
     }
   },
   "audience": [

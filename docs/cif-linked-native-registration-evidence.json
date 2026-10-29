@@ -43770,7 +43770,7 @@
     "implementation_commit": "c865ed65c4104d10b95e81fc81ffac74c097cb94"
   },
   "fana_bridge_seed_2026_10_29": {
-    "status": "PUBLISHED_FOCUSED_NATIVE_COLD_VALIDATED_FULL_PENDING",
+    "status": "PUBLISHED_VALIDATED_WITH_C127",
     "base_commit": "649f7cb7ee1ca18d2fd9935b002748d0398d2748",
     "branch": "cedar",
     "policy_ids": [
@@ -44201,9 +44201,10 @@
     },
     "legacy_c125_replay": "PASS; original real package, three captures and prior capture, 17 delta checks, gap refusal; current source code, no native execution.",
     "full_regression": {
-      "status": "DEFERRED_PENDING",
-      "reason": "User requested this larger jump before full regression.",
-      "last_complete_suite": "C125: 6482 passed, 276 subtests passed in 1015.43s; not validation of C126."
+      "status": "PASS_WITH_C127",
+      "evidence_key": "native_nonbonded_attribution_2026_10_29",
+      "summary": "6528 passed, 276 subtests passed in 1028.87s (0:17:08)",
+      "note": "Combined C126/C127 source/test snapshot; C126 source/tests remain unchanged."
     },
     "validation_commands": {
       "focused": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider --durations=20 tests/test_cif_fana_bridge.py tests/test_cif_fana_junction.py tests/test_cif_fana_placement.py tests/test_cif_fana_component.py tests/test_cif_fana_enantiomer.py tests/test_cif_linked_qualification.py tests/test_cif_terminal_qualification.py tests/test_cif_captured_geometry.py",
@@ -44316,12 +44317,579 @@
       "Exact readback tied to recorded NumPy runtime; cross-version/BLAS reproducibility not established.",
       "No Coot, dictionary generation, native optimizer or diffraction refinement."
     ],
-    "next": "Full regression, then native geometry/nonbonded and linked source/terminal chemistry qualification before integration.",
+    "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles.",
     "source_test_files_unchanged": 482,
     "compileall": "PASS",
     "documentation_links": 327,
     "json_and_svg_parse": "PASS",
     "whitespace": "PASS",
     "implementation_commit": "45419432508aa4bc9b7184ce9a408936ca2119b5"
+  },
+  "native_nonbonded_attribution_2026_10_29": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "base_commit": "47a84cb0c36a4b6ff5b8cd7dcfe4fdc204b2d976",
+    "branch": "cedar",
+    "policy_id": "cif-native-nonbonded-attribution-v1",
+    "schema_version": 1,
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "127_Cedar_FANA-pairs-p3s2dwou"
+    },
+    "before": "Native energy totals did not attribute nonbonded contributions to pairs in the standard linked diagnostic.",
+    "after": "Explicit fixed-coordinate capture with actual energy-object membership, pair/container/manager proof and read-only per-residue attribution.",
+    "changed_files": [
+      "src/nasolve/cif_native_nonbonded.py",
+      "src/nasolve/cif_native_validation.py",
+      "tests/test_cif_native_nonbonded.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "compatibility": "Additive opt-in flag/object/review API. Default and legacy worker bytes unchanged; no CLI/run/checkpoint migration.",
+    "software": {
+      "Python": "3.12.14",
+      "NARestraints": "1.1.3",
+      "Phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "Coot": "NOT_RUN"
+    },
+    "native_execution": {
+      "interpretations": 2,
+      "timeout_seconds_each": 60,
+      "dry_run": false,
+      "full_manager_evaluations_each": 4,
+      "pair_kernel_calls": {
+        "translated": 654,
+        "bridge": 824
+      },
+      "max_pair_kernel_calls_each": 5000,
+      "generation": 0,
+      "optimization": 0,
+      "refinement": 0
+    },
+    "source_origins": {
+      "translated": {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/native/supplemented/cif-native-_5xowij0",
+        "receipt_sha256": "d44a2e2da2ed08974ec354d89269d77eb9d962f72541e8d21096451760652803"
+      },
+      "bridge": {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/native/supplemented/cif-native-64uk8zr1",
+        "receipt_sha256": "5b3d2273fadc2780e43d5fea1458704c683445952425520920b932b7de15aa7f"
+      }
+    },
+    "comparison": {
+      "translated": {
+        "pair_count": 326,
+        "positive_residual_pairs": 41,
+        "total_residual": 973.948149885052,
+        "by_site_pair": [
+          {
+            "sites": [
+              "A:2",
+              "A:3"
+            ],
+            "pair_count": 83,
+            "positive_residual_pairs": 19,
+            "residual": 897.9253221856718
+          },
+          {
+            "sites": [
+              "A:2"
+            ],
+            "pair_count": 67,
+            "positive_residual_pairs": 4,
+            "residual": 33.23482045193005
+          },
+          {
+            "sites": [
+              "A:1",
+              "A:2"
+            ],
+            "pair_count": 34,
+            "positive_residual_pairs": 3,
+            "residual": 24.111780259842227
+          },
+          {
+            "sites": [
+              "A:3"
+            ],
+            "pair_count": 81,
+            "positive_residual_pairs": 12,
+            "residual": 15.858298914750131
+          },
+          {
+            "sites": [
+              "A:1"
+            ],
+            "pair_count": 61,
+            "positive_residual_pairs": 3,
+            "residual": 2.8179280728575398
+          }
+        ],
+        "covalent_summary": {
+          "bond_simple": {
+            "captured_proxies": 68,
+            "status_counts": {
+              "MEASURED": 68
+            },
+            "nominal_abs_ge_3": 24,
+            "nominal_abs_ge_5": 15,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 100,
+            "status_counts": {
+              "MEASURED": 100
+            },
+            "nominal_abs_ge_3": 3,
+            "nominal_abs_ge_5": 2,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 10,
+            "status_counts": {
+              "MEASURED": 10
+            },
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "largest_contacts": [
+          {
+            "atoms": [
+              "pdb=\" C2' AAJ A   2 \"",
+              "pdb=\" N7  0DG A   3 \""
+            ],
+            "distance": 1.7833244236537542,
+            "residual": 587.2086524114991
+          },
+          {
+            "atoms": [
+              "pdb=\" C1' AAJ A   2 \"",
+              "pdb=\" N7  0DG A   3 \""
+            ],
+            "distance": 2.1024680734793577,
+            "residual": 234.54471296476208
+          },
+          {
+            "atoms": [
+              "pdb=\" C2' AAJ A   2 \"",
+              "pdb=\" C8  0DG A   3 \""
+            ],
+            "distance": 2.677399111077766,
+            "residual": 41.495265301243606
+          }
+        ]
+      },
+      "bridge": {
+        "pair_count": 411,
+        "positive_residual_pairs": 69,
+        "total_residual": 6127.599344909726,
+        "by_site_pair": [
+          {
+            "sites": [
+              "A:2",
+              "A:3"
+            ],
+            "pair_count": 154,
+            "positive_residual_pairs": 49,
+            "residual": 6075.719250058321
+          },
+          {
+            "sites": [
+              "A:2"
+            ],
+            "pair_count": 73,
+            "positive_residual_pairs": 4,
+            "residual": 33.20386786372517
+          },
+          {
+            "sites": [
+              "A:3"
+            ],
+            "pair_count": 81,
+            "positive_residual_pairs": 12,
+            "residual": 15.85829891474998
+          },
+          {
+            "sites": [
+              "A:1"
+            ],
+            "pair_count": 61,
+            "positive_residual_pairs": 3,
+            "residual": 2.8179280728576255
+          },
+          {
+            "sites": [
+              "A:1",
+              "A:2"
+            ],
+            "pair_count": 42,
+            "positive_residual_pairs": 1,
+            "residual": 7.192258130616722e-11
+          }
+        ],
+        "covalent_summary": {
+          "bond_simple": {
+            "captured_proxies": 68,
+            "status_counts": {
+              "MEASURED": 68
+            },
+            "nominal_abs_ge_3": 24,
+            "nominal_abs_ge_5": 15,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 104,
+            "status_counts": {
+              "MEASURED": 104
+            },
+            "nominal_abs_ge_3": 3,
+            "nominal_abs_ge_5": 1,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 10,
+            "status_counts": {
+              "MEASURED": 10
+            },
+            "nominal_abs_ge_3": 0,
+            "nominal_abs_ge_5": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "largest_contacts": [
+          {
+            "atoms": [
+              "pdb=\"  N4 AAJ A   2 \"",
+              "pdb=\" C6  0DG A   3 \""
+            ],
+            "distance": 1.4495392371370983,
+            "residual": 1304.4746089120385
+          },
+          {
+            "atoms": [
+              "pdb=\"  N4 AAJ A   2 \"",
+              "pdb=\" O6  0DG A   3 \""
+            ],
+            "distance": 1.337235955244996,
+            "residual": 1010.1258056533093
+          },
+          {
+            "atoms": [
+              "pdb=\"  C4 AAJ A   2 \"",
+              "pdb=\" C6  0DG A   3 \""
+            ],
+            "distance": 1.8840979273912493,
+            "residual": 665.0835931968707
+          }
+        ]
+      }
+    },
+    "topology_context": {
+      "origin_source": {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/inputs/auto_linking_types.py",
+        "sha256": "528e0bfed5121d467e0ba2b0f0a2923b296bfe51f85212b3536590316c307c78"
+      },
+      "origin_10_label": "Misc. bond",
+      "origin_10_description": "Bond created based on atom type and distance.",
+      "cases": {
+        "translated": {
+          "cross_site_bonds": [
+            {
+              "atoms": [
+                "pdb=\" O3' 0DG A   1 \"",
+                "pdb=\"   P AAJ A   2 \""
+              ],
+              "distance_ideal": 1.607,
+              "i_seqs": [
+                5,
+                20
+              ],
+              "origin_id": 0,
+              "symmetry_operation": null,
+              "weight": 6944.444444444444
+            },
+            {
+              "atoms": [
+                "pdb=\"  C6 AAJ A   2 \"",
+                "pdb=\" O6  0DG A   3 \""
+              ],
+              "distance_ideal": 1.374,
+              "i_seqs": [
+                24,
+                55
+              ],
+              "origin_id": 10,
+              "symmetry_operation": null,
+              "weight": 10000.0
+            }
+          ]
+        },
+        "bridge": {
+          "cross_site_bonds": [
+            {
+              "atoms": [
+                "pdb=\" O3' 0DG A   1 \"",
+                "pdb=\"   P AAJ A   2 \""
+              ],
+              "distance_ideal": 1.607,
+              "i_seqs": [
+                5,
+                20
+              ],
+              "origin_id": 0,
+              "symmetry_operation": null,
+              "weight": 6944.444444444444
+            },
+            {
+              "atoms": [
+                "pdb=\" O3' AAJ A   2 \"",
+                "pdb=\" P   0DG A   3 \""
+              ],
+              "distance_ideal": 1.607,
+              "i_seqs": [
+                36,
+                39
+              ],
+              "origin_id": 0,
+              "symmetry_operation": null,
+              "weight": 6944.444444444444
+            }
+          ]
+        }
+      },
+      "comparison_boundary": "Different native covalent topologies/exclusions: residual totals are observations, not a fixed-objective score comparison or acceptance ranking.",
+      "next": "Require exact declared covalent inter-residue topology independently of native recognition, distinguishing NAR hydrogen-bond restraints; then address whole-junction angles and steric placement."
+    },
+    "new_regression_cases": 23,
+    "fail_before": {
+      "cases": 23,
+      "reference": {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/validation/fail-before/pytest.log",
+        "sha256": "03ec2e9483107749617326d992fc025aac8a0ca21ef4ee05af5e4d73e8d79c58",
+        "size": 18240
+      }
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_native_nonbonded.py",
+        "tests/test_cif_native_validation.py",
+        "tests/test_cif_nonbonded_cache_audit.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_captured_geometry.py",
+        "tests/test_cif_fana_bridge.py",
+        "tests/test_cif_fana_junction.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 57.116050874989014,
+      "source_test_files": 484,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_summary": "194 passed in 56.78s",
+    "cold": {
+      "status": "PASS",
+      "cases": {
+        "translated": {
+          "pair_count": 326,
+          "total_residual": 973.948149885052,
+          "pair_kernel_calls": 654,
+          "report_recomputed": true,
+          "model_definitions_and_covalent_geometry_unchanged": true
+        },
+        "bridge": {
+          "pair_count": 411,
+          "total_residual": 6127.599344909726,
+          "pair_kernel_calls": 824,
+          "report_recomputed": true,
+          "model_definitions_and_covalent_geometry_unchanged": true
+        }
+      },
+      "source_bound_c126_replayed": true,
+      "fresh_native_captures": 2,
+      "prior_captures": 2,
+      "chemical_qualification": "NOT_ESTABLISHED",
+      "geometry_accepted": false,
+      "automatic_adoption": false,
+      "owned_original_absent": true,
+      "original_sdk_and_process_access_blocked": true,
+      "blocked_attempts": [],
+      "files_unchanged": 375,
+      "native_execution": "NOT_RUN"
+    },
+    "full_regression": "PASS; combined C126/C127 suite",
+    "validation_commands": {
+      "focused": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider --durations=20 tests/test_cif_native_nonbonded.py tests/test_cif_native_validation.py tests/test_cif_nonbonded_cache_audit.py tests/test_cif_candidate_usability.py tests/test_cif_captured_geometry.py tests/test_cif_fana_bridge.py tests/test_cif_fana_junction.py",
+      "full": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider --durations=20",
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python> c127_native.py; exact per-call commands and frozen inputs in native receipts",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<capsule>/cold-relocated/src <python> c127_cold.py <capsule>",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c127-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "docs": "check_docs.py; ElementTree XML parse",
+      "whitespace": "git diff --check"
+    },
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/reports/native-paths.json",
+        "sha256": "7da18ba59253d96738871698b6ceb0acbdc0080d2c8163ce736b00dd8f19914f",
+        "size": 109
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/reports/comparison.json",
+        "sha256": "3c8aa5a726a4babcae756dc52d16dcfe92af85f98c78b692fec0e5c0e3fd854b",
+        "size": 9304
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/reports/topology-context.json",
+        "sha256": "dee74532e498af08da89ce259545c42cadcbad6269f29c98c151a9b4f51c2c07",
+        "size": 11628
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/reports/translated-pairs.json",
+        "sha256": "177c4de017c97a836c7ac8712c5d7079842aa7070589350ab8e95fa27c709df1",
+        "size": 149251
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/reports/bridge-pairs.json",
+        "sha256": "8ea95eee2afb5968036f238db6ec812f870ecb193660290914f6d4af651fcf66",
+        "size": 185795
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/validation/focused/pytest.log",
+        "sha256": "76275abb99b5025b11fbb6b1d0f29cc8b30114000d74026501544d458ca6d834",
+        "size": 2488
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/validation/focused/source-hashes.json",
+        "sha256": "c5992ff0ed7bd1b5f1df282698dc4743b77efdd74495f7a6239d179665eea7a5",
+        "size": 52278
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/validation/cold-result.json",
+        "sha256": "8adcb7248a319ad399009ea8f8f45a6e983cacb49f7750dcdbf59ae42c660130",
+        "size": 851
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/validation/cold-manifest.json",
+        "sha256": "6c47c01f3d72243765c86532661e99caecd2c8275d5e39664d15ae1fcc237841",
+        "size": 70870
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/validation/full/pytest.log",
+        "sha256": "b9adc2f4a9f9a15f1d9c818eae834bcdbe61c2f66187cbfd632c483c98f8f56c",
+        "size": 9945
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/validation/full/source-hashes.json",
+        "sha256": "c5992ff0ed7bd1b5f1df282698dc4743b77efdd74495f7a6239d179665eea7a5",
+        "size": 52278
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/runners/c127_native.py",
+        "sha256": "1524821e12824e05c8002de0289ded14db6528cca27a49d4964ad66d36182266",
+        "size": 3729
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/runners/c127_replay.py",
+        "sha256": "4ca05a3cff47972e6f15305cce346abaed0a44c4451bba62698636a50f93aa7f",
+        "size": 4326
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/runners/c127_cold.py",
+        "sha256": "e6f969d21d1ed175cfe26d04698998fb296b87b7c7048f8aa85d8380a9410ab5",
+        "size": 1727
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/runners/c127_cold_prepare.py",
+        "sha256": "3ba5b4a8a0fa585253a0e0cee4db021c0ceb8ff995c06f2adb723bf765ba4caf",
+        "size": 1345
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/runners/c127_validate.py",
+        "sha256": "91c59918cf274a4905f8580edfc55a1e740936808b0d5c147fefa9beea9eb77d",
+        "size": 1613
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "127_Cedar_FANA-pairs-p3s2dwou/runners/c127_context_v2.py",
+        "sha256": "7c82cbfce2e1c2ce8824638bb21f808f9768db256f58b046568dca684929a030",
+        "size": 2065
+      }
+    ],
+    "artifacts_included": "Source, synthetic tests, maintained documentation and compact evidence.",
+    "artifacts_excluded": "Raw models/CIFs/workbook, native captures/logs, installed source copy, scientific runs and local runners.",
+    "limitations": [
+      "Identity-only simple prolsq pairs with positive finite parameters; other symmetry/functions refuse.",
+      "Per-case exact replay does not make the two distinct covalent topologies a fixed-objective comparison.",
+      "Chemical authority, retained protonation, flank source-state differences and missing OP3 remain unqualified.",
+      "No coordinate repair, native optimization, Coot, generation or diffraction refinement.",
+      "No automatic adoption or physical clashscore."
+    ],
+    "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles.",
+    "full": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 1029.3710526660434,
+      "source_test_files": 484,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6528 passed, 276 subtests passed in 1028.87s (0:17:08)",
+    "source_test_files_unchanged": 484,
+    "compileall": "PASS",
+    "documentation_links": 332,
+    "json_and_svg_parse": "PASS",
+    "whitespace": "PASS"
   }
 }

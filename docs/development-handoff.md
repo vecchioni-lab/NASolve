@@ -11,14 +11,69 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C126 published (full regression pending): source-preserving FANA bridge seed
+## C127 validated: native nonbonded pair attribution
+
+Base/last published head: `47a84cb0c36a4b6ff5b8cd7dcfe4fdc204b2d976`; cedar only.
+Capsule: `live_tests_directory/127_Cedar_FANA-pairs-p3s2dwou`.
+Implementation, **194 focused tests**, two actual Phenix interpretations and
+**375-file cold replay** pass. Full C126/C127 suite passes: **6528 passed, 276 subtests passed in 1028.87s (0:17:08)**.
+All 484 source/test hashes are unchanged. Compileall, diff whitespace,
+332 documentation links and JSON/SVG parsing pass. No job is active; publication
+is next.
+
+Before: the ordinary linked diagnostic recorded nonbonded totals without pair
+attribution. After: opt-in `nonbonded_inventory` reuses the actual native energy
+object and existing bounded cache evaluator. Two fixed snapshots capture every
+pair, native residual/gradient and container sum. `review_native_nonbonded`
+binds coordinates/identities, replays prolsq arithmetic, verifies all sums,
+manager energies/gradients, repeat membership and evaluation accounting, then
+reports all pairs, zero terms, per-site totals and largest contributions.
+Unsupported symmetry/functions and inconsistent evidence refuse readback.
+
+Schema-1 `cif-native-nonbonded-attribution-v1` is an additive optional object/API;
+default/legacy worker bytes remain unchanged. No CLI/run/checkpoint migration,
+source or installed-library modification, model move or scientific acceptance.
+Changed files: new module/test, native inspection adapter and ten maintained
+documentation/evidence files (13 total). Raw science, native captures/logs and
+installed source copy remain local; exact commands/hashes are in evidence key
+`native_nonbonded_attribution_2026_10_29`.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1), two complete executions bounded to 60 seconds.
+Each reproduces its preserved model, definitions, covalent proxies and native
+energy/gradient. Translated/bridge captures have 326/411 pairs and 41/69 positive
+contributions; pair/container kernel calls 654/824 of a 5000 cap. The bridge's
+A:2/A:3 contacts contribute 6075.7193 of 6127.5993 total, with N4–O6 at 1.3372 Å
+and N4–C6 at 1.4495 Å. Its outgoing C3′–O3′–P angle is 86.3904° vs 119.7°.
+
+The translated total 973.9481 is **not a fixed-objective comparator**: its
+outgoing backbone bond is absent and it has C6(A:2)–O6(A:3), native origin 10,
+target 1.374 Å. The frozen installed catalogue calls this a `Misc. bond` from
+atom type/distance. The bridge has the two intended backbone links instead.
+Per-case preserved mechanics do not prove cross-case topology equivalence.
+C125's incoming-angle result remains valid within its original bounded scope.
+
+Cold replay verifies both fresh and prior native capture receipts, exact
+input/worker/spec/output bytes, all pair reports and the source-bound C126 control.
+Original paths/SDK and processes are blocked; no access attempted; 375 hashes,
+sizes and mtimes unchanged after the owned original disappears. No optimization,
+Coot, dictionary generation or diffraction refinement. Chemistry and adoption
+remain unqualified; C110 flank state/numerical differences and missing OP3 remain.
+
+Next: publish and verify cedar. Then reuse C109's existing exact source-link
+auditor for FANA construction, distinguishing NAR hydrogen-bond restraints,
+before comparing candidate scores; address steric placement and the
+complete junction angles under source/stereo preservation. Preserve every
+earlier candidate. Do not select the translation control by its lower total.
+— Rowan · Codex desktop
+
+## C126 published (full regression completed with C127): source-preserving FANA bridge seed
 
 Base/last published head: `649f7cb7ee1ca18d2fd9935b002748d0398d2748`; existing cedar only.
 Capsule: `live_tests_directory/126_Cedar_FANA-bridge-ox2k5s5_`.
 **221 focused tests**, two actual Phenix interpretations, legacy C125 replay and
 **301-file cold replay** pass. All 482 source/test hashes stayed unchanged during
-the final focused run. **Full C126 regression is deferred/pending** for this
-larger push before full regression; C125's 6482 + 276 is the last complete suite.
+the final focused run. The previously deferred full regression now passes in
+the combined C126/C127 suite recorded above; C126 source/tests are unchanged.
 No job is active. Compileall, diff whitespace, 327 documentation links and
 JSON/SVG parsing pass. Tested implementation `45419432508aa4bc9b7184ce9a408936ca2119b5` is
 published and verified on `origin/cedar`; this follow-up records continuity only.
@@ -65,15 +120,15 @@ handoff and both JSON ledgers (13 files). Raw science, logs/captures, workbook,
 probes and runners remain local. Exact commands/results are in evidence key
 `fana_bridge_seed_2026_10_29`; source/test hashes bind the focused validation.
 
-Remaining: full regression, residual strain/nonbonded clashes and native energy
+Remaining: residual strain/nonbonded clashes and native energy
 qualification, retained source protonation and numerical target suitability,
 and C110 flank H/charge/order differences/missing OP3. This is a connected
 construction seed, not a chemically qualified or adopted model. Ordinary mutation,
 other L-FANA bases, whole-model work and sticky ends remain separate.
 
-Implementation publication is complete. Next: full regression before another
-implementation jump, then assess native strain/clashes and linked chemical
-authority. No job is active; full regression remains pending.
+Implementation publication is complete. C127 above completes full regression
+and attributes native crowding; its current handoff defines the next topology
+and geometry gates. No C126 job is active.
 — Rowan · Codex desktop
 
 ## C125 published: source-bound missing junction angles

@@ -53,7 +53,9 @@
 
 <a id="current-capability-boundary-c125"></a>
 
-## Current capability boundary (C126)
+<a id="current-capability-boundary-c126"></a>
+
+## Current capability boundary (C127)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -67,7 +69,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. C121 separately covers the bounded neutral 6-oxo five-ring; charged/other carbonyl purines, convergence, linked PNA numerics and ordinary integration remain open. |
 | Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
-| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 preserves a whole residue in a separate three-site control but leaves a gap. C125 restores the two missing incoming angles in a bonded translation control. C126 fits a source-preserving seed with both native links and six angles at each phosphate. Strain/clashes, retained protonation and flank chemistry, other L-FANA bases and ordinary model mutation remain open. |
+| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 preserves a whole residue in a separate three-site control but leaves a gap. C125 restores the two missing incoming angles in a bonded translation control. C126 fits a source-preserving seed with both native links and six angles at each phosphate. C127 attributes the seed’s nonbonded crowding to A:2/A:3 and exposes an outgoing junction-angle distortion. The translated comparator has different native covalent topology. Exact declared topology, steric/angle repair, retained protonation/flank chemistry and ordinary model mutation remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -783,6 +785,88 @@ C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stay
 parked.
 
 
+### Native nonbonded pair attribution (C127)
+
+`inspect_native_bundle(..., inventory_detail="linked", energy_inventory=True,
+nonbonded_inventory=True)` adds an explicit fixed-coordinate diagnostic to the
+existing native reader. `nonbonded_inventory` defaults to false; legacy base and
+energy-worker bytes remain unchanged. It requires linked energy evidence and
+does not combine with the separate atom-name-mapping mode. No CLI default,
+production mutation, installed library or run/checkpoint schema changes.
+
+The worker reuses `native_cache_evaluator`, which inspects the pair list on the
+actual native energy object, rather than rebuilding neighbours for inspection.
+Two additional all-family evaluations each capture every identity-symmetry
+simple pair, its native van der Waals distance, residual and gradient, the actual
+repulsion parameters and the native container sum/gradient. A shared hard budget
+allows at most 5000 pair/container kernel calls; model coordinates remain fixed.
+The first version supports positive finite `prolsq_repulsion_function`
+parameters and identity-only simple pairs. ASU/nonidentity pairs, other functions
+or unavailable APIs fail the explicit capture; they are never silently omitted.
+Native errors, partial outputs and original inputs remain preserved.
+
+Schema-1 `cif-native-nonbonded-attribution-v1` lives in the optional
+`native_validation.nonbonded_inventory` object, with two snapshots, policy,
+normalization/symmetry convention and evaluation/kernel accounting. The native
+spec freezes the requested flag. `review_native_nonbonded(native)` binds the
+complete atom ordering and coordinates through the existing captured-geometry
+validator and requires repeatable native energy evidence. It reuses the pair
+sum/gradient proof, checks exact membership and function agreement, and verifies
+both captured full-manager targets/gradients against the energy inventory.
+
+Offline replay also recomputes each captured prolsq residual and gradient from
+coordinates and parameters, including the native zero-distance gradient
+convention. The expression is `c_rep * max(0, (k_rep*d_vdw)^irexp - d^irexp)^rexp`.
+This is replay of an observed native convention, not a new force field or
+independent chemical authority. Coincident pairs are reported explicitly.
+Receipt/input/worker/spec/output hashes still require separate execution
+attestation, as in the real and cold controls; a JSON object alone is not proof
+that Phenix ran. The read-only review never executes captured code.
+
+The report retains every pair, including zero contributions, and provides
+distance, native van der Waals distance, overlap, residual, gradient norm,
+within/between-residue classification, per-site-pair totals and the twenty
+largest contributions. Its status remains `REVIEW`. No clashscore, calibrated
+threshold, symmetry interpretation, source-chemistry approval, automatic
+adoption or complete geometry qualification is inferred.
+
+Two complete Phenix 2.2.1-6174 interpretations (dispatcher 2.2.1), each bounded
+to 60 seconds, reproduce the preserved C125 translated and C126 bridge models.
+Each retains its prior atoms, definitions, covalent inventory and energy/gradient.
+The new captures contain respectively 326/411 pairs, 41/69 positive residuals,
+and 654/824 pair/container kernel calls. Both use the observed native function
+parameters `c_rep=100`, `k_rep=1`, `irexp=1`, `rexp=4`, with normalization off.
+
+For the bridge seed, A:2/A:3 contributes 6075.7193 of the 6127.5993 total
+nonbonded residual. N4(A:2)–O6(A:3) is 1.3372 Å and N4(A:2)–C6(A:3) is
+1.4495 Å. The broader captured-geometry review also records outgoing
+C3′–O3′–P at 86.3904° against 119.7°. Thus both recognized backbone links
+and complete P-centred angle coverage do not establish a usable whole junction.
+
+The translated control's lower total, 973.9481, is not a fixed-objective
+comparison: it has the incoming backbone link, lacks the outgoing one, and
+contains C6(A:2)–O6(A:3) at native target 1.374 Å with origin 10. The frozen
+installed origin catalogue identifies 10 as `Misc. bond`, created from atom type
+and distance. The bridge instead has the two intended backbone links. Different
+covalent topology changes native exclusions, so these totals cannot rank the
+two candidates under one common objective. Earlier C125 incoming-angle mechanics
+remain valid within their stated scope; no C125 whole-linkage claim is added.
+
+The next gate reuses the existing C109 exact source-link audit for FANA
+construction: exact declared inter-residue covalent topology, distinguished
+from intentional NARestraints hydrogen-bond restraints. Then evaluate bounded
+steric and complete junction-angle repair while preserving the source graph,
+four sugar hands and flanks. Retained protonation, inherited C110 flank
+H/charge/order differences and missing OP3 remain open. No optimizer, Coot,
+dictionary generation or diffraction refinement runs in C127.
+
+23 new regressions fail before implementation; 194 focused tests and a 375-file
+cold replay pass. The replay validates new and prior captures, rederives all pair
+reports and the source-bound C126 control with original paths, SDK and processes
+blocked. The combined full suite passes: **6528 passed, 276 subtests passed in 1028.87s (0:17:08)**. Exact commands and final status
+are in [the evidence ledger](cif-linked-native-registration-evidence.json), key
+`native_nonbonded_attribution_2026_10_29`. Raw science and native evidence stay local.
+
 ### Source-preserving FANA bridge seed (C126)
 
 `prepare_fana_bridge_seed(placement, output, *, endpoint_weight=1000.)` prepares
@@ -861,8 +945,8 @@ the linked source/terminal chemistry before production integration.
 Validation: 221 focused tests pass; cold replay rederives the fit and native
 evidence with 301 files unchanged after relocation, while original paths, SDK
 and subprocess access are blocked. The preserved real C125 package also passes
-all 17 checks with the new code. **C126 full regression is deferred/pending**;
-C125's 6482 tests plus 276 subtests remain the last complete suite. Exact commands,
+all 17 checks with the new code. **The deferred C126 full regression is complete with C127**; see the combined
+full-suite result above. C126 source/tests were unchanged. Exact commands,
 versioned evidence and local references are in
 [the evidence ledger](cif-linked-native-registration-evidence.json), key
 `fana_bridge_seed_2026_10_29`. Raw scientific files and runners stay local.

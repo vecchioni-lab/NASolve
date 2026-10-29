@@ -3248,7 +3248,35 @@ and the diagnostic flank dictionaries still need qualification.
 Methods: a bounded 27-start torsion search with proper weighted rigid fitting,
 full-precision/serialized invariance checks, immutable source-bound readback,
 two fresh Phenix interpretations and an exact native restraint comparison.
-221 focused tests and a 301-file cold replay pass. Full regression for C126 is
-still pending; no native optimization or diffraction refinement was run.
+221 focused tests and a 301-file cold replay pass. The deferred C126 full
+regression subsequently passes in the combined C126/C127 suite; no native
+optimization or diffraction refinement was run.
 NARestraints continues to own pair/stack intent. See the
 [technical contract](cif-doctor.md#source-preserving-fana-bridge-seed-c126).
+
+
+### Explaining where a connected model still collides
+
+C127 turns the native nonbonded total into an attributable report. It records
+the actual pairs used by Phenix and checks that their individual contributions
+sum to the captured manager. The bridge seed's crowding is concentrated between
+the modified residue and its next neighbour: two N4 contacts are only about
+1.34 and 1.45 Å apart. The outgoing C3′–O3′–P angle also remains strongly bent.
+Connecting the backbone and supplying every phosphate angle did not solve those
+placement problems.
+
+The older translation control has a lower nonbonded total but a different native
+bond network: its outgoing backbone bond is absent and an unintended inter-base
+bond is inferred. Those scores therefore cannot rank the candidates on a common
+objective. Exact declared topology must be checked before geometry ranking,
+while intentional NARestraints hydrogen-bond restraints stay distinguishable
+from covalent links.
+
+Methods: two fixed native pair snapshots, exact atom/coordinate binding,
+per-pair native residual/gradient sums, offline replay of the captured repulsion
+function, repeat checks and per-residue attribution. Zero-contribution pairs
+are retained. The current version handles identity-only prolsq pairs and fails
+explicitly on unsupported symmetry/functions. No coordinates, chemistry or
+acceptance thresholds change; no physical clashscore or automatic adoption is
+claimed. Focused tests, real native captures and cold replay pass; the complete
+suite status is in the [technical contract](cif-doctor.md#native-nonbonded-pair-attribution-c127).

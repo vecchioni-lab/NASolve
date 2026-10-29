@@ -417,7 +417,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           policy_inventory: bool = False,
                           installed_library_only: bool = False,
                           energy_inventory: bool = False,
-                          atom_name_mapping: bool = False) -> dict:
+                          atom_name_mapping: bool = False,
+                          nonbonded_inventory: bool = False) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -435,6 +436,10 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         raise ValueError("Installed-library selection must be an explicit boolean")
     if type(energy_inventory) is not bool:
         raise ValueError("Native energy inventory must be an explicit boolean")
+    if type(nonbonded_inventory) is not bool:
+        raise ValueError("Native nonbonded inventory must be an explicit boolean")
+    if nonbonded_inventory and (inventory_detail != "linked" or not energy_inventory or atom_name_mapping):
+        raise ValueError("Nonbonded inventory requires linked energy evidence without atom mapping")
     if type(atom_name_mapping) is not bool:
         raise ValueError("Native atom name mapping must be an explicit boolean")
     if atom_name_mapping and (inventory_detail != "linked" or energy_inventory):
@@ -486,6 +491,11 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         spec["energy_inventory"] = True
         (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
         worker = native_energy_worker(worker)
+    if nonbonded_inventory:
+        from .cif_native_nonbonded import native_nonbonded_worker
+        spec["nonbonded_inventory"] = True
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_nonbonded_worker(worker)
     if atom_name_mapping:
         from .cif_native_atom_mapping import native_mapping_worker
         spec["atom_name_mapping"] = True
@@ -533,6 +543,9 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                         raise ValueError("Native worker omitted requested linked inventory details")
                     if atom_name_mapping and native.get("status") == "REVIEW" and native.get("atom_name_mapping_policy") != mapping_policy:
                         raise ValueError("Native worker omitted requested atom mapping inventory")
+                    if nonbonded_inventory and native.get("status") == "REVIEW":
+                        from .cif_native_nonbonded import review_native_nonbonded
+                        review_native_nonbonded(native)
                     receipt["native_validation"] = native
                     if native.get("status") == "REVIEW" and code == 0:
                         receipt["status"] = "REVIEW"
