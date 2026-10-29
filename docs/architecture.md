@@ -3519,6 +3519,21 @@ requires preserved coordinates at all four source sugar centres. Unknown hands
 remain unresolved. Schema-1 reports use `cif-source-declared-fana-v1`; CLI and
 API perform no writes or native calls. Ordinary Coot construction remains gated
 because its parent-DNA restoration does not establish modified-sugar fidelity.
-Native A/C/T/U isolated controls pass; GFL's carbonyl-purine reader mismatch and
-linked numerical qualification remain open. See the
+Native A/C/T/U isolated controls pass in C120; C121 below subsequently qualifies
+GFL's carbonyl-purine reader representation. Linked numerical qualification remains
+open. See the
 [FANA contract](cif-doctor.md#fana-source-and-candidate-preservation-c120).
+
+
+## Explicit neutral 6-oxo purine representation (C121)
+
+A separate graph/valence whitelist authorizes complete source-declared aromatic
+conversion of the five-membered ring, including its shared fusion bond. The
+6-carbonyl, nonshared spectator orders and whole-source chemical state remain
+fixed. Its explicit policy is dispatched through existing assessment and source-native
+contracts; standalone replay recomputes the recorded policy instead of assuming
+C117. The old default and whole-purine rule and both worker texts are unchanged.
+Existing schema-1 parameterized envelopes carry the new policy ID; no migration.
+GFL/0DG/40G pass isolated native controls. DG generation passes but its standard
+native name interpreter fails on HOP2, a separate consumer boundary. See the
+[6-oxo contract](cif-doctor.md#neutral-6-oxo-purine-source-representation-c121).

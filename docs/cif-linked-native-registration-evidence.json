@@ -41740,5 +41740,442 @@
       "svg_xml": "PASS"
     },
     "implementation_commit": "3e08078fc27b8e7bbf6f5005bd35040246cf9fa9"
+  },
+  "oxo_purine_representation_2026_10_29": {
+    "status": "VALIDATED_NOT_PUBLISHED",
+    "author": "Rowan · Codex desktop",
+    "base_commit": "fb6787640950514f079aa16dae4c8aea72a3a5e5",
+    "changed_files": [
+      "src/nasolve/cif_oxo_purine_representation.py",
+      "src/nasolve/cif_purine_representation.py",
+      "src/nasolve/cif_generation.py",
+      "src/nasolve/cif_source_representation.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_oxo_purine_representation.py",
+      "tests/test_cif_source_representation.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "before": "GFL and other neutral 6-oxo purines cannot hand source-declared five-ring aromatic reader inventories to native generation under the existing policies.",
+    "after": "A separately selected graph/valence whitelist permits exactly the five-ring conversion, including the shared fusion edge, preserves carbonyl/nonshared spectator chemistry and threads that policy through generation, assessment, FANA CLI and read-only replay.",
+    "policy": "cif-source-declared-neutral-6-oxo-purine-aromatic-v1",
+    "schema": "Existing schema-1 parameterized envelopes and generation/contract policy IDs remain unchanged; the explicit representation policy identifies the new permission.",
+    "compatibility": "Defaults, C117 behavior, both worker texts and old receipts remain unchanged. No run/checkpoint migration, source normalization or automatic adoption.",
+    "included": "Source, synthetic tests, maintained contracts and compact technical evidence.",
+    "excluded": "Raw CIF/PDB/workbook, native captures/logs, candidates, partial outputs and runners remain local.",
+    "software": {
+      "Python": "3.12.14",
+      "NARestraints": "1.1.3",
+      "Phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "Coot": "NOT_RUN"
+    },
+    "native_controls": {
+      "direct": {
+        "GFL": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "rejection_reasons": []
+        },
+        "DG": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": false,
+          "same_fixed_covalent_proxies": null,
+          "rejection_reasons": []
+        },
+        "0DG": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "rejection_reasons": []
+        },
+        "40G": {
+          "generation_status": "FAILED",
+          "native_usable": false,
+          "same_fixed_covalent_proxies": null,
+          "rejection_reasons": []
+        }
+      },
+      "fresh_source_order_attempt": {
+        "40G": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "rejection_reasons": []
+        }
+      },
+      "generation_attempts": 5,
+      "source_probes": 1,
+      "interpretations": 8,
+      "qualified_interpretations": 6,
+      "checks_per_qualified_interpretation": 21,
+      "failed_interpretations": 2,
+      "DG_error": "AssertionError: HOP2!=\"HOP3\"",
+      "dry_run": false,
+      "generation_bounds": {
+        "steps": 180,
+        "seconds": 300
+      },
+      "interpretation_deadline_seconds": 60
+    },
+    "source_boundaries": {
+      "GFL": {
+        "status": "PASS",
+        "allowed_system_edge_counts": [
+          5
+        ]
+      },
+      "DG": {
+        "status": "PASS",
+        "allowed_system_edge_counts": [
+          5
+        ]
+      },
+      "0DG": {
+        "status": "PASS",
+        "allowed_system_edge_counts": [
+          5
+        ]
+      },
+      "40G": {
+        "status": "PASS",
+        "allowed_system_edge_counts": [
+          5
+        ]
+      },
+      "FMG": {
+        "status": "BLOCKED",
+        "allowed_system_edge_counts": []
+      },
+      "7BG": {
+        "status": "BLOCKED",
+        "allowed_system_edge_counts": []
+      },
+      "FDG": {
+        "status": "PASS",
+        "allowed_system_edge_counts": []
+      },
+      "A5L": {
+        "status": "BLOCKED",
+        "allowed_system_edge_counts": []
+      }
+    },
+    "fail_before": {
+      "cases": 32,
+      "result": "32 failed: explicit policy unsupported",
+      "evidence": {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/validation/c121-fail-before.log",
+        "sha256": "4c88834fe0c7e926bbd73f231eed75e19339e032ef770808732f7caed8631492",
+        "size": 86639
+      }
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_oxo_purine_representation.py",
+        "tests/test_cif_purine_representation.py",
+        "tests/test_cif_source_representation.py",
+        "tests/test_cif_aromatic_representation.py",
+        "tests/test_cif_generation.py",
+        "tests/test_cif_fana.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_source_candidate.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 28.136528333008755,
+      "source_test_files": 472,
+      "changed_files": [],
+      "finished": true,
+      "result": "308 passed in 27.85s",
+      "new_cases": 42,
+      "initial_integration_run": "Two fake mutation controls assigned the existing single-bond value; corrected the test helper to mutate to double. No runtime change was required.",
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/validation/focused-final/result.json",
+          "sha256": "f5f8d01d5a7ddaf05925b9cbc579f396a51d1189b82653cdb26be4b0edd03ae3",
+          "size": 746
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/validation/focused-final/pytest.log",
+          "sha256": "5a67ca7d46c42e8188ecd192bf3f27f3257ccbd6fc2f8043fcabf9284bb53f96",
+          "size": 3029
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/validation/focused-final/source-hashes.json",
+          "sha256": "cbe89a26a6aed6aea355f99de02af081f7d4d668eb2c472a4be8ac16a0271973",
+          "size": 51002
+        }
+      ]
+    },
+    "cold": {
+      "status": "PASS",
+      "generation_replays": 5,
+      "candidate_assessments": 4,
+      "native_receipts": 8,
+      "native_qualified": 6,
+      "native_failures_preserved": 2,
+      "source_contract_cases": 8,
+      "fana_candidate_cases": 1,
+      "files_unchanged": 357,
+      "blocked_attempts": [],
+      "owned_original_absent": true,
+      "native_execution": "NOT_RUN",
+      "pickle_loading": "NOT_RUN"
+    },
+    "input_integrity": {
+      "status": "UNCHANGED",
+      "files": 9
+    },
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/reports/source-contracts.json",
+        "sha256": "2be471e296e5669d2cae46a129cbcae38c3540de2578e1f4ffd93c0e8b480888",
+        "size": 14218
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/reports/GFL-family.json",
+        "sha256": "37e26745acb92298ab7960a72b9fc53e03369907c90fddd005ca15c94c7914ff",
+        "size": 549197
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/reports/native-summary.json",
+        "sha256": "30925475a6bc94292df888d55a604fae6b0da94e82b0ef2d6927c7db4b77e71b",
+        "size": 622
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/reports/ordered-native-summary.json",
+        "sha256": "2ab6b34d2845f84c97b7cfe1ba2855beee7fcc3d1299037230459a405f3d0671",
+        "size": 160
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/validation/input-manifest.json",
+        "sha256": "28bd561b07d6dff0812d09a236e415e6120fb0fc3f7f9b49ccf81de974f0ae1b",
+        "size": 1516
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/validation/cold-result.json",
+        "sha256": "be7180e88e21e63c9de91856e5c7ffceaac083c2fb84de98409201ec3656ec38",
+        "size": 371
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/validation/relocation-manifest.json",
+        "sha256": "2ee5135bbf970d1ebcf32bd3ab0f5621f5f2fd1924c6421aba3df02ce305dd9e",
+        "size": 68830
+      }
+    ],
+    "full_validation": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 991.4435430000303,
+      "source_test_files": 472,
+      "changed_files": [],
+      "finished": true,
+      "status": "PASS",
+      "result": "6330 passed, 276 subtests passed in 990.98s (0:16:30)",
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/validation/full/result.json",
+          "sha256": "e9a54a9ea749dbeea57248fd0f0846bcf19b2f747473a49f7c96f9bc8ffde963",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/validation/full/pytest.log",
+          "sha256": "5c0dd32249e2842da5f293f8c5724117d9000be20248f60ffef78c7b7837b172",
+          "size": 9683
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/validation/full/source-hashes.json",
+          "sha256": "cbe89a26a6aed6aea355f99de02af081f7d4d668eb2c472a4be8ac16a0271973",
+          "size": 51002
+        }
+      ]
+    },
+    "next": "Build whole modified-sugar/L-FANA model controls and linked PNA native construction; separately address DG standard-name hydrogen mapping. Independent CIP, native charge readback and ATL/L-DNA/PDU integration remain open.",
+    "exact_native_commands": [
+      {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "/private/tmp/c121_native.py"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "runner": {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/runners/c121_native.py",
+          "sha256": "a8c819af85e8a70f6eac33f71813751ae644371b3cf2899d28c9afdd075c4fca",
+          "size": 4885
+        },
+        "working_directory": {
+          "anchor": "development_checkout",
+          "path": "."
+        }
+      },
+      {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "/private/tmp/c121_native_ordered.py"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "runner": {
+          "anchor": "live_tests_directory",
+          "path": "121_Cedar_oxo-purine-uwk5e05g/runners/c121_native_ordered.py",
+          "sha256": "63d0374e5d06d7abde264969535c002ce2f8449d395467700a6fa01f6745868c",
+          "size": 5107
+        },
+        "working_directory": {
+          "anchor": "development_checkout",
+          "path": "."
+        }
+      }
+    ],
+    "exact_cold_command": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "/private/tmp/c121_cold.py",
+        "/Users/svecchio/NASolve-live-tests/121_Cedar_oxo-purine-uwk5e05g"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/121_Cedar_oxo-purine-uwk5e05g/cold-relocated/src"
+      },
+      "runner": {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/runners/c121_cold.py",
+        "sha256": "349b2790d7da3104a4c1eba7593ad69abcc1f00f3c8f2eb72b0dda9f3d73ccc2",
+        "size": 4471
+      }
+    },
+    "DG_consumer_boundary": {
+      "status": "UNRESOLVED_NATIVE_CONSUMER_BOUNDARY",
+      "component": "DG",
+      "observed_error": "AssertionError: HOP2!=\"HOP3\"",
+      "source_preservation": "complete candidate assessment passes; both phosphate hydrogens retained",
+      "trace": [
+        {
+          "module": "mmtbx.monomer_library.pdb_interpretation",
+          "function": "monomer_mapping.__init__",
+          "line": 1260
+        },
+        {
+          "module": "iotbx.pdb",
+          "function": "rna_dna_atom_names_interpretation.mon_lib_names",
+          "line": 493
+        }
+      ],
+      "source_reading": "The standard RNA/DNA reference-name path reaches a fallback assertion allowing only HOP3; the observed reference name is HOP2. Native geometry construction has not run. This finding does not authorize deleting, renaming or changing source phosphate hydrogens.",
+      "installed_source_pins": [
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/mmtbx/monomer_library/pdb_interpretation.py",
+          "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235",
+          "size": 279575
+        },
+        {
+          "anchor": "phenix_installation",
+          "path": "lib/python3.11/site-packages/iotbx/pdb/__init__.py",
+          "sha256": "7a1502d4a98f8d164b0c2e86f223245a5d9d6fcc50df14e86523cd46959905a8",
+          "size": 63094
+        }
+      ],
+      "installed_edits": "NOT_RUN",
+      "alternative_alias_trial": "NOT_RUN",
+      "recommended_follow_up": "Qualify an explicit consumer-name mapping or definition-isolation contract while preserving complete chemical identity and all failed attempts.",
+      "evidence": {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/reports/DG-consumer-boundary.json",
+        "sha256": "6c397e067cab9c9ac280abeb669b5fab404fac7b608db1b7124a7afb72eb7d1b",
+        "size": 1546
+      }
+    },
+    "compatibility_validation": {
+      "old_C120_A5L_receipt_replays": true,
+      "opt_in_worker_unchanged": true,
+      "default_worker_sha256": "a43dd5c166926cb2d2ff0506c24fb77ea7c9f0668dfde61d0300961d8a9b1a6e",
+      "cli_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-c",
+        "from nasolve.cli import main; raise SystemExit(main())",
+        "cif-doctor",
+        "fana",
+        "/Users/svecchio/NASolve-live-tests/121_Cedar_oxo-purine-uwk5e05g/inputs/data_GFL.cif",
+        "--code",
+        "GFL",
+        "--workbook",
+        "/Users/svecchio/NASolve-live-tests/121_Cedar_oxo-purine-uwk5e05g/inputs/Ligands.xlsx",
+        "--candidate",
+        "/Users/svecchio/NASolve-live-tests/121_Cedar_oxo-purine-uwk5e05g/GFL/generated/candidate.cif",
+        "--bond-representation-policy",
+        "cif-source-declared-neutral-6-oxo-purine-aromatic-v1",
+        "--json"
+      ],
+      "cli_exit_code": 2,
+      "cli_status": "CANDIDATE_PRESERVED",
+      "input_integrity": "UNCHANGED",
+      "evidence": {
+        "anchor": "live_tests_directory",
+        "path": "121_Cedar_oxo-purine-uwk5e05g/validation/compatibility.json",
+        "sha256": "3d7e446a2da0f0ee520ab789b032d72d55c25c2caeb625b30f5d701305c4b7f9",
+        "size": 930
+      }
+    },
+    "final_checks": {
+      "compilation": "PASS",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c121-pycache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "whitespace": "PASS",
+      "whitespace_command": "git diff --check",
+      "documentation": "PASS; 300 relative links and both JSON ledgers",
+      "svg_xml": "PASS"
+    }
   }
 }

@@ -10,9 +10,11 @@ from .cif_doctor import _bridges, _comparison_inventory, _number, _ORDERS
 
 POLICY_ID = "cif-source-declared-neutral-purine-aromatic-v1"
 
+OXO_POLICY_ID = "cif-source-declared-neutral-6-oxo-purine-aromatic-v1"
+
 
 def validate_policy(policy):
-    if policy not in (None, POLICY_ID):
+    if policy not in (None, POLICY_ID, OXO_POLICY_ID):
         raise ValueError("Unsupported bond representation policy: " + repr(policy))
 
 
@@ -152,3 +154,14 @@ def purine_bond_representation(source, generated, legacy):
     if not result["unresolved_bonds"]:
         result["status"] = "SOURCE_DECLARED_EQUIVALENT"
     return result
+
+
+def assess_bond_representation(source, generated, legacy, policy):
+    """Dispatch explicit policies without widening any historical policy."""
+    validate_policy(policy)
+    if policy == OXO_POLICY_ID:
+        from .cif_oxo_purine_representation import oxo_purine_bond_representation
+        return oxo_purine_bond_representation(source, generated, legacy)
+    if policy == POLICY_ID:
+        return purine_bond_representation(source, generated, legacy)
+    return legacy

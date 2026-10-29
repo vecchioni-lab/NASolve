@@ -11,6 +11,58 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C121 validated: source-declared neutral 6-oxo purine representation
+
+Base/last published head: `fb6787640950514f079aa16dae4c8aea72a3a5e5`; existing cedar only.
+Capsule: `live_tests_directory/121_Cedar_oxo-purine-uwk5e05g`. Implementation, focused/native/cold
+validation and docs are complete. Publication is next; no test or native job
+remains active.
+
+The new explicit graph/valence policy resolves GFL's source-declared five-ring
+aromatic handoff, including the shared fusion bond, while preserving the
+nonshared adjoining-ring bonds, carbonyl and whole source state.
+Generation contracts, candidate assessment, FANA CLI and standalone replay use
+that policy identity. Default/C117 behavior and both worker texts are unchanged;
+no atom-name selector, source chemistry normalization or installed-SDK edits.
+
+GFL and 0DG pass directly; 40G passes a fresh C116 connected-order attempt after
+preserving the initial 8.90 Å construction failure. Each passes all 21 native
+checks at both coordinate sets with equal fixed covalent proxies. GFL also
+preserves all four sugar hands through the FANA gate. DG generation preserves
+source chemistry, but both native interpretations assert on HOP2/HOP3 in the
+standard RNA/DNA name interpreter; do not delete/rename phosphate H to bypass it.
+Five complete Phenix 2.2.1-6174 generation attempts, one source probe and eight
+native interpretations are retained locally. Dispatcher 2.2.1; 180 steps/300 s
+generation and 60 s interpretation bounds. No Coot, refinement or convergence claim.
+Charged FMG/7BG and A5L are outside this new policy; FDG receives no aromatic
+permission. A5L continues to use C117. Source molecule codes are controls only.
+
+Validation: **6330 passed, 276 subtests passed in 990.98s (0:16:30)**; all 472 source/test hashes unchanged.
+Initial 32 fail-before cases; 42 new regressions and **308 focused
+passed in 27.85s**, all 472 source/test hashes unchanged. Cold replay reproduces
+five generation receipts, four candidate assessments, six native qualifications
+and two retained failures with 357 files unchanged, owned originals absent,
+and original/SDK reads/processes blocked. Nine source inputs keep bytes, sizes
+and timestamps. Exact commands/hashes and the 17-file change list are in the
+[evidence ledger](cif-linked-native-registration-evidence.json), key `oxo_purine_representation_2026_10_29`.
+
+Existing schema-1 envelopes carry the separately named representation policy;
+no run/checkpoint migration. Code, synthetic tests and compact technical contracts
+are included; all raw CIF/PDB/workbook, native captures/logs, candidates, failures
+and runners are excluded. Compilation, whitespace, 300 relative documentation
+links/both JSON ledgers and SVG XML pass. The existing C120 A5L receipt and both
+worker texts replay unchanged; the real GFL CLI returns candidate preservation
+with review exit 2 and unchanged inputs. Immediate next action: publish on
+cedar and record exact SHAs.
+
+Next scope: whole modified-sugar model construction and the proposed L-DNA scaffold
+with explicit L-FANA substitutions; C119 linked PNA native construction remains
+open. OFC is not an L-FANA target. Independent CIP, formal-charge readback,
+DG's name-mapping failure and ATL/L-DNA/PDU integration remain distinct. Sticky-end
+stitching stays parked; no additional branch or merge.
+
+— Rowan · Codex desktop
+
 ## C120 FANA source and candidate path
 
 Base/last published head: `59831cd45048807d52f166eba9f0979ae5fd0600`; existing cedar only.
@@ -53,7 +105,7 @@ generator/profile behavior, ordinary mutation, run/checkpoint schemas and
 phosphate/site operations stay unchanged; no migration. All raw data, CIF/PDBs,
 workbook, SDK captures, logs, generated/partial candidates and runners stay local.
 
-Next: qualify GFL's ring representation and whole modified-sugar construction,
+C120 follow-up (GFL representation now completed by C121): whole modified-sugar construction,
 then explicit site/link states and linked numerical restraints. Simon proposed
 an L-DNA scaffold with selected L-FANA replacements as the next model control:
 freeze explicit target/source or inversion intent, preserve unaffected L-DNA
@@ -504,7 +556,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; C113 separates bound hydrogen inventories within the limits above.** Every ligand in the selected
+**Scope revised 2026-10-28; evidence updated through C121 on 2026-10-29.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -514,9 +566,9 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states, numerical PNA qualification and terminal reconstruction remain open. |
-| G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds an opt-in source-authorized purine generation route with exact stage checks and isolated native controls. Decision/reuse pieces exist; general orchestration remains open. |
-| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states, numerical PNA qualification and terminal reconstruction remain open. C120 adds source-declared FANA identity and four-centre candidate preservation. |
+| G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds explicit whole-purine generation; C121 adds bounded neutral 6-oxo five-ring representation and transfers across FANA/L-DNA/PNA. Exact stage checks, immutable attempts and isolated controls pass. Decision/reuse pieces exist; general orchestration remains open. |
+| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. DG retains an explicit native name-mapping failure. Linked/model qualification remains open. |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 

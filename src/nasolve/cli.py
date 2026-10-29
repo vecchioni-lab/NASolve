@@ -258,7 +258,8 @@ def build_parser() -> argparse.ArgumentParser:
     cif_fana.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
     cif_fana.add_argument("--candidate", type=Path, help="optional complete candidate dictionary to assess")
     cif_fana.add_argument("--bond-representation-policy",
-                          choices=["cif-source-declared-neutral-purine-aromatic-v1"],
+                          choices=["cif-source-declared-neutral-purine-aromatic-v1",
+                                   "cif-source-declared-neutral-6-oxo-purine-aromatic-v1"],
                           help="explicit existing representation policy; default exact source bonds")
     cif_fana.add_argument("--json", action="store_true", help="print source and candidate preservation evidence")
     cif_profile = cif_sub.add_parser("profile", help="read-only source topology and attachment-port evidence")

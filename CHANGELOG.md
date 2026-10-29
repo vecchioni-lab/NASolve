@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify source-declared 6-oxo purine representation (C121)
+
+- Add an explicit structural policy for complete five-ring aromatic conversion
+  beside a neutral 6-oxo purine ring. Preserve its nonshared bonds, carbonyl,
+  full source H/charge/stereo state and independent native qualification.
+- Carry the selected policy through generation contracts, standalone replay and
+  FANA CLI inspection. Keep default and earlier whole-purine rules unchanged;
+  no source rewriting, installed-library edits or run/checkpoint migration.
+- GFL, L-DNA-G and PNA-G pass isolated native controls. DNA-G generates a complete
+  candidate but native interpretation remains blocked by a HOP2/HOP3 naming
+  assertion. Charged/8-oxo chemistry receives no new representation permission.
+
 ### Inspect FANA sources and complete candidates (C120)
 
 - Add read-only `cif-doctor fana` and `inspect_fana` for graph-bound 2′ fluorine,

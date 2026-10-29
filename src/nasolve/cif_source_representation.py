@@ -10,7 +10,7 @@ from inspect import getsource
 import json
 from pathlib import Path
 
-from .cif_purine_representation import POLICY_ID as REPRESENTATION_POLICY, validate_policy
+from .cif_purine_representation import validate_policy
 
 POLICY_ID = "cif-source-native-complete-candidate-v2"
 CONTRACT_POLICY = "cif-source-native-representation-contract-v1"
@@ -19,7 +19,7 @@ CONTRACT_POLICY = "cif-source-native-representation-contract-v1"
 def generation_representation_contract(source, code, policy):
     from .cif_doctor import assess_dictionaries
     from .cif_generation import _bond_representation
-    from .cif_purine_representation import purine_bond_representation, _charges
+    from .cif_purine_representation import assess_bond_representation, _charges
     validate_policy(policy)
     if policy is None:
         raise ValueError("An explicit representation policy is required")
@@ -36,8 +36,8 @@ def generation_representation_contract(source, code, policy):
     for row in projected["inventory"]["bond_orders"]:
         if set(row["aromatic_declarations"].values()) == {"Y"}:
             row["declarations"] = {"type": "AROMATIC"}
-    representation = purine_bond_representation(source_component, projected,
-        _bond_representation(source_component, projected))
+    representation = assess_bond_representation(source_component, projected,
+        _bond_representation(source_component, projected), policy)
     if representation["status"] not in {"EXACT", "SOURCE_DECLARED_EQUIVALENT"}:
         raise ValueError("Source aromatic conversion is outside the explicit representation policy")
     systems = representation["equivalent_rings"] + representation["equivalent_fused_systems"]
@@ -197,8 +197,10 @@ def _read_representation_candidate(root):
     if any(p.is_symlink() for p in [root,*root.parents,*root.rglob("*")]):raise ValueError("Unsafe candidate directory")
     load=lambda p:json.loads(p.read_text())
     report=load(root/"source_candidate_receipt.json")
+    policy = report.get("bond_representation_policy")
+    validate_policy(policy)
     if (type(report.get("schema_version")) is not int or report["schema_version"]!=1
-            or report.get("policy_id")!=POLICY_ID or report.get("bond_representation_policy")!=REPRESENTATION_POLICY
+            or report.get("policy_id")!=POLICY_ID or policy is None
             or report.get("automatic_adoption") is not False or report.get("requires_cif_review") is not False
             or report.get("native_backend")!="EXPLICIT_NATIVE_CCTBX_PREPARATION; INSTALLED_OPT_DEFAULTS"
             or report.get("selection")!="PENDING_NATIVE_USABILITY; OUTPUTS_PRESERVED_FOR_AUTOMATIC_FALLBACK"
@@ -220,7 +222,7 @@ def _read_representation_candidate(root):
     actual={p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file() and p!=root/"source_candidate_receipt.json"}
     if actual-set(r["path"] for r in omitted)!=set(names):raise ValueError("Candidate file inventory differs")
     source=root/"source.cif";code=report["component"]
-    contract=generation_representation_contract(source,code,REPRESENTATION_POLICY)
+    contract=generation_representation_contract(source,code,policy)
     if contract!=report["source_representation_contract"] or contract["source_sha256"]!=report["source_sha256"]:raise ValueError("Source representation contract differs")
     if (root/"candidate_worker.py").read_text()!=source_representation_worker(WORKER):raise ValueError("Candidate worker differs")
     if (root/"source_ideal.pdb").read_text()!=_ideal_seed(source,code)[0]:raise ValueError("Candidate source seed differs")
@@ -278,7 +280,7 @@ def _read_representation_candidate(root):
     if report["candidate"] is not None:
         candidate=verify(report["candidate"])
         if candidate!=root/"candidate.cif" or report["candidate_retained"] is not True:raise ValueError("Unexpected retained candidate")
-        inspection=inspect_component_generation(source,candidate,code,bond_representation_policy=REPRESENTATION_POLICY)
+        inspection=inspect_component_generation(source,candidate,code,bond_representation_policy=policy)
         stereo=complete_candidate_stereo(source,candidate,code)
         a,b=inspection["source_assessment"]["components"],inspection["generated_assessment"]["components"]
         charge_ok=len(a)==len(b)==1 and bool(_explicit_formal_charges(a[0])) and _explicit_formal_charges(a[0])==_explicit_formal_charges(b[0])

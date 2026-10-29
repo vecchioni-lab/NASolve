@@ -21,7 +21,7 @@ from typing import Mapping
 
 from .cif_doctor import assess_dictionaries, compare_dictionaries, _bridges, _number, _ORDERS
 from .ligand_profiles import _blocks
-from .cif_purine_representation import validate_policy, purine_bond_representation
+from .cif_purine_representation import validate_policy, assess_bond_representation, OXO_POLICY_ID
 
 POLICY_ID = "cif-independent-elbow-candidate-v4"
 BOND_REPRESENTATION_POLICY = "cif-source-declared-six-member-aromatic-v1"
@@ -231,7 +231,7 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
                        "connectivity_unchanged": None, "equivalent_rings": [], "unresolved_bonds": []})
     if bond_representation_policy is not None:
         if len(left) == len(right) == 1:
-            representation = purine_bond_representation(left[0], right[0], representation)
+            representation = assess_bond_representation(left[0], right[0], representation, bond_representation_policy)
         else:
             representation.update(policy_id=bond_representation_policy, equivalent_fused_systems=[])
     reasons = []
@@ -286,6 +286,8 @@ def inspect_component_generation(source: Path, generated: Path | None, code: str
                             "Well-formed unresolved torsion relationships remain review evidence pending native interpretation; no term is removed or adopted.",
                             ("Only complete source-declared isolated neutral C/N six-member alternating rings can change to aromatic bond types; other order changes remain rejected."
                              if bond_representation_policy is None else
+                             "The explicit neutral 6-oxo purine policy permits only its complete declared aromatic five-ring; the carbonyl, adjoining ring and source state remain fixed."
+                             if bond_representation_policy == OXO_POLICY_ID else
                              "The explicit neutral purine policy additionally permits the bounded fused 5/6 graph with unchanged single-bridge substituents; exocyclic multiple bonds and other order changes remain rejected."),
                             "Charge representation and newly supplied stereochemistry remain explicit review evidence."]}
 

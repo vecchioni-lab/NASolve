@@ -54,13 +54,14 @@ def test_native_representation_requires_whole_authorized_system_and_exact_state(
     assert source.read_bytes()==before
 
 
-def fake_generation(tmp_path,mode="none",opt_in=True,source_name="source.cif"):
+def fake_generation(tmp_path,mode="none",opt_in=True,source_name="source.cif", *,
+                    pair_factory=source_pair, policy=POLICY, ring_atoms=None, aromatic_count=10, edge_value=1):
     from tests.test_cif_constructor_backend import installation
     from tests.test_cif_source_candidate import REFERENCE
     from tests.test_cif_generation import program,HELP
     from nasolve.cif_source_candidate import generate_source_candidate,SOURCE_PATHS
     root,python,site,_,api=installation(tmp_path,"correct")
-    source,fixture=source_pair(tmp_path/"inputs")
+    source,fixture=pair_factory(tmp_path/"inputs")
     if source_name!=source.name:source=source.rename(source.with_name(source_name))
     native=site/"elbow/chemistry/SimpleMoleculeClass.py"
     native.write_text("""import json
@@ -79,7 +80,7 @@ class SimpleMoleculeClass(list):
  def SetCCTBX(self,value):self.cctbx=value
  def Setup(self):self.setup_calls=getattr(self,'setup_calls',0)+1
  def Chiralise(self,chiral_treatment):pass
-""")
+""".replace("set(['N1','C2','N3','C4','C5','C6','N7','C8','N9'])", repr(set(ring_atoms)) if ring_atoms is not None else "set(['N1','C2','N3','C4','C5','C6','N7','C8','N9'])"))
     reader=site/"elbow/chemistry/any_chemical_format_reader.py"
     reader.write_text("""from .SimpleMoleculeClass import SimpleMoleculeClass
 def any_chemical_format_reader(*args,**kw):return SimpleMoleculeClass()
@@ -87,7 +88,7 @@ def is_chemical_components_file(text):return True
 def return_molecule_class(molecule,simple=False):
  CHANGE
  return molecule
-""".replace("CHANGE",{"conversion_edge":"molecule.bonds[0].order=1","conversion_coordinates":"molecule[0].xyz.x+=0.01","conversion_stereo":"molecule[0].chiral=1"}.get(mode,"pass")))
+""".replace("CHANGE",{"conversion_edge":"molecule.bonds[0].order="+str(edge_value),"conversion_coordinates":"molecule[0].xyz.x+=0.01","conversion_stereo":"molecule[0].chiral=1"}.get(mode,"pass")))
     folder=site/"elbow/command_line";folder.mkdir();(folder/"__init__.py").write_text("")
     builder=folder/"builder.py"
     builder.write_text(REFERENCE+"""
@@ -100,10 +101,10 @@ def post_process(molecule,options):
  shutil.copyfile(os.environ['CANDIDATE_FIXTURE'],'candidate.cif')
  AFTER
  return molecule
-""".replace("BEFORE","import time;time.sleep(4)" if mode=="timeout" else "pass").replace("AFTER",{"finished_charge":"molecule[0].charge=1","finished_edge":"molecule.bonds[0].order=1","exception_after":"raise RuntimeError('FAKE AFTER OUTPUT')"}.get(mode,"pass")))
+""".replace("==10", "=="+str(aromatic_count)).replace("BEFORE","import time;time.sleep(4)" if mode=="timeout" else "pass").replace("AFTER",{"finished_charge":"molecule[0].charge=1","finished_edge":"molecule.bonds[0].order="+str(edge_value),"exception_after":"raise RuntimeError('FAKE AFTER OUTPUT')"}.get(mode,"pass")))
     elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n');selected=root/'bin/phenix.elbow';selected.write_bytes(elbow.read_bytes());selected.chmod(0o755)
     pins=[{'anchor':'phenix_installation','path':(p:=site/name).relative_to(root).as_posix(),'sha256':sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size} for name in SOURCE_PATHS]
-    out=tmp_path/'generation';options={'bond_representation_policy':POLICY} if opt_in else {}
+    out=tmp_path/'generation';options={'bond_representation_policy':policy} if opt_in else {}
     r=generate_source_candidate(root,python,selected,api,source,'Q17',out,environment={**os.environ,'CANDIDATE_FIXTURE':str(fixture)},expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=pins,phenix_version='FAKE',single_block_steps=12,timeout_seconds=0.5 if mode=='timeout' else 10,**options)
     return out,r
 

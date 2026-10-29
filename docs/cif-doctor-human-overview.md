@@ -114,11 +114,23 @@ C120 introduces explicit FANA source/candidate checking. It locates 2′ fluorin
 by connectivity and checks source-declared arabino configuration, preserving
 whole-source chemistry and all four sugar hands in completed candidates. All
 ten catalogue FANA controls match; three fluororibo comparators do not. A/C/T/U
-candidates pass isolated native checks; G remains blocked at the carbonyl-purine
-reader. OFC illustrates why names are insufficient: its workbook abbreviation
-says L-FANA, while its source declares the L-ribo configuration. Neither source
+candidates pass isolated native checks in C120; C121 adds G under a separate
+source-declared 6-oxo purine representation policy. OFC illustrates why names
+are insufficient: its workbook abbreviation says L-FANA, while its source declares the L-ribo configuration. Neither source
 nor catalogue is rewritten. Whole-sugar model construction and linked native
 qualification remain separate. See the [FANA contract](cif-doctor.md#fana-source-and-candidate-preservation-c120).
+
+C121 resolves a shared guanine representation boundary: the source explicitly
+marks a five-membered ring aromatic, including the shared fusion bond. The
+carbonyl and all nonshared bonds in the adjoining ring are preserved.
+The new graph rule permits exactly that complete conversion, keeps source H,
+charge and stereochemistry, and uses the same independent native checks. It works
+for GFL, L-DNA G and PNA-G controls. Ordinary DNA-G also generates correctly but
+Phenix's standard atom-name interpreter asserts on a retained phosphate hydrogen;
+that remains a separate failure, with all evidence preserved. No phosphate repair,
+linked qualification or convergence is claimed. See the
+[6-oxo contract](cif-doctor.md#neutral-6-oxo-purine-source-representation-c121).
+
 Native linked typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
@@ -802,8 +814,9 @@ native handoffs; new 40A/APN/40C candidates pass isolated checks. C119 freezes
 source-authorized PNA graphs with explicit amide edges, portable evidence and no
 assigned geometry or numerical targets. Linked native qualification stays open.
 C120 adds graph-bound FANA declaration and candidate-preservation checks; four
-core candidates pass isolated native controls, while GFL, linked FANA and
-ordinary modified-sugar construction remain unqualified.
+core candidates pass isolated native controls. C121 adds GFL, completing isolated
+A/C/G/T/U controls; linked FANA and ordinary modified-sugar construction remain
+unqualified.
 A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom

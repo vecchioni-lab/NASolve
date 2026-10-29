@@ -83,8 +83,9 @@ Preserved 40A/APN and the 40C control pass both isolated native coordinate check
 default generation and linked PNA qualification remain separate.
 C120 adds [FANA source/candidate checks](docs/cif-doctor.md#fana-source-and-candidate-preservation-c120):
 explicit 2′ fluorine and source-declared arabino configuration, with isolated
-native evidence for A/C/T/U. GFL, linked qualification and ordinary sugar mutation
-remain open; catalogue labels do not grant chemical support.
+native evidence for A/C/T/U. C121 adds [GFL and shared 6-oxo purine controls](docs/cif-doctor.md#neutral-6-oxo-purine-source-representation-c121)
+under a separate explicit representation policy. Linked qualification and ordinary
+sugar mutation remain open; catalogue labels do not grant chemical support.
 C118 adds [explicit purine generation](docs/cif-doctor.md#explicit-purine-generation-handoff-c118):
 new 40A/APN/40C candidates pass stage and isolated native checks while the default
 worker remains unchanged. C119 [freezes explicit PNA source networks](docs/cif-doctor.md#explicit-pna-source-network-packages-c119)
