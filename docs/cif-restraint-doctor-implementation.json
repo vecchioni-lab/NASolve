@@ -27123,7 +27123,7 @@
       "implementation_commit": "d4ed67dec2ea71cbb6116081f496a90ab41fa407"
     },
     "fana_topology_gate": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "fana_topology_gate_2026_10_29",
       "policies": [
@@ -27139,7 +27139,8 @@
         "C110 flank state and OP3 differences remain; source chemistry unchanged.",
         "Production orchestration, geometry repair and adoption remain separate."
       ],
-      "next": "Bounded geometry repair under exact declared topology and source/stereo preservation; native re-interpretation must pass the gate again. Any native optimizer requires fresh derivative qualification for this manager; old PDU/DF gradient proofs cannot transfer."
+      "next": "Bounded geometry repair under exact declared topology and source/stereo preservation; native re-interpretation must pass the gate again. Any native optimizer requires fresh derivative qualification for this manager; old PDU/DF gradient proofs cannot transfer.",
+      "implementation_commit": "bd986d8bac024f359f7771340f0c9b6c81f52c02"
     }
   },
   "audience": [

@@ -44894,7 +44894,7 @@
     "implementation_commit": "d4ed67dec2ea71cbb6116081f496a90ab41fa407"
   },
   "fana_topology_gate_2026_10_29": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "fbc60d3bd4abcafe3d1a14144d252d154bfbed2d",
     "capsule": {
       "anchor": "live_tests_directory",
@@ -45195,6 +45195,8 @@
       "finished": true
     },
     "full_summary": "6571 passed, 276 subtests passed in 990.57s (0:16:30)",
-    "source_test_files_unchanged": 487
+    "source_test_files_unchanged": 487,
+    "implementation_commit": "bd986d8bac024f359f7771340f0c9b6c81f52c02",
+    "remote_verified": "origin/cedar"
   }
 }

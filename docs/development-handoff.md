@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C128 validated: exact declared inter-residue topology gate
+## C128 published: exact declared inter-residue topology gate
 
 Base/last published head: `fbc60d3bd4abcafe3d1a14144d252d154bfbed2d`; existing cedar only.
 Capsule: `live_tests_directory/128_Cedar_FANA-topology-jdaggftb`.
@@ -20,7 +20,8 @@ All 487 source/test hashes remain unchanged. Cold replay preserves 247 hashes,
 sizes and mtimes after the owned original disappears, with old paths/Phenix SDK
 and process creation blocked and no attempted access. Compileall, 336 relative
 documentation links, JSON/SVG parsing and diff whitespace pass. No job is active;
-implementation publication is next.
+tested implementation `bd986d8bac024f359f7771340f0c9b6c81f52c02` is published and verified on
+`origin/cedar`. This follow-up records continuity only.
 
 Before: angle mechanics could be reviewed without accounting for every native
 inter-residue bond. After: `inspect_fana_topology` reuses C109 artifact, atom,
@@ -56,7 +57,7 @@ Exact validation commands/results/hashes are in evidence key
 43 new cases now pass. Two intermediate fixture-occupancy failures are preserved;
 tests now use exact model fields, with no production validation relaxation.
 
-Next: publish and verify cedar, then address bridge crowding and the outgoing
+Next: address bridge crowding and the outgoing
 angle under source/stereo/topology preservation. Recheck exact links after native
 re-interpretation. Any native optimizer needs fresh derivative qualification for
 this exact manager; earlier PDU/DF proofs cannot transfer. Ordinary mutation,
