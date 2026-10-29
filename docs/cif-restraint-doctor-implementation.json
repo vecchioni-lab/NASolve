@@ -27076,9 +27076,9 @@
       "implementation_commit": "c2ee674493a1912573ca4105a553588f80430c18"
     },
     "fana_component_binding": {
-      "status": "VALIDATED_NOT_PUBLISHED",
+      "status": "PUBLISHED_VALIDATED",
       "policy_id": "cif-local-fana-enantiomer-component-v1",
-      "implementation_commit": null,
+      "implementation_commit": "2a4efec192e8b672280d1843dca7e443749cc5f8",
       "evidence_key": "fana_component_binding_2026_10_29",
       "behavior": "Explicit immutable enantiomer source and NAR record package with fresh consumer namespace checks; no installed registration, global reservation or model insertion.",
       "validation": "6400 passed, 276 subtests passed in 964.74s (0:16:04); 175 focused; actual NAR compiler, one generation/two qualifications and 224-file cold replay pass."

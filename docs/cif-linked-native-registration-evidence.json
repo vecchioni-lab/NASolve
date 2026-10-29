@@ -42524,9 +42524,9 @@
     "implementation_commit": "c2ee674493a1912573ca4105a553588f80430c18"
   },
   "fana_component_binding_2026_10_29": {
-    "status": "VALIDATED_NOT_PUBLISHED",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "90153bc3699a594a760f128d0b66fb43fc221dd4",
-    "implementation_commit": null,
+    "implementation_commit": "2a4efec192e8b672280d1843dca7e443749cc5f8",
     "branch": "cedar",
     "policy_id": "cif-local-fana-enantiomer-component-v1",
     "schema_version": 1,

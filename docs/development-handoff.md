@@ -11,12 +11,13 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C123 validated: local FANA component identity and NARestraints binding
+## C123 published: local FANA component identity and NARestraints binding
 
 Base/last published head: `90153bc3699a594a760f128d0b66fb43fc221dd4`; existing cedar only.
 Capsule: `live_tests_directory/123_Cedar_FANA-component-r7elo01u`. Implementation, focused tests,
 actual NAR compiler/native controls, cold replay and full regression pass.
-Publication is next; no test or native job remains active.
+Tested implementation `2a4efec192e8b672280d1843dca7e443749cc5f8` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 
 Before: C122's ZLF diagnostic alias collides with installed CCD; no checked local
 NAR binding existed. After: an explicit parent/mirror/workbook package checks
@@ -55,8 +56,8 @@ Twelve changed files: new module/tests, maintained contracts, human descriptor/
 figure and compact evidence. Raw source/workbook, component package, namespace,
 models/dictionaries/native captures/logs and runners stay local. No migration.
 Compilation, whitespace, 312 documentation links/both JSON ledgers and SVG XML
-pass. Two frozen inputs retain bytes, sizes and timestamps. Immediate next action:
-publish on cedar and record exact SHAs.
+pass. Two frozen inputs retain bytes, sizes and timestamps. Publication is complete;
+resume with the next bounded scope below.
 
 Next: whole modified-sugar placement into L-DNA using this bound component and
 proper rigid placement, preserving unselected residues and explicit phosphate/
