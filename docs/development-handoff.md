@@ -15,7 +15,8 @@ not general production support. Earlier wording remains in Git and the
 
 Base/last published head: `59831cd45048807d52f166eba9f0979ae5fd0600`; existing cedar only.
 Capsule: `live_tests_directory/120_Cedar_FANA-mxbkybbq`. Implementation and all validation
-pass; publication is next. No test or native job remains active.
+pass. Tested implementation `3e08078fc27b8e7bbf6f5005bd35040246cf9fa9` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 
 Before C120, the generic furanose profile did not distinguish 2′-fluoro arabino
 source declarations or require all four sugar hands in a finished FANA candidate.

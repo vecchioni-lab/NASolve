@@ -41193,7 +41193,7 @@
     "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
   },
   "fana_source_candidate_2026_10_29": {
-    "status": "VALIDATED_NOT_PUBLISHED",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "base_commit": "59831cd45048807d52f166eba9f0979ae5fd0600",
     "changed_files": [
@@ -41738,6 +41738,7 @@
       "whitespace_command": "git diff --check",
       "documentation": "PASS; 294 relative links and both JSON ledgers",
       "svg_xml": "PASS"
-    }
+    },
+    "implementation_commit": "3e08078fc27b8e7bbf6f5005bd35040246cf9fa9"
   }
 }
