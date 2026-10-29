@@ -27100,6 +27100,17 @@
       "validation": "6482 passed, 276 subtests passed in 1015.43s (0:16:55); 198 focused; three fresh native interpretations and 283-file cold replay pass.",
       "next": "Bounded geometry adjustment and qualified linked chemistry; ordinary mutation remains separate.",
       "implementation_commit": "c865ed65c4104d10b95e81fc81ffac74c097cb94"
+    },
+    "fana_bridge_seed": {
+      "status": "FOCUSED_NATIVE_COLD_VALIDATED_FULL_PENDING_PUBLICATION_PENDING",
+      "policy_ids": [
+        "cif-fana-torsion-bridge-seed-v1",
+        "cif-source-bound-fana-seed-junction-angles-v1"
+      ],
+      "evidence_key": "fana_bridge_seed_2026_10_29",
+      "behavior": "Bounded torsion-only phosphate-arm fit with a virtual leaving-oxygen direction; both native links and complete incoming/outgoing phosphate coverage, preserving source geometry and exact flanks.",
+      "validation": "221 focused tests; two fresh Phenix interpretations; 301-file cold replay; legacy C125 replay. Full regression deferred/pending.",
+      "next": "Full regression, then native geometry/nonbonded and linked source/terminal chemistry qualification before integration."
     }
   },
   "audience": [

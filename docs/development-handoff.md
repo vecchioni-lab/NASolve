@@ -11,6 +11,69 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C126 validated locally: source-preserving FANA bridge seed
+
+Base/last published head: `649f7cb7ee1ca18d2fd9935b002748d0398d2748`; existing cedar only.
+Capsule: `live_tests_directory/126_Cedar_FANA-bridge-ox2k5s5_`.
+**221 focused tests**, two actual Phenix interpretations, legacy C125 replay and
+**301-file cold replay** pass. All 482 source/test hashes stayed unchanged during
+the final focused run. **Full C126 regression is deferred/pending** for this
+larger push before full regression; C125's 6482 + 276 is the last complete suite.
+No job is active. Compileall, diff whitespace, 327 documentation links and
+JSON/SVG parsing pass. Publication is next.
+
+Before: C124's intact FANA placement leaves a junction gap; C125's translated
+control completes angle mechanics but has severely distorted angles. After:
+`prepare/read_fana_bridge_seed` fits only three graph-checked acyclic phosphate-arm
+rotors and a proper rigid transform. Its explicit leaving oxygen is a virtual
+incoming-partner target, never written into the linked model. Source dictionaries,
+H/D/charges/stereo, retained heavy bonds/angles, all four sugar hands and flanking
+PDB bytes remain preserved. Score weights choose a seed; they are not physical
+restraints or chemical/geometry acceptance criteria. Search is bounded to 27
+starts and at most 6508 fits (2578 used in this control).
+
+The optional `bridge_seed` input extends the existing junction adapter with exact
+seed/model/placement binding, both native links and outgoing template/coverage
+checks. Default C125 validation remains unchanged and the real old package
+replays. New schema-1 policies are `cif-fana-torsion-bridge-seed-v1` and
+`cif-source-bound-fana-seed-junction-angles-v1`; no CLI/run/checkpoint migration.
+Readers recompute the complete fit/source binding on recorded NumPy 2.5.3;
+cross-version/BLAS bitwise portability is not claimed.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1), two complete executions bounded to 60 seconds:
+both backbone links recognized, written P–O distances 1.6293/1.6827 Å versus the
+unchanged 1.607 Å target. Six angles at each phosphate after the supplement;
+added angles 100.9384°/113.9119° versus 108° (C125: 37.7140°/86.5097°).
+All 17 exact native delta checks, six definition categories, five internal-heavy
+categories and eight flank categories pass. Full-precision internal bond/angle
+differences are below 3.2e-15 Å/2.0e-13°; written-PDB differences are below
+0.00080 Å/0.0574°. These are preservation measurements, not physical acceptance.
+No Coot, dictionary generation, native optimization or diffraction refinement.
+
+Cold replay rederives the seed and angle package, verifies two new captures and
+the preserved prior capture against exact receipt/input/worker/spec/output
+bytes, then repeats the comparison. Original paths/SDK and processes are blocked;
+no attempted access; 301 hashes/sizes/mtimes unchanged after the owned original
+path disappeared. A first focused run preserves a synthetic exact-pose assertion
+failure caused by PDB rounding; the fixture now uses exactly representable input
+coordinates, with no algorithm relaxation.
+
+Changed files: new bridge module/test, existing junction adapter, Unreleased,
+README/index, architecture, CIF Doctor contract, human descriptor/SVG desc, this
+handoff and both JSON ledgers (13 files). Raw science, logs/captures, workbook,
+probes and runners remain local. Exact commands/results are in evidence key
+`fana_bridge_seed_2026_10_29`; source/test hashes bind the focused validation.
+
+Remaining: full regression, residual strain/nonbonded clashes and native energy
+qualification, retained source protonation and numerical target suitability,
+and C110 flank H/charge/order differences/missing OP3. This is a connected
+construction seed, not a chemically qualified or adopted model. Ordinary mutation,
+other L-FANA bases, whole-model work and sticky ends remain separate.
+
+Immediate next action: publish the thirteen reviewed files on cedar, verify the
+remote SHA and record publication continuity. Full regression remains pending.
+— Rowan · Codex desktop
+
 ## C125 published: source-bound missing junction angles
 
 Base/last published head: `25f9459e65f479d53a4b786105fc76024dc39a98`; existing cedar only.

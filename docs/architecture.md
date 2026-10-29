@@ -3609,3 +3609,24 @@ checkpoint migration is required. This corrects the mixed-name consumer gap in
 the translated L-FANA-C control, without qualifying its protonation/numerical
 chemistry or repairing junction geometry. See the
 [angle contract](cif-doctor.md#source-bound-fana-junction-angles-c125).
+
+
+## Source-preserving FANA bridge construction (C126)
+
+The schema-1 `cif-fana-torsion-bridge-seed-v1` package extends the C124 diagnostic
+with a bounded three-rotor search and proper rigid fit. A graph-bound leaving
+oxygen is a virtual direction target for the incoming oxygen, never an added
+model atom. Internal source heavy bonds/angles, ring geometry, four sugar hands
+and exact flanks are preserved; the score selects a seed without accepting its
+chemistry or physical energy. Readback reruns the same bounded calculation from
+frozen inputs on the recorded NumPy runtime, with no native execution.
+
+The optional `bridge_seed` input to the C125 adapter adds the separate policy
+`cif-source-bound-fana-seed-junction-angles-v1`. Exact placement/model binding and
+both-link/outgoing-angle prerequisites extend the shared validator. Native
+qualification still requires only the requested incoming angle additions and
+all other captured covalent proxies unchanged. Old translation-only packages
+replay unchanged. Source definitions and installed libraries remain untouched;
+there is no CLI, production mutation or run/checkpoint migration. See the
+[bridge contract](cif-doctor.md#source-preserving-fana-bridge-seed-c126) for search
+bounds, serialization, runtime portability and remaining chemistry/geometry gates.

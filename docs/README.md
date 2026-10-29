@@ -72,6 +72,9 @@ placement and linked native qualification remain open.
 C124 adds [whole-residue FANA placement controls](cif-doctor.md#whole-residue-fana-placement-control-c124):
 the L-FANA sugar survives placement, while measured junction gaps and a missing
 native incoming link keep the candidate under review. Ordinary mutation remains unchanged.
+C126 adds a [source-preserving bridge seed](cif-doctor.md#source-preserving-fana-bridge-seed-c126):
+both native links and complete phosphate angle coverage now pass in the separate
+L-FANA-C control. Strain, clashes and linked chemistry still require qualification.
 C125 adds [source-bound junction angles](cif-doctor.md#source-bound-fana-junction-angles-c125):
 the bonded diagnostic gains its two missing angles without changing source names
 or other captured restraints. Junction geometry and linked chemistry remain open.

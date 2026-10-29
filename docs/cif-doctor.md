@@ -51,7 +51,9 @@
 
 <a id="current-capability-boundary-c124"></a>
 
-## Current capability boundary (C125)
+<a id="current-capability-boundary-c125"></a>
+
+## Current capability boundary (C126)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -65,7 +67,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. C121 separately covers the bounded neutral 6-oxo five-ring; charged/other carbonyl purines, convergence, linked PNA numerics and ordinary integration remain open. |
 | Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
-| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 adds whole-residue placement in a separate three-site control; the incoming native link is missing and junction adjustment remains open. C125 restores the two missing incoming phosphate angles in the already bonded translation control. Junction geometry, other L-FANA bases, qualified linked chemistry and ordinary model mutation remain open. |
+| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 preserves a whole residue in a separate three-site control but leaves a gap. C125 restores the two missing incoming angles in a bonded translation control. C126 fits a source-preserving seed with both native links and six angles at each phosphate. Strain/clashes, retained protonation and flank chemistry, other L-FANA bases and ordinary model mutation remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -781,6 +783,90 @@ C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stay
 parked.
 
 
+### Source-preserving FANA bridge seed (C126)
+
+`prepare_fana_bridge_seed(placement, output, *, endpoint_weight=1000.)` prepares
+a separate construction seed from an exact verified C124 three-site package.
+It changes the central residue's pose and three phosphate-arm torsions while
+preserving the numerical source's internal heavy bond lengths/angles, sugar/base
+geometry and all four sugar hands. It retains every flanking PDB record and all
+non-coordinate central fields. Source atom names, H/D, charge, stereochemical
+declarations and dictionary bytes remain authoritative. This is an additive
+Python diagnostic API; ordinary model mutation, PostMR and CLI behavior do not
+change, and no existing run/checkpoint schema migrates.
+
+The only axes are C4′–C5′, C5′–O5′ and O5′–P. Each must be a source single bond
+whose graph cut disconnects the phosphate arm without cutting a ring. The
+moving side must contain P and the explicitly declared leaving oxygen, and
+exclude the sugar/base anchor ring and O3′. The full heavy source coordinates
+include that leaving oxygen during fitting. Its virtual target is A:1 O3′,
+the incoming replacement oxygen. The virtual atom is never written into the
+linked model; all O/H removal remains bound to C124's explicit source operation.
+O1P/O2P are not aligned to host OP1/OP2 merely by atom name.
+
+For each torsion trial, a weighted proper least-squares rigid transform fits
+P, O5′, C5′, C4′, O4′, C1′, C2′, C3′, O3′ to the corresponding central frame
+atoms and the virtual leaving oxygen to A:1 O3′. P, O3′ and the virtual target
+receive the explicit endpoint weight (finite numeric 1–1000, default 1000);
+the other anchors have weight 1. These are construction-score weights, not
+physical restraint weights or acceptance thresholds. The existing NumPy
+dependency supplies SVD, with determinant +1 enforced; singular fits refuse.
+
+Search uses 27 starts from {−120°, 0°, 120°}³, coordinate steps of 60°, 20°,
+5°, 1° and 0.25°, and at most eight sweeps per step. It evaluates at most 6508
+fits, records every start's endpoint and selects the lowest weighted mean-square
+score. It does not claim a global minimum, a physical energy minimum or native
+convergence. Full-precision coordinates, source-relative four-centre volumes,
+internal bond/angle differences, PDB-rounding differences and both junction
+distances are recorded. Tight internal invariance and serialization checks are
+implementation checks, not new crystallographic acceptance criteria.
+
+Schema-1 `cif-fana-torsion-bridge-seed-v1` freezes `placement/`, `config.json`,
+`model.pdb`, `seed.json` and a last-written `receipt.json`. Existing or overlapping
+outputs and symlinks are refused. `read_fana_bridge_seed` checks the exact file
+set/hashes and repeats source validation, the full bounded fit and exact output
+comparison. It never runs a native tool. The report records NumPy's version;
+exact floating readback is proven on the recorded runtime, not across arbitrary
+NumPy/BLAS versions. All prior and partial attempts remain intact.
+
+`prepare_fana_junction_angles(..., bridge_seed=seed)` adds schema-1 policy
+`cif-source-bound-fana-seed-junction-angles-v1`. It freezes `bridge_seed/`, verifies
+its exact placement and model bytes and uses the same source/native/template
+validation as C125. Both native backbone links must exist; the outgoing bond
+and all four outgoing link angles must match the frozen template, with exactly
+four P neighbours and all six outgoing phosphate angles. Only the missing
+incoming angles are emitted. Readback and native qualification repeat these
+checks. The default translation-only C125 policy and old packages still replay;
+there is no generic coordinate override or weaker validation path.
+
+The AAJ L-FANA-C control uses Python 3.12.14, NumPy 2.5.3, NARestraints 1.1.3
+and two complete Phenix 2.2.1-6174 interpretations (dispatcher 2.2.1), each
+bounded to 60 seconds. Incoming/outgoing P–O distances change from
+3.9828/2.5461 Å to 1.6293/1.6827 Å in the written model. Both links are recognized
+at the unchanged native 1.607 Å target. The supplement gives six angles at each
+phosphate, with the two formerly missing angles measuring 100.9384°/113.9119°
+against 108° targets (C125's translated model gave 37.7140°/86.5097°).
+All 17 exact native delta checks, six source definition categories, five
+internal-heavy categories and eight unchanged flank categories pass.
+
+This establishes a better-connected construction seed and native mechanics.
+It does not qualify residual strain, nonbonded clashes, retained source
+protonation, the inherited numerical targets, or the C110 diagnostic flank
+definitions with known H/charge/order differences and missing OP3. Pair/stack
+optimization, density fitting, Coot, dictionary generation, native optimization
+and diffraction refinement were not run. Automatic adoption stays disabled.
+Next: inspect the complete seed's native geometry/nonbonded evidence and resolve
+the linked source/terminal chemistry before production integration.
+
+Validation: 221 focused tests pass; cold replay rederives the fit and native
+evidence with 301 files unchanged after relocation, while original paths, SDK
+and subprocess access are blocked. The preserved real C125 package also passes
+all 17 checks with the new code. **C126 full regression is deferred/pending**;
+C125's 6482 tests plus 276 subtests remain the last complete suite. Exact commands,
+versioned evidence and local references are in
+[the evidence ledger](cif-linked-native-registration-evidence.json), key
+`fana_bridge_seed_2026_10_29`. Raw scientific files and runners stay local.
+
 ### Source-bound FANA junction angles (C125)
 
 `prepare_fana_junction_angles(placement, model, native, link_template, output)`
@@ -790,8 +876,9 @@ PDB model, a completed detailed native-inventory JSON, and the explicitly
 supplied `data_link_rna3p` template CIF. The native capture must match the model;
 the model may be unchanged or a uniform translation of the intact central
 residue with every other PDB byte retained. Rotations, deformations, arbitrary
-models and symmetry links require a separate extension. This API does not
-create bonds or supply a workaround for a stretched junction.
+models and symmetry links require a separate extension. C126 below adds an
+optional verified `bridge_seed` package; the default C125 path remains unchanged.
+This angle API does not create bonds or move coordinates.
 
 The adapter revalidates the complete source/enantiomer package and numerical
 candidate, derives C124's explicitly authorized O/H projection, and compares

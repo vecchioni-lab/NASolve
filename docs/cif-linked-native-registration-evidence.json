@@ -43768,5 +43768,559 @@
       "docs": "check_docs.py; SVG ElementTree XML parse"
     },
     "implementation_commit": "c865ed65c4104d10b95e81fc81ffac74c097cb94"
+  },
+  "fana_bridge_seed_2026_10_29": {
+    "status": "FOCUSED_NATIVE_COLD_VALIDATED_FULL_PENDING_PUBLICATION_PENDING",
+    "base_commit": "649f7cb7ee1ca18d2fd9935b002748d0398d2748",
+    "branch": "cedar",
+    "policy_ids": [
+      "cif-fana-torsion-bridge-seed-v1",
+      "cif-source-bound-fana-seed-junction-angles-v1"
+    ],
+    "schema_version": 1,
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "126_Cedar_FANA-bridge-ox2k5s5_"
+    },
+    "before": "Rigid C124 placement leaves a missing incoming native link; C125 translation restores angle mechanics but has severely distorted junction angles.",
+    "after": "Bounded torsion-only phosphate-arm fit with a virtual leaving-oxygen direction; both native links and complete incoming/outgoing phosphate coverage, preserving source geometry and exact flanks.",
+    "changed_files": [
+      "src/nasolve/cif_fana_bridge.py",
+      "src/nasolve/cif_fana_junction.py",
+      "tests/test_cif_fana_bridge.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "compatibility": "Additive diagnostic API/schema and optional bridge_seed keyword; legacy C125 real package replays; no CLI/PostMR/run/checkpoint migration.",
+    "software": {
+      "Python": "3.12.14",
+      "NumPy": "2.5.3",
+      "NARestraints": "1.1.3",
+      "Phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "Coot": "NOT_RUN"
+    },
+    "native_execution": {
+      "interpretations": 2,
+      "timeout_seconds_each": 60,
+      "dry_run": false,
+      "generation": 0,
+      "native_optimization": 0,
+      "refinement": 0
+    },
+    "source_origin": "Frozen C124 placement and C125 baseline/native dictionaries; source projection rederived by the maintained validator.",
+    "construction": {
+      "axes": [
+        {
+          "axis": [
+            "C4'",
+            "C5'"
+          ],
+          "moving_source_atoms": [
+            "C5'",
+            "H5'1",
+            "H5'2",
+            "HO1P",
+            "HO3P",
+            "O1P",
+            "O2P",
+            "O3P",
+            "O5'",
+            "P"
+          ]
+        },
+        {
+          "axis": [
+            "C5'",
+            "O5'"
+          ],
+          "moving_source_atoms": [
+            "HO1P",
+            "HO3P",
+            "O1P",
+            "O2P",
+            "O3P",
+            "O5'",
+            "P"
+          ]
+        },
+        {
+          "axis": [
+            "O5'",
+            "P"
+          ],
+          "moving_source_atoms": [
+            "HO1P",
+            "HO3P",
+            "O1P",
+            "O2P",
+            "O3P",
+            "P"
+          ]
+        }
+      ],
+      "virtual_leaving_atom": "O3P",
+      "virtual_atom_written": false,
+      "config": {
+        "endpoint_weight": 1000.0
+      },
+      "search": {
+        "starts": 27,
+        "evaluations": 2578,
+        "max_evaluations": 6508,
+        "step_degrees": [
+          60.0,
+          20.0,
+          5.0,
+          1.0,
+          0.25
+        ],
+        "max_sweeps_per_step": 8,
+        "selected_trial": 3,
+        "initial_zero_torsion_score": 0.46322840409163146,
+        "global_minimum_claimed": false,
+        "native_energy": "NOT_EVALUATED"
+      },
+      "selected_trial": {
+        "initial_degrees": [
+          -120.0,
+          0.0,
+          -120.0
+        ],
+        "degrees": [
+          14.75,
+          -34.0,
+          -243.25
+        ],
+        "weighted_mean_square": 0.007689727328294411,
+        "sweeps": [
+          4,
+          2,
+          2,
+          3,
+          3
+        ],
+        "determinant": 1.0000000000000016
+      },
+      "junctions": [
+        {
+          "target_atom": "P",
+          "partner_atom": "A:1:O3'",
+          "before": 3.9827540722469936,
+          "full_precision": 1.6293456388698522,
+          "pdb_rounded": 1.6293231723632966
+        },
+        {
+          "target_atom": "O3'",
+          "partner_atom": "A:3:P",
+          "before": 2.546114883503886,
+          "full_precision": 1.6823616827886474,
+          "pdb_rounded": 1.6826987252624872
+        }
+      ],
+      "preservation": {
+        "four_sugar_hands": true,
+        "max_bond_length_error": 3.1086244689504383e-15,
+        "max_angle_error_degrees": 1.9895196601282805e-13,
+        "rounded_max_bond_length_error": 0.0007988086379064896,
+        "rounded_max_angle_error_degrees": 0.057358541087310755,
+        "flanking_records_exact": true,
+        "source_dictionary_unchanged": true
+      },
+      "cross_numpy_blas_reproducibility": "NOT_ESTABLISHED"
+    },
+    "qualification": {
+      "schema_version": 1,
+      "policy_id": "cif-source-bound-fana-seed-junction-angles-v1",
+      "status": "JUNCTION_ANGLE_MECHANICS_PASS",
+      "checks": [
+        {
+          "check": "exact-model",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-effective-definitions",
+          "status": "PASS"
+        },
+        {
+          "check": "unchanged-policy",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-angle:[5, 20, 34]",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-angle:[5, 20, 35]",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:angle",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:bond_asu",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:bond_simple",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:chirality",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:const_dihedral",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:dihedral",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:parallelity",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:planarity",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-request:[5, 20, 34]",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-request:[5, 20, 35]",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-explicit-requests",
+          "status": "PASS"
+        },
+        {
+          "check": "six-phosphate-angles",
+          "status": "PASS"
+        }
+      ],
+      "chemical_qualification": "NOT_ESTABLISHED",
+      "automatic_adoption": false
+    },
+    "observation": {
+      "status": "BRIDGE_SEED_NATIVE_MECHANICS_PASS",
+      "links": [
+        [
+          "A:1",
+          "A:2"
+        ],
+        [
+          "A:2",
+          "A:3"
+        ]
+      ],
+      "incoming_phosphate_angles": 6,
+      "outgoing_phosphate_angles": 6,
+      "projected_definition_checks": [
+        {
+          "check": "projected-native-atoms:A:2",
+          "status": "PASS",
+          "expected_rows": 31,
+          "observed_rows": 31,
+          "missing_or_changed_rows": 0,
+          "extra_or_changed_rows": 0
+        },
+        {
+          "check": "projected-native-bonds:A:2",
+          "status": "PASS",
+          "expected_rows": 32,
+          "observed_rows": 32,
+          "missing_or_changed_rows": 0,
+          "extra_or_changed_rows": 0
+        },
+        {
+          "check": "projected-native-angles:A:2",
+          "status": "PASS",
+          "expected_rows": 55,
+          "observed_rows": 55,
+          "missing_or_changed_rows": 0,
+          "extra_or_changed_rows": 0
+        },
+        {
+          "check": "projected-native-torsions:A:2",
+          "status": "PASS",
+          "expected_rows": 43,
+          "observed_rows": 43,
+          "missing_or_changed_rows": 0,
+          "extra_or_changed_rows": 0
+        },
+        {
+          "check": "projected-native-chirality:A:2",
+          "status": "PASS",
+          "expected_rows": 4,
+          "observed_rows": 4,
+          "missing_or_changed_rows": 0,
+          "extra_or_changed_rows": 0
+        },
+        {
+          "check": "projected-native-plane_atoms:A:2",
+          "status": "PASS",
+          "expected_rows": 11,
+          "observed_rows": 11,
+          "missing_or_changed_rows": 0,
+          "extra_or_changed_rows": 0
+        }
+      ],
+      "heavy_proxy_checks": {
+        "exact-heavy-bond_simple": true,
+        "exact-heavy-angle": true,
+        "exact-heavy-torsions": true,
+        "exact-heavy-planes": true,
+        "exact-heavy-fixed-chirality": true
+      },
+      "unchanged_flank_proxies": {
+        "angle": true,
+        "bond_asu": true,
+        "bond_simple": true,
+        "chirality": true,
+        "const_dihedral": true,
+        "dihedral": true,
+        "parallelity": true,
+        "planarity": true
+      },
+      "added_angles": [
+        {
+          "i_seqs": [
+            5,
+            20,
+            34
+          ],
+          "observed": 100.9384440953001,
+          "target": 108.0,
+          "difference": -7.061555904699901,
+          "nominal_deviation": -2.3538519682333003
+        },
+        {
+          "i_seqs": [
+            5,
+            20,
+            35
+          ],
+          "observed": 113.91190038103571,
+          "target": 108.0,
+          "difference": 5.911900381035707,
+          "nominal_deviation": 1.9706334603452356
+        }
+      ],
+      "chemical_qualification": false,
+      "geometry_accepted": false,
+      "flanks": "C110 diagnostic definitions; source-state differences and missing OP3 remain unqualified",
+      "automatic_adoption": false
+    },
+    "new_regression_cases": 23,
+    "fail_before": [
+      {
+        "cases": 17,
+        "reference": {
+          "anchor": "live_tests_directory",
+          "path": "126_Cedar_FANA-bridge-ox2k5s5_/validation/fail-before/pytest.log",
+          "sha256": "bf23775f993ff5b534f51d03dff1efd613e01945827eef4aab98de0984a34fe1",
+          "size": 11720
+        }
+      },
+      {
+        "cases": 5,
+        "reference": {
+          "anchor": "live_tests_directory",
+          "path": "126_Cedar_FANA-bridge-ox2k5s5_/validation/fail-before-binding/pytest.log",
+          "sha256": "cb9f0cbcd17ce006846da6faa6f23030ca43e3eea94e1ec32c2216f7c5573faf",
+          "size": 9361
+        }
+      }
+    ],
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_fana_bridge.py",
+        "tests/test_cif_fana_junction.py",
+        "tests/test_cif_fana_placement.py",
+        "tests/test_cif_fana_component.py",
+        "tests/test_cif_fana_enantiomer.py",
+        "tests/test_cif_linked_qualification.py",
+        "tests/test_cif_terminal_qualification.py",
+        "tests/test_cif_captured_geometry.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 62.549373082991224,
+      "source_test_files": 482,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_summary": "221 passed in 62.26s",
+    "initial_focused_fixture_correction": "Preserved first run: 220 pass, one exact-pose test expected unrounded precision from a PDB frame. Corrected synthetic source to be exactly representable in PDB; no algorithm change. Fresh focused-v2 passes.",
+    "cold": {
+      "status": "PASS",
+      "fresh_native_captures": 2,
+      "prior_native_captures": 1,
+      "native_delta_checks": 17,
+      "both_native_links": true,
+      "phosphate_angle_coverage": [
+        6,
+        6
+      ],
+      "definition_categories": 6,
+      "internal_heavy_categories": 5,
+      "unchanged_flank_categories": 8,
+      "bounded_fit_recomputed": true,
+      "chemical_qualification": "NOT_ESTABLISHED",
+      "geometry_accepted": false,
+      "automatic_adoption": false,
+      "owned_original_absent": true,
+      "original_sdk_and_process_access_blocked": true,
+      "blocked_attempts": [],
+      "files_unchanged": 301,
+      "native_execution": "NOT_RUN",
+      "current_namespace_availability": "NOT_CLAIMED"
+    },
+    "legacy_c125_replay": "PASS; original real package, three captures and prior capture, 17 delta checks, gap refusal; current source code, no native execution.",
+    "full_regression": {
+      "status": "DEFERRED_PENDING",
+      "reason": "User requested this larger jump before full regression.",
+      "last_complete_suite": "C125: 6482 passed, 276 subtests passed in 1015.43s; not validation of C126."
+    },
+    "validation_commands": {
+      "focused": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider --durations=20 tests/test_cif_fana_bridge.py tests/test_cif_fana_junction.py tests/test_cif_fana_placement.py tests/test_cif_fana_component.py tests/test_cif_fana_enantiomer.py tests/test_cif_linked_qualification.py tests/test_cif_terminal_qualification.py tests/test_cif_captured_geometry.py",
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python> c126_native.py; exact per-call commands, inputs and outputs in the two native receipts",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<capsule>/cold-relocated/src <python> c126_cold.py <capsule>",
+      "legacy": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python> c125_replay_v2.py <C125-capsule>",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c126-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "docs": "check_docs.py; ElementTree XML parse",
+      "whitespace": "git diff --check"
+    },
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/reports/native-paths.json",
+        "sha256": "084a2c6e75dc45f564219dc1a5a506bb9047e4efc546a26afe0519c5668d1f44",
+        "size": 109
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/reports/seed.json",
+        "sha256": "29cd83922f51c52ff8f87091a3af32cd619f12f26086714f8e19486db0f66d8d",
+        "size": 15775
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/reports/junction.json",
+        "sha256": "952cdea58c453d44087678ebcd49f60d41c8837aa8acd0315995bf7efdf3becb",
+        "size": 2376
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/reports/qualification.json",
+        "sha256": "85a1cd5f447ee4309ea0ddc66d928bbe97b97edc8ca9b58418c24a10a1ed2c8d",
+        "size": 1606
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/reports/observation.json",
+        "sha256": "86bc0ddb0d4bd558709f7d54667cc9fef697a8ee1cc82d1458a5f7b641da54f3",
+        "size": 2586
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/validation/focused-v2/pytest.log",
+        "sha256": "7e6f702ef69ab310c633407cbb35e64961e90f955cb42a2a145aa4bdff9149ff",
+        "size": 2553
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/validation/focused-v2/source-hashes.json",
+        "sha256": "05eafe2469af70ffb013d8a54639cd94a65ff70b440c0d69a58731071766368e",
+        "size": 52061
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/validation/cold-result.json",
+        "sha256": "72bb31e7ae31ae9af829788fcc87371667ca786408e4b829695f02ddd0a6a47d",
+        "size": 652
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/validation/cold-manifest.json",
+        "sha256": "8b23a5e39d43d3da03fe0ccb8a7e4fc6a6ac8ac66c2c3f4022a89eaa50ca9735",
+        "size": 55702
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/validation/legacy-c125-replay.json",
+        "sha256": "90433e6cad9c0468b9af636d4256073264897dcd4cfc9b3105c375c02db8d593",
+        "size": 876
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/runners/c126_native.py",
+        "sha256": "e479a08a92b7c95a3e0b8ecc1149e1b8d557177fa25b6d29d27d6bc9f759ab7b",
+        "size": 4577
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/runners/c126_replay.py",
+        "sha256": "bc5c15486df8d6305de634b23d1236d953600d87beb5820e1f44954a69a12ed0",
+        "size": 5506
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/runners/c126_cold.py",
+        "sha256": "060363907279f96a396da9cf404d3b35320b745235942a8139433f86695689a6",
+        "size": 1708
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/runners/c126_cold_prepare.py",
+        "sha256": "86a46b5d9843713d3c267c844d463d6218f1c26a8628dfbca3173907e1dcfbeb",
+        "size": 1324
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "126_Cedar_FANA-bridge-ox2k5s5_/runners/c126_validate.py",
+        "sha256": "9f148f28a507a83398f3469935d9b9a39d6092df72b335021b49429cc0951016",
+        "size": 1613
+      }
+    ],
+    "artifacts_included": "Source, synthetic tests, maintained docs and compact technical evidence.",
+    "artifacts_excluded": "Raw CIF/PDB/workbook, scientific runs, native captures/logs, probes and local runners.",
+    "limitations": [
+      "Three-site C124 diagnostic only; no ordinary mutation or whole-model adoption.",
+      "Residual strain, clashes and native energy/gradient qualification remain open.",
+      "Retained protonation/numerical chemical targets and C110 flank source-state differences/missing OP3 remain unqualified.",
+      "No global search convergence or physical energy minimum claimed.",
+      "Exact readback tied to recorded NumPy runtime; cross-version/BLAS reproducibility not established.",
+      "No Coot, dictionary generation, native optimizer or diffraction refinement."
+    ],
+    "next": "Full regression, then native geometry/nonbonded and linked source/terminal chemistry qualification before integration.",
+    "source_test_files_unchanged": 482,
+    "compileall": "PASS",
+    "documentation_links": 327,
+    "json_and_svg_parse": "PASS",
+    "whitespace": "PASS"
   }
 }

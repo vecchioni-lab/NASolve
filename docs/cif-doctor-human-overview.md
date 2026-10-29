@@ -3226,3 +3226,29 @@ mechanical coverage, not chemical validation of the retained protonation state
 or good junction geometry. Bounded geometry adjustment and qualified flanks
 remain necessary before whole-model integration. See the
 [technical contract](cif-doctor.md#source-bound-fana-junction-angles-c125).
+
+
+### Joining the FANA seed without changing its sugar
+
+C126 gives the separate L-FANA-C control a much better starting pose. We rotate
+three single bonds along the phosphate arm and move the complete residue with
+a proper rigid transform. The explicitly declared leaving oxygen marks the
+direction where the incoming partner should be; it is a virtual fitting point,
+not an extra atom written into the model. Internal heavy bond lengths/angles,
+the FANA sugar and its four hands survive. Source chemistry and flanks are exact.
+
+Phenix now recognizes both backbone links. Written P–O distances are
+1.6293/1.6827 Å, compared with the original 3.9828/2.5461 Å; the native target
+remains 1.607 Å. The exact angle supplement completes all six angles at each
+phosphate. The two previously missing angles are about 101°/114° against 108°,
+instead of the translation control's 38°/87°. This is a construction improvement,
+not a chemistry or final geometry pass: strain, clashes, retained protonation
+and the diagnostic flank dictionaries still need qualification.
+
+Methods: a bounded 27-start torsion search with proper weighted rigid fitting,
+full-precision/serialized invariance checks, immutable source-bound readback,
+two fresh Phenix interpretations and an exact native restraint comparison.
+221 focused tests and a 301-file cold replay pass. Full regression for C126 is
+still pending; no native optimization or diffraction refinement was run.
+NARestraints continues to own pair/stack intent. See the
+[technical contract](cif-doctor.md#source-preserving-fana-bridge-seed-c126).

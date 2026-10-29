@@ -23,6 +23,7 @@ from .dictionary_compatibility import normalize_torsion_block
 from .ligand_profiles import _blocks
 
 POLICY_ID = 'cif-source-bound-fana-junction-angles-v1'
+SEED_POLICY_ID = 'cif-source-bound-fana-seed-junction-angles-v1'
 _FILES = {'model.pdb', 'native.json', 'link.cif', 'angles.phil', 'junction.json'}
 _KINDS = {'bond_simple', 'bond_asu', 'angle', 'dihedral', 'const_dihedral',
           'chirality', 'planarity', 'parallelity'}
@@ -112,26 +113,36 @@ def _capture(native):
     return details
 
 
-def _bind(control, model, native):
+def _bind(control, model, native, bridge_seed=None):
     placement = read_fana_linked_control(control)
     actual = _model(native, model, coordinates_match=True)
     from .cif_construction_provenance import _pdb_inventory
     original = _pdb_inventory(control/'model.pdb')
     if actual.keys() != original.keys():
         raise ValueError('Model differs from the whole-residue control inventory')
-    # This first adapter accepts translation of the intact central residue.
-    # Geometry-changing candidates need their own source/stereo assessment.
-    key = ('A', '2', '', '', 'P')
-    shift = [a-b for a, b in zip(actual[key]['xyz'], original[key]['xyz'])]
-    old_lines = (control/'model.pdb').read_text().splitlines(keepends=True)
-    expected = []
-    for line in old_lines:
-        if line[:6] in {'ATOM  ', 'HETATM'} and line[21:26] == 'A   2':
-            xyz = [float(line[i:i+8])+d for i, d in zip((30,38,46), shift)]
-            line = line[:30]+''.join(f'{x:8.3f}' for x in xyz)+line[54:]
-        expected.append(line)
-    if ''.join(expected).encode() != model.read_bytes():
-        raise ValueError('Require an unchanged or translated whole residue with exact flanks')
+    if bridge_seed is not None:
+        from .cif_fana_bridge import read_fana_bridge_seed
+        read_fana_bridge_seed(bridge_seed)
+        source_files = {p.relative_to(control).as_posix():_digest(p) for p in control.rglob('*') if p.is_file()}
+        bound = bridge_seed/'placement'
+        bound_files = {p.relative_to(bound).as_posix():_digest(p) for p in bound.rglob('*') if p.is_file()}
+        if source_files != bound_files or model.read_bytes() != (bridge_seed/'model.pdb').read_bytes():
+            raise ValueError('Seed does not bind this exact placement and model')
+        shift = None
+    else:
+        # This first adapter accepts translation of the intact central residue.
+        # Geometry-changing candidates need their own source/stereo assessment.
+        key = ('A', '2', '', '', 'P')
+        shift = [a-b for a, b in zip(actual[key]['xyz'], original[key]['xyz'])]
+        old_lines = (control/'model.pdb').read_text().splitlines(keepends=True)
+        expected = []
+        for line in old_lines:
+            if line[:6] in {'ATOM  ', 'HETATM'} and line[21:26] == 'A   2':
+                xyz = [float(line[i:i+8])+d for i, d in zip((30,38,46), shift)]
+                line = line[:30]+''.join(f'{x:8.3f}' for x in xyz)+line[54:]
+            expected.append(line)
+        if ''.join(expected).encode() != model.read_bytes():
+            raise ValueError('Require an unchanged or translated whole residue with exact flanks')
     values = _prune(component_values(control/'numerical.cif', placement['component']),
                     set(placement['deleted_source_atoms_for_declared_links']), outgoing=True)
     values, _ = normalize_torsion_block(values)
@@ -151,9 +162,9 @@ def _bind(control, model, native):
     return placement, values, shift
 
 
-def _derive(control, model, native, template):
+def _derive(control, model, native, template, bridge_seed=None):
     details = _capture(native)
-    placement, values, shift = _bind(control, model, native)
+    placement, values, shift = _bind(control, model, native, bridge_seed)
     spec = _template(template)
     atoms = native['atoms']
     by = {(a['identity']['resseq'].strip(), a['atom_id']): a['i_seq'] for a in atoms
@@ -225,34 +236,64 @@ def _derive(control, model, native, template):
               'template_sha256':_digest(template)['sha256'],'native_sha256':None,
               'native_delta_validation':'NOT_RUN','chemical_qualification':'NOT_ESTABLISHED',
               'automatic_adoption':False,'scope':'SEPARATE_MECHANICS_CONTROL; NO_LINK_CREATION_OR_GEOMETRY_REPAIR'}
+    if bridge_seed is not None:
+        from .cif_linked_qualification import native_backbone_links
+        if set(native_backbone_links(native)) != {('A:1','A:2'),('A:2','A:3')}:
+            raise ValueError('Bridge seed requires both native backbone links')
+        def outgoing(ends):
+            try:
+                return [by[(str(int(site)+1),name)] for site,name in ends]
+            except KeyError as exc:
+                raise ValueError('Outgoing template endpoint is absent') from exc
+        out_bond = bond_map.get(_canonical(outgoing(spec['bond']['atoms'])))
+        if out_bond is None or any(not math.isclose(out_bond[k],v,rel_tol=1e-12,abs_tol=1e-12)
+                for k,v in [('distance_ideal',spec['bond']['target']),('weight',_weight(spec['bond']['sigma']))]):
+            raise ValueError('Outgoing native bond differs from template')
+        for row in spec['angles']:
+            existing = angle_map.get(_canonical(outgoing(row['atoms'])))
+            if existing is None or any(not math.isclose(existing[k],v,rel_tol=1e-12,abs_tol=1e-12)
+                    for k,v in [('angle_ideal',row['target']),('weight',_weight(row['sigma']))]):
+                raise ValueError('Outgoing native angle differs from template')
+        out_p = by['3','P']
+        out_neighbors = {next(i for i in r['i_seqs'] if i!=out_p) for r in details['bond_simple'] if out_p in r['i_seqs']}
+        if (out_neighbors != {by['2',"O3'"],by['3',"O5'"],by['3','OP1'],by['3','OP2']}
+                or any(_canonical((a,out_p,b)) not in angle_map for a,b in combinations(out_neighbors,2))):
+            raise ValueError('Incomplete outgoing phosphate coverage')
+        report.update(policy_id=SEED_POLICY_ID,bridge_seed_receipt_sha256=_digest(bridge_seed/'receipt.json')['sha256'],
+                      outgoing_phosphate_angles=6,scope='VERIFIED_BRIDGE_SEED_MECHANICS; NO_CHEMICAL_OR_GEOMETRY_ACCEPTANCE')
     return report, phil
 
 
-def prepare_fana_junction_angles(control, model, native, link_template, output):
+def prepare_fana_junction_angles(control, model, native, link_template, output, *, bridge_seed=None):
     """Freeze a separate angle supplement from an already bonded native capture."""
     control = _path(control, directory=True)
+    if bridge_seed is not None:
+        bridge_seed = _path(bridge_seed,directory=True)
     model, native, link_template = [_path(p) for p in (model,native,link_template)]
     out = Path(output).expanduser().absolute()
     if out.exists() or out.is_symlink():
         raise FileExistsError(out)
-    if any(p.is_symlink() for p in out.parents) or any(out.is_relative_to(p) or p.is_relative_to(out) for p in (control,model,native,link_template)):
+    if any(p.is_symlink() for p in out.parents) or any(out.is_relative_to(p) or p.is_relative_to(out) for p in (control,model,native,link_template,*([bridge_seed] if bridge_seed is not None else []))):
         raise ValueError('Output must be separate from all inputs')
     read_fana_linked_control(control)
-    before = {p:p.read_bytes() for p in [model,native,link_template,*[p for p in control.rglob('*') if p.is_file()]]}
-    report, phil = _derive(control,model,_load(native),link_template)
+    source_trees = [control,*([bridge_seed] if bridge_seed is not None else [])]
+    before = {p:p.read_bytes() for p in [model,native,link_template,*[p for tree in source_trees for p in tree.rglob('*') if p.is_file()]]}
+    report, phil = _derive(control,model,_load(native),link_template,bridge_seed)
     report['native_sha256'] = _digest(native)['sha256']
     out.mkdir(parents=True, exist_ok=False)
     shutil.copytree(control,out/'placement')
+    if bridge_seed is not None:
+        shutil.copytree(bridge_seed,out/'bridge_seed')
     for name,path in [('model.pdb',model),('native.json',native),('link.cif',link_template)]:
         (out/name).write_bytes(before[path])
-    frozen, frozen_phil = _derive(out/'placement',out/'model.pdb',_load(out/'native.json'),out/'link.cif')
+    frozen, frozen_phil = _derive(out/'placement',out/'model.pdb',_load(out/'native.json'),out/'link.cif',out/'bridge_seed' if bridge_seed is not None else None)
     frozen['native_sha256'] = _digest(out/'native.json')['sha256']
     if report != frozen or phil != frozen_phil or any(p.read_bytes()!=b for p,b in before.items()):
         raise ValueError('Junction authority changed during preparation')
     (out/'angles.phil').write_text(phil)
     _save(out/'junction.json',report)
     files = {p.relative_to(out).as_posix():_digest(p) for p in out.rglob('*') if p.is_file()}
-    _save(out/'receipt.json',{'schema_version':1,'policy_id':POLICY_ID,'files':files})
+    _save(out/'receipt.json',{'schema_version':1,'policy_id':report['policy_id'],'files':files})
     return read_fana_junction_angles(out)
 
 
@@ -262,15 +303,19 @@ def read_fana_junction_angles(directory):
     if any(p.is_symlink() for p in paths):
         raise ValueError('Junction package cannot traverse symlinks')
     expected = _FILES | {'receipt.json'} | {'placement/'+p.relative_to(root/'placement').as_posix() for p in (root/'placement').rglob('*') if p.is_file()}
+    bridge_seed = root/'bridge_seed' if (root/'bridge_seed').is_dir() else None
+    if bridge_seed is not None:
+        expected |= {'bridge_seed/'+p.relative_to(bridge_seed).as_posix() for p in bridge_seed.rglob('*') if p.is_file()}
+    policy = SEED_POLICY_ID if bridge_seed is not None else POLICY_ID
     before = {p:p.read_bytes() for p in paths if p.is_file()}
     if {p.relative_to(root).as_posix() for p in before} != expected:
         raise ValueError('Unexpected or missing junction package file')
     r = _load(root/'receipt.json')
     if (set(r) != {'schema_version','policy_id','files'} or type(r['schema_version']) is not int
-            or r['schema_version'] != 1 or r['policy_id'] != POLICY_ID or set(r['files']) != expected-{'receipt.json'}
+            or r['schema_version'] != 1 or r['policy_id'] != policy or set(r['files']) != expected-{'receipt.json'}
             or any(_digest(root/name)!=value for name,value in r['files'].items())):
         raise ValueError('Invalid junction completion receipt or checksum')
-    report, phil = _derive(root/'placement',root/'model.pdb',_load(root/'native.json'),root/'link.cif')
+    report, phil = _derive(root/'placement',root/'model.pdb',_load(root/'native.json'),root/'link.cif',bridge_seed)
     report['native_sha256'] = _digest(root/'native.json')['sha256']
     if (report != _load(root/'junction.json') or phil.encode() != (root/'angles.phil').read_bytes()
             or any(p.read_bytes()!=b for p,b in before.items())):
@@ -308,10 +353,10 @@ def qualify_fana_junction_angles(directory, after):
                 requests.remove(matches[0])
         check('preserved-explicit-requests',requests==before['geometry']['custom_proxy_requests'])
         # Re-derive against the resulting manager: no missing angle remains.
-        result, _ = _derive(root/'placement',root/'model.pdb',after,root/'link.cif')
+        result, _ = _derive(root/'placement',root/'model.pdb',after,root/'link.cif',root/'bridge_seed' if report['policy_id']==SEED_POLICY_ID else None)
         check('six-phosphate-angles',result['phosphate_angles_before']==6 and not result['requests'])
     except (KeyError,TypeError,ValueError,IndexError) as exc:
         checks.append({'check':'complete-consistent-native-evidence','status':'REVIEW','error':str(exc)})
     passed = bool(checks) and all(r['status']=='PASS' for r in checks)
-    return {'schema_version':1,'policy_id':POLICY_ID,'status':'JUNCTION_ANGLE_MECHANICS_PASS' if passed else 'REVIEW',
+    return {'schema_version':1,'policy_id':report['policy_id'],'status':'JUNCTION_ANGLE_MECHANICS_PASS' if passed else 'REVIEW',
             'checks':checks,'chemical_qualification':'NOT_ESTABLISHED','automatic_adoption':False}

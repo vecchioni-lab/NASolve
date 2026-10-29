@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Fit a source-preserving FANA bridge seed (C126)
+
+- Add a separate immutable construction seed using three graph-checked acyclic
+  single-bond rotations and a proper rigid fit. Use the explicitly authorized
+  leaving oxygen as a virtual incoming-partner target; never write it into the
+  linked model. Preserve source definitions, internal heavy bond lengths/angles,
+  all four sugar hands and exact flanking records.
+- Bind this verified seed into the existing missing-angle adapter through an
+  optional `bridge_seed` argument. Require both native links, outgoing template
+  bond/angles and complete phosphate coverage; retain exact native delta checks.
+- Add schema-1 seed and seeded-junction policies. Legacy C125 packages still
+  replay. The L-FANA-C control now has both native links and six angles at each
+  phosphate; it remains a construction diagnostic, with no chemistry/geometry
+  acceptance, automatic adoption, production mutation or run/checkpoint migration.
+
 ### Restore source-named FANA junction angle coverage (C125)
 
 - Add a separate immutable angle supplement for an already bonded three-site
