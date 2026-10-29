@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C129 validated: replayable fixed native derivatives for the FANA bridge
+## C129 published: replayable fixed native derivatives for the FANA bridge
 
 Base/last published head: `13f415559bf5057dd73b3d84daa4d102e26bfb43`; existing cedar only.
 Capsule: `live_tests_directory/129_Cedar_FANA-derivatives-3q2no8nf`.
@@ -20,7 +20,8 @@ All 489 source/test hashes remain unchanged and match the focused run. Cold repl
 preserves 266 hashes/sizes/mtimes after the owned original disappears, with old
 paths, Phenix SDK and processes blocked and no attempted access. Compileall,
 340 relative documentation links, JSON/SVG parsing and diff whitespace pass.
-No job is active; implementation publication is next.
+No job is active; tested implementation `7f83ed2f14e171ede16e525142f85ce596d6b6b8` is published and
+verified on `origin/cedar`. This follow-up records continuity only.
 
 Before: the ordinary connected manager needed a one-off derivative probe;
 earlier mixed/corrected-plane evidence could not qualify this zero-parallelity
@@ -56,7 +57,7 @@ One command named an absent test file and one synthetic receipt omitted required
 geometry inventory; both failures remain preserved, and production checks were
 not relaxed. False pass flags and bad analytic gradients have distinct tests.
 
-Next: publish and verify cedar, then build one bounded central-residue geometry
+Next: build one bounded central-residue geometry
 trial, keeping flanks fixed and preserving source graph/protonation and all sugar
 hands. Re-interpret the candidate and recheck exact topology and mechanics.
 Sampled agreement does not prove every component or convergence. A:2/A:3 crowding,

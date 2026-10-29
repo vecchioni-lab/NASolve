@@ -27143,7 +27143,7 @@
       "implementation_commit": "bd986d8bac024f359f7771340f0c9b6c81f52c02"
     },
     "fana_native_derivatives": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "fana_native_derivatives_2026_10_29",
       "policies": [
@@ -27158,7 +27158,8 @@
         "Manager and both declared backbone links unchanged; A:2/A:3 crowding and outgoing angle remain.",
         "C110 flank H/charge/order/OP3 differences and central chemical/numerical qualification remain separate."
       ],
-      "next": "Bounded central-residue geometry candidate with fixed flanks and source/stereo preservation; re-interpret and recheck exact topology and mechanics before any acceptance."
+      "next": "Bounded central-residue geometry candidate with fixed flanks and source/stereo preservation; re-interpret and recheck exact topology and mechanics before any acceptance.",
+      "implementation_commit": "7f83ed2f14e171ede16e525142f85ce596d6b6b8"
     }
   },
   "audience": [
