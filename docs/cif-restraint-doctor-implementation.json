@@ -27114,12 +27114,13 @@
       "implementation_commit": "45419432508aa4bc9b7184ce9a408936ca2119b5"
     },
     "native_nonbonded_attribution": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "policy_id": "cif-native-nonbonded-attribution-v1",
       "evidence_key": "native_nonbonded_attribution_2026_10_29",
       "behavior": "Explicit fixed-coordinate capture with actual energy-object membership, pair/container/manager proof and read-only per-residue attribution.",
       "validation": "6528 passed, 276 subtests passed in 1028.87s (0:17:08); 194 focused; two actual Phenix interpretations; 375-file cold replay.",
-      "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles."
+      "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles.",
+      "implementation_commit": "d4ed67dec2ea71cbb6116081f496a90ab41fa407"
     }
   },
   "audience": [

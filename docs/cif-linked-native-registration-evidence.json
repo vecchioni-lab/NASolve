@@ -44326,7 +44326,7 @@
     "implementation_commit": "45419432508aa4bc9b7184ce9a408936ca2119b5"
   },
   "native_nonbonded_attribution_2026_10_29": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "47a84cb0c36a4b6ff5b8cd7dcfe4fdc204b2d976",
     "branch": "cedar",
     "policy_id": "cif-native-nonbonded-attribution-v1",
@@ -44890,6 +44890,7 @@
     "compileall": "PASS",
     "documentation_links": 332,
     "json_and_svg_parse": "PASS",
-    "whitespace": "PASS"
+    "whitespace": "PASS",
+    "implementation_commit": "d4ed67dec2ea71cbb6116081f496a90ab41fa407"
   }
 }

@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C127 validated: native nonbonded pair attribution
+## C127 published: native nonbonded pair attribution
 
 Base/last published head: `47a84cb0c36a4b6ff5b8cd7dcfe4fdc204b2d976`; cedar only.
 Capsule: `live_tests_directory/127_Cedar_FANA-pairs-p3s2dwou`.
@@ -19,7 +19,8 @@ Implementation, **194 focused tests**, two actual Phenix interpretations and
 **375-file cold replay** pass. Full C126/C127 suite passes: **6528 passed, 276 subtests passed in 1028.87s (0:17:08)**.
 All 484 source/test hashes are unchanged. Compileall, diff whitespace,
 332 documentation links and JSON/SVG parsing pass. No job is active; publication
-is next.
+is complete. Tested implementation `d4ed67dec2ea71cbb6116081f496a90ab41fa407` is
+verified on `origin/cedar`; this follow-up records continuity only.
 
 Before: the ordinary linked diagnostic recorded nonbonded totals without pair
 attribution. After: opt-in `nonbonded_inventory` reuses the actual native energy
@@ -59,7 +60,7 @@ sizes and mtimes unchanged after the owned original disappears. No optimization,
 Coot, dictionary generation or diffraction refinement. Chemistry and adoption
 remain unqualified; C110 flank state/numerical differences and missing OP3 remain.
 
-Next: publish and verify cedar. Then reuse C109's existing exact source-link
+Next: reuse C109's existing exact source-link
 auditor for FANA construction, distinguishing NAR hydrogen-bond restraints,
 before comparing candidate scores; address steric placement and the
 complete junction angles under source/stereo preservation. Preserve every
