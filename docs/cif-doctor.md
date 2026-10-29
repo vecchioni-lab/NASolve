@@ -45,7 +45,9 @@
 
 <a id="current-capability-boundary-c121"></a>
 
-## Current capability boundary (C122)
+<a id="current-capability-boundary-c122"></a>
+
+## Current capability boundary (C123)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -59,7 +61,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. C121 separately covers the bounded neutral 6-oxo five-ring; charged/other carbonyl purines, convergence, linked PNA numerics and ordinary integration remain open. |
 | Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
-| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; other L-FANA bases, linked chemistry and whole-sugar model mutation remain open. |
+| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. Other L-FANA bases, linked chemistry and whole-sugar model mutation remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -678,6 +680,72 @@ Native formal-charge readback remains unsupported, separately from exact CIF
 charge retention. These are complete executions, not dry-runs. An initial 40A
 attempt is preserved after exposing a source-basename replay mismatch; corrected
 fresh attempts use the frozen source identity. No original receipt is rewritten.
+
+### Local FANA component identity and NARestraints binding (C123)
+
+`prepare_fana_enantiomer_component` freezes an explicitly supplied parent,
+verified enantiomer target and original workbook into a fresh component package.
+The caller supplies the target code, CCD root and occupied run codes; this is
+not a code allocator. The target must fit the three-character PDB field and be
+absent from the supplied workbook, declared CCD filenames and caller codes.
+Filename and consumer-record occupancy is case-folded independently of the host
+filesystem; invalid definitions, directories and dangling leaf symlinks still
+occupy their filenames. CCD directory symlinks are refused before traversal. The directory must expose a nonempty CCD filename namespace. This
+checks that declared namespace only; it is not a global PDB registration or an
+atomic reservation against another concurrent producer.
+
+The package reuses C122's complete source relation. The selected target must
+contain only its bound component blocks. A derived NARestraints record retains
+all base atom roles, glycosidic attachment, base class, phosphate context,
+function and source sheet. Its component identity and explicit D/L-FANA sugar
+label change; inherited abbreviation, notes, references and entry counts are
+cleared rather than asserted for a new molecule. The original row and complete
+source/workbook bytes remain evidence. This is an explicit local record overlay,
+not an edit to the installed workbook, a new workbook row, or a global loader patch.
+
+Schema-1 policy `cif-local-fana-enantiomer-component-v1` uses a fixed package:
+`inputs/parent.cif`, `inputs/target.cif`, `inputs/Ligands.xlsx`, `namespace.json`,
+`binding.json`, and a completion `receipt.json` written last. Existing output
+is refused and partial output is retained. The reader checks the exact file
+set, symlinks, duplicate JSON fields, checksums and receipt identity, then
+recomputes the complete source relation and NAR record. A stored pass or an
+updated hash on a changed record is insufficient. `read_fana_enantiomer_component`
+replays historical evidence without the original CCD or source paths;
+`bind_fana_enantiomer_records` additionally checks the supplied current CCD,
+consumer records and reserved codes, returning a deep-copied local overlay.
+Consumers must provide their whole occupied namespace and pass the resulting
+records explicitly; iterator inputs are materialized once so collision checking
+cannot consume and discard existing records. No lock, future availability, ordinary CLI integration,
+model mutation or automatic adoption is implied. Source replay binds the actual
+NAR loader/version evidence; changed dependencies require requalification.
+
+The real L-FANA-C control uses local code AAJ after checking 50,671 distinct installed
+CCD codes observed from filenames and the explicit workbook. ZLF and initial QF0–QF3 proposals are
+occupied and refused; those preflights execute no native generation. AAJ is a
+local alias only, never a deposition-code claim. The actual NARestraints 1.1.3
+compiler maps the new record to cytosine and compiles its GC pair and both stack
+orders with unchanged base roles. These synthetic partner controls establish
+compiler consumption, not experimentally observed pairing or native pair proxies.
+Phenix 2.2.1-6174 (dispatcher 2.2.1) then completes one 180-step/300-second
+isolated generation and two 60-second native interpretations. Both coordinate
+cases pass all 21 native checks with identical fixed covalent proxies. These
+are complete executions; no Coot, diffraction refinement or convergence claim.
+
+Cold replay rederives the package, NAR compiler control, candidate assessment
+and both native qualifications with 224 files unchanged. The owned original is
+absent, original/SDK access and subprocess execution are blocked. Namespace
+availability remains historical in that replay; generation-receipt semantic
+replay is not claimed. Exact commands, hashes and regression results are in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_component_binding_2026_10_29`. Raw scientific inputs, original workbook,
+source capture and generated/native outputs remain local.
+
+Next is whole modified-sugar placement into an L-DNA scaffold using this explicit
+source and local NAR binding. Ordinary Coot parent-sugar restoration would erase
+the intended FANA change and is unchanged. Selected-site phosphate/link state,
+unaltered surrounding residues, placement geometry and linked native qualification
+still require their own construction path. No OP3 deletion or chemical-state
+normalization is authorized by component registration.
 
 ### Explicit FANA enantiomer source check (C122)
 

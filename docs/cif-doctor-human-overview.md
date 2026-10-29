@@ -3162,3 +3162,16 @@ dictionary/native triple reports preserve torsion and seed-bending findings.
 No captured Python or new native process is executed.
 Native guessing stays disabled. Native energy resource files are not inventoried;
 current linked/model qualification and production PostMR adoption remain open.
+
+
+### Locally binding an explicitly mirrored FANA component
+
+A verified mirror needs a usable identity and base mapping before model placement.
+C123 freezes the parent, target and unchanged NARestraints workbook, checks the
+explicit local code namespace, and derives a local NAR record with identical
+base roles. Its reader repeats that derivation; consumer binding checks current
+code occupancy again. It neither installs a component globally nor changes the
+workbook. The L-FANA-C control passes actual pair/stack compilation and isolated
+Phenix generation/native checks. Model placement and linked geometry remain
+open. The [technical contract](cif-doctor.md#local-fana-component-identity-and-narestraints-binding-c123)
+contains the methods, exact scope and evidence.

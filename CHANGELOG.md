@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind explicit local FANA component identities (C123)
+
+- Add an immutable, source-verified enantiomer package with a derived local
+  NARestraints record, explicit CCD/workbook/run-code collision checks and fresh
+  namespace checks when binding into consumer records. Preserve base roles and
+  original workbook bytes; never alter the installed catalogue or global loader.
+- Recompute package chemistry and mapping on read; reject changed records,
+  incomplete receipts and occupied codes. Fold case explicitly across macOS/Linux
+  and refuse CCD directory symlinks. Preserve iterator-supplied consumer records
+  and retain interrupted partial outputs.
+- Add schema-1 `cif-local-fana-enantiomer-component-v1`. The AAJ L-FANA-C control
+  passes actual NAR pair/stack compilation and isolated Phenix generation/native
+  checks. Existing CLI/model construction, run/checkpoint schemas and adoption
+  are unchanged; namespace checks are not global code reservations.
+
 ### Verify explicit FANA enantiomer source intent (C122)
 
 - Add read-only `inspect_fana_enantiomer`: require explicit whole-component

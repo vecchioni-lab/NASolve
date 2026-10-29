@@ -66,6 +66,9 @@ sugar mutation remain open; catalogue labels do not grant chemical support.
 C122 adds an [explicit FANA enantiomer source check](cif-doctor.md#explicit-fana-enantiomer-source-check-c122)
 and one isolated L-FANA-C native control. Whole-model replacement and target
 NARestraints registration remain separate.
+C123 adds a [checked local component package and NARestraints record overlay](cif-doctor.md#local-fana-component-identity-and-narestraints-binding-c123),
+with current namespace checks at binding and cold source replay. Whole-model
+placement and linked native qualification remain open.
 C118 adds [explicit purine generation](cif-doctor.md#explicit-purine-generation-handoff-c118):
 new 40A/APN/40C candidates pass stage and isolated native checks while the default
 worker remains unchanged. C119 [freezes explicit PNA source networks](cif-doctor.md#explicit-pna-source-network-packages-c119)

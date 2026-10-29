@@ -11,6 +11,62 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C123 validated: local FANA component identity and NARestraints binding
+
+Base/last published head: `90153bc3699a594a760f128d0b66fb43fc221dd4`; existing cedar only.
+Capsule: `live_tests_directory/123_Cedar_FANA-component-r7elo01u`. Implementation, focused tests,
+actual NAR compiler/native controls, cold replay and full regression pass.
+Publication is next; no test or native job remains active.
+
+Before: C122's ZLF diagnostic alias collides with installed CCD; no checked local
+NAR binding existed. After: an explicit parent/mirror/workbook package checks
+CCD filenames, workbook and caller codes, derives an unchanged base-role mapping,
+records the explicit opposite sugar label and clears inherited descriptive claims.
+Its reader verifies fixed files/checksums and rederives source chemistry/mapping;
+consumer binding rechecks current namespace and returns a local record overlay.
+Filename/consumer occupancy is explicitly case-folded for macOS/Linux, and CCD
+directory symlinks are refused. No installed workbook or global loader changes. Schema-1 policy:
+`cif-local-fana-enantiomer-component-v1`; existing CLI/run/checkpoint schemas
+and model construction are unchanged. Availability is not a global/atomic reservation.
+
+AAJ is available in the declared 50,671-code CCD and workbook; it remains a local
+alias. ZLF and four QF0–QF3 suggestions were refused before native execution.
+Actual NARestraints 1.1.3 compiles C's GC pair and both stack orders with the local
+record. Phenix 2.2.1-6174 (dispatcher 2.2.1) completes one generation at 180
+steps/300 s and two 60-second native interpretations, both passing all 21 checks
+with identical fixed covalent proxies. No Coot, refinement or convergence claim.
+
+Validation: **6400 passed, 276 subtests passed in 964.74s (0:16:04)**.
+28 initial, four case-fold/anchor and one iterator fail-before cases;
+35 new tests; **175 focused passed in 7.36s**;
+all 476 source/test hashes unchanged. Initial full run was deliberately stopped
+after 4438 passes + 151 subtests to fix the reproduced case-fold collision; its
+logs remain in validation/full. A second run stopped after 3123 passes + 151
+subtests to fix iterator consumption in the record overlay; validation/full-final
+retains it. All 618 real workbook records survive iterator binding. The final
+full-complete suite passes. Final-source cold replay
+recomputes package, NAR compiler, candidate and two native qualifications with
+224 files unchanged, owned originals absent, original/SDK reads and processes
+blocked. Frozen namespace replay does not assert current availability; default
+generation-receipt semantic replay is not claimed. Exact commands/references:
+[evidence](cif-linked-native-registration-evidence.json), key `fana_component_binding_2026_10_29`.
+
+Twelve changed files: new module/tests, maintained contracts, human descriptor/
+figure and compact evidence. Raw source/workbook, component package, namespace,
+models/dictionaries/native captures/logs and runners stay local. No migration.
+Compilation, whitespace, 312 documentation links/both JSON ledgers and SVG XML
+pass. Two frozen inputs retain bytes, sizes and timestamps. Immediate next action:
+publish on cedar and record exact SHAs.
+
+Next: whole modified-sugar placement into L-DNA using this bound component and
+proper rigid placement, preserving unselected residues and explicit phosphate/
+link state. Ordinary parent-DNA sugar restoration would undo FANA and remains
+unchanged. Linked numerical qualification, independent CIP, other L-FANA bases,
+C119 PNA construction, DG naming and ATL/L-DNA/PDU remain open. Sticky-end
+stitching stays parked; no extra branch or merge.
+
+— Rowan · Codex desktop
+
 ## C122 published: explicit FANA enantiomer source check
 
 Base/last published head: `32aa20e9fce29a3a8ab8ae3d0f33540e5549487a`; existing cedar only.

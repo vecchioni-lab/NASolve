@@ -27074,6 +27074,14 @@
       "next": "Use an explicitly checked target source for whole-sugar model replacements with unaffected-site controls and explicit NAR binding; qualify final linked chemistry. Other L-FANA bases, independent CIP, PNA/DG/ATL/L-DNA/PDU remain separate.",
       "validation": "6365 passed, 276 subtests passed in 927.84s (0:15:27); 139 focused pass; one generation, two native qualifications and 222-file cold replay.",
       "implementation_commit": "c2ee674493a1912573ca4105a553588f80430c18"
+    },
+    "fana_component_binding": {
+      "status": "VALIDATED_NOT_PUBLISHED",
+      "policy_id": "cif-local-fana-enantiomer-component-v1",
+      "implementation_commit": null,
+      "evidence_key": "fana_component_binding_2026_10_29",
+      "behavior": "Explicit immutable enantiomer source and NAR record package with fresh consumer namespace checks; no installed registration, global reservation or model insertion.",
+      "validation": "6400 passed, 276 subtests passed in 964.74s (0:16:04); 175 focused; actual NAR compiler, one generation/two qualifications and 224-file cold replay pass."
     }
   },
   "audience": [

@@ -3553,3 +3553,21 @@ One explicitly derived L-FANA-C control passes generation and two isolated nativ
 checks, with cold source/candidate/native replay. Target NAR registration, model
 insertion, linked chemistry and independent CIP remain separate. See the
 [enantiomer contract](cif-doctor.md#explicit-fana-enantiomer-source-check-c122).
+
+
+## Local FANA component package and NAR overlay (C123)
+
+An explicitly supplied C122 enantiomer becomes a fresh immutable package only
+when its PDB-compatible code is absent from declared CCD filenames, the explicit
+workbook and caller-reserved codes. Filename/record comparisons fold case on all
+platforms; CCD directory symlinks cannot expand the declared namespace. The derived record preserves NAR base roles
+and chemical context, changing component identity/sugar label and clearing
+inherited descriptive claims. The original workbook stays byte-identical.
+A fixed file manifest and last-written completion receipt bind the package;
+reads recompute the full relation and record rather than trusting saved status.
+Binding into consumer records rechecks the live declared namespace and returns
+a local copy without patching the global loader. Neither snapshot nor recheck
+is an atomic/global reservation. Schema-1 policy is
+`cif-local-fana-enantiomer-component-v1`; ordinary construction and existing
+schemas are unchanged. The [component contract](cif-doctor.md#local-fana-component-identity-and-narestraints-binding-c123)
+records NAR compiler/native controls and remaining whole-sugar placement work.

@@ -42522,5 +42522,365 @@
       "svg_xml": "PASS"
     },
     "implementation_commit": "c2ee674493a1912573ca4105a553588f80430c18"
+  },
+  "fana_component_binding_2026_10_29": {
+    "status": "VALIDATED_NOT_PUBLISHED",
+    "base_commit": "90153bc3699a594a760f128d0b66fb43fc221dd4",
+    "implementation_commit": null,
+    "branch": "cedar",
+    "policy_id": "cif-local-fana-enantiomer-component-v1",
+    "schema_version": 1,
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "123_Cedar_FANA-component-r7elo01u"
+    },
+    "before": "No source-bound local NAR overlay or collision-checked enantiomer package; C122 diagnostic ZLF collides with installed CCD.",
+    "after": "Immutable package, rederived source/NAR binding and fresh explicit consumer namespace checks. No global registration or model insertion.",
+    "changed_files": [
+      "src/nasolve/cif_fana_component.py",
+      "tests/test_cif_fana_component.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "compatibility": "Additive API/schema only; no existing CLI, run/checkpoint or source migration.",
+    "limitations": [
+      "Declared namespace only; no global/atomic reservation.",
+      "Caller must supply all consumer records and occupied run codes.",
+      "Whole modified-sugar placement and linked native qualification remain open.",
+      "Independent CIP, other L-FANA bases, C119 PNA construction, DG naming and ATL/L-DNA/PDU remain distinct."
+    ],
+    "fail_before": {
+      "cases": 28,
+      "reference": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/validation/fail-before.log",
+        "sha256": "5f60eb03f10b5cbc15a11d8a67fde415b1690542d18090b1ac3f5fd15a61ef3d",
+        "size": 39523
+      }
+    },
+    "new_regression_cases": 35,
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_fana_component.py",
+        "tests/test_cif_fana_enantiomer.py",
+        "tests/test_cif_fana.py",
+        "tests/test_cif_component_controls.py",
+        "tests/test_cif_attachment_profiles.py",
+        "tests/test_cif_catalogue.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 7.533129999996163,
+      "source_test_files": 476,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_result": "175 passed in 7.36s",
+    "full_validation": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 965.652083833993,
+      "source_test_files": 476,
+      "changed_files": [],
+      "finished": true,
+      "status": "PASS",
+      "result": "6400 passed, 276 subtests passed in 964.74s (0:16:04)",
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/validation/full-complete/result.json",
+          "sha256": "59cb27f32b8e1a9e6faff2b6c34a83599ffbdd744cee51e3461d60ee9a736e38",
+          "size": 397
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/validation/full-complete/pytest.log",
+          "sha256": "263bd2120ad5573525ba10a2d27d3750633904ccb33da759e53c2742ddde1c72",
+          "size": 9755
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/validation/full-complete/source-hashes.json",
+          "sha256": "bea152388ebc0251cd23db515d61c0cd46070365df53f35020e9b8ed99362bc5",
+          "size": 51430
+        }
+      ]
+    },
+    "real_control": {
+      "code": "AAJ",
+      "source": "Explicit C122 CFL mirror; only component identity/name changed.",
+      "workbook": "Original bytes; no authored or installed workbook changes.",
+      "nar_version": "1.1.3",
+      "compiler": "PASS; mapped C, GC pair and two stack orders",
+      "software": "Phenix 2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "dry_run": false,
+      "generation_attempts": 1,
+      "generation_steps": 180,
+      "generation_timeout_seconds": 300,
+      "native_interpretations": 2,
+      "native_timeout_seconds": 60,
+      "native_checks_each": 21,
+      "same_fixed_covalent_proxies": true,
+      "source_capture": "C122 source capture reused; maintained native generator verifies current SDK hashes.",
+      "controls": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/reports/derivation.json",
+          "sha256": "99a159c86dda3d9acc4f9f92d610b2f39d65a3d2f04e207353a31938d0be690c",
+          "size": 412
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/reports/collision.json",
+          "sha256": "c1fb4c34ddba000fb6b1a147621d5e14361f2be92a1fa060d7bb53c680a7165f",
+          "size": 124
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/reports/initial-preflight.json",
+          "sha256": "dbeff479698eb732a0f7f917928c4cc3aaf8779a392d8eb6933b2ad49e7d7f11",
+          "size": 346
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/reports/nar-control.json",
+          "sha256": "d66c13a20f8288076c181c6013316d98925aaf7b3e67f513c4df04f855c4135d",
+          "size": 65851
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "123_Cedar_FANA-component-r7elo01u/reports/native-summary.json",
+          "sha256": "ecc2261bc22e8c1afae1b38f95ef8ac1b19e3aa247447176ff23a70b48781ee3",
+          "size": 154
+        }
+      ],
+      "package_receipt": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/component/receipt.json",
+        "sha256": "2a403469a16333025756d27c66afb28584d049b702251c35233ccd6498d08087",
+        "size": 875
+      },
+      "namespace_distinct_codes": 50671,
+      "compiler_counts": {
+        "GC_bonds": 3,
+        "GC_angles": 6,
+        "GC_parallelity": 1,
+        "stack_orders": 2
+      }
+    },
+    "cold_replay": {
+      "status": "PASS",
+      "component_binding_replays": 1,
+      "nar_compiler_controls": 1,
+      "complete_candidate_assessments": 1,
+      "native_qualifications": 2,
+      "files_unchanged": 224,
+      "blocked_attempts": [],
+      "owned_original_absent": true,
+      "native_execution": "NOT_RUN",
+      "pickle_loading": "NOT_RUN",
+      "namespace_scope": "HISTORICAL_FROZEN_OBSERVATION; no current availability assertion",
+      "generation_receipt_semantic_replay": "NOT_CLAIMED; bytes retained"
+    },
+    "cold_reference": {
+      "anchor": "live_tests_directory",
+      "path": "123_Cedar_FANA-component-r7elo01u/validation/cold-complete-result.json",
+      "sha256": "c4ed8c086a72c117fd4d3db9f390edbbf4dac2faae543842d76ba931f86d3c01",
+      "size": 465
+    },
+    "exact_native_command": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "/private/tmp/c123_native_v2.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "runner": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/runners/c123_native_v2.py",
+        "sha256": "080d4c694e85baecfc7b57aabaebee1b7c2e7e33ecbb9b7dd1c40ba0b1810f3b",
+        "size": 7437
+      }
+    },
+    "exact_cold_command": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "/private/tmp/c123_cold_complete.py",
+        "/Users/svecchio/NASolve-live-tests/123_Cedar_FANA-component-r7elo01u"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/123_Cedar_FANA-component-r7elo01u/cold-relocated-complete/src"
+      },
+      "runner": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/runners/c123_cold_complete.py",
+        "sha256": "d0140a8628a54dd37812908c6014a2ed9c0ee9ac0fffc88571d6fc9977536a9f",
+        "size": 3528
+      }
+    },
+    "included_artifacts": "Source, synthetic tests, maintained contracts and compact evidence only.",
+    "excluded_artifacts": "Raw source/workbook, local component package, namespace list, native logs/captures/models/dictionaries and runners remain local.",
+    "author": "Rowan · Codex desktop",
+    "initial_focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_fana_component.py",
+        "tests/test_cif_fana_enantiomer.py",
+        "tests/test_cif_fana.py",
+        "tests/test_cif_component_controls.py",
+        "tests/test_cif_attachment_profiles.py",
+        "tests/test_cif_catalogue.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 24.75870499998564,
+      "source_test_files": 476,
+      "changed_files": [],
+      "finished": true
+    },
+    "case_fold_fix": {
+      "before": "Case variants in CCD filenames or consumer records could evade occupied-code checks, especially on case-insensitive filesystems.",
+      "after": "Explicit case folding independent of host filesystem; no directory-symlink traversal outside the declared CCD.",
+      "fail_before_cases": 4,
+      "fail_before": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/validation/case-fail-before.log",
+        "sha256": "a15222c8ae4906ce4ead885f0752d4a4cb171d802b83a24633e5f116e6c4d88b",
+        "size": 3464
+      },
+      "current_real_namespace": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/reports/final-namespace.json",
+        "sha256": "732394757b9423eb196cf3f0fa486f28e5f4af5d36d4c6c4bb28618297d409bc",
+        "size": 189
+      }
+    },
+    "interrupted_full": {
+      "result": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "exit_code": 2,
+        "seconds": 800.2062125420198,
+        "source_test_files": 476,
+        "changed_files": [],
+        "finished": true
+      },
+      "reason": "Reproduced case-fold collision; deliberately stopped before source edits. Partial evidence retained.",
+      "log": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/validation/full/pytest.log",
+        "sha256": "53f159bae9de6d0ea579c4d9786095111be940163131fcb7b157ddfd23dc9b2b",
+        "size": 7828
+      }
+    },
+    "iterator_fix": {
+      "before": "An iterator of consumer records was exhausted by collision checking before it was copied into the overlay.",
+      "after": "Materialize records once; preserve all existing records and return a deep-copied overlay.",
+      "fail_before": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/validation/iterator-fail-before.log",
+        "sha256": "affc01f2b30b72d875d8f1ddb7e7932a6260fc66c5c875f02d636cb55e79fdc5",
+        "size": 1336
+      },
+      "real_control": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/reports/final-iterator-binding.json",
+        "sha256": "f39ec3ca78cd4267f030ad438c8bdb66c03a07b4e378aea3d9b10c9c67f1371e",
+        "size": 133
+      }
+    },
+    "second_interrupted_full": {
+      "result": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--durations=20"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "exit_code": 2,
+        "seconds": 423.162530584028,
+        "source_test_files": 476,
+        "changed_files": [],
+        "finished": true
+      },
+      "reason": "Reproduced iterator consumption; deliberately stopped before source edits. Partial evidence retained.",
+      "log": {
+        "anchor": "live_tests_directory",
+        "path": "123_Cedar_FANA-component-r7elo01u/validation/full-final/pytest.log",
+        "sha256": "1178985e3e9f342cdd126717ef7c1fafb0434642b122c0a91b092bbd763a7e2d",
+        "size": 6626
+      }
+    },
+    "final_checks": {
+      "compilation": "PASS",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c123-complete-pycache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "whitespace": "PASS",
+      "whitespace_command": "git diff --check",
+      "documentation": "PASS; 312 relative links and both JSON ledgers",
+      "svg_xml": "PASS",
+      "frozen_inputs_bytes_sizes_timestamps": "UNCHANGED"
+    }
   }
 }
