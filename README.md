@@ -1380,7 +1380,11 @@ reports residuals and unconstrained motion. It does not assess chemistry, steric
 clashes or diffraction fit. See the [metal integration guide](docs/metal-restraint-builder.md#generated-run-api-and-commands)
 for exact inputs, limitations and campaign objectives.
 
-A separate frozen diagnostic fits selected metal f-double-prime values:
+A separate frozen diagnostic fits selected metal f-double-prime values. It can
+also start from a verified native XYZ/ADP endpoint with `--xyz Metal/xyz_001`
+instead of `--geometry`. That route derives metal B from the refined base atoms
+(default `--metal-b-policy base-mean`), retaining exact coordinate and phase lineage:
+
 
 ```sh
 nasolve metal fdp /path/to/dataset/AutoMR/run_001 --geometry Metal/geometry_001 --fit m1 --occupancy m1=0.40
@@ -1391,6 +1395,12 @@ This preserves XYZ, ADPs, q and wavelength-derived f-prime, audits native
 readback and saves a new review bundle. Phenix 2.2.1-6174 is the initial supported
 version. A completed fit does not establish convergence, metal identity/count or
 correct geometry. See the [implemented diagnostic and limits](docs/metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
+
+For explicit cluster or proxy groups, `metal count-fdp RUN --trial Metal/fdp_001
+--groups groups.json` records Q-weighted anomalous response and per-element atom
+equivalents without claiming an integer atom count. See the
+[endpoint and count guide](docs/metal-anomalous-doctor.md#implemented-refined-endpoint-diagnostics-and-cluster-accounting)
+for the group format, native phase policy and remaining qualification limits.
 
 Compare existing audited trials without another Phenix run:
 

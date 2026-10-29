@@ -1349,7 +1349,8 @@ the objective. Schema-1 `metal-geometry-trial` bundles use protocol
 These numerical review proposals neither qualify chemistry nor substitute for
 Cedar's whole-model derivative/geometry checks or diffraction refinement.
 See the [implementation and milestone contract](metal-restraint-builder.md#integration-objectives-and-milestones).
-The additive `metal fdp` adapter verifies that geometry boundary and creates an
+The additive `metal fdp` adapter verifies that geometry boundary or an explicit
+native XYZ endpoint and creates an
 independent numbered schema-1 `metal-fdp-trial` under protocol
 `metal-frozen-fdp-v1`. It uses explicit positive-q metal groups, fixed Sasaki
 f-prime and fixed reference background scattering over every other atom. The
@@ -1443,9 +1444,10 @@ restraints. `metal.xyz.run_xyz` now captures a separate schema-1
 anchored phase file. It uses MLHL with merged observations, fixed Q/reference
 f-prime and zero f-double-prime for the geometry step only. `verify_xyz` replays
 inputs, phases, reflection membership and native fixed-state audits offline.
-Numbered failed attempts remain separate; no checkpoint is selected. The bridge
-from this reviewed endpoint to environmental B/fdp seeds, site mapping and
-phase/scale-policy qualification remain explicit gaps.
+Numbered failed attempts remain separate; no checkpoint is selected. The separate
+refined-endpoint diagnostic bridge now feeds environmental B and frozen fdp
+trials. Scientific qualification, site mapping and phase/scale-policy sensitivity
+remain explicit gaps.
 
 Campaign switching must use dataset/run/checkpoint/context identities; later
 hypotheses and rounds are children of that scope. Member datasets remain
@@ -1494,6 +1496,19 @@ and group ADPs; it does not freeze all atomic parameters. A qualified diagnostic
 must verify effective parameters and output atoms, including nuisance-induced
 ADP changes. The additive recipe/preview schemas change no existing run schema,
 current checkpoint, Doctor strategy or Cedar/Pine acceptance gate.
+
+The refined-endpoint diagnostic bridge accepts `metal fdp --xyz` with an explicit
+B policy (CLI default `base-mean`), retains original anomalous data and HL lineage,
+and regenerates donor bindings at the exact refined coordinates. It records
+`parent.xyz_trial_id`, distinct from legacy `parent.geometry_id`; scientific
+acceptance flags stay unchanged. Existing matched comparisons and occupancy scans
+work with either source, but cannot mix their bases. Native fitting is unchanged.
+The offline `metal count-fdp` consumer creates schema-1 `metal-fdp-count` bundles
+and reports under `metal-fdp-count-v1`: explicit groups, modeled counts,
+Q-weighted coefficient sums, and per-element wavelength-normalized atom equivalents.
+A one-site unresolved proxy is distinguished from individually modeled sites.
+No integer count, uncertainty, automatic splitting or special-position correction
+is inferred. See the [descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-refined-endpoint-diagnostics-and-cluster-accounting).
 
 ## Refine Doctor contract
 

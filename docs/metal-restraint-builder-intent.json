@@ -499,7 +499,7 @@
       "new_trial_field": "b_calibration",
       "scientific_qualification": "NOT_ASSESSED",
       "quantitative_source_requirement": "completed_xyz_adp_open_refinement_endpoint",
-      "endpoint_provenance_gate_implemented": false
+      "endpoint_provenance_gate_implemented": true
     },
     "metal_screen": {
       "status": "PLANNED_NOT_IMPLEMENTED",
@@ -555,7 +555,22 @@
         "nearest_distance_proves_bond": false,
         "overwrite_autosol_output": false,
         "unambiguous_closest_copy_selected_automatically": true
-      }
+      },
+      "diagnostic_endpoint_bridge_implemented": true
+    },
+    "fdp_count": {
+      "status": "IMPLEMENTED",
+      "protocol": "metal-fdp-count-v1",
+      "schema_version": 1,
+      "explicit_group_scope": true,
+      "representation": [
+        "explicit-sites",
+        "unresolved-proxy"
+      ],
+      "quantity": "Q_weighted_coefficients_and_per_element_atom_equivalents",
+      "integer_count_inferred": false,
+      "native_cluster_qualification": "PENDING",
+      "automatic_branching": false
     }
   },
   "solution_search": {

@@ -1,7 +1,8 @@
 """Phase-restrained XYZ/isotropic-ADP probes before frozen anomalous trials.
 
 This is a separate review artifact. It does not select a checkpoint, infer metal
-identity/count, calibrate metal B, or make the endpoint eligible for fdp scans.
+identity/count or calibrate metal B. The separate fdp adapter can consume a
+verified endpoint under an explicit B policy without changing its review status.
 """
 import gzip
 import hashlib

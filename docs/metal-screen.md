@@ -1,8 +1,8 @@
 # Experimental metal-screen workflow
 
-Status: **phase-restrained XYZ probe implemented; full metal-screen integration planned**.
-Updated 2026-10-28. This document records the experiment-driven workflow and
-data contract. It does not enable a new CLI mode, campaign option or GUI control.
+Status: **phase-restrained XYZ probe and refined-endpoint fdp diagnostic bridge implemented; full metal-screen integration planned**.
+Updated 2026-10-29. This document records the experiment-driven workflow and
+data contract. It does not enable an integrated metal-screen command, campaign option or GUI control.
 The existing authoring, frozen f-double-prime trials and read-only viewer remain
 implemented as described in the [anomalous workflow](metal-anomalous-doctor.md).
 
@@ -106,12 +106,13 @@ A different geometry, environmental B policy/source, or phase policy requires
 a new seed/comparison basis. Reusing an old trial requires the full experiment
 identity, not merely matching displayed metal, XYZ, Q and fitted f-double-prime.
 
-The implemented B calculator can read a supplied geometry's B values, but it
-does not yet prove that those values came from an eligible XYZ/ADP-open endpoint.
-Existing recipe-only geometry bundles deterministically replay their own solver;
-an external refinement result cannot be substituted into one. The separate XYZ
-review adapter below now captures the native endpoint, phases and audits. Its
-bridge into environmental B and frozen f-double-prime trials remains pending.
+The diagnostic bridge now verifies an explicit XYZ/ADP-open endpoint and derives
+B from its exact refined atoms before a new frozen f-double-prime trial. Existing
+recipe-only geometry bundles still deterministically replay their own solver;
+an external result is never substituted into one. The source XYZ manifest retains
+its unaccepted state; the bridge establishes provenance and frozen-state mechanics,
+not scientific eligibility for automatic count decisions. See the
+[implemented endpoint and count methods](metal-anomalous-doctor.md#implemented-refined-endpoint-diagnostics-and-cluster-accounting).
 
 ```mermaid
 flowchart TD
@@ -130,8 +131,9 @@ flowchart TD
 ```
 
 *Figure: experiment flow with the separate MLHL XYZ probe now implemented.
-The bridge from its review endpoint to environmental B and frozen anomalous
-trials, and the campaign branches, remain planned. A search execution failure and a completed
+The diagnostic bridge from its review endpoint to environmental B and frozen
+anomalous trials is implemented; scientific qualification and campaign branches
+remain planned. A search execution failure and a completed
 search without supported sites remain distinct outcomes; neither proves absence.
 All candidate branches retain their parent and phase provenance.*
 
@@ -188,12 +190,13 @@ checksums; it never searches by basename or uses historical absolute paths as
 its sole reference. Relocation is tested after removing the original temporary
 checkout/data path.
 
-A completed bundle is **XYZ_REVIEW**, not an accepted solution or an fdp seed.
-It records `fdp_quantitation_ready=false`, `environmental_b_applied=false`, no
-automatic checkpoint selection and no convergence claim. Chemical restraints,
-site count/identity, phase sensitivity and environmental B remain review work.
-The next bridge must bind the reviewed endpoint to donor/base definitions,
-prepare B without moving XYZ, and create a distinct frozen anomalous seed.
+A completed bundle remains **XYZ_REVIEW**. Its immutable result records
+`fdp_quantitation_ready=false`, `environmental_b_applied=false`, no automatic
+checkpoint selection and no convergence claim. The separate diagnostic bridge
+can now create a distinct frozen anomalous trial from this endpoint, after an
+explicit B policy and exact donor/base rebinding. It does not edit those source
+flags or claim scientific acceptance. Chemical restraints, count/identity,
+phase/overall-B sensitivity and optimizer qualification remain review work.
 
 ## Count changes and no-metal outcome
 

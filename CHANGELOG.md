@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Connect refined metal endpoints to frozen anomalous and count diagnostics
+
+- Accept an explicit verified XYZ/ADP endpoint as a frozen-fdp source, using its
+  refined base/donor B, exact coordinates, original anomalous data and phase
+  lineage. Require an explicit B policy for API calls; retain the CLI base-mean
+  default. Existing recipe-geometry inputs and old artifact replay are unchanged.
+- Add the schema-1 fdp parent variant `xyz_trial_id`; existing comparison/scan
+  mechanics preserve endpoint identity, B preparation and exact seed reuse.
+  Native protocol, phase objective and all source acceptance flags are unchanged.
+- Add offline `metal count-fdp` / `verify-fdp-count` and schema-1 count bundles:
+  explicit clusters versus unresolved proxies, Q-weighted coefficient sums,
+  element-specific references and conditional atom equivalents. Retain negative
+  and unavailable values; infer no integer count or automatic site placement.
+- Keep native cluster qualification, optimizer convergence, phase/B sensitivity,
+  shared cluster environments and GUI integration as explicit remaining work.
+
 ### Import explicit metal restraint recipes and compact their review
 
 - Add offline `metal import-restraints`: inspect a supported add-only PHIL subset,

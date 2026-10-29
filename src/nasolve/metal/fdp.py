@@ -11,7 +11,7 @@ from .binding import AtomKey
 from .context import _reference, parse_pdb
 from .export import atom_selection
 from .environment import calibrate_b
-from .geometry import verify_geometry
+from .geometry import verify_geometry, _preview
 from .materialize import _json, _json_bytes, _source, verify_hypothesis
 from .recipe import RecipeError, canonical, checksum, digest, number
 from .scattering import inspect_observations, reference_scattering
@@ -296,32 +296,62 @@ def _native(directory, native, timeout):
 
 
 def _input_bundle(run, geometry):
-    g=verify_geometry(run,geometry)
-    parent=verify_hypothesis(run,Path(g['parent']['manifest']['relative_path']).parent)
+    """Load an audited recipe geometry or the exact native XYZ/ADP endpoint.
+
+    Normalize inputs only in memory. Source manifests keep their distinct kinds,
+    identities and acceptance states; a native endpoint is never relabelled as
+    a deterministic recipe-geometry result.
+    """
+    path=Path(geometry).expanduser()
+    if re.fullmatch(r'xyz_\d{3,}',path.name):
+        # Lazy import: XYZ planning uses the frozen worker's scattering policy.
+        from .xyz import verify_xyz
+        g=verify_xyz(run,geometry)
+        parent=verify_hypothesis(run,Path(g['parent']['manifest']['relative_path']).parent)
+        raw=_source(g['files']['final.pdb'],run)
+        inputs=g['input_sources']
+        refs=[g['files'][name] for name in sorted(g['files']) if name.startswith('resource_')]
+        resolved_preview=_preview(_json(_source(parent['files']['preview'],run)),raw)
+        manifest=run/Path(g['files']['final.pdb']['relative_path']).parent/'manifest.json'
+        lineage=dict(xyz_trial_id=g['trial_id'],manifest=_reference(manifest,run))
+        source_kind='native_xyz_endpoint'
+    else:
+        g=verify_geometry(run,geometry)
+        parent=verify_hypothesis(run,Path(g['parent']['manifest']['relative_path']).parent)
+        raw=_source(g['files']['model'],run)
+        inputs=g['inputs']
+        refs=inputs['restraints']+[g['files']['restraints']]
+        resolved_preview=_json(_source(g['files']['preview'],run))
+        manifest=run/Path(g['files']['model']['relative_path']).parent/'manifest.json'
+        lineage=dict(geometry_id=g['geometry_id'],manifest=_reference(manifest,run))
+        source_kind='recipe_geometry'
     resources=[]
-    for ref in g['inputs']['restraints']+[g['files']['restraints']]:
+    for ref in refs:
         path=resolve_artifact_path(ref,run)
         if path is None or path.suffix.lower() not in {'.cif','.phil','.eff','.params'}:
             raise RecipeError('Unsupported or missing inherited restraint resource')
         resources.append((f'resource_{len(resources):03d}'+path.suffix.lower(),_source(ref,run)))
-    raw=_source(g['files']['model'],run)
-    manifest=run/Path(g['files']['model']['relative_path']).parent/'manifest.json'
-    return g,parent,raw,resources,_reference(manifest,run)
+    return dict(parent=parent,model=raw,resources=resources,inputs=inputs,
+                preview=resolved_preview,lineage=lineage,source_kind=source_kind)
 
 
 def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
             minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0, timeout=240, metal_b_policy=None):
-    """Run one independent trial. Failed attempts retain their numbered directory."""
+    """Fit a verified geometry/XYZ endpoint; failed attempts retain their directory."""
     run=Path(run).expanduser().resolve();_integer(timeout,10,600,'timeout seconds')
-    g,parent,raw,resources,parent_ref=_input_bundle(run,geometry)
-    observations=_source(g['inputs']['observations'],run)
-    observation_path=resolve_artifact_path(g['inputs']['observations'],run)
+    source=_input_bundle(run,geometry)
+    if source['source_kind']=='native_xyz_endpoint' and metal_b_policy is None:
+        raise RecipeError('Native XYZ endpoint requires an explicit environmental B policy (or explicit keep)')
+    parent=source['parent'];raw=source['model'];resources=source['resources']
+    parent_ref=source['lineage']['manifest']
+    observations=_source(source['inputs']['observations'],run)
+    observation_path=resolve_artifact_path(source['inputs']['observations'],run)
     metadata=inspect_observations(observation_path,executable=native.executables['phenix.mtz.dump'],environment=native.environment)
     references=reference_scattering({a.element for a in parse_pdb(raw).snapshot.atoms},metadata['wavelength_A'],
         executable=native.executables['phenix.python'],version=native.version,environment=native.environment)
     plan,model=make_plan(raw,parent['sites'],metadata,references,fit_nodes=fit_nodes,occupancies=occupancies,cycles=cycles,
         minimizer_cycles=minimizer_cycles,max_iterations=max_iterations,start_fdp=start_fdp,free_r_test_value=free_r_test_value,
-        metal_b_policy=metal_b_policy,preview=_json(_source(g['files']['preview'],run)),resources=resources)
+        metal_b_policy=metal_b_policy,preview=source['preview'],resources=resources)
     phil,args=parameters(plan,[name for name,_ in resources])
     directory=_allocate(run)
     try:
@@ -342,14 +372,14 @@ def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
             raise RecipeError('Serialized final PDB changed frozen atomic state')
         for name,data in content.items():
             if (directory/name).read_bytes()!=data:raise RecipeError('Frozen trial input changed: '+name)
-        _source(parent_ref,run);verify_geometry(run,geometry)
+        _source(parent_ref,run);_input_bundle(run,geometry)
         (directory/'result.json').write_bytes(_json_bytes(result))
         if any(p.is_symlink() or not p.is_file() for p in directory.iterdir()):
             raise RecipeError('Unexpected nonregular native artifact')
         files={p.name:_reference(p,run) for p in sorted(directory.iterdir())}
         doc=dict(kind='metal-fdp-trial',schema_version=1,protocol=PROTOCOL,status='FDP_REVIEW',
-                 parent=dict(geometry_id=g['geometry_id'],manifest=parent_ref),files=files,
-                 input_sources=g['inputs'],worker_sha256=hashlib.sha256(Path(__file__).with_name('_fdp_native.py').read_bytes()).hexdigest(),
+                 parent=source['lineage'],files=files,
+                 input_sources=source['inputs'],worker_sha256=hashlib.sha256(Path(__file__).with_name('_fdp_native.py').read_bytes()).hexdigest(),
                  execution=dict(phenix_version=evidence['native_version'],timeout_seconds=timeout,mode='complete'),
                  automatic_checkpoint_selection=False,scientific_acceptance='NOT_ASSESSED')
         doc['trial_id']=digest(doc)
@@ -385,8 +415,9 @@ def verify_fdp(run, directory):
             _source(ref,run)
         pref=doc['parent']['manifest'];_source(pref,run)
         if pref.get('anchor')!='run':raise RecipeError('Trial parent must be in this run')
-        g,parent,raw,resources,expected_ref=_input_bundle(run,Path(pref['relative_path']).parent)
-        if pref!=expected_ref or doc['parent']['geometry_id']!=g['geometry_id'] or canonical(doc['input_sources'])!=canonical(g['inputs']):
+        source=_input_bundle(run,Path(pref['relative_path']).parent)
+        parent=source['parent'];raw=source['model'];resources=source['resources']
+        if canonical(doc['parent'])!=canonical(source['lineage']) or canonical(doc['input_sources'])!=canonical(source['inputs']):
             raise RecipeError('Trial parent lineage changed')
         plan=_json((directory/'plan.json').read_bytes())
         free_r=_json((directory/'free-r.json').read_bytes())
@@ -395,10 +426,12 @@ def verify_fdp(run, directory):
         if doc['execution']['phenix_version']!=NATIVE_VERSION:
             raise RecipeError('Saved native version is unsupported')
         checksum(doc['worker_sha256'],'native worker provenance')
+        if source['source_kind']=='native_xyz_endpoint' and plan['options'].get('metal_b_policy') is None:
+            raise RecipeError('Native XYZ endpoint requires an explicit environmental B policy')
         replay,model=make_plan(raw,parent['sites'],plan['metadata'],plan['references'],
-            preview=_json(_source(g['files']['preview'],run)),resources=resources,**plan['options'])
+            preview=source['preview'],resources=resources,**plan['options'])
         phil,args=parameters(replay,[name for name,_ in resources])
-        expected={'input.pdb':model,'observations.mtz':_source(g['inputs']['observations'],run),
+        expected={'input.pdb':model,'observations.mtz':_source(source['inputs']['observations'],run),
                   'plan.json':_json_bytes(replay),'parameters.phil':phil,
                   'native-plan.json':_json_bytes({'plan':replay,'args':args}),**dict(resources)}
         if any((directory/name).read_bytes()!=data for name,data in expected.items()):raise RecipeError('Trial inputs differ from derivation replay')

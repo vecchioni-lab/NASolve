@@ -1,7 +1,7 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **single-trial frozen f-double-prime diagnostics, matched endpoint comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only results viewer, explicit construction and bounded recipe-only preparation implemented**.
-Implementation updated 2026-10-28. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
+Status: **refined-endpoint and recipe-geometry frozen diagnostics, cluster atom-equivalent reports, matched comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only viewer implemented**.
+Implementation updated 2026-10-29. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
 Solution-space search, decision logic, maps and editable GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
@@ -16,13 +16,14 @@ NASolve's conditional AutoSol behavior remains unchanged.
 
 For quantitative use, the source must be the **completed XYZ/ADP-open refinement
 endpoint for this candidate**, followed by pinning XYZ. Parent scaffold B is not
-the intended source. The current calculator accepts its supplied geometry and
-does not yet enforce that refined-endpoint provenance; the
+the intended source. The implemented diagnostic
 [endpoint bridge](metal-screen.md#geometry-refinement-environmental-b-and-frozen-trials)
-remains to be implemented and qualified. A separate
-[phase-restrained XYZ review API](metal-screen.md#implemented-phase-restrained-xyz-probe)
-now captures a native refined endpoint with exact phases and fixed-Q/scattering
-audits; it does not yet feed this calculator or make an eligible fdp seed.
+now verifies the exact native XYZ trial, imports its serialized endpoint, rebuilds
+its recipe bindings at those coordinates and derives environmental B there.
+It retains the original anomalous observations and XYZ phase provenance.
+Scientific qualification remains separate: the source retains its XYZ_REVIEW
+status and is never relabelled as an accepted solution. Legacy recipe-only
+geometry controls remain available, with their distinct source lineage.
 
 Each fixed-geometry branch prepares metal B **before** fixed-occupancy
 f-double-prime quantitation. The assumption is that metal displacement resembles
@@ -61,8 +62,9 @@ preparation, using `metal.chemistry` for captured component graphs. `fdp.make_pl
 applies it before Q overrides and native execution. The native worker and frozen
 protocol remain unchanged. Trial schema 1 gains optional `b_calibration` plus
 `options.metal_b_policy`; replay of older files omits them and is byte-compatible.
-Programmatic `run_fdp` calls without the new argument retain legacy B behavior;
-new integrations should pass the intended policy explicitly. Updated readers are
+Programmatic `run_fdp` calls from recipe-only geometry retain legacy B behavior
+when the argument is omitted. Calls from native XYZ endpoints require an explicit
+B policy, including an explicit `keep` when retaining endpoint metal B. Updated readers are
 required for prepared trials. Existing data are neither migrated nor rescaled.
 The viewer is read-only and previews this step; it does not launch preparation or
 fitting. The process strip is a workflow guide, not a fabricated execution tree.
@@ -85,11 +87,107 @@ legacy replay, scan inheritance and source-removed relocation. Four complete
 Phenix **2.2.1-6174** trials on the saved Hg/AuAg controls exercised both independent
 Q changes and preserved input/final atomic-state audits; all prior files were
 preserved. Their generated nucleobase atoms all have B = 20 Å², so this validates
-mechanics, not experimental f-double-prime/occupancy inference. A credible base-B
-field from the candidate XYZ/ADP-open refinement endpoint is still required.
+mechanics, not experimental f-double-prime/occupancy inference. Those earlier controls are separate from the new refined-endpoint bridge:
+three complete native frozen trials now use two saved XYZ/ADP endpoints, including
+a two-point Q scan with one reused seed. They validate data flow and freeze audits;
+geometry, environmental/overall-B scale and optimizer convergence still require
+qualification. The current handoff records subsequent start/budget controls.
 Uniform contributing B values are flagged
 in the preview for inspection. No new Coot execution or scientific solution
 qualification is claimed.
+
+## Implemented refined-endpoint diagnostics and cluster accounting
+
+The existing runner now accepts `metal fdp RUN --xyz Metal/xyz_NNN --fit m1`
+as an alternative to `--geometry`. Both CLI forms default to `base-mean`.
+The Python API uses the same explicit positional source directory. Native XYZ
+sources require an explicit B policy in the API, while the legacy geometry default
+is unchanged. The adapter verifies the full XYZ lineage before any trial,
+including the inherited hypothesis, phases, Free-R evidence and endpoint state.
+It rebuilds the recipe preview from the refined atoms, applies B only to selected
+metals, applies declared Q overrides, and freezes every atomic XYZ/ADP/Q during
+the existing anomalous fit. Background I/Br and other atoms retain their explicit
+reference scattering; they are not silently included in a metal count group.
+
+New XYZ-backed fdp manifests use `parent.xyz_trial_id` and the original anchored
+XYZ manifest; recipe-backed trials retain `parent.geometry_id`. Both keep schema
+1 and the unchanged native `metal-frozen-fdp-v1` protocol. Updated readers are
+required for the new parent variant. No old file is migrated. Existing comparisons
+and bounded scans accept the new source, preserving the same endpoint/B/phase
+basis and exact reuse rules. Workbench catalogs currently accept recipe-geometry
+sources only; adding native XYZ endpoints to the GUI is separate work.
+
+The geometry stage used external HL phases. The frozen anomalous stage still
+uses its explicitly recorded model-phase-only ML target; retaining HL provenance
+does not mean applying HL restraints during fdp fitting. The phase-policy and
+B-scale sensitivity questions remain open.
+
+`metal count-fdp` captures a separate offline, immutable report from one verified
+fit and explicit groups. A groups JSON file has this form:
+
+```json
+{
+  "cluster": {
+    "nodes": ["m1", "m2", "m3", "m4", "m5", "m6"],
+    "representation": "explicit-sites"
+  }
+}
+```
+
+```sh
+nasolve metal count-fdp RUN --trial Metal/fdp_001 --groups groups.json
+nasolve metal verify-fdp-count RUN --count-report Metal/fdp_count_001
+```
+
+Use `unresolved-proxy` only for one explicitly fitted site representing a possible
+unresolved group. A large response at that proxy and six individually modeled
+sites remain distinct representations. The report preserves all selected site
+rows, actual wavelength/provider references, source endpoint, B preparation, convergence status and
+phase policy. It never infers groups from distance, dataset name or displayed view.
+Missing/unfitted members are errors; excluded fitted neighbors are named. Groups
+may overlap, but there is no sum across groups.
+
+**Methods.** For each element within each group, calculate the modeled site count,
+occupancy sum, coefficient sum `S = sum(Q_i * fdp_i)`, expected coefficient sum
+`S_ref = sum(Q_i * fdp_ref(element, wavelength))`, response `S/S_ref`, and
+atom-equivalent value `S/fdp_ref(element, wavelength)`. Same-element references
+must agree. Mixed species retain separate denominators and atom-equivalent
+values; the group's aggregate response compares its actual and expected
+coefficient sums. No average element or reference is invented. Negative fits
+remain negative with a warning; zero references produce unavailable ratios.
+Neither integer rounding nor an automatic extra-site decision occurs.
+
+These sums are coefficient bookkeeping, **not measured structure-factor sums**:
+coordinates, phases and B-dependent attenuation still affect the actual diffraction.
+Six half-occupied sites give three atom equivalents when their per-atom fitted
+fdp matches the reference; this alone does not establish three occupied sites.
+Special-position multiplicities, independently fitted covalent-anchor controls,
+shared cluster B policies, uncertainty propagation and automatic count branching
+are not implemented. A cluster member without a declared donor does not silently
+borrow its neighbor's B; define its environment or explicitly retain its endpoint B.
+
+```mermaid
+flowchart LR
+    X[Verified native XYZ/ADP endpoint] --> B[Exact refined bases or donors; explicit B policy]
+    B --> F[Frozen XYZ/B/Q/f-prime fit]
+    F --> Q[Bounded Q siblings and exact seed reuse]
+    F --> G[Explicit cluster or proxy group]
+    G --> E[Per-element Q-weighted response and atom equivalents]
+    E --> R[Review geometry, convergence, count and identity]
+```
+
+*Figure: implemented diagnostic data path. The XYZ source remains unaccepted;
+its phase provenance accompanies the model-phase-only frozen fit. Group summaries
+are offline evidence, not new geometries or automatic structural choices.*
+
+**Evidence and format.** Tests cover six independent sites, high refined B,
+source/phase tampering, complete scan reuse, mixed identities, proxy interpretation,
+zero references, negative fits, partial group rejection and offline relocation.
+`metal-fdp-count` / `metal-fdp-count-report`, schema 1, protocol
+`metal-fdp-count-v1`, preserve a checked source-trial manifest and exact arithmetic
+replay. They add no new native job and do not change existing fdp result files.
+Actual cluster building/refinement qualification remains a subsequent native test;
+synthetic six-site coverage is not evidence of solving a cluster dataset.
 
 ## Implemented local saved-results viewer
 

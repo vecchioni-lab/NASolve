@@ -58,6 +58,11 @@ def configure(subparsers):
     inspect_ref.add_argument('--output', type=Path)
     compare_ref = actions.add_parser('compare-reference', help='compare explicitly mapped candidate/reference internal geometry')
     verify_ref = actions.add_parser('verify-reference-comparison', help='replay a captured reference comparison offline')
+    count = actions.add_parser('count-fdp', help='save explicit cluster/site atom-equivalent evidence from an audited fit')
+    count_verify = actions.add_parser('verify-fdp-count', help='replay saved atom-equivalent evidence offline')
+    count.add_argument('--trial', type=Path, required=True)
+    count.add_argument('--groups', type=Path, required=True, help='JSON group names with nodes and explicit-sites/unresolved-proxy representation')
+    count_verify.add_argument('--count-report', type=Path, required=True)
     scan_plan = actions.add_parser('plan-fdp-scan', help='plan an explicit occupancy grid from one audited seed trial')
     scan = actions.add_parser('run-fdp-scan', help='execute a bounded pass or resume an existing occupancy scan')
     scan_verify = actions.add_parser('verify-fdp-scan', help='verify saved scan results without native execution')
@@ -68,7 +73,7 @@ def configure(subparsers):
     scan.add_argument('--job-budget', type=int, required=True)
     scan.add_argument('--resume', type=Path)
     scan_verify.add_argument('--scan', type=Path, required=True)
-    for parser in (scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
+    for parser in (count, count_verify, scan_plan, scan, scan_verify, inspect, preview, build, verify, geometry, verify_geometry, fdp, verify_fdp, compare_fdp, verify_comparison, compare_ref, verify_ref):
         parser.add_argument('run', type=Path, help='explicit NASolve run directory')
         if parser in (inspect, preview, build):
             parser.add_argument('--checkpoint', default='postmr', help='exact checkpoint/bookmark (default: postmr)')
@@ -88,7 +93,9 @@ def configure(subparsers):
     geometry.add_argument('--max-iterations', type=int, default=100)
     geometry.add_argument('--max-shift', type=float, default=1., help='maximum displacement per metal in angstrom (default: 1)')
     verify_geometry.add_argument('--geometry', type=Path, required=True, help='exact geometry directory, absolute or relative to run')
-    fdp.add_argument('--geometry', type=Path, required=True)
+    fdp_source = fdp.add_mutually_exclusive_group(required=True)
+    fdp_source.add_argument('--geometry', type=Path, help='saved recipe-only geometry trial')
+    fdp_source.add_argument('--xyz', type=Path, help='saved native XYZ/ADP endpoint; remains scientifically unaccepted')
     fdp.add_argument('--fit', action='append', required=True, help='placed metal node to fit independently; repeat for additional sites')
     fdp.add_argument('--occupancy', action='append', default=[], metavar='NODE=Q', help='explicit input occupancy override; all q stays fixed during fitting')
     fdp.add_argument('--metal-b-policy', choices=('base-mean','donor-mean','keep'), default='base-mean',
@@ -133,6 +140,8 @@ def execute(args):
             return _reference_snapshot(args)
         if args.metal_action in {'compare-fdp', 'verify-fdp-comparison'}:
             return _fdp_comparison(args)
+        if args.metal_action in {'count-fdp', 'verify-fdp-count'}:
+            return _fdp_count(args)
         if args.metal_action in {'fdp', 'verify-fdp'}:
             return _fdp(args)
         if args.metal_action in {'build', 'verify'}:
@@ -265,7 +274,7 @@ def _fdp(args):
                 raise RecipeError('Use distinct NODE=Q occupancy overrides')
             occupancies[node] = float(q)
         native = discover_phenix(load_config(), explicit=args.phenix_root)
-        result = run_fdp(args.run, args.geometry, native=native, fit_nodes=args.fit,
+        result = run_fdp(args.run, args.xyz or args.geometry, native=native, fit_nodes=args.fit,
                          occupancies=occupancies, cycles=args.cycles, start_fdp=args.start_fdp, metal_b_policy=args.metal_b_policy,
                          free_r_test_value=args.free_r_test_value, timeout=args.timeout)
     else:
@@ -532,4 +541,33 @@ def _import_restraints(args):
             for selector in result['selectors']:
                 print(f"{selector['id']}: {selector['selection']}")
             print('Map selectors explicitly before reuse; old residue numbers are not applied automatically.')
+    return 0
+
+
+def _fdp_count(args):
+    from .fdp_count import capture_count, verify_count
+    if args.output and not args.output.parent.is_dir():
+        raise RecipeError('Output parent directory must already exist')
+    if args.metal_action == 'count-fdp':
+        result = capture_count(args.run,args.trial,_json(args.groups))
+    else:
+        result = verify_count(args.run,args.count_report)
+    serialized = json.dumps(result,indent=2,allow_nan=False)+'\n'
+    if args.output:
+        with args.output.open('x') as handle: handle.write(serialized)
+    if args.json:
+        print(serialized,end='')
+    else:
+        path=args.run.expanduser().resolve()/result['files']['report']['relative_path']
+        report=_json(path)
+        print(f'Anomalous count evidence: {report["wavelength_A"]:.8g} A')
+        for group in report['groups']:
+            print(f'{group["group_id"]}: {group["modeled_site_count"]} modeled sites; {group["representation"]}')
+            for row in group['elements']:
+                equiv='unavailable' if row['effective_atom_equivalents'] is None else f'{row["effective_atom_equivalents"]:.6g}'
+                ratio='unavailable' if row['response_ratio'] is None else f'{row["response_ratio"]:.6g}'
+                print(f'  {row["element"]}: sum Q (occ)={row["occupancy_sum"]:.6g}; sum Q*fdp={row["q_weighted_fdp_e"]:.6g} e; expected={row["q_weighted_reference_e"]:.6g} e; ratio={ratio}; atom equivalents={equiv}')
+            if group['warnings']: print('  Review: '+', '.join(group['warnings']))
+        print('Conditional atom-equivalent evidence; no integer atom count or automatic structural choice.')
+        print('Report: '+str(path))
     return 0

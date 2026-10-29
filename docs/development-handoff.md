@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Metal integration updated **2026-10-28** in the section below. The following
+Metal integration updated **2026-10-29** in the section below. The following
 Cedar boundary is the retained **2026-10-26 snapshot**, not a new statement of
 the separate checkout's current status. It records native receipts, user visual
 review and verified geometry/DF bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
@@ -12,6 +12,99 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## Refined-endpoint fdp bridge and count evidence 2026-10-29
+
+**Before and after.** Frozen anomalous diagnostics previously accepted only the
+recipe-only metal geometry solver output. `metal fdp --xyz Metal/xyz_NNN` now
+verifies a saved native XYZ/ADP trial, rebuilds its exact donor bindings, derives
+metal B from the refined bases/donors and freezes that endpoint for an independent
+f-double-prime fit. CLI B defaults to base-mean; native-endpoint API calls require
+an explicit policy. Sugar/phosphate exclusion, separate base means, Q overrides,
+fixed f-prime and original anomalous observations are retained. No parent/source
+file is edited or relabelled scientifically accepted. External HL phase provenance
+is retained, while the existing frozen native objective remains model-phase-only.
+
+`metal count-fdp` / `verify-fdp-count` now save and replay explicit cluster/site
+reports. Distinguish a one-site unresolved proxy from individually modeled sites.
+Keep modeled count, Q sum, Q-weighted fitted/expected coefficients, response ratio
+and per-element atom equivalents separate. Mixed species retain their own
+references; unselected fitted neighbors are listed, missing group members fail,
+and overlapping groups are never totaled. Negative fits and zero-reference
+ratios remain explicit. No rounded count, automatic split or new geometry is
+inferred. The [descriptor, methods and editable flow diagram](metal-anomalous-doctor.md#implemented-refined-endpoint-diagnostics-and-cluster-accounting)
+record the mechanics and interpretation limits.
+
+**Native evidence.** Five complete frozen-fdp executions with **Phenix
+2.2.1-6174**, not dry runs, passed input/final/native freeze audits. **Coot was
+not invoked.** Two saved FT_Hg recipe endpoints provided refined coordinates and
+base B. A two-point Q scan executed one new trial and reused its exact seed;
+a separate matched comparison retained two larger-budget/start controls. The
+shorter fit had not reached the same endpoint as the larger-budget controls;
+the latter finished close to one another without proving optimizer convergence.
+Do not turn their ratios into automatic extra-metal assertions. All native
+workers/source protocols stayed unchanged. The cluster dataset's actual MTZ
+wavelength and installed reference values were read and retained locally;
+no human model seeded these trials and no cluster dataset was refined in this pass.
+Synthetic six-site and mixed-element controls establish bookkeeping coverage only.
+
+**Files and schemas.** Updated `metal/fdp.py`, `metal/cli.py` and the XYZ module
+description; new `metal/fdp_count.py`, `test_metal_fdp_endpoint.py` and
+`test_metal_fdp_count.py`. Human guide, architecture, metal-screen/anomalous methods,
+intent, documentation map and changelog are updated. Schema-1 fdp gains the
+`parent.xyz_trial_id` alternative to `parent.geometry_id`; native protocol
+`metal-frozen-fdp-v1` is unchanged. Count bundles/reports are schema 1 under
+`metal-fdp-count-v1`. Updated readers are required for the new parent variant.
+Existing recipes, geometries, XYZ trials, fdp controls and checkpoints require no
+migration. Initial local count reports that retain convergence only in their
+source remain replayable; current reports repeat that status explicitly.
+
+**Validation.** The endpoint regression failed before implementation because
+`verify_geometry` rejected an XYZ directory; the count regression failed with
+missing `metal.fdp_count`. Focused tests used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_*.py tests/test_cli.py`
+and passed **466 tests and 14 subtests in 73.15 s**. One final early-count
+compatibility control was added afterward and is included in the complete-suite
+run. The complete command, with the same interpreter,
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`,
+passed **6,104 tests and 276 subtests in 751.95 s**, exit 0, with all
+**458** inventoried source/test/asset files unchanged. It used the OS
+process/socket permissions required by existing campaign tests. Final checks pass
+**six** Python 3.10 grammar checks, **102** local file/anchor links, JSON parsing
+and whitespace. All five native trials, two XYZ sources, two count reports, the
+scan and matched comparison also pass final offline replay; retained new fdp
+bundles are approximately **0.81–0.89 MB each**. Native commands used the everyday
+checkout's `.venv/bin/python -B` with
+`branch-artifacts/Alder/runners/A29_fdp_endpoint_native.py` and
+`branch-artifacts/Alder/runners/A29_fdp_endpoint_sensitivity.py`, with
+`PYTHONDONTWRITEBYTECODE=1`; source and data roots were explicit in those private
+runners. No Coot or GUI verification was required for this backend change.
+Relocation controls move both temporary Python sources and data, remove the old
+path and replay in a new process. Negative cases cover source/phase tampering,
+distinct endpoint identities, omitted B policies, missing/unfitted group members,
+zero references and changed reports. The established viewer assets are unchanged.
+
+**Artifacts and continuity.** Source/tests/docs only are intended for Git on
+**Alder**, based on `d2cf906`; independent Pine/Cedar work remains untouched.
+The integration target remains the reviewed main NASolve line after independent
+metal qualification. Generated scientific files are excluded. Five immutable
+FT_Hg trials are `live-20261028-06/FT_Hg/AutoMR/run_001/Metal/fdp_001` through
+`fdp_005`; count, scan and comparison artifacts live beside them. The **668**
+previous rehearsal files stayed byte-identical. Private native/sensitivity,
+wavelength, preservation, replay and validation receipts are in ignored
+`branch-artifacts/Alder/fdp-bridge-20261029-01/`; A29 runners are in the existing
+ignored `branch-artifacts/Alder/runners/` directory. No scientific output was
+pruned, committed or uploaded. The manuscript and extracted page images remain
+local and outside the source patch.
+
+**Next boundary.** Qualify optimizer stopping/gradient and B/phase sensitivity
+before automatic count decisions; test restrained cluster candidates from
+AutoSol-derived sites with coherent symmetry mapping and declared cluster
+neighborhoods. Six-site native construction/refinement, shared cluster B for
+members without direct donors, special-position multiplicity, map evidence and
+automatic count search remain open. New native-endpoint results are not yet
+accepted by the recipe-geometry-only workbench catalog; GUI work was deliberately
+outside this pass. Production metal-screen orchestration remains planned.
 
 ## Recipe import and compact review 2026-10-28
 
