@@ -11,12 +11,12 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C122 validated: explicit FANA enantiomer source check
+## C122 published: explicit FANA enantiomer source check
 
 Base/last published head: `32aa20e9fce29a3a8ab8ae3d0f33540e5549487a`; existing cedar only.
 Capsule: `live_tests_directory/122_Cedar_FANA-enantiomer-0l22x_r5`. Code, focused/native/cold checks
-and maintained docs are complete. Publication is next; no test or native job
-remains active.
+and maintained docs are complete. Tested implementation `c2ee674493a1912573ca4105a553588f80430c18` is published and verified
+on `origin/cedar`. This follow-up records continuity only; no job is active.
 
 The read-only `inspect_fana_enantiomer` API requires explicit whole-component
 inversion intent, a distinct target code and the parent's FANA/NAR graph binding.
@@ -53,8 +53,8 @@ Two frozen inputs retain bytes/sizes/timestamps. Exact commands and hashes are i
 Twelve changed files include code, synthetic tests, maintained contracts and
 compact evidence. Raw CIF/PDB/workbook, derived inputs, native captures/logs,
 outputs and runners stay local. Compilation, whitespace, 306 documentation
-links/both JSON ledgers and SVG XML pass. Immediate next action: publish on
-cedar and record exact SHAs.
+links/both JSON ledgers and SVG XML pass. Publication is complete; resume with
+the next bounded scope below.
 
 Next: whole-sugar replacement into the L-DNA scaffold using an explicit target
 source and NAR binding, preserving unaffected residues and site/link state; then

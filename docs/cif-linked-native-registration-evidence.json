@@ -42180,7 +42180,7 @@
     "implementation_commit": "e05b8e8c14f09b97a512e90698c2536bc9a70298"
   },
   "fana_enantiomer_source_2026_10_29": {
-    "status": "VALIDATED_NOT_PUBLISHED",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "base_commit": "32aa20e9fce29a3a8ab8ae3d0f33540e5549487a",
     "changed_files": [
@@ -42520,6 +42520,7 @@
       "whitespace_command": "git diff --check",
       "documentation": "PASS; 306 relative links and both JSON ledgers",
       "svg_xml": "PASS"
-    }
+    },
+    "implementation_commit": "c2ee674493a1912573ca4105a553588f80430c18"
   }
 }
