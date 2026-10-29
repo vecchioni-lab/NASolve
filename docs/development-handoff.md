@@ -11,13 +11,15 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C125 validated: source-bound missing junction angles
+## C125 published: source-bound missing junction angles
 
 Base/last published head: `25f9459e65f479d53a4b786105fc76024dc39a98`; existing cedar only.
 Capsule: `live_tests_directory/125_Cedar_FANA-junction-u3lxl3qa`.
 Implementation, **198 focused tests**, three actual Phenix interpretations and
 **283-file cold replay** pass. Full suite passes: **6482 passed, 276 subtests passed in 1015.43s (0:16:55)**. All 480
-source/test hashes remain unchanged. No job is active; publication is next.
+source/test hashes remain unchanged. Tested implementation `c865ed65c4104d10b95e81fc81ffac74c097cb94`
+is published and verified on `origin/cedar`. No job is active; this follow-up
+records continuity only.
 
 Before: mixed prime/O1P/O2P names lose two native incoming phosphate angles.
 After: immutable `prepare/read/qualify_fana_junction_angles` binds the C124
@@ -56,8 +58,8 @@ geometry or prove nonbonded/whole-manager behavior. Next: bounded source/stereo-
 preserving junction adjustment and both-link checks with qualified flanks.
 Ordinary mutation, other L-FANA bases, PNA and sticky ends remain separate.
 
-Immediate next action: publish the reviewed twelve files on cedar, verify the
-remote SHA, then record publication continuity.
+Next scope is recorded above. Publication is complete; no pending process or
+unpublished implementation remains.
 — Rowan · Codex desktop
 
 ## C124 published: whole-residue FANA placement control

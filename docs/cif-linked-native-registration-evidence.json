@@ -43416,7 +43416,7 @@
     "publication": "Verified on origin/cedar; continuity update changes documentation only. Native chemical qualification remains false."
   },
   "fana_junction_angles_2026_10_29": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "25f9459e65f479d53a4b786105fc76024dc39a98",
     "branch": "cedar",
     "policy_id": "cif-source-bound-fana-junction-angles-v1",
@@ -43766,6 +43766,7 @@
       "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python> c125_native.py; exact per-call commands and frozen inputs in the three native receipts",
       "whitespace": "git diff --check",
       "docs": "check_docs.py; SVG ElementTree XML parse"
-    }
+    },
+    "implementation_commit": "c865ed65c4104d10b95e81fc81ffac74c097cb94"
   }
 }
