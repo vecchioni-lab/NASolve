@@ -44892,5 +44892,309 @@
     "json_and_svg_parse": "PASS",
     "whitespace": "PASS",
     "implementation_commit": "d4ed67dec2ea71cbb6116081f496a90ab41fa407"
+  },
+  "fana_topology_gate_2026_10_29": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "base_commit": "fbc60d3bd4abcafe3d1a14144d252d154bfbed2d",
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "128_Cedar_FANA-topology-jdaggftb"
+    },
+    "policies": [
+      "cif-declared-native-topology-v1",
+      "cif-source-bound-fana-topology-v1"
+    ],
+    "before": "FANA angle mechanics did not account for every native inter-residue bond. A lower native score could correspond to different connectivity.",
+    "after": "Explicit source-bound topology report/strict prerequisite reuse existing capture and source binders; separately account for exact frozen NARestraints pairing bonds.",
+    "validation_commands": {
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_topology_gate.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_na_policy.py",
+        "tests/test_cif_fana_junction.py",
+        "tests/test_cif_fana_bridge.py",
+        "tests/test_cif_native_nonbonded.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "real": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python c128_real.py",
+      "cold": "c128_cold_prepare.py -> relocated src + c128_cold.py; original paths/SDK/processes blocked",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c128-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "docs": "check_docs.py; ElementTree XML parse",
+      "whitespace": "git diff --check"
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_topology_gate.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_na_policy.py",
+        "tests/test_cif_fana_junction.py",
+        "tests/test_cif_fana_bridge.py",
+        "tests/test_cif_native_nonbonded.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 55.119686499994714,
+      "source_test_files": 487,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_summary": "190 passed in 54.86s",
+    "new_test_cases": 43,
+    "fail_before": "32 failed before implementation; all subsequently pass",
+    "intermediate_failures": "Synthetic fixture omitted occupancies, then assumed a constant; corrected to exact model fields without weakening production validation. Both attempts preserved.",
+    "cases": {
+      "translated": {
+        "link_status": "REVIEW",
+        "missing_links": [
+          [
+            [
+              "A:2",
+              "AAJ",
+              "O3'"
+            ],
+            [
+              "A:3",
+              "0DG",
+              "P"
+            ]
+          ]
+        ],
+        "unexpected_links": [
+          [
+            [
+              "A:2",
+              "AAJ",
+              "C6"
+            ],
+            [
+              "A:3",
+              "0DG",
+              "O6"
+            ]
+          ]
+        ],
+        "soft_restraints": [],
+        "chemical_qualification": "NOT_ESTABLISHED",
+        "geometry_acceptance": "NOT_ASSESSED",
+        "automatic_adoption": false
+      },
+      "bridge": {
+        "link_status": "MATCH",
+        "missing_links": [],
+        "unexpected_links": [],
+        "soft_restraints": [],
+        "chemical_qualification": "NOT_ESTABLISHED",
+        "geometry_acceptance": "NOT_ASSESSED",
+        "automatic_adoption": false
+      }
+    },
+    "native_tools": {
+      "phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "mode": "Read-only replay of two prior completed C127 native captures; no fresh execution or dry-run",
+      "coot": "NOT_RUN"
+    },
+    "compatibility": "Additive Python APIs/report policies; legacy packages and default worker bytes unchanged; no CLI/run/checkpoint migration.",
+    "scientific_boundaries": [
+      "Topology only, not bond-order/target or geometry qualification.",
+      "Frozen NAR declaration agreement, not fresh recipe-generation proof.",
+      "C110 flank state and OP3 differences remain; source chemistry unchanged.",
+      "Production orchestration, geometry repair and adoption remain separate."
+    ],
+    "generated_artifacts": "Raw science, source workbook, models, native captures/logs and runners deliberately excluded from Git; local receipts/hashes only.",
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/reports/translated-topology.json",
+        "sha256": "1db1360216fab7ffb8689303f38912bc0bc7255224b148fc4a268f5a588f70ea",
+        "size": 2234
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/reports/bridge-topology.json",
+        "sha256": "d24c0f27e6aaed88e59b2e0556f44ecfb297937251b7ae5d1a8d3c3a2d76922a",
+        "size": 2113
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/validation/focused-final/pytest.log",
+        "sha256": "f270b08d0b650457bb6145eeb35196da3d6e086bb542f0191b3ad4811bcab9aa",
+        "size": 2489
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/validation/focused-final/source-hashes.json",
+        "sha256": "9603207c48b86dbf675bacf835b3b818416b6f7a0c281873c22e2c871ceb14e4",
+        "size": 52595
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/validation/cold-result.json",
+        "sha256": "77bd283bad396a19d0e167e0b5594e4ee027b41ee8cac57d65dddddebf438db1",
+        "size": 976
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/validation/cold-manifest.json",
+        "sha256": "32efc2a955d0c9479ca37545b98c7719e4d31f708f64adfdfa300c8ce4880e88",
+        "size": 45316
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/validation/full/pytest.log",
+        "sha256": "e5d78230972a13eee1be22b0fb519ad9ad3a015e79bd96f75adefc36592cddc1",
+        "size": 9995
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/validation/full/source-hashes.json",
+        "sha256": "9603207c48b86dbf675bacf835b3b818416b6f7a0c281873c22e2c871ceb14e4",
+        "size": 52595
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/validation/fail-before/pytest.log",
+        "sha256": "3f365936787ebc3cb70bfd5d250d51f994af48d6ce5ab68caa2845acb8b878fd",
+        "size": 89062
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/runners/c128_real.py",
+        "sha256": "7414afc13ea778cdc471eedffb67ca954d304fddaa32c814e3d6eb55d57ea6dc",
+        "size": 1179
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/runners/c128_replay.py",
+        "sha256": "7c2a292bc624236543de21e7c0c6d6b0e025f2b1620824ba606776aac5f710c3",
+        "size": 1500
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/runners/c128_cold.py",
+        "sha256": "b3309d041a0b8a54b6e6e66fd93cd4acddf4708b3cfcc99ab4c7259eaebca613",
+        "size": 1955
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/runners/c128_cold_prepare.py",
+        "sha256": "fee58d31b3265dae2e17b7cb5f1f016ea50be9acf12f73488316e8fea4868d17",
+        "size": 1167
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "128_Cedar_FANA-topology-jdaggftb/runners/c128_validate.py",
+        "sha256": "83781a738d7234ab2771a71ff7e52fab4302c50e4c683bf9a694c0a0483530f4",
+        "size": 1613
+      }
+    ],
+    "next": "Bounded geometry repair under exact declared topology and source/stereo preservation; native re-interpretation must pass the gate again. Any native optimizer requires fresh derivative qualification for this manager; old PDU/DF gradient proofs cannot transfer.",
+    "cold_replay": {
+      "status": "PASS",
+      "cases": {
+        "translated": {
+          "link_status": "REVIEW",
+          "missing_links": [
+            [
+              [
+                "A:2",
+                "AAJ",
+                "O3'"
+              ],
+              [
+                "A:3",
+                "0DG",
+                "P"
+              ]
+            ]
+          ],
+          "unexpected_links": [
+            [
+              [
+                "A:2",
+                "AAJ",
+                "C6"
+              ],
+              [
+                "A:3",
+                "0DG",
+                "O6"
+              ]
+            ]
+          ],
+          "chemical_qualification": "NOT_ESTABLISHED",
+          "automatic_adoption": false
+        },
+        "bridge": {
+          "link_status": "MATCH",
+          "missing_links": [],
+          "unexpected_links": [],
+          "chemical_qualification": "NOT_ESTABLISHED",
+          "automatic_adoption": false
+        }
+      },
+      "owned_original_absent": true,
+      "original_sdk_and_process_access_blocked": true,
+      "blocked_attempts": [],
+      "files_unchanged": 247,
+      "native_execution": "NOT_RUN"
+    },
+    "static_checks": {
+      "compileall": "PASS; bytecode directed to /private/tmp/c128-compile-cache",
+      "documentation_relative_links": 336,
+      "json_and_svg_parse": "PASS",
+      "git_diff_check": "PASS"
+    },
+    "full": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 991.6309626669972,
+      "source_test_files": 487,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6571 passed, 276 subtests passed in 990.57s (0:16:30)",
+    "source_test_files_unchanged": 487
   }
 }

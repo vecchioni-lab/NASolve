@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Gate FANA construction on exact declared native topology (C128)
+
+- Add a read-only source-bound FANA topology report and strict prerequisite API.
+  Reuse C109 capture/identity/proxy validation and C124 source projection checks;
+  require both declared links and reject every additional inter-residue bond.
+- Separate intentional NARestraints pairing bonds only through explicit frozen
+  policy/PHIL, exact selections, native requests, targets, weights and edit origin.
+  Origin labels alone cannot hide chemical links. Symmetry remains unsupported.
+- Add schema-1 `cif-declared-native-topology-v1` and
+  `cif-source-bound-fana-topology-v1`. Recognize maintained energy/nonbonded
+  capture workers in the existing read-only auditor. Legacy mechanics packages,
+  CLI/run/checkpoint schemas and installed libraries remain unchanged. Topology
+  agreement does not grant chemical, numerical or geometry qualification.
+
 ### Attribute native nonbonded penalties to captured atom pairs (C127)
 
 - Add opt-in `nonbonded_inventory` to linked native energy inspection. Reuse

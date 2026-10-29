@@ -27121,6 +27121,25 @@
       "validation": "6528 passed, 276 subtests passed in 1028.87s (0:17:08); 194 focused; two actual Phenix interpretations; 375-file cold replay.",
       "next": "Reuse the existing C109 exact source-link audit for FANA construction, distinguish NAR hydrogen-bond restraints, and enforce declared inter-residue topology before score comparison; then address steric placement and complete junction angles.",
       "implementation_commit": "d4ed67dec2ea71cbb6116081f496a90ab41fa407"
+    },
+    "fana_topology_gate": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fana_topology_gate_2026_10_29",
+      "policies": [
+        "cif-declared-native-topology-v1",
+        "cif-source-bound-fana-topology-v1"
+      ],
+      "behavior": "Explicit source-bound topology report/strict prerequisite reuse existing capture and source binders; separately account for exact frozen NARestraints pairing bonds.",
+      "validation": "6571 passed, 276 subtests passed in 990.57s (0:16:30); 190 focused; two preserved native captures; 247-file cold replay.",
+      "compatibility": "Additive Python APIs/report policies; legacy packages and default worker bytes unchanged; no CLI/run/checkpoint migration.",
+      "limitations": [
+        "Topology only, not bond-order/target or geometry qualification.",
+        "Frozen NAR declaration agreement, not fresh recipe-generation proof.",
+        "C110 flank state and OP3 differences remain; source chemistry unchanged.",
+        "Production orchestration, geometry repair and adoption remain separate."
+      ],
+      "next": "Bounded geometry repair under exact declared topology and source/stereo preservation; native re-interpretation must pass the gate again. Any native optimizer requires fresh derivative qualification for this manager; old PDU/DF gradient proofs cannot transfer."
     }
   },
   "audience": [

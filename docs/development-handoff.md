@@ -11,6 +11,58 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C128 validated: exact declared inter-residue topology gate
+
+Base/last published head: `fbc60d3bd4abcafe3d1a14144d252d154bfbed2d`; existing cedar only.
+Capsule: `live_tests_directory/128_Cedar_FANA-topology-jdaggftb`.
+**190 focused tests pass**, and full regression passes: **6571 passed, 276 subtests passed in 990.57s (0:16:30)**.
+All 487 source/test hashes remain unchanged. Cold replay preserves 247 hashes,
+sizes and mtimes after the owned original disappears, with old paths/Phenix SDK
+and process creation blocked and no attempted access. Compileall, 336 relative
+documentation links, JSON/SVG parsing and diff whitespace pass. No job is active;
+implementation publication is next.
+
+Before: angle mechanics could be reviewed without accounting for every native
+inter-residue bond. After: `inspect_fana_topology` reuses C109 artifact, atom,
+coordinate/occupancy and proxy validation plus the C124/C126 source/model binder.
+Every native cross-site bond must match the two explicitly declared source links.
+Missing, extra, duplicate and symmetry links remain visible; `require_fana_topology`
+raises on mismatch before future construction/score comparison. This additive
+prerequisite does not retrofit production defaults or alter old mechanics packages.
+
+Only an explicit frozen NARestraints policy and compiled PHIL can separate a soft
+N/O pair bond. Selections, declared pair, exact native custom request, endpoints,
+target, weight and captured edit-origin registry must agree uniquely; no overlap
+with covalent declarations. Other edit/H-bond origins remain counted. The supplied
+attribution is intent, not cryptographic authorship or fresh recipe qualification.
+Full angle/plane mechanics, bond orders, numerical chemistry and geometry retain
+separate gates. No source, model, workbook or installed-library modification.
+
+The two actual C127 captures reproduce the expected distinction: translated
+REVIEW (missing A:2 O3′–A:3 P, extra A:2 C6–A:3 O6); bridge MATCH with exactly
+both declared backbone links. The bridge's crowding/outgoing-angle strain and
+C110 flank H/charge/order/OP3 differences remain unqualified. Phenix 2.2.1-6174,
+dispatcher 2.2.1: preserved completed captures replayed offline, **no fresh native
+execution or dry-run**. No Coot, optimization, diffraction refinement or adoption.
+
+Changed files: new `cif_topology_gate.py`, `cif_fana_topology.py` and synthetic
+regression tests; C109 recognizes only maintained energy/nonbonded worker
+compositions; ten maintained documentation/evidence files (14 total). New schema-1
+policies are `cif-declared-native-topology-v1` and
+`cif-source-bound-fana-topology-v1`. No CLI/run/checkpoint migration. Raw science,
+models, workbook, native captures/logs and all runner attempts stay local.
+Exact validation commands/results/hashes are in evidence key
+`fana_topology_gate_2026_10_29`. The initial 32 cases failed before implementation;
+43 new cases now pass. Two intermediate fixture-occupancy failures are preserved;
+tests now use exact model fields, with no production validation relaxation.
+
+Next: publish and verify cedar, then address bridge crowding and the outgoing
+angle under source/stereo/topology preservation. Recheck exact links after native
+re-interpretation. Any native optimizer needs fresh derivative qualification for
+this exact manager; earlier PDU/DF proofs cannot transfer. Ordinary mutation,
+other L-FANA bases, whole-model work and sticky ends remain separate.
+— Rowan · Codex desktop
+
 ## C127 published: native nonbonded pair attribution
 
 Base/last published head: `47a84cb0c36a4b6ff5b8cd7dcfe4fdc204b2d976`; cedar only.

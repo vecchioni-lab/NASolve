@@ -3647,3 +3647,22 @@ The FANA controls show why topology must precede score comparisons: the translat
 control lacks its outgoing backbone bond and has a native inferred base–base
 bond; the connected bridge has significant next-residue crowding. See the
 [pair contract](cif-doctor.md#native-nonbonded-pair-attribution-c127).
+
+
+## Exact FANA construction topology (C128)
+
+The additive source-bound reader combines C109's captured artifact/identity/proxy
+checks with C124 placement and C126 seed rederivation. It compares every native
+inter-residue bond with the explicit two-link source context, retaining missing,
+extra, duplicate and symmetry evidence. Optional frozen NARestraints policy/PHIL
+separates only exactly declared and materialized N/O pairing bonds; origin IDs
+alone never exempt a proxy. This checks supplied intent, not fresh recipe origin.
+The strict prerequisite raises on topology mismatch before future construction
+or score-comparison work; it does not accept geometry, bond-order/numerical
+chemistry or flank definitions. Existing mechanics packages remain readable.
+
+Schema-1 policies are `cif-declared-native-topology-v1` and
+`cif-source-bound-fana-topology-v1`. Capture readback now recognizes the exact
+maintained optional energy/nonbonded worker compositions without changing their
+bytes or granting score qualification. There is no runtime default, CLI or
+checkpoint migration. See the [gate contract](cif-doctor.md#declared-fana-topology-gate-c128).

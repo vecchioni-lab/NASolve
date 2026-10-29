@@ -3280,3 +3280,32 @@ explicitly on unsupported symmetry/functions. No coordinates, chemistry or
 acceptance thresholds change; no physical clashscore or automatic adoption is
 claimed. Focused tests, real native captures and cold replay pass; the complete
 suite status is in the [technical contract](cif-doctor.md#native-nonbonded-pair-attribution-c127).
+
+
+### Checking the bond network before comparing candidates
+
+C128 asks whether a native interpretation contains exactly the connections the
+source chemistry declares. A low energy cannot compensate for a missing backbone
+bond or an unintended bond between bases. The report checks the complete
+inter-residue bond inventory and distinguishes explicitly declared NARestraints
+pairing restraints by exact native membership, rather than by their origin label.
+The strict API stops further construction/score comparison when connectivity
+mismatches. Its use in future orchestration is explicit; old diagnostic packages
+remain reproducible and current production defaults are unchanged.
+
+The preserved translated FANA control is refused: its outgoing O3′–P bond is
+missing and an unwanted C6–O6 bond appears instead. The bridge passes connectivity,
+but still has crowding and junction-angle strain. Passing this check is a
+prerequisite, not a solved structure or chemical approval.
+
+**Methods.** The reader rederives the source-bound placement/projection and
+optional bridge seed, validates captured model identities/coordinates/occupancies
+and checksummed native evidence, then compares multisets of declared and observed
+bond endpoints. Frozen NARestraints policy and compiled PHIL may identify soft
+N/O pairing bonds only when selections, requests, targets, weights and native
+origin all match exactly. The frozen declaration is supplied intent, not a fresh
+recipe generation or proof of authorship. Readback replays actual Phenix
+2.2.1-6174 evidence offline; no new native run, coordinate repair or optimization
+occurs. Full chemistry, numerical targets and geometry retain separate gates.
+See the [technical contract](cif-doctor.md#declared-fana-topology-gate-c128) and
+maintained evidence ledger for validation and relocation details.

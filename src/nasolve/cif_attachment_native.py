@@ -70,6 +70,19 @@ def _capture(path, model):
             raise ValueError('Missing required native artifact: ' + name)
     spec = _json(records['native_spec.json'])
     worker = _NATIVE_WORKER
+    for flag in ('policy_inventory', 'energy_inventory', 'nonbonded_inventory', 'atom_name_mapping'):
+        if flag in spec and spec[flag] is not True:
+            raise ValueError('Invalid native inventory request: ' + flag)
+    if spec.get('energy_inventory'):
+        from .cif_candidate_usability import native_energy_worker
+        if spec.get('atom_name_mapping'):
+            raise ValueError('Unsupported combined energy/mapping worker')
+        worker = native_energy_worker(worker)
+    if spec.get('nonbonded_inventory'):
+        from .cif_native_nonbonded import native_nonbonded_worker
+        if not spec.get('energy_inventory'):
+            raise ValueError('Nonbonded inventory requires native energy evidence')
+        worker = native_nonbonded_worker(worker)
     if 'atom_name_mapping' in spec:
         from .cif_native_atom_mapping import native_mapping_worker, POLICY_ID as mapping_policy
         if spec['atom_name_mapping'] is not True or receipt.get('atom_name_mapping_policy') != mapping_policy:
