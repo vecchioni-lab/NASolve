@@ -43414,5 +43414,358 @@
     "whitespace": "PASS",
     "implementation_commit": "89e7a084e800dd18320e10b67ba51400b74a51cc",
     "publication": "Verified on origin/cedar; continuity update changes documentation only. Native chemical qualification remains false."
+  },
+  "fana_junction_angles_2026_10_29": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "base_commit": "25f9459e65f479d53a4b786105fc76024dc39a98",
+    "branch": "cedar",
+    "policy_id": "cif-source-bound-fana-junction-angles-v1",
+    "schema_version": 1,
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "125_Cedar_FANA-junction-u3lxl3qa"
+    },
+    "before": "Mixed prime sugar and O1P/O2P source names lose two incoming phosphate angles in the native linked control.",
+    "after": "Separate immutable missing-angle supplement; exact source/model/template binding, refusal without native bond, six-angle native coverage with unchanged other captured covalent proxies.",
+    "changed_files": [
+      "src/nasolve/cif_fana_junction.py",
+      "tests/test_cif_fana_junction.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "compatibility": "Additive diagnostic API/schema; existing CLI/PostMR/run/checkpoint contracts unchanged; no migration.",
+    "software": {
+      "Python": "3.12.14",
+      "NARestraints": "1.1.3",
+      "Phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "Coot": "NOT_RUN"
+    },
+    "native_execution": {
+      "interpretations": 3,
+      "timeout_seconds_each": 60,
+      "dry_run": false,
+      "generation": 0,
+      "optimization": 0,
+      "refinement": 0
+    },
+    "source_origin": {
+      "prior_anchor": "live_tests_directory",
+      "prior_path": "124_Cedar_FANA-placement-isxhivmo/native-junction-probe/cif-native-rr15u0jg",
+      "template_installation_path": "lib/python3.11/site-packages/chem_data/geostd/rna_dna/chain_link_rna3p.cif",
+      "template_sha256": "8544dbe0c2f5faa8340c7005737c62e4f39bbe8efc6f57f5219e22e83a197f69",
+      "interpreter_sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235",
+      "phenix_installation_version": "2.2.1-6174",
+      "flanks": "Preserved C110 diagnostic numerics; source H/charge/order differences and missing OP3 remain unqualified."
+    },
+    "qualification": {
+      "schema_version": 1,
+      "policy_id": "cif-source-bound-fana-junction-angles-v1",
+      "status": "JUNCTION_ANGLE_MECHANICS_PASS",
+      "checks": [
+        {
+          "check": "exact-model",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-effective-definitions",
+          "status": "PASS"
+        },
+        {
+          "check": "unchanged-policy",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-angle:[5, 20, 34]",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-angle:[5, 20, 35]",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:angle",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:bond_asu",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:bond_simple",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:chirality",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:const_dihedral",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:dihedral",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:parallelity",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-proxies:planarity",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-request:[5, 20, 34]",
+          "status": "PASS"
+        },
+        {
+          "check": "exact-added-request:[5, 20, 35]",
+          "status": "PASS"
+        },
+        {
+          "check": "preserved-explicit-requests",
+          "status": "PASS"
+        },
+        {
+          "check": "six-phosphate-angles",
+          "status": "PASS"
+        }
+      ],
+      "chemical_qualification": "NOT_ESTABLISHED",
+      "automatic_adoption": false
+    },
+    "gap_refusal": {
+      "status": "REFUSED",
+      "reason": "Required native incoming link is absent or differs from template",
+      "output_absent": true
+    },
+    "angles": {
+      "before": 4,
+      "after": 6,
+      "added": 2,
+      "target_degrees": 108,
+      "sigma_degrees": 3,
+      "names_preserved": true
+    },
+    "new_regression_cases": 42,
+    "fail_before": {
+      "cases": 32,
+      "reference": {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/validation/fail-before/pytest.log",
+        "sha256": "0224828ff390e8de15baedc8fae516803b7188df2876628eb8efce8d4cb39a6f",
+        "size": 58006
+      }
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_fana_junction.py",
+        "tests/test_cif_fana_placement.py",
+        "tests/test_cif_fana_component.py",
+        "tests/test_cif_fana_enantiomer.py",
+        "tests/test_cif_linked_qualification.py",
+        "tests/test_cif_terminal_qualification.py",
+        "tests/test_cif_captured_geometry.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 53.17052795900963,
+      "source_test_files": 480,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_summary": "198 passed in 52.87s",
+    "cold": {
+      "status": "PASS",
+      "source_named_additions": 2,
+      "phosphate_angles_before": 4,
+      "phosphate_angles_after": 6,
+      "native_delta_checks": 17,
+      "all_native_delta_checks_pass": true,
+      "fresh_native_captures": 3,
+      "prior_native_capture": 1,
+      "gap_refused_without_output": true,
+      "chemical_qualification": "NOT_ESTABLISHED",
+      "automatic_adoption": false,
+      "owned_original_absent": true,
+      "original_sdk_and_process_access_blocked": true,
+      "blocked_attempts": [],
+      "files_unchanged": 283,
+      "native_execution": "NOT_RUN",
+      "current_namespace_availability": "NOT_CLAIMED"
+    },
+    "cold_summary_correction": "First preserved local cold runner labelled 17 passing checks as 18, yielding a false summary field. Corrected runner asserts all 17 and fresh v2 replay passes; first evidence retained.",
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/reports/native-paths.json",
+        "sha256": "3e10eb67a0d7bd5ceff7b56c24fe21b49cf04f4708ada71e2153e9d37fcd919f",
+        "size": 160
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/reports/preparation.json",
+        "sha256": "1b4f2f379a2f9c27dc33fb2f27bde8e6756c7e5795c2853ab242c522d07c1559",
+        "size": 2293
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/reports/qualification.json",
+        "sha256": "0c2f89ce086ef4b705c7b30fa26e45794fe8b845aa6bd4e109d675de2984c345",
+        "size": 1601
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/reports/gap-refusal.json",
+        "sha256": "0be3d01f02a13339845d72ace98658aeb19c422015910970a8ebc98dc483b543",
+        "size": 131
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/validation/focused/pytest.log",
+        "sha256": "cec4f6d0347f9a850d290f6692682865e48bb8590ac989f5228b6e571065f3d1",
+        "size": 2614
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/validation/cold-v2-result.json",
+        "sha256": "297bcdad13411b6760dd7537ea1eb96b09dc075ea8b4aead273a0d743b6512cf",
+        "size": 581
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/validation/cold-v2-manifest.json",
+        "sha256": "168b24b2415682e04443f5e268259a65c55fb243694f9f7cb283d35649d68e3a",
+        "size": 52607
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/validation/full/pytest.log",
+        "sha256": "4f95f3cba714bc9f4e72ada82c94dcc9d92868d02bf626748ebaade1160dff17",
+        "size": 9836
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/validation/full/source-hashes.json",
+        "sha256": "330ee3f4a4ac4a26d6266f93e8f242d4f0f8dc50b90912e8ede7fd88d46c5553",
+        "size": 51854
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/runners/c125_native.py",
+        "sha256": "f4a8b842d4072ae6d9ccb40c54743691ec6129ab7c08beaa9b92ba74028a4b75",
+        "size": 4217
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/runners/c125_replay_v2.py",
+        "sha256": "d4968266df340eabf848ca2f98e66c5b188d9ccdabdd641ca80ab699d014935d",
+        "size": 4343
+      }
+    ],
+    "artifacts_included": "Source, synthetic tests, maintained docs, compact technical evidence.",
+    "artifacts_excluded": "Raw CIF/PDB/workbook, native captures/logs, namespace snapshot, scientific runs and local runners.",
+    "limitations": [
+      "Three-site C124 control; unchanged or translated intact central residue only.",
+      "Existing native incoming bond required; no bond creation or coordinate repair.",
+      "Retained protonation and template numerical chemical applicability unqualified.",
+      "C110 flank source-state differences and missing OP3 remain.",
+      "No production mutation, automatic adoption, Coot, generation, optimizer or diffraction refinement.",
+      "No independent whole-manager/nonbonded qualification."
+    ],
+    "next": "Bounded junction adjustment preserving source chemistry and four sugar hands; both links and qualified flank/terminal definitions before integration.",
+    "observed_added_angles": {
+      "status": "DESCRIPTIVE_ONLY",
+      "native_reference": {
+        "anchor": "live_tests_directory",
+        "path": "125_Cedar_FANA-junction-u3lxl3qa/native/supplemented/cif-native-_5xowij0/native_validation.json",
+        "sha256": "c633fd0535f4cdba9f331ce85305f8234c51900dd7f94bc2a9dc8baab56fa108"
+      },
+      "added_angles": [
+        {
+          "i_seqs": [
+            5,
+            20,
+            34
+          ],
+          "observed": 37.71401182465699,
+          "target": 108.0,
+          "weight": 0.1111111111111111,
+          "difference": -70.28598817534301,
+          "nominal_deviation": -23.428662725114336,
+          "status": "MEASURED"
+        },
+        {
+          "i_seqs": [
+            5,
+            20,
+            35
+          ],
+          "observed": 86.50974061201123,
+          "target": 108.0,
+          "weight": 0.1111111111111111,
+          "difference": -21.490259387988772,
+          "nominal_deviation": -7.163419795996257,
+          "status": "MEASURED"
+        }
+      ],
+      "geometry_accepted": false,
+      "geometry_changed": false,
+      "note": "Angles are now represented, but the unchanged translation-only junction is badly distorted; no geometry/chemical qualification."
+    },
+    "full": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 1016.3436252090032,
+      "source_test_files": 480,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6482 passed, 276 subtests passed in 1015.43s (0:16:55)",
+    "full_source_test_files_unchanged": 480,
+    "compileall": "PASS",
+    "documentation_links": 322,
+    "json_and_svg_parse": "PASS",
+    "whitespace": "PASS",
+    "validation_commands": {
+      "full": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider --durations=20",
+      "focused": "Same environment/options with the seven exact test paths recorded in focused.command",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c125-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<capsule>/cold-relocated-v2/src <python> c125_cold_v2.py <capsule>",
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python> c125_native.py; exact per-call commands and frozen inputs in the three native receipts",
+      "whitespace": "git diff --check",
+      "docs": "check_docs.py; SVG ElementTree XML parse"
+    }
   }
 }

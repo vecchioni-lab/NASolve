@@ -3201,3 +3201,28 @@ then establish complete native linkage. A translation-only control restores the
 incoming bond but still lacks its two phosphate-oxygen angles, showing why bond
 presence alone is insufficient. The [contract](cif-doctor.md#whole-residue-fana-placement-control-c124)
 records scope and evidence; ordinary model mutation remains unchanged.
+
+
+### Making every phosphate angle visible to the native interpreter
+
+C125 resolves the two missing angles exposed by the L-FANA-C placement control.
+Phenix's naming conversion treats each entire angle as one naming convention;
+the source combines prime sugar names with O1P/O2P. A separate adapter resolves
+each atom role while retaining those source names and the installed template's
+108° target and 3° sigma. The bonded diagnostic now has all six phosphate angles. The two restored
+terms measure about 37.7° and 86.5° in the unchanged translated model, so they
+expose serious geometric distortion rather than establish a usable junction.
+The original gapped placement is refused, so extra restraints cannot conceal an
+absent bond. Coordinates, definitions, source hydrogens and all other captured
+covalent restraints remain unchanged.
+
+Methods: rederive the source projection from the immutable placement package;
+bind the exact native model, bond and existing anchor angles; map the two
+phosphate oxygen roles through their source graph; emit only missing PHIL angle
+edits; and compare a fresh Phenix manager against exactly those requests. All
+17 checks pass in Phenix 2.2.1-6174. Offline replay also recomputes the supplement
+and verifies the native capture provenance from relocated files. This establishes
+mechanical coverage, not chemical validation of the retained protonation state
+or good junction geometry. Bounded geometry adjustment and qualified flanks
+remain necessary before whole-model integration. See the
+[technical contract](cif-doctor.md#source-bound-fana-junction-angles-c125).

@@ -49,7 +49,9 @@
 
 <a id="current-capability-boundary-c123"></a>
 
-## Current capability boundary (C124)
+<a id="current-capability-boundary-c124"></a>
+
+## Current capability boundary (C125)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -63,7 +65,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. C121 separately covers the bounded neutral 6-oxo five-ring; charged/other carbonyl purines, convergence, linked PNA numerics and ordinary integration remain open. |
 | Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
-| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 adds whole-residue placement in a separate three-site control; the incoming native link is missing and junction adjustment remains open. Other L-FANA bases, qualified linked chemistry and ordinary model mutation remain open. |
+| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 adds whole-residue placement in a separate three-site control; the incoming native link is missing and junction adjustment remains open. C125 restores the two missing incoming phosphate angles in the already bonded translation control. Junction geometry, other L-FANA bases, qualified linked chemistry and ordinary model mutation remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -758,7 +760,7 @@ incoming bond then appears, while the outgoing bond disappears at 3.8810 Å.
 This isolates a coordinate-dependent bond-detection boundary. However, only four
 of six tetrahedral phosphate angles appear: the incoming A:1 O3′–A:2 P–O1P and
 O3′–P–O2P angles are absent. Source-named junction angle coverage is therefore a
-separate unresolved consumer issue. Do not infer complete linkage from a bond
+separate consumer issue, now addressed for the bounded bonded control by C125 below. Do not infer complete linkage from a bond
 proxy alone, rename source atoms implicitly, or authorize this translation as a
 repair. The original placement remains unchanged.
 
@@ -771,12 +773,86 @@ incoming link and the translation control's two missing angles remain visible. E
 `fana_whole_residue_placement_2026_10_29`. Raw models, dictionaries, workbook,
 namespace, native captures, logs and runners remain local.
 
-Next: qualify complete source-named phosphate junction angles and bounded
+C125 below establishes exact source-named incoming angle mechanics. Next: bounded
 junction adjustment that preserves the intended FANA sugar and source chemical
 state, followed by both-link native checks with qualified flank/terminal definitions. Do not force a long bond into refinement or restore
 the DNA sugar to conceal the mismatch. Ordinary mutation, other L-FANA bases,
 C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stays
 parked.
+
+
+### Source-bound FANA junction angles (C125)
+
+`prepare_fana_junction_angles(placement, model, native, link_template, output)`
+compiles a separate PHIL supplement for the incoming A:1→A:2 junction of a
+verified C124 control. Inputs are its immutable placement directory, the exact
+PDB model, a completed detailed native-inventory JSON, and the explicitly
+supplied `data_link_rna3p` template CIF. The native capture must match the model;
+the model may be unchanged or a uniform translation of the intact central
+residue with every other PDB byte retained. Rotations, deformations, arbitrary
+models and symmetry links require a separate extension. This API does not
+create bonds or supply a workaround for a stretched junction.
+
+The adapter revalidates the complete source/enantiomer package and numerical
+candidate, derives C124's explicitly authorized O/H projection, and compares
+all six effective native definition categories. It requires the incoming native
+bond at the template target/weight, exactly four declared P neighbours, complete
+internal phosphate angles, and the existing O3′–P–O5′ and C3′–O3′–P template
+angles. Each OP1/OP2 template role binds independently to exactly one present
+source name (OP1 or O1P; OP2 or O2P), checked against the projected P–O graph.
+No source atom or hydrogen is renamed or deleted by this adapter.
+
+Only absent incoming O3′–P–nonbridging-O angles are emitted, with the frozen
+source-template targets and sigmas. Already matching angles produce no duplicate;
+conflicting/duplicate proxies, ambiguous names, inconsistent captures, missing
+bonds and unrepresentable numerical weights refuse preparation. Pending explicit
+requests that failed to materialize are also refused. Templates must have the
+exact supported one-bond/four-angle topology and block identity. The installed
+file's surprising `rna2p` bond/angle row identifiers are retained as provenance;
+its `link_rna3p` block and literal topology select this rule.
+
+In Phenix 2.2.1-6174, `get_lib_link` selects the RNA/DNA `rna3p` template.
+`add_angle_proxies` tries converting all three atom names to the old convention,
+then all three to the new convention. For prime sugar names alongside source
+O1P/O2P, neither complete conversion succeeds. The frozen active template has
+108° targets and 3° sigmas for the two missing rows. The separate supplement
+therefore changes endpoint resolution, not those numerical values or the
+installed Phenix code. Its chemical suitability for the retained source
+protonation state is not established by this mechanics check.
+
+Schema-1 policy `cif-source-bound-fana-junction-angles-v1` freezes `placement/`,
+`model.pdb`, `native.json`, `link.cif`, `angles.phil`, `junction.json`, and a
+last-written `receipt.json`. Inputs and incomplete attempts remain intact.
+`read_fana_junction_angles` checks the exact file set and hashes and recomputes
+all source bindings and emitted text. The native JSON is input evidence rather
+than an execution attestation; callers must separately validate its capture
+receipt, frozen inputs, worker and output hashes. The real/cold controls do so.
+No operational lookup uses historical absolute provenance paths.
+
+`qualify_fana_junction_angles(directory, after)` rederives the package and checks
+a separately captured native result. It requires identical model atoms,
+effective definitions and policy, exactly one added native edit per request,
+all eight other captured covalent proxy categories unchanged after removing
+those additions, preserved existing explicit requests and all six P-centred
+angles. It returns `JUNCTION_ANGLE_MECHANICS_PASS` only for that exact change.
+This is not whole-manager/nonbonded, chemical, clash or achieved-geometry
+qualification, and never enables automatic adoption.
+
+The real AAJ L-FANA-C control completes three fresh Phenix interpretations:
+translated baseline (four angles), supplemented same model (six), and original
+gapped placement (refused before supplement output). All 17 native delta checks
+pass; input dictionaries and model bytes remain unchanged. The two observed
+angles are still 37.7140° and 86.5097° against 108° targets; mechanical coverage
+does not accept this distorted translation-only geometry. This uses the same
+C110 diagnostic L-DNA flanks, whose H/charge/order differences and missing OP3
+remain unqualified. No Coot, dictionary generation, optimization or diffraction
+refinement runs. Exact commands, cold replay and test results are in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_junction_angles_2026_10_29`. Raw science, native captures and runners remain
+local. The next construction step is bounded junction adjustment preserving
+source chemistry and all four sugar hands, followed by both-link and qualified
+flank/terminal checks. Ordinary mutation and sticky-end stitching stay separate.
+
 
 ### Local FANA component identity and NARestraints binding (C123)
 

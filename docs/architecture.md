@@ -3591,3 +3591,21 @@ and production mutation are separate. A translation-only control restores the
 incoming bond but exposes missing O3′–P–O1P/O2P angles; complete source-named
 junction restraints are also required. See the
 [placement contract](cif-doctor.md#whole-residue-fana-placement-control-c124).
+
+
+## Source-bound FANA junction angle adapter (C125)
+
+The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a
+C124 source projection, exact native model and explicit RNA/DNA link template.
+It resolves template phosphate roles independently, preserving the source names,
+and emits only the two potentially missing incoming angles. Existing native
+bond/anchor-angle targets, four P neighbours and complete internal angles are
+prerequisites; an absent bond never becomes an angle-only connection.
+Readback rederives the text and source bindings from frozen files. Independent
+native readback must add exactly the requested proxies, retain all other captured
+covalent categories and complete six-angle coverage. Existing captures and inputs
+are preserved. Ordinary PostMR and installed libraries are unchanged; no run or
+checkpoint migration is required. This corrects the mixed-name consumer gap in
+the translated L-FANA-C control, without qualifying its protonation/numerical
+chemistry or repairing junction geometry. See the
+[angle contract](cif-doctor.md#source-bound-fana-junction-angles-c125).

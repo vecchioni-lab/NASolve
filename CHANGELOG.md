@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Restore source-named FANA junction angle coverage (C125)
+
+- Add a separate immutable angle supplement for an already bonded three-site
+  FANA control. Bind the exact model, source projection and frozen native link
+  template; map each phosphate role independently without renaming source atoms.
+- Add only absent incoming phosphate angles. Refuse missing bonds, conflicting
+  targets, ambiguous names, incomplete captures and source/coordinate drift.
+  Readback rederives the supplement; native qualification requires exactly its
+  requested additions and all other captured covalent proxies unchanged.
+- Add schema-1 `cif-source-bound-fana-junction-angles-v1`. The real L-FANA-C
+  diagnostic gains both missing angles at the installed template's 108°/3°,
+  while the original gapped placement is refused. Geometry repair, chemical
+  qualification, production mutation and existing run/checkpoint schemas stay
+  separate; no migration or installed-library change.
+
 ### Place a complete FANA residue in a separate linked control (C124)
 
 - Add an immutable three-residue placement API and offline reader. Preserve the

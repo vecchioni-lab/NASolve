@@ -27091,6 +27091,14 @@
       "next": "Source-named junction-angle coverage plus bounded geometry adjustment; bond presence alone is insufficient.",
       "validation": "6440 passed, 276 subtests passed in 999.68s (0:16:39); 172 focused; four native interpretations and 280-file cold replay, including missing-angle probe.",
       "implementation_commit": "89e7a084e800dd18320e10b67ba51400b74a51cc"
+    },
+    "fana_junction_angles": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "policy_id": "cif-source-bound-fana-junction-angles-v1",
+      "evidence_key": "fana_junction_angles_2026_10_29",
+      "behavior": "Compile only missing source-named incoming angles from exact frozen native template and already bonded C124 control; replay and exact native delta qualification.",
+      "validation": "6482 passed, 276 subtests passed in 1015.43s (0:16:55); 198 focused; three fresh native interpretations and 283-file cold replay pass.",
+      "next": "Bounded geometry adjustment and qualified linked chemistry; ordinary mutation remains separate."
     }
   },
   "audience": [
