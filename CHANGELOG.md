@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Place a complete FANA residue in a separate linked control (C124)
+
+- Add an immutable three-residue placement API and offline reader. Preserve the
+  complete FANA geometry with a proper rigid transform, all four sugar hands,
+  unchanged flanks and explicit source-named phosphate leaving-group authority.
+- Use the bound NARestraints workbook for host atom roles; retain phosphate
+  source names. Report both junction distances and withhold native/geometry
+  qualification. Preserve incomplete attempts and rederive outputs on read.
+- Add schema-1 `cif-rigid-whole-fana-linked-control-v1`. The real L-FANA-C control
+  preserves its internal native definition/restraints but lacks its incoming
+  native link. Existing PostMR/CLI, run/checkpoint schemas and adoption are unchanged.
+
 ### Bind explicit local FANA component identities (C123)
 
 - Add an immutable, source-verified enantiomer package with a derived local

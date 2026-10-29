@@ -69,6 +69,9 @@ NARestraints registration remain separate.
 C123 adds a [checked local component package and NARestraints record overlay](cif-doctor.md#local-fana-component-identity-and-narestraints-binding-c123),
 with current namespace checks at binding and cold source replay. Whole-model
 placement and linked native qualification remain open.
+C124 adds [whole-residue FANA placement controls](cif-doctor.md#whole-residue-fana-placement-control-c124):
+the L-FANA sugar survives placement, while measured junction gaps and a missing
+native incoming link keep the candidate under review. Ordinary mutation remains unchanged.
 C118 adds [explicit purine generation](cif-doctor.md#explicit-purine-generation-handoff-c118):
 new 40A/APN/40C candidates pass stage and isolated native checks while the default
 worker remains unchanged. C119 [freezes explicit PNA source networks](cif-doctor.md#explicit-pna-source-network-packages-c119)

@@ -3175,3 +3175,29 @@ workbook. The L-FANA-C control passes actual pair/stack compilation and isolated
 Phenix generation/native checks. Model placement and linked geometry remain
 open. The [technical contract](cif-doctor.md#local-fana-component-identity-and-narestraints-binding-c123)
 contains the methods, exact scope and evidence.
+
+
+### Placing the modified sugar without replacing it with DNA
+
+C124 places a complete verified FANA residue into a separate three-residue DNA
+control. This preserves the modification that ordinary DNA-backbone restoration
+would erase. The first L-FANA-C example keeps all four sugar hands and leaves
+its neighbours unchanged. Its phosphate junctions nevertheless open to about
+3.98 and 2.55 Å; Phenix omits the incoming bond. Preserved internal chemistry
+therefore does not establish a connected, refinement-ready model. These gaps
+describe this rigidly placed conformer; they do not show that FANA cannot fit
+a phosphodiester backbone. Later adjustment can explore permitted torsions and
+pucker while preserving chemical identity and stereochemistry.
+
+Methods: bind the source/enantiomer package and complete numerical candidate;
+read host atom roles from NARestraints; validate explicitly declared neutral
+leaving groups; transform the whole residue through a proper sugar frame;
+check internal distances and sugar volumes after serialization; measure both
+junctions; and compare exact native definitions and proxies. The diagnostic
+uses Phenix 2.2.1-6174 and NARestraints 1.1.3. Its L-DNA flank dictionaries retain
+C110's known chemical-state limits. No optimizer or diffraction refinement runs.
+The next construction step must adjust the junctions while preserving FANA,
+then establish complete native linkage. A translation-only control restores the
+incoming bond but still lacks its two phosphate-oxygen angles, showing why bond
+presence alone is insufficient. The [contract](cif-doctor.md#whole-residue-fana-placement-control-c124)
+records scope and evidence; ordinary model mutation remains unchanged.

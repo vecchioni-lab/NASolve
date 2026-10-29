@@ -11,6 +11,73 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C124 validated: whole-residue FANA placement control
+
+Base/last published head: `79e8aa5d5de19025aaf5d969c8b0a02eaaaae495`; existing cedar only.
+Capsule: `live_tests_directory/124_Cedar_FANA-placement-isxhivmo`.
+Implementation, focused/native/cold checks and maintained docs are complete.
+Full suite passes: **6440 passed, 276 subtests passed in 999.68s (0:16:39)**. All 478 source/test hashes
+remain unchanged. No job is active; publication is next.
+
+Before: DNA-backbone restoration could not retain the modified FANA sugar.
+After: a separate immutable three-residue control binds the C123 package and
+complete numerical candidate, requires explicit internal link/leaving-group
+intent, uses workbook-defined host atom roles, and moves the whole residue by
+a proper rigid transform. It preserves four sugar hands and flanking records,
+reports both junction distances, and rederives source checks/model bytes on read.
+Terminal-state changes and ordinary PostMR mutation remain outside this scope.
+New schema-1 policy: `cif-rigid-whole-fana-linked-control-v1`; no existing
+CLI/run/checkpoint migration or automatic adoption.
+
+The real L-FANA-C AAJ control uses an NARestraints 1.1.3 mirror of tracked
+5W6W A:1–3. Source O1P/O2P/O3P names survive; the explicit leaving O3P and its H,
+and outgoing O3′ H, define the site projection. Host 0DA binds workbook N9A.
+Junction distances change from 1.6135/1.6248 Å to 3.9828/2.5461 Å. These are
+measured gaps, not an accepted connected model. Phenix 2.2.1-6174 (dispatcher
+2.2.1) completes four 60-second-bounded interpretations: installed-only L-DNA
+fails on 62 unknown energy types; two reads with C110 frozen diagnostic flank
+numerics complete. The reference has both links; the candidate has only
+A:2→A:3. Six projected-definition, five heavy-proxy and eight unaffected flank
+proxy categories match. Flank source-state differences and missing OP3 remain
+unqualified. No Coot, generation, optimization, refinement or native chemical
+qualification is claimed. Local source-named modifier preparation is diagnostic
+runner code, not a new general API.
+
+A fourth native read tests a separate exact translation of the intact residue,
+placing its P at the reference position. The incoming bond returns and the
+outgoing bond disappears (3.8810 Å). Only four of six phosphate angles appear:
+incoming O3′–P–O1P and O3′–P–O2P are absent. Source-named junction angle coverage
+must be resolved alongside geometry. Neither this diagnostic nor bond presence
+is an accepted repair. Original placement and previous captures remain immutable.
+
+Validation so far: 33 initial fail-before cases; 40 new regressions;
+**172 focused passed in 13.76s**. Final cold replay passes with **280 files unchanged**,
+owned original v2 absent, original/SDK reads and process execution blocked.
+It rederives placement and binds/replays all three successful diagnostic captures;
+the original missing incoming link and translation control's two missing angles
+remain visible. Compileall, diff-check, 317 relative
+documentation links, both JSON ledgers and SVG XML pass. The complete suite also passes. Exact commands/references are in the evidence ledger,
+key `fana_whole_residue_placement_2026_10_29`.
+
+Twelve intended files: new runtime/tests plus maintained changelog, contracts,
+human descriptor/figure and compact evidence. Raw component/workbook/models,
+dictionaries/native captures/logs and runners remain local. Earlier naming and
+installed-library preflights, the failed reference and empty first relocation
+attempt are preserved. Everyday checkout and unrelated scientific work untouched.
+
+Immediate next action: commit/push the reviewed twelve files on cedar and record
+publication. Next
+chemistry slice: complete source-named junction-angle coverage and bounded
+junction adjustment protecting FANA sugar/source state, then exact both-link
+checks with qualified flank/terminal definitions.
+The gaps are conformer/placement-specific, not an intrinsic FANA incompatibility.
+Allowed torsions/pucker may adjust while chemical identity/hands remain fixed.
+Do not force the long bond into refinement or copy DNA sugar coordinates back.
+Other L-FANA bases, C119 PNA, DG naming and ATL/L-DNA/PDU remain separate;
+sticky-end stitching stays deferred. No extra branch or merge.
+
+— Rowan · Codex desktop
+
 ## C123 published: local FANA component identity and NARestraints binding
 
 Base/last published head: `90153bc3699a594a760f128d0b66fb43fc221dd4`; existing cedar only.

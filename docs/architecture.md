@@ -3571,3 +3571,23 @@ is an atomic/global reservation. Schema-1 policy is
 `cif-local-fana-enantiomer-component-v1`; ordinary construction and existing
 schemas are unchanged. The [component contract](cif-doctor.md#local-fana-component-identity-and-narestraints-binding-c123)
 records NAR compiler/native controls and remaining whole-sugar placement work.
+
+
+## Whole-residue FANA construction control (C124)
+
+A separate immutable three-residue control binds a C123 component package and
+complete source-preserving candidate. It validates explicit internal link state,
+source-named neutral leaving groups and workbook-bound host glycosidic identity.
+A proper sugar-frame rotation moves the whole selected residue; no DNA scaffold
+is restored. It checks internal distances and all four sugar hands after PDB
+serialization, preserves flanking records and exposes both junction distances.
+The offline reader recomputes chemistry and model bytes from frozen authority,
+rather than trusting recorded success. Schema-1 policy is
+`cif-rigid-whole-fana-linked-control-v1`; existing CLI/PostMR and run/checkpoint
+schemas are unchanged. Local native diagnostics retain the central FANA
+projection/proxies, but lose the incoming link. C110 flank chemistry remains
+unqualified. Placement is implemented; junction repair, complete native linkage
+and production mutation are separate. A translation-only control restores the
+incoming bond but exposes missing O3′–P–O1P/O2P angles; complete source-named
+junction restraints are also required. See the
+[placement contract](cif-doctor.md#whole-residue-fana-placement-control-c124).
