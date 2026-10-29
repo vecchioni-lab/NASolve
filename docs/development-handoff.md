@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C126 validated locally: source-preserving FANA bridge seed
+## C126 published (full regression pending): source-preserving FANA bridge seed
 
 Base/last published head: `649f7cb7ee1ca18d2fd9935b002748d0398d2748`; existing cedar only.
 Capsule: `live_tests_directory/126_Cedar_FANA-bridge-ox2k5s5_`.
@@ -20,7 +20,8 @@ Capsule: `live_tests_directory/126_Cedar_FANA-bridge-ox2k5s5_`.
 the final focused run. **Full C126 regression is deferred/pending** for this
 larger push before full regression; C125's 6482 + 276 is the last complete suite.
 No job is active. Compileall, diff whitespace, 327 documentation links and
-JSON/SVG parsing pass. Publication is next.
+JSON/SVG parsing pass. Tested implementation `45419432508aa4bc9b7184ce9a408936ca2119b5` is
+published and verified on `origin/cedar`; this follow-up records continuity only.
 
 Before: C124's intact FANA placement leaves a junction gap; C125's translated
 control completes angle mechanics but has severely distorted angles. After:
@@ -70,8 +71,9 @@ and C110 flank H/charge/order differences/missing OP3. This is a connected
 construction seed, not a chemically qualified or adopted model. Ordinary mutation,
 other L-FANA bases, whole-model work and sticky ends remain separate.
 
-Immediate next action: publish the thirteen reviewed files on cedar, verify the
-remote SHA and record publication continuity. Full regression remains pending.
+Implementation publication is complete. Next: full regression before another
+implementation jump, then assess native strain/clashes and linked chemical
+authority. No job is active; full regression remains pending.
 — Rowan · Codex desktop
 
 ## C125 published: source-bound missing junction angles

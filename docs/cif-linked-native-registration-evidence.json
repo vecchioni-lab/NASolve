@@ -43770,7 +43770,7 @@
     "implementation_commit": "c865ed65c4104d10b95e81fc81ffac74c097cb94"
   },
   "fana_bridge_seed_2026_10_29": {
-    "status": "FOCUSED_NATIVE_COLD_VALIDATED_FULL_PENDING_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_NATIVE_COLD_VALIDATED_FULL_PENDING",
     "base_commit": "649f7cb7ee1ca18d2fd9935b002748d0398d2748",
     "branch": "cedar",
     "policy_ids": [
@@ -44321,6 +44321,7 @@
     "compileall": "PASS",
     "documentation_links": 327,
     "json_and_svg_parse": "PASS",
-    "whitespace": "PASS"
+    "whitespace": "PASS",
+    "implementation_commit": "45419432508aa4bc9b7184ce9a408936ca2119b5"
   }
 }
