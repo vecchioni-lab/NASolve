@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-28**. Start with the
+Updated **2026-10-29**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -63,6 +63,9 @@ explicit 2′ fluorine and source-declared arabino configuration, with isolated
 native evidence for A/C/T/U. C121 adds [GFL and shared 6-oxo purine controls](cif-doctor.md#neutral-6-oxo-purine-source-representation-c121)
 under a separate explicit representation policy. Linked qualification and ordinary
 sugar mutation remain open; catalogue labels do not grant chemical support.
+C122 adds an [explicit FANA enantiomer source check](cif-doctor.md#explicit-fana-enantiomer-source-check-c122)
+and one isolated L-FANA-C native control. Whole-model replacement and target
+NARestraints registration remain separate.
 C118 adds [explicit purine generation](cif-doctor.md#explicit-purine-generation-handoff-c118):
 new 40A/APN/40C candidates pass stage and isolated native checks while the default
 worker remains unchanged. C119 [freezes explicit PNA source networks](cif-doctor.md#explicit-pna-source-network-packages-c119)

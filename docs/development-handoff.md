@@ -11,6 +11,59 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C122 validated: explicit FANA enantiomer source check
+
+Base/last published head: `32aa20e9fce29a3a8ab8ae3d0f33540e5549487a`; existing cedar only.
+Capsule: `live_tests_directory/122_Cedar_FANA-enantiomer-0l22x_r5`. Code, focused/native/cold checks
+and maintained docs are complete. Publication is next; no test or native job
+remains active.
+
+The read-only `inspect_fana_enantiomer` API requires explicit whole-component
+inversion intent, a distinct target code and the parent's FANA/NAR graph binding.
+It preserves complete graph/H/charge/bond annotations, reverses exactly four
+sugar declarations and checks all pair distances and all sugar-neighbour triples
+in every supplied standard coordinate family. Unknown/extra centres, numerical
+restraints, target descriptors and nonfinite calculated geometry cannot pass.
+This is source-relative evidence, not independent CIP, target NAR registration
+or whole-model mutation. Schema-1 policy: `cif-explicit-fana-enantiomer-source-v1`.
+Existing CLI, sources, generators, run/checkpoint schemas and adoption stay unchanged.
+
+The explicit local CFL→ZLF mirror source passes both ideal/model coordinate
+families: 32 signed-volume reversals, zero pair-distance discrepancy. ZLF is a
+local diagnostic alias only: an installed CCD entry already uses ZLF. Exact
+explicit-dictionary native inventories qualify this isolated control, not a
+global code lookup; require collision-aware identity/NAR binding before adoption.
+Phenix 2.2.1-6174
+(dispatcher 2.2.1) completes one generation at 180 steps/300 s and two isolated
+interpretations at 60 s each. Both coordinate controls pass all 21 checks and
+have identical fixed covalent proxies. An initial output-below-source preflight
+refusal is preserved; no native generation ran in that setup. No Coot, refinement,
+convergence or insertion into an L-DNA scaffold is claimed.
+
+Validation: **6365 passed, 276 subtests passed in 927.84s (0:15:27)**; all 474 source/test hashes unchanged.
+Initial 33 fail-before cases; 35 new cases; **139 focused passed in
+5.13s**, with all 474 source/test hashes unchanged. Initial full run was stopped
+for the overflow guard and retained; the final full run passes. Cold replay
+reproduces the source relation, complete candidate assessment and two native
+qualifications with 222 files unchanged, owned originals absent and original/SDK
+reads/processes blocked. Default generation-receipt semantic replay is not claimed.
+Two frozen inputs retain bytes/sizes/timestamps. Exact commands and hashes are in
+[evidence](cif-linked-native-registration-evidence.json), key `fana_enantiomer_source_2026_10_29`.
+
+Twelve changed files include code, synthetic tests, maintained contracts and
+compact evidence. Raw CIF/PDB/workbook, derived inputs, native captures/logs,
+outputs and runners stay local. Compilation, whitespace, 306 documentation
+links/both JSON ledgers and SVG XML pass. Immediate next action: publish on
+cedar and record exact SHAs.
+
+Next: whole-sugar replacement into the L-DNA scaffold using an explicit target
+source and NAR binding, preserving unaffected residues and site/link state; then
+linked native qualification. Other L-FANA bases, independent CIP, C119 PNA native
+construction, DG name mapping and ATL/L-DNA/PDU remain open. Sticky-end stitching
+stays parked; no extra branch or merge.
+
+— Rowan · Codex desktop
+
 ## C121 published: source-declared neutral 6-oxo purine representation
 
 Base/last published head: `fb6787640950514f079aa16dae4c8aea72a3a5e5`; existing cedar only.
@@ -556,7 +609,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; evidence updated through C121 on 2026-10-29.** Every ligand in the selected
+**Scope revised 2026-10-28; evidence updated through C122 on 2026-10-29.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -566,9 +619,9 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states, numerical PNA qualification and terminal reconstruction remain open. C120 adds source-declared FANA identity and four-centre candidate preservation. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states, numerical PNA qualification and terminal reconstruction remain open. C120 adds source-declared FANA identity and four-centre candidate preservation; C122 checks explicit enantiomer source intent under a separate target identity. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds explicit whole-purine generation; C121 adds bounded neutral 6-oxo five-ring representation and transfers across FANA/L-DNA/PNA. Exact stage checks, immutable attempts and isolated controls pass. Decision/reuse pieces exist; general orchestration remains open. |
-| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. DG retains an explicit native name-mapping failure. Linked/model qualification remains open. |
+| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. C122 adds one explicitly derived L-FANA-C native control. DG retains an explicit native name-mapping failure. Linked/model qualification remains open. |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 

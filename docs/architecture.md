@@ -3537,3 +3537,19 @@ Existing schema-1 parameterized envelopes carry the new policy ID; no migration.
 GFL/0DG/40G pass isolated native controls. DG generation passes but its standard
 native name interpreter fails on HOP2, a separate consumer boundary. See the
 [6-oxo contract](cif-doctor.md#neutral-6-oxo-purine-source-representation-c121).
+
+
+## Explicit FANA enantiomer source relation (C122)
+
+A read-only API requires explicit whole-component inversion intent and distinct
+parent/target codes. It reuses the parent FANA/NAR topology, requires exact full
+graph/H/charge/bond annotations and reversed four-centre declarations, and checks
+all pair distances plus every ordered sugar-neighbour triple in all supplied
+standard coordinate families. Nonfinite computed geometry cannot pass. Extra or
+unknown centres, numerical targets and target descriptor tables remain outside
+this source-only scope. Schema-1 reports use
+`cif-explicit-fana-enantiomer-source-v1`; no existing behavior or schema migrates.
+One explicitly derived L-FANA-C control passes generation and two isolated native
+checks, with cold source/candidate/native replay. Target NAR registration, model
+insertion, linked chemistry and independent CIP remain separate. See the
+[enantiomer contract](cif-doctor.md#explicit-fana-enantiomer-source-check-c122).

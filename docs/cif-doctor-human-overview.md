@@ -131,6 +131,15 @@ that remains a separate failure, with all evidence preserved. No phosphate repai
 linked qualification or convergence is claimed. See the
 [6-oxo contract](cif-doctor.md#neutral-6-oxo-purine-source-representation-c121).
 
+C122 adds a prerequisite for L-FANA model work: a read-only check of an explicitly
+proposed whole-component mirror under a distinct target code. It preserves the
+complete graph, hydrogens and charge; reverses the four sugar declarations; and
+checks every atom-pair distance and sugar hand in each coordinate family. One
+explicitly derived L-FANA-C reference passes generation and both isolated native
+controls. Target NAR registration and insertion into an L-DNA scaffold remain
+separate. This is source-relative evidence, not independently assigned absolute
+CIP. See the [enantiomer contract](cif-doctor.md#explicit-fana-enantiomer-source-check-c122).
+
 Native linked typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
@@ -817,6 +826,8 @@ C120 adds graph-bound FANA declaration and candidate-preservation checks; four
 core candidates pass isolated native controls. C121 adds GFL, completing isolated
 A/C/G/T/U controls; linked FANA and ordinary modified-sugar construction remain
 unqualified.
+C122 adds an explicit whole-component mirror check and one native L-FANA-C
+control; target registration and whole-model replacement remain open.
 A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom

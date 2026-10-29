@@ -43,7 +43,9 @@
 
 <a id="current-capability-boundary-c120"></a>
 
-## Current capability boundary (C121)
+<a id="current-capability-boundary-c121"></a>
+
+## Current capability boundary (C122)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -57,7 +59,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. C121 separately covers the bounded neutral 6-oxo five-ring; charged/other carbonyl purines, convergence, linked PNA numerics and ordinary integration remain open. |
 | Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
-| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | Real L-FANA native controls, linked chemistry and whole-sugar model mutation remain open. |
+| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; other L-FANA bases, linked chemistry and whole-sugar model mutation remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -677,6 +679,82 @@ charge retention. These are complete executions, not dry-runs. An initial 40A
 attempt is preserved after exposing a source-basename replay mismatch; corrected
 fresh attempts use the frozen source identity. No original receipt is rewritten.
 
+### Explicit FANA enantiomer source check (C122)
+
+`inspect_fana_enantiomer(source, source_code, target, target_code,
+workbook=…, intent="whole-component-enantiomer")` checks a separately supplied
+mirror reference without writing files or running native software. The target
+must have a distinct explicit code. Schema-1 reports use policy
+`cif-explicit-fana-enantiomer-source-v1`, anchored references and input hashes.
+A successful `ENANTIOMER_SOURCE_PASS` establishes the bounded source relation;
+it neither registers the target in NARestraints nor inserts it into a model.
+There is no new CLI or implicit source-generation route.
+
+The parent must first pass the existing FANA source gate and its NAR base binding.
+The target retains exact atom identities/elements/isotopes, connectivity, bond
+orders, formal charges and aromatic/bond-stereo annotations. Complete integer
+charges are required. Exactly the four graph-bound sugar centres must carry
+R/S declarations in the parent, with N elsewhere; all four declarations must
+reverse and every other marker remain unchanged. Extra or unknown declared
+stereochemistry needs another adapter. Names and component codes do not select
+stereochemistry; the parent NAR record binds the retained base roles only.
+
+Each supplied standard coordinate family—CCD ideal, CCD model and plain
+Cartesian—must be complete, finite and present on both sides. Every atom-pair
+distance must agree within 1e-6 Å, and all four ordered neighbour triples at each
+sugar centre must reverse signed volume above the existing 1e-6 Å³ degeneracy
+boundary. This checks the complete rigid mirror, allowing proper rotations and
+translations. It does not accept a local epimer, unchanged labels, reflected
+coordinates alone or a second coordinate family left unreflected. Overflowed
+computed distances/volumes cannot pass or leak nonfinite numbers into the report.
+The source is bounded to 512 atoms. These are source-relation checks, not refined
+geometry tolerances or independent absolute CIP assignment.
+
+Numerical dictionaries, signed restraint tables and target descriptor/identifier
+tables in the selected component definition are outside this source-only gate.
+This API inspects the selected component; it does not certify unrelated blocks. Existing chiral restraint signs or
+stereochemical SMILES cannot be copied through without their own verification.
+Target names and other descriptive metadata are not chemical authority. The
+checker does not modify a source or workbook, infer a phosphate state, remove
+OP3/H, normalize charge or approve linked geometry. An optimized candidate is
+assessed separately against the explicit target source; it need not preserve
+all reference distances after optimization.
+
+The local control reflects frozen CFL into a distinct temporary code, ZLF.
+ZLF also exists in the installed CCD: this control uses it only as an isolated,
+explicit-dictionary alias, never as a global chemical identity. Exact native
+inventories qualify the supplied target definition; code-based lookup or NAR
+registration would require collision-aware identity handling first.
+It retains the complete atom/bond tables, changes component identity and source
+R/S declarations, reflects z in both coordinate families, and omits inherited
+parent descriptors/identifiers. The explicit derivation and original bytes remain
+local. Both families pass 16 ordered volume reversals each and exact pair-distance
+preservation. This is an explicitly derived beta-L-FANA-C control, not a new CCD
+entry or a claim that the workbook's OFC label defines L-FANA.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1) completed one native generation with a
+180-step/300-second bound and two isolated interpretations bounded to 60 seconds
+each. Both source and generated coordinate controls pass all 21 native checks,
+with equal fixed covalent proxies. An initial source/output nesting preflight
+was refused before generation; its files and the source probe are retained.
+These are complete executions, not dry-runs. No Coot, refinement, optimizer
+convergence or whole-model insertion is claimed.
+
+Cold replay recomputes the enantiomer source result, complete candidate assessment
+and both native qualifications from a relocated checkout with original paths,
+SDK access and subprocess execution blocked. The default generation receipt's
+bytes are preserved; semantic generation-receipt replay is not claimed here.
+Exact commands, software versions, hashes and regression results are recorded in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_enantiomer_source_2026_10_29`.
+
+Next: use a checked target source for selected whole-sugar replacements in an
+L-DNA scaffold, preserve unaffected residues and explicit site/link chemistry,
+and qualify the resulting linked native model. The new code still needs explicit
+NAR registration/binding in that workflow. Other L-FANA bases, independent CIP,
+C119 linked PNA construction, DG name mapping and ATL/L-DNA/PDU boundaries remain
+open. Sticky-end stitching stays deferred.
+
 ### Neutral 6-oxo purine source representation (C121)
 
 `cif-source-declared-neutral-6-oxo-purine-aromatic-v1` is a separate explicit
@@ -739,7 +817,8 @@ under the explicit local live-test anchor.
 
 Remaining work includes linked PNA construction/numerics, whole modified-sugar
 model building and the proposed L-DNA scaffold with explicit L-FANA replacements.
-L-FANA still lacks native/model validation; OFC is not an L-FANA target. DG's
+C122 adds one explicitly derived L-FANA-C native control; whole-model validation
+remains open and OFC is not an L-FANA target. DG's
 standard-name consumer boundary, independent CIP, formal-charge native readback
 and ATL/L-DNA/PDU integration remain separate. NAR owns pairing/stacking, and
 sticky-end stitching remains deferred.
@@ -778,8 +857,8 @@ Frozen installed CCD controls cover all ten FANA-labelled catalogue codes:
 A5L, TAF, UF2, GFL, CFL, 7BG, FDG, FMG, 1FC and XFC. All declare beta-D-FANA
 under this rule. AF2 and CFZ declare the D-ribo pattern; OFC declares the L-ribo
 pattern despite the workbook abbreviation “L-FANA-C”. The checker excludes all
-three without editing the catalogue or choosing a replacement structure. L-FANA
-recognition currently has synthetic regression coverage only.
+three without editing the catalogue or choosing a replacement structure. C120 L-FANA recognition has synthetic coverage; C122 above adds an explicit
+enantiomer source relation and one isolated native L-FANA-C control.
 
 Seven fresh complete Phenix 2.2.1-6174 generation attempts (dispatcher 2.2.1,
 180 optimization steps/300 s per attempt) retain all outputs. CFL and UF2 produce

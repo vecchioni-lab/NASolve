@@ -27065,6 +27065,14 @@
       "next": "Build whole modified-sugar/L-FANA model controls and linked PNA native construction; separately address DG standard-name hydrogen mapping. Independent CIP, native charge readback and ATL/L-DNA/PDU integration remain open.",
       "validation": "6330 passed, 276 subtests passed in 990.98s (0:16:30); 308 focused pass; five generation attempts, six qualified native interpretations, two retained failures and 357-file cold replay.",
       "implementation_commit": "e05b8e8c14f09b97a512e90698c2536bc9a70298"
+    },
+    "fana_enantiomer_source": {
+      "status": "VALIDATED_NOT_PUBLISHED",
+      "policy": "cif-explicit-fana-enantiomer-source-v1",
+      "evidence_key": "fana_enantiomer_source_2026_10_29",
+      "scope": "A read-only explicit-intent API checks complete graph/H/charges, inverted four-centre declarations and every supplied standard coordinate family before independent target-native qualification.",
+      "next": "Use an explicitly checked target source for whole-sugar model replacements with unaffected-site controls and explicit NAR binding; qualify final linked chemistry. Other L-FANA bases, independent CIP, PNA/DG/ATL/L-DNA/PDU remain separate.",
+      "validation": "6365 passed, 276 subtests passed in 927.84s (0:15:27); 139 focused pass; one generation, two native qualifications and 222-file cold replay."
     }
   },
   "audience": [

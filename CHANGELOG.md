@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Verify explicit FANA enantiomer source intent (C122)
+
+- Add read-only `inspect_fana_enantiomer`: require explicit whole-component
+  inversion intent, a distinct target code, unchanged complete graph/H/charges,
+  reversed sugar declarations and mirrored geometry in every supplied standard
+  coordinate family. Reject partial mirrors, unknown/extra declared centres,
+  inherited target descriptors, numerical targets and nonfinite derived geometry.
+- One explicit local L-FANA-C source derived from CFL passes native generation
+  and both isolated coordinate controls. Keep source intent, native usability,
+  NAR registration and whole-model replacement separate.
+- Add schema-1 `cif-explicit-fana-enantiomer-source-v1`; existing APIs, CLI,
+  source dictionaries, mutation, run/checkpoint schemas and adoption are unchanged.
+
 ### Qualify source-declared 6-oxo purine representation (C121)
 
 - Add an explicit structural policy for complete five-ring aromatic conversion
