@@ -90,6 +90,15 @@ def _capture(path, model):
         worker = native_mapping_worker(worker)
     elif 'atom_name_mapping_policy' in receipt:
         raise ValueError('Unrequested native atom mapping policy')
+    if 'gradient_indices' in spec:
+        from .cif_native_gradients import native_gradient_worker, validate_gradient_request, review_native_gradients
+        validate_gradient_request(spec['gradient_indices'], linked=spec.get('inventory_detail') == 'linked',
+            energy=spec.get('energy_inventory'), policy=spec.get('policy_inventory'),
+            mapping=spec.get('atom_name_mapping'), nonbonded=spec.get('nonbonded_inventory'))
+        worker = native_gradient_worker(worker)
+        if receipt['native_validation'].get('gradient_inventory', {}).get('selected_indices') != spec['gradient_indices']:
+            raise ValueError('Native derivative probes differ from request')
+        review_native_gradients(receipt['native_validation'])
     if records['native_worker.py'] != worker.encode():
         raise ValueError('Require a maintained native inventory worker')
     roles = {'model': [], 'dictionary': [], 'phil': []}

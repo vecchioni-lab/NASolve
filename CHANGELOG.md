@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Replay fixed native derivatives before FANA geometry repair (C129)
+
+- Add opt-in `gradient_indices` to native bundle inspection and read-only
+  `review_native_gradients`. Reuse the maintained directional-difference audit
+  and offline numerical replay, bound to exact coordinates, manager, energy,
+  selected probes, static constraints and native numerical source fingerprints.
+- Preserve raw disagreements as REVIEW; reject mismatched or malformed evidence.
+  Restrict this initial ordinary-objective path to explicit fixed policy, no
+  parallelity terms, special positions or nonidentity symmetry. No optimization,
+  chemical acceptance, coordinate edit or automatic adoption is introduced.
+- Add schema-1 `cif-native-fixed-gradient-inventory-v1` and recognize its exact
+  maintained worker in capture readback. Default/legacy workers remain byte-identical;
+  no CLI, run/checkpoint migration or installed-library modification.
+
 ### Gate FANA construction on exact declared native topology (C128)
 
 - Add a read-only source-bound FANA topology report and strict prerequisite API.

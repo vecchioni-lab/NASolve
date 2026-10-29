@@ -27141,6 +27141,24 @@
       ],
       "next": "Bounded geometry repair under exact declared topology and source/stereo preservation; native re-interpretation must pass the gate again. Any native optimizer requires fresh derivative qualification for this manager; old PDU/DF gradient proofs cannot transfer.",
       "implementation_commit": "bd986d8bac024f359f7771340f0c9b6c81f52c02"
+    },
+    "fana_native_derivatives": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fana_native_derivatives_2026_10_29",
+      "policies": [
+        "cif-native-fixed-gradient-inventory-v1"
+      ],
+      "behavior": "Opt-in fixed native capture records bounded raw derivatives and read-only replay recomputes them under exact manager/request/source binding.",
+      "validation": "6630 passed, 276 subtests passed in 1026.93s (0:17:06); 274 focused; actual Phenix capture; 266-file cold replay.",
+      "compatibility": "Additive optional Python keyword/object and reviewer; legacy/default worker bytes unchanged. No CLI/run/checkpoint migration, installed library edit or optimization.",
+      "limitations": [
+        "Sampled local derivatives only, not every component, convergence, geometry acceptance or source chemistry.",
+        "No parallelity terms, special positions or nonidentity symmetry.",
+        "Manager and both declared backbone links unchanged; A:2/A:3 crowding and outgoing angle remain.",
+        "C110 flank H/charge/order/OP3 differences and central chemical/numerical qualification remain separate."
+      ],
+      "next": "Bounded central-residue geometry candidate with fixed flanks and source/stereo preservation; re-interpret and recheck exact topology and mechanics before any acceptance."
     }
   },
   "audience": [

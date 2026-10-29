@@ -45198,5 +45198,355 @@
     "source_test_files_unchanged": 487,
     "implementation_commit": "bd986d8bac024f359f7771340f0c9b6c81f52c02",
     "remote_verified": "origin/cedar"
+  },
+  "fana_native_derivatives_2026_10_29": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "base_commit": "13f415559bf5057dd73b3d84daa4d102e26bfb43",
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "129_Cedar_FANA-derivatives-3q2no8nf"
+    },
+    "policies": [
+      "cif-native-fixed-gradient-inventory-v1"
+    ],
+    "before": "Fresh ordinary native derivatives required a local probe; existing mixed-plane qualification cannot transfer to the zero-parallelity FANA manager.",
+    "after": "Opt-in fixed native capture records bounded raw derivatives and read-only replay recomputes them under exact manager/request/source binding.",
+    "changed_code": [
+      "src/nasolve/cif_native_gradients.py",
+      "src/nasolve/cif_native_validation.py",
+      "src/nasolve/cif_attachment_native.py",
+      "tests/test_cif_native_gradients.py"
+    ],
+    "validation_commands": {
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_native_gradients.py",
+        "tests/test_cif_native_nonbonded.py",
+        "tests/test_cif_gradient_audit.py",
+        "tests/test_cif_mixed_gradient.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_topology_gate.py",
+        "tests/test_cif_native_validation.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python c129_native.py",
+      "cold": "c129_cold_prepare.py -> relocated src + c129_cold.py; old paths, SDK and processes blocked",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c129-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "docs": "check_docs.py; ElementTree XML parse",
+      "whitespace": "git diff --check"
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_native_gradients.py",
+        "tests/test_cif_native_nonbonded.py",
+        "tests/test_cif_gradient_audit.py",
+        "tests/test_cif_mixed_gradient.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_topology_gate.py",
+        "tests/test_cif_native_validation.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 22.572900916042272,
+      "source_test_files": 489,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_summary": "274 passed in 22.27s",
+    "new_test_cases": 59,
+    "fail_before": "Initial 42 cases failed before implementation; all now pass.",
+    "intermediate_failures": [
+      "One focused invocation named an absent test file; preserved without executing tests.",
+      "One new synthetic receipt omitted required simple_bonds/asu_bonds inventory; fixture completed, production checks unchanged."
+    ],
+    "native_tools": {
+      "phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "mode": "Two complete executions: exploratory probe and production capture, each bounded to 180 seconds",
+      "coot": "NOT_RUN"
+    },
+    "native_result": {
+      "capture": "native-derivatives/cif-native-1sa1858v",
+      "elapsed_seconds": 3.320652041991707,
+      "phenix_version": "2.2.1",
+      "installation_release": "phenix-2.2.1-6174",
+      "mode": "COMPLETE_EXECUTION",
+      "same_manager": true,
+      "same_energy_inventory": true,
+      "gradient_report": {
+        "schema_version": 1,
+        "policy_id": "cif-native-fixed-gradient-inventory-v1",
+        "status": "SAMPLED_DERIVATIVES_PASS",
+        "sampled_derivatives_pass": true,
+        "family_checks": {
+          "all": true,
+          "angle": true,
+          "bond": true,
+          "chirality": true,
+          "dihedral": true,
+          "nonbonded": true,
+          "parallelity": true,
+          "planarity": true
+        },
+        "evaluation_calls": 1359,
+        "selected_indices": [
+          31,
+          36,
+          39,
+          46,
+          48,
+          4
+        ],
+        "selected_labels": [
+          "pdb=\" C3' AAJ A   2 \"",
+          "pdb=\" O3' AAJ A   2 \"",
+          "pdb=\" P   0DG A   3 \"",
+          "pdb=\" C3' 0DG A   3 \"",
+          "pdb=\" C2' 0DG A   3 \"",
+          "pdb=\" C3' 0DG A   1 \""
+        ],
+        "manager_sha256": "6ac14b9b8833f8f35bae1fb404530c55856047f36d400367fdeba86510a99a4f",
+        "numerical_evidence_replayed": true,
+        "native_execution": "NOT_RUN",
+        "model_optimization": "NOT_RUN",
+        "chemical_qualification": "NOT_ESTABLISHED",
+        "automatic_adoption": false,
+        "limitations": [
+          "Agreement covers sampled directions at these exact coordinates, not every component or global convergence.",
+          "No parallelity, special positions or nonidentity symmetry; no geometry or chemical acceptance.",
+          "Frozen input/worker/output receipts require separate attestation."
+        ]
+      }
+    },
+    "cold_replay": {
+      "status": "PASS",
+      "replay": {
+        "gradient_report": {
+          "schema_version": 1,
+          "policy_id": "cif-native-fixed-gradient-inventory-v1",
+          "status": "SAMPLED_DERIVATIVES_PASS",
+          "sampled_derivatives_pass": true,
+          "family_checks": {
+            "all": true,
+            "angle": true,
+            "bond": true,
+            "chirality": true,
+            "dihedral": true,
+            "nonbonded": true,
+            "parallelity": true,
+            "planarity": true
+          },
+          "evaluation_calls": 1359,
+          "selected_indices": [
+            31,
+            36,
+            39,
+            46,
+            48,
+            4
+          ],
+          "selected_labels": [
+            "pdb=\" C3' AAJ A   2 \"",
+            "pdb=\" O3' AAJ A   2 \"",
+            "pdb=\" P   0DG A   3 \"",
+            "pdb=\" C3' 0DG A   3 \"",
+            "pdb=\" C2' 0DG A   3 \"",
+            "pdb=\" C3' 0DG A   1 \""
+          ],
+          "manager_sha256": "6ac14b9b8833f8f35bae1fb404530c55856047f36d400367fdeba86510a99a4f",
+          "numerical_evidence_replayed": true,
+          "native_execution": "NOT_RUN",
+          "model_optimization": "NOT_RUN",
+          "chemical_qualification": "NOT_ESTABLISHED",
+          "automatic_adoption": false,
+          "limitations": [
+            "Agreement covers sampled directions at these exact coordinates, not every component or global convergence.",
+            "No parallelity, special positions or nonidentity symmetry; no geometry or chemical acceptance.",
+            "Frozen input/worker/output receipts require separate attestation."
+          ]
+        },
+        "topology": "MATCH",
+        "prior_topology": {
+          "translated": "REVIEW",
+          "bridge": "MATCH"
+        },
+        "same_manager_and_energy": true
+      },
+      "owned_original_absent": true,
+      "original_sdk_and_process_access_blocked": true,
+      "blocked_attempts": [],
+      "files_unchanged": 266,
+      "native_execution": "NOT_RUN"
+    },
+    "compatibility": "Additive optional Python keyword/object and reviewer; legacy/default worker bytes unchanged. No CLI/run/checkpoint migration, installed library edit or optimization.",
+    "scientific_boundaries": [
+      "Sampled local derivatives only, not every component, convergence, geometry acceptance or source chemistry.",
+      "No parallelity terms, special positions or nonidentity symmetry.",
+      "Manager and both declared backbone links unchanged; A:2/A:3 crowding and outgoing angle remain.",
+      "C110 flank H/charge/order/OP3 differences and central chemical/numerical qualification remain separate."
+    ],
+    "generated_artifacts": "Raw science, source workbook, models, dictionaries, native logs/captures and all runner attempts deliberately excluded from Git; compact receipts/hashes only.",
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/reports/probe-summary.json",
+        "sha256": "8bab80d88850d3e7c963091c58e212ae31b0d931f15a5d639719ccff4524a23b",
+        "size": 855
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/reports/native-summary.json",
+        "sha256": "dd44eb0a1c11ddd529d0f2fa9c2ccd5d2a570430a71a207347bda2696500c6ef",
+        "size": 1626
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/reports/derivatives.json",
+        "sha256": "e477641970b6f424571e958db1239469f28537d1c07c00dc65639926171dc126",
+        "size": 1255
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/reports/fresh-topology.json",
+        "sha256": "5944ee784b8d61218f6590753b97fcc8928bc205f458045a08adb4415bac1d11",
+        "size": 2113
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/validation/cold-result.json",
+        "sha256": "99608cbddaaf62b20c9af30977d0c4bc23e09b91c8f89affc15079c0caed4e6a",
+        "size": 1808
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/validation/cold-manifest.json",
+        "sha256": "1e556953784bf590959e410a8ae0d04220238169c2ffa9985e33b86de95b201b",
+        "size": 49157
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/validation/focused-final-002/pytest.log",
+        "sha256": "dc5e70389655f3c1d5493132fd7e5fc619dc432de40ac492755195e2be8db75d",
+        "size": 3036
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/validation/focused-final-002/source-hashes.json",
+        "sha256": "8f4ff620388af0b7aaac8143ae14b8fbe01d74e34b606a545561b4c64baccaa0",
+        "size": 52812
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/validation/full/pytest.log",
+        "sha256": "c39d26c3f2614d64876fc2b80024a81ba3fcaeca5d9cd244cc83c319bf117376",
+        "size": 9992
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/validation/full/source-hashes.json",
+        "sha256": "8f4ff620388af0b7aaac8143ae14b8fbe01d74e34b606a545561b4c64baccaa0",
+        "size": 52812
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/validation/fail-before/pytest.log",
+        "sha256": "b721743ff86e278fb7b06ae94fcdc1368c0fe996d98e50cf75758739314143c1",
+        "size": 39428
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/runners/c129_probe.py",
+        "sha256": "ad1781ffccb38e0021801694f3c502b07524dc701a4e7492b27b28cfcea2673c",
+        "size": 5010
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/runners/c129_native.py",
+        "sha256": "c40d5a7d224359acc8cd6d9fb6e5033823a855bf802498095e72194a3ea318f2",
+        "size": 2296
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/runners/c129_replay.py",
+        "sha256": "2e6f43804820feccb84723544001186b7c742317394991efffff146d1c6e31fb",
+        "size": 1880
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/runners/c129_cold.py",
+        "sha256": "ed82fd6df38626b73bbdcccb9b445b43619322397dd94634a8205b0909124e6f",
+        "size": 1773
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/runners/c129_cold_prepare.py",
+        "sha256": "0d9ce3c7de78ace736b09d2d3acba14b448b7d9f7aa26c17ec40b7d45abaac3d",
+        "size": 1188
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "129_Cedar_FANA-derivatives-3q2no8nf/runners/c129_validate.py",
+        "sha256": "1fc977aabc9a7014a37001aeaa9951cfbf41d227f7224fa046bfa0824693e0b3",
+        "size": 1613
+      }
+    ],
+    "next": "Bounded central-residue geometry candidate with fixed flanks and source/stereo preservation; re-interpret and recheck exact topology and mechanics before any acceptance.",
+    "full": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 1028.2041600410012,
+      "source_test_files": 489,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6630 passed, 276 subtests passed in 1026.93s (0:17:06)",
+    "source_test_files_unchanged": 489,
+    "auxiliary_checks": {
+      "compileall": "PASS",
+      "relative_document_links": 340,
+      "json_and_svg_parse": "PASS",
+      "diff_whitespace": "PASS",
+      "legacy_worker_and_existing_numeric_kernels": "UNCHANGED"
+    }
   }
 }

@@ -3666,3 +3666,21 @@ Schema-1 policies are `cif-declared-native-topology-v1` and
 maintained optional energy/nonbonded worker compositions without changing their
 bytes or granting score qualification. There is no runtime default, CLI or
 checkpoint migration. See the [gate contract](cif-doctor.md#declared-fana-topology-gate-c128).
+
+
+## Ordinary fixed native derivative evidence (C129)
+
+An optional native inspection extension reuses the fixed directional audit and
+raw-number replay at one initial coordinate set. The helper namespace is isolated
+from the legacy worker, whose bytes remain unchanged when the option is absent.
+The capture records raw numerical evidence, selected probes, static signatures,
+manager digest and native source fingerprints before/after. The read-only reviewer
+recomputes the result; a numerical disagreement is REVIEW, malformed evidence is
+an error. C109 binds the exact request, maintained worker and artifact checksums.
+
+Schema-1 `cif-native-fixed-gradient-inventory-v1` requires explicit fixed policy
+and excludes nonzero parallelity, special positions and nonidentity symmetry.
+It adds no optimizer, production default, CLI or checkpoint migration. The FANA
+bridge passes these sampled ordinary derivatives with the same manager and both
+declared links; crowding and angle repair remain separate. See the
+[methods and scope](cif-doctor.md#fixed-native-derivative-capture-c129).

@@ -57,7 +57,9 @@
 
 <a id="current-capability-boundary-c127"></a>
 
-## Current capability boundary (C128)
+<a id="current-capability-boundary-c128"></a>
+
+## Current capability boundary (C129)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -786,6 +788,76 @@ the DNA sugar to conceal the mismatch. Ordinary mutation, other L-FANA bases,
 C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stays
 parked.
 
+
+### Fixed native derivative capture (C129)
+
+`inspect_native_bundle(..., gradient_indices=[...])` adds a bounded, explicit
+fixed-coordinate diagnostic. The caller supplies one to six distinct integer
+atom indices from the interpreted model; the native worker checks their bounds.
+It requires linked, energy and policy inventories, with native secondary
+structure disabled and no competing native secondary-structure origins. This
+first ordinary-objective path rejects parallelity terms, special positions and
+nonidentity covalent/nonbonded symmetry. It cannot be combined with atom mapping
+or pair attribution in the same capture. Separate preserved captures remain
+available. Omitting the option preserves historical worker bytes and behavior.
+
+The worker embeds maintained helpers in an isolated namespace and reuses
+`audit_gradients`, without changing its numerical tolerances or optimizer code.
+Eight controls cover the complete objective, bond, angle, dihedral, chirality,
+planarity, parallelity and nonbonded families. Here parallelity is explicitly an
+empty control; success does not qualify nonzero native parallelity derivatives.
+Directions include the full gradient, a global alternating direction, Cartesian
+axes of the selected atoms and each nonzero family gradient. Central differences
+use 1e-3, 1e-4, 1e-5 and 1e-6 Å; each direction needs two adjacent consistent
+steps under the existing absolute/relative tolerances of 1e-4. Target/gradient
+additivity, baseline repeats, the captured full snapshot and a small negative
+full-gradient profile are recorded. The derivative audit has a 2,000-call ceiling,
+in addition to the existing two fixed energy snapshots. It never updates the
+model or runs an optimizer.
+
+The optional schema-1 `gradient_inventory` has policy
+`cif-native-fixed-gradient-inventory-v1`. It retains every directional raw target,
+proxy count, repeated baseline vector and computed comparison. Coordinates and
+static constraint signatures must remain unchanged; numerical source hashes
+(flags, energies, manager, compiled geometry extension and flex adapter) are
+captured before/after, with agreement to the fixed-energy source fingerprints.
+The manager digest binds atoms, mappings/effective definitions, complete geometry,
+installed APIs and restraint policy. Historical paths are provenance only.
+
+`review_native_gradients(native)` reads without SDK access, subprocesses or
+writes. It validates the fixed policy, coordinates, manager digest, source
+fingerprints, full energy/gradient/count snapshot, exact probes and call budget,
+then reuses the existing raw-number replay to recompute directions, finite
+differences, flags, additivity and repetitions. Saved pass labels are insufficient.
+A valid numerical disagreement returns REVIEW with the raw evidence retained;
+malformed evidence or a different manager raises an error. The existing C109
+capture reader additionally binds the explicit request, exact maintained worker
+and all input/output hashes. Callers must use that receipt validation as well as
+the numerical reviewer; raw in-memory evidence alone does not attest execution
+or the provenance of source chemistry. No CLI or run/checkpoint migration.
+
+**Actual FANA evidence:** an exploratory probe and a fresh production capture
+both pass all eight sampled families in 1,359 evaluations. The production capture
+uses the exact C128 connected bridge with the same 61 atoms, manager and fixed
+energy inventory; both declared backbone links remain present. The six explicit
+probes were selected by the existing raw bond/angle outlier selector, without a
+component allowlist. Phenix 2.2.1-6174 (dispatcher 2.2.1) ran to completion under a
+180-second bound; this was not a dry-run. No Coot, geometry optimization,
+diffraction refinement or adoption occurred. The A:2/A:3 crowding, outgoing-angle
+strain and C110 flank H/charge/order/OP3 differences remain unresolved.
+
+Validation: 274 focused tests pass, including 59 new regression cases. Wrong
+analytic gradients remain REVIEW, while false flags, changed coordinates/sources,
+relabelled probes, invalid counts/budgets and unsupported worker states refuse.
+Cold replay verifies the fresh and prior captures with 266 hashes/sizes/mtimes
+unchanged after the owned original disappears, with old paths, SDK and process
+creation blocked. Full regression passes: **6630 passed, 276 subtests passed in 1026.93s (0:17:06)**; exact commands/results and local
+artifact hashes are in `cif-linked-native-registration-evidence.json`, key
+`fana_native_derivatives_2026_10_29`. Raw models, dictionaries and native logs stay
+local. Next: a separately bounded central-residue geometry candidate, preserving
+flanks, source graph/protonation and sugar hands, followed by exact native topology
+and mechanics checks. Sampled derivative agreement is a prerequisite, not proof
+of every gradient component, convergence or chemically acceptable geometry.
 
 ### Declared FANA topology gate (C128)
 

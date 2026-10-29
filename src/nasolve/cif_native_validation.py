@@ -418,7 +418,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           installed_library_only: bool = False,
                           energy_inventory: bool = False,
                           atom_name_mapping: bool = False,
-                          nonbonded_inventory: bool = False) -> dict:
+                          nonbonded_inventory: bool = False,
+                          gradient_indices: Sequence[int] | None = None) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -444,6 +445,10 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         raise ValueError("Native atom name mapping must be an explicit boolean")
     if atom_name_mapping and (inventory_detail != "linked" or energy_inventory):
         raise ValueError("Atom name mapping requires linked inventory without energy augmentation")
+    if gradient_indices is not None:
+        from .cif_native_gradients import validate_gradient_request
+        validate_gradient_request(gradient_indices, linked=inventory_detail == "linked", energy=energy_inventory,
+            policy=policy_inventory, mapping=atom_name_mapping, nonbonded=nonbonded_inventory)
     if not phenix_version or not str(phenix_version).strip():
         raise ValueError("An explicit Phenix version is required")
     if not isfinite(float(timeout_seconds)) or timeout_seconds <= 0:
@@ -501,6 +506,11 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         spec["atom_name_mapping"] = True
         (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
         worker = native_mapping_worker(worker)
+    if gradient_indices is not None:
+        from .cif_native_gradients import native_gradient_worker
+        spec["gradient_indices"] = list(gradient_indices)
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_gradient_worker(worker)
     (work / "native_worker.py").write_text(worker, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]
     clock = time.monotonic()
@@ -546,6 +556,11 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                     if nonbonded_inventory and native.get("status") == "REVIEW":
                         from .cif_native_nonbonded import review_native_nonbonded
                         review_native_nonbonded(native)
+                    if gradient_indices is not None and native.get("status") == "REVIEW":
+                        from .cif_native_gradients import review_native_gradients
+                        if native.get("gradient_inventory", {}).get("selected_indices") != list(gradient_indices):
+                            raise ValueError("Native worker omitted requested derivative probes")
+                        review_native_gradients(native)
                     receipt["native_validation"] = native
                     if native.get("status") == "REVIEW" and code == 0:
                         receipt["status"] = "REVIEW"

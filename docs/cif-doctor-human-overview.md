@@ -3309,3 +3309,24 @@ recipe generation or proof of authorship. Readback replays actual Phenix
 occurs. Full chemistry, numerical targets and geometry retain separate gates.
 See the [technical contract](cif-doctor.md#declared-fana-topology-gate-c128) and
 maintained evidence ledger for validation and relocation details.
+
+
+### Checking the directions before moving the FANA bridge
+
+C129 checks whether Phenix's reported energy gradients agree with what actually
+happens to the energy under tiny coordinate changes. This matters before asking
+an optimizer to move a strained model: incorrect directions could make a plausible
+repair process unreliable. The connected FANA bridge passes the sampled checks,
+with its model, restraints and two backbone connections unchanged. Its crowding
+and outgoing-angle problem still need a separate repair trial.
+
+**Methods.** A fresh completed Phenix 2.2.1-6174 capture tests the full objective
+and seven restraint-family controls at four finite-difference step sizes. Six
+atoms are probed explicitly alongside global and family-gradient directions.
+All 1,359 evaluations pass the sampled checks; the empty parallelity control
+qualifies no nonzero parallelity terms. Raw numerical evidence is retained and
+recomputed offline, bound to the exact manager and native source fingerprints.
+The old-path/SDK-blocked replay preserves every file unchanged. This is evidence
+about local numerical mechanics, not chemical acceptance or global convergence.
+No atoms are optimized or adopted. See the [technical methods](cif-doctor.md#fixed-native-derivative-capture-c129)
+and evidence ledger for tests, limits and source/protonation boundaries.

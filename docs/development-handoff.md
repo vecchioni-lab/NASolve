@@ -11,6 +11,60 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C129 validated: replayable fixed native derivatives for the FANA bridge
+
+Base/last published head: `13f415559bf5057dd73b3d84daa4d102e26bfb43`; existing cedar only.
+Capsule: `live_tests_directory/129_Cedar_FANA-derivatives-3q2no8nf`.
+**274 focused tests pass**, and full regression passes: **6630 passed, 276 subtests passed in 1026.93s (0:17:06)**.
+All 489 source/test hashes remain unchanged and match the focused run. Cold replay
+preserves 266 hashes/sizes/mtimes after the owned original disappears, with old
+paths, Phenix SDK and processes blocked and no attempted access. Compileall,
+340 relative documentation links, JSON/SVG parsing and diff whitespace pass.
+No job is active; implementation publication is next.
+
+Before: the ordinary connected manager needed a one-off derivative probe;
+earlier mixed/corrected-plane evidence could not qualify this zero-parallelity
+FANA objective. After: optional `gradient_indices` capture reuses the maintained
+finite-difference audit, stores raw numerical evidence, then read-only replay
+recomputes every sampled comparison. Exact manager/coordinates, energy/gradient,
+probe request, source fingerprints, static signatures, call accounting and
+maintained worker/artifact hashes bind the evidence. Numerical disagreement is
+REVIEW; malformed or mismatched evidence raises. Legacy worker bytes and the
+existing numerical kernels are unchanged.
+
+The exploratory probe and production Phenix capture each pass all eight sampled
+families in 1,359 evaluations. Parallelity is an empty control, not a qualification
+of nonzero parallelity derivatives. The same 61-atom native manager, fixed energy
+inventory and both source-declared backbone links are retained. No coordinates,
+source definitions, H/charges, sugar hands, workbook or installed libraries were
+changed. Phenix **2.2.1-6174**, dispatcher **2.2.1**: two complete executions under
+180-second bounds, not dry-runs. Production capture took about 3.3 seconds including
+readback. No Coot, geometry optimization, diffraction refinement or adoption.
+
+Changed files: new `cif_native_gradients.py` and its 59 synthetic regressions;
+optional API in `cif_native_validation.py`; exact worker/request recognition in
+`cif_attachment_native.py`; ten maintained docs/evidence files (14 total).
+The optional schema-1 `gradient_inventory` policy is
+`cif-native-fixed-gradient-inventory-v1`. Explicit linked energy/policy capture is
+required; this first path excludes parallelity terms, special positions and
+nonidentity symmetry, and does not compose with mapping/pair capture in one job.
+No CLI/run/checkpoint migration or production-default change. Raw models,
+dictionaries, workbook, native logs/captures and all runner attempts remain local.
+Exact validation commands/results/hashes are in evidence key
+`fana_native_derivatives_2026_10_29`. Initial 42 cases failed before implementation.
+One command named an absent test file and one synthetic receipt omitted required
+geometry inventory; both failures remain preserved, and production checks were
+not relaxed. False pass flags and bad analytic gradients have distinct tests.
+
+Next: publish and verify cedar, then build one bounded central-residue geometry
+trial, keeping flanks fixed and preserving source graph/protonation and all sugar
+hands. Re-interpret the candidate and recheck exact topology and mechanics.
+Sampled agreement does not prove every component or convergence. A:2/A:3 crowding,
+outgoing-angle strain, central chemical/numerical qualification and C110 flank
+H/charge/order/OP3 differences remain open. Whole-model mutation, other L-FANA
+bases, sticky ends and branch integration remain separate.
+— Rowan · Codex desktop
+
 ## C128 published: exact declared inter-residue topology gate
 
 Base/last published head: `fbc60d3bd4abcafe3d1a14144d252d154bfbed2d`; existing cedar only.

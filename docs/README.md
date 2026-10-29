@@ -72,6 +72,9 @@ placement and linked native qualification remain open.
 C124 adds [whole-residue FANA placement controls](cif-doctor.md#whole-residue-fana-placement-control-c124):
 the L-FANA sugar survives placement, while measured junction gaps and a missing
 native incoming link keep the candidate under review. Ordinary mutation remains unchanged.
+C129 adds [replayable fixed native derivative evidence](cif-doctor.md#fixed-native-derivative-capture-c129).
+The connected FANA bridge passes sampled ordinary-objective derivatives with its
+model and restraints unchanged; constrained geometry repair remains next.
 C128 adds an [exact topology prerequisite](cif-doctor.md#declared-fana-topology-gate-c128):
 source-declared covalent links must match every native inter-residue bond, with
 explicit NARestraints pairing restraints accounted for separately. The preserved
