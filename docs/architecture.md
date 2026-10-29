@@ -1426,6 +1426,11 @@ Environmental metal B preparation is an optional derivation between fixed geomet
 and frozen f-double-prime fitting. The CLI defaults to equal nucleobase means
 excluding sugar/phosphate; unique-donor means and explicit keep are alternatives.
 Exact connected donors and captured component graphs determine the source atoms.
+An optional explicit environment declaration assigns disjoint fitted-metal groups
+to exact donor nodes, independently of distance restraints. Shared preparation
+uses `metal-environment-b-v2`; direct-only declarations retain v1. Scan/reuse
+identity includes the complete normalized declaration. Unlisted metals retain
+direct donors, and no graph traversal or proximity inference supplies B.
 The plan/audit records the assumption and source B values; matching/reuse includes
 this preparation, while older trial replay retains its original B. See the
 [preparation methods](metal-anomalous-doctor.md#implemented-environmental-metal-b-preparation).
@@ -1444,6 +1449,9 @@ restraints. `metal.xyz.run_xyz` now captures a separate schema-1
 anchored phase file. It uses MLHL with merged observations, fixed Q/reference
 f-prime and zero f-double-prime for the geometry step only. `verify_xyz` replays
 inputs, phases, reflection membership and native fixed-state audits offline.
+The XYZ audit permits native/serialized atom sorting only through a complete
+atom-key bijection, remaps group indices and retains all fixed-state checks.
+Reordered results add `atom_order_mapping`; native workers remain unchanged.
 Numbered failed attempts remain separate; no checkpoint is selected. The separate
 refined-endpoint diagnostic bridge now feeds environmental B and frozen fdp
 trials. Scientific qualification, site mapping and phase/scale-policy sensitivity

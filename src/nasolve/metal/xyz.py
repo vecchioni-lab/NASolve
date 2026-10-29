@@ -105,6 +105,16 @@ def audit_phases(before, after, reflection_indices):
     return dict(status='UNCHANGED',hash=before['hash'],count=before['count'])
 
 
+def _atom_permutation(expected, actual):
+    """Require a bijection over complete atom keys, never element/name proximity."""
+    expected = [canonical(k) for k in expected]
+    actual = [canonical(k) for k in actual]
+    if len(set(actual)) != len(actual) or len(set(expected)) != len(expected) or set(actual) != set(expected):
+        raise RecipeError('Native/serialized atom identities changed or duplicated')
+    positions = {key:i for i,key in enumerate(actual)}
+    return [positions[key] for key in expected]
+
+
 def audit_result(plan, model, native, final_model):
     """Audit fixed Q/scattering/identity; report allowed XYZ/B changes separately."""
     if (native.get('completed')is not True or native.get('execution')!='complete'
@@ -150,11 +160,15 @@ def audit_result(plan, model, native, final_model):
     states=before.to_dict()['atomic_state'];last=after.to_dict()['atomic_state']
     if len(actual)!=len(before.snapshot.atoms) or len(actual)!=len(after.snapshot.atoms):
         raise RecipeError('Native/serialized atom inventory changed')
+    keys = [a.key.to_dict() for a in before.snapshot.atoms]
+    native_order = _atom_permutation(keys, [a['key'] for a in actual])
+    serialized_order = _atom_permutation(keys, [a.key.to_dict() for a in after.snapshot.atoms])
     if native.get('normal_scattering_before')!=[a.get('normal_scattering_type') for a in actual]:
         raise RecipeError('Normal scattering types changed')
     if len(native['groups'])!=len(plan['groups']):raise RecipeError('Anomalous group inventory changed')
     indices={}
     for expected,g in zip(plan['groups'],native['groups']):
+        expected = dict(expected, indices=sorted(native_order[i] for i in expected['indices']))
         if canonical({k:g[k] for k in expected})!=canonical(expected) or abs(number(g['f_double_prime'],'fdp'))>1e-10:
             raise RecipeError('Fixed scattering group changed')
         for i in g['indices']:
@@ -167,16 +181,18 @@ def audit_result(plan, model, native, final_model):
     charges=lambda raw:[l[78:80].strip() for l in raw.decode('ascii').splitlines() if l[:6].strip() in {'ATOM','HETATM'}]
     first_charges,last_charges=charges(model),charges(final_model)
     changes=[]
-    for i,(a,s,b,out,end) in enumerate(zip(before.snapshot.atoms,states,actual,after.snapshot.atoms,last)):
+    for i,(a,s) in enumerate(zip(before.snapshot.atoms,states)):
+        ni, si = native_order[i], serialized_order[i]
+        b, out, end = actual[ni], after.snapshot.atoms[si], last[si]
         if (canonical(b['key'])!=canonical(a.key.to_dict()) or out.key!=a.key or b['element']!=a.element
-                or out.element!=a.element or b.get('charge')!=first_charges[i] or last_charges[i]!=first_charges[i]):
+                or out.element!=a.element or b.get('charge')!=first_charges[i] or last_charges[si]!=first_charges[i]):
             raise RecipeError('Atom identity/element/charge changed')
         xyz=b['xyz']
         if not isinstance(xyz,list) or len(xyz)!=3:raise RecipeError('Invalid native XYZ')
         for v in xyz:number(v,'native coordinate')
         bval=number(b['b_iso'],'native B');q=number(b['occupancy'],'native Q')
         if bval<0 or b['u_cart'] is not None or end['anisou'] is not None:raise RecipeError('Invalid isotropic ADP endpoint')
-        if (abs(q-s['occupancy'])>1e-10 or abs(number(b['fp'],'native fp')-indices[i]['f_prime'])>1e-10
+        if (abs(q-s['occupancy'])>1e-10 or abs(number(b['fp'],'native fp')-indices[ni]['f_prime'])>1e-10
                 or abs(number(b['fdp'],'native fdp'))>1e-10):raise RecipeError('Fixed Q or scattering changed')
         if (max(abs(v-w) for v,w in zip(xyz,out.xyz))>.000501 or abs(bval-end['b_iso'])>.005001
                 or end['occupancy']!=s['occupancy']):raise RecipeError('Serialized endpoint differs from native state')
@@ -184,7 +200,7 @@ def audit_result(plan, model, native, final_model):
                             displacement_A=math.dist(a.xyz,xyz),delta_b_A2=bval-s['b_iso']))
     by_key={canonical(a['key']):a for a in changes}
     sites=[dict(by_key[canonical(s['key'])],node_id=s['node_id']) for s in plan['sites']]
-    return dict(status='XYZ_REVIEW',fixed_state_audit='PASS',sites=sites,
+    result = dict(status='XYZ_REVIEW',fixed_state_audit='PASS',sites=sites,
                 maximum_displacement_A=max(a['displacement_A'] for a in changes),
                 maximum_absolute_delta_b_A2=max(abs(a['delta_b_A2']) for a in changes),
                 reflection_signature=reflections,phase_signature=phases,
@@ -192,6 +208,11 @@ def audit_result(plan, model, native, final_model):
                 native_version=native['native_version'],scientific_acceptance='NOT_ASSESSED',
                 automatic_checkpoint_selection=False,convergence='NOT_INDEPENDENTLY_ASSESSED',
                 fdp_quantitation_ready=False,environmental_b_applied=False)
+    identity = list(range(len(keys)))
+    if native_order != identity or serialized_order != identity:
+        result['atom_order_mapping'] = dict(input_to_native=native_order, input_to_serialized=serialized_order,
+                                           policy='exact_atom_key_bijection')
+    return result
 
 
 def _input_bundle(run, hypothesis):

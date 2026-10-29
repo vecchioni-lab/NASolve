@@ -107,7 +107,9 @@ a new seed/comparison basis. Reusing an old trial requires the full experiment
 identity, not merely matching displayed metal, XYZ, Q and fitted f-double-prime.
 
 The diagnostic bridge now verifies an explicit XYZ/ADP-open endpoint and derives
-B from its exact refined atoms before a new frozen f-double-prime trial. Existing
+B from its exact refined atoms before a new frozen f-double-prime trial.
+[Declared shared environments](metal-anomalous-doctor.md#implemented-shared-cluster-b-environments)
+can give interior cluster metals the same refined-base B without creating bonds. Existing
 recipe-only geometry bundles still deterministically replay their own solver;
 an external result is never substituted into one. The source XYZ manifest retains
 its unaccepted state; the bridge establishes provenance and frozen-state mechanics,
@@ -178,6 +180,16 @@ Each schema-1 `metal-xyz-trial` uses protocol `metal-phased-xyz-v1` and retains:
   on every used index and remain unchanged; zero-coefficient entries are counted.
 - Fixed-Q/scattering audits, XYZ/B changes, crystal symmetry, serialized endpoint
   agreement, native version/source fingerprints and process logs.
+
+Native Phenix may sort atom records during model interpretation. The XYZ audit
+requires a bijection over complete atom keys for native and serialized output,
+remaps the expected scattering-group indices through that bijection, and checks
+all fixed fields and endpoint serialization against the original identity.
+Duplicate/missing atoms, stale group membership, changed Q/charge/scattering and
+mismatched serialized coordinates still fail. A reordered endpoint records
+`atom_order_mapping` in its schema-1 result; unchanged ordering keeps the prior
+result format. Native workers and refinement parameters are unchanged. Failed
+attempts from older audits remain failed; a correction requires a new attempt.
 
 Cell comparisons allow PDB field precision at import/serialization and at most
 1e-9 native numerical roundoff; actual setting/cell changes fail the audit.

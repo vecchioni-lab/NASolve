@@ -13,6 +13,121 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Shared cluster environments and native discovery 2026-10-29
+
+**Before and after.** Interior cluster metals without direct donor distances
+could not use environmental B. The fdp API/CLI now accepts explicit named
+`metal_b_environments` / `--metal-b-environments`: disjoint fitted-metal members
+and exact donor nodes. Shared base means exclude sugar/phosphate, preserve
+separate base values/spread and use the completed XYZ/ADP endpoint. Donor aliases
+are deduplicated by identity. No bonds, Q ties or shared f-double-prime parameters
+are introduced. Unassigned metals keep direct-donor behavior; unknown,
+unresolved, overlapping or keep-policy declarations fail. Scans inherit the
+same declaration; comparisons cannot mix a different preparation assumption.
+See the [descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-shared-cluster-b-environments).
+
+A native cluster rehearsal also exposed Phenix atom sorting: 31 records moved
+within the model without changing their identities. The XYZ audit now verifies
+complete atom-key bijections for native and serialized output and remaps the
+expected scattering-group indices. It retains all Q, charge, element,
+scattering, cell, phase, reflection and endpoint-serialization checks. Unknown
+or duplicated atoms and stale groups still fail. The original failed attempt
+remains unchanged; a new execution supplies the qualified mechanics receipt.
+
+**Native evidence.** Two generated C:C W/5W6W MR/PostMR preparations completed
+with **Coot 1.3.3** and **Phenix 2.2.1-6174**, followed by separate bounded native
+Ag AutoSol experiments. These are complete executions, not dry runs. The ordinary
+nucleotide-heavy-atom gate was checked and remains unchanged. No human reference
+model seeded any candidate. AutoSol found one site in the four-atom test dataset
+and four spatially separate sites in the six-atom test dataset. Raw phasing Q,
+all sites, exact copy mappings and HL products remain retained. A native geometric
+symmetry readback identifies a threefold special-position site among the latter
+hits; its raw phasing scatterer representation is not a structural multiplicity
+qualification. All four hits were staged together as an unrefined review hypothesis;
+none was silently dropped or expanded to the known endpoint count.
+
+On the one-site dataset, an imported N3 bridge and an explicit tetrahedral prior
+both completed three-cycle MLHL XYZ/ADP refinement, then independent frozen-fdp
+trials (10 macro cycles, five minimizer cycles, 100 maximum iterations, start 0).
+The tetrahedron uses the supplied four-Ag 2.8-A distance recipe and imported
+2.1-A donor distances, oriented from the generated bases around the mapped
+AutoSol proxy. This is a local explicit hypothesis, not an automatic builder or
+a reference-derived solution. Its four metal B values share the refined two-base
+environment; the two interior members need no direct donor bonds. Two count
+reports distinguish the proxy from explicit sites. Fixed-state and replay checks
+pass, but geometry and science do not: several Ag-Ag restraints retain substantial
+residuals, work/free residuals show a large gap, and the four-site fit has
+mixed-sign individual responses. The proxy response did not trigger an automatic
+count expansion. No winning count, accepted geometry or convergence is claimed.
+The actual observation wavelengths remain authoritative; the four-site dataset's
+MTZ wavelength differs from the manuscript's CC-Ag4 table entry. The supplied
+reference model also has a different wavelength and cell; whether it represents
+another collection is an open user-context question. A local inventory records
+both datasets' observation wavelength and native Ag reference values.
+
+**Files and compatibility.** Updated `metal/environment.py`, `metal/fdp.py`,
+`metal/cli.py`, `metal/xyz.py`; added `test_metal_cluster_environment.py` and
+`test_metal_xyz_order.py`; updated operating guide, architecture, subsystem
+methods/figures, documentation map, intent and changelog. Shared preparation uses
+`metal-environment-b-v2` inside existing schema-1 fdp plans/results, with optional
+`options.metal_b_environments`, full declaration and per-site environment identity.
+Direct-only derivations remain v1 and byte-compatible. Reordered schema-1 XYZ
+results add `atom_order_mapping`; unchanged-order results remain byte-compatible.
+New inputs/results require updated readers. No old artifact is migrated and no
+native worker, minimizer, scan, comparison or count protocol changed.
+
+**Validation.** The shared-environment regression failed before implementation
+with the unsupported `environments` argument. The atom-order regression failed
+with `Fixed scattering group changed` before its identity-mapping fix. Focused
+validation used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_*.py tests/test_cli.py`
+and passed **495 tests and 14 subtests in 81.06 s**. The complete command, with
+that interpreter and the same environment,
+`python -B -m pytest -q -p no:cacheprovider`, passed **6,132 tests and 276 subtests
+in 776.04 s**, exit 0, with all **460** inventoried source/test/asset files unchanged.
+It used the OS process/socket permissions required by existing campaign tests.
+Final documentation checks pass **six** Python 3.10 grammar checks, **104** local
+links, JSON and whitespace; updated workflow intent passes **25 tests**.
+Controls include six-site interior B,
+unequal bases, donor aliases, ambiguous declarations, scan/count inheritance,
+comparison separation, mutation rejection and replay from a relocated source/data
+tree after the original path is removed. Atom-sorting controls also exercise a
+sorted XYZ endpoint through a subsequent frozen trial. Final offline replay
+passes **20** old/new hypotheses, XYZ endpoints, fdp trials, count reports, scan
+and comparison bundles. All **778** earlier rehearsal files and original dataset
+inputs remain unchanged. Both native workers plus scan/comparison/count modules
+are byte-identical to the prior head.
+
+Private native commands use the everyday checkout's `.venv/bin/python -B` with
+`PYTHONDONTWRITEBYTECODE=1` and these ignored runners:
+`A30_cluster_discovery.py`, `A30_site_lookup.py`, `A30_proxy_native.py`,
+`A30_proxy_retry.py`, `A30_tetra_native.py`, `A30_cluster_stage.py` and
+`A30_final_replay.py`. The two inventory scripts run through configured
+`phenix.python -B`. Discovery is bounded to 1,080 s/1.5 GB per dataset and
+720 s per AutoSol invocation; XYZ/fdp trials each use 240-s limits. The initial
+native XYZ execution completed but its audit rejected ordering; the retry and
+four-site run pass. No native six-site refinement, map qualification or GUI
+verification was performed.
+
+**Artifacts and continuity.** Continue **Alder**, based on `abc9abe`, isolated
+from ongoing Pine/Cedar work; integration target remains the reviewed main line
+after independent qualification. Source/tests/docs only go to Git. Ignored local
+`branch-artifacts/Alder/cluster-20261029-01/` contains copied observations,
+generated models, AutoSol products, native receipts, tests and read-only inventory.
+The Ag4 run contains `hypothesis_001`/`002`, retained failed `xyz_001`, completed
+`xyz_002`/`003`, `fdp_001`/`002` and `fdp_count_001`/`002`. The Ag6 run contains
+all four discovered sites in `hypothesis_001`, without a geometry/fdp attempt.
+No scientific data, private manuscript, generated runner or user-local state is
+committed/uploaded; no scientific output was pruned.
+
+**Next boundary.** Diagnose the generated scaffold/phase and work/free residual
+mismatch, improve restrained cluster geometry and inspect maps before extending
+count searches. Qualify special-position multiplicity and distinct site
+environments for the complete multi-hit discovery. A native six-site candidate,
+optimizer gradient/stopping evidence, B/phase sensitivity, campaign orchestration
+and native-endpoint GUI integration remain open. Do not treat successful process
+completion or count bookkeeping as quantitative structural evidence.
+
 ## Refined-endpoint fdp bridge and count evidence 2026-10-29
 
 **Before and after.** Frozen anomalous diagnostics previously accepted only the

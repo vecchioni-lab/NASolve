@@ -12,6 +12,81 @@ sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
 
+## Implemented shared cluster B environments
+
+The frozen-fdp adapter can assign one declared ligand environment to several
+metal sites, including interior cluster atoms without direct donor restraints.
+This prepares B from the completed candidate XYZ/ADP endpoint; it neither adds
+coordination bonds nor constrains independently fitted f-double-prime values to
+be equal. The GUI and automatic environment selection remain separate.
+
+Supply `--metal-b-environments environments.json` with `--metal-b-policy
+base-mean` (the default) or `donor-mean`. The API argument is
+`metal_b_environments`; the lower-level `calibrate_b` argument is `environments`.
+For example:
+
+```json
+{
+  "shell": {
+    "metal_nodes": ["m1", "m2", "m3", "m4"],
+    "donor_nodes": ["d1", "d2"]
+  }
+}
+```
+
+Every member metal must be an explicitly placed fitted node. Every donor must
+resolve to an exact recipe donor atom. A metal can have only one B environment;
+different environments may share donor atoms. Duplicate node declarations,
+unresolved identities and `keep` combined with environments are errors. Listed
+donors need not have geometric distance restraints: declaring an environment is
+an explicit scientific assumption, separate from asserting bonds. Metals outside
+the declaration retain the established direct-donor rule; they never inherit B
+through metal-metal edges or nearest-neighbor searches.
+
+**Methods.** Normalize named membership, deduplicate donor aliases by complete
+atom identity, then apply the existing equal-base or unique-donor calculation
+to obtain a common value for each declared environment at the refined endpoint.
+Sugar/phosphate exclusion,
+separate base means/spread, high B support and isotropic-metal requirements are
+unchanged. Apply the same two-decimal B to each declared member before Q overrides
+and frozen fitting. Record the complete declaration, source atoms and source-model
+hash. Shared B is not a shared Q or shared anomalous-scattering parameter.
+
+New declarations use `metal-environment-b-v2` inside the existing schema-1 fdp
+plan/result, with optional `options.metal_b_environments` and per-site
+`environment_id`/`donor_node_ids`. Updated readers are required for these inputs.
+Unspecified environments retain byte-compatible v1 derivations; no old bundle
+is migrated. Scan siblings inherit the declaration and comparison/reuse keys
+include it, even when another policy happens to produce the same numeric B.
+The native worker and `metal-frozen-fdp-v1` protocol are unchanged.
+
+```mermaid
+flowchart LR
+    X[Verified refined endpoint] --> A[Exact donor identities]
+    G[Declared metal-to-environment membership] --> A
+    A --> B[Equal base means or unique donor mean]
+    B --> P[Apply shared B; record source and base spread]
+    P --> F[Freeze XYZ/B/Q/f-prime; fit each selected f-double-prime]
+    F --> R[Retain site evidence and conditional count summary]
+```
+
+*Figure: implemented shared-environment preparation. A declaration can cover a
+cluster interior without introducing extra bonds or an automatic count choice.*
+
+**Evidence and limits.** Regressions cover six-site interiors, unequal bases,
+donor aliases, invalid/overlapping assignments, unchanged XYZ/Q/nonmetal atoms,
+scan inheritance, comparison separation and replay after source relocation.
+A local Ag4 hypothesis built around an AutoSol-discovered proxy completed
+restrained native XYZ and a joint frozen-fdp trial with four separately
+parameterized metal sites, using a shared refined-base B. Substantial restraint residuals, a large work/free
+residual gap and mixed-sign fitted responses keep that candidate unqualified.
+The discovered proxy also completed the path; its response did not support an
+automatic count expansion. The tetrahedron was an explicit prior-driven test.
+The Ag6 dataset produced four spatially separate AutoSol hits, retained together
+as an unrefined hypothesis; native six-site refinement remains pending.
+See the [current handoff](development-handoff.md#shared-cluster-environments-and-native-discovery-2026-10-29)
+for exact commands, versions, artifact locations and remaining gates.
+
 ## Implemented environmental metal B preparation
 
 For quantitative use, the source must be the **completed XYZ/ADP-open refinement
@@ -162,9 +237,10 @@ coordinates, phases and B-dependent attenuation still affect the actual diffract
 Six half-occupied sites give three atom equivalents when their per-atom fitted
 fdp matches the reference; this alone does not establish three occupied sites.
 Special-position multiplicities, independently fitted covalent-anchor controls,
-shared cluster B policies, uncertainty propagation and automatic count branching
-are not implemented. A cluster member without a declared donor does not silently
-borrow its neighbor's B; define its environment or explicitly retain its endpoint B.
+uncertainty propagation and automatic count branching are not implemented.
+[Explicit shared B environments](#implemented-shared-cluster-b-environments) now
+cover cluster members without direct donors. Undeclared environments never
+borrow a neighboring metal's B.
 
 ```mermaid
 flowchart LR
@@ -186,8 +262,10 @@ zero references, negative fits, partial group rejection and offline relocation.
 `metal-fdp-count` / `metal-fdp-count-report`, schema 1, protocol
 `metal-fdp-count-v1`, preserve a checked source-trial manifest and exact arithmetic
 replay. They add no new native job and do not change existing fdp result files.
-Actual cluster building/refinement qualification remains a subsequent native test;
-synthetic six-site coverage is not evidence of solving a cluster dataset.
+A local four-site native construction/refinement control now exercises shared B
+and accounting, but its geometry and anomalous response remain unqualified.
+Six-site native qualification is pending; synthetic coverage does not establish
+a solved cluster dataset.
 
 ## Implemented local saved-results viewer
 

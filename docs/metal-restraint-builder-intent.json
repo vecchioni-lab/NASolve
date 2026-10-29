@@ -499,7 +499,17 @@
       "new_trial_field": "b_calibration",
       "scientific_qualification": "NOT_ASSESSED",
       "quantitative_source_requirement": "completed_xyz_adp_open_refinement_endpoint",
-      "endpoint_provenance_gate_implemented": true
+      "endpoint_provenance_gate_implemented": true,
+      "shared_environments": {
+        "status": "IMPLEMENTED",
+        "protocol": "metal-environment-b-v2",
+        "api_argument": "metal_b_environments",
+        "explicit_donor_nodes": true,
+        "disjoint_fitted_metal_membership": true,
+        "adds_geometric_restraints": false,
+        "unassigned_policy": "existing_direct_donors",
+        "implicit_neighbor_inference": false
+      }
     },
     "metal_screen": {
       "status": "PLANNED_NOT_IMPLEMENTED",
@@ -569,7 +579,7 @@
       ],
       "quantity": "Q_weighted_coefficients_and_per_element_atom_equivalents",
       "integer_count_inferred": false,
-      "native_cluster_qualification": "PENDING",
+      "native_cluster_qualification": "FOUR_SITE_MECHANICS_EXERCISED_SCIENCE_UNQUALIFIED_SIX_SITE_PENDING",
       "automatic_branching": false
     }
   },

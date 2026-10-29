@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Share refined ligand B across cluster sites and audit native atom sorting
+
+- Add explicit `--metal-b-environments` / `metal_b_environments` declarations
+  for fitted cluster members, including interior metals without direct donors.
+  Retain separate base means and exact atom identities; create no implicit bonds,
+  occupancy ties or anomalous-parameter ties. Reject ambiguous assignments.
+- Capture shared preparation as `metal-environment-b-v2` inside schema-1 fdp
+  plans/results; preserve v1 replay and carry declarations through scans/counts
+  and matching. Native fitting remains unchanged.
+- Match native XYZ/ADP endpoints through exact atom-key bijections when Phenix
+  sorts records. Remap group membership and preserve all fixed-state audits;
+  reordered schema-1 results record the permutation. Keep failed attempts intact.
+- Exercise native cluster discovery and a prior-driven four-site hypothesis;
+  retain geometry, work/free residual and anomalous-response concerns. Do not
+  infer an accepted cluster count or enable automatic expansion.
+
 ### Connect refined metal endpoints to frozen anomalous and count diagnostics
 
 - Accept an explicit verified XYZ/ADP endpoint as a frozen-fdp source, using its

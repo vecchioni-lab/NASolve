@@ -3,7 +3,7 @@ import hashlib
 import json
 from .binding import AtomKey
 from .context import parse_pdb
-from .recipe import RecipeError, canonical
+from .recipe import RecipeError, canonical, _identifier
 from .chemistry import base_names, dictionaries
 
 POLICIES = ('base-mean', 'donor-mean', 'keep')
@@ -13,11 +13,40 @@ def residue(key):
     return canonical({k:v for k,v in key.to_dict().items() if k != 'atom_name'})
 
 
-def calibrate_b(raw, sites, preview, fit_nodes, policy, *, resources=()):
+def _environments(value, nodes, placed, fit_nodes):
+    """Normalize explicit, disjoint assignments without inventing coordination."""
+    if not isinstance(value, dict) or not value or len(value) > 12:
+        raise RecipeError('Environmental B requires 1 to 12 named environments')
+    result, assigned = {}, set()
+    for name in value:
+        _identifier(name, 'B environment')
+    for name, group in sorted(value.items()):
+        if not isinstance(group, dict) or set(group) != {'metal_nodes','donor_nodes'}:
+            raise RecipeError('B environment requires metal_nodes and donor_nodes only')
+        for field in ('metal_nodes','donor_nodes'):
+            members = group[field]
+            if (not isinstance(members, list) or not members or
+                    any(not isinstance(n, str) for n in members) or len(members) != len(set(members))):
+                raise RecipeError('B environment members must be distinct node identifiers')
+        metals, donors = set(group['metal_nodes']), set(group['donor_nodes'])
+        if metals - placed.keys() or metals - set(fit_nodes):
+            raise RecipeError('B environment metals must be explicitly placed fitted nodes')
+        if assigned & metals:
+            raise RecipeError('A metal cannot belong to multiple B environments')
+        if any(nodes.get(n, {}).get('kind') != 'donor' for n in donors):
+            raise RecipeError('B environment donor nodes must be explicit recipe donors')
+        assigned.update(metals)
+        result[name] = dict(metal_nodes=sorted(metals), donor_nodes=sorted(donors))
+    return result
+
+
+def calibrate_b(raw, sites, preview, fit_nodes, policy, *, resources=(), environments=None):
     """Use exact connected ligand identities; never change a parent or its XYZ.
 
     Base means are equally weighted across distinct bases. Donor means weight
     each unique coordinating atom equally. Neither method uses occupancy weights.
+    Explicit environments can share named donors across cluster members without
+    adding geometric restraints. Unassigned metals still require direct donors.
     Missing chemistry requires an explicit alternate policy, never a guessed B.
     """
     if policy not in POLICIES:
@@ -25,6 +54,8 @@ def calibrate_b(raw, sites, preview, fit_nodes, policy, *, resources=()):
     report = dict(policy=policy, protocol='metal-environment-b-v1',
                   source_model_sha256=hashlib.sha256(raw).hexdigest(), sites=[])
     if policy == 'keep':
+        if environments is not None:
+            raise RecipeError('Explicit B environments cannot be combined with keep')
         return report, raw
     parsed = parse_pdb(raw)
     atoms = parsed.snapshot.atoms
@@ -34,6 +65,11 @@ def calibrate_b(raw, sites, preview, fit_nodes, policy, *, resources=()):
     if not fit_nodes or len(set(fit_nodes)) != len(fit_nodes) or set(fit_nodes)-placed.keys():
         raise RecipeError('Require distinct placed metal nodes for environmental B')
     nodes = {n['node_id']:n for n in (preview or {}).get('nodes', [])}
+    assignments = {}
+    if environments is not None:
+        normalized = _environments(environments, nodes, placed, fit_nodes)
+        report.update(protocol='metal-environment-b-v2', environments=normalized)
+        assignments = {n:(name,group['donor_nodes']) for name,group in normalized.items() for n in group['metal_nodes']}
     chemistry = dictionaries(resources) if policy == 'base-mean' else {}
     updates = {}
     for node in sorted(fit_nodes):
@@ -42,21 +78,24 @@ def calibrate_b(raw, sites, preview, fit_nodes, policy, *, resources=()):
         index,metal,state = inventory[placed[node]]
         if state['anisou'] is not None:
             raise RecipeError('Environmental B requires an isotropic metal; review anisotropic ADPs explicitly')
+        donor_ids = set()
+        if node in assignments:
+            donor_ids.update(assignments[node][1])
+        else:
+            for term in (preview or {}).get('restraints', []):
+                if (term.get('kind') == 'distance' and term.get('enabled') and
+                        term.get('status') == 'resolved' and node in term['node_ids']):
+                    donor_ids.update(other for other in term['node_ids']
+                                     if other != node and nodes.get(other, {}).get('kind') == 'donor')
         donor_keys = set()
-        for term in (preview or {}).get('restraints', []):
-            if (term.get('kind') != 'distance' or not term.get('enabled') or
-                    term.get('status') != 'resolved' or node not in term['node_ids']):
-                continue
-            for other in term['node_ids']:
-                ligand = nodes.get(other)
-                if other == node or not ligand or ligand.get('kind') != 'donor':
-                    continue
-                if not ligand.get('atom'):
-                    raise RecipeError('Environmental B ligand is unresolved')
-                key = AtomKey(**ligand['atom']['key'])
-                if key not in inventory or inventory[key][1].element in {'H','D'}:
-                    raise RecipeError('Environmental B ligand identity is missing or unsupported')
-                donor_keys.add(key)
+        for other in sorted(donor_ids):
+            ligand = nodes[other]
+            if not ligand.get('atom'):
+                raise RecipeError('Environmental B ligand is unresolved')
+            key = AtomKey(**ligand['atom']['key'])
+            if key not in inventory or inventory[key][1].element in {'H','D'}:
+                raise RecipeError('Environmental B ligand identity is missing or unsupported')
+            donor_keys.add(key)
         if not donor_keys:
             raise RecipeError('No connected ligand atoms for environmental B at '+node)
         groups = {}
@@ -90,6 +129,8 @@ def calibrate_b(raw, sites, preview, fit_nodes, policy, *, resources=()):
             previous_b_A2=state['b_iso'], mean_b_A2=mean, applied_b_A2=applied,
             base_means_A2=means, base_mean_spread_A2=max(means)-min(means), bases=base_rows,
             atoms=source_atoms, weighting='equal_bases' if policy=='base-mean' else 'equal_unique_donors'))
+        if node in assignments:
+            report['sites'][-1].update(environment_id=assignments[node][0], donor_node_ids=sorted(donor_ids))
     lines=raw.decode('ascii').splitlines(keepends=True); index=0
     for position,line in enumerate(lines):
         if line[:6].strip() in {'ATOM','HETATM'}:

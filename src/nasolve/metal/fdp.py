@@ -32,11 +32,13 @@ def _integer(value, low, high, name):
 
 def make_plan(raw, sites, metadata, references, *, fit_nodes, occupancies=None,
               cycles=3, minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0,
-              metal_b_policy=None, preview=None, resources=()):
+              metal_b_policy=None, preview=None, resources=(), metal_b_environments=None):
     """Prepare optional environmental B, then exact groups and declared metal Q."""
+    if metal_b_environments is not None and metal_b_policy is None:
+        raise RecipeError('Explicit B environments require a metal B policy')
     calibration = None
     if metal_b_policy is not None:
-        calibration, raw = calibrate_b(raw, sites, preview, fit_nodes, metal_b_policy, resources=resources)
+        calibration, raw = calibrate_b(raw, sites, preview, fit_nodes, metal_b_policy, resources=resources, environments=metal_b_environments)
     parsed = parse_pdb(raw)
     atoms = parsed.snapshot.atoms
     state = parsed.to_dict()['atomic_state']
@@ -116,6 +118,8 @@ def make_plan(raw, sites, metadata, references, *, fit_nodes, occupancies=None,
                  max_iterations=max_iterations,start_fdp=start_fdp,free_r_test_value=free_r_test_value)
     if calibration is not None:
         options["metal_b_policy"] = metal_b_policy
+        if metal_b_environments is not None:
+            options["metal_b_environments"] = calibration["environments"]
     plan = dict(protocol=PROTOCOL,options=options,metadata=metadata,references=references,groups=groups,policy=policy,
                 tolerances=TOLERANCES,background_policy='fixed_Sasaki_reference_for_every_remaining_atom',
                 nuisance_policy='profile_bulk_solvent_and_overall_scales_allow_only_uniform_F_sigma_rescaling_without_atomic_ADP_backtrace',
@@ -336,7 +340,7 @@ def _input_bundle(run, geometry):
 
 
 def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
-            minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0, timeout=240, metal_b_policy=None):
+            minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0, timeout=240, metal_b_policy=None, metal_b_environments=None):
     """Fit a verified geometry/XYZ endpoint; failed attempts retain their directory."""
     run=Path(run).expanduser().resolve();_integer(timeout,10,600,'timeout seconds')
     source=_input_bundle(run,geometry)
@@ -351,7 +355,7 @@ def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
         executable=native.executables['phenix.python'],version=native.version,environment=native.environment)
     plan,model=make_plan(raw,parent['sites'],metadata,references,fit_nodes=fit_nodes,occupancies=occupancies,cycles=cycles,
         minimizer_cycles=minimizer_cycles,max_iterations=max_iterations,start_fdp=start_fdp,free_r_test_value=free_r_test_value,
-        metal_b_policy=metal_b_policy,preview=source['preview'],resources=resources)
+        metal_b_policy=metal_b_policy,preview=source['preview'],resources=resources,metal_b_environments=metal_b_environments)
     phil,args=parameters(plan,[name for name,_ in resources])
     directory=_allocate(run)
     try:

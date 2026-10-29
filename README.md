@@ -1396,6 +1396,12 @@ readback and saves a new review bundle. Phenix 2.2.1-6174 is the initial support
 version. A completed fit does not establish convergence, metal identity/count or
 correct geometry. See the [implemented diagnostic and limits](docs/metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
 
+For cluster members sharing one ligand environment, add
+`--metal-b-environments environments.json`. The declaration names the fitted
+metal nodes and exact donor nodes; it preserves each base mean and applies their
+shared B before fitting. See the
+[shared-environment format and limits](docs/metal-anomalous-doctor.md#implemented-shared-cluster-b-environments).
+
 For explicit cluster or proxy groups, `metal count-fdp RUN --trial Metal/fdp_001
 --groups groups.json` records Q-weighted anomalous response and per-element atom
 equivalents without claiming an integer atom count. See the
