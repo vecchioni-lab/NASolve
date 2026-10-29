@@ -3506,3 +3506,19 @@ unassigned. This separates chemical construction input from numerical dictionari
 and avoids treating pruned isolated restraints as linked evidence. Existing
 contexts/reports and ordinary generation remain unchanged. See the
 [C119 contract](cif-doctor.md#explicit-pna-source-network-packages-c119).
+
+
+## FANA source/candidate boundary (C120)
+
+An explicit read-only family gate composes the existing attachment matcher and
+complete-candidate assessor. Topology binds the sugar positions; neutral terminal
+C2′ fluorine, explicit local H/D/charge state and source R/S declarations define
+the bounded beta-D/L FANA pattern. No workbook label or residue-code allowlist
+selects chemistry. Candidate assessment retains whole-source chemistry and
+requires preserved coordinates at all four source sugar centres. Unknown hands
+remain unresolved. Schema-1 reports use `cif-source-declared-fana-v1`; CLI and
+API perform no writes or native calls. Ordinary Coot construction remains gated
+because its parent-DNA restoration does not establish modified-sugar fidelity.
+Native A/C/T/U isolated controls pass; GFL's carbonyl-purine reader mismatch and
+linked numerical qualification remain open. See the
+[FANA contract](cif-doctor.md#fana-source-and-candidate-preservation-c120).

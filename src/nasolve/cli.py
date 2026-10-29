@@ -252,6 +252,15 @@ def build_parser() -> argparse.ArgumentParser:
     cif_site.add_argument("--context", required=True, type=Path, help="explicit schema-1 site/port context JSON")
     cif_site.add_argument("--candidate", type=Path, help="optional projected source CIF for exact retained-table comparison")
     cif_site.add_argument("--json", action="store_true", help="print the complete source/site contract")
+    cif_fana = cif_sub.add_parser("fana", help="read-only FANA source identity and candidate preservation")
+    cif_fana.add_argument("dictionary", type=Path, help="explicit source component dictionary")
+    cif_fana.add_argument("--code", required=True, help="exact component and NARestraints code")
+    cif_fana.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_fana.add_argument("--candidate", type=Path, help="optional complete candidate dictionary to assess")
+    cif_fana.add_argument("--bond-representation-policy",
+                          choices=["cif-source-declared-neutral-purine-aromatic-v1"],
+                          help="explicit existing representation policy; default exact source bonds")
+    cif_fana.add_argument("--json", action="store_true", help="print source and candidate preservation evidence")
     cif_profile = cif_sub.add_parser("profile", help="read-only source topology and attachment-port evidence")
     cif_profile.add_argument("dictionary", type=Path, help="explicit source component dictionary")
     cif_profile.add_argument("--code", required=True, help="exact component and NARestraints code")
@@ -1505,6 +1514,26 @@ def _cif_catalogue(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_fana(args: argparse.Namespace) -> int:
+    from .cif_fana import inspect_fana
+
+    try:
+        report = inspect_fana(args.dictionary, args.code, workbook=args.workbook,
+                              candidate=args.candidate,
+                              bond_representation_policy=args.bond_representation_policy)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"FANA: {report['status']}; source-declared family: {report['source_family'] or 'unassigned'}")
+            if report["review_reasons"]:
+                print("Review: " + ", ".join(report["review_reasons"]))
+            print("Source/candidate evidence only; native qualification and model mutation remain separate.")
+        return 2  # Evidence does not confer native or model-mutation permission.
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def _cif_profile(args: argparse.Namespace) -> int:
     from .cif_attachment_profiles import inspect_attachment_profile
 
@@ -1602,6 +1631,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         return _cif_link_plan(args)
     if args.cif_action == "site-plan":
         return _cif_site_plan(args)
+    if args.cif_action == "fana":
+        return _cif_fana(args)
     if args.cif_action == "profile":
         return _cif_profile(args)
     if args.cif_action == "catalogue":

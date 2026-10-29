@@ -39,7 +39,9 @@
 
 <a id="current-capability-boundary-c118"></a>
 
-## Current capability boundary (C119)
+<a id="current-capability-boundary-c119"></a>
+
+## Current capability boundary (C120)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -53,6 +55,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. Carbonyl/charged purines, convergence, final-environment linked PNA numerics and ordinary integration remain open. |
 | Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
+| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass isolated native checks after bounded generation. | GFL is blocked at a carbonyl-purine representation mismatch. Real L-FANA native controls, linked chemistry and whole-sugar model mutation remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -671,6 +674,80 @@ Native formal-charge readback remains unsupported, separately from exact CIF
 charge retention. These are complete executions, not dry-runs. An initial 40A
 attempt is preserved after exposing a source-basename replay mismatch; corrected
 fresh attempts use the frozen source identity. No original receipt is rewritten.
+
+### FANA source and candidate preservation (C120)
+
+`nasolve cif-doctor fana SOURCE --code CODE --workbook Ligands.xlsx --json`
+reads an explicit source and NARestraints record. Add `--candidate CANDIDATE.cif`
+to assess a complete numerical candidate. `inspect_fana(source, code, workbook=…,
+candidate=…)` is the corresponding Python API. All successful inspections return
+CLI exit 2 because family/preservation evidence does not grant native usability;
+I/O or invalid-argument errors return 1. Neither form starts native software or
+writes a file. Reports use schema 1, policy `cif-source-declared-fana-v1`, anchored
+source/workbook/candidate references and verified unchanged input bytes.
+
+The existing unique unbridged-furanose/phosphate topology and NAR base attachment
+must agree first. The new gate requires a single neutral terminal F attached by
+one single bond to the graph-bound C2′, an N-glycoside, a neutral sugar core and
+explicit terminal H/D inventories. In graph-bound C1′/C2′/C3′/C4′ order, source
+R/S declarations R/S/R/R identify beta-D-FANA and S/R/S/S identify beta-L-FANA.
+This is a bounded declaration check, **not independent absolute CIP perception**.
+Names, component codes and workbook sugar labels cannot select the family.
+Missing/other declarations and out-of-scope local chemistry remain `REVIEW`.
+Base charges are not normalized; matching a sugar does not approve the base.
+
+With a candidate, the existing complete-candidate assessor checks the full source
+atom/H/charge/bond inventory, numerical tables and fixed chirality terms. All four
+sugar centres must also preserve source-relative tetrahedral handedness; absent
+or degenerate coordinate evidence cannot pass this gate. The optional
+`--bond-representation-policy cif-source-declared-neutral-purine-aromatic-v1`
+selects the already bounded C117 policy explicitly. Default comparison remains
+exact. No pucker is imposed, phosphate O or proton removed, linked numerical
+term inferred, or parent-DNA coordinate scaffold substituted.
+
+Frozen installed CCD controls cover all ten FANA-labelled catalogue codes:
+A5L, TAF, UF2, GFL, CFL, 7BG, FDG, FMG, 1FC and XFC. All declare beta-D-FANA
+under this rule. AF2 and CFZ declare the D-ribo pattern; OFC declares the L-ribo
+pattern despite the workbook abbreviation “L-FANA-C”. The checker excludes all
+three without editing the catalogue or choosing a replacement structure. L-FANA
+recognition currently has synthetic regression coverage only.
+
+Seven fresh complete Phenix 2.2.1-6174 generation attempts (dispatcher 2.2.1,
+180 optimization steps/300 s per attempt) retain all outputs. CFL and UF2 produce
+source-preserving candidates directly. TAF and A5L initially fail native
+construction; fresh attempts using C116's whole-row source atom ordering pass.
+A5L additionally uses the explicit C117/C118 neutral-purine policy. GFL stops
+before construction because native reader bond orders disagree with the source;
+its carbonyl purine lies outside that policy. The observed differences are five
+localized-to-aromatic orders around the fused five-membered ring; connectivity
+and the carbonyl-bearing six-membered ring remain unchanged. This identifies a
+representation boundary, not invalid FANA sugar chemistry. No forced localization
+is applied.
+
+Four accepted candidates pass eight independent isolated interpretations at both
+source and generated coordinates, 60 s per interpretation. Each passes all 21
+native checks and retains the same fixed covalent proxies across coordinate sets.
+These are complete executions, not dry-runs; Coot/refinement were not run.
+Thirteen source inspections, four candidate inspections and eight native
+qualifications replay from a relocated checkout with original/SDK access and
+process execution blocked, preserving 391 files. Source inputs retain bytes,
+sizes and timestamps. Exact receipts, commands and hashes are in
+[evidence](cif-linked-native-registration-evidence.json), key
+`fana_source_candidate_2026_10_29`.
+
+This establishes explicit Doctor source/candidate support, not ordinary end-to-end
+FANA model construction. The next boundaries are GFL/carbonyl-purine handoff,
+full modified-sugar mutation, explicit site/link states and linked numerical
+qualification. NAR continues to own pairing/stacking. Formal-charge native
+readback, independent absolute CIP and optimization convergence remain separate;
+no new automatic adoption, run/checkpoint schema or migration is introduced.
+A planned L-FANA model control starts from an L-DNA scaffold and replaces selected
+residues with explicitly specified L-FANA targets. It must verify the complete
+sugar/fluorine inventory and four-centre handedness before linked native checks;
+the retained L-DNA sites provide unaffected controls. OFC is not a surrogate
+L-FANA target merely because of its catalogue abbreviation. This test is planned,
+not executed or qualified by the isolated D-FANA evidence above.
+C119's linked PNA work and the ATL/L-DNA/PDU boundaries remain open.
 
 ### Explicit PNA source network packages (C119)
 

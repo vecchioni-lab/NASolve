@@ -27047,6 +27047,14 @@
       "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
       "validation": "6253 passed, 276 subtests passed in 966.55s (0:16:06); 480 focused tests; complete C118 native controls and C118/C119 cold replay.",
       "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d"
+    },
+    "fana_source_candidate": {
+      "status": "VALIDATED_NOT_PUBLISHED",
+      "policy": "cif-source-declared-fana-v1",
+      "evidence_key": "fana_source_candidate_2026_10_29",
+      "scope": "Explicit read-only FANA source/candidate API and CLI compose existing graph/NAR/numerical/chemistry checks with a bounded source-declared family rule and four-centre preservation gate.",
+      "next": "Qualify GFL/carbonyl-purine representation separately; build whole modified-sugar construction and linked FANA numerical qualification. Preserve C119 PNA native adapter priority for later; ATL/L-DNA/PDU remain open.",
+      "validation": "6288 passed, 276 subtests passed in 992.92s (0:16:32); 196 focused pass; seven native generation attempts, eight native interpretations and 391-file cold replay."
     }
   },
   "audience": [

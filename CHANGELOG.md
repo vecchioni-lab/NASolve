@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect FANA sources and complete candidates (C120)
+
+- Add read-only `cif-doctor fana` and `inspect_fana` for graph-bound 2′ fluorine,
+  source-declared beta-D/L arabino configuration and complete candidate retention.
+  Exact source atoms, hydrogens, charge and all four sugar centres remain required;
+  catalogue labels do not select chemistry. Missing coordinate hands stay unresolved.
+- Ten frozen catalogue FANA sources match; three fluororibo controls are excluded,
+  including OFC despite its descriptive L-FANA label. Four core FANA candidates
+  pass isolated native checks; GFL remains blocked at the carbonyl-purine reader.
+- Add schema-1 policy `cif-source-declared-fana-v1`; no ordinary mutation,
+  phosphate/linkage changes, automatic adoption or run/checkpoint migration.
+
 ### Freeze explicit PNA source networks (C119)
 
 - Add opt-in preparation/replay APIs for one connected, explicitly declared PNA

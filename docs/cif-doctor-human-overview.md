@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-28:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-10-29:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -110,6 +110,15 @@ assigned coordinates, numerical restraints or final CIP. It is a chemical input
 for the next linked-generation step. See the
 [generation contract](cif-doctor.md#explicit-purine-generation-handoff-c118) and
 [source-network contract](cif-doctor.md#explicit-pna-source-network-packages-c119).
+C120 introduces explicit FANA source/candidate checking. It locates 2′ fluorine
+by connectivity and checks source-declared arabino configuration, preserving
+whole-source chemistry and all four sugar hands in completed candidates. All
+ten catalogue FANA controls match; three fluororibo comparators do not. A/C/T/U
+candidates pass isolated native checks; G remains blocked at the carbonyl-purine
+reader. OFC illustrates why names are insufficient: its workbook abbreviation
+says L-FANA, while its source declares the L-ribo configuration. Neither source
+nor catalogue is rewritten. Whole-sugar model construction and linked native
+qualification remain separate. See the [FANA contract](cif-doctor.md#fana-source-and-candidate-preservation-c120).
 Native linked typing, chemical-state reconciliation and terminal
 reconstruction remain open. Further milestones cover bounded recovery,
 qualified usable fallback and ordinary workflow integration. PDU's open numerical
@@ -792,6 +801,9 @@ C118 extends the explicit purine policy through fresh generation and exact
 native handoffs; new 40A/APN/40C candidates pass isolated checks. C119 freezes
 source-authorized PNA graphs with explicit amide edges, portable evidence and no
 assigned geometry or numerical targets. Linked native qualification stays open.
+C120 adds graph-bound FANA declaration and candidate-preservation checks; four
+core candidates pass isolated native controls, while GFL, linked FANA and
+ordinary modified-sugar construction remain unqualified.
 A separate fixed-definition geometry trial
 records numerical stopping/gradient and PDB round-trip evidence. Native
 optimization reaches its explicit limit; saved-endpoint serialization by atom

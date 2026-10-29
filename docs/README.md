@@ -58,6 +58,10 @@ unresolved reaction states. Native PNA support remains a separate gate.
 C117 adds [explicit neutral purine assessment](cif-doctor.md#explicit-neutral-purine-representation-c117):
 preserved 40A/APN candidates pass isolated native checks while ordinary generation
 and final-environment PNA numerical targets remain separate.
+C120 adds [FANA source/candidate checks](cif-doctor.md#fana-source-and-candidate-preservation-c120):
+explicit 2′ fluorine and source-declared arabino configuration, with isolated
+native evidence for A/C/T/U. GFL, linked qualification and ordinary sugar mutation
+remain open; catalogue labels do not grant chemical support.
 C118 adds [explicit purine generation](cif-doctor.md#explicit-purine-generation-handoff-c118):
 new 40A/APN/40C candidates pass stage and isolated native checks while the default
 worker remains unchanged. C119 [freezes explicit PNA source networks](cif-doctor.md#explicit-pna-source-network-packages-c119)

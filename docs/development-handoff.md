@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-28** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-29** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,59 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C120 FANA source and candidate path
+
+Base/last published head: `59831cd45048807d52f166eba9f0979ae5fd0600`; existing cedar only.
+Capsule: `live_tests_directory/120_Cedar_FANA-mxbkybbq`. Implementation and all validation
+pass; publication is next. No test or native job remains active.
+
+Before C120, the generic furanose profile did not distinguish 2′-fluoro arabino
+source declarations or require all four sugar hands in a finished FANA candidate.
+The new read-only `cif-doctor fana` / `inspect_fana` path composes existing
+source/NAR and complete-candidate checks. It locates fluorine by connectivity,
+requires explicit local H/D/charge and beta-D/L source R/S patterns, and retains
+all source chemistry. Missing or inverted candidate sugar hands cannot pass.
+This is source-declared identity, not independently calculated absolute CIP.
+
+All ten frozen FANA catalogue entries match. Three fluororibo controls are
+excluded, including OFC despite its “L-FANA-C” abbreviation. Phenix 2.2.1-6174
+(dispatcher 2.2.1) completed seven fresh generation attempts, not dry-runs:
+CFL/UF2 pass directly; TAF/A5L pass fresh whole-row source-order attempts after
+preserved initial construction failures. A5L uses the explicit purine policy.
+GFL stops before construction: the reader aromatizes five bonds in the fused
+five-membered ring; connectivity and the carbonyl-bearing ring stay unchanged.
+A separate bounded representation policy is needed, not a sugar repair.
+Generation used 180 steps/300 s; eight isolated interpretations used 60 s each.
+All four accepted candidates pass all 21 native checks at both coordinate sets,
+with matching fixed covalent proxies. No Coot, refinement or convergence claim.
+
+Validation: **6288 passed, 276 subtests passed in 992.92s (0:16:32)**. All 470 source/test hashes stay fixed.
+196 focused tests pass, including 35 FANA cases; the initial 30 fail before
+implementation. Cold replay reproduces 13 sources, four candidates and eight
+native qualifications with 391 files unchanged, owned originals absent and
+original/SDK reads/processes blocked. Fourteen frozen inputs keep bytes, sizes
+and timestamps. Compilation, whitespace, 294 documentation links/JSON and SVG
+checks pass. Exact commands/hashes are in the [evidence ledger](cif-linked-native-registration-evidence.json),
+key `fana_source_candidate_2026_10_29`.
+
+Thirteen changed files contain code, synthetic tests, maintained contracts and
+compact evidence. New schema-1 policy: `cif-source-declared-fana-v1`. Existing
+generator/profile behavior, ordinary mutation, run/checkpoint schemas and
+phosphate/site operations stay unchanged; no migration. All raw data, CIF/PDBs,
+workbook, SDK captures, logs, generated/partial candidates and runners stay local.
+
+Next: qualify GFL's ring representation and whole modified-sugar construction,
+then explicit site/link states and linked numerical restraints. Simon proposed
+an L-DNA scaffold with selected L-FANA replacements as the next model control:
+freeze explicit target/source or inversion intent, preserve unaffected L-DNA
+controls and verify complete fluorine/sugar handedness. This remains planned;
+OFC is not the target. L-FANA currently has synthetic source-recognition tests,
+not native/model qualification. Formal-charge native readback, independent CIP,
+C119 linked PNA construction/numerics, ATL/L-DNA/PDU and ordinary integration
+remain open. Sticky-end stitching stays parked; no additional branch or merge.
+
+— Rowan · Codex desktop
 
 ## C118/C119 purine generation and frozen PNA source networks
 

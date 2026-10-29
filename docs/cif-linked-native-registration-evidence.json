@@ -41191,5 +41191,553 @@
     "next": "Design an explicit adapter from the C119 whole linked graph to native construction with reversible site/atom mapping, exact H/charge/stereo checks and no isolated numerical reuse; generate and qualify linked amide restraints before ordinary integration.",
     "implementation_commit": "8511d60da30d04a038051d6a89f405b9441ef68d",
     "publication": "Implementation verified on origin/cedar; follow-up changes continuity documentation only."
+  },
+  "fana_source_candidate_2026_10_29": {
+    "status": "VALIDATED_NOT_PUBLISHED",
+    "author": "Rowan · Codex desktop",
+    "base_commit": "59831cd45048807d52f166eba9f0979ae5fd0600",
+    "changed_files": [
+      "src/nasolve/cif_fana.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_fana.py",
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/figures/cif-doctor-overview.svg",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "before": "Generic furanose matching does not identify 2-prime fluorine/arabino declarations or require all four source sugar hands in a completed FANA candidate.",
+    "after": "Explicit read-only FANA source/candidate API and CLI compose existing graph/NAR/numerical/chemistry checks with a bounded source-declared family rule and four-centre preservation gate.",
+    "policy": "cif-source-declared-fana-v1",
+    "schema": "New schema-1 report only. No run/checkpoint migration.",
+    "compatibility": "Existing profiles, default generator, ordinary mutation and native acceptance remain unchanged. No automatic adoption.",
+    "included": "Source, synthetic tests, maintained contracts and compact technical evidence.",
+    "excluded": "Raw CIF/PDB/workbook, science, native captures/logs, candidates, partials and runner scripts remain local.",
+    "software": {
+      "Python": "3.12.14",
+      "NARestraints": "1.1.3",
+      "Phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "Coot": "NOT_RUN"
+    },
+    "scope": "N-glycoside neutral 2-fluoro sugar with explicit H/D and source R/S. No independent absolute CIP, phosphate/site operation, linked native proof, refinement or ordinary construction.",
+    "source_controls": {
+      "A5L": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_A5L.cif",
+          "sha256": "66d1fef5291115320bee95e275c0e1c7c7164a7f69931a5bf3484b883574dede",
+          "size": 9391
+        }
+      },
+      "TAF": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F2'",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_TAF.cif",
+          "sha256": "b7c048bb8c6ced293a96dbdf4bcfd1d2c417a39f723a3391b060d7fc55277dfd",
+          "size": 7919
+        }
+      },
+      "UF2": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F2'",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_UF2.cif",
+          "sha256": "3333a59daceb197bec42b00e3d5de6ff07dc4044165fb7c1127339391c52eed3",
+          "size": 8756
+        }
+      },
+      "7BG": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F1'",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_7BG.cif",
+          "sha256": "1fa624e7364bd7a7a0c56a81ed1b12647369d6df34851eaaa0bc4d650a4f087a",
+          "size": 9738
+        }
+      },
+      "FDG": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F2'",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_FDG.cif",
+          "sha256": "4f926d6ddc67a533886facc2ae9c0586454dae66be700de7bd008336756801c8",
+          "size": 8405
+        }
+      },
+      "FMG": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F1'",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_FMG.cif",
+          "sha256": "b5c8c2927100fbcbfd552c284596087c0a504776b75468b5624c762a544203b9",
+          "size": 8862
+        }
+      },
+      "GFL": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_GFL.cif",
+          "sha256": "023547176b871a50550f56e961bac84263468c94f9ed11dca7e17e8b0e6fa466",
+          "size": 9360
+        }
+      },
+      "1FC": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F24",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_1FC.cif",
+          "sha256": "294e5a2d438cc884e8576485c2facf8c5c62a0ea9f661bee7be03563289e93fd",
+          "size": 8219
+        }
+      },
+      "CFL": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_CFL.cif",
+          "sha256": "c31072ec91e346421b53cf276cb2f9a6ba27b4869e59b3b46566bdc120579d38",
+          "size": 8869
+        }
+      },
+      "XFC": {
+        "status": "SOURCE_MATCH",
+        "source_family": "beta-D-FANA",
+        "fluorine_atom": "F2'",
+        "review_reasons": [],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_XFC.cif",
+          "sha256": "f4b7926c338f334dd7576f00bfa8d59855c570ce64ba6cef94e296473daeb43d",
+          "size": 7975
+        }
+      },
+      "OFC": {
+        "status": "REVIEW",
+        "source_family": null,
+        "fluorine_atom": "F2'",
+        "review_reasons": [
+          "SOURCE_STEREO_NOT_BETA_FANA"
+        ],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_OFC.cif",
+          "sha256": "2389480d9c836684783479d979153e35e320877a1448c87d760bd22dbd69036a",
+          "size": 8599
+        }
+      },
+      "AF2": {
+        "status": "REVIEW",
+        "source_family": null,
+        "fluorine_atom": "F",
+        "review_reasons": [
+          "SOURCE_STEREO_NOT_BETA_FANA"
+        ],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_AF2.cif",
+          "sha256": "32866838c2f987dae889b08cdb06725621a6a1b96212ec96c8ac0d029d5359b1",
+          "size": 8090
+        }
+      },
+      "CFZ": {
+        "status": "REVIEW",
+        "source_family": null,
+        "fluorine_atom": "F2'",
+        "review_reasons": [
+          "SOURCE_STEREO_NOT_BETA_FANA"
+        ],
+        "source": {
+          "anchor": "source_directory",
+          "path": "data_CFZ.cif",
+          "sha256": "81074a14638339328941a15cc70af4c8aabca4663498068933f60a318eb5ffb6",
+          "size": 7707
+        }
+      }
+    },
+    "native_controls": {
+      "initial": {
+        "CFL": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "rejection_reasons": []
+        },
+        "TAF": {
+          "generation_status": "FAILED",
+          "native_usable": false,
+          "same_fixed_covalent_proxies": null,
+          "rejection_reasons": []
+        },
+        "UF2": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "rejection_reasons": []
+        },
+        "A5L": {
+          "generation_status": "FAILED",
+          "native_usable": false,
+          "same_fixed_covalent_proxies": null,
+          "rejection_reasons": []
+        },
+        "GFL": {
+          "generation_status": "FAILED",
+          "native_usable": false,
+          "same_fixed_covalent_proxies": null,
+          "rejection_reasons": []
+        }
+      },
+      "fresh_source_order_attempts": {
+        "TAF": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "rejection_reasons": []
+        },
+        "A5L": {
+          "generation_status": "CANDIDATE_REVIEW",
+          "native_usable": true,
+          "same_fixed_covalent_proxies": true,
+          "rejection_reasons": []
+        }
+      },
+      "generation_attempts": 7,
+      "source_probes": 1,
+      "interpretations": 8,
+      "checks_per_interpretation": 21,
+      "dry_run": false,
+      "generation_bounds": {
+        "steps": 180,
+        "seconds": 300
+      },
+      "interpretation_deadline_seconds": 60
+    },
+    "fail_before": {
+      "cases": 30,
+      "result": "30 failed: API absent",
+      "evidence": {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/validation/c120-fail-before.log",
+        "sha256": "03eb98944d1c83393370eb83efe00c04b2ad593134beb7ca48d182feeb00ac91",
+        "size": 54411
+      }
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_fana.py",
+        "tests/test_cif_attachment_profiles.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_source_candidate.py",
+        "tests/test_cif_connected_atom_order.py",
+        "tests/test_cif_source_representation.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 33.580594457976986,
+      "source_test_files": 470,
+      "changed_files": [],
+      "finished": true,
+      "result": "196 passed in 33.31s",
+      "new_fana_cases": 35,
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/validation/focused/result.json",
+          "sha256": "87a0d2fd81da3ff91aa2768aa092bf15064c494b39dbe8bd5dff6cecfc85865a",
+          "size": 654
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/validation/focused/pytest.log",
+          "sha256": "07b67b4dafaf873ca4ea955c3793c2c30a4bba19a94e82db31dd6fd2cdb07e6d",
+          "size": 2827
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/validation/focused/source-hashes.json",
+          "sha256": "5476b0ea32dd3b2765487df792a87be219a2e1a6babce99449ba617a79d41222",
+          "size": 50767
+        }
+      ]
+    },
+    "cold": {
+      "status": "PASS",
+      "source_cases": 13,
+      "fana_source_matches": 10,
+      "ribo_controls_excluded": 3,
+      "candidate_cases": 4,
+      "native_cases": 8,
+      "files_unchanged": 391,
+      "blocked_attempts": [],
+      "owned_original_absent": true,
+      "native_execution": "NOT_RUN",
+      "pickle_loading": "NOT_RUN"
+    },
+    "input_integrity": {
+      "status": "UNCHANGED",
+      "files": 14
+    },
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/reports/source-family.json",
+        "sha256": "15273c69c7d56c45c107c892b0af047da9c89720e371fec5840c2f10645a69f7",
+        "size": 268556
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/reports/candidate-family.json",
+        "sha256": "d73f714d81231504fa854f457eeed8c6fe316a8fee276ac2073f3aa646c5feaf",
+        "size": 2092263
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/reports/native-summary.json",
+        "sha256": "21c540c5b18cc6ecc1932d8b7f0440b589702b0d051303e405a600e44a33c726",
+        "size": 761
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/reports/ordered-native-summary.json",
+        "sha256": "2a4e7cd7dc8e1f70f0669564bc4acab4b2d8cd09501f133b50e2db631e730f28",
+        "size": 317
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/validation/input-manifest.json",
+        "sha256": "a4cedb39a02de2635bdd12504c6158dae3ee3a68b70b83aaf898fdf81cf8b2ea",
+        "size": 2357
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/validation/cold-result.json",
+        "sha256": "7e70cb4d48529ee63735d27c3567ec3bbb464141add3eac4809f4006cbbc52bc",
+        "size": 299
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/validation/relocation-manifest.json",
+        "sha256": "ab30eb9c63dc76e3d72d9455670d83dbe23002c7522169f5b9bed5fe9d7b6bd5",
+        "size": 75838
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/reports/GFL-reader-boundary.json",
+        "sha256": "3752cdbd7660ed1ca6b3e8b20da82be8474de9fd80c28f43fff8c7e54fc0a135",
+        "size": 1239
+      }
+    ],
+    "full_validation": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 993.3827727920143,
+      "source_test_files": 470,
+      "changed_files": [],
+      "finished": true,
+      "status": "PASS",
+      "result": "6288 passed, 276 subtests passed in 992.92s (0:16:32)",
+      "evidence": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/validation/full/result.json",
+          "sha256": "9db280baa9664de4100a8b79e785cb16ec6c261233f45617b4f9b5431787c736",
+          "size": 398
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/validation/full/pytest.log",
+          "sha256": "4e5b16f03df170f425cb411aff72cada89c53c8ccfbb8fb09c121bda8bdd2619",
+          "size": 9657
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/validation/full/source-hashes.json",
+          "sha256": "5476b0ea32dd3b2765487df792a87be219a2e1a6babce99449ba617a79d41222",
+          "size": 50767
+        }
+      ]
+    },
+    "next": "Qualify GFL/carbonyl-purine representation separately; build whole modified-sugar construction and linked FANA numerical qualification. Preserve C119 PNA native adapter priority for later; ATL/L-DNA/PDU remain open.",
+    "planned_l_fana_control": {
+      "status": "PLANNED_NOT_RUN",
+      "intent": "Use an L-DNA scaffold and replace selected residues with explicitly specified L-FANA targets; retain unaffected controls and qualify whole sugar/fluorine/stereo plus linked native behavior.",
+      "source_boundary": "Freeze target identity and source/inversion authority; OFC source declares L-ribo and is not an L-FANA surrogate."
+    },
+    "gfl_reader_boundary": {
+      "status": "OBSERVED_SOURCE_HANDOFF_MISMATCH",
+      "component": "GFL",
+      "graph_connectivity": "UNCHANGED",
+      "order_deltas": [
+        {
+          "atoms": [
+            "C4",
+            "C5"
+          ],
+          "source_order": 2,
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C4",
+            "N9"
+          ],
+          "source_order": 1,
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C5",
+            "N7"
+          ],
+          "source_order": 1,
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C8",
+            "N7"
+          ],
+          "source_order": 2,
+          "native_order": 1.5
+        },
+        {
+          "atoms": [
+            "C8",
+            "N9"
+          ],
+          "source_order": 1,
+          "native_order": 1.5
+        }
+      ],
+      "interpretation": "The five-membered fused ring is aromatized; the six-membered carbonyl-bearing ring is unchanged. Existing C117/C118 whole neutral purine representation authority excludes this source. This is not evidence that the FANA sugar is invalid.",
+      "native_construction": "NOT_STARTED",
+      "proposed_follow_up": "Qualify a separate bounded source-authorized representation for this ring environment, preserving exact atoms/H/charge/stereo and carbonyl bonds, then independently qualify generated numerics."
+    },
+    "exact_native_commands": [
+      {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "/private/tmp/c120_native.py"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "runner": {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/runners/c120_native.py",
+          "sha256": "8cbdf2c79eaa106565eac6d76f10574c43733fbd8d65453115db2bb784b23af3",
+          "size": 4747
+        },
+        "working_directory": {
+          "anchor": "development_checkout",
+          "path": "."
+        }
+      },
+      {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "/private/tmp/c120_native_ordered.py"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "runner": {
+          "anchor": "live_tests_directory",
+          "path": "120_Cedar_FANA-mxbkybbq/runners/c120_native_ordered.py",
+          "sha256": "c2cf595b937666511f6b18ae6135d7e31df3cebd025b5b2119254fd96403450d",
+          "size": 4965
+        },
+        "working_directory": {
+          "anchor": "development_checkout",
+          "path": "."
+        }
+      }
+    ],
+    "exact_cold_command": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "/private/tmp/c120_cold.py",
+        "/Users/svecchio/NASolve-live-tests/120_Cedar_FANA-mxbkybbq"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/120_Cedar_FANA-mxbkybbq/cold-relocated/src"
+      },
+      "runner": {
+        "anchor": "live_tests_directory",
+        "path": "120_Cedar_FANA-mxbkybbq/runners/c120_cold.py",
+        "sha256": "295bf151a857f185bde08b4854d22a8edb6a4eac07871c49ccc21aa113addb66",
+        "size": 3383
+      }
+    },
+    "final_checks": {
+      "compilation": "PASS",
+      "compile_command": "PYTHONPYCACHEPREFIX=/private/tmp/c120-pycache /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m compileall -q src tests",
+      "whitespace": "PASS",
+      "whitespace_command": "git diff --check",
+      "documentation": "PASS; 294 relative links and both JSON ledgers",
+      "svg_xml": "PASS"
+    }
   }
 }
