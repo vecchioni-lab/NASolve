@@ -27084,12 +27084,13 @@
       "validation": "6400 passed, 276 subtests passed in 964.74s (0:16:04); 175 focused; actual NAR compiler, one generation/two qualifications and 224-file cold replay pass."
     },
     "fana_whole_residue_placement": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "policy_id": "cif-rigid-whole-fana-linked-control-v1",
       "evidence_key": "fana_whole_residue_placement_2026_10_29",
       "behavior": "Separate immutable proper-rigid placement and offline rederivation; source-named explicit internal phosphate projection, all four sugar hands and unchanged flanks. Junctions measured, not accepted.",
       "next": "Source-named junction-angle coverage plus bounded geometry adjustment; bond presence alone is insufficient.",
-      "validation": "6440 passed, 276 subtests passed in 999.68s (0:16:39); 172 focused; four native interpretations and 280-file cold replay, including missing-angle probe."
+      "validation": "6440 passed, 276 subtests passed in 999.68s (0:16:39); 172 focused; four native interpretations and 280-file cold replay, including missing-angle probe.",
+      "implementation_commit": "89e7a084e800dd18320e10b67ba51400b74a51cc"
     }
   },
   "audience": [

@@ -11,13 +11,15 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C124 validated: whole-residue FANA placement control
+## C124 published: whole-residue FANA placement control
 
 Base/last published head: `79e8aa5d5de19025aaf5d969c8b0a02eaaaae495`; existing cedar only.
 Capsule: `live_tests_directory/124_Cedar_FANA-placement-isxhivmo`.
 Implementation, focused/native/cold checks and maintained docs are complete.
 Full suite passes: **6440 passed, 276 subtests passed in 999.68s (0:16:39)**. All 478 source/test hashes
-remain unchanged. No job is active; publication is next.
+remain unchanged. Tested implementation `89e7a084e800dd18320e10b67ba51400b74a51cc` is
+published and verified on `origin/cedar`. No job is active; this follow-up records
+continuity only.
 
 Before: DNA-backbone restoration could not retain the modified FANA sugar.
 After: a separate immutable three-residue control binds the C123 package and
@@ -50,24 +52,22 @@ incoming O3′–P–O1P and O3′–P–O2P are absent. Source-named junction a
 must be resolved alongside geometry. Neither this diagnostic nor bond presence
 is an accepted repair. Original placement and previous captures remain immutable.
 
-Validation so far: 33 initial fail-before cases; 40 new regressions;
+Validation: 33 initial fail-before cases; 40 new regressions;
 **172 focused passed in 13.76s**. Final cold replay passes with **280 files unchanged**,
-owned original v2 absent, original/SDK reads and process execution blocked.
+owned original complete absent, original/SDK reads and process execution blocked.
 It rederives placement and binds/replays all three successful diagnostic captures;
 the original missing incoming link and translation control's two missing angles
 remain visible. Compileall, diff-check, 317 relative
 documentation links, both JSON ledgers and SVG XML pass. The complete suite also passes. Exact commands/references are in the evidence ledger,
 key `fana_whole_residue_placement_2026_10_29`.
 
-Twelve intended files: new runtime/tests plus maintained changelog, contracts,
+Twelve changed files: new runtime/tests plus maintained changelog, contracts,
 human descriptor/figure and compact evidence. Raw component/workbook/models,
 dictionaries/native captures/logs and runners remain local. Earlier naming and
 installed-library preflights, the failed reference and empty first relocation
 attempt are preserved. Everyday checkout and unrelated scientific work untouched.
 
-Immediate next action: commit/push the reviewed twelve files on cedar and record
-publication. Next
-chemistry slice: complete source-named junction-angle coverage and bounded
+Publication is complete. Next chemistry slice: complete source-named junction-angle coverage and bounded
 junction adjustment protecting FANA sugar/source state, then exact both-link
 checks with qualified flank/terminal definitions.
 The gaps are conformer/placement-specific, not an intrinsic FANA incompatibility.
