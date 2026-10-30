@@ -66,6 +66,9 @@ invented second backbone link. The frozen preparation and saved captures replay
 after relocation without changing their bytes or modification times. The existing
 continuation policy permits further separate diagnostics when only unavailable
 charge readback remains, while preserving REVIEW and withholding adoption.
+The shared native checker still blocks terminal-phosphate OP3 and an empty
+custom-restraint request, even when preparation itself is valid. Those contexts
+need separate qualification; retaining a true terminal phosphate remains required.
 
 FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C route
 has the linked model evidence above. L-FDNA transfer is tested synthetically, not

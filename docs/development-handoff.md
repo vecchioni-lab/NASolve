@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C136 validated: stored dictionaries at explicit current sites
+## C136 published: stored dictionaries at explicit current sites
 
 Base: `86ea4fb30c9d0b7bbaa6ff481a1f0478f50314e2`; existing cedar only.
 Capsule: `live_tests_directory/136_Cedar_stored-sites-7lfqb4kg`.
@@ -55,13 +55,27 @@ prior-capsule reads plus subprocesses are explicitly forbidden. Compilation,
 **No full suite this pass, explicitly requested by Simon.** Last full-tested
 implementation remains C135 `d4c0e57e5c66b18279c5ab4e733fb2d212d801b0`:
 6838 tests + 276 subtests. Full regression remains required before integration.
-No job is active. Implementation and validation complete; publication remains.
+No job is active. Implementation and focused validation are complete. Tested implementation
+`646d3834abfa53e8e1ec8140a7ec634f7e353724` is published and verified on `origin/cedar`;
+this follow-up records continuity and inherited scope limits. No merge or branch creation.
 Evidence key: `stored_dictionary_current_sites_2026_10_30`.
 
-Next bounded step: compose multiple frozen component/site preparations under one
-ordered global model/CIF/PHIL/native contract, then connect scoped continuation
-without removing ordinary fallback. Source-state authority, generic native ports,
-PDU numerical qualification and production adoption stay separate roadmap gates.
+Integration review: a synthetic two-component/three-site control preserves mixed
+v2/v3 policy and terminal phosphate, produces unique modifiers and reuses existing
+component-list merging/collision refusal. A combined input vector is correctly
+refused by both individual site receipts: it needs one global binding, not a
+conjunction of independent verdicts. No native multi-component qualification.
+
+Two inherited gates remain narrower than preparation: the shared native checker
+rejects all coordinate OP3/O3P, even at a declared terminal phosphate, and requires
+non-empty custom-restraint evidence. Synthetic predicate probes reproduce both
+REVIEW outcomes. Keep legitimate terminal phosphate and do not invent restraints
+to satisfy these gates. Current native evidence remains the C133 free-5'-OH case.
+
+Next bounded step: qualify declared terminal phosphate and intentionally empty
+custom-restraint cases with targeted installed controls, then compose the global
+stored-site contract. Preserve ordinary fallback; source-state authority, generic
+ports, PDU numerics and production adoption remain separate roadmap gates.
 — Rowan · Codex desktop
 
 ## C135 published: explicit representation policy in dictionary storage

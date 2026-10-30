@@ -2961,6 +2961,16 @@ pre-repair capture may report a missing heavy atom only when that exact atom is
 in the selected preparation's deletion plan. No unexplained baseline deficit is
 waived, and the prepared capture must have no missing heavy atoms.
 
+The reused native qualifier is currently narrower than the preparer: it rejects
+all coordinate OP3/O3P, including a deliberately retained terminal phosphate, and
+requires non-empty custom-restraint evidence. Therefore a valid preparation with
+either a terminal-phosphate OP3 or no requested custom restraints remains REVIEW
+and blocks diagnostic continuation. These are inherited conservative gates,
+not evidence that the declared chemistry is invalid. Do not delete a legitimate
+terminal phosphate or invent pair/stack restraints to satisfy them. Context-aware
+installed controls are required before broadening these gates. The current fresh
+native demonstration covers the C133 free-5'-OH/internal arrangement.
+
 The result retains separate `qualification` and `native_checks` evidence.
 `STORED_SITE_NATIVE_MECHANICS_PASS` requires every check to pass; unsupported
 formal-charge readbacks keep the overall result `REVIEW`. A separate

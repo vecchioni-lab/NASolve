@@ -48164,7 +48164,7 @@
     "remote_verified": true
   },
   "stored_dictionary_current_sites_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "86ea4fb30c9d0b7bbaa6ff481a1f0478f50314e2",
@@ -48400,12 +48400,14 @@
       "fresh_native": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c136_native.py; inspect_native_bundle timeout_seconds=180, linked/policy/energy/nonbonded inventories, explicit ordered CIFs/PHILs",
       "counterfactuals": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c136_native_controls.py; all native execution forbidden",
       "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c136-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests scripts/run_tests.py docs/figures/build_cif_doctor_overview.py",
-      "documents": "check_docs.py; byte-exact SVG regeneration; rsvg-convert visual inspection; git diff --check"
+      "documents": "check_docs.py; byte-exact SVG regeneration; rsvg-convert visual inspection; git diff --check",
+      "integration_boundary": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c136_boundary_review.py; synthetic fixture and predicate probes only, no native execution"
     },
     "full_suite": "NOT_RUN_THIS_PASS; EXPLICIT_USER_INSTRUCTION",
     "artifacts": "Only code/tests, maintained technical docs, editable figure and summary/hash evidence committed. Scientific CIF/model/captures, frozen bundles, local logs, counterfactual copies and runners excluded from Git.",
     "limitations": [
       "One stored component per explicit preparation; all its model sites must be declared. Multi-component composition and ordinary PostMR selection/adoption remain separate integration work.",
+      "The reused native qualifier still rejects every coordinate OP3/O3P, including explicitly retained terminal phosphate, and requires non-empty custom-restraint evidence. Such preparations can replay but cannot obtain native PASS or diagnostic continuation through this adapter yet. These inherited conservative gates need distinct context-aware installed controls; do not remove terminal phosphate to appease a gate or invent pair/stack restraints to fill an empty request.",
       "Native adapter requires conventional phosphodiester names and explicit DNA/L-DNA metadata; generic PNA/ATL ports, symmetry links and alternative chemical operations remain open.",
       "Formal-charge readback remains unsupported at two sites. Existing diagnostic-only continuation can proceed with notes when every other check passes; this is not PASS or adoption.",
       "Explicit source phosphate protonation/H and terminal-resource targets are preserved, not inferred from experimental pH or energy. Energy-library data identity is not exhausted by API fingerprints.",
@@ -48413,7 +48415,7 @@
       "No CLI activation, checkpoint, installed Phenix/Coot/library change, NARestraints workbook change, model optimization, refinement, scientific approval or merge.",
       "Full regression intentionally deferred by Simon for this pass. Last full-tested implementation remains C135 d4c0e57e5c66b18279c5ab4e733fb2d212d801b0: 6838 passed, 276 subtests."
     ],
-    "next": "Compose multiple frozen component/site preparations under one exact ordered model/CIF/PHIL/native contract, reusing the same continuation policy and preserving ordinary fallback. Keep source-state/generic-port/PDU and adoption gates explicit; do not remove the C135 automatic-cache exclusion on the strength of isolated or single-component evidence.",
+    "next": "Qualify the inherited terminal-phosphate and intentionally empty custom-restraint cases with focused installed controls before claiming general end-state support. Then compose multiple frozen component/site preparations under one exact ordered model/CIF/PHIL/native contract, retaining per-component policy and existing collision checks. Independent per-component verdicts cannot qualify a combined capture. Keep ordinary fallback, source-state/generic-port/PDU and adoption gates explicit.",
     "evidence": [
       {
         "anchor": "live_tests_directory",
@@ -48498,7 +48500,77 @@
         "path": "136_Cedar_stored-sites-7lfqb4kg/native-controls-publication/fresh-capture-final-readback.json",
         "sha256": "8ccdc0f6a9b03c77eb11bbc48a129268ce463594ea4ad2e90bcf108fee34211b",
         "size": 22917
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/composition-boundary/result.json",
+        "sha256": "775fbbfb9a96422979b62b5ba12a5a7b7bbd674c83efda089e4423877007c874",
+        "size": 1901
       }
-    ]
+    ],
+    "implementation_commit": "646d3834abfa53e8e1ec8140a7ec634f7e353724",
+    "published_branch": "cedar",
+    "remote_verified": true,
+    "integration_boundary_probe": {
+      "status": "SYNTHETIC_BOUNDARY_PROBES_PASS",
+      "native_execution": "NOT_RUN",
+      "scientific_qualification": "NOT_ASSESSED",
+      "single_component_preparations": 2,
+      "saved_policies": [
+        null,
+        "cif-source-declared-neutral-6-oxo-purine-aromatic-v1"
+      ],
+      "sites": 3,
+      "unique_modifier_ids": 3,
+      "declared_terminal_phosphate_preserved": true,
+      "internal_op3_deleted_only_by_declared_context": true,
+      "namespace_collisions": [
+        {
+          "kind": "component",
+          "outcome": "REFUSED",
+          "reason": "Duplicate component identity in supplied dictionaries"
+        },
+        {
+          "kind": "modifier",
+          "outcome": "REFUSED",
+          "reason": "Conflicting dictionary data block: mod_nasl62653161d2"
+        }
+      ],
+      "combined_capture_requires_global_binding": [
+        {
+          "component": "Q73",
+          "outcome": "REFUSED",
+          "reason": "Native capture did not consume the exact ordered prepared inputs"
+        },
+        {
+          "component": "B82",
+          "outcome": "REFUSED",
+          "reason": "Native capture did not consume the exact ordered prepared inputs"
+        }
+      ],
+      "shared_qualifier_predicates": [
+        {
+          "probe": "empty_custom_requests",
+          "status": "REVIEW",
+          "failed_checks": [
+            "exact-custom-restraint-coverage"
+          ],
+          "scope": "SYNTHETIC_PREDICATE_PROBE; NOT_A_NATIVE_CAPTURE"
+        },
+        {
+          "probe": "coordinate_op3",
+          "status": "REVIEW",
+          "failed_checks": [
+            "zero-unrequested-coordinate-OP3"
+          ],
+          "scope": "SYNTHETIC_PREDICATE_PROBE; NOT_A_NATIVE_CAPTURE"
+        }
+      ],
+      "source_files": {
+        "src/nasolve/cif_dictionary_sites.py": "74170d6cc0c03744007ad17d3b0a56273bad38a0ca8eecd102dc30fb3cd297d8",
+        "src/nasolve/cif_linked_qualification.py": "ce356d9a78bedf775cea857f95eab4a18097b43a89f8ac1cd37d75fff5c6bee4",
+        "src/nasolve/ligand_profiles.py": "288953370e6294b3fbaff8304088ed88f37e16ab3f5ce1baef1c6d89171521f1"
+      }
+    }
   }
 }
