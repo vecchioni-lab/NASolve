@@ -17,6 +17,7 @@ from .cif_terminal_preparation import load_terminal_recipe, prepare_terminal_com
 
 POLICY_ID = 'cif-stored-dictionary-sites-v1'
 CONTEXT_POLICY_ID = 'cif-stored-dictionary-sites-v2'
+FULL_MODEL_POLICY_ID = 'cif-stored-dictionary-sites-v3'
 ANCHOR = 'dictionary_site_directory'
 _SNAPSHOT_FILES = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
     'entry/dictionary.cif', 'entry/qualification.json', 'entry/provenance.json')
@@ -126,11 +127,16 @@ def _derive(root, controls, destination):
             contexts,root/resource,destination,**options)
     else:
         preparation=prepare_linked_component(saved['source'],saved['dictionary'],model,contexts,destination,**options)
+    if controls.get('native_context',{}).get('monomer_inventory')=='full_model':
+        from .cif_native_monomers import FULL_MODEL_PHIL
+        (destination/'native_interpretation.phil').write_text(FULL_MODEL_PHIL)
     return saved,preparation,links,policy
 
 
 def _report(root, controls, saved, links, policy):
-    return {'schema_version':1,'policy_id':CONTEXT_POLICY_ID if 'native_context' in controls else POLICY_ID,'status':'PREPARED_REVIEW',
+    site_policy=CONTEXT_POLICY_ID if 'native_context' in controls else POLICY_ID
+    if controls.get('native_context',{}).get('monomer_inventory')=='full_model':site_policy=FULL_MODEL_POLICY_ID
+    return {'schema_version':1,'policy_id':site_policy,'status':'PREPARED_REVIEW',
         'entry_id':saved['entry_id'],'request_key':saved['manifest']['request_key'],
         'component':saved['manifest']['request']['component'],'bond_representation_policy':policy,
         **controls,'expected_links':links,'files':_files(root),'native_validation':'NOT_RUN',
@@ -148,10 +154,13 @@ def _inputs(root, controls):
         result[field]=[root/name for name in names]
         for path in result[field]:_read(path)
     cifs=result['supplementary_dictionaries']; phils=result['supplementary_phils']
+    full=controls.get('native_context',{}).get('monomer_inventory')=='full_model'
+    policy=[root/'prepared/native_interpretation.phil'] if full else []
     return {'model':root/'inputs/model.pdb',
         'before_dictionaries':[root/'snapshot/entry/dictionary.cif',*cifs],
         'after_dictionaries':[root/'prepared/base_dictionary.cif',root/'prepared/site_modifications.cif',*cifs],
-        'before_phils':phils,'after_phils':[*phils,root/'prepared/site_modifications.phil']}
+        'before_phils':[*phils,*policy],'after_phils':[*phils,root/'prepared/site_modifications.phil',*policy],
+        **({'native_options':{'full_monomer_inventory':True}} if full else {})}
 
 
 def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, expected_links,
@@ -165,6 +174,8 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
 
     Optional native_context freezes the versioned end-state/custom-restraint
     contract. Omission preserves v1 preparation and qualification behavior.
+    Context v2 additionally freezes full-model interpretation as the final PHIL
+    input. Readback returns native_options for the maintained capture worker.
     """
     output=Path(output).absolute()
     if output.exists() or output.is_symlink():raise FileExistsError(output)
@@ -215,11 +226,11 @@ def read_dictionary_sites(output):
     """Read frozen inputs and rederive every generated file; never mutate the bundle."""
     root=Path(output).absolute();report=_json(_read(root/'site_receipt.json'))
     _need(type(report.get('schema_version')) is int and report['schema_version']==1
-        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID}, 'Unknown site preparation schema/policy')
+        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID}, 'Unknown site preparation schema/policy')
     _need(report.get('files')==_files(root), 'Site artifact inventory or checksum differs')
     controls={k:report[k] for k in ('consumer','contexts','expected_links','terminal_resource',
         'supplementary_dictionaries','supplementary_phils')}
-    if report['policy_id']==CONTEXT_POLICY_ID:
+    if report['policy_id'] in {CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID}:
         _need('native_context' in report, 'Missing frozen native context')
         controls['native_context']=report['native_context']
     inputs=_inputs(root,controls)
@@ -400,6 +411,11 @@ def inspect_dictionary_site_native(output, baseline_receipt, candidate_receipt):
         record,native,captured=_capture(path,_read(model))
         snapshots.update(captured)
         _bind_capture(record,report['consumer'],model,prepared[label+'_dictionaries'],prepared[label+'_phils'])
+        if report['policy_id']==FULL_MODEL_POLICY_ID:
+            from .cif_native_monomers import POLICY_ID as monomer_policy, review_full_monomers
+            _need(record.get('full_monomer_inventory_policy')==monomer_policy,
+                'Site context requires a maintained full native monomer capture')
+            review_full_monomers(native)
         _native_atoms(native,_read(model))
         _need(native.get('status')=='REVIEW' and native.get('fatal_problems') is None
             and native.get('unused_definitions')==[] and native.get('unsupported_fields')==[],

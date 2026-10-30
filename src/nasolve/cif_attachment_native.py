@@ -70,7 +70,7 @@ def _capture(path, model):
             raise ValueError('Missing required native artifact: ' + name)
     spec = _json(records['native_spec.json'])
     worker = _NATIVE_WORKER
-    for flag in ('policy_inventory', 'energy_inventory', 'nonbonded_inventory', 'atom_name_mapping'):
+    for flag in ('policy_inventory', 'energy_inventory', 'nonbonded_inventory', 'atom_name_mapping', 'full_monomer_inventory'):
         if flag in spec and spec[flag] is not True:
             raise ValueError('Invalid native inventory request: ' + flag)
     if spec.get('energy_inventory'):
@@ -99,6 +99,14 @@ def _capture(path, model):
         if receipt['native_validation'].get('gradient_inventory', {}).get('selected_indices') != spec['gradient_indices']:
             raise ValueError('Native derivative probes differ from request')
         review_native_gradients(receipt['native_validation'])
+    if spec.get('full_monomer_inventory'):
+        from .cif_native_monomers import native_monomer_worker, POLICY_ID as monomer_policy
+        if (spec.get('inventory_detail')!='linked'
+                or receipt.get('full_monomer_inventory_policy')!=monomer_policy):
+            raise ValueError('Invalid full native monomer inventory request/policy')
+        worker=native_monomer_worker(worker)
+    elif 'full_monomer_inventory_policy' in receipt:
+        raise ValueError('Unrequested full native monomer inventory policy')
     if records['native_worker.py'] != worker.encode():
         raise ValueError('Require a maintained native inventory worker')
     roles = {'model': [], 'dictionary': [], 'phil': []}
@@ -120,6 +128,11 @@ def _capture(path, model):
     native = _json(records['native_validation.json'])
     if native.get('atom_name_mapping_policy') != receipt.get('atom_name_mapping_policy'):
         raise ValueError('Native atom mapping policy differs from receipt')
+    if spec.get('full_monomer_inventory') and native.get('status')=='REVIEW':
+        from .cif_native_monomers import review_full_monomers
+        review_full_monomers(native)
+    elif not spec.get('full_monomer_inventory') and 'full_monomer_inventory' in native:
+        raise ValueError('Unrequested full native monomer inventory evidence')
     if native != receipt.get('native_validation'):
         raise ValueError('Native report differs from embedded receipt')
     if type(native.get('schema_version')) is not int or native.get('automatic_adoption') is not False:

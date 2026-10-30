@@ -15,7 +15,9 @@ milestone statements preserve their original scope; they are not a second queue.
   preserves that explicit policy through isolated storage and requalification.
   C136 binds frozen storage to explicit current-site preparation and native
   evidence. C137 adds explicit terminal-phosphate and custom-restraint context
-  with exact native consumption checks; automatic PostMR continuation/adoption remains separate.
+  with exact native consumption checks. C138 adds explicit full-model native
+  interpretation and complete residue identities while preserving old captures.
+  Automatic PostMR continuation/adoption remains separate.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

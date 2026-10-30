@@ -27330,6 +27330,30 @@
       "full_tested_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "full_native_monomer_inventory": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "Explicit full-model interpretation captures every actual residue mapping, bound to the frozen parameter, maintained worker and independently recomputed identity proof; source and chemistry checks remain unchanged.",
+      "schemas": {
+        "native_context": "cif-explicit-site-native-context-v2 with monomer_inventory=full_model and explicit custom_restraints",
+        "site_receipt": "schema 1 / cif-stored-dictionary-sites-v3; dictionary_site_directory anchor; generated prepared/native_interpretation.phil is final input",
+        "native_capture": "optional full_monomer_inventory=True request, receipt policy and schema-1 cif-native-full-monomer-inventory-v1 proof; maintained worker augmentation only",
+        "unchanged": "Base worker bytes, legacy site/context policies and saved reports; store, CLI, run/checkpoint and production refinement schemas"
+      },
+      "compatibility": "Opt-in only; no migration. New policies require the updated reader. Eight current/legacy reports replay exactly, including the original incomplete copied-chain blocked attempt.",
+      "limitations": [
+        "Explicit internal Python opt-in only. General multiple-component orchestration, ordinary recovery/adoption/checkpoints and solution-PDF integration remain separate.",
+        "Full-model interpretation may cost more on large repeated assemblies. No installed Phenix code or production NCS refinement setting is changed; unchanged proxy evidence is scoped to these four controls.",
+        "Formal-charge readback remains unavailable; overall REVIEW is retained with diagnostic-only continuation when all other checks pass. Experimental protonation and absolute CIP are not inferred.",
+        "All source-projection, phosphate/end-state, native type/energy, custom-restraint and model identity gates remain mandatory. Complete monomer identities alone do not qualify chemistry.",
+        "Same-chain/two-chain terminal soft edits are synthetic consumption controls, not a newly qualified NARestraints pairing recipe or demonstrated geometry improvement.",
+        "Legacy blocked captures remain blocked. Full-model evidence requires a fresh immutable capture; no copied master identities, migration or in-place repair.",
+        "No ReadySet replacement/execution, Coot execution, optimization, diffraction refinement, generic PNA/ATL construction or live L-FDNA proof. Existing nondefault restraint-potential and PDU numerical limits remain."
+      ],
+      "next": "Compose multiple stored components under one exact ordered model/CIF/PHIL contract: preserve per-component source/consumer ownership, refuse duplicate codes or modification-ID conflicts, and verify all affected and unaffected sites in one full native capture. Then integrate the qualified route with existing preparation/ReadySet and usable fallback, rechecking the final effective bundle under its actual declared consumer policy; keep scientific state choice, generic ports and adoption separate.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "full_native_monomer_inventory_2026_10_30",
+      "validation": "7012 passed, 276 subtests passed in 1063.37s (0:17:43); focused 1103 passed, 36 subtests passed in 71.30s (0:01:11); four native pairs, explicit refusal and 392-file cold replay."
     }
   },
   "audience": [
@@ -27844,7 +27868,7 @@
           "src/nasolve/cif_dictionary_reuse.py"
         ],
         "delivery": "Historical C66 evidence retained; current contracts in cif-doctor.md and C135 evidence.",
-        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136 adds one-component exact current-site preparation/native binding and scoped diagnostic continuation. Automatic PostMR still excludes these entries pending multi-component integration/adoption."
+        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C138 add exact current-site preparation, terminal/custom context, complete native identity capture and diagnostic continuation. Ordinary automatic selection/adoption and multiple-component composition remain separate."
       },
       "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },
@@ -29876,6 +29900,7 @@
     "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
     "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned.",
     "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_RESOLVER; source/state-bound reusable numerics and frozen run copies; ordinary automatic acquisition/adoption still pending.",
-    "background_engine_intent": "Internal recipes/model/source contracts drive automatic chemistry handling around ReadySet and NARestraints. Users should not author or review CIFs routinely; unresolved scientific choices are distinct from repairable technical failures."
+    "background_engine_intent": "Internal recipes/model/source contracts drive automatic chemistry handling around ReadySet and NARestraints. Users should not author or review CIFs routinely; unresolved scientific choices are distinct from repairable technical failures.",
+    "retained_design_principles": "docs/cif-doctor.md#design-principles-retained-from-the-early-cedar-work"
   }
 }

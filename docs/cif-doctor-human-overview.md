@@ -74,8 +74,15 @@ diagnostic requires zero requests and zero edit proxies; missing expected
 base-pair restraints cannot select that mode automatically. ReadySet remains the
 preparation consumer and NARestraints owns pair/stack intent. These are internal
 engine contracts, not an added CIF-editing task for users. The earlier v1
-audit stays unchanged. Incomplete native monomer identities after identical-chain
-copying still block qualification and remain a separate compatibility task.
+audit stays unchanged. A new opt-in full-model interpretation policy now asks
+Phenix to interpret every chain and records complete literal monomer identities.
+Four installed before/after controls preserve all captured atoms and restraint
+families, including the formerly blocked two-chain fixture. Missing identities
+still block; old attempts are not reclassified. Exact request/worker/proof binding
+and eight-case cold replay establish reproducible consumption, not refinement
+success. This changes no production NCS-refinement setting and may cost more
+for large repeated assemblies. The [early design principles](cif-doctor.md#design-principles-retained-from-the-early-cedar-work)
+remain the guide for automatic recovery and usable fallback.
 
 FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C route
 has the linked model evidence above. L-FDNA transfer is tested synthetically, not

@@ -49252,5 +49252,821 @@
     "full_tested_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "full_native_monomer_inventory_2026_10_30": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "42ecabcb4cea9e155a2a5b7283d3a7379ad382ce",
+    "before": "Native NCS restraint copying could restore all atoms/proxies without complete literal monomer mappings; the saved two-chain attempt correctly blocked.",
+    "after": "Explicit full-model interpretation captures every actual residue mapping, bound to the frozen parameter, maintained worker and independently recomputed identity proof; source and chemistry checks remain unchanged.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_native_monomers.py",
+      "src/nasolve/cif_native_context.py",
+      "src/nasolve/cif_dictionary_sites.py",
+      "src/nasolve/cif_attachment_native.py",
+      "src/nasolve/cif_native_validation.py",
+      "tests/test_cif_native_monomers.py"
+    ],
+    "schemas": {
+      "native_context": "cif-explicit-site-native-context-v2 with monomer_inventory=full_model and explicit custom_restraints",
+      "site_receipt": "schema 1 / cif-stored-dictionary-sites-v3; dictionary_site_directory anchor; generated prepared/native_interpretation.phil is final input",
+      "native_capture": "optional full_monomer_inventory=True request, receipt policy and schema-1 cif-native-full-monomer-inventory-v1 proof; maintained worker augmentation only",
+      "unchanged": "Base worker bytes, legacy site/context policies and saved reports; store, CLI, run/checkpoint and production refinement schemas"
+    },
+    "compatibility": "Opt-in only; no migration. New policies require the updated reader. Eight current/legacy reports replay exactly, including the original incomplete copied-chain blocked attempt.",
+    "historical_context": {
+      "blueprint_commit": "ef83f1b3741f8de2ad074114183ec243ab9b3d2a",
+      "initial_runtime_commit": "8c181c5d47cd987318c48568f13d93ef6bdfbb87",
+      "scope": "Re-read C00–C50 technical methods/evidence and original blueprint; distilled enduring design principles into the existing current contract.",
+      "contract": "docs/cif-doctor.md#design-principles-retained-from-the-early-cedar-work"
+    },
+    "regressions": {
+      "initial": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q tests/test_cif_native_monomers.py",
+        "summary": "19 failed, 4 passed in 1.11s before implementation; final new module has 40 cases.",
+        "record": "validation/initial-regression.log",
+        "new_cases": 40
+      },
+      "focused": {
+        "wrapper_pid": 11011,
+        "pytest_wrapper_pid": 11012,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/138_Cedar_full-monomers-up573aqa/validation/focused/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "focused",
+        "exit_code": 0,
+        "seconds": 71.62447291705757,
+        "files": 509,
+        "changed_files": [],
+        "summary": "1103 passed, 36 subtests passed in 71.30s (0:01:11)",
+        "finished": true
+      },
+      "full": {
+        "wrapper_pid": 11011,
+        "pytest_wrapper_pid": 11509,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/138_Cedar_full-monomers-up573aqa/validation/full/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "full",
+        "exit_code": 0,
+        "seconds": 1063.8716796250083,
+        "files": 509,
+        "changed_files": [],
+        "summary": "7012 passed, 276 subtests passed in 1063.37s (0:17:43)",
+        "finished": true
+      },
+      "source_test_runner_hashes_unchanged": 509
+    },
+    "native": {
+      "phenix_release": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "cases": [
+        {
+          "case": "terminal_required_002",
+          "phases": [
+            {
+              "phase": "before",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 46,
+              "residue_count": 2,
+              "mapping_count": 2
+            },
+            {
+              "phase": "after",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 46,
+              "residue_count": 2,
+              "mapping_count": 2
+            }
+          ],
+          "definition_checks": {
+            "PASS": 40,
+            "UNSUPPORTED": 2
+          },
+          "native_checks": {
+            "PASS": 46
+          },
+          "diagnostic_continuation": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          },
+          "overall_status": "REVIEW"
+        },
+        {
+          "case": "terminal_required_003",
+          "phases": [
+            {
+              "phase": "before",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 46,
+              "residue_count": 2,
+              "mapping_count": 2
+            },
+            {
+              "phase": "after",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 46,
+              "residue_count": 2,
+              "mapping_count": 2
+            }
+          ],
+          "definition_checks": {
+            "PASS": 40,
+            "UNSUPPORTED": 2
+          },
+          "native_checks": {
+            "PASS": 46
+          },
+          "diagnostic_continuation": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          },
+          "overall_status": "REVIEW"
+        },
+        {
+          "case": "terminal_absent",
+          "phases": [
+            {
+              "phase": "before",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 23,
+              "residue_count": 1,
+              "mapping_count": 1
+            },
+            {
+              "phase": "after",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 23,
+              "residue_count": 1,
+              "mapping_count": 1
+            }
+          ],
+          "definition_checks": {
+            "PASS": 29,
+            "UNSUPPORTED": 1
+          },
+          "native_checks": {
+            "PASS": 36
+          },
+          "diagnostic_continuation": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          },
+          "overall_status": "REVIEW"
+        },
+        {
+          "case": "linked_required",
+          "phases": [
+            {
+              "phase": "before",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 61,
+              "residue_count": 3,
+              "mapping_count": 3
+            },
+            {
+              "phase": "after",
+              "atoms_unchanged": true,
+              "proxy_families_unchanged": {
+                "angle": true,
+                "bond_asu": true,
+                "bond_simple": true,
+                "chirality": true,
+                "const_dihedral": true,
+                "dihedral": true,
+                "parallelity": true,
+                "planarity": true
+              },
+              "atom_count": 61,
+              "residue_count": 3,
+              "mapping_count": 3
+            }
+          ],
+          "definition_checks": {
+            "PASS": 42,
+            "UNSUPPORTED": 2
+          },
+          "native_checks": {
+            "PASS": 45
+          },
+          "diagnostic_continuation": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          },
+          "overall_status": "REVIEW"
+        }
+      ],
+      "executions": [
+        {
+          "case": "linked_required",
+          "phase": "after-execution",
+          "receipt": "native/linked_required/after/cif-native-j5tlzrcq/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:59.829271+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:41:00.779543+00:00",
+            "elapsed_seconds": 0.949771
+          }
+        },
+        {
+          "case": "linked_required",
+          "phase": "before-execution",
+          "receipt": "native/linked_required/before/cif-native-n8zsskym/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:58.793715+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:40:59.764696+00:00",
+            "elapsed_seconds": 0.97043
+          }
+        },
+        {
+          "case": "terminal_absent",
+          "phase": "after-execution",
+          "receipt": "native/terminal_absent/after/cif-native-iqwjzu_r/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:56.485000+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:40:57.383883+00:00",
+            "elapsed_seconds": 0.898907
+          }
+        },
+        {
+          "case": "terminal_absent",
+          "phase": "before-execution",
+          "receipt": "native/terminal_absent/before/cif-native-9srgka16/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:55.603310+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:40:56.439270+00:00",
+            "elapsed_seconds": 0.835984
+          }
+        },
+        {
+          "case": "terminal_required_002",
+          "phase": "after-execution",
+          "receipt": "native/terminal_required_002/after/cif-native-8oeops4d/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:50.972840+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:40:51.753110+00:00",
+            "elapsed_seconds": 0.780291
+          }
+        },
+        {
+          "case": "terminal_required_002",
+          "phase": "before-execution",
+          "receipt": "native/terminal_required_002/before/cif-native-y4x6isba/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:49.872149+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:40:50.941450+00:00",
+            "elapsed_seconds": 1.069324
+          }
+        },
+        {
+          "case": "terminal_required_003",
+          "phase": "after-execution",
+          "receipt": "native/terminal_required_003/after/cif-native-p8lvq3rr/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:53.643132+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:40:54.524036+00:00",
+            "elapsed_seconds": 0.880923
+          }
+        },
+        {
+          "case": "terminal_required_003",
+          "phase": "before-execution",
+          "receipt": "native/terminal_required_003/before/cif-native-ompna1ii/native_receipt.json",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-30T21:40:52.754311+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-30T21:40:53.592939+00:00",
+            "elapsed_seconds": 0.838652
+          }
+        }
+      ],
+      "execution_count": 11,
+      "complete_interpretations": 10,
+      "refused_before_interpretation": 1,
+      "probe": "Two complete initial native controls established the existing no-copy parameter behavior before the versioned worker was added.",
+      "refusal": {
+        "status": "EXPECTED_REFUSAL",
+        "receipt": "native-refusal/cif-native-gpyvvozs/native_receipt.json",
+        "execution": {
+          "elapsed_seconds": 0.942038,
+          "finished_at": "2026-10-30T21:42:54.393566+00:00",
+          "returncode": 2,
+          "started_at": "2026-10-30T21:42:53.451549+00:00",
+          "status": "FAILED",
+          "timeout_seconds": 120
+        },
+        "error": "UnsupportedNativeAPI: Full monomer inventory requires explicit use_ncs_to_build_restraints=False",
+        "phenix_release": "2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "execution_scope": "ACTUAL_WORKER_EXECUTION; REFUSED_BEFORE_INTERPRETATION; NOT_DRY_RUN",
+        "source_preserved": true,
+        "runner_note": "Initial post-execution assertion expected None instead of the existing NOT_RUN mapping record; corrected against preserved evidence without repeating execution."
+      },
+      "scope": "Complete native executions; not dry-runs. No ReadySet/Coot/optimization/refinement."
+    },
+    "numerical_replay": {
+      "rows": [
+        {
+          "case": "terminal_required_002",
+          "phase": "before",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        },
+        {
+          "case": "terminal_required_002",
+          "phase": "after",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        },
+        {
+          "case": "terminal_required_003",
+          "phase": "before",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        },
+        {
+          "case": "terminal_required_003",
+          "phase": "after",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        },
+        {
+          "case": "terminal_absent",
+          "phase": "before",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        },
+        {
+          "case": "terminal_absent",
+          "phase": "after",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        },
+        {
+          "case": "linked_required",
+          "phase": "before",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        },
+        {
+          "case": "linked_required",
+          "phase": "after",
+          "fixed_energy_snapshots_exact": true,
+          "nonbonded_inventory_exact": true,
+          "nonbonded_replay_exact": true
+        }
+      ],
+      "native_execution": "NOT_RUN",
+      "scope": "Read-only comparison of existing native evidence; no new objective or chemical acceptance threshold."
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "cases": [
+        {
+          "case": "current_linked_required",
+          "native_checks": {
+            "PASS": 45
+          },
+          "definition_checks": {
+            "PASS": 42,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "current_terminal_absent",
+          "native_checks": {
+            "PASS": 36
+          },
+          "definition_checks": {
+            "PASS": 29,
+            "UNSUPPORTED": 1
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "current_terminal_required_002",
+          "native_checks": {
+            "PASS": 46
+          },
+          "definition_checks": {
+            "PASS": 40,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "current_terminal_required_003",
+          "native_checks": {
+            "PASS": 46
+          },
+          "definition_checks": {
+            "PASS": 40,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "legacy_linked_required",
+          "native_checks": {
+            "PASS": 45
+          },
+          "definition_checks": {
+            "PASS": 42,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "legacy_terminal_absent",
+          "native_checks": {
+            "PASS": 36
+          },
+          "definition_checks": {
+            "PASS": 29,
+            "UNSUPPORTED": 1
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "legacy_terminal_required_002",
+          "native_checks": {
+            "PASS": 24,
+            "REVIEW": 3
+          },
+          "definition_checks": {
+            "PASS": 19,
+            "REVIEW": 21,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "legacy_terminal_required_003",
+          "native_checks": {
+            "PASS": 46
+          },
+          "definition_checks": {
+            "PASS": 40,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        }
+      ],
+      "unchanged_files": 392,
+      "forbidden_reads_attempted": 0,
+      "native_execution": "FORBIDDEN",
+      "original_owned_checkout_removed": true,
+      "source": "RELOCATED_CHECKOUT"
+    },
+    "validation_commands": {
+      "initial": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q tests/test_cif_native_monomers.py",
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/138_Cedar_full-monomers-up573aqa/validation/focused/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/138_Cedar_full-monomers-up573aqa/validation/full/pytest.xml"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "native": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c138_start_probe.py; c138_native.py; c138_native_refusal.py (each fresh immutable output)",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c138_replay.py; relocated checkout; original paths/SDK/subprocesses forbidden",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c138-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests scripts/run_tests.py docs/figures/build_cif_doctor_overview.py",
+      "documents": "check_docs.py; JSON parse; byte-exact SVG regeneration and rsvg-convert visual inspection; git diff --check"
+    },
+    "auxiliary": {
+      "compile": "PASS",
+      "default_worker": "BYTE_EXACT",
+      "svg_regeneration": "BYTE_EXACT",
+      "svg_visual": "PASS"
+    },
+    "artifacts": "Code/tests, maintained contracts, editable figure and summary/hash evidence only. Raw models/CIFs, frozen site bundles, captures/logs, all failed attempts and runner scripts remain outside Git.",
+    "limitations": [
+      "Explicit internal Python opt-in only. General multiple-component orchestration, ordinary recovery/adoption/checkpoints and solution-PDF integration remain separate.",
+      "Full-model interpretation may cost more on large repeated assemblies. No installed Phenix code or production NCS refinement setting is changed; unchanged proxy evidence is scoped to these four controls.",
+      "Formal-charge readback remains unavailable; overall REVIEW is retained with diagnostic-only continuation when all other checks pass. Experimental protonation and absolute CIP are not inferred.",
+      "All source-projection, phosphate/end-state, native type/energy, custom-restraint and model identity gates remain mandatory. Complete monomer identities alone do not qualify chemistry.",
+      "Same-chain/two-chain terminal soft edits are synthetic consumption controls, not a newly qualified NARestraints pairing recipe or demonstrated geometry improvement.",
+      "Legacy blocked captures remain blocked. Full-model evidence requires a fresh immutable capture; no copied master identities, migration or in-place repair.",
+      "No ReadySet replacement/execution, Coot execution, optimization, diffraction refinement, generic PNA/ATL construction or live L-FDNA proof. Existing nondefault restraint-potential and PDU numerical limits remain."
+    ],
+    "next": "Compose multiple stored components under one exact ordered model/CIF/PHIL contract: preserve per-component source/consumer ownership, refuse duplicate codes or modification-ID conflicts, and verify all affected and unaffected sites in one full native capture. Then integrate the qualified route with existing preparation/ReadySet and usable fallback, rechecking the final effective bundle under its actual declared consumer policy; keep scientific state choice, generic ports and adoption separate.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/initial-regression.log",
+        "sha256": "23a4e1d51b221be736e70b82b80c9166ac198c141ac4002a46057376a71bdfdf",
+        "size": 18270
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/direct-tests.log",
+        "sha256": "8523602a9d2901d168bb74625102a32eae57a326addbf4d36882522f816c888c",
+        "size": 341
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/new-tests.log",
+        "sha256": "c085d275bb052922a2e14ad9c7bbcdcb849e22a3dd7d318e67132cf5f7750103",
+        "size": 99
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/focused/result.json",
+        "sha256": "25ffa82c9af6c093e8d7ce19be38bdc6db7277cfe87a66d1abe625bc0cc72bc5",
+        "size": 700
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/focused/pytest.log",
+        "sha256": "fdd652a797f92ff1a5eb5d6ecc263c42f054afe1dd3bba581f9b4e6ec8f44501",
+        "size": 5684
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/focused/pytest.xml",
+        "sha256": "6d2573f0046167a758e3e520f862d76fddfc78837323f4ad2e7bedcaf08e1898",
+        "size": 164134
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/focused/source-hashes.json",
+        "sha256": "16ffca76bcd57f094b1731d097b89624b11571d3847485fb562361521c7c6cb4",
+        "size": 54991
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/full/result.json",
+        "sha256": "f7ae07e6942f28098a73c29ecf434bd8cbbeeb644c09edaf026f67ed241a315b",
+        "size": 677
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/full/pytest.log",
+        "sha256": "990e62410e533c72f0d091507092dac6110494be1d5587ae6006f272865cf21d",
+        "size": 10774
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/full/pytest.xml",
+        "sha256": "eb612944fa4af1254bcda57b779b95ad1a63a1fc849fba9e1f6f82e62e20c22f",
+        "size": 1069098
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/validation/full/source-hashes.json",
+        "sha256": "16ffca76bcd57f094b1731d097b89624b11571d3847485fb562361521c7c6cb4",
+        "size": 54991
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native-probe/result.json",
+        "sha256": "8ee0ad0e216ed839f9ef87a4b3ea53f5819d74be58a4525d817b150fb9b294a1",
+        "size": 1333
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native-probe/before-execution.json",
+        "sha256": "9eb67a2a14937062b826ae15588be55fb7a879fcc3dd8baa90384b946705097a",
+        "size": 350
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native-probe/after-execution.json",
+        "sha256": "c206e5475d6fe463c68efca4a59ba3fe5402d6c002b339f9e61d70be6151fcf1",
+        "size": 349
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/result.json",
+        "sha256": "be72100ce433c73c20b01c79773c39e3f87372914c0a431493d7f2acf9c92099",
+        "size": 11210
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/numerical-replay.json",
+        "sha256": "b98912547c5e0095667c6d3a74bee01345d975c9c4a94e2a74ab4e1b6cc6d7b9",
+        "size": 1731
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native-refusal/result.json",
+        "sha256": "e319b59210401399de1b43d2600a3d04fa83b0203a34ed007ebf403cdebe7c95",
+        "size": 821
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/replay/result.json",
+        "sha256": "6ac5f1c9b3ddd6fa84f2ea5afaa23709be4b5710f2217c1a87f715fee5932240",
+        "size": 1995
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/replay/replay.log",
+        "sha256": "4546e3b0e66af21a49d91b50bf582220355b5d80ca5ae062329355b41d917d5c",
+        "size": 1367
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/linked_required/after-execution.json",
+        "sha256": "c09c28aa4d41dcf56fd874f804e03169a360cf93d90e7bd536476d430c6619b2",
+        "size": 360
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/linked_required/before-execution.json",
+        "sha256": "5a5ae0a25e2847da2f2c0d047d0337c66665500154e2da57c5b3811cb6a5b700",
+        "size": 360
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/terminal_absent/after-execution.json",
+        "sha256": "8b7b874038865dd0feccacfd41d4def877d0d735ecfeefb1d094bfcc3f7589e7",
+        "size": 359
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/terminal_absent/before-execution.json",
+        "sha256": "46964ea1477fc1cf9c090c5aba19056f1c446ed7d3ae519a1f994d4fd6331be3",
+        "size": 361
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/terminal_required_002/after-execution.json",
+        "sha256": "28f0528a27e1a14712d8379504bda3a016cd6be5e92b6c60e479fc36882d4b9e",
+        "size": 366
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/terminal_required_002/before-execution.json",
+        "sha256": "671335ef30c01e0130c826a0a7d1bd6d76eb5cda933617d8d1e3b6561964cf6d",
+        "size": 365
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/terminal_required_003/after-execution.json",
+        "sha256": "9e0927ec1110cb248e2af7670a73592b428d257c237cc47fd1c3824894c60130",
+        "size": 366
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "138_Cedar_full-monomers-up573aqa/native/terminal_required_003/before-execution.json",
+        "sha256": "8fc1933888fc87c4a8196cb8311d48c6fa6218a951742cf6ea55ce08f39edc89",
+        "size": 367
+      }
+    ]
   }
 }

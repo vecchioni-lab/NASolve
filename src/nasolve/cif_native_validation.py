@@ -419,6 +419,7 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           energy_inventory: bool = False,
                           atom_name_mapping: bool = False,
                           nonbonded_inventory: bool = False,
+                          full_monomer_inventory: bool = False,
                           gradient_indices: Sequence[int] | None = None) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
@@ -426,11 +427,17 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
     namespace adaptation is performed by its native parser, with every active
     definition's path/value tokens checked and all unused definitions rejected.
     Successful execution remains REVIEW, never chemistry or linkage approval.
+    Full monomer inventory requires linked detail and explicit native PHIL
+    use_ncs_to_build_restraints=False; the worker checks but never sets it.
     """
     if phil_namespace_policy not in PHIL_NAMESPACE_POLICIES:
         raise ValueError("Unsupported native PHIL namespace policy")
     if inventory_detail not in {"basic", "linked"}:
         raise ValueError("Unsupported native inventory detail")
+    if type(full_monomer_inventory) is not bool:
+        raise ValueError("Full monomer inventory must be an explicit boolean")
+    if full_monomer_inventory and inventory_detail != "linked":
+        raise ValueError("Full monomer inventory requires linked native evidence")
     if type(policy_inventory) is not bool:
         raise ValueError("Policy inventory must be an explicit boolean")
     if type(installed_library_only) is not bool:
@@ -511,6 +518,11 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         spec["gradient_indices"] = list(gradient_indices)
         (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
         worker = native_gradient_worker(worker)
+    if full_monomer_inventory:
+        from .cif_native_monomers import native_monomer_worker, POLICY_ID as monomer_policy
+        spec["full_monomer_inventory"] = True
+        (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_monomer_worker(worker)
     (work / "native_worker.py").write_text(worker, encoding="utf-8")
     command = [str(executable), "native_worker.py", "native_spec.json"]
     clock = time.monotonic()
@@ -524,6 +536,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         "dictionary_source_policy": "INSTALLED_LIBRARY_ONLY" if installed_library_only else "EXPLICIT_DICTIONARIES",
         "execution": {"status": "NOT_RUN", "started_at": datetime.now(timezone.utc).isoformat(),
                       "timeout_seconds": timeout_seconds}}
+    if full_monomer_inventory:
+        receipt["full_monomer_inventory_policy"] = monomer_policy
     if atom_name_mapping:
         from .cif_native_atom_mapping import POLICY_ID as mapping_policy
         receipt["atom_name_mapping_policy"] = mapping_policy
@@ -553,6 +567,9 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                         raise ValueError("Native worker omitted requested linked inventory details")
                     if atom_name_mapping and native.get("status") == "REVIEW" and native.get("atom_name_mapping_policy") != mapping_policy:
                         raise ValueError("Native worker omitted requested atom mapping inventory")
+                    if full_monomer_inventory and native.get("status") == "REVIEW":
+                        from .cif_native_monomers import review_full_monomers
+                        review_full_monomers(native)
                     if nonbonded_inventory and native.get("status") == "REVIEW":
                         from .cif_native_nonbonded import review_native_nonbonded
                         review_native_nonbonded(native)

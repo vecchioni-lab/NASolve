@@ -72,7 +72,9 @@
 
 <a id="current-capability-boundary-c136"></a>
 
-## Current capability boundary (C137)
+<a id="current-capability-boundary-c137"></a>
+
+## Current capability boundary (C138)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -86,7 +88,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
 | Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer through both the source guard and stored three-site preparation. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
-| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 additionally qualifies explicit terminal-phosphate preservation and required/absent custom-restraint context in separate installed controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Conventional backbone names and explicit DNA/L-DNA metadata remain required; incomplete native identities after identical-chain copying block qualification. |
+| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Conventional backbone names and explicit DNA/L-DNA metadata remain required; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
@@ -107,6 +109,100 @@ the bounded feature contract. The larger generalizer programme remains separate.
 is performed or authorized by this document. Exact evidence is in the
 [ledger](cif-linked-native-registration-evidence.json); priorities are in the
 [generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
+
+### Design principles retained from the early Cedar work
+
+The original blueprint (`ef83f1b3741f8de2ad074114183ec243ab9b3d2a`), initial
+runtime (`8c181c5d47cd987318c48568f13d93ef6bdfbb87`) and C00–C50 evidence below
+establish the same product boundary as the current engine:
+
+- ReadySet prepares inputs; CIF Doctor checks the exact effective result and
+  attempts bounded, source-preserving recovery. NARestraints owns intended
+  pairing/stacking membership, including contacts a distance heuristic misses.
+- Source identity, connectivity/H/charge/stereo, numerical definitions, native
+  consumption, geometry and diffraction are separate evidence layers. Missing
+  evidence is not chemical damage; successful execution is not scientific approval.
+- Keep a usable result when a later improvement fails. Preserve failed attempts
+  and make a fresh one; never repair history or lower a gate to obtain a pass.
+- Targets come from declared chemistry and qualified dictionaries, not distorted
+  experimental coordinates. Native temporary stereo conventions are not proof
+  that the final molecule inverted. Compare source-relative centres explicitly.
+- Preserve chemically justified terminal phosphate; missing internal OP3 is not
+  permission to add it. Do not silently change protonation to satisfy a generator.
+- Compare geometry under a fixed declared objective. Changed dictionaries need
+  fresh native/numerical checks; a lower score under another objective is not
+  optimization progress. Local derivative corrections require direct evidence.
+
+These principles guide automatic integration. They do not require users to
+author CIFs, choose implementation flags or adjudicate routine technical faults.
+Ask only when scientific intent remains unresolved after available evidence and
+qualified usable fallbacks have been considered. Early receipts retain their
+original scope; current APIs and the support matrix own present capability.
+
+### Complete native monomer identities (C138)
+
+Phenix's restraint-copying optimization can interpret only an NCS master, restore
+the complete atom hierarchy and copy its restraints, while leaving the captured
+monomer mappings incomplete. C137 preserved and blocked one such two-chain
+attempt. C138 uses the existing native full-model interpretation option rather
+than filling the missing identities by analogy.
+
+For the explicit stored-site API, use this internal context:
+
+```python
+native_context = {
+    "policy_id": "cif-explicit-site-native-context-v2",
+    "custom_restraints": "required",  # or explicitly "absent"
+    "monomer_inventory": "full_model",
+}
+```
+
+`prepare_dictionary_sites()` freezes schema-1 `cif-stored-dictionary-sites-v3`
+and creates `prepared/native_interpretation.phil`, containing
+`pdb_interpretation.use_ncs_to_build_restraints = False`. Readback rederives its
+exact bytes. It is the final PHIL input for both before/after captures, after
+user policy and site modifications. Choosing this context explicitly selects
+full-model interpretation even if an earlier PHIL requested copying.
+`read_dictionary_sites()` returns `native_options={"full_monomer_inventory": True}`;
+pass these options and its exact ordered inputs to `inspect_native_bundle()`.
+Linked inventory remains required. Stored-site qualification retains its existing
+native policy and fixed-energy checks; these controls additionally capture and
+independently replay nonbonded evidence.
+
+The maintained worker checks the effective native parameter before interpretation;
+it never changes that parameter itself. A missing/true/automatic value refuses
+the request and preserves the failed attempt. After interpretation it records
+`cif-native-full-monomer-inventory-v1`: all six literal residue identity fields,
+atom/residue/mapping counts and the explicit parameter value. Every represented
+residue must have exactly one matching native monomer mapping. Missing, duplicate,
+extra, inconsistent or unsupported identities fail closed. Readback reconstructs
+the worker and proof, binding them to the request/receipt and captured atoms.
+The existing model, source projection, custom restraint and phosphate checks
+remain mandatory; this proof does not establish chemical correctness by itself.
+
+Four complete Phenix **2.2.1-6174** before/after controls preserve the exact
+captured atoms and all eight restraint families relative to their corresponding
+C137 captures: copied two-chain terminal sites,
+same-chain terminal sites, an isolated terminal phosphate without custom edits,
+and the linked L-DNA/L-FANA case with required edits. The formerly blocked
+two-chain case now has two literal mappings. Fixed energy/gradient snapshots
+and complete recorded nonbonded inventories also match exactly in all eight
+phase comparisons. An actual missing-policy request
+is refused before interpretation. These are complete native executions, not
+dry-runs; no refinement, optimization, ReadySet or Coot execution is claimed.
+The soft terminal edit fixtures establish consumption, not a new pair recipe.
+
+The new context is opt-in. Legacy worker bytes and v1/v2 stored-site reports
+remain unchanged; eight current/legacy cases replay exactly from relocated
+source without original paths or the SDK, retaining the old blocked result.
+New policies require the updated reader, with no migration or rewriting.
+Interpreting every residue may cost more on large repeated assemblies; no
+production refinement/NCS setting is changed. Formal-charge readback remains
+unavailable and preserves REVIEW with diagnostic-only continuation where allowed.
+General multiple-component orchestration and ordinary adoption remain separate.
+Future integration must validate the final effective ReadySet bundle under its
+actual declared consumer policy; a standalone native pass is not inherited
+automatically by a later preparation or refinement.
 
 ### Catalogue coverage census (C105)
 

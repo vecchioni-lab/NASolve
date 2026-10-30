@@ -4,12 +4,17 @@ from math import isfinite
 import json
 
 POLICY_ID='cif-explicit-site-native-context-v1'
+FULL_MODEL_POLICY_ID='cif-explicit-site-native-context-v2'
 
 
 def validate_native_context(context):
-    if (not isinstance(context,dict) or set(context)!={'policy_id','custom_restraints'}
-            or context['policy_id']!=POLICY_ID or not isinstance(context['custom_restraints'],str)
-            or context['custom_restraints'] not in {'required','absent'}):
+    full=isinstance(context,dict) and context.get('policy_id')==FULL_MODEL_POLICY_ID
+    keys={'policy_id','custom_restraints'}|({'monomer_inventory'} if full else set())
+    if (not isinstance(context,dict) or set(context)!=keys
+            or context['policy_id'] not in (POLICY_ID,FULL_MODEL_POLICY_ID)
+            or not isinstance(context['custom_restraints'],str)
+            or context['custom_restraints'] not in {'required','absent'}
+            or (full and context['monomer_inventory']!='full_model')):
         raise ValueError('Require an explicit supported native site/restraint context')
     return dict(context)
 

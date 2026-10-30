@@ -11,8 +11,9 @@ The standard-library generator is the editable layout source. From the checkout:
 python3 docs/figures/build_cif_doctor_overview.py
 ```
 
-The current scope note includes C137's declared chemistry and exact native
-restraint consumption, retaining ReadySet and NARestraints ownership.
+The current scope note includes declared chemistry, exact restraint consumption
+and C138's opt-in complete native monomer identities. It retains ReadySet and
+NARestraints ownership and does not alter production NCS refinement.
 It adds no automatic adoption arrow; the companion contract retains unsupported
 formal-charge readback, source-state and integration limits.
 

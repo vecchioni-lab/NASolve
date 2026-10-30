@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Complete native monomer identities (C138)
+
+- Add an opt-in full-model native capture contract. Use Phenix's existing
+  `use_ncs_to_build_restraints = False` interpretation option to retain actual
+  residue mappings for every chain; never reconstruct identities from a master.
+- Freeze the explicit interpretation policy as the final ordered PHIL input.
+  Require one complete literal monomer identity per interpreted residue and bind
+  the request, maintained worker, receipt and recomputed identity proof.
+- Add native-context v2 and stored-site v3 policies (schema 1). Default worker
+  bytes and earlier site/context policies stay unchanged; existing saved reports
+  replay exactly, including previously blocked attempts. No in-place migration.
+- The four installed before/after controls preserve all recorded atoms and
+  restraint families. This is opt-in diagnostic interpretation, not a change to
+  production NCS refinement, ReadySet, NARestraints or automatic adoption.
+
 ### Explicit native end-state and restraint context (C137)
 
 - Add an opt-in frozen native context for stored site preparations. Preserve
