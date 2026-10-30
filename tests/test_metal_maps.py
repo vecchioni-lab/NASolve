@@ -130,3 +130,11 @@ def test_active_state_hash_covers_scale_coordinate_phase_and_flag_changes():
     for field,value in [('obs',[11.]),('calc',[4+4j]),('hl',[(2.,2.,3.,4.)]),('mask',[.4]),('free',[True])]:
         original=data[field];data[field]=value;assert maps._active_state(f)!=before;data[field]=original
     atom.site[0]+=.001;assert maps._active_state(f)!=before
+
+
+def test_declared_map_wavelength_must_match_dataset(tmp_path):
+    xyz,c,p,raw,n=enabled(tmp_path)
+    n['map_diagnostics']['wavelength_A']=p['metadata']['wavelength_A']
+    assert xyz.audit_result(p,raw,n,raw)['map_diagnostics']['wavelength_A']==p['metadata']['wavelength_A']
+    n['map_diagnostics']['wavelength_A']+=.1
+    with pytest.raises(ValueError):xyz.audit_result(p,raw,n,raw)

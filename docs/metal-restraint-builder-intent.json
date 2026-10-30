@@ -632,6 +632,24 @@
       "model_assisted_phases": true,
       "local_samples_are_independent_atom_counts": false,
       "offline_fourier_recomputation": false,
+      "scientific_acceptance": "NOT_ASSESSED",
+      "explicit_dataset_wavelength_in_new_mtz": true,
+      "legacy_mtz_wavelength": "use_saved_plan_metadata_not_default_map_header"
+    },
+    "fdp_anomalous_map_capture": {
+      "status": "IMPLEMENTED_API_ONLY",
+      "protocol": "metal-fdp-anomalous-map-v1",
+      "option": "capture_anomalous_map",
+      "default": false,
+      "coefficient_labels": [
+        "ANOM",
+        "PHANOM"
+      ],
+      "source": "completed_native_fdp",
+      "phase_source": "completed_Fmodel_Bijvoet_average",
+      "work_pair_policy": "exclude_if_either_mate_is_free",
+      "missing_mates": "omit",
+      "refit_or_rescale": false,
       "scientific_acceptance": "NOT_ASSESSED"
     }
   },
@@ -736,7 +754,7 @@
         "labels_read_from_native_metadata": true,
         "anomalous_amplitude_phase_pair_is_one_map": true,
         "missing_map": "unavailable",
-        "native_anomalous_capture": "PENDING"
+        "native_anomalous_capture": "IMPLEMENTED_OPT_IN_API"
       }
     },
     "response_plot": {

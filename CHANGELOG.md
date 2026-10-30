@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retain anomalous maps from frozen metal diagnostics
+
+- Add API-only `capture_anomalous_map=True` to frozen-fdp planning/execution.
+  Export ANOM/PHANOM from the completed native fit with explicit model-phase,
+  observed Bijvoet-difference and work-pair policy. Either free mate excludes
+  its pair from the map; missing mates are omitted. Refinement inputs stay intact.
+- Verify fitted-state invariance, pair membership, coefficient magnitude/MTZ
+  readback, labels, local samples and artifact checksums. No map score selects
+  a checkpoint or supplies an independent atom count.
+- Record optional `metal-fdp-anomalous-map-v1` evidence in schema-1 fdp bundles.
+  Default plans/results are unchanged; new worker fingerprints require current
+  seeds for new scan execution. Old bundles remain replayable without migration.
+- Write the actual dataset wavelength into new ordinary and anomalous map MTZs.
+  Earlier ordinary map files retain their library-default 1-Angstrom header;
+  use their saved plan metadata for wavelength, not that legacy map header.
+  No old artifact is rewritten. Map visualization and native metal Doctor
+  integration remain planned; generated scientific data stay out of Git.
+
 ### Capture optional maps from completed metal XYZ refinements
 
 - Add API-only `capture_maps=True` to XYZ planning/execution. Export compact

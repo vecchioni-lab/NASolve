@@ -1400,6 +1400,9 @@ The API-only XYZ step can retain [maps from the completed native fit](docs/metal
 with `capture_maps=True`: compact weighted coefficients, exact trial provenance,
 local samples and R-statistic context. Map overlays and the metal-to-Refine-Doctor
 execution bridge remain planned; no solution is selected by these diagnostics.
+Frozen-fdp trials can likewise retain [anomalous map coefficients](docs/metal-anomalous-doctor.md#implemented-frozen-fdp-anomalous-map-capture)
+with API-only `capture_anomalous_map=True`, preserving the fitted state and
+recording the explicit work-pair and model-phase policy.
 
 The API-only XYZ step also supports [explicit geometry/data-weight probes](docs/metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls)
 through `xyz_weight_scale`. Each immutable sibling records native weight

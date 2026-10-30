@@ -106,6 +106,9 @@ def run(filename):
                         r_work=r.fmodel.r_work(),r_free=r.fmodel.r_free(),convergence='NOT_INDEPENDENTLY_ASSESSED')
             from fit_diagnostics import capture
             result['fit_diagnostics']=capture(r.fmodel)
+            if 'anomalous_map_capture' in plan:
+                from anomalous_maps import capture as capture_anomalous
+                result['anomalous_map']=capture_anomalous(r.fmodel,result,plan['groups'],plan['anomalous_map_capture'],plan['metadata']['wavelength_A'])
             Path('native-result.json.gz').write_bytes(gzip.compress(canonical(result).encode(),mtime=0))
             Path('final.pdb').write_text(r.model.model_as_pdb(output_cs=True))
             Path('effective-final.phil').write_text(r.master_params.format(python_object=r.iparams).as_str())

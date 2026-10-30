@@ -12,6 +12,79 @@ sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
 
+## Implemented frozen-fdp anomalous map capture
+
+Use API-only `capture_anomalous_map=True` in `metal.fdp.make_plan` or `run_fdp`
+to retain an anomalous Fourier map from the **active completed frozen-fdp fit**.
+The default is `False`; the option is a strict boolean and does not change the
+refinement parameters. XYZ, B, Q and f-prime remain frozen, and export leaves
+fitted f-double-prime, scales and native R factors unchanged. Full fitted-state
+hashes before/after enforce that separation.
+
+**Methods.** Phenix 2.2.1-6174 forms observed `DANO = F(+) - F(-)`, transfers
+phases from the completed Fmodel averaged over Bijvoet mates, and divides the
+complex coefficients by `2i`. This is an observed anomalous-difference Fourier,
+not a per-atom f-double-prime map or an independent phase solution. External HL
+restraints are absent from this frozen step. The native anomalous export returns
+before its generic Free-R filter, so NASolve explicitly removes a pair if
+**either mate is free**. A missing mate supplies no coefficient. Every retained
+index must have both source observations and work flags. Native pair indices,
+excluded-pair count, complex MTZ readback and the `abs(DANO)/2` magnitude check
+are retained. The source observations, flags and native fit are never filtered
+or modified by this display policy.
+
+One `map-anomalous.mtz` stores **ANOM/PHANOM** as an amplitude/phase pair with
+the actual dataset wavelength. Missing reflections are not filled; sharpening
+and extra isotropization are disabled. Whole-cell sigma normalization and the
+same 1.5-Angstrom/123-point local sampling as XYZ maps are declared. Samples
+cover explicitly fitted metal nodes; the coefficient map covers the cell,
+including signal associated with fixed background scatterers. No universal
+contour cutoff, local peak ranking or automatic count is introduced.
+
+```mermaid
+flowchart LR
+    F[Completed frozen-fdp fit] --> P[Observed Bijvoet differences and model phases]
+    P --> W[Keep pairs with both mates in the work set]
+    W --> M[ANOM and PHANOM MTZ; explicit wavelength]
+    M --> A[Readback and unchanged fitted-state audit]
+    A --> B[Immutable fdp bundle and local map samples]
+    B -. planned .-> V[Anomalous viewer toggle]
+    B --> R[Human review alongside fdp and geometry]
+```
+
+*Figure: anomalous coefficient capture is implemented. Viewer contours and
+scientific decision logic remain separate integration work.*
+
+Opted-in plans add `options.capture_anomalous_map` and
+`anomalous_map_capture`; native evidence and results add `anomalous_map` under
+protocol `metal-fdp-anomalous-map-v1`, inside the existing schema-1 fdp bundle.
+Offline verification binds the saved map to the endpoint, policy, source pairs,
+site identities and exact bytes. It does not independently repeat native
+Bijvoet matching, phase transfer or Fourier interpolation. Old bundles need no
+migration. The frozen worker fingerprint changes: existing scans replay, but
+new scan points require a seed made with the current worker. Explicit map
+capture propagates when a scan reuses that seed's options.
+
+Two complete native repetitions of the four-site cluster branches reproduced
+all earlier frozen-fdp result values, final PDB bytes and native PHIL exactly.
+Each map is 26100 bytes with 1161 work-pair coefficients; 64 free pairs are
+excluded. Mixed-sign individual f-double-prime responses remain unresolved.
+These map captures do not establish four resolved atoms or an accepted solution.
+A complete FT_Hg control also reproduces every prior result field and native
+PHIL, adding a 21420-byte anomalous map with 927 work pairs and 50 excluded free
+pairs. Its approximately 2.73-sigma sample at Hg and unchanged f-double-prime
+13.76 versus reference 8.68 remain review evidence, not automatic site addition.
+
+**Wavelength compatibility.** Both map exporters now write the dataset
+wavelength explicitly, and new XYZ evidence records it. The initial XYZ map
+exports used the native library's default 1.0-Angstrom MTZ header. Their saved
+plan metadata contains the actual wavelength and remains the source for
+wavelength-dependent scattering calculations; the legacy map header must not
+be used for that purpose. Old files remain immutable and replayable. A complete
+XYZ repeat and native MTZ readback confirm the new 0.97935-Angstrom headers
+without changing the refined endpoint or PHIL. This metadata correction does
+not recalculate any earlier f-double-prime result.
+
 ## Implemented completed-state XYZ map capture
 
 Use the API-only `capture_maps=True` argument to `nasolve.metal.xyz.run_xyz`
@@ -69,7 +142,8 @@ all earlier coordinates, B, R factors, final PDB bytes and native PHIL exactly.
 Three starting/weight cases produced two 26900-byte MTZ files each, with 1201
 work coefficients per map. Full native state hashes remained unchanged.
 Model-assisted positive density at proposed metal positions is not independent
-support for four sites. Anomalous and omit/LLG capture remain separate work.
+support for four sites. Frozen-fdp anomalous capture is described above;
+omit/LLG capture remains separate work.
 
 ### Numerical context and Refine Doctor
 
@@ -1441,7 +1515,7 @@ is a later explicit protocol, not implicit merging of independently refined rows
 
 **Capture partly implemented; visualization planned.** Opt-in XYZ export now
 retains [completed-state ordinary coefficients](#implemented-completed-state-xyz-map-capture).
-The frozen-fdp worker does not yet retain anomalous maps. Planned viewer layers
+Frozen-fdp export also retains [anomalous coefficients](#implemented-frozen-fdp-anomalous-map-capture). Planned viewer layers
 include ordinary 2mFo-DFc, signed mFo-DFc, anomalous difference/LLG
 and optional omit-map layers. Display toggles affect visualization only;
 including a map metric in ranking is a separate explicit experiment policy.

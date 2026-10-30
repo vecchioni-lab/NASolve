@@ -32,10 +32,11 @@ def _integer(value, low, high, name):
 
 def make_plan(raw, sites, metadata, references, *, fit_nodes, occupancies=None,
               cycles=3, minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0,
-              metal_b_policy=None, preview=None, resources=(), metal_b_environments=None):
+              metal_b_policy=None, preview=None, resources=(), metal_b_environments=None, capture_anomalous_map=False):
     """Prepare optional environmental B, then exact groups and declared metal Q."""
     if metal_b_environments is not None and metal_b_policy is None:
         raise RecipeError('Explicit B environments require a metal B policy')
+    if type(capture_anomalous_map) is not bool:raise RecipeError('Require a boolean anomalous-map option')
     calibration = None
     if metal_b_policy is not None:
         calibration, raw = calibrate_b(raw, sites, preview, fit_nodes, metal_b_policy, resources=resources, environments=metal_b_environments)
@@ -124,6 +125,10 @@ def make_plan(raw, sites, metadata, references, *, fit_nodes, occupancies=None,
                 tolerances=TOLERANCES,background_policy='fixed_Sasaki_reference_for_every_remaining_atom',
                 nuisance_policy='profile_bulk_solvent_and_overall_scales_allow_only_uniform_F_sigma_rescaling_without_atomic_ADP_backtrace',
                 phase_policy='model_phases_without_external_phase_restraints',input_model_sha256=hashlib.sha256(model).hexdigest())
+    if capture_anomalous_map:
+        from .anomalous_maps import request
+        options['capture_anomalous_map']=True
+        plan['anomalous_map_capture']=request()
     if calibration is not None:
         plan['b_calibration'] = calibration
     return plan, model
@@ -278,6 +283,12 @@ def audit_result(plan, model, native):
     if 'fit_diagnostics' in native:
         from .fit_diagnostics import summarize
         result['fit_diagnostics']=summarize(native['fit_diagnostics'],native['reflection_after'],native['r_work'],native['r_free'])
+    if ('anomalous_map_capture' in plan)!=('anomalous_map' in native):
+        raise RecipeError('Requested anomalous map missing or unexpected')
+    if 'anomalous_map_capture' in plan:
+        from .anomalous_maps import request, summarize as summarize_map
+        if canonical(plan['anomalous_map_capture'])!=canonical(request()):raise RecipeError('Anomalous map policy changed')
+        result['anomalous_map']=summarize_map(native['anomalous_map'],native,plan['groups'],plan['metadata']['wavelength_A'])
     return result
 
 
@@ -345,7 +356,7 @@ def _input_bundle(run, geometry):
 
 
 def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
-            minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0, timeout=240, metal_b_policy=None, metal_b_environments=None):
+            minimizer_cycles=3, max_iterations=20, start_fdp=0., free_r_test_value=0, timeout=240, metal_b_policy=None, metal_b_environments=None, capture_anomalous_map=False):
     """Fit a verified geometry/XYZ endpoint; failed attempts retain their directory."""
     run=Path(run).expanduser().resolve();_integer(timeout,10,600,'timeout seconds')
     source=_input_bundle(run,geometry)
@@ -360,7 +371,7 @@ def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
         executable=native.executables['phenix.python'],version=native.version,environment=native.environment)
     plan,model=make_plan(raw,parent['sites'],metadata,references,fit_nodes=fit_nodes,occupancies=occupancies,cycles=cycles,
         minimizer_cycles=minimizer_cycles,max_iterations=max_iterations,start_fdp=start_fdp,free_r_test_value=free_r_test_value,
-        metal_b_policy=metal_b_policy,preview=source['preview'],resources=resources,metal_b_environments=metal_b_environments)
+        metal_b_policy=metal_b_policy,preview=source['preview'],resources=resources,metal_b_environments=metal_b_environments,capture_anomalous_map=capture_anomalous_map)
     phil,args=parameters(plan,[name for name,_ in resources])
     directory=_allocate(run)
     try:
@@ -375,6 +386,9 @@ def run_fdp(run, geometry, *, native, fit_nodes, occupancies=None, cycles=3,
         if not audit.valid:raise RecipeError('Original Free-R audit failed; see retained free-r.json')
         evidence=_native(directory,native,timeout)
         result=audit_result(plan,model,evidence)
+        if 'anomalous_map' in evidence:
+            from .anomalous_maps import verify_file
+            verify_file(evidence['anomalous_map'],directory)
         # Audit serialization independently; full-precision evidence remains primary.
         before=parse_pdb(model);after=parse_pdb((directory/'final.pdb').read_bytes())
         if before.snapshot.atoms!=after.snapshot.atoms or canonical(before.to_dict()['atomic_state'])!=canonical(after.to_dict()['atomic_state']):
@@ -446,6 +460,9 @@ def verify_fdp(run, directory):
         if any((directory/name).read_bytes()!=data for name,data in expected.items()):raise RecipeError('Trial inputs differ from derivation replay')
         native=_json(gzip.decompress((directory/'native-result.json.gz').read_bytes()))
         result=audit_result(replay,model,native)
+        if 'anomalous_map' in native:
+            from .anomalous_maps import verify_file
+            verify_file(native['anomalous_map'],directory)
         if (directory/'result.json').read_bytes()!=_json_bytes(result):raise RecipeError('Saved result differs from freeze audit')
         before=parse_pdb(model);after=parse_pdb((directory/'final.pdb').read_bytes())
         if before.snapshot.atoms!=after.snapshot.atoms or canonical(before.to_dict()['atomic_state'])!=canonical(after.to_dict()['atomic_state']):

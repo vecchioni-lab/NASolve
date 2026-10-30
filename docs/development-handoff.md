@@ -13,6 +13,127 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Frozen-fdp anomalous maps and explicit map wavelengths 2026-10-30
+
+**Before and after.** Frozen-fdp fits previously retained fitted scattering and
+R diagnostics without anomalous map coefficients. API-only `make_plan` and
+`run_fdp` now accept strict-boolean `capture_anomalous_map=True`. The completion
+callback exports observed Bijvoet differences with phases from the active
+completed Fmodel's Bijvoet average, divided by `2i`. The default is false;
+refinement PHIL, fixed XYZ/B/Q/f-prime, fitted f-double-prime and scales remain
+unchanged. See the [descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-frozen-fdp-anomalous-map-capture).
+
+Phenix's anomalous-map path returns before its generic Free-R exclusion. The
+adapter therefore explicitly excludes a pair if either mate is free; missing
+mates cannot supply a coefficient. No observations or flags are removed from
+the native fit. The single MTZ uses ANOM/PHANOM, and the report records source
+pairs, actual labels, work-pair count, native fitted-state invariance, coefficient
+magnitude/readback, whole-cell sigma normalization and local metal samples.
+Offline replay validates saved evidence and bytes; it does not independently
+repeat native Bijvoet matching, phase transfer or Fourier interpolation. These
+model-phased maps are not independent validation or per-atom f-double-prime maps.
+
+**Native evidence.** Two complete frozen-fdp repetitions used **Phenix
+2.2.1-6174**, 10 macro cycles, five minimizer cycles and maximum 100 iterations,
+with 240-s bounds. They reuse the exact earlier refined endpoints, base-only B
+preparation and all original inputs. Core results, input/final PDB bytes and
+native PHIL reproduce `fdp_004` and `fdp_005` exactly. Each 26100-byte map has
+1161 work-pair coefficients and excludes 64 free pairs. The maximum difference
+from `abs(DANO)/2` is 4.55e-13; MTZ readback errors are retained with their
+relative tolerance. Full fitted-state hashes before/after export agree.
+
+Rwork/Rfree remains 0.317622/0.772092 and 0.321412/0.774258. Individual fitted
+responses still have mixed signs. **No geometry, metal count or checkpoint is
+accepted.** Existing Refine Doctor remains the intended R-statistic triage
+engine; its exact metal checkpoint/execution bridge is still pending. The prior
+read-only Doctor assessment is not promoted to a native Doctor execution.
+
+**Wavelength correction.** Initial ordinary-map exports inherited the native
+library's 1.0-Angstrom MTZ header default. Both exporters now pass the actual
+dataset wavelength explicitly. New XYZ evidence also records it and checks it
+against the saved plan. Older files remain immutable and replayable; their
+plan metadata, not the legacy map header, is authoritative for scattering
+calculations. One complete three-cycle XYZ repetition reproduces the earlier
+endpoint, PDB and PHIL while exporting the corrected metadata. Read-only native
+MTZ inspection confirms all four new map headers equal the exact float32
+representation of 0.97935 Angstrom (absolute roundoff 2.92e-8 Angstrom). An initial
+exact-decimal assertion rejected that representation; the helper and inspection
+are preserved, and the corrected check uses the exact float32 conversion. The
+legacy header remains 1.0. No earlier fdp result is recalculated or overwritten.
+All four refinement probes, including the Hg control below, were
+**complete executions, not dry runs**.
+**Coot was not invoked.**
+
+One additional complete FT_Hg frozen-fdp control uses 10 macro cycles, five
+minimizer cycles, maximum 100 iterations and starting f-double-prime 25, with
+a 240-s bound. Every legacy result field, input/final PDB and native PHIL
+reproduces the prior trial exactly. Its new fields are `fit_diagnostics` and
+`anomalous_map`; the initial comparison helper incorrectly expected the older
+trial to have fit diagnostics and rejected the comparison. A separate offline
+replay qualifies all legacy fields without repeating the fit; the initial
+helper/receipt remain preserved. The map has 927 work pairs, excludes 50 free
+pairs and occupies 21420 bytes. Native readback confirms ANOM/PHANOM and the
+float32 representation of 0.92009 Angstrom. The Hg center is 2.734 sigma;
+f-double-prime remains 13.762808 versus reference 8.678570, with Rwork/Rfree
+0.319370/0.326036. This is a reproducibility control, not an accepted solution
+or automatic evidence for adding another metal.
+
+**Files, schema and compatibility.** Added `metal/anomalous_maps.py` and
+`test_metal_anomalous_maps.py`; changed `metal/fdp.py`, `_fdp_native.py`,
+`map_diagnostics.py`, `xyz.py`, `_xyz_native.py` and `test_metal_maps.py`.
+Updated README, documentation map, architecture, metal-screen/anomalous methods,
+intent, changelog and this handoff. Optional `anomalous_map_capture` plans and
+`anomalous_map` evidence/results use `metal-fdp-anomalous-map-v1` inside schema-1
+fdp bundles. The new relative map enters the manifest. New XYZ wavelength
+metadata is additive; old trials need no migration. Both native worker
+fingerprints change. New scan execution requires a current seed; old scans
+remain replayable. Explicit map capture follows a seed's options into its scan.
+Count, comparison, scan, chemistry, Refine Doctor, CLI and GUI code are unchanged.
+
+**Validation.** Initial collection failed before the anomalous module existed.
+Regression coverage exercises defaults/unchanged PHIL, strict options, missing
+and unexpected evidence, endpoint/state identity, either-free and missing mates,
+repeated pairs, samples, labels, wavelength, coefficient/readback bounds,
+rehashed file tampering and relocated source/data after old paths disappear.
+The exact focused command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_anomalous_maps.py tests/test_metal_maps.py tests/test_metal_fdp.py tests/test_metal_xyz.py`:
+**144 passed in 10.18 s**. The complete command, using the same interpreter
+and environment, `python -B -m pytest -q -p no:cacheprovider`, passes
+**6221 tests and 276 subtests in 704.27 s**, exit 0. All **468** inventoried
+source/test/asset files remain unchanged; no source/test edit follows this
+validation. Eight Python 3.10 grammar checks, 108 local documentation links,
+JSON and whitespace pass. Existing process/socket integration tests ran with
+OS permissions.
+
+Offline replay passes **38** old/new hypotheses, XYZ endpoints, fdp/count
+reports, scan and comparison bundles, plus the new Hg control (**39 total**).
+All **401** earlier files in the Ag4 run, **298** prior FT_Hg run files, the
+earlier **718**-file cluster baseline, **778** earlier rehearsal files and
+original dataset inputs remain unchanged.
+No failed attempt is removed. Private receipts stay under ignored local
+`branch-artifacts/Alder/anomalous-maps-20261030-01/`. Private commands use the
+everyday checkout's `.venv/bin/python -B` and `PYTHONDONTWRITEBYTECODE=1`:
+`A34_native.py`, `A34_xyz_wavelength.py`, `A34_mtz_readback_setup.py` (initial
+strict assertion), `A34_mtz_readback_inspect.py`, `A34_final_replay.py`,
+`A34_hg_control.py` / `A34_hg_replay.py`, `A34_full_tests.py` and
+`A34_doc_checks.py`, under `branch-artifacts/Alder/runners/`.
+Earlier shared-helper provenance remains available in commit `c014904` and its
+private delivered-source archive. The existing run adds immutable `fdp_006`,
+`fdp_007` and `xyz_012`; FT_Hg adds its own `fdp_006`. The five new MTZs total
+127420 bytes. Only source/tests/docs
+go to Git. No scientific maps, models, MTZs, test inputs, manuscript data or
+private runners are uploaded, committed or pruned.
+
+**Next boundary.** Continue current Alder, based on `c014904`. Connect matched
+ordinary/anomalous map bundles to the planned viewer toggles, and qualify the
+exact metal endpoint/selector/restraint/phase bridge into Refine Doctor before
+native triage. Preserve each branch and rederive B after geometry changes.
+Scientific candidate qualification, map interpretation, convergence, alternate
+coordination families, special-position multiplicity, six-site construction and
+campaign execution remain open. The existing wavelength/cell context question
+concerns the original datasets/reference, distinct from the now-corrected MTZ
+export header. Everyday Pine and separate Cedar work remain untouched.
+
 ## Completed-state XYZ maps and refinement-triage boundary 2026-10-30
 
 **Before and after.** Map evaluation previously required a private endpoint

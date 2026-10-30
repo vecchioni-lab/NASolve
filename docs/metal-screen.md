@@ -167,6 +167,10 @@ This preserves fitted state and adds numerical context. Cases above the Rwork
 0.30 target, inverted Rwork/Rfree or otherwise concerning statistics belong in
 Refine Doctor triage. The metal-to-registered-checkpoint bridge is planned and
 must preserve the exact metal, restraint, phase and scattering declaration.
+After environmental B preparation and frozen-fdp fitting, optional
+`capture_anomalous_map=True` retains [anomalous coefficients from that endpoint](metal-anomalous-doctor.md#implemented-frozen-fdp-anomalous-map-capture).
+Treat ordinary and anomalous maps as distinct, explicitly phased evidence tied
+to their own immutable trials; do not substitute a map peak for an atom count.
 
 The native target is **MLHL with merged Bijvoet observations**. Phenix
 **2.2.1-6174** rejects MLHL combined with nonzero anomalous scattering in the

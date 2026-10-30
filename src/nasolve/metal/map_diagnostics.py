@@ -68,11 +68,13 @@ def _offsets():
             if i*i+j*j+k*k <= 9]
 
 
-def summarize(evidence, native, sites):
+def summarize(evidence, native, sites, wavelength_A=None):
     if (evidence['protocol'] != PROTOCOL or _canonical(evidence['policy']) != _canonical(request())
             or evidence['endpoint_sha256'] != endpoint_digest(native)
             or _sha(evidence['active_state_before']) != _sha(evidence['active_state_after'])):
         raise ValueError('Map policy, endpoint or active native state changed')
+    if 'wavelength_A' in evidence and (_number(evidence['wavelength_A'])<=0 or evidence['wavelength_A']!=wavelength_A):
+        raise ValueError('Map wavelength differs from dataset metadata')
     _sha(evidence['implementation_sha256'])
     sources=evidence['native_source_hashes']
     if set(sources) != {'map_tools','miller','mtz'}:
@@ -113,12 +115,14 @@ def summarize(evidence, native, sites):
             if not low <= _number(sample['center_sigma']) <= high or not low <= _number(sample['sphere_mean_sigma']) <= high:
                 raise ValueError('Inconsistent local map samples')
         result.append({k:v for k,v in row.items() if k != 'coefficient_indices'})
-    return dict(protocol=PROTOCOL, source='completed_native_xyz', policy=request(),
+    report = dict(protocol=PROTOCOL, source='completed_native_xyz', policy=request(),
                 endpoint_sha256=evidence['endpoint_sha256'], native_state_unchanged=True,
                 implementation_sha256=evidence['implementation_sha256'], native_source_hashes=sources,
                 maps=result, fit_context=fit_context(native['r_work'],native['r_free']),
                 scientific_acceptance='NOT_ASSESSED', automatic_checkpoint_selection=False,
                 limitation='Model-assisted map samples are not independent validation, resolved atom counts or an automatic ranking')
+    if 'wavelength_A' in evidence:report['wavelength_A']=evidence['wavelength_A']
+    return report
 
 
 def verify_files(evidence, directory):
@@ -145,7 +149,7 @@ def _active_state(fmodel):
         k_masks=[list(k) for k in fmodel.k_masks()],r_work=fmodel.r_work(),r_free=fmodel.r_free()))
 
 
-def capture(fmodel, native, sites, policy):
+def capture(fmodel, native, sites, policy, wavelength_A):
     """Called once in get_results, after a complete fit; never refit or rescale."""
     from cctbx.array_family import flex
     from cctbx import miller
@@ -162,7 +166,7 @@ def capture(fmodel, native, sites, policy):
                                       fill_missing=False,isotropize=True,sharp=False)
         path=Path(filename)
         if path.exists():raise ValueError('Refuse to overwrite map artifact')
-        coeff.as_mtz_dataset(column_root_label=label).mtz_object().write(filename)
+        coeff.as_mtz_dataset(column_root_label=label,wavelength=wavelength_A).mtz_object().write(filename)
         restored=reflection_file_reader.any_reflection_file(filename).as_miller_arrays()
         if len(restored) != 1 or list(restored[0].indices()) != list(coeff.indices()):
             raise ValueError('Native map MTZ inventory/readback changed')
@@ -182,10 +186,10 @@ def capture(fmodel, native, sites, policy):
             column_labels=restored[0].info().labels,
             coefficient_indices=sorted(list(h) for h in coeff.indices()),coefficient_count=coeff.size(),
             max_abs_coefficient=maximum,readback_max_complex_error=error,grid=list(grid.all()),sites=samples))
-    evidence=dict(protocol=PROTOCOL,policy=request(),endpoint_sha256=endpoint_digest(native),
+    evidence=dict(protocol=PROTOCOL,policy=request(),wavelength_A=wavelength_A,endpoint_sha256=endpoint_digest(native),
         active_state_before=before,active_state_after=_active_state(fmodel),
         implementation_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         native_source_hashes={name:hashlib.sha256(Path(module.__file__).read_bytes()).hexdigest()
             for name,module in [('map_tools',map_tools),('miller',miller),('mtz',mtz)]},maps=rows)
-    summarize(evidence,native,sites);verify_files(evidence,Path.cwd())
+    summarize(evidence,native,sites,wavelength_A);verify_files(evidence,Path.cwd())
     return evidence

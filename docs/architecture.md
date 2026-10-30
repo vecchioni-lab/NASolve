@@ -1467,7 +1467,18 @@ The report mirrors the Rwork < 0.30 and Rwork < Rfree conditions without grantin
 acceptance. Refine Doctor remains the triage authority; its native metal adapter
 needs a registered checkpoint bridge with exact metal selectors, restraint/phase
 lineage and scattering policy. No Doctor native execution or automatic checkpoint
-selection is introduced. Map visualization and anomalous-map capture remain planned.
+selection is introduced. Map visualization remains planned.
+
+Frozen-fdp `capture_anomalous_map=True` adds `metal-fdp-anomalous-map-v1`
+evidence/results and one relative ANOM/PHANOM MTZ. Capture uses observed Bijvoet
+differences and phases from the completed Fmodel's Bijvoet average. Explicit
+pair filtering excludes either-free pairs before export; missing mates cannot
+supply coefficients. Full fitted state remains unchanged, and maps are not
+independent validation. See the [anomalous-map methods](metal-anomalous-doctor.md#implemented-frozen-fdp-anomalous-map-capture).
+Both exporters now write dataset wavelength explicitly. Earlier weighted-map
+headers may hold the library default; saved plan metadata remains authoritative.
+No old artifact is rewritten. New frozen-worker fingerprints require a current
+seed for execution of new scan points; prior scan replay remains unchanged.
 
 The API-only XYZ `xyz_weight_scale` option adds explicit bounded native weight
 controls to schema-1 plans. Omission retains legacy bytes; explicit controls

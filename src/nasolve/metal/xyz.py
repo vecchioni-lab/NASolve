@@ -230,7 +230,7 @@ def audit_result(plan, model, native, final_model):
     if 'map_capture' in plan:
         from .map_diagnostics import request, summarize as summarize_maps
         if plan['map_capture']!=request():raise RecipeError('Map capture policy changed')
-        result['map_diagnostics']=summarize_maps(native['map_diagnostics'],native,plan['sites'])
+        result['map_diagnostics']=summarize_maps(native['map_diagnostics'],native,plan['sites'],plan['metadata']['wavelength_A'])
     identity = list(range(len(keys)))
     if native_order != identity or serialized_order != identity:
         result['atom_order_mapping'] = dict(input_to_native=native_order, input_to_serialized=serialized_order,
