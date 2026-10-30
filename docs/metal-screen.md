@@ -172,6 +172,12 @@ After environmental B preparation and frozen-fdp fitting, optional
 Treat ordinary and anomalous maps as distinct, explicitly phased evidence tied
 to their own immutable trials; do not substitute a map peak for an atom count.
 
+Use the API-only [grouped candidate review](metal-anomalous-doctor.md#implemented-grouped-reviews-across-geometry-branches)
+to inspect several completed XYZ/fdp branches together. It keeps a snapshot's
+metal sites grouped, exposes differing recipe/weight/B assumptions and retains
+separate stage-specific R statistics. It neither chooses a geometry nor treats
+an anomalous response ratio as automatic permission to add a metal.
+
 The native target is **MLHL with merged Bijvoet observations**. Phenix
 **2.2.1-6174** rejects MLHL combined with nonzero anomalous scattering in the
 attempted geometry protocol. Consequently this separate step fixes f-prime at

@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare complete metal candidates across geometry branches
+
+- Add API-only grouped reviews of 2–32 verified native-XYZ/frozen-fdp endpoints.
+  Keep all fitted sites from a snapshot together with Q, B, f-double-prime,
+  expected values, signed response ratios and explicit B/environment provenance.
+- Retain separate geometry/anomalous R context, recipe residuals and available
+  source-bound maps. Require shared observations, flags, phases and native
+  protocols; disclose changed candidate assumptions without ranking a winner.
+- Add immutable schema-1 `metal-candidate-review-v1` bundles with offline replay
+  and relocation checks. Matched-geometry sensitivity, native workers, scan
+  seeds, previous artifacts and checkpoint selection remain unchanged.
+- Refine Doctor execution, convergence/count acceptance and GUI integration
+  remain separate work. Generated scientific evidence stays local.
+
 ### Retain anomalous maps from frozen metal diagnostics
 
 - Add API-only `capture_anomalous_map=True` to frozen-fdp planning/execution.

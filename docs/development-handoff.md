@@ -13,6 +13,133 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Grouped candidate reviews and geometry/B comparisons 2026-10-30
+
+**Before and after.** The existing matched-fdp comparison correctly rejects
+changes of geometry or B preparation. A separate API-only
+`metal.candidate_review.build_review(run, trials)` now groups 2–32 verified
+native-XYZ/fdp candidates on the same observations, flags, phase source and
+native protocol. Each entry holds all fitted sites from one snapshot, separate
+geometry/anomalous R context, recipe residuals, B provenance and optional maps.
+`verify_review` regenerates the saved report offline. No native worker, strict
+matched comparison, occupancy scan or checkpoint policy changes. See the
+[descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-grouped-reviews-across-geometry-branches).
+
+**Native comparison.** Twelve complete executions used **Phenix 2.2.1-6174**:
+five XYZ/ADP fits and seven frozen-fdp fits, each bounded to 240 seconds.
+These were **not dry runs**. **Coot was not invoked.** Both three-cycle controls
+reproduce all earlier core result fields and final PDB bytes exactly. Inputs,
+phases and Q=1 stay fixed across each dataset's comparison. f-prime remains
+fixed throughout; geometry uses the existing MLHL/merged-observation policy,
+then environmental B is derived from that branch's refined bases/donors before
+frozen XYZ/B/Q/f-prime anomalous fitting. Frozen fits use ten macro cycles,
+five minimizer cycles and maximum 100 iterations; Hg starts at f-double-prime
+25 and Ag at zero. Longer XYZ probes use ten cycles from the same hypothesis,
+not a continuation from the three-cycle endpoint.
+
+| Case and condition | XYZ Rwork / Rfree | Frozen-fdp Rwork / Rfree | Applied metal B (A²) | f-double-prime / reference |
+|---|---|---|---|---|
+| Hg, 3 cycles, base mean | .3146 / .3380 | .3194 / .3260 | 81.57 | 1.586 |
+| Hg, 10 cycles, base mean | .2778 / .2994 | .3122 / .3138 | 79.86 | 1.362 |
+| Hg, 10 cycles, donor mean | .2778 / .2994 | .3128 / .3163 | 81.13 | 1.358 |
+| Hg, 10 cycles, stronger relative geometry, base mean | .3047 / .3415 | .3331 / .3682 | 83.85 | 1.427 |
+| Four Ag, 3 cycles, base mean | .3436 / .9334 | .3214 / .7743 | 212.42 shared | -2.125, 1.745, 1.931, -1.337 |
+| Four Ag, 10 cycles, base mean | .3348 / .9341 | .3129 / .7651 | 200.84 shared | -1.422, 1.861, 1.160, -1.464 |
+| Four Ag, 10 cycles, donor mean | .3348 / .9341 | .3123 / .7652 | 205.17 shared | -1.451, 1.844, 1.203, -1.486 |
+
+The Hg reference is 8.678570 e at 0.92009 Angstrom; Ag is 1.954325 e at
+0.97935 Angstrom, from the actual observations. Ordinary/anomalous maps retain
+that wavelength and their source-bound phase/normalization policies. The
+initial Hg coordinate multiplier is native default 0.5 (confirmed in effective
+PHIL); the stronger-relative-geometry probe uses 0.05. Both cluster probes use
+0.05. All other coordinate/ADP weight controls remain unchanged.
+
+**Interpretation.** The longer Hg fit passes the geometry-stage numerical R
+conditions, but its worst explicit recipe deviation increases from 12.151 to
+13.408 sigma. This is an imported donor-vertex zero-angle restraint, not a
+metal-centered angle. Stronger relative geometry moves its two distances to
+2.1076 and 2.1037 Angstrom against 2.1-Angstrom targets, and its donor-vertex
+angle to 8.195 degrees against zero, reducing the worst deviation to 4.098 sigma.
+Global R statistics worsen. Its anomalous center rises from 2.718 to 3.207 sigma;
+that model-phased change does not decide the geometry. The base/donor B choice
+has only a small effect in these tested branches; it is not established as
+universally interchangeable. The cluster's worst recipe deviation improves
+3.985 to 3.529 sigma, but two fitted responses remain negative and the large
+Rfree gap persists. **No candidate or atom count is accepted.** Do not add a
+metal merely because the Hg ratio remains above 1.3 while geometry is unresolved.
+
+**Human endpoint check.** Read-only inspection of the explicitly supplied
+FT_Hg PDB finds N3–Hg distances 2.1089 and 2.1042 Angstrom, donor-vertex angle
+1.862 degrees and metal-vertex angle 176.271 degrees. The stronger-restraint
+probe therefore closely matches those two distances but remains less linear.
+Using the exact same 18-atom base inventory gives reference base means 97.242
+and 128.863 A² (nine atoms each), versus 82.186 and 85.519 A² in the stronger
+probe. The human model reports metal B 132.01 A² and Q=1. These are descriptive
+endpoint values, never substituted into candidate B preparation. Its header R
+values are not a matched native comparison, and no stored reference fdp was
+used. `human-reference.json` records source checksum and explicit atom keys;
+no human coordinates seeded any fit.
+
+The supplied four-Ag reference has six Ag–Ag distances 2.7945–2.8142
+Angstrom, consistent with the 2.8-Angstrom tetrahedral targets. Reference Q is
+nonuniform (0.8, 0.5, 0.5, 0.5), whereas these probes hold every Q at 1. The
+previously recorded reference/data cell and wavelength discrepancy also
+remains unresolved. This internal-geometry inspection is not a matched
+anomalous benchmark or an explanation of the negative fits. Its source and
+explicit sites are recorded in `cluster-reference.json`; no reference geometry
+or Q seeded refinement.
+
+**Files and schema.** Added `src/nasolve/metal/candidate_review.py` and
+`tests/test_metal_candidate_review.py`. Updated README, documentation map,
+architecture, metal-screen/anomalous methods, machine-readable intent,
+changelog and this handoff. New numbered schema-1 bundles use
+`metal-candidate-review-v1`; sources and report are anchored/checksummed and
+revalidated before publication. Existing formats and native worker hashes are
+unchanged; no migration or seed regeneration is required. The report refuses
+recipe-only parents and mismatched phase/native protocols. Site names are local
+to each hypothesis; automatic correspondence remains pending.
+
+**Validation.** Initial regression collection failed because the new module
+was absent. The focused command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_candidate_review.py tests/test_metal_fdp_compare.py tests/test_metal_xyz.py tests/test_metal_maps.py tests/test_metal_anomalous_maps.py`:
+**145 passed in 24.68 s**. Tests cover grouped multi-site snapshots, separate
+stage metrics, missing maps, signed/undefined ratios, mismatched controls,
+references, duplicate inputs, rehashed tampering, failed publication and a fresh
+interpreter loading relocated source/data after the old paths disappear.
+The required complete command is the same interpreter/environment with
+`-B -m pytest -q -p no:cacheprovider`. **6245 tests and 276 subtests passed in 745.23 s**; all 470 inventoried source/test files stayed unchanged throughout the successful suite.
+The first restricted suite encountered the sandbox's `killpg` prohibition in
+existing campaign-worker cleanup tests. A fail-fast diagnosis reproduced that
+permission error (261 passed and 30 subtests before the failure); the restricted
+run was then terminated and its log/receipt retained. The complete suite was
+rerun with process-signalling permission. **53 saved diagnostic bundles replayed successfully**, including both new
+candidate reviews. Native workers, count/scan/matched-comparison code, maps and
+B-preparation code match the previous source commit byte for byte. Python 3.10
+grammar, 110 local documentation links, JSON and whitespace checks pass.
+
+**Private evidence.** The everyday checkout's ignored
+`branch-artifacts/Alder/candidate-review-20261030-01/` contains native receipts,
+source/test checksums, suite logs, grouped-review receipts and `science-review.md`.
+Generated runners are `branch-artifacts/Alder/runners/A35_*.py`. The Hg run is
+`branch-artifacts/Alder/live-20261028-06/FT_Hg/AutoMR/run_001`: new XYZ 006–008,
+fdp 007–010, and `Metal/candidate_review_001`. The four-Ag run is
+`branch-artifacts/Alder/cluster-20261029-01/7CCA_Ag4/AutoMR/run_001`: new XYZ
+013–014, fdp 008–010 and `Metal/candidate_review_001`. These are local artifact
+locations, not published data. Every one of the 783 earlier files in those two
+runs remains unchanged; failed historical attempts are retained. No native
+models, maps, reflections, runners or logs enter Git.
+
+**Next work.** Qualify the coordination recipe/environment alongside the R
+tradeoff, and connect the existing Refine Doctor through an exact registered
+metal checkpoint before adaptive count expansion. The report explicitly marks
+Doctor **not executed**; it provides numerical criteria, not a replacement
+Doctor. Cluster count and geometry remain unresolved, including the previously
+recorded reference/data cell and wavelength mismatch. Shared-parameter or
+identifiability diagnostics would be a separate declared hypothesis, not an
+implicit repair of negative fits. Native search, GUI integration and automatic
+candidate selection remain pending. Continue on the isolated active development
+branch; preserve the everyday checkout and its unrelated files.
+
 ## Frozen-fdp anomalous maps and explicit map wavelengths 2026-10-30
 
 **Before and after.** Frozen-fdp fits previously retained fitted scattering and

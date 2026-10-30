@@ -1404,6 +1404,12 @@ Frozen-fdp trials can likewise retain [anomalous map coefficients](docs/metal-an
 with API-only `capture_anomalous_map=True`, preserving the fitted state and
 recording the explicit work-pair and model-phase policy.
 
+Existing native-XYZ/fdp branches can be combined into [grouped candidate reviews](docs/metal-anomalous-doctor.md#implemented-grouped-reviews-across-geometry-branches)
+with API-only `metal.candidate_review.build_review(run, trials)`. Each entry
+keeps all fitted sites together, with separate geometry/anomalous R statistics,
+environmental B, response ratios and available map evidence. Different geometry
+branches remain descriptive alternatives; the report selects no solution.
+
 The API-only XYZ step also supports [explicit geometry/data-weight probes](docs/metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls)
 through `xyz_weight_scale`. Each immutable sibling records native weight
 readbacks; no weight, geometry or count is chosen automatically.

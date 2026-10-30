@@ -651,6 +651,27 @@
       "missing_mates": "omit",
       "refit_or_rescale": false,
       "scientific_acceptance": "NOT_ASSESSED"
+    },
+    "candidate_review": {
+      "status": "IMPLEMENTED_API_ONLY",
+      "protocol": "metal-candidate-review-v1",
+      "minimum_trials": 2,
+      "maximum_trials": 32,
+      "parents": "verified_native_XYZ_and_frozen_fdp",
+      "site_grouping": "one_candidate_entry_per_snapshot",
+      "matched_controls": [
+        "observations",
+        "FreeR",
+        "phases",
+        "wavelength_references",
+        "native_protocol"
+      ],
+      "different_geometry_and_B_allowed": true,
+      "separate_stage_R_statistics": true,
+      "missing_maps": null,
+      "automatic_checkpoint_selection": false,
+      "scientific_acceptance": "NOT_ASSESSED",
+      "refine_doctor_execution": "PENDING_EXACT_METAL_CHECKPOINT_BRIDGE"
     }
   },
   "solution_search": {

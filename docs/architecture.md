@@ -1480,6 +1480,16 @@ headers may hold the library default; saved plan metadata remains authoritative.
 No old artifact is rewritten. New frozen-worker fingerprints require a current
 seed for execution of new scan points; prior scan replay remains unchanged.
 
+The API-only `metal/candidate_review.py` layer adds schema-1
+`metal-candidate-review-v1` bundles under `Metal/candidate_review_NNN`.
+It permits differing geometry, fitted membership and B preparation while
+requiring matched observations/flags/phases/native protocols and consistent
+reference scattering. It replays source audits, groups sites by snapshot and
+retains separate stage-specific R context, recipe geometry and map provenance.
+The stricter matched-endpoint comparison remains unchanged. No native worker,
+scan seed, checkpoint or earlier artifact changes. See the
+[grouped-review methods](metal-anomalous-doctor.md#implemented-grouped-reviews-across-geometry-branches).
+
 The API-only XYZ `xyz_weight_scale` option adds explicit bounded native weight
 controls to schema-1 plans. Omission retains legacy bytes; explicit controls
 are read from native parameters both before and after refinement and replayed

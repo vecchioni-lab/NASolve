@@ -1,6 +1,6 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
-Status: **refined-endpoint and recipe-geometry frozen diagnostics, cluster atom-equivalent reports, matched comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only viewer implemented**.
+Status: **refined-endpoint and recipe-geometry frozen diagnostics, cluster atom-equivalent reports, grouped cross-geometry reviews, matched comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only viewer implemented**.
 Implementation updated 2026-10-30. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
 Solution-space search, decision logic, map visualization and editable GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
@@ -11,6 +11,70 @@ The planned [explicit metal-screen mode](metal-screen.md) starts from AutoSol
 sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
+
+## Implemented grouped reviews across geometry branches
+
+The API `nasolve.metal.candidate_review.build_review(run, trials)` combines
+**2–32 explicit, verified frozen-fdp trials with native XYZ parents** into a
+numbered `Metal/candidate_review_NNN` bundle. `verify_review(run, directory)`
+reconstructs it offline from its anchored, checksum-verified sources. One
+candidate entry contains every fitted metal site from one snapshot: Q, B,
+f-double-prime, expected f-double-prime and their ratio. XYZ-stage and
+frozen-fdp-stage Rwork/Rfree remain separate, together with explicit recipe
+residuals, environmental B provenance and available map diagnostics/artifacts.
+Missing map evidence is `null`, never zero. Node names are local to their
+hypothesis; the report does not infer correspondence between different recipes.
+
+**Methods.** The loader replays the existing XYZ/fdp audits before comparing
+observations, selected Free-R values, input reflection signatures, phase source,
+wavelength metadata and native versions/worker/kernel hashes. Reference
+scattering must agree between stages and for every element shared across
+candidates. Geometry endpoints, recipe hypotheses, metal identities/counts,
+fitted membership, coordinate weights, cycle budgets, Q and B preparation may
+differ; the report records the changed condition fields relative to its first
+entry. Those descriptive differences are not proof of a one-variable
+experiment. Per-site response is `f_double_prime / reference_f_double_prime`;
+a zero reference produces an undefined ratio, and negative fits stay negative.
+No site sums or implicit cluster count are introduced.
+
+The schema-1 `metal-candidate-review-v1` manifest references its exact fdp
+manifests and grouped report. Publication revalidates the sources; interrupted
+or changed-input attempts retain a numbered failure. Replay validates the
+inventory and regenerates the report, including after source/data relocation.
+It executes no native program and does not independently recompute Fourier
+maps. Existing native trials and the stricter `fdp_compare` matched-geometry
+sensitivity protocol are unchanged and need no migration. This is an API-only
+data layer; GUI tables, adaptive search, automatic ranking, convergence
+qualification and the exact metal-to-Refine-Doctor execution bridge remain
+pending. Refine Doctor is explicitly marked **not executed** by this report.
+
+```mermaid
+flowchart LR
+    X[Verified XYZ geometry branches] --> B[Explicit refined-environment B]
+    B --> F[Independent frozen-fdp snapshots]
+    F --> C[Check shared observations, flags, phases and native protocol]
+    C --> R[One grouped entry per candidate]
+    R --> G[Geometry R and recipe residuals]
+    R --> A[Anomalous R, Q, B and f-double-prime ratios]
+    R --> M[Source-bound maps when available]
+    G --> H[Scientific review; no automatic selection]
+    A --> H
+    M --> H
+```
+
+*Figure: grouped candidate review is implemented. Each stage retains its own
+target and evidence. The first candidate is only a descriptive comparison
+reference, not a preferred solution.*
+
+A bounded native comparison illustrates why these axes stay separate. Longer
+Hg XYZ refinement improves global residuals while increasing one explicit
+coordination-angle residual; stronger relative coordinate restraints improve
+that local geometry while worsening global residuals. Base-only versus
+donor-only B changes the tested response only slightly. A four-Ag hypothesis
+retains mixed-sign f-double-prime and a large Rfree gap with both B policies.
+These observations support retaining alternatives for review; they do not
+establish a new metal, an accepted cluster count or a universal B policy. See
+the [current validation receipt](development-handoff.md#grouped-candidate-reviews-and-geometryb-comparisons-2026-10-30).
 
 ## Implemented frozen-fdp anomalous map capture
 
