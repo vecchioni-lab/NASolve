@@ -46496,7 +46496,7 @@
     "remote_verified": "origin/cedar"
   },
   "fixed_coordinate_dictionary_controls_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "e6fd80b54c323a6d81381945f496a557965c7c9d",
     "capsule": {
       "anchor": "live_tests_directory",
@@ -47132,6 +47132,9 @@
       "figure_render_and_visual_review": "PASS",
       "diff_whitespace": "PASS",
       "existing_worker_and_numerical_kernels": "UNCHANGED"
-    }
+    },
+    "implementation_commit": "533e0d81aad919c8b2ca373858a816dd86c2ed0a",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
