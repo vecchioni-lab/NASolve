@@ -47954,5 +47954,210 @@
     "implementation_commit": "50152ea4b36833763ef043515417f749694955fe",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "explicit_dictionary_representation_policy_2026_10_30": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "base_commit": "6e6307994cabc372b8173486b5b08a04d01dd419",
+    "branch": "cedar",
+    "before": "Only default isolated v2 could be published. Source projection ignored explicit bond representation policy; future version-shaped summaries were treated as stale.",
+    "after": "Supported explicit recipe policy binds v3 source/native evidence throughout immutable storage, source requalification and relocation; automatic PostMR excludes opt-in entries.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_dictionary_store.py",
+      "src/nasolve/cif_source_reuse.py",
+      "src/nasolve/cif_postmr_cache.py",
+      "tests/test_cif_dictionary_policy.py"
+    ],
+    "schemas": {
+      "store": "schema 1 / cif-qualified-dictionary-store-v1 unchanged",
+      "recipe": "optional supported bond_representation_policy string; omitted for legacy",
+      "qualification": "existing isolated v3 for explicit policy; default v2 retained"
+    },
+    "compatibility": "Legacy serialized entry replay keeps exact identity; no migration. Old readers do not understand explicit v3 entries. Unknown future summaries excluded.",
+    "regressions": {
+      "new_cases": 29,
+      "initial_before": "14 failed, 12 passed in 2.06s; three additional source-fallback controls added afterward",
+      "after": "29 passed in 3.43s",
+      "focused_summary": "929 passed, 36 subtests passed in 56.31s",
+      "focused": {
+        "wrapper_pid": 86294,
+        "pytest_wrapper_pid": 86308,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/135_Cedar_policy-storage-00cbsv1t/validation/focused/pytest.xml"
+        ],
+        "profile": "focused",
+        "exit_code": 0,
+        "seconds": 56.67631454102229,
+        "files": 503,
+        "changed_files": [],
+        "finished": true
+      }
+    },
+    "native_and_relocation": {
+      "native_qualified": true,
+      "native_checks": 21,
+      "native_dispatcher_version": "2.2.1",
+      "installation_release": "2.2.1-6174",
+      "native_execution": "NONE; REPLAY_OF_CAPTURED_COMPLETE_EXECUTION",
+      "explicit_entry_id": "0bf62935cefe7f3bd865d73590b92a54a050e9d9899b0ba224f39f567792236a",
+      "legacy_entry_id": "ad35725a7c0efd676b747e9fc036bda40ee1ee0efc8231498e3bd91239a43467",
+      "source_sha256": "0ac998a1300124cc94f04c5ea8bd0392ee7cd89e5269a32263d50bba17b44c9c",
+      "dictionary_sha256": "92c745ca0af178002df6cab5bd5d2f1f1bdc77234a9db6c46677e94fee48ebbd",
+      "legacy_dictionary_sha256": "0660d14458a4e14772eaeb17e85efffda537413da0a2c9af6147237ebcb7d997",
+      "fresh_native_qualification": false,
+      "automatic_adoption": false,
+      "cold_relocated_checkout": true,
+      "original_owned_path_removed": true,
+      "original_cache_and_science_removed": true,
+      "subprocesses_forbidden": true,
+      "legacy_entry_identity_unchanged": true,
+      "status": "PASS",
+      "frozen_files_unchanged": 12,
+      "legacy_store_source_sha256": "5af6365bdfaffc0957d1ce7ddd6f4227b12dbae2b83f5b31cc3c512a1f9868f1",
+      "legacy_store_source_revision": "6e6307994cabc372b8173486b5b08a04d01dd419"
+    },
+    "validation_commands": {
+      "before": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_dictionary_policy.py",
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/135_Cedar_policy-storage-00cbsv1t/validation/focused/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/135_Cedar_policy-storage-00cbsv1t/validation/full/pytest.xml"
+      ],
+      "cold": "../NASolve/.venv/bin/python c135_replay.py; copied checkout/worker run with explicit PYTHONPATH, PYTHONDONTWRITEBYTECODE=1; Popen blocked in workers",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c135-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests scripts/run_tests.py",
+      "documents": "check_docs.py: relative links and JSON; git diff --check"
+    },
+    "artifacts": "Only technical receipts/hashes in the existing ledger. Scientific CIF/model/native captures, snapshots, logs and runners remain local; no upload.",
+    "limitations": [
+      "Isolated scope only; no automatic PostMR promotion or candidate/model adoption.",
+      "No experimental phosphate protonation inference, OP3 addition or change to fixed stereo authority.",
+      "Recorded native consumer evidence is inherited, not a fresh installation check.",
+      "Synthetic complete inventories exercise orchestration; C133 real capture replay adds no new native execution.",
+      "No CLI/checkpoint/NARestraints/workbook change."
+    ],
+    "next": "Bind stored policy and numerical bytes to exact current-site preparation/effective native evidence before automatic consumer use; preserve fallback until that contract passes.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/before.log",
+        "sha256": "ae540278f9715f2a191c9db591192764420cac029b5afd6b7173f77e2675315c",
+        "size": 20363
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/focused/pytest.log",
+        "sha256": "cdffcec6ff379480540a163ebd75ba568ca24352171bdaff6ab15a815745198a",
+        "size": 5442
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/focused/pytest.xml",
+        "sha256": "0ea04f4825d7becece8272950f3251dd0e8e224cfbdd85ff2ec6c4376d1e55b5",
+        "size": 138334
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/focused/source-hashes.json",
+        "sha256": "031f32b79b62064068ea2de8cfb2864e51a3abf7951bbc0169c4a82e9f3a6cf5",
+        "size": 54346
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/focused/result.json",
+        "sha256": "910df1c296ab80c4f2b8ccb63c279d51451fa91fa8a28aa9c448ec89b952fc96",
+        "size": 476
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/replay/result.json",
+        "sha256": "b2ebdaf2874dac6469cac23b3dc90c80012c9f0ee5d36cc9fc0edb0dc8af713d",
+        "size": 1156
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/replay/publish.log",
+        "sha256": "83393914d5683471a82a53ce53ae45153b9a1cf71ef88c25b715f7e34c36c208",
+        "size": 703
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/replay/cold.log",
+        "sha256": "6b1d095d728362072753a1b5771540d112ecf02485629ec6f1fb01675d1d661a",
+        "size": 908
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/full/result.json",
+        "sha256": "625b584274da0b3c2d44cfb7ab3e963c214c7a0a21dc4af1534c4aaeb5738079",
+        "size": 450
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/full/pytest.log",
+        "sha256": "096da76d80362438f6dcb45efccf312a5e221217a02f89f3fe54159da6bda812",
+        "size": 10500
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/full/pytest.xml",
+        "sha256": "1047a3a3b3a54ab00a98cfd1e09541ef6aced58fc2b653156fdf0fab902edc42",
+        "size": 1043299
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "135_Cedar_policy-storage-00cbsv1t/validation/full/source-hashes.json",
+        "sha256": "031f32b79b62064068ea2de8cfb2864e51a3abf7951bbc0169c4a82e9f3a6cf5",
+        "size": 54346
+      }
+    ],
+    "next_boundary_review": {
+      "observed_call_boundary": "cif_construction_native.prepare_constructed_native forwards qualification but not bond_representation_policy to prepare_linked_component.",
+      "observed_scope_boundary": "qualify_constructed_native requires DNA native metadata, incoming and outgoing links, and linked-phosphate tetrahedral coverage; it is not a general terminal/L-DNA qualification adapter.",
+      "next_bounded_step": "Bind a frozen dictionary snapshot and its recipe to explicit current-site preparation; exercise existing linked/terminal qualifiers with unchanged source/state authority and relocated replay. Do not merely remove the automatic cache exclusion.",
+      "automatic_use_gate": "Exact site contexts/projections, ordered CIF/PHIL/model bindings, current consumer/resource identity, native effective definitions and atom/proxy membership must pass before automatic PostMR can select opt-in entries.",
+      "scope": "Read-only architecture review during full regression. No additional implementation or scientific claim."
+    },
+    "full": {
+      "wrapper_pid": 86705,
+      "pytest_wrapper_pid": 86719,
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/135_Cedar_policy-storage-00cbsv1t/validation/full/pytest.xml"
+      ],
+      "profile": "full",
+      "exit_code": 0,
+      "seconds": 1045.6312492500292,
+      "files": 503,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6838 passed, 276 subtests passed in 1045.13s (0:17:25)",
+    "source_test_runner_hashes_unchanged": 503
   }
 }

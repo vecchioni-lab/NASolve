@@ -71,6 +71,29 @@ def _identity(value):
     return value
 
 
+def recipe_representation_policy(recipe):
+    """Read an opt-in policy without changing legacy recipe serialization.
+
+    Absence means legacy behavior. A present field must name a supported policy;
+    null/unknown values cannot silently downgrade to the default assessment.
+    The complete recipe already participates in the immutable request key.
+    """
+    from .cif_purine_representation import validate_policy
+    _need(isinstance(recipe, dict), 'Require repair recipe')
+    if 'bond_representation_policy' not in recipe:
+        return None
+    policy = recipe['bond_representation_policy']
+    _need(isinstance(policy, str) and bool(policy), 'Require explicit bond representation policy')
+    validate_policy(policy)
+    return policy
+
+
+def _qualification_policy(recipe):
+    from .cif_candidate_usability import POLICY_ID as legacy_policy
+    return ('cif-isolated-candidate-native-usability-v3'
+        if recipe_representation_policy(recipe) is not None else legacy_policy)
+
+
 def _request_key(request):
     """Producer versions are provenance; their upgrade must not discard numerics.
 
@@ -79,6 +102,7 @@ def _request_key(request):
     its native consumer/qualification policy is checked independently.
     """
     _identity(request['generator'])
+    recipe_representation_policy(request['recipe'])
     identity = {k:v for k,v in request.items() if k != 'generator'}
     identity['generator_family'] = request['generator']['name']
     return _digest(identity)
@@ -102,7 +126,7 @@ def make_dictionary_request(source, code, *, source_authority, recipe, generator
     _need(isinstance(code, str) and re.fullmatch('[A-Za-z0-9]{1,3}', code), 'Unsupported component identity')
     _need(source_authority in {'CURATED','EXPLICIT','NATIVE','VERIFIED_SOURCE'}, 'Require declared source authority')
     _need(isinstance(recipe, dict) and isinstance(recipe.get('policy_id'), str) and recipe['policy_id'], 'Require repair policy identity')
-    _identity(generator); _bytes(recipe)
+    _identity(generator); _bytes(recipe); recipe_representation_policy(recipe)
     values = _values(source, code); elements, orders, charges, neighbors = _graph(values)
     stereo = reader_stereo_inventory(source, code)
     graph = {'atom_mapping': {n:n for n in sorted(elements)}, 'elements':elements,
@@ -118,7 +142,9 @@ def make_dictionary_request(source, code, *, source_authority, recipe, generator
 
 
 def _payload(request, source, candidate, qualification, consumer, provenance, *, allow_stale_qualification=False):
-    from .cif_candidate_usability import reassess_complete_candidate, POLICY_ID as qualification_policy
+    from .cif_candidate_usability import reassess_complete_candidate
+    policy = recipe_representation_policy(request['recipe'])
+    qualification_policy = _qualification_policy(request['recipe'])
     _identity(consumer); _bytes(qualification); _bytes(provenance)
     fresh_request = make_dictionary_request(source, request['component'], **{
         k:request[k] for k in ('source_authority','recipe','generator')})
@@ -126,8 +152,10 @@ def _payload(request, source, candidate, qualification, consumer, provenance, *,
     source_data, candidate_data = _regular(source), _regular(candidate)
     q = qualification; assessment = q.get('source_assessment', {}); stereo = assessment.get('finished_stereo', {})
     current = q.get('policy_id') == qualification_policy
-    stale = (allow_stale_qualification and isinstance(q.get('policy_id'),str)
-        and re.fullmatch('cif-isolated-candidate-native-usability-v[1-9][0-9]*',q['policy_id']) is not None)
+    # Only known legacy versions can request requalification. Future/explicit
+    # policies cannot be guessed from a version-shaped string.
+    stale = (allow_stale_qualification and policy is None and q.get('policy_id') in {
+        'cif-isolated-candidate-native-usability-v1', 'cif-isolated-candidate-native-usability-v2'})
     _need(q.get('schema_version') == 1 and (current or stale)
         and q.get('status') == 'ISOLATED_NATIVE_USABILITY_PASS' and q.get('native_usable') is True
         and q.get('component') == request['component'] and q.get('scope') == 'ISOLATED_COMPONENT_ONLY'
@@ -137,7 +165,12 @@ def _payload(request, source, candidate, qualification, consumer, provenance, *,
         and stereo.get('stereochemistry') in {'PRESERVED','UNASSESSED'}
         and isinstance(q.get('checks'), dict) and bool(q['checks']) and (not current or _CHECKS <= q['checks'].keys())
         and all(value is True for value in q['checks'].values()), 'Require complete bound native usability evidence')
-    fresh = reassess_complete_candidate(source, candidate, request['component'])
+    if policy is None:
+        fresh = reassess_complete_candidate(source, candidate, request['component'])
+    else:
+        from .cif_preparation_qualification import bind_preparation_qualification
+        fresh = bind_preparation_qualification(source, candidate, request['component'], q,
+            bond_representation_policy=policy)['candidate_reassessment']
     _need(fresh['candidate_status'] == 'CANDIDATE_REVIEW'
         and fresh['finished_stereo']['stereochemistry'] == stereo['stereochemistry'], 'Dictionary no longer preserves declared chemistry')
     _need(isinstance(provenance, dict) and type(provenance.get('converged')) in {bool,type(None)}
@@ -173,9 +206,8 @@ def _read_entry(directory, entry_id, request=None):
     recomputed, _ = _payload(r, directory/'source.cif', directory/'dictionary.cif', q, manifest['consumer'], p,
         allow_stale_qualification=True)
     _need(manifest == recomputed, 'Dictionary entry policy or qualification changed')
-    from .cif_candidate_usability import POLICY_ID as qualification_policy
     return {'entry_id':entry_id, 'directory':directory, 'manifest':manifest, 'qualification':q, 'provenance':p,
-        'qualification_current':q['policy_id'] == qualification_policy}
+        'qualification_current':q['policy_id'] == _qualification_policy(r['recipe'])}
 
 
 def _write(path, data):

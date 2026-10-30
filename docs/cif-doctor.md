@@ -77,7 +77,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 
 | Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
-| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 representation-policy evidence still needs store/ordinary-reuse propagation. General cache-miss recovery and candidate adoption are not integrated. |
+| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage and source requalification; automatic PostMR selection of those entries remains gated on qualified current-site support. General cache-miss recovery and candidate adoption are not integrated. |
 | Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
@@ -2846,12 +2846,54 @@ readback after relocation and removal of the test-owned cache/installation.
 Changed source or consumer and corrupted entries retain ordinary preparation;
 original nonconvergence notes survive successful reuse. Cache APIs are not replaced
 by fixtures. This exercises the existing default isolated v2 qualification path;
-C133's explicit representation-policy v3 still requires propagation through the
-persistent request, publication, readback and source-requalification contracts. The captured native inventory, installation discovery, NAR output
-and copying ReadySet remain explicit test fixtures: this expands orchestration
-coverage without certifying additional chemistry or enabling automatic recovery.
+the captured native inventory, installation discovery, NAR output and copying
+ReadySet remain explicit test fixtures. This expands orchestration coverage
+without certifying additional chemistry or enabling automatic recovery.
 See evidence key `development_validation_and_postmr_workflow_2026_10_30` and the
 [development testing contract](collaboration.md#testing-cadence-and-development-profiles).
+
+### Explicit representation policies in stored numerics
+
+C135 carries both already-supported neutral purine representation policies
+through isolated dictionary publication, exact reuse, consumer requalification,
+source projection and frozen readback. Callers put the supported policy string
+in `recipe["bond_representation_policy"]`; absence retains legacy behavior.
+A present null, empty or unknown value is rejected. The full recipe already
+participates in the immutable request key, so differently declared permissions
+cannot share a lookup identity. No residue code grants eligibility.
+
+Publication and every entry read invoke the C133 source-bound qualification
+checker. It recomputes the source/candidate assessment, requires all 21 exact
+native checks and preserved source-declared configurations, and compares the
+recorded bond representation against the requested policy. Relabelling v2 as v3,
+using the other supported policy, or supplying stale source evidence cannot
+authorize publication. Known legacy stale qualifications may request a fresh
+qualification; arbitrary future version strings are excluded.
+
+The request/entry schema and store policy remain version 1; legacy recipes omit
+the new optional field and retain their exact serialization. The native summary
+for explicit policies remains isolated usability v3. Old numerics keep their
+original producer and stopping notes when a new consumer qualifies the same
+bytes. Source projection only establishes a candidate relationship and still
+requires fresh source-bound native evidence. Existing entries/runs are never
+migrated in place. Older readers do not understand the new opt-in qualification.
+
+This is reusable **isolated** evidence. Automatic PostMR explicitly excludes
+these entries with a current-site-support note and retains ordinary source
+preparation. The lower-level resolver remains available to explicit callers;
+it does not certify linked geometry, choose phosphate H/charge, add OP3, or adopt
+a model. The existing default v2 PostMR route remains unchanged.
+
+Validation covers both policies using synthetic complete native inventories,
+negative source/recipe/qualification controls, consumer upgrades and relocation.
+The captured C133 0DG Phenix 2.2.1-6174 evidence also passes publication/reuse and
+cold readback; an entry produced by the actual pre-C135 store keeps its identity.
+The owned original checkout, source and cache paths are removed before cold
+readback, with subprocesses forbidden. This is replay of a completed native
+capture, not a fresh Phenix/Coot execution or new chemistry qualification.
+Exact commands/results are in evidence key
+`explicit_dictionary_representation_policy_2026_10_30` in the
+[existing ledger](cif-linked-native-registration-evidence.json).
 
 The explicit `--local-dictionary-reuse-only` diagnostic accepts exact C65 and
 preserves every parent payload. For each component it tests persistence,

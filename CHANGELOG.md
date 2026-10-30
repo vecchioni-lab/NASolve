@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit chemistry policy in persistent dictionary reuse (C135)
+
+- Bind supported opt-in bond representation policies in the immutable repair
+  recipe, and use the existing source-bound native-evidence check for publication
+  and frozen readback. Propagate the same policy through source requalification.
+- Preserve default v2 request/entry serialization and unchanged numerical bytes
+  across consumer upgrades. Unknown future policies cannot become cache hits or
+  requalification candidates; mismatched source/policy evidence is refused.
+- Keep explicit-policy entries out of automatic PostMR selection until the
+  current-site route is qualified. No model adoption, phosphate-state inference,
+  CLI change or run/checkpoint migration.
+
 ### Focused development validation and ordinary reuse coverage (C134)
 
 - Add explicit smoke, chemistry, workflow, delivery and unfiltered full pytest

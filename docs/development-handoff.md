@@ -11,6 +11,47 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C135 validated: explicit representation policy in dictionary storage
+
+Base: `6e6307994cabc372b8173486b5b08a04d01dd419`; existing cedar only.
+Capsule: `live_tests_directory/135_Cedar_policy-storage-00cbsv1t`.
+Before: isolated v3 candidates could not enter the shared store and source
+projection omitted their policy. After: an optional explicit repair-recipe field
+binds the supported policy throughout publication, reuse, frozen readback and
+source/consumer requalification. The C133 checker recomputes exact source and
+candidate evidence; no separate weaker v3 validation path. Unknown future
+qualification versions are excluded. Default v2 serialization is preserved.
+
+Automatic PostMR explicitly retains ordinary preparation for these opt-in entries
+until current-site support is qualified. No phosphate-state inference, OP3
+addition, model adoption, CLI/checkpoint change, new dependency or merge.
+Changed: three runtime modules, one focused-profile membership, 29 regressions,
+maintained contracts/roadmap and the existing evidence ledger. Store schema/policy
+remain version 1; the recipe gains one optional supported string, qualification
+remains existing isolated v3. No in-place migration or scientific artifact upload.
+
+Initial regression: 14 failed / 12 passed before implementation. All 29 final
+new cases pass; combined chemistry/workflow: **929 passed, 36 subtests passed in 56.31s**.
+Captured C133 0DG qualification (Phenix 2.2.1-6174, 21 native checks) passes storage
+and cold readback. An entry generated using actual pre-C135 store source retains
+its identity. Both snapshots retain all 12 files' bytes/sizes/timestamps after
+owned original checkout/source/cache removal; subprocesses are forbidden.
+This is saved complete-native evidence replay, not a new Phenix/Coot execution.
+
+Full regression passes: **6838 passed, 276 subtests passed in 1045.13s (0:17:25)**.
+All 503 source/test/runner hashes match the focused and full runs. Compilation,
+relative documentation links, JSON and whitespace checks pass. No job is active.
+Implementation and validation are complete; signed publication remains. Evidence key: `explicit_dictionary_representation_policy_2026_10_30`.
+
+Next: bind stored policy/numerics to exact current-site preparation and effective
+native evidence before allowing automatic consumer selection. Keep fallback until
+that contract passes. Specifically, `prepare_constructed_native` currently omits
+the policy argument, and `qualify_constructed_native` assumes internal DNA with
+both links; forwarding the argument alone cannot qualify terminal/L-DNA use.
+Source phosphate state, generic native adapters, PDU's numerical gate and ordinary
+recovery/adoption remain separate roadmap work.
+— Rowan · Codex desktop
+
 ## C134 published: focused suites and ordinary reuse integration
 
 Base/last published head: `7f57623505dc5e7929d765c6d47231db6cf857de`; existing cedar only.

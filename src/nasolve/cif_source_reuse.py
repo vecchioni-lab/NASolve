@@ -28,7 +28,7 @@ def _ref(path,root):
 
 def source_projection(source,code,authority,snapshot,*,recipe,generator):
     """Compare exact named declarations and complete finished configuration."""
-    from .cif_dictionary_store import resolve_dictionary_snapshot,make_dictionary_request
+    from .cif_dictionary_store import resolve_dictionary_snapshot,make_dictionary_request,recipe_representation_policy
     from .cif_candidate_usability import reassess_complete_candidate
     saved=resolve_dictionary_snapshot(snapshot);prior=saved['manifest']['request']
     _need(prior['component']==code,'Saved projection component differs')
@@ -36,7 +36,8 @@ def source_projection(source,code,authority,snapshot,*,recipe,generator):
     checks={k:current['declared_chemistry'][k]==v for k,v in prior['declared_chemistry'].items()}
     checks['repair_recipe']=recipe==prior['recipe']
     checks['numerical_backend']=generator['name']==prior['generator']['name']
-    assessment=reassess_complete_candidate(source,saved['dictionary'],code)
+    assessment=reassess_complete_candidate(source,saved['dictionary'],code,
+        bond_representation_policy=recipe_representation_policy(recipe))
     checks['complete_source_candidate_assessment']=assessment['candidate_status']=='CANDIDATE_REVIEW'
     checks['source_configuration_not_inverted']=assessment['finished_stereo']['stereochemistry']!='INVERTED'
     return {'schema_version':1,'policy_id':POLICY_ID,'component':code,

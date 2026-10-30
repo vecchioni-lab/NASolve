@@ -27251,6 +27251,27 @@
       ],
       "next": "Source-state policy and generic native attachment adapters, ordinary recovery/adoption integration, independent PDU numerical audit, and bounded cedar-to-pine integration review.",
       "implementation_commit": "283cece10a8dcf59f990cd99b73eb7210d547ace"
+    },
+    "explicit_dictionary_representation_policy": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "Supported explicit recipe policy binds v3 source/native evidence throughout immutable storage, source requalification and relocation; automatic PostMR excludes opt-in entries.",
+      "schemas": {
+        "store": "schema 1 / cif-qualified-dictionary-store-v1 unchanged",
+        "recipe": "optional supported bond_representation_policy string; omitted for legacy",
+        "qualification": "existing isolated v3 for explicit policy; default v2 retained"
+      },
+      "compatibility": "Legacy serialized entry replay keeps exact identity; no migration. Old readers do not understand explicit v3 entries. Unknown future summaries excluded.",
+      "limitations": [
+        "Isolated scope only; no automatic PostMR promotion or candidate/model adoption.",
+        "No experimental phosphate protonation inference, OP3 addition or change to fixed stereo authority.",
+        "Recorded native consumer evidence is inherited, not a fresh installation check.",
+        "Synthetic complete inventories exercise orchestration; C133 real capture replay adds no new native execution.",
+        "No CLI/checkpoint/NARestraints/workbook change."
+      ],
+      "next": "Bind stored policy and numerical bytes to exact current-site preparation/effective native evidence before automatic consumer use; preserve fallback until that contract passes.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "explicit_dictionary_representation_policy_2026_10_30",
+      "validation": "6838 passed, 276 subtests passed in 1045.13s (0:17:25)"
     }
   },
   "audience": [
@@ -27744,8 +27765,8 @@
       "cache_invalidation": "Any changed source, graph mapping, site/link/symmetry context, parameter/weight, tool/energy library, coordinate/cell or policy invalidates the affected layer. Cached unsupported/failed results stay clearly typed; fresh tool availability changes capability identity.",
       "replay": "No host-absolute path as sole operational reference; hashes and declared run/dataset/repository anchors permit relocated replay. No input lookup by basename. Cache may optimize calculations but must not replace the run-local immutable receipt.",
       "qualified_dictionary_store": {
-        "status": "IMPLEMENTED_SHARED_COMPONENT_STORE_AND_RESOLVER; ORDINARY_ORCHESTRATION_PENDING",
-        "recorded_date": "2026-10-22",
+        "status": "IMPLEMENTED_DEFAULT_ORDINARY_REUSE_AND_OPT_IN_ISOLATED_POLICY_STORAGE",
+        "recorded_date": "2026-10-30",
         "behavior": "Automatically persist usable repaired numerical dictionaries locally and reuse them before regeneration or optimization for later matching structures.",
         "identity": "Semantic source/state/authority/recipe/backend-family lookup; immutable entry additionally binds candidate bytes, complete producer and consumer versions, qualification and stopping notes.",
         "provenance": "Retain original producer versions and fingerprints after consumer requalification; never attribute old numerical bytes to an upgraded builder. Usable nonconverged results remain reusable.",
@@ -27764,7 +27785,8 @@
           "src/nasolve/cif_dictionary_store.py",
           "src/nasolve/cif_dictionary_reuse.py"
         ],
-        "delivery": "66_Cedar --local-dictionary-reuse-only; MAC_TRANSPORT_PENDING"
+        "delivery": "Historical C66 evidence retained; current contracts in cif-doctor.md and C135 evidence.",
+        "explicit_representation": "Existing recipe identity binds the supported opt-in policy; v3 publication/readback use source-bound qualification. Automatic PostMR excludes these entries pending qualified current-site support."
       },
       "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },

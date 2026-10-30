@@ -11,7 +11,9 @@ milestone statements preserve their original scope; they are not a second queue.
   distinguishes ordinary runtime, isolated components, linked diagnostics and
   unresolved families. The [generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
   own remaining work. C133 connects explicit representation-qualified candidates
-  to source-preserving site preparation and tests retained stereocentres.
+  to source-preserving site preparation and tests retained stereocentres. C135
+  preserves that explicit policy through isolated storage and requalification;
+  automatic PostMR use still requires qualified current-site support.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

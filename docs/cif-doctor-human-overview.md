@@ -134,9 +134,13 @@ chemistry, not a transferable set of crystal coordinates. See
 [persistent local reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
 Complete synthetic workflow tests exercise publication, ordinary selection,
 ReadySet handoff and relocated readback together, including incompatible/corrupt
-entry fallback. They validate the existing default qualification path; the newer explicit
-representation-policy evidence still needs propagation through storage and
-ordinary reuse. Real native chemistry remains a separate qualification boundary.
+entry fallback. Explicit representation policies now also survive isolated
+storage, readback and source requalification, with mismatches rejected and older
+entries preserved. These opt-in entries remain outside automatic PostMR selection
+until their current-site route is qualified. Storage does not choose phosphate
+protonation or establish linked-model compatibility. Captured 0DG native evidence
+and synthetic positive/negative controls verify the boundary; no new native
+chemistry is claimed.
 
 ## How it works
 
