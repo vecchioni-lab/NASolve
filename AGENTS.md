@@ -50,8 +50,12 @@ in this repository.
 ## Required validation
 
 - Add a regression test that fails before the change and passes afterward.
-- Run the focused tests and the complete suite with
-  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`.
+- During development, run the affected tests and the relevant focused profile
+  with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`. A focused pass is not a full pass.
+  Run the unfiltered full suite before branch integration/release, and for
+  cross-cutting runtime, schema/provenance, dependency or test-selection changes.
+  Record scope, command, result and the last full-tested revision. Follow the
+  [testing cadence](docs/collaboration.md#testing-cadence-and-development-profiles).
 - For external-tool changes, record the exact Phenix/Coot version and whether
   the check was a dry-run or a complete execution.
 - For portability changes, test from a relocated temporary checkout after the

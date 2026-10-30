@@ -53,6 +53,79 @@ paths out of portable operational references. Do not accumulate chat transcripts
 or a second competing status document. Open scientific gates remain visible
 when priorities change; diagnostic progress never silently closes them.
 
+## Testing cadence and development profiles
+
+Use focused tests while developing a bounded change. Run its new regression,
+tests for directly affected callers and shared helpers, then the relevant
+profile below. These profiles are reviewable starting points, not automatic
+change-impact analysis: a passing chemistry profile cannot cover an unrelated
+numerical worker, campaign executor or CLI change. Add those tests explicitly.
+A documentation-only change needs appropriate document/link checks, not another
+unchanged scientific regression.
+
+From the checkout, with its test-enabled Python:
+
+```bash
+.venv/bin/python scripts/run_tests.py smoke
+.venv/bin/python scripts/run_tests.py chemistry
+.venv/bin/python scripts/run_tests.py workflow
+.venv/bin/python scripts/run_tests.py chemistry workflow
+.venv/bin/python scripts/run_tests.py delivery
+.venv/bin/python scripts/run_tests.py full
+```
+
+| Profile | Purpose |
+| --- | --- |
+| `smoke` | Short checks of source qualification, usable selection, ordinary reuse, checkpoint/path integrity and the test runner itself. |
+| `chemistry` | Source graphs/stereochemistry, FANA/enantiomers, attachment operations, linked/end-state preparation, topology and phosphate protections. |
+| `workflow` | Qualified storage through ordinary PostMR, source reuse, checkpoints, full-model recipes and campaign coordination. |
+| `delivery` | Historical numbered deliveries and probe/shuttle contracts, retained for compatibility and replay. |
+| `full` | The entire tests directory, including new files absent from every development profile. |
+
+**C134 audit baseline (2026-10-30, Python 3.12.14 / pytest 9.1.1):**
+6,804 cases in 302 files were all collected under tests, not datasets/environments.
+Exactly five imported campaign methods were accidentally recollected; fixing the
+module import retains their original tests. Ten new regressions give 6,809 cases
+in 304 files. All 853 numbered-delivery cases remain. Three text-identical test
+pairs use different template readers/fixtures and are intentionally retained;
+there are no remaining duplicate collected identities or shadowed test definitions.
+
+Measured focused runs: smoke 139 tests + 6 subtests in 25.95s; chemistry 608 + 10
+in 22.93s; workflow 292 + 26 in 30.41s. Full: 6809 passed, 276 subtests passed in 1018.99s (0:16:58).
+These are one-machine observations, not performance thresholds. The delivery
+profile selects 1,560 cases across 86 files; it is covered by the full run rather
+than separately timed. The largest full-run case-time contributors were
+`test_cif_recovered_resolution.py`, `test_cif_recovered_torsion.py`, `test_cif_mixed_endpoint.py`.
+Exact scope, source hashes and per-file timings are recorded under evidence key
+`development_validation_and_postmr_workflow_2026_10_30` in the
+[CIF Doctor ledger](cif-linked-native-registration-evidence.json). Future cases
+need not preserve these counts; full selection always discovers the complete directory.
+
+Use `--list` to inspect exact file selection without importing tests, or
+`--collect-only` to inspect pytest cases. Profiles can be combined without
+repeating files; `full` must be used alone. The runner locates its own checkout,
+uses the invoking Python, sets `PYTHONDONTWRITEBYTECODE=1` and checkout `src` on
+`PYTHONPATH`, and clears inherited pytest addopts so an old `-k`/last-failed option
+cannot silently narrow a named suite. It returns pytest's exit status. Missing
+profile files are errors. Existing plain `python -m pytest` remains unfiltered.
+For individual tests or custom filtering, use pytest directly with the documented
+environment rather than calling that result a named full pass.
+
+Run **full regression before merging a branch or releasing**, and when changes
+cross shared runtime boundaries, change schemas/provenance, alter dependencies,
+or change test discovery/selection. A new external-tool or scientific workflow
+also needs its appropriate native evidence; pytest cannot replace that evidence.
+A green full baseline may be carried through several focused development commits,
+but is invalidated as a merge gate by subsequent source/test/configuration changes.
+Rerun the full gate on the final combined state before integration.
+
+Record each handoff's exact scope, command, result, revision and remaining full
+or native gates. Do not describe a focused branch push as fully validated. For
+one-time timing analysis, append `--junitxml /new/local/path/results.xml`; existing
+output is refused. Keep machine timings and generated reports outside Git and
+scientific runs. Do not shorten timeout/process-ownership tests or discard
+historical replay tests merely to make a faster development loop.
+
 ## Diagnostic evidence and student workflow
 
 CIF Doctor diagnostic review receipts are developer-facing evidence. They do

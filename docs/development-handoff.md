@@ -11,6 +11,53 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C134 validated: focused suites and ordinary reuse integration
+
+Base/last published head: `7f57623505dc5e7929d765c6d47231db6cf857de`; existing cedar only.
+Capsule: `live_tests_directory/134_Cedar_test-workflow-pz2vskqf`.
+Before: every push required a full run and an imported campaign fixture class
+repeated five tests. After: explicit smoke/chemistry/workflow/delivery profiles
+support bounded iteration; full remains unfiltered and is required before merging,
+releasing or cross-cutting changes. Inherited pytest filters cannot narrow a named
+profile. No runtime/scientific behavior, dependency, schema or threshold change.
+
+Collection reconciles 6,804 cases in 302 files to 6,809 in 304: exactly five duplicate
+campaign invocations removed, ten new cases added, all original distinct cases
+retained. No files outside tests and no duplicate collected identities. All 853
+numbered-delivery cases are retained. Suite/collection regressions fail before implementation.
+The complete synthetic store -> selection -> ordinary PostMR path now exercises
+real cache/source/consumer checks, byte-exact inputs, nonconvergence notes, changed
+consumer/source and corrupted-entry fallback, plus relocated frozen readback.
+Only installation discovery, captured native inventory, NARestraints output and
+copying ReadySet are fixtures; this is orchestration evidence, not new native
+chemical qualification. Four workflow cases pass without replacing cache APIs.
+
+Focused: smoke 139 + 6 subtests (25.95s), chemistry 608 + 10 (22.93s), workflow
+292 + 26 (30.41s). All 502 runtime/test/runner hashes remain unchanged; all C133
+runtime files are unchanged. Full regression passes: **6809 passed, 276 subtests passed in 1018.99s (0:16:58)**.
+All 502 hashes match the focused runs. No job is active. Exact collection changes,
+per-file timings and synthetic boundaries are in the existing ledger under
+`development_validation_and_postmr_workflow_2026_10_30`.
+
+Acceptance: implementation, collection audit, focused/full validation and timing
+baseline complete; final document checks and signed publication remain. Keep the existing chemistry support matrix and G2–G6 limits unchanged.
+Next chemical work still requires explicit phosphate state and broader native
+adapters before general recovery/adoption; this test-workflow push does not close
+those gates.
+
+**Next unifying implementation boundary:** C133's explicit representation-policy
+v3 qualification reaches linked/terminal preparation, but dictionary-store
+publication still accepts the default isolated v2 policy. Source projection and
+ordinary reuse also reassess without an explicit representation policy. This is
+an intentional current compatibility boundary, not blanket support for new v3
+candidates. Propagate a supported explicit policy through immutable request,
+publication, frozen readback and source requalification together; preserve legacy
+v2 entries, reject unknown/mismatched policies and test relocated round-trips.
+Only then consider ordinary consumers with the required current-site checks.
+Do not equate accepting a component policy with solving phosphate state or
+qualifying linked model geometry. No merge or branch creation.
+— Rowan · Codex desktop
+
 ## C133 published: source-bound site preparation
 
 Base/last published head: `e5d3793707f5d08c999276867eebc4bbd7a60d2e`; existing cedar only.

@@ -45,6 +45,9 @@ is an explanation, not an independent status ledger.
   workspace, Git safety, artifact handling and one-change review; default
   [one-block conditional Git delivery](collaboration.md#git-delivery-and-terminal-handoffs)
   and separate install one-liners.
+- [Development test profiles](collaboration.md#testing-cadence-and-development-profiles):
+  focused smoke/chemistry/workflow checks, retained delivery compatibility and
+  the unfiltered full integration gate.
 - [Changelog](../CHANGELOG.md): changes by implementation date; it does not
   independently authorize experimental chemistry or validate a live run.
 - [CIF Doctor human/manuscript overview](cif-doctor-human-overview.md): purpose,

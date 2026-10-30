@@ -132,6 +132,11 @@ Changed consumers need requalification; current site modifiers and linked/model
 compatibility remain separate checks. The stored component numerics describe
 chemistry, not a transferable set of crystal coordinates. See
 [persistent local reuse](cif-doctor.md#persistent-local-reuse-of-qualified-repairs).
+Complete synthetic workflow tests exercise publication, ordinary selection,
+ReadySet handoff and relocated readback together, including incompatible/corrupt
+entry fallback. They validate the existing default qualification path; the newer explicit
+representation-policy evidence still needs propagation through storage and
+ordinary reuse. Real native chemistry remains a separate qualification boundary.
 
 ## How it works
 

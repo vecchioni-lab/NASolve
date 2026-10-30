@@ -47688,5 +47688,268 @@
     "implementation_commit": "283cece10a8dcf59f990cd99b73eb7210d547ace",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "development_validation_and_postmr_workflow_2026_10_30": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "scope": "DEVELOPER_TEST_SELECTION_AND_SYNTHETIC_ORDINARY_POSTMR_INTEGRATION",
+    "base_commit": "7f57623505dc5e7929d765c6d47231db6cf857de",
+    "collection": {
+      "initial_cases": 6804,
+      "initial_files": 302,
+      "final_cases": 6809,
+      "final_files": 304,
+      "outside_tests": [],
+      "duplicate_collected_identities": 0,
+      "numbered_delivery_cases": 853
+    },
+    "changes": "Five imported campaign invocations removed; ten new cases added; all original distinct cases retained.",
+    "similar_test_review": "Three pairs have identical bodies but different template readers/capsule fixtures. Retained; no semantic equivalence claim.",
+    "profiles": {
+      "smoke": {
+        "files": 7,
+        "cases": 139,
+        "seconds": 26.284003250009846,
+        "summary": "139 passed, 6 subtests passed in 25.95s"
+      },
+      "chemistry": {
+        "files": 19,
+        "cases": 608,
+        "seconds": 23.580168792046607,
+        "summary": "608 passed, 10 subtests passed in 22.93s"
+      },
+      "workflow": {
+        "files": 16,
+        "cases": 292,
+        "seconds": 30.760271207953338,
+        "summary": "292 passed, 26 subtests passed in 30.41s"
+      },
+      "delivery": {
+        "files": 86,
+        "cases": 1560
+      }
+    },
+    "runtime_sources": "ALL_C133_RUNTIME_BYTES_UNCHANGED",
+    "workflow_checks": [
+      "published qualified entry selected through real cache/source/consumer checks",
+      "exact numerical dictionary registered separately with ordinary ReadySet",
+      "authoritative source and nonconvergence notes preserved",
+      "changed consumer or source and corrupt entry retain ordinary source",
+      "cache bytes unchanged; frozen readback works after original owned inputs/cache/installation removal and relocation"
+    ],
+    "synthetic_boundaries": [
+      "toy five-atom graph and captured native inventory",
+      "external installation discovery fixture; actual consumer fingerprint checks run",
+      "NARestraints builder writes fixture PHIL; ReadySet copies input coordinates"
+    ],
+    "external_native_execution": "NOT_RUN; NO_NEW_PHENIX_OR_COOT_QUALIFICATION",
+    "scientific_support_change": "NONE",
+    "schema_compatibility_change": "NONE",
+    "validation_commands": {
+      "focused": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python scripts/run_tests.py PROFILE --junitxml NEW_LOCAL_XML",
+      "full": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python scripts/run_tests.py full --junitxml NEW_LOCAL_XML",
+      "collection": "maintained scripts/run_tests.py PROFILE --collect-only plus local audit of item origin and node identity",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c134-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests scripts/run_tests.py",
+      "docs": "check_docs.py (relative links and JSON); git diff --check"
+    },
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/suites-fail-before.log",
+        "sha256": "e7737a931ceb5f7f703230eef503c8dd922f2307b7890107a0edb8d878b71887",
+        "size": 8883
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/initial-focused.log",
+        "sha256": "f062f677f34b2a1dd625332d6e40f266e09b522404047e07d93c7157fcf0c1d3",
+        "size": 99
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/collection-audit.json",
+        "sha256": "4366943ebf6dbb6158a5667ae9f3e014b619a37696a09618e19cb1b315cb533b",
+        "size": 9236
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/collection-final.json",
+        "sha256": "beff7e9e96daf4fbae5c32d9c5ecd0cf8f5153be08e30a5a3a71139e93b8dd9c",
+        "size": 2398062
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/smoke/result.json",
+        "sha256": "6aab60850df8f412e3f0d2a6baea2f45b163f84d8213afd5ab2c2b78374019e1",
+        "size": 452
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/chemistry/result.json",
+        "sha256": "5aa25cb9dc747ecf852d942bf9fc0682a8ca33f458abdfaba60f8b75cbd485c0",
+        "size": 464
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/workflow/result.json",
+        "sha256": "1030fb6361606d4dc201e54caa85b4a25d86784f23f1ac3b9e4f11053ae01a12",
+        "size": 461
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/full/result.json",
+        "sha256": "bd9fbdb38a04dcc6c2f80a0a653d6f2741621b7e0faec478967e37a14aa2391c",
+        "size": 449
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/full/pytest.log",
+        "sha256": "340ec4278f9bb81b2803ab4f26d835422f02c685938f1efc93290b8cde27b4ea",
+        "size": 10574
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/full/pytest.xml",
+        "sha256": "20e7563f7e27ced2bdd8c68d0714f09ec77689bd929c56c1a4e997205ce57a7a",
+        "size": 1038759
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/full/source-hashes.json",
+        "sha256": "1590ef7114b6f1e855f41da4a270487993ffff05b10a33e18300e02bb29008a3",
+        "size": 54237
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "134_Cedar_test-workflow-pz2vskqf/validation/timing-summary.json",
+        "sha256": "5c088455a1ac8228f1ef52cec864d727ab4807217da695d4206b4c838d617af4",
+        "size": 2549
+      }
+    ],
+    "remaining_limits": [
+      "Profiles are explicit starting points, not automatic change-impact analysis.",
+      "Full integration gate and real scientific qualification remain separate.",
+      "Automatic recovery/adoption, phosphate state and other-family native construction remain open.",
+      "Default isolated v2 qualifications are exercised. Explicit representation-policy v3 is not accepted by dictionary-store publication; policy propagation through store, source requalification and ordinary reuse is a separate next implementation."
+    ],
+    "code_review_boundary": {
+      "current_isolated_policy": "cif-isolated-candidate-native-usability-v2",
+      "explicit_policy": "cif-isolated-candidate-native-usability-v3",
+      "source_locations": [
+        "src/nasolve/cif_candidate_usability.py:19",
+        "src/nasolve/cif_dictionary_store.py:120",
+        "src/nasolve/cif_source_reuse.py:27"
+      ],
+      "verification": "READ_ONLY_CODE_REVIEW; NO_RUNTIME_CHANGE"
+    },
+    "full": {
+      "wrapper_pid": 77630,
+      "pytest_wrapper_pid": 77644,
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/134_Cedar_test-workflow-pz2vskqf/validation/full/pytest.xml"
+      ],
+      "profile": "full",
+      "exit_code": 0,
+      "seconds": 1019.5303453750093,
+      "files": 502,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6809 passed, 276 subtests passed in 1018.99s (0:16:58)",
+    "timing_summary": {
+      "wall_seconds": 1019.5303453750093,
+      "summary": "6809 passed, 276 subtests passed in 1018.99s (0:16:58)",
+      "junit_suite_seconds": 1018.866,
+      "case_seconds_total": 1014.9830000000001,
+      "delivery_case_seconds": 177.354,
+      "case_timing_scope": "Recorded JUnit case durations, including subtests; not a wall-time prediction.",
+      "top_files": [
+        {
+          "file": "tests/test_cif_recovered_resolution.py",
+          "case_seconds": 112.013,
+          "junit_cases_including_subtests": 43
+        },
+        {
+          "file": "tests/test_cif_recovered_torsion.py",
+          "case_seconds": 82.769,
+          "junit_cases_including_subtests": 39
+        },
+        {
+          "file": "tests/test_cif_mixed_endpoint.py",
+          "case_seconds": 64.175,
+          "junit_cases_including_subtests": 61
+        },
+        {
+          "file": "tests/test_cif_mixed_endpoint_window.py",
+          "case_seconds": 52.747,
+          "junit_cases_including_subtests": 31
+        },
+        {
+          "file": "tests/test_cif_recovered_precision.py",
+          "case_seconds": 43.407,
+          "junit_cases_including_subtests": 23
+        },
+        {
+          "file": "tests/test_cif_recovered_geometry.py",
+          "case_seconds": 39.436,
+          "junit_cases_including_subtests": 38
+        },
+        {
+          "file": "tests/test_cif_mixed_torsion.py",
+          "case_seconds": 31.1,
+          "junit_cases_including_subtests": 66
+        },
+        {
+          "file": "tests/test_cif_mixed_endpoint_replay.py",
+          "case_seconds": 28.788,
+          "junit_cases_including_subtests": 9
+        },
+        {
+          "file": "tests/test_cif_native_probe.py",
+          "case_seconds": 27.165,
+          "junit_cases_including_subtests": 23
+        },
+        {
+          "file": "tests/test_cif_fana_bridge.py",
+          "case_seconds": 25.269,
+          "junit_cases_including_subtests": 23
+        },
+        {
+          "file": "tests/test_cif_fana_junction.py",
+          "case_seconds": 21.877,
+          "junit_cases_including_subtests": 42
+        },
+        {
+          "file": "tests/test_cif_mixed_geometry.py",
+          "case_seconds": 19.608,
+          "junit_cases_including_subtests": 64
+        },
+        {
+          "file": "tests/test_cif_generation.py",
+          "case_seconds": 13.788,
+          "junit_cases_including_subtests": 62
+        },
+        {
+          "file": "tests/test_cif_generation_probe.py",
+          "case_seconds": 11.135,
+          "junit_cases_including_subtests": 17
+        },
+        {
+          "file": "tests/test_cif_readyset_process_policy.py",
+          "case_seconds": 10.143,
+          "junit_cases_including_subtests": 28
+        }
+      ],
+      "profile_case_seconds": {
+        "smoke": 7.316,
+        "chemistry": 21.956,
+        "workflow": 27.847,
+        "delivery": 177.354
+      }
+    },
+    "source_test_runner_hashes_unchanged": 502
   }
 }

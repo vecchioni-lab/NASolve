@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Focused development validation and ordinary reuse coverage (C134)
+
+- Add explicit smoke, chemistry, workflow, delivery and unfiltered full pytest
+  profiles. Reject stale profile members, deduplicate combined selections and
+  prevent inherited pytest filters from silently narrowing a named suite.
+- Remove accidental repeat collection of five imported campaign tests; retain
+  their original tests and all historical delivery/replay coverage.
+- Exercise qualified storage through ordinary PostMR and relocated frozen output
+  without replacing the cache APIs, including source/consumer/corruption fallback.
+- Use focused development checks between full integration gates; preserve full
+  regression for merges/releases and cross-cutting changes. No runtime chemistry,
+  artifact schema, dependency, threshold or automatic adoption change.
+
 ### Source-bound linked and terminal preparation (C133)
 
 - Propagate explicitly representation-qualified native evidence into linked and

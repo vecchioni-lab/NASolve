@@ -374,13 +374,17 @@ conda create -p .venv python=3.12
 .venv/bin/python -m pip install -e .
 ```
 
-For development and testing, install the test dependencies:
+For development and testing, install the test dependencies and run a focused profile:
 
 ```bash
 .venv/bin/python -m pip install -e ".[test]"
-env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
-  .venv/bin/python -m pytest
+.venv/bin/python scripts/run_tests.py smoke
+.venv/bin/python scripts/run_tests.py chemistry workflow
 ```
+
+Use `scripts/run_tests.py full` for the unfiltered pre-merge regression. See
+[testing cadence and profiles](docs/collaboration.md#testing-cadence-and-development-profiles)
+for scope, custom focused tests and when a broader run is required.
 
 Use `./nasolve` for source-checkout commands. Unlike the generated editable
 entry point, the tracked launcher does not require virtual-environment

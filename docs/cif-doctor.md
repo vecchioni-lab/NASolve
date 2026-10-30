@@ -77,7 +77,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 
 | Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
-| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. General cache-miss recovery and candidate adoption are not integrated. |
+| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 representation-policy evidence still needs store/ordinary-reuse propagation. General cache-miss recovery and candidate adoption are not integrated. |
 | Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
@@ -2839,6 +2839,19 @@ overrides this path; the C66 diagnostic also accepts `--dictionary-store PATH`.
 No new dependency, daemon, network upload or student configuration is required.
 Ordinary PostMR now records reuse and preserved limitations in its solution
 summary. PDF rendering and full effective-bundle qualification remain separate.
+
+C134 adds complete synthetic integration coverage from qualified publication
+through real store selection, source/consumer checks, ordinary PostMR and frozen
+readback after relocation and removal of the test-owned cache/installation.
+Changed source or consumer and corrupted entries retain ordinary preparation;
+original nonconvergence notes survive successful reuse. Cache APIs are not replaced
+by fixtures. This exercises the existing default isolated v2 qualification path;
+C133's explicit representation-policy v3 still requires propagation through the
+persistent request, publication, readback and source-requalification contracts. The captured native inventory, installation discovery, NAR output
+and copying ReadySet remain explicit test fixtures: this expands orchestration
+coverage without certifying additional chemistry or enabling automatic recovery.
+See evidence key `development_validation_and_postmr_workflow_2026_10_30` and the
+[development testing contract](collaboration.md#testing-cadence-and-development-profiles).
 
 The explicit `--local-dictionary-reuse-only` diagnostic accepts exact C65 and
 preserves every parent payload. For each component it tests persistence,

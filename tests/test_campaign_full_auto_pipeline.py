@@ -11,7 +11,7 @@ from nasolve.campaign_records import job_relative, read_record
 from nasolve.campaigns import plan_campaign
 from nasolve.presets import load_preset, PresetError
 from nasolve.checkpoints import initialize_registry, select_checkpoint
-from .test_campaign_pipeline import CampaignPipelineTests
+from . import test_campaign_pipeline as campaign_pipeline
 from .test_postmr import postmr_model_text
 from .test_autorefine import make_refine
 
@@ -25,7 +25,7 @@ mode = "full-auto"
 
 @pytest.fixture
 def full_case(tmp_path):
-    case = CampaignPipelineTests()
+    case = campaign_pipeline.CampaignPipelineTests()
     try:
         case.setUp()
         # Test-owned plan only: production plans are never edited in place.
@@ -92,7 +92,7 @@ def test_explicit_endpoint_overrides_recipe(full_case):
 
 
 def test_guarded_recipe_retains_original_mr_stop():
-    case = CampaignPipelineTests()
+    case = campaign_pipeline.CampaignPipelineTests()
     try:
         case.setUp()
         set_tfz(case, 7.6)
