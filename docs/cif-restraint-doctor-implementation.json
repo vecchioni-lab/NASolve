@@ -27303,7 +27303,7 @@
       "remote_verified": true
     },
     "explicit_native_site_context": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "after": "Frozen opt-in context qualifies declared terminal phosphate and explicit required/absent custom restraints with exact one-to-one native realization; existing source/identity/geometry gates stay mandatory.",
       "schemas": {
         "new_site_receipt": "schema 1 / cif-stored-dictionary-sites-v2 when native_context supplied; same dictionary_site_directory anchor",
@@ -27325,7 +27325,11 @@
       "next": "Qualify an opt-in native-capture compatibility fix for identical-chain copying using actual native atom/residue identities, preserving legacy captures; do not guess missing labels or relax identity checks. Then compose multiple stored components under one exact ordered model/CIF/PHIL contract and route qualified cases into existing preparation/ReadySet integration. Keep source-state, generic-port, PDU numerics, scientific acceptance and automatic adoption separate.",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "explicit_native_site_context_2026_10_30",
-      "validation": "6972 passed, 276 subtests passed in 1054.37s (0:17:34); focused 1063 passed, 36 subtests passed in 69.57s (0:01:09); three intended native controls, ten negatives and 142-file guarded cold replay."
+      "validation": "6972 passed, 276 subtests passed in 1054.37s (0:17:34); focused 1063 passed, 36 subtests passed in 69.57s (0:01:09); three intended native controls, ten negatives and 142-file guarded cold replay.",
+      "implementation_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
+      "full_tested_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

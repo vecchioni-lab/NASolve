@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C137 validated: explicit terminal and custom-restraint native context
+## C137 published: explicit terminal and custom-restraint native context
 
 Base: `fec8a4c692b32126ec5bf1bca6f866519c870f88`; existing cedar only.
 Capsule: `live_tests_directory/137_Cedar_native-context-ik2r7rp3`.
@@ -56,7 +56,9 @@ byte-exact SVG regeneration, visual inspection and whitespace checks pass.
 
 Raw models, CIFs, native logs/captures, local scripts and immutable attempts stay
 outside Git. Only maintained contracts and summary/hash evidence are published.
-No job is active. Implementation and validation are complete; signed publication remains.
+No job is active. Implementation, full validation and signed publication are complete. Tested
+implementation `8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2` is published and verified
+on `origin/cedar`; this follow-up records continuity. No branch creation or merge.
 Evidence key: `explicit_native_site_context_2026_10_30`.
 
 Next: fix the copied-chain capture boundary using real native identities without

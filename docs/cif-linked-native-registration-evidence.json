@@ -48574,7 +48574,7 @@
     }
   },
   "explicit_native_site_context_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "fec8a4c692b32126ec5bf1bca6f866519c870f88",
@@ -49247,6 +49247,10 @@
         "sha256": "50c726abbaea2418388514db4364f444deecd69ac494f0a571ff78b0d8149574",
         "size": 388
       }
-    ]
+    ],
+    "implementation_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
+    "full_tested_commit": "8858e1fc4115bcfe22fd3be7f6d746e1ceb471d2",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
