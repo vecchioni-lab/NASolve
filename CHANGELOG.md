@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Stored dictionaries at explicit model sites (C136)
+
+- Add an opt-in Python API that freezes a qualified dictionary, its stored
+  representation policy, explicit site/end states and ordered model/CIF/PHIL
+  inputs. Reuse the existing linked/terminal preparation and source guards.
+- Recompute prepared files during readback; reject mismatched consumers,
+  undeclared links, altered projections and unrequested artifacts. Frozen bundles
+  replay after the original source, cache and checkout paths are removed.
+- Bind saved native captures to the exact ordered inputs and implementation
+  fingerprints. Check selected active restraints, unchanged cross-site mechanics
+  and declared phosphate coverage; retain unsupported formal-charge findings.
+  Reuse the existing diagnostic-only continuation policy without relabelling
+  REVIEW as PASS or authorizing ordinary adoption.
+- Add a separate schema-1 site receipt. Existing store/run/checkpoint formats,
+  ordinary PostMR fallback and chemical-state authority remain unchanged.
+  No automatic selection/adoption, CLI activation or in-place migration.
+
 ### Explicit chemistry policy in persistent dictionary reuse (C135)
 
 - Bind supported opt-in bond representation policies in the immutable repair

@@ -68,7 +68,9 @@
 <a id="current-capability-boundary-c132"></a>
 <a id="current-capability-boundary"></a>
 
-## Current capability boundary (C133)
+<a id="current-capability-boundary-c133"></a>
+
+## Current capability boundary (C136)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -77,12 +79,12 @@ sections below retain exact methods, failures and evidence-time next steps.
 
 | Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
-| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage and source requalification; automatic PostMR selection of those entries remains gated on qualified current-site support. General cache-miss recovery and candidate adoption are not integrated. |
+| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Automatic PostMR selection still requires a separate continuation/adoption contract. General cache-miss recovery and candidate adoption are not integrated. |
 | Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
-| Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
-| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres; 42 native checks pass. | Two formal-charge readbacks remain unsupported. Source phosphate H is retained, not chosen by pH. The native preparer still requires conventional backbone names and explicit DNA/L-DNA source declarations. |
+| Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer through both the source guard and stored three-site preparation. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
+| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to that preparation, replays 42 definition checks and passes 45 additional active/native checks in a fresh Phenix capture. | Two formal-charge readbacks remain unsupported. Source phosphate H is retained, not chosen by pH. The native preparer still requires conventional backbone names and explicit DNA/L-DNA source declarations. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
@@ -2894,6 +2896,98 @@ capture, not a fresh Phenix/Coot execution or new chemistry qualification.
 Exact commands/results are in evidence key
 `explicit_dictionary_representation_policy_2026_10_30` in the
 [existing ledger](cif-linked-native-registration-evidence.json).
+
+### Stored dictionaries at explicit current sites (C136)
+
+`nasolve.cif_dictionary_sites` connects a frozen qualified dictionary to an exact
+model and declared linked/end-state contexts. This is an opt-in Python contract;
+ordinary PostMR continues its existing fallback for explicit-policy entries.
+No cache search, dictionary regeneration, coordinate editing or native process
+runs inside these APIs.
+
+`prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer,
+expected_links, terminal_resource=None, supplementary_dictionaries=(),
+supplementary_phils=())` requires a fresh output directory. The consumer must
+exactly match the stored isolated qualification and include the Phenix version,
+dispatcher checksum, eight interpreter API pins and three energy API pins.
+An upgraded consumer needs upstream requalification. The stored recipe owns the
+representation policy; the caller cannot override it for a new model. Default
+v2 and explicit v3 snapshots are supported without changing their serialization.
+
+Every site sharing the selected component code needs a context. `expected_links`
+is the complete, ordered declaration of model backbone pairs, including unchanged
+supplementary components. Selected incoming/outgoing contexts must agree exactly;
+missing, duplicate, reversed and branched declarations are refused. No geometric
+or basename search supplies a missing link. The existing native adapter still
+requires conventional P/O3'/O5' names and explicit DNA/L-DNA source metadata.
+Other source-defined backbone families need their own qualified adapter.
+
+Declared free 5'-OH sites require a captured terminal-resource receipt. Its
+declared files are frozen and verified, and its version, dispatcher and shared
+monomer-reader fingerprint must match the dictionary consumer. The existing
+terminal checker retains the installed fragment's numerical targets without
+substituting partial charge for formal charge. Other site mixtures use the linked
+preparer. Source phosphate H/charge and all retained configurations remain bound
+to the original source; an unexplained missing OP3 does not authorize adding it.
+
+The new `site_receipt.json` has schema 1 and policy
+`cif-stored-dictionary-sites-v1`. Artifact references use
+`dictionary_site_directory`, relative paths, SHA-256 and sizes. Only the six
+snapshot files, model, declared terminal-resource artifacts, ordered supplementary
+inputs and derived preparation are included. Publication validates the staged
+bundle before renaming it into the fresh destination. Input snapshots, caches,
+completed runs and their modification times are unchanged.
+
+`read_dictionary_sites(output)` validates the inventory and repeats preparation
+from those frozen authorities in a temporary directory. It compares generated
+CIF/PHIL/projection bytes exactly and uses the existing narrow eigensystem-roundoff
+rule only for duplicated derived receipt measurements. Rehashing an altered
+projection, inventing a PASS or adding an unrequested file cannot make it replay.
+The returned `before_dictionaries`, `after_dictionaries`, `before_phils`,
+`after_phils` and `model` paths define the exact native input order. The before
+vector uses the saved isolated dictionary; the after vector uses the prepared
+base and modification CIFs, then appends the site-selection PHIL after the
+unchanged supplementary PHIL inputs.
+
+`inspect_dictionary_site_native(output, baseline_receipt, candidate_receipt)`
+reads complete maintained-worker captures. It binds both to those exact vectors,
+the same model/occupancies and the saved consumer pins, then invokes the existing
+terminal/projection checker. Additional checks cover selected active bonds,
+angles, torsions, planes and fixed chirality; literal coordinate/source elements
+and the O/P elements of both native linkage partners; modifier IDs; complete proxy
+inventories; finite repeated energies; declared incoming-phosphate coverage;
+and every unchanged cross-site proxy, including both parallelity planes. The
+pre-repair capture may report a missing heavy atom only when that exact atom is
+in the selected preparation's deletion plan. No unexplained baseline deficit is
+waived, and the prepared capture must have no missing heavy atoms.
+
+The result retains separate `qualification` and `native_checks` evidence.
+`STORED_SITE_NATIVE_MECHANICS_PASS` requires every check to pass; unsupported
+formal-charge readbacks keep the overall result `REVIEW`. A separate
+`diagnostic_continuation` decision reuses `mechanics_can_continue`: both check
+layers must be present and passing, except for the existing unavailable-charge
+readback category with no contradiction. This can return `CONTINUE_WITH_NOTES`
+for a separate diagnostic phase; it does not turn REVIEW into PASS, choose
+protonation, authorize automatic PostMR selection or adopt a model. This is
+captured implementation binding, not a fresh installation certification. A caller doing
+new native work must separately verify the configured installation. Energy-library
+data fingerprints, experimental protonation, generic attachment ports, symmetry
+links and scientific geometry remain separate boundaries. Complete dictionary
+retention is not automatic candidate adoption.
+
+Validation uses synthetic positive/negative contracts and six D/L deoxy,
+arabino-fluoro and ribo-fluoro transfer cases with changed component labels.
+These retain all declared centres, coordinates, fixed chiral rows and retained
+OP2 H through three-site preparation; they do not establish a live L-FDNA route.
+The saved C133 0DG isolated evidence is independently reproduced (21 checks),
+then carried through storage, preparation and cold relocation with native
+execution forbidden. A fresh complete Phenix 2.2.1-6174 interpretation reproduces
+42 passing definition checks, two unsupported charge readbacks and 45 passing
+additional native checks. No refinement, Coot, optimization or adoption runs.
+See `stored_dictionary_current_sites_2026_10_30` in the
+[existing evidence ledger](cif-linked-native-registration-evidence.json) for
+exact commands, focused tests and failure controls. The full suite is explicitly
+deferred for this pass; the last full-tested implementation is C135 `d4c0e57`.
 
 The explicit `--local-dictionary-reuse-only` diagnostic accepts exact C65 and
 preserves every parent payload. For each component it tests persistence,

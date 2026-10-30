@@ -27275,6 +27275,28 @@
       "implementation_commit": "d4c0e57e5c66b18279c5ab4e733fb2d212d801b0",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "stored_dictionary_current_sites": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "A fresh opt-in site bundle freezes the stored policy, model, declared contexts/resources and ordered inputs; readback rederives files and binds complete native captures. Existing diagnostic continuation is exposed separately from REVIEW/PASS and adoption.",
+      "schemas": {
+        "new_site_receipt": "schema 1 / cif-stored-dictionary-sites-v1 / dictionary_site_directory anchor",
+        "unchanged": "dictionary store schema/policy, default v2 and explicit v3 isolated evidence, CLI and run/checkpoint formats"
+      },
+      "compatibility": "Additive Python APIs; no migration or rewrite of earlier entries/runs. Legacy v2 and opt-in v3 snapshots both work with complete consumer identity. Existing ordinary PostMR fallback remains.",
+      "limitations": [
+        "One stored component per explicit preparation; all its model sites must be declared. Multi-component composition and ordinary PostMR selection/adoption remain separate integration work.",
+        "Native adapter requires conventional phosphodiester names and explicit DNA/L-DNA metadata; generic PNA/ATL ports, symmetry links and alternative chemical operations remain open.",
+        "Formal-charge readback remains unsupported at two sites. Existing diagnostic-only continuation can proceed with notes when every other check passes; this is not PASS or adoption.",
+        "Explicit source phosphate protonation/H and terminal-resource targets are preserved, not inferred from experimental pH or energy. Energy-library data identity is not exhausted by API fingerprints.",
+        "Synthetic D/L deoxy/arabino-fluoro/ribo-fluoro transfer is not live L-FDNA construction/refinement qualification. All source-relative centres are checked; no absolute CIP claim.",
+        "No CLI activation, checkpoint, installed Phenix/Coot/library change, NARestraints workbook change, model optimization, refinement, scientific approval or merge.",
+        "Full regression intentionally deferred by Simon for this pass. Last full-tested implementation remains C135 d4c0e57e5c66b18279c5ab4e733fb2d212d801b0: 6838 passed, 276 subtests."
+      ],
+      "next": "Compose multiple frozen component/site preparations under one exact ordered model/CIF/PHIL/native contract, reusing the same continuation policy and preserving ordinary fallback. Keep source-state/generic-port/PDU and adoption gates explicit; do not remove the C135 automatic-cache exclusion on the strength of isolated or single-component evidence.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "stored_dictionary_current_sites_2026_10_30",
+      "validation": "1014 passed, 36 subtests passed in 63.30s (0:01:03); 131 additional shared-helper tests; fresh native, 14 negative controls and 59-file guarded cold replay."
     }
   },
   "audience": [
@@ -27768,7 +27790,7 @@
       "cache_invalidation": "Any changed source, graph mapping, site/link/symmetry context, parameter/weight, tool/energy library, coordinate/cell or policy invalidates the affected layer. Cached unsupported/failed results stay clearly typed; fresh tool availability changes capability identity.",
       "replay": "No host-absolute path as sole operational reference; hashes and declared run/dataset/repository anchors permit relocated replay. No input lookup by basename. Cache may optimize calculations but must not replace the run-local immutable receipt.",
       "qualified_dictionary_store": {
-        "status": "IMPLEMENTED_DEFAULT_ORDINARY_REUSE_AND_OPT_IN_ISOLATED_POLICY_STORAGE",
+        "status": "IMPLEMENTED_DEFAULT_ORDINARY_REUSE_AND_OPT_IN_STORED_SITE_NATIVE_BINDING",
         "recorded_date": "2026-10-30",
         "behavior": "Automatically persist usable repaired numerical dictionaries locally and reuse them before regeneration or optimization for later matching structures.",
         "identity": "Semantic source/state/authority/recipe/backend-family lookup; immutable entry additionally binds candidate bytes, complete producer and consumer versions, qualification and stopping notes.",
@@ -27789,7 +27811,7 @@
           "src/nasolve/cif_dictionary_reuse.py"
         ],
         "delivery": "Historical C66 evidence retained; current contracts in cif-doctor.md and C135 evidence.",
-        "explicit_representation": "Existing recipe identity binds the supported opt-in policy; v3 publication/readback use source-bound qualification. Automatic PostMR excludes these entries pending qualified current-site support."
+        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136 adds one-component exact current-site preparation/native binding and scoped diagnostic continuation. Automatic PostMR still excludes these entries pending multi-component integration/adoption."
       },
       "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },

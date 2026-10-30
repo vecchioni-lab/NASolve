@@ -56,6 +56,17 @@ the hydrogen-free model; this is definition consistency, not geometry improvemen
 Cold replay needs neither the original paths nor the SDK. See the
 [source-bound preparation contract](cif-doctor.md#source-bound-qualified-site-preparation-c133).
 
+The stored-dictionary route now reaches this exact site preparation through an
+explicit API. It preserves the saved chemical policy and checks that Phenix
+actually consumed the expected model, dictionaries and restraint files in order.
+A fresh native interpretation repeats the 42 definition checks and two charge
+limitations, with 45 additional active-restraint/consumer-context checks passing.
+All cross-site restraints stay unchanged; a terminal site does not need an
+invented second backbone link. The frozen preparation and saved captures replay
+after relocation without changing their bytes or modification times. The existing
+continuation policy permits further separate diagnostics when only unavailable
+charge readback remains, while preserving REVIEW and withholding adoption.
+
 FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C route
 has the linked model evidence above. L-FDNA transfer is tested synthetically, not
 by a live end-to-end build. PNA has selected isolated numerics and connected source
@@ -137,10 +148,12 @@ ReadySet handoff and relocated readback together, including incompatible/corrupt
 entry fallback. Explicit representation policies now also survive isolated
 storage, readback and source requalification, with mismatches rejected and older
 entries preserved. These opt-in entries remain outside automatic PostMR selection
-until their current-site route is qualified. Storage does not choose phosphate
-protonation or establish linked-model compatibility. Captured 0DG native evidence
-and synthetic positive/negative controls verify the boundary; no new native
-chemistry is claimed.
+pending the separate automatic continuation/adoption contract. An explicit
+stored-site API now freezes current contexts and checks their exact prepared
+native input bundle. Source chemistry and unsupported charge evidence retain
+their authority. Fresh 0DG-flank interpretation and synthetic D/L transfer tests
+validate this route without asserting new family-wide chemistry support. See
+[the stored-site contract](cif-doctor.md#stored-dictionaries-at-explicit-current-sites-c136).
 
 ## How it works
 
@@ -646,8 +659,9 @@ explain export and maintenance.
 Solid arrows indicate the existing model-preparation path; dashed arrows
 indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
-external preparation program. Separate catalogue/core inspection binds source
-ports; explicit site contracts propose bounded source-table deletions and
+external preparation program. The explicit stored-site route binds the saved
+policy to current site preparation and captured native inputs, with no automatic
+adoption arrow. Separate catalogue/core inspection binds source ports; explicit site contracts propose bounded source-table deletions and
 require reciprocal source ports across the declared link set. Exact projections
 and source binding leave native linkage unqualified. Saved native captures then
 supply literal bond membership and effective-definition observations, with failed

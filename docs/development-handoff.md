@@ -11,6 +11,59 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C136 validated: stored dictionaries at explicit current sites
+
+Base: `86ea4fb30c9d0b7bbaa6ff481a1f0478f50314e2`; existing cedar only.
+Capsule: `live_tests_directory/136_Cedar_stored-sites-7lfqb4kg`.
+Before: stored v3 policy/numerics lacked an exact current-site/native handoff.
+After: opt-in `cif_dictionary_sites` freezes an independent snapshot, the model,
+all selected component contexts, full declared links, terminal resources and
+ordered supplementary inputs. It invokes existing source/linked/end-state
+guards and rederives all prepared files during readback. The saved policy and
+consumer identity cannot be overridden. Legacy v2 remains supported.
+
+Native inspection binds complete maintained-worker captures to those exact
+inputs, checks source projections and active site mechanics, and preserves every
+cross-site proxy. The old capture may lack only explicit deletion-plan atoms;
+the prepared capture must have no missing heavy atoms. No coordinate editing,
+OP3 addition, source-state inference, generic-port claim or automatic PostMR use.
+The existing continuation policy permits a separate diagnostic phase with the
+known unavailable-charge notes; REVIEW stays REVIEW and adoption stays false.
+
+Changed: one runtime module, one 85-case test module, focused-profile membership,
+maintained contracts/roadmap/evidence and editable figure. New site receipt:
+schema 1 / `cif-stored-dictionary-sites-v1`, relative `dictionary_site_directory`
+references and checksums. Existing store, CLI and checkpoint schemas unchanged;
+no migration. Raw models/CIFs/native logs, snapshots, runners and counterfactual
+copies remain local. No merge or branch creation.
+
+Validation: initial **24 failures** before implementation; final chemistry/workflow
+**1014 passed, 36 subtests passed in 63.30s (0:01:03)**; shared helpers **131 passed in 7.10s**.
+All 505 source/test/runner hashes are unchanged through the final focused run.
+Six synthetic D/L deoxy/arabino-fluoro/ribo-fluoro transfers preserve all source
+centres and retained geometry/H without a residue whitelist. They do not establish
+a live L-FDNA build. C133's isolated qualification is independently reproduced
+(21 checks). Fresh complete Phenix **2.2.1-6174**, reporting **2.2.1**, passes
+42 definition checks and 45 additional native checks; two formal-charge
+readbacks remain unsupported. No Coot/refinement/optimization execution.
+All 14 counterfactual capture defects are refused or block continuation.
+Cold relocation preserves all 59 files' bytes, sizes and modification times;
+original owned checkout/source/cache paths are gone, and Phenix/original-checkout/
+prior-capsule reads plus subprocesses are explicitly forbidden. Compilation,
+285 documentation links, JSON, figure regeneration/visual check and whitespace pass.
+
+**No full suite this pass, explicitly requested by Simon.** Last full-tested
+implementation remains C135 `d4c0e57e5c66b18279c5ab4e733fb2d212d801b0`:
+6838 tests + 276 subtests. Full regression remains required before integration.
+No job is active. Implementation and validation complete; publication remains.
+Evidence key: `stored_dictionary_current_sites_2026_10_30`.
+
+Next bounded step: compose multiple frozen component/site preparations under one
+ordered global model/CIF/PHIL/native contract, then connect scoped continuation
+without removing ordinary fallback. Source-state authority, generic native ports,
+PDU numerical qualification and production adoption stay separate roadmap gates.
+— Rowan · Codex desktop
+
 ## C135 published: explicit representation policy in dictionary storage
 
 Base: `6e6307994cabc372b8173486b5b08a04d01dd419`; existing cedar only.

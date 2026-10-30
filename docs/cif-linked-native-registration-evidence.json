@@ -48162,5 +48162,343 @@
     "implementation_commit": "d4c0e57e5c66b18279c5ab4e733fb2d212d801b0",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "stored_dictionary_current_sites_2026_10_30": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "86ea4fb30c9d0b7bbaa6ff481a1f0478f50314e2",
+    "before": "Stored explicit policies could not flow through a replayable exact-site/native binding; the constructed-model adapter assumes internal sites with both links.",
+    "after": "A fresh opt-in site bundle freezes the stored policy, model, declared contexts/resources and ordered inputs; readback rederives files and binds complete native captures. Existing diagnostic continuation is exposed separately from REVIEW/PASS and adoption.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_dictionary_sites.py",
+      "tests/test_cif_dictionary_sites.py"
+    ],
+    "schemas": {
+      "new_site_receipt": "schema 1 / cif-stored-dictionary-sites-v1 / dictionary_site_directory anchor",
+      "unchanged": "dictionary store schema/policy, default v2 and explicit v3 isolated evidence, CLI and run/checkpoint formats"
+    },
+    "compatibility": "Additive Python APIs; no migration or rewrite of earlier entries/runs. Legacy v2 and opt-in v3 snapshots both work with complete consumer identity. Existing ordinary PostMR fallback remains.",
+    "regressions": {
+      "initial": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_dictionary_sites.py",
+        "summary": "24 failed in 1.10s before implementation; ModuleNotFoundError for the absent site API.",
+        "test_source_runner": "runners/c136_tests.py",
+        "final_new_cases": 85
+      },
+      "new_cases": 85,
+      "focused_summary": "1014 passed, 36 subtests passed in 63.30s (0:01:03)",
+      "focused": {
+        "wrapper_pid": 97145,
+        "pytest_wrapper_pid": 97146,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/136_Cedar_stored-sites-7lfqb4kg/validation/publication/pytest.xml"
+        ],
+        "profile": "chemistry + workflow",
+        "exit_code": 0,
+        "seconds": 63.679388082935475,
+        "files": 505,
+        "changed_files": [],
+        "finished": true
+      },
+      "shared_helpers": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linked_control.py tests/test_cif_attachment_native.py tests/test_cif_construction_native.py tests/test_cif_effective_source_recovery.py",
+        "exit_code": 0,
+        "summary": "131 passed in 7.10s",
+        "record_source": "Observed exec session result; separate helper tests after the main runtime edits; those shared helpers were unchanged by the final element guard."
+      },
+      "source_test_runner_hashes_unchanged": 505
+    },
+    "chemical_transfer": "Six synthetic D/L deoxy, arabino-fluoro and ribo-fluoro three-site cases with noncatalogue component labels retain all declared centres, coordinate values, fixed chiral rows and retained OP2 H.",
+    "native": {
+      "release": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "execution": "COMPLETE_NATIVE_INTERPRETATION; NOT_A_DRY_RUN",
+      "seconds": 2.64287774998229,
+      "current_installation_api_and_dispatcher_pins_verified": true,
+      "isolated_C133_checks_independently_reproduced": 21,
+      "final_definition_checks": {
+        "PASS": 42,
+        "UNSUPPORTED": 2
+      },
+      "final_additional_native_checks": {
+        "PASS": 45
+      },
+      "verdict": "REVIEW",
+      "diagnostic_continuation": {
+        "allowed": true,
+        "automatic_adoption": false,
+        "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY",
+        "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+        "status": "CONTINUE_WITH_NOTES"
+      },
+      "fresh_model_scope": "Existing C133 explicit L-DNA 0DG flank preparation around the unchanged L-FANA-C site; no new family-wide qualification.",
+      "coot_execution": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "optimization": "NOT_RUN"
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "read_from_relocated_checkout": true,
+      "historical_sdk_checkout_and_prior_capsule_reads_forbidden": true,
+      "blocked_read_attempts": 0,
+      "subprocesses_forbidden": true,
+      "frozen_files_unchanged": 59,
+      "native_checks": {
+        "PASS": 45
+      },
+      "qualification": {
+        "PASS": 42,
+        "UNSUPPORTED": 2
+      },
+      "diagnostic_continuation": {
+        "status": "CONTINUE_WITH_NOTES",
+        "allowed": true,
+        "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+        "automatic_adoption": false,
+        "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+      },
+      "verdict": "REVIEW"
+    },
+    "counterfactual_native_controls": {
+      "automatic_adoption": false,
+      "cases": [
+        {
+          "case": "version",
+          "outcome": "REFUSED",
+          "reason": "Native capture consumer or completion differs"
+        },
+        {
+          "case": "dispatcher",
+          "outcome": "REFUSED",
+          "reason": "Native capture consumer or completion differs"
+        },
+        {
+          "case": "energy_api",
+          "outcome": "REFUSED",
+          "reason": "Native capture consumer or completion differs"
+        },
+        {
+          "case": "dictionary_order",
+          "outcome": "REFUSED",
+          "reason": "Native capture did not consume the exact ordered prepared inputs"
+        },
+        {
+          "case": "phil_bytes",
+          "outcome": "REFUSED",
+          "reason": "Native capture did not consume the exact ordered prepared inputs"
+        },
+        {
+          "case": "worker_bytes",
+          "outcome": "REFUSED",
+          "reason": "Require a maintained native inventory worker"
+        },
+        {
+          "case": "selected_definition",
+          "failed_checks": [
+            "projected-native-bonds:A:3"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "selected_active_angle",
+          "failed_checks": [
+            "exact-heavy-angle:A:1"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "unselected_definition",
+          "failed_checks": [
+            "preserved-other-component-definitions",
+            "all-unselected-native-definitions-preserved"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "site_modifier",
+          "failed_checks": [
+            "exact-site-modifier:A:3"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "extra_cross_site_bond",
+          "failed_checks": [
+            "preserved-cross-site-proxies:bond_simple"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "missing_phosphate_angle",
+          "failed_checks": [
+            "preserved-cross-site-proxies:angle",
+            "linked-phosphate-tetrahedral-coverage:A:3"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "baseline_unexplained_deficit",
+          "failed_checks": [
+            "before:accounted-unique-monomer-sites"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "change_during_inspection",
+          "outcome": "REFUSED",
+          "reason": "Native capture changed during inspection"
+        }
+      ],
+      "fresh_control": {
+        "diagnostic_continuation": {
+          "allowed": true,
+          "automatic_adoption": false,
+          "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY",
+          "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+          "status": "CONTINUE_WITH_NOTES"
+        },
+        "native_checks": {
+          "PASS": 45
+        },
+        "qualification": {
+          "PASS": 42,
+          "UNSUPPORTED": 2
+        },
+        "status": "REVIEW"
+      },
+      "native_execution": "NOT_RUN; MUTATED_OWNED_COPIES_ONLY",
+      "status": "PASS"
+    },
+    "validation_commands": {
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/136_Cedar_stored-sites-7lfqb4kg/validation/publication/pytest.xml"
+      ],
+      "shared_helpers": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linked_control.py tests/test_cif_attachment_native.py tests/test_cif_construction_native.py tests/test_cif_effective_source_recovery.py",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c136_replay.py; c136_cold_guard.py",
+      "fresh_native": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c136_native.py; inspect_native_bundle timeout_seconds=180, linked/policy/energy/nonbonded inventories, explicit ordered CIFs/PHILs",
+      "counterfactuals": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c136_native_controls.py; all native execution forbidden",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c136-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests scripts/run_tests.py docs/figures/build_cif_doctor_overview.py",
+      "documents": "check_docs.py; byte-exact SVG regeneration; rsvg-convert visual inspection; git diff --check"
+    },
+    "full_suite": "NOT_RUN_THIS_PASS; EXPLICIT_USER_INSTRUCTION",
+    "artifacts": "Only code/tests, maintained technical docs, editable figure and summary/hash evidence committed. Scientific CIF/model/captures, frozen bundles, local logs, counterfactual copies and runners excluded from Git.",
+    "limitations": [
+      "One stored component per explicit preparation; all its model sites must be declared. Multi-component composition and ordinary PostMR selection/adoption remain separate integration work.",
+      "Native adapter requires conventional phosphodiester names and explicit DNA/L-DNA metadata; generic PNA/ATL ports, symmetry links and alternative chemical operations remain open.",
+      "Formal-charge readback remains unsupported at two sites. Existing diagnostic-only continuation can proceed with notes when every other check passes; this is not PASS or adoption.",
+      "Explicit source phosphate protonation/H and terminal-resource targets are preserved, not inferred from experimental pH or energy. Energy-library data identity is not exhausted by API fingerprints.",
+      "Synthetic D/L deoxy/arabino-fluoro/ribo-fluoro transfer is not live L-FDNA construction/refinement qualification. All source-relative centres are checked; no absolute CIP claim.",
+      "No CLI activation, checkpoint, installed Phenix/Coot/library change, NARestraints workbook change, model optimization, refinement, scientific approval or merge.",
+      "Full regression intentionally deferred by Simon for this pass. Last full-tested implementation remains C135 d4c0e57e5c66b18279c5ab4e733fb2d212d801b0: 6838 passed, 276 subtests."
+    ],
+    "next": "Compose multiple frozen component/site preparations under one exact ordered model/CIF/PHIL/native contract, reusing the same continuation policy and preserving ordinary fallback. Keep source-state/generic-port/PDU and adoption gates explicit; do not remove the C135 automatic-cache exclusion on the strength of isolated or single-component evidence.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/validation/initial-regression.json",
+        "sha256": "e9be825b72a61644f7e0171c22bc4f6fc30ba3ab51ba6f9c213fd3e9ed19fad2",
+        "size": 333
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/validation/publication/result.json",
+        "sha256": "51bedd59e39b725c387a4ded0597e224e5df8cb9d9d89ba098e4587d30f37f91",
+        "size": 492
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/validation/publication/pytest.log",
+        "sha256": "4de6e88d5df9af2cbc88cad89422e2de52fc4e252194e3b538c1159c6ad048a9",
+        "size": 5546
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/validation/publication/pytest.xml",
+        "sha256": "6b769648d30f3dc62c0728be49b87947b534fdb1aae86de8c844c64b9c4b2af8",
+        "size": 151254
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/validation/publication/source-hashes.json",
+        "sha256": "87370e18622842250188c7dfe159aa8e360c6628ce6c075825bd874ac280dfc5",
+        "size": 54563
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/validation/shared-helpers.json",
+        "sha256": "b3f9f20af773e7e8c8e0bb8f4ff345c251fd40f5f3e34b7f40a150300d25d0ea",
+        "size": 494
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/validation/auxiliary.json",
+        "sha256": "34f0041217ac122cdb61041f7cc59e8d397308a721b32068544eded7774616b5",
+        "size": 275
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/replay-verified/result.json",
+        "sha256": "91e91ca74bf25eae7d6cfacbf651bf43d75a15baf816973ebc171a50d69fac58",
+        "size": 23038
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/replay-verified/cold.log",
+        "sha256": "77fc93f49ae49e23bb45b7aa1e1f271bd71255c09f2d9a360e54a45e72e01b3e",
+        "size": 132
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/replay-verified/strict-cold-result.json",
+        "sha256": "73f28fb47cea7b9cadf0bda9e92c930452138660fbbd3b90c7665c38e8f83f9e",
+        "size": 609
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/native/result.json",
+        "sha256": "8ea549ddc82bfca9c8b56425cdc35edf44a285c1d012f7a6bef3194b0b4d018e",
+        "size": 20709
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/native/cif-native-sdl6e3xa/native_receipt.json",
+        "sha256": "9c167f791ce6211ef2e5bcb322a1be0fbeb503c7d5ff693de74445cb4d7df77f",
+        "size": 932960
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/native-controls-publication/result.json",
+        "sha256": "323022a834828b6478b58545c610834535dab386c3f5b863cf4bd6f10fef217b",
+        "size": 2734
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "136_Cedar_stored-sites-7lfqb4kg/native-controls-publication/fresh-capture-final-readback.json",
+        "sha256": "8ccdc0f6a9b03c77eb11bbc48a129268ce463594ea4ad2e90bcf108fee34211b",
+        "size": 22917
+      }
+    ]
   }
 }

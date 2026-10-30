@@ -11,6 +11,10 @@ The standard-library generator is the editable layout source. From the checkout:
 python3 docs/figures/build_cif_doctor_overview.py
 ```
 
+The current scope note includes C136's explicit stored-policy/site/native path.
+It adds no automatic adoption arrow; the companion contract retains unsupported
+formal-charge readback, source-state and integration limits.
+
 Edit its labels/layout and regenerate both source-controlled files together.
 For one-off manuscript edits in a vector editor, save a separate derivative and
 record the source commit; coordinate changes in the figure do not establish a
