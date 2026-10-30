@@ -27160,6 +27160,45 @@
       ],
       "next": "Bounded central-residue geometry candidate with fixed flanks and source/stereo preservation; re-interpret and recheck exact topology and mechanics before any acceptance.",
       "implementation_commit": "7f83ed2f14e171ede16e525142f85ce596d6b6b8"
+    },
+    "fana_selected_geometry": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fana_selected_geometry_2026_10_30",
+      "policies": [
+        "cif-selected-native-geometry-v1",
+        "cif-source-bound-fana-selected-geometry-v1"
+      ],
+      "behavior": "A bounded separate selected-coordinate trial and read-only source/native endpoint review preserve fixed flanks, full environment, topology and source sugar hands.",
+      "validation": "6714 passed, 276 subtests passed in 973.15s (0:16:13); 279 combined focused; completed C130 Phenix and C131 saved replay; 293/294-file cold checks.",
+      "compatibility": "Additive optional Python APIs and schema-1 diagnostic artifacts. Existing workers/kernels and exact seed binder unchanged. No CLI, run/checkpoint migration, installed-library modification or ordinary PostMR activation.",
+      "limitations": [
+        "NOT_CONVERGED_LIMIT at 200 iterations/210 optimizer calls; 214 recorded full-objective evaluations. No geometry acceptance or adoption.",
+        "No nonzero parallelity terms, special positions or nonidentity symmetry in this first ordinary path.",
+        "Source-relative four-centre preservation is not independent absolute CIP or chemical/numerical target qualification.",
+        "Residual clashes/outgoing-angle deviations and frozen-flank strain remain; C110 H/charge/order/OP3 differences stay open.",
+        "No implicit phosphate removal, OP3 addition, source repair, diffraction refinement or workbook change."
+      ],
+      "next": "Explain residual strain and frozen-flank contributions before a bounded convergence/acceptance trial; retain separate source chemistry and topology authority."
+    },
+    "selected_environment": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "selected_environment_2026_10_30",
+      "policy": "cif-selected-environment-review-v1",
+      "behavior": "Read-only scope partition of scalar geometry and verified native repulsion, plus selected/held gradient norms, with original gates and stopping retained.",
+      "validation": "6714 passed, 276 subtests passed in 973.15s (0:16:13); 279 combined focused; completed C130 Phenix and C131 saved replay; 293/294-file cold checks.",
+      "compatibility": "New optional Python reader and schema-1 report; no native worker, numerical kernel, coordinate, CLI, checkpoint or production-default changes.",
+      "limitations": [
+        "Selection dependency is not proof that a feasible or chemically valid repair exists.",
+        "Covalent scalar deviations are descriptive; unknown and deferred categories remain visible.",
+        "Only captured native nonbonded residuals are partitioned; no complete objective floor is inferred.",
+        "Full gradients on held atoms are not the selected optimizer convergence gradient.",
+        "Receipt authenticity, fixed mechanics, topology and source chemistry require separate binding.",
+        "Metrics are from the fresh serialized native endpoint, not full-precision optimizer stopping.",
+        "Original limit stopping, source-state/target qualification, boundary angle and pair clashes remain open."
+      ],
+      "next": "Investigate source-authorized flank target/protonation repair and a bounded convergence/serialization trial without using score improvement as chemical authority."
     }
   },
   "audience": [

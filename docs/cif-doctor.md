@@ -59,7 +59,11 @@
 
 <a id="current-capability-boundary-c128"></a>
 
-## Current capability boundary (C129)
+<a id="current-capability-boundary-c129"></a>
+
+<a id="current-capability-boundary-c130"></a>
+
+## Current capability boundary (C131)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -73,7 +77,7 @@ exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95
 | --- | --- | --- |
 | Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. C121 separately covers the bounded neutral 6-oxo five-ring; charged/other carbonyl purines, convergence, linked PNA numerics and ordinary integration remain open. |
 | Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
-| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 preserves a whole residue in a separate three-site control but leaves a gap. C125 restores the two missing incoming angles in a bonded translation control. C126 fits a source-preserving seed with both native links and six angles at each phosphate. C127 attributes the seed’s nonbonded crowding to A:2/A:3 and exposes an outgoing junction-angle distortion. The translated comparator has different native covalent topology. C128 binds an exact topology prerequisite: the translated control fails for its missing outgoing link and extra C6–O6 bond; the bridge passes connectivity. Steric/angle repair, retained protonation/flank chemistry and ordinary model mutation remain open. |
+| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 preserves a whole residue in a separate three-site control but leaves a gap. C125 restores the two missing incoming angles in a bonded translation control. C126 fits a source-preserving seed with both native links and six angles at each phosphate. C127 attributes the seed’s nonbonded crowding to A:2/A:3 and exposes an outgoing junction-angle distortion. The translated comparator has different native covalent topology. C128 binds an exact topology prerequisite: the translated control fails for its missing outgoing link and extra C6–O6 bond; the bridge passes connectivity. C129 qualifies sampled ordinary derivatives. C130 reduces crowding and outgoing-angle strain in a separate central-only trial, preserving links and sugar hands, but reaches its iteration limit. C131 partitions remaining geometry and native repulsion by selection dependency; all 23 bond deviations >=3 in this endpoint are fixed-only. Residual geometry, retained protonation/flank chemistry and ordinary model mutation remain open. |
 | Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
 | Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
 | Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
@@ -788,6 +792,181 @@ the DNA sugar to conceal the mismatch. Ordinary mutation, other L-FANA bases,
 C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stays
 parked.
 
+
+### Selected environment review (C131)
+
+`review_selected_environment(native, moving_indices)` reuses captured Cartesian
+geometry and the complete native pair arithmetic replay, then assigns each
+reported bond, angle, chirality or nonbonded pair to exactly one dependency group:
+`selected_only` (every endpoint selected), `boundary` (selected and fixed endpoints)
+or `fixed_only` (no selected endpoint). Selection must be an explicit, distinct,
+nonempty proper subset. Identity, coordinate, native function, actual pair
+membership, repeated energy/gradient and raw residual checks remain mandatory.
+Nothing is inferred by a distance-based neighbour search.
+
+Every scalar row remains visible, including unsupported, degenerate and unweighted
+measurements. Nominal deviations, existing descriptive counts at 3 and 5, sign
+conflicts and worst rows are summarized per group. Deferred ASU bonds, dihedrals,
+constant dihedrals, planarity and parallelity retain their existing unassessed
+status and counts. These scalar comparisons are not native covalent energies;
+C131 does not square or sum them into an objective estimate or acceptance gate.
+Native nonbonded residuals are separately summed by dependency using all captured
+pairs, including zero rows, and the complete sum must reproduce the validated
+native nonbonded target. This is not a decomposition of the complete objective.
+
+The full native gradient is projected onto selected and held coordinates. The
+report records both norms, their squared partition and the complete norm, checking
+the latter against the saved vector. A force on a held atom is not the gradient
+seen by a selected-coordinate optimizer. Neither a small selected norm nor a
+large held norm declares convergence; the original stopping reason remains
+separate. Similarly, a selected/boundary dependency means only that movement can
+affect its geometry, not that a feasible or chemically valid repair exists.
+
+`inspect_fana_environment(...)` first invokes the complete C130 source-bound
+endpoint reviewer, then binds the same candidate bytes and pair receipt to this
+report. The output carries the existing checks, artifact bindings and stopping
+classification; failed checks cannot become geometry acceptance. The schema-1
+policy is `cif-selected-environment-review-v1`. Readers do not write files or
+launch processes. There is no CLI, checkpoint migration, native worker change,
+optimization, installed-library edit or ordinary PostMR activation.
+
+**Saved L-FANA-C endpoint:** all 23 bond nominal deviations >=3 (14 >=5) involve
+fixed atoms only; zero selected-only or boundary bonds meet those descriptive
+thresholds. One boundary angle and one fixed-only angle remain >=3; no reported
+chirality row meets that threshold. Native nonbonded residuals partition into
+4.8222 selected-only (82 pairs), 16.1829 boundary (201 pairs), and 18.6762 fixed-only
+(142 pairs), summing to 39.6813. There are respectively 6, 11 and 15 positive pairs.
+Fixed-only pair terms cannot be repaired by moving the central residue while its
+neighbours and manager remain unchanged. This does not establish a total objective
+floor or approve the source definitions/targets of those fixed neighbours.
+
+The fresh serialized native endpoint has full-gradient norm 5243.9202, with
+selected norm 14.3913 and held norm 5243.9005. These values describe the rounded
+PDB coordinates, not the optimizer's full-precision stopping vector. Serialization
+sensitivity and the original `NOT_CONVERGED_LIMIT` stay visible; the result is
+REVIEW, with geometry acceptance and automatic adoption false. Existing source
+H/charge/order/OP3 issues, a remaining boundary-angle deviation, pair clashes and
+absolute chemistry qualification remain separate.
+
+Validation: 279 combined focused tests pass, including 18 new C131 cases and 66
+C130 cases. Raw pair/vector corruption, bad selections, unmeasurable geometry,
+changed bindings and attempted relabelling of failed endpoint gates are covered.
+Actual saved Phenix 2.2.1-6174 evidence replays without new native execution.
+Cold replay reproduces the entire report and preserves 294 hashes/sizes/mtimes
+after the owned original disappears, with old paths, SDK and process creation
+blocked. Full regression passes on the combined implementation: **6714 passed, 276 subtests passed in 973.15s (0:16:13)**. C130's first
+suite attempt was deliberately interrupted at the user's request, preserved
+unchanged, and replaced by this fresh combined run. See evidence key
+`selected_environment_2026_10_30` in the existing ledger for commands/results.
+Raw scientific inputs, native artifacts and runners remain local.
+
+Next: use the explicit fixed/boundary findings to investigate source-authorized
+flank target/protonation repair and a bounded convergence/serialization trial.
+Do not release the flanks or loosen source chemistry merely to lower a score.
+
+### Selected native FANA geometry (C130)
+
+`run_selected_geometry(...)` creates a separate diagnostic candidate from a
+validated C129 native capture. The explicit ordered selection must be a nonempty
+proper subset of unique atom indices. `SelectedCoordinates` packs only those
+Cartesian coordinates for native L-BFGS; it reconstructs every unselected point
+from the original full-precision input and projects the full native gradient back
+onto the same selection. All energy evaluations retain the complete environment,
+including cross-boundary covalent and nonbonded interactions. This is an opt-in
+Python API, with no ordinary PostMR, CLI or checkpoint activation.
+
+The starting receipt, inputs, exact maintained worker and raw numerical evidence
+must validate before allocation. The starting sampled derivatives must pass.
+The trial freezes those artifacts, then builds a fresh ordinary energy manager
+from the same explicit model/dictionaries/PHIL. Its manager digest, complete
+energy/gradient/count inventory, static constraints and numerical source hashes
+must match the qualified start. Reusing a manager immediately after finite-
+difference probes can change its cached neighbour list; the ordinary bootstrap
+avoids importing that state, without weakening the initial equality check.
+The existing seed binder, derivative audit and legacy workers are unchanged.
+
+The default bounds are 200 optimizer iterations, 2,000 recorded full-objective
+evaluations and 180 seconds. API ceilings are 500 iterations, 5,000 evaluations
+and 3,600 seconds. The native optimizer call limit reserves four bookkeeping
+evaluations: initial, final, repeated final and rounded endpoint. Every evaluated
+selected vector, full target/gradient/term/count snapshot, accepted-step trace,
+stop reason, native convergence flag and numerical/optimizer source fingerprint
+is retained. Separate derivative checks have the existing 2,000-evaluation bound;
+rounded pair capture records two actual evaluations and a 5,000 pair-kernel-call
+ceiling. Those diagnostic calls are separate from the optimizer evaluation count.
+Timeout handling owns and stops the launched process group. Failed or incomplete
+attempts retain their outputs; only a validated complete result writes a separate
+candidate. Each invocation allocates a fresh attempt.
+
+The schema-1 policy `cif-selected-native-geometry-v1` binds the specification,
+result, trace, helpers, source copy, bootstrap and output hashes. Full-precision
+endpoint evidence is explicitly labelled as evaluation under the fixed manager,
+not fresh chemical interpretation. `read_selected_geometry(...)` checks the
+maintained worker/helper bytes, frozen input equality, result/spec schemas,
+selection, vectors, budgets, stopping evidence, source hashes, repeated numerical
+evidence, exact candidate serialization and complete file inventory. It replays
+sampled derivatives and nonbonded arithmetic without running native code or
+writing files. Saved pass flags alone do not suffice. The reader verifies saved
+mechanics evidence; it does not independently re-execute or certify the optimizer.
+
+`run_fana_selected_geometry(...)` additionally requires the existing source-bound
+bridge and exact native topology gate and derives the entire central-residue
+selection. `inspect_fana_selected_geometry(...)` binds a completed trial to that
+source and two fresh candidate captures: derivatives and pair attribution.
+Both captures must consume the exact candidate bytes and same nonmodel inputs
+and agree on the native manager and energy inventory. The established mechanics
+review requires unchanged identities, complete site definitions, covalent proxies,
+custom requests, interpreter and fixed policy. The topology gate requires both
+source-declared links with no extra native inter-residue bond. The schema-1 report
+policy is `cif-source-bound-fana-selected-geometry-v1`.
+
+All four source-defined sugar centres must retain their ordered heavy-neighbour
+volume signs at both full precision and serialized native readback; missing,
+degenerate or inverted centres cannot pass. This is source-relative preservation,
+not an independent CIP assignment or chemical target qualification. Optimizer
+flanks are exactly unchanged and fixed PDB records remain byte-for-byte intact.
+Fresh native coordinate conversion uses the existing 1e-9 Å capture tolerance;
+the actual maximum fixed-coordinate difference was 1.42e-14 Å. No OP3 is added,
+no terminal phosphate is implicitly removed, and no source protonation or restraint
+ownership is changed.
+
+**Actual L-FANA-C control, Phenix 2.2.1-6174 (dispatcher 2.2.1):** the maintained
+trial and two fresh endpoint captures completed under 180-second bounds, not
+dry-runs. Only the 20 central A:2 atoms move in the 61-atom environment. The full
+native objective falls from 8590.7321 to 1713.7928 (serialized: 1713.8031); the
+nonbonded residual falls from 6127.5993 to 39.6310 (serialized: 39.6813). The
+outgoing C3′–O3′–P angle improves from 86.3904° to 118.5826° against its 119.7°
+target; the O3′–P distance improves from 1.68270 Å to 1.60755 Å against 1.607 Å.
+Both backbone links, mechanics and sugar hands pass. Full-precision and fresh
+serialized derivative audits each pass 1,359 sampled evaluations. There is no
+nonzero parallelity term in this ordinary native objective.
+
+Fixed and fresh rounded endpoint neighbour counts differ: 404 versus 425. The
+maintained pair-cache proof verifies that all 32 added and 11 removed pairs have
+exactly zero residual and gradient; common pair contributions, nonbonded sums and
+gradients agree. All other full target/gradient/term/count values also agree.
+Count differences are permitted only with that explicit numerical proof.
+
+The optimizer stops at 200 iterations and 210 native optimizer calls, with 214
+recorded full-objective evaluations: `NOT_CONVERGED_LIMIT`. No optimizer error
+occurred. The candidate remains REVIEW, with geometry acceptance and automatic
+adoption false. Residual clashes remain; the strongest recorded endpoint pair is
+central C1′ against downstream OP2, at 2.7225 Å (0.5375 Å native overlap).
+Some outgoing angles worsen, and frozen-flank geometry outliers remain. Source
+chemistry, H/charge/order/OP3 differences and numerical target authority are still
+separate open gates; lowering the objective cannot resolve them.
+
+Validation: 248 focused tests pass, including 66 new synthetic regressions.
+These cover selection, source hands, byte-preserving serialization, malformed or
+rebound numerical evidence, rehashed package changes, missing outputs and owned
+process failures/timeouts. Cold replay preserves 293 hashes/sizes/mtimes after the
+owned original disappears, with old paths, SDK and process creation blocked.
+The combined C130/C131 full regression passes: **6714 passed, 276 subtests passed in 973.15s (0:16:13)**. Exact commands, artifacts and preserved intermediate
+failures are recorded in `cif-linked-native-registration-evidence.json`, key
+`fana_selected_geometry_2026_10_30`. Raw models, dictionaries, native captures,
+logs and runners stay local. Next: explain the residual strain and frozen-flank
+contribution, then define a bounded convergence/acceptance trial without loosening
+chemical or topology authority. Whole-model mutation and integration remain separate.
 
 ### Fixed native derivative capture (C129)
 

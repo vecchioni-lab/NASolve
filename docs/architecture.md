@@ -3684,3 +3684,45 @@ It adds no optimizer, production default, CLI or checkpoint migration. The FANA
 bridge passes these sampled ordinary derivatives with the same manager and both
 declared links; crowding and angle repair remain separate. See the
 [methods and scope](cif-doctor.md#fixed-native-derivative-capture-c129).
+
+
+## Selected-coordinate native geometry (C130)
+
+A separate optional trial optimizes an explicit Cartesian subset while evaluating
+the full fixed-policy native environment. Frozen coordinates are reconstructed
+on every evaluation; the candidate serializer preserves all unselected PDB
+records byte-for-byte. A fresh ordinary manager must exactly match the C129
+qualified start before optimization. The attempt retains raw trace/stopping,
+source fingerprints, owned execution state and full-precision/serialized numerical
+evidence. Failed attempts remain intact and every new trial gets a fresh directory.
+
+Read-only replay binds schema-1 `cif-selected-native-geometry-v1` artifacts,
+maintained helpers, exact candidate bytes and raw numerical evidence. A separate
+`cif-source-bound-fana-selected-geometry-v1` reviewer binds the source bridge and
+fresh native derivative/pair captures, preserving declared topology, native
+mechanics and four source-relative sugar hands. Changed cached neighbour pairs
+require the established exact-zero contribution proof. Fixed PDB/optimizer
+coordinates remain exact; native conversion uses the existing capture roundoff
+bound. No ordinary worker, numerical kernel, CLI or checkpoint behavior changes.
+
+The first central-only L-FANA-C trial reduces crowding and outgoing-angle strain
+but reaches its iteration limit. It remains diagnostic and unadopted; residual
+geometry and source/target qualification remain open. See the
+[methods and evidence](cif-doctor.md#selected-native-fana-geometry-c130).
+
+
+## Selection-dependent environment reporting (C131)
+
+The read-only `cif-selected-environment-review-v1` report composes existing
+captured Cartesian geometry and verified native nonbonded arithmetic. It partitions
+each measured dependency into selected-only, boundary or fixed-only groups without
+losing unsupported rows or deferred categories. Only actual native nonbonded
+residuals are summed; descriptive covalent deviations remain separate from energies
+and no complete objective floor is inferred. Selected and held full-gradient
+components are reported separately, without a new convergence criterion.
+
+The FANA adapter first runs the complete C130 endpoint gates and retains their
+bindings, check results and stopping classification. It rechecks candidate and
+pair-receipt identity before reading the native inventory. This adds no coordinate
+or worker change, process execution, checkpoint migration or production default.
+See the [methods and measured limits](cif-doctor.md#selected-environment-review-c131).

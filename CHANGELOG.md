@@ -8,6 +8,33 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Selection-aware environment review (C131)
+
+- Add read-only partitioning of captured bond/angle/chirality measurements and
+  verified native nonbonded residuals into selected-only, boundary and fixed-only
+  dependencies. Retain unmeasurable rows and deferred proxy families explicitly.
+- Report full-gradient norms separately for selected and held atoms. Preserve
+  optimizer stopping evidence; descriptive scalar deviations never become native
+  covalent energies, convergence criteria or chemical acceptance thresholds.
+- Add schema-1 `cif-selected-environment-review-v1`, with a FANA entry point that
+  composes the existing complete endpoint gates and exact artifact bindings.
+  No new native execution, coordinate changes, CLI or checkpoint migration.
+
+### Bounded selected-coordinate FANA geometry trial (C130)
+
+- Add an opt-in native trial that optimizes an explicit atom subset while keeping
+  the remaining coordinates exact and evaluating the complete fixed-policy
+  environment. Preserve each owned attempt, raw numerical trace, stopping reason,
+  source fingerprints and separate candidate; no in-place retry or adoption.
+- Add read-only trial replay and a source-bound FANA endpoint review. Require
+  unchanged native mechanics, exact declared topology, four source-relative sugar
+  hands, sampled derivatives and explicit zero-contribution proof for any changed
+  nonbonded neighbours between fixed and fresh endpoint evaluations.
+- Introduce schema-1 `cif-selected-native-geometry-v1` and
+  `cif-source-bound-fana-selected-geometry-v1`. Existing workers, numerical
+  kernels, CLI, checkpoints and ordinary PostMR remain unchanged. No chemical
+  qualification, diffraction refinement or installed-library changes.
+
 ### Replay fixed native derivatives before FANA geometry repair (C129)
 
 - Add opt-in `gradient_indices` to native bundle inspection and read-only

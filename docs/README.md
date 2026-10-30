@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-29**. Start with the
+Updated **2026-10-30**. Start with the
 [current development handoff](development-handoff.md) for completed checks,
 remaining bounded gates and the next native action. Read subsystem contracts
 for actual behavior; history is evidence, not a second task queue.
@@ -72,9 +72,16 @@ placement and linked native qualification remain open.
 C124 adds [whole-residue FANA placement controls](cif-doctor.md#whole-residue-fana-placement-control-c124):
 the L-FANA sugar survives placement, while measured junction gaps and a missing
 native incoming link keep the candidate under review. Ordinary mutation remains unchanged.
+C131 adds [selection-aware environment review](cif-doctor.md#selected-environment-review-c131),
+separating strain within the moving residue, across its boundary and wholly
+within frozen neighbours. It preserves stopping and source-chemistry limits.
+C130 adds a [bounded central-residue FANA geometry trial](cif-doctor.md#selected-native-fana-geometry-c130).
+The diagnostic reduces crowding and outgoing-angle strain while retaining both
+backbone links, fixed flanks and source sugar hands. It remains unconverged and
+unadopted; chemistry and residual geometry still require qualification.
 C129 adds [replayable fixed native derivative evidence](cif-doctor.md#fixed-native-derivative-capture-c129).
 The connected FANA bridge passes sampled ordinary-objective derivatives with its
-model and restraints unchanged; constrained geometry repair remains next.
+model and restraints unchanged; C130 uses that prerequisite for a separate bounded trial.
 C128 adds an [exact topology prerequisite](cif-doctor.md#declared-fana-topology-gate-c128):
 source-declared covalent links must match every native inter-residue bond, with
 explicit NARestraints pairing restraints accounted for separately. The preserved

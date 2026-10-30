@@ -3330,3 +3330,51 @@ The old-path/SDK-blocked replay preserves every file unchanged. This is evidence
 about local numerical mechanics, not chemical acceptance or global convergence.
 No atoms are optimized or adopted. See the [technical methods](cif-doctor.md#fixed-native-derivative-capture-c129)
 and evidence ledger for tests, limits and source/protonation boundaries.
+
+
+### Repairing a local FANA junction while keeping its neighbours fixed
+
+C130 adds a bounded diagnostic that moves the central modified residue while
+holding its neighbouring residues fixed. Phenix still evaluates interactions
+with the entire environment. In the L-FANA-C demonstration, crowding drops
+substantially and a strongly bent outgoing backbone angle approaches its
+restraint target. Both backbone connections and all four source sugar hands
+survive. The saved model is a separate candidate; it is not automatically used
+by the normal structure-building pipeline.
+
+**Methods.** Native L-BFGS in Phenix 2.2.1-6174 optimizes 20 selected atoms within
+a 61-atom fixed-policy environment. The full objective decreases from 8590.7321
+to 1713.7928 and the nonbonded residual from 6127.5993 to 39.6310. Fresh native
+interpretation preserves the chemical definitions and covalent restraint
+inventory. Sampled full-precision and serialized derivatives pass; explicit pair
+arithmetic proves changed neighbour-list entries contribute zero force and energy.
+Read-only replay reproduces the checks after relocation without SDK access.
+
+The optimizer reaches its 200-iteration limit, so this result is not convergence
+or chemical acceptance. Some clashes and angle deviations remain, and errors
+within the frozen neighbours cannot be corrected by moving only the central
+residue. Source protonation, phosphate state and numerical targets retain their
+existing qualification requirements. See the
+[technical methods](cif-doctor.md#selected-native-fana-geometry-c130) and evidence
+ledger for complete validation, stopping evidence and remaining boundaries.
+
+
+### Explaining what a local repair can and cannot change
+
+C131 reports whether a remaining distortion lies within the moving residue,
+across its boundary, or entirely inside neighbours held fixed. In the saved
+L-FANA-C trial, all 23 larger bond deviations are confined to the fixed neighbours.
+Almost half of the remaining native nonbonded penalty is also fixed-only. Those
+features cannot be removed by moving only the central residue. They identify
+where source and target review should focus, without authorizing a chemical edit.
+
+**Methods.** The read-only report reuses validated captured bond/angle/chirality
+measurements and native pair residual/gradient replay, preserving every scalar
+row and each deferred category. Pair residuals are summed by selection dependency
+and verified against the native total. Full-gradient components on moving and
+held atoms are reported separately; neither is substituted for recorded optimizer
+stopping. All inputs are the existing completed Phenix 2.2.1-6174 captures, with
+no new native execution or coordinate change. Full report equality is checked
+after relocation with old paths and process creation blocked. Descriptive scalar
+deviations are not native covalent energies or scientific acceptance criteria.
+See the [technical methods](cif-doctor.md#selected-environment-review-c131).

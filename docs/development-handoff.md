@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-29** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-30** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,89 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C131 validated: selected versus frozen environment
+
+Base/last published head: `5a20cd3104e664de9bb0ed5524644e085df76a5c`; existing cedar only.
+Capsule: `live_tests_directory/131_Cedar_selected-environment-5k2b29sa`.
+User requested this additional code step before final full validation. C130's
+first full run was stopped deliberately after 284 seconds, with all output and
+493 source/test hashes preserved; no test failure caused the interruption.
+
+The new read-only report separates selected-only, boundary and fixed-only
+captured scalar geometry, actual nonbonded residuals and full-gradient components.
+It reuses existing raw native validation; descriptive deviations do not become
+covalent energies, total objective floors, convergence or geometry acceptance.
+The FANA entry point composes all C130 source/topology/derivative/mechanics gates.
+No coordinate, native worker, numerical kernel or production default changes.
+
+**279 combined focused tests pass**, including 18 new C131 cases (84 combined).
+Actual saved-endpoint replay passes without native execution. All 23 bond
+nominal deviations >=3 (14 >=5) are fixed-only; none are selected or boundary.
+Serialized native nonbonded residuals: selected-only 4.8222, boundary 16.1829,
+fixed-only 18.6762, total 39.6813. The serialized full-gradient norm is 5243.9202,
+with selected norm 14.3913 and held norm 5243.9005; these are at the serialized
+endpoint, not the optimizer's full-precision stopping vector.
+Cold replay preserves 294 hashes/sizes/mtimes after the owned original disappears,
+with prior paths/SDK/process creation blocked and no attempted access.
+
+Combined full regression passes: **6714 passed, 276 subtests passed in 973.15s (0:16:13)**.
+All 495 source/test hashes remain unchanged and match the focused run; all 493
+C130 hashes also remain unchanged. Compileall, 348 relative documentation links,
+JSON/SVG parsing and diff whitespace pass. No job is active. Implementation
+publication is next. Changed files: three new optional modules, three test files
+and ten maintained docs/evidence files (16 total); policies are schema-1
+`cif-selected-native-geometry-v1`, `cif-source-bound-fana-selected-geometry-v1`
+and `cif-selected-environment-review-v1`. Exact commands/results and local hashes
+are in evidence keys `fana_selected_geometry_2026_10_30` and
+`selected_environment_2026_10_30`. No CLI/run/checkpoint migration or installed
+library change. Raw models, dictionaries, source workbook, native captures/logs
+and runners remain local and excluded from Git.
+
+Next: investigate source-authorized flank target/protonation repair and a bounded
+convergence/serialization trial. Keep boundary-angle/clash findings and original
+nonconvergence visible; do not change chemistry or free flanks merely to lower
+an objective. Ordinary model mutation and branch integration remain separate.
+— Rowan · Codex desktop
+
+## C130 validated: bounded central-residue native geometry
+
+Base/last published head: `5a20cd3104e664de9bb0ed5524644e085df76a5c`; existing cedar only.
+Capsule: `live_tests_directory/130_Cedar_FANA-selected-2h1hjam9`.
+New optional selected-coordinate trial and source-bound FANA endpoint reviewer
+are implemented with 66 synthetic regression cases. **248 focused tests pass**.
+The first full regression was deliberately interrupted for C131 on 493 unchanged source/test files;
+its wrapper/pytest ownership is recorded in `validation/full/running.json`.
+Cold replay already passes with 293 hashes/sizes/mtimes unchanged after the owned
+original disappears, blocking old paths, SDK and processes with no attempted access.
+
+The completed Phenix 2.2.1-6174 trial moves only 20 central A:2 atoms while
+retaining the whole 61-atom environment in the objective. Target falls from
+8590.7321 to 1713.7928; nonbonded residual from 6127.5993 to 39.6310 at full precision.
+The outgoing C3′–O3′–P angle improves from 86.3904° to 118.5826° (target 119.7°).
+Both declared backbone links, exact native mechanics and all four source sugar
+hands survive. Full-precision and fresh serialized sampled derivatives pass.
+The optimizer stops at 200 iterations / 210 calls / 214 recorded objective
+evaluations: NOT_CONVERGED_LIMIT. Lower energy does not accept geometry.
+
+Fresh native neighbour lists differ (404 → 425 pairs); the maintained cache proof
+shows all 32 additions and 11 removals have exactly zero residual and gradient,
+with common pairs and full energy/gradient preserved. Fixed PDB records and
+optimizer flanks remain exact. Native coordinate conversion differs by only
+1.42e-14 Å, checked against the existing 1e-9 Å capture tolerance.
+The strict seed binder, derivative audit and original workers remain unchanged.
+An earlier derivative-bootstrap cache mismatch and all intermediate/failure
+attempts are preserved; a fresh ordinary bootstrap now must exactly match the
+qualified starting manager and complete energy/count inventory.
+
+No raw science, models, dictionaries, workbook or native logs are staged.
+This affects optional diagnostic APIs, new schema-1 trial/result receipts and
+reproducibility; no CLI, checkpoint migration or ordinary PostMR activation.
+No job is active. Combined full validation passes as recorded in C131; publication
+is next. C131 now partitions the remaining selected/boundary/fixed dependencies. Source-state
+qualification, remaining clashes and frozen-flank residuals stay open; no OP3
+addition, implicit phosphate removal, source repair, diffraction refinement or adoption.
+— Rowan · Codex desktop
 
 ## C129 published: replayable fixed native derivatives for the FANA bridge
 
