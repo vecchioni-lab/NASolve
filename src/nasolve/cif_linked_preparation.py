@@ -131,7 +131,8 @@ def _render(values: dict, code: str) -> str:
 
 def prepare_linked_component(source: Path, numerical: Path, model: Path,
                              contexts: Sequence[dict], output_directory: Path, *, code: str,
-                             native_qualification: dict | None = None) -> dict:
+                             native_qualification: dict | None = None,
+                             bond_representation_policy: str | None = None) -> dict:
     """Prepare a DNA base dictionary, site modifiers and projected assessments.
 
     Links and end states are explicit caller evidence, never guessed from a
@@ -148,7 +149,13 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
     source_values=component_values(paths[0],code)
     type_tokens=source_values.get('_chem_comp.type', [])
     qualified=native_qualification is not None
-    if qualified:
+    binding=None
+    if bond_representation_policy is not None:
+        from .cif_preparation_qualification import bind_preparation_qualification
+        binding=bind_preparation_qualification(paths[0],paths[1],code,native_qualification,
+            bond_representation_policy=bond_representation_policy)
+        q=native_qualification;fresh=binding['candidate_reassessment']
+    elif qualified:
         from .cif_candidate_usability import reassess_complete_candidate,POLICY_ID
         q=native_qualification;fresh=reassess_complete_candidate(paths[0],paths[1],code)
         if (q.get('policy_id')!=POLICY_ID or q.get('native_usable') is not True
@@ -158,14 +165,23 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
                 or q.get('source_assessment',{}).get('finished_stereo',{}).get('source_sha256')!=sha256(payloads[0]).hexdigest()
                 or fresh['candidate_status']!='CANDIDATE_REVIEW'):
             raise ValueError('Require bound independently usable source-preserving candidate evidence')
+    if qualified:
         # The explicit isolated bridge also accepts a legacy monomer DNA group.
         # Existing unqualified callers keep their stricter type-only contract.
         if not type_tokens:
             from .cif_source_classification import _source_declarations
             _source_declarations(paths[0],code)
-    if (len(type_tokens)!=1 or type_tokens[0].upper()!='DNA LINKING') and not (qualified and not type_tokens):
+    if binding is not None:
+        # CCD declares L-DNA linking separately. Native group DNA selects the
+        # polymer machinery; the bound source graph/configuration owns its hand.
+        group=source_values.get('_chem_comp.group',[])
+        if (len(type_tokens)!=1 or type_tokens[0].strip().upper() not in {'DNA LINKING','L-DNA LINKING'}
+                or len(group)>1 or (group and group[0].strip().upper() not in {'DNA','','.','?'})):
+            raise ValueError('Require explicit consistent source DNA or L-DNA LINKING metadata')
+    elif (len(type_tokens)!=1 or type_tokens[0].upper()!='DNA LINKING') and not (qualified and not type_tokens):
         raise ValueError('Require explicit source DNA LINKING metadata')
-    inspection=inspect_component_generation(paths[0],paths[1],code)
+    options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
+    inspection=inspect_component_generation(paths[0],paths[1],code,**options)
     if inspection['status']!='CANDIDATE_REVIEW' and not qualified:
         raise ValueError('Require a source-preserving complete numerical candidate: '+', '.join(inspection['rejection_reasons']))
     values=component_values(paths[1],code)
@@ -207,6 +223,10 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
             if not phosphate<=coordinate_atoms: raise ValueError('Requested terminal phosphate is incomplete: '+site)
         elif not {'P','OP1','OP2'}<=coordinate_atoms or 'OP3' in coordinate_atoms:
             raise ValueError('Internal coordinate phosphate is incomplete or contains OP3: '+site)
+        port_qualification=None
+        if binding is not None:
+            from .cif_preparation_qualification import qualify_native_backbone_ports
+            port_qualification=qualify_native_backbone_ports(values,context)
         removed=set()
         if incoming:
             if 'OP3' in atoms:
@@ -220,6 +240,10 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         if outgoing: removed.update(hydrogen_neighbors(values,"O3'"))
         derivative=_prune(values,removed,outgoing=bool(outgoing))
         actual=atom_rows(derivative)
+        configuration_projection=None
+        if binding is not None:
+            from .cif_preparation_qualification import project_source_configurations
+            configuration_projection=project_source_configurations(binding,values,derivative)
         if coordinate_atoms-actual.keys(): raise ValueError('Preparation would remove an existing coordinate atom: '+site)
         mod_id='NASL'+sha256((code+'|'+site+'|'+json.dumps(context,sort_keys=True)).encode()).hexdigest()[:10]
         for atom in sorted(removed): mod_rows.append([mod_id,'delete',atom,'.','.','.','.'])
@@ -236,6 +260,9 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
               'expected_hydrogen_attachments':{name:sorted(next(iter(pair-{name})) for pair in bonds
                   if name in pair and not pair & removed) for name,row in actual.items()
                   if row['type_symbol'].upper() in {'H','D'}}}
+        if configuration_projection is not None:
+            plan['source_configuration_projection']=configuration_projection
+            plan['source_port_qualification']=port_qualification
         plans.append(plan);projected.append((site,derivative))
     if any(p.read_bytes()!=data for p,data in zip(paths,payloads)):
         raise ValueError('Input changed during preparation')
@@ -262,7 +289,8 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         if assessment['status']=='INVALID': raise ValueError('Projected linked dictionary is invalid: '+site)
         assessments.append({'site':site,'assessment':assessment})
     receipt={'schema_version':1,'audit_kind':'cif_linked_site_preparation',
-             'policy_id':'cif-source-preserving-linked-sites-v2' if qualified else LINKED_PREPARATION_POLICY,'status':'PREPARED_REVIEW','component':code,
+             'policy_id':('cif-source-preserving-linked-sites-v3' if binding is not None else
+                          'cif-source-preserving-linked-sites-v2' if qualified else LINKED_PREPARATION_POLICY),'status':'PREPARED_REVIEW','component':code,
              'modification_block_policy':MODIFICATION_BLOCK_POLICY,
              'component_list_policy':COMPONENT_LIST_POLICY,
              'inputs':[{'name':p.name,'sha256':sha256(data).hexdigest(),'size':len(data)} for p,data in zip(paths,payloads)],
@@ -276,6 +304,8 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         receipt['isolated_native_qualification']={'policy_id':q['policy_id'],'candidate_sha256':q['candidate_sha256'],
             'source_sha256':sha256(payloads[0]).hexdigest(),'scope':q['scope'],'checks':q['checks']}
         receipt['candidate_reassessment']=fresh
+    if binding is not None:
+        receipt['preparation_qualification']=binding
     if not receipt['source_preserved']: raise ValueError('Input changed while publishing preparation')
     (output/'preparation_receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     return receipt

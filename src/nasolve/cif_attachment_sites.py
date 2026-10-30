@@ -17,6 +17,16 @@ POLICY_ID = 'cif-explicit-attachment-site-v1'
 STATE_POLICY_ID = 'cif-explicit-attachment-site-v2'
 
 
+def _neutral_hydroxyl_hydrogens(atom, elements, bonds, charges, neighbors):
+    """Existing neutral source-port state, shared with explicit native preparation."""
+    hydrogens = {a for a in neighbors[atom] if elements[a] in {'H', 'D'}}
+    if (charges[atom] != 0 or len(hydrogens) != 1
+            or any(charges[h] != 0 or neighbors[h] != {atom}
+                   or bonds[tuple(sorted((h, atom)))] != 'SINGLE' for h in hydrogens)):
+        return None
+    return hydrogens
+
+
 def _site(value):
     if not isinstance(value, str) or not re.fullmatch(r'[A-Za-z0-9_]:-?(0|[1-9][0-9]*)', value):
         raise ValueError('Require an exact supported PDB chain:residue selector')
@@ -224,10 +234,8 @@ def inspect_attachment_site(source, code, *, workbook, model, context, candidate
                         or bonds.get(tuple(sorted((atom, leaving)))) != 'SINGLE'):
                     raise ValueError('Chosen leaving atom is not a terminal single-bonded phosphate oxygen')
                 atom = leaving
-            hydrogens = {a for a in neighbors[atom] if elements[a] in {'H', 'D'}}
-            if (charges[atom] != 0 or len(hydrogens) != 1
-                    or any(charges[h] != 0 or neighbors[h] != {atom}
-                           or bonds[tuple(sorted((h, atom)))] != 'SINGLE' for h in hydrogens)):
+            hydrogens = _neutral_hydroxyl_hydrogens(atom, elements, bonds, charges, neighbors)
+            if hydrogens is None:
                 report['review_reasons'].append('PORT_PROTONATION_AUTHORITY_REQUIRED:' + name)
                 continue
             removed.update(hydrogens)

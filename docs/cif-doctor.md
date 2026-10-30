@@ -65,58 +65,44 @@
 
 <a id="current-capability-boundary-c131"></a>
 
-## Current capability boundary (C132)
+<a id="current-capability-boundary-c132"></a>
+<a id="current-capability-boundary"></a>
 
-C95 now passes on macOS with Python 3.12.14 from commit
-`3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
-the relocated 863-atom endpoint, 23 dictionaries and 12 parameter files, with
-all five saved selection gates intact and zero new native calls. The receipt
-is `MIXED_RUNTIME_HANDOFF_PASS`; the diagnostic still returns `REVIEW`/exit 2.
-The [evidence ledger](cif-linked-native-registration-evidence.json) records the
-exact C95 return under `mixed_runtime_bundle_handoff_2026_10_25.returned_Mac_C95`.
+## Current capability boundary (C133)
 
-| Question | Established result | Remaining boundary |
+The tool is useful now for assessment, qualified local reuse and explicit
+scientific diagnostics. It is not yet a universal automatic ligand repair and
+model-building pipeline. This table is the current support summary; the dated
+sections below retain exact methods, failures and evidence-time next steps.
+
+| Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
-| Can source-authorized purine candidates be generated and qualified? | C118 carries the explicit C117 representation policy through maintained generation with exact stage checks. Fresh 40A/APN/40C candidates pass two isolated native coordinate controls each. | The default worker is unchanged. C121 separately covers the bounded neutral 6-oxo five-ring; charged/other carbonyl purines, convergence, linked PNA numerics and ordinary integration remain open. |
-| Can explicit PNA chemistry become a reproducible whole-network input? | C119 freezes one connected source graph with exact site/atom identities and authorized C114 amide operations. Ten networks prepare and replay; four reacting charged-amine controls stay blocked. | No assigned geometry, native types, numerical targets or linked CIP. A native construction adapter and linked qualification remain separate. |
-| Does the FANA path distinguish arabino chemistry and preserve it? | C120 adds an explicit source/candidate gate: ten catalogue FANA sources match, three ribo controls do not. A/C/T/U pass in C120; C121 adds GFL under its explicit 6-oxo representation policy. | C122 adds one explicitly derived L-FANA-C native control; C123 adds a checked local component package and NAR record overlay. C124 preserves a whole residue in a separate three-site control but leaves a gap. C125 restores the two missing incoming angles in a bonded translation control. C126 fits a source-preserving seed with both native links and six angles at each phosphate. C127 attributes the seed’s nonbonded crowding to A:2/A:3 and exposes an outgoing junction-angle distortion. The translated comparator has different native covalent topology. C128 binds an exact topology prerequisite: the translated control fails for its missing outgoing link and extra C6–O6 bond; the bridge passes connectivity. C129 qualifies sampled ordinary derivatives. C130 reduces crowding and outgoing-angle strain in a separate central-only trial, preserving links and sugar hands, but reaches its iteration limit. C131 partitions remaining geometry and native repulsion by selection dependency; all 23 bond deviations >=3 in this endpoint are fixed-only. Residual geometry, retained protonation/flank chemistry and ordinary model mutation remain open. |
-| Can the complete NAR catalogue be inspected? | C105 audits every row/code of an explicit workbook against an explicit CCD source root, including duplicate conflicts and mapping gaps. | A census is not qualified support. ATL, PNA and other backbones are inside the generalizer programme; their attachment/consumer proofs remain open. |
-| Does native interpretation contain the declared links? | C109 checks exact source/native endpoint membership and preserves failed captures. The fresh DNA bond matches. C112 adds checked observed aliases; C113 distinguishes hydrogen count/attachment changes from label differences. Literal findings remain. | Unmodelled hydrogen names/protonation require explicit policy; installed-library ATL lacks usable types. Numerical/chemical authority remains unqualified. |
-| Do both attachment endpoints agree? | C108 composes fresh site inspections and requires reciprocal complementary source ports across a closed declared site set. Five sugar pair projections pass; C114 adds explicit neutral PNA amide operations. Charged reactive states remain unresolved. | Source binding and candidate coverage do not qualify native atom types, linkage geometry or final chemical identity. |
-| Can a proposed site operation be checked? | C107 binds one explicit PDB site, plans source retention, neutral furanose deletions or C114 opt-in neutral PNA amide deletions, and compares exact projected tables. | Partner chemistry at a single site, charged PNA reaction states, free-OH reconstruction, native typing/linkage and adoption remain unqualified. |
-| Can attachment topology be generalized? | C106 binds three graph-defined cores and source-state ports: 26/37 selected DNA, LNA and PNA-labelled cases match, including additional transfer controls. | A topology match is not a linkage operation. C107 covers bounded one-site source projections; additional cores, complete linkage and native consumers remain open. |
-| Can the selected mixed bundle be consumed? | Exact ordered resources and saved evidence replay through ordinary assessment after relocation. | This does not adopt a production checkpoint or execute a diffraction run. |
-| Is the original C95 endpoint numerically usable? | Saved derivative, serialization, fixed-mechanics and objective gates pass; original nonconvergence remains visible. | The proof uses the explicit NASolve-local corrected gradient evaluator. It does not establish the behavior of ordinary Phenix refinement. |
-| Is source chemistry cleared? | Source findings remain bound to the saved context, including unresolved DF aromatic-sugar and delocalized-phosphate findings. | Numerical usability cannot settle those findings. Reconcile source intent before automatic production adoption; demonstrated chemical corruption still excludes a candidate. |
-| Can the preserved DF source be recovered? | C98 passes fresh isolated and current 863-atom linked/native checks for the exact C18 candidate; C99 passes fresh sampled derivatives for that repaired manager. | C100 tests bounded geometry but retains the verified recovered start because endpoint derivatives fail qualification. The C95 bundle is not overwritten or reclassified. |
-| Why does the repaired endpoint retain derivative review? | C101 localizes all 22 remaining sampled local full-precision failures to PDU D:5 C5–C5A–C5B–C5M; seven other sampled torsions and the remainder group pass. Native attribution and saved-family controls agree. | Fixed-coordinate diagnosis does not requalify C100 or establish a native bug. C102 passes only 2/22 local and 4/10 broader rechecks; resolution guards and reversal review retain the verified recovered model. C103 confirms independent reference agreement and strong PDU input sensitivity; C104 now passes that candidate inventory comparison; fixed-coordinate energy/gradient and derivative qualification are next. |
-| Does this validate the designed modified structure? | The synthetic mixed fixture establishes construction and restraint mechanics. | Donor reflections do not validate the hypothetical modified identities; independent scientific qualification remains unassessed. |
-| Is ATL part of this result? | Independent pinned public graph, four-centre and NAR source/compiler controls exist. | No qualified numerical ATL dictionary or fresh native/Coot ATL construction is established. Keep it separate from the eight-pair bundle. |
+| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. General cache-miss recovery and candidate adoption are not integrated. |
+| Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
+| FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
+| L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
+| Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
+| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres; 42 native checks pass. | Two formal-charge readbacks remain unsupported. Source phosphate H is retained, not chosen by pH. The native preparer still requires conventional backbone names and explicit DNA/L-DNA source declarations. |
+| PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
+| LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
+| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. PDU omission candidates have exact inventory evidence. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs energy/gradient and derivative qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
+| Generalizer workflow | Immutable attempts, usable-fallback decisions, source-bound reuse, exact native inventories and readable reports exist as components. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
-C96 prints the existing solution summary in ordinary text-mode assessment.
-For mixed bundles, JSON also adds `solution_report.qualification_scope`:
-`source_chemistry=NOT_CLEARED_BY_ENDPOINT_QUALIFICATION`,
-`gradient_evaluator=NASOLVE_LOCAL_CORRECTED_FIXED_OBJECTIVE`, and
-`ordinary_refinement=NOT_QUALIFIED`. These describe the saved proof's scope;
-they do not change assessment status, automatic selection, stopping evidence,
-restraint policy, source findings or the no-student-CIF-approval contract.
-Manifest schema 1 and both runtime-bundle policies remain unchanged; old bundles
-need no migration. Scientific qualification remains `NOT_ASSESSED`.
+Source state and numerical usability are independent. Missing OP3 never means
+“add OP3”; a retained true terminal phosphate is protected. Lower scores under
+different dictionaries are not optimizer progress. Neither `REVIEW` nor
+nonconvergence alone means a chemically invalid candidate, and a native pass
+cannot authorize changing protonation, connectivity or hand.
 
-The next integration step must specify how ordinary execution preserves the
-qualified evaluator or separately qualifies its actual consumer, and how source
-chemistry findings are resolved without conflating them with optimizer stopping.
-Reuse the C43-C46 propynyl-torsion evidence for unchanged isolated controls;
-repeat native or derivative checks only for a changed manager, consumer or
-specific unresolved question. Full-run validation precedes Cedar integration
-through Pine into main. This report change does not authorize a merge.
-
-C96 validation passes 5528 passed, 276 subtests passed in 766.84s (0:12:46), 215 focused tests (seven subtests)
-and real C95 public CLI readback with all 38 bundle files unchanged and zero
-SDK/process attempts. New text/JSON regressions fail on C95 and pass on C96.
-Test fixtures canonicalize owned macOS paths and allow fake-backend startup
-before checking optimizer descendant cleanup. Production guards and limits
-remain unchanged.
+A provisional **cedar → pine** checkpoint can expose the implemented assessment,
+reuse and explicit diagnostic tools without claiming complete catalogue support.
+The C133 frozen-source regression passes. Before merging: review the actual
+integration diff, exercise representative ordinary routes against pine, and state
+the bounded feature contract. The larger generalizer programme remains separate. No merge
+is performed or authorized by this document. Exact evidence is in the
+[ledger](cif-linked-native-registration-evidence.json); priorities are in the
+[generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
 
 ### Catalogue coverage census (C105)
 
@@ -795,6 +781,96 @@ C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stay
 parked.
 
 
+### Source-bound qualified site preparation (C133)
+
+`bind_preparation_qualification(source, candidate, code, qualification,
+bond_representation_policy=...)` freshly reassesses exact source/candidate bytes
+under an explicit supported representation policy. It requires the complete v3
+isolated-native contract: the exact 21 named true checks, component/scope/status,
+source/candidate hashes, source-relative configuration and representation evidence.
+Missing, extra or integer-valued checks, altered summaries and policy relabelling
+fail closed. Filenames remain provenance; semantic evidence and exact hashes bind
+relocated copies. Caller-supplied qualification is an evidence contract, not an
+independent authentication of a Phenix execution; the native receipt validator
+must attest the capture separately.
+
+Every fixed or R/S-declared source centre must have an assessable, preserved
+four-neighbour configuration. The source determines the number and identities:
+three deoxy centres and four fluorinated-sugar centres use the same rule. Element,
+H/D, formal charge and graph comparisons remain mandatory. This does not assign
+absolute CIP or infer missing stereochemistry. No residue code, workbook sugar
+label or atom-name pattern defines eligibility. A source-preserved ribo-fluoro
+candidate can pass this generic guard without being called FANA.
+
+`prepare_linked_component(..., native_qualification=..., bond_representation_policy=...)`
+and `prepare_terminal_component(...)` propagate that explicit evidence. The new
+path accepts consistent source `DNA LINKING` or `L-DNA LINKING` declarations;
+these are separate [CCD type values](https://mmcif.rcsb.org/dictionaries/mmcif_pdbx_v40.dic/Items/_chem_comp.type.html).
+Native group DNA selects existing polymer machinery and never authorizes a hand
+change. Other or contradictory polymer metadata is refused. Native preparation
+still has the conventional backbone-name contract; the generic source-port API
+is not yet a universal native adapter.
+
+Conventional names also need an element/bond/state proof: P/O/C identities,
+phosphate/bridging-oxygen neighbours and the required single bonds are checked.
+Source O3′ must be a neutral single-H/D hydroxyl; an incoming OP3 deletion needs
+the same neutral hydroxyl state and a single P–O bond. The exact existing C107
+neutral-port predicate is shared, so the generic source and new native paths do
+not invent different protonation rules. Additional heavy neighbours, charged
+reacting oxygens, double-bonded outgoing oxygen or sulfur/fluorine masquerading
+under ordinary oxygen names require a separate operation. They are refused before
+output creation. Nonreacting phosphate oxygen charge/H is retained unchanged.
+Nine adverse cases fail before this gate and pass afterward; valid deuterium is
+accepted. Previous default/v2 native calls retain their existing contract.
+
+A projected group may remove its own declared centre only as part of the explicit
+chemical deletion. Every retained source centre must keep its original neighbours.
+A link substitution that removes one of those neighbours is refused before output
+creation: it needs separate linked-configuration authority, rather than silently
+losing the centre's signed restraint. Declared terminal phosphates remain protected;
+internal OP3 plus attached H/D and outgoing hydroxyl H/D are removed only under
+the existing explicit contexts. OP2 protonation is retained. Free 5′-OH preparation
+uses the separately captured installed fragment; its new H formal charge remains
+unassessed. Neither model coordinates nor installed resources are changed.
+
+New schema-1 policies are `cif-source-bound-preparation-qualification-v1`,
+`cif-source-preserving-linked-sites-v3` and `cif-native-five-prime-hydroxyl-v2`.
+Receipts add the bound source evidence and per-site retained/removed-centre and source-port records.
+Calls without the new policy retain the previous default/v2 linked behavior;
+legacy terminal calls retain v1. There is no CLI, run/checkpoint migration or
+ordinary PostMR activation. All outputs remain separate review candidates.
+
+**Completed native control.** C121's exact source-preserving 0DG candidate is
+requalified from its frozen isolated capture, then projected at the unchanged
+61-atom C130 L-FANA-C endpoint. A:1 is explicitly free 5′-OH/outgoing-linked;
+A:3 is incoming-linked/free 3′-OH. Complete Phenix 2.2.1-6174 execution (dispatcher
+2.2.1; resource capture bounded at 120 s, interpretation and derivative captures
+at 180 s each) gives **42 PASS / two UNSUPPORTED formal-charge readbacks**.
+All three residues have complete heavy-atom mappings, both declared bonds match,
+all central definitions and unaffected proxies remain exact, and the outgoing
+O3′ hydrogen findings disappear. A:1 has no phosphate definition and gains the
+native HO5′ fragment; A:3 loses OP3/HOP3 and retains HOP2 and terminal HO3′.
+Hydrogens remain dictionary expectations, not newly inserted model coordinates.
+
+All active proxy parameters and fixed energy/gradient snapshots equal the C132
+control. The change repairs explicit definitions, not coordinates or numerical
+strain. A fresh exact-manager derivative capture passes all sampled directions
+at six selected flank/central atoms in 1,359 evaluations. This is an identity-only,
+no-parallelity sample, not an exhaustive derivative or chemical proof. The original
+C130 iteration-limit result, two fixed-flank bond deviations, source protonation
+and unsupported native formal-charge readback remain visible. No optimizer,
+refinement, Coot invocation or automatic adoption occurs.
+
+Validation: **404 focused tests**, including 60 new cases, pass. Fail-before and
+projection-guard-disabled controls are preserved. The complete report replays in
+a cold relocated checkout with its owned original absent and historical/SDK/process
+access blocked; **289 files retain exact bytes, sizes and mtimes**. Full regression passes: **6804 passed, 276 subtests passed in 1026.17s (0:17:06)**.
+All 499 source/test hashes remain unchanged and match focused/cold validation;
+494 previously published source/test files remain unchanged. Exact commands, failures, native
+versions and anchored local hashes are in evidence key
+`source_bound_site_preparation_2026_10_30` in the existing ledger. Raw models,
+CIFs, installed-resource captures, logs and runners remain local and excluded from Git.
+
 ### Fixed-coordinate dictionary controls (C132)
 
 `review_native_target_comparison(before, after, model_payload, changed_sites,
@@ -896,19 +972,11 @@ previously published source/test files are unchanged. Exact commands/results and
 `fixed_coordinate_dictionary_controls_2026_10_30` in the existing ledger.
 Raw sources, models, candidates, native outputs and runners remain local.
 
-The next bounded step is to propagate the already explicit representation policy
-through the source-preserving linked/terminal preparation boundary, then qualify
-source-declared flank contexts at fixed coordinates. The current linked preparer
-accepts the older isolated qualification policy and rechecks with default bond
-comparison; it does not yet consume C121's explicit representation-qualified
-candidate. A bounded call with the preserved native-usable v3 qualification
-reproduces that refusal before creating an output directory. Default candidate
-reassessment is REJECTED; reassessment under the explicit source-proven 6-oxo
-policy is CANDIDATE_REVIEW. This is an unsupported qualification/representation
-boundary, not evidence that the source chemistry is unusable. The bridge should
-be explicit and tested, without weakening defaults.
-Only after source/native projection agrees should a fresh derivative-gated
-geometry trial assess the new objective. C130's original limit stopping remains.
+The qualification/representation refusal observed in C132 is addressed by the
+[explicit C133 bridge](#source-bound-qualified-site-preparation-c133). That result
+adds exact projected definitions and fresh sampled derivatives; it does not
+retroactively adopt the C132 dictionary or close protonation and geometry review.
+C130's original stopping record remains unchanged.
 
 ### Selected environment review (C131)
 

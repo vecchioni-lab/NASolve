@@ -47136,5 +47136,554 @@
     "implementation_commit": "533e0d81aad919c8b2ca373858a816dd86c2ed0a",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "source_bound_site_preparation_2026_10_30": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "base_commit": "e5d3793707f5d08c999276867eebc4bbd7a60d2e",
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "133_Cedar_qualified-preparation-717dma13"
+    },
+    "before": "Representation-qualified v3 candidates and explicit L-DNA source declarations could not enter linked/terminal preparation. Retained stereocentres could lose a neighbour during a site projection.",
+    "after": "Explicit whole-source qualification binds complete native checks, graph/H/charge and every declared centre; DNA/L-DNA site projections preserve each retained centre or refuse unsupported substitutions. The conventional native adapter also requires source element/bond/state proof and shares the existing neutral-hydroxyl predicate with generic source operations.",
+    "changed_code": [
+      "src/nasolve/cif_preparation_qualification.py",
+      "src/nasolve/cif_linked_preparation.py",
+      "src/nasolve/cif_terminal_preparation.py",
+      "src/nasolve/cif_attachment_sites.py",
+      "tests/test_cif_preparation_qualification.py"
+    ],
+    "policies": [
+      "cif-source-bound-preparation-qualification-v1",
+      "cif-source-preserving-linked-sites-v3",
+      "cif-native-five-prime-hydroxyl-v2"
+    ],
+    "schemas": "All schema_version 1; new opt-in policy IDs, bound source evidence and per-site source_configuration_projection/source_port_qualification.",
+    "validation_commands": {
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_preparation_qualification.py",
+        "tests/test_cif_linked_preparation.py",
+        "tests/test_cif_linked_usability_bridge.py",
+        "tests/test_cif_terminal_preparation.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_purine_representation.py",
+        "tests/test_cif_fana.py",
+        "tests/test_cif_stereochemistry_audit.py",
+        "tests/test_cif_terminal_qualification.py",
+        "tests/test_cif_source_classification.py",
+        "tests/test_cif_attachment_sites.py",
+        "tests/test_cif_attachment_links.py",
+        "tests/test_cif_pna_operations.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "native": [
+        "c133_probe.py (resource capture; preserved L-DNA metadata refusal)",
+        "c133_project.py (complete projection capture)",
+        "c133_guarded_prepare.py (new guard; identical five native/projection payloads)",
+        "c133_derivatives.py (complete fixed-coordinate native derivative capture)",
+        "c133_port_prepare.py (source-port checks; identical five native/projection payloads)"
+      ],
+      "replay": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python c133_replay_ports.py",
+      "cold": "c133_cold_prepare_ports.py -> relocated src + c133_cold_ports.py",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c133-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "docs": "check_docs.py; runpy figure source/render equality; rsvg-convert -w 1200 + visual review",
+      "whitespace": "git diff --check"
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_preparation_qualification.py",
+        "tests/test_cif_linked_preparation.py",
+        "tests/test_cif_linked_usability_bridge.py",
+        "tests/test_cif_terminal_preparation.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_purine_representation.py",
+        "tests/test_cif_fana.py",
+        "tests/test_cif_stereochemistry_audit.py",
+        "tests/test_cif_terminal_qualification.py",
+        "tests/test_cif_source_classification.py",
+        "tests/test_cif_attachment_sites.py",
+        "tests/test_cif_attachment_links.py",
+        "tests/test_cif_pna_operations.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 12.967134375008754,
+      "source_test_files": 499,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_summary": "404 passed in 12.73s",
+    "new_test_cases": 60,
+    "fail_before": "New explicit keyword regression fails before implementation; corrected retained-centre cases fail with the new projection guard disabled and pass with it enabled. Nine adverse element/bond/protonation cases were accepted before the new port guard and refused afterward; deuterium still passes.",
+    "intermediate_failures": [
+      "Initial malformed missing-F fixture had dangling references; repaired to exercise a graph-valid deletion.",
+      "Synthetic positive metadata used a contradictory non-polymer group; corrected without relaxing source checks.",
+      "Synthetic fixed-centre fixture had coincident unrelated heavy atoms; corrected, then independently challenged with the projection guard disabled.",
+      "Initial replay runner expected EXACT rather than the established MATCH topology status; runner corrected."
+    ],
+    "native_tools": {
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "mode": "Complete resource, native projection and derivative execution; not dry-runs.",
+      "timeouts_seconds": {
+        "resource": 120,
+        "projection": 180,
+        "derivatives": 180
+      },
+      "optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "coot": "NOT_RUN"
+    },
+    "result": {
+      "native_pass": 42,
+      "unsupported_charge": 2,
+      "complete_heavy_atom_sites": [
+        "A:1",
+        "A:2",
+        "A:3"
+      ],
+      "exact_declared_links": 2,
+      "chemical_state": {
+        "A:1": {
+          "atoms": 31,
+          "phosphate_atoms": {},
+          "outgoing_o3_hydrogens": [],
+          "o5_hydrogens": [
+            "HO5'"
+          ],
+          "op2_hydrogens": []
+        },
+        "A:3": {
+          "atoms": 35,
+          "phosphate_atoms": {
+            "P": "0",
+            "OP1": "0",
+            "OP2": "0",
+            "HOP2": "0"
+          },
+          "outgoing_o3_hydrogens": [
+            "HO3'"
+          ],
+          "o5_hydrogens": [],
+          "op2_hydrogens": [
+            "HOP2"
+          ]
+        }
+      },
+      "source_centres_per_flank": 3,
+      "coordinates_unchanged": true,
+      "same_active_proxy_parameters": true,
+      "same_fixed_energy_inventory": true,
+      "derivatives": {
+        "schema_version": 1,
+        "policy_id": "cif-native-fixed-gradient-inventory-v1",
+        "status": "SAMPLED_DERIVATIVES_PASS",
+        "sampled_derivatives_pass": true,
+        "family_checks": {
+          "all": true,
+          "angle": true,
+          "bond": true,
+          "chirality": true,
+          "dihedral": true,
+          "nonbonded": true,
+          "parallelity": true,
+          "planarity": true
+        },
+        "evaluation_calls": 1359,
+        "selected_indices": [
+          4,
+          2,
+          39,
+          41,
+          30,
+          36
+        ],
+        "selected_labels": [
+          "pdb=\" C3' 0DG A   1 \"",
+          "pdb=\" C4' 0DG A   1 \"",
+          "pdb=\" P   0DG A   3 \"",
+          "pdb=\" OP2 0DG A   3 \"",
+          "pdb=\" C2' AAJ A   2 \"",
+          "pdb=\" O3' AAJ A   2 \""
+        ],
+        "manager_sha256": "3f3a45cd343efe760f17bf63e8dfafd97bfc7b2d180adb9c8e1310aaf9a73afe",
+        "numerical_evidence_replayed": true,
+        "native_execution": "NOT_RUN",
+        "model_optimization": "NOT_RUN",
+        "chemical_qualification": "NOT_ESTABLISHED",
+        "automatic_adoption": false,
+        "limitations": [
+          "Agreement covers sampled directions at these exact coordinates, not every component or global convergence.",
+          "No parallelity, special positions or nonidentity symmetry; no geometry or chemical acceptance.",
+          "Frozen input/worker/output receipts require separate attestation."
+        ]
+      },
+      "model_sha256": "d08d4e497fee973d4762db25f835a651a920d67def4cc50c22edea4725d36ea2",
+      "source_port_checks": [
+        {
+          "site": "A:1",
+          "ports": {
+            "elements": {
+              "C3'": "C",
+              "C5'": "C",
+              "O3'": "O",
+              "O5'": "O",
+              "OP1": "O",
+              "OP2": "O",
+              "OP3": "O",
+              "P": "P"
+            },
+            "incoming_leaving_hydrogens": [],
+            "op2_protonation": "PRESERVED",
+            "protonation_inferred": false,
+            "scope": "CONVENTIONAL_NATIVE_DNA_PORTS",
+            "source_o3_hydrogens": [
+              "HO3'"
+            ]
+          },
+          "configuration": [
+            {
+              "center": "C1'",
+              "ordered_neighbors": [
+                "C2'",
+                "H1'",
+                "N9",
+                "O4'"
+              ],
+              "status": "RETAINED_SOURCE_NEIGHBORS"
+            },
+            {
+              "center": "C3'",
+              "ordered_neighbors": [
+                "C2'",
+                "C4'",
+                "H3'",
+                "O3'"
+              ],
+              "status": "RETAINED_SOURCE_NEIGHBORS"
+            },
+            {
+              "center": "C4'",
+              "ordered_neighbors": [
+                "C3'",
+                "C5'",
+                "H4'",
+                "O4'"
+              ],
+              "status": "RETAINED_SOURCE_NEIGHBORS"
+            }
+          ]
+        },
+        {
+          "site": "A:3",
+          "ports": {
+            "elements": {
+              "C3'": "C",
+              "C5'": "C",
+              "O3'": "O",
+              "O5'": "O",
+              "OP1": "O",
+              "OP2": "O",
+              "OP3": "O",
+              "P": "P"
+            },
+            "incoming_leaving_hydrogens": [
+              "HOP3"
+            ],
+            "op2_protonation": "PRESERVED",
+            "protonation_inferred": false,
+            "scope": "CONVENTIONAL_NATIVE_DNA_PORTS",
+            "source_o3_hydrogens": [
+              "HO3'"
+            ]
+          },
+          "configuration": [
+            {
+              "center": "C1'",
+              "ordered_neighbors": [
+                "C2'",
+                "H1'",
+                "N9",
+                "O4'"
+              ],
+              "status": "RETAINED_SOURCE_NEIGHBORS"
+            },
+            {
+              "center": "C3'",
+              "ordered_neighbors": [
+                "C2'",
+                "C4'",
+                "H3'",
+                "O3'"
+              ],
+              "status": "RETAINED_SOURCE_NEIGHBORS"
+            },
+            {
+              "center": "C4'",
+              "ordered_neighbors": [
+                "C3'",
+                "C5'",
+                "H4'",
+                "O4'"
+              ],
+              "status": "RETAINED_SOURCE_NEIGHBORS"
+            }
+          ]
+        }
+      ]
+    },
+    "cold_replay": {
+      "status": "PASS",
+      "report_exact_match": true,
+      "owned_original_absent": true,
+      "original_sdk_and_process_access_blocked": true,
+      "blocked_attempts": [],
+      "files_unchanged": 289,
+      "native_execution": "NOT_RUN"
+    },
+    "compatibility": "Opt-in Python paths only. Existing default/v2 linked and legacy terminal v1 behavior preserved. No CLI, run/checkpoint, installed-library or ordinary PostMR migration.",
+    "scientific_boundaries": [
+      "Source-relative signed geometry is not an absolute CIP assignment.",
+      "Synthetic D/L deoxy/arabino-fluoro/ribo-fluoro transfers do not establish a live L-FDNA route.",
+      "Native preparation still requires conventional backbone names and explicit DNA/L-DNA type; generic source-port integration remains open.",
+      "Native formal-charge readback and experimental phosphate protonation remain unresolved; source HOP2 is retained.",
+      "C130 original iteration-limit stopping and residual fixed-flank geometry remain; no optimization/adoption.",
+      "Fresh derivative evidence samples six atoms with identity-only symmetry and no parallelity, not exhaustive consumer qualification.",
+      "A provisional integration checkpoint is separate from all-catalogue generalizer completion.",
+      "New native bridge accepts neutral reacting hydroxyl ports; charged or substituted reacting ports require separate operation authority. Retained OP2 charge/H is not normalized."
+    ],
+    "generated_artifacts": "Raw source/CIF/PDB/native resources, captures, logs and runners remain local; Git contains maintained source/tests/docs and compact technical evidence/hashes only.",
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/inputs/manifest.json",
+        "sha256": "48589fd6beb8c950a6683ef4bc66ba96a3f10d5fc80a9311fd96fe9884594712",
+        "size": 2245
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/reports/qualified-projection-bound.json",
+        "sha256": "e0548e690ada8f6d4cdc2d5da294711929290f81f5433f978f738689a598ed9c",
+        "size": 1222500
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/reports/preparation-ports-location.json",
+        "sha256": "ad71c6180a3413508b55d0b279b9c3898c3c768fc0012b146eecb60708c584ef",
+        "size": 927
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/reports/derivative-selection.json",
+        "sha256": "9890e0c3ce61bacaddaffd8c1d6cf54331f62795ee4b94698ca3362beb33b48f",
+        "size": 597
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/reports/derivatives.json",
+        "sha256": "4ad6f9b027b055ffd58950f0115fd87a7ba7b0e2656ecf47ec7008e0ac8916e5",
+        "size": 1254
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/fail-before.log",
+        "sha256": "931fca60551f28b03b3dcd4dda4229515c3a308cdc01e59d277ee47a1641da3d",
+        "size": 1521
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/metadata-fail-before.log",
+        "sha256": "98288afea7971da3346b12b19ab9278106020b88024d42d025dc7f2762f56529",
+        "size": 11584
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/projection-disabled-control.log",
+        "sha256": "8f3c297411d0c9eb4638923da7ef7b737352c50f126ec8e98f5b4ca967ccf1d0",
+        "size": 2614
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/ports-fail-before.log",
+        "sha256": "4599b68cbebe28821ac702ed34e5361f54b3eb2568c4ea5665ee0debfcf92e42",
+        "size": 30688
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/focused-release/pytest.log",
+        "sha256": "8aee0d6ff6116a52fd312bb927d115e9cc397a437540f622eae6307a87f196e9",
+        "size": 2876
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/focused-release/source-hashes.json",
+        "sha256": "81a00ff023d05f26b09e04b858f1e6a628bccd7ef6e918ac67841d4309f1021e",
+        "size": 53935
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/cold-ports-result.json",
+        "sha256": "cb2af1bef2755b6a109fed3dd10db167e5e91c3dfd227f6f82dbbeb77b715a56",
+        "size": 222
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/cold-ports-manifest.json",
+        "sha256": "1d0ef58152d38ab2f387893fb97f3d31657e715898c93a1ccdd6d627a958e001",
+        "size": 54793
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/full/pytest.log",
+        "sha256": "2ae626be43a9804565dd4bae08663bd6a2f77ac6b9adb4fd952b72c635b85bf3",
+        "size": 10236
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/full/source-hashes.json",
+        "sha256": "81a00ff023d05f26b09e04b858f1e6a628bccd7ef6e918ac67841d4309f1021e",
+        "size": 53935
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/validation/auxiliary.json",
+        "sha256": "4b2fad0f52ef492df254c4b6d56f12b0ae18f37f7a650d1a3de4ea85a02be514",
+        "size": 306
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_probe.py",
+        "sha256": "c52d1393d06d0285b76389d7d850c4083a9879c59774d275e8ef486b5c7eaa24",
+        "size": 4269
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_project.py",
+        "sha256": "eae49968d1f7270fa8d2bbc13782c2b9b2fb406a9e38a6d2379369566b04ea89",
+        "size": 2763
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_port_prepare.py",
+        "sha256": "7e45ca3d5cb20c1010811ccbbbea66d99a0e84780c50fb0c9647de07464387c3",
+        "size": 1512
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_derivatives.py",
+        "sha256": "d8057c8a96a345c09754ff21cc0fa09ab03e76131e092cf00ff1046fa9b3e230",
+        "size": 2532
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_replay_ports.py",
+        "sha256": "a0ebdeab150e1e0f23b8e5f902814d6b8b58491436de47b3538dcd9f74bd68ae",
+        "size": 6601
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_cold_ports.py",
+        "sha256": "14bd17f2cc3e2a0827a53c89b5c9cbd22db36580d051b444bb89de587a0584f1",
+        "size": 2149
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_cold_prepare_ports.py",
+        "sha256": "05023badbdce0196c16fd07038cfc4c473dcb13e67fb1f4b013ce5f56668aaa0",
+        "size": 1235
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "133_Cedar_qualified-preparation-717dma13/runners/c133_validate.py",
+        "sha256": "81a7b542046ee80121b2cca13fd589159e64e5ddaa28ddc4a6f2b6b1546131f3",
+        "size": 1613
+      }
+    ],
+    "next": "Source-state policy and generic native attachment adapters, ordinary recovery/adoption integration, independent PDU numerical audit, and bounded cedar-to-pine integration review.",
+    "integration_assessment": {
+      "verified_remote_pine": "d7913ddd95336fddb7cb266b0bc707ffd768d9ab",
+      "verified_remote_cedar_before_patch": "e5d3793707f5d08c999276867eebc4bbd7a60d2e",
+      "pine_ancestor_of_cedar": true,
+      "cedar_commits_ahead_before_patch": 226,
+      "changed_files_before_patch": 525,
+      "scope": "Read-only ancestry/statistics only, not a review of every integration change. No merge performed.",
+      "recommendation": "Consider a provisional assessment/reuse/explicit-diagnostic checkpoint after full regression, integration diff review and representative ordinary-route validation; catalogue-wide support remains a separate goal."
+    },
+    "documentation_audit": {
+      "resolved": [
+        "Root/user and documentation-index chronology replaced with current capability pointers",
+        "Roadmap updated from C122 to C133",
+        "Human current-result/limits reconciled",
+        "Stale top-level not_implemented flags corrected",
+        "Figure generator and SVG made identical with a concise accessibility description"
+      ],
+      "remaining": [
+        "Technical guide, human overview and handoff still interleave stable methods with historical milestone narratives",
+        "Implementation blueprint and native ledger contain large historical bodies; current scope should remain a single linked table rather than another copied status list",
+        "A separate anchor-preserving methods/history consolidation remains advisable before broad public release"
+      ]
+    },
+    "full": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 1027.2448722500121,
+      "source_test_files": 499,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6804 passed, 276 subtests passed in 1026.17s (0:17:06)",
+    "source_test_files_unchanged": 499,
+    "prior_source_test_files_unchanged": 494,
+    "auxiliary_checks": {
+      "compileall": "PASS",
+      "relative_document_links": 278,
+      "json_and_svg_parse": "PASS",
+      "figure_generator_matches_svg": true,
+      "figure_render_and_visual_review": "PASS",
+      "diff_whitespace": "PASS",
+      "native_workers_and_numerical_kernels": "UNCHANGED",
+      "prior_source_test_files_unchanged": 494
+    }
   }
 }

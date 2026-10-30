@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-28",
+    "updated_date": "2026-10-30",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -26,10 +26,11 @@
     "native_candidate_evidence": "docs/elbow-source-retention-evidence.json",
     "source_state_control": "Required valued --pH=low selects the installed generator's exact-input-chemistry mode; it does not assert experimental pH or correct crystal protonation. Chemistry comparison remains mandatory and no automatic adoption is implemented.",
     "not_implemented": [
-      "Installed consumer-parser or effective native-proxy certification",
-      "Mapped descriptor validation and independent chemical authority",
-      "Qualified automatic numerical recovery or candidate/checkpoint adoption",
-      "Geometry/connectivity repair and guided sticky-end stitching"
+      "General automatic recovery on ordinary cache misses and end-to-end qualified candidate/checkpoint adoption",
+      "Complete catalogue-wide native construction, linked chemistry and ordinary-refinement qualification",
+      "Independent absolute CIP and experimental protonation/tautomer authority",
+      "Ordinary general whole-modified-sugar mutation; symmetry-aware sticky-end stitching",
+      "Solution-PDF integration and ChemDraw-derived chemical input"
     ],
     "snapshot_policy": "The design and historical evidence below remain a knowledge snapshot. The runtime contract and current source own implemented behavior.",
     "cedar_05_return": {
@@ -27224,6 +27225,31 @@
       ],
       "next": "Explicitly bridge representation-qualified source candidates into linked/terminal preparation, qualify exact flank projections, then re-audit derivatives before any fresh geometry trial.",
       "implementation_commit": "533e0d81aad919c8b2ca373858a816dd86c2ed0a"
+    },
+    "current_support_contract": "docs/cif-doctor.md#current-capability-boundary",
+    "source_bound_site_preparation": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "source_bound_site_preparation_2026_10_30",
+      "policies": [
+        "cif-source-bound-preparation-qualification-v1",
+        "cif-source-preserving-linked-sites-v3",
+        "cif-native-five-prime-hydroxyl-v2"
+      ],
+      "behavior": "Explicit whole-source qualification binds complete native checks, graph/H/charge and every declared centre; DNA/L-DNA site projections preserve each retained centre or refuse unsupported substitutions. The conventional native adapter also requires source element/bond/state proof and shares the existing neutral-hydroxyl predicate with generic source operations.",
+      "validation": "6804 passed, 276 subtests passed in 1026.17s (0:17:06); 404 focused; complete native and derivative controls; exact 289-file cold replay.",
+      "compatibility": "Opt-in Python paths only. Existing default/v2 linked and legacy terminal v1 behavior preserved. No CLI, run/checkpoint, installed-library or ordinary PostMR migration.",
+      "limitations": [
+        "Source-relative signed geometry is not an absolute CIP assignment.",
+        "Synthetic D/L deoxy/arabino-fluoro/ribo-fluoro transfers do not establish a live L-FDNA route.",
+        "Native preparation still requires conventional backbone names and explicit DNA/L-DNA type; generic source-port integration remains open.",
+        "Native formal-charge readback and experimental phosphate protonation remain unresolved; source HOP2 is retained.",
+        "C130 original iteration-limit stopping and residual fixed-flank geometry remain; no optimization/adoption.",
+        "Fresh derivative evidence samples six atoms with identity-only symmetry and no parallelity, not exhaustive consumer qualification.",
+        "A provisional integration checkpoint is separate from all-catalogue generalizer completion.",
+        "New native bridge accepts neutral reacting hydroxyl ports; charged or substituted reacting ports require separate operation authority. Retained OP2 charge/H is not normalized."
+      ],
+      "next": "Source-state policy and generic native attachment adapters, ordinary recovery/adoption integration, independent PDU numerical audit, and bounded cedar-to-pine integration review."
     }
   },
   "audience": [

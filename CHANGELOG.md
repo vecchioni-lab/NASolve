@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Source-bound linked and terminal preparation (C133)
+
+- Propagate explicitly representation-qualified native evidence into linked and
+  terminal preparation, including consistent source L-DNA declarations.
+- Require exact qualification checks, graph/H/charge identity and preservation
+  of every source-declared centre. Refuse projected loss of a retained centre's
+  neighbours; retain explicit phosphate/end-state protections. Require conventional
+  native port elements/bonds and the shared neutral-hydroxyl source-state rule.
+- Add schema-1 preparation-qualification v1, linked v3 and terminal v2 opt-in
+  policies. Legacy/default behavior and ordinary PostMR remain unchanged.
+- Consolidate current chemistry/support summaries and roadmap; shorten the user
+  and documentation entry points and regenerate the figure from its source.
+  Historical scientific receipts and limitations remain preserved.
+
 ### Fixed-coordinate dictionary controls (C132)
 
 - Add an optional read-only comparison of two complete native captures at the

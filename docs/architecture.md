@@ -3742,3 +3742,23 @@ improvement, convergence or chemical permission. Source graph, H/D, formal charg
 and linked/terminal state require independent qualification. It adds no worker,
 optimizer, CLI, checkpoint migration or production-default change. See the
 [methods and controlled evidence](cif-doctor.md#fixed-coordinate-dictionary-controls-c132).
+
+
+## Source-bound preparation qualification
+
+Explicit representation-qualified candidates cross the linked/terminal boundary
+only after fresh whole-source reassessment and the complete named isolated-native
+contract. Exact bytes, declared graph/H/charge and every source fixed/R/S centre
+bind the permission; codes and labels identify records, not chemical families.
+Every retained source centre must keep its declared neighbours through projection.
+Changing that neighbourhood requires separate linked-configuration authority.
+
+The opt-in linked v3 and terminal v2 receipts record these bindings and projected
+centre states. Previous callers and policy identifiers remain unchanged. Explicit
+DNA/L-DNA source declarations select existing native polymer machinery; conventional
+backbone names are still required, with explicit element/bond and neutral-reacting-
+port checks shared with the source-operation rule. Generic source ports do not yet imply a universal
+native adapter. Native effective definitions, formal-charge availability, actual
+model coordinates and numerical derivatives remain separate qualifications.
+No new CLI, run/checkpoint migration, installed-library mutation or automatic
+adoption is introduced. See the [contract and evidence](cif-doctor.md#source-bound-qualified-site-preparation-c133).

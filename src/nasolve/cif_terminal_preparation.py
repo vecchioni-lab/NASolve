@@ -146,7 +146,9 @@ def _adapt_projection(values,code,recipe):
 
 
 def prepare_terminal_component(source: Path, numerical: Path, model: Path,
-        contexts: Sequence[dict], resource_receipt: Path, output_directory: Path, *, code: str) -> dict:
+        contexts: Sequence[dict], resource_receipt: Path, output_directory: Path, *, code: str,
+        native_qualification: dict | None = None,
+        bond_representation_policy: str | None = None) -> dict:
     """Prepare selected free 5'-OH sites without changing internal/phosphate contexts."""
     paths=[Path(p) for p in [source,numerical,model,resource_receipt]]
     payloads=[p.read_bytes() for p in paths];output=Path(output_directory)
@@ -160,7 +162,10 @@ def prepare_terminal_component(source: Path, numerical: Path, model: Path,
         raise ValueError('Native hydroxyl hydrogen identity collides with a source atom')
     with TemporaryDirectory(prefix='nasolve-terminal-prepare-') as temporary:
         work=Path(temporary)/'linked'
-        result=prepare_linked_component(*paths[:3],contexts,work,code=code)
+        options={}
+        if native_qualification is not None:options['native_qualification']=native_qualification
+        if bond_representation_policy is not None:options['bond_representation_policy']=bond_representation_policy
+        result=prepare_linked_component(*paths[:3],contexts,work,code=code,**options)
         blocks=_blocks(work/'site_modifications.cif');replacements={}
         assessments=[]
         for plan in result['sites']:
@@ -199,7 +204,8 @@ def prepare_terminal_component(source: Path, numerical: Path, model: Path,
         (work/'site_modifications.phil').write_text(phil)
         if any(p.read_bytes()!=data for p,data in zip(paths,payloads)) or load_terminal_recipe(paths[3])!=recipe:
             raise ValueError('Preserved terminal input changed')
-        result.update(policy_id=TERMINAL_PREPARATION_POLICY,linked_preparation_policy=result['policy_id'],
+        policy='cif-native-five-prime-hydroxyl-v2' if native_qualification is not None or bond_representation_policy is not None else TERMINAL_PREPARATION_POLICY
+        result.update(policy_id=policy,linked_preparation_policy=result['policy_id'],
             terminal_resource=recipe,projected_assessments=assessments,
             inputs=[{'name':p.name,'sha256':sha256(data).hexdigest(),'size':len(data)} for p,data in zip(paths,payloads)])
         output.mkdir(parents=True)

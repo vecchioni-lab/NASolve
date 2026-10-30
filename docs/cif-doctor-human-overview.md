@@ -20,188 +20,56 @@ figure describe the current capabilities and their limits.
 
 ## Catalogue scope and progression
 
-The generalizer programme includes every ligand in the selected NARestraints
-catalogue, including ATL and alternative backbones such as PNA. C105 supplies
-a read-only baseline: it joins the exact workbook rows to exact CCD source files,
-checks graphs and mapped atom names, and records missing sources and conflicting
-mappings. All 618 rows / 599 codes of the pinned local workbook are represented.
-This is inspection coverage, not a claim that all 599 ligands can be built or
-refined. Exact sugar labels help organize further work without imposing DNA
-phosphate rules on other backbones.
+The programme includes every ligand in the selected NARestraints catalogue,
+including ATL and alternative backbones such as PNA. The pinned census represents
+all 618 rows / 599 codes; that is inspection coverage, not proof that every ligand
+can be constructed or refined. The [current chemistry/support matrix](cif-doctor.md#current-capability-boundary)
+is the concise authority for demonstrated routes and remaining limits.
 
-The census preserves source hashes and worksheet locations, and reproduces after
-relocation without native tools. It does not repair the workbook or chemistry.
-C106 adds graph-based source attachment evidence. It recognizes three initial
-cores and reports their actual ports, charges, hydrogens and stereo declarations,
-without choosing terminal chemistry or forming bonds. Twenty-six of 37 selected
-DNA, LNA and PNA-labelled sources match; the other cases remain visible. Renamed
-atoms give the same structural bindings, and exact cold replay preserves evidence.
-
-This distinguishes topology from a chemical operation: an ammonium group and a
-neutral amine can share a core without sharing a protonation state. Likewise,
-ATL's phosphate oxygen named OXT cannot be deleted merely by analogy with OP3.
-C107 now binds an explicit PDB site to a proposed source projection and checks
-an optional candidate for exactly those table changes. A retained terminal
-phosphate stays intact; an internal leaving O must be explicitly selected,
-graph-checked and absent from the model. The other phosphate O–H remains.
-PDU/ATL and DA/LCC transfer checks pass; APN/40A link states remain unresolved
-without a protonation policy. These are synthetic context checks, not native
-linkage proof. C108 composes these inspections so both sites must declare the
-same bond between their source-defined ports. An O5′ oxygen cannot substitute
-for the required alcohol port merely because both are oxygen. The whole declared
-set remains unresolved if any operation lacks authority or any supplied source
-projection mismatches; unselected sites and partial candidate coverage stay
-explicit. Five sugar pair controls pass; PNA source ports bind while chemical
-state changes remain open. C109 then checks preserved native captures against
-those literal endpoints. A fresh DNA control has the declared bond, while its
-native atom names/hydrogen states still differ from the source. Both installed-
-library ATL directions fail because usable energy types are missing. These
-outcomes guide recovery; they do not authorize deleting atoms or copying DNA
-types to ATL. C112 captures actual indexed native name bindings and adds a
-separate comparison using only those observed aliases. In DNA, OP3→O3T and
-C7→C5M are observed, while hydrogen differences remain visible. In the L-DNA
-control, all 855 atoms bind without aliases, so the earlier phosphate changes
-cannot be dismissed as renaming. The same tool reads both cases; no model-specific
-repair is added. C113 groups hydrogen definitions by their observed heavy-atom
-parent, distinguishing counts/isotopes and moved attachments from equal-count
-label differences. The DNA methyl group has three H on each side under different
-names, while phosphate/O3′ hydrogen deficits remain separate. No individual
-H alias or protonation state is inferred.
-C114 adds a named, optional PNA amide operation: source-declared neutral NH2
-loses one explicitly chosen H/D, while its partner's source COOH loses only
-the selected hydroxyl O and H/D. Reciprocal source ports, local charge/valence,
-retained stereo and exact candidate tables must agree. Ten of 14 frozen-source
-controls produce matching proposals; four charged reactive amines stay unresolved.
-Unreacted charged termini are preserved. All 22 new/legacy controls replay after
-relocation, without native execution. This expands the general source-operation
-contract; it supplies no PNA numerical dictionary or refinement proof. See the
-[operation policy](cif-doctor.md#explicit-neutral-pna-amide-operations-c114).
-C115 supplies isolated numerical evidence: 40C passes both native coordinate
-controls, while 40A/APN stop at the reader's purine bond-order representation.
-Separate local source-order diagnostics expose a later 40A extra bond and an
-APN candidate retaining atoms/H/charges but returning unsupported aromatic
-orders. These attempts do not change production chemistry. New generic receipt
-diagnostics distinguish those stages and actual changed fields. Linked PNA
-numerical targets remain unqualified; see the
-[C115 controls](cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
-C116 separates coordinate bookkeeping from chemistry: a deterministic traversal
-of source heavy-atom connectivity reorders whole atom rows without changing
-any values. In a bounded 40A diagnostic it avoids native promotion of a
-nonbonded coordinate reference into an extra bond. Purine orders remain
-rejected, while ordered 40C passes both isolated native controls. This explicit
-preparation is not an automatic retry or a general native correctness proof;
-see the [ordering contract](cif-doctor.md#explicit-connected-atom-ordering-c116).
-C117 now gives the purine representation its own narrow opt-in contract. The
-source must declare the aromatic graph, with exact atoms/H/charges and a complete
-neutral-ring valence pattern; carbonyl and charged-ring extensions stay open.
-Preserved 40A/APN candidates and 40C pass all 21 isolated native checks at both
-coordinate sets, including exact fixed covalent restraints and finite repeated
-energy/gradient evaluation. Historical attempts are not rewritten. This is
-isolated usability evidence; ordinary generation integration and linked PNA
-numerical targets still need qualification. See the
-[purine contract](cif-doctor.md#explicit-neutral-purine-representation-c117).
-C118 now threads that explicit representation through maintained generation,
-checking source chemistry at each native handoff without rewriting aromatic
-orders. Fresh 40A/APN/40C candidates pass the independent isolated controls.
-C119 freezes the complete explicitly authorized PNA source network, retaining
-site/atom identities and exact amide operations. Ten controls prepare and replay;
-four unresolved reacting charged amines stay blocked. The graph carries no
-assigned coordinates, numerical restraints or final CIP. It is a chemical input
-for the next linked-generation step. See the
-[generation contract](cif-doctor.md#explicit-purine-generation-handoff-c118) and
-[source-network contract](cif-doctor.md#explicit-pna-source-network-packages-c119).
-C120 introduces explicit FANA source/candidate checking. It locates 2′ fluorine
-by connectivity and checks source-declared arabino configuration, preserving
-whole-source chemistry and all four sugar hands in completed candidates. All
-ten catalogue FANA controls match; three fluororibo comparators do not. A/C/T/U
-candidates pass isolated native checks in C120; C121 adds G under a separate
-source-declared 6-oxo purine representation policy. OFC illustrates why names
-are insufficient: its workbook abbreviation says L-FANA, while its source declares the L-ribo configuration. Neither source
-nor catalogue is rewritten. Whole-sugar model construction and linked native
-qualification remain separate. See the [FANA contract](cif-doctor.md#fana-source-and-candidate-preservation-c120).
-
-C121 resolves a shared guanine representation boundary: the source explicitly
-marks a five-membered ring aromatic, including the shared fusion bond. The
-carbonyl and all nonshared bonds in the adjoining ring are preserved.
-The new graph rule permits exactly that complete conversion, keeps source H,
-charge and stereochemistry, and uses the same independent native checks. It works
-for GFL, L-DNA G and PNA-G controls. Ordinary DNA-G also generates correctly but
-Phenix's standard atom-name interpreter asserts on a retained phosphate hydrogen;
-that remains a separate failure, with all evidence preserved. No phosphate repair,
-linked qualification or convergence is claimed. See the
-[6-oxo contract](cif-doctor.md#neutral-6-oxo-purine-source-representation-c121).
-
-C122 adds a prerequisite for L-FANA model work: a read-only check of an explicitly
-proposed whole-component mirror under a distinct target code. It preserves the
-complete graph, hydrogens and charge; reverses the four sugar declarations; and
-checks every atom-pair distance and sugar hand in each coordinate family. One
-explicitly derived L-FANA-C reference passes generation and both isolated native
-controls. Target NAR registration and insertion into an L-DNA scaffold remain
-separate. This is source-relative evidence, not independently assigned absolute
-CIP. See the [enantiomer contract](cif-doctor.md#explicit-fana-enantiomer-source-check-c122).
-
-Native linked typing, chemical-state reconciliation and terminal
-reconstruction remain open. Further milestones cover bounded recovery,
-qualified usable fallback and ordinary workflow integration. PDU's open numerical
-checks remain a separate current boundary. See the [catalogue contract](cif-doctor.md#catalogue-coverage-census-c105),
-the [attachment contract](cif-doctor.md#source-attachment-topology-and-ports-c106),
-[site-projection contract](cif-doctor.md#explicit-single-site-source-projections-c107),
-[reciprocal-link contract](cif-doctor.md#reciprocal-source-link-contracts-c108),
-[native-link audit](cif-doctor.md#native-attachment-link-audit-c109)
-and [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
+Chemical permission follows the declared molecular graph, elements, hydrogens,
+charge and stereochemistry. Workbook family labels organize the catalogue but do
+not authorize a phosphate or peptide operation. Source-defined attachment ports,
+reciprocal site declarations and exact candidate projections keep those operations
+separate from native atom typing and numerical qualification. The new preparation
+guard counts every declared centre rather than assuming a three-centre DNA sugar;
+renamed D/L deoxy, arabino-fluoro and ribo-fluoro controls test transfer.
 
 ## Current result and interpretation
 
-The actual Mac C95 test passes: a relocated 863-atom model, 23 dictionaries and
-12 parameter files reach the ordinary reader unchanged, with zero new native
-calls. C96 displays the selected model and original stopping note in ordinary
-text output, alongside explicit limits already represented by the saved proof.
-Endpoint selection does not clear source-chemistry findings, and derivative
-qualification of the NASolve-local corrected evaluator does not qualify
-ordinary Phenix refinement. Scientific qualification remains unassessed.
-C97 makes the source comparison inspectable: it lists current component
-changes separately from earlier rejected generation outputs and the declared
-site modifications. For example, internal OP3 deletion is a recorded linkage
-operation, not permission to change an OP2 proton or a sugar bond. Missing
-metadata, partial charge and formal charge remain distinct. This is evidence
-for choosing recovery work; no chemical state or numerical target is repaired.
-C98 tests one concrete recovery: the preserved DF candidate now passes fresh
-isolated and full-model native checks in the current 863-atom fixture. Its source
-sugar bonds and OP2 hydrogen are retained; explicit linkage preparation removes
-incoming OP3/HOP3 and outgoing HO3′. The old bundle remains intact. This changes
-the restraint objective, so C99 repeats the sampled derivative audit for the
-exact repaired manager. All 168 directions and both orders of 58 planes plus
-six controls pass with unchanged native energies and coordinates. Five
-directions need the two smallest existing step sizes; tolerances are unchanged.
-C100 then tests bounded geometry: its target falls 12.54%, but a line-search
-rounding error and six full-precision/four rounded derivative reviews retain
-the verified starting model. Native reread is skipped, and all endpoint evidence
-is preserved. A saved-data screen highlights a nearly collinear PDU torsion;
-C101 now isolates all 22 remaining sampled local full-precision failures to
-that one PDU D:5 torsion; seven other selected torsions and the remainder group
-pass. Native group sums reproduce the saved values. Initial and rounded
-local/group checks pass at finer steps. The same full-precision PDU torsion also
-retains a strict atom-order reversal finding. C100 stays unqualified. A separate
-C102 resolution-aware audit passes only two local and four rounded broader
-rechecks; all six full-precision broader checks still fail. Some apparently
-close derivatives are rejected because the requested coordinate displacement
-is not represented accurately enough. The order discrepancy reproduces.
-C103 independently evaluates the periodic torsion function with exact binary
-inputs and high-precision arithmetic. Its supported reference checks pass in both
-orders, while the full-precision PDU torsion remains highly sensitive to a single
-floating-point coordinate step. Current PDU declarations match the earlier
-triple/180° prerequisites. C104 now prepares a separate complete candidate:
-six PDU dictionary torsions and three active native torsion restraints are
-omitted, while the rest of the current linked inventory matches exactly.
-Phosphate state, NAR terms and the 5PC bystander are preserved. Fixed-coordinate
-energy/gradient attribution and derivative checks are next; no endpoint approval follows.
-Neither native mechanics nor initial derivatives confer the old endpoint proof.
-ATL remains an independent source/compiler and attachment-topology control.
-Future chemical-reference
-input, potentially from ChemDraw exports, belongs to restraints preparation;
-drawing-to-model construction is outside CIF Doctor. The
-[current capability map](cif-doctor.md#current-capability-boundary-c106) is the
-concise authority for these distinctions and next steps.
+The current L-FANA-C diagnostic has a complete placed modified residue, both
+backbone links, sampled native derivatives and a bounded geometry trial. The trial
+remains unconverged. Source-preserving L-DNA flank preparation now removes missing
+OP3 expectations and outgoing-hydroxyl inconsistencies without changing the model.
+Exact projected definitions and unaffected mechanics pass 42 native checks; two
+formal-charge readbacks remain unsupported. Phosphate protonation is preserved
+from the source, not resolved by the experiment or a numerical score.
+
+**Methods.** Exact source/candidate hashes and all source-declared tetrahedral
+centres bind the isolated qualification to explicit terminal/link operations.
+Retained centres cannot silently lose neighbours or signed restraints. Conventional
+native ports must also have the required elements, bonds and neutral hydroxyl
+state; atom names alone cannot authorize the operation. Installed
+terminal fragments and complete Phenix 2.2.1-6174 captures establish the projected
+native definitions. A separate derivative capture passes 1,359 evaluations at six
+selected atoms. Active proxy parameters and fixed energies remain unchanged in
+the hydrogen-free model; this is definition consistency, not geometry improvement.
+Cold replay needs neither the original paths nor the SDK. See the
+[source-bound preparation contract](cif-doctor.md#source-bound-qualified-site-preparation-c133).
+
+FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C route
+has the linked model evidence above. L-FDNA transfer is tested synthetically, not
+by a live end-to-end build. PNA has selected isolated numerics and connected source
+networks but lacks linked numerical qualification. ATL still lacks a usable
+qualified native dictionary. The PDU changed-objective derivative work remains a
+separate open numerical gate. Earlier mixed-endpoint proof using a NASolve-local
+corrected evaluator does not certify ordinary Phenix refinement.
+
+Ordinary source audits, supported connected-base construction and qualified cache
+reuse work today. General automatic recovery on misses, modified-sugar mutation,
+candidate adoption and solution-PDF integration remain planned. ChemDraw-derived
+references/restraint bundles are future input scope; drawing-to-model construction
+is outside CIF Doctor. The [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
+separate a bounded integration checkpoint from complete catalogue support.
 
 ## What it does
 
@@ -724,27 +592,19 @@ the front so clipped filenames remain distinguishable.
 
 ## Current limits and planned extensions
 
-CIF Doctor inventories declared chemistry; it does not infer valence,
-protonation, tautomer choice, absolute stereochemistry or phosphate termination
-from a residue label. Explicit diagnostic preparation uses declared linkage
-and end states; current production PostMR does not adopt these derivatives.
-Installed linked execution is now recorded, with native formal-charge readback
-still unsupported. Complete synthetic free-OH end chemistry is not qualified.
-The dictionary assessment layer does not calculate
-achieved coordinate geometry or sugar pucker, assess maps, or repair/stitch
-fractured assembly arms. Plane-angle discrepancies include raw measurements
-and uncertainty-based lower bounds, but a material-strain threshold has not
-been calibrated.
-The separate captured Cartesian diagnostic provides limited coordinate
-measurements; it does not complete the broader geometry qualification above.
+Source-relative configuration is not an independent absolute CIP assignment.
+A source label cannot select experimental protonation, tautomer or terminal state.
+Explicit native preparation still has a conventional DNA backbone-name contract;
+generic attachment profiles need additional native adapters for other backbones.
+Formal-charge readback and the new hydroxyl H charge remain unassessed where the
+installed consumer does not expose them. Partial charge is never substituted.
 
-The proposed next layers are completion of qualification and integration of
-the explicit linked-state diagnostic, mapped chemical
-descriptors, qualified automatic candidate adoption and model geometry/connectivity
-assessment. Guided sticky-end stitching would require declared strand routing,
-symmetry and terminal intent, with a new child checkpoint. These are planned
-capabilities. The existing `refine-doctor` remains the separate data/Free-R and
-refinement-strategy diagnostic tool.
+Separate diagnostics measure geometry, topology, clashes and sampled derivatives,
+but ordinary PostMR does not automatically adopt their modified-sugar candidates.
+General recovery, usable-fallback orchestration, checkpoint adoption and ordinary
+consumer qualification must be joined and tested on held-out cases. Sticky-end
+stitching needs declared routing, symmetry and terminal intent and remains deferred.
+The separate `refine-doctor` handles diffraction/Free-R and refinement strategy.
 
 ## Methods paragraph for adaptation
 
@@ -3408,7 +3268,15 @@ bond deviation illustrates why chemical state and target quality need separate
 gates. No model or production dictionary was adopted. See the
 [technical comparison](cif-doctor.md#fixed-coordinate-dictionary-controls-c132).
 
-**Figure caption update.** Fixed-coordinate dictionary controls complement the
+**Historical C132 caption context.** Fixed-coordinate dictionary controls complement the
 source/native audits in the overview: observed geometry is held fixed while
 targets, weights and chemical inventories are compared independently. A score
 change is not a geometry change or evidence of chemical correctness.
+
+
+**Current figure scope.** Source-bound preparation now joins explicit candidate
+qualification to declared end states while protecting every retained source
+stereocentre. The figure distinguishes ordinary report-only audits from explicit
+diagnostic work; neither a native mechanics pass nor a lower score grants chemical
+approval or automatic adoption. Detailed evidence belongs in the linked ledger,
+not in the SVG accessibility description.
