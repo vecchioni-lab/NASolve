@@ -39,9 +39,12 @@ def dictionaries(resources):
             edges=sorted(set(tuple(sorted((a,b))) for a,b in zip(left,right)))
             if any(a==b or a not in names or b not in names for a,b in edges):raise RecipeError('Invalid component bond endpoint')
             graph=dict(elements=dict(zip(names,elements)),edges=edges)
+            raw_orders=values.get('_chem_comp_bond.value_order',values.get('_chem_comp_bond.type',[]))
+            orders={canonical(sorted((a,b))):o.upper() for a,b,o in zip(left,right,raw_orders)}
+            charges=dict(zip(names,values.get('_chem_comp_atom.charge',[])))
             code=codes[0]
             if code in result and canonical(result[code]['graph'])!=canonical(graph):raise RecipeError('Conflicting captured component graphs: '+code)
-            result[code]=dict(graph=graph,sha256=hashlib.sha256(raw).hexdigest())
+            result[code]=dict(graph=graph,sha256=hashlib.sha256(raw).hexdigest(),bond_orders=orders,charges=charges)
     return result
 
 
@@ -95,3 +98,67 @@ def display_connections(atoms, chemistry):
                 source='distance_display_only'
             if linked:result.append(dict(keys=[a['key'],b['key']],source=source))
     return result
+
+
+def coordination_context(preview, chemistry):
+    """Expose captured ligand chemistry and source-definition discrepancies.
+
+    Source components identify chemical intent; they are not prepared linked
+    refinement dictionaries. Ambiguous or discrepant chemistry has no new
+    automatic distance/angle target. Saved recipe targets remain explicit.
+    """
+    from importlib.resources import files
+    donors=[];metals=[]
+    for node in preview['nodes']:
+        atom=node.get('atom')
+        if not atom:continue
+        element=atom['element'];key=atom['key']
+        if node['kind']=='metal':
+            clustered=any(t.get('kind')=='distance' and t.get('enabled') and node['node_id'] in t['node_ids'] and
+                all(any(n['node_id']==nid and n['kind']=='metal' for n in preview['nodes']) for nid in t['node_ids']) for t in preview['restraints'])
+            state='mixed-0-I' if element=='Ag' and clustered else {'Au':'I','Ag':'I','Hg':'II'}.get(element,'unknown')
+            metals.append(dict(node_id=node['node_id'],element=element,oxidation_state=state,source='user_default',coordination_number=None))
+        elif node['kind']=='donor':
+            code=key['component_id'];captured=chemistry.get(code);definition=None
+            resource=files('nasolve').joinpath('data','ligands',code+'.cif')
+            if resource.is_file():definition=dictionaries([(code+'.cif',resource.read_bytes())]).get(code)
+            basis=definition or captured;name=key['atom_name'];status='UNAVAILABLE';chemical='unresolved';neighbors=[];warnings=[]
+            if basis:
+                graph=basis['graph'];orders=basis['bond_orders']
+                for a,b in graph['edges']:
+                    if name in (a,b):
+                        other=b if a==name else a;neighbors.append(dict(atom=other,element=graph['elements'][other],order=orders.get(canonical(sorted((a,b))),'UNKNOWN')))
+                double=any(n['order'] in {'DOUBLE','DOUB','2'} for n in neighbors)
+                hydrogen=any(n['element'].upper() in {'H','D'} for n in neighbors)
+                negative=basis['charges'].get(name) in {'-1','-2'}
+                chemical=({'O':'carbonyl O','S':'thione S'}.get(element,element) if double else
+                    {'O':'hydroxyl O','S':'thiol S','N':'N–H'}.get(element,element) if hydrogen else
+                    {'O':'anionic O','S':'thiolate S'}.get(element,element) if negative else
+                    'ring N; protonation needs review' if element=='N' else element+'; valence unresolved')
+                status='SOURCE_DEFINITION' if definition else 'CAPTURED_DICTIONARY'
+                if captured and definition:
+                    aliases={'SING':'SINGLE','DOUB':'DOUBLE','AROM':'AROMATIC','DELO':'DELOC'}
+                    norm=lambda v:aliases.get(v,v)
+                    mismatch=[edge for edge,order in definition['bond_orders'].items() if edge in captured['bond_orders'] and norm(order)!=norm(captured['bond_orders'][edge])]
+                    if mismatch:warnings.append('Captured bond orders differ from the source component; qualify the PostMR/CIF Doctor dictionary before automatic target suggestions.')
+                if any("'" in a and "'" in b and basis['bond_orders'].get(canonical([a,b])) in {'AROM','AROMATIC'} for a,b in graph['edges']):
+                    warnings.append('Aromatic sugar bonds require dictionary review.')
+            donors.append(dict(node_id=node['node_id'],key=key,element=element,chemical_type=chemical,status=status,
+                source_sha256=basis['sha256'] if basis else None,captured_sha256=captured['sha256'] if captured else None,
+                neighbours=neighbors,warnings=warnings,suggested_distance_A=None))
+    graph={m['node_id']:set() for m in metals}
+    for term in preview['restraints']:
+        if term.get('kind')=='distance' and term.get('enabled') and all(n in graph for n in term['node_ids']):
+            a,b=term['node_ids'];graph[a].add(b);graph[b].add(a)
+    groups=[];seen=set()
+    for node in graph:
+        if node in seen:continue
+        component=set();pending=[node]
+        while pending:
+            current=pending.pop()
+            if current in component:continue
+            component.add(current);pending.extend(graph[current]-component)
+        seen.update(component)
+        if len(component)>1:groups.append(sorted(component))
+    return dict(metals=metals,donors=donors,metal_groups=groups,status='DRAFT_REVIEW',
+        note='Oxidation state and coordination geometry are separate. Editable assumptions are a local draft; saved trials remain unchanged. Automatic chemical distance/angle lookup awaits a qualified ligand/metal-state library.')

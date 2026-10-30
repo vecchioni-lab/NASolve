@@ -1419,8 +1419,7 @@ only projects coordinates and renders reports. Camera/context/panel state stays
 outside scientific selection. Expandable recipe inspection preserves term order
 and highlights angles without rewriting them; compact tables group trials within
 each geometry. Secondary controls and the inspector start collapsed. No artifact
-schema migration or native job route
-is added. See the [viewer methods and limits](metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
+schema migration is needed. Explicit inspection routes render captured map coefficients or launch isolated Coot copies, with source verification at the action boundary; refinement routes remain absent. See [native-trial inspection](metal-anomalous-doctor.md#implemented-native-trial-map-and-coot-inspection). See the [viewer methods and limits](metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
 
 Environmental metal B preparation is an optional derivation between fixed geometry
 and frozen f-double-prime fitting. The CLI defaults to equal nucleobase means

@@ -2,7 +2,7 @@
 
 Status: **refined-endpoint and recipe-geometry frozen diagnostics, cluster atom-equivalent reports, grouped cross-geometry reviews, matched comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only viewer implemented**.
 Implementation updated 2026-10-30. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
-Solution-space search, decision logic, map visualization and editable GUI behavior below remain planned. This contract
+Solution-space search, decision logic and scientific GUI editing remain planned. Local map previews, Coot inspection and browser-only oxidation-state drafts are implemented. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
@@ -11,6 +11,80 @@ The planned [explicit metal-screen mode](metal-screen.md) starts from AutoSol
 sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
+
+## Implemented native-trial map and Coot inspection
+
+The local viewer can open verified native XYZ endpoints as candidate geometries
+and `fdp-trial` as a result kind, in addition to existing recipe geometries,
+comparisons, scans and reference reports. Every result must belong to the exact
+checksummed candidate manifest. Scope includes dataset, structure and candidate,
+even when two mounted datasets contain identical trial hashes. Existing catalogs
+remain readable; new result kinds require this reader. No saved trial is migrated.
+
+**User workflow.** Select a candidate/result, then choose **Open in Coot** or
+**Load local maps**. Coot receives an isolated editable copy of the selected
+trial model, inherited dictionaries, captured ordinary maps from its XYZ parent
+and captured anomalous maps from that frozen-fdp trial. Exact amplitude/phase
+labels are checked, and a local receipt distinguishes launched, loaded and failed.
+Existing Coot windows are untouched. Configured Coot discovery and the existing
+`NASOLVE_COOT`/saved executable settings remain supported.
+
+The browser shows soft 2mFo–DFc, mFo–DFc and anomalous contour toggles. It uses the
+configured Phenix Python to FFT the exact captured complex coefficients with
+whole-cell sigma normalization, then samples a Cartesian box ±6 Å around an
+exact selected atom (first metal by default) at 0.6 Å spacing. Marching-tetrahedra
+wire contours are display approximations: 2mFo–DFc at +1σ, mFo–DFc at ±3σ and
+anomalous at +3σ. Selecting an atom and reloading recentres the box. Camera
+rotation/zoom applies equally to atoms and contours. Empty contours mean none at
+that level in this box; missing coefficients remain explicitly unavailable.
+Threshold editing, fine-resolution surfaces and browser visual qualification
+remain follow-up work. Use Coot for full map inspection.
+
+**Methods and limits.** Navigation remains offline and immutable. Only an explicit
+same-origin inspection POST launches native display work. The server accepts a
+catalog-bound selection and exact atom identity, never browser-supplied paths,
+executables or commands. Every action rechecks model, map and dictionary hashes,
+including cache hits. Temporary FFT files are removed; the cache retains at most
+eight previews, each capped at 24,000 segments per signed layer, with truncation
+reported. Coot copies/backups remain in isolated system temporary directories.
+No coordinate/scattering refinement, coefficient regeneration, observation
+rescaling, checkpoint adoption or automatic ranking is performed. Map stage,
+source references, native version and preview worker hash are retained. The
+ordinary and anomalous maps come from different declared stages, with
+model-assisted phases; their display is not independent validation.
+
+The selected-trial summary also exposes Σf″, Σ(Q·f″), Σ(Q·f″ expected) and their
+weighted ratio for groups connected by **saved metal–metal restraint edges**.
+It reuses the existing `fdp_count` accounting and preserves negative values and
+warnings. It does not infer groups from proximity or turn a summed coefficient
+into an observed structure-factor sum or an integer atom count. The full site
+table remains available for alternatives and occupancy review.
+
+**Chemical intent.** The collapsed recipe panel exposes source component bond
+orders, attached atoms, source hashes and captured-dictionary discrepancies.
+Defaults are Au(I), Ag(I), Hg(II), and mixed Ag(0)/Ag(I) for recipe-linked Ag
+clusters. These oxidation states are editable browser drafts, separate from
+coordination number/geometry, and do not change saved PHIL or scattering factors.
+Drafts survive navigation during the open page, not a reload. A discrepancy
+between the captured PostMR dictionary and the retained source definition is a
+qualification warning. Source CIFs are not automatically substituted as linked
+refinement dictionaries. Automatic metal/ligand/state-specific distance and angle
+lookup, persistent recipe revision/export and downstream execution remain open;
+no unsupported numerical target or arithmetic average of metal radii is invented.
+
+```mermaid
+flowchart LR
+    C[Verified catalog selection] --> S[Exact XYZ parent and frozen fdp trial]
+    S --> H[Recheck model, dictionary and map hashes]
+    H --> M[Local coefficient FFT and bounded display contours]
+    H --> O[Isolated Coot inspection copy and load receipt]
+    S --> G[Saved metal-group response accounting]
+    S --> L[Source ligand chemistry and editable oxidation-state draft]
+    L --> Q[Dictionary and target-library qualification still required]
+```
+
+*Figure: inspection actions preserve scientific artifacts; chemistry drafts do
+not execute refinement or qualify targets.*
 
 ## Implemented grouped reviews across geometry branches
 
@@ -707,7 +781,7 @@ flowchart LR
 The stdlib HTTP server binds only `127.0.0.1`, serves a fixed package-resource
 allowlist behind a random per-process URL, checks Host/Origin, accepts bounded
 same-origin JSON navigation requests, emits no access logs and disables browser
-caching. It has no filesystem, upload, job, editing or checkpoint endpoint. Tabs
+caching. Explicit same-origin inspection actions can render captured maps or launch Coot copies; there is no arbitrary filesystem, upload, refinement or checkpoint endpoint. Tabs
 send their own selections; the server does not share mutable selection state.
 Stop and reopen to refresh/reverify source evidence. No scientific data is
 uploaded or written into the package. Keep the local URL and all resulting views

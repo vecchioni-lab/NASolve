@@ -97,3 +97,5 @@ header{display:block}
 #recipe button{font-size:11px}#recipe-panel{margin-top:12px;border-top:1px solid var(--line)}
 #navigation-extra label{font-size:12px;color:var(--muted);margin-top:12px}
 #view-help .legend{margin-top:5px}
+
+.inspection-controls{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.6rem}.inspection-controls #map-toggles{display:flex;gap:.7rem;flex-wrap:wrap}.inspection-controls label{display:flex;gap:.3rem;align-items:center;font-size:.85rem}.inspection-controls input{width:auto}#map-note{font-size:.8rem;line-height:1.4}

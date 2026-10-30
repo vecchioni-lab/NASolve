@@ -5,6 +5,9 @@ const make = (tag, text, cls) => { const e = document.createElement(tag); if (te
 const svg = (tag, attrs) => { const e = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const [k,v] of Object.entries(attrs)) e.setAttribute(k,v); return e; };
 const defaults = () => autoCamera(presentation?.scene ? visibleAtoms(presentation.scene,presentation.view.selection.site_id,'residues',selectedAtom) : []);
 const cameras = new Map();
+const chemistryDrafts=new Map();
+let density=null;
+const visibleMaps=new Set();
 let presentation, selectedAtom = null, selectedRestraint = null, busy = false;
 const camera = () => { const key = scopeKey(presentation?.scene); if (!cameras.has(key)) cameras.set(key, defaults()); return cameras.get(key); };
 const atomData = row => row?.data.candidate || row?.data;
@@ -22,6 +25,7 @@ async function request(action) {
       selectedAtom = next.view.selected_row ? keyOf(atomData(next.view.selected_row).key) : null;
     }
     if(changed)selectedRestraint=null;
+    if(next.scene?.inspection?.id!==presentation?.scene?.inspection?.id){density=null;visibleMaps.clear();}
     presentation = next;
     render(); message('Verified saved evidence · Read-only');
   } catch (error) {
@@ -49,6 +53,16 @@ function renderNavigation() {
   }
 }
 function renderRows() {
+  const aggregate=presentation.scene?.inspection?.aggregate, cluster=$('cluster-summary');cluster.replaceChildren();
+  if(aggregate?.groups){
+    cluster.append(make('h3','Selected trial · recipe-linked metal groups'));
+    for(const group of aggregate.groups){
+      const raw=group.sites.reduce((sum,s)=>sum+s.f_double_prime,0);
+      cluster.append(make('p',`${group.node_ids.join(' + ')} · Σf″ ${number(raw)} e · Σ(Q × f″) ${number(group.q_weighted_fdp_e)} e · expected ${number(group.q_weighted_reference_e)} e · ratio ${number(group.response_ratio,2)}`,'scope'));
+      if(group.warnings.length)cluster.append(make('p',group.warnings.join(' · '),'note'));
+    }
+    cluster.append(make('p','Groups follow saved metal–metal restraints. Summed responses do not establish a resolved atom count; differing B, unresolved density and alternate sites still require review.','muted'));
+  }
   const root=$('rows');root.replaceChildren();
   const groups=groupSnapshots(presentation.view.rows);
   $('row-count').textContent=`(${groups.length} snapshots · ${presentation.view.rows.length} source links)`;
@@ -150,6 +164,20 @@ function renderRecipe() {
   $('recipe-title').textContent=scene ? `Coordination recipe · ${scene.recipe?.name||'Saved recipe'} · ${active.length} active terms` : 'Coordination recipe';
   if(!scene)return;
   if(!active.length)root.append(make('p','No active coordination restraints. This geometry has no recipe guardrails.','note'));
+  const chemistry=scene.chemistry;
+  if(chemistry){
+    const box=make('details');box.append(make('summary','Ligand chemistry and metal-state draft'));
+    box.append(make('p',chemistry.note,'muted'));
+    const identity=scopeKey(scene);
+    if(!chemistryDrafts.has(identity))chemistryDrafts.set(identity,structuredClone(chemistry.metals));
+    for(const metal of chemistryDrafts.get(identity)){
+      const label=make('label',`${metal.node_id} · ${metal.element} oxidation state`),select=make('select');
+      for(const [value,text] of [['0','0'],['I','+1'],['II','+2'],['III','+3'],['mixed-0-I','Mixed 0 / +1'],['unknown','Unspecified']]){const option=make('option',text);option.value=value;select.append(option);}
+      select.value=metal.oxidation_state;select.addEventListener('change',()=>{metal.oxidation_state=select.value;metal.source='user_draft';});label.append(select);box.append(label);
+    }
+    for(const donor of chemistry.donors){box.append(make('p',`${donor.node_id}: ${donor.chemical_type} · ${donor.status}`,'scope'));for(const warning of donor.warnings)box.append(make('p',warning,'note'));}
+    fold(box,'Captured chemistry evidence',chemistry);root.append(box);
+  }
   const clear=make('button','Clear highlight');clear.addEventListener('click',()=>{selectedRestraint=null;drawScene();renderRecipe();});root.append(clear);
   const table=make('table'),head=make('thead'),hr=make('tr');
   for(const label of ['Term / ordered atoms','Current','Target','σ'])hr.append(make('th',label));head.append(hr);table.append(head);
@@ -180,10 +208,15 @@ function drawScene() {
   const root=$('scene'),scene=presentation?.scene;root.replaceChildren();
   if(!scene){root.append(make('p','Choose a candidate or open a result row to see its verified coordinates.','empty'));$('geometry-status').textContent='No candidate selected';return;}
   const c=camera(),atoms=visibleAtoms(scene,presentation.view.selection.site_id,c.context,selectedAtom);
-  $('geometry-status').textContent=`${scene.dataset_id} / ${scene.hypothesis_id} · Geometry awaiting review · ${atoms.length} of ${scene.atoms.length} atoms`;
+  $('geometry-status').textContent=`${scene.dataset_id} / ${scene.hypothesis_id} · ${scene.status==='XYZ_REVIEW'?'Refined geometry':'Recipe geometry'} · Awaiting review · ${atoms.length} of ${scene.atoms.length} atoms`;
   if(!atoms.length){root.append(make('p','No atoms in this view context. Choose Whole model.','empty'));return;}
   const width=root.clientWidth,height=root.clientHeight,project=projector(atoms,c,width,height);
   const canvas=svg('svg',{viewBox:`0 0 ${width} ${height}`,role:'group','aria-label':'Candidate coordinates, display connectivity and saved distance restraints'});
+  for(const layer of density?.layers||[]) {
+    if(!visibleMaps.has(layer.type))continue;
+    const d=layer.segments.map(([a,b])=>{a=project(a);b=project(b);return `M${a[0].toFixed(1)},${a[1].toFixed(1)}L${b[0].toFixed(1)},${b[1].toFixed(1)}`;}).join('');
+    canvas.append(svg('path',{d,fill:'none',stroke:layer.colour,'stroke-width':.65,'stroke-opacity':.30,'pointer-events':'none'}));
+  }
   const inventory=new Map(atoms.map(a=>[keyOf(a.key),a])),nodes=new Map(scene.nodes.filter(n=>n.atom).map(n=>[n.node_id,n.atom]));
   const metals=new Set(scene.nodes.filter(n=>n.kind==='metal'&&n.atom).map(n=>keyOf(n.atom.key)));
   const ligands=new Set(scene.nodes.filter(n=>n.kind==='donor'&&n.atom).map(n=>keyOf({...n.atom.key,atom_name:''})));
@@ -219,7 +252,31 @@ function drawScene() {
   }
   root.append(canvas);
 }
-function render(){ $('campaign').textContent=presentation.campaign_label;renderNavigation();renderRows();renderRecipe();syncCamera();drawScene();renderInspector(); }
+async function inspect(kind) {
+  if(busy||!presentation?.scene)return;
+  busy=true;renderInspection();message(kind==='coot'?'Opening an isolated Coot inspection copy…':'Building local density preview…');
+  try {
+    const center=presentation.scene.atoms.find(a=>keyOf(a.key)===selectedAtom)?.key||null;
+    const response=await fetch(kind,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({selection:presentation.view.selection,center_key:center})});
+    const data=await response.json();if(!response.ok)throw new Error(data.error||'Inspection unavailable');
+    if(kind==='maps'){density=data;visibleMaps.clear();for(const layer of data.layers)visibleMaps.add(layer.type);drawScene();message('Local map contours loaded. Select an atom and reload to move the map box.');}
+    else message(`Coot ${data.status==='READY'?'loaded':'launched'} · ${data.version} · editable inspection copy; saved trial unchanged.`);
+  }catch(error){message(error.message,true);}finally{busy=false;renderInspection();}
+}
+function renderInspection(){
+  const info=presentation?.scene?.inspection;
+  $('open-coot').disabled=busy||!info;$('load-maps').disabled=busy||!info?.maps.length;
+  $('load-maps').textContent=density?'Recenter / reload maps':'Load local maps';
+  const root=$('map-toggles');root.replaceChildren();
+  for(const type of [...new Set((density?.layers||[]).map(l=>l.type))]){
+    const label=make('label',type),input=make('input');input.type='checkbox';input.checked=visibleMaps.has(type);
+    input.addEventListener('change',()=>{input.checked?visibleMaps.add(type):visibleMaps.delete(type);drawScene();});label.prepend(input);root.append(label);
+  }
+  $('map-note').textContent=density?`${density.note} Box ±${density.radius_A} Å; grid ${density.spacing_A} Å. `+density.layers.map(l=>`${l.type} ${l.level_sigma>0?'+':''}${l.level_sigma}σ${l.truncated?' (display limit reached)':''}`).join(' · '):info?.maps.length?info.note:'No captured maps for this saved candidate.';
+}
+$('open-coot').addEventListener('click',()=>inspect('coot'));
+$('load-maps').addEventListener('click',()=>inspect('maps'));
+function render(){ renderInspection(); $('campaign').textContent=presentation.campaign_label;renderNavigation();renderRows();renderRecipe();syncCamera();drawScene();renderInspector(); }
 $('all').addEventListener('click',()=>request({action:'reset'}));
 $('toggle-inspector').addEventListener('click',()=>{const hidden=$('workbench').classList.toggle('no-inspector');$('toggle-inspector').textContent=hidden?'Show details':'Hide details';$('toggle-inspector').setAttribute('aria-expanded',String(!hidden));drawScene();});
 $('zoom').addEventListener('input',()=>{camera().zoom=Number($('zoom').value);drawScene();});

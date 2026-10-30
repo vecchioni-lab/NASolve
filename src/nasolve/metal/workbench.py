@@ -14,13 +14,15 @@ from .context import _reference, parse_pdb
 from .fdp_compare import verify_comparison
 from .fdp_scan import verify_scan
 from .geometry import verify_geometry
+from .fdp import verify_fdp
+from .xyz import verify_xyz
 from .materialize import _json, _source
 from .recipe import RecipeError, canonical, digest, text
 from .reference import verify_reference_comparison
 
 PROTOCOL = 'metal-workbench-v1'
 LEVELS = ('dataset_id', 'structure_id', 'hypothesis_id', 'site_id', 'result_id', 'row_id')
-RESULTS = {'fdp-comparison': verify_comparison, 'fdp-scan': verify_scan,
+RESULTS = {'fdp-trial': verify_fdp, 'fdp-comparison': verify_comparison, 'fdp-scan': verify_scan,
            'reference-comparison': verify_reference_comparison}
 
 
@@ -80,7 +82,18 @@ def _artifact(ref, run, verifier, *, captured, watched):
     return actual, doc
 
 
+def verify_endpoint(run, directory):
+    doc = _json((run / directory / 'manifest.json').read_bytes())
+    return (verify_xyz if doc.get('kind') == 'metal-xyz-trial' else verify_geometry)(run, directory)
+
+
+def endpoint_model(doc):
+    return doc['files']['final.pdb' if doc['kind'] == 'metal-xyz-trial' else 'model']
+
+
 def _result_rows(kind, report):
+    if kind == 'fdp-trial':
+        return [(r['node_id'], r['key'], r) for r in report['sites']]
     if kind == 'fdp-comparison':
         return [(r['row_id'], r['key'], r) for r in report['rows']]
     if kind == 'reference-comparison':
@@ -97,6 +110,8 @@ def _result_rows(kind, report):
 
 
 def _result_geometry(kind, doc, report, run):
+    if kind == 'fdp-trial':
+        return doc['parent']['manifest']
     if kind == 'fdp-comparison':
         return report['comparison_basis']['parent']['manifest']
     if kind == 'reference-comparison':
@@ -135,10 +150,10 @@ def _load(definition, mounts, *, captured):
                     raise RecipeError('Dataset mount must match the run context dataset root')
                 for hypothesis in _items(structure['hypotheses'], 'hypothesis_id', 'hypotheses', empty=False):
                     _fields(hypothesis, {'hypothesis_id', 'label', 'geometry', 'sites', 'results'}, 'hypothesis')
-                    geometry_ref, geometry = _artifact(hypothesis['geometry'], run, verify_geometry,
+                    geometry_ref, geometry = _artifact(hypothesis['geometry'], run, verify_endpoint,
                                                        captured=captured, watched=watched)
                     hypothesis['geometry'] = geometry_ref
-                    model = parse_pdb(_source(geometry['files']['model'], run))
+                    model = parse_pdb(_source(endpoint_model(geometry), run))
                     inventory = {a.key for a in model.snapshot.atoms}
                     site_members = {}
                     for site in _items(hypothesis['sites'], 'site_id', 'sites'):
@@ -152,8 +167,8 @@ def _load(definition, mounts, *, captured):
                         site_members[site['site_id']] = set(atoms)
                     scope = dict(dataset_id=dataset['dataset_id'], structure_id=structure['structure_id'],
                                  hypothesis_id=hypothesis['hypothesis_id'])
-                    details.append(dict(scope, geometry_id=geometry['geometry_id'], parent=geometry['parent'],
-                                        model=geometry['files']['model'], status=geometry['status']))
+                    details.append(dict(scope, geometry_id=geometry.get('geometry_id', geometry.get('trial_id')), parent=geometry['parent'],
+                                        model=endpoint_model(geometry), status=geometry['status']))
                     for result in _items(hypothesis['results'], 'result_id', 'results'):
                         _fields(result, {'result_id', 'label', 'kind', 'manifest'}, 'result')
                         if result['kind'] not in RESULTS:
@@ -161,7 +176,9 @@ def _load(definition, mounts, *, captured):
                         ref, doc = _artifact(result['manifest'], run, RESULTS[result['kind']],
                                              captured=captured, watched=watched)
                         result['manifest'] = ref
-                        report = _json(_source(doc['files']['report'], run))
+                        report = _json(_source(doc['files']['result.json' if result['kind']=='fdp-trial' else 'report'], run))
+                        if result['kind']=='fdp-trial':
+                            report=dict(report, sites=[dict(s, trial_id=doc['trial_id'], trial_manifest=ref, wavelength_A=report['wavelength_A']) for s in report['sites']])
                         if _result_geometry(result['kind'], doc, report, run) != geometry_ref:
                             raise RecipeError('Result belongs to a different geometry')
                         result_scope = dict(scope, result_id=result['result_id'])

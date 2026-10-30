@@ -8,6 +8,20 @@ now includes one-, two- and three-metal base pairs and an extensible cluster
 graph. Numerical targets and uncertainties still require scientific review;
 published structures do not automatically define reusable restraint defaults.
 
+## Ligand chemistry and metal-state qualification
+
+Use captured PostMR/NARestraints/CIF Doctor component intent to identify ligand
+atoms and valence before suggesting metal restraints. The viewer now compares
+captured bond orders with retained component source definitions, shows mismatches,
+and provides editable Au(I), Ag(I), Hg(II) and mixed Ag(0)/Ag(I) drafts. Oxidation
+state is separate from coordination number, geometry, protonation and tautomer.
+The source definition is not itself a qualified linked refinement dictionary.
+Persistent recipe updates and a provenance-bearing ligand/metal-state/geometry
+lookup remain to implement; missing or conflicting chemistry must not silently
+receive a generic bond length. Metal–metal cluster lengths need their own family
+and topology, not an arithmetic mean of ionic bond lengths. See the
+[implemented inspection boundary](metal-anomalous-doctor.md#implemented-native-trial-map-and-coot-inspection).
+
 ## Integration objectives and milestones
 
 The metal workspace is a consumer of NASolve's generated models and immutable

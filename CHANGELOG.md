@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect native metal trials with matching maps
+
+- Accept verified native XYZ candidates and individual frozen-fdp trials in the
+  local catalog; retain exact geometry, dataset and result ownership.
+- Add explicit Coot launch with isolated model/dictionary/map copies and load
+  receipts, plus bounded local 2mFo–DFc, mFo–DFc and anomalous map previews.
+- Show summed and occupancy-weighted responses for saved recipe-linked metal
+  groups. Preserve negative values and distinguish coefficient accounting from
+  an inferred atom count.
+- Expose source ligand chemistry, captured-dictionary discrepancies and editable
+  oxidation-state drafts. Automatic numerical target suggestions and persistent
+  scientific recipe edits remain pending qualification.
+- Existing artifacts need no migration. Native refinement, scientific acceptance
+  and checkpoint selection are unchanged; generated data remains local.
+
 ### Documentation
 
 - Record the local open-refinement settings rehearsal and phase/B-export qualification gates; production protocols and schemas are unchanged.

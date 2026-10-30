@@ -111,6 +111,13 @@ def test_http_is_local_authenticated_bounded_and_stateless(tmp_path, monkeypatch
             assert request('POST', endpoint, 'x' * 16385, **good)[0] == 413
             assert request('POST', endpoint, action, **dict(good, **{'Content-Type':'text/plain'}))[0] == 415
             assert request('POST', server.base_path + 'run', action, **good)[0] == 404
+            inspection=json.dumps({'selection':initial['view']['selection'],'center_key':None})
+            assert request('POST',server.base_path+'coot',inspection,**{'Content-Type':'application/json'})[0]==403
+            assert request('POST',server.base_path+'coot',json.dumps({'selection':initial['view']['selection'],'center_key':None,'path':'/arbitrary'}),**good)[0]==400
+            calls=[]
+            monkeypatch.setattr(viewer.inspections,'perform',lambda kind,scene,key:calls.append((kind,scene['hypothesis_id'],key)) or {'status':'TEST'})
+            assert request('POST',server.base_path+'coot',inspection,**good)[0]==200
+            assert calls==[('coot',initial['scene']['hypothesis_id'],None)]
         finally:
             server.shutdown(); thread.join(timeout=5)
 

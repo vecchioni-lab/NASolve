@@ -1,7 +1,7 @@
-"""Local read-only presentation of a verified workbench snapshot.
+"""Local presentation of a verified workbench snapshot.
 
-The browser renders coordinates and requests navigation from the existing Python
-controller. It has no artifact, job, editing, or checkpoint-writing endpoint.
+Navigation preserves the snapshot. Explicit inspection actions render captured
+maps or launch Coot copies; no refinement or checkpoint-writing endpoint exists.
 """
 from dataclasses import dataclass, field
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -11,17 +11,18 @@ from pathlib import Path
 import secrets
 
 from .context import parse_pdb
-from .chemistry import dictionaries, display_connections
+from .chemistry import dictionaries, display_connections, coordination_context
 from .environment import calibrate_b
 from .materialize import _json, _source
 from .recipe import RecipeError, canonical
-from .workbench import Workbench, _fields, open_workbench
+from .workbench import Workbench, _fields, open_workbench, endpoint_model
 
 
 @dataclass(frozen=True)
 class Viewer:
     workbench: Workbench
     _scenes: str = field(repr=False)
+    inspections: object = field(default=None, repr=False, compare=False)
 
     def present(self, selection=None):
         if selection is None:
@@ -34,6 +35,10 @@ class Viewer:
         view = self.workbench.view(selection)
         scene = next((s for s in json.loads(self._scenes) if all(
             s[k] == selection[k] for k in ('dataset_id','structure_id','hypothesis_id'))), None)
+        if scene and self.inspections:
+            row=view['selected_row']
+            key=row['data'].get('trial_id') if row else None
+            scene['inspection']=self.inspections.summary(scene, key)
         catalog = self.workbench.to_dict()['catalog']
         return dict(kind='metal-workbench-presentation', schema_version=1,
                     campaign_label=catalog['label'], catalog_id=catalog['catalog_id'], view=view, scene=scene)
@@ -73,6 +78,9 @@ def open_viewer(catalog, mounts):
     with exact atom keys, saved terms and separately marked display connectivity.
     """
     workbench = open_workbench(catalog, mounts)
+    from .inspection import Inspections
+    from .fdp import _input_bundle
+    inspections=Inspections()
     scenes = []
     for dataset in workbench.to_dict()['catalog']['datasets']:
         root = Path(mounts[dataset['dataset_id']]).expanduser().resolve()
@@ -80,13 +88,14 @@ def open_viewer(catalog, mounts):
             run = root / structure['run']['relative_path']
             for hypothesis in structure['hypotheses']:
                 geometry = _json(_source(hypothesis['geometry'], run))
-                raw = _source(geometry['files']['model'], run)
+                bundle=_input_bundle(run, Path(hypothesis['geometry']['relative_path']).parent)
+                raw=bundle['model']
                 model = parse_pdb(raw)
-                preview = _json(_source(geometry['files']['preview'], run))
+                preview=bundle['preview']
                 states = model.to_dict()['atomic_state']
                 atoms = [dict(atom.to_dict(), **{k:v for k,v in state.items() if k != 'key'})
                          for atom, state in zip(model.snapshot.atoms, states)]
-                resources=[(ref['relative_path'],_source(ref,run)) for ref in geometry['inputs']['restraints']]
+                resources=bundle['resources']
                 chemistry={};chemistry_note=None
                 try:chemistry=dictionaries(resources)
                 except RecipeError as exc:chemistry_note=str(exc)
@@ -100,14 +109,15 @@ def open_viewer(catalog, mounts):
                         except RecipeError as exc:
                             preparation.append(dict(node_id=site['node_id'],policy=policy,status='UNAVAILABLE',reason=str(exc)))
                 scenes.append(dict(dataset_id=dataset['dataset_id'], structure_id=structure['structure_id'],
-                    hypothesis_id=hypothesis['hypothesis_id'], geometry_id=geometry['geometry_id'],
-                    model=geometry['files']['model'], status=geometry['status'], atoms=atoms,
+                    hypothesis_id=hypothesis['hypothesis_id'], geometry_id=geometry.get('geometry_id',geometry.get('trial_id')),
+                    model=endpoint_model(geometry), status=geometry['status'], atoms=atoms,
                     nodes=preview['nodes'], restraints=preview['restraints'],
                     recipe={k:preview['inputs']['recipe'][k] for k in ('id','name','revision','sets')},
                     connections=display_connections(atoms,chemistry),connectivity_note=chemistry_note,
-                    b_environment=preparation,
+                    b_environment=preparation, chemistry=coordination_context(preview,chemistry),
                     site_atoms={s['site_id']:s['atoms'] for s in hypothesis['sites']}))
-    return Viewer(workbench, canonical(scenes))
+                inspections.add(run, scenes[-1], geometry, hypothesis['geometry'], workbench.to_dict()['rows'])
+    return Viewer(workbench, canonical(scenes), inspections)
 
 
 def assets():
@@ -182,7 +192,7 @@ def create_server(viewer, *, port=0):
             name = self.route(post=True)
             if name is None:
                 return
-            if name != 'view':
+            if name not in {'view','maps','coot'}:
                 self.reject(404, 'Unknown viewer resource'); return
             if self.headers.get('Content-Type') != 'application/json':
                 self.reject(415, 'Require application/json'); return
@@ -198,9 +208,15 @@ def create_server(viewer, *, port=0):
             if length > 16384:
                 self.reject(413, 'Navigation request too large'); return
             try:
-                value = viewer.navigate(_message(self.rfile.read(length)))
-            except (RecipeError, ValueError, TypeError, RecursionError):
-                self.reject(400, 'Invalid navigation request'); return
+                msg=_message(self.rfile.read(length))
+                if name=='view':
+                    value=viewer.navigate(msg)
+                else:
+                    _fields(msg, {'selection','center_key'}, 'inspection')
+                    shown=viewer.present(msg['selection'])
+                    value=viewer.inspections.perform(name,shown['scene'],msg['center_key'])
+            except (RecipeError, ValueError, TypeError, RecursionError, OSError, RuntimeError) as exc:
+                self.reject(400, 'Invalid navigation request' if name=='view' else str(exc)); return
             self.reply(200, canonical(value).encode())
 
         def setup(self):
@@ -217,7 +233,7 @@ def create_server(viewer, *, port=0):
 def serve(viewer, *, port=0):
     with create_server(viewer, port=port) as server:
         print('Metal workbench: ' + server.url, flush=True)
-        print('Verified saved snapshot; no jobs or scientific edits. Stop with Ctrl-C.', flush=True)
+        print('Verified saved snapshot; optional map display and Coot inspection; no refinement jobs. Stop with Ctrl-C.', flush=True)
         try:
             server.serve_forever()
         except KeyboardInterrupt:

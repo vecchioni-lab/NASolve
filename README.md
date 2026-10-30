@@ -1493,7 +1493,10 @@ nasolve metal serve-workbench --catalog /path/to/local/catalog.json --dataset hg
 Open the printed URL in your browser and keep the terminal running; stop with
 Ctrl-C. Repeat `--dataset ID=PATH` for each catalog dataset. Linked result rows,
 actual candidate coordinates, camera controls and exact-value inspectors share
-the existing controller. See the [viewer guide and limits](docs/metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
+the existing controller. Verified native XYZ/fdp candidates also offer source-bound
+Coot launch, local map toggles and recipe-linked cluster sums; see
+[native-trial inspection](docs/metal-anomalous-doctor.md#implemented-native-trial-map-and-coot-inspection).
+See the [viewer guide and limits](docs/metal-anomalous-doctor.md#implemented-local-saved-results-viewer).
 
 ## AutoRefine and checkpoints
 

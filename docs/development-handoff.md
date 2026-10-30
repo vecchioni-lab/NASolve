@@ -13,6 +13,72 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Native-trial inspection and chemistry review 2026-10-30
+
+**Before/after.** The viewer previously displayed recipe-stage coordinates and
+saved rows without a map/Coot action. It now accepts verified native XYZ parents
+and single frozen-fdp results, opens the selected trial in an isolated Coot copy,
+and provides real local contours from its captured ordinary/anomalous maps.
+Recipe-linked metal groups expose raw and Q-weighted response sums. Chemistry
+inspection distinguishes captured PostMR bond orders from retained source
+component intent; Au(I), Ag(I), Hg(II) and mixed Ag(0)/Ag(I) drafts are editable
+without changing saved science. See the [descriptor, methods and editable
+figure](metal-anomalous-doctor.md#implemented-native-trial-map-and-coot-inspection).
+
+**Files/schema.** Changes are in `metal/workbench.py`, `viewer.py`,
+`inspection.py`, `_map_preview_native.py`, `chemistry.py`, packaged web assets,
+focused viewer/inspection tests and the scientific documentation. Catalog schema
+1 gains native XYZ geometry and `fdp-trial` result support; old catalogs remain
+readable, while new kinds require the updated reader. Presentation-only
+`metal-density-preview` schema 1 records source references, crop/thresholds,
+native version and worker hash. Scientific XYZ/fdp/count schemas and workers
+are unchanged; no migration or checkpoint adoption is performed.
+
+**Validation.** Python 3.12, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```sh
+python -B -m pytest -q -p no:cacheprovider tests/test_metal_inspection.py tests/test_metal_viewer.py tests/test_metal_workbench.py tests/test_metal_b_environment.py tests/test_metal_cluster_environment.py tests/test_metal_fdp_count.py
+node --test tests/metal_viewer_ui.test.mjs
+node --check src/nasolve/metal/web/app.mjs
+git diff --check
+```
+
+Results: **82 Python tests pass; 11 JavaScript tests pass; syntax and whitespace
+checks pass**. Tests include native-parent ownership, identical trial hashes in
+different mounts, source tampering before launch, Host/Origin/body restrictions,
+exact Coot label handling, known Cartesian contour intersections, chemistry
+mismatches, and reopening after the original dataset path is removed. The
+existing fresh-interpreter source/data relocation test also passes. Full pytest
+was explicitly waived for this bounded pass.
+
+Native display executions used **Phenix 2.2.1-6174**, without any new refinement,
+and **Coot 1.3.3**, with actual model/three-map load receipts. Hg and four-Ag
+coefficient previews completed without segment truncation. These are complete
+display checks, not refinement runs or browser visual qualification. A first
+sandboxed Coot GUI startup failed; the authorized desktop launch succeeded.
+Private evidence and review are under the everyday checkout's ignored
+`branch-artifacts/Alder/inspection-20261030-01/`; runner prefix `A38_`.
+Models, maps, reflections, private geometry tables, catalogs, previews, logs and
+Coot copies are deliberately excluded from Git.
+
+**Scientific findings/next step.** The reviewed FT-Hg rehearsal's effective DF
+CIF assigns aromatic sugar bonds and single C2–S/C4–O bonds, in conflict with the
+retained source definition. That is a concrete chemistry qualification issue,
+not proof of its contribution to Rwork. Use the Cedar/PostMR source-recovery and
+linked-dictionary qualification path before another controlled geometry/refine
+comparison; do not merely strengthen the current terms or substitute a raw
+source CIF. The solved cluster snapshots contain occupancy/B information but no
+identified fitted f-double-prime values. Four- and six-site cluster topologies
+must be represented explicitly. Compare summed Q-weighted response alongside
+individual signs, B assumptions and maps; do not hide cancelling fitted values.
+
+Remaining work: qualified numerical ligand/metal-state/geometry target library,
+persistent recipe drafts, finer/editable map contours, browser visual review,
+FF-AuAg site-removal/alternate-occupancy recipes, and admission of the private
+open-refinement rehearsal to a production-verifiable artifact protocol. The
+current viewer demonstration uses existing strictly verified Hg/four-Ag trials;
+it does not relabel the newer private rehearsal as production-qualified.
+
 ## Local open-refinement settings rehearsal 2026-10-30
 
 **Scope and boundary.** A user-requested local rehearsal restarted three metal
