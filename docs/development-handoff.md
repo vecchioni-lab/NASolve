@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C134 validated: focused suites and ordinary reuse integration
+## C134 published: focused suites and ordinary reuse integration
 
 Base/last published head: `7f57623505dc5e7929d765c6d47231db6cf857de`; existing cedar only.
 Capsule: `live_tests_directory/134_Cedar_test-workflow-pz2vskqf`.
@@ -40,7 +40,11 @@ per-file timings and synthetic boundaries are in the existing ledger under
 `development_validation_and_postmr_workflow_2026_10_30`.
 
 Acceptance: implementation, collection audit, focused/full validation and timing
-baseline complete; final document checks and signed publication remain. Keep the existing chemistry support matrix and G2–G6 limits unchanged.
+baseline, document checks and signed publication complete. Tested implementation
+`50152ea4b36833763ef043515417f749694955fe` is published and verified on `origin/cedar`;
+this follow-up records continuity. All C133 runtime sources remain byte-identical.
+Next bounded development may use relevant focused tests; repeat the full suite
+on the final combined state before integration or a cross-cutting change. Keep the existing chemistry support matrix and G2–G6 limits unchanged.
 Next chemical work still requires explicit phosphate state and broader native
 adapters before general recovery/adoption; this test-workflow push does not close
 those gates.

@@ -47690,7 +47690,7 @@
     "remote_verified": true
   },
   "development_validation_and_postmr_workflow_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "scope": "DEVELOPER_TEST_SELECTION_AND_SYNTHETIC_ORDINARY_POSTMR_INTEGRATION",
     "base_commit": "7f57623505dc5e7929d765c6d47231db6cf857de",
     "collection": {
@@ -47950,6 +47950,9 @@
         "delivery": 177.354
       }
     },
-    "source_test_runner_hashes_unchanged": 502
+    "source_test_runner_hashes_unchanged": 502,
+    "implementation_commit": "50152ea4b36833763ef043515417f749694955fe",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
