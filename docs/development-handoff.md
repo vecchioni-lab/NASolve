@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C138 validated: complete native monomer identity capture
+## C138 published: complete native monomer identity capture
 
 Base: `42ecabcb4cea9e155a2a5b7283d3a7379ad382ce`; existing cedar only.
 Capsule: `live_tests_directory/138_Cedar_full-monomers-up573aqa`.
@@ -59,7 +59,9 @@ All 392 files retain their bytes/sizes/timestamps. The original copied-chain
 attempt still blocks, rather than being retroactively repaired or reclassified.
 Raw models, dictionaries, captures/logs, attempts and runners stay outside Git;
 only maintained contracts and summary/hash evidence are published.
-No job is active. Implementation and validation are complete; signed publication remains.
+No job is active. Implementation, full validation and signed publication are complete. Tested
+implementation `87894cbf6d079af966ee30be9bbcb7a02c67db86` is published and verified
+on `origin/cedar`; this follow-up records continuity. No branch creation or merge.
 Evidence key: `full_native_monomer_inventory_2026_10_30`.
 
 Next: compose multiple stored components under one ordered native contract,

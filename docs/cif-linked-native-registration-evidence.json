@@ -49254,7 +49254,7 @@
     "remote_verified": true
   },
   "full_native_monomer_inventory_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "42ecabcb4cea9e155a2a5b7283d3a7379ad382ce",
@@ -50067,6 +50067,10 @@
         "sha256": "8fc1933888fc87c4a8196cb8311d48c6fa6218a951742cf6ea55ce08f39edc89",
         "size": 367
       }
-    ]
+    ],
+    "implementation_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
+    "full_tested_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }

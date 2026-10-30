@@ -27332,7 +27332,7 @@
       "remote_verified": true
     },
     "full_native_monomer_inventory": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "after": "Explicit full-model interpretation captures every actual residue mapping, bound to the frozen parameter, maintained worker and independently recomputed identity proof; source and chemistry checks remain unchanged.",
       "schemas": {
         "native_context": "cif-explicit-site-native-context-v2 with monomer_inventory=full_model and explicit custom_restraints",
@@ -27353,7 +27353,11 @@
       "next": "Compose multiple stored components under one exact ordered model/CIF/PHIL contract: preserve per-component source/consumer ownership, refuse duplicate codes or modification-ID conflicts, and verify all affected and unaffected sites in one full native capture. Then integrate the qualified route with existing preparation/ReadySet and usable fallback, rechecking the final effective bundle under its actual declared consumer policy; keep scientific state choice, generic ports and adoption separate.",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "full_native_monomer_inventory_2026_10_30",
-      "validation": "7012 passed, 276 subtests passed in 1063.37s (0:17:43); focused 1103 passed, 36 subtests passed in 71.30s (0:01:11); four native pairs, explicit refusal and 392-file cold replay."
+      "validation": "7012 passed, 276 subtests passed in 1063.37s (0:17:43); focused 1103 passed, 36 subtests passed in 71.30s (0:01:11); four native pairs, explicit refusal and 392-file cold replay.",
+      "implementation_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
+      "full_tested_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
