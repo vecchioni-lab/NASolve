@@ -27162,7 +27162,7 @@
       "implementation_commit": "7f83ed2f14e171ede16e525142f85ce596d6b6b8"
     },
     "fana_selected_geometry": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "fana_selected_geometry_2026_10_30",
       "policies": [
@@ -27179,10 +27179,11 @@
         "Residual clashes/outgoing-angle deviations and frozen-flank strain remain; C110 H/charge/order/OP3 differences stay open.",
         "No implicit phosphate removal, OP3 addition, source repair, diffraction refinement or workbook change."
       ],
-      "next": "Explain residual strain and frozen-flank contributions before a bounded convergence/acceptance trial; retain separate source chemistry and topology authority."
+      "next": "Explain residual strain and frozen-flank contributions before a bounded convergence/acceptance trial; retain separate source chemistry and topology authority.",
+      "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa"
     },
     "selected_environment": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "selected_environment_2026_10_30",
       "policy": "cif-selected-environment-review-v1",
@@ -27198,7 +27199,8 @@
         "Metrics are from the fresh serialized native endpoint, not full-precision optimizer stopping.",
         "Original limit stopping, source-state/target qualification, boundary angle and pair clashes remain open."
       ],
-      "next": "Investigate source-authorized flank target/protonation repair and a bounded convergence/serialization trial without using score improvement as chemical authority."
+      "next": "Investigate source-authorized flank target/protonation repair and a bounded convergence/serialization trial without using score improvement as chemical authority.",
+      "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa"
     }
   },
   "audience": [

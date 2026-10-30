@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C131 validated: selected versus frozen environment
+## C131 published: selected versus frozen environment
 
 Base/last published head: `5a20cd3104e664de9bb0ed5524644e085df76a5c`; existing cedar only.
 Capsule: `live_tests_directory/131_Cedar_selected-environment-5k2b29sa`.
@@ -39,8 +39,8 @@ with prior paths/SDK/process creation blocked and no attempted access.
 Combined full regression passes: **6714 passed, 276 subtests passed in 973.15s (0:16:13)**.
 All 495 source/test hashes remain unchanged and match the focused run; all 493
 C130 hashes also remain unchanged. Compileall, 348 relative documentation links,
-JSON/SVG parsing and diff whitespace pass. No job is active. Implementation
-publication is next. Changed files: three new optional modules, three test files
+JSON/SVG parsing and diff whitespace pass. No job is active. Tested implementation `dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa`
+is published and verified on `origin/cedar`; this follow-up records continuity. Changed files: three new optional modules, three test files
 and ten maintained docs/evidence files (16 total); policies are schema-1
 `cif-selected-native-geometry-v1`, `cif-source-bound-fana-selected-geometry-v1`
 and `cif-selected-environment-review-v1`. Exact commands/results and local hashes
@@ -55,7 +55,7 @@ nonconvergence visible; do not change chemistry or free flanks merely to lower
 an objective. Ordinary model mutation and branch integration remain separate.
 — Rowan · Codex desktop
 
-## C130 validated: bounded central-residue native geometry
+## C130 published: bounded central-residue native geometry
 
 Base/last published head: `5a20cd3104e664de9bb0ed5524644e085df76a5c`; existing cedar only.
 Capsule: `live_tests_directory/130_Cedar_FANA-selected-2h1hjam9`.
@@ -88,8 +88,7 @@ qualified starting manager and complete energy/count inventory.
 No raw science, models, dictionaries, workbook or native logs are staged.
 This affects optional diagnostic APIs, new schema-1 trial/result receipts and
 reproducibility; no CLI, checkpoint migration or ordinary PostMR activation.
-No job is active. Combined full validation passes as recorded in C131; publication
-is next. C131 now partitions the remaining selected/boundary/fixed dependencies. Source-state
+No job is active. Combined full validation and publication are recorded in C131. C131 now partitions the remaining selected/boundary/fixed dependencies. Source-state
 qualification, remaining clashes and frozen-flank residuals stay open; no OP3
 addition, implicit phosphate removal, source repair, diffraction refinement or adoption.
 — Rowan · Codex desktop

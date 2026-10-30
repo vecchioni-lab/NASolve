@@ -45552,7 +45552,7 @@
     "remote_verified": "origin/cedar"
   },
   "fana_selected_geometry_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "5a20cd3104e664de9bb0ed5524644e085df76a5c",
     "capsule": {
       "anchor": "live_tests_directory",
@@ -46116,10 +46116,12 @@
       "json_and_svg_parse": "PASS",
       "diff_whitespace": "PASS",
       "legacy_worker_and_existing_numeric_kernels": "UNCHANGED"
-    }
+    },
+    "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa",
+    "remote_verified": "origin/cedar"
   },
   "selected_environment_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "5a20cd3104e664de9bb0ed5524644e085df76a5c",
     "capsule": {
       "anchor": "live_tests_directory",
@@ -46489,6 +46491,8 @@
       "json_and_svg_parse": "PASS",
       "diff_whitespace": "PASS",
       "legacy_worker_and_existing_numeric_kernels": "UNCHANGED"
-    }
+    },
+    "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa",
+    "remote_verified": "origin/cedar"
   }
 }
