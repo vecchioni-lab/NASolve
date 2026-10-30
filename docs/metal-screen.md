@@ -162,6 +162,12 @@ specified in the [weight methods](metal-anomalous-doctor.md#implemented-explicit
 Omission preserves prior behavior. Tightening geometry is a hypothesis test,
 not evidence that the metal count or recipe is correct.
 
+Use optional `capture_maps=True` for [completed-state weighted maps](metal-anomalous-doctor.md#implemented-completed-state-xyz-map-capture).
+This preserves fitted state and adds numerical context. Cases above the Rwork
+0.30 target, inverted Rwork/Rfree or otherwise concerning statistics belong in
+Refine Doctor triage. The metal-to-registered-checkpoint bridge is planned and
+must preserve the exact metal, restraint, phase and scattering declaration.
+
 The native target is **MLHL with merged Bijvoet observations**. Phenix
 **2.2.1-6174** rejects MLHL combined with nonzero anomalous scattering in the
 attempted geometry protocol. Consequently this separate step fixes f-prime at

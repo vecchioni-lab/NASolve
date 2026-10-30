@@ -1396,6 +1396,11 @@ readback and saves a new review bundle. Phenix 2.2.1-6174 is the initial support
 version. A completed fit does not establish convergence, metal identity/count or
 correct geometry. See the [implemented diagnostic and limits](docs/metal-anomalous-doctor.md#implemented-single-trial-frozen-diagnostic).
 
+The API-only XYZ step can retain [maps from the completed native fit](docs/metal-anomalous-doctor.md#implemented-completed-state-xyz-map-capture)
+with `capture_maps=True`: compact weighted coefficients, exact trial provenance,
+local samples and R-statistic context. Map overlays and the metal-to-Refine-Doctor
+execution bridge remain planned; no solution is selected by these diagnostics.
+
 The API-only XYZ step also supports [explicit geometry/data-weight probes](docs/metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls)
 through `xyz_weight_scale`. Each immutable sibling records native weight
 readbacks; no weight, geometry or count is chosen automatically.

@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Capture optional maps from completed metal XYZ refinements
+
+- Add API-only `capture_maps=True` to XYZ planning/execution. Export compact
+  2mFo-DFc and mFo-DFc coefficients from the active completed native fit without
+  reloading a PDB, updating scales or changing refinement. Omission preserves
+  legacy plans/results; failed captures retain their numbered attempt.
+- Audit work-only coefficient membership, native fitted-state invariance, exact
+  site identities, MTZ readback, artifact checksums and bounded local summaries.
+  Include actual amplitude/phase labels when captured; replay older records.
+- Report Rwork < 0.30, Rwork < Rfree and their gap as numerical context, never
+  structural acceptance. Keep Refine Doctor as the triage engine; native metal
+  checkpoint integration and map viewer controls remain planned.
+- Add optional `metal-xyz-maps-v1` evidence/results inside schema-1 XYZ bundles.
+  Frozen-fdp fitting, anomalous-map capture and ordinary AutoRefine/Doctor remain
+  unchanged. No private scientific artifacts are included in Git.
+
 ### Declare and audit metal XYZ geometry/data weighting
 
 - Add optional API-only `xyz_weight_scale` to XYZ planning/execution. Explicit

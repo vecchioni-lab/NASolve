@@ -150,6 +150,9 @@ def run(filename):
                         r_work=r.fmodel.r_work(),r_free=r.fmodel.r_free(),convergence='NOT_INDEPENDENTLY_ASSESSED')
             from fit_diagnostics import capture
             result['fit_diagnostics']=capture(r.fmodel)
+            if 'map_capture' in plan:
+                from map_diagnostics import capture as capture_maps
+                result['map_diagnostics']=capture_maps(r.fmodel,result,plan['sites'],plan['map_capture'])
             Path('native-result.json.gz').write_bytes(gzip.compress(canonical(result).encode(),mtime=0))
             Path('final.pdb').write_text(r.model.model_as_pdb(output_cs=True))
             Path('effective-final.phil').write_text(r.master_params.format(python_object=r.iparams).as_str())

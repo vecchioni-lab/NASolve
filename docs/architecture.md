@@ -1457,14 +1457,26 @@ refined-endpoint diagnostic bridge now feeds environmental B and frozen fdp
 trials. Scientific qualification, site mapping and phase/scale-policy sensitivity
 remain explicit gaps.
 
+Opt-in XYZ `capture_maps=True` adds `metal-xyz-maps-v1` evidence/results and two
+relative MTZ artifacts inside the existing schema-1 bundle. The native completion
+callback exports directly from the active Fmodel; full fitted state/scales must
+remain unchanged. Work-only membership, native MTZ readback and offline artifact/
+summary checks are distinct from independent map recomputation. Omission retains
+legacy plans/results. See the [methods and numerical context](metal-anomalous-doctor.md#implemented-completed-state-xyz-map-capture).
+The report mirrors the Rwork < 0.30 and Rwork < Rfree conditions without granting
+acceptance. Refine Doctor remains the triage authority; its native metal adapter
+needs a registered checkpoint bridge with exact metal selectors, restraint/phase
+lineage and scattering policy. No Doctor native execution or automatic checkpoint
+selection is introduced. Map visualization and anomalous-map capture remain planned.
+
 The API-only XYZ `xyz_weight_scale` option adds explicit bounded native weight
 controls to schema-1 plans. Omission retains legacy bytes; explicit controls
 are read from native parameters both before and after refinement and replayed
 offline. Only the coordinate experimental multiplier varies; companion geometry
 and ADP controls remain declared and weight optimization stays disabled. The
 native base weight still adapts. See the [weight methods and limits](metal-anomalous-doctor.md#implemented-explicit-xyz-weight-controls).
-Contact screening and endpoint map evaluation have local experimental receipts,
-not production orchestration or scientific decision authority.
+Contact screening remains a local experiment. Completed-state XYZ map capture
+is implemented, while scientific decision authority and orchestration remain open.
 
 New metal workers passively capture final complex Fmodel and native partition
 scales through the stdlib-only `metal/fit_diagnostics.py` helper. Optional

@@ -1,8 +1,8 @@
 # Metal hypotheses and anomalous-scattering diagnostics
 
 Status: **refined-endpoint and recipe-geometry frozen diagnostics, cluster atom-equivalent reports, matched comparisons, bounded occupancy sweeps, human reference snapshots, offline workbench navigation and a local read-only viewer implemented**.
-Implementation updated 2026-10-29. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
-Solution-space search, decision logic, maps and editable GUI behavior below remain planned. This contract
+Implementation updated 2026-10-30. Explicit bounded occupancy sweeps are implemented; automatic search and scientific decision qualification remain planned.
+Solution-space search, decision logic, map visualization and editable GUI behavior below remain planned. This contract
 defines a bounded diagnostic workflow for metal identity, site count, occupancy
 and cluster hypotheses. It complements the [restraint builder](metal-restraint-builder.md)
 and the existing refinement Doctor; it is not a new Cedar/Pine integration gate.
@@ -11,6 +11,86 @@ The planned [explicit metal-screen mode](metal-screen.md) starts from AutoSol
 sites and phase products, explores counts up and down, and records the campaign
 no-metal fallback policy. This is an opt-in experimental recipe; ordinary
 NASolve's conditional AutoSol behavior remains unchanged.
+
+## Implemented completed-state XYZ map capture
+
+Use the API-only `capture_maps=True` argument to `nasolve.metal.xyz.run_xyz`
+(or `make_plan`) to retain compact 2mFo-DFc and mFo-DFc coefficients and local
+samples from the **active completed XYZ/ADP fit**. The default is `False`, which
+preserves existing plan/PHIL/result behavior and avoids exporting maps for every
+trial. The option requires a boolean. It adds no GUI or automatic map score.
+
+**Methods.** In the native worker's completion callback, compute both maps from
+the current Phenix 2.2.1-6174 Fmodel and model-assisted HL phase state. Do not
+reload serialized coordinates, rebuild the model, refit parameters or update
+scales. Compare full native state hashes before and after export, including
+coordinates, ADPs, occupancy, scattering factors, observations/flags, HL terms,
+complex calculated factors, cell and scale arrays. Each coefficient set contains
+exactly the active work indices; all original Free-R observations remain in the
+input/audit but are omitted from these display maps. Missing reflections are not
+filled, sharpening is disabled and native isotropization is declared.
+
+Write one MTZ per map, read its complex coefficients back with the native
+reader, and retain its checksum, size, coefficient indices/count and amplitude/
+phase labels. Actual labels are `TWOFOFC,PHITWOFOFC` and `FOFC,PHIFOFC` for this
+exporter; labels are data, not inferred from a filename. Initial captures without
+explicit label metadata remain readable. Sample the whole-cell sigma-normalized
+FFT at each exact metal coordinate and on a 0.5-Angstrom grid within a
+1.5-Angstrom sphere (123 samples). Record center, minimum, maximum and mean;
+these overlapping local samples do not identify independent peaks or atoms.
+
+```mermaid
+flowchart LR
+    X[Completed XYZ fit with active Fmodel and HL phases] --> S[Snapshot fitted state and scales]
+    S --> M[Export work-only weighted map coefficients]
+    M --> A[Check MTZ readback and unchanged native state]
+    A --> B[Immutable XYZ bundle with map files and local summaries]
+    B --> R[Review geometry and numerical context]
+    R --> D[Refine Doctor triage through a verified checkpoint bridge]
+    B -. planned .-> V[Soft viewer contours and independent display toggles]
+```
+
+*Figure: completed-state coefficient capture is implemented. Doctor execution
+from metal bundles and viewer overlays are integration boundaries, not automatic
+actions performed by map export.*
+
+`options.capture_maps` and `map_capture` appear only in opted-in plans.
+`native-result.json.gz` and `result.json` add `map_diagnostics` with protocol
+`metal-xyz-maps-v1`; two relative MTZ files enter the existing schema-1 XYZ
+manifest. Offline replay checks the endpoint binding, finite summaries, exact
+work membership, identities, policies, source hashes and file bytes. It does
+**not independently recompute Fourier coefficients or local interpolation**.
+Native readback and complete execution supply that evidence. Old trials without
+maps remain unchanged and do not gain fabricated map results. The XYZ worker
+fingerprint changes; frozen-fdp/scan protocols remain unchanged.
+
+Four complete native XYZ probes (including one explicit-label repeat) reproduced
+all earlier coordinates, B, R factors, final PDB bytes and native PHIL exactly.
+Three starting/weight cases produced two 26900-byte MTZ files each, with 1201
+work coefficients per map. Full native state hashes remained unchanged.
+Model-assisted positive density at proposed metal positions is not independent
+support for four sites. Anomalous and omit/LLG capture remain separate work.
+
+### Numerical context and Refine Doctor
+
+The existing NASolve numerical conditions are **Rwork < 0.30** and
+**Rwork < Rfree**. Approximately **0.20 Rwork** is the working expectation for
+this low-resolution metal campaign, not a new universal acceptance rule.
+The map report retains both R values, their gap and the two condition results.
+It introduces no absolute Rfree cutoff and never promotes a structural solution.
+A very large gap remains a triage concern even when both inequalities pass.
+
+Use the existing **Refine Doctor** for R-statistic triage. Its Free-R audit is
+already reused by these trials. Read-only reuse of its candidate/recommendation
+functions keeps the current three cases under review. This is not execution of
+Doctor's native trial pool. `execute_refine_doctor` currently consumes registered
+checkpoints; metal XYZ bundles are distinct review artifacts. The required
+bridge must carry the exact verified metal endpoint, all coordination/inherited
+restraints, phase policy, original observations/flags, explicit free-metal and
+covalent-scatterer selections, and fixed-f-prime convention. Preserve the
+current checkpoint and make geometry-triage outcomes new branches before
+rederiving environmental B and frozen-fdp trials. Ordinary nucleotide-oriented
+scatterer discovery/calculation must not silently replace the metal declaration.
 
 ## Implemented explicit XYZ weight controls
 
@@ -60,14 +140,14 @@ private placement search used the AutoSol center as its anchor, bounded coherent
 exact recipe and parent symmetry contacts; it still left a close contact and
 is not a general chemistry-aware placement implementation.
 
-Private map prototypes separately reload each serialized endpoint and recompute
-masks/scales without coordinate/ADP refinement. They export work-reflection-only
+Earlier private map prototypes separately reloaded each serialized endpoint
+and recomputed masks/scales without coordinate/ADP refinement. They exported work-reflection-only
 2mFo-DFc and mFo-DFc coefficients, with no missing-data filling or sharpening,
-and record sigma-scaled local samples. They retain model-assisted HL phases.
+and recorded sigma-scaled local samples. They retained model-assisted HL phases.
 They are **not exact final-state map capture**, independent validation, an atom
 count, an automated score or a public API. Initial unscaled readbacks remain
-separate from the scale-only evaluations. Qualification of final-state maps,
-phase sensitivity and local peak interpretation remains open.
+separate from the scale-only evaluations. The completed-state capture above now
+supersedes those prototypes; phase sensitivity, local peak interpretation and viewer integration remain open.
 
 ## Implemented native fit and endpoint recipe diagnostics
 
@@ -1359,13 +1439,32 @@ is a later explicit protocol, not implicit merging of independently refined rows
 
 ## Optional local map evidence
 
-**Planned.** Offer ordinary 2mFo-DFc, signed mFo-DFc, anomalous difference/LLG
+**Capture partly implemented; visualization planned.** Opt-in XYZ export now
+retains [completed-state ordinary coefficients](#implemented-completed-state-xyz-map-capture).
+The frozen-fdp worker does not yet retain anomalous maps. Planned viewer layers
+include ordinary 2mFo-DFc, signed mFo-DFc, anomalous difference/LLG
 and optional omit-map layers. Display toggles affect visualization only;
 including a map metric in ranking is a separate explicit experiment policy.
 Use matched local regions, resolution, phase treatment, bulk-solvent treatment
 and normalization for comparisons. Preserve provenance and limitations of
 model-dependent maps, including whether held-out reflections enter them; map
 selection must not be represented as independent Rfree validation.
+
+Use compact, separate **2Fo−Fc**, **Fo−Fc** and **Anomalous** display toggles,
+with the precise weighted map type and trial provenance available in details.
+Keep contours visually soft: thin translucent mesh over the dark-grey molecular
+view, with muted blue for 2Fo−Fc, green/coral for positive/negative Fo−Fc and a
+distinct lilac anomalous layer. These are provisional visual choices. Keep the
+atoms and coordination graph legible; opacity and contour levels are adjustable.
+
+`ANOM` and `PHANOM` describe amplitude/phase columns for one anomalous map;
+installed native presets may instead use `PANOM`. Resolve actual labels and
+map provenance, rather than assuming a fixed pair. Enable a layer only when its
+matching coefficients exist; a missing anomalous map is unavailable, not empty.
+Curated contour presets should be scoped to map type/dataset, expose their sigma
+normalization and remain editable. Lock comparable contour settings across
+side-by-side candidates by default and retain deliberate overrides. Display
+choices do not alter a saved refinement, its R values or candidate ranking.
 
 Map patterns suggest controlled tests, not automatic atom editing:
 

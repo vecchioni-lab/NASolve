@@ -26,7 +26,7 @@ PROTOCOL = 'metal-phased-xyz-v1'
 PHASE_FAMILIES = (['HLAM','HLBM','HLCM','HLDM'], ['HLA','HLB','HLC','HLD'], ['HL_A','HL_B','HL_C','HL_D'])
 
 
-def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test_value=0, xyz_weight_scale=None):
+def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test_value=0, xyz_weight_scale=None,capture_maps=False):
     """Declare merged-observation MLHL geometry; anomalous data remain intact.
 
     Phenix 2.2.1 cannot combine MLHL with nonzero anomalous scattering. f-prime
@@ -49,7 +49,13 @@ def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test
     policy=dict(seed['policy'],strategy=['individual_sites','individual_adp'],target='mlhl',
                 experimental_phases=True,anomalous_observations=False,isotropic_selection='all',
                 anisotropic_selection=None,automatic_metal_linking=False,optimize_xyz_weight=False,optimize_adp_weight=False)
+    if type(capture_maps) is not bool:raise RecipeError('Require a boolean map-capture option')
     options=dict(cycles=cycles,free_r_test_value=free_r_test_value)
+    extra={}
+    if capture_maps:
+        from .map_diagnostics import request
+        options['capture_maps']=True
+        extra['map_capture']=request()
     if xyz_weight_scale is not None:
         scale=number(xyz_weight_scale,'XYZ experimental-weight scale')
         if not .001 <= scale <= 10.:
@@ -61,7 +67,7 @@ def make_plan(raw, sites, metadata, references, phases, *, cycles=3, free_r_test
         input_model_sha256=hashlib.sha256(raw).hexdigest(),
         observation_policy='native_merge_Bijvoet_mates_for_geometry_keep_original_anomalous_file',
         scattering_policy='fixed_reference_fp_zero_fdp_for_MLHL_geometry_only',
-        geometry_policy='inherited_and_explicit_recipe_restraints_no_automatic_metal_links')
+        geometry_policy='inherited_and_explicit_recipe_restraints_no_automatic_metal_links',**extra)
 
 
 def parameters(plan, resources):
@@ -219,6 +225,12 @@ def audit_result(plan, model, native, final_model):
     if 'fit_diagnostics' in native:
         from .fit_diagnostics import summarize
         result['fit_diagnostics']=summarize(native['fit_diagnostics'],native['reflection_after'],native['r_work'],native['r_free'])
+    if ('map_capture' in plan) != ('map_diagnostics' in native):
+        raise RecipeError('Requested map capture missing or unexpected')
+    if 'map_capture' in plan:
+        from .map_diagnostics import request, summarize as summarize_maps
+        if plan['map_capture']!=request():raise RecipeError('Map capture policy changed')
+        result['map_diagnostics']=summarize_maps(native['map_diagnostics'],native,plan['sites'])
     identity = list(range(len(keys)))
     if native_order != identity or serialized_order != identity:
         result['atom_order_mapping'] = dict(input_to_native=native_order, input_to_serialized=serialized_order,
@@ -298,7 +310,7 @@ def _native(directory,native,timeout):
     return _json(gzip.decompress((directory/'native-result.json.gz').read_bytes()))
 
 
-def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_value=0,timeout=240,xyz_weight_scale=None):
+def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_value=0,timeout=240,xyz_weight_scale=None,capture_maps=False):
     """Explicit API-only experiment; phases must have a declared portable anchor."""
     run=Path(run).expanduser().resolve();_integer(timeout,10,600,'timeout seconds')
     h,model,resources,parent_ref=_input_bundle(run,hypothesis)
@@ -308,7 +320,7 @@ def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_val
     metadata=inspect_observations(obs_path,executable=native.executables['phenix.mtz.dump'],environment=native.environment)
     references=reference_scattering({a.element for a in parse_pdb(model).snapshot.atoms},metadata['wavelength_A'],
         executable=native.executables['phenix.python'],version=native.version,environment=native.environment)
-    plan=make_plan(model,h['sites'],metadata,references,phase_meta,cycles=cycles,free_r_test_value=free_r_test_value,xyz_weight_scale=xyz_weight_scale)
+    plan=make_plan(model,h['sites'],metadata,references,phase_meta,cycles=cycles,free_r_test_value=free_r_test_value,xyz_weight_scale=xyz_weight_scale,capture_maps=capture_maps)
     phil,args=parameters(plan,[name for name,_ in resources]);directory=_allocate(run)
     try:
         content={'input.pdb':model,'observations.mtz':obs,'phases.mtz':phase_bytes,'parameters.phil':phil,
@@ -320,6 +332,9 @@ def run_xyz(run,hypothesis,*,native,phases,phase_labels,cycles=3,free_r_test_val
         if not audit.valid:raise RecipeError('Original Free-R audit failed')
         evidence=_native(directory,native,timeout)
         result=audit_result(plan,model,evidence,(directory/'final.pdb').read_bytes())
+        if 'map_diagnostics' in evidence:
+            from .map_diagnostics import verify_files
+            verify_files(evidence['map_diagnostics'],directory)
         if any((directory/name).read_bytes()!=raw for name,raw in content.items()):raise RecipeError('Frozen XYZ input changed')
         _source(phases,run);_source(parent_ref,run);verify_hypothesis(run,hypothesis)
         (directory/'result.json').write_bytes(_json_bytes(result))
@@ -373,7 +388,11 @@ def verify_xyz(run,directory):
         if any((directory/name).read_bytes()!=raw for name,raw in expected.items()):raise RecipeError('XYZ inputs differ from derivation replay')
         free=_json((directory/'free-r.json').read_bytes())
         if free.get('usable')is not True or free.get('status') not in {'VALID','NOISY'}:raise RecipeError('Invalid saved Free-R audit')
-        result=audit_result(plan,model,_json(gzip.decompress((directory/'native-result.json.gz').read_bytes())),(directory/'final.pdb').read_bytes())
+        evidence=_json(gzip.decompress((directory/'native-result.json.gz').read_bytes()))
+        result=audit_result(plan,model,evidence,(directory/'final.pdb').read_bytes())
+        if 'map_diagnostics' in evidence:
+            from .map_diagnostics import verify_files
+            verify_files(evidence['map_diagnostics'],directory)
         if (directory/'result.json').read_bytes()!=_json_bytes(result):raise RecipeError('XYZ audit changed')
         if 'fit_diagnostics' in result:
             geometry = _recipe_diagnostics(_json(_source(h['files']['preview'],run)), (directory/'final.pdb').read_bytes())

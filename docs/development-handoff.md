@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Metal integration updated **2026-10-29** in the section below. The following
+Metal integration updated **2026-10-30** in the section below. The following
 Cedar boundary is the retained **2026-10-26 snapshot**, not a new statement of
 the separate checkout's current status. It records native receipts, user visual
 review and verified geometry/DF bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
@@ -12,6 +12,114 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## Completed-state XYZ maps and refinement-triage boundary 2026-10-30
+
+**Before and after.** Map evaluation previously required a private endpoint
+reload, with either initialization scales or a separate scale-only evaluation.
+API-only `metal.xyz.make_plan` and `run_xyz` now accept strict-boolean
+`capture_maps=True`. The native completion callback exports 2mFo-DFc and mFo-DFc
+coefficients directly from the final active Fmodel and model-assisted HL state,
+without reloading, refitting or updating scales. Omission preserves legacy
+plans, PHIL and results. The [descriptor, methods and editable figure](metal-anomalous-doctor.md#implemented-completed-state-xyz-map-capture)
+distinguish implemented capture from planned viewing and Doctor integration.
+
+Capture hashes fitted atoms, ADPs, Q, scattering factors, cell, observations,
+Free-R flags, HL coefficients, complex Fmodel and scale arrays before/after.
+Each map contains exactly the work reflections; original free observations
+remain in the fit and audit. Native MTZ readback verifies indices and complex
+coefficients. Files, actual amplitude/phase labels, whole-cell sigma-normalized
+center values and 123 samples within 1.5 Angstrom of each metal are recorded.
+No missing reflections are filled and no sharpening is applied. Offline replay
+checks binding, policy, membership, finite summaries and bytes; it does not
+independently recompute Fourier coefficients or interpolation. Positive
+model-assisted samples do not establish resolved atoms or an accepted count.
+
+**Native evidence.** Four complete three-cycle XYZ/ADP executions used
+**Phenix 2.2.1-6174**, with 240-s bounds, on the existing four-site cluster
+hypotheses. Three starting/weight cases plus one explicit-label repeat reproduce
+the earlier core native results, final PDB bytes and native PHIL exactly. The
+full fitted-state hashes are unchanged by export. Eight MTZ files total 215200
+bytes, each containing 1201 work coefficients. The 69 free observations and
+original anomalous file remain intact. These were **complete native executions,
+not dry runs**. No new fdp/count fit was run; **Coot was not invoked**.
+
+**R statistics and Refine Doctor.** The report mirrors existing numerical
+conditions, **Rwork < 0.30 and Rwork < Rfree**, with both values and their gap.
+Approximately 0.20 Rwork is the current campaign expectation, not a universal
+acceptance gate. No absolute Rfree cutoff or automatic structural acceptance is
+introduced. The three cases remain at Rwork/Rfree 0.315935/0.926385,
+0.341925/0.932623 and 0.343567/0.933392. All miss the Rwork target; the large gaps
+and mixed-sign earlier fdp responses remain unresolved.
+
+A read-only reuse of existing Refine Doctor candidate/recommendation functions,
+with the saved Free-R audits, returns `REFINE_DOCTOR_REVIEW` and no selected
+checkpoint for all three cases. This does **not** execute Doctor's native trial
+pool or register a checkpoint. A verified bridge must carry the exact metal XYZ
+endpoint, free-metal/covalent-scatterer declarations, all restraints, phase
+policy, original observations/flags and fixed-f-prime convention. Geometry triage
+must create new branches, then rederive environmental B before frozen-fdp work.
+Do not substitute the standard nucleotide-oriented scatterer discovery or a
+different tabulation for the explicit metal declaration. No Refine Doctor or
+ordinary AutoRefine implementation changed in this pass.
+
+**Viewer intent.** Record independent soft 2Fo-Fc, signed Fo-Fc and anomalous
+map toggles, adjustable visible contour levels/normalization, and matched default
+levels during comparisons. Read actual coefficient labels and phase provenance.
+ANOM/PHANOM (or another native phase label such as PANOM) is one amplitude/phase
+pair, not two maps. Current merged-geometry capture has no anomalous map;
+frozen-fdp coefficient export and GUI rendering remain unimplemented. Missing
+maps must remain visibly unavailable. Contour choices must not alter ranking.
+
+**Files, schema and compatibility.** Modified `metal/xyz.py` and
+`metal/_xyz_native.py`; added `metal/map_diagnostics.py` and
+`test_metal_maps.py`. Updated README, documentation map, architecture,
+metal-screen/anomalous methods, intent, changelog and this handoff. Optional
+`map_capture` plans and `map_diagnostics` evidence/results use
+`metal-xyz-maps-v1` inside existing schema-1 XYZ bundles. Two relative MTZ
+artifacts enter the manifest. Updated readers are required for new captures;
+old bundles need no migration, and initial captures without explicit label
+metadata remain readable. The XYZ worker fingerprint changes. Frozen-fdp,
+count, comparison, scan, CLI and GUI code remain unchanged.
+
+**Validation.** Initial collection failed before implementation because the map
+module did not exist. Regression coverage includes opt-in/default compatibility,
+invalid policy/state/membership/site/value/label evidence, missing maps, native
+state hashing, strict R-boundary conditions, rehashed artifact tampering and
+relocation of source plus data after the original temporary path is gone.
+The exact focused command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_metal_*.py tests/test_cli.py tests/test_refine_doctor.py`:
+**563 tests and 14 subtests passed in 102.37 s**. The direct maps/XYZ/weights
+subset passes **81 tests in 4.31 s**. The complete command, with the same
+interpreter and environment, `python -B -m pytest -q -p no:cacheprovider`,
+passes **6193 tests and 276 subtests in 767.41 s**, exit 0. All **466**
+inventoried source/test/asset files remain unchanged. Final checks pass four
+Python 3.10 grammar checks, 107 local documentation links, JSON and whitespace.
+Existing process/socket integration tests ran with OS permissions.
+
+Offline replay passes **35** hypotheses, XYZ endpoints, fdp/count reports,
+scan and comparison bundles. All **718** earlier cluster files, **778** earlier
+rehearsal files and original dataset inputs remain unchanged. Failed attempts
+remain preserved. Private receipts and runners live under ignored local
+`branch-artifacts/Alder/maps-20261029-01/` and `branch-artifacts/Alder/runners/`.
+With the everyday checkout's `.venv/bin/python -B` and
+`PYTHONDONTWRITEBYTECODE=1`, the commands are `A33_native_maps.py`,
+`A33_native_maps_labels.py`, `A33_doctor_assessment.py`, `A33_final_replay.py`,
+`A33_full_tests.py` and `A33_doc_checks.py`. The initial helper version is
+archived privately as `A33_initial_map_diagnostics.py` for source provenance.
+The existing cluster run adds immutable `xyz_008`–`xyz_011`. No generated models,
+maps, MTZs, private runners, test datasets or manuscript material enter Git;
+no scientific data are pruned.
+
+**Next boundary.** Continue the current Alder branch; this change is based on
+`b6cd16a`. Qualify the exact metal-checkpoint bridge into Refine Doctor and
+native anomalous coefficient capture with explicit work/free and phase policy.
+Then connect matched map evidence to viewer toggles. Coordination alternatives,
+B/phase sensitivity, independent stopping evidence, general chemistry-aware
+placement, special-position multiplicity, six-site recipes and campaign
+execution remain open. The previously recorded wavelength/cell context question
+also remains open; actual input metadata is retained without substitution.
+Everyday Pine and separate Cedar work stay untouched.
 
 ## Explicit XYZ weights and bounded cluster probes 2026-10-29
 

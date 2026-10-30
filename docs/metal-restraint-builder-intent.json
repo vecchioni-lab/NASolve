@@ -615,7 +615,24 @@
       "automatic_weight_search": false,
       "scientific_acceptance": "NOT_ASSESSED",
       "contact_screening": "PRIVATE_EXPERIMENT_ONLY",
-      "map_evaluation": "PRIVATE_SCALE_ONLY_PROTOTYPE_NOT_FINAL_STATE_CAPTURE"
+      "map_evaluation": "OPT_IN_COMPLETED_NATIVE_XYZ_CAPTURE_IMPLEMENTED"
+    },
+    "xyz_map_capture": {
+      "status": "IMPLEMENTED_API_ONLY",
+      "protocol": "metal-xyz-maps-v1",
+      "option": "capture_maps",
+      "default": false,
+      "source": "active_completed_native_XYZ_fit",
+      "map_types": [
+        "2mFo-DFc",
+        "mFo-DFc"
+      ],
+      "refit_or_rescale": false,
+      "work_only_coefficients": true,
+      "model_assisted_phases": true,
+      "local_samples_are_independent_atom_counts": false,
+      "offline_fourier_recomputation": false,
+      "scientific_acceptance": "NOT_ASSESSED"
     }
   },
   "solution_search": {
@@ -703,7 +720,24 @@
       "matched_region_resolution_phase_and_normalization_policy": true,
       "independent_vote_from_fdp": false,
       "positive_peak_automatically_adds_metal": false,
-      "unreliable_evidence_state": "uninformative"
+      "unreliable_evidence_state": "uninformative",
+      "viewer_controls": {
+        "status": "PLANNED",
+        "toggles": [
+          "2Fo-Fc",
+          "signed Fo-Fc",
+          "Anomalous"
+        ],
+        "style": "thin_soft_translucent_mesh_over_dark_grey",
+        "contour_levels_editable": true,
+        "curated_defaults_scoped_to_map_type_and_dataset": true,
+        "normalization_visible": true,
+        "comparison_levels_locked_by_default": true,
+        "labels_read_from_native_metadata": true,
+        "anomalous_amplitude_phase_pair_is_one_map": true,
+        "missing_map": "unavailable",
+        "native_anomalous_capture": "PENDING"
+      }
     },
     "response_plot": {
       "reference_scope": "element_and_dataset_wavelength",
@@ -789,7 +823,19 @@
       "validate_recovery_before_enabling_destructive_compaction": true,
       "relocation_and_shared_reference_tests_required": true,
       "all_compaction_capabilities_are_planned": true
+    },
+    "refinement_triage": {
+      "engine": "existing_RefineDoctor",
+      "r_work_target_strictly_below": 0.3,
+      "r_work_expected_for_current_campaign_approximately": 0.2,
+      "r_work_less_than_r_free": true,
+      "absolute_r_free_cutoff": null,
+      "numerical_conditions_imply_scientific_acceptance": false,
+      "free_r_audit_reused": true,
+      "read_only_candidate_assessment_exercised": true,
+      "native_metal_checkpoint_bridge": "PENDING",
+      "automatic_checkpoint_selection": false
     }
   },
-  "updated": "2026-10-28"
+  "updated": "2026-10-30"
 }
