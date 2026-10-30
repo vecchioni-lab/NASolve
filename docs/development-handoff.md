@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C135 validated: explicit representation policy in dictionary storage
+## C135 published: explicit representation policy in dictionary storage
 
 Base: `6e6307994cabc372b8173486b5b08a04d01dd419`; existing cedar only.
 Capsule: `live_tests_directory/135_Cedar_policy-storage-00cbsv1t`.
@@ -41,7 +41,9 @@ This is saved complete-native evidence replay, not a new Phenix/Coot execution.
 Full regression passes: **6838 passed, 276 subtests passed in 1045.13s (0:17:25)**.
 All 503 source/test/runner hashes match the focused and full runs. Compilation,
 relative documentation links, JSON and whitespace checks pass. No job is active.
-Implementation and validation are complete; signed publication remains. Evidence key: `explicit_dictionary_representation_policy_2026_10_30`.
+Implementation, validation and signed publication are complete. Tested commit
+`d4c0e57e5c66b18279c5ab4e733fb2d212d801b0` is published and verified on `origin/cedar`;
+this follow-up records continuity. No merge or branch creation. Evidence key: `explicit_dictionary_representation_policy_2026_10_30`.
 
 Next: bind stored policy/numerics to exact current-site preparation and effective
 native evidence before allowing automatic consumer selection. Keep fallback until

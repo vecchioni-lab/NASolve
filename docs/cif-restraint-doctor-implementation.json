@@ -27253,7 +27253,7 @@
       "implementation_commit": "283cece10a8dcf59f990cd99b73eb7210d547ace"
     },
     "explicit_dictionary_representation_policy": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "after": "Supported explicit recipe policy binds v3 source/native evidence throughout immutable storage, source requalification and relocation; automatic PostMR excludes opt-in entries.",
       "schemas": {
         "store": "schema 1 / cif-qualified-dictionary-store-v1 unchanged",
@@ -27271,7 +27271,10 @@
       "next": "Bind stored policy and numerical bytes to exact current-site preparation/effective native evidence before automatic consumer use; preserve fallback until that contract passes.",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "explicit_dictionary_representation_policy_2026_10_30",
-      "validation": "6838 passed, 276 subtests passed in 1045.13s (0:17:25)"
+      "validation": "6838 passed, 276 subtests passed in 1045.13s (0:17:25)",
+      "implementation_commit": "d4c0e57e5c66b18279c5ab4e733fb2d212d801b0",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
