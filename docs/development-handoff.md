@@ -11,6 +11,49 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C132 validated: fixed-coordinate dictionary controls
+
+Base/last published head: `e6fd80b54c323a6d81381945f496a557965c7c9d`; existing cedar only.
+Capsule: `live_tests_directory/132_Cedar_flank-targets-xmsy3v_w`.
+One optional read-only module compares complete native captures at identical model
+coordinates and declared links. Only declared sites may change definitions;
+all outside-site proxy parameters and ordered non-dictionary inputs remain exact.
+Target and weight controls are descriptive, never native energies or acceptance.
+All changed/deferred proxy families, missing atoms and chemical inventories remain
+visible. No native worker, optimizer, CLI, checkpoint or default behavior change.
+
+Complete Phenix 2.2.1-6174 fixed-coordinate control substituted only C121's exact
+source-preserving 0DG candidate for the old C110 flank dictionary. Both links and
+the central AAJ definition/proxies survive. The short 1.220 Å C3′–C2′ and 1.270 Å
+C4′–O4′ targets originate in the old input CIF; new targets are 1.534 and 1.401 Å.
+Flank bond nominal counts >=3: old 23, target-only with old weights 5,
+weight-only with old targets 18, both 2. These are different definitions at the
+same coordinates, not an optimization trajectory or a linked-state approval.
+A:1 still has a definition-level outgoing O3′ hydrogen; both flanks report OP3
+missing; the new neutral monomer additionally retains HOP2/HOP3. No atoms edited.
+
+Fail-before regression recorded. **212 focused tests pass**, including 30 new
+cases. Exact real replay and 327-file cold relocation pass with old paths, SDK
+and process creation blocked. Full regression passes: **6744 passed, 276 subtests passed in 997.42s (0:16:37)**.
+All 497 source/test hashes are unchanged and match focused validation; all 495
+previously published source/test files remain unchanged. Compileall, 352 relative
+doc links, JSON/SVG parsing, rendered-figure review and diff whitespace pass.
+No job is active. Publication is next. Changed files: one optional module, one
+test file and ten maintained documentation/evidence/figure files (12 total).
+Schema-1 policy: `cif-native-fixed-coordinate-target-comparison-v1`.
+No CLI/run/checkpoint migration or installed-library change. Exact commands and
+results are in evidence key `fixed_coordinate_dictionary_controls_2026_10_30`. Implementation, focused/cold/full validation and methods/evidence are complete;
+signed cedar publication remains.
+Raw models, CIFs, logs and runners remain local. Next science step is explicit
+source-authorized terminal/linked-state projection, not simply adopting a better
+score or adding OP3 to satisfy a monomer dictionary. A no-native probe confirms
+the existing linked preparer refuses C121's v3 representation-qualified candidate
+before output creation. Explicit representation-policy propagation and exact
+source/native flank projection are next, before a new derivative-gated trial.
+The lower bond count coexists with more angle outliers (2 → 4) and a larger
+selected gradient; original C130 NOT_CONVERGED_LIMIT remains visible.
+— Rowan · Codex desktop
+
 ## C131 published: selected versus frozen environment
 
 Base/last published head: `5a20cd3104e664de9bb0ed5524644e085df76a5c`; existing cedar only.

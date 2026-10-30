@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Fixed-coordinate dictionary controls (C132)
+
+- Add an optional read-only comparison of two complete native captures at the
+  same model coordinates and declared topology. Require unchanged native context,
+  ordered non-dictionary inputs and all definitions/proxies outside declared sites.
+- Separate changed scalar targets and weights from observed geometry, including
+  descriptive target-only and weight-only controls. Retain complete named proxy
+  changes, missing atoms, hydrogen/charge inventories and deferred categories.
+- Add schema-1 `cif-native-fixed-coordinate-target-comparison-v1`. Changed objectives
+  never imply optimization, chemical qualification or automatic model adoption.
+  No native worker, coordinate, CLI, checkpoint or production-default changes.
+
 ### Selection-aware environment review (C131)
 
 - Add read-only partitioning of captured bond/angle/chirality measurements and

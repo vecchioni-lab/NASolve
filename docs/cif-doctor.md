@@ -63,7 +63,9 @@
 
 <a id="current-capability-boundary-c130"></a>
 
-## Current capability boundary (C131)
+<a id="current-capability-boundary-c131"></a>
+
+## Current capability boundary (C132)
 
 C95 now passes on macOS with Python 3.12.14 from commit
 `3fcedf5bb18f7e482d94b5827478c6b4f26b80e3`: the ordinary bundle reader accepts
@@ -792,6 +794,121 @@ the DNA sugar to conceal the mismatch. Ordinary mutation, other L-FANA bases,
 C119 PNA, DG naming and ATL/L-DNA/PDU remain separate; sticky-end stitching stays
 parked.
 
+
+### Fixed-coordinate dictionary controls (C132)
+
+`review_native_target_comparison(before, after, model_payload, changed_sites,
+expected_links)` compares complete detailed native inventories under an explicit
+site change declaration. Both managers must reproduce the exact supplied model
+and declared cross-site bonds, including any separately frozen NARestraints soft
+bond authority. Atom identities/order/coordinates/occupancies, installed API
+sources, native policy, parameter consumers, PHIL adaptations and custom proxy
+requests must agree. Every model site must have one exact literal monomer mapping.
+Definitions outside the declared sites must be identical. All captured proxy
+categories/counts are required, and ordered named endpoints plus every recorded
+parameter must agree for proxies wholly outside those sites. Incomplete or
+ambiguous evidence refuses comparison; a lost link cannot masquerade as relief.
+
+`inspect_native_target_comparison(...)` binds that report to two existing native
+receipts and exact model bytes through the maintained capture validator. It checks
+worker/spec/output integrity, native version/API/executable context, dictionary
+source policy and ordered input roles. Only dictionary files may differ; each
+substitution is recorded by input index, checksum and size. At least one explicit
+substitution is required. Frozen artifacts are rechecked after reading. Relative
+operational references remain under the existing native-directory anchors; no
+original host path, basename search, SDK or process launch is needed for replay.
+
+Scalar bond/angle/chirality rows are matched by ordered structured atom identities
+and origin. No nearest-neighbour matching, endpoint permutation or inferred alias
+is used. Duplicate keys refuse comparison; unmatched rows remain explicit
+additions/removals. Matched observations must be identical. Targets and weights
+are shown separately, along with sign-convention changes. For ranked rows with
+unchanged conventions, two descriptive controls hold either the original weight
+or original target fixed. They reuse `(observed - target) * sqrt(weight)`; they
+are neither native energies nor chemical proposals. Unsupported, unweighted or
+convention-changing rows receive no such control. Complete named parameter
+changes are retained for every captured proxy family. ASU, dihedral, constant
+dihedral, plane and parallelity scalar/residual calculations remain deferred;
+nonbonded mechanics are outside this comparator's scope.
+
+The schema-1 policy is `cif-native-fixed-coordinate-target-comparison-v1`.
+Full before/after monomer mappings preserve formal-charge readback, partial
+charges, hydrogen inventories, modifications and missing heavy atoms separately.
+Missing OP3 never instructs the software to add OP3. Exact topology and a lower
+score do not authorize protonation changes, terminal projection or adoption.
+Source graph/stereo and the chemical permission for a linked-state operation
+remain independent gates. There is no new CLI or ordinary PostMR activation.
+
+**Completed source/native control.** At the exact serialized C130 L-FANA-C
+endpoint, only the first explicit dictionary was replaced: the C110 diagnostic
+0DG flank definitions were exchanged for C121's exact isolated source-preserving
+0DG candidate. The central AAJ dictionary, link dictionary, three PHIL files and
+all 61 coordinates were unchanged. C130's complete endpoint checks were replayed
+first; the candidate was freshly reassessed against the frozen CCD source under
+the explicit neutral 6-oxo purine representation policy. A complete Phenix
+2.2.1-6174 interpretation (dispatcher 2.2.1, 180 s bound) retained both declared
+links, all central definitions and central-only proxies. No optimization,
+refinement, Coot execution, coordinate editing or dictionary adoption occurred.
+
+| Flank bond | Old input target / sigma (Å) | Source-preserving candidate target / sigma (Å) |
+| --- | --- | --- |
+| C3′–C2′ | 1.220 / 0.020 | 1.534 / 0.036 |
+| C4′–O4′ | 1.270 / 0.020 | 1.401 / 0.030 |
+
+These values already occur in the respective input CIFs and are reproduced in
+both native flank definitions. The short targets were not introduced by C130
+optimization or by this native interpretation. At identical coordinates, flank
+bond nominal counts with absolute value >=3 are **23** under the old definition,
+**5** with only new targets, **18** with only new weights, and **2** with both.
+All 68 bonds have exact ordered matches; no bond is gained or removed. These
+counts are descriptive rankings, not crystallographic acceptance thresholds.
+The two remaining rows are A:3 C3′–O3′ (1.487913 Å observed, 1.384 Å target,
+nominal +3.8486) and P–OP2 (1.485785 Å observed, 1.571 Å target, nominal -3.7050).
+Angle counts >=3 increase from 2 to 4; no captured chirality sign conflicts occur.
+
+The full native targets are 1713.8031 and 367.5938, but these are different
+objectives at the same coordinates. The selected gradient norm increases from
+14.3913 to 18.8346 while the held norm falls from 5243.9005 to 1353.2747.
+A previous optimizer endpoint does not inherit convergence under changed
+mechanics. These independently replayed C131 metrics are evidence context,
+not outputs claimed to be decomposed by the new comparator.
+
+**Chemical limits.** The original source and C121 candidate have 37 atoms,
+14 hydrogens and total formal charge zero, retaining HOP2/HOP3 and localized
+P=OP1/P–OP2/P–OP3 orders. The old C110 dictionary has 35 atoms, 12 hydrogens,
+charge -2 and delocalized phosphate orders. Isolated source preservation does
+not select a polymer phosphate state. Both native controls still report missing
+OP3 at A:1/A:3, and the outgoing A:1 definition retains HO3′ with oxygen type OH1.
+The candidate also leaves HOP2/HOP3 in the missing-H inventory. These observations
+identify the next explicit source/terminal/link projection gate; they do not
+license atom deletion, protonation normalization or adding a third oxygen.
+
+Validation: **212 focused tests pass**, including 30 new C132 cases. A recorded
+regression fails before implementation. Tampered artifacts, changed PHIL/context,
+coordinates/topology, duplicate identities/proxies, outside-site changes,
+unrankable rows and mutation during reading are covered. Real report replay
+passes, and a cold relocated replay reproduces the entire report while preserving
+327 hashes/sizes/mtimes after the owned original disappears. Original scientific
+paths, the original checkout, Phenix SDK and subprocess execution are blocked,
+with no attempted access. Full regression passes: **6744 passed, 276 subtests passed in 997.42s (0:16:37)**.
+All 497 source/test hashes remain unchanged and match the focused run; all 495
+previously published source/test files are unchanged. Exact commands/results and local hashes are in evidence key
+`fixed_coordinate_dictionary_controls_2026_10_30` in the existing ledger.
+Raw sources, models, candidates, native outputs and runners remain local.
+
+The next bounded step is to propagate the already explicit representation policy
+through the source-preserving linked/terminal preparation boundary, then qualify
+source-declared flank contexts at fixed coordinates. The current linked preparer
+accepts the older isolated qualification policy and rechecks with default bond
+comparison; it does not yet consume C121's explicit representation-qualified
+candidate. A bounded call with the preserved native-usable v3 qualification
+reproduces that refusal before creating an output directory. Default candidate
+reassessment is REJECTED; reassessment under the explicit source-proven 6-oxo
+policy is CANDIDATE_REVIEW. This is an unsupported qualification/representation
+boundary, not evidence that the source chemistry is unusable. The bridge should
+be explicit and tested, without weakening defaults.
+Only after source/native projection agrees should a fresh derivative-gated
+geometry trial assess the new objective. C130's original limit stopping remains.
 
 ### Selected environment review (C131)
 

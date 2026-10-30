@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-29:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-10-30:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -3378,3 +3378,37 @@ no new native execution or coordinate change. Full report equality is checked
 after relocation with old paths and process creation blocked. Descriptive scalar
 deviations are not native covalent energies or scientific acceptance criteria.
 See the [technical methods](cif-doctor.md#selected-environment-review-c131).
+
+
+### Separating a distorted model from a distorted target
+
+C132 compares two dictionaries without moving the model. In the L-FANA-C control,
+short sugar-bond targets already present in the older L-DNA flank CIF account for
+much of the apparent bond strain. New targets alone reduce the descriptive flank
+outlier count from 23 to 5; changed weights alone reduce it to 18; both together
+leave 2. This distinguishes a numerical-definition effect from a coordinate repair.
+It also prevents a lower score under a different chemical definition from being
+presented as optimizer progress.
+
+**Methods.** The comparison binds complete Phenix 2.2.1-6174 captures to exact
+model bytes, declared links, frozen native context and ordered input checksums.
+Only one dictionary was substituted; all 61 coordinates, central-residue mechanics
+and PHIL remained unchanged. Ordered named proxy matching retains all additions,
+removals and parameter differences, with separate descriptive target and weight
+controls. Full source/native inventories and independent source reassessment
+preserve phosphate hydrogens, formal charge and missing-atom findings. Exact cold
+replay succeeds with the original paths, SDK and process creation blocked.
+
+The isolated neutral 0DG candidate is not yet a qualified linked-state replacement.
+Both controls retain an outgoing O3′ hydrogen in one flank definition and report
+missing OP3; the new candidate retains the source phosphate hydrogens. These are
+reasons to apply and test explicit source-declared terminal/link operations, not
+reasons to add OP3 or silently normalize protonation. The remaining phosphate
+bond deviation illustrates why chemical state and target quality need separate
+gates. No model or production dictionary was adopted. See the
+[technical comparison](cif-doctor.md#fixed-coordinate-dictionary-controls-c132).
+
+**Figure caption update.** Fixed-coordinate dictionary controls complement the
+source/native audits in the overview: observed geometry is held fixed while
+targets, weights and chemical inventories are compared independently. A score
+change is not a geometry change or evidence of chemical correctness.

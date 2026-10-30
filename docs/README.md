@@ -72,6 +72,9 @@ placement and linked native qualification remain open.
 C124 adds [whole-residue FANA placement controls](cif-doctor.md#whole-residue-fana-placement-control-c124):
 the L-FANA sugar survives placement, while measured junction gaps and a missing
 native incoming link keep the candidate under review. Ordinary mutation remains unchanged.
+C132 adds [fixed-coordinate dictionary controls](cif-doctor.md#fixed-coordinate-dictionary-controls-c132),
+separating target/weight effects from geometry changes while retaining explicit
+linked-state and phosphate limitations.
 C131 adds [selection-aware environment review](cif-doctor.md#selected-environment-review-c131),
 separating strain within the moving residue, across its boundary and wholly
 within frozen neighbours. It preserves stopping and source-chemistry limits.

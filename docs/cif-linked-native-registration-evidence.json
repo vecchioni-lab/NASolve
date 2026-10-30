@@ -46494,5 +46494,644 @@
     },
     "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa",
     "remote_verified": "origin/cedar"
+  },
+  "fixed_coordinate_dictionary_controls_2026_10_30": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "base_commit": "e6fd80b54c323a6d81381945f496a557965c7c9d",
+    "capsule": {
+      "anchor": "live_tests_directory",
+      "path": "132_Cedar_flank-targets-xmsy3v_w"
+    },
+    "policy": "cif-native-fixed-coordinate-target-comparison-v1",
+    "before": "Selection reporting localized large bond deviations to frozen flanks but did not bind a different dictionary control at identical coordinates.",
+    "after": "Read-only exact-context comparison separates source/native target and weight changes from unchanged geometry, preserving chemical-state limits.",
+    "changed_code": [
+      "src/nasolve/cif_native_target_comparison.py",
+      "tests/test_cif_native_target_comparison.py"
+    ],
+    "validation_commands": {
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_native_target_comparison.py",
+        "tests/test_cif_selected_environment.py",
+        "tests/test_cif_captured_geometry.py",
+        "tests/test_cif_topology_gate.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_terminal_qualification.py",
+        "tests/test_cif_candidate_usability.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python c132_probe.py",
+      "replay": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python c132_replay.py",
+      "cold": "c132_cold_prepare.py -> relocated src + c132_cold.py; original paths, SDK and processes blocked",
+      "preparation_boundary": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python c132_preparation_boundary.py",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c132-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "docs": "check_docs.py; rsvg-convert -w 1200 + visual review",
+      "whitespace": "git diff --check"
+    },
+    "focused": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20",
+        "tests/test_cif_native_target_comparison.py",
+        "tests/test_cif_selected_environment.py",
+        "tests/test_cif_captured_geometry.py",
+        "tests/test_cif_topology_gate.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_terminal_qualification.py",
+        "tests/test_cif_candidate_usability.py"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 15.55617970804451,
+      "source_test_files": 497,
+      "changed_files": [],
+      "finished": true
+    },
+    "focused_summary": "212 passed in 15.24s",
+    "new_test_cases": 30,
+    "fail_before": "The scalar target/weight control regression fails with ModuleNotFoundError before the new reader exists, then passes.",
+    "intermediate_failures": [
+      "A synthetic positive receipt initially used LOADED rather than the established RECORDED dictionary status; fixture corrected without relaxing validation."
+    ],
+    "native_tools": {
+      "phenix": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "mode": "Complete fixed-coordinate native interpretation with linked, policy, energy and pair inventories; not a dry-run.",
+      "timeout_seconds": 180,
+      "optimization": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "coot": "NOT_RUN"
+    },
+    "result": {
+      "model_sha256": "d08d4e497fee973d4762db25f835a651a920d67def4cc50c22edea4725d36ea2",
+      "changed_sites": [
+        "A:1",
+        "A:3"
+      ],
+      "coordinates_unchanged": true,
+      "dictionary_changes": [
+        {
+          "input_index": 1,
+          "before": {
+            "sha256": "7d08c8a85bde16d2383afb4f90987dfff926488a25537f81b845ba1e4b752992",
+            "size": 40139
+          },
+          "after": {
+            "sha256": "92c745ca0af178002df6cab5bd5d2f1f1bdc77234a9db6c46677e94fee48ebbd",
+            "size": 13240
+          }
+        }
+      ],
+      "receipt_sha256": {
+        "before": "ec82f6ea23104d294fcf088f5a31f69b71fd3d8dfae0a3aa9837fb0a832bb729",
+        "after": "c0fd755f98fd66dea4205f3fd55022d0f42a27461dc480be6f76b684f4c8dd18"
+      },
+      "outside_site_proxy_counts": {
+        "angle": 30,
+        "bond_asu": 0,
+        "bond_simple": 21,
+        "chirality": 4,
+        "const_dihedral": 8,
+        "dihedral": 25,
+        "parallelity": 0,
+        "planarity": 1
+      },
+      "flank_bond_descriptive_controls": {
+        "before": 23,
+        "target_only": 5,
+        "weight_only": 18,
+        "after": 2
+      },
+      "environments": {
+        "before": {
+          "full_native_target": 1713.8031358565013,
+          "gradient": {
+            "selected_norm": 14.391324451638347,
+            "fixed_norm": 5243.9004799888835,
+            "full_norm": 5243.920227677679,
+            "norm_partition_squared": 27498699.354247116
+          },
+          "bonds": {
+            "selected_only": 0,
+            "boundary": 0,
+            "fixed_only": 23
+          }
+        },
+        "after": {
+          "full_native_target": 367.59376957346774,
+          "gradient": {
+            "selected_norm": 18.834581500680493,
+            "fixed_norm": 1353.2747441681777,
+            "full_norm": 1353.40580561181,
+            "norm_partition_squared": 1831707.2746637526
+          },
+          "bonds": {
+            "selected_only": 0,
+            "boundary": 0,
+            "fixed_only": 2
+          }
+        }
+      },
+      "outgoing_hydrogen_checks": {
+        "before": [
+          {
+            "check": "declared-outgoing-oxygen-hydrogens:A:1",
+            "status": "REVIEW",
+            "outgoing_site": "A:2",
+            "observed_hydrogens": [
+              "HO3'"
+            ],
+            "oxygen_energy_type": "OH1",
+            "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+          },
+          {
+            "check": "declared-outgoing-oxygen-hydrogens:A:2",
+            "status": "PASS",
+            "outgoing_site": "A:3",
+            "observed_hydrogens": [],
+            "oxygen_energy_type": "OC2",
+            "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+          }
+        ],
+        "after": [
+          {
+            "check": "declared-outgoing-oxygen-hydrogens:A:1",
+            "status": "REVIEW",
+            "outgoing_site": "A:2",
+            "observed_hydrogens": [
+              "HO3'"
+            ],
+            "oxygen_energy_type": "OH1",
+            "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+          },
+          {
+            "check": "declared-outgoing-oxygen-hydrogens:A:2",
+            "status": "PASS",
+            "outgoing_site": "A:3",
+            "observed_hydrogens": [],
+            "oxygen_energy_type": "OC2",
+            "scope": "Declared standard outgoing linkage; no valence, pH or alternative target inferred."
+          }
+        ]
+      },
+      "scalar_counts": {
+        "before": {
+          "bond_simple": {
+            "captured_proxies": 68,
+            "nominal_abs_ge_3": 23,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 104,
+            "nominal_abs_ge_3": 2,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 10,
+            "nominal_abs_ge_3": 0,
+            "sign_conflicts": 0
+          }
+        },
+        "after": {
+          "bond_simple": {
+            "captured_proxies": 68,
+            "nominal_abs_ge_3": 2,
+            "sign_conflicts": 0
+          },
+          "angle": {
+            "captured_proxies": 104,
+            "nominal_abs_ge_3": 4,
+            "sign_conflicts": 0
+          },
+          "chirality": {
+            "captured_proxies": 10,
+            "nominal_abs_ge_3": 0,
+            "sign_conflicts": 0
+          }
+        }
+      },
+      "source_dictionary_controls": {
+        "source": {
+          "atom_count": 37,
+          "hydrogen_ids": [
+            "H1",
+            "H1'",
+            "H2'",
+            "H2''",
+            "H21",
+            "H22",
+            "H3'",
+            "H4'",
+            "H5'",
+            "H5''",
+            "H8",
+            "HO3'",
+            "HOP2",
+            "HOP3"
+          ],
+          "total_formal_charge": 0.0,
+          "phosphate_atoms": {
+            "P": 0.0,
+            "OP1": 0.0,
+            "OP2": 0.0,
+            "OP3": 0.0,
+            "HOP2": 0.0,
+            "HOP3": 0.0
+          },
+          "bonds": [
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "OP3",
+              "atom_id_2": "P",
+              "value_order": "SING",
+              "pdbx_aromatic_flag": "N",
+              "pdbx_stereo_config": "N",
+              "pdbx_ordinal": "1"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "P",
+              "atom_id_2": "OP1",
+              "value_order": "DOUB",
+              "pdbx_aromatic_flag": "N",
+              "pdbx_stereo_config": "N",
+              "pdbx_ordinal": "3"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "P",
+              "atom_id_2": "OP2",
+              "value_order": "SING",
+              "pdbx_aromatic_flag": "N",
+              "pdbx_stereo_config": "N",
+              "pdbx_ordinal": "4"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "C4'",
+              "atom_id_2": "O4'",
+              "value_order": "SING",
+              "pdbx_aromatic_flag": "N",
+              "pdbx_stereo_config": "N",
+              "pdbx_ordinal": "11"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "C3'",
+              "atom_id_2": "C2'",
+              "value_order": "SING",
+              "pdbx_aromatic_flag": "N",
+              "pdbx_stereo_config": "N",
+              "pdbx_ordinal": "16"
+            }
+          ]
+        },
+        "before": {
+          "atom_count": 35,
+          "hydrogen_ids": [
+            "H1",
+            "H1'",
+            "H2'",
+            "H2''",
+            "H21",
+            "H22",
+            "H3'",
+            "H4'",
+            "H5'",
+            "H5''",
+            "H8",
+            "HO3'"
+          ],
+          "total_formal_charge": -2.0,
+          "phosphate_atoms": {
+            "P": 0.0,
+            "OP1": 0.0,
+            "OP2": -1.0,
+            "OP3": -1.0
+          },
+          "bonds": [
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "OP3",
+              "atom_id_2": "P",
+              "type": "deloc",
+              "value_dist": "1.511",
+              "value_dist_esd": "0.020"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "P",
+              "atom_id_2": "OP1",
+              "type": "deloc",
+              "value_dist": "1.510",
+              "value_dist_esd": "0.020"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "P",
+              "atom_id_2": "OP2",
+              "type": "deloc",
+              "value_dist": "1.510",
+              "value_dist_esd": "0.020"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "C4'",
+              "atom_id_2": "O4'",
+              "type": "single",
+              "value_dist": "1.270",
+              "value_dist_esd": "0.020"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "C3'",
+              "atom_id_2": "C2'",
+              "type": "single",
+              "value_dist": "1.220",
+              "value_dist_esd": "0.020"
+            }
+          ]
+        },
+        "after": {
+          "atom_count": 37,
+          "hydrogen_ids": [
+            "H1",
+            "H1'",
+            "H2'",
+            "H2''",
+            "H21",
+            "H22",
+            "H3'",
+            "H4'",
+            "H5'",
+            "H5''",
+            "H8",
+            "HO3'",
+            "HOP2",
+            "HOP3"
+          ],
+          "total_formal_charge": 0.0,
+          "phosphate_atoms": {
+            "P": 0.0,
+            "OP1": 0.0,
+            "OP2": 0.0,
+            "OP3": 0.0,
+            "HOP2": 0.0,
+            "HOP3": 0.0
+          },
+          "bonds": [
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "OP3",
+              "atom_id_2": "P",
+              "type": "single",
+              "value_dist": "1.571",
+              "value_dist_esd": "0.024"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "P",
+              "atom_id_2": "OP1",
+              "type": "double",
+              "value_dist": "1.486",
+              "value_dist_esd": "0.012"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "P",
+              "atom_id_2": "OP2",
+              "type": "single",
+              "value_dist": "1.571",
+              "value_dist_esd": "0.023"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "C4'",
+              "atom_id_2": "O4'",
+              "type": "single",
+              "value_dist": "1.401",
+              "value_dist_esd": "0.030"
+            },
+            {
+              "comp_id": "0DG",
+              "atom_id_1": "C3'",
+              "atom_id_2": "C2'",
+              "type": "single",
+              "value_dist": "1.534",
+              "value_dist_esd": "0.036"
+            }
+          ]
+        }
+      }
+    },
+    "cold_replay": {
+      "status": "PASS",
+      "prior_fana_checks_pass": true,
+      "report_exact_match": true,
+      "owned_original_absent": true,
+      "original_sdk_and_process_access_blocked": true,
+      "blocked_attempts": [],
+      "files_unchanged": 327,
+      "native_execution": "NOT_RUN"
+    },
+    "compatibility": "New optional Python reader and schema-1 report. No native worker, numerical kernel, model coordinate, CLI, run/checkpoint migration or production-default change.",
+    "scientific_boundaries": [
+      "Source graph, H/D, formal charge and linked-state permission require independent qualification.",
+      "Missing heavy atoms, including OP3, are observations, never instructions to add atoms.",
+      "Changed targets/weights can change deviations without changing geometry.",
+      "All captured proxy parameter changes are retained; deferred categories have no scalar/residual comparison.",
+      "Target-only and weight-only nominal controls are descriptive, not native energies or chemical proposals.",
+      "Nonbonded mechanics are not compared by this report.",
+      "Ordered endpoint matching does not infer equivalent permutations or chemical aliases.",
+      "Old and new full native targets are different objectives, never optimizer improvement.",
+      "Both links match but linked phosphate/O3-prime state remains unqualified.",
+      "Original C130 NOT_CONVERGED_LIMIT remains unchanged."
+    ],
+    "generated_artifacts": "Raw CCD/CIF/PDB, workbook, native captures/logs and runners remain local and excluded from Git. Only maintained code/tests/methods and compact technical evidence/hashes are committed.",
+    "compact_evidence_references": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/inputs/manifest.json",
+        "sha256": "6b27ef45f8ed52bf3542eb5bf2f76b5081d52db8b8c5d1543a6fe9a248c84ba8",
+        "size": 3789
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/reports/target-comparison-final.json",
+        "sha256": "277a2caed4d14d4d363e327c933911eed6b4f1c84d96896b85bbbfe79b37ed78",
+        "size": 1616139
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/reports/source-assessment.json",
+        "sha256": "205bcddfce3a5a0a4145a7b7a354619857332060c0012282499dbbd571ead5ec",
+        "size": 494453
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/reports/native-location.json",
+        "sha256": "e19993132119f3fef2fe2f5e02d668ff85aa1fd8a1042fb7e476448822f71727",
+        "size": 77
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/fail-before.log",
+        "sha256": "540c08355bd5ff47c28af4cd833f7abedbb6e922279584340ed7e97208556ed2",
+        "size": 2230
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/focused/pytest.log",
+        "sha256": "dde89ac2bb0fb43e5bf6ad567ab093455ed4470ab8b81d51f2f24b52e0cf6796",
+        "size": 2781
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/focused/source-hashes.json",
+        "sha256": "76e9c570f39d9b9cc366742dce02449a1079e8f7ad1aef974e58580599d7f20e",
+        "size": 53700
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/cold-result.json",
+        "sha256": "8c5db8dd8f1e2893e478bbb2f2e89edeeefd35f3d394685e7eb9f3c096472ea7",
+        "size": 256
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/cold-manifest.json",
+        "sha256": "a019b02169e2120ef0b7b55ae41123abc11316f4d956ae29f41bc2406f4b45fa",
+        "size": 62567
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/reports/preparation-boundary.json",
+        "sha256": "583dd577423b723de73612d0fcd4ebf4649c5781bf9629975f60712278d47402",
+        "size": 439
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/full/pytest.log",
+        "sha256": "be96408e5d1302862edbc38217db8a00fe941021ba0c8ddaface15b3c56dfe9c",
+        "size": 10187
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/full/source-hashes.json",
+        "sha256": "76e9c570f39d9b9cc366742dce02449a1079e8f7ad1aef974e58580599d7f20e",
+        "size": 53700
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/validation/auxiliary.json",
+        "sha256": "7b5baad385a24f3ca76f01efd04ae2b55546060daeacce5f123a940507cd6fbc",
+        "size": 223
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/runners/c132_probe.py",
+        "sha256": "3e55676fdd8bd81ba9e3b52c36e5eb329efd3df8e5076998fbc94ed276144193",
+        "size": 4809
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/runners/c132_replay.py",
+        "sha256": "bdd29ec0b76b447dd73561fdda2def8fd2c2887977eaf964cb1b10e726563321",
+        "size": 4826
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/runners/c132_preparation_boundary.py",
+        "sha256": "254d3733deffb98f12f057071300b37f9e9ab9744afb6e8189ab9d998675d351",
+        "size": 1438
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/runners/c132_cold.py",
+        "sha256": "ae0d705be8e61fdafdc5a74a20ecf2b7cf5befb083bdd88957b6f690f792ba27",
+        "size": 2087
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/runners/c132_cold_prepare.py",
+        "sha256": "e1388b06999eea9553c609bf479ca1118046ed41b44fe90d499aa1d719b5185c",
+        "size": 1313
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "132_Cedar_flank-targets-xmsy3v_w/runners/c132_validate.py",
+        "sha256": "5c6371d1341e99b030ef272c29cd9684a2dd5fb71c251710004ba4226814194f",
+        "size": 1613
+      }
+    ],
+    "next": "Explicitly bridge representation-qualified source candidates into linked/terminal preparation, qualify exact flank projections, then re-audit derivatives before any fresh geometry trial.",
+    "preparation_boundary": {
+      "status": "EXPECTED_UNSUPPORTED_BOUNDARY",
+      "qualification_policy": "cif-isolated-candidate-native-usability-v3",
+      "qualified_native_usable": true,
+      "error": "Require bound independently usable source-preserving candidate evidence",
+      "output_created": false,
+      "model_editing": "NOT_RUN",
+      "native_execution": "NOT_RUN",
+      "prior_qualification_receipt_sha256": "8e1cdf730cdf07b97eb046a1036111626629993bdc4e295b4e1f36919ee0f91c"
+    },
+    "full": {
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--durations=20"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "seconds": 998.3993717920384,
+      "source_test_files": 497,
+      "changed_files": [],
+      "finished": true
+    },
+    "full_summary": "6744 passed, 276 subtests passed in 997.42s (0:16:37)",
+    "source_test_files_unchanged": 497,
+    "prior_source_test_files_unchanged": 495,
+    "auxiliary_checks": {
+      "compileall": "PASS",
+      "relative_document_links": 352,
+      "json_and_svg_parse": "PASS",
+      "figure_render_and_visual_review": "PASS",
+      "diff_whitespace": "PASS",
+      "existing_worker_and_numerical_kernels": "UNCHANGED"
+    }
   }
 }

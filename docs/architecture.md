@@ -3726,3 +3726,19 @@ bindings, check results and stopping classification. It rechecks candidate and
 pair-receipt identity before reading the native inventory. This adds no coordinate
 or worker change, process execution, checkpoint migration or production default.
 See the [methods and measured limits](cif-doctor.md#selected-environment-review-c131).
+
+
+## Fixed-coordinate dictionary comparisons (C132)
+
+The optional `cif-native-fixed-coordinate-target-comparison-v1` reader binds two
+complete maintained native captures to identical model bytes and declared links.
+Only ordered dictionary inputs and definitions at explicitly named sites may
+change. Native context, PHIL, atoms and all outside-site proxy parameters remain
+exact. Every captured named proxy change is retained; scalar target/weight effects
+are separated from unchanged observations and deferred calculations stay explicit.
+
+The reader never equates a lower objective under changed definitions with geometry
+improvement, convergence or chemical permission. Source graph, H/D, formal charge
+and linked/terminal state require independent qualification. It adds no worker,
+optimizer, CLI, checkpoint migration or production-default change. See the
+[methods and controlled evidence](cif-doctor.md#fixed-coordinate-dictionary-controls-c132).

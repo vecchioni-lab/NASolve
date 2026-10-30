@@ -27201,6 +27201,28 @@
       ],
       "next": "Investigate source-authorized flank target/protonation repair and a bounded convergence/serialization trial without using score improvement as chemical authority.",
       "implementation_commit": "dd05bf53c561be1a82d9ec3c5ea57fb6d2b034fa"
+    },
+    "fixed_coordinate_dictionary_controls": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "fixed_coordinate_dictionary_controls_2026_10_30",
+      "policy": "cif-native-fixed-coordinate-target-comparison-v1",
+      "behavior": "Read-only exact-context comparison separates source/native target and weight changes from unchanged geometry, preserving chemical-state limits.",
+      "validation": "6744 passed, 276 subtests passed in 997.42s (0:16:37); 212 focused; complete native control; exact real and 327-file cold replay.",
+      "compatibility": "New optional Python reader and schema-1 report. No native worker, numerical kernel, model coordinate, CLI, run/checkpoint migration or production-default change.",
+      "limitations": [
+        "Source graph, H/D, formal charge and linked-state permission require independent qualification.",
+        "Missing heavy atoms, including OP3, are observations, never instructions to add atoms.",
+        "Changed targets/weights can change deviations without changing geometry.",
+        "All captured proxy parameter changes are retained; deferred categories have no scalar/residual comparison.",
+        "Target-only and weight-only nominal controls are descriptive, not native energies or chemical proposals.",
+        "Nonbonded mechanics are not compared by this report.",
+        "Ordered endpoint matching does not infer equivalent permutations or chemical aliases.",
+        "Old and new full native targets are different objectives, never optimizer improvement.",
+        "Both links match but linked phosphate/O3-prime state remains unqualified.",
+        "Original C130 NOT_CONVERGED_LIMIT remains unchanged."
+      ],
+      "next": "Explicitly bridge representation-qualified source candidates into linked/terminal preparation, qualify exact flank projections, then re-audit derivatives before any fresh geometry trial."
     }
   },
   "audience": [
