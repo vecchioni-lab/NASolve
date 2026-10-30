@@ -48572,5 +48572,681 @@
         "src/nasolve/ligand_profiles.py": "288953370e6294b3fbaff8304088ed88f37e16ab3f5ce1baef1c6d89171521f1"
       }
     }
+  },
+  "explicit_native_site_context_2026_10_30": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "fec8a4c692b32126ec5bf1bca6f866519c870f88",
+    "before": "Inherited audit rejected every coordinate OP3 and required nonempty custom restraints, even for legitimate declared terminal phosphate or intentionally absent restraints.",
+    "after": "Frozen opt-in context qualifies declared terminal phosphate and explicit required/absent custom restraints with exact one-to-one native realization; existing source/identity/geometry gates stay mandatory.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_native_context.py",
+      "src/nasolve/cif_dictionary_sites.py",
+      "src/nasolve/cif_linked_qualification.py",
+      "src/nasolve/cif_terminal_qualification.py",
+      "tests/test_cif_native_context.py"
+    ],
+    "schemas": {
+      "new_site_receipt": "schema 1 / cif-stored-dictionary-sites-v2 when native_context supplied; same dictionary_site_directory anchor",
+      "native_context": "cif-explicit-site-native-context-v1, custom_restraints required or absent",
+      "native_definition_report": "cif-native-terminal-bundle-checks-v2 when context supplied",
+      "unchanged": "Legacy v1/default reports, dictionary store, CLI, run/checkpoint and maintained native capture schemas"
+    },
+    "compatibility": "Optional Python keywords; no migration or in-place rewrite. New context requires current reader. Exact C136 v1 report replay is unchanged; unknown/missing/downgraded context refused.",
+    "regressions": {
+      "initial": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_native_context.py",
+        "summary": "37 failed, 1 passed in 1.84s before implementation: missing native_context keyword.",
+        "record_source": "Observed tool output before implementation; raw initial output was not separately archived.",
+        "initial_cases": 38,
+        "final_cases": 49,
+        "scope": "Additional boundary cases were added during implementation."
+      },
+      "new_cases": 49,
+      "focused": {
+        "wrapper_pid": 3172,
+        "pytest_wrapper_pid": 3173,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/137_Cedar_native-context-ik2r7rp3/validation/focused/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "focused",
+        "exit_code": 0,
+        "seconds": 69.94784812501166,
+        "files": 507,
+        "changed_files": [],
+        "summary": "1063 passed, 36 subtests passed in 69.57s (0:01:09)",
+        "finished": true
+      },
+      "full": {
+        "wrapper_pid": 3172,
+        "pytest_wrapper_pid": 3538,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/137_Cedar_native-context-ik2r7rp3/validation/full/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "full",
+        "exit_code": 0,
+        "seconds": 1055.637536040973,
+        "files": 507,
+        "changed_files": [],
+        "summary": "6972 passed, 276 subtests passed in 1054.37s (0:17:34)",
+        "finished": true
+      },
+      "source_test_runner_hashes_unchanged": 507
+    },
+    "native": {
+      "cases": [
+        {
+          "case": "linked_required",
+          "continuation": {
+            "allowed": true,
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY",
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "status": "CONTINUE_WITH_NOTES"
+          },
+          "definition_checks": {
+            "PASS": 42,
+            "UNSUPPORTED": 2
+          },
+          "failed_checks": [],
+          "native_checks": {
+            "PASS": 45
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "terminal_absent",
+          "continuation": {
+            "allowed": true,
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY",
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "status": "CONTINUE_WITH_NOTES"
+          },
+          "definition_checks": {
+            "PASS": 29,
+            "UNSUPPORTED": 1
+          },
+          "failed_checks": [],
+          "native_checks": {
+            "PASS": 36
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "terminal_required_003",
+          "continuation": {
+            "allowed": true,
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY",
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "status": "CONTINUE_WITH_NOTES"
+          },
+          "definition_checks": {
+            "PASS": 40,
+            "UNSUPPORTED": 2
+          },
+          "failed_checks": [],
+          "native_checks": {
+            "PASS": 46
+          },
+          "status": "REVIEW"
+        }
+      ],
+      "coot": "NOT_RUN",
+      "execution": "COMPLETE_NATIVE_INTERPRETATIONS; NOT_DRY_RUN",
+      "optimization": "NOT_RUN",
+      "phenix_release": "2.2.1-6174",
+      "readyset": "NOT_RUN_OR_REPLACED",
+      "refinement": "NOT_RUN",
+      "reported_version": "2.2.1",
+      "executions": [
+        {
+          "case": "linked_required",
+          "phase": "after-execution",
+          "receipt": "native/linked_required/after/cif-native-wxzq3rdc/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 0.773296,
+            "finished_at": "2026-10-30T20:53:50.052118+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:53:49.278846+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "linked_required",
+          "phase": "before-execution",
+          "receipt": "native/linked_required/before/cif-native-t6b17s5j/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 1.728032,
+            "finished_at": "2026-10-30T20:53:49.244562+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:53:47.516557+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "terminal_absent",
+          "phase": "after-execution",
+          "receipt": "native/terminal_absent/after/cif-native-gdtx5eus/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 0.715662,
+            "finished_at": "2026-10-30T20:53:52.444674+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:53:51.729038+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "terminal_absent",
+          "phase": "before-execution",
+          "receipt": "native/terminal_absent/before/cif-native-wcqeejyr/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 0.829045,
+            "finished_at": "2026-10-30T20:53:51.709842+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:53:50.880820+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "terminal_required",
+          "phase": "before-execution",
+          "receipt": "native/terminal_required/before/cif-native-5igo3fmp/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 0.756459,
+            "finished_at": "2026-10-30T20:53:53.961477+00:00",
+            "returncode": 2,
+            "started_at": "2026-10-30T20:53:53.205039+00:00",
+            "status": "FAILED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "terminal_required_002",
+          "phase": "after-execution",
+          "receipt": "native/terminal_required_002/after/cif-native-9vue_kov/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 0.790119,
+            "finished_at": "2026-10-30T20:55:42.378393+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:55:41.588296+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "terminal_required_002",
+          "phase": "before-execution",
+          "receipt": "native/terminal_required_002/before/cif-native-90_yz5yu/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 1.016691,
+            "finished_at": "2026-10-30T20:55:41.541866+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:55:40.525208+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "terminal_required_003",
+          "phase": "after-execution",
+          "receipt": "native/terminal_required_003/after/cif-native-h82ldt6f/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 0.883372,
+            "finished_at": "2026-10-30T20:58:37.735966+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:58:36.852615+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        },
+        {
+          "case": "terminal_required_003",
+          "phase": "before-execution",
+          "receipt": "native/terminal_required_003/before/cif-native-59nt1hy4/native_receipt.json",
+          "execution": {
+            "elapsed_seconds": 1.087236,
+            "finished_at": "2026-10-30T20:58:36.819316+00:00",
+            "returncode": 0,
+            "started_at": "2026-10-30T20:58:35.732108+00:00",
+            "status": "COMPLETED",
+            "timeout_seconds": 120
+          }
+        }
+      ],
+      "execution_count": 9,
+      "successful_control_executions": 6,
+      "identity_blocked_complete_executions": 2,
+      "excessive_distance_failed_executions": 1,
+      "preserved_attempts": [
+        {
+          "case": "terminal_required",
+          "outcome": "PHENIX_FAILED",
+          "reason": "Synthetic 20 A requested soft bond had 18.830 A model distance, exceeding unchanged 10 A native limit."
+        },
+        {
+          "case": "terminal_required_002",
+          "outcome": "REVIEW_BLOCKED",
+          "reason": "Native identical-chain copying left captured monomer literal identities incomplete. Custom realization passed; identity/source binding correctly blocks continuation."
+        }
+      ],
+      "scope": "Existing linked C133 control plus synthetic source-preserved terminal controls; explicit soft bond/planarity/parallelity are capture fixtures, not a new NARestraints recipe or geometry acceptance."
+    },
+    "counterfactual_native_controls": {
+      "cases": [
+        {
+          "case": "lost_request",
+          "failed_checks": [
+            "declared-custom-restraint-realization"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "duplicate_request",
+          "failed_checks": [
+            "declared-custom-restraint-realization"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "tiny_target",
+          "failed_checks": [
+            "declared-custom-restraint-realization",
+            "preserved-cross-site-proxies:bond_simple"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "wrong_origin",
+          "failed_checks": [
+            "declared-custom-restraint-realization",
+            "preserved-cross-site-proxies:bond_simple"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "duplicate_plane",
+          "failed_checks": [
+            "declared-custom-restraint-realization",
+            "preserved-cross-site-proxies:planarity"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "changed_parallelity",
+          "failed_checks": [
+            "declared-custom-restraint-realization",
+            "preserved-pair-and-stacking-parallelities",
+            "preserved-cross-site-proxies:parallelity"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "missing_terminal_angle",
+          "failed_checks": [
+            "exact-heavy-angle:A:1",
+            "terminal-phosphate-tetrahedral-coverage:A:1"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "changed_op3_element",
+          "error": "Native atom identity/coordinates differ from bound model",
+          "outcome": "REFUSED"
+        },
+        {
+          "case": "absent_with_edit",
+          "failed_checks": [
+            "declared-custom-restraint-realization",
+            "exact-heavy-bond_simple:A:1"
+          ],
+          "outcome": "REVIEW"
+        },
+        {
+          "case": "required_as_absent",
+          "failed_checks": [
+            "declared-custom-restraint-realization"
+          ],
+          "outcome": "REVIEW"
+        }
+      ],
+      "legacy_C136_report": "EXACT_UNCHANGED",
+      "mutations": "OWNED_COPIES_ONLY",
+      "native_execution": "NOT_RUN",
+      "status": "PASS"
+    },
+    "copied_chain_boundary_review": {
+      "status": "READ_ONLY_BOUNDARY_REVIEW",
+      "native_execution": "NOT_RUN",
+      "native_release": "2.2.1-6174",
+      "native_source": {
+        "anchor": "phenix_installation_directory",
+        "path": "lib/python3.11/site-packages/mmtbx/monomer_library/pdb_interpretation.py",
+        "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+      },
+      "worker_source": {
+        "path": "src/nasolve/cif_native_validation.py",
+        "sha256": "10c5c5a9ba43b2b9d149c8929b3a29a545990aeb241d805ff887b57928a7d7f6"
+      },
+      "native_source_locations": {
+        "use_ncs_for_interpretation = False": [
+          3816
+        ],
+        "self._full_pdb_hierarchy = self.pdb_hierarchy": [
+          3837
+        ],
+        "self.pdb_hierarchy = self._full_pdb_hierarchy": [
+          4156
+        ],
+        "self.geometry_proxy_registries.expand_with_ncs": [
+          4170
+        ]
+      },
+      "observed_model_sites": [
+        [
+          "A",
+          "1"
+        ],
+        [
+          "B",
+          "1"
+        ]
+      ],
+      "observed_monomer_mapping_rows": 1,
+      "observed_mapping_identities": [
+        {
+          "altloc": "",
+          "chain_id": "",
+          "icode": "",
+          "model_id": "",
+          "resname": "",
+          "resseq": "",
+          "status": "RECORDED"
+        }
+      ],
+      "source_observation": "The NCS shortcut interprets a selected master hierarchy, restores the full hierarchy and expands restraint/type registries. The all_monomer_mappings inventory is not expanded in that restoration block.",
+      "inference": "This supports the observed mismatch between complete full-model atom identities and incomplete monomer mappings after identical-chain copying. It does not prove a safe mapping repair.",
+      "next_options": [
+        "A separately qualified explicit no-copy diagnostic policy may retain complete mappings; prove native restraint equivalence and exact policy binding before adoption.",
+        "A copy-aware capture would need authoritative native master/copy index correspondence plus effective-definition identity for every site; do not fabricate missing rows from residue names."
+      ],
+      "constraints": "Keep existing capture policy/worker bytes unchanged by default, preserve blocked attempt, test copied and noncopied models, and rerun complete source/identity/restraint gates."
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "cases": [
+        {
+          "case": "linked_required",
+          "native_checks": {
+            "PASS": 45
+          },
+          "definition_checks": {
+            "PASS": 42,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "terminal_absent",
+          "native_checks": {
+            "PASS": 36
+          },
+          "definition_checks": {
+            "PASS": 29,
+            "UNSUPPORTED": 1
+          },
+          "status": "REVIEW"
+        },
+        {
+          "case": "terminal_required_003",
+          "native_checks": {
+            "PASS": 46
+          },
+          "definition_checks": {
+            "PASS": 40,
+            "UNSUPPORTED": 2
+          },
+          "status": "REVIEW"
+        }
+      ],
+      "unchanged_files": 142,
+      "forbidden_reads_attempted": 0,
+      "native_execution": "FORBIDDEN",
+      "original_owned_checkout_removed": true,
+      "source": "RELOCATED_CHECKOUT"
+    },
+    "validation_commands": {
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/137_Cedar_native-context-ik2r7rp3/validation/focused/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/137_Cedar_native-context-ik2r7rp3/validation/full/pytest.xml"
+      ],
+      "test_environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "native": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c137_native.py; c137_native_soft.py; c137_native_soft_sites.py (preserved sequential fixture attempts)",
+      "counterfactual": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c137_controls.py; subprocesses forbidden",
+      "copied_chain_boundary": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c137_capture_boundary.py; read-only saved-capture and installed-source review, no native execution",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c137_replay.py; relocated checkout worker, historical paths/SDK and subprocesses forbidden",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c137-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests scripts/run_tests.py docs/figures/build_cif_doctor_overview.py",
+      "documents": "check_docs.py; byte-exact SVG regeneration; rsvg-convert visual inspection; git diff --check"
+    },
+    "artifacts": "Only code/tests, maintained technical contracts, editable diagram and summary/hash evidence committed. Models/CIFs, native captures/logs, frozen bundles, counterfactual copies and local runners excluded from Git.",
+    "limitations": [
+      "Explicit Python opt-in only; ordinary PostMR automatic selection/adoption and global multiple-component orchestration remain separate gates. User-facing CIF inspection is not the product goal.",
+      "Native formal-charge readback remains unavailable. Overall REVIEW is preserved; only the existing separate diagnostic continuation with notes is permitted when every other check passes.",
+      "Identical-chain copying can leave native monomer capture without complete literal identities; that preserved attempt is blocked, not qualified by the successful same-chain fixture.",
+      "NARestraints and frozen recipe/policy own intended pairing and stacking. Faithful native consumption does not establish correct pair choice, target chemistry, geometric convergence or refinement success.",
+      "Maintained capture does not exhaustively record nondefault bond slack/limit/top-out mechanics. Exact captured targets/weights are not full potential or derivative qualification.",
+      "Conventional phosphodiester atom names and explicit DNA/L-DNA source metadata remain required. Generic PNA/ATL ports, symmetry stitching and live L-FDNA construction are not established by these controls.",
+      "Source phosphate H/charge and all source-relative stereocentres remain authoritative; no experimental protonation inference, absolute CIP claim, OP3 addition or source renormalization.",
+      "No ReadySet replacement or execution, Coot execution, geometry optimization, diffraction refinement, workbook modification, new branch or merge."
+    ],
+    "next": "Qualify an opt-in native-capture compatibility fix for identical-chain copying using actual native atom/residue identities, preserving legacy captures; do not guess missing labels or relax identity checks. Then compose multiple stored components under one exact ordered model/CIF/PHIL contract and route qualified cases into existing preparation/ReadySet integration. Keep source-state, generic-port, PDU numerics, scientific acceptance and automatic adoption separate.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/initial-regression.json",
+        "sha256": "22035a30c068dd04dcf7a18b5999a63a1482e46831c1e37c9bc8a7ca422fb3c1",
+        "size": 486
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/focused/result.json",
+        "sha256": "09821465d3f529dd581da0828ac620869086550874891541db16ba728e6539ed",
+        "size": 699
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/focused/pytest.log",
+        "sha256": "58aceca49158aaa64e585667e95b2b86655d3cb4ac2d7d9648407749ac1878c5",
+        "size": 5651
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/focused/pytest.xml",
+        "sha256": "9517125cd5d7dc54aa46fd6410ecfffe75157e84dbcc279b9187023dceac20f1",
+        "size": 158627
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/focused/source-hashes.json",
+        "sha256": "dd98cdfbd87bcc001045f05321132a7c2c48577688cf3a50d4bf9aadc176d265",
+        "size": 54776
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/full/result.json",
+        "sha256": "9526c59112977b98457a2456ec4c59898d63a6a8ef3a0d9d186d384305ec7001",
+        "size": 675
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/full/pytest.log",
+        "sha256": "d3eda4b864c73fab7e4e0b7e97e91304059b00c0a371befa25fefb51e2906dd3",
+        "size": 10674
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/full/pytest.xml",
+        "sha256": "bcc075a282afb41a08f507880867a0eb1302e482d3c97134ca339cf305628777",
+        "size": 1063591
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/full/source-hashes.json",
+        "sha256": "dd98cdfbd87bcc001045f05321132a7c2c48577688cf3a50d4bf9aadc176d265",
+        "size": 54776
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/validation/auxiliary.json",
+        "sha256": "d8942092edea4f8b4cee910cf4a5d1b3e1ef76b76c0279acd5bc132461ef4517",
+        "size": 549
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/result.json",
+        "sha256": "258dfb73711268f4b9930ce5207d11f9f981b2e42edcc7973c58894e103f02bf",
+        "size": 1272
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/soft-result.json",
+        "sha256": "7df5b40ef02c27f0c63399f6a994e982c395ac714ce00eccddc1511882808e32",
+        "size": 6874
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/soft-site-result.json",
+        "sha256": "2e0173db0b83494c01f80eaacc045f03d0f6cf8614c107107d8e6fa27ecada00",
+        "size": 769
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native-controls/result.json",
+        "sha256": "7db822f955fce89506d0b9e0f335666b83f975fee4b0cfc9063d2ffd23c377c1",
+        "size": 2034
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/replay/result.json",
+        "sha256": "fc3cf48524eec522ff1057311916a067b2512afa1b9158829a20f3fb6a8bfc49",
+        "size": 839
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/replay/replay.log",
+        "sha256": "5e8e558ae16fe3a9d7c632552d81d7459ec88f1cbf5da97651a4d54198335545",
+        "size": 597
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/capture-boundary/result.json",
+        "sha256": "94ba0d179e759038a51261e7471154bd6ad5eb63e64adf164c25f364c04c0c56",
+        "size": 2187
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/linked_required/after-execution.json",
+        "sha256": "18434a186f001ad8708caa44b9d63103885e5b932492903770373e5ac8eceddc",
+        "size": 382
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/linked_required/before-execution.json",
+        "sha256": "435c54d4d536efb240ada19d965b370c1968d8445b5e2bbdcc81d1323797424e",
+        "size": 383
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/terminal_absent/after-execution.json",
+        "sha256": "94a240d72fb568744fc2fd41244b55219c414dd35edae0ec42ab147d0cc3fb8a",
+        "size": 382
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/terminal_absent/before-execution.json",
+        "sha256": "8d6514c4bae7735b3cac0269ad0d5985236e9c5eac279331aa7b68e432e1ab6b",
+        "size": 383
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/terminal_required/before-execution.json",
+        "sha256": "de0da860d716e784233f09e5eed684297b9b41408083e893b009019e3624d219",
+        "size": 382
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/terminal_required_002/after-execution.json",
+        "sha256": "93b183a6d5299075819530456f264e31b5e65f60e6104771dbcfbb086f1901e7",
+        "size": 388
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/terminal_required_002/before-execution.json",
+        "sha256": "fe935a146400406aebd74e3776fe9d684255ab76235b1a2bfb29cc3112dcfb56",
+        "size": 389
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/terminal_required_003/after-execution.json",
+        "sha256": "81cfa7f22e06217077e41f871a415e22ab561bf761ff9168253e9d861b96fc19",
+        "size": 388
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "137_Cedar_native-context-ik2r7rp3/native/terminal_required_003/before-execution.json",
+        "sha256": "50c726abbaea2418388514db4364f444deecd69ac494f0a571ff78b0d8149574",
+        "size": 388
+      }
+    ]
   }
 }

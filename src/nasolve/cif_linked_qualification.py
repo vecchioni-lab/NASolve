@@ -110,16 +110,24 @@ def site_definition_checks(linked: dict, preparations: list[dict]) -> list[dict]
 
 
 def qualify_linked_bundle(baseline: dict, linked: dict, preparations: list[dict],
-                         expected_links: list[tuple[str,str]], free_five_prime_sites: list[str]) -> dict:
+                         expected_links: list[tuple[str,str]], free_five_prime_sites: list[str], *, native_context: dict | None=None) -> dict:
     """Mechanics qualification only; numerical geometry/protonation stay reviewable."""
+    if native_context is not None:
+        from .cif_native_context import validate_native_context
+        native_context=validate_native_context(native_context)
     checks=[]
     def check(name,passes,**evidence): checks.append({'check':name,'status':'PASS' if passes else 'REVIEW',**evidence})
     if baseline.get('inventory_detail')!='linked' or linked.get('inventory_detail')!='linked':
-        return {'schema_version':1,'status':'REVIEW','checks':[{'check':'detailed-native-inventory','status':'UNSUPPORTED'}]}
+        return {'schema_version':1,'status':'REVIEW','checks':[{'check':'detailed-native-inventory','status':'UNSUPPORTED'}],
+            **({'native_context':native_context} if native_context is not None else {})}
     check('native-interpreter',linked.get('status')=='REVIEW' and linked.get('fatal_problems') is None
           and not linked.get('unused_definitions') and not linked.get('unsupported_fields'))
     check('unchanged-native-model',baseline.get('atoms')==linked.get('atoms'))
-    check('zero-unrequested-coordinate-OP3',not any(a['atom_id'] in {'OP3','O3P'} for a in linked['atoms']))
+    if native_context is None:
+        check('zero-unrequested-coordinate-OP3',not any(a['atom_id'] in {'OP3','O3P'} for a in linked['atoms']))
+    else:
+        from .cif_native_context import declared_phosphate_check
+        checks.append(declared_phosphate_check(linked,preparations,expected_links))
     before_links,after_links=native_backbone_links(baseline),native_backbone_links(linked)
     check('exact-backbone-links',set(after_links)==set(expected_links) and after_links==before_links,
           expected=len(expected_links),observed=len(after_links))
@@ -132,21 +140,25 @@ def qualify_linked_bundle(baseline: dict, linked: dict, preparations: list[dict]
     checks.extend(site_definition_checks(linked,preparations))
     affected={site['site'] for preparation in preparations for site in preparation['sites']}
     try:
-        expected=linked['geometry']['custom_proxy_requests']
-        previous=baseline['geometry']['custom_proxy_requests']
-        counts=Counter(row['kind'] for row in expected)
-        failures=[]
-        for request in expected:
-            kind=request['kind'];proxy_kind='bond_simple' if kind=='bond' else kind
-            signature=proxy_signature(kind,request)
-            matches=sum(proxy_signature(kind,row)==signature for row in linked['geometry']['proxy_details'][proxy_kind])
-            if matches!=1: failures.append({'kind':kind,'atoms':request['atoms'],'matches':matches})
-        # Exact requested atom selections, targets and weights must remain the
-        # same between the old manager and the source-preserving derivative.
-        requests_equal=Counter(proxy_signature(row['kind'],row) for row in expected)==Counter(
-            proxy_signature(row['kind'],row) for row in previous)
-        check('exact-custom-restraint-coverage',bool(expected) and requests_equal and not failures,
-              requested=dict(counts),failures=failures)
+        if native_context is not None:
+            from .cif_native_context import custom_restraint_check
+            checks.append(custom_restraint_check(baseline,linked,native_context))
+        else:
+            expected=linked['geometry']['custom_proxy_requests']
+            previous=baseline['geometry']['custom_proxy_requests']
+            counts=Counter(row['kind'] for row in expected)
+            failures=[]
+            for request in expected:
+                kind=request['kind'];proxy_kind='bond_simple' if kind=='bond' else kind
+                signature=proxy_signature(kind,request)
+                matches=sum(proxy_signature(kind,row)==signature for row in linked['geometry']['proxy_details'][proxy_kind])
+                if matches!=1: failures.append({'kind':kind,'atoms':request['atoms'],'matches':matches})
+            # Exact requested atom selections, targets and weights must remain the
+            # same between the old manager and the source-preserving derivative.
+            requests_equal=Counter(proxy_signature(row['kind'],row) for row in expected)==Counter(
+                proxy_signature(row['kind'],row) for row in previous)
+            check('exact-custom-restraint-coverage',bool(expected) and requests_equal and not failures,
+                  requested=dict(counts),failures=failures)
         before=Counter(proxy_signature('parallelity',row) for row in baseline['geometry']['proxy_details']['parallelity'])
         after=Counter(proxy_signature('parallelity',row) for row in linked['geometry']['proxy_details']['parallelity'])
         check('preserved-pair-and-stacking-parallelities',before==after,
@@ -161,4 +173,5 @@ def qualify_linked_bundle(baseline: dict, linked: dict, preparations: list[dict]
             'status':'LINKED_MECHANICS_PASS' if all(row['status']=='PASS' for row in checks) else 'REVIEW',
             'checks':checks,'automatic_adoption':False,'scientific_approval':'NOT_RUN',
             'numerical_geometry':'REVIEW_REQUIRED','experimental_protonation':'UNASSESSED',
-            'achieved_model_geometry':'NOT_RUN','generated_stereochemical_metadata':'REVIEW_REQUIRED'}
+            'achieved_model_geometry':'NOT_RUN','generated_stereochemical_metadata':'REVIEW_REQUIRED',
+            **({'native_context':native_context} if native_context is not None else {})}

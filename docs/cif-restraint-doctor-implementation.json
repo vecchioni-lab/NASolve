@@ -27301,6 +27301,31 @@
       "implementation_commit": "646d3834abfa53e8e1ec8140a7ec634f7e353724",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "explicit_native_site_context": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "Frozen opt-in context qualifies declared terminal phosphate and explicit required/absent custom restraints with exact one-to-one native realization; existing source/identity/geometry gates stay mandatory.",
+      "schemas": {
+        "new_site_receipt": "schema 1 / cif-stored-dictionary-sites-v2 when native_context supplied; same dictionary_site_directory anchor",
+        "native_context": "cif-explicit-site-native-context-v1, custom_restraints required or absent",
+        "native_definition_report": "cif-native-terminal-bundle-checks-v2 when context supplied",
+        "unchanged": "Legacy v1/default reports, dictionary store, CLI, run/checkpoint and maintained native capture schemas"
+      },
+      "compatibility": "Optional Python keywords; no migration or in-place rewrite. New context requires current reader. Exact C136 v1 report replay is unchanged; unknown/missing/downgraded context refused.",
+      "limitations": [
+        "Explicit Python opt-in only; ordinary PostMR automatic selection/adoption and global multiple-component orchestration remain separate gates. User-facing CIF inspection is not the product goal.",
+        "Native formal-charge readback remains unavailable. Overall REVIEW is preserved; only the existing separate diagnostic continuation with notes is permitted when every other check passes.",
+        "Identical-chain copying can leave native monomer capture without complete literal identities; that preserved attempt is blocked, not qualified by the successful same-chain fixture.",
+        "NARestraints and frozen recipe/policy own intended pairing and stacking. Faithful native consumption does not establish correct pair choice, target chemistry, geometric convergence or refinement success.",
+        "Maintained capture does not exhaustively record nondefault bond slack/limit/top-out mechanics. Exact captured targets/weights are not full potential or derivative qualification.",
+        "Conventional phosphodiester atom names and explicit DNA/L-DNA source metadata remain required. Generic PNA/ATL ports, symmetry stitching and live L-FDNA construction are not established by these controls.",
+        "Source phosphate H/charge and all source-relative stereocentres remain authoritative; no experimental protonation inference, absolute CIP claim, OP3 addition or source renormalization.",
+        "No ReadySet replacement or execution, Coot execution, geometry optimization, diffraction refinement, workbook modification, new branch or merge."
+      ],
+      "next": "Qualify an opt-in native-capture compatibility fix for identical-chain copying using actual native atom/residue identities, preserving legacy captures; do not guess missing labels or relax identity checks. Then compose multiple stored components under one exact ordered model/CIF/PHIL contract and route qualified cases into existing preparation/ReadySet integration. Keep source-state, generic-port, PDU numerics, scientific acceptance and automatic adoption separate.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "explicit_native_site_context_2026_10_30",
+      "validation": "6972 passed, 276 subtests passed in 1054.37s (0:17:34); focused 1063 passed, 36 subtests passed in 69.57s (0:01:09); three intended native controls, ten negatives and 142-file guarded cold replay."
     }
   },
   "audience": [
@@ -29846,6 +29871,7 @@
     "requires_student_cif_review": false,
     "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
     "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned.",
-    "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_RESOLVER; source/state-bound reusable numerics and frozen run copies; ordinary automatic acquisition/adoption still pending."
+    "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_RESOLVER; source/state-bound reusable numerics and frozen run copies; ordinary automatic acquisition/adoption still pending.",
+    "background_engine_intent": "Internal recipes/model/source contracts drive automatic chemistry handling around ReadySet and NARestraints. Users should not author or review CIFs routinely; unresolved scientific choices are distinct from repairable technical failures."
   }
 }

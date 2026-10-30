@@ -11,6 +11,62 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C137 validated: explicit terminal and custom-restraint native context
+
+Base: `fec8a4c692b32126ec5bf1bca6f866519c870f88`; existing cedar only.
+Capsule: `live_tests_directory/137_Cedar_native-context-ik2r7rp3`.
+Before: shared native audit rejected every OP3 and required nonempty custom
+restraints. After: an opt-in frozen context permits exact declared terminal
+phosphate and explicitly required/absent edits. Four terminal P bonds and six
+angles, complete source projections and all retained sugar/ring stereocentres
+remain checked. Every requested edit must match one native edit proxy with exact
+identity, target and weight; extra/lost/duplicate edits cannot pass.
+
+These are internal contracts for the background engine. ReadySet remains the
+preparation consumer and NARestraints the pair/stack authority. Users should not
+have to inspect or author CIFs to supply routine intent. Chemical-state choice,
+native consumption, geometric improvement and automatic adoption stay distinct.
+
+Changed: four runtime modules, a 49-case test module, focused profile membership,
+maintained contracts/roadmap/evidence and editable figure. New optional context
+uses `cif-explicit-site-native-context-v1`, stored-site receipt v2 and terminal
+native-check policy v2 (all schema 1). Legacy omission remains v1 and exactly
+replays C136; no migration, installed-library, CLI or checkpoint change.
+
+Validation: initial 37 failing tests (one passed) before implementation.
+Focused chemistry/workflow: **1063 passed, 36 subtests passed in 69.57s (0:01:09)**.
+Complete unfiltered suite: **6972 passed, 276 subtests passed in 1054.37s (0:17:34)**.
+All 507 source/test/runner hashes are unchanged through both completed runs.
+Three intended Phenix **2.2.1-6174** controls (dispatcher **2.2.1**) complete six
+before/after interpretations: linked required, terminal absent, terminal required
+with synthetic soft bond/plane/parallelity edits. Available definition/native
+checks pass (42+45, 29+36, 40+46); respectively 2/1/2 unavailable formal-charge
+checks retain REVIEW and diagnostic-only continuation with notes. No ReadySet,
+Coot, refinement or optimization execution; synthetic soft controls do not
+establish a new NARestraints recipe or successful pair geometry.
+
+Two earlier fixture attempts are preserved: one Phenix failure for an excessive
+test distance; two complete captures blocked by incomplete monomer identities
+after identical-chain copying. No threshold or identity gate was relaxed.
+Ten corrupted native/context controls all block continuation or are refused.
+Guarded cold replay from relocated source preserves all 142 files' bytes, sizes
+and timestamps, with original owned paths gone and historical checkout/capsule/
+SDK reads and subprocesses forbidden. Compilation, documentation links/JSON,
+byte-exact SVG regeneration, visual inspection and whitespace checks pass.
+
+Raw models, CIFs, native logs/captures, local scripts and immutable attempts stay
+outside Git. Only maintained contracts and summary/hash evidence are published.
+No job is active. Implementation and validation are complete; signed publication remains.
+Evidence key: `explicit_native_site_context_2026_10_30`.
+
+Next: fix the copied-chain capture boundary using real native identities without
+guessing labels or changing legacy capture semantics. Then compose one global
+multiple-component contract and integrate qualified cases with the existing
+preparation/ReadySet path. Formal-charge/source protonation, generic ports, PDU
+numerics, unrecorded nondefault restraint potentials and ordinary adoption remain
+separate gates. No new branch or merge.
+— Rowan · Codex desktop
+
 ## C136 published: stored dictionaries at explicit current sites
 
 Base: `86ea4fb30c9d0b7bbaa6ff481a1f0478f50314e2`; existing cedar only.

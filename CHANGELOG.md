@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit native end-state and restraint context (C137)
+
+- Add an opt-in frozen native context for stored site preparations. Preserve
+  explicitly declared terminal-phosphate OP3 while checking exact component,
+  elements, connectivity and complete active phosphate bonds/angles. Internal
+  OP3 and unsupported O3P remain forbidden.
+- Distinguish required custom restraints from an explicitly restraint-free
+  diagnostic. Check every requested bond, angle, dihedral, plane and parallelity
+  against unique native edit proxies, including exact targets/weights, origins,
+  selections and both planes. Missing, duplicate or unexpected edits block
+  continuation; no restraint is invented to satisfy a coverage check.
+- Add stored-site policy v2 and terminal-native-check policy v2, retaining schema
+  1 and unchanged v1/default results. New bundles require the updated reader;
+  existing captures, stored entries and runs are not rewritten.
+- ReadySet remains the preparation consumer and NARestraints owns pair/stack
+  intent. Formal-charge limitations and incomplete copied-chain native identities
+  remain visible; no automatic adoption, CLI activation or refinement change.
+
 ### Stored dictionaries at explicit model sites (C136)
 
 - Add an opt-in Python API that freezes a qualified dictionary, its stored

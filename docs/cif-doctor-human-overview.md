@@ -66,9 +66,16 @@ invented second backbone link. The frozen preparation and saved captures replay
 after relocation without changing their bytes or modification times. The existing
 continuation policy permits further separate diagnostics when only unavailable
 charge readback remains, while preserving REVIEW and withholding adoption.
-The shared native checker still blocks terminal-phosphate OP3 and an empty
-custom-restraint request, even when preparation itself is valid. Those contexts
-need separate qualification; retaining a true terminal phosphate remains required.
+A new explicit native-context option also checks legitimate terminal phosphate:
+declared OP3 survives with its source chemistry, four phosphate bonds and six
+angles. Required custom restraints must each appear exactly once with their
+declared target, weight and native edit origin. An explicitly restraint-free
+diagnostic requires zero requests and zero edit proxies; missing expected
+base-pair restraints cannot select that mode automatically. ReadySet remains the
+preparation consumer and NARestraints owns pair/stack intent. These are internal
+engine contracts, not an added CIF-editing task for users. The earlier v1
+audit stays unchanged. Incomplete native monomer identities after identical-chain
+copying still block qualification and remain a separate compatibility task.
 
 FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C route
 has the linked model evidence above. L-FDNA transfer is tested synthetically, not

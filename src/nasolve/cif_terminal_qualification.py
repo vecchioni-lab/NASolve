@@ -162,12 +162,13 @@ def reviewed_torsion_proxy_check(native,path,code,site,term_id):
 
 def qualify_terminal_bundle(baseline: dict, candidate: dict, preparations: list[dict],
         expected_links: list[tuple[str,str]], free_sites: list[str],
-        projections: Mapping[str,tuple[Path,str]], *, reviewed_torsions: Mapping[str,str] | None=None) -> dict:
+        projections: Mapping[str,tuple[Path,str]], *, reviewed_torsions: Mapping[str,str] | None=None,
+        native_context: dict | None=None) -> dict:
     """Keep existing gates and add exact source projections and unaffected proxies."""
     prepared=list(preparations);known={s['site'] for p in prepared for s in p['sites']}
     extra=[projection_site_plan(path,code,site) for site,(path,code) in projections.items() if site not in known]
     if extra:prepared.append({'sites':extra})
-    result=qualify_linked_bundle(baseline,candidate,prepared,expected_links,free_sites)
+    result=qualify_linked_bundle(baseline,candidate,prepared,expected_links,free_sites,native_context=native_context)
     result['audit_kind']='cif_terminal_native_bundle_qualification'
     checks=result['checks'];checks.extend(definition_projection_checks(candidate,projections))
     checks.extend(declared_outgoing_hydrogen_checks(candidate,expected_links))
@@ -188,6 +189,6 @@ def qualify_terminal_bundle(baseline: dict, candidate: dict, preparations: list[
         try:checks.append(reviewed_torsion_proxy_check(candidate,path,code,site,term_id))
         except (KeyError,TypeError,ValueError) as exc:check('reviewed-torsion-native-proxy:'+site+':'+term_id,False,error=str(exc))
     result['status']='TERMINAL_BUNDLE_MECHANICS_PASS' if all(r['status']=='PASS' for r in checks) else 'REVIEW'
-    result['policy_id']='cif-native-terminal-bundle-checks-v1'
+    result['policy_id']='cif-native-terminal-bundle-checks-v1' if native_context is None else 'cif-native-terminal-bundle-checks-v2'
     result['automatic_adoption']=False
     return result

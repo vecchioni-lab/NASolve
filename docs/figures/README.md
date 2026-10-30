@@ -11,7 +11,8 @@ The standard-library generator is the editable layout source. From the checkout:
 python3 docs/figures/build_cif_doctor_overview.py
 ```
 
-The current scope note includes C136's explicit stored-policy/site/native path.
+The current scope note includes C137's declared chemistry and exact native
+restraint consumption, retaining ReadySet and NARestraints ownership.
 It adds no automatic adoption arrow; the companion contract retains unsupported
 formal-charge readback, source-state and integration limits.
 

@@ -16,6 +16,7 @@ from .cif_postmr_cached_model import cached_preparation_replays, _consumer_match
 from .cif_terminal_preparation import load_terminal_recipe, prepare_terminal_component
 
 POLICY_ID = 'cif-stored-dictionary-sites-v1'
+CONTEXT_POLICY_ID = 'cif-stored-dictionary-sites-v2'
 ANCHOR = 'dictionary_site_directory'
 _SNAPSHOT_FILES = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
     'entry/dictionary.cif', 'entry/qualification.json', 'entry/provenance.json')
@@ -107,6 +108,9 @@ def _derive(root, controls, destination):
     _need(saved['qualification_current'], 'Stored native evidence needs requalification')
     consumer=manifest['consumer']; _consumer(consumer)
     _need(_bytes(controls['consumer'])==_bytes(consumer), 'Consumer differs from frozen isolated qualification')
+    if 'native_context' in controls:
+        from .cif_native_context import validate_native_context
+        validate_native_context(controls['native_context'])
     contexts=controls['contexts']; model=root/'inputs/model.pdb'
     links=_links(model,contexts,controls['expected_links'])
     policy=recipe_representation_policy(manifest['request']['recipe'])
@@ -126,7 +130,7 @@ def _derive(root, controls, destination):
 
 
 def _report(root, controls, saved, links, policy):
-    return {'schema_version':1,'policy_id':POLICY_ID,'status':'PREPARED_REVIEW',
+    return {'schema_version':1,'policy_id':CONTEXT_POLICY_ID if 'native_context' in controls else POLICY_ID,'status':'PREPARED_REVIEW',
         'entry_id':saved['entry_id'],'request_key':saved['manifest']['request_key'],
         'component':saved['manifest']['request']['component'],'bond_representation_policy':policy,
         **controls,'expected_links':links,'files':_files(root),'native_validation':'NOT_RUN',
@@ -151,13 +155,16 @@ def _inputs(root, controls):
 
 
 def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, expected_links,
-        terminal_resource=None, supplementary_dictionaries=(), supplementary_phils=()):
+        terminal_resource=None, supplementary_dictionaries=(), supplementary_phils=(), native_context=None):
     """Freeze only explicit inputs and publish a fresh, replayable preparation.
 
     Consumer must equal the saved isolated qualification. Changed installations
     need upstream requalification; this function never upgrades that evidence.
     All model sites sharing the component code need an explicit context. Links
     cover the complete model, including unchanged supplementary components.
+
+    Optional native_context freezes the versioned end-state/custom-restraint
+    contract. Omission preserves v1 preparation and qualification behavior.
     """
     output=Path(output).absolute()
     if output.exists() or output.is_symlink():raise FileExistsError(output)
@@ -167,6 +174,9 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
     resolve_dictionary_snapshot(snapshot); _consumer(consumer)
     controls={'consumer':consumer,'contexts':contexts,'expected_links':expected_links,
         'terminal_resource':None,'supplementary_dictionaries':[],'supplementary_phils':[]}
+    if native_context is not None:
+        from .cif_native_context import validate_native_context
+        controls['native_context']=validate_native_context(native_context)
     original={}
     def freeze(source,target):
         source=Path(source); data=_read(source);original[source]=data
@@ -205,10 +215,13 @@ def read_dictionary_sites(output):
     """Read frozen inputs and rederive every generated file; never mutate the bundle."""
     root=Path(output).absolute();report=_json(_read(root/'site_receipt.json'))
     _need(type(report.get('schema_version')) is int and report['schema_version']==1
-        and report.get('policy_id')==POLICY_ID, 'Unknown site preparation schema/policy')
+        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID}, 'Unknown site preparation schema/policy')
     _need(report.get('files')==_files(root), 'Site artifact inventory or checksum differs')
     controls={k:report[k] for k in ('consumer','contexts','expected_links','terminal_resource',
         'supplementary_dictionaries','supplementary_phils')}
+    if report['policy_id']==CONTEXT_POLICY_ID:
+        _need('native_context' in report, 'Missing frozen native context')
+        controls['native_context']=report['native_context']
     inputs=_inputs(root,controls)
     allowed={'snapshot/'+name for name in _SNAPSHOT_FILES}|{'inputs/model.pdb'}
     allowed.update(controls['supplementary_dictionaries']);allowed.update(controls['supplementary_phils'])
@@ -343,12 +356,15 @@ def _site_native_checks(before, after, prepared):
             check('exact-site-modifier:'+site,mappings[site].get('chem_mod_ids')=={
                 'status':'RECORDED','ids':[plan['modification_id']] if plan.get('modification_id') else []})
             for name,value in _heavy_proxy_checks(after,path,code,site).items():check(name+':'+site,value)
-            if context.get('incoming_site') is not None:
+            terminal=(prepared['report'].get('native_context') is not None
+                and context.get('five_prime_state')=='phosphate')
+            if context.get('incoming_site') is not None or terminal:
                 p=next(i for i,a in atoms.items() if _site(a)==site and a['atom_id']=='P')
                 neighbors={next(i for i in r['i_seqs'] if i!=p) for r in details['bond_simple'] if p in r['i_seqs']}
                 angles={min(tuple(r['i_seqs']),tuple(r['i_seqs'])[::-1]) for r in details['angle']}
-                expected={(context['incoming_site'],"O3'"),(site,"O5'"),(site,'OP1'),(site,'OP2')}
-                check('linked-phosphate-tetrahedral-coverage:'+site,
+                expected={(site,'OP3') if terminal else (context['incoming_site'],"O3'"),
+                    (site,"O5'"),(site,'OP1'),(site,'OP2')}
+                check(('terminal' if terminal else 'linked')+'-phosphate-tetrahedral-coverage:'+site,
                     {(_site(atoms[i]),atoms[i]['atom_id']) for i in neighbors}==expected
                     and all(min((a,p,b),(b,p,a)) in angles for a,b in combinations(neighbors,2)))
     except (KeyError,TypeError,ValueError,IndexError,StopIteration,ArithmeticError) as exc:
@@ -394,13 +410,15 @@ def inspect_dictionary_site_native(output, baseline_receipt, candidate_receipt):
     _need(before['restraint_policy']==after['restraint_policy'], 'Native restraint policy changed')
     result=qualify_terminal_bundle(before,after,[prepared['preparation']],
         [tuple(p) for p in report['expected_links']],
-        [c['site'] for c in report['contexts'] if c['five_prime_state']=='free_OH'],prepared['projections'])
+        [c['site'] for c in report['contexts'] if c['five_prime_state']=='free_OH'],prepared['projections'],
+        native_context=report.get('native_context'))
     native_checks=_site_native_checks(before,after,prepared)
     passed=result['status']=='TERMINAL_BUNDLE_MECHANICS_PASS' and all(r['status']=='PASS' for r in native_checks)
     _need(_read(Path(output)/'site_receipt.json')==original_receipt
         and _files(Path(output).absolute())==report['files'], 'Site evidence changed during native inspection')
     _need(all(_read(path)==data for path,data in snapshots.items()), 'Native capture changed during inspection')
-    return {'schema_version':1,'policy_id':POLICY_ID,
+    return {'schema_version':1,'policy_id':report['policy_id'],
+        **({'native_context':report['native_context']} if 'native_context' in report else {}),
         'status':'STORED_SITE_NATIVE_MECHANICS_PASS' if passed else 'REVIEW',
         'native_checks':native_checks,'diagnostic_continuation':_diagnostic_continuation(result,native_checks),
         'preparation_sha256':sha256(_read(Path(output)/'site_receipt.json')).hexdigest(),

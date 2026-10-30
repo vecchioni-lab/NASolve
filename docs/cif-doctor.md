@@ -70,7 +70,9 @@
 
 <a id="current-capability-boundary-c133"></a>
 
-## Current capability boundary (C136)
+<a id="current-capability-boundary-c136"></a>
+
+## Current capability boundary (C137)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -84,7 +86,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
 | Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer through both the source guard and stored three-site preparation. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
-| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to that preparation, replays 42 definition checks and passes 45 additional active/native checks in a fresh Phenix capture. | Two formal-charge readbacks remain unsupported. Source phosphate H is retained, not chosen by pH. The native preparer still requires conventional backbone names and explicit DNA/L-DNA source declarations. |
+| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 additionally qualifies explicit terminal-phosphate preservation and required/absent custom-restraint context in separate installed controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Conventional backbone names and explicit DNA/L-DNA metadata remain required; incomplete native identities after identical-chain copying block qualification. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
@@ -2961,7 +2963,7 @@ pre-repair capture may report a missing heavy atom only when that exact atom is
 in the selected preparation's deletion plan. No unexplained baseline deficit is
 waived, and the prepared capture must have no missing heavy atoms.
 
-The reused native qualifier is currently narrower than the preparer: it rejects
+The v1 stored-site policy retains its original narrower native qualifier: it rejects
 all coordinate OP3/O3P, including a deliberately retained terminal phosphate, and
 requires non-empty custom-restraint evidence. Therefore a valid preparation with
 either a terminal-phosphate OP3 or no requested custom restraints remains REVIEW
@@ -2969,7 +2971,8 @@ and blocks diagnostic continuation. These are inherited conservative gates,
 not evidence that the declared chemistry is invalid. Do not delete a legitimate
 terminal phosphate or invent pair/stack restraints to satisfy them. Context-aware
 installed controls are required before broadening these gates. The current fresh
-native demonstration covers the C133 free-5'-OH/internal arrangement.
+native demonstration covers the C133 free-5'-OH/internal arrangement. The opt-in
+C137 context below provides the separately validated broader route.
 
 The result retains separate `qualification` and `native_checks` evidence.
 `STORED_SITE_NATIVE_MECHANICS_PASS` requires every check to pass; unsupported
@@ -2998,6 +3001,93 @@ See `stored_dictionary_current_sites_2026_10_30` in the
 [existing evidence ledger](cif-linked-native-registration-evidence.json) for
 exact commands, focused tests and failure controls. The full suite is explicitly
 deferred for this pass; the last full-tested implementation is C135 `d4c0e57`.
+
+
+### Explicit native end-state and restraint context (C137)
+
+CIF Doctor checks faithful consumption around ReadySet and NARestraints. It does
+not replace ReadySet, choose pair geometry, recompile a different restraint
+policy, or change a source chemical state to make interpretation pass. These
+contracts are internal engine inputs supplied from recipes, source chemistry and
+model state; they are not a new requirement for users to inspect or author CIFs.
+Ordinary automatic integration is still a separate gate, with unresolved
+scientific choices distinguished from repairable technical failures.
+
+The optional `native_context` argument to `prepare_dictionary_sites` freezes an
+explicit audit contract with the exact model, contexts and ordered CIF/PHIL
+inputs:
+
+```python
+native_context = {
+    "policy_id": "cif-explicit-site-native-context-v1",
+    "custom_restraints": "required",
+}
+```
+
+Omitting it preserves the C136 v1 preparation and native result. Supplying it
+selects `cif-stored-dictionary-sites-v2`; both use schema 1 and the same relative
+artifact anchors. Readback requires the complete known context and replays the
+existing preparation. New bundles require the updated reader; no old artifact
+is migrated or reinterpreted as v2 in place. The native definition report uses
+`cif-native-terminal-bundle-checks-v2` and records the context explicitly.
+
+Terminal-phosphate permission comes from the frozen preparation's declared
+`five_prime_state = phosphate`, never from atom names alone. Each allowed OP3
+must belong to that exact selected component/site with no incoming link. The
+native coordinates and definition must retain P, OP1, OP2, OP3 and O5' with their
+expected elements; P must have precisely those four oxygen neighbours and OP3
+must have no other heavy-atom attachment. Existing projected definition checks
+remain mandatory. Active native phosphate coverage requires all four bonds and
+six angles, alongside the existing target/weight and source-configuration checks.
+An internal or undeclared OP3, an O3P alias, missing terminal atom or conflicting
+link cannot pass. Retained phosphate hydrogens and formal-charge evidence remain
+source-bound; this does not select protonation from experimental pH.
+
+`custom_restraints = required` is the appropriate mode for a workflow expecting
+pair/stack or other explicit geometry edits. Before and after captures must
+contain the same nonempty requests and each request must have exactly one native
+realization. The checks bind labels to native indices, both parallelity planes,
+actions, selections, targets, weights and edit origins; they also reject extra
+edit proxies. Numeric targets are compared without rounding away small changes.
+Only the supported additive edit forms are qualified; symmetry, deletion actions,
+parallelity slack/top-out and unsupported conventions remain review boundaries.
+The existing disabled competing-secondary-structure policy stays mandatory.
+This uses the maintained capture inventory: nondefault bond slack/limit/top-out
+functions are not exhaustively recorded here. Exact captured targets and weights
+are not proof of every possible restraint potential; such mechanics still need
+the separate qualified manager/derivative path before optimization or adoption.
+
+`custom_restraints = absent` is an explicit diagnostic declaration requiring
+both zero requests and zero native edit proxies. It is not a fallback when an
+expected base-pair restraint is missing. Neither mode invents restraints or
+decides which base pairs should exist: NARestraints and the frozen recipe remain
+the authority for that intent, with separate policy/membership gates. The
+consumer checks establish faithful native realization of the supplied intent,
+not scientific approval of the intended pair or achieved geometry.
+
+Installed Phenix 2.2.1-6174 controls cover the existing C133 linked/free-OH
+arrangement, an isolated source-preserved terminal phosphate without custom
+restraints, and a synthetic two-site terminal-phosphate control containing a soft
+bond, planarity and parallelity request. All available definition/active checks
+pass, with unsupported formal-charge readback retaining REVIEW and permitting
+only separate diagnostics with notes. The synthetic soft control tests
+consumption; it is not a new NARestraints pair recipe or a refinement result.
+
+Two earlier fixture attempts remain preserved: Phenix rejected an excessive
+20 A test bond; a separate two-identical-chain attempt exposed incomplete captured
+monomer identities after native chain copying. No distance threshold or identity
+guard was relaxed. The latter still blocks qualification and needs a separate
+native-capture compatibility fix. The successful same-chain two-site control
+does not establish copied-chain support.
+
+The complete C136 v1 result replays unchanged. Three new controls replay from a
+relocated checkout with original paths and SDK reads forbidden, preserving all
+142 frozen files. Ten corrupted native/context controls are refused or block
+continuation. Exact commands, regression scope and immutable attempt evidence
+are recorded as `explicit_native_site_context_2026_10_30` in the
+[existing ledger](cif-linked-native-registration-evidence.json). Ordinary automatic
+selection/adoption, multi-component composition and production refinement remain
+separate integration gates.
 
 The explicit `--local-dictionary-reuse-only` diagnostic accepts exact C65 and
 preserves every parent payload. For each component it tests persistence,
