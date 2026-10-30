@@ -13,6 +13,48 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Local open-refinement settings rehearsal 2026-10-30
+
+**Scope and boundary.** A user-requested local rehearsal restarted three metal
+examples from the 5W6W frame through MR, PostMR, AutoSol, open refinement and
+frozen anomalous fitting. It exercised reciprocal/real-space XYZ, group ADPs,
+metal occupancies, anomalous groups, weight optimization and NARestraints for
+all declared ordinary scaffold pairs. Separate phase-restrained, individual-ADP,
+stronger-geometry and cluster-recipe comparisons remain diagnostic branches.
+No production worker, artifact schema, defaults or selected checkpoint changed.
+
+**Findings to preserve.** Loading an HL file does not by itself establish phase
+use: explicit `use_experimental_phases=False` retained ML, whereas the separate
+MLHL comparison explicitly enabled phases and disabled anomalous refinement for
+geometry compatibility. f-prime stayed fixed. Original `FreeR_flag` (test value
+zero), never SAflags, was used; Refine Doctor's existing flag audit was reused.
+The new private exporter exposed a hierarchy/active-Fmodel uniform B offset
+when overall-scale backtrace was enabled. Both outputs were preserved; later
+endpoints explicitly synchronized the hierarchy to the captured active state.
+Do not silently add this setting to the existing production XYZ contract, which
+currently disables backtrace. A zero-occupancy site was correctly refused by
+frozen-fdp preparation. Geometry/R trade-offs and unresolved atom counts remain
+scientific review gates, not automatic selection criteria.
+
+**Evidence and continuity.** Complete native executions used Phenix
+**2.2.1-6174**; Coot **1.3.3** inspection copies include ordinary and anomalous
+maps. Private review, exact commands, original-input hashes, native policies,
+failed attempts and offline freeze-audit replays are under the everyday
+checkout's ignored `branch-artifacts/Alder/screenshot-protocol-20261030-01/`
+(`review.md` and `review-data.json`); runners have the `A37_` prefix. The tested
+runtime is commit `e9e4aa4dd72a8af49b790584b49176c248ae8b0d`. No full pytest suite
+was run, per the user's explicit waiver. This handoff/changelog update is
+documentation only; compatibility and migration impact are none. Generated
+models, maps, reflections, native logs and dataset-specific result tables remain
+local and excluded from Git; no portability claim is made.
+
+**Next gate.** Obtain the requested model/map review, then qualify explicit phase
+use, complete scaffold pairing, ADP freedoms, end-state serialization and
+private-to-production lineage with regression coverage before promoting this
+experimental flow. Preserve the current strict frozen-state checks. Remaining
+example datasets and unresolved coordination/identity/count branches are future
+work, not completed validation.
+
 ## Grouped candidate reviews and geometry/B comparisons 2026-10-30
 
 **Before and after.** The existing matched-fdp comparison correctly rejects

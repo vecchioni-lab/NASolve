@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Documentation
+
+- Record the local open-refinement settings rehearsal and phase/B-export qualification gates; production protocols and schemas are unchanged.
+
+
 ### Compare complete metal candidates across geometry branches
 
 - Add API-only grouped reviews of 2–32 verified native-XYZ/frozen-fdp endpoints.
