@@ -27228,7 +27228,7 @@
     },
     "current_support_contract": "docs/cif-doctor.md#current-capability-boundary",
     "source_bound_site_preparation": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "source_bound_site_preparation_2026_10_30",
       "policies": [
@@ -27249,7 +27249,8 @@
         "A provisional integration checkpoint is separate from all-catalogue generalizer completion.",
         "New native bridge accepts neutral reacting hydroxyl ports; charged or substituted reacting ports require separate operation authority. Retained OP2 charge/H is not normalized."
       ],
-      "next": "Source-state policy and generic native attachment adapters, ordinary recovery/adoption integration, independent PDU numerical audit, and bounded cedar-to-pine integration review."
+      "next": "Source-state policy and generic native attachment adapters, ordinary recovery/adoption integration, independent PDU numerical audit, and bounded cedar-to-pine integration review.",
+      "implementation_commit": "283cece10a8dcf59f990cd99b73eb7210d547ace"
     }
   },
   "audience": [

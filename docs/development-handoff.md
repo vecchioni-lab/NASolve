@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C133 validated: source-bound site preparation
+## C133 published: source-bound site preparation
 
 Base/last published head: `e5d3793707f5d08c999276867eebc4bbd7a60d2e`; existing cedar only.
 Capsule: `live_tests_directory/133_Cedar_qualified-preparation-717dma13`.
@@ -36,7 +36,8 @@ are complete. Full regression passes: **6804 passed, 276 subtests passed in 1026
 All 499 source/test hashes match focused/cold validation; 494 prior source/test
 files remain unchanged. Compileall, 278 relative doc links, JSON/SVG parsing,
 figure source/render equality, visual review and whitespace checks pass.
-No job is active. Publication is next.
+No job is active. Tested implementation `283cece10a8dcf59f990cd99b73eb7210d547ace`
+is published and verified on `origin/cedar`; this follow-up records continuity.
 
 Changed runtime: one qualifier module, linked/terminal plumbing, a shared existing
 neutral-port predicate and one new test file. New schema-1 policies: preparation qualification v1, linked v3,
@@ -48,7 +49,7 @@ logs and runners remain local; exact commands/results belong to evidence key
 The current support table, human overview, roadmap and document entry points are
 reconciled; the figure generator and SVG agree. No merge or branch creation.
 Implementation, focused/cold/native/full validation and document/figure checks
-are complete; signed cedar publication remains. Then assess a bounded cedar-to-pine integration; generic native
+and signed cedar publication are complete. Then assess a bounded cedar-to-pine integration; generic native
 attachment adapters and ordinary recovery/adoption remain separate from this
 working diagnostic checkpoint. Do not run another optimizer merely to lower a
 score before source protonation/consumer scope and the intended movable region

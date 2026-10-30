@@ -47138,7 +47138,7 @@
     "remote_verified": true
   },
   "source_bound_site_preparation_2026_10_30": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "base_commit": "e5d3793707f5d08c999276867eebc4bbd7a60d2e",
     "capsule": {
       "anchor": "live_tests_directory",
@@ -47684,6 +47684,9 @@
       "diff_whitespace": "PASS",
       "native_workers_and_numerical_kernels": "UNCHANGED",
       "prior_source_test_files_unchanged": 494
-    }
+    },
+    "implementation_commit": "283cece10a8dcf59f990cd99b73eb7210d547ace",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
