@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C143 validated: whole-furanose placement and actual ATL boundaries
+## C143 published: whole-furanose placement and actual ATL boundaries
 
 Base: `b1e9b3e423bebcc9e358e5e9f95d87da0f717c54`; existing cedar only.
 Capsule: `live_tests_directory/143_Cedar_whole-sugar-zg9yqlia`.
@@ -57,7 +57,9 @@ implementation map and evidence ledger. Exact commands, file/schema list, limits
 and portable refs: `whole_furanose_and_atl_links_2026_10_31` in the ledger.
 Raw science, generated controls, workbook, native/test output and runners stay
 local outside Git. No branch creation or merge.
-No job is active. Implementation and validation complete; publication pending.
+No job is active. Implementation, full validation and signed publication are complete. Tested
+implementation `809abd44df8885ac14f1a02a67a13338209a8707` is published and verified
+on `origin/cedar`; this follow-up records continuity. No branch creation or merge.
 Next: source-graph native reaction-state/typing adapter for the explicit ATL ports;
 a distinct different-backbone construction preserving alpha-LNA-T chemistry;
 then the requested combined scaffold. PDU changed-objective geometry and ordinary

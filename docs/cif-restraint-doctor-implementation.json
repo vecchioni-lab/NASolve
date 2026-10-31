@@ -27463,7 +27463,7 @@
       "remote_verified": true
     },
     "whole_furanose_and_atl_links": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "after": "An additive compatible-host whole-furanose adapter binds source/host graph roles independently, transports all retained atoms rigidly, preserves every declared source hand and reuses neutral source-port projection. Actual ATL passes an artificial compatible-host control and is correctly refused on a D-DNA host. With its qualified candidate, both native directional links are observed, while reaction-state definition mismatches remain visible.",
       "schemas": {
         "new": "schema 1 / cif-rigid-whole-furanose-linked-control-v1; frozen exact input/output checksum inventory plus recomputed placement/chemical projection",
@@ -27480,7 +27480,11 @@
       "next": "Implement a graph-bound native reaction-state adapter that removes only explicitly authorized OXT/HXT or alcohol H, binds endpoint typing and qualifies the resulting definitions/angles. Design a separate explicit different-backbone construction for alpha-LNA-T that preserves its source hands, then place ATL alongside the eight existing pairs without changing those sites. PDU still needs a fresh changed-objective bounded geometry/endpoint trial; ordinary selected-bundle PostMR orchestration remains later.",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "whole_furanose_and_atl_links_2026_10_31",
-      "validation": "7175 passed, 276 subtests passed in 1109.86s (0:18:29); focused 1434 passed, 36 subtests passed in 130.81s (0:02:10); actual compatible-host placement, exact stereochemical refusal, two native link observations and cold replay/negative controls."
+      "validation": "7175 passed, 276 subtests passed in 1109.86s (0:18:29); focused 1434 passed, 36 subtests passed in 130.81s (0:02:10); actual compatible-host placement, exact stereochemical refusal, two native link observations and cold replay/negative controls.",
+      "implementation_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

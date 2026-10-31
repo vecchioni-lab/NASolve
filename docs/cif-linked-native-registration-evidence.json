@@ -52575,7 +52575,7 @@
     "remote_verified": true
   },
   "whole_furanose_and_atl_links_2026_10_31": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "b1e9b3e423bebcc9e358e5e9f95d87da0f717c54",
@@ -53344,6 +53344,10 @@
         "size": 63621,
         "sha256": "41a790598ab2dcdb01bb3002cad77414e90ef25ab6302019e2c94e466749e040"
       }
-    ]
+    ],
+    "implementation_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
