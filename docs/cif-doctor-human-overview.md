@@ -148,7 +148,11 @@ energy change before rechecking derivatives. The resulting geometry candidate
 passes mechanics checks: ATL's outgoing bond reaches 1.610 Å and the short O4–N6
 contact reaches 2.692 Å, with source hands preserved. It remains unconverged at the
 iteration limit, with substantial pair strain elsewhere; adoption stays withheld.
-See the [bundle methods and limits](cif-doctor.md#declared-linear-repair-across-an-ordered-bundle-c149).
+C150 now runs the removed-restraint reference calculation through a maintained,
+bounded job and independently rechecks the saved evidence after relocation. It
+reproduces the same six-proxy result; that numerical pass still cannot approve
+chemistry or adopt an unconverged model.
+See the [attribution methods and limits](cif-doctor.md#maintained-captured-linear-torsion-attribution-c150).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
 A new fixed-objective geometry trial and endpoint qualification remain open. Earlier mixed-endpoint proof using a NASolve-local
@@ -762,6 +766,8 @@ C149 composes declared-linear repairs across an ordered explicit bundle, proving
 each native change before fresh derivatives and geometry. Its mechanics-pass
 endpoint remains unconverged and unadopted; numerical success does not erase
 remaining pair strain or the need for chemical and scientific qualification.
+C150 makes the native reference job and its offline replay part of the maintained
+engine; it adds evidence traceability without enlarging chemical or adoption claims.
 Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,

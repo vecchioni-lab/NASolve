@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "declared_linear_torsion_bundle_2026_10_31",
+    "current_diagnostic_record": "captured_linear_attribution_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27655,6 +27655,30 @@
       "focused_tested_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "captured_linear_attribution": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "A maintained bounded fresh native job freezes the complete repair bundle/stages, derives exact removed-proxy inputs, pins worker/core/consumer/sources and replays all raw references offline. The six-proxy live result is unchanged. Prepared/failed jobs cannot claim a numerical pass; unknown capture files refuse before reservation and launch failures require a diagnostic.",
+      "schemas": {
+        "new": "schema 1 / cif-captured-linear-torsion-attribution-v1",
+        "unchanged": "C149 plans/gates, native captures and numerical cores, selected runtime schemas, CLI/cache/checkpoints"
+      },
+      "compatibility": "Additive Python APIs and chemistry-profile test entry. No production/default change or migration. Sixteen existing numerical/native/selection modules and 17 static resources remain byte-identical.",
+      "limitations": [
+        "Explicit additive diagnostic, no ordinary orchestration, automatic adoption, cache/checkpoint migration, new chemical-state inference, or installed-library edits.",
+        "The outer maintained-job receipt authenticates local execution provenance and replays complete numerical attribution. The embedded unchanged pure-gate result still states its caller-owned execution boundary; consumers must validate the outer receipt, not relabel the nested result. This is not cryptographic remote attestation.",
+        "Only the existing C147 linked energy/policy capture contract is accepted. The source-qualified component runtime requires additional full-model monomer evidence, which this adapter currently refuses. Integrate through an explicit richer capture-policy bridge; never discard fields or infer whole-model readiness from isolated qualification.",
+        "All C149 source-chemistry, derivative, geometry and scientific limits persist. This pass makes no new convergence, pucker/clash, protonation, absolute-CIP or ordinary-Phenix-refinement claim. Its input coordinates are unchanged and C149 remains an unconverged, unadopted diagnostic endpoint.",
+        "Native captures pin their three recorded energy sources. The fresh kernel additionally records before/after hashes for its restraint module, flex module and compiled extension; these are local job provenance, not a retroactive compiled-extension hash for an old capture.",
+        "Capture trees and the combined input snapshots are bounded, with at most 128 removed proxies and one native process (1–300 seconds). Failure or interruption leaves owned partial output; callers need a fresh attempt and must not execute saved workers. Full campaign ownership/recovery orchestration remains separate.",
+        "No new model, dictionary chemistry, NAR membership, ReadySet, native manager capture, Coot or refinement process. All raw/native/test evidence and helpers stay local. Only source/tests/current technical docs and anchored hash references publish.",
+        "No full suite this bounded pass; last full-tested commit remains 809abd44df8885ac14f1a02a67a13338209a8707. Full regression and representative ordinary-route integration remain required before merge."
+      ],
+      "next": "Bind repaired dictionaries and maintained attribution to exact independently source-qualified component/preparation and selected-bundle evidence. First reconcile C147 plain energy/policy captures with the component path's full-model monomer contract explicitly; preserve all extra metadata and source ownership. Establish dictionary usability and a verified fallback independently of C149's unconverged coordinate trial. Keep linked 10C, curated-DZ token-per-line parsing, broader L-FANA/L-FDNA/PNA, native charge limits and ordinary orchestration visible.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_linear_attribution_2026_10_31",
+      "validation": "1662 passed, 36 subtests passed in 296.17s (0:04:56); 220 passed in 34.55s; fresh native attribution and hardened cold replay pass; no full suite."
     }
   },
   "audience": [

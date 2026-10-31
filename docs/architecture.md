@@ -3680,6 +3680,16 @@ strain and is not adopted. No ordinary runtime default or ReadySet behavior chan
 See the [bundle contract](cif-doctor.md#declared-linear-repair-across-an-ordered-bundle-c149).
 
 
+C150 wraps C149 attribution in a fresh maintained native job. Exact frozen stages
+and derived removed-proxy inputs precede execution; pinned worker/core/source
+identities and complete repeated references precede a numerical pass. The anchored
+reader rederives the chain without an SDK or executing captured code. Failed jobs
+remain immutable, while source chemistry, derivatives and coordinate adoption
+remain separate. The six-proxy live result reproduces C149 exactly; ordinary
+selection integration is still open. See the
+[attribution contract](cif-doctor.md#maintained-captured-linear-torsion-attribution-c150).
+
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

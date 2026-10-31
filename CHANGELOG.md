@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Maintained native attribution for linear-torsion repairs (C150)
+
+- Add a bounded fresh native job around the exact ordered repair chain. Freeze
+  the bundle and every native stage; bind repeated single-proxy references to
+  maintained worker/core bytes, consumer identity and installed source hashes.
+- Schema 1 `cif-captured-linear-torsion-attribution-v1` replays complete numerical
+  attribution offline after relocation, without executing saved code or reading
+  historical SDK paths. Failed attempts remain immutable and explicitly unqualified.
+- The actual six-proxy 5PC/PDU mixed-scaffold result is reproduced exactly under
+  Phenix 2.2.1-6174. Source-chemical qualification, derivative checks and coordinate
+  adoption remain separate; ordinary workflows and ReadySet behavior are unchanged.
+
 ### Graph-selected linear-torsion bundle repair (C149)
 
 - Add an explicit ordered-bundle planner that scans modeled component graphs

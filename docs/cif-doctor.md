@@ -92,7 +92,9 @@
 
 <a id="current-capability-boundary-c148"></a>
 
-## Current capability boundary (C149)
+<a id="current-capability-boundary-c149"></a>
+
+## Current capability boundary (C150)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -110,7 +112,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
-| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | The C149 trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
+| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -156,6 +158,69 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Maintained captured linear-torsion attribution (C150)
+
+`audit_captured_linear_attribution(bundle, native_receipts, phenix, output)`
+closes the caller-owned kernel-execution boundary of the C149 captured gate. It
+freezes the exact immutable repair bundle and every consecutive native receipt,
+then runs one maintained native worker. Passing `phenix=None` prepares evidence
+without execution and cannot produce a numerical pass. A new output directory is
+mandatory; failed, timed-out and partially written attempts are never resumed or
+overwritten. Timeouts are explicit integers from 1 to 300 seconds (90 by default).
+The worker is limited to 128 removed proxies and evaluates each twice through the
+existing maintained single/accumulated dihedral evaluator.
+
+Before output reservation, each native capture must contain exactly its recorded
+files; unrelated local material is never absorbed. Before execution, exact
+graph-selected inventory deltas must qualify at every stage. Model coordinates, ordered dictionary bytes, PHIL bytes, namespace,
+dictionary authority, Phenix version/executable and native energy-source pins
+must agree. No stage is skipped and no proxy is selected from a geometry score.
+The report freezes maintained worker/core bytes, a derived per-proxy specification,
+source hashes before/after execution, the completed process outcome and repeated
+raw references. The existing complete energy/gradient gate independently requires
+those values to explain the entire native change, including terms, counts and the
+scattered whole-model gradient. Unknown/unrelated inventory changes still refuse.
+
+`read_captured_linear_attribution(directory)` reconstructs the specification and
+checks the maintained code, frozen inputs, exact types and artifact inventory,
+then rederives numerical qualification. It neither imports a captured worker nor
+opens historical SDK paths. Rehashing a modified worker, source pin, numerical
+reference or claimed qualification does not make it valid. Additional files and
+empty directories cannot be hidden in a refreshed manifest. A relocated original
+can be gone; every operational artifact uses the declared
+`captured_linear_attribution_directory` anchor with size/hash checks.
+
+Schema 1 / `cif-captured-linear-torsion-attribution-v1` reports
+`CAPTURED_LINEAR_ATTRIBUTION_PASS` only for a completed maintained job whose
+complete attribution replays. The outer `kernel_execution_authentication` field
+then records `MAINTAINED_FRESH_NATIVE_JOB`; the embedded unchanged pure-gate result
+retains its caller-responsibility marker because it does not authenticate a job
+on its own. Prepared or failed jobs remain `PREPARED_ONLY`/`REVIEW` with no qualified
+kernel claim. This is provenance and numerical consistency within the local
+receipt model, not cryptographic remote attestation.
+
+**Actual control:** one complete fresh Phenix 2.2.1-6174 kernel process (dispatcher
+2.2.1) consumes the frozen C149 original/intermediate/final captures. All six
+active references, three each for graph-selected 5PC and PDU, exactly reproduce
+the prior values. The total target change remains 15.11250671668131. The 865-atom
+model, all dictionaries except the already recorded torsion omissions, phosphate/H
+states and all custom pair/stack requests are unchanged. No new ReadySet, native
+manager capture, geometry optimization, Coot or diffraction refinement runs.
+Cold replay succeeds with historical-run/SDK reads and process execution denied.
+
+This additive Python diagnostic does not establish source-chemical authority,
+derivative correctness, input-model usability, convergence or scientific approval.
+C149's coordinate endpoint is still unconverged and unadopted. The next integration
+gate remains composition with source-qualified component/preparation and selected-
+bundle evidence, including a genuinely qualified fallback. One concrete seam is
+capture policy: this adapter inherits C147's linked energy/policy capture contract;
+the component-runtime path requires additional full-model monomer evidence.
+Those extended captures are currently rejected, not silently stripped or treated
+as equivalent. A future bridge must explicitly validate that richer contract. Existing pure gates,
+native schemas, CLI/defaults, cache entries and checkpoints require no migration.
+See `captured_linear_attribution_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Declared-linear repair across an ordered bundle (C149)
 

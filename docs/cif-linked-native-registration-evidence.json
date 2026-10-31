@@ -57235,5 +57235,312 @@
     "focused_tested_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "captured_linear_attribution_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "4579e954f146edb89e1383ac2da16da602bfdaf1",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "before": "C149 authenticated every staged native capture and checked full numerical deltas, but a separate caller-owned helper generated and attested the single-proxy references.",
+    "after": "A maintained bounded fresh native job freezes the complete repair bundle/stages, derives exact removed-proxy inputs, pins worker/core/consumer/sources and replays all raw references offline. The six-proxy live result is unchanged. Prepared/failed jobs cannot claim a numerical pass; unknown capture files refuse before reservation and launch failures require a diagnostic.",
+    "changed_files": [
+      "src/nasolve/cif_captured_linear_attribution.py",
+      "tests/test_cif_captured_linear_attribution.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-captured-linear-torsion-attribution-v1",
+      "unchanged": "C149 plans/gates, native captures and numerical cores, selected runtime schemas, CLI/cache/checkpoints"
+    },
+    "compatibility": "Additive Python APIs and chemistry-profile test entry. No production/default change or migration. Sixteen existing numerical/native/selection modules and 17 static resources remain byte-identical.",
+    "regressions": {
+      "new_cases": 38,
+      "before": "36 new API cases fail before implementation; two additional edge regressions fail before preflight/launch-diagnostic hardening.",
+      "affected": "220 passed in 34.55s",
+      "focused": {
+        "summary": "1662 passed, 36 subtests passed in 296.17s (0:04:56)",
+        "seconds": 299.0852349170018,
+        "files": 584,
+        "changed_files": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH; prior C143 full gate: 7175 tests +276 subtests"
+    },
+    "live": {
+      "status": "CAPTURED_LINEAR_ATTRIBUTION_PASS",
+      "execution": {
+        "elapsed_seconds": 1.489054,
+        "returncode": 0,
+        "status": "COMPLETED"
+      },
+      "seconds": 5.579409583006054,
+      "phenix_installation": "2.2.1-6174",
+      "complete_execution": true,
+      "removed_proxy_count": 6,
+      "target_delta": 15.11250671668131
+    },
+    "numerical": {
+      "removed_proxy_count": 6,
+      "target_delta": 15.11250671668131,
+      "references_equal_C149": true,
+      "coordinate_selection": "UNCHANGED_CAPTURE_INPUT",
+      "kernel_execution_authentication": "MAINTAINED_FRESH_NATIVE_JOB",
+      "native_execution_authentication": "AUTHENTICATED_ORDERED_NATIVE_CAPTURES",
+      "source_chemical_qualification": "NOT_ASSESSED",
+      "derivative_qualification": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "files_unchanged": 224,
+      "negative_controls": [
+        "worker",
+        "core",
+        "spec",
+        "gradient",
+        "source_pin",
+        "stage_input",
+        "native_status",
+        "qualified_target",
+        "execution_code",
+        "adoption",
+        "extra_bound_file",
+        "extra_bound_directory"
+      ],
+      "owned_original_gone": true,
+      "historical_and_sdk_reads": "DENIED",
+      "subprocess_execution": "DENIED",
+      "scope": "Fresh C150 maintained native job, frozen C149 bundle and all three native stages; original scientific runs preserved."
+    },
+    "auxiliary": {
+      "historical_numerical_and_native_sources_unchanged": [
+        "cif_mixed_gradient.py",
+        "cif_gradient_audit.py",
+        "cif_parallelity_audit.py",
+        "cif_parallelity_correction.py",
+        "cif_recovered_gradient.py",
+        "cif_native_validation.py",
+        "cif_mixed_geometry.py",
+        "cif_fixed_geometry.py",
+        "cif_mixed_torsion.py",
+        "cif_captured_mixed_gradients.py",
+        "cif_captured_geometry_trial.py",
+        "cif_linear_torsion_candidate.py",
+        "cif_linked_linear_torsion.py",
+        "cif_linked_torsion_energy.py",
+        "cif_linear_torsion_bundle.py",
+        "cif_component_runtime.py"
+      ],
+      "compileall": "PASS",
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c150-compile-cache"
+      },
+      "docs": {
+        "relative_links_checked": 316,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources_equal_base": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "parent_artifacts_unchanged": 225,
+      "previous_C149_refs_verified": 41
+    },
+    "validation_commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "affected": "python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_captured_linear_attribution.py tests/test_cif_linear_torsion_bundle.py tests/test_cif_linear_torsion_candidate.py tests/test_cif_linked_linear_torsion.py tests/test_cif_linked_torsion_energy.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_component_runtime.py",
+      "focused": "python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-hardened/pytest.xml; resolved command and frozen source hashes in referenced result.json",
+      "native": "python c150_live.py: audit_captured_linear_attribution on C149 bundle and its three recorded receipt paths; one complete Phenix 2.2.1-6174 process with a 90-second deadline. No newly executed native manager capture or optimizer.",
+      "cold": "python c150_cold_hardened.py: owned original renamed away, historical run/SDK reads and process execution denied, 224 files unchanged and 12 modified-evidence controls refused",
+      "auxiliary": "python -m compileall -q src tests with PYTHONPYCACHEPREFIX=/private/tmp/c150-compile-cache; check_docs.py; unchanged overview SVG regeneration; git diff --check; parent/previous evidence and unchanged core/resource hashes"
+    },
+    "software": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "native_kernel_processes": 1,
+      "dry_run": false,
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "artifacts": "Raw frozen sources/models/native outputs, test evidence and procedural helpers deliberately excluded from Git; 225 C149 parent files retain bytes and timestamps, and all 41 C149 ledger references verify.",
+    "limitations": [
+      "Explicit additive diagnostic, no ordinary orchestration, automatic adoption, cache/checkpoint migration, new chemical-state inference, or installed-library edits.",
+      "The outer maintained-job receipt authenticates local execution provenance and replays complete numerical attribution. The embedded unchanged pure-gate result still states its caller-owned execution boundary; consumers must validate the outer receipt, not relabel the nested result. This is not cryptographic remote attestation.",
+      "Only the existing C147 linked energy/policy capture contract is accepted. The source-qualified component runtime requires additional full-model monomer evidence, which this adapter currently refuses. Integrate through an explicit richer capture-policy bridge; never discard fields or infer whole-model readiness from isolated qualification.",
+      "All C149 source-chemistry, derivative, geometry and scientific limits persist. This pass makes no new convergence, pucker/clash, protonation, absolute-CIP or ordinary-Phenix-refinement claim. Its input coordinates are unchanged and C149 remains an unconverged, unadopted diagnostic endpoint.",
+      "Native captures pin their three recorded energy sources. The fresh kernel additionally records before/after hashes for its restraint module, flex module and compiled extension; these are local job provenance, not a retroactive compiled-extension hash for an old capture.",
+      "Capture trees and the combined input snapshots are bounded, with at most 128 removed proxies and one native process (1–300 seconds). Failure or interruption leaves owned partial output; callers need a fresh attempt and must not execute saved workers. Full campaign ownership/recovery orchestration remains separate.",
+      "No new model, dictionary chemistry, NAR membership, ReadySet, native manager capture, Coot or refinement process. All raw/native/test evidence and helpers stay local. Only source/tests/current technical docs and anchored hash references publish.",
+      "No full suite this bounded pass; last full-tested commit remains 809abd44df8885ac14f1a02a67a13338209a8707. Full regression and representative ordinary-route integration remain required before merge."
+    ],
+    "next": "Bind repaired dictionaries and maintained attribution to exact independently source-qualified component/preparation and selected-bundle evidence. First reconcile C147 plain energy/policy captures with the component path's full-model monomer contract explicitly; preserve all extra metadata and source ownership. Establish dictionary usability and a verified fallback independently of C149's unconverged coordinate trial. Keep linked 10C, curated-DZ token-per-line parsing, broader L-FANA/L-FDNA/PNA, native charge limits and ordinary orchestration visible.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/captured_linear_attribution.json",
+        "size": 44585,
+        "sha256": "54e9e9bcdaa49d0241eb55f1a29e8812b58c04a3ffb8cb2f6b675b32e44676a6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/bundle/linear_torsion_bundle.json",
+        "size": 38250,
+        "sha256": "978b803f981be0af21bf6f2a8e88b847788ba0a4416beeb44d057cdce6fe5145"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/job/spec.json",
+        "size": 3592,
+        "sha256": "cb83c23dff2012237bd113272275bc111096479e793fe66fb06b14128f568e9e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/job/worker.py",
+        "size": 1462,
+        "sha256": "efe3b72ddeee000ede2e50dfdf56ba8ab83fe9b4c3895163926aa05c868aa567"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/job/conditioning_core.py",
+        "size": 29115,
+        "sha256": "4ac37b7a6119defe6492a5b9ba4307185d2de05fca626583c9998dd4b2af1c22"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/job/result.json",
+        "size": 13734,
+        "sha256": "5291681d1fd01e50683644f0c4535a04a530033a8eeee10eddd8d8414f566e8b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/job/execution.log",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/live-result.json",
+        "size": 319,
+        "sha256": "30a30e725e5a2628033cd7b0c834f8eba5c0c6ea653fd9c3c0c0f84f8cdee565"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/parent-before.json",
+        "size": 55425,
+        "sha256": "990bcfb63f71ca0279898be786a4644603f41a1ceed8db5ef8423d8ca53ab0a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/cold-hardened/result.json",
+        "size": 544,
+        "sha256": "27085957b101887b78f9b730fe0dbb4c6834c81a138974df9487c2de0f8e7e87"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/baseline-before.log",
+        "size": 58648,
+        "sha256": "f37dab20308e6c40f41a441c540981cbc81154da4b1d41845a992b5ae4cb7efa"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/hardening-before.log",
+        "size": 2452,
+        "sha256": "c10194a691a68492a47c5bfe9369860a6445dfc1f1b9f74a0c52fdd3b7ef6b04"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/affected-hardened.log",
+        "size": 341,
+        "sha256": "29ac24f6f8a0a01ec5ab062528b1a123ae36b3d17c9a61d9338638ed8dd6ffe5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/focused-hardened/result.json",
+        "size": 1169,
+        "sha256": "7e39b2ff119d39ba85b21dc918c72ab6a3d565c7328cd839de85f37aa5349bd0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/focused-hardened/pytest.log",
+        "size": 6827,
+        "sha256": "f3751da9a093f0fd3e21cadd520c125dd49d540720c0f26e09756bc057d45a53"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/focused-hardened/pytest.xml",
+        "size": 243907,
+        "sha256": "64fed19eb9e826fa381477e141cbea11ee31051077f6058e141b4050a4d501e6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/focused-hardened/source-hashes.json",
+        "size": 63638,
+        "sha256": "176a11bc0833f5482844854bb10824620752a4bdee4e8583a4614465b4935ee6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/validation/auxiliary.json",
+        "size": 3079,
+        "sha256": "8e544c57a34027e54dfc2399e405789b969f96e7b570571bddc1698aded0cd47"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/captures/000/native_receipt.json",
+        "size": 6012555,
+        "sha256": "27f90d247b772d72c5d59c2b3ac0953e1b5d8727fd0f5fd839bec93435131e71"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/captures/001/native_receipt.json",
+        "size": 6006533,
+        "sha256": "fd8dd56231efee1e0f15aa30320bde2064786b9d72315610cb164116cbca228e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/attribution/captures/002/native_receipt.json",
+        "size": 6000475,
+        "sha256": "009735fd5964fb987586c78277e9e74c5af701f77c80fa1772d1766c7e8777f2"
+      }
+    ]
   }
 }

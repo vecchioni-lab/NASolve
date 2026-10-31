@@ -11,6 +11,70 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C150 validated: maintained captured linear-torsion attribution
+
+Base/pushed-before-work `4579e954f146edb89e1383ac2da16da602bfdaf1`; existing
+**cedar** only. Capsule `live_tests_directory/150_Cedar_linear-attribution-kl1btmvd`.
+Before: C149's staged captures were authenticated but a separate helper supplied
+the kernel reference execution. After: a maintained bounded native job freezes
+that entire chain, derives the proxy inputs and replays numerical attribution
+without running captured code or opening historical SDK paths.
+
+New `src/nasolve/cif_captured_linear_attribution.py` and its regression module
+add schema 1 / `cif-captured-linear-torsion-attribution-v1`. Preparation is explicit;
+a native pass needs one completed maintained process, exact source/code pins and
+complete repeated raw references. Up to 128 removed proxies and a 1–300 second
+deadline are supported. Every staged model/CIF/PHIL/consumer binding rechecks;
+unknown capture files refuse before reservation. Failed/partial attempts remain
+immutable; launch failures retain a required error explanation. No code allowlist,
+source-chemical authority, derivative or coordinate-adoption claim is introduced.
+Existing pure gates and numerical cores remain unchanged. The outer job receipt
+closes the embedded pure gate's caller-owned execution responsibility.
+
+**Live result:** one complete Phenix 2.2.1-6174 process (dispatcher 2.2.1),
+90-second deadline, successful return. All six references exactly reproduce C149,
+three active proxies each for graph-selected 5PC/PDU. Whole-model target delta
+remains **15.11250671668131**. The unchanged 865-atom captured input, source states,
+phosphates/H, dictionaries and custom policy are retained. No new ReadySet,
+manager capture, geometry optimization, Coot or diffraction refinement was run.
+C149's coordinate endpoint remains unconverged and unadopted.
+
+**Validation:** 36 baseline API regressions fail before implementation; two
+additional preflight/error regressions fail before hardening. Final affected
+result: 220 passed in 34.55s. Focused chemistry/workflow:
+**1662 passed, 36 subtests passed in 296.17s (0:04:56)**; all **584** frozen Python files unchanged.
+Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_captured_linear_attribution.py tests/test_cif_linear_torsion_bundle.py tests/test_cif_linear_torsion_candidate.py tests/test_cif_linked_linear_torsion.py tests/test_cif_linked_torsion_energy.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_component_runtime.py
+python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-hardened/pytest.xml
+python c150_live.py
+python c150_cold_hardened.py
+```
+
+Hardened cold replay preserves **224 files**, denies historical/SDK reads and
+execution, and rejects **12** tamper controls after the owned original is gone.
+All **225** snapshotted C149 files retain bytes/times; **41** prior ledger refs
+verify. Compileall (external cache), document/JSON/link checks, unchanged figure
+regeneration, static-resource/core checks and `git diff --check` pass. No full
+suite this pass; last full-tested remains
+`809abd44df8885ac14f1a02a67a13338209a8707` (7175 tests +276 subtests).
+
+Changed files: the new runtime/test module, chemistry profile, changelog, methods,
+overview/caption, architecture/index, this handoff and both existing JSON ledgers.
+No CLI/default/schema migration for existing runs, caches or checkpoints. Raw
+scientific/native/test evidence and helpers remain local. No new branch or merge.
+Implementation and focused validation complete; publication pending.
+No active jobs remain.
+
+**Next:** Bind repaired dictionaries and maintained attribution to exact independently source-qualified component/preparation and selected-bundle evidence. First reconcile C147 plain energy/policy captures with the component path's full-model monomer contract explicitly; preserve all extra metadata and source ownership. Establish dictionary usability and a verified fallback independently of C149's unconverged coordinate trial. Keep linked 10C, curated-DZ token-per-line parsing, broader L-FANA/L-FDNA/PNA, native charge limits and ordinary orchestration visible.
+The capture-policy mismatch is a real integration boundary, not permission to
+weaken source or inventory checks. Whole-model pair strain and ordinary corrected-
+evaluator/refinement scope remain open. Exact commands, scopes and anchored
+artifacts are in `captured_linear_attribution_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+— Rowan · Codex desktop
+
 ## C149 published: graph-selected bundle repair and endpoint mechanics pass
 
 Base/pushed-before-work `2a47056895f25bed258fdc781b9176f2f5047290`; existing
@@ -2229,7 +2293,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; evidence updated through C149 on 2026-10-31.** Every ligand in the selected
+**Scope revised 2026-10-28; evidence updated through C150 on 2026-10-31.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -2240,13 +2304,13 @@ not an estimate for complete catalogue support.
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
 | G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** C143 adds compatible-host whole-furanose transport; C144 matches graph-projected ATL native reaction states in two directional and one three-site control. C145 adds explicit base-anchored different-backbone placement and C146 connects the mixed ATL seed through bounded source-preserving body/arm motion. C147 adds generic captured derivatives and an isolated/two-copy 10C alpha-L-LNA transfer control. C149 reaches mixed-scaffold derivative and endpoint mechanics pass after graph-selected repair, while achieved geometry, naming/protonation differences and linked 10C remain open; C142 qualifies a source-preserving isolated ATL numerical candidate; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states and numerical PNA qualification remain open. C133 links source-bound DNA/L-DNA candidates to explicit terminal reconstruction, protects all retained centres and leaves experimental protonation/native formal charge unqualified. C120 adds source-declared FANA identity and four-centre candidate preservation; C122 checks explicit enantiomer source intent under a separate target identity. |
-| G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds explicit whole-purine generation; C121 adds bounded neutral 6-oxo five-ring representation and transfers across FANA/L-DNA/PNA. Exact stage checks, immutable attempts and isolated controls pass. C149 adds immutable graph-selected multi-component bundle planning and authenticated consecutive native/energy attribution, without code allowlists. Decision/reuse pieces exist; source-qualified repair-to-selection composition and general orchestration remain open. |
+| G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds explicit whole-purine generation; C121 adds bounded neutral 6-oxo five-ring representation and transfers across FANA/L-DNA/PNA. Exact stage checks, immutable attempts and isolated controls pass. C149 adds immutable graph-selected multi-component bundle planning and authenticated consecutive native/energy attribution, without code allowlists. C150 adds maintained native reference execution and offline replay. Decision/reuse pieces exist; source-qualified repair-to-selection composition and general orchestration remain open. |
 | G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **C149 qualifies graph-selected 5PC/PDU changes throughout the mixed ATL scaffold: exact staged inventory/energy attribution, fresh complete derivatives and endpoint geometry mechanics pass. The iteration-limited coordinate trial remains unconverged and scientifically unqualified.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. C122 adds one explicitly derived L-FANA-C native control. DG retains an explicit native name-mapping failure. C123–C130 establish local L-FANA-C binding, connected placement, sampled derivatives and a bounded unconverged trial. C133 establishes exact source-projected flank definitions and fresh sampled ordinary derivatives; C136–C138 bind saved dictionaries to exact site/native evidence, declared terminal/custom context and complete native identities. C139 composes independent components and rechecks the actual ReadySet endpoint. C140 adds lossless heavy-PDB serialization before the unchanged strict endpoint check; unsupported cases retain the qualified fallback. C144 additionally matches ATL native effective reaction definitions, declared links and junction-angle membership, with finite repeated fixed-coordinate numerics. C146 now observes both ATL links/eight angles and exact 201 NAR custom restraints in the actual mixed scaffold. C147–C149 complete sampled numerical/endpoint mechanics checks and improve ATL junctions while preserving all source hands. Remaining pair/clash/pucker geometry, broader linked chemistry/symmetry and ordinary refinement remain open. |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. C141 makes exact component selection public-reader compatible with frozen source/native replay and plain-language diagnostic scope. Ordinary orchestration/adoption, chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 
-**Next bounded work, in order:** connect C149's graph-selected repair and exact
-native attribution to the existing source-qualified candidate/preparation and public
+**Next bounded work, in order:** connect C149's graph-selected repair and C150's
+maintained, replayable native attribution to the existing source-qualified candidate/preparation and public
 selected-bundle contracts. Dictionary usability and selection must not inherit
 coordinate adoption merely because mechanics pass. Preserve explicit original and
 candidate chemical authority, source hands, phosphate/H state and a verified usable

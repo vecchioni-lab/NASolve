@@ -35,6 +35,8 @@ milestone statements preserve their original scope; they are not a second queue.
   bundle, qualifies both repairs and passes fresh derivatives/geometry mechanics.
   The endpoint remains unconverged with pair strain; scientific qualification,
   ordinary adoption and linked 10C construction remain open.
+  C150 closes the separate helper boundary with a bounded maintained native
+  attribution job and portable offline replay, reproducing all six proxy references.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry
