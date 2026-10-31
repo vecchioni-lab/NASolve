@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C139 validated: qualified component bundles and final ReadySet readback
+## C139 published: qualified component bundles and final ReadySet readback
 
 Base: `dd318021b328e4aa83fd3ba5d7afd0a3a011e355`; existing cedar only.
 Capsule: `live_tests_directory/139_Cedar_component-bundle-whiru70v`.
@@ -55,7 +55,9 @@ Ten missing/corrupt controls demonstrate fallback or refusal of an invalid start
 all 540 evidence files retain bytes/sizes/timestamps. The old incomplete copied-
 chain attempt remains blocked. Only code/tests, durable contracts, figure and
 summary/hash evidence are published; raw scientific artifacts and runners stay local.
-No job is active. Implementation and validation are complete; signed publication remains.
+No job is active. Implementation, full validation and signed publication are complete. Tested
+implementation `61d878edda9c8a7a0e0f3c3700ef1fd2f7dd540c` is published and verified
+on `origin/cedar`; this follow-up records continuity. No branch creation or merge.
 Evidence key: `qualified_component_bundle_2026_10_31`.
 
 Next: explicit ReadySet atom-order reconciliation with signed chirality/torsion,

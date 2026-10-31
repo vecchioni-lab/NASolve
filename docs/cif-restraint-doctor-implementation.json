@@ -27360,7 +27360,7 @@
       "remote_verified": true
     },
     "qualified_component_bundle": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "after": "Compose explicit qualified entries under one immutable model/consumer/context, retain source-owned phosphate names through qualified internal-site operations, and independently recheck the actual ReadySet endpoint; preserve a checked diagnostic start when optional endpoint evidence fails.",
       "schemas": {
         "bundle": "schema 1 / cif-stored-dictionary-bundle-v1; dictionary_bundle_directory anchor; unique component/site/modifier ownership; sorted components and ordered common/native PHILs",
@@ -27382,7 +27382,11 @@
       "next": "Reconcile ReadySet atom ordering under an explicit identity/native contract without relaxing signed chirality, torsion, symmetry, origin or numerical checks. Preserve the verified starting diagnostic until that proof passes. Then connect this opt-in bundle route to ordinary continuation/adoption with representative held-out cases; generic PNA/ATL ports, PDU changed-objective numerics and catalogue-wide coverage remain separate.",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "qualified_component_bundle_2026_10_31",
-      "validation": "7062 passed, 276 subtests passed in 1107.68s (0:18:27); focused 1153 passed, 36 subtests passed in 111.10s (0:01:51); two final native/ReadySet controls; seven cold replays plus ten negatives."
+      "validation": "7062 passed, 276 subtests passed in 1107.68s (0:18:27); focused 1153 passed, 36 subtests passed in 111.10s (0:01:51); two final native/ReadySet controls; seven cold replays plus ten negatives.",
+      "implementation_commit": "61d878edda9c8a7a0e0f3c3700ef1fd2f7dd540c",
+      "full_tested_commit": "61d878edda9c8a7a0e0f3c3700ef1fd2f7dd540c",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
