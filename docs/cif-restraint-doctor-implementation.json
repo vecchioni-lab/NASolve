@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "whole_furanose_and_atl_links_2026_10_31",
+    "current_diagnostic_record": "graph_furanose_reaction_states_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27485,6 +27485,28 @@
       "full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "graph_furanose_reaction_states": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "An additive graph-bound furanose adapter reuses explicit neutral source-port authority, preserves complete candidate chemistry/configuration, supplies independent site modifiers and graph-selected outgoing OC2 typing, and copies missing source classification without accepting contradictory relabeling. Exact native text and projections replay offline.",
+      "schemas": {
+        "new": "schema 1 / cif-graph-furanose-native-reaction-v1; exact frozen input/output inventory plus rederived projections/modifier blocks/selectors",
+        "energy_policy": "cif-neutral-furanose-outgoing-oxygen-oc2-v1",
+        "unchanged": "Existing source graph/site, FANA/L-FANA/PNA, native capture, CLI, runtime bundle and checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python diagnostic; no migration, ordinary defaults, source/installed-library edit, checkpoint selection or new branch.",
+      "limitations": [
+        "Opt-in preparation/replay only. This adapter reassesses complete source-preserving numerics but does not claim an isolated or linked native usability pass, generate a replacement dictionary, edit model coordinates or activate ordinary PostMR/ReadySet adoption.",
+        "Neutral source/linked ports on uniquely matched unbridged/2O4C-bridged furanoses only. PNA, charged reacting ports, free-OH reconstruction, symmetry, partner chemistry and unsupported PDB identity require separate authority. Unknown outgoing native types refuse; no residue-name whitelist or blanket OP3 deletion.",
+        "Actual ATL definitions match in both directional controls and three independently modified sites, but canonical DA source/name/protonation differences and unavailable native formal-charge readback remain. Partial charge never substitutes for formal charge.",
+        "Native junction angles/torsions are observed conventional targets. Finite repeated energy/gradients are not derivative or achieved-geometry qualification. The artificial translated trimer is not a physical oligonucleotide or diffraction result.",
+        "ATL alpha-LNA-T still differs from the intended D-DNA host at C3/C4. The source is not inverted/relabelled, and the eight-pair-plus-ATL scaffold remains NOT_CONSTRUCTED. PDU changed-objective geometry and ordinary multi-component adoption remain independent gates."
+      ],
+      "next": "Design an explicit different-backbone placement/junction control preserving all alpha-LNA-T source hands and the eight existing mixed-pair sites, using the now-correct source-bound site modifiers. Qualify complete linked active mechanics and sampled derivatives/geometry before claiming ATL support. Separately run the new PDU changed-objective bounded geometry/endpoint trial, then ordinary selected-bundle PostMR orchestration with usable fallback.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "graph_furanose_reaction_states_2026_10_31",
+      "validation": "1474 passed, 36 subtests passed in 132.92s (0:02:12); three final native controls and cold replay pass; no full run this push."
     }
   },
   "audience": [

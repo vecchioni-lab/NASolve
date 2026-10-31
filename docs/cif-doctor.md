@@ -101,7 +101,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
-| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. Both directional native links are observed, but undeleted source reaction-state atoms keep definitions in review. Combined-scaffold construction, linked numerical qualification and junction geometry remain open. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. Combined-scaffold construction, linked numerical qualification and junction geometry remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 PDU omissions have exact inventory, fixed-coordinate energy/gradient attribution and fresh sampled derivative evidence on the DF-repaired mixed scaffold. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs a new bounded geometry trial and endpoint qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
@@ -148,6 +148,63 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Graph-bound native furanose reaction preparation (C144)
+
+`prepare_furanose_reaction_control(source, numerical, workbook, model, output,
+code=..., contexts=[...])` is an additive Python diagnostic. It accepts the
+existing unique unbridged or 2′-O–4′-C methylene furanose graph profiles and requires
+one explicit attachment-site context for **every model site sharing the code**.
+Each phosphate/alcohol port retains its source state or declares an identity-
+symmetry link. Different terminal and internal sites receive distinct modifiers;
+no global component edit silently chooses one state for all occurrences.
+
+The complete numerical candidate must preserve source graph, elements, hydrogen,
+formal charge and every declared stereocentre. The existing attachment-site
+reader owns neutral leaving-group authority and exact model inventory checks.
+A linked incoming phosphate deletes only its explicitly chosen single-bonded
+terminal oxygen and attached hydrogen; an outgoing alcohol deletes only its
+hydrogen. Other phosphate protonation, bridge atoms and retained stereocentre
+neighbours are unchanged. Source atom names identify records, never the reaction
+rule: OP3, OXT and renamed equivalents receive the same graph-based checks.
+PNA, charged reacting ports, free-OH reconstruction and symmetry links remain
+outside this adapter.
+
+**Native method.** Source-projected numerical rows retain all remaining targets,
+ESDs, orders, planes and signed chirality. The source-qualified outgoing neutral
+C–O–H port requires OH1 input typing and becomes OC2 after its explicit O–P
+substitution, under `cif-neutral-furanose-outgoing-oxygen-oc2-v1`. This borrows the
+outgoing-oxygen convention of Phenix's NA-STAND modifier; it does not borrow that
+modifier's blanket phosphate-hydrogen deletions. No experimental protonation is
+inferred. The numerical dictionary's group remains unchanged. If its polymer
+classification is absent, `_chem_comp.type` is copied from the source and recorded;
+a conflicting label is refused. This is integration metadata, not a chemical
+conversion or an isolated/linked native usability certificate.
+
+Schema 1 `cif-graph-furanose-native-reaction-v1` freezes source, numerical CIF,
+workbook, model, explicit contexts and selection. It emits a base dictionary,
+one CIF block per site modifier, exact PHIL selectors and a projection report.
+`read_furanose_reaction_control` recomputes all outputs offline. Missing, extra,
+symlinked or rehashed forged output refuses. Interrupted attempts remain intact;
+retry requires a fresh directory. There is no new CLI, migration, coordinate
+change, ordinary ReadySet/PostMR default or automatic adoption.
+
+**Evidence and boundary.** Phenix **2.2.1-6174** (dispatcher **2.2.1**) completed
+three interpretations. DA→ATL removes OXT/HXT; ATL→DA removes HA and assigns OC2
+to O3′. All effective projected numerical categories match. The existing bond and
+all four graph-required cross-link angles are present; unselected DA definitions
+and unaffected proxies remain unchanged. An explicitly artificial translated
+three-ATL model also matches distinct first/internal/last states and both links.
+All four source sugar centres and nonreacting phosphate H survive. Each capture
+has finite repeated fixed-coordinate energy/gradients. These are complete native
+interpretations, not geometry optimization, derivative tests or diffraction runs.
+Generic native junction targets are observed conventions, not ATL-specific
+geometrical validation. Native formal-charge readback remains unsupported; DA
+source/name/protonation differences remain reviewable. The incompatible D-DNA
+host and combined eight-pair-plus-ATL construction are still open. Earlier C143
+failures and all preliminary attempts are retained. Exact evidence:
+`graph_furanose_reaction_states_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Whole-furanose placement and ATL compatibility boundary (C143)
 
@@ -202,7 +259,7 @@ excuse to invert the candidate, relabel it DNA, or discard its bridge. A future
 explicit different-backbone construction/junction workflow must preserve the
 chosen source chemistry. The combined scaffold remains **NOT_CONSTRUCTED**.
 
-Two complete synthetic directional controls with Phenix **2.2.1-6174** (dispatcher
+The preserved C143 baseline comprises two complete synthetic directional controls with Phenix **2.2.1-6174** (dispatcher
 **2.2.1**) now recognize DA→ATL and ATL→DA O3′–P bonds with target 1.607 Å and
 weight 6944.444444444444. The new candidate avoids the older installed-library
 unknown-energy-type failures, but this is not linked numerical qualification.

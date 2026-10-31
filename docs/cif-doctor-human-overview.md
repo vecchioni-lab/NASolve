@@ -121,9 +121,12 @@ four sugar centres and its bridge. C143 adds a graph-based rigid whole-sugar
 placement control with explicit ports, preserved stereochemistry and replayable
 frozen inputs. The workbook identifies ATL as alpha-LNA-T. The adapter refuses its D-DNA
 host because two shared sugar hands differ; the combined scaffold remains unconstructed. Directional Phenix
-controls recognize both links but leave undeleted reacting atoms in their effective
-definitions, so linked support remains unqualified. This preserves source chemistry
-rather than changing it to fit the scaffold. See the
+controls originally recognized both links while leaving reacting atoms undeleted.
+C144 now derives explicit site modifiers from the source graph and matches the
+projected ATL numerical definitions in two directional controls and a three-site
+control. It preserves source RNA classification, the bridge, all four sugar
+centres and nonreacting phosphate protonation. Complete linked numerical and
+combined-scaffold support remain separate qualifications. See the
 [placement methods and limits](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
@@ -721,7 +724,10 @@ require reciprocal source ports across the declared link set. Exact projections
 and source binding leave native linkage unqualified. Saved native captures then
 supply literal bond membership and effective-definition observations, with failed
 interpretations, naming differences and missing charge readback kept explicit.
-Hash-bound JSON receipts preserve audit findings
+The C144 reaction adapter separately closes the selected ATL leaving-atom mismatch
+using explicit per-site graph operations and preserved source classification;
+its three native controls do not add an automatic adoption arrow or establish
+combined-scaffold geometry. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,
 declared site modifications and historical generation findings; equality does
@@ -898,9 +904,11 @@ alignment reproduces the stored initial gradient within 3e-12 in norm.
 Spectral recombination explains all six failures at unchanged energy samples;
 this is offline inference rather than a newly corrected native evaluation. The separate whole-furanose diagnostic preserves a complete
 source-defined sugar and uses explicit attachment ports; incompatible host hands
-and native reaction-state mismatches remain refusals. ATL demonstrates why a
-recognized bond and a source-preserving isolated dictionary do not establish
-combined-scaffold support.
+remain refusals. A separate graph-bound reaction adapter now preserves the source
+classification and emits independent neutral port modifications for each site.
+It matches ATL native effective definitions without altering retained protonation.
+ATL still demonstrates why a recognized bond and matching dictionary do not
+establish combined-scaffold support.
 
 Cedar 26 takes the native first-plane gradient in the original order and for a
 parameter-preserving swapped copy, then scatters both by original atom index.

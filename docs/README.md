@@ -110,3 +110,7 @@ The current CIF Doctor boundary includes the
 [whole-furanose placement and ATL compatibility gate](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143):
 rigid whole-sugar controls and actual source-hand/link-definition refusals are
 separate from combined-scaffold construction or ordinary refinement support.
+
+The [graph-bound native reaction adapter](cif-doctor.md#graph-bound-native-furanose-reaction-preparation-c144)
+now closes the selected ATL leaving-atom definition mismatch in explicit controls,
+while retaining the independent construction, geometry and ordinary-adoption gates.

@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Graph-bound native furanose reaction states (C144)
+
+- Add an opt-in immutable adapter that derives per-site native modifiers from
+  complete source-preserving numerics and explicit neutral furanose port states.
+  It removes only the declared phosphate leaving oxygen/hydrogen or alcohol
+  hydrogen, preserves every source configuration and retained protonation, and
+  assigns outgoing oxygen OC2 typing under a named bounded native convention.
+- Preserve source polymer classification: carry it into the runtime dictionary
+  when numerical generation omitted it, and refuse contradictory supplied labels.
+  Native group metadata remains unchanged; no DNA relabeling grants eligibility.
+- Recompute exact dictionaries, modifiers and selectors from frozen inputs on
+  every offline read. Source-terminal and internal sites sharing a component
+  receive independent modifiers. Schema 1 `cif-graph-furanose-native-reaction-v1`;
+  no existing schema migration, ordinary PostMR change or automatic adoption.
+- Three complete Phenix controls match projected ATL definitions and declared
+  links. This closes the observed ATL leaving-atom mismatch, not combined-scaffold
+  construction, global linked numerical support or diffraction qualification.
+
 ### Graph-bound whole-furanose diagnostic placement (C143)
 
 - Add an opt-in immutable whole-residue placement adapter for uniquely matched

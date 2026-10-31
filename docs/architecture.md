@@ -3600,9 +3600,19 @@ model and two explicit neutral link-port declarations. It preserves all declared
 source centres, including four-heavy-neighbour centres, and all bystander records.
 It does not authorize a different-backbone substitution: actual alpha-LNA-T (ATL)
 and D-DNA disagree at two shared-role hands. Native observations of both ATL link
-directions also retain source/native reaction-state mismatches. These are separate
-construction and native-preparation gates, with no ordinary adoption or source
-inversion. See the [current methods and limits](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143).
+directions exposed source/native reaction-state mismatches in C143. C144 closes the
+selected ATL definition mismatch with a separate graph-bound neutral reaction
+adapter. It reuses source attachment authority, requires all sites sharing a code
+to declare their states, preserves every source configuration and nonreacting
+phosphate hydrogen, and emits independent native modifiers. Outgoing OH1 becomes
+OC2 only under the explicit neutral C–O–H/O–P operation. Numerical group metadata
+is unchanged; omitted source classification is carried forward and contradictory
+classification is refused. Frozen source/numerical/model/context inputs rederive
+the exact native text on offline read. Construction, partner chemistry, numerical
+junction qualification and ordinary adoption remain separate gates; no source
+inversion or implicit DNA conversion is allowed. See the
+[reaction preparation contract](cif-doctor.md#graph-bound-native-furanose-reaction-preparation-c144)
+and [placement methods and limits](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143).
 
 
 ## Source-bound FANA junction angle adapter (C125)

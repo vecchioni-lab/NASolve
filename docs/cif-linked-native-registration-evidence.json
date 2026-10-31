@@ -53349,5 +53349,831 @@
     "full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "graph_furanose_reaction_states_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "27d3cdcddbb83670b6cc7f1df68866a34151a0e7",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "before": "ATL directional native links were present but incoming OXT/HXT and outgoing HA remained in effective definitions. The existing DNA-specific preparation was not an appropriate RNA-classified ATL adapter.",
+    "after": "An additive graph-bound furanose adapter reuses explicit neutral source-port authority, preserves complete candidate chemistry/configuration, supplies independent site modifiers and graph-selected outgoing OC2 typing, and copies missing source classification without accepting contradictory relabeling. Exact native text and projections replay offline.",
+    "changed_files": [
+      "src/nasolve/cif_furanose_reaction.py",
+      "tests/test_cif_furanose_reaction.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-graph-furanose-native-reaction-v1; exact frozen input/output inventory plus rederived projections/modifier blocks/selectors",
+      "energy_policy": "cif-neutral-furanose-outgoing-oxygen-oc2-v1",
+      "unchanged": "Existing source graph/site, FANA/L-FANA/PNA, native capture, CLI, runtime bundle and checkpoint schemas"
+    },
+    "compatibility": "Additive explicit Python diagnostic; no migration, ordinary defaults, source/installed-library edit, checkpoint selection or new branch.",
+    "regressions": {
+      "new_cases": 40,
+      "before": "34 initial cases fail before the module exists. An additional source-classification contradiction test fails before the guard, then passes. An initial eight terminal fixture failures were noncontiguous PDB records in the new fixture, corrected without relaxing the reader.",
+      "related": "190 passed in 15.58s",
+      "focused": {
+        "exit_code": 0,
+        "summary": "1474 passed, 36 subtests passed in 132.92s (0:02:12)",
+        "seconds": 133.27700775000267,
+        "files": 573,
+        "changed_files": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH: user explicitly requested focused tests only in the 45-minute window. Last full-tested implementation remains 809abd44df8885ac14f1a02a67a13338209a8707; full integration remains a pre-merge gate."
+    },
+    "science": {
+      "status": "SELECTED_REACTION_DEFINITIONS_MATCH",
+      "directional_controls": [
+        {
+          "case": "DA_ATL",
+          "deleted_atoms": [
+            "HXT",
+            "OXT"
+          ],
+          "energy_type_changes": [],
+          "all_projected_definitions_match": true,
+          "link_status": "MATCH",
+          "unselected_definitions_preserved": true,
+          "unaffected_proxy_checks": {
+            "angle": true,
+            "bond_asu": true,
+            "bond_simple": true,
+            "chirality": true,
+            "const_dihedral": true,
+            "dihedral": true,
+            "parallelity": true,
+            "planarity": true
+          },
+          "model_atoms_unchanged": true,
+          "classification_preserved": true,
+          "group_preserved": true,
+          "energy_checks": {
+            "energy_inventory": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true
+          },
+          "graph_derived_cross_link_angles": {
+            "status": "MATCH",
+            "expected": 4,
+            "observed": [
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ],
+                  [
+                    "A:2",
+                    "O5'"
+                  ]
+                ],
+                "target": 104.0,
+                "weight": 0.2770083102493075
+              },
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ],
+                  [
+                    "A:2",
+                    "OP1"
+                  ]
+                ],
+                "target": 108.0,
+                "weight": 0.1111111111111111
+              },
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ],
+                  [
+                    "A:2",
+                    "OP2"
+                  ]
+                ],
+                "target": 108.0,
+                "weight": 0.1111111111111111
+              },
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "C3'"
+                  ],
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ]
+                ],
+                "target": 119.7,
+                "weight": 0.6944444444444444
+              }
+            ],
+            "parameter_authority": "Observed native nucleic-acid link convention; not alpha-LNA-T-specific geometry qualification"
+          },
+          "metadata_changes": [
+            {
+              "field": "_chem_comp.type",
+              "before": null,
+              "after": [
+                "RNA LINKING"
+              ],
+              "authority": "SOURCE"
+            }
+          ]
+        },
+        {
+          "case": "ATL_DA",
+          "deleted_atoms": [
+            "HA"
+          ],
+          "energy_type_changes": [
+            {
+              "atom_id": "O3'",
+              "before": "OH1",
+              "after": "OC2",
+              "policy_id": "cif-neutral-furanose-outgoing-oxygen-oc2-v1"
+            }
+          ],
+          "all_projected_definitions_match": true,
+          "link_status": "MATCH",
+          "unselected_definitions_preserved": true,
+          "unaffected_proxy_checks": {
+            "angle": true,
+            "bond_asu": true,
+            "bond_simple": true,
+            "chirality": true,
+            "const_dihedral": true,
+            "dihedral": true,
+            "parallelity": true,
+            "planarity": true
+          },
+          "model_atoms_unchanged": true,
+          "classification_preserved": true,
+          "group_preserved": true,
+          "energy_checks": {
+            "energy_inventory": true,
+            "finite_energy_and_gradient": true,
+            "fixed_coordinate_repeats": true
+          },
+          "graph_derived_cross_link_angles": {
+            "status": "MATCH",
+            "expected": 4,
+            "observed": [
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ],
+                  [
+                    "A:2",
+                    "O5'"
+                  ]
+                ],
+                "target": 104.0,
+                "weight": 0.2770083102493075
+              },
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ],
+                  [
+                    "A:2",
+                    "OP1"
+                  ]
+                ],
+                "target": 108.0,
+                "weight": 0.1111111111111111
+              },
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ],
+                  [
+                    "A:2",
+                    "OP2"
+                  ]
+                ],
+                "target": 108.0,
+                "weight": 0.1111111111111111
+              },
+              {
+                "atoms": [
+                  [
+                    "A:1",
+                    "C3'"
+                  ],
+                  [
+                    "A:1",
+                    "O3'"
+                  ],
+                  [
+                    "A:2",
+                    "P"
+                  ]
+                ],
+                "target": 119.7,
+                "weight": 0.6944444444444444
+              }
+            ],
+            "parameter_authority": "Observed native nucleic-acid link convention; not alpha-LNA-T-specific geometry qualification"
+          },
+          "metadata_changes": [
+            {
+              "field": "_chem_comp.type",
+              "before": null,
+              "after": [
+                "RNA LINKING"
+              ],
+              "authority": "SOURCE"
+            }
+          ]
+        }
+      ],
+      "trimer": {
+        "status": "MATCH",
+        "sites": [
+          {
+            "site": "A:1",
+            "deleted_atoms": [
+              "HA"
+            ],
+            "energy_type_changes": [
+              {
+                "atom_id": "O3'",
+                "before": "OH1",
+                "after": "OC2",
+                "policy_id": "cif-neutral-furanose-outgoing-oxygen-oc2-v1"
+              }
+            ]
+          },
+          {
+            "site": "A:2",
+            "deleted_atoms": [
+              "HA",
+              "HXT",
+              "OXT"
+            ],
+            "energy_type_changes": [
+              {
+                "atom_id": "O3'",
+                "before": "OH1",
+                "after": "OC2",
+                "policy_id": "cif-neutral-furanose-outgoing-oxygen-oc2-v1"
+              }
+            ]
+          },
+          {
+            "site": "A:3",
+            "deleted_atoms": [
+              "HXT",
+              "OXT"
+            ],
+            "energy_type_changes": []
+          }
+        ],
+        "links": [
+          {
+            "sites": [
+              "A:1",
+              "A:2"
+            ],
+            "target": 1.607,
+            "weight": 6944.444444444444
+          },
+          {
+            "sites": [
+              "A:2",
+              "A:3"
+            ],
+            "target": 1.607,
+            "weight": 6944.444444444444
+          }
+        ],
+        "energy_checks": {
+          "energy_inventory": true,
+          "finite_energy_and_gradient": true,
+          "fixed_coordinate_repeats": true
+        },
+        "source_centres_retained_per_site": 4,
+        "geometry": "ARTIFICIAL_TRANSLATED_CONTROL_NOT_QUALIFIED"
+      },
+      "formal_charge_readback": "UNSUPPORTED",
+      "combined_scaffold": "NOT_CONSTRUCTED",
+      "automatic_adoption": false
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_gone": true,
+      "original_sdk_historical_reads_and_execution_denied": true,
+      "reaction_capsules_rederived": 3,
+      "native_captures_reauthenticated": 5,
+      "frozen_files_unchanged": 140,
+      "negative_controls": [
+        "base",
+        "modifiers",
+        "parameters",
+        "report",
+        "context",
+        "source",
+        "schema",
+        "extra"
+      ]
+    },
+    "auxiliary": {
+      "compileall": "PASS",
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c144-compile-cache"
+      },
+      "docs": {
+        "relative_links_checked": 302,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources_equal_base": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "svg_visual_review": "PASS: unchanged SVG remains legible; updated caption describes the separate C144 reaction adapter and unresolved adoption/geometry.",
+      "parent_artifacts_unchanged": 48,
+      "previous_C143_refs_verified": 52
+    },
+    "validation_commands": {
+      "new_regressions": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <nasolve_python> -m pytest -q tests/test_cif_furanose_reaction.py",
+      "focused": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <nasolve_python> scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-final/pytest.xml",
+      "native": "Same scoped environment: c144_native_final.py and c144_trimer_capture.py; exact commands/receipts/runners retained in the capsule and ignored runner archive.",
+      "cold": "<nasolve_python> c144_cold.py; starts a separate Python process against relocated src after owned original disappears, denying historical/SDK reads and execution.",
+      "auxiliary": "compileall -q src tests with external PYTHONPYCACHEPREFIX; check_docs.py; unchanged SVG regeneration/render/visual review; git diff --check"
+    },
+    "software": {
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "final_complete_native_interpretations": 3,
+      "preliminary_complete_native_interpretations": 2,
+      "dry_run": false,
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "artifacts": "Only code/tests/profile and maintained technical summary/hash evidence publish. Raw CIF/model/workbook, generated/native/test outputs, historical controls and runners stay local. All 48 directly used C143 artifacts retain bytes/times and 52 prior ledger refs retain hashes. No cleanup/movement of user data.",
+    "limitations": [
+      "Opt-in preparation/replay only. This adapter reassesses complete source-preserving numerics but does not claim an isolated or linked native usability pass, generate a replacement dictionary, edit model coordinates or activate ordinary PostMR/ReadySet adoption.",
+      "Neutral source/linked ports on uniquely matched unbridged/2O4C-bridged furanoses only. PNA, charged reacting ports, free-OH reconstruction, symmetry, partner chemistry and unsupported PDB identity require separate authority. Unknown outgoing native types refuse; no residue-name whitelist or blanket OP3 deletion.",
+      "Actual ATL definitions match in both directional controls and three independently modified sites, but canonical DA source/name/protonation differences and unavailable native formal-charge readback remain. Partial charge never substitutes for formal charge.",
+      "Native junction angles/torsions are observed conventional targets. Finite repeated energy/gradients are not derivative or achieved-geometry qualification. The artificial translated trimer is not a physical oligonucleotide or diffraction result.",
+      "ATL alpha-LNA-T still differs from the intended D-DNA host at C3/C4. The source is not inverted/relabelled, and the eight-pair-plus-ATL scaffold remains NOT_CONSTRUCTED. PDU changed-objective geometry and ordinary multi-component adoption remain independent gates."
+    ],
+    "next": "Design an explicit different-backbone placement/junction control preserving all alpha-LNA-T source hands and the eight existing mixed-pair sites, using the now-correct source-bound site modifiers. Qualify complete linked active mechanics and sampled derivatives/geometry before claiming ATL support. Separately run the new PDU changed-objective bounded geometry/endpoint trial, then ordinary selected-bundle PostMR orchestration with usable fallback.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/science-audit.json",
+        "size": 25418,
+        "sha256": "f701c7a1ccda0e0a389e5abb1b7ecee0b3945641ea5de0886e9e7f03f8909179"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/preliminary-controls.json",
+        "size": 872,
+        "sha256": "af9f73cd7e37b52e3f50b4dc7b118787d8271dbc3c1d3f05170792f80f4837fc"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/cold/result.json",
+        "size": 856,
+        "sha256": "edb3b5f817cf780f6bc81f0b2bcf7c794ec7442e496fbcd5b2fd94b191523fdd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/cold/replay.log",
+        "size": 313,
+        "sha256": "75b11a5201ab49512d2308afaddf4b7ffc98171bb5affd67adbf8ad619ca57b5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/before.log",
+        "size": 47898,
+        "sha256": "1894950ee1790975d0c40083b8c2c868cc329cfad1410cde016359c128da4323"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/metadata-before.log",
+        "size": 1156,
+        "sha256": "f03041d2acd7bf244bee0c93d3cc7d4ea6a3ca90812a44851c3725a3c97d2dba"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/initial.log",
+        "size": 33435,
+        "sha256": "0123a46e7d27ce290141f650e927b80061e46999f453d516532fc4e2d4e3963c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/related/result.json",
+        "size": 445,
+        "sha256": "c5fa983b17fc3175798bb305dbb8e69aeb9bc74045c63ccaa37fad35bd8bdfe5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/related/pytest.log",
+        "size": 261,
+        "sha256": "b1ac6c9bd402adc78b41f14cf94d42e633fb6840bd392b2fa96b2766ab8a8f00"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/focused-final/result.json",
+        "size": 609,
+        "sha256": "27fd218ad48b5b7bc22d70fe77f974d7bc0fe750f8b9043c04b018c89c7e06a3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/focused-final/pytest.log",
+        "size": 6457,
+        "sha256": "fbb2d9fa21745c3d5de26bfd3c38af585db3ed51dbbd8aacab23c6c05d76e9e6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/focused-final/pytest.xml",
+        "size": 216834,
+        "sha256": "17b1f3f7352e827e99a7f91dc6df9802c943db5227ef1dedf54f5298ed8f6bb9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/focused-final/source-hashes.json",
+        "size": 62379,
+        "sha256": "e0100645c60da3afaf23a506caa58a72dd6f956d8e8b17ea9a783437aaa134ef"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/validation/auxiliary.json",
+        "size": 2641,
+        "sha256": "108375050bae78f1f7c539f915d7500bc684d7a4311feba53bee9d6db46eb5cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/native-state.json",
+        "size": 14210,
+        "sha256": "616a255b9cd7fd367bbff67b02957ec99280c3a340c12826ed632c99df93abcc"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/parent-preservation.json",
+        "size": 35,
+        "sha256": "f6523f75b9add4dd489b7d2ad9850b30c82c1c5064f2d75928b75d51e354f5be"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/Ligands.xlsx",
+        "size": 164458,
+        "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/base_dictionary.cif",
+        "size": 11347,
+        "sha256": "27ece5a9fe5b92370157e06638e4093939a8781699af9705ef7090b5bbd068cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/contexts.json",
+        "size": 369,
+        "sha256": "e7bf14ed17b2aae9122a710ffd953962be6f95486365520dffd5c3a182cfd533"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/model.pdb",
+        "size": 3568,
+        "sha256": "c88121a3ea80aef0dd0592564fa3a0274d6ae6d5a8d4591ab529c241d9ea5fbd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/preparation.json",
+        "size": 38625,
+        "sha256": "47ae117d1fe65690d240be50376f338159484d1697dda94dd4a55cb10fc3c46e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/receipt.json",
+        "size": 1450,
+        "sha256": "f3ed2beb44246a8df45328f1c67349303d59f07230420e5d9efae07a28284b41"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/selection.json",
+        "size": 20,
+        "sha256": "c84106afe5a5299163a13dc6adbb1100d935e3e1b8164ad5f52b58b0333213a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/site_modifications.cif",
+        "size": 302,
+        "sha256": "be3dec04afe11a8b869565f7ffeb92bf15127a61df7ceeada088e78dc0a34deb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/site_modifications.phil",
+        "size": 147,
+        "sha256": "3a6f9439fdea6d9a2269f53aafe8cd755772e68f950d734804603b6ade1ee231"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/DA_ATL/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/DA_ATL/links.json",
+        "size": 1739,
+        "sha256": "692f8969a8e048e0252686ffc8f24a6459fb5371ef73fbfeb6a5b913195d0c5b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/DA_ATL/reaction-summary.json",
+        "size": 5063,
+        "sha256": "2e4c549a568ab7204030a5e91aa08a15b5e07bc2915d8f4ab8813e0f328241a2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/DA_ATL/reaction-native-inspection.json",
+        "size": 73970,
+        "sha256": "13c96aaa65a908a0a525d4e5bdf65038845091aacb8a04ffe09607962a7979c5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/DA_ATL/reaction-projection.cif",
+        "size": 10909,
+        "sha256": "72c89060f750b28671999656e9e4c3871949bfdf7f20e27a081aacdb7e727d08"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/Ligands.xlsx",
+        "size": 164458,
+        "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/base_dictionary.cif",
+        "size": 11347,
+        "sha256": "27ece5a9fe5b92370157e06638e4093939a8781699af9705ef7090b5bbd068cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/contexts.json",
+        "size": 336,
+        "sha256": "946d59c07c2cac2d72a949bfcbf73121b7efddfac972b9721b07862f73343540"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/model.pdb",
+        "size": 3568,
+        "sha256": "225fc32c52edb2a215debe6e20e1218db1c7421c78dc3fae39d3f178e12fa310"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/preparation.json",
+        "size": 39414,
+        "sha256": "a368c25e9c624a7b22821aed82dcb698ae45aacd2a7a061e7dd298b2c4ce8a88"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/receipt.json",
+        "size": 1450,
+        "sha256": "506ee85b04bb5d1aa6c2d30198d9d31870fa785e053ad5d71984536e10493707"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/selection.json",
+        "size": 20,
+        "sha256": "c84106afe5a5299163a13dc6adbb1100d935e3e1b8164ad5f52b58b0333213a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/site_modifications.cif",
+        "size": 310,
+        "sha256": "43dac61affb203d9df060cfad640fd4912d717c0e605998f7a0bba5fd4a66877"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/site_modifications.phil",
+        "size": 147,
+        "sha256": "2e8811152273b6fa8a391a209d1a8d98fae1a92bedf6d91efd1b9588b313404d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/preparations/ATL_DA/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/ATL_DA/links.json",
+        "size": 1739,
+        "sha256": "1856694e230d2e0ccc755d840758b2a49c94cb91da4fd0be99cdd95c3c92ebe1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/ATL_DA/reaction-summary.json",
+        "size": 5235,
+        "sha256": "65946464d7d67f088d486ab29a12959988128ebe922cc143938fdb1220982a6a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/ATL_DA/reaction-native-inspection.json",
+        "size": 73931,
+        "sha256": "ed56ebd2478cdf1ae44d78c8da83fc52493310ee9a9b50c1b180c45ce8ef4b8f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/link-controls/ATL_DA/reaction-projection.cif",
+        "size": 11166,
+        "sha256": "e323e3d9e473505bdeca143bccb019ea0e0170e121870c0230439616dae42c9b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/native/DA_ATL/cif-native-bm1j_cq2/native_receipt.json",
+        "size": 336792,
+        "sha256": "aa35de6142e102a2e1adbfd1bd53cc95b59cdefe3da816141e273b05895e3305"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/native/ATL_DA/cif-native-hi0vgl47/native_receipt.json",
+        "size": 337011,
+        "sha256": "20baa4974d6d1126d1724b4a615ba862c0ca8fd0e4a2026bd3c782ae8fe1af66"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/Ligands.xlsx",
+        "size": 164458,
+        "sha256": "afed0f332c3d70cd14c395005fcbccf38201e2818bb9b765c86decda309707f5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/base_dictionary.cif",
+        "size": 11347,
+        "sha256": "27ece5a9fe5b92370157e06638e4093939a8781699af9705ef7090b5bbd068cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/contexts.json",
+        "size": 1222,
+        "sha256": "00abb6079230082ac0570d5cd72004e858b4e07e00f146ea8644761f17a72aa0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/model.pdb",
+        "size": 5395,
+        "sha256": "983cb95548eb1288b0e544e155ce03d97b731c71309f624a998a1ca93f06503d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/preparation.json",
+        "size": 111303,
+        "sha256": "53531058f13137204bc8bbfe26060d6e746ca3961bda4ef572098199a13efef7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/receipt.json",
+        "size": 1453,
+        "sha256": "389423d2497b4e1adf56b9cd0167f1f1e8c157cd5cf492d11af2cb501ab9bacc"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/selection.json",
+        "size": 20,
+        "sha256": "c84106afe5a5299163a13dc6adbb1100d935e3e1b8164ad5f52b58b0333213a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/site_modifications.cif",
+        "size": 1006,
+        "sha256": "3afc6a96b120c98c8dad222bffd1101310f1d6d4b3aae6fe1b4a89d0eba2260e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/site_modifications.phil",
+        "size": 441,
+        "sha256": "4cb6ffb8bd43d582338ce17020b5589369379d5ca441d7c70d63f3fd5f70bc16"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/preparation/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/contexts.json",
+        "size": 1222,
+        "sha256": "00abb6079230082ac0570d5cd72004e858b4e07e00f146ea8644761f17a72aa0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/summary.json",
+        "size": 7983,
+        "sha256": "6b423f14e4b378a5bafb6094d67273c622619929b6279884f172c4707c603395"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/three-site-control/capture.json",
+        "size": 355,
+        "sha256": "8d2582812fcc965b991c2040b96e4ea6e24b70cd83afa20f2a5b486318cfd242"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "144_Cedar_graph-port-state-y7vvj9fd/verified/native/ATL_trimer/cif-native-jaq07bj4/native_receipt.json",
+        "size": 506805,
+        "sha256": "8c5554531fb6c437ea3f5f00941a175dda677b894b19170213fd2155d163b417"
+      }
+    ]
   }
 }
