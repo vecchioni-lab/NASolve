@@ -45,7 +45,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C141 publication were open at C152. C153 now qualifies exact-source saved
   PDU/5PC complete-monomer candidates, proves their repaired selection and freezes
   it for public replay. Q03 diagnostic composition is complete; Q04 acquisition
-  recovery is next. The old mixed scaffold's intended phosphate state stays Q13.
+  recovery is next. C154 closes the zero-parallelity derivative prerequisite and
+  publishes the original PDU/5PC context without adding restraints. The old mixed
+  scaffold's intended phosphate state stays Q13.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

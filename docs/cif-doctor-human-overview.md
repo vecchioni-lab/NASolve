@@ -187,6 +187,19 @@ proofs. Public readback rederives selection without the original paths, cache or
 SDK. Ordinary automatic recovery/adoption and experimental validation remain
 separate. See the [publication contract](cif-doctor.md#source-faithful-repaired-runtime-publication-c153).
 
+C154 also qualifies the same source-faithful repaired control in its original
+context, with no custom parallelity restraint. All 1,359 derivative evaluations
+pass and the repaired bundle is selected and published. This closes an audit
+coverage gap without changing the molecule or adding an artificial constraint.
+
+**Methods for an absent restraint family.** Derive policy from authenticated
+native inventory, require no parallelity request and zero proxies/residual, then
+repeat the unchanged eight-family finite-difference audit on a fresh exact
+manager. The parallelity-only contribution must remain zero; plane-order tests
+are recorded as not applicable. Offline replay recomputes these conditions and
+retains source/native binding. This says nothing about nonzero-plane correctness,
+chemical intent or geometry optimization. See the [C154 contract](cif-doctor.md#captured-derivatives-with-absent-parallelity-c154).
+
 See the [attribution methods and limits](cif-doctor.md#maintained-captured-linear-torsion-attribution-c150).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
@@ -812,6 +825,9 @@ unchanged-model choice stays separate from coordinate improvement. C153 proves
 a matching source/repair choice on two complete monomers and freezes its evidence
 for public offline readback. This closes the diagnostic publication connection,
 while ordinary adoption and the mixed scaffold's phosphate-state choice stay open.
+C154 extends the numerical box to a verified absent-parallelity context: all
+active families are audited, and plane-order evidence is explicitly inapplicable.
+It adds no geometry, refinement or adoption arrow.
 Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,

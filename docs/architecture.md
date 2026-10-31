@@ -3714,6 +3714,15 @@ not resolve its intended phosphate state. No acquisition or adoption default
 changes. See the [decision contract](cif-doctor.md#source-bound-repaired-bundle-decision-c152)
 and [publication contract](cif-doctor.md#source-faithful-repaired-runtime-publication-c153).
 
+C154 adds an explicitly versioned zero-parallelity derivative path selected only
+from authenticated native inventory. It preserves the original numerical cores,
+eight-family finite differences and source/context checks, while requiring no
+parallelity request, zero native counts and zero contribution throughout the
+audit. Plane-order testing is `NOT_APPLICABLE`. The exact-source repaired control
+now publishes without inventing a parallelity restraint. The legacy geometry
+adapter refuses this new policy; neither optimizer nor ordinary refinement
+qualification is implied. See the [zero-context contract](cif-doctor.md#captured-derivatives-with-absent-parallelity-c154).
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

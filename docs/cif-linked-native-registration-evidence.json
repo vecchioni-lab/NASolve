@@ -59837,5 +59837,327 @@
     ],
     "implementation_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
     "full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
+  },
+  "captured_absent_parallelity_2026_10_31": {
+    "status": "FULL_VALIDATED_UNPUBLISHED",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "bcb0691bd70dd037ec7be8cca5d8418b5518dc42",
+    "previous_full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
+    "full_validation_revision": "FROZEN_SOURCE_MANIFEST_PENDING_COMMIT",
+    "completion_queue_job": "Q04",
+    "completion_queue_disposition": "ZERO_PARALLELITY_DERIVATIVE_PREREQUISITE_CLOSED; AUTOMATIC_RECOVERY_REMAINS_OPEN",
+    "before": "The generic captured derivative adapter required at least one parallelity proxy, so C153 source-faithful repaired PDU/5PC could not qualify in its original empty-custom-restraint context.",
+    "after": "Authenticated zero-proxy captures use the unchanged eight-family audit with explicit NOT_APPLICABLE plane-order proof, zero-family and raw-native-gradient identity guards. Source-bound repaired selection/publication succeeds without invented restraints.",
+    "prior_work_review": [
+      "C70-75: exact source/consumer cache reuse, preserve generator stopping/nonconvergence findings; no repeated PDU generation needed here.",
+      "C77-79: pass separate ordered component CIFs to ReadySet; this boundary is unchanged.",
+      "C89-90: audit the exact native objective before optional geometry and retain proven usable input.",
+      "C129: identity-only empty-parallelity native derivative capture already exists. Reuse its audit/replay and raw target/vector/count identity safeguard; integrate the newer authenticated capture/full-monomer and repaired-bundle path without rewriting C129.",
+      "C153 matching-r2: source/preparation and maintained twelve-proxy attribution passed; only generic zero-parallelity derivative preflight was missing."
+    ],
+    "changed_files": [
+      "AGENTS.md",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/collaboration.md",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "src/nasolve/cif_captured_mixed_gradients.py",
+      "src/nasolve/cif_zero_parallelity_gradients.py",
+      "tests/test_cif_captured_mixed_gradients.py"
+    ],
+    "schemas": {
+      "new_embedded": [
+        "schema 1 / cif-captured-zero-parallelity-gradient-v1",
+        "cif-native-parallelity-absent-v1"
+      ],
+      "unchanged": "Outer captured-gradient and repaired-runtime envelopes, all legacy numerical core bytes and nonzero-plane workers, source/store/checkpoint formats"
+    },
+    "compatibility": "No new CLI flag or migration. Older readers refuse the new embedded policy/worker. Existing C141 and nonzero-plane C153 publications replay unchanged. Legacy geometry trial refuses zero-context proof before allocating a job.",
+    "science": {
+      "status": "PASS",
+      "consumer": "2.2.1",
+      "installed_release": "2.2.1-6174",
+      "execution": "ACTUAL_COMPLETE_NATIVE_JOB",
+      "new_native_calls": 1,
+      "source_state": "C153 exact-source H/charge/sugars/terminal OP3 preserved; no scaffold protonation inference",
+      "atoms": 77,
+      "parallelity_proxies": 0,
+      "custom_requests": [],
+      "derivative_evaluations": 1359,
+      "sampled_atoms": 6,
+      "plane_order": {
+        "evaluation_pairs": 0,
+        "max_evaluation_pairs": 0,
+        "native_proxy_count": 0,
+        "policy_id": "cif-native-parallelity-absent-v1",
+        "reason": "AUTHENTICATED_NATIVE_PARALLELITY_ABSENT",
+        "status": "NOT_APPLICABLE"
+      },
+      "runtime_policy": "cif-qualified-repaired-component-runtime-bundle-v1",
+      "selection": "repaired_prepared_bundle",
+      "unchanged_parent_files": 138,
+      "geometry_optimization": "NOT_RUN",
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "public_replay": {
+      "status": "PASS",
+      "selection": "repaired_prepared_bundle",
+      "files_preserved": 140,
+      "owned_original_gone": true,
+      "original_evidence_and_sdk_cache_access": "DENIED",
+      "process_execution": "DENIED",
+      "public_api_and_cli_agree": true,
+      "cli_exit_code": 0,
+      "legacy_capsules": [
+        {
+          "path": "{live_tests_directory}/153_Cedar_source-faithful-repair-i5ssvn27/publication/relocated",
+          "policy": "cif-qualified-repaired-component-runtime-bundle-v1",
+          "files": 140
+        },
+        {
+          "path": "{live_tests_directory}/141_Cedar_component-runtime-cc_r1hql/absent_readyset_v2/runtime",
+          "policy": "cif-qualified-component-runtime-bundle-v1",
+          "files": 88
+        }
+      ]
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "selection": "repaired_prepared_bundle",
+      "relocated_source": "/private/tmp/c154-cold-r2-m9jkopk5/relocated-checkout/src",
+      "original_code_and_evidence_access": "DENIED",
+      "sdk_and_cache_access": "DENIED",
+      "process_execution": "DENIED",
+      "files_preserved": 347,
+      "cli_exit_code": 0,
+      "owned_original_checkout_gone": true,
+      "command": [
+        "{python}",
+        "/private/tmp/c154-cold-r2-m9jkopk5/cold_check.py",
+        "/private/tmp/c154-cold-r2-m9jkopk5/relocated-checkout",
+        "/private/tmp/c154-cold-r2-m9jkopk5/owned-checkout",
+        "{repository_directory}",
+        "{live_tests_directory}/154_Cedar_absent-parallelity-jl4ich0_"
+      ]
+    },
+    "regression": {
+      "new_cases": 20,
+      "failing_before": "Two supported-namespace positive controls fail under the original preflight; two additional raw-gradient/count adversaries fail before the C129 safeguard.",
+      "captured_final": "57 passed in 15.65s",
+      "results": {
+        "affected": "231 passed in 80.84s (0:01:20)",
+        "focused": "1088 passed, 10 subtests passed in 150.11s (0:02:30)",
+        "full": "7502 passed, 276 subtests passed in 1250.74s (0:20:50)"
+      },
+      "source_files": 589,
+      "scope": "Final frozen sources only; earlier test attempts and partial full run are preserved separately."
+    },
+    "validation_commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "results": {
+        "affected": {
+          "pid": 24132,
+          "wrapper_pid": 24116,
+          "phase": "affected",
+          "command": [
+            "{python}",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "-o",
+            "addopts=",
+            "tests/test_cif_captured_mixed_gradients.py",
+            "tests/test_cif_captured_full_monomers.py",
+            "tests/test_cif_captured_geometry_trial.py",
+            "tests/test_cif_mixed_gradient.py",
+            "tests/test_cif_dictionary_bundle_repair.py",
+            "tests/test_cif_repaired_component_runtime.py"
+          ],
+          "exit_code": 0,
+          "seconds": 81.07201754197013,
+          "summary": "231 passed in 80.84s (0:01:20)",
+          "source_changes_during_validation": [],
+          "files": 589
+        },
+        "focused": {
+          "pid": 24466,
+          "wrapper_pid": 24116,
+          "phase": "focused",
+          "command": [
+            "{python}",
+            "scripts/run_tests.py",
+            "chemistry",
+            "--junitxml",
+            "{live_tests_directory}/154_Cedar_absent-parallelity-jl4ich0_/validation-final/focused.xml"
+          ],
+          "exit_code": 0,
+          "seconds": 150.46394758298993,
+          "summary": "1088 passed, 10 subtests passed in 150.11s (0:02:30)",
+          "source_changes_during_validation": [],
+          "files": 589
+        },
+        "full": {
+          "pid": 24845,
+          "wrapper_pid": 24116,
+          "phase": "full",
+          "command": [
+            "{python}",
+            "scripts/run_tests.py",
+            "full",
+            "--junitxml",
+            "{live_tests_directory}/154_Cedar_absent-parallelity-jl4ich0_/validation-final/full.xml"
+          ],
+          "exit_code": 0,
+          "seconds": 1251.3369509170298,
+          "summary": "7502 passed, 276 subtests passed in 1250.74s (0:20:50)",
+          "source_changes_during_validation": [],
+          "files": 589
+        }
+      },
+      "native": "python c154_native.py; python c154_publish_control.py",
+      "cold": "python c154_cold_final.py",
+      "auxiliary": "python c154_auxiliary.py"
+    },
+    "generated_artifacts": "Unpublished native captures, model/CIF/PHIL bundles, logs, test XML and helpers stay local under declared live-tests/ignored archive anchors; none included in Git.",
+    "limitations": [
+      "Two complete source-state monomers, not a physical pair/polymer or the mixed 42-residue scaffold. Q13/Q07 retain its phosphate-state authority.",
+      "No new dictionary generation, ReadySet, Coot, optimization, diffraction refinement or automatic adoption.",
+      "Zero-context geometry, optional nonbonded capture composition, durable cache-first acquisition and ordinary PostMR/refinement consumer qualification remain open.",
+      "An absent family qualifies no nonzero plane derivative/correction. Numerical consistency establishes neither chemical intent nor global convergence."
+    ],
+    "global_agent_policy": "Before solving a long-running/context-consolidated problem, check targeted docs/history/ledger/Git, verify prior scope and bindings, and state what remains before redesign/retry.",
+    "next": "Q04: bounded exact-source/current-consumer candidate acquisition with durable attempt ownership; consult stored numerics first, preserve failed outputs, and qualify the actual current bundle. No in-place retry or fabricated restraint context.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/native-summary.json",
+        "sha256": "f3d9970981c59d74ce010c33315a88fc278e521ff87be6b59ea273f1bab612f7",
+        "size": 940
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/native-job.json",
+        "sha256": "153d36ba10db0c204abb41a3028716113cd2029c3a5e56e56d354f88048a5619",
+        "size": 157
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/gradients/captured_mixed_gradients.json",
+        "sha256": "45fdff3416ad9c576879809e3563722089f37ca70e7ede91cd5cc7643baf8fe3",
+        "size": 11322
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/gradients/job/gradient_result.json",
+        "sha256": "0b53f8b4d78f843eb47687ee5b8bec4bcded30738bd8837395022e5f307ccaca",
+        "size": 753717
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/gradients/qualification.json",
+        "sha256": "52db4c754c8f26a5c5d8c417ae79f1c9ed3dba6a86ead9ffac6c7f9abc4f9389",
+        "size": 490
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/source-bound-selection.json",
+        "sha256": "be280c8e3ccb68f8fa569c323932538afbe83f6bd70e8127109922bd6e12689c",
+        "size": 33495
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/publication/relocated/runtime_bundle.json",
+        "sha256": "0ab879f453457b785d75a0c216baf9b79096d6397f8e096581975babad38a9bd",
+        "size": 70333
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/publication/public-assessment.json",
+        "sha256": "c84c246830fed095780153fd2d56c1989c1caa7a34905c62cbaa4c777668033d",
+        "size": 198563
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/publication/cli-assessment.json",
+        "sha256": "5756181634973e1a0fedf29197d15f2e4d1595bd30937727be4b08d33378f5e6",
+        "size": 198563
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/publication/result.json",
+        "sha256": "f7e1c401652dc1880bf820e65ba60ee8cafdbb282f78abefd6e5b635eb40c2e3",
+        "size": 721
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation/cold-final.json",
+        "sha256": "3543cf5e7f1d7f956d816f67b664a1a740925a210844f123f332f4ef85527bc9",
+        "size": 777
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-final/source-hashes.json",
+        "sha256": "7dc0b9adf2a587a7fadaf44d172bf97920d24420f0290537b69129643283fd31",
+        "size": 64222
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-final/auxiliary.json",
+        "sha256": "51c903f9e7f50f9b890307de0b2aba832f4c19f9e60ebadf47bfbf5aeab93215",
+        "size": 1098
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-final/failing-before.log",
+        "sha256": "792b3f5952d0fd4b8dcdaf969bf1766925fa646fc034c9813276fae7970a50aa",
+        "size": 4710
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-final/raw-binding-failing-before.log",
+        "sha256": "5a0ffc0fa9e9ac14935a9f3456aae2e082fbf3ad6d5f46e5191bff98921b2e82",
+        "size": 3725
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-final/captured-final.log",
+        "sha256": "8c70b22b7ae05fae29531f71b16f504471d94aebcf1a7dabc4ba292f7598ca9e",
+        "size": 100
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-final/results.json",
+        "sha256": "49f72e3edef242f80dd5accbe410ad79a1f956b020a5495199dd16393287ffa5",
+        "size": 1882
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-final/completed.json",
+        "sha256": "5e49b9f7bbed2b037495627257ae4dfc3df57a015695d18e361fb92f850709af",
+        "size": 2125
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "154_Cedar_absent-parallelity-jl4ich0_/validation-metadata-note.json",
+        "sha256": "c5c132039d0593e986d80b5bd3d5521bfc7cbda142ae052446cd6bc952c7b45e",
+        "size": 593
+      }
+    ]
   }
 }

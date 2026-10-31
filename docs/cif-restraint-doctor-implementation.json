@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "source_faithful_repaired_runtime_2026_10_31",
+    "current_diagnostic_record": "captured_absent_parallelity_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27770,6 +27770,40 @@
       },
       "implementation_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
       "full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
+    },
+    "captured_absent_parallelity": {
+      "status": "FULL_VALIDATED_UNPUBLISHED",
+      "after": "Authenticated zero-proxy captures use the unchanged eight-family audit with explicit NOT_APPLICABLE plane-order proof, zero-family and raw-native-gradient identity guards. Source-bound repaired selection/publication succeeds without invented restraints.",
+      "schemas": {
+        "new_embedded": [
+          "schema 1 / cif-captured-zero-parallelity-gradient-v1",
+          "cif-native-parallelity-absent-v1"
+        ],
+        "unchanged": "Outer captured-gradient and repaired-runtime envelopes, all legacy numerical core bytes and nonzero-plane workers, source/store/checkpoint formats"
+      },
+      "compatibility": "No new CLI flag or migration. Older readers refuse the new embedded policy/worker. Existing C141 and nonzero-plane C153 publications replay unchanged. Legacy geometry trial refuses zero-context proof before allocating a job.",
+      "limitations": [
+        "Two complete source-state monomers, not a physical pair/polymer or the mixed 42-residue scaffold. Q13/Q07 retain its phosphate-state authority.",
+        "No new dictionary generation, ReadySet, Coot, optimization, diffraction refinement or automatic adoption.",
+        "Zero-context geometry, optional nonbonded capture composition, durable cache-first acquisition and ordinary PostMR/refinement consumer qualification remain open.",
+        "An absent family qualifies no nonzero plane derivative/correction. Numerical consistency establishes neither chemical intent nor global convergence."
+      ],
+      "next": "Q04: bounded exact-source/current-consumer candidate acquisition with durable attempt ownership; consult stored numerics first, preserve failed outputs, and qualify the actual current bundle. No in-place retry or fabricated restraint context.",
+      "previous_full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_absent_parallelity_2026_10_31",
+      "validation": {
+        "new_cases": 20,
+        "failing_before": "Two supported-namespace positive controls fail under the original preflight; two additional raw-gradient/count adversaries fail before the C129 safeguard.",
+        "captured_final": "57 passed in 15.65s",
+        "results": {
+          "affected": "231 passed in 80.84s (0:01:20)",
+          "focused": "1088 passed, 10 subtests passed in 150.11s (0:02:30)",
+          "full": "7502 passed, 276 subtests passed in 1250.74s (0:20:50)"
+        },
+        "source_files": 589,
+        "scope": "Final frozen sources only; earlier test attempts and partial full run are preserved separately."
+      }
     }
   },
   "audience": [

@@ -13,7 +13,13 @@ in this repository.
    current instructions. Consult the relevant recorded decisions and validation
    evidence before inferring intent; follow the [branch and worktree lifecycle](docs/collaboration.md#branch-and-worktree-lifecycle)
    to keep one active development line and retire completed work promptly.
-3. Identify whether the change affects crystallographic behavior,
+3. Before tackling a problem in a long-running or context-consolidated project,
+   check the relevant documentation history, evidence ledger and Git for earlier
+   solutions, failed attempts and unresolved decisions. Record what already
+   exists and what gap remains before redesigning or rerunning it. Verify prior
+   evidence against its original source/consumer/context; history is evidence,
+   not current instructions. Follow [prior-work review](docs/collaboration.md#prior-work-before-new-diagnosis).
+4. Identify whether the change affects crystallographic behavior,
    compatibility, artifact schemas, portability, or reproducibility.
 
 ## Implementation rules

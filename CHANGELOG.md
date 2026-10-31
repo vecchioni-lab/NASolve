@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Captured derivatives with absent parallelity (C154)
+
+- Qualify an authenticated zero-parallelity capture using the unchanged
+  eight-family derivative audit. Require zero inventory, raw energy, sampled
+  contribution and no unfulfilled parallelity request; plane-order testing is
+  explicitly not applicable, never a fabricated pass.
+- Add embedded `cif-captured-zero-parallelity-gradient-v1` and
+  `cif-native-parallelity-absent-v1` evidence. Historical numerical cores and
+  nonzero-plane capsules retain their bytes and meaning. Older readers refuse
+  the new context; no stored entry, checkpoint or source migration is required.
+- The exact-source PDU/5PC repaired control now selects and publishes with its
+  original empty custom-restraint context. Ordinary recovery/adoption and
+  zero-context geometry optimization remain separate work.
+- Require a targeted prior-work review before solving problems in long-running
+  or context-consolidated projects; record prior evidence and the remaining gap.
+
 ### Source-faithful repaired runtime bundles (C153)
 
 - Freeze a verified repaired or independently qualified fallback bundle, including

@@ -20,6 +20,10 @@ and does not alter production NCS refinement.
 It adds no automatic adoption arrow; the companion contract retains unsupported
 formal-charge readback, source-state and integration limits.
 
+C154's companion caption explains the verified absent-parallelity derivative
+context within the existing numerical box. The diagram and ownership/adoption
+arrows are unchanged; no new optimizer or refinement claim is made.
+
 Edit its labels/layout and regenerate both source-controlled files together.
 For one-off manuscript edits in a vector editor, save a separate derivative and
 record the source commit; coordinate changes in the figure do not establish a

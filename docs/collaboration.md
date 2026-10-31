@@ -37,6 +37,31 @@ Use professional, attributable manuscript language and exact software versions;
 private collaboration/personality notes stay outside repository documentation.
 The [CIF Doctor overview](cif-doctor-human-overview.md) is the first example.
 
+## Prior work before new diagnosis
+
+For a long-running or context-consolidated project, check for previous work on
+the problem before designing a solution, writing a replacement or starting a
+costly experiment. This applies across NASolve, especially Cedar/CIF Doctor,
+where scientific decisions may survive mainly in recorded evidence rather than
+in the current chat or the operator's recollection.
+
+Start with the current handoff, subsystem contract and maintained queue. Search
+relevant milestone notes, evidence-ledger entries, linked historical documents
+and Git for the same failure, chemical operation or consumer boundary. A targeted
+review is sufficient; do not reread the entire project or inspect unrelated
+unpublished datasets for each small change. Before implementation, state in the
+active handoff which prior solution or failed approach was found, what its
+validation actually established, and which present gap still needs work. If no
+relevant record is found, record that search boundary instead of assuming the
+problem is new.
+
+Reuse an earlier result only after checking its source identity, chemical state,
+policy, tool/consumer, model/site context and evidence availability as relevant.
+Preserve stopping notes and negative outcomes. Explain when changed inputs or
+missing evidence require a fresh attempt. Historical proposals are not current
+instructions, and an old pass does not qualify a different context. Do not make
+Simon reconstruct prior technical work that the repository already records.
+
 ## Continual handoff during active work
 
 At the start of a substantive push, record the current scope, ordered acceptance

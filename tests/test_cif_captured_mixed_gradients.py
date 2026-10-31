@@ -147,3 +147,133 @@ def test_ineligible_policy_refuses_before_reserving_output(tmp_path,monkeypatch)
     r['outputs']=[_artifact(root/x['path'],root) for x in r['outputs']];receipt.write_text(json.dumps(r))
     with pytest.raises(ValueError):audit_captured_mixed_gradients(receipt,None,tmp_path/'out')
     assert not (tmp_path/'out').exists()
+
+
+# Analytic SDK controls exercise absent-family bookkeeping, not chemistry.
+def zero_parent(tmp_path, monkeypatch, namespace='direct'):
+    from copy import deepcopy
+    from math import fsum, sqrt
+    from nasolve.cif_native_validation import _artifact
+    receipt, phenix, sdk = parent(tmp_path, monkeypatch, 'correct', namespace)
+    manager = sdk/'cctbx/geometry_restraints/manager.py'
+    manager.write_text(''.join('    parallelity_proxies=gr.shared_parallelity_proxy([])\n'
+        if line.startswith('    parallelity_proxies=') else line for line in manager.read_text().splitlines(keepends=True)))
+    r = json.loads(receipt.read_text()); native = r['native_validation']
+    native['geometry']['proxy_details']['parallelity'] = []
+    native['geometry']['proxy_counts']['parallelity'] = 0
+    for row in native['energy_inventory']['installed_sources']:
+        if row['module'] == 'cctbx.geometry_restraints.manager':row['sha256'] = sha256(manager.read_bytes()).hexdigest()
+    points = native['geometry']['sites_cart_exact']; gradient = [12.*x for p in points for x in p]
+    raw = {'target':6*sum(v*v for p in points for v in p), 'gradient':gradient,
+        'gradient_norm':sqrt(fsum(x*x for x in gradient)),
+        'terms':{'parallelity_residual_sum':0.}, 'proxy_counts':{'n_parallelity_proxies':0}}
+    native['energy_inventory']['snapshots'] = [raw, deepcopy(raw)]
+    Path(phenix.environment['EXPLICIT_FAKE_NATIVE']).write_text(json.dumps(native))
+    (receipt.parent/'native_validation.json').write_text(json.dumps(native))
+    r['outputs'] = [_artifact(receipt.parent/x['path'], receipt.parent) for x in r['outputs']]
+    receipt.write_text(json.dumps(r))
+    return receipt, phenix, sdk
+
+
+@pytest.mark.parametrize('namespace', ['direct', 'refinement-root-to-interpreter-v1'])
+def test_absent_parallelity_qualifies_actual_families_and_replays_cold(tmp_path, monkeypatch, namespace):
+    from nasolve.cif_captured_mixed_gradients import audit_captured_mixed_gradients, read_captured_mixed_gradients
+    from tests.test_cif_catalogue import snapshot
+    receipt, phenix, sdk = zero_parent(tmp_path, monkeypatch, namespace)
+    before = snapshot(receipt.parent); out = tmp_path/'audit'
+    q = audit_captured_mixed_gradients(receipt, phenix, out, timeout_seconds=30)
+    assert q['status'] == 'CAPTURED_MIXED_DERIVATIVES_PASS', q.get('error')
+    result = json.loads((out/'job/gradient_result.json').read_text())
+    assert result['policy_id'] == 'cif-captured-zero-parallelity-gradient-v1'
+    assert result['plane_order_audit']['status'] == 'NOT_APPLICABLE'
+    assert result['plane_order_audit']['evaluation_pairs'] == 0
+    assert result['native_parallelity_proxies'] == []
+    assert set(result['gradient_audit']['cases']['initial']['families']) == {
+        'all', 'bond', 'angle', 'dihedral', 'chirality', 'planarity', 'parallelity', 'nonbonded'}
+    assert before == snapshot(receipt.parent)
+    moved = out.rename(tmp_path/'moved'); shutil.rmtree(receipt.parent); shutil.rmtree(sdk)
+    monkeypatch.setattr('subprocess.Popen', lambda *a, **k:pytest.fail('Reader executed a job'))
+    unchanged = snapshot(moved)
+    assert read_captured_mixed_gradients(moved) == q
+    assert snapshot(moved) == unchanged
+
+
+@pytest.mark.parametrize('defect', ['count', 'energy_count', 'energy_target', 'unfulfilled_request'])
+def test_absent_parallelity_refuses_contradictory_native_evidence_before_reservation(tmp_path, monkeypatch, defect):
+    from nasolve.cif_captured_mixed_gradients import audit_captured_mixed_gradients
+    from nasolve.cif_native_validation import _artifact
+    receipt, _, _ = zero_parent(tmp_path, monkeypatch)
+    r = json.loads(receipt.read_text()); native = r['native_validation']
+    if defect == 'count':native['geometry']['proxy_counts']['parallelity'] = 1
+    if defect == 'unfulfilled_request':native['geometry']['custom_proxy_requests'] = [{'kind':'parallelity', 'action':'add'}]
+    for raw in native['energy_inventory']['snapshots']:
+        if defect == 'energy_count':raw['proxy_counts']['n_parallelity_proxies'] = 1
+        if defect == 'energy_target':raw['terms']['parallelity_residual_sum'] = 0.1
+    (receipt.parent/'native_validation.json').write_text(json.dumps(native))
+    r['outputs'] = [_artifact(receipt.parent/x['path'], receipt.parent) for x in r['outputs']]
+    receipt.write_text(json.dumps(r))
+    with pytest.raises(ValueError):audit_captured_mixed_gradients(receipt, None, tmp_path/'audit')
+    assert not (tmp_path/'audit').exists()
+
+
+@pytest.mark.parametrize('defect', ['policy', 'absent_claim', 'plane_count', 'sample', 'family_target', 'family_gradient', 'all_count', 'correction', 'worker', 'dihedral_sample'])
+def test_absent_parallelity_rehashed_evidence_cannot_bypass_derivative_checks(tmp_path, monkeypatch, defect):
+    from nasolve.cif_captured_mixed_gradients import audit_captured_mixed_gradients, read_captured_mixed_gradients, REPORT
+    from nasolve.cif_mixed_gradient import _ref
+    receipt, phenix, _ = zero_parent(tmp_path, monkeypatch); out = tmp_path/'audit'
+    q = audit_captured_mixed_gradients(receipt, phenix, out, timeout_seconds=30)
+    assert q['status'] == 'CAPTURED_MIXED_DERIVATIVES_PASS'
+    path = out/'job/gradient_result.json'; r = json.loads(path.read_text())
+    family = r['gradient_audit']['cases']['initial']['families']['parallelity']
+    if defect == 'policy':r['policy_id'] = 'cif-mixed-initial-native-gradient-v1'
+    elif defect == 'absent_claim':r['plane_order_audit']['status'] = 'PASS'
+    elif defect == 'plane_count':r['native_parallelity_proxies'] = [{'i_seqs':[0, 1, 2]}]
+    elif defect == 'sample':family['directions'][0]['samples'][0]['plus_target'] += .1
+    elif defect == 'dihedral_sample':r['gradient_audit']['cases']['initial']['families']['dihedral']['directions'][0]['samples'][0]['plus_target'] += .1
+    elif defect == 'family_target':r['baseline_evaluations']['parallelity'][0]['target'] = .1
+    elif defect == 'family_gradient':r['baseline_evaluations']['parallelity'][0]['gradient'][0] = .1
+    elif defect == 'all_count':r['baseline_evaluations']['all'][0]['proxy_counts']['n_parallelity_proxies'] = 1
+    elif defect == 'correction':r['correction_statistics']['max_plane_residual_difference'] = .1
+    elif defect == 'worker':
+        worker = out/'job/gradient_worker.py'; worker.write_text(worker.read_text()+'\n# changed\n')
+    path.write_text(json.dumps(r)); q['outputs'] = [_ref(out/r['path'], out) for r in q['outputs']]
+    (out/REPORT).write_text(json.dumps(q))
+    with pytest.raises(ValueError):read_captured_mixed_gradients(out)
+
+
+def test_zero_context_does_not_grant_legacy_geometry_trial_qualification(tmp_path, monkeypatch):
+    from nasolve.cif_captured_mixed_gradients import audit_captured_mixed_gradients
+    from nasolve.cif_captured_geometry_trial import trial_captured_geometry
+    receipt, phenix, _ = zero_parent(tmp_path, monkeypatch); gradient = tmp_path/'gradient'
+    result = audit_captured_mixed_gradients(receipt, phenix, gradient, timeout_seconds=30)
+    assert result['status'] == 'CAPTURED_MIXED_DERIVATIVES_PASS'
+    monkeypatch.setattr('subprocess.Popen', lambda *a, **k:pytest.fail('Unqualified optimizer launched'))
+    with pytest.raises(ValueError):trial_captured_geometry(gradient, None, tmp_path/'geometry')
+    assert not (tmp_path/'geometry').exists()
+
+
+def test_absent_parallelity_preparation_is_read_only_and_not_qualification(tmp_path, monkeypatch):
+    from nasolve.cif_captured_mixed_gradients import audit_captured_mixed_gradients, read_captured_mixed_gradients
+    receipt, _, _ = zero_parent(tmp_path, monkeypatch)
+    monkeypatch.setattr('subprocess.Popen', lambda *a, **k:pytest.fail('Preparation executed native code'))
+    out = tmp_path/'audit'; report = audit_captured_mixed_gradients(receipt, None, out)
+    assert report['status']=='PREPARED_ONLY' and report['qualification']=={'status':'NOT_RUN'}
+    assert report['preparation']['required_plane_pairs']==0
+    assert read_captured_mixed_gradients(out)==report
+
+
+@pytest.mark.parametrize('defect', ['gradient', 'counts'])
+def test_absent_parallelity_cannot_change_captured_full_gradient_or_counts(tmp_path, monkeypatch, defect):
+    from copy import deepcopy
+    from nasolve.cif_captured_mixed_gradients import audit_captured_mixed_gradients
+    from nasolve.cif_zero_parallelity_gradients import _validate_result
+    receipt, phenix, _ = zero_parent(tmp_path, monkeypatch); out = tmp_path/'audit'
+    report = audit_captured_mixed_gradients(receipt, phenix, out, timeout_seconds=30)
+    assert report['status']=='CAPTURED_MIXED_DERIVATIVES_PASS'
+    result = json.loads((out/'job/gradient_result.json').read_text())
+    expected = json.loads((out/'job/native_validation.json').read_text())
+    for raw in expected['energy_inventory']['snapshots']:
+        if defect=='gradient':raw['gradient'][0] += 0.1
+        else:raw['proxy_counts']['n_bond_proxies'] = 1
+    result['raw_snapshot'] = deepcopy(expected['energy_inventory']['snapshots'][0])
+    with pytest.raises(ValueError):_validate_result(result, expected, result['selected_indices'])

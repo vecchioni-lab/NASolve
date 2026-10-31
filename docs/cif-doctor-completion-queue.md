@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-10-31, after C153.** This queue owns unfinished
+**Current planning authority, 2026-10-31, after C154.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -130,10 +130,13 @@ orchestration should consult that store before generation. A cache hit supplies
 a candidate; it does not replace current source/site/derivative qualification or
 a newly applicable graph-repair check. Preserve the failed
 attempt and require a dead owned process before any fresh retry. The current
-captured derivative adapter also needs explicit qualification for zero-parallelity
-contexts and optional nonbonded-inventory captures. C153's declared NAR numerical
-control is evidence for its own context, never an automatic workaround for a
-restraint-free experimental model.
+captured derivative adapter now qualifies genuine zero-parallelity contexts at
+C154: the preserved exact-source PDU/5PC control passes fresh derivatives and
+publication without an added custom request. This is one closed prerequisite,
+not completion of Q04. Optional nonbonded-inventory captures still need support;
+zero-context geometry trials remain unqualified and must not inherit a legacy
+plane-correction proof. C153's declared NAR numerical control is evidence for
+its own context, never an automatic workaround for a model with no custom restraints.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;

@@ -119,6 +119,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
+| Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -167,6 +168,55 @@ Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
 
+### Captured derivatives with absent parallelity (C154)
+
+`audit_captured_mixed_gradients` now chooses its derivative policy from the
+actual authenticated native inventory. Nonzero parallelity retains the exact
+historical worker and numerical cores. Zero proxies use the separate embedded
+schema-1 `cif-captured-zero-parallelity-gradient-v1` policy. Its
+`cif-native-parallelity-absent-v1` plane record states `NOT_APPLICABLE`, with zero
+plane comparisons; this is not qualification of the native plane derivative or
+of the NASolve plane correction.
+
+C129 already provides an identity-only empty-family derivative capture through
+`inspect_native_bundle(gradient_indices=...)`. This adapter reuses the same
+finite-difference audit and saved-number replay, while connecting authenticated
+full-monomer captures to C152/C153 source-bound repaired selection/publication.
+It also retains C129's raw target/vector/proxy-count identity guard: without a
+plane contribution, the full baseline must match the raw native snapshot.
+C129's historical worker, schema and scope are unchanged.
+
+The zero path requires an empty parallelity detail list, integer zero inventory
+and energy counts, zero captured parallelity residual, and no declared custom
+parallelity request. A request with missing proxies is refused. The fresh native
+manager, source pins, exact coordinates, full monomer identities and fixed
+restraint policy must still reproduce. All eight families retain the unchanged
+finite-difference steps, tolerances, selected-atom probes and repeat checks.
+The all-family and parallelity evaluations must keep zero parallelity counts;
+every parallelity-only target and gradient must remain zero. Saved replay
+recalculates the audit and absence proof without executing frozen code or tools.
+No residue-name switch, dummy proxy, altered restraint or relaxed threshold is used.
+
+**Actual evidence.** Phenix 2.2.1-6174 (dispatcher 2.2.1) completes one fresh job on
+C153's preserved two-monomer, 77-atom PDU/5PC control before the separate NAR
+parallelity experiment. All 1,359 derivative evaluations pass at six sampled
+atoms with zero custom requests and zero parallelity proxies. The previously
+attributed twelve graph-selected torsion omissions, source H/charge, three sugar
+centres/component and legitimate terminal OP3 remain unchanged. Exact source,
+preparation and repair proofs select the complete repaired bundle for the C153
+public runtime format. Public API/JSON CLI replay agree after relocation; older
+C141 and nonzero-plane C153 publications retain their original proof.
+
+This closes Q04's demonstrated zero-parallelity derivative prerequisite. It does
+not close bounded acquisition/recovery, optional nonbonded-inventory captures,
+zero-context geometry trials or ordinary Phenix refinement. The legacy geometry
+adapter refuses this new derivative policy before reserving a job; endpoint
+qualification needs a separate implementation. The control is not a physical
+pair, linked polymer, mixed-scaffold phosphate-state choice or automatic adoption.
+No new generation, ReadySet, Coot, optimization or diffraction refinement runs.
+No checkpoint/cache migration or legacy-evidence rewrite is required. Older
+readers refuse the new worker/policy; upgraded readers still replay old capsules.
+
 ### Source-faithful repaired runtime publication (C153)
 
 `cif_component_runtime.prepare_repaired_component_runtime_bundle(bundle,
@@ -207,10 +257,10 @@ attempt reaches its 300-second limit without a candidate; its partial output is
 preserved. A fresh 5PC build also passes four isolated native checks, before and
 after graph repair at source and generated coordinates. That output is retained
 but is not the selected cached candidate. Reuse avoids
-another PDU retry. The existing standalone derivative protocol requires at least
+another PDU retry. At C153 the standalone derivative protocol required at least
 one parallelity proxy and excludes the optional nonbonded-inventory capture
 extension; the earlier control/preflight attempts remain recorded. Supporting
-those additional contexts is Q04 qualification coverage, not permission to insert
+those additional contexts is Q04 qualification coverage (C154 closes the zero-parallelity derivative case), not permission to insert
 restraints into experimental models or weaken the numerical test.
 
 This closes Q03's diagnostic source/repair/publication composition. It does not

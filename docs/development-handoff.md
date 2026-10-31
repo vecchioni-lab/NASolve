@@ -11,6 +11,78 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C154 validated: absent-parallelity derivative integration and history policy
+
+Base `bcb0691bd70dd037ec7be8cca5d8418b5518dc42`; existing **cedar** only.
+Capsule `live_tests_directory/154_Cedar_absent-parallelity-jl4ich0_`.
+Before, generic captured derivatives required a parallelity proxy. After,
+authenticated zero-proxy captures use the unchanged eight-family audit with
+explicitly inapplicable plane-order testing. Zero counts/contribution, no
+unfulfilled request and exact raw target/vector/proxy counts are mandatory.
+Historical numerical cores and nonzero-plane workers retain their bytes.
+
+Prior-work review: C70–75 establish exact-source/consumer stored-candidate reuse
+and preservation of stopping notes; C77–79 require separate ReadySet component
+files; C89–90 require exact-objective derivatives before optional geometry.
+C129 already audits an identity-only empty family. This change reuses its audit,
+raw-number replay and raw-native identity safeguard to connect the newer full-
+monomer capture and repaired-bundle path, rather than replacing that old route.
+The new repository-wide policy requires this targeted history check before
+solving long-running/context-consolidated problems; AGENTS.md links the contract
+in [collaboration.md](collaboration.md#prior-work-before-new-diagnosis).
+
+**Native evidence:** Phenix 2.2.1-6174, dispatcher 2.2.1; one actual complete job,
+not a dry-run. The preserved 77-atom PDU/5PC control passes 1,359 evaluations at
+six sampled atoms with zero custom requests. Source H/charge, all sugar centres,
+terminal OP3 and twelve previously attributed torsion omissions remain unchanged.
+Source-bound repaired selection/public publication pass. This is a separated
+complete-monomer diagnostic, not a physical pair, polymer, mixed-scaffold state
+choice or refinement. No generator, ReadySet, Coot, optimization or adoption runs.
+
+**Validation:** 20 new regressions; original zero-context positives and later raw-
+gradient/count adversaries fail before their respective implementation. Final
+captured tests: 57 passed in 15.65s. Affected: **231 passed in 80.84s (0:01:20)**.
+Chemistry profile: **1088 passed, 10 subtests passed in 150.11s (0:02:30)**.
+Full unfiltered suite: **7502 passed, 276 subtests passed in 1250.74s (0:20:50)**.
+All 589 frozen Python files remain unchanged through final validation.
+Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_captured_mixed_gradients.py tests/test_cif_captured_full_monomers.py tests/test_cif_captured_geometry_trial.py tests/test_cif_mixed_gradient.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repaired_component_runtime.py
+python scripts/run_tests.py chemistry --junitxml <capsule>/validation-final/focused.xml
+python scripts/run_tests.py full --junitxml <capsule>/validation-final/full.xml
+python c154_native.py; python c154_publish_control.py
+python c154_cold_final.py; python c154_auxiliary.py
+```
+
+Public API/CLI replay agrees after relocation (140 files unchanged). A second
+relocated code-and-evidence replay preserves 347 files with the owned original
+path gone and original checkout/evidence/SDK/cache reads and execution denied.
+Old C141 and nonzero-plane C153 bundles preserve 88/140 files. Compilation, relative
+document links, 21 unchanged core modules, 17 static resources, 138 parent
+artifacts, 32 prior evidence references and whitespace checks pass. Earlier
+partial validation/helper attempts remain local with their failures and metadata
+recovery note; the final frozen run uses its own directory. No active jobs.
+
+Changed: captured adapter, new zero-context module, regression module, global
+agent/collaboration policy, changelog, contracts/descriptor/caption/index, queue,
+this handoff and both ledgers. New embedded schema-1 policy
+`cif-captured-zero-parallelity-gradient-v1` and absence record
+`cif-native-parallelity-absent-v1`; outer capture/runtime formats are unchanged.
+Older readers refuse the new context. No cache/checkpoint/source migration.
+Scientific inputs, bundles, logs and helpers remain local and excluded from Git.
+The [evidence ledger](cif-linked-native-registration-evidence.json) record
+`captured_absent_parallelity_2026_10_31` owns exact references and commands.
+
+Implementation/full-tested SHA is pending publication; previous full-tested
+implementation was `962737c2cb1a956d785fc430393cf65ef2e2f40b`.
+**Next:** Q04 bounded exact-source/current-consumer acquisition with durable
+attempt ownership and cache-first reuse. Optional nonbonded capture composition
+and zero-context geometry remain unqualified; Q13/Q07 retain scaffold state and
+Q06 ordinary refinement. The legacy geometry adapter explicitly refuses this new
+derivative policy before reserving a job. No automatic engine completion claim.
+— Rowan · Codex desktop
+
 ## C153 published: source-faithful repaired publication; Q03 complete
 
 Base/pushed-before-work `949770fcc2048c98e3025478497131271c82e0ec`; existing **cedar** only.

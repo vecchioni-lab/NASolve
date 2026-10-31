@@ -92,10 +92,19 @@ def _preserve_native_context(root, capture, preparation, reference=numerical._re
     return preparation
 
 
+def _numerical_engine(expected):
+    # Selection is derived from authenticated native inventory, never a caller
+    # switch or residue name. The new engine verifies all independent zero counts.
+    if expected['geometry']['proxy_details']['parallelity'] == []:
+        from . import cif_zero_parallelity_gradients
+        return cif_zero_parallelity_gradients
+    return numerical
+
+
 def _prepare(root, model, dictionaries, phils, expected, capture):
     # Preserve the consumer namespace and dictionary authority. Numerical cores
     # and their original policies stay byte-identical for historical replay.
-    preparation = numerical._prepare(root, model, dictionaries, phils, expected)
+    preparation = _numerical_engine(expected)._prepare(root, model, dictionaries, phils, expected)
     return _preserve_native_context(root, capture, preparation)
 
 
@@ -158,7 +167,7 @@ def audit_captured_mixed_gradients(native_receipt, phenix, output, *, timeout_se
             if report['execution']['status']=='COMPLETED':
                 result=_json((root/'job/gradient_result.json').read_bytes())
                 _full_monomers(capture, _json((root/'job/native_validation.json').read_bytes()), expected)
-                q=numerical._validate_result(result,expected,preparation['selected_indices'])
+                q=_numerical_engine(expected)._validate_result(result,expected,preparation['selected_indices'])
                 numerical._compact_dump(root/'qualification.json',q);report['qualification']={'artifact':numerical._ref(root/'qualification.json',root)}
                 if q['sampled_derivatives_pass']:report['status']='CAPTURED_MIXED_DERIVATIVES_PASS'
         except (OSError,ValueError,KeyError,TypeError) as exc:
@@ -197,7 +206,7 @@ def _read_captured_mixed_gradients(directory):
     if _full_monomers(capture, expected):
         from .cif_native_monomers import native_monomer_worker
         worker = native_monomer_worker(worker)
-    _need((work/'native_worker.py').read_bytes()==worker.encode() and (work/'gradient_worker.py').read_bytes()==numerical._WORKER.encode())
+    _need((work/'native_worker.py').read_bytes()==worker.encode() and (work/'gradient_worker.py').read_bytes()==_numerical_engine(expected)._WORKER.encode())
     for name,source in numerical._CORE_FILES.items():_need((work/name).read_bytes()==Path(__file__).with_name(source).read_bytes())
     from tempfile import TemporaryDirectory
     with TemporaryDirectory(prefix='mixed-gradient-reader-') as temporary:
@@ -227,7 +236,7 @@ def _read_captured_mixed_gradients(directory):
             and native['energy_inventory']['installed_sources']==expected['energy_inventory']['installed_sources']
             and numerical._numeric_equal(native['energy_inventory'],expected['energy_inventory'])
             and numerical._numeric_equal(result['raw_snapshot'],native['energy_inventory']['snapshots'][0]))
-        _need(numerical._numeric_equal(q,numerical._validate_result(result,expected,prep['selected_indices'])))
+        _need(numerical._numeric_equal(q,_numerical_engine(expected)._validate_result(result,expected,prep['selected_indices'])))
         for field,modules in [('installed_numeric_sources',numerical._NUMERIC),('installed_adapter_sources',numerical._ADAPTERS)]:
             rows=result[field]
             _need([r['module'] for r in rows]==list(modules) and all(isinstance(r['sha256'],str) and len(r['sha256'])==64
