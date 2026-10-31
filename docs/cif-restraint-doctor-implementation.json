@@ -27568,7 +27568,7 @@
       "remote_verified": true
     },
     "captured_mixed_gradient_qualification": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "An authenticated-capture adapter reuses unchanged complete-policy numerical cores, freezes exact ordered inputs/namespace/source pins and replays saved numbers without an SDK. The full ATL scaffold and an independent 10C numerical control pass without component-code branches; numerical qualification remains distinct from chemistry, geometry and adoption.",
       "schemas": {
         "new": "schema 1 / cif-captured-mixed-fixed-gradient-v1; frozen authenticated capture, exact preparation/job inventory and complete sampled numerical qualification",
@@ -27590,7 +27590,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "captured_mixed_gradient_qualification_2026_10_31",
-      "validation": "1552 passed, 36 subtests passed in 159.61s (0:02:39); 272 affected tests, two final complete native derivative jobs and cold replay pass; no full suite."
+      "validation": "1552 passed, 36 subtests passed in 159.61s (0:02:39); 272 affected tests, two final complete native derivative jobs and cold replay pass; no full suite.",
+      "implementation_commit": "63fc354b830d1544f06f58c9e878baf3a88960a4",
+      "focused_tested_commit": "63fc354b830d1544f06f58c9e878baf3a88960a4",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

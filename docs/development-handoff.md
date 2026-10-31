@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C147 validated: generic complete-policy captured-manager derivatives
+## C147 published: generic complete-policy captured-manager derivatives
 
 Base/pushed-before-work: `76257c74ce33d4df14f247681e7b243a3f5b9eea`;
 existing **cedar** only. Capsule:
@@ -94,7 +94,9 @@ separate source/reaction/placement gates. Keep curated-DZ token-per-line CIF par
 PDU changed-objective geometry, broader L-FANA/L-FDNA/PNA and production adoption
 milestones explicit; this result does not silently combine those objectives.
 
-Implementation and focused validation complete; publication pending.
+Implementation and focused validation are complete. Focused-tested implementation
+`63fc354b830d1544f06f58c9e878baf3a88960a4` is published and verified on `origin/cedar`;
+this follow-up records continuity. The full-tested revision above is unchanged.
 No active jobs. Signed evidence key:
 `captured_mixed_gradient_qualification_2026_10_31` in the native ledger.
 — Rowan · Codex desktop
