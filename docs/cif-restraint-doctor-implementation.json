@@ -27439,7 +27439,7 @@
       "remote_verified": true
     },
     "linked_torsion_energy_and_atl": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "after": "A reusable fixed-point numerical reader binds exact removed proxy identities/coordinates and repeated single/container evaluations to the full energy/gradient delta. Fresh PDU captures and sampled derivatives pass with repaired DF and all unrelated restraints preserved. An independent ATL candidate preserves its bridge, four sugar hands, hydrogen/charge state and passes isolated native usability at source/generated coordinates.",
       "schemas": {
         "new": "schema 1 / cif-linked-linear-torsion-energy-v1, a pure numerical report with caller-owned native capture provenance",
@@ -27456,7 +27456,11 @@
       "next": "Build a source-preserving whole-residue/link adapter for ATL using its qualified candidate and existing graph/stereochemical lessons, then test it alongside the existing eight mixed-scaffold pairs. Separately run a new bounded PDU geometry trial on the newly derivative-qualified objective. Continue ordinary PostMR selected-bundle orchestration with usable fallback; no merge is implied.",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "linked_torsion_energy_and_atl_2026_10_31",
-      "validation": "7143 passed, 276 subtests passed in 1110.25s (0:18:30); focused 1362 passed, 36 subtests passed in 116.55s (0:01:56); PDU exact attribution/fresh derivatives; ATL isolated native usability at two coordinate sets; cold actual replay and seven negative controls."
+      "validation": "7143 passed, 276 subtests passed in 1110.25s (0:18:30); focused 1362 passed, 36 subtests passed in 116.55s (0:01:56); PDU exact attribution/fresh derivatives; ATL isolated native usability at two coordinate sets; cold actual replay and seven negative controls.",
+      "implementation_commit": "84de27d7399bf1b024cc1902bdf22bb5aad2e9e6",
+      "full_tested_commit": "84de27d7399bf1b024cc1902bdf22bb5aad2e9e6",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

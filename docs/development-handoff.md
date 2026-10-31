@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C142 validated: PDU numerical attribution and source-preserving ATL control
+## C142 published: PDU numerical attribution and source-preserving ATL control
 
 Base: `284431eb4cf3495b8f9b62cc2fbc3d1d08720f7e`; existing cedar only.
 Capsule: `live_tests_directory/142_Cedar_linked-energy-ku0vlr3e`.
@@ -60,7 +60,9 @@ dictionaries, Phenix logs, PDF, runners and test outputs remain local outside Gi
 FANA/L-FANA/PNA source/port/stereo and representation-policy learning is retained;
 evidence-backed exceptions remain permitted, with explicit applicability checks.
 
-No job is active. Implementation and validation complete; publication pending.
+No job is active. Implementation, full validation and signed publication are complete. Tested
+implementation `84de27d7399bf1b024cc1902bdf22bb5aad2e9e6` is published and verified
+on `origin/cedar`; this follow-up records continuity. No branch creation or merge.
 Next: ATL whole-residue/link adapter and the requested combined scaffold, new
 bounded PDU geometry/endpoint qualification, then ordinary selected-bundle PostMR
 orchestration with usable fallback. General coverage and merging remain separate.
