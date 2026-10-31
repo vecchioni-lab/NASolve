@@ -11,6 +11,94 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C147 validated: generic complete-policy captured-manager derivatives
+
+Base/pushed-before-work: `76257c74ce33d4df14f247681e7b243a3f5b9eea`;
+existing **cedar** only. Capsule:
+`live_tests_directory/147_Cedar_captured-gradients-jt6w8m4g`.
+Before: the connected ATL seed had finite energy but no current complete-policy
+sampled derivative proof; the richer worker required historical context/recovery
+ancestry. After: `audit_captured_mixed_gradients` consumes an authenticated native
+capture and preserves its exact model, input order, namespace, complete policy,
+manager and source pins. No component-name or historical-run branch was added.
+The six-or-fewer local probes follow absolute captured nominal bond/angle outliers;
+global/family probes and every active parallelity proxy remain included.
+
+New `src/nasolve/cif_captured_mixed_gradients.py` and its test module add schema 1
+`cif-captured-mixed-fixed-gradient-v1`. Its reader authenticates the copied native
+capture, rederives preparation and replays all numerical evidence with no SDK.
+Rehashed extra files/directories, changed samples/cores/source pins/policy and
+incomplete attempts are refused. Only maintained workers execute; existing
+mixed/recovered/gradient/parallelity/native sources remain byte-identical.
+The generic report proves captured explicit policy preservation, **not policy
+authorship or chemical approval**. NAR compiler and source/native evidence remain
+separate. Launch failures/timeouts preserve attempts; retries need fresh output.
+No CLI/default/cache/checkpoint migration, ReadySet replacement or adoption change.
+The chemistry profile, changelog, methods, architecture, overview/caption, index,
+implementation map and evidence ledger were updated alongside the runtime/tests.
+
+**Live results — complete Phenix 2.2.1-6174, dispatcher 2.2.1 executions:**
+
+- **ATL:** the C146 865-atom/42-site connected scaffold passes 1367 energy
+  evaluations and 3328 plane-evaluation pairs. All 58 parallelity proxies,
+  201 custom requests, 26 dictionaries, 15 PHIL inputs and the complete manager
+  remain exact. Model coordinates and native energy remain unchanged.
+- **10C:** the pinned NAR catalogue identifies this alpha-L-lyxofuranosyl cytosine;
+  9V9 is related catalogue context only. 10C matches the graph-defined 2O4C bridge.
+  Source-preserving generation and native checks from source/generated coordinates
+  preserve its 36 atoms/38 bonds, charge/H state, four declared centres and exact
+  covalent proxies. Source RNA LINKING and isolated candidate non-polymer metadata
+  are kept distinct. Two isolated copies with one NAR-generated parallelity pass
+  the same numerical API: 1359 energy evaluations and 364 plane-evaluation pairs.
+  This is a numerical transfer control, not linked-polymer or physical stacking
+  qualification. No blanket OP3/O3P transformation or ligand whitelist was added.
+
+**Validation:** 37 new regression cases; 272 affected numerical/capture tests pass
+in 30.95 s. Frozen chemistry/workflow profiles pass **1552 tests + 36 subtests**
+in 159.61 s, with all **578** Python source hashes unchanged. Commands use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and the NASolve `.venv` Python:
+`python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-final-02/pytest.xml`;
+affected tests use `python -m pytest -q -p no:cacheprovider -o addopts=` with
+`tests/test_cif_captured_mixed_gradients.py`, `tests/test_cif_mixed_gradient.py`,
+`tests/test_cif_recovered_gradient.py`, `tests/test_cif_native_gradients.py`,
+`tests/test_cif_parallelity_correction.py`, and `tests/test_cif_attachment_native.py`.
+Exact commands, source hashes and outputs are frozen in the capsule and ledger.
+
+Both final capsules (`ATL-gradients-02`, `10C-gradients-02`) replay after relocation
+with the owned original gone, historical/SDK reads and external execution denied.
+All **168** files retain bytes/times; **ten** tamper controls refuse. Compileall
+(with external bytecode cache), 310 documentation links/JSON, diff checks, 17
+unchanged static resources, six historical numerical/native sources and unchanged
+SVG regeneration/render/visual review pass. All **95** snapshotted C146 files
+retain bytes/times, and **53** prior evidence refs verify. No full suite this
+bounded pass; the last full-tested revision remains
+`809abd44df8885ac14f1a02a67a13338209a8707` (7175 tests + 276 subtests).
+A full integration run is still required before merging.
+
+**Preservation and limits:** early numerical capsules and one intentionally stopped
+owned focused run remain local; their policy-authority label was too specific for
+a generic audit. Fresh final attempts pass with `CAPTURED_EXPLICIT_POLICY`.
+Native bounds remain one process, 1–600 seconds, 2000 energy evaluations and
+5000 plane-evaluation pairs, with 1–64 parallelity proxies. Special positions and
+augmented capture modes are outside this adapter. The corrected-evaluator result
+does not certify ordinary Phenix gradients/refinement. The outgoing ATL bond is
+still 1.743 Å and O4–N6 contact 2.277 Å. No geometry optimization, ReadySet, Coot,
+diffraction refinement or adoption was run. Raw source/workbook/model/native/test
+artifacts and procedural runners stay local; only code and technical summaries/
+hash refs publish. No existing scientific run was cleaned, moved or overwritten.
+
+**Next:** a bounded fixed-objective ATL geometry trial retaining all definitions
+and all 201 custom restraints, followed by fresh source-hand/phosphate/bystander,
+manager/policy, junction and pair/stack endpoint checks. Linked 10C must pass the
+separate source/reaction/placement gates. Keep curated-DZ token-per-line CIF parsing,
+PDU changed-objective geometry, broader L-FANA/L-FDNA/PNA and production adoption
+milestones explicit; this result does not silently combine those objectives.
+
+Implementation and focused validation complete; publication pending.
+No active jobs. Signed evidence key:
+`captured_mixed_gradient_qualification_2026_10_31` in the native ledger.
+— Rowan · Codex desktop
+
 ## C146 published: source-preserving connected ATL construction seed
 
 Base/pushed-before-work: `809f78a752b54370294cda0754dd0e999e91616a`;

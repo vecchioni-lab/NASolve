@@ -86,7 +86,9 @@
 
 <a id="current-capability-boundary-c145"></a>
 
-## Current capability boundary (C146)
+<a id="current-capability-boundary-c146"></a>
+
+## Current capability boundary (C147)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -102,8 +104,8 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer through both the source guard and stored three-site preparation. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
 | Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
-| LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
-| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. Outgoing-bond and pair geometry, sampled derivatives and automatic adoption remain open. |
+| LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed; outgoing-bond/pair geometry and automatic adoption remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 PDU omissions have exact inventory, fixed-coordinate energy/gradient attribution and fresh sampled derivative evidence on the DF-repaired mixed scaffold. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs a new bounded geometry trial and endpoint qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
@@ -150,6 +152,83 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Generic captured-manager derivative qualification (C147)
+
+`audit_captured_mixed_gradients(native_receipt, phenix, output,
+timeout_seconds=...)` accepts a preserved, authenticated native bundle capture.
+It does not require an ATL residue, a named chemistry family, or C98 recovery
+ancestry. Eligibility comes from the literal model/native identity, repeated
+finite energy evidence, supported complete explicit restraint policy and bounded
+parallelity inventory. `phenix=None` prepares without launching a process.
+
+The adapter freezes the validated capture, ordered dictionaries and PHIL files,
+including the recorded PHIL namespace and installed-library authority. It stages
+maintained workers and reuses the unchanged mixed-gradient, gradient-audit and
+parallelity-correction cores; captured executable text is never trusted for
+execution. A fresh native bootstrap must reproduce the exact manager, coordinates,
+restraint policy and pinned numerical sources. Up to six probe atoms come from the
+largest absolute nominal bond/angle deviations, with the existing first-atoms
+fallback only when no measured endpoints are available. Global and family directions and every active parallelity proxy remain
+included. Nothing is removed to make the derivative check pass.
+
+Schema 1 `cif-captured-mixed-fixed-gradient-v1` owns the separate capture, preparation,
+job and qualification inventory. Bounds are one native process, 1–600 seconds,
+2000 energy evaluations and 5000 plane-evaluation pairs, with 1–64 parallelity
+proxies. Only the base linked policy/energy capture is accepted: additional native
+mapping, gradient, nonbonded-inventory or full-monomer modes need their own adapter.
+The inherited fixed-policy gate requires secondary-structure generation disabled
+and no competing automatic pair/stack origins. Special positions are refused by
+the numerical worker. Existing numerical eligibility and source-pinning limits
+remain in force; this is not a general crystallographic optimizer.
+
+`read_captured_mixed_gradients(directory)` authenticates the frozen capture,
+rederives preparation from maintained sources, and recomputes the full finite-
+difference and plane-order audit from recorded numbers. It validates all output
+files and directories, rejecting rehashed additions, duplicate JSON keys,
+changed workers/policies/source pins, fabricated qualification and incomplete
+attempts. It requires neither the original capture nor an installed SDK and never
+launches a process or edits the evidence. Launch failures and timeouts preserve a
+fresh attempt; retries must use another directory. The generic audit establishes
+**preservation of captured explicit policy**, not its author or chemical validity.
+NARestraints compiler/role evidence and source/native chemical qualification remain
+separate requirements. Existing capsule readers, CLI, defaults and checkpoint
+schemas remain unchanged; there is no migration or automatic adoption.
+
+**Connected ATL evidence.** The C146 865-atom, 42-site scaffold passes all sampled
+families with **1367 energy evaluations** and **3328 plane-evaluation pairs**.
+All **58** parallelity proxies, **201** custom requests, 26 ordered dictionaries,
+15 PHIL inputs, source pins and the complete manager remain exact. The six selected
+atoms include the stretched ATL–DZ outgoing junction and another scaffold outlier:
+selection follows numerical evidence, not residue labels. Native energy and model
+coordinates remain unchanged. This validates the declared corrected-evaluator
+scope; it does not certify unmodified Phenix parallelity gradients or refinement.
+The outgoing 1.743 Å bond and 2.277 Å pair contact still need a separately bounded
+geometry trial and fresh source/hand/policy/endpoint checks.
+
+**Independent related-component control.** The frozen NAR catalogue identifies
+**10C**, an alpha-L-lyxofuranosyl cytosine, and also lists related **9V9** (not tested
+here). 10C matches the same graph-defined 2O4C methylene-bridged furanose profile.
+Source-preserving generation retains all 36 atoms, 38 bonds, charges, H attachments,
+four declared centres (including C4′ with four heavy neighbors). The frozen source
+remains RNA LINKING; the generated isolated numerical candidate is non-polymer,
+so linked classification/reaction preparation remains a separate gate.
+Source-coordinate and generated-coordinate native checks both pass
+with the same covalent proxy signature. Two isolated generated 10C copies, translated
+20 Å apart, then pass the same capture API with one explicitly generated NAR
+parallelity restraint: **1359 energy evaluations**, **364 plane-evaluation pairs**.
+That is a numerical transfer control, not a physical stacking arrangement or a
+connected 10C polymer. Its source phosphate and H state are retained; no OP3/O3P
+rule or laboratory-code whitelist was added to the engine.
+
+All native executions used Phenix **2.2.1-6174**, dispatcher **2.2.1**. No ReadySet,
+Coot, diffraction refinement, geometry optimization or adoption was run. Cold
+replay of both complete capsules succeeds after the owned original disappears,
+with original/historical/SDK reads and external execution denied; all 168 frozen
+files retain bytes/timestamps and ten corrupted controls are refused. Exact
+commands, counts, scope and hashes are recorded under
+`captured_mixed_gradient_qualification_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Graph-bound connected furanose construction seed (C146)
 

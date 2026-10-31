@@ -55373,5 +55373,598 @@
     "focused_tested_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "captured_mixed_gradient_qualification_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "76257c74ce33d4df14f247681e7b243a3f5b9eea",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "before": "The connected ATL seed had finite native energy but no current complete-policy sampled derivative qualification; the richer worker required a historical recovery/context ancestry.",
+    "after": "An authenticated-capture adapter reuses unchanged complete-policy numerical cores, freezes exact ordered inputs/namespace/source pins and replays saved numbers without an SDK. The full ATL scaffold and an independent 10C numerical control pass without component-code branches; numerical qualification remains distinct from chemistry, geometry and adoption.",
+    "changed_files": [
+      "src/nasolve/cif_captured_mixed_gradients.py",
+      "tests/test_cif_captured_mixed_gradients.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-captured-mixed-fixed-gradient-v1; frozen authenticated capture, exact preparation/job inventory and complete sampled numerical qualification",
+      "unchanged": "Existing mixed/recovered/native numerical cores, FANA/whole-furanose/source/reaction/preparation, CLI, cache and checkpoint schemas"
+    },
+    "compatibility": "Additive Python API and chemistry test-profile entry. Existing numerical cores and older readers remain byte-identical; no migration/default/installed-library or adopted-coordinate change. Existing cedar only.",
+    "regressions": {
+      "new_cases": 37,
+      "before": "32 initial cases fail for missing module; two stronger rehashed extra-file/directory controls then demonstrated the reader gap and passed after the inventory fix. Further launch-failure, incompatible-policy and duplicate-key coverage is included in the final 37.",
+      "affected": "272 passed in 30.95s; final numerical/capture regression command below",
+      "focused": {
+        "exit_code": 0,
+        "summary": "1552 passed, 36 subtests passed in 159.61s (0:02:39)",
+        "seconds": 159.96743641700596,
+        "files": 578,
+        "changed_files": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH: explicit user preference. Last full-tested implementation remains 809abd44df8885ac14f1a02a67a13338209a8707; full integration required before merging."
+    },
+    "science": {
+      "policy": "C147 complete-policy captured-manager numerical validation",
+      "cases": {
+        "ATL-gradients-02": {
+          "status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "native_atoms": 865,
+          "residue_sites": 42,
+          "parallelity_proxies": 58,
+          "custom_requests": 201,
+          "energy_evaluations": 1367,
+          "plane_evaluation_pairs": 3328,
+          "selected_indices": [
+            216,
+            217,
+            252,
+            768,
+            759,
+            772
+          ],
+          "selected_atoms": [
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "A",
+                "icode": " ",
+                "model_id": "",
+                "resname": "ATL",
+                "resseq": "  11"
+              },
+              "atom_id": "C3'"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "A",
+                "icode": " ",
+                "model_id": "",
+                "resname": "ATL",
+                "resseq": "  11"
+              },
+              "atom_id": "O3'"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "A",
+                "icode": " ",
+                "model_id": "",
+                "resname": " DZ",
+                "resseq": "  12"
+              },
+              "atom_id": "P"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "D",
+                "icode": " ",
+                "model_id": "",
+                "resname": " DX",
+                "resseq": "   3"
+              },
+              "atom_id": "N1"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "D",
+                "icode": " ",
+                "model_id": "",
+                "resname": " DX",
+                "resseq": "   3"
+              },
+              "atom_id": "C2"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "D",
+                "icode": " ",
+                "model_id": "",
+                "resname": " DX",
+                "resseq": "   3"
+              },
+              "atom_id": "O2"
+            }
+          ],
+          "manager_sha256": "52d4f675a9fb86fb093c3c79bc4ff42f97be074ab4225e198ed618fbdd18568b",
+          "complete_manager_unchanged": true,
+          "custom_requests_unchanged": true,
+          "coordinates_unchanged": true,
+          "maximum_energy_change": 0.0,
+          "phil_namespace_policy": "direct",
+          "dictionaries": 26,
+          "phil_files": 15
+        },
+        "10C-gradients-02": {
+          "status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "native_atoms": 72,
+          "residue_sites": 2,
+          "parallelity_proxies": 1,
+          "custom_requests": 1,
+          "energy_evaluations": 1359,
+          "plane_evaluation_pairs": 364,
+          "selected_indices": [
+            36,
+            38,
+            71,
+            0,
+            2,
+            35
+          ],
+          "selected_atoms": [
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "B",
+                "icode": " ",
+                "model_id": "",
+                "resname": "10C",
+                "resseq": "   1"
+              },
+              "atom_id": "P"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "B",
+                "icode": " ",
+                "model_id": "",
+                "resname": "10C",
+                "resseq": "   1"
+              },
+              "atom_id": "O2P"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "B",
+                "icode": " ",
+                "model_id": "",
+                "resname": "10C",
+                "resseq": "   1"
+              },
+              "atom_id": "HOP2"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "A",
+                "icode": " ",
+                "model_id": "",
+                "resname": "10C",
+                "resseq": "   1"
+              },
+              "atom_id": "P"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "A",
+                "icode": " ",
+                "model_id": "",
+                "resname": "10C",
+                "resseq": "   1"
+              },
+              "atom_id": "O2P"
+            },
+            {
+              "identity": {
+                "altloc": "",
+                "chain_id": "A",
+                "icode": " ",
+                "model_id": "",
+                "resname": "10C",
+                "resseq": "   1"
+              },
+              "atom_id": "HOP2"
+            }
+          ],
+          "manager_sha256": "cbdf3cea9ae10e7480438884b39860e96d74c8a3d8ca601b2e75deee34c6d371",
+          "complete_manager_unchanged": true,
+          "custom_requests_unchanged": true,
+          "coordinates_unchanged": true,
+          "maximum_energy_change": 0.0,
+          "phil_namespace_policy": "refinement-root-to-interpreter-v1",
+          "dictionaries": 1,
+          "phil_files": 1
+        }
+      },
+      "automatic_adoption": false,
+      "geometry_optimization": "NOT_RUN",
+      "source_chemical_approval": "NOT_ESTABLISHED_BY_DERIVATIVES",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_execution": true,
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "10C_source": {
+        "catalogue_identity": "alpha-L-lyxofuranosyl cytosine; 10C",
+        "topology": "two-o-four-c-methylene-furanose-phosphate-v1",
+        "topology_status": "MATCH",
+        "source_classification": "RNA LINKING",
+        "declared_stereocentres": 4,
+        "all_declared_hands_preserved": true,
+        "formal_charges_preserved": true,
+        "isolated_native_usable": true,
+        "source_and_generated_coordinate_cases": [
+          "source_seed",
+          "generated_output"
+        ],
+        "same_fixed_covalent_proxies": true,
+        "linked_polymer": "NOT_CONSTRUCTED",
+        "numerical_control_scope": "Two isolated 36-atom copies translated by 20 A, one explicit NARestraints parallelity; not a physical stacking or polymer-link claim."
+      },
+      "prior_artifacts_unchanged": 95
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_gone": true,
+      "original_sdk_historical_reads_and_execution_denied": true,
+      "complete_numerical_capsules_replayed": 2,
+      "native_captures_reauthenticated": 2,
+      "frozen_files_unchanged": 168,
+      "negative_controls": [
+        "sample",
+        "plane",
+        "source_pin",
+        "worker",
+        "namespace",
+        "capture",
+        "adoption",
+        "bound_extra",
+        "bound_empty",
+        "incomplete"
+      ]
+    },
+    "auxiliary": {
+      "historical_numerical_and_native_sources_unchanged": [
+        "cif_mixed_gradient.py",
+        "cif_gradient_audit.py",
+        "cif_parallelity_audit.py",
+        "cif_parallelity_correction.py",
+        "cif_recovered_gradient.py",
+        "cif_native_validation.py"
+      ],
+      "compileall": "PASS",
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c147-compile-cache"
+      },
+      "docs": {
+        "relative_links_checked": 310,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources_equal_base": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "svg_visual_review": "PASS: unchanged regenerated figure remains legible; updated caption distinguishes separate numerical evidence, chemical/policy provenance, geometry and adoption.",
+      "parent_artifacts_unchanged": 95,
+      "previous_C146_refs_verified": 53
+    },
+    "validation_commands": {
+      "python_runtime_historical_path": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "affected": "python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_captured_mixed_gradients.py tests/test_cif_mixed_gradient.py tests/test_cif_recovered_gradient.py tests/test_cif_native_gradients.py tests/test_cif_parallelity_correction.py tests/test_cif_attachment_native.py",
+      "focused": "python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-final-02/pytest.xml; exact command and frozen source manifest in result.json",
+      "native": "python c147_10c.py; python c147_10c_gradient.py; python c147_atl_final.py; python c147_10c_gradient_final.py. Each uses exact selected Phenix installation and fresh output. Final controls are ATL-gradients-02 and 10C-gradients-02. Procedural runners archived locally.",
+      "science": "python c147_science_final.py: offline chemistry/native and full manager/coordinate/policy replay; parent bytes/times preserved",
+      "cold": "python c147_cold_final.py: relocated source and both final capsules, owned original gone, SDK/historical reads and execution denied. Exact command frozen in cold-final-02/result.json.",
+      "auxiliary": "python -m compileall -q src tests with PYTHONPYCACHEPREFIX=/private/tmp/c147-compile-cache; check_docs.py; unchanged SVG regeneration/render/visual review; git diff --check; historical cores/resources and prior evidence checks"
+    },
+    "software": {
+      "python": "3.12.14",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "source_preserving_elbow_candidates": 1,
+      "isolated_native_controls": 2,
+      "two_copy_native_controls": 1,
+      "final_complete_derivative_jobs": 2,
+      "preserved_preliminary_derivative_jobs": 2,
+      "dry_run": false,
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "artifacts": "Only runtime/tests/profile and maintained technical summaries/hash references publish. Raw source/model/workbook inputs, native/test outputs and procedural runners stay local. All 95 snapshotted C146 files retain bytes/times; 53 prior ledger refs verify. Earlier unsuccessful/preliminary attempts remain preserved. No scientific-data cleanup or movement.",
+    "limitations": [
+      "Additive fixed-coordinate Python numerical diagnostic. No optimizer, public CLI/default, cache selection, ordinary automatic recovery/adoption, checkpoint migration or ReadySet replacement.",
+      "Captures must authenticate exact literal model/native identity, repeated finite energy, linked inventory and complete explicit policy; secondary-structure generation is disabled and competing automatic pair/stack origins are refused. Only the base policy/energy capture is accepted; augmented inventory modes need a separate adapter.",
+      "One process; timeout 1..600 seconds; maximum 2000 energy calls, 5000 plane evaluation pairs and 1..64 parallelity proxies. Special-position derivatives remain refused. Six atoms are selected by existing absolute bond/angle outlier order, alongside global/family and complete plane probes. Sampled agreement is not a proof at arbitrary coordinates.",
+      "Existing qualified order-safe parallelity correction and all numerical cores stay unchanged. Native energy and complete static policy remain exact; this does not certify unmodified Phenix parallelity gradients or ordinary refinement.",
+      "Generic numerical capture proves preserved explicit policy, not NARestraints authorship or source chemistry. Separate compiler/source/native evidence remains required; no chemical approval or adoption is inferred from derivative success.",
+      "ATL remains the C146 connected seed with its original fixed numerical bundle: outgoing separation 1.743 A and O4-N6 pair contact 2.277 A remain unqualified geometry. Later changed-objective PDU work is not silently substituted.",
+      "10C source matches the graph-defined 2O4C methylene bridge and retains four declared hands. Both isolated source/generated coordinate controls pass. Source classification is RNA LINKING but its generated isolated candidate is non-polymer; linked reaction/classification, full scaffold construction and ordinary refinement remain open. The two-copy plane test is not physical stacking.",
+      "9V9 is catalogue context only, not newly qualified. Other L-FANA/L-FDNA/PNA and charged/symmetry chemistry milestones remain separate; prior source/hand/protonation learning is unchanged.",
+      "First numerical capsules preserve a preliminary overly specific policy-authority label. Final -02 capsules use CAPTURED_EXPLICIT_POLICY, pass fresh native checks and final cold replay. An owned focused run was stopped before this provenance correction; final frozen run is separate and complete. No earlier attempt was overwritten or deleted."
+    ],
+    "next": "Use the now-qualified connected ATL manager for a bounded fixed-objective geometry trial retaining every native definition and all 201 custom restraints. Recheck full source hands, phosphate/H state, bystanders, manager/policy identity, both junctions, pair/stack geometry and fresh endpoint evidence. In parallel milestone planning, linked 10C should use the existing source/reaction/placement gates, not the isolated numerical pass as a shortcut. Keep curated-DZ token-per-line parsing, PDU changed-objective and other-family work explicit.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/final-science-audit.json",
+        "size": 5725,
+        "sha256": "8f4f4c7239bdec9a07f698323708dc886ed8fac11de4675fda8be21ada115e7c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/final-science-audit.log",
+        "size": 5725,
+        "sha256": "8f4f4c7239bdec9a07f698323708dc886ed8fac11de4675fda8be21ada115e7c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/parent-before.json",
+        "size": 22926,
+        "sha256": "9f7a7a5f383d5c67476807f9c1ecef627b757ec8da2d252928b77acd4521827c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/atl-summary-02.json",
+        "size": 55448,
+        "sha256": "c9cbf75fba1394dc84cd1325646fe97f0c29b015f96444d805d1892ac843ebc7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10c-summary-02.json",
+        "size": 12011,
+        "sha256": "6ffa907d7ea2d9db21b0ac4d72aa2d01bf7ce0730b2f518ed3a3049624a25029"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C/source-profile.json",
+        "size": 16001,
+        "sha256": "dbc09ca8a1eb229a800572377d5bcec0bdabd896e4298a39d9a3207115f7f988"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C/native-qualification.json",
+        "size": 1678110,
+        "sha256": "877842b2efc3e548edd02aae720a6ab3df26f9750db7e2cb2b12884546af9909"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C/stack-control-02/scope.json",
+        "size": 1480,
+        "sha256": "51b663af07877d0b3f081f9d1dc054643176c39685817a448f9ca107fe23d7a2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C/generated/source_candidate_receipt.json",
+        "size": 554296,
+        "sha256": "593fcc9b75fb274c82a248abde3a6dadfd4ddb8ac48f70ff41136648311f5859"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/cold-final-02/result.json",
+        "size": 857,
+        "sha256": "4f29f65ac9e4acfa021dab9f3ab936247ab5eac6443beac7204461192e572f0d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/cold-final-02/replay.log",
+        "size": 360,
+        "sha256": "9c6550aa075bb63c558fa3d299a0bd021dfdd94838522da7a83a3e9c723152b0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/before.log",
+        "size": 28673,
+        "sha256": "77e4389282e15d83aa97bd27407986b79f41f381f2224166fa8d9fa124b3c48a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/hardening-before.log",
+        "size": 5295,
+        "sha256": "1b51080f2efe219be08bf0488d60c451aad23bce183c134b1b993d8600b16938"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/related-final.log",
+        "size": 341,
+        "sha256": "9dc5ef577f85004cb04050180c0e02abe3b0d22ea09ee0601841a50ff7d68538"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/focused-final-02/result.json",
+        "size": 614,
+        "sha256": "3c3400e2fa04428102d11e927583046e6cac6c179385f14afc3564b3efa4543a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/focused-final-02/pytest.log",
+        "size": 6644,
+        "sha256": "128315d33b2fa8c407698fbddd7db1fd99fc7385692404134f762577407d39a3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/focused-final-02/pytest.xml",
+        "size": 227865,
+        "sha256": "453705674fb0706d347a2fe65938ccd24717b34e40ff98eda8d0688faf03cf61"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/focused-final-02/source-hashes.json",
+        "size": 62941,
+        "sha256": "f5a1d76920be300be911562c3190bbb4a0336affb778b93a35ef443fb82678d9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/validation/auxiliary.json",
+        "size": 2924,
+        "sha256": "069b131b100730fabfd97485685b0852ad67673cab6af62c0dd91534f43d00ee"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/captured_mixed_gradients.json",
+        "size": 42427,
+        "sha256": "ab45464d0cc7ff7b4435460782a82b4cd3a12cb7a7de6a9d6d44347a1c42b6e5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/qualification.json",
+        "size": 414,
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/initial_probe_plan.json",
+        "size": 9935,
+        "sha256": "41a23deb0c2fbf0759ab16224e3aa86f796fe8c14880668fbb4f2daed1d62425"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/job/gradient_spec.json",
+        "size": 1152,
+        "sha256": "15059123cf156fbfbebe311b8ddf02118e98bc37ae3fab54ed96ad78b45bfe81"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/job/gradient_result.json",
+        "size": 3064566,
+        "sha256": "0d225abbec87a805ec026cbf2091f0f28e45e74c802c3d956b023579af4083ce"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/job/native_spec.json",
+        "size": 1292,
+        "sha256": "971fd8cf68b3c6ad2e7b5cbdb0acf4c5a4b87897f9688668ac69ed16d97d00b0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/job/native_validation.json",
+        "size": 2758461,
+        "sha256": "ae61013da0c6a7c628f05b0a49f5db355e7672ba1cfe8a366c9c2b048bf50c4f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/ATL-gradients-02/capture/native_receipt.json",
+        "size": 6013875,
+        "sha256": "8f2b0dfbe84694b2cdda6c3025a01423a90b4632a1aeeaaa5d4a132184cc0cee"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/captured_mixed_gradients.json",
+        "size": 9487,
+        "sha256": "458895486f49f542011841b50dcfc6e167b0fad1e905eabda2407bc2131de53f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/qualification.json",
+        "size": 414,
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/initial_probe_plan.json",
+        "size": 448,
+        "sha256": "8448c8e8e6d3cd7dc8a46536b2e1a06a017fb6845adc483e13973166e6c4b99f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/job/gradient_spec.json",
+        "size": 1143,
+        "sha256": "8d8e3e98b0222a5b7c7c2976a5021988626afdc560155ccf5200190868fd3592"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/job/gradient_result.json",
+        "size": 875520,
+        "sha256": "0ad36395bdce3ba4b2f5d869681b5f25d2f7a15766ac27c848109990992b863a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/job/native_spec.json",
+        "size": 297,
+        "sha256": "167d37e83826cc5fc37908210fbd7ca4c322d3170ca4c04e7cbafa2b2825fb9d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/job/native_validation.json",
+        "size": 169780,
+        "sha256": "08b1cf1e09b0bd3fcdad8e5a9db88e474ac7e00c177cd504d570ea159530f349"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C-gradients-02/capture/native_receipt.json",
+        "size": 366276,
+        "sha256": "90c217f24992c4058203ab04dd4f8fb128ac95c642c4143396b1766989e14f32"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C/native/source_seed/cif-native-ly2soiqw/native_receipt.json",
+        "size": 250255,
+        "sha256": "ecded8fe4efe5b33e72aff811d428eb50e639b0f054c36695a6c83c7a46e485b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "147_Cedar_captured-gradients-jt6w8m4g/10C/native/generated_output/cif-native-ckorcq0k/native_receipt.json",
+        "size": 250150,
+        "sha256": "6015a22326a3c68e1357d31dc8324cfdd71edb6baa8d908ae90d01c50ef89ee0"
+      }
+    ]
   }
 }

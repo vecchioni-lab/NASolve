@@ -133,10 +133,13 @@ The mixed ATL seed now has both native links and all eight junction angles,
 with unchanged definitions, bystanders and exact custom restraint membership.
 Incoming separation improves from 4.098 to 1.610 Å with at most 1.315 Å base
 movement. The outgoing bond remains at 1.743 Å, and one pair contact shortens to
-2.277 Å. This is a connected construction seed, not qualified geometry. Sampled
-derivatives under the complete pair/stack policy and a fixed-objective geometry
-trial remain next. See the
-[seed methods and limits](cif-doctor.md#graph-bound-connected-furanose-construction-seed-c146).
+2.277 Å. C147 now passes sampled derivative checks with all 201 custom restraints
+and 58 parallelity proxies intact. A generic capture API selects probes from
+measured outliers and replays the numerical evidence offline. A separate 10C
+alpha-L-LNA control also passes source/native and numerical checks; its two
+isolated copies do not establish a connected polymer. The connected ATL seed still
+needs a bounded geometry trial and fresh endpoint checks before adoption. See the
+[numerical methods and limits](cif-doctor.md#generic-captured-manager-derivative-qualification-c147).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
 A new fixed-objective geometry trial and endpoint qualification remain open. Earlier mixed-endpoint proof using a NASolve-local
@@ -740,7 +743,10 @@ places ATL through a graph-bound base frame and reuses NARestraints to regenerat
 the affected pair/stack selectors. C146 adds a separate source-preserving arm/body
 seed that closes native connectivity while retaining exact custom policy. The
 remaining outgoing-bond and base-pair strain still withhold geometry qualification
-and adoption. Hash-bound JSON receipts preserve audit findings
+and adoption. C147 adds a separate complete-policy numerical gate and offline
+replay, demonstrated on the ATL scaffold and a 10C two-copy control. Numerical
+consistency leaves source chemistry and policy authorship to their own evidence.
+Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,
 declared site modifications and historical generation findings; equality does

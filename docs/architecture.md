@@ -3642,6 +3642,18 @@ outgoing-bond and short pair geometry still require numerical/geometry gates.
 See the [connected-seed contract](cif-doctor.md#graph-bound-connected-furanose-construction-seed-c146).
 
 
+C147 adds a generic authenticated-capture adapter to the unchanged complete-policy
+mixed/parallelity numerical worker. The model, exact ordered inputs, consumer
+namespace, restraint policy, manager and numerical source pins remain bound;
+probe selection follows captured outliers rather than component codes or prior
+recovery ancestry. Its self-contained schema-1 capsule replays all sampled numbers
+without an SDK, rejecting rehashed additions and inconsistent evidence. Numerical
+qualification does not establish source chemistry, NARestraints authorship or
+achieved geometry. The full ATL seed and a separate 10C two-copy control pass;
+a controlled geometry trial and linked 10C construction remain separate gates.
+See the [captured-manager contract](cif-doctor.md#generic-captured-manager-derivative-qualification-c147).
+
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

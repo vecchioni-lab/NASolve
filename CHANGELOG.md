@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Captured complete-policy numerical qualification (C147)
+
+- Add a reusable fixed-coordinate derivative audit consuming an authenticated
+  native capture, without residue-code or historical recovery ancestry checks.
+  Preserve exact ordered dictionaries, PHIL namespace, complete restraint policy,
+  manager identity and source pins; reuse the unchanged parallelity-aware cores.
+- Schema 1 `cif-captured-mixed-fixed-gradient-v1` freezes the capture and replays
+  all sampled numerical evidence offline. Rehashed extra files/directories,
+  altered source/worker/policy evidence and incomplete attempts are refused.
+- The connected ATL scaffold and a separate 10C alpha-L-LNA numerical control
+  pass. This is an additive Python diagnostic, without geometry optimization,
+  ordinary-refinement qualification, automatic adoption or migration changes.
+
 ### Graph-bound connected furanose seed (C146)
 
 - Generalize the existing FANA acyclic-arm/body fitter to source-graph roles,

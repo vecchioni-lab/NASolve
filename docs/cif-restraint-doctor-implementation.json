@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "graph_bound_connected_furanose_seed_2026_10_31",
+    "current_diagnostic_record": "captured_mixed_gradient_qualification_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27566,6 +27566,31 @@
       "focused_tested_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "captured_mixed_gradient_qualification": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "An authenticated-capture adapter reuses unchanged complete-policy numerical cores, freezes exact ordered inputs/namespace/source pins and replays saved numbers without an SDK. The full ATL scaffold and an independent 10C numerical control pass without component-code branches; numerical qualification remains distinct from chemistry, geometry and adoption.",
+      "schemas": {
+        "new": "schema 1 / cif-captured-mixed-fixed-gradient-v1; frozen authenticated capture, exact preparation/job inventory and complete sampled numerical qualification",
+        "unchanged": "Existing mixed/recovered/native numerical cores, FANA/whole-furanose/source/reaction/preparation, CLI, cache and checkpoint schemas"
+      },
+      "compatibility": "Additive Python API and chemistry test-profile entry. Existing numerical cores and older readers remain byte-identical; no migration/default/installed-library or adopted-coordinate change. Existing cedar only.",
+      "limitations": [
+        "Additive fixed-coordinate Python numerical diagnostic. No optimizer, public CLI/default, cache selection, ordinary automatic recovery/adoption, checkpoint migration or ReadySet replacement.",
+        "Captures must authenticate exact literal model/native identity, repeated finite energy, linked inventory and complete explicit policy; secondary-structure generation is disabled and competing automatic pair/stack origins are refused. Only the base policy/energy capture is accepted; augmented inventory modes need a separate adapter.",
+        "One process; timeout 1..600 seconds; maximum 2000 energy calls, 5000 plane evaluation pairs and 1..64 parallelity proxies. Special-position derivatives remain refused. Six atoms are selected by existing absolute bond/angle outlier order, alongside global/family and complete plane probes. Sampled agreement is not a proof at arbitrary coordinates.",
+        "Existing qualified order-safe parallelity correction and all numerical cores stay unchanged. Native energy and complete static policy remain exact; this does not certify unmodified Phenix parallelity gradients or ordinary refinement.",
+        "Generic numerical capture proves preserved explicit policy, not NARestraints authorship or source chemistry. Separate compiler/source/native evidence remains required; no chemical approval or adoption is inferred from derivative success.",
+        "ATL remains the C146 connected seed with its original fixed numerical bundle: outgoing separation 1.743 A and O4-N6 pair contact 2.277 A remain unqualified geometry. Later changed-objective PDU work is not silently substituted.",
+        "10C source matches the graph-defined 2O4C methylene bridge and retains four declared hands. Both isolated source/generated coordinate controls pass. Source classification is RNA LINKING but its generated isolated candidate is non-polymer; linked reaction/classification, full scaffold construction and ordinary refinement remain open. The two-copy plane test is not physical stacking.",
+        "9V9 is catalogue context only, not newly qualified. Other L-FANA/L-FDNA/PNA and charged/symmetry chemistry milestones remain separate; prior source/hand/protonation learning is unchanged.",
+        "First numerical capsules preserve a preliminary overly specific policy-authority label. Final -02 capsules use CAPTURED_EXPLICIT_POLICY, pass fresh native checks and final cold replay. An owned focused run was stopped before this provenance correction; final frozen run is separate and complete. No earlier attempt was overwritten or deleted."
+      ],
+      "next": "Use the now-qualified connected ATL manager for a bounded fixed-objective geometry trial retaining every native definition and all 201 custom restraints. Recheck full source hands, phosphate/H state, bystanders, manager/policy identity, both junctions, pair/stack geometry and fresh endpoint evidence. In parallel milestone planning, linked 10C should use the existing source/reaction/placement gates, not the isolated numerical pass as a shortcut. Keep curated-DZ token-per-line parsing, PDU changed-objective and other-family work explicit.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_mixed_gradient_qualification_2026_10_31",
+      "validation": "1552 passed, 36 subtests passed in 159.61s (0:02:39); 272 affected tests, two final complete native derivative jobs and cold replay pass; no full suite."
     }
   },
   "audience": [
