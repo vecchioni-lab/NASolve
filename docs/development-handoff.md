@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C151 validated: Q01 complete native capture bridge
+## C151 published: Q01 complete native capture bridge
 
 Base/pushed-before-work `7b8c74c24101cac2defddde2b4daab7f9da84087`; existing **cedar** only.
 Capsule `live_tests_directory/151_Cedar_full-native-bridge-jo0jaoz4`.
@@ -66,7 +66,9 @@ index, completion queue, this handoff and both ledgers. Existing schema-1 polici
 retain their meaning; full-mode preparation adds the existing monomer policy.
 No CLI/default, cache/checkpoint or historical-capsule migration. Generated
 scientific artifacts, logs and helpers stay local. No new branch or merge.
-Implementation and focused validation complete; publication pending.
+Focused-tested implementation `edec9a53c157418a82696a3f8cda35f8af478fad` is published
+and verified on `origin/cedar`. This follow-up records continuity; the full-tested
+revision above remains unchanged.
 No active jobs remain.
 
 **Next:** Q03: bind graph-selected repaired dictionaries and maintained attribution to independently source-qualified component/preparation and C141 selected-bundle evidence; establish a usable candidate or separately verified fallback without implicitly adopting an unconverged coordinate trial. Q02 curated CIF loop parsing remains a small independent early fix; keep all other completion-queue jobs visible.

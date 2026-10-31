@@ -27686,7 +27686,7 @@
     },
     "completion_queue": "docs/cif-doctor-completion-queue.md",
     "full_native_capture_bridge": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "Accept only the existing authenticated full-monomer contract, preserve the explicit native copying policy and maintained worker, and require complete equal identity proofs in fresh derivative/geometry jobs and endpoint capture. Maintained attribution inherits the validated full input path. Legacy capsules retain their prior meaning.",
       "schemas": {
         "new": "None",
@@ -27707,7 +27707,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "full_native_capture_bridge_2026_10_31",
-      "validation": "1686 passed, 36 subtests passed in 264.65s (0:04:24); 313 passed in 97.22s (0:01:37); 7 complete native jobs and relocated replay pass; no full suite."
+      "validation": "1686 passed, 36 subtests passed in 264.65s (0:04:24); 313 passed in 97.22s (0:01:37); 7 complete native jobs and relocated replay pass; no full suite.",
+      "implementation_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
+      "focused_tested_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

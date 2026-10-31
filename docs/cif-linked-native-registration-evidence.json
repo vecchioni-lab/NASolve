@@ -57617,12 +57617,13 @@
       "Q01": {
         "delivery": "C151",
         "evidence_key": "full_native_capture_bridge_2026_10_31",
-        "scope": "Complete native identity and numerical capture compatibility; chemical source qualification remains Q03"
+        "scope": "Complete native identity and numerical capture compatibility; chemical source qualification remains Q03",
+        "implementation_commit": "edec9a53c157418a82696a3f8cda35f8af478fad"
       }
     }
   },
   "full_native_capture_bridge_2026_10_31": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "7b8c74c24101cac2defddde2b4daab7f9da84087",
@@ -58021,6 +58022,10 @@
         "size": 6009743,
         "sha256": "86ea7294856001572c92240de9ed91eedf3dfc5ce087d962cec6aa7038427896"
       }
-    ]
+    ],
+    "implementation_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
+    "focused_tested_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
