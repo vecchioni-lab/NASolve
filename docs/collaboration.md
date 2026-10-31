@@ -53,6 +53,31 @@ paths out of portable operational references. Do not accumulate chat transcripts
 or a second competing status document. Open scientific gates remain visible
 when priorities change; diagnostic progress never silently closes them.
 
+## New ideas and active work
+
+Apply this policy across NASolve. When Simon introduces an idea that would divert
+an active task, identify the current bounded checkpoint, explain what would be
+left unfinished, and ask whether to finish that checkpoint and queue the idea or
+to switch deliberately. Push back on accidental scope changes rather than
+silently abandoning implementation, validation or publication. Continue useful
+already-authorized work that does not depend on the answer; a pending question
+is not permission to start the diversion.
+
+An explicit request to stop, switch or reprioritize takes precedence. Honor it
+and record a concise interruption handoff: completed work, dirty files, remaining
+acceptance checks, exact evidence and every active process/owned output. Preserve
+partial attempts and make the next safe action clear. Never hide a live process
+or label unfinished work complete merely to clear the queue.
+
+Record queued ideas in the relevant subsystem's maintained queue, with scope,
+dependencies and an observable completion criterion. If an idea fits the current
+acceptance boundary without displacing work, incorporate it normally and update
+the handoff; do not ask a ritual confirmation for every suggestion. CIF Doctor
+uses the [completion queue](cif-doctor-completion-queue.md). The handoff owns the
+active checkpoint; the queue owns remaining priorities; scientific contracts
+and evidence own what is actually supported. Keep internal conversation separate
+from durable public product decisions.
+
 ## Testing cadence and development profiles
 
 Use focused tests while developing a bounded change. Run its new regression,

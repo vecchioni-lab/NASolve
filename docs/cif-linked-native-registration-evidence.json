@@ -242,12 +242,11 @@
     "native_policy_unchanged": "cif-native-bundle-inventory-v1"
   },
   "next_delivery": {
-    "status": "PREPARED_DECLARED_GRAPH_CHARGE_CONTROL_NATIVE_PENDING",
-    "delivery_prefix": "37_Cedar",
-    "last_completed_delivery": "36_Cedar",
-    "builder": "scripts/build_cif_numerical_recovery_probe.py",
-    "runner_filename": "37_Cedar_probe_cif_declared_graph.py",
-    "transport": "One quoted-path && subshell: fetch from build 36, full-SHA detached build 37, build with --delivery-prefix 37_Cedar --component-control PDU into ignored branch-artifacts/cedar/runners, run exact C36 ZIP with --component DP --source-dialect-audit-only --declared-charge-control."
+    "status": "QUEUED_NOT_BUILT",
+    "queue": "docs/cif-doctor-completion-queue.md",
+    "job": "Q01",
+    "latest_completed_delivery": "150_Cedar",
+    "delivery_prefix": null
   },
   "boundaries": {
     "installed_corrected_registration": "RECORDED_CEDAR_08",
@@ -5691,7 +5690,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Run Cedar 37 through the pinned Git fetch/worktree/build/run block with --delivery-prefix 37_Cedar --component-control PDU, then the exact Cedar 36 ZIP with --component DP --source-dialect-audit-only --declared-charge-control. Preserve raw C36 findings and recheck source/dispatcher/API hashes before/after. Test declared monomer bond-token translation and explicit source-integer charge population only on the temporary native component after exact graph/coordinate preconditions; block conflicts and keep already-preserved CCD charges unchanged. Return console/review ZIP. No constructor, Chargise, optimizer, generation, production integration, NARestraints-policy change, refinement or adoption is requested. Native complete stereo/generator/scientific qualification remains open.",
+  "next_action": "Completion queue Q01: explicitly reconcile full-model monomer capture with maintained repair attribution, then Q03 source-qualified selection; preserve complete evidence and usable fallback.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -30041,7 +30040,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "pna_candidate_diagnostics_2026_10_28",
+  "current_diagnostic_record": "captured_linear_attribution_2026_10_31",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -57546,5 +57545,27 @@
     "focused_tested_commit": "9bec89f721f69333bbe2d963c7df077d5a0d1ed8",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "historical_top_level_planning_before_completion_audit": {
+    "as_of_commit": "a943386dd3a8e27dabeae316d37039d92e1cb9fc",
+    "meaning": "Preserved superseded planning values, not current instructions.",
+    "fields": {
+      "current_diagnostic_record": "pna_candidate_diagnostics_2026_10_28",
+      "next_action": "Run Cedar 37 through the pinned Git fetch/worktree/build/run block with --delivery-prefix 37_Cedar --component-control PDU, then the exact Cedar 36 ZIP with --component DP --source-dialect-audit-only --declared-charge-control. Preserve raw C36 findings and recheck source/dispatcher/API hashes before/after. Test declared monomer bond-token translation and explicit source-integer charge population only on the temporary native component after exact graph/coordinate preconditions; block conflicts and keep already-preserved CCD charges unchanged. Return console/review ZIP. No constructor, Chargise, optimizer, generation, production integration, NARestraints-policy change, refinement or adoption is requested. Native complete stereo/generator/scientific qualification remains open.",
+      "next_delivery": {
+        "status": "PREPARED_DECLARED_GRAPH_CHARGE_CONTROL_NATIVE_PENDING",
+        "delivery_prefix": "37_Cedar",
+        "last_completed_delivery": "36_Cedar",
+        "builder": "scripts/build_cif_numerical_recovery_probe.py",
+        "runner_filename": "37_Cedar_probe_cif_declared_graph.py",
+        "transport": "One quoted-path && subshell: fetch from build 36, full-SHA detached build 37, build with --delivery-prefix 37_Cedar --component-control PDU into ignored branch-artifacts/cedar/runners, run exact C36 ZIP with --component DP --source-dialect-audit-only --declared-charge-control."
+      }
+    }
+  },
+  "completion_queue": {
+    "document": "docs/cif-doctor-completion-queue.md",
+    "audit_date": "2026-10-31",
+    "audited_commit": "a943386dd3a8e27dabeae316d37039d92e1cb9fc",
+    "historical_record_semantics": "Dated status/next fields preserve evidence-time scope; later receipts and the current queue determine disposition. No historical scientific verdict is rewritten."
   }
 }

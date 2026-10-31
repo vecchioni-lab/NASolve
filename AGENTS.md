@@ -47,6 +47,18 @@ in this repository.
   Keep implemented capability distinct from planned work; see
   [documentation roles](docs/collaboration.md#documentation-roles).
 
+## Continuity when new ideas arrive
+
+- Finish the active bounded checkpoint before diverting to a new idea unless
+  Simon explicitly asks to stop or switch. When an idea would change active
+  scope, state the tradeoff and ask whether to finish the current checkpoint
+  and queue it or intentionally switch; do not silently leave work dangling.
+- Record new ideas in the relevant maintained job queue with acceptance scope
+  and dependencies. An explicit switch still needs an interruption handoff,
+  preserved partial outputs and the state/ownership of any active processes.
+  Follow [new ideas and active work](docs/collaboration.md#new-ideas-and-active-work).
+  This policy applies across NASolve, not only Cedar or CIF Doctor.
+
 ## Required validation
 
 - Add a regression test that fails before the change and passes afterward.

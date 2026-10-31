@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### CIF Doctor completion queue and project continuity
+
+- Reconcile C00–C150 evidence into one dependency-ordered completion queue,
+  distinguishing implemented diagnostic components, unfinished ordinary integration,
+  chemistry-transfer gaps and explicitly deferred extensions.
+- Preserve stale ledger planning fields as historical metadata and point current
+  status to C150 and the queue. Clarify implemented native diagnostics in the
+  original methods blueprint; no scientific/runtime verdict or schema changes.
+- Apply a project-wide policy to finish an active bounded checkpoint and queue
+  new ideas unless an explicit switch is requested, with a clear choice and
+  interruption handoff when priorities conflict.
+
 ### Maintained native attribution for linear-torsion repairs (C150)
 
 - Add a bounded fresh native job around the exact ordered repair chain. Freeze

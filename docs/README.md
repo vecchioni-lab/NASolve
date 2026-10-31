@@ -9,8 +9,9 @@ milestone statements preserve their original scope; they are not a second queue.
 
 - **CIF Doctor:** the [current chemistry/support matrix](cif-doctor.md#current-capability-boundary)
   distinguishes ordinary runtime, isolated components, linked diagnostics and
-  unresolved families. The [generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
-  own remaining work. C133 connects explicit representation-qualified candidates
+  unresolved families. The [completion queue](cif-doctor-completion-queue.md) owns remaining work and
+  the [generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
+  summarize programme coverage. C133 connects explicit representation-qualified candidates
   to source-preserving site preparation and tests retained stereocentres. C135
   preserves that explicit policy through isolated storage and requalification.
   C136 binds frozen storage to explicit current-site preparation and native
@@ -70,6 +71,9 @@ is an explanation, not an independent status ledger.
   workspace, Git safety, artifact handling and one-change review; default
   [one-block conditional Git delivery](collaboration.md#git-delivery-and-terminal-handoffs)
   and separate install one-liners.
+- [CIF Doctor completion queue](cif-doctor-completion-queue.md): dependency-ordered
+  integration, chemistry-transfer, reporting and release jobs, with the C00–C150
+  orphan-work audit and explicitly deferred extensions.
 - [Development test profiles](collaboration.md#testing-cadence-and-development-profiles):
   focused smoke/chemistry/workflow checks, retained delivery compatibility and
   the unfiltered full integration gate.

@@ -128,7 +128,9 @@ integration diff, exercise representative ordinary routes against pine, and stat
 the bounded feature contract. The larger generalizer programme remains separate. No merge
 is performed or authorized by this document. Exact evidence is in the
 [ledger](cif-linked-native-registration-evidence.json); priorities are in the
-[generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
+[completion queue](cif-doctor-completion-queue.md). The
+[generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
+remain the programme-level coverage summary, not a second ordered backlog.
 
 ### Design principles retained from the early Cedar work
 

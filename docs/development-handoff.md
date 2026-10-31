@@ -11,6 +11,47 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Post-C150 completion audit and maintained job queue
+
+C150 is published and complete; implementation `9bec89f721f69333bbe2d963c7df077d5a0d1ed8`,
+continuity `a943386dd3a8e27dabeae316d37039d92e1cb9fc`. No native jobs remain.
+The [completion queue](cif-doctor-completion-queue.md) is now the single ordered
+backlog: 16 work packages with dependencies/acceptance, a C00–C150 reconciliation
+and separate deferred extensions. **Next is Q01**, the explicit rich-native-capture
+bridge; Q02 is the independent curated-CIF parser correction. Runtime and scientific
+artifacts remain unchanged by this documentation checkpoint.
+
+The audit recovers ordinary orchestration/selection, linked PNA parameterization,
+post-C133 L-FANA geometry, live L-FDNA and linked 10C controls, persistent pair
+strain, catalogue/state mappings, consumer qualification and user-report/document
+consolidation. It preserves completed cache/ReadySet transport work and historical
+failures rather than reopening superseded delivery instructions. Top-level C115
+current/C37 next pointers are corrected with their old values preserved.
+
+Root AGENTS and the collaboration contract now require an explicit choice before
+a new idea diverts unfinished work, unless Simon has expressly asked to switch.
+This applies to all NASolve development. Queued ideas receive completion criteria;
+interrupted work retains an exact handoff and owned-process state.
+
+Documentation validation passes: 361 local links/anchors, both JSON ledgers,
+all 163 unchanged historical native-ledger values, exact preservation of the
+superseded planning fields, 608 frozen source/test/script/configuration files,
+62 C149/C150 evidence references and `git diff --check`. No scientific tests are
+rerun for this documentation-only change. Exact audit command:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/cedar_queue_validate.py
+```
+
+The temporary helper is archived with its hash; its original command is historical
+provenance, not a portable operational reference. Audit inventory and validation live under
+`live_tests_directory/150_Cedar_linear-attribution-kl1btmvd/completion-audit`.
+No runtime/artifact schema migration, native execution, branch merge or generated
+data publication occurs. C150 focused 1,662 tests + 36 subtests remain the latest
+focused result; last full-tested is C143 `809abd44df8885ac14f1a02a67a13338209a8707`
+(7,175 tests + 276 subtests). Do not call this a fresh full pass.
+— Rowan · Codex desktop
+
 ## C150 published: maintained captured linear-torsion attribution
 
 Base/pushed-before-work `4579e954f146edb89e1383ac2da16da602bfdaf1`; existing
@@ -2311,44 +2352,20 @@ not an estimate for complete catalogue support.
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. C141 makes exact component selection public-reader compatible with frozen source/native replay and plain-language diagnostic scope. Ordinary orchestration/adoption, chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 
-**Next bounded work, in order:** connect C149's graph-selected repair and C150's
-maintained, replayable native attribution to the existing source-qualified candidate/preparation and public
-selected-bundle contracts. Dictionary usability and selection must not inherit
-coordinate adoption merely because mechanics pass. Preserve explicit original and
-candidate chemical authority, source hands, phosphate/H state and a verified usable
-fallback. C149's mixed eight-pair-plus-ATL objective now passes initial/full/rounded
-numerics and native endpoint mechanics; its 1000-iteration trial remains
-unconverged with substantial pair strain. Diagnose that remaining geometry from
-exact NAR policy and source evidence without dropping restraints, weakening
-thresholds or treating a larger budget as scientific validation. Keep the corrected-
-parallelity evaluator's scope explicit; ordinary Phenix refinement remains separate.
+**Current ordering:** the [completion queue](cif-doctor-completion-queue.md) is
+the sole maintained job backlog. Q01/Q03 connect full native capture and repaired
+source-qualified selection; Q04/Q05 provide ordinary recovery/adoption; Q06/Q07
+qualify the actual refinement route and mixed-scaffold workflow. Q02 is the
+independent parser fix. Q08–Q14 retain geometry, family, source-state and catalogue
+gaps; Q15/Q16 cover reports, documentation consolidation and final integration.
+The table above summarizes G1–G6 coverage and does not independently schedule work.
 
-Linked 10C is the next related-component construction transfer control, beyond its
-C147 isolated/two-copy checks. Separately repair the curated CIF bond reader's
-token-per-line-loop handling demonstrated in C145. No source inversion,
-RNA→DNA relabeling or bridge removal is authorized. Broader linked L-FANA/L-FDNA
-and PNA construction/chemistry remain explicit coverage milestones.
-
-Then connect the public selected-bundle contract to ordinary PostMR orchestration
-with exact selected-artifact provenance and usable fallback. C141 finishes public
-read-only consumption; it does not activate production checkpoints. Exercise
-representative and held-out ordinary routes, including interruption/failure and
-plain-language reporting, before a bounded integration review. Preserve strict
-signed chirality/torsion, symmetry/origin, NAR ownership and terminal-phosphate
-boundaries. Unavailable native charge evidence cannot supply experimental state.
-
-A provisional Cedar-to-pine checkpoint can ship existing assessment, reuse and
-explicit diagnostics before catalogue-wide G6 is complete, after reviewing the
-integration diff and representative ordinary runs. Merging remains a separate
-decision; diagnostic chemistry must not be advertised as production-complete.
-
-**Documentation maintenance:** the capability matrix owns current supported scope;
-this handoff owns next work; the native ledger owns exact evidence. Entry-point
-chronologies and stale top-level implementation flags are reconciled in C133.
-The large historical bodies in this handoff, the technical guide and human overview
-still need a separate consolidation pass into stable methods versus archived
-evidence, preserving anchors and receipt hashes. Do not append another competing
-current-status page. Private deliberation remains outside product documentation.
+The capability matrix owns demonstrated support, the queue owns remaining
+priorities, this handoff owns the active checkpoint and the native ledger owns
+exact evidence. Historical dated next-actions remain snapshots. A provisional
+Cedar-to-pine checkpoint can expose bounded assessment/reuse/diagnostics after
+its integration review; it cannot advertise full automatic chemistry support.
+Merging remains a separate decision.
 
 These are acceptance milestones, not a fixed count of coding pushes. G2–G5
 iterate by chemically meaningful family; a catalogue full of `UNSUPPORTED`

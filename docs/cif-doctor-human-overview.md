@@ -18,6 +18,10 @@ The [command guide](cif-doctor.md) owns operational contracts; the
 implemented APIs from planned orchestration. This overview and its editable
 figure describe the current capabilities and their limits.
 
+Remaining integration, chemistry-transfer and release work is maintained in the
+[completion queue](cif-doctor-completion-queue.md), including the C00–C150 history
+audit. The queue does not expand the demonstrated scientific scope below.
+
 ## Catalogue scope and progression
 
 The programme includes every ligand in the selected NARestraints catalogue,

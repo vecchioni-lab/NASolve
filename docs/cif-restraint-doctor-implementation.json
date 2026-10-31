@@ -32,7 +32,7 @@
       "Ordinary general whole-modified-sugar mutation; symmetry-aware sticky-end stitching",
       "Solution-PDF integration and ChemDraw-derived chemical input"
     ],
-    "snapshot_policy": "The design and historical evidence below remain a knowledge snapshot. The runtime contract and current source own implemented behavior.",
+    "snapshot_policy": "Original design and dated progress records preserve their evidence-time scope. Current source/runtime contract own capability, the completion queue owns priorities and the handoff owns active work.",
     "cedar_05_return": {
       "delivery_prefix": "05_Cedar",
       "archive_name": "05_Cedar_dy4qx3qg_cif_native_review.zip",
@@ -27683,7 +27683,8 @@
       "focused_tested_commit": "9bec89f721f69333bbe2d963c7df077d5a0d1ed8",
       "published_branch": "cedar",
       "remote_verified": true
-    }
+    },
+    "completion_queue": "docs/cif-doctor-completion-queue.md"
   },
   "audience": [
     "NASolve contributors"
@@ -30228,8 +30229,9 @@
     "requires_student_cif_review": false,
     "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
     "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned.",
-    "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_RESOLVER; source/state-bound reusable numerics and frozen run copies; ordinary automatic acquisition/adoption still pending.",
+    "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_ORDINARY_NARROW_RECIPE_REUSE; explicit representation-policy/current-site bundles are qualified diagnostics, with general cache-miss recovery and ordinary adoption still pending.",
     "background_engine_intent": "Internal recipes/model/source contracts drive automatic chemistry handling around ReadySet and NARestraints. Users should not author or review CIFs routinely; unresolved scientific choices are distinct from repairable technical failures.",
-    "retained_design_principles": "docs/cif-doctor.md#design-principles-retained-from-the-early-cedar-work"
+    "retained_design_principles": "docs/cif-doctor.md#design-principles-retained-from-the-early-cedar-work",
+    "completion_queue": "docs/cif-doctor-completion-queue.md"
   }
 }
