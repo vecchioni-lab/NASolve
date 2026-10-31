@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Graph-bound whole-furanose diagnostic placement (C143)
+
+- Add an opt-in immutable whole-residue placement adapter for uniquely matched
+  unbridged and 2′-O–4′-C-bridged furanose graphs. Bind host/target atom roles
+  independently, preserve the complete numerical geometry and declared source
+  stereocentres, and reuse explicit neutral attachment-port deletion rules.
+- Refuse incompatible host hands, guessed leaving groups, stale coordinate
+  references, changed source chemistry and forged/rehashed saved output. Offline
+  readers recompute the result from frozen inputs after relocation. New schema 1
+  `cif-rigid-whole-furanose-linked-control-v1`; no existing schema migration,
+  ordinary PostMR mutation, installed-library change or automatic adoption.
+- Actual ATL-to-DNA placement is refused on shared-role C3′/C4′ handedness.
+  Fresh directional native controls recognize both declared links but retain
+  unqualified reaction-state atoms. Neither result claims combined-scaffold or
+  linked numerical support; the source chemistry is preserved for follow-up.
+
 ### Exact linked torsion energy attribution (C142)
 
 - After the complete graph-qualified torsion-omission inventory gate, check

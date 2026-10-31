@@ -11,6 +11,59 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C143 validated: whole-furanose placement and actual ATL boundaries
+
+Base: `b1e9b3e423bebcc9e358e5e9f95d87da0f717c54`; existing cedar only.
+Capsule: `live_tests_directory/143_Cedar_whole-sugar-zg9yqlia`.
+Before: isolated ATL worked; whole-residue transport and linked support were open.
+After: an additive graph-bound compatible-host whole-furanose adapter freezes and
+recomputes source/host roles, neutral link-port projections, complete rigid geometry
+and every declared source hand. Renamed atoms, true mirrored coordinates and bridged
+four-heavy-neighbour centres are covered. Prior FANA/L-FANA behavior is unchanged.
+Schema 1 `cif-rigid-whole-furanose-linked-control-v1`; no migration, CLI, ordinary
+PostMR behavior, checkpoint, installed-library or chemical-state change.
+
+The actual source-preserving ATL candidate passes an explicitly artificial
+compatible three-ATL frame: four centres/seven heavy-volume checks, determinant 1,
+maximum internal rounding error 0.0009701479602952645 Å. This is not a physical
+oligonucleotide or junction-geometry proof. Actual A:11/B:5 placement alongside
+the eight existing mixed pairs **refuses**: shared-role C3′/C4′ hands differ from
+both the public DT source and observed host; C1′ agrees. The workbook names ATL
+**alpha-LNA-T**. Do not invert the source, assume the CCD is wrong, relabel it DNA
+or discard its bridge. Combined scaffold: **NOT_CONSTRUCTED**. The first preflight
+also refused stale historical PDB headers; separate coordinate-frame provenance
+is recorded and all source atoms/cell are retained.
+
+Two complete Phenix **2.2.1-6174** (dispatcher **2.2.1**) directional controls now
+observe the declared DA→ATL and ATL→DA O3′–P bonds (target 1.607 Å). Definitions
+remain REVIEW: incoming ATL retains OXT/HXT; outgoing ATL retains alcohol HA.
+DA alias/protonation differences and unavailable formal-charge readback remain.
+No Coot/ReadySet, optimization, diffraction refinement or automatic adoption ran.
+
+Regression: 27 initial failures, 32 new cases; the initial 120 related cases pass. A final additional regression
+first fails, then the corrected final focused/full suites pass.
+Focused: **1434 passed, 36 subtests passed in 130.81s (0:02:10)**.
+Full: **7175 passed, 276 subtests passed in 1109.86s (0:18:29)**.
+All 506 Python/test/runner files remain unchanged across validation; 17 static
+source resources match the base commit. Compilation, documentation/JSON/links,
+unchanged SVG regeneration/visual inspection and whitespace checks pass.
+Actual compatible placement, two native receipts and the source-hand comparison
+replay after relocation with the owned original gone; historical/SDK reads and
+execution denied. Seven forged controls refuse; 62 frozen files retain bytes/times.
+All 213 C98 artifacts and 39 prior C142 evidence references remain intact.
+
+Changed: one runtime module, tests/profile, maintained contracts, figure caption,
+implementation map and evidence ledger. Exact commands, file/schema list, limits
+and portable refs: `whole_furanose_and_atl_links_2026_10_31` in the ledger.
+Raw science, generated controls, workbook, native/test output and runners stay
+local outside Git. No branch creation or merge.
+No job is active. Implementation and validation complete; publication pending.
+Next: source-graph native reaction-state/typing adapter for the explicit ATL ports;
+a distinct different-backbone construction preserving alpha-LNA-T chemistry;
+then the requested combined scaffold. PDU changed-objective geometry and ordinary
+selected-bundle PostMR orchestration remain independent open gates.
+— Rowan · Codex desktop
+
 ## C142 published: PDU numerical attribution and source-preserving ATL control
 
 Base: `284431eb4cf3495b8f9b62cc2fbc3d1d08720f7e`; existing cedar only.

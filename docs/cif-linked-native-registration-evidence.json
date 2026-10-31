@@ -52573,5 +52573,777 @@
     "full_tested_commit": "84de27d7399bf1b024cc1902bdf22bb5aad2e9e6",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "whole_furanose_and_atl_links_2026_10_31": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "b1e9b3e423bebcc9e358e5e9f95d87da0f717c54",
+    "before": "ATL had a source-preserving isolated candidate but no graph-bound whole-furanose transport; FANA control assumed conventional atom names and a three-site package. Directional installed-library ATL interpretations failed on unknown energy types.",
+    "after": "An additive compatible-host whole-furanose adapter binds source/host graph roles independently, transports all retained atoms rigidly, preserves every declared source hand and reuses neutral source-port projection. Actual ATL passes an artificial compatible-host control and is correctly refused on a D-DNA host. With its qualified candidate, both native directional links are observed, while reaction-state definition mismatches remain visible.",
+    "changed_files": [
+      "src/nasolve/cif_whole_furanose.py",
+      "tests/test_cif_whole_furanose.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-rigid-whole-furanose-linked-control-v1; frozen exact input/output checksum inventory plus recomputed placement/chemical projection",
+      "unchanged": "Existing FANA, attachment, native capture, CLI, runtime bundle, run/checkpoint and source chemistry schemas"
+    },
+    "compatibility": "Additive opt-in Python diagnostic. No migrations or ordinary defaults; old FANA/L-FANA controls and fixed eight-pair fixture contracts remain unchanged.",
+    "regressions": {
+      "before": "27 tests fail before implementation (missing module); initial 27 pass after implementation. Four additional transfer/interruption cases plus adjacent controls produce 120 passing cases in 35.01s. A final fixed-chirality-without-R/S case fails before correction and is covered by the final frozen focused/full passes; the earlier full attempt was deliberately interrupted and preserved.",
+      "new_cases": 32,
+      "focused": {
+        "pid": 61450,
+        "wrapper_pid": 61446,
+        "profile": "focused-final",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/143_Cedar_whole-sugar-zg9yqlia/validation/focused-final/pytest.xml"
+        ],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "exit_code": 0,
+        "changed_files": [],
+        "files": 506,
+        "seconds": 131.15792391600553,
+        "summary": "1434 passed, 36 subtests passed in 130.81s (0:02:10)"
+      },
+      "full": {
+        "pid": 61076,
+        "wrapper_pid": 61060,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/143_Cedar_whole-sugar-zg9yqlia/validation/full-final/pytest.xml"
+        ],
+        "profile": "full-final",
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "exit_code": 0,
+        "seconds": 1110.997470833012,
+        "files": 506,
+        "changed_files": [],
+        "summary": "7175 passed, 276 subtests passed in 1109.86s (0:18:29)"
+      },
+      "frozen_python_test_runner_files": 506,
+      "additional_static_source_resources_equal_base": 17
+    },
+    "science": {
+      "host_source_comparison": [
+        {
+          "center": "C1'",
+          "ordered_neighbors": [
+            "O4'",
+            "C2'",
+            "N1"
+          ],
+          "volumes": {
+            "atl_source": 2.607320889,
+            "atl_candidate": 2.626348088792999,
+            "dt_source": 2.3692132160000003,
+            "dt_observed": 2.3867998799999985
+          },
+          "source_candidate_agree": true,
+          "target_host_agree": true,
+          "host_source_observed_agree": true
+        },
+        {
+          "center": "C3'",
+          "ordered_neighbors": [
+            "C2'",
+            "C4'",
+            "O3'"
+          ],
+          "volumes": {
+            "atl_source": 2.9207346469999993,
+            "atl_candidate": 2.858160047223001,
+            "dt_source": -2.6776939019999997,
+            "dt_observed": -2.712137536
+          },
+          "source_candidate_agree": true,
+          "target_host_agree": false,
+          "host_source_observed_agree": true
+        },
+        {
+          "center": "C4'",
+          "ordered_neighbors": [
+            "O4'",
+            "C3'",
+            "C5'"
+          ],
+          "volumes": {
+            "atl_source": 2.4117070699999994,
+            "atl_candidate": 2.5983794086400005,
+            "dt_source": -2.6061182110000014,
+            "dt_observed": -2.516060270000002
+          },
+          "source_candidate_agree": true,
+          "target_host_agree": false,
+          "host_source_observed_agree": true
+        }
+      ],
+      "positive_control": {
+        "status": "REAL_SOURCE_ARTIFICIAL_FRAME_PASS",
+        "max_internal_distance_error_angstrom": 0.0009701479602952645,
+        "rotation_determinant": 1.0,
+        "retained_centers": 4,
+        "heavy_volume_checks": 7,
+        "deleted_source_atoms": [
+          "HA",
+          "HXT",
+          "OXT"
+        ],
+        "junction_geometry": "NOT_QUALIFIED",
+        "native_linkage": "NOT_ASSESSED",
+        "artificial_coordinates": true,
+        "mixed_scaffold": "NOT_CONSTRUCTED"
+      },
+      "native": [
+        {
+          "case": "DA_ATL",
+          "receipt": "native/DA_ATL/cif-native-4fgnfr6_/native_receipt.json",
+          "capture_reauthenticated": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T10:55:59.543056+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T10:56:03.906890+00:00",
+            "elapsed_seconds": 4.363854
+          },
+          "link_status": "MATCH",
+          "link": {
+            "endpoints": [
+              [
+                "A:1",
+                "DA",
+                "O3'"
+              ],
+              [
+                "A:2",
+                "ATL",
+                "P"
+              ]
+            ],
+            "distance_ideal": 1.607,
+            "weight": 6944.444444444444,
+            "origin_id": 0
+          },
+          "definition_status": "REVIEW",
+          "definitions": {
+            "A:1": {
+              "component": "DA",
+              "missing_atoms": [
+                "HOP2",
+                "OP3"
+              ],
+              "extra_atoms": [
+                "O3T"
+              ],
+              "model_mapping_complete": true,
+              "source_bond_adjacency_matches": false,
+              "formal_charge_status": "UNSUPPORTED"
+            },
+            "A:2": {
+              "component": "ATL",
+              "missing_atoms": [],
+              "extra_atoms": [
+                "HXT",
+                "OXT"
+              ],
+              "model_mapping_complete": false,
+              "source_bond_adjacency_matches": false,
+              "formal_charge_status": "UNSUPPORTED"
+            }
+          },
+          "native_error": null,
+          "unsupported_fields": []
+        },
+        {
+          "case": "ATL_DA",
+          "receipt": "native/ATL_DA/cif-native-et4ynihy/native_receipt.json",
+          "capture_reauthenticated": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T10:56:04.357559+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T10:56:05.138018+00:00",
+            "elapsed_seconds": 0.780476
+          },
+          "link_status": "MATCH",
+          "link": {
+            "endpoints": [
+              [
+                "A:1",
+                "ATL",
+                "O3'"
+              ],
+              [
+                "A:2",
+                "DA",
+                "P"
+              ]
+            ],
+            "distance_ideal": 1.607,
+            "weight": 6944.444444444444,
+            "origin_id": 0
+          },
+          "definition_status": "REVIEW",
+          "definitions": {
+            "A:1": {
+              "component": "ATL",
+              "missing_atoms": [],
+              "extra_atoms": [
+                "HA"
+              ],
+              "model_mapping_complete": true,
+              "source_bond_adjacency_matches": false,
+              "formal_charge_status": "UNSUPPORTED"
+            },
+            "A:2": {
+              "component": "DA",
+              "missing_atoms": [
+                "HO3'",
+                "HOP2"
+              ],
+              "extra_atoms": [],
+              "model_mapping_complete": true,
+              "source_bond_adjacency_matches": false,
+              "formal_charge_status": "UNSUPPORTED"
+            }
+          },
+          "native_error": null,
+          "unsupported_fields": []
+        }
+      ],
+      "source_chemistry_unchanged": true,
+      "automatic_adoption": false,
+      "mixed_scaffold": "NOT_CONSTRUCTED",
+      "optimization": "NOT_RUN",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "dry_run": false
+    },
+    "workbook_context": {
+      "record": {
+        "Ligand code": "ATL",
+        "Name": "[(1S,3R,4S,7R)-7-HYDROXY-3-(THYMIN-1-YL)-2,5-DIOXABICYCLO[2.2.1]HEPT-1-YL]METHYL DIHYDROGEN PHOSPHATE",
+        "Abbreviation": "alpha-LNA-T",
+        "Base Analog": "T",
+        "Phosphate": null,
+        "Sugar Type": "LNA",
+        "Saenger": null,
+        "Notes": null,
+        "Ref": null,
+        "Entries": 2,
+        "Function": null,
+        "N1": "N1",
+        "C2": "C2",
+        "O2": "O2",
+        "N3": "N3",
+        "C4": "C4",
+        "O4": "O4",
+        "C5": "C5",
+        "C6": "C6",
+        "C7": "C5M",
+        "Source sheet": "thymine",
+        "Glycosidic atom": "N1"
+      },
+      "resolution": {
+        "resolution": "UNIQUE_RECORD",
+        "matching_records": 1,
+        "operational_role_signature": {
+          "context": {
+            "Base Analog": "T",
+            "Phosphate": null,
+            "Sugar Type": "LNA",
+            "SugarType": null,
+            "Saenger": null,
+            "Function": null,
+            "Source sheet": "thymine",
+            "Glycosidic atom": "N1"
+          },
+          "atom_roles": {
+            "N1": "N1",
+            "C2": "C2",
+            "O2": "O2",
+            "N3": "N3",
+            "C4": "C4",
+            "O4": "O4",
+            "C5": "C5",
+            "C6": "C6",
+            "C7": "C5M"
+          }
+        },
+        "source_policy_records": [
+          {
+            "Ligand code": "ATL",
+            "Name": "[(1S,3R,4S,7R)-7-HYDROXY-3-(THYMIN-1-YL)-2,5-DIOXABICYCLO[2.2.1]HEPT-1-YL]METHYL DIHYDROGEN PHOSPHATE",
+            "Abbreviation": "alpha-LNA-T",
+            "Base Analog": "T",
+            "Phosphate": null,
+            "Sugar Type": "LNA",
+            "Saenger": null,
+            "Notes": null,
+            "Ref": null,
+            "Entries": 2,
+            "Function": null,
+            "N1": "N1",
+            "C2": "C2",
+            "O2": "O2",
+            "N3": "N3",
+            "C4": "C4",
+            "O4": "O4",
+            "C5": "C5",
+            "C6": "C6",
+            "C7": "C5M",
+            "Source sheet": "thymine",
+            "Glycosidic atom": "N1"
+          }
+        ]
+      },
+      "interpretation": "The pinned workbook calls ATL alpha-LNA-T. The source-relative shared-role volume mismatch is consistent with a distinct intended stereochemistry; no conclusion that the public source is erroneous is made."
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "owned_original_gone": true,
+      "sdk_historical_reads_and_execution_denied": true,
+      "positive_control_recomputed": true,
+      "native_replays": 2,
+      "actual_source_host_volumes_recomputed": true,
+      "frozen_files_unchanged": 62,
+      "negative_controls": [
+        "model",
+        "placement",
+        "context",
+        "source",
+        "receipt",
+        "missing",
+        "extra"
+      ],
+      "command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-B",
+        "/Users/svecchio/NASolve-live-tests/143_Cedar_whole-sugar-zg9yqlia/cold-final/relocated/replay.py",
+        "/Users/svecchio/NASolve-live-tests/143_Cedar_whole-sugar-zg9yqlia/cold-final/relocated",
+        "/Users/svecchio/NASolve-live-tests/143_Cedar_whole-sugar-zg9yqlia/cold-final/owned-original"
+      ]
+    },
+    "auxiliary": {
+      "compileall": "PASS",
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c143-compile-cache"
+      },
+      "docs": {
+        "relative_links_checked": 299,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources_equal_base": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "svg_visual_review": "PASS: unchanged overview remains legible; current caption names whole-furanose and ATL boundaries.",
+      "parent_artifacts_unchanged": 213,
+      "previous_C142_refs_verified": 39
+    },
+    "validation_commands": {
+      "before": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_whole_furanose.py",
+      "related": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_whole_furanose.py tests/test_cif_fana_placement.py tests/test_cif_attachment_sites.py",
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/143_Cedar_whole-sugar-zg9yqlia/validation/focused-final/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/143_Cedar_whole-sugar-zg9yqlia/validation/full-final/pytest.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python /private/tmp/c143_native.py",
+      "actual_placement_and_source_audit": "Same interpreter/environment: c143_live.py, c143_live2.py (both preserved refusals), c143_science.py (positive compatible-host control and independent native audit).",
+      "cold": "../NASolve/.venv/bin/python /private/tmp/c143_cold_final.py",
+      "auxiliary": "../NASolve/.venv/bin/python /private/tmp/c143_auxiliary.py; final docs/JSON/link and git diff --check replay"
+    },
+    "software": {
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_native_interpretations": 2,
+      "dry_run": false,
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "artifacts": "Only code/tests, test profile, maintained public contracts and bounded summary/hash evidence publish. Models, raw dictionaries, source workbook, native receipts/logs, runners and test reports stay in the local capsule/ignored archive. All 213 C98 artifacts retain bytes/timestamps and 39 C142 evidence references retain checksums.",
+    "limitations": [
+      "The rigid adapter requires compatible shared-role host hands. ATL alpha-LNA-T disagrees with the D-DNA host at C3/C4; this source chemistry is not altered and the requested combined scaffold remains NOT_CONSTRUCTED.",
+      "The actual positive placement is an explicitly artificial three-ATL frame. It demonstrates source/geometry transport and replay, not a physical oligonucleotide, valid junction geometry or native linkage.",
+      "Directional Phenix interpretations recognize both O3prime-P links but effective ATL definitions retain OXT/HXT or alcohol HA. DA alias/protonation differences and unavailable native formal-charge readback remain. Observed bonds/energy types do not qualify linked chemistry or numerical derivatives.",
+      "Two neutral internal furanose port deletions only. Other terminal states, symmetry links, PNA chemistry, unsupported PDB records, atom identity ambiguity, different-host-hand construction and experimental protonation need separate explicit adapters.",
+      "No ordinary PostMR integration, native dictionary generation, clash/geometry acceptance, source relabeling, installed-library change, checkpoint adoption, Coot, ReadySet or diffraction refinement. Existing FANA/L-FANA/PNA and PDU/DF proofs remain intact."
+    ],
+    "next": "Implement a graph-bound native reaction-state adapter that removes only explicitly authorized OXT/HXT or alcohol H, binds endpoint typing and qualifies the resulting definitions/angles. Design a separate explicit different-backbone construction for alpha-LNA-T that preserves its source hands, then place ATL alongside the eight existing pairs without changing those sites. PDU still needs a fresh changed-objective bounded geometry/endpoint trial; ordinary selected-bundle PostMR orchestration remains later.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/science-audit.json",
+        "size": 5026,
+        "sha256": "7ca6dcaa99f76240ba781afee13f1760275598296791a30cc51e996d4884caa1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/host-stereo-comparison.json",
+        "size": 517808,
+        "sha256": "0f7f0d78b17b5f19ea3baf816e1ccb5ba7e11457c30e1477c17debb87fca2517"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-summary.json",
+        "size": 414,
+        "sha256": "84bdfd4a8d9c91c49d6c6cbb21a32af0a23971626e73d179ff43ad50cd5ef697"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/workbook-context.json",
+        "size": 2089,
+        "sha256": "c750b1a48440d4be287bc3e8850b6399984d1902d4af1f096a9b992adacc912d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/frame-projection.json",
+        "size": 811,
+        "sha256": "08ff0e2427bf503676712782e9e9a7c1362230381a23ef223802896e734bc35a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/coordinate-frame.pdb",
+        "size": 70395,
+        "sha256": "a5d056eb032734f3f357a5e194f3559f09ab84aab1f40711f896814d14e6ada7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/parent-before.json",
+        "size": 33029,
+        "sha256": "ea813163a8e090bdd2dd64912eb867c03fd44181005cede4ac3c520236af46c4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/parent-bindings.json",
+        "size": 8724,
+        "sha256": "a852b92391f7d6bbe0021ceed2becacc66eb95828d89684bf198e511558c1567"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/live.log",
+        "size": 1052,
+        "sha256": "84f53fc93931cec4e518644e9924909e9ee0c6463cbd83f0b26defa9b928b7a1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/live2.log",
+        "size": 1080,
+        "sha256": "bb4315905d248bd80bb2d2b567602f2dbb1288d4d2f99b9847d2a8921c9ddb6c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/native-state.json",
+        "size": 180047,
+        "sha256": "e9a686863cec5db076beac518cd20ec1f5e91341e3e2846a90f3a5a688ca6487"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/native.log",
+        "size": 52,
+        "sha256": "e3788ffe8998b0dca95ab99dac4751b55a6ed89d8e141821c2452cf266e65e2b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/cold-final/result.json",
+        "size": 788,
+        "sha256": "40a512a118feaeb0e140da968b0df52ced6922ce961175c41edbebf5660ba2c7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/cold-final/replay.log",
+        "size": 331,
+        "sha256": "3be4883f58d5eb7e714fc5ca561f5bff31cf252d8807ed999ccda3d04651eab4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/before.log",
+        "size": 56283,
+        "sha256": "30f271f9328b1082bae2dcb8644d2e5566a941c87d4751155e7032a50ad6551e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/fixed-centers-before.log",
+        "size": 3910,
+        "sha256": "dce04053ca13071416b7aac8028ab6083319cccf90edce9a42df28b26c5ac633"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/fixed-centers-after.log",
+        "size": 98,
+        "sha256": "49406de687fdd7519a0b63c2c9f95b8234a49900a7a92c77d0141d11521dc1a6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/full/result.json",
+        "size": 681,
+        "sha256": "7310d74b4e0c623a3b2b05f0979fe91950b90c92faf2edbad6d3517868e14147"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/full/pytest.log",
+        "size": 7043,
+        "sha256": "6d91efb302024821ae750b71441ff81d99b2a5b44fb81f9e635322874fe6650a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/initial.log",
+        "size": 99,
+        "sha256": "2c7916344143a74527aae0292a4b71a1a9aa2292ca9a33d413617f7d4f8fb3e6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/related.log",
+        "size": 181,
+        "sha256": "b1b0e486f87ebd71f896eb44be93a389e00e9990d5c3d10834eacfdf07ac7b81"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/focused-final/result.json",
+        "size": 604,
+        "sha256": "4190d8c3cc5244ec78acd6be31935f7d341a3f9e71a74f7b026d581b702b2377"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/focused-final/pytest.log",
+        "size": 6392,
+        "sha256": "c7fb36b53515d5c3dede449e8aa7f718163a0e40120e7270cfda9cd4c0254e44"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/focused-final/pytest.xml",
+        "size": 210715,
+        "sha256": "06a4f8f84d32e7f3c5872f1b431e53279978b510657104b1db646b1172a4f09a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/focused-final/source-hashes.json",
+        "size": 54647,
+        "sha256": "8df2c62ba189d7382221f33fe85df3bc21e20bf55de9c46dc513c7772a9f50ca"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/full-final/result.json",
+        "size": 651,
+        "sha256": "495af80c9467940fde4c25c3252fc78515a6aba1a9d747a807777c7dfe469487"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/full-final/pytest.log",
+        "size": 10941,
+        "sha256": "c00a939ab7ca0655d4e96a1cdaa624a98cb9d9ed7b41c36d3c75cb43786fb8d4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/full-final/pytest.xml",
+        "size": 1091583,
+        "sha256": "2b0bcce4c8442271f7a0033ea488c6bc1503803f3443822e8483943f3bb4a91a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/full-final/source-hashes.json",
+        "size": 54647,
+        "sha256": "8df2c62ba189d7382221f33fe85df3bc21e20bf55de9c46dc513c7772a9f50ca"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/validation/auxiliary.json",
+        "size": 2609,
+        "sha256": "26d1dc91f8cb97f426ee75563ae58307684ed0197669379ada7105bf5c0917ee"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/Ligands.xlsx",
+        "size": 194621,
+        "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/context.json",
+        "size": 467,
+        "sha256": "a2fd83c62519bb7023308bf2907f8a7dd1c836bd2501a89bd3d86eff62f4796b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/frame.pdb",
+        "size": 5307,
+        "sha256": "b3c9ec854523c6b0c48bb4a6889ae880191343dd3fc9994ebf3108bf1a61c574"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/host.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/model.pdb",
+        "size": 5307,
+        "sha256": "74a3bf0b9c60d9f4c36af38abca48bd6a90904bc8741cadc772077b04f1357a3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/placement.json",
+        "size": 29467,
+        "sha256": "d8c0038cfd9d2e3bd84f688cc346a2d80e8f42c748505d2fc5b3912d5a6327a9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/receipt.json",
+        "size": 1286,
+        "sha256": "dba3e8618196091fbaf4f8403c59f0622854b32d5aecc9ac692e403d7a80ab5a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/selection.json",
+        "size": 20,
+        "sha256": "c84106afe5a5299163a13dc6adbb1100d935e3e1b8164ad5f52b58b0333213a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/same-hand-control/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/science-inputs/ATL.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/science-inputs/DT.cif",
+        "size": 9049,
+        "sha256": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/science-inputs/Ligands.xlsx",
+        "size": 194621,
+        "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/science-inputs/candidate.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/native/DA_ATL/cif-native-4fgnfr6_/native_receipt.json",
+        "size": 336872,
+        "sha256": "1cd9577c88a03f5006faba4c237400d1b1acb3a86a3cdc0da945d3c21bcfb262"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/native/ATL_DA/cif-native-et4ynihy/native_receipt.json",
+        "size": 335413,
+        "sha256": "e3f0c768f7264d5fea420e76ba091bc4b31311016389ffcb61fa792bf4599c02"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/link-controls/DA_ATL/links.json",
+        "size": 1739,
+        "sha256": "692f8969a8e048e0252686ffc8f24a6459fb5371ef73fbfeb6a5b913195d0c5b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/link-controls/DA_ATL/native-link-inspection.json",
+        "size": 74054,
+        "sha256": "567e7003f7659c81951b074ca202cc662d7c48168f80d362318ea635724d11d9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/link-controls/DA_ATL/fresh-source-plan.json",
+        "size": 63619,
+        "sha256": "8620b15ec5215e7a888363eb970ee1502fcb487d91094d5aafcea4c39f256dc1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/link-controls/ATL_DA/links.json",
+        "size": 1739,
+        "sha256": "1856694e230d2e0ccc755d840758b2a49c94cb91da4fd0be99cdd95c3c92ebe1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/link-controls/ATL_DA/native-link-inspection.json",
+        "size": 73975,
+        "sha256": "a740100631851a1380d175888721ef710a42a1cea61d664d792ad027e15cb3c4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "143_Cedar_whole-sugar-zg9yqlia/link-controls/ATL_DA/fresh-source-plan.json",
+        "size": 63621,
+        "sha256": "41a790598ab2dcdb01bb3002cad77414e90ef25ab6302019e2c94e466749e040"
+      }
+    ]
   }
 }

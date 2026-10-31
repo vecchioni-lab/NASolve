@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "linked_torsion_energy_and_atl_2026_10_31",
+    "current_diagnostic_record": "whole_furanose_and_atl_links_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27461,6 +27461,26 @@
       "full_tested_commit": "84de27d7399bf1b024cc1902bdf22bb5aad2e9e6",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "whole_furanose_and_atl_links": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "An additive compatible-host whole-furanose adapter binds source/host graph roles independently, transports all retained atoms rigidly, preserves every declared source hand and reuses neutral source-port projection. Actual ATL passes an artificial compatible-host control and is correctly refused on a D-DNA host. With its qualified candidate, both native directional links are observed, while reaction-state definition mismatches remain visible.",
+      "schemas": {
+        "new": "schema 1 / cif-rigid-whole-furanose-linked-control-v1; frozen exact input/output checksum inventory plus recomputed placement/chemical projection",
+        "unchanged": "Existing FANA, attachment, native capture, CLI, runtime bundle, run/checkpoint and source chemistry schemas"
+      },
+      "compatibility": "Additive opt-in Python diagnostic. No migrations or ordinary defaults; old FANA/L-FANA controls and fixed eight-pair fixture contracts remain unchanged.",
+      "limitations": [
+        "The rigid adapter requires compatible shared-role host hands. ATL alpha-LNA-T disagrees with the D-DNA host at C3/C4; this source chemistry is not altered and the requested combined scaffold remains NOT_CONSTRUCTED.",
+        "The actual positive placement is an explicitly artificial three-ATL frame. It demonstrates source/geometry transport and replay, not a physical oligonucleotide, valid junction geometry or native linkage.",
+        "Directional Phenix interpretations recognize both O3prime-P links but effective ATL definitions retain OXT/HXT or alcohol HA. DA alias/protonation differences and unavailable native formal-charge readback remain. Observed bonds/energy types do not qualify linked chemistry or numerical derivatives.",
+        "Two neutral internal furanose port deletions only. Other terminal states, symmetry links, PNA chemistry, unsupported PDB records, atom identity ambiguity, different-host-hand construction and experimental protonation need separate explicit adapters.",
+        "No ordinary PostMR integration, native dictionary generation, clash/geometry acceptance, source relabeling, installed-library change, checkpoint adoption, Coot, ReadySet or diffraction refinement. Existing FANA/L-FANA/PNA and PDU/DF proofs remain intact."
+      ],
+      "next": "Implement a graph-bound native reaction-state adapter that removes only explicitly authorized OXT/HXT or alcohol H, binds endpoint typing and qualifies the resulting definitions/angles. Design a separate explicit different-backbone construction for alpha-LNA-T that preserves its source hands, then place ATL alongside the eight existing pairs without changing those sites. PDU still needs a fresh changed-objective bounded geometry/endpoint trial; ordinary selected-bundle PostMR orchestration remains later.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "whole_furanose_and_atl_links_2026_10_31",
+      "validation": "7175 passed, 276 subtests passed in 1109.86s (0:18:29); focused 1434 passed, 36 subtests passed in 130.81s (0:02:10); actual compatible-host placement, exact stereochemical refusal, two native link observations and cold replay/negative controls."
     }
   },
   "audience": [

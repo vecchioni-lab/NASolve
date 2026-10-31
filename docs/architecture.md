@@ -3593,6 +3593,18 @@ junction restraints are also required. See the
 [placement contract](cif-doctor.md#whole-residue-fana-placement-control-c124).
 
 
+The graph-bound whole-furanose adapter generalizes compatible-host rigid placement
+to unbridged and bridged source profiles with independently resolved host/target
+atom names. It freezes and replays exact source, numerical candidate, workbook,
+model and two explicit neutral link-port declarations. It preserves all declared
+source centres, including four-heavy-neighbour centres, and all bystander records.
+It does not authorize a different-backbone substitution: actual alpha-LNA-T (ATL)
+and D-DNA disagree at two shared-role hands. Native observations of both ATL link
+directions also retain source/native reaction-state mismatches. These are separate
+construction and native-preparation gates, with no ordinary adoption or source
+inversion. See the [current methods and limits](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143).
+
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

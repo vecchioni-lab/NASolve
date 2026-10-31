@@ -105,3 +105,8 @@ current Pine merge gate.
 pair-matrix progress; subsystem contract = actual behavior and safety;
 history/Git = how we arrived here. Updating documentation does **not**
 change scientific data, frozen inputs, user approvals or runtime capability.
+
+The current CIF Doctor boundary includes the
+[whole-furanose placement and ATL compatibility gate](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143):
+rigid whole-sugar controls and actual source-hand/link-definition refusals are
+separate from combined-scaffold construction or ordinary refinement support.

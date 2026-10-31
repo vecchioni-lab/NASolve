@@ -117,8 +117,15 @@ FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C rout
 has the linked model evidence above. L-FDNA transfer is tested synthetically, not
 by a live end-to-end build. PNA has selected isolated numerics and connected source
 networks but lacks linked numerical qualification. C142 adds a usable source-preserving isolated ATL dictionary while keeping all
-four sugar centres and its bridge; whole-residue construction and the combined
-mixed scaffold still need qualification. C142 also passes PDU's changed-objective
+four sugar centres and its bridge. C143 adds a graph-based rigid whole-sugar
+placement control with explicit ports, preserved stereochemistry and replayable
+frozen inputs. The workbook identifies ATL as alpha-LNA-T. The adapter refuses its D-DNA
+host because two shared sugar hands differ; the combined scaffold remains unconstructed. Directional Phenix
+controls recognize both links but leave undeleted reacting atoms in their effective
+definitions, so linked support remains unqualified. This preserves source chemistry
+rather than changing it to fit the scaffold. See the
+[placement methods and limits](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143).
+C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
 A new fixed-objective geometry trial and endpoint qualification remain open. Earlier mixed-endpoint proof using a NASolve-local
 corrected evaluator does not certify ordinary Phenix refinement.
@@ -889,7 +896,11 @@ directions agree, with six initial-coordinate failures in the full and plane
 categories. A model of the header's omitted chain-rule sign after normal
 alignment reproduces the stored initial gradient within 3e-12 in norm.
 Spectral recombination explains all six failures at unchanged energy samples;
-this is offline inference rather than a newly corrected native evaluation.
+this is offline inference rather than a newly corrected native evaluation. The separate whole-furanose diagnostic preserves a complete
+source-defined sugar and uses explicit attachment ports; incompatible host hands
+and native reaction-state mismatches remain refusals. ATL demonstrates why a
+recognized bond and a source-preserving isolated dictionary do not establish
+combined-scaffold support.
 
 Cedar 26 takes the native first-plane gradient in the original order and for a
 parameter-preserving swapped copy, then scatters both by original atom index.
