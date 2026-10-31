@@ -27657,7 +27657,7 @@
       "remote_verified": true
     },
     "captured_linear_attribution": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "A maintained bounded fresh native job freezes the complete repair bundle/stages, derives exact removed-proxy inputs, pins worker/core/consumer/sources and replays all raw references offline. The six-proxy live result is unchanged. Prepared/failed jobs cannot claim a numerical pass; unknown capture files refuse before reservation and launch failures require a diagnostic.",
       "schemas": {
         "new": "schema 1 / cif-captured-linear-torsion-attribution-v1",
@@ -27678,7 +27678,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "captured_linear_attribution_2026_10_31",
-      "validation": "1662 passed, 36 subtests passed in 296.17s (0:04:56); 220 passed in 34.55s; fresh native attribution and hardened cold replay pass; no full suite."
+      "validation": "1662 passed, 36 subtests passed in 296.17s (0:04:56); 220 passed in 34.55s; fresh native attribution and hardened cold replay pass; no full suite.",
+      "implementation_commit": "9bec89f721f69333bbe2d963c7df077d5a0d1ed8",
+      "focused_tested_commit": "9bec89f721f69333bbe2d963c7df077d5a0d1ed8",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
