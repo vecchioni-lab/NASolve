@@ -39,6 +39,23 @@ The recipient section records the run mode, selected standard frame when
 applicable, authoritative diffraction symmetry class and requested MR copy
 count.
 
+### Planned trusted-model and coordinate mmCIF extension
+
+The [model-provider roadmap](campaign-model-roadmap.md#planned-coordinate-mmcif-and-trusted-model-input)
+requires MR to accept PDB and coordinate mmCIF, with an explicit option to trust
+the supplied model when no independent sequence file is available. This is a
+planned extension, not an implemented compatibility schema or finalized flag.
+
+Its provenance must distinguish **user-accepted coordinates** from an
+**independently supplied and verified target sequence**. Model residue/atom
+inventory remains directly observable. A target derived from the same model
+must be labelled coordinate-derived, and cannot make sequence agreement or
+construct completeness independently verified. Without independent target
+evidence, those comparison dimensions remain unknown rather than a tautological
+`SAME`. Format conversion must preserve source bytes, identity mapping and the
+exact submitted-model checksum. The opt-in supplies no donor eligibility,
+absolute chirality, chemistry approval or final-structure approval.
+
 ## Named dimensions
 
 ### Frame identity

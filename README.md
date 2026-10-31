@@ -6,15 +6,17 @@ inputs, selects and validates an approved search model, runs Phenix Phaser with
 reproducible settings, preserves modified residues and other heteroatoms, and
 classifies the solution by TFZ.
 
-The current release provides **AutoMR**, **PostMR**, a conditional
+The current workflow provides **AutoMR**, **PostMR**, a conditional
 **AutoSol** branch, checkpointed **AutoRefine**, bounded **Refine Doctor**
 triage, and sequential campaign execution from frozen plans with per-dataset
 review isolation. PostMR constructs
-supported modified nucleotides through Coot, restores trusted parent
-coordinates, can apply complete chain sequences, generates either the 5W6W
-restraint stack or modification-scoped pair restraints, supplies curated or
-supported local ligand dictionaries, and runs ReadySet without hydrogens. When
-PostMR finds iodine, bromine, or selenium in a nucleotide, AutoSol performs guarded MR-SAD phasing
+supported modified nucleotides through Coot, restores the parent DNA scaffold
+while moving each supported connected modified base rigidly, can apply complete
+chain sequences, generates either the 5W6W
+restraint stack or modification-scoped pair restraints, supplies curated,
+supported local or configured-Phenix CCD dictionaries, and runs ReadySet without
+hydrogens. When PostMR finds iodine, bromine, or selenium in a nucleotide,
+AutoSol performs guarded MR-SAD phasing
 and verifies a corresponding anomalous site. AutoRefine runs Phenix quietly,
 surfaces the crystallographic statistics normally shown by the GUI, and
 preserves successful, review, failed, and manually imported models as
@@ -22,6 +24,29 @@ branchable checkpoints. Refine Doctor audits the frozen Free-R set, preserves
 an anomalous-strength benchmark, and compares a small number of controlled
 refinement branches without silently selecting one. Final structural
 validation remains a user gate.
+
+CIF Doctor adds read-only dictionary assessment and report-only PostMR audits.
+To inspect an existing run, use `./nasolve cif-doctor assess --run RUN --json`.
+Qualified component numerics can be stored locally and reused before ReadySet;
+cache acquisition and supported connected-base construction are ordinary runtime
+features. Automatic repair on a cache miss, general modified-sugar mutation and
+end-to-end candidate adoption remain separate integration work.
+
+Explicit diagnostic APIs inspect source graphs, declared attachments, native
+restraint membership, derivatives and bounded coordinate candidates. They preserve
+source chemistry and distinguish missing evidence from demonstrated corruption.
+The catalogue programme includes all selected NARestraints ligands, including
+FANA, L-FANA, PNA and ATL; it does not claim that every family is already usable.
+
+Read the [current chemistry/support matrix](docs/cif-doctor.md#current-capability-boundary)
+for working routes and remaining limits, the [command guide](docs/cif-doctor.md)
+for exact interfaces, and the [human/manuscript overview](docs/cif-doctor-human-overview.md)
+for algorithms, methods and the editable figure. [Generalizer milestones](docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
+track completion separately from a provisional integration checkpoint.
+Students are not asked to inspect CIF tables: the [continuation contract](docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions)
+retains a qualified usable result and reports unresolved scientific choices.
+Historical trials, failed candidates and exact software/evidence hashes remain
+in the [technical evidence ledger](docs/cif-linked-native-registration-evidence.json).
 
 ## Quick start
 
@@ -349,13 +374,17 @@ conda create -p .venv python=3.12
 .venv/bin/python -m pip install -e .
 ```
 
-For development and testing, install the test dependencies:
+For development and testing, install the test dependencies and run a focused profile:
 
 ```bash
 .venv/bin/python -m pip install -e ".[test]"
-env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src \
-  .venv/bin/python -m pytest
+.venv/bin/python scripts/run_tests.py smoke
+.venv/bin/python scripts/run_tests.py chemistry workflow
 ```
+
+Use `scripts/run_tests.py full` for the unfiltered pre-merge regression. See
+[testing cadence and profiles](docs/collaboration.md#testing-cadence-and-development-profiles)
+for scope, custom focused tests and when a broader run is required.
 
 Use `./nasolve` for source-checkout commands. Unlike the generated editable
 entry point, the tracked launcher does not require virtual-environment
@@ -609,6 +638,19 @@ with a required PostMR base change stops until the guarded
 unmirror/Coot/remirror path is implemented; this prevents an L model from
 silently receiving D-DNA chemistry.
 
+### Restrain the complete nucleotide model
+
+For a construct whose whole model should use NARestraints, add
+`restraint_scope = all` under `[automr]` in `nasolve.txt`. This freezes full-model
+pair selection and chain-order stacking for PostMR, independently of D/L
+mirroring or a W-frame pair selection. An existing accepted MR run can use
+`nasolve postmr RUN --restraint-scope all`.
+
+The [full-model recipe guide](docs/full-model-restraints.md) describes input
+cards, coverage and limits. L-3GBI passes mirroring, MR and ordinary PostMR with
+exact native restraint membership. Phosphate-state differences and periodic
+end-pair coverage remain open; coordinate refinement has not run.
+
 ## The `nasolve.txt` input file
 
 If `nasolve.txt` is absent, AutoMR generates a minimal file in the dataset so
@@ -785,17 +827,25 @@ sequence application cannot curl or rotate the inherited backbone.
 Modified-residue mutations can also use a local component dictionary without
 adding a new curated registry entry. NASolve requires one unambiguous
 NARestraints residue record, a supported construction parent derived from its
-`Sugar Type` and `Base Analog`, and a matching local `ligands/CODE.cif` under
-the NASolve data directory. The included `OHU.cif` enables DNA `D:OHU`
+`Sugar Type` and recognized `Source sheet` (falling back to `Base Analog`),
+and a matching component dictionary. A local `ligands/CODE.cif` takes
+precedence; otherwise Cedar resolves a unique CCD source in the configured
+Phenix installation. Symlink aliases of one file are deduplicated; distinct
+competing files remain an error. The included `OHU.cif` enables DNA `D:OHU`
 preparation; OHU uses `DT` as its Coot construction parent according to the
 NARestraints mapping. Curated overrides remain authoritative, and their
 dictionaries are retained even when the residue needs no mutation.
 
-This fallback does not download dictionaries. Generic dictionary validation
-checks the component identity; it does not infer arbitrary atom mappings or
+This fallback does not download dictionaries or automatically parameterize every
+arbitrary component. Raw CCD graphs require usable numerical restraints from
+ReadySet; there is no automatic alternate-generator fallback. Generic dictionary
+validation checks the component identity; it does not infer arbitrary atom mappings or
 establish that every component topology is correct. New chemistry still needs
 model inspection, and an absent or ambiguous definition gives a specific
-preparation error.
+preparation error. Resolution follows mutation actions; unchanged non-curated
+residues are not all acquired automatically. The
+[component preparation contract](docs/modified-component-preparation.md)
+separates current behavior from the fresh full-auto acceptance target.
 
 PostMR checks nucleotide phosphates before generating restraints and again
 after ReadySet. It removes `OP3` (or legacy `O3P`) only where an incoming
@@ -867,6 +917,9 @@ The 5W6W restraint stack contains:
 
 The scaffold template contains no stacking pairs and omits the two base pairs
 already supplied by `Std_padd.txt`, preventing duplicate restraints.
+For modified W pairs, PostMR replaces incompatible template Saenger blocks
+with explicit NARestraints pair restraints using the reviewed atom-role
+mapping. Unaffected scaffold pairs and the normal stacking source are retained.
 
 For a standard or nonstandard run that should restrain only modified chemistry,
 use:
@@ -886,11 +939,14 @@ PHIL is authoritative: PostMR removes matching base-pair blocks from the EFF
 and retains the non-overlapping project scaffold rather than failing or
 double-restraining the pair.
 
-Known problematic Phenix residues use reviewed dictionaries from NASolve's
-local ligand library. The `E` token resolves to `DE`; legacy `E` reports frozen
+NASolve's bundled registry contains source adaptations, construction recipes
+and identity bridges; membership does not mean the supplier CIF was defective.
+The [source audit](docs/modified-component-preparation.md#bundled-ligand-audit-2026-10-09)
+records their separate roles and the still-unresolved DE numerical geometry.
+The `E` token resolves to `DE`; legacy `E` reports frozen
 as `8RO` are migrated to `DE` because official CCD `8RO` is a different
 compound with an unwanted sulfur-ring topology. `DF` is tied explicitly to
-CCD `A1AAZ`. The reviewed dictionaries enforce `DE C4-S4` without `N3-S4`,
+CCD `A1AAZ`. The topology checks require `DE C4-S4` without `N3-S4`,
 `DF C2-S1` without `N3-S1`, and `S6G C6-S6` without `N1-S6`. ReadySet is launched in its own directory with
 `hydrogens=False` and its output is rejected if hydrogens appear or atom counts
 change unexpectedly.
@@ -902,13 +958,13 @@ directly, NASolve still uses ReadySet as the uniform final preparation and
 validation gate. ReadySet is not trusted to invent the modification, and it
 does not replace the NARestraints inter-residue geometry.
 
-NARestraints v1.1.1 records the `DF` canonical `O2` mapping as the nonexistent
+The legacy NARestraints `DF` canonical `O2` mapping names the nonexistent
 atom `S2`. PostMR corrects this to `S1` only in memory for the current builder
 call, records the correction in `report.json`, and never edits the installed
 NARestraints workbook.
 
 The `Q` token resolves to official CCD `S6G` and uses `DG` as its canonical
-construction parent. NARestraints v1.1.1 also stores its `C5` mapping as `C5 `;
+construction parent. The legacy NARestraints `C5` mapping is `C5 `;
 PostMR trims that exact trailing space in the same process-local adapter.
 
 After ReadySet, PostMR scans nucleotide-like residues for configurable
@@ -921,8 +977,10 @@ candidate sites and whether AutoSol is required are written to `report.json`.
 
 `nasolve autorefine RUN` performs one five-macrocycle default refinement. It
 uses the current checkpoint model, the original STARANISO observations and
-unchanged Free-R flags, the ReadySet-generated ligand dictionary when present,
-and the PostMR PHIL/EFF restraint stack. A validated AutoSol MTZ contributes
+unchanged Free-R flags, the frozen effective PostMR dictionaries, and the
+PostMR PHIL/EFF restraint stack. Explicit parameterized component inputs take
+precedence over generated copies; graph-only inputs defer to usable generated
+numerical definitions. A validated AutoSol MTZ contributes
 only its Hendrickson-Lattman coefficients; its HA coordinates never replace
 known model atoms.
 
@@ -1070,8 +1128,8 @@ a PDB and MTZ output. Input, discovery, and preflight errors exit with code 2.
 
 AutoMR currently supports PDB search models and Phenix Phaser MR_AUTO. PostMR
 implements W/5W6W sites, canonical Coot mutations, curated overrides, supported
-local dictionary mutations, complete sequence application, modification-scoped
-NARestraints, phosphate connectivity checks, and hydrogen-free ReadySet.
+local/configured-Phenix dictionary mutations, complete sequence application,
+modification-scoped NARestraints, phosphate connectivity checks, and hydrogen-free ReadySet.
 Guarded AutoSol, checkpointed five-cycle Phenix refinement, bounded Refine
 Doctor comparisons, and views of the current checkpoint are available. The
 [historical DOHU validation record](docs/history/validation-dohu.md)
@@ -1079,8 +1137,12 @@ documents an earlier complete Phenix 2.2.1 execution and user inspection.
 Current validation state is summarized in
 [`docs/development-handoff.md`](docs/development-handoff.md). NASolve does not yet:
 
-- fetch missing ligand dictionaries or construct arbitrary modified residues
-  without a supported mapping and local dictionary;
+- fetch missing ligand dictionaries over the network, construct arbitrary
+  modified residues without a supported mapping and source, or complete the
+  generic generation/linkage workflow from every valid code automatically;
+- accept coordinate mmCIF search models or explicitly trust a model without a
+  sequence file in prepared-nonstandard campaigns; these are
+  [proposed input modes](docs/architecture.md#proposed-model-input-contract);
 - perform mirror-side sequence changes through an unmirror/Coot/remirror cycle;
 - prepare the 3GBI frame, whose standard-site manifest is not yet defined;
 - search unbounded refinement recipes or run several campaign jobs concurrently;
@@ -1140,14 +1202,14 @@ A scientific review or technical failure stops only that dataset while other
 selected datasets continue. AutoSol is conditional: when PostMR finds no
 supported anomalous candidate, the campaign records an accepted `SKIPPED`
 AutoSol stage and does not launch `phenix.autosol`; when anomalous evidence
-requires it, AutoSol runs under the frozen policy. Unaccepted phasing stops for
-inspection. Numerical refinement success retains the selected checkpoint and
+requires it, AutoSol runs under the frozen policy. Under guarded policy,
+unaccepted phasing stops for inspection. Numerical refinement success retains the selected checkpoint and
 still requires model/map inspection.
 
-This sequential campaign path has been exercised end-to-end with real
-Phenix/Coot across four W datasets: three reached numerical refinement success,
-while one dataset that used the anomalous AutoSol path was correctly retained as
-a refinement-review case without stopping the other three.
+The guarded sequential path has been exercised end-to-end with real Phenix/Coot.
+A separate fresh [full-auto campaign](docs/full-auto-patch-handoff.md) reached
+four numerical SOLVED results, including a provisionally selected Doctor
+recommendation; all retain model/map inspection requirements.
 
 A campaign refinement-review case can be continued explicitly through the
 campaign-owned bounded Refine Doctor stage:
@@ -1156,9 +1218,11 @@ campaign-owned bounded Refine Doctor stage:
 ./nasolve campaign run CAMPAIGN_ROOT --dataset DATASET --through refine-doctor
 ```
 
-Doctor preserves campaign provenance and does not automatically select its
-recommended checkpoint; inspect the recommended model/maps before deliberately
-making it current.
+Under guarded policy, Doctor preserves campaign provenance and leaves its
+recommendation unselected. An explicitly frozen
+[full-auto recipe](docs/campaign-full-auto.md) may run bounded Doctor and
+provisionally select its verified passing recommendation. This does not record
+user approval; inspect the model/maps and retained decision history.
 
 Use `campaign pause examples` from another terminal to stop after the active
 stage finishes. Keep the execution terminal open; this first executor runs in

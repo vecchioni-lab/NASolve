@@ -82,6 +82,37 @@ sequence = "files/sequence.txt"
         preset.id = "changed"
 
 
+@pytest.mark.parametrize("workflow", ["guarded", "full-auto"])
+def test_schema_two_explicitly_disables_autosol_with_frozen_reason(tmp_path, workflow):
+    path = write_preset(tmp_path, MINIMAL.replace("schema_version = 1", "schema_version = 2") + f'''
+[workflow]
+mode = "{workflow}"
+[autosol]
+policy = "disabled"
+reason = "Synthetic DNA model against donor observations"
+''')
+    preset = load_preset(path)
+    assert preset.to_dict()["autosol"] == {
+        "policy": "disabled", "reason": "Synthetic DNA model against donor observations",
+    }
+    before = preset.config_sha256
+    path.write_text(path.read_text().replace("donor observations", "different donor observations"))
+    assert load_preset(path).config_sha256 != before
+    assert preset.to_dict()["autosol"]["reason"] == "Synthetic DNA model against donor observations"
+
+
+@pytest.mark.parametrize("schema,fields", [
+    (1, 'reason = "Synthetic model"\n'),
+    (2, ''), (2, 'reason = " "\n'), (2, 'reason = true\n'),
+    (2, 'reason = "Synthetic model"\non_unaccepted = "inspect"\n'),
+    (2, 'reason = "Synthetic model"\ncommand = "anything"\n'),
+])
+def test_disabled_autosol_requires_schema_two_and_only_an_explicit_reason(tmp_path, schema, fields):
+    source = MINIMAL.replace("schema_version = 1", f"schema_version = {schema}")
+    with pytest.raises(PresetError, match="schema_version|nonempty reason"):
+        load_preset(write_preset(tmp_path, source + '[autosol]\npolicy = "disabled"\n' + fields))
+
+
 def test_portable_identity_survives_relocation_and_removed_original(tmp_path):
     source = tmp_path / "original"
     path = write_preset(source, MINIMAL + '[resources]\nsequence = "sequence.txt"\n')

@@ -156,6 +156,8 @@ def build_parser() -> argparse.ArgumentParser:
         help="completed AutoMR run directory (default: active workspace run)",
     )
     postmr.add_argument("--coot", help="one-run Coot executable override")
+    postmr.add_argument("--restraint-scope", choices=("all",),
+                        help="use NARestraints for model-derived pairs and all chain-order stacks")
     postmr.add_argument(
         "--allow-mr-review", action="store_true",
         help="explicitly continue from a TFZ 7.0-7.99 MR_REVIEW result",
@@ -226,6 +228,76 @@ def build_parser() -> argparse.ArgumentParser:
         "--max-trials", type=int, default=5,
         help="maximum eligible Doctor trials, 1-10 (default: 5)",
     )
+    cif_doctor = subparsers.add_parser(
+        "cif-doctor", help="assess component restraints or create explicit review candidates",
+    )
+    cif_sub = cif_doctor.add_subparsers(dest="cif_action", required=True)
+    cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
+    cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
+                               help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
+    cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    cif_link_native = cif_sub.add_parser("link-native", help="read-only comparison of source links with a preserved native capture")
+    cif_link_native.add_argument("manifest", type=Path, help="explicit source-link manifest")
+    cif_link_native.add_argument("--native-receipt", required=True, type=Path, help="exact preserved native_receipt.json; no native execution")
+    cif_link_native.add_argument("--json", action="store_true", help="print complete source/native link evidence")
+    cif_links = cif_sub.add_parser("link-plan", help="read-only reciprocal source-port contracts for declared sites")
+    cif_links.add_argument("manifest", type=Path, help="schema-1 manifest with explicit hashed relative source/model/context inputs")
+    cif_links.add_argument("--json", action="store_true", help="print complete both-end source-link evidence")
+    cif_site = cif_sub.add_parser("site-plan", help="read-only explicit single-site source projection contract")
+    cif_site.add_argument("dictionary", type=Path, help="explicit source component dictionary")
+    cif_site.add_argument("--code", required=True, help="exact source and model component code")
+    cif_site.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_site.add_argument("--model", required=True, type=Path, help="explicit single-model PDB without alternate conformers")
+    cif_site.add_argument("--context", required=True, type=Path, help="explicit schema-1 site/port context JSON")
+    cif_site.add_argument("--candidate", type=Path, help="optional projected source CIF for exact retained-table comparison")
+    cif_site.add_argument("--json", action="store_true", help="print the complete source/site contract")
+    cif_fana = cif_sub.add_parser("fana", help="read-only FANA source identity and candidate preservation")
+    cif_fana.add_argument("dictionary", type=Path, help="explicit source component dictionary")
+    cif_fana.add_argument("--code", required=True, help="exact component and NARestraints code")
+    cif_fana.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_fana.add_argument("--candidate", type=Path, help="optional complete candidate dictionary to assess")
+    cif_fana.add_argument("--bond-representation-policy",
+                          choices=["cif-source-declared-neutral-purine-aromatic-v1",
+                                   "cif-source-declared-neutral-6-oxo-purine-aromatic-v1"],
+                          help="explicit existing representation policy; default exact source bonds")
+    cif_fana.add_argument("--json", action="store_true", help="print source and candidate preservation evidence")
+    cif_profile = cif_sub.add_parser("profile", help="read-only source topology and attachment-port evidence")
+    cif_profile.add_argument("dictionary", type=Path, help="explicit source component dictionary")
+    cif_profile.add_argument("--code", required=True, help="exact component and NARestraints code")
+    cif_profile.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_profile.add_argument("--json", action="store_true", help="print complete topology and source-state evidence")
+    cif_assess = cif_sub.add_parser("assess", help="read-only dictionary/effective-bundle assessment")
+    cif_assess.add_argument("dictionaries", nargs="*", type=Path)
+    cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
+    cif_assess.add_argument("--bundle", type=Path, help="assess an activated portable runtime bundle")
+    cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
+    cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
+    cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
+    cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
+    cif_assess.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    cif_compare = cif_sub.add_parser("compare", help="compare exact same-code source/candidate chemistry")
+    cif_compare.add_argument("source", type=Path)
+    cif_compare.add_argument("candidate", type=Path)
+    cif_compare.add_argument("--output", type=Path, help="new JSON comparison receipt")
+    cif_compare.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    cif_prepare = cif_sub.add_parser("prepare", help="write an explicit source-preserving derivative")
+    cif_prepare.add_argument("dictionary", type=Path)
+    cif_prepare.add_argument("--recipe", required=True,
+                             choices=("torsion-alternates-v1", "5cm-reviewed-torsion-v1"))
+    cif_prepare.add_argument("--output", required=True, type=Path, help="new candidate CIF path")
+    cif_prepare.add_argument("--report", type=Path, help="new JSON preparation receipt")
+    cif_prepare.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    cif_generate = cif_sub.add_parser(
+        "generate-candidate", help="generate an independent eLBOW candidate for review without adoption",
+    )
+    cif_generate.add_argument("source", type=Path, help="explicit source chemistry dictionary")
+    cif_generate.add_argument("--code", required=True, help="exact source component code")
+    cif_generate.add_argument("--output-parent", required=True, type=Path,
+                              help="parent for a fresh candidate directory outside the source directory")
+    cif_generate.add_argument("--timeout-seconds", type=int, default=600,
+                              help="positive native generation timeout (default: 600 seconds)")
+    cif_generate.add_argument("--json", action="store_true", help="print the full generation receipt")
     checkpoints = subparsers.add_parser(
         "checkpoints", help="list, bookmark, import, or select refinement checkpoints"
     )
@@ -781,6 +853,7 @@ def _postmr(args: argparse.Namespace) -> int:
             environment=phenix.environment,
             allow_mr_review=args.allow_mr_review,
             modified_pairs_only=args.modified_pairs_only,
+            restraint_scope=args.restraint_scope,
             allow_unreviewed_backbone=args.allow_unreviewed_backbone,
         )
     except (
@@ -1372,6 +1445,310 @@ def _show(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cif_generate_candidate(args: argparse.Namespace) -> int:
+    """Only explicit generation discovers native tools; configuration stays read-only."""
+    from .cif_generation import generate_elbow_candidate
+
+    try:
+        if args.timeout_seconds <= 0:
+            raise ValueError("Candidate timeout must be positive")
+        # Python's imports are already initialized. Strip inherited Python,
+        # virtual-environment and CCP4 overrides only from the native copy.
+        # Keep the caller's os.environ and saved workspace/configuration intact.
+        native_base = dict(os.environ)
+        for name in ("PYTHONPATH", "PYTHONHOME", "VIRTUAL_ENV", "CCP4", "CLIBD_MON", "LIBMOL_ROOT",
+                     "__PYVENV_LAUNCHER__", "PYTHONEXECUTABLE", "PYTHONUSERBASE"):
+            native_base.pop(name, None)
+        phenix = discover_phenix(load_config(), explicit=args.phenix_root, environ=native_base)
+        executable = phenix.executables.get("phenix.elbow")
+        if executable is None:
+            raise PhenixDiscoveryError(
+                "The selected Phenix installation does not provide phenix.elbow; "
+                "explicit numerical candidate generation requires it"
+            )
+        payload = generate_elbow_candidate(
+            args.source.expanduser().resolve(), args.code, args.output_parent.expanduser().resolve(),
+            executable, environment=phenix.environment, phenix_version=phenix.version,
+            timeout_seconds=args.timeout_seconds,
+        )
+    except (OSError, ValueError, ConfigError, PhenixDiscoveryError) as exc:
+        payload = {
+            "schema_version": 1, "audit_kind": "cif_numerical_generation_candidate",
+            "component_id": args.code, "status": "FAILED", "error": str(exc),
+            "execution": {"status": "NOT_RUN"}, "automatic_adoption": False,
+            "readyset_retry": "NOT_RUN", "native_proxy_validation": "NOT_RUN",
+            "linked_site_validation": "NOT_RUN",
+        }
+    if args.json:
+        print(json.dumps(payload, indent=2, sort_keys=True, allow_nan=False))
+    else:
+        print(f"CIF Doctor candidate: {payload['status']}")
+        if payload.get("candidate_directory"):
+            directory = Path(payload["candidate_directory"])
+            print(f"Candidate directory: {directory}")
+            if payload.get("receipt"):
+                print(f"Receipt: {directory / payload['receipt']['path']}")
+        if payload.get("error"):
+            print(f"Reason: {payload['error']}")
+        print("Candidate only: review chemistry and linked-site/native interpretation before adoption.")
+    return 0 if payload.get("status") == "CANDIDATE_REVIEW" else 2
+
+
+def _cif_catalogue(args: argparse.Namespace) -> int:
+    from .cif_catalogue import audit_catalogue
+
+    try:
+        report = audit_catalogue(args.workbook, args.ccd_root)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            summary = report["summary"]
+            print(f"Catalogue census: {summary['records']} records; {summary['distinct_codes']} distinct codes")
+            for label, key in (("Source availability", "source_status"), ("Graph checks", "graph_status"),
+                               ("NAR records", "record_resolution"), ("Mapped atom names", "mapped_roles")):
+                print(label + ": " + ", ".join(f"{name}={count}" for name, count in summary[key].items()))
+            print("Native qualification: not assessed; no linkage profile assigned or chemistry changed.")
+            print("Use --json for exact worksheet rows, source hashes, findings and next actions.")
+        return 2  # A completed census is review evidence, never a support certificate.
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cif_fana(args: argparse.Namespace) -> int:
+    from .cif_fana import inspect_fana
+
+    try:
+        report = inspect_fana(args.dictionary, args.code, workbook=args.workbook,
+                              candidate=args.candidate,
+                              bond_representation_policy=args.bond_representation_policy)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"FANA: {report['status']}; source-declared family: {report['source_family'] or 'unassigned'}")
+            if report["review_reasons"]:
+                print("Review: " + ", ".join(report["review_reasons"]))
+            print("Source/candidate evidence only; native qualification and model mutation remain separate.")
+        return 2  # Evidence does not confer native or model-mutation permission.
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cif_profile(args: argparse.Namespace) -> int:
+    from .cif_attachment_profiles import inspect_attachment_profile
+
+    try:
+        report = inspect_attachment_profile(args.dictionary, args.code, workbook=args.workbook)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Source topology: {report['topology_status']}; profile: {report['matched_profile'] or 'unassigned'}")
+            for name, port in report["ports"].items():
+                print(f"  {name}: {port['atom_id']} ({port['element']}); declared charge={port['formal_charge']}")
+            if report["review_reasons"]:
+                print("Review: " + ", ".join(report["review_reasons"]))
+            print("No linkage, leaving atoms or terminal state selected; native qualification not assessed.")
+            print("Use --json for source hashes, NAR roles, stereo and bounded-search evidence.")
+        return 2  # A topology match remains review evidence, not permission to edit chemistry.
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cif_site_plan(args: argparse.Namespace) -> int:
+    from .cif_attachment_sites import inspect_attachment_site
+
+    try:
+        report = inspect_attachment_site(args.dictionary, args.code, workbook=args.workbook,
+                                         model=args.model, context=args.context, candidate=args.candidate)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Site {report['site']}: {report['plan_status']}; source projection: {report['projection_check']['status']}")
+            if report['review_reasons']:
+                print("Review: " + ", ".join(report['review_reasons']))
+            print("Read-only proposal; partner chemistry, native linkage and adoption remain unqualified.")
+            print("Use --json for exact source/model/context hashes and permitted source-table deletions.")
+        return 2
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cif_link_native(args: argparse.Namespace) -> int:
+    from .cif_attachment_native import inspect_native_attachment_links
+
+    try:
+        report = inspect_native_attachment_links(args.manifest, args.native_receipt)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Captured native interpretation: {report['native_status']}; links: {report['link_status']}; source definitions: {report['definition_status']}")
+            if 'atom_name_mapping' in report:
+                print(f"Observed native atom aliases: {report['atom_name_mapping']['alias_count']}; mapped source definitions: {report['mapped_definition_status']}")
+                hydrogen = [row['hydrogen_inventory'] for row in report['mapped_definitions'].values()]
+                if hydrogen:
+                    print(f"Hydrogen inventories: {sum(row['status'] == 'RECORDED' for row in hydrogen)} recorded; {sum(row['inventory_status'] == 'DIFFERENT' for row in hydrogen)} with attachment/count differences; {sum(row['inventory_status'] == 'MATCH' and row['name_status'] == 'DIFFERENT' for row in hydrogen)} with equal-count label differences; {sum(row['status'] != 'RECORDED' for row in hydrogen)} unavailable")
+                else:
+                    print("Hydrogen inventories: not assessed (native atom mappings unavailable)")
+
+            if report['native_error']:
+                print("Captured error: " + report['native_error'])
+            unavailable = [site for site,row in report['definitions'].items() if row['formal_charge_status'] == 'UNSUPPORTED']
+            if unavailable:
+                print("Formal charge readback unavailable at: " + ", ".join(unavailable))
+            print("Read-only comparison. Observed native types and link targets remain chemically/numerically unqualified.")
+        return 2
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cif_link_plan(args: argparse.Namespace) -> int:
+    from .cif_attachment_links import inspect_attachment_links
+
+    try:
+        report = inspect_attachment_links(args.manifest)
+        if args.json:
+            print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print(f"Source links: {report['binding_status']}; plan: {report['plan_status']}; projections: {report['projection_status']}")
+            print(f"Selected sites: {len(report['covered_sites'])}; reciprocal links: {len(report['links'])}; other model sites: {len(report['unselected_model_sites'])}")
+            if report['review_reasons']:
+                print("Review: " + ", ".join(report['review_reasons']))
+            print("Read-only source contract; native linkage remains unqualified. No preparation or adoption occurs.")
+        return 2
+    except (OSError, ValueError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
+def _cif_doctor(args: argparse.Namespace) -> int:
+    """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "link-native":
+        return _cif_link_native(args)
+    if args.cif_action == "link-plan":
+        return _cif_link_plan(args)
+    if args.cif_action == "site-plan":
+        return _cif_site_plan(args)
+    if args.cif_action == "fana":
+        return _cif_fana(args)
+    if args.cif_action == "profile":
+        return _cif_profile(args)
+    if args.cif_action == "catalogue":
+        return _cif_catalogue(args)
+    if args.cif_action == "generate-candidate":
+        return _cif_generate_candidate(args)
+    from .cif_doctor import assess_dictionaries
+    from .cif_doctor_repair import prepare_dictionary
+    from .cif_doctor_run import assess_run
+
+    try:
+        outputs = ([args.output, args.report] if args.cif_action == "prepare"
+                   else [args.output])
+        for output in outputs:
+            output = output.expanduser() if output is not None else None
+            if output is not None and (output.exists() or output.is_symlink()):
+                raise ValueError(f"Refusing to overwrite {output}")
+        if args.cif_action == "prepare":
+            if args.report is not None and args.report.expanduser().resolve() == args.output.expanduser().resolve():
+                raise ValueError("Candidate and JSON receipt need different paths")
+            source = args.dictionary.expanduser().resolve()
+            candidate = args.output.expanduser().resolve()
+            payload = prepare_dictionary(source, candidate, recipe=args.recipe)
+            root = Path(os.path.commonpath([str(source.parent), str(candidate.parent)]))
+            for key, path in (("source", source), ("output", candidate)):
+                payload[key].update({"anchor": "inputs", "relative_path": path.relative_to(root).as_posix()})
+            payload["input_context"] = {
+                "anchor": "inputs", "root_provenance": str(root),
+                "replay_requires_explicit_root": True,
+            }
+            receipt = args.report.expanduser() if args.report is not None else None
+        elif args.cif_action == "compare":
+            from .cif_doctor import compare_dictionaries
+
+            source = args.source.expanduser().resolve()
+            candidate = args.candidate.expanduser().resolve()
+            payload = compare_dictionaries([source], [candidate])
+            root = Path(os.path.commonpath([str(source.parent), str(candidate.parent)]))
+            for key, path in (("source_assessment", source), ("effective_assessment", candidate)):
+                payload[key]["inputs"][0].update({
+                    "anchor": "inputs", "relative_path": path.relative_to(root).as_posix(),
+                })
+            payload["input_context"] = {
+                "anchor": "inputs", "root_provenance": str(root),
+                "replay_requires_explicit_root": True,
+            }
+            receipt = args.output.expanduser() if args.output is not None else None
+        else:
+            if args.bundle is not None:
+                if args.run is not None or args.dictionaries or args.model is not None or args.checkpoint is not None or args.stage != "standalone":
+                    raise ValueError("--bundle selects its frozen model/resources; omit --run, dictionaries, --model, --checkpoint and --stage")
+                from .cif_runtime_bundle import assess_runtime_bundle
+                payload = assess_runtime_bundle(args.bundle)
+            elif args.run is not None:
+                if args.dictionaries or args.model is not None or args.stage != "standalone":
+                    raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
+                payload = assess_run(args.run, checkpoint=args.checkpoint)
+            else:
+                if not args.dictionaries or args.checkpoint is not None:
+                    raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
+                paths = [path.expanduser().resolve() for path in args.dictionaries]
+                model = args.model.expanduser().resolve() if args.model is not None else None
+                payload = assess_dictionaries(paths, stage=args.stage, model=model)
+                root = Path(os.path.commonpath([str(path.parent) for path in paths]))
+                for item, path in zip(payload["inputs"], paths):
+                    item.update({"anchor": "inputs", "relative_path": path.relative_to(root).as_posix()})
+                payload["input_context"] = {
+                    "anchor": "inputs", "root_provenance": str(root),
+                    "replay_requires_explicit_root": True,
+                }
+                if model is not None:
+                    descriptor = payload.get("model") or {}
+                    payload["model_reference"] = {
+                        "anchor": "model-input", "relative_path": model.name,
+                        "sha256": descriptor.get("sha256"), "size": descriptor.get("size"),
+                    }
+            receipt = args.output.expanduser() if args.output is not None else None
+        text = json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n"
+        if receipt is not None:
+            with receipt.open("x", encoding="utf-8") as handle:
+                handle.write(text)
+        if args.json:
+            print(text, end="")
+        else:
+            print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            if payload.get("solution_report", {}).get("text"):
+                print(payload["solution_report"]["text"])
+            assessments = [("", payload)]
+            if args.cif_action == "compare":
+                assessments.extend((label, payload[key]) for label, key in
+                                   (("Source", "source_assessment"), ("Candidate", "effective_assessment")))
+            elif args.cif_action == "prepare":
+                assessments.append(("Candidate", payload["after_assessment"]))
+            for label, assessment in assessments:
+                if label:
+                    print(f"{label} assessment: {assessment['status']}")
+                for finding in assessment.get("findings", []):
+                    if finding.get("status") not in {"PASS", "NOT_RUN"}:
+                        component = finding.get("component_id", "")
+                        print(f"  {component} {finding.get('rule_id', finding.get('rule', '?'))}: "
+                              f"{finding.get('status')} — {finding.get('message', finding.get('reason', ''))}")
+            if receipt is not None:
+                print(f"Receipt: {receipt}")
+            if args.cif_action == "prepare":
+                print(f"Candidate: {candidate}")
+                print(f"Assessment: {payload['after_assessment']['status']}; "
+                      f"adoption: {payload['adoption_status']}")
+        status = (payload["after_assessment"]["status"] if args.cif_action == "prepare"
+                  else payload.get("status"))
+        return 3 if status == "INVALID" else 2 if status in {"REVIEW", "UNASSESSED"} else 0
+    except (OSError, ValueError, CheckpointError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.command == "configure" and args.configure_target == "phenix":
@@ -1398,6 +1775,8 @@ def main(argv: list[str] | None = None) -> int:
         return _autorefine(args)
     if args.command in {"refine-doctor", "refine_doctor"}:
         return _refine_doctor(args)
+    if args.command == "cif-doctor":
+        return _cif_doctor(args)
     if args.command == "checkpoints":
         return _checkpoints(args)
     if args.command == "show":

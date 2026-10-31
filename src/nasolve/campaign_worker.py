@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import sys
 import traceback
 from pathlib import Path
@@ -72,6 +73,13 @@ def main() -> int:
     try:
         if len(sys.argv) != 2:
             raise CampaignError("Internal campaign worker requires one job record")
+        # A source-bundled shuttle needs PYTHONPATH to start this worker. Python
+        # has already resolved that path into sys.path; native programs must
+        # receive their own Phenix/Coot environment instead of venv overrides.
+        if os.environ.get("NASOLVE_NATIVE_ENV_ISOLATION") == "1":
+            for name in ("PYTHONPATH", "PYTHONHOME", "VIRTUAL_ENV", "CCP4", "CLIBD_MON", "LIBMOL_ROOT",
+                         "__PYVENV_LAUNCHER__", "PYTHONEXECUTABLE", "PYTHONUSERBASE"):
+                os.environ.pop(name, None)
         return execute_job(Path(sys.argv[1]))
     except Exception as exc:
         print(f"Campaign worker error: {exc}", file=sys.stderr)
