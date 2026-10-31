@@ -137,9 +137,14 @@ movement. The outgoing bond remains at 1.743 Å, and one pair contact shortens t
 and 58 parallelity proxies intact. A generic capture API selects probes from
 measured outliers and replays the numerical evidence offline. A separate 10C
 alpha-L-LNA control also passes source/native and numerical checks; its two
-isolated copies do not establish a connected polymer. The connected ATL seed still
-needs a bounded geometry trial and fresh endpoint checks before adoption. See the
-[numerical methods and limits](cif-doctor.md#generic-captured-manager-derivative-qualification-c147).
+isolated copies do not establish a connected polymer. C148 now runs a bounded
+whole-model geometry trial. The outgoing bond improves to 1.6195 Å and ATL's
+source hands remain consistent, but the endpoint fails dihedral checks and the
+optimizer's line search. No candidate is written or adopted. A geometry-selected
+diagnostic finds near-linear PDU and 5PC torsions; their declared triple-bond
+chemistry matches the existing repair screen. That repair must be qualified as a
+new complete objective before retrying. See the
+[geometry methods and limits](cif-doctor.md#bounded-geometry-from-a-qualified-captured-manager-c148).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
 A new fixed-objective geometry trial and endpoint qualification remain open. Earlier mixed-endpoint proof using a NASolve-local
@@ -746,6 +751,9 @@ remaining outgoing-bond and base-pair strain still withhold geometry qualificati
 and adoption. C147 adds a separate complete-policy numerical gate and offline
 replay, demonstrated on the ATL scaffold and a 10C two-copy control. Numerical
 consistency leaves source chemistry and policy authorship to their own evidence.
+C148 adds the next bounded geometry gate: a lower target cannot promote an
+endpoint whose derivative checks fail. Geometry-selected torsion diagnosis then
+points back to declared chemistry, with repair and adoption still separate.
 Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,

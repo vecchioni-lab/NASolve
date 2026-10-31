@@ -88,7 +88,9 @@
 
 <a id="current-capability-boundary-c146"></a>
 
-## Current capability boundary (C147)
+<a id="current-capability-boundary-c147"></a>
+
+## Current capability boundary (C148)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -105,7 +107,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
-| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed; outgoing-bond/pair geometry and automatic adoption remain open. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. Geometry-selected PDU/5PC torsions meet the existing declared-linear graph screen; a separately qualified changed objective is next. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 PDU omissions have exact inventory, fixed-coordinate energy/gradient attribution and fresh sampled derivative evidence on the DF-repaired mixed scaffold. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs a new bounded geometry trial and endpoint qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
@@ -152,6 +154,96 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Bounded geometry from a qualified captured manager (C148)
+
+`trial_captured_geometry(gradient_directory, phenix, output,
+max_iterations=1000, timeout_seconds=600)` consumes a complete passing C147
+capsule. It freezes the exact proof and native capture and reuses the maintained
+fixed-objective geometry worker, corrected parallelity evaluator, native optimizer,
+serialization and endpoint gates. Eligibility comes from authenticated numerical
+and manager evidence, without a component-code or historical-recovery branch.
+`phenix=None` prepares a separate attempt without native execution.
+
+The separate candidate permits **all captured coordinates to move**. The original
+model and evidence remain immutable; all atom identities, numerical definitions,
+ordered dictionary/PHIL inputs, namespace, explicit custom restraints and installed
+source pins stay fixed. This is not a restrained selection with frozen bystanders.
+The API accepts 1–1000 iterations and a 1–600-second geometry deadline, with at
+most 20 times the iteration bound in optimizer calls. A derivative-qualified
+endpoint alone permits serialization and one additional native readback, bounded
+by the smaller of the requested deadline and 60 seconds. Thus two native process
+calls are the maximum. The existing 1e-5 native convergence criterion and sampled
+derivative tolerances are unchanged. Stopping/convergence is reported separately
+from mechanics; exhausting a budget is not renamed convergence.
+
+Schema 1 `cif-captured-fixed-geometry-trial-v1` binds the exact C147 report digest,
+owned capture/proof, preparation, job and optional endpoint/readback files.
+The unchanged worker's legacy archive-digest field carries that report digest;
+it is not a claim that this capsule came from a historical archive.
+`read_captured_geometry_trial(directory)` reauthenticates the nested capture and
+initial numerical proof, rederives preparation, and checks endpoint eligibility,
+serialization and fresh native mechanics where qualification reached those gates.
+It refuses altered maintained workers, namespace, copied numerical sources,
+rehashed extra files/directories and inconsistent decisions. It never launches an
+SDK process. Failed endpoints remain REVIEW; recording their evidence is not a
+complete derivative qualification. The extra torsion diagnosis below replays its
+own saved numerical samples separately.
+
+A mechanics pass requires exact serialization, unchanged manager/policy and native
+identities, full-precision and rounded derivative checks, nonworsening fixed target
+and a fresh rounded native target match. Even then, the decision remains
+`INPUT_MODEL_UNCHANGED`: source chemistry, achieved geometry and adoption need
+separate evidence. In particular, the generic API cannot declare the input itself
+usable merely because a trial failed. Its input usability is
+`NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE`; chemistry and scientific qualification
+remain `NOT_ASSESSED`. It preserves `CAPTURED_EXPLICIT_POLICY` without asserting
+NARestraints authorship. Launch failures/timeouts preserve their own attempt, and
+retries need a fresh output. Existing CLI/default/cache/checkpoint schemas and
+older workers/readers are unchanged; no migration or automatic repair is added.
+
+**Complete native trial, Phenix 2.2.1-6174 (dispatcher 2.2.1).** The connected
+865-atom, 42-site ATL scaffold retains its 26 dictionaries, 15 PHIL files,
+201 custom requests and 58 parallelity proxies. The 1000-iteration/300-second
+attempt stops after 29 iterations and 56 calls with a rounding-error line-search
+failure. The fixed target falls from 5981.5146 to 4522.1545 (4568.0871 after PDB
+rounding), but both endpoint forms fail the dihedral and total derivative families.
+Bond, angle, chirality, nonbonded, planarity and parallelity samples pass. The
+adapter therefore writes **no coordinate candidate**, performs no endpoint native
+readback and makes no adoption. Lower energy is not an escape from this gate.
+
+A separate descriptive audit of saved coordinates finds all seven source-handed
+triples at ATL's four declared centres consistent, including the four-heavy-neighbor
+C4′ centre, and no captured native chirality sign conflicts. All eight junction
+angle definitions remain. Incoming/outgoing distances change from 1.6104/1.7435 Å
+to 1.6069/1.6195 Å, while the short O4–N6 contact remains about 2.276 Å. This does
+not establish acceptable pair, stacking, ring, clash or overall geometry. All 865
+atoms move in full precision; preservation refers to original files and definitions,
+not immobile bystanders. Frozen phosphate/H/charge inputs remain unchanged and no
+virtual OP3 atom is materialized; no new protonation or absolute-CIP claim follows.
+
+**Diagnosis, not repair.** The unchanged torsion selector chooses six near-linear
+proxies and two disjoint gradient controls by geometry and gradient evidence.
+The six near-linear proxies belong to PDU D:5 and 5PC A:4; the smallest sine is
+about 0.000203. A separate complete fixed-coordinate native diagnostic reproduces
+the saved initial/full/rounded dihedral families and selected-versus-complement
+group attribution. Coarse samples fail but sampled finer steps agree. This supports
+poor conditioning, not a demonstrated native derivative bug or requalified endpoint.
+Both selected source dictionaries explicitly declare a carbon–carbon triple bond
+and its 180-degree neighboring angles, satisfying the existing read-only
+`_linear_triples` chemistry screen. No source or torsion row is changed here.
+The next step is to compose independently qualified graph-based candidates into a
+fresh complete objective, prove exact allowed changes/energy attribution, recheck
+all derivatives, then retry geometry in a new attempt. Never omit torsions merely
+because coordinates happen to be nearly linear, loosen a tolerance, or switch on
+a PDU/ATL name test.
+
+Focused chemistry/workflow validation passes **1586 tests + 36 subtests**; 173
+closely affected tests pass separately. No full suite, ReadySet, Coot, diffraction
+refinement or adoption was run. The raw scientific/native artifacts remain local.
+Exact commands, versions, hashes, preserved attempts and cold relocation results
+are recorded under `captured_fixed_geometry_trial_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Generic captured-manager derivative qualification (C147)
 

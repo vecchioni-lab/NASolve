@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Captured fixed-objective geometry trial (C148)
+
+- Add a bounded geometry adapter consuming a qualified native-capture derivative
+  capsule. Reuse the existing optimizer and numerical gates while preserving the
+  exact captured definitions, input order, PHIL namespace and source pins.
+- Schema 1 `cif-captured-fixed-geometry-trial-v1` owns its frozen proof and can
+  replay endpoint eligibility offline. Mechanics never imply source-chemical
+  approval or automatic adoption; input usability remains explicitly unassessed.
+- The connected ATL scaffold trial is safely withheld after a dihedral derivative
+  failure and optimizer line-search failure. A separate geometry-selected audit
+  identifies near-linear PDU/5PC torsions consistent with the existing declared-
+  triple-bond repair gate. No changed objective or production default is adopted.
+
 ### Captured complete-policy numerical qualification (C147)
 
 - Add a reusable fixed-coordinate derivative audit consuming an authenticated

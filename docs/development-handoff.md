@@ -11,6 +11,100 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C148 validated: bounded captured-manager geometry; endpoint withheld
+
+Base/pushed-before-work `d4fbdf25b44941794cac5c62a023c05f5c48abb0`; existing
+**cedar** only. Capsule `live_tests_directory/148_Cedar_captured-geometry-ualkt42n`.
+Before: C147 established complete-policy initial derivatives, but geometry still
+required historical recovery ancestry. After: `trial_captured_geometry` accepts a
+qualified capture and reuses unchanged optimizer, parallelity, serialization and
+endpoint gates. It freezes the exact proof, ordered inputs, namespace, manager,
+restraint policy and source pins. No component-name branch was added.
+
+New `src/nasolve/cif_captured_geometry_trial.py` and its regression module add
+schema 1 `cif-captured-fixed-geometry-trial-v1`. The reader reauthenticates the
+nested capture/proof, rederives preparation and checks endpoint eligibility and
+optional serialization/readback without launching an SDK. It validates copied
+native sources and refuses rehashed extra files/directories and false decisions.
+The unchanged worker's legacy archive field binds the C147 report digest, without
+claiming historical archive ancestry. All captured coordinates may move in the
+separate trial; original files, atom identities and definitions remain fixed.
+Even a mechanics pass selects `INPUT_MODEL_UNCHANGED`; it cannot establish input
+usability, source chemistry, achieved geometry or adoption. Complete explicit
+policy preservation does not prove NAR authorship. No public CLI/default, cache,
+checkpoint, installed-library, migration or ReadySet behavior changes.
+The chemistry test profile, changelog, methods, architecture, overview/caption,
+index, implementation map and evidence ledger accompany the code/tests.
+
+**Complete native results — Phenix 2.2.1-6174, dispatcher 2.2.1:**
+
+- Final `geometry-final` retains the 865 atoms/42 sites, 26 dictionaries,
+  15 PHILs, 201 custom requests and 58 parallelity proxies. The 1000-iteration,
+  300-second trial stops at 29 iterations/56 calls with a rounding-error line-search
+  failure. Target 5981.5146 → 4522.1545; PDB-rounded 4568.0871.
+- Both endpoint forms fail dihedral/total derivative checks; bond, angle,
+  chirality, nonbonded, planarity and parallelity samples pass. The adapter emits
+  **no coordinate candidate** and performs no endpoint native readback/adoption.
+- Descriptive saved-coordinate audit: all seven source-handed triples across
+  ATL's four centres survive, including four-heavy-neighbor C4′; zero native
+  chirality sign conflicts. Both links/eight junction angles remain defined.
+  Incoming/outgoing distances 1.6104/1.7435 → 1.6069/1.6195 Å; the short O4–N6
+  contact remains about 2.276 Å. All 865 atoms move in full precision. No claim of
+  frozen bystanders, acceptable pair/stack/ring/clash geometry or absolute CIP.
+  Exact input phosphate/H/charge state stays fixed; virtual OP3 is not written.
+- Separate `torsion` diagnosis selects six near-linear proxies (PDU D:5 and
+  5PC A:4) plus two disjoint gradient controls from geometry/gradients, not names.
+  Smallest sine about 0.000203. Fixed-coordinate native replay matches saved
+  initial/full/rounded dihedral families and group attribution. Finer sampled
+  steps agree while coarse steps fail: conditioning evidence, not a demonstrated
+  native bug or endpoint requalification. Both source dictionaries pass the
+  existing explicit-triple-bond/180-degree graph screen. No objective was changed.
+
+**Validation:** 34 new regression cases. Initial 29 missing-module failures and
+later copied-source corruption failure demonstrate before/after behavior.
+173 affected tests pass in 102.61 s. Frozen chemistry/workflow profiles pass
+**1586 tests + 36 subtests** in 199.26 s; all **580** Python hashes stay fixed.
+Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and the NASolve `.venv`:
+`python -m pytest -q -p no:cacheprovider -o addopts=` with
+`tests/test_cif_captured_geometry_trial.py`, `tests/test_cif_mixed_geometry.py`,
+`tests/test_cif_recovered_geometry.py`, `tests/test_cif_captured_mixed_gradients.py`;
+`python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-final/pytest.xml`.
+Exact native, descriptive, cold and auxiliary commands are in the ledger/local
+archived helpers; native workers ran completely, not as dry runs.
+
+Cold relocation reproduces the input numerical proof, failed endpoint decision
+and selected torsion audit with the owned original gone and SDK/historical reads
+and execution denied. All **294** frozen files retain bytes/times; ten corrupted
+controls refuse. Compileall (external bytecode cache), 312 relative doc links/JSON,
+diff checks, unchanged SVG regeneration/render/visual review, 17 static resources
+and ten historical numerical/geometry/native sources pass. All **232** snapshotted
+C146/C147 files retain bytes/times and 37 prior evidence references verify.
+No full suite this bounded pass. Last full-tested remains
+`809abd44df8885ac14f1a02a67a13338209a8707` (7175 tests + 276 subtests);
+full integration is still required before a merge.
+
+**Preservation:** first native attempt remains local after the reader's copied-C++
+inventory omission was fixed and regression-tested. The fresh final trial
+reproduces the scientific rejection. A first cold harness's macOS temp-path alias
+refusal and a descriptive helper field-name failure are retained; fresh corrected
+checks pass. Source/model/workbook/native/test artifacts and procedural runners
+stay local. Only code and maintained technical summaries/hash refs publish.
+No existing run was overwritten, deleted, moved or cleaned. No ReadySet, Coot,
+diffraction refinement, changed-objective trial or automatic adoption occurred.
+
+**Next:** compose source-graph-selected declared-linear candidates for this entire
+scaffold into a fresh explicit objective. Reuse C142 exact omission and energy-
+attribution gates, covering both PDU and 5PC without name branches. Recheck every
+unaffected definition and custom request, source hands/H/phosphates, complete
+native mechanics and derivatives, then retry this geometry API in a new attempt.
+Keep linked 10C, broader L-FANA/L-FDNA/PNA, curated-DZ parsing, formal-charge limits
+and production orchestration separate. Do not weaken the failed gate or describe
+the current lower-energy endpoint as usable.
+
+Implementation and focused validation complete; publication pending.
+No active jobs. Signed evidence key `captured_fixed_geometry_trial_2026_10_31`.
+— Rowan · Codex desktop
+
 ## C147 published: generic complete-policy captured-manager derivatives
 
 Base/pushed-before-work: `76257c74ce33d4df14f247681e7b243a3f5b9eea`;

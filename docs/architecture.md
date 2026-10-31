@@ -3654,6 +3654,19 @@ a controlled geometry trial and linked 10C construction remain separate gates.
 See the [captured-manager contract](cif-doctor.md#generic-captured-manager-derivative-qualification-c147).
 
 
+C148 consumes that qualified capture through a bounded whole-model geometry
+adapter. It freezes the proof and explicit objective and reuses unchanged native
+optimizer/parallelity/serialization gates. Mechanics, convergence, source chemistry,
+input usability and adoption are distinct: even a mechanics-pass trial selects the
+unchanged input, and a failed trial cannot assert input usability. Its self-contained
+schema-1 reader reauthenticates the initial proof and rederives endpoint eligibility
+without an SDK. The live ATL trial decreases energy but fails endpoint dihedral
+checks and line search; no candidate is emitted. Separate geometry-selected torsion
+replay and source-graph inspection identify PDU/5PC declared-linear chemistry as
+candidates for a freshly qualified objective, not a residue-name exception.
+See the [captured geometry contract](cif-doctor.md#bounded-geometry-from-a-qualified-captured-manager-c148).
+
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

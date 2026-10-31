@@ -29,8 +29,10 @@ milestone statements preserve their original scope; they are not a second queue.
   with both native links/eight junction angles, preserved source definitions and
   exact NAR membership. C147 passes complete-policy numerical checks through a
   generic native-capture API and adds an isolated/two-copy 10C transfer control.
-  Outgoing-bond/pair geometry, linked 10C construction and changed-objective PDU
-  geometry remain open.
+  C148 adds a bounded captured-manager geometry trial; endpoint dihedral and
+  line-search failures correctly withhold the candidate. Geometry-selected PDU/5PC
+  torsions match the declared-linear graph screen. Fresh changed-objective
+  qualification, acceptable pair geometry and linked 10C construction remain open.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

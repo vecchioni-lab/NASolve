@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "captured_mixed_gradient_qualification_2026_10_31",
+    "current_diagnostic_record": "captured_fixed_geometry_trial_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27595,6 +27595,32 @@
       "focused_tested_commit": "63fc354b830d1544f06f58c9e878baf3a88960a4",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "captured_fixed_geometry_trial": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "A bounded captured-proof adapter freezes the exact complete objective and reuses unchanged optimizer/numerical/serialization gates. The actual ATL trial is withheld after endpoint derivative/line-search failures; a separate generic diagnostic and declared-graph screen identify near-linear PDU and 5PC torsions without a residue-code exception.",
+      "schemas": {
+        "new": "schema 1 / cif-captured-fixed-geometry-trial-v1; self-contained qualified gradient/capture, exact preparation/job/optional readback inventory, mechanics-only decision",
+        "unchanged": "C147 proof, existing mixed/recovered geometry and numerical workers, CLI/cache/checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python API and chemistry profile. No default, installed-library, adopted-coordinate or migration change. Existing cedar only; older numerical/geometry/torsion/native sources byte-identical.",
+      "limitations": [
+        "Additive explicit Python geometry diagnostic; no ordinary automatic recovery/adoption, public CLI/default, cache/checkpoint migration or ReadySet replacement.",
+        "All captured coordinates may move in a separate trial. Immutable input evidence, complete identities and exact restraint definitions remain bound; there is no frozen-bystander-coordinate claim.",
+        "Qualified C147 capture required. Exact original dictionary/PHIL order, namespace, consumer pins, complete explicit policy and unchanged numerical workers. Existing special-position and base-capture eligibility limits remain.",
+        "1..1000 iterations; 1..600-second geometry deadline, 20*iterations native optimizer calls, then at most one additional native readback for min(deadline,60) seconds. Native criterion and all derivative tolerances unchanged. Stopping and mechanics are separate.",
+        "Even a mechanics pass selects INPUT_MODEL_UNCHANGED. Input usability is NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE; chemistry/scientific qualification remains NOT_ASSESSED. A failed endpoint cannot silently certify the input.",
+        "Generic captured policy preserves its content without proving NARestraints authorship. Source chemistry/compiler evidence and achieved bond/pair/stack/clash geometry remain separate gates.",
+        "Actual ATL trial remains REVIEW after line-search and full/rounded dihedral derivative failures. No coordinate candidate, fresh endpoint native readback or adoption. Lower target and source-hand preservation do not qualify geometry.",
+        "Separate selected-torsion fixed-coordinate replay supports conditioning, not a native bug. Finer sampled agreement does not relax the original failed gate. PDU and 5PC satisfy the declared-linear source-graph screen; no objective or source dictionary changed in this push.",
+        "10C remains isolated/source/two-copy qualified only, without a linked-polymer/geometry claim. Broader L-FANA/L-FDNA/PNA, curated-DZ token-per-line parsing, unavailable formal-charge readbacks, symmetry and production orchestration remain explicit roadmap items.",
+        "First live attempt was preserved after the reader omitted legitimate copied C++ source files from its allowed inventory. The fix validates their hashes; a failing corruption regression demonstrates it. A fresh final native attempt reproduces the scientific rejection. First cold harness refused macOS temp-path symlink alias; a fresh resolved-path cold attempt passes. Earlier diagnostic-helper field-name failure/log retained. No attempt was repaired in place."
+      ],
+      "next": "Compose source-graph-selected declared-linear torsion candidates for the affected complete scaffold into a new explicit objective, reusing C142 exact omission/energy-attribution gates. Cover PDU and 5PC without name branches; preserve every other dictionary/PHIL/policy and independent source-hand/H/phosphate evidence. Qualify fresh native mechanics and complete derivatives first, then call the captured geometry adapter in a new attempt. If still blocked, retain the input and diagnose rather than weakening gates. Linked 10C and broader chemistry/production milestones stay separate.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "captured_fixed_geometry_trial_2026_10_31",
+      "validation": "1586 passed, 36 subtests passed in 199.26s (0:03:19); 173 affected tests and cold rejection/diagnostic replay pass; actual endpoint remains REVIEW; no full suite."
     }
   },
   "audience": [

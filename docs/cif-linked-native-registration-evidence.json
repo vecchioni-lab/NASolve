@@ -55970,5 +55970,493 @@
     "focused_tested_commit": "63fc354b830d1544f06f58c9e878baf3a88960a4",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "captured_fixed_geometry_trial_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "d4fbdf25b44941794cac5c62a023c05f5c48abb0",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "before": "C147 qualified captured complete-policy initial derivatives, but bounded geometry required a separate historical recovery lineage and could not consume this generic proof directly.",
+    "after": "A bounded captured-proof adapter freezes the exact complete objective and reuses unchanged optimizer/numerical/serialization gates. The actual ATL trial is withheld after endpoint derivative/line-search failures; a separate generic diagnostic and declared-graph screen identify near-linear PDU and 5PC torsions without a residue-code exception.",
+    "changed_files": [
+      "src/nasolve/cif_captured_geometry_trial.py",
+      "tests/test_cif_captured_geometry_trial.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-captured-fixed-geometry-trial-v1; self-contained qualified gradient/capture, exact preparation/job/optional readback inventory, mechanics-only decision",
+      "unchanged": "C147 proof, existing mixed/recovered geometry and numerical workers, CLI/cache/checkpoint schemas"
+    },
+    "compatibility": "Additive explicit Python API and chemistry profile. No default, installed-library, adopted-coordinate or migration change. Existing cedar only; older numerical/geometry/torsion/native sources byte-identical.",
+    "regressions": {
+      "new_cases": 34,
+      "before": "29 initial missing-module failures; later copied-native-source corruption regression fails before its hash validation and passes after. Valid native source copies must remain accepted.",
+      "affected": "173 passed in 102.61s",
+      "focused": {
+        "exit_code": 0,
+        "summary": "1586 passed, 36 subtests passed in 199.26s (0:03:19)",
+        "seconds": 199.63097483303864,
+        "files": 580,
+        "changed_files": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH: user preference. Last full-tested revision 809abd44df8885ac14f1a02a67a13338209a8707 (7175 tests +276 subtests); full integration required before merge."
+    },
+    "science": {
+      "status": "DESCRIPTIVE_AUDIT_OF_UNQUALIFIED_ENDPOINT",
+      "selected": "INPUT_MODEL_UNCHANGED",
+      "automatic_adoption": false,
+      "atom_count": 865,
+      "site_count": 42,
+      "target_site": "A:11",
+      "stopping": {
+        "calls": 56,
+        "error": "lbfgs error: Line search failed: Rounding errors prevent further progress. There may not be a step which satisfies the sufficient decrease and curvature conditions. Tolerances may be too small.",
+        "iterations": 29,
+        "max_iterations": 1000,
+        "native_criterion_met": false,
+        "reason": "unreported"
+      },
+      "targets": {
+        "initial": 5981.51458806943,
+        "full_precision": 4522.1544925377375,
+        "pdb_rounded": 4568.087082816527
+      },
+      "endpoint_family_pass": {
+        "full_precision": {
+          "all": false,
+          "angle": true,
+          "bond": true,
+          "chirality": true,
+          "dihedral": false,
+          "nonbonded": true,
+          "parallelity": true,
+          "planarity": true
+        },
+        "pdb_rounded": {
+          "all": false,
+          "angle": true,
+          "bond": true,
+          "chirality": true,
+          "dihedral": false,
+          "nonbonded": true,
+          "parallelity": true,
+          "planarity": true
+        }
+      },
+      "native_readback": {
+        "status": "NOT_RUN"
+      },
+      "candidate_serialized": false,
+      "source_files_preserved": 232,
+      "exact_fixed_constraints": true,
+      "phosphate_H_scope": "Frozen input model/dictionaries retain exact atom/H/charge state; no new atom or protonation edit, source validation or fresh endpoint native readback occurred. Virtual OP3 from construction was not materialized.",
+      "chemistry_scope": "Seven source-handed triples across four declared ATL centres remain consistent; native chirality checks are descriptive, not independent absolute stereochemistry or complete scientific approval.",
+      "coordinate_scope": "All captured atoms may move; original evidence preserved, no frozen-bystander-coordinate claim.",
+      "geometry_qualification": "WITHHELD: derivative failure and optimizer line-search failure; lower target and descriptive hand preservation do not establish usable geometry.",
+      "cases": {
+        "initial": {
+          "all_seven_source_hands": true,
+          "native_chirality_sign_conflicts": 0,
+          "junction_distances": [
+            1.6103748010944527,
+            1.7434982076274128
+          ],
+          "junction_angle_count": 8,
+          "pair_distances": [
+            2.7412772570464314,
+            2.276694533748433
+          ],
+          "atoms_moved": 0
+        },
+        "full_precision": {
+          "all_seven_source_hands": true,
+          "native_chirality_sign_conflicts": 0,
+          "junction_distances": [
+            1.6069050503006468,
+            1.6194897357608407
+          ],
+          "junction_angle_count": 8,
+          "pair_distances": [
+            2.736089954713222,
+            2.2758088781202863
+          ],
+          "atoms_moved": 865
+        },
+        "pdb_rounded": {
+          "all_seven_source_hands": true,
+          "native_chirality_sign_conflicts": 0,
+          "junction_distances": [
+            1.6069079002855142,
+            1.6197015157120773
+          ],
+          "junction_angle_count": 8,
+          "pair_distances": [
+            2.736128286466115,
+            2.2758664284179773
+          ],
+          "atoms_moved": 863
+        }
+      }
+    },
+    "torsion_diagnosis": {
+      "qualification": {
+        "automatic_adoption": false,
+        "endpoint_requalification": "NOT_RUN",
+        "status": "MIXED_TORSION_AUDIT_COMPLETE",
+        "summary": {
+          "cases": {
+            "full_precision": {
+              "group_attribution_consistent": true,
+              "group_fine_only_directions": 6,
+              "group_sampled_agreement": true,
+              "local_coarse_review_directions": 62,
+              "local_fine_only_directions": 62,
+              "local_fine_review_directions": 0,
+              "local_sampled_agreement": true,
+              "selected_proxy_count": 8
+            },
+            "initial": {
+              "group_attribution_consistent": true,
+              "group_fine_only_directions": 0,
+              "group_sampled_agreement": true,
+              "local_coarse_review_directions": 2,
+              "local_fine_only_directions": 2,
+              "local_fine_review_directions": 0,
+              "local_sampled_agreement": true,
+              "selected_proxy_count": 8
+            },
+            "pdb_rounded": {
+              "group_attribution_consistent": true,
+              "group_fine_only_directions": 4,
+              "group_sampled_agreement": true,
+              "local_coarse_review_directions": 64,
+              "local_fine_only_directions": 64,
+              "local_fine_review_directions": 0,
+              "local_sampled_agreement": true,
+              "selected_proxy_count": 8
+            }
+          },
+          "endpoint_requalification": "NOT_RUN",
+          "full_native_family_coverage": "CHECKED_BY_INDEPENDENT_GROUP_COMPARISON",
+          "positive_constant_count": 0,
+          "saved_family_matches": {
+            "full_precision": true,
+            "initial": true,
+            "pdb_rounded": true
+          },
+          "selected_proxy_count": 8
+        }
+      },
+      "near_selected": 6,
+      "controls": 2,
+      "selection_scope": "SAVED_GEOMETRY_AND_ATOM_GRADIENT; NO_COMPONENT_ALLOWLIST",
+      "observed_near_components": [
+        "PDU",
+        "5PC"
+      ],
+      "minimum_sine": 0.0002026923837684728,
+      "declared_source_graph_gate": {
+        "5PC": true,
+        "PDU": true
+      },
+      "candidate_generation": "NOT_RUN",
+      "changed_objective": "NOT_RUN"
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_gone": true,
+      "original_sdk_historical_reads_and_execution_denied": true,
+      "geometry_rejection_reproduced": true,
+      "initial_gradient_capsule_replayed": true,
+      "selected_torsion_numerical_audit_replayed": true,
+      "endpoint_requalification": "NOT_RUN",
+      "frozen_files_unchanged": 294,
+      "negative_controls": [
+        "worker",
+        "source_copy",
+        "namespace",
+        "capture",
+        "adoption",
+        "input_usable",
+        "promote_failed",
+        "bound_extra",
+        "bound_empty",
+        "incomplete"
+      ]
+    },
+    "auxiliary": {
+      "historical_numerical_and_native_sources_unchanged": [
+        "cif_mixed_gradient.py",
+        "cif_gradient_audit.py",
+        "cif_parallelity_audit.py",
+        "cif_parallelity_correction.py",
+        "cif_recovered_gradient.py",
+        "cif_native_validation.py",
+        "cif_mixed_geometry.py",
+        "cif_fixed_geometry.py",
+        "cif_mixed_torsion.py",
+        "cif_captured_mixed_gradients.py"
+      ],
+      "compileall": "PASS",
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c148-compile-cache"
+      },
+      "docs": {
+        "relative_links_checked": 312,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources_equal_base": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "svg_visual_review": "PASS: regenerated figure is byte-identical and legible; updated caption distinguishes geometry gating, source chemistry and adoption.",
+      "parent_artifacts_unchanged": 232,
+      "previous_C147_refs_verified": 37
+    },
+    "validation_commands": {
+      "python_runtime_historical_path": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "affected": "python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_captured_geometry_trial.py tests/test_cif_mixed_geometry.py tests/test_cif_recovered_geometry.py tests/test_cif_captured_mixed_gradients.py",
+      "focused": "python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-final/pytest.xml; exact resolved command/frozen source manifest in result.json",
+      "native": "python c148_live_final.py: trial_captured_geometry(C147 ATL-gradients-02, Phenix 2.2.1-6174, geometry-final, max_iterations=1000, timeout_seconds=300); python c148_torsion.py: unchanged fixed-coordinate diagnostic, 120-second deadline. Final wrappers archived locally.",
+      "science": "python c148_science_final.py; python c148_graph.py: source-handed triples, descriptive links/angles/pairs, unchanged parent bytes/times and declared-linear source graph",
+      "cold": "python c148_cold_final.py: owned original gone; SDK/historical reads and execution denied; replay C147 proof, geometry rejection and selected torsion samples. Ten tamper controls refuse.",
+      "auxiliary": "python -m compileall -q src tests with PYTHONPYCACHEPREFIX=/private/tmp/c148-compile-cache; check_docs.py; unchanged SVG regeneration/render/visual review; git diff --check; source/resource/prior-evidence checks"
+    },
+    "software": {
+      "python": "3.12.14",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_final_geometry_jobs": 1,
+      "preserved_preliminary_geometry_jobs": 1,
+      "complete_torsion_diagnostic_jobs": 1,
+      "endpoint_native_readbacks": 0,
+      "dry_run": false,
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "artifacts": "Only code/tests/profile and maintained technical summaries/hash refs publish. Raw source/model/workbook/native/test outputs and procedural helpers stay local. All 232 frozen C146/C147 files retain bytes/times; 37 prior C147 refs verify. No scientific-data cleanup or movement.",
+    "limitations": [
+      "Additive explicit Python geometry diagnostic; no ordinary automatic recovery/adoption, public CLI/default, cache/checkpoint migration or ReadySet replacement.",
+      "All captured coordinates may move in a separate trial. Immutable input evidence, complete identities and exact restraint definitions remain bound; there is no frozen-bystander-coordinate claim.",
+      "Qualified C147 capture required. Exact original dictionary/PHIL order, namespace, consumer pins, complete explicit policy and unchanged numerical workers. Existing special-position and base-capture eligibility limits remain.",
+      "1..1000 iterations; 1..600-second geometry deadline, 20*iterations native optimizer calls, then at most one additional native readback for min(deadline,60) seconds. Native criterion and all derivative tolerances unchanged. Stopping and mechanics are separate.",
+      "Even a mechanics pass selects INPUT_MODEL_UNCHANGED. Input usability is NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE; chemistry/scientific qualification remains NOT_ASSESSED. A failed endpoint cannot silently certify the input.",
+      "Generic captured policy preserves its content without proving NARestraints authorship. Source chemistry/compiler evidence and achieved bond/pair/stack/clash geometry remain separate gates.",
+      "Actual ATL trial remains REVIEW after line-search and full/rounded dihedral derivative failures. No coordinate candidate, fresh endpoint native readback or adoption. Lower target and source-hand preservation do not qualify geometry.",
+      "Separate selected-torsion fixed-coordinate replay supports conditioning, not a native bug. Finer sampled agreement does not relax the original failed gate. PDU and 5PC satisfy the declared-linear source-graph screen; no objective or source dictionary changed in this push.",
+      "10C remains isolated/source/two-copy qualified only, without a linked-polymer/geometry claim. Broader L-FANA/L-FDNA/PNA, curated-DZ token-per-line parsing, unavailable formal-charge readbacks, symmetry and production orchestration remain explicit roadmap items.",
+      "First live attempt was preserved after the reader omitted legitimate copied C++ source files from its allowed inventory. The fix validates their hashes; a failing corruption regression demonstrates it. A fresh final native attempt reproduces the scientific rejection. First cold harness refused macOS temp-path symlink alias; a fresh resolved-path cold attempt passes. Earlier diagnostic-helper field-name failure/log retained. No attempt was repaired in place."
+    ],
+    "next": "Compose source-graph-selected declared-linear torsion candidates for the affected complete scaffold into a new explicit objective, reusing C142 exact omission/energy-attribution gates. Cover PDU and 5PC without name branches; preserve every other dictionary/PHIL/policy and independent source-hand/H/phosphate evidence. Qualify fresh native mechanics and complete derivatives first, then call the captured geometry adapter in a new attempt. If still blocked, retain the input and diagnose rather than weakening gates. Linked 10C and broader chemistry/production milestones stay separate.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/final-science-audit.json",
+        "size": 125824,
+        "sha256": "04735b10316529c9208a136da40547b2484de4538843e2940ea7a1bae2a15ea9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/final-science-audit-final.log",
+        "size": 2644,
+        "sha256": "b8dc3755ae2908ca30b197491a734032e6d2410539fa0b560dfc6c9f10034024"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/parent-before.json",
+        "size": 56929,
+        "sha256": "196ddc1af73d8a3e799234da1999fc4d5fc1ffe563c2e72853a71c7d9b76ca62"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/source-graph-diagnostic.json",
+        "size": 2738,
+        "sha256": "ebcf7558c8cd3c744bef7c61af9e9f23e49d756a31dd52e005a295afcd649e1a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/source-graph-diagnostic.log",
+        "size": 1344,
+        "sha256": "6a0a4030ecd12352303174fb618b92b5a3a5629919fac75fa80e3b5a3ff28bef"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-summary-final.json",
+        "size": 72679,
+        "sha256": "3eca9693a8afa7ebc7f83525ee64545d824d43d456632c0aada55c7ab2f65d86"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-final/captured_geometry_trial.json",
+        "size": 56303,
+        "sha256": "f3845d09f609ce6ff91e29dc4abdd45fc146088b62a3aab3a47b6ff51767ecd6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-final/job/geometry_spec.json",
+        "size": 424,
+        "sha256": "0d63f329f5b102096de01045ca3c669fad0c7ee56b8d630d9a9107101fac435b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-final/job/geometry_result.json",
+        "size": 4979282,
+        "sha256": "1d2cbe3843ea55e1bd7ebb1924af22a7ab2556ae0f1afe4df9e043448323f878"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-final/job/native_spec.json",
+        "size": 1268,
+        "sha256": "bd0ab24f1352f72778114da8bd7c628367a7cbd3f55eea03073c263175444312"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-final/job/native_validation.json",
+        "size": 5396477,
+        "sha256": "411faa6b3cd05807cbe2a72ee442f81d54e34c73e34b3eea4409b64ae8215820"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-final/gradient/captured_mixed_gradients.json",
+        "size": 42427,
+        "sha256": "ab45464d0cc7ff7b4435460782a82b4cd3a12cb7a7de6a9d6d44347a1c42b6e5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/geometry-final/gradient/job/gradient_result.json",
+        "size": 3064566,
+        "sha256": "0d225abbec87a805ec026cbf2091f0f28e45e74c802c3d956b023579af4083ce"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/torsion/diagnostic.json",
+        "size": 22580,
+        "sha256": "ddb71312c0b132f742d4dfee16c7f0b4b753880829342279873cbc4574c352c5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/torsion/torsion_selection.json",
+        "size": 1276081,
+        "sha256": "14c2471309660d0f39bfbf7ef8aedb404c5a932078ea247f1896657e407f6bdb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/torsion/job/torsion_spec.json",
+        "size": 1494717,
+        "sha256": "7cc04996326642d8c65dfd988cd4aff7d0931d55455f28ab0d4e73b58d1f3499"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/torsion/job/torsion_result.json",
+        "size": 7578328,
+        "sha256": "1c5128bbcdeb70425111bbe272fe8659c13e9ad66fef4902de481fcf10d799a3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/torsion/job/native_validation.json",
+        "size": 2758461,
+        "sha256": "ae61013da0c6a7c628f05b0a49f5db355e7672ba1cfe8a366c9c2b048bf50c4f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/cold-final-02/result.json",
+        "size": 965,
+        "sha256": "79c7ce1d947f4babbe5e9208d40b4532dc0bd47445c9ad0f07cbf81f1879a80e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/cold-final-02/replay.log",
+        "size": 467,
+        "sha256": "1c3e9edfedfae349c357b436f8bd8cd01cd077b3e34111f3135cbfa301263951"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/before.log",
+        "size": 25267,
+        "sha256": "8c017688dafa871af4125c7cceff9ed3a5a67695dd0c284b984c826535a3fa42"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/source-copy-before.log",
+        "size": 2780,
+        "sha256": "d66e4296c49651058f7e72666886696cb51913f082cdf2e22163ba83bdf2d4a9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/related-final.log",
+        "size": 272,
+        "sha256": "4b01e3b656ceb11aa2699743f541db0ef862d82200c9906fbd0388cd39863577"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/focused-final/result.json",
+        "size": 610,
+        "sha256": "bba947fbd3964dd64daf06215af07b93f1774c4b65c618cfb8bb53f56b9a81e3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/focused-final/pytest.log",
+        "size": 6664,
+        "sha256": "cec558e584c0f23bad5f81621778ebe6081a36898b6c8908783fe9b08f50d10d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/focused-final/pytest.xml",
+        "size": 232637,
+        "sha256": "9475d1cea7e72eea042c0d8a35cd0382d1999fc4016ea6f21dfe8560bd6f1d82"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/focused-final/source-hashes.json",
+        "size": 63172,
+        "sha256": "28beeb272564723b10ba68c8f84b4204eaceacb5f758e39fcda468baad82e99b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "148_Cedar_captured-geometry-ualkt42n/validation/auxiliary.json",
+        "size": 3022,
+        "sha256": "52cde33c5277227a0e6487432b7a3b92fa80b3fe7f1763842fb059c3e0088f83"
+      }
+    ]
   }
 }
