@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Exact linked torsion energy attribution (C142)
+
+- After the complete graph-qualified torsion-omission inventory gate, check
+  that the full fixed-coordinate energy and gradient changes match the exact
+  removed native proxies, including scattered indices and repeated evaluations.
+- Preserve every other residual term and proxy count. Refuse changed chemistry,
+  unbound coordinates, inconsistent native sources and incomplete evidence.
+  The new schema-1 numerical report does not authorize model adoption or claim
+  derivative, geometry or diffraction qualification. Existing policies and
+  ordinary PostMR behavior are unchanged; no migration is required.
+
 ### Exact component selection in public bundle assessment (C141)
 
 - Export a verified component selection as one model plus its exact ordered

@@ -116,9 +116,11 @@ separate. See the [bundle methods](cif-doctor.md#qualified-component-bundles-and
 FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C route
 has the linked model evidence above. L-FDNA transfer is tested synthetically, not
 by a live end-to-end build. PNA has selected isolated numerics and connected source
-networks but lacks linked numerical qualification. ATL still lacks a usable
-qualified native dictionary. The PDU changed-objective derivative work remains a
-separate open numerical gate. Earlier mixed-endpoint proof using a NASolve-local
+networks but lacks linked numerical qualification. C142 adds a usable source-preserving isolated ATL dictionary while keeping all
+four sugar centres and its bridge; whole-residue construction and the combined
+mixed scaffold still need qualification. C142 also passes PDU's changed-objective
+energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
+A new fixed-objective geometry trial and endpoint qualification remain open. Earlier mixed-endpoint proof using a NASolve-local
 corrected evaluator does not certify ordinary Phenix refinement.
 
 Ordinary source audits, supported connected-base construction and qualified cache

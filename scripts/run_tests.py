@@ -23,6 +23,7 @@ PROFILES = {
         'test_cif_preparation_qualification', 'test_cif_linked_preparation',
         'test_cif_linked_usability_bridge', 'test_cif_terminal_preparation',
         'test_cif_candidate_usability', 'test_cif_purine_representation',
+        'test_cif_linked_torsion_energy', 'test_cif_linked_linear_torsion', 'test_cif_linear_torsion_candidate',
         'test_cif_fana', 'test_cif_fana_enantiomer', 'test_cif_fana_component',
         'test_cif_stereochemistry_audit', 'test_cif_terminal_qualification',
         'test_cif_source_classification', 'test_cif_attachment_profiles',

@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "neutral_pna_amide_operations_2026_10_28",
+    "current_diagnostic_record": "linked_torsion_energy_and_atl_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27437,6 +27437,26 @@
       "full_tested_commit": "a9ec988d562155f44399503c58e2579d3459785f",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "linked_torsion_energy_and_atl": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "A reusable fixed-point numerical reader binds exact removed proxy identities/coordinates and repeated single/container evaluations to the full energy/gradient delta. Fresh PDU captures and sampled derivatives pass with repaired DF and all unrelated restraints preserved. An independent ATL candidate preserves its bridge, four sugar hands, hydrogen/charge state and passes isolated native usability at source/generated coordinates.",
+      "schemas": {
+        "new": "schema 1 / cif-linked-linear-torsion-energy-v1, a pure numerical report with caller-owned native capture provenance",
+        "unchanged": "All prior candidate/native/gradient, public bundle, CLI, run/checkpoint and source chemistry schemas"
+      },
+      "compatibility": "Additive opt-in Python qualifier. No migration, historical rewrite, ordinary PostMR default or selection/adoption change.",
+      "limitations": [
+        "The new API attributes fixed-coordinate numerical deltas only. Its caller authenticates native execution/capture provenance; a saved success flag is not authentication.",
+        "PDU initial derivatives pass using the maintained NASolve-local order-safe evaluator. No new whole-model optimization, endpoint geometry qualification or diffraction refinement ran; plain Phenix refinement is not certified by this result.",
+        "ATL has source-preserving isolated native usability at two coordinate sets, not linked construction or combined-scaffold qualification. Its generation stopping is NOT_REPORTED; no convergence claim is made.",
+        "The requested eight-pair-plus-ATL scaffold remains NOT_CONSTRUCTED. Existing DNA-only fragment construction correctly refuses ATL RNA-linking metadata; preserve its bridge and qualify a whole-residue/link adapter.",
+        "No ordinary PostMR automatic adoption/checkpoint integration, experimental protonation assignment, absolute CIP assignment, installed-library changes or catalogue-wide release. PNA and broader L-FANA/L-FDNA learning/coverage remain in the engine roadmap."
+      ],
+      "next": "Build a source-preserving whole-residue/link adapter for ATL using its qualified candidate and existing graph/stereochemical lessons, then test it alongside the existing eight mixed-scaffold pairs. Separately run a new bounded PDU geometry trial on the newly derivative-qualified objective. Continue ordinary PostMR selected-bundle orchestration with usable fallback; no merge is implied.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "linked_torsion_energy_and_atl_2026_10_31",
+      "validation": "7143 passed, 276 subtests passed in 1110.25s (0:18:30); focused 1362 passed, 36 subtests passed in 116.55s (0:01:56); PDU exact attribution/fresh derivatives; ATL isolated native usability at two coordinate sets; cold actual replay and seven negative controls."
     }
   },
   "audience": [

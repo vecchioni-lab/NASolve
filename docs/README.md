@@ -22,7 +22,10 @@ milestone statements preserve their original scope; they are not a second queue.
   fallback. C140 adds explicit lossless heavy-PDB serialization followed by the
   unchanged strict final native comparison. C141 brings that exact selected model
   and restraint bundle into public assessment with frozen source replay. Automatic
-  PostMR continuation/adoption remains separate.
+  PostMR continuation/adoption remains separate. C142 adds exact graph-qualified
+  linked torsion energy attribution, a fresh PDU derivative pass on the repaired
+  mixed scaffold, and a source-preserving isolated ATL numerical control. The
+  combined scaffold including ATL and changed-objective PDU geometry remain open.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

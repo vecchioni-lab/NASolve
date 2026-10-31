@@ -80,7 +80,9 @@
 
 <a id="current-capability-boundary-c140"></a>
 
-## Current capability boundary (C141)
+<a id="current-capability-boundary-c142"></a>
+
+## Current capability boundary (C142)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -97,8 +99,8 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
-| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
-| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. PDU omission candidates have exact inventory evidence. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs energy/gradient and derivative qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | Linked construction and the combined eight-pair-plus-ATL scaffold remain unqualified. The old installed-library energy-type failures are preserved; the new numerical candidate still needs a whole-residue/link adapter. |
+| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 PDU omissions have exact inventory, fixed-coordinate energy/gradient attribution and fresh sampled derivative evidence on the DF-repaired mixed scaffold. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs a new bounded geometry trial and endpoint qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -144,6 +146,61 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Linked omission numerics and retained chemistry learning (C142)
+
+Actual Phenix 2.2.1-6174 returns pass the new gate on the source-repaired
+863-atom mixed scaffold. Three omitted proxies explain the complete target
+change (14.171267057206); the unexplained gradient norm is 9.10e-13. All other
+native inventory categories, residual terms and counts remain unchanged.
+The separate maintained derivative worker passes 1367 energy evaluations and
+3328 plane-order comparisons, including controls. This uses the already qualified
+NASolve-local order-safe evaluator; it does not certify ordinary Phenix refinement.
+
+ATL also has a new positive isolated control: source-preserving generation keeps
+all four declared stereocentres, hydrogens, charges and its sugar bridge. Both
+source-seed and generated-coordinate native checks pass all 21 checks with the
+same covalent proxies. Generation does not report convergence. This clears a
+numerical-dictionary prerequisite, not the still-open whole-scaffold/link gate.
+Exact artifacts and versions are in the
+[C142 evidence](cif-linked-native-registration-evidence.json).
+
+`qualify_linked_torsion_energy` first replays the complete declaration-based
+linked torsion inventory gate. It then binds two single-proxy/container
+evaluations to the exact removed proxies and their original coordinates, scatters
+their gradients through literal native atom indices, and requires the full energy
+and gradient differences to match. All unrelated residual terms and counts must
+remain unchanged. Native source identities, finite values, repetitions and term
+sums are checked independently. Unknown snapshot fields refuse.
+
+The schema-1 `cif-linked-linear-torsion-energy-v1` report is fixed-point numerical
+attribution only. The caller authenticates native captures and input provenance;
+this pure reader never launches a native tool, executes captured code or selects
+a model. Derivatives require a fresh check on the changed objective. Convergence,
+geometry, diffraction refinement and automatic adoption remain separate gates.
+No component-name whitelist selects the omission: the source triple bond, linear
+angle targets and complete native definition/proxy membership must justify it.
+
+The mixed eight-pair scaffold already includes K:X, D:T, Z:P, B:S, PDU:A and DF:A
+(DF is the reviewed A1AAZ alias), plus 5PC:G and 5CM:Q. **ATL alongside those pairs
+has not yet been validated on that scaffold.** Its declared bridged sugar is
+RNA-linking, so the older DNA fragment constructor is not a valid adapter.
+Preserve the bridge and use an independently qualified whole-residue/link route;
+do not relabel ATL or discard its extra sugar atoms to pass a DNA-only gate.
+
+The L-FANA and PNA work is part of the general engine's chemistry knowledge:
+graph-matched attachment profiles; source atom, hydrogen and charge preservation;
+retained stereocentres under construction and serialization; explicit reciprocal
+link context; and narrow, source-bound bond-representation policies. PNA amide
+ports do not acquire phosphate logic. Changed names or labels do not grant a
+chemical transformation. ReadySet output must satisfy the same current source,
+site and native checks as a generated candidate. Evidence-backed exceptions are
+allowed, but need an exact applicability predicate, independent source/chemical
+authority and regression controls outside the motivating residue.
+
+Aster's Cedar28 illustrated guide remains historical context until the planned
+Cedar completion update. Its source/native/numerical/geometry distinction still
+governs the newer cache, construction and public bundle integration.
 
 ### Selected component runtime handoff (C141)
 

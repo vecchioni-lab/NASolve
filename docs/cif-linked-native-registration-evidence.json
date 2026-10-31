@@ -51870,5 +51870,704 @@
     "full_tested_commit": "a9ec988d562155f44399503c58e2579d3459785f",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "linked_torsion_energy_and_atl_2026_10_31": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "284431eb4cf3495b8f9b62cc2fbc3d1d08720f7e",
+    "before": "C104 proved the graph-qualified PDU omission inventory on the source-repaired mixed scaffold but left changed-objective numerics open. ATL remained separate, with installed linked energy-type failures and no demonstrated independent source-preserving numerical candidate.",
+    "after": "A reusable fixed-point numerical reader binds exact removed proxy identities/coordinates and repeated single/container evaluations to the full energy/gradient delta. Fresh PDU captures and sampled derivatives pass with repaired DF and all unrelated restraints preserved. An independent ATL candidate preserves its bridge, four sugar hands, hydrogen/charge state and passes isolated native usability at source/generated coordinates.",
+    "changed_files": [
+      "src/nasolve/cif_linked_torsion_energy.py",
+      "tests/test_cif_linked_torsion_energy.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-linked-linear-torsion-energy-v1, a pure numerical report with caller-owned native capture provenance",
+      "unchanged": "All prior candidate/native/gradient, public bundle, CLI, run/checkpoint and source chemistry schemas"
+    },
+    "compatibility": "Additive opt-in Python qualifier. No migration, historical rewrite, ordinary PostMR default or selection/adoption change.",
+    "regressions": {
+      "before": "24 failures before implementation (missing numerical gate); then 50 new/related tests pass in 20.60s.",
+      "new_cases": 24,
+      "focused": {
+        "wrapper_pid": 50438,
+        "pytest_wrapper_pid": 50452,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/142_Cedar_linked-energy-ku0vlr3e/validation/focused/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "focused",
+        "exit_code": 0,
+        "seconds": 116.95834737503901,
+        "files": 521,
+        "changed_files": [],
+        "summary": "1362 passed, 36 subtests passed in 116.55s (0:01:56)",
+        "finished": true
+      },
+      "full": {
+        "wrapper_pid": 50438,
+        "pytest_wrapper_pid": 51025,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/142_Cedar_linked-energy-ku0vlr3e/validation/full/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "full",
+        "exit_code": 0,
+        "seconds": 1110.712708416977,
+        "files": 521,
+        "changed_files": [],
+        "summary": "7143 passed, 276 subtests passed in 1110.25s (0:18:30)",
+        "finished": true
+      },
+      "source_test_runner_hashes_unchanged": 521
+    },
+    "native": {
+      "attribution": {
+        "automatic_adoption": false,
+        "checks": {
+          "candidate_count_repeats": true,
+          "candidate_term_repeats": true,
+          "candidate_term_sum": true,
+          "dihedral_delta_matches_removed": true,
+          "full_gradient_delta_matches_removed": true,
+          "only_planned_proxy_count_change": true,
+          "original_count_repeats": true,
+          "original_term_repeats": true,
+          "original_term_sum": true,
+          "removed_reference_repeats_and_container": true,
+          "total_delta_matches_removed": true,
+          "unaffected_terms": true
+        },
+        "component": "PDU",
+        "derivative_qualification": "NOT_RUN",
+        "gradient_delta_error_norm": 9.096266260568332e-13,
+        "inventory_checks_pass": true,
+        "model_editing": "NOT_RUN",
+        "numerical_checks_pass": true,
+        "optimization": "NOT_RUN",
+        "policy_id": "cif-linked-linear-torsion-energy-v1",
+        "removed_proxy_count": 3,
+        "removed_target": 14.17126705720611,
+        "schema_version": 1,
+        "scientific_approval": "NOT_RUN",
+        "scope": "FIXED_COORDINATE_ATTRIBUTION_ONLY; CALLER_AUTHENTICATES_NATIVE_CAPTURE",
+        "status": "REVIEW",
+        "target_delta": 14.171267057206023,
+        "tolerance": {
+          "absolute": 1e-08,
+          "relative": 1e-10
+        }
+      },
+      "automatic_adoption": false,
+      "complete_native_interpretations": 3,
+      "derivatives": {
+        "automatic_adoption": false,
+        "checks": {
+          "captured_raw_snapshot": true,
+          "complete_both_order_plane_derivatives_and_controls": true,
+          "complete_initial_sampled_derivatives": true,
+          "unchanged_native_energy": true,
+          "unchanged_static_constraint_signature": true
+        },
+        "policy_id": "cif-mixed-initial-native-gradient-v1",
+        "sampled_derivatives_pass": true,
+        "scientific_qualification": "NOT_ASSESSED",
+        "status": "MIXED_INITIAL_DERIVATIVES_PASS"
+      },
+      "dispatcher": "2.2.1",
+      "gradient_execution": {
+        "returncode": 0,
+        "seconds": 18.624466291978024,
+        "version": "2.2.1",
+        "worker": "gradient_worker.py"
+      },
+      "kernel_execution": {
+        "returncode": 0,
+        "seconds": 0.5385560829890892,
+        "version": "2.2.1",
+        "worker": "worker.py"
+      },
+      "native_captures": {
+        "candidate": {
+          "anchor": "mixed_linked_recovery_directory",
+          "path": "native/candidate/cif-native-y2l252ru/native_receipt.json",
+          "sha256": "01484f1e9b24b0686e72c20927d9fa4a50e8ee8075218e8f55ab378ca9bbbcb7",
+          "size": 5879204
+        },
+        "original": {
+          "anchor": "mixed_linked_recovery_directory",
+          "path": "native/original/cif-native-hepogi84/native_receipt.json",
+          "sha256": "66ff7eed632df5d61a68e33a47e852a63dd928733bec328f088aa8c6bcd6400b",
+          "size": 5885292
+        }
+      },
+      "optimization": "NOT_RUN",
+      "parent_artifacts_preserved": 213,
+      "phenix": "2.2.1-6174",
+      "refinement": "NOT_RUN"
+    },
+    "science_replay": {
+      "native_receipts_authenticated": 4,
+      "kernel_and_derivative_sources_identical": true,
+      "df_sugar_bonds_preserved": {
+        "candidate": [
+          {
+            "atom_id_1": "C1'",
+            "atom_id_2": "C2'",
+            "type": "single",
+            "value_dist": 1.541,
+            "value_dist_esd": 0.037,
+            "value_dist_neutron": null
+          },
+          {
+            "atom_id_1": "C2'",
+            "atom_id_2": "C3'",
+            "type": "single",
+            "value_dist": 1.538,
+            "value_dist_esd": 0.037,
+            "value_dist_neutron": null
+          },
+          {
+            "atom_id_1": "C3'",
+            "atom_id_2": "C4'",
+            "type": "single",
+            "value_dist": 1.554,
+            "value_dist_esd": 0.037,
+            "value_dist_neutron": null
+          }
+        ],
+        "original": [
+          {
+            "atom_id_1": "C1'",
+            "atom_id_2": "C2'",
+            "type": "single",
+            "value_dist": 1.541,
+            "value_dist_esd": 0.037,
+            "value_dist_neutron": null
+          },
+          {
+            "atom_id_1": "C2'",
+            "atom_id_2": "C3'",
+            "type": "single",
+            "value_dist": 1.538,
+            "value_dist_esd": 0.037,
+            "value_dist_neutron": null
+          },
+          {
+            "atom_id_1": "C3'",
+            "atom_id_2": "C4'",
+            "type": "single",
+            "value_dist": 1.554,
+            "value_dist_esd": 0.037,
+            "value_dist_neutron": null
+          }
+        ]
+      },
+      "atl_current_source_reassessment": true,
+      "atl_cases": {
+        "source_seed": {
+          "native_usable": true,
+          "checks": 21,
+          "verified_artifacts": 10
+        },
+        "generated_output": {
+          "native_usable": true,
+          "checks": 21,
+          "verified_artifacts": 10
+        }
+      },
+      "atl_four_source_hands_preserved": true,
+      "atl_generated_convergence": {
+        "status": "NOT_REPORTED",
+        "convergence_claimed": false,
+        "trajectory": {
+          "policy_id": "cif-printed-optimizer-trajectory-audit-v1",
+          "status": "RECORDED",
+          "table_count": 1,
+          "rows": 46,
+          "sequential": true,
+          "lowest_printed_energy": {
+            "iteration": 45,
+            "printed_energy": -595.6204,
+            "line": 132
+          },
+          "final_printed_energy": {
+            "iteration": 46,
+            "printed_energy": -595.6172,
+            "line": 134
+          },
+          "increases_above_print_rounding": 11,
+          "largest_adjacent_increase": {
+            "from_iteration": 13,
+            "to_iteration": 14,
+            "energy_change": 2.9992999999999483
+          },
+          "stopping": "NOT_REPORTED",
+          "convergence_claimed": false,
+          "coordinate_trajectory": "NOT_CAPTURED",
+          "interpretation": "Printed native energy trace only; no mechanism, optimum or convergence inference."
+        }
+      },
+      "combined_scaffold_with_ATL": "NOT_CONSTRUCTED",
+      "ordinary_refinement": "NOT_QUALIFIED",
+      "automatic_adoption": false
+    },
+    "cold_relocation": {
+      "exact_replay": true,
+      "negative_controls": {
+        "ref_coordinates": true,
+        "ref_proxy": true,
+        "missing_ref": true,
+        "source_identity": true,
+        "force": true,
+        "term": true,
+        "count": true
+      },
+      "original_checkout_gone": true,
+      "external_execution": "FORBIDDEN",
+      "historical_reads": "FORBIDDEN"
+    },
+    "atl": {
+      "generation_status": "CANDIDATE_REVIEW",
+      "source_sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01",
+      "candidate": {
+        "anchor": "candidate_directory",
+        "path": "candidate.cif",
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6",
+        "size": 14339
+      },
+      "source_preserved": true,
+      "formal_charges_preserved": true,
+      "four_source_hands": [
+        {
+          "center": "C1'",
+          "basis": "FOUR_DECLARED_NEIGHBORS",
+          "ordered_neighbors": [
+            "C2'",
+            "H1'",
+            "N1",
+            "O4'"
+          ],
+          "source_volume": 8.117943379,
+          "candidate_volume": 8.299092681117,
+          "handedness": "PRESERVED"
+        },
+        {
+          "center": "C2'",
+          "basis": "FOUR_DECLARED_NEIGHBORS",
+          "ordered_neighbors": [
+            "C1'",
+            "C3'",
+            "H2'",
+            "O2'"
+          ],
+          "source_volume": -8.607934151,
+          "candidate_volume": -8.439915229579002,
+          "handedness": "PRESERVED"
+        },
+        {
+          "center": "C3'",
+          "basis": "FOUR_DECLARED_NEIGHBORS",
+          "ordered_neighbors": [
+            "C2'",
+            "C4'",
+            "H3'",
+            "O3'"
+          ],
+          "source_volume": -8.449813411,
+          "candidate_volume": -8.250644838071999,
+          "handedness": "PRESERVED"
+        },
+        {
+          "center": "C4'",
+          "basis": "FOUR_DECLARED_NEIGHBORS",
+          "ordered_neighbors": [
+            "C3'",
+            "C5'",
+            "C6'",
+            "O4'"
+          ],
+          "source_volume": -10.733738502000001,
+          "candidate_volume": -10.423977604832002,
+          "handedness": "PRESERVED"
+        }
+      ],
+      "stopping": {
+        "status": "NOT_REPORTED",
+        "convergence_claimed": false,
+        "trajectory": {
+          "policy_id": "cif-printed-optimizer-trajectory-audit-v1",
+          "status": "RECORDED",
+          "table_count": 1,
+          "rows": 46,
+          "sequential": true,
+          "lowest_printed_energy": {
+            "iteration": 45,
+            "printed_energy": -595.6204,
+            "line": 132
+          },
+          "final_printed_energy": {
+            "iteration": 46,
+            "printed_energy": -595.6172,
+            "line": 134
+          },
+          "increases_above_print_rounding": 11,
+          "largest_adjacent_increase": {
+            "from_iteration": 13,
+            "to_iteration": 14,
+            "energy_change": 2.9992999999999483
+          },
+          "stopping": "NOT_REPORTED",
+          "convergence_claimed": false,
+          "coordinate_trajectory": "NOT_CAPTURED",
+          "interpretation": "Printed native energy trace only; no mechanism, optimum or convergence inference."
+        }
+      },
+      "native_usable": true,
+      "same_fixed_covalent_proxies": true,
+      "native_cases": {
+        "source_seed": {
+          "native_usable": true,
+          "checks": 21,
+          "verified_artifacts": 10
+        },
+        "generated_output": {
+          "native_usable": true,
+          "checks": 21,
+          "verified_artifacts": 10
+        }
+      },
+      "combined_scaffold": "NOT_CONSTRUCTED"
+    },
+    "software": {
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_native_interpretations": 5,
+      "additional": "One complete source-preserving ATL generation (180-step bound; 35.00741s) plus source probes and single-proxy kernel evaluation. No Coot or ReadySet execution; no whole-model optimization or diffraction refinement.",
+      "dry_run": false
+    },
+    "validation_commands": {
+      "before": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linked_torsion_energy.py",
+      "initial_focused": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linked_torsion_energy.py tests/test_cif_linked_linear_torsion.py",
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/142_Cedar_linked-energy-ku0vlr3e/validation/focused/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/142_Cedar_linked-energy-ku0vlr3e/validation/full/pytest.xml"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python /private/tmp/c142_native.py; c142_atl.py; c142_science_audit.py",
+      "cold": "../NASolve/.venv/bin/python /private/tmp/c142_cold.py (owned original checkout gone; SDK/historical reads and external execution forbidden)",
+      "auxiliary": "../NASolve/.venv/bin/python /private/tmp/c142_auxiliary.py; final documentation/JSON/link and git diff --check replay"
+    },
+    "auxiliary": {
+      "compileall": "PASS",
+      "compile_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "tests"
+      ],
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c142-compile-cache"
+      },
+      "documents": {
+        "relative_links_checked": 295,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "svg_exact_regeneration": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "svg_rendered": true,
+      "svg_visual_review": "PASS; unchanged figure remains accurate and readable",
+      "diff_check": "PASS"
+    },
+    "scientific_context": "Aster Cedar28 illustrated guide reread; its source/native/numerical/geometry distinction remains authoritative design context. The PDF stays unchanged until Cedar completion. Source-graph ports, H/charge/stereo preservation and explicit representation policies learned through FANA/L-FANA/PNA remain general engine checks; source-bound evidence-backed exceptions are allowed.",
+    "artifacts": "Only runtime/test code, focused profile, maintained contracts and summary/hash evidence are committed. Models, generated CIFs, source snapshots, Phenix output, PDF, private runners and test logs remain local; all old attempts and unrelated user data are preserved.",
+    "limitations": [
+      "The new API attributes fixed-coordinate numerical deltas only. Its caller authenticates native execution/capture provenance; a saved success flag is not authentication.",
+      "PDU initial derivatives pass using the maintained NASolve-local order-safe evaluator. No new whole-model optimization, endpoint geometry qualification or diffraction refinement ran; plain Phenix refinement is not certified by this result.",
+      "ATL has source-preserving isolated native usability at two coordinate sets, not linked construction or combined-scaffold qualification. Its generation stopping is NOT_REPORTED; no convergence claim is made.",
+      "The requested eight-pair-plus-ATL scaffold remains NOT_CONSTRUCTED. Existing DNA-only fragment construction correctly refuses ATL RNA-linking metadata; preserve its bridge and qualify a whole-residue/link adapter.",
+      "No ordinary PostMR automatic adoption/checkpoint integration, experimental protonation assignment, absolute CIP assignment, installed-library changes or catalogue-wide release. PNA and broader L-FANA/L-FDNA learning/coverage remain in the engine roadmap."
+    ],
+    "next": "Build a source-preserving whole-residue/link adapter for ATL using its qualified candidate and existing graph/stereochemical lessons, then test it alongside the existing eight mixed-scaffold pairs. Separately run a new bounded PDU geometry trial on the newly derivative-qualified objective. Continue ordinary PostMR selected-bundle orchestration with usable fallback; no merge is implied.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/native-results.json",
+        "size": 2797,
+        "sha256": "69da1a90ff44db7637634f9151b3c0e8afadd4b3c672193930f407c7eb98c6f6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/science-audit.json",
+        "size": 2757,
+        "sha256": "9abffd709af2e0a14e8dd2f649501c0780e9f6e822827533529f7dbfa7beee63"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/parent-before.json",
+        "size": 35131,
+        "sha256": "eebed4354082250da3342d6070f147c0896fa0fe7b991fbdf62e5f006018ce52"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/parent-bindings.json",
+        "size": 8724,
+        "sha256": "1d0fdbd176a3178f8a9af270808b9b9193a34eb794afa4fae0445a7faec99b96"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/omission-plan.json",
+        "size": 3963,
+        "sha256": "776825ff4db4b2af057d9136d23d460a0ed1cc2602c7395b9942731ff87d51db"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/qualification.json",
+        "size": 1155,
+        "sha256": "d1bc7f3863e466bc4227482a87ae739a70e1003732ae34075d8bf263baf1c8d5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/candidate/PDU.cif",
+        "size": 9613,
+        "sha256": "7f9d72951d0f83b4007e16a214b3b3a2e3ce7cc4ea619e26340b9f56b36c6956"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/kernel/spec.json",
+        "size": 2404,
+        "sha256": "a65ee6eab846e52b2b44850364715d659d95a17388767c53d3e85057307772ae"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/kernel/result.json",
+        "size": 12109,
+        "sha256": "0dbb4f4e8bd25d29df8e1d6fc56b0da6b16496b367eb4a0ec8aeea5fa9abfd5e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/kernel/execution.json",
+        "size": 102,
+        "sha256": "9cf61f6661551c4091d63db5bd412158a3350e933b0d67aafbe8f5dd243e57ff"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/gradient/preparation.json",
+        "size": 13508,
+        "sha256": "84284ecc7170be13f122540a7b1b0414eda09156cceae2014e573a99f967b53b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/gradient/qualification.json",
+        "size": 472,
+        "sha256": "3a1dc07778239a99cbda482f04491aee29c70d822f1ee4fb17f4f88e6fa69032"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/gradient/job/gradient_result.json",
+        "size": 3065351,
+        "sha256": "3f5b45b3754b065b0189efea11adf65a7e6c7e041b79ad6055119ed143521b2c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/gradient/job/execution.json",
+        "size": 111,
+        "sha256": "3fc73705e3ce8231a21989efe1937454e8b05b577ef3bc151c5037817f07bccc"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/cold/result.json",
+        "size": 324,
+        "sha256": "5e6579ae0e03c05d98f9c19568c999f6499bb4ce1317bbb5ca20e7ed2fad9799"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/cold/replay.log",
+        "size": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/before.log",
+        "size": 55583,
+        "sha256": "6533a5ccc1875ad78c8bc0f64ebbf411f599717b972f915931b69b2a5f5ab0f8"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/initial-focused.log",
+        "size": 100,
+        "sha256": "756038550ef2d8003b459c0a2e154bdb4e30e4eccdf7da9fe686a4056749b246"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/focused/result.json",
+        "size": 702,
+        "sha256": "919f358fdc757bfb032677edcb1190c80646cd566566c651463a83f121af3748"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/focused/pytest.log",
+        "size": 6264,
+        "sha256": "f3dca845f6872f36c59ae75e8bff313470185d1267cae610b0fdd76937993ec3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/focused/pytest.xml",
+        "size": 201308,
+        "sha256": "d862e5e04c6995c6ed1b47def80a185b2138e1672407cc3122fcf4d74cb04e5f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/focused/source-hashes.json",
+        "size": 56331,
+        "sha256": "619da3594141f1d755be9799e1bbb81497e8a45a736d6e98d21b26b1b366807c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/full/result.json",
+        "size": 676,
+        "sha256": "38d717affc7ea9cc27c5be625688744df69bfb38b139ea662f6e90eb7361c2bd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/full/pytest.log",
+        "size": 10917,
+        "sha256": "982f7f8587fc7389b462608930538dc34e0fa385c4872dc7679d32fa236240fe"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/full/pytest.xml",
+        "size": 1087626,
+        "sha256": "055de1d70386b23a1fb5ef710f35b4c3b8397e7d653bdd871c2966be5b09594a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/full/source-hashes.json",
+        "size": 56331,
+        "sha256": "619da3594141f1d755be9799e1bbb81497e8a45a736d6e98d21b26b1b366807c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/validation/auxiliary.json",
+        "size": 660,
+        "sha256": "ce90e62fcab68b8fc9df575d0f11bd94762fb5f462f5ffad4247b5338b6dccf4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/source-profile.json",
+        "size": 16446,
+        "sha256": "ae53920d35c2b2e35bc932a71bc2e1db77e09c320e3b8e342038dc084139bcc0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/construction-eligibility.json",
+        "size": 192,
+        "sha256": "c4fe6c308cfa459d00a31868cbd3c6d41dc3f2df81b4728716bfdced0a29f983"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/acquisition-summary.json",
+        "size": 3952,
+        "sha256": "63cbe74a22703326261eb6fe74d8d62dd2f23a313f3c84bc09a1d6ff851bba9b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/native-qualification.json",
+        "size": 1755366,
+        "sha256": "4042e2e5773a260a69a88447452102832d360519b95fc8c7fea0a9dbee924446"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/generated/source_candidate_receipt.json",
+        "size": 579999,
+        "sha256": "df209cd82fa545ba2f01582a2c39f843d16ed9c0d59d2fe709180829486792dd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/generated/candidate.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/inputs/ATL.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/inputs/Ligands.xlsx",
+        "size": 194621,
+        "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/native/candidate/cif-native-y2l252ru/native_receipt.json",
+        "size": 5879204,
+        "sha256": "01484f1e9b24b0686e72c20927d9fa4a50e8ee8075218e8f55ab378ca9bbbcb7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/native/original/cif-native-hepogi84/native_receipt.json",
+        "size": 5885292,
+        "sha256": "66ff7eed632df5d61a68e33a47e852a63dd928733bec328f088aa8c6bcd6400b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/native/source_seed/cif-native-23jwpa1o/native_receipt.json",
+        "size": 263984,
+        "sha256": "06c8a2b08119520d76b0eecfd690a7097bd61c1fe98ba5b4e8e5674f7490f7c9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "142_Cedar_linked-energy-ku0vlr3e/ATL/native/generated_output/cif-native-lhit62s3/native_receipt.json",
+        "size": 264375,
+        "sha256": "6514ff59772dafb6ebc2866da3fe0ac920899cee8fabea8d7258a23732a92356"
+      }
+    ]
   }
 }
