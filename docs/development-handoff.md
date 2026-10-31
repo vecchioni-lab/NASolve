@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C140 validated: lossless ReadySet atom serialization
+## C140 published: lossless ReadySet atom serialization
 
 Base: `5e28b849df66cb1ebf9cc5b394cf4094db85dc96`; existing cedar only.
 Capsule: `live_tests_directory/140_Cedar_readyset-order-6fbnrf7n`.
@@ -49,7 +49,9 @@ Eleven negative controls preserve fallback or refuse an invalid start. All 340
 frozen evidence files retain bytes/sizes/timestamps. Historical C139 decisions
 remain unchanged. Only code/tests, durable contracts, figure and summary/hash
 evidence are published; raw science and runners stay local outside Git.
-No job is active. Implementation and validation are complete; signed publication remains.
+No job is active. Implementation, full validation and signed publication are complete. Tested
+implementation `b8635ce443183e7cbac31dc6b79a43cb7edc27b7` is published and verified
+on `origin/cedar`; this follow-up records continuity. No branch creation or merge.
 Evidence key: `readyset_atom_serialization_2026_10_31`.
 
 Next: ordinary continuation/adoption around the exact selected endpoint and usable

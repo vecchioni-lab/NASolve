@@ -50812,7 +50812,7 @@
     "remote_verified": true
   },
   "readyset_atom_serialization_2026_10_31": {
-    "status": "VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "5e28b849df66cb1ebf9cc5b394cf4094db85dc96",
@@ -51262,6 +51262,10 @@
         "size": 36340,
         "sha256": "c593e2d6329292e8fb092c3e430d11d283b262c1481a74ca06bf2a7c231f630d"
       }
-    ]
+    ],
+    "implementation_commit": "b8635ce443183e7cbac31dc6b79a43cb7edc27b7",
+    "full_tested_commit": "b8635ce443183e7cbac31dc6b79a43cb7edc27b7",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
