@@ -51267,5 +51267,604 @@
     "full_tested_commit": "b8635ce443183e7cbac31dc6b79a43cb7edc27b7",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "component_runtime_handoff_2026_10_31": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "560bf96b2996c96fc85f17b4bbb053a682cbee25",
+    "before": "Qualified component/ReadySet selection remained an internal inspector result; the public bundle reader could not consume that exact model, ordered restraints and frozen qualification together.",
+    "after": "An immutable export replays maintained source/native evidence before public assessment exposes the selected model and exact ordered restraints. Failed optional improvements keep the verified start with its own resources; damaged saved exports refuse. Public summaries retain diagnostic scope and unavailable evidence.",
+    "changed_files": [
+      "src/nasolve/cif_component_runtime.py",
+      "src/nasolve/cif_runtime_bundle.py",
+      "tests/test_cif_component_runtime.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/figures/README.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg"
+    ],
+    "schemas": {
+      "runtime": "schema 1 / cif-qualified-component-runtime-bundle-v1; existing runtime_bundle anchor, runtime_bundle.json and exact selected model/ordered CIF/PHIL resources plus bounded frozen evidence",
+      "selection": "Source replay via existing component/native/ReadySet inspector; all three selected enums retained, diagnostic-only scope and unavailable evidence explicit",
+      "unchanged": "Legacy single/mixed runtime bundles, scientific/native capture policies, CLI syntax, ordinary PostMR defaults and run/checkpoint schemas"
+    },
+    "compatibility": "Opt-in Python producer consumed by the existing public assess --bundle command. Legacy single/mixed readers pass unchanged. No migration or historical rewrite; no automatic production/checkpoint adoption.",
+    "regressions": {
+      "initial": "25 failed in 1.63s before implementation. First implementation fixture run exposed a test-verifier keyword mismatch; corrected fixtures then passed all 96 new/legacy cases. Final 26-case module adds the actual absent-ReadySet relocation regression.",
+      "portability_before_fix": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "/Users/svecchio/NASolve-live-tests/141_Cedar_component-runtime-cc_r1hql/validation/portable-before-fix/run.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_component_runtime.py"
+        ],
+        "returncode": 1,
+        "expected_failure": true,
+        "source": "Isolated copy with exact pre-portability-fix module; active frozen worktree unchanged",
+        "summary": "1 failed, 25 deselected in 0.83s"
+      },
+      "new_cases": 26,
+      "focused": {
+        "wrapper_pid": 43464,
+        "pytest_wrapper_pid": 43465,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/141_Cedar_component-runtime-cc_r1hql/validation/focused/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "focused",
+        "exit_code": 0,
+        "seconds": 108.46782820904627,
+        "files": 519,
+        "changed_files": [],
+        "summary": "1281 passed, 36 subtests passed in 108.16s (0:01:48)",
+        "finished": true
+      },
+      "full": {
+        "wrapper_pid": 43464,
+        "pytest_wrapper_pid": 43968,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/141_Cedar_component-runtime-cc_r1hql/validation/full/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "full",
+        "exit_code": 0,
+        "seconds": 1105.7198753339471,
+        "files": 519,
+        "changed_files": [],
+        "summary": "7119 passed, 276 subtests passed in 1105.20s (0:18:25)",
+        "finished": true
+      },
+      "source_test_runner_hashes_unchanged": 519
+    },
+    "native": {
+      "cases": [
+        {
+          "case": "raw_fallback",
+          "selected": "verified_prepared_model",
+          "cli_returncode": 2,
+          "unavailable_native_checks": 3,
+          "native_checks": 28,
+          "exact_captured_energies_and_gradients": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T08:08:18.455740+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T08:08:23.491277+00:00",
+            "elapsed_seconds": 5.035588
+          }
+        },
+        {
+          "case": "raw_stable",
+          "selected": "readyset_checked_model",
+          "cli_returncode": 2,
+          "unavailable_native_checks": 3,
+          "native_checks": 28,
+          "exact_captured_energies_and_gradients": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T08:08:36.844664+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T08:08:37.878269+00:00",
+            "elapsed_seconds": 1.033632
+          }
+        },
+        {
+          "case": "ordered",
+          "selected": "readyset_ordered_checked_model",
+          "cli_returncode": 2,
+          "unavailable_native_checks": 3,
+          "native_checks": 28,
+          "exact_captured_energies_and_gradients": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T08:08:52.960793+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T08:08:53.863682+00:00",
+            "elapsed_seconds": 0.902917
+          }
+        },
+        {
+          "case": "absent_readyset_v2",
+          "selected": "verified_prepared_model",
+          "cli_returncode": 2,
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "nasolve",
+            "cif-doctor",
+            "assess",
+            "--bundle",
+            "/Users/svecchio/NASolve-live-tests/141_Cedar_component-runtime-cc_r1hql/absent_readyset_v2/runtime",
+            "--json"
+          ],
+          "unavailable_native_checks": 3,
+          "native_execution": "NOT_RUN"
+        }
+      ],
+      "new_native_calls": 3,
+      "new_readyset_calls": 0,
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "scientific_qualification": "NOT_ASSESSED",
+      "dry_run": false,
+      "failed_attempt_preserved": "absent_readyset",
+      "failure": "Absent ReadySet exception carried the temporary absolute path; fixed by declared runtime_bundle anchor and published fresh v2 attempt."
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "cases": [
+        {
+          "case": "absent_readyset_v2",
+          "selected": "verified_prepared_model",
+          "cli_returncode": 2,
+          "unavailable_native_checks": 3
+        },
+        {
+          "case": "ordered",
+          "selected": "readyset_ordered_checked_model",
+          "cli_returncode": 2,
+          "unavailable_native_checks": 3
+        },
+        {
+          "case": "raw_fallback",
+          "selected": "verified_prepared_model",
+          "cli_returncode": 2,
+          "unavailable_native_checks": 3
+        },
+        {
+          "case": "raw_stable",
+          "selected": "readyset_checked_model",
+          "cli_returncode": 2,
+          "unavailable_native_checks": 3
+        }
+      ],
+      "negative_controls": [
+        {
+          "defect": "signed_chirality",
+          "result": "REFUSED",
+          "reason": "Runtime resource differs from verified selection"
+        },
+        {
+          "defect": "native_worker",
+          "result": "REFUSED",
+          "reason": "Runtime resource differs from verified selection"
+        },
+        {
+          "defect": "effective_dictionary",
+          "result": "REFUSED",
+          "reason": "Runtime resource differs from verified selection"
+        },
+        {
+          "defect": "bad_start",
+          "result": "REFUSED",
+          "reason": "Bundle artifact inventory or checksum differs"
+        },
+        {
+          "defect": "missing_endpoint",
+          "result": "REFUSED",
+          "reason": "Runtime resource differs from verified selection"
+        },
+        {
+          "defect": "selected_model",
+          "result": "REFUSED",
+          "reason": "Runtime resource checksum or size changed"
+        },
+        {
+          "defect": "order_evidence",
+          "result": "REFUSED",
+          "reason": "Runtime resource differs from verified selection"
+        }
+      ],
+      "unchanged_files": 555,
+      "forbidden_reads_attempted": 0,
+      "original_owned_checkout_removed": true,
+      "source": "RELOCATED_CHECKOUT",
+      "native_execution": "FORBIDDEN",
+      "captured_code_execution": "FORBIDDEN"
+    },
+    "validation_commands": {
+      "initial": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q tests/test_cif_component_runtime.py",
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/141_Cedar_component-runtime-cc_r1hql/validation/focused/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/141_Cedar_component-runtime-cc_r1hql/validation/full/pytest.xml"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "native": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c141_native.py; c141_finish_controls.py (fresh absent-ReadySet attempt, no repeated native executions)",
+      "public": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m nasolve cif-doctor assess --bundle CASE/runtime --json (all four cases; exit 2 with preserved findings)",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c141_replay.py; relocated c141_cold_worker.py, original-path/SDK reads and subprocess execution forbidden",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c141-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "documents": "check_docs.py; JSON parse; exact SVG regeneration, rsvg-convert and visual inspection; git diff --check"
+    },
+    "auxiliary": {
+      "compileall": "PASS",
+      "compile_command": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "tests"
+      ],
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c141-compile-cache"
+      },
+      "documents": {
+        "relative_links_checked": 294,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "svg_exact_regeneration": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "svg_rendered": true,
+      "svg_visual_review": "PASS: rendered labels, connectors and diagnostic-scope footer inspected",
+      "diff_check": "PASS"
+    },
+    "artifacts": "Only code/tests, maintained contracts, figure and summary/hash evidence published. Raw models/dictionaries/native/ReadySet captures, exports, failed attempt, logs and runner scripts remain local. Original controls and unrelated user data are unchanged.",
+    "limitations": [
+      "Read-only public integration only. Ordinary PostMR orchestration and selected-artifact/checkpoint provenance still need representative and held-out route validation before integration.",
+      "Diagnostic-only qualification: formal-charge readback remains unavailable at three sites; source chemical state stays authoritative. Public assessment retains REVIEW/UNSUPPORTED findings and exit code 2 rather than silently declaring full acceptance.",
+      "No new ReadySet, Coot, coordinate optimization, diffraction refinement, chemical generation or library modification. Three complete fresh native interpretations use already frozen C139/C140 source evidence.",
+      "Frozen source snapshots are bounded to 1024 files, 32 MiB per file and 128 MiB total. Existing single-model heavy-PDB atom-order restrictions remain; broader formats need independent qualification.",
+      "General cache-miss recovery, PNA/ATL numerical/native adapters, broader linked L-FANA/L-FDNA coverage, PDU changed-objective numerics and catalogue-wide release remain open."
+    ],
+    "next": "Connect the public selected-bundle seam to ordinary PostMR orchestration with exact selected-artifact provenance and usable fallback; exercise representative and held-out ordinary routes, failures/interruption and reporting before a bounded Cedar-to-pine integration review. Keep production adoption gated on appropriate evidence.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/native-results.json",
+        "size": 2446,
+        "sha256": "caa6c104b0450e3cf067156908b719db051f9dd59b68e078e76ba22e6808b519"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/cold/result.json",
+        "size": 1877,
+        "sha256": "e4dea06316ec9d3cbfa857a21ce61fb70d2cf1e68d69697170a11543c27b2a87"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/cold/execution.json",
+        "size": 322,
+        "sha256": "084deee5e7c6eca03c0c3fc2941c71d7b6241ed19c9b8b2da256e9b39e528480"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/cold/replay.log",
+        "size": 1517,
+        "sha256": "6b6953bf500ea0d3cd2bae6332c8f416273fda3e0ea374394fef82d48fb0357f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/before.log",
+        "size": 40271,
+        "sha256": "911e04723d72330962803d7c2f23b5ecb7a555832081f5ac3114080533f9b9a3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/first-fixture-failure.log",
+        "size": 46062,
+        "sha256": "0568d6ffb5fe75e182899ef250b1ae49241a20b1bd2c207b59b6082a2f8572cd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/legacy-reader-regression.log",
+        "size": 180,
+        "sha256": "f6c4a00910dad65d580ceb56fbbdb0cd2b9f2f436de9ed7734f7500751852ff5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/focused/result.json",
+        "size": 706,
+        "sha256": "c90b9c97df66f7969a8f42e5c6e9593c70a547ae135b0b590170fc69abb36bd9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/focused/pytest.log",
+        "size": 6020,
+        "sha256": "78f6f6d2ffa8e72bb80c8b3d675b154f33c9eba400746107bf23013990dfadf1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/focused/pytest.xml",
+        "size": 189519,
+        "sha256": "404fa0610b7f12fab8416448c38d068e20c5f003ef33e1352139d2c152ba2491"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/focused/source-hashes.json",
+        "size": 56104,
+        "sha256": "c2b230098881bf42b997f6875394df6094aa24a7b82219c530c0eee54bc49b56"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/full/result.json",
+        "size": 681,
+        "sha256": "6ce66d7d147ac0dcaa18934b6c6fe8a31210773686f5cde697c65327febcfb8c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/full/pytest.log",
+        "size": 10845,
+        "sha256": "7c8ab33b22691faea2346241446d02098928194fdcb21dfc13cd9a4ba2d6e33b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/full/pytest.xml",
+        "size": 1084192,
+        "sha256": "f2866e4399a4de4bea27f868ef602767ab96ea499e9ebc9e55a67395a82546fc"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/full/source-hashes.json",
+        "size": 56104,
+        "sha256": "c2b230098881bf42b997f6875394df6094aa24a7b82219c530c0eee54bc49b56"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/auxiliary.json",
+        "size": 679,
+        "sha256": "17c5e5ba1dbfea5939278456097ef5d076fb971b1b2a0ae1f3c92d80207137ca"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/portable-before-fix/result.json",
+        "size": 521,
+        "sha256": "2fa3b5a409a69a120aafc85dfd38933b76e438572dffee2f0b0b728a1382fbc4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/validation/portable-before-fix/pytest.log",
+        "size": 1754,
+        "sha256": "940613bc5543eb80dea85a11164d19e15845bb49a26fb9799b59081a041d75c1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_fallback/runtime/runtime_bundle.json",
+        "size": 78016,
+        "sha256": "8a01242bc89d510e4118b237d461fc91b3d9636ac092cde481d8b34385f28025"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_fallback/assessment.json",
+        "size": 215485,
+        "sha256": "104e434fd61682f4b23dedb7b0348ebdcee8619188e731fb6b6c0ecd77cf5258"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_fallback/cli.json",
+        "size": 215485,
+        "sha256": "e9974bcd7495d920667fa3706f74a864b272ff893eae0b3f8d51af11dd4b3221"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_fallback/native-review.json",
+        "size": 1658,
+        "sha256": "e30e448ee88dbc71eaacb7407c8d6d5747cb3f7429a68ef289de82105d4b6b20"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_fallback/execution.json",
+        "size": 318,
+        "sha256": "b59b34238847c381b3853dd57bd1779c2b29e3eee429dfbe1944fd7d69bfeb79"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_fallback/native/cif-native-2sy0tcjb/native_receipt.json",
+        "size": 935054,
+        "sha256": "d28407a0b24093b6013baf7df77346ae4e0c33d13b24e7955f70aaf0dc600bbd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_stable/runtime/runtime_bundle.json",
+        "size": 77522,
+        "sha256": "03ff6c47d41f50f72281bc368eb2dc71cbcd0b4f8855410ca83c441eaa83cbf9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_stable/assessment.json",
+        "size": 214393,
+        "sha256": "b0e880086adb562465e58fcfccecaf099a25212745659378a36ad0ea3fd44718"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_stable/cli.json",
+        "size": 214393,
+        "sha256": "794062d198f080800b562caa5699ba1118b08c4e06c2c452d415ec8948a5e146"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_stable/native-review.json",
+        "size": 1658,
+        "sha256": "e30e448ee88dbc71eaacb7407c8d6d5747cb3f7429a68ef289de82105d4b6b20"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_stable/execution.json",
+        "size": 316,
+        "sha256": "be58a49f658f88e8fc103ab26096248fa58c29c8c8290da14b624a917a5bb3eb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/raw_stable/native/cif-native-_z7uqr8h/native_receipt.json",
+        "size": 934179,
+        "sha256": "65af6a31ad1ea748cf7fae14dcf361888f6d18e55241631eb13803c4d1a17eb5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/ordered/runtime/runtime_bundle.json",
+        "size": 78492,
+        "sha256": "744b07a4b0bce1fa51ceb3078c26bfcba93a3f1ff90bf580297cfd7a8c51d138"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/ordered/assessment.json",
+        "size": 214424,
+        "sha256": "d469225e6c9d3e4224ac455660e192cd7e6c7e118fd5279b49192e597409ff9d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/ordered/cli.json",
+        "size": 214424,
+        "sha256": "aae9d321de77dcf2c9946d65b7750ab3fbd5bbfc9286002094a4aa7ccba146aa"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/ordered/native-review.json",
+        "size": 1658,
+        "sha256": "e30e448ee88dbc71eaacb7407c8d6d5747cb3f7429a68ef289de82105d4b6b20"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/ordered/execution.json",
+        "size": 313,
+        "sha256": "6a8797472c5502dcb3b1ef0f1606ce2af1cd0efed59c7be24281a40a02dca168"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/ordered/native/cif-native-vf3b1pkf/native_receipt.json",
+        "size": 934150,
+        "sha256": "f31ec514c0d9df6a195fd821616f781df0f423beb3a77ab1c5b199cae113fcc0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/absent_readyset_v2/runtime/runtime_bundle.json",
+        "size": 60490,
+        "sha256": "3e79d2f50f77cc142a7aae682ff10026112d79bf690cac9f7218ce7b1f3d70e6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/absent_readyset_v2/assessment.json",
+        "size": 215485,
+        "sha256": "c102166bb7474881414215dc5f9524be3ecde65fe6f95dc39e07bdb366070754"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "141_Cedar_component-runtime-cc_r1hql/absent_readyset_v2/cli.json",
+        "size": 215485,
+        "sha256": "8b07953cef067802d1bf2b3d1a9d6c746243d3525df760a58477313e66a87753"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/before/cif-native-vqhu91pp/native_receipt.json",
+        "size": 939213,
+        "sha256": "b022c9eea7ede7dce2734366ba4f7b11654d54287a6f0195e3d748d37535631f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/after/cif-native-9_p86ht7/native_receipt.json",
+        "size": 935280,
+        "sha256": "f558184a0e37bf1bc9926b79ab885bee6d96373a157e640336b9a1a8d15707f0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/endpoint/cif-native-qqrvzdm2/native_receipt.json",
+        "size": 934408,
+        "sha256": "e25f636388065e4569003127995828193a2d143f3e2e06f4e17afcfcf4511336"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/readyset/readyset_consumption.json",
+        "size": 52580,
+        "sha256": "a8580b660f2deb3e545481d5722935f78c998773dbbdd0aa9c052c1c172965c0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/before/cif-native-s_054_2f/native_receipt.json",
+        "size": 939303,
+        "sha256": "7a6b31e89903c60f6ed4f4c326366cc48ea65f90ea3650aa790fbbe5690fe9cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/after/cif-native-flxyghri/native_receipt.json",
+        "size": 935422,
+        "sha256": "9e99613fc01937b28dbe75dfd7e238844e3555e23f26604631e6085ae7f2e34c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/endpoint/cif-native-_634ljq9/native_receipt.json",
+        "size": 934538,
+        "sha256": "fd7fc8880f26d4b5dc3bb030b3dfa16daf80da3bd6f7efebcbe4387e4a4c4362"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/readyset/readyset_consumption.json",
+        "size": 52658,
+        "sha256": "d5c3f434489c541ed38193f7a0be38c7794b28e66ed760b0471c88971e3a9375"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/reordered/atom-order/atom_order.json",
+        "size": 737,
+        "sha256": "d0a850254ffe758e3d9433d444ef76440f1bd9c981730b80fef151395da759ae"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/reordered/native/cif-native-_io8otpe/native_receipt.json",
+        "size": 934348,
+        "sha256": "dbe5553b63a27603e02d87a2cae307378dd519716c3b1bd0d1f72227914396c0"
+      }
+    ]
   }
 }

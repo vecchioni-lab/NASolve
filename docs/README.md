@@ -20,8 +20,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C139 composes multiple qualified components, preserves source phosphate names
   at internal links and checks the final ReadySet/native result with a verified
   fallback. C140 adds explicit lossless heavy-PDB serialization followed by the
-  unchanged strict final native comparison. Automatic PostMR continuation/adoption
-  remains separate.
+  unchanged strict final native comparison. C141 brings that exact selected model
+  and restraint bundle into public assessment with frozen source replay. Automatic
+  PostMR continuation/adoption remains separate.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

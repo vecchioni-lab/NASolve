@@ -78,7 +78,9 @@
 
 <a id="current-capability-boundary-c139"></a>
 
-## Current capability boundary (C140)
+<a id="current-capability-boundary-c140"></a>
+
+## Current capability boundary (C141)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -97,7 +99,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. PDU omission candidates have exact inventory evidence. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs energy/gradient and derivative qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
-| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
+| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
 “add OP3”; a retained true terminal phosphate is protected. Lower scores under
@@ -142,6 +144,55 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Selected component runtime handoff (C141)
+
+`prepare_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt,
+readyset_directory, output, *, endpoint_receipt=None, atom_order_directory=None)`
+freezes the qualified selection for the existing public reader. Preparation runs
+no external process. The fresh destination contains the selected model, ordered
+dictionaries and PHIL files together, plus complete bounded source evidence.
+`nasolve cif-doctor assess --bundle PATH --json` consumes it using the existing
+runtime-bundle API and assessment rules. No separate CLI dialect is introduced.
+
+The schema-1 `cif-qualified-component-runtime-bundle-v1` policy uses the existing
+`runtime_bundle` anchor/layout. Explicit source receipt references resolve only
+inside declared evidence roots; readers never search by basename or execute
+captured programs. Every read replays the maintained component/native/ReadySet
+inspector and requires the selected resource bytes, order and full inventory to
+match. Inventories are bounded to 1024 files, 32 MiB per file and 128 MiB total;
+symlinks and nonregular files refuse. Source evidence is rechecked before fresh
+publication; the manifest and all bytes are rechecked after public assessment.
+Historical native absolute paths remain provenance only. Error text referring
+to the current evidence root uses its declared bundle anchor, so an absent
+optional attempt remains replayable after relocation.
+
+The selection is `verified_prepared_model`, `readyset_checked_model` or
+`readyset_ordered_checked_model`. A failed or missing optional improvement keeps
+the verified starting model **and its own ordered restraints**. An unusable start
+refuses publication. Once exported, damaged evidence refuses readback; it cannot
+silently rewrite an immutable selection into a different fallback.
+
+The public summary retains `SEPARATE_DIAGNOSTIC_PHASE_ONLY`, unavailable native
+checks, `automatic_adoption=false` and `checkpoint_adoption=NOT_RUN`. The existing
+assessment exit code still reflects dictionary findings; valid diagnostic bundles
+can return 2. A usable diagnostic bundle is not proof of experimental chemical
+state, successful refinement or readiness for production adoption. Source charge,
+phosphate and stereochemical authority is unchanged; NARestraints still owns
+pairing/stacking and ReadySet still owns ordinary preparation.
+
+The installed controls cover the starting fallback, stable ReadySet selection,
+order-restored selection and absent ReadySet. Three fresh complete Phenix
+2.2.1-6174 interpretations (dispatcher 2.2.1) preserve all 28 strict endpoint
+checks and exact captured energy/gradient values. No new ReadySet, Coot,
+optimization or diffraction refinement was run. Original-path/SDK-blocked cold
+replay and rehashed corruption controls are recorded under
+`component_runtime_handoff_2026_10_31` in the [evidence ledger](cif-linked-native-registration-evidence.json).
+
+This is the public read-only consumption seam. Ordinary PostMR orchestration,
+explicit selected-artifact provenance, checkpoints and representative/held-out
+workflow validation remain the next integration gate. The new producer API is
+opt-in; legacy single/mixed public bundles retain their existing policies.
 
 ### Lossless ReadySet atom serialization (C140)
 

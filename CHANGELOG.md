@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Exact component selection in public bundle assessment (C141)
+
+- Export a verified component selection as one model plus its exact ordered
+  dictionaries/PHILs and frozen source/native evidence. Read it through the
+  existing `cif-doctor assess --bundle` command; no new command is required.
+- Recheck source qualification on every read, including selected ReadySet or
+  order-restored output. Failed optional improvements retain the verified start
+  with its own restraints. Reject damaged starts and changed saved exports.
+- Preserve diagnostic-only scope and unavailable native evidence in the public
+  summary. Use anchored portable errors and bounded immutable snapshots; no
+  production adoption, checkpoint activation or chemistry change is introduced.
+
 ### Lossless ReadySet atom serialization (C140)
 
 - Add an explicit source-bound heavy-PDB serialization before the existing

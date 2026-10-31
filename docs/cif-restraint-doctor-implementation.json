@@ -27412,6 +27412,27 @@
       "full_tested_commit": "b8635ce443183e7cbac31dc6b79a43cb7edc27b7",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "component_runtime_handoff": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "An immutable export replays maintained source/native evidence before public assessment exposes the selected model and exact ordered restraints. Failed optional improvements keep the verified start with its own resources; damaged saved exports refuse. Public summaries retain diagnostic scope and unavailable evidence.",
+      "schemas": {
+        "runtime": "schema 1 / cif-qualified-component-runtime-bundle-v1; existing runtime_bundle anchor, runtime_bundle.json and exact selected model/ordered CIF/PHIL resources plus bounded frozen evidence",
+        "selection": "Source replay via existing component/native/ReadySet inspector; all three selected enums retained, diagnostic-only scope and unavailable evidence explicit",
+        "unchanged": "Legacy single/mixed runtime bundles, scientific/native capture policies, CLI syntax, ordinary PostMR defaults and run/checkpoint schemas"
+      },
+      "compatibility": "Opt-in Python producer consumed by the existing public assess --bundle command. Legacy single/mixed readers pass unchanged. No migration or historical rewrite; no automatic production/checkpoint adoption.",
+      "limitations": [
+        "Read-only public integration only. Ordinary PostMR orchestration and selected-artifact/checkpoint provenance still need representative and held-out route validation before integration.",
+        "Diagnostic-only qualification: formal-charge readback remains unavailable at three sites; source chemical state stays authoritative. Public assessment retains REVIEW/UNSUPPORTED findings and exit code 2 rather than silently declaring full acceptance.",
+        "No new ReadySet, Coot, coordinate optimization, diffraction refinement, chemical generation or library modification. Three complete fresh native interpretations use already frozen C139/C140 source evidence.",
+        "Frozen source snapshots are bounded to 1024 files, 32 MiB per file and 128 MiB total. Existing single-model heavy-PDB atom-order restrictions remain; broader formats need independent qualification.",
+        "General cache-miss recovery, PNA/ATL numerical/native adapters, broader linked L-FANA/L-FDNA coverage, PDU changed-objective numerics and catalogue-wide release remain open."
+      ],
+      "next": "Connect the public selected-bundle seam to ordinary PostMR orchestration with exact selected-artifact provenance and usable fallback; exercise representative and held-out ordinary routes, failures/interruption and reporting before a bounded Cedar-to-pine integration review. Keep production adoption gated on appropriate evidence.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "component_runtime_handoff_2026_10_31",
+      "validation": "7119 passed, 276 subtests passed in 1105.20s (0:18:25); focused 1281 passed, 36 subtests passed in 108.16s (0:01:48); three actual native interpretations, four cold public CLI cases and seven rehashed corruption controls."
     }
   },
   "audience": [
@@ -27926,7 +27947,7 @@
           "src/nasolve/cif_dictionary_reuse.py"
         ],
         "delivery": "Historical C66 evidence retained; current contracts in cif-doctor.md and C135 evidence.",
-        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C139 compose source-bound site preparations under exact shared native/ReadySet evidence. C140 adds explicit lossless heavy-PDB serialization followed by unchanged strict final checks and verified fallback; ordinary automatic adoption remains separate."
+        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C139 compose exact source/native/ReadySet evidence with usable fallback. C140 provides lossless atom serialization before strict endpoint checks. C141 exports the exact model/ordered restraints and frozen evidence through public assessment; ordinary orchestration/adoption remains separate."
       },
       "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },

@@ -102,6 +102,14 @@ Both installed controls pass all 28 checks with exact captured energy/gradient
 equality. Unsupported records (including ANISOU/CONECT and multiple models) refuse
 rather than losing metadata. This is not a general proxy-permutation equivalence
 claim. See the [serialization method](cif-doctor.md#lossless-readyset-atom-serialization-c140).
+C141 packages that choice for the existing public assessment command. The chosen
+model travels with its exact restraints and enough frozen evidence to recheck
+the decision after moving it. If the optional ReadySet improvement fails, the
+verified start keeps its own restraints. A damaged saved package is rejected.
+The public summary says which model was chosen and keeps missing charge evidence
+visible. It authorizes a separate diagnostic continuation only; production
+checkpoint adoption and automatic PostMR orchestration remain the next gate.
+See the [public handoff contract](cif-doctor.md#selected-component-runtime-handoff-c141).
 Source formal-charge limitations remain visible, and automatic adoption is still
 separate. See the [bundle methods](cif-doctor.md#qualified-component-bundles-and-final-readyset-readback-c139).
 

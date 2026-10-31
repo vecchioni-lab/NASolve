@@ -14,7 +14,8 @@ python3 docs/figures/build_cif_doctor_overview.py
 The current scope note includes declared chemistry, exact restraint consumption
 and complete native identities, plus composed components and C140's lossless
 atom serialization before the strict final ReadySet/native check with verified
-fallback. It retains ReadySet and NARestraints ownership
+fallback. C141 exports that selection through public assessment with its exact
++restraints, source replay and diagnostic-only scope. It retains ReadySet and NARestraints ownership
 and does not alter production NCS refinement.
 It adds no automatic adoption arrow; the companion contract retains unsupported
 formal-charge readback, source-state and integration limits.
