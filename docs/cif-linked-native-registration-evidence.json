@@ -57566,6 +57566,52 @@
     "document": "docs/cif-doctor-completion-queue.md",
     "audit_date": "2026-10-31",
     "audited_commit": "a943386dd3a8e27dabeae316d37039d92e1cb9fc",
-    "historical_record_semantics": "Dated status/next fields preserve evidence-time scope; later receipts and the current queue determine disposition. No historical scientific verdict is rewritten."
+    "historical_record_semantics": "Dated status/next fields preserve evidence-time scope; later receipts and the current queue determine disposition. No historical scientific verdict is rewritten.",
+    "published_audit_commit": "7f2f10d1edb53df7b5c2a50d08c3a8920e02eb8d",
+    "validation_scope": "Documentation only: 361 links/anchors, historical records preserved, 608 runtime/test/script/config files unchanged, 62 C149/C150 evidence references verified; no new native execution or scientific suite.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/source-manifest.json",
+        "size": 11191,
+        "sha256": "c90e740d264dc5bed71e17df5e7112360336fd85fd0f9449bbe3fec6cea62e74"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/records.json",
+        "size": 383621,
+        "sha256": "a69ca8f05fdd20a6453d54769e053a3b23898cfd3a31bd49fa4b842ca6c60175"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/delivery-locators.json",
+        "size": 104531,
+        "sha256": "cc461a3ffea28c206f7fa30924dc7adf36b408125370c91e4f26d77b4e1c8735"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/coverage-notes.json",
+        "size": 1914,
+        "sha256": "9440d69038266bec41109b0e019bbfe1fe08636e4024c06174a87e3bedce24f8"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/historical-top-level-planning.json",
+        "size": 1478,
+        "sha256": "35b86c0dd5cf6f2a239d7b58009ae5e4aeee41932a55c363ea589a5fe57d2662"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/validation.json",
+        "size": 1234,
+        "sha256": "f37c0364d026f53abf9e448812909ceb6e6c1735344063457247dcbc8ee06efe"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/publication.json",
+        "size": 294,
+        "sha256": "4cada64d2b98ed9f3cb20944780dc21f2f09e821f1334e8dc77f0d6a8c3d0784"
+      }
+    ]
   }
 }

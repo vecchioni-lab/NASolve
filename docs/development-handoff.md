@@ -13,6 +13,8 @@ not general production support. Earlier wording remains in Git and the
 
 ## Post-C150 completion audit and maintained job queue
 
+Published on existing `cedar` as `7f2f10d1edb53df7b5c2a50d08c3a8920e02eb8d`; remote head verified.
+
 C150 is published and complete; implementation `9bec89f721f69333bbe2d963c7df077d5a0d1ed8`,
 continuity `a943386dd3a8e27dabeae316d37039d92e1cb9fc`. No native jobs remain.
 The [completion queue](cif-doctor-completion-queue.md) is now the single ordered
