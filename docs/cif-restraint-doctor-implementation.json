@@ -27597,7 +27597,7 @@
       "remote_verified": true
     },
     "captured_fixed_geometry_trial": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "A bounded captured-proof adapter freezes the exact complete objective and reuses unchanged optimizer/numerical/serialization gates. The actual ATL trial is withheld after endpoint derivative/line-search failures; a separate generic diagnostic and declared-graph screen identify near-linear PDU and 5PC torsions without a residue-code exception.",
       "schemas": {
         "new": "schema 1 / cif-captured-fixed-geometry-trial-v1; self-contained qualified gradient/capture, exact preparation/job/optional readback inventory, mechanics-only decision",
@@ -27620,7 +27620,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "captured_fixed_geometry_trial_2026_10_31",
-      "validation": "1586 passed, 36 subtests passed in 199.26s (0:03:19); 173 affected tests and cold rejection/diagnostic replay pass; actual endpoint remains REVIEW; no full suite."
+      "validation": "1586 passed, 36 subtests passed in 199.26s (0:03:19); 173 affected tests and cold rejection/diagnostic replay pass; actual endpoint remains REVIEW; no full suite.",
+      "implementation_commit": "b1738400ec3e204e93c8a45efa6e5ecbf395d4a0",
+      "focused_tested_commit": "b1738400ec3e204e93c8a45efa6e5ecbf395d4a0",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

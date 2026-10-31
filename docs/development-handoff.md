@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C148 validated: bounded captured-manager geometry; endpoint withheld
+## C148 published: bounded captured-manager geometry; endpoint withheld
 
 Base/pushed-before-work `d4fbdf25b44941794cac5c62a023c05f5c48abb0`; existing
 **cedar** only. Capsule `live_tests_directory/148_Cedar_captured-geometry-ualkt42n`.
@@ -101,7 +101,9 @@ Keep linked 10C, broader L-FANA/L-FDNA/PNA, curated-DZ parsing, formal-charge li
 and production orchestration separate. Do not weaken the failed gate or describe
 the current lower-energy endpoint as usable.
 
-Implementation and focused validation complete; publication pending.
+Implementation and focused validation are complete. Focused-tested implementation
+`b1738400ec3e204e93c8a45efa6e5ecbf395d4a0` is published and verified on `origin/cedar`;
+this follow-up records continuity. The full-tested revision above is unchanged.
 No active jobs. Signed evidence key `captured_fixed_geometry_trial_2026_10_31`.
 — Rowan · Codex desktop
 

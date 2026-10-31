@@ -55972,7 +55972,7 @@
     "remote_verified": true
   },
   "captured_fixed_geometry_trial_2026_10_31": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "d4fbdf25b44941794cac5c62a023c05f5c48abb0",
@@ -56457,6 +56457,10 @@
         "size": 3022,
         "sha256": "52cde33c5277227a0e6487432b7a3b92fa80b3fe7f1763842fb059c3e0088f83"
       }
-    ]
+    ],
+    "implementation_commit": "b1738400ec3e204e93c8a45efa6e5ecbf395d4a0",
+    "focused_tested_commit": "b1738400ec3e204e93c8a45efa6e5ecbf395d4a0",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
