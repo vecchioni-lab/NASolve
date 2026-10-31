@@ -27513,7 +27513,7 @@
       "remote_verified": true
     },
     "base_anchored_mixed_atl": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "Separate explicitly selected graph/NAR-bound base placement preserves target source geometry/hands and every bystander while recording host differences. Mixed ATL construction now exists for review; source-projected definitions and regenerated NAR policy match, with the incoming junction still absent.",
       "schemas": {
         "new": "schema 1 / cif-base-anchored-whole-furanose-control-v1; selection includes explicit base_frame_roles; exact frozen input/output inventory plus rederived report and model",
@@ -27533,7 +27533,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "base_anchored_mixed_atl_2026_10_31",
-      "validation": "1492 passed, 36 subtests passed in 136.96s (0:02:16); three native controls and strengthened cold replay pass; no full suite."
+      "validation": "1492 passed, 36 subtests passed in 136.96s (0:02:16); three native controls and strengthened cold replay pass; no full suite.",
+      "implementation_commit": "df0fb2c918dc4bb5571a80bfcc2ced22312546cc",
+      "focused_tested_commit": "df0fb2c918dc4bb5571a80bfcc2ced22312546cc",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

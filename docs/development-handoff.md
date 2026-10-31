@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C145 validated: base-anchored ATL in the mixed scaffold
+## C145 published: base-anchored ATL in the mixed scaffold
 
 Base/pushed-before-work: `cef43738dad2c556c79223d32349d5248bce117c`;
 existing cedar only. Capsule: `live_tests_directory/145_Cedar_base-anchor-2avljt9l`.
@@ -73,7 +73,9 @@ contracts/overview/caption/map/ledger. Exact commands, files, compatibility,
 limitations and anchored hashes: `base_anchored_mixed_atl_2026_10_31` in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Raw science,
 workbooks, native/test outputs, failed attempts and runners stay local outside Git.
-No job is active. Implementation and focused validation complete; publication pending.
+No job is active. Implementation and focused validation are complete. Focused-tested implementation
+`df0fb2c918dc4bb5571a80bfcc2ced22312546cc` is published and verified on `origin/cedar`;
+this follow-up records continuity. The full-tested revision above is unchanged.
 PDU changed-objective geometry, PNA/other family gates and ordinary selected-bundle
 orchestration remain independent. No new branch or merge.
 — Rowan · Codex desktop
