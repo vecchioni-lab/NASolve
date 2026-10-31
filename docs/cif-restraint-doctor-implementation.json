@@ -27714,7 +27714,7 @@
       "remote_verified": true
     },
     "source_bound_repaired_bundle_decision": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "A bounded read-only adapter replays source/site preparation, exact ordered repair ownership, all full-native stage identities and the exact original/repaired derivative captures. Existing selection policy chooses one complete bundle or no usable result; a path resolver exposes the unchanged prepared model and ordered CIF/PHIL only after repeating the checks.",
       "schemas": {
         "new": "schema 1 / cif-source-bound-repaired-bundle-selection-v1 inspection result",
@@ -27734,7 +27734,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "source_bound_repaired_bundle_decision_2026_10_31",
-      "validation": "1719 passed, 36 subtests passed in 242.81s (0:04:02); 335 passed in 79.97s (0:01:19); cold native replay and mismatched-join refusal pass. No new native execution or full suite."
+      "validation": "1719 passed, 36 subtests passed in 242.81s (0:04:02); 335 passed in 79.97s (0:01:19); cold native replay and mismatched-join refusal pass. No new native execution or full suite.",
+      "implementation_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
+      "focused_tested_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

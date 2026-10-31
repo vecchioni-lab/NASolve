@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C152 validated: source-bound repaired-bundle decision; Q03 remains open
+## C152 published: source-bound repaired-bundle decision; Q03 remains open
 
 Base/pushed-before-work `1dc871d594ad420e54159191838b589d883db28b`; existing **cedar** only.
 Capsule `live_tests_directory/152_Cedar_source-bound-repair-cnp24863`.
@@ -70,7 +70,7 @@ No full suite; last full-tested remains `809abd44df8885ac14f1a02a67a13338209a870
 Changed files: new adapter/regressions, chemistry profile, changelog, methods,
 overview/caption, architecture/index, queue, this handoff and both ledgers.
 Raw source/native/scientific data, logs and helpers remain local. No new branch
-or merge. Implementation and focused validation complete; publication pending.
+or merge. Focused-tested implementation `a7c8f6fb9029598ce85aadbdc582f038eed9170d` is published and verified on `origin/cedar`. This continuity note keeps Q03 open; the full-tested revision remains unchanged.
 No active jobs remain.
 
 **Next:** Continue Q03: establish explicit authoritative phosphate source/site state and matching preparation for the repaired PDU/5PC example, using existing or separately qualified graph/state operations. Do not silently add H, change OP2/OP3 charge, infer pH or replace source authority with a numerical dictionary. Then run one positive matching source/preparation/full-native repair/derivative join and freeze the selected result through C141. Q13 owns broader state-policy coverage; Q02 remains an independent early parser fix.

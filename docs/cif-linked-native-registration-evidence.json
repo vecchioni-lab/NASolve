@@ -57626,7 +57626,8 @@
       "latest_checkpoint": "C152",
       "evidence_key": "source_bound_repaired_bundle_decision_2026_10_31",
       "status": "PARTIAL",
-      "remaining": "Explicit matching source/site-state authority, positive native join, C141 publication"
+      "remaining": "Explicit matching source/site-state authority, positive native join, C141 publication",
+      "implementation_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d"
     }
   },
   "full_native_capture_bridge_2026_10_31": {
@@ -58036,7 +58037,7 @@
     "remote_verified": true
   },
   "source_bound_repaired_bundle_decision_2026_10_31": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "1dc871d594ad420e54159191838b589d883db28b",
@@ -58401,6 +58402,10 @@
         "size": 3017,
         "sha256": "9f914b4839d2534adf0724443faa257ac374235a1910119f4cdd1c3f961ba046"
       }
-    ]
+    ],
+    "implementation_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
+    "focused_tested_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
