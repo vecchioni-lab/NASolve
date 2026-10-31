@@ -54783,5 +54783,591 @@
     "focused_tested_commit": "df0fb2c918dc4bb5571a80bfcc2ced22312546cc",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "graph_bound_connected_furanose_seed_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "809f78a752b54370294cda0754dd0e999e91616a",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "before": "Rigid source-preserving ATL base placement left a 4.098 A incoming gap; source-arm-only movement could not reach the target with C5 fixed.",
+    "after": "Graph-bound acyclic-arm/body construction with an explicit base-motion bound produces a connected mixed ATL seed, preserves source geometry/hands and bystanders, and retains exact native definitions and NAR policy. Remaining junction/pair strain withholds geometry qualification and adoption.",
+    "changed_files": [
+      "src/nasolve/cif_furanose_bridge.py",
+      "tests/test_cif_furanose_bridge.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-graph-furanose-bounded-bridge-seed-v1; frozen parent placement, explicit endpoint_weight and max_base_displacement, deterministic report/model and exact receipt inventory",
+      "unchanged": "Existing FANA/base-anchored/compatible-host placement, reaction/NAR compiler/native capture/CLI/checkpoint schemas"
+    },
+    "compatibility": "Additive explicit Python API. Existing FANA fitter is reused without modification; old placement/reaction/FANA tests pass. No migration, default, installed-library or adopted-coordinate change. No new branch or merge.",
+    "regressions": {
+      "new_cases": 23,
+      "before": "21 initial cases fail because the API/module does not exist; two corrupt-search-result cases and stronger known-pose assertions added before final validation.",
+      "initial": "21 passed in 17.73s",
+      "related": "136 passed in 61.90s: new seed plus existing FANA/base-anchored/whole-furanose/reaction cases",
+      "focused": {
+        "exit_code": 0,
+        "summary": "1515 passed, 36 subtests passed in 153.89s (0:02:33)",
+        "seconds": 154.31187374994624,
+        "files": 576,
+        "changed_files": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH: explicit user preference. Last full-tested implementation remains 809abd44df8885ac14f1a02a67a13338209a8707; full integration required before merging."
+    },
+    "science": {
+      "status": "CONNECTED_CONSTRUCTION_SEED_REVIEW",
+      "final_receipt": "native/cif-native-du4y20f5/native_receipt.json",
+      "parent_receipt": "native/ATL-policy-rebound-02/cif-native-4eu1o89a/native_receipt.json",
+      "sites": 42,
+      "atoms": 865,
+      "all_definitions_preserved": true,
+      "unaffected_proxy_categories": {
+        "angle": true,
+        "bond_asu": true,
+        "bond_simple": true,
+        "chirality": true,
+        "const_dihedral": true,
+        "dihedral": true,
+        "parallelity": true,
+        "planarity": true
+      },
+      "native_junctions": [
+        {
+          "atoms": [
+            [
+              "A:10",
+              "O3'"
+            ],
+            [
+              "A:11",
+              "P"
+            ]
+          ],
+          "target": 1.607,
+          "weight": 6944.444444444444
+        },
+        {
+          "atoms": [
+            [
+              "A:11",
+              "O3'"
+            ],
+            [
+              "A:12",
+              "P"
+            ]
+          ],
+          "target": 1.607,
+          "weight": 6944.444444444444
+        }
+      ],
+      "exact_custom_requests_and_proxies": 201,
+      "all_custom_proxy_fields_equal_parent": true,
+      "energy_checks": {
+        "energy_inventory": true,
+        "finite_energy_and_gradient": true,
+        "fixed_coordinate_repeats": true
+      },
+      "all_bystander_atoms_unchanged": true,
+      "junction_distances": [
+        {
+          "target_atom": "P",
+          "partner_atom": "A:10:O3'",
+          "before": 4.097638832303305,
+          "full_precision": 1.610330445654653,
+          "pdb_rounded": 1.610374801094453
+        },
+        {
+          "target_atom": "O3'",
+          "partner_atom": "A:12:P",
+          "before": 1.5137866428265248,
+          "full_precision": 1.7433395897659174,
+          "pdb_rounded": 1.7434982076274128
+        }
+      ],
+      "pair_distances": [
+        {
+          "atoms": [
+            "A:11:N3",
+            "B:5:N1"
+          ],
+          "before": 2.8513735286700004,
+          "after": 2.74127725704643
+        },
+        {
+          "atoms": [
+            "A:11:O4",
+            "B:5:N6"
+          ],
+          "before": 2.535636409266912,
+          "after": 2.276694533748433
+        }
+      ],
+      "maximum_base_displacement_angstrom": 1.3149471472268384,
+      "source_centres": 4,
+      "source_hand_checks": 7,
+      "preservation": {
+        "all_declared_source_hands": true,
+        "max_bond_length_error": 2.4424906541753444e-15,
+        "max_angle_error_degrees": 1.4210854715202004e-13,
+        "rounded_max_bond_length_error": 0.0009119984623739974,
+        "rounded_max_angle_error_degrees": 0.05040948380967336,
+        "bystander_records_exact": true
+      },
+      "source_classification": {
+        "status": "RECORDED",
+        "value": "RNA"
+      },
+      "deleted_atoms": [
+        "HA",
+        "HXT",
+        "OXT"
+      ],
+      "retained_phosphate_protonation": "HO2P retained",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_native_interpretations": 1,
+      "dry_run": false,
+      "derivative_qualification": "NOT_RUN",
+      "geometry_optimization": "NOT_RUN",
+      "clashes": "NOT_ASSESSED",
+      "diffraction_refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "formal_charge_readback": "UNSUPPORTED",
+      "projected_numerical_categories_match": true,
+      "native_cross_link_angle_count": 8,
+      "largest_covalent_junction_angle_difference_degrees": 31.852427963696996,
+      "geometry_measurement_scope": "Descriptive Cartesian comparisons, not native residuals or scientific acceptance thresholds"
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_gone": true,
+      "original_sdk_historical_reads_and_execution_denied": true,
+      "seed_capsules_rederived": 1,
+      "reaction_capsules_rederived": 1,
+      "NARestraints_compiler_capsules_rederived": 1,
+      "native_captures_reauthenticated": 2,
+      "exact_custom_requests_and_proxies": 201,
+      "frozen_files_unchanged": 158,
+      "negative_controls": [
+        "model",
+        "report",
+        "config",
+        "source",
+        "schema",
+        "extra",
+        "empty_directory",
+        "incomplete"
+      ]
+    },
+    "auxiliary": {
+      "compileall": "PASS",
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c146-compile-cache"
+      },
+      "docs": {
+        "relative_links_checked": 307,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources_equal_base": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "svg_visual_review": "PASS: regenerated SVG unchanged and legible; current caption distinguishes the connected seed from numerical/geometry qualification and adoption.",
+      "parent_artifacts_unchanged": 214,
+      "previous_C145_refs_verified": 55
+    },
+    "validation_commands": {
+      "python_runtime_historical_path": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "initial": "python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_furanose_bridge.py",
+      "related": "python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_furanose_bridge.py tests/test_cif_fana_bridge.py tests/test_cif_base_anchored_furanose.py tests/test_cif_whole_furanose.py tests/test_cif_furanose_reaction.py",
+      "focused": "python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-final/pytest.xml; exact resolved command is frozen in result.json",
+      "native": "python c146_live.py then python c146_native.py; scoped PYTHONPATH and selected Phenix installation. One complete native interpretation, exact load order frozen in native_spec.json.",
+      "science": "python c146_science.py; python c146_geometry.py (read-only captured geometry). Complete custom-proxy fields compared to parent in addition to exact requested membership.",
+      "cold": "python c146_cold.py; separate process with relocated src after owned original disappears, original/historical/SDK reads and external execution denied. Exact command preserved in cold-final/result.json.",
+      "auxiliary": "python -m compileall -q src tests with PYTHONPYCACHEPREFIX=/private/tmp/c146-compile-cache; check_docs.py; unchanged SVG regeneration/render/visual review; git diff --check"
+    },
+    "software": {
+      "python": "3.12.14",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_native_interpretations": 1,
+      "dry_run": false,
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "artifacts": "Only runtime/tests/profile and maintained technical summaries/hash refs publish. Raw models, source/workbook inputs, native/test outputs and runners remain local. All 214 snapshotted C145 files retain bytes/times; 55 prior ledger refs verify. No unpublished input cleanup or movement.",
+    "limitations": [
+      "Additive explicit Python construction diagnostic only. Ordinary automatic recovery/adoption, CLI, checkpoint schemas and ReadySet remain unchanged.",
+      "Consumes only a validated base-anchored placement: unique unbridged/2O4C-bridged furanose source/host profiles, graph-bound NAR base anchors, complete source-preserving target numerics, heavy-only unambiguous PDB and two declared neutral identity-symmetry ports. PNA/charged/symmetry operations are separate.",
+      "Three acyclic arm rotors and a proper whole-body fit preserve internal source geometry/hands. Explicit endpoint weight is 1..1000; maximum heavy-base displacement is >0..5 A. The sampled minimum is refused if it exceeds that bound, without claiming all feasible alternatives were searched or a global minimum.",
+      "The construction objective uses host/base/port anchors, not native energy or a replacement for NAR pair/stack policy. Source leaving oxygen is only a virtual fit point. Parent and seed, source classification and retained phosphate protonation remain explicit.",
+      "Both ATL native links and eight junction angles now exist, but outgoing separation is 1.743 A against 1.607 A and an O4-N6 contact is 2.277 A against its 2.8 A NAR target. Worst covalent junction-angle discrepancy is 31.85 degrees. No achieved geometry/optimization, clash, diffraction or sampled-derivative qualification is claimed.",
+      "Finite repeated energy/gradients do not certify derivatives. The simple native-gradient API excludes parallelity; use/adapt the mixed parallelity-aware route retaining all current requests and its corrected-evaluator scope, rather than dropping policy or claiming ordinary Phenix refinement.",
+      "All 42 active definitions and all custom proxy fields match C145. This preserves its exact numerical bundle and does not combine or certify later PDU objectives. Curated-DZ token-per-line CIF parsing, changed-objective PDU geometry, broader linked L-FANA/L-FDNA/PNA and production orchestration remain separate open work.",
+      "Seed replay recomputes floating-point fitting and records NumPy version; relocation is demonstrated under the tested numerical runtime, not promised byte equivalence across arbitrary numerical-library versions."
+    ],
+    "next": "Bind the connected mixed ATL seed into the existing complete-policy numerical qualification route, retaining all 201 custom restraints and source definitions; then run a bounded fixed-objective geometry trial and fresh endpoint audit. Preserve C145/C146 controls, signed chemistry and protonation. Independently fix the curated bond reader token-per-line CIF loop handling and continue PDU changed-objective and other-family milestones.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/science-audit.json",
+        "size": 6297,
+        "sha256": "0441292f1742d022b6627fbe851f639a1298435ffed5d569fa11af6c5128e32f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/science-audit.log",
+        "size": 2905,
+        "sha256": "9865bf7c6815fb4a2b08dada040d73ac63129cfd65b27810194fa536a46ba78f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/geometry-review.json",
+        "size": 125818,
+        "sha256": "e7b1ed3d40d57b4626f219e33792d135278ef6818c42460898240775320ca46b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed-summary.json",
+        "size": 17286,
+        "sha256": "b8fb7c62f424a3fafcfadd17e18316e53637634d0cc1ee8f20bbdf6d9b4510bd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation-summary.json",
+        "size": 38805,
+        "sha256": "75e21ea9e4b9ca8e5796f2dc73f84928be0f631c093a999cf12bdad3ef376e3f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/native-summary.json",
+        "size": 6013875,
+        "sha256": "082d44cf7c60fa4888e310308c4f9079b9f7d377b46c8dddad5e76fe818ba082"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/parent-before.json",
+        "size": 54071,
+        "sha256": "3bc492b0b5f2cb41d9f4bfb3389b29295a11cfb8268511c1c84af31ce651bd93"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/parent-native-spec.json",
+        "size": 1536,
+        "sha256": "b87eeb8e9286824d6f3642c663359c84b1d879cb742749411508785cd0940312"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/retained_policy.phil",
+        "size": 54290,
+        "sha256": "dceaf6213327042b7dc1aa44ca37299e160f8b0c0cf23782d2ff9cda3090fee8"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/ATL-projected.cif",
+        "size": 10728,
+        "sha256": "5e104ec1c6f69fe63b1af71ff1da400b649ce0c34dc9e9e70de94941b324fb56"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/cold-final/result.json",
+        "size": 912,
+        "sha256": "3a9a5040df2133842e4ff1a1e92023ea0dbc9adba3262a1584dd69cbdbecfb33"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/cold-final/replay.log",
+        "size": 438,
+        "sha256": "1da0ae0fc323667f80577c8ceb03c3eef0f1c3f53422c7ef1537807626ab5e47"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/before.log",
+        "size": 17045,
+        "sha256": "e15d5e1591aaecc626c8b1c2171b7d7c8ab7075f96df0edae90c6ffd1c22355a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/initial.log",
+        "size": 100,
+        "sha256": "ad2dc55cc7ae30e5f511b592e2a2432932bd15860d57b136de15f367f758f116"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/related.log",
+        "size": 191,
+        "sha256": "2d440fd18ee90e26c6eb577492712ed12b0eaadcfc1f22f0634c3b342b53ccf9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/focused-final/result.json",
+        "size": 607,
+        "sha256": "8761d17aab7ead1fe84b1c261b981e4d840e552a5a401337821030bec8104873"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/focused-final/pytest.log",
+        "size": 6571,
+        "sha256": "b6ac8a5d0959a9ec8c69ec62a831716237204f8dfa8d9ddf22033f09b3340a6b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/focused-final/pytest.xml",
+        "size": 222570,
+        "sha256": "2c66f882954f04cb57b1902b10438b598fc14c113d2676944ef988ed6c3c84c8"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/focused-final/source-hashes.json",
+        "size": 62708,
+        "sha256": "17597490ecd369ad02362c0a4998d64b71830914b598cee9dbc22b33386fd019"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/validation/auxiliary.json",
+        "size": 2656,
+        "sha256": "eb72e21a1168f8174cefa0e3fdca776c40f97013c379ab9bfb8e4a7fd85e422c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/config.json",
+        "size": 64,
+        "sha256": "8eb4be5b4cbc0d7f77db68c6ee7da511431b45f03f9f1a3824125da3d68ece11"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/model.pdb",
+        "size": 70513,
+        "sha256": "4a5597437d0866ab9922f15dfba716c9fe4ca9a0ec85177474e8f8fd7cce5390"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/Ligands.xlsx",
+        "size": 194621,
+        "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/context.json",
+        "size": 468,
+        "sha256": "5783320ee840c4c0c0106a676518c72f246d47e08787fd55c9a98b53215a7f09"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/frame.pdb",
+        "size": 70395,
+        "sha256": "a5d056eb032734f3f357a5e194f3559f09ab84aab1f40711f896814d14e6ada7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/host.cif",
+        "size": 9049,
+        "sha256": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/model.pdb",
+        "size": 70513,
+        "sha256": "c7abdb1795be21957280704e76bf626e2d059b20595e303a3e1844438165ec20"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/placement.json",
+        "size": 29849,
+        "sha256": "bcd7dcb265bc83b577fe1a9a9946e021723b16e8d1145ade7c1d704231bfc107"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/receipt.json",
+        "size": 1289,
+        "sha256": "d191b573bc21c72115f5d5d612462851ab735f37a490ec2283387211b706ea3f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/selection.json",
+        "size": 78,
+        "sha256": "23eb26f0a1e12657ede2d5cec95e1b9c5adfc783578be9f326dbd520d9944615"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/placement/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/receipt.json",
+        "size": 1908,
+        "sha256": "a0bdfcb17128bc4e653941ec786e7b039069ccb3b0c08428d95b4284a3792c78"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/seed/seed.json",
+        "size": 17286,
+        "sha256": "b8fb7c62f424a3fafcfadd17e18316e53637634d0cc1ee8f20bbdf6d9b4510bd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/Ligands.xlsx",
+        "size": 194621,
+        "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/base_dictionary.cif",
+        "size": 11347,
+        "sha256": "27ece5a9fe5b92370157e06638e4093939a8781699af9705ef7090b5bbd068cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/contexts.json",
+        "size": 522,
+        "sha256": "fcad3d6ae886b8a3c0ea0489342bc927c37927445cfa671ee5f21ab0cdf09e16"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/model.pdb",
+        "size": 70513,
+        "sha256": "4a5597437d0866ab9922f15dfba716c9fe4ca9a0ec85177474e8f8fd7cce5390"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/preparation.json",
+        "size": 38805,
+        "sha256": "75e21ea9e4b9ca8e5796f2dc73f84928be0f631c093a999cf12bdad3ef376e3f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/receipt.json",
+        "size": 1451,
+        "sha256": "2fc7d116b8895d7f0525dbef6d4bebea5e48db6ee4d98da79775689da0f9b93c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/selection.json",
+        "size": 20,
+        "sha256": "c84106afe5a5299163a13dc6adbb1100d935e3e1b8164ad5f52b58b0333213a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/site_modifications.cif",
+        "size": 392,
+        "sha256": "69aeb65b738d2b83662aea82671ff7b90ebcbbd4f669204791067e5bbe1f64a4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/site_modifications.phil",
+        "size": 148,
+        "sha256": "a0e52c808b22d5fce55be0a2f75e80ba5b445a7a16f80d1a38a2d91f2cfb8275"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/preparation/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/compiled-policy/explicit_na_policy.json",
+        "size": 271410,
+        "sha256": "5abde83ec9ad7ec15b610ad2d9bd0757b7c260ac7d9c4de0615dfaeb81941333"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/compiled-policy/explicit_na_policy.phil",
+        "size": 2211,
+        "sha256": "b1bace2d95c31157a5bb078a4c933b37f83450fc45d995db501cb93adf5c753b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/compiled-policy/inputs/model.pdb",
+        "size": 70513,
+        "sha256": "4a5597437d0866ab9922f15dfba716c9fe4ca9a0ec85177474e8f8fd7cce5390"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/compiled-policy/inputs/sources/ATL.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/compiled-policy/inputs/sources/DA.cif",
+        "size": 9015,
+        "sha256": "7c61ddacb956cf6abf5946181048a2b6043592fa1bd1e5c88d2d3cac8c23ecc7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/compiled-policy/inputs/sources/DG.cif",
+        "size": 9177,
+        "sha256": "59f227bf39c30f1dcc72d6f64406eab62e3195aa33107c8bd41515751b8bf829"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/compiled-policy/inputs/sources/DZ.cif",
+        "size": 10620,
+        "sha256": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "146_Cedar_connected-seed-c2r1bsu5/native/cif-native-du4y20f5/native_receipt.json",
+        "size": 6013875,
+        "sha256": "8f2b0dfbe84694b2cdda6c3025a01423a90b4632a1aeeaaa5d4a132184cc0cee"
+      }
+    ]
   }
 }

@@ -25,10 +25,10 @@ milestone statements preserve their original scope; they are not a second queue.
   PostMR continuation/adoption remains separate. C142 adds exact graph-qualified
   linked torsion energy attribution, a fresh PDU derivative pass on the repaired
   mixed scaffold, and a source-preserving isolated ATL numerical control. The
-  C145 base-anchored diagnostic now includes ATL alongside the original eight pairs,
-  with source-preserving native definitions and exact regenerated NAR membership.
-  The incoming backbone gap, complete connected qualification and changed-objective
-  PDU geometry remain open.
+  C146 graph-bound arm/body seed connects ATL alongside the original eight pairs,
+  with both native links/eight junction angles, preserved source definitions and
+  exact NAR membership. Outgoing-bond/pair geometry, complete numerical qualification
+  and changed-objective PDU geometry remain open.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

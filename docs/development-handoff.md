@@ -11,6 +11,77 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C146 validated: source-preserving connected ATL construction seed
+
+Base/pushed-before-work: `809f78a752b54370294cda0754dd0e999e91616a`;
+existing cedar only. Capsule: `live_tests_directory/146_Cedar_connected-seed-c2r1bsu5`.
+Before: C145's rigid base placement left an incoming 4.098 Å gap; three arm rotors
+alone could not reach the 1.607 Å target with C5′ fixed. After: a reusable graph-bound
+version of the existing FANA arm/body fit moves the intact source geometry within
+an explicit base-motion bound. This is a construction seed, not achieved geometry.
+
+`prepare_furanose_bridge_seed(placement, output, endpoint_weight=...,
+max_base_displacement=...)` binds three acyclic single-bond rotors and target
+anchors through the parent source/NAR roles. It retains every source centre,
+internal bond/angle and bystander; the declared leaving oxygen is virtual and
+never written. Every base heavy atom must remain within the explicit bound.
+The lowest-score sampled winner is rejected if it exceeds that bound; no global
+minimum or proof that all other fits fail is claimed. New schema 1
+`cif-graph-furanose-bounded-bridge-seed-v1` freezes/rederives the full parent,
+parameters, model and report. Interrupted attempts remain immutable. Existing
+FANA/base-anchored/compatible-host APIs and capsules are unchanged. No CLI/default,
+checkpoint migration, chemical-state choice or automatic adoption is introduced.
+
+**Actual mixed ATL control:** endpoint weight 1000, maximum base motion 2 Å;
+observed maximum **1.315 Å**. Incoming separation **4.098→1.610 Å**, outgoing
+**1.514→1.743 Å**. One complete Phenix **2.2.1-6174**, dispatcher **2.2.1**,
+interpretation contains both backbone bonds and all **eight** junction angles.
+All six source-projected numerical categories, all 42 site definitions and eight
+unaffected proxy categories match the parent. All bystander atoms remain exact.
+ATL retains its bridge, four centres/seven hand checks, RNA classification and
+nonreacting HO2P. Recompiled NAR text is byte-identical; all **201** requests and
+instantiated proxies match, including complete captured custom-proxy fields.
+Repeated fixed-coordinate energy/gradients are finite. The frozen C145 active
+numerical bundle is retained; this does not combine or certify later PDU objectives.
+
+**Remaining geometry:** outgoing P–O is stretched; O4–N6 is **2.277 Å** against a
+2.8 Å NAR target (previously 2.536 Å), and N3–N1 is 2.741 Å. The largest observed
+covalent junction-angle discrepancy is **31.85°**. These are descriptive Cartesian
+measurements, not native residuals or acceptance thresholds. Derivatives, clashes,
+geometry optimization and diffraction refinement remain unqualified/not run.
+The simple native-gradient capture excludes parallelity: use/adapt the existing
+mixed/parallelity-aware qualification route with exact current inputs, retaining
+its explicit corrected-evaluator scope. Never remove pair/stack policy to obtain
+a pass. No ReadySet or Coot run is claimed.
+
+Validation: 21 initial regressions fail before the API exists; final new suite
+has 23 cases, including exact known-pose recovery, renamed D/L fluorinated graph
+controls, bridged four-neighbor centres, mirrored/distorted fit refusal,
+base-motion limits, corruption, interruption and relocation. Affected old/new
+placement, reaction and FANA suite: **136 passed in 61.90s**. Focused:
+**1515 passed, 36 subtests passed in 153.89s (0:02:33)**; all 576 Python hashes stay fixed.
+Cold replay rederives seed/preparation/NAR compiler, reauthenticates old/new native
+captures and all 201 custom restraints, preserves 158 files and refuses eight
+corrupt controls with the owned original gone and historical/SDK reads/execution
+denied. All 214 parent files retain bytes/times; 55 preceding evidence refs verify.
+**No full suite, as requested.** Last full-tested implementation remains
+`809abd44df8885ac14f1a02a67a13338209a8707` (7175 tests + 276 subtests).
+
+Changed: new runtime/regression, focused profile, contracts, overview/caption,
+roadmap and evidence ledger. Exact commands, file/schema lists, compatibility and
+anchored hashes: `graph_bound_connected_furanose_seed_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Raw models,
+workbooks, native/test outputs and runners remain local outside Git. No job active.
+Implementation and focused validation complete; publication pending.
+
+Next: establish the current connected seed's complete numerical objective with
+all native source definitions and 201 NAR requests retained; then a bounded
+fixed-objective geometry trial/endpoint audit. Preserve this seed and both C145
+counterexamples. The curated CIF bond-loop parser defect, PDU changed-objective
+geometry, PNA/other-family gates and ordinary selected-bundle orchestration remain
+separate open items. Full integration remains required before a merge.
+— Rowan · Codex desktop
+
 ## C145 published: base-anchored ATL in the mixed scaffold
 
 Base/pushed-before-work: `cef43738dad2c556c79223d32349d5248bce117c`;
@@ -1868,7 +1939,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; evidence updated through C145 on 2026-10-31.** Every ligand in the selected
+**Scope revised 2026-10-28; evidence updated through C146 on 2026-10-31.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -1878,23 +1949,22 @@ not an estimate for complete catalogue support.
 | Milestone | Completion evidence | State |
 | --- | --- | --- |
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
-| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** C143 adds compatible-host whole-furanose transport; C144 matches graph-projected ATL native reaction states in two directional and one three-site control. Different-backbone placement, unmodelled naming/protonation differences and complete linked numerical qualification remain open; C142 qualifies a source-preserving isolated ATL numerical candidate; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states and numerical PNA qualification remain open. C133 links source-bound DNA/L-DNA candidates to explicit terminal reconstruction, protects all retained centres and leaves experimental protonation/native formal charge unqualified. C120 adds source-declared FANA identity and four-centre candidate preservation; C122 checks explicit enantiomer source intent under a separate target identity. |
+| G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** C143 adds compatible-host whole-furanose transport; C144 matches graph-projected ATL native reaction states in two directional and one three-site control. C145 adds explicit base-anchored different-backbone placement and C146 connects the mixed ATL seed through bounded source-preserving body/arm motion. Unmodelled naming/protonation differences and complete linked numerical/geometry qualification remain open; C142 qualifies a source-preserving isolated ATL numerical candidate; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states and numerical PNA qualification remain open. C133 links source-bound DNA/L-DNA candidates to explicit terminal reconstruction, protects all retained centres and leaves experimental protonation/native formal charge unqualified. C120 adds source-declared FANA identity and four-centre candidate preservation; C122 checks explicit enantiomer source intent under a separate target identity. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds explicit whole-purine generation; C121 adds bounded neutral 6-oxo five-ring representation and transfers across FANA/L-DNA/PNA. Exact stage checks, immutable attempts and isolated controls pass. Decision/reuse pieces exist; general orchestration remains open. |
-| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory and C142 fixed-coordinate energy/gradient attribution plus fresh sampled derivatives pass; changed-objective geometry/endpoint qualification remains open.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. C122 adds one explicitly derived L-FANA-C native control. DG retains an explicit native name-mapping failure. C123–C130 establish local L-FANA-C binding, connected placement, sampled derivatives and a bounded unconverged trial. C133 establishes exact source-projected flank definitions and fresh sampled ordinary derivatives; C136–C138 bind saved dictionaries to exact site/native evidence, declared terminal/custom context and complete native identities. C139 composes independent components and rechecks the actual ReadySet endpoint. C140 adds lossless heavy-PDB serialization before the unchanged strict endpoint check; unsupported cases retain the qualified fallback. C144 additionally matches ATL native effective reaction definitions, declared links and junction-angle membership, with finite repeated fixed-coordinate numerics. Its sampled derivatives, physical junction geometry and broader linked chemistry/symmetry remain open. |
+| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory and C142 fixed-coordinate energy/gradient attribution plus fresh sampled derivatives pass; changed-objective geometry/endpoint qualification remains open.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. C122 adds one explicitly derived L-FANA-C native control. DG retains an explicit native name-mapping failure. C123–C130 establish local L-FANA-C binding, connected placement, sampled derivatives and a bounded unconverged trial. C133 establishes exact source-projected flank definitions and fresh sampled ordinary derivatives; C136–C138 bind saved dictionaries to exact site/native evidence, declared terminal/custom context and complete native identities. C139 composes independent components and rechecks the actual ReadySet endpoint. C140 adds lossless heavy-PDB serialization before the unchanged strict endpoint check; unsupported cases retain the qualified fallback. C144 additionally matches ATL native effective reaction definitions, declared links and junction-angle membership, with finite repeated fixed-coordinate numerics. C146 now observes both ATL links/eight angles and exact 201 NAR custom restraints in the actual mixed scaffold. Sampled derivatives, physical junction geometry and broader linked chemistry/symmetry remain open. |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. C141 makes exact component selection public-reader compatible with frozen source/native replay and plain-language diagnostic scope. Ordinary orchestration/adoption, chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 
-**Next bounded work, in order:** generalize a source-preserving connected seed
-for the now-constructed eight-pair-plus-ATL diagnostic. C145 matches ATL effective
-definitions and complete regenerated NAR membership, but the incoming link remains
-absent. The fixed-base/C5′ reachability bound rules out exact 1.607 Å closure using
-only its three phosphate-arm rotors. Use bounded body/junction motion with explicit
-base/pair objectives; preserve every source hand and the prior scientific inputs.
-Recompile actual changed-site NAR relationships instead of reusing stale DT names.
-Qualify both native bonds/all junction angles, sampled derivatives and achieved
-geometry before claiming connected support. Separately repair the curated CIF
-bond reader's token-per-line-loop handling, demonstrated by the preserved failed
-policy preflight. No source inversion, RNA→DNA relabeling or bridge removal.
+**Next bounded work, in order:** qualify the connected C146 eight-pair-plus-ATL
+seed's numerical objective with complete source definitions and exact NAR policy,
+then run a bounded fixed-objective geometry trial and endpoint audit. Both links,
+eight junction angles and all 201 custom restraints now exist, but outgoing-bond,
+junction-angle and pair strain remain. Retain the mixed/parallelity-aware route's
+explicit corrected-evaluator scope; do not silently drop parallelity or claim
+ordinary Phenix-refinement qualification from its result. Preserve every source
+hand, phosphate state and the prior rigid/failed scientific attempts. Separately
+repair the curated CIF bond reader's token-per-line-loop handling demonstrated in
+C145. No source inversion, RNA→DNA relabeling or bridge removal.
 
 PDU's changed-objective initial numerics now pass. The next numerical step is a
 new bounded geometry trial with fresh endpoint qualification; old objective scores

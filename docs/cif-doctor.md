@@ -84,7 +84,9 @@
 
 <a id="current-capability-boundary-c143"></a>
 
-## Current capability boundary (C145)
+<a id="current-capability-boundary-c145"></a>
+
+## Current capability boundary (C146)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -101,7 +103,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
-| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. Native definitions and regenerated NAR policy match; the incoming junction remains absent at 4.098 Å. Connected numerical/geometry qualification remains open. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. Outgoing-bond and pair geometry, sampled derivatives and automatic adoption remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 PDU omissions have exact inventory, fixed-coordinate energy/gradient attribution and fresh sampled derivative evidence on the DF-repaired mixed scaffold. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs a new bounded geometry trial and endpoint qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
@@ -148,6 +150,66 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Graph-bound connected furanose construction seed (C146)
+
+`prepare_furanose_bridge_seed(placement, output, endpoint_weight=...,
+max_base_displacement=...)` consumes an exact base-anchored placement capsule and
+writes a fresh diagnostic seed. The graph binds three acyclic single-bond rotors:
+ring-C4→exocyclic-C5, C5→O5 and O5→phosphate. Each cut must separate the phosphate
+and the explicitly declared leaving oxygen from the protected base and ring.
+No residue-code exception, sugar-hand inversion, ring deformation or phosphate
+protonation choice is introduced. The older FANA-specific API remains unchanged.
+
+The existing 27-start bounded torsion search supplies a proper whole-body fit.
+Its targets are the three declared NAR base-frame positions, host P and O3
+positions, and the incoming partner oxygen. That partner replaces the source
+leaving oxygen as a virtual fit point; the leaving atom is never emitted. The
+last three targets share the explicit endpoint weight (1–1000). The maximum
+movement of **every heavy base atom**, measured from the parent placement after
+PDB rounding, must stay within the explicit limit (greater than zero, at most
+5 Å). This is a post-search refusal gate: if the lowest-score sampled fit exceeds
+the limit, the writer refuses; it does not claim no feasible alternative exists.
+There is no global-minimum or native-energy claim. Pair/stack targets remain
+NARestraints' responsibility and are not replaced by this construction objective.
+
+All retained internal bond lengths/angles and every source-declared hand are
+checked, including all heavy-neighbor triples at four-neighbor centres. PDB
+rounding has a 0.002 Å bond-length tolerance; angle roundoff is reported. Only the
+selected site's coordinates change. All identities, element inventory and
+bystander records remain exact. Schema 1
+`cif-graph-furanose-bounded-bridge-seed-v1` freezes the parent placement, two search
+parameters, model, full-precision result, diagnostics and checksummed receipt.
+`read_furanose_bridge_seed` rederives everything offline, rejects extra files or
+directories, and never repairs an incomplete attempt. Existing placement and FANA
+capsules remain unchanged. No public CLI, default, migration or adoption changes.
+
+**Mixed-scaffold evidence.** With endpoint weight 1000 and a 2 Å base limit, ATL
+A:11 retains its bridge, four source centres/seven hand checks, RNA classification
+and nonreacting HO2P. Maximum base displacement is **1.315 Å**. The incoming gap
+changes **4.098→1.610 Å**; the outgoing separation changes **1.514→1.743 Å**. One
+complete Phenix **2.2.1-6174**, dispatcher **2.2.1**, interpretation now contains
+both 1.607 Å-target backbone bonds and all **eight** cross-link angles. All six
+projected numerical categories, all 42 site definitions, eight unaffected proxy
+categories and every bystander atom match the preceding control. Recompiling the
+changed pair/two stacks against the seed gives identical NAR policy text; all
+**201** requested and instantiated custom restraints still match exactly.
+Repeated fixed-coordinate energy/gradient evaluations are finite.
+
+**Limit of this result.** The outgoing bond remains stretched and ATL O4–DA N6
+shortens **2.536→2.277 Å**; N3–N1 changes **2.851→2.741 Å**. These observations
+prevent describing the seed as achieved or qualified geometry. Numerical finite
+difference checks, clashes and a fixed-objective geometry trial remain separate.
+Do not use the simple native-gradient capture by dropping parallelity: this
+scaffold needs the existing mixed/parallelity-aware numerical route, with exact
+current inputs and its declared corrected-evaluator scope. No ReadySet, Coot,
+diffraction refinement or automatic adoption is claimed. This is a reusable
+construction operation feeding those later gates, not ordinary automatic repair.
+Cold replay rederives seed, preparation and compiler, reauthenticates old/new
+native captures, preserves 158 files and rejects eight corrupted controls with
+original paths and SDK/execution unavailable. Exact evidence:
+`graph_bound_connected_furanose_seed_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Base-anchored whole-furanose placement and mixed ATL test (C145)
 

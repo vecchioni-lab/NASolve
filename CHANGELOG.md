@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Graph-bound connected furanose seed (C146)
+
+- Generalize the existing FANA acyclic-arm/body fitter to source-graph roles,
+  including bridged sugars, independent atom names and every declared centre.
+  An explicit base-displacement limit rejects excessive motion before output.
+  The immutable seed and all frozen inputs rederive offline under schema 1
+  `cif-graph-furanose-bounded-bridge-seed-v1`.
+- The mixed ATL control now has both native backbone bonds and all eight junction
+  angles, with unchanged numerical definitions, bystanders and all 201 custom
+  NARestraints requests/proxies. The outgoing bond and one base-pair contact still
+  need geometry work; connectivity alone never authorizes adoption.
+- Additive Python diagnostic only: no CLI/default, checkpoint migration, ReadySet
+  replacement or automatic model adoption. Scientific artifacts stay local.
+
 ### Source-preserving base-anchored furanose placement (C145)
 
 - Add an explicit diagnostic placement path using three graph-bound NARestraints

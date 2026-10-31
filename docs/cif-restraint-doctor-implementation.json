@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "base_anchored_mixed_atl_2026_10_31",
+    "current_diagnostic_record": "graph_bound_connected_furanose_seed_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27538,6 +27538,30 @@
       "focused_tested_commit": "df0fb2c918dc4bb5571a80bfcc2ced22312546cc",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "graph_bound_connected_furanose_seed": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "Graph-bound acyclic-arm/body construction with an explicit base-motion bound produces a connected mixed ATL seed, preserves source geometry/hands and bystanders, and retains exact native definitions and NAR policy. Remaining junction/pair strain withholds geometry qualification and adoption.",
+      "schemas": {
+        "new": "schema 1 / cif-graph-furanose-bounded-bridge-seed-v1; frozen parent placement, explicit endpoint_weight and max_base_displacement, deterministic report/model and exact receipt inventory",
+        "unchanged": "Existing FANA/base-anchored/compatible-host placement, reaction/NAR compiler/native capture/CLI/checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python API. Existing FANA fitter is reused without modification; old placement/reaction/FANA tests pass. No migration, default, installed-library or adopted-coordinate change. No new branch or merge.",
+      "limitations": [
+        "Additive explicit Python construction diagnostic only. Ordinary automatic recovery/adoption, CLI, checkpoint schemas and ReadySet remain unchanged.",
+        "Consumes only a validated base-anchored placement: unique unbridged/2O4C-bridged furanose source/host profiles, graph-bound NAR base anchors, complete source-preserving target numerics, heavy-only unambiguous PDB and two declared neutral identity-symmetry ports. PNA/charged/symmetry operations are separate.",
+        "Three acyclic arm rotors and a proper whole-body fit preserve internal source geometry/hands. Explicit endpoint weight is 1..1000; maximum heavy-base displacement is >0..5 A. The sampled minimum is refused if it exceeds that bound, without claiming all feasible alternatives were searched or a global minimum.",
+        "The construction objective uses host/base/port anchors, not native energy or a replacement for NAR pair/stack policy. Source leaving oxygen is only a virtual fit point. Parent and seed, source classification and retained phosphate protonation remain explicit.",
+        "Both ATL native links and eight junction angles now exist, but outgoing separation is 1.743 A against 1.607 A and an O4-N6 contact is 2.277 A against its 2.8 A NAR target. Worst covalent junction-angle discrepancy is 31.85 degrees. No achieved geometry/optimization, clash, diffraction or sampled-derivative qualification is claimed.",
+        "Finite repeated energy/gradients do not certify derivatives. The simple native-gradient API excludes parallelity; use/adapt the mixed parallelity-aware route retaining all current requests and its corrected-evaluator scope, rather than dropping policy or claiming ordinary Phenix refinement.",
+        "All 42 active definitions and all custom proxy fields match C145. This preserves its exact numerical bundle and does not combine or certify later PDU objectives. Curated-DZ token-per-line CIF parsing, changed-objective PDU geometry, broader linked L-FANA/L-FDNA/PNA and production orchestration remain separate open work.",
+        "Seed replay recomputes floating-point fitting and records NumPy version; relocation is demonstrated under the tested numerical runtime, not promised byte equivalence across arbitrary numerical-library versions."
+      ],
+      "next": "Bind the connected mixed ATL seed into the existing complete-policy numerical qualification route, retaining all 201 custom restraints and source definitions; then run a bounded fixed-objective geometry trial and fresh endpoint audit. Preserve C145/C146 controls, signed chemistry and protonation. Independently fix the curated bond reader token-per-line CIF loop handling and continue PDU changed-objective and other-family milestones.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "graph_bound_connected_furanose_seed_2026_10_31",
+      "validation": "1515 passed, 36 subtests passed in 153.89s (0:02:33); one complete native interpretation and cold replay pass; no full suite."
     }
   },
   "audience": [

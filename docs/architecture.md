@@ -3629,6 +3629,19 @@ so native interpretation success does not establish a connected supported model.
 See the [base-anchored contract](cif-doctor.md#base-anchored-whole-furanose-placement-and-mixed-atl-test-c145).
 
 
+C146 generalizes the existing FANA arm/body search through the source graph and
+consumes the exact base-anchored capsule. Three acyclic single-bond rotors keep
+base/ring geometry intact; a proper whole-body fit and explicit maximum heavy-base
+movement bound the seed. The source leaving oxygen is a virtual incoming-partner
+anchor, never a model addition. Every declared centre, retained bond/angle and
+bystander stays checked. Its separate schema-1 seed policy freezes/rederives all
+inputs and results and preserves interrupted attempts. Native reaction preparation
+and NAR compilation remain separate consumers. The mixed ATL seed now has both
+native backbone links/eight angles and unchanged complete custom policy; stretched
+outgoing-bond and short pair geometry still require numerical/geometry gates.
+See the [connected-seed contract](cif-doctor.md#graph-bound-connected-furanose-construction-seed-c146).
+
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

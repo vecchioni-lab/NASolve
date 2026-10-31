@@ -127,11 +127,16 @@ projected ATL numerical definitions in two directional controls and a three-site
 control. It preserves source RNA classification, the bridge, all four sugar
 centres and nonreacting phosphate protonation. The mixed-scaffold control matches all projected ATL definitions and all 201
 regenerated NARestraints requests/proxies. Regeneration matters: the old DT
-selectors silently omit ATL's C5M from three planes. The incoming backbone link
-is still absent at 4.098 Å; the outgoing link and all four junction angles exist.
-The rigid base pose leaves too little phosphate-arm reach for the 1.607 Å target,
-so connected geometry and complete linked numerical support remain open. See the
-[placement methods and limits](cif-doctor.md#base-anchored-whole-furanose-placement-and-mixed-atl-test-c145).
+selectors silently omit ATL's C5M from three planes. C146 generalizes the existing
+FANA arm/body fitter through source graph roles and an explicit base-motion limit.
+The mixed ATL seed now has both native links and all eight junction angles,
+with unchanged definitions, bystanders and exact custom restraint membership.
+Incoming separation improves from 4.098 to 1.610 Å with at most 1.315 Å base
+movement. The outgoing bond remains at 1.743 Å, and one pair contact shortens to
+2.277 Å. This is a connected construction seed, not qualified geometry. Sampled
+derivatives under the complete pair/stack policy and a fixed-objective geometry
+trial remain next. See the
+[seed methods and limits](cif-doctor.md#graph-bound-connected-furanose-construction-seed-c146).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
 A new fixed-objective geometry trial and endpoint qualification remain open. Earlier mixed-endpoint proof using a NASolve-local
@@ -732,8 +737,10 @@ The C144 reaction adapter separately closes the selected ATL leaving-atom mismat
 using explicit per-site graph operations and preserved source classification;
 its three native controls do not add an automatic adoption arrow. C145 separately
 places ATL through a graph-bound base frame and reuses NARestraints to regenerate
-the affected pair/stack selectors. The complete custom policy is observed, but the
-incoming backbone gap keeps connected geometry unqualified. Hash-bound JSON receipts preserve audit findings
+the affected pair/stack selectors. C146 adds a separate source-preserving arm/body
+seed that closes native connectivity while retaining exact custom policy. The
+remaining outgoing-bond and base-pair strain still withhold geometry qualification
+and adoption. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,
 declared site modifications and historical generation findings; equality does
