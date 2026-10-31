@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Source-preserving base-anchored furanose placement (C145)
+
+- Add an explicit diagnostic placement path using three graph-bound NARestraints
+  base roles. It replaces host sugar geometry while preserving every target source
+  stereocentre, internal distance and bystander record. The older compatible-sugar
+  path retains its refusal of incompatible host hands.
+- Freeze and rederive the exact selection, chemistry and model under schema 1
+  `cif-base-anchored-whole-furanose-control-v1`. No CLI/default change, migration,
+  automatic mutation or refinement adoption is introduced.
+- Construct the requested eight-pair scaffold plus ATL as a diagnostic. Exact
+  native definitions and regenerated NARestraints policy match, but the incoming
+  backbone link is absent. Reusing the old DT policy loses C5M from three planes;
+  the existing compiler restores complete membership. Connected geometry remains
+  unqualified; raw models, dictionaries and native output remain local.
+
 ### Graph-bound native furanose reaction states (C144)
 
 - Add an opt-in immutable adapter that derives per-site native modifiers from

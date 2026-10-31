@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "graph_furanose_reaction_states_2026_10_31",
+    "current_diagnostic_record": "base_anchored_mixed_atl_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27511,6 +27511,29 @@
       "focused_tested_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "base_anchored_mixed_atl": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "Separate explicitly selected graph/NAR-bound base placement preserves target source geometry/hands and every bystander while recording host differences. Mixed ATL construction now exists for review; source-projected definitions and regenerated NAR policy match, with the incoming junction still absent.",
+      "schemas": {
+        "new": "schema 1 / cif-base-anchored-whole-furanose-control-v1; selection includes explicit base_frame_roles; exact frozen input/output inventory plus rederived report and model",
+        "unchanged": "Compatible-host placement v1, source attachment/reaction, FANA/L-FANA/PNA, NAR compiler, native captures, CLI and checkpoint schemas"
+      },
+      "compatibility": "Additive explicit Python API; old compatible-host behavior and archived capsule replay pass. No migration, defaults, installed-library/source edit, adopted coordinate change, new branch or merge.",
+      "limitations": [
+        "Explicit Python diagnostic only; new placement policy does not grant base chemical equivalence, compile NAR policy automatically, optimize, choose chemistry, or activate ordinary PostMR/ReadySet/refinement.",
+        "Unique unbridged/2O4C-bridged furanose source and host profiles, three explicitly mapped bonded heavy base anchors with matching elements/orders, complete source-preserving target numerics, heavy-only unambiguous PDB and two explicit neutral identity-symmetry ports are required. PNA, charged ports, symmetry and arbitrary model mutation remain separate.",
+        "The actual combined scaffold is constructed for review, but incoming O3-P at 4.098 A has no native link. Outgoing 1.514 A link and four cross-link angles exist. No source inversion, RNA-to-DNA relabeling or bridge removal; formal-charge readback and linked numerical/geometry qualification remain open.",
+        "Finite repeated energy/gradients are not sampled derivative, torsion, clash, protonation, achieved geometry or diffraction qualification. The native dictionary reflects intended linked chemistry even when the intended incoming link is absent, so this is not an adoptable connected model.",
+        "The preserved stale-DT-policy capture silently loses ATL C5M from three planes. The final diagnostic invokes existing NAR compilation for one pair/two stacks and matches all 201 requests/proxies; general automatic mutation-policy orchestration is not added.",
+        "The curated-DZ line-oriented bond reader cannot consume the token-per-line projected dictionary used in the first preflight. Successful source-role validation uses maintained curated DZ; all C98 active numerical dictionaries are retained. A separate parser regression/fix is required.",
+        "The 27-start arm-rotor exploration is not a global minimum or native geometry result and writes no model. Its separate fixed-C5 reachability bound proves the three arm rotors cannot attain 1.607 A in this fixed base/ring pose. Generalized bounded body/junction placement and qualification remain next. PDU changed-objective geometry and other family/adoption gates are unchanged."
+      ],
+      "next": "Generalize the existing FANA source-preserving connected-seed search to graph-bound bridged/unbridged furanoses with bounded whole-body/junction motion and explicit base/pair objectives; retain every declared source hand, recompile actual NAR selectors, then require both native links/all angles and sampled numerical/geometry qualification. Separately replace the curated bond reader's line-based loop assumption with a proper CIF loop reader. Preserve the old fixed-base and stale-policy counterexamples.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "base_anchored_mixed_atl_2026_10_31",
+      "validation": "1492 passed, 36 subtests passed in 136.96s (0:02:16); three native controls and strengthened cold replay pass; no full suite."
     }
   },
   "audience": [

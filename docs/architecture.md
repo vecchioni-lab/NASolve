@@ -3615,6 +3615,20 @@ inversion or implicit DNA conversion is allowed. See the
 and [placement methods and limits](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143).
 
 
+C145 adds an explicitly selected base-anchored whole-furanose path under its own
+schema-1 policy. Independent NAR mappings and source graphs bind the glycosidic
+base atom and two bonded heavy neighbors; the separated base fragment and matching
+elements/orders are required. A proper rigid transform preserves every target
+centre and bystander; host sugar differences remain recorded observations.
+Existing compatible-host refusal and replay remain unchanged. The new reader
+recomputes the exact frozen placement. This is geometric placement only: policy
+regeneration and junction preparation remain separate responsibilities. In the
+mixed ATL diagnostic, unchanged DT selectors lose C5M from three planes; the
+existing NAR compiler restores exact membership. An incoming backbone gap remains,
+so native interpretation success does not establish a connected supported model.
+See the [base-anchored contract](cif-doctor.md#base-anchored-whole-furanose-placement-and-mixed-atl-test-c145).
+
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

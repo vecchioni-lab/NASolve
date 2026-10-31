@@ -11,6 +11,73 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C145 validated: base-anchored ATL in the mixed scaffold
+
+Base/pushed-before-work: `cef43738dad2c556c79223d32349d5248bce117c`;
+existing cedar only. Capsule: `live_tests_directory/145_Cedar_base-anchor-2avljt9l`.
+Before: the compatible-sugar placement correctly refused alpha-LNA-T against DT.
+After: a separately selected graph/NAR-bound base frame transports intact ATL,
+records the host-hand disagreement and preserves every source centre, internal
+geometry and bystander. The old adapter's refusal and frozen replay are unchanged.
+New schema 1 `cif-base-anchored-whole-furanose-control-v1`; exact immutable inputs,
+report and model recompute offline. No CLI/default, migration or adoption change.
+
+**Actual combined control:** ATL A:11 pairs with DA B:5 alongside all eight
+original requested pairs in 42 sites. All original pair/bystander atoms are
+unchanged; ATL keeps its bridge, four centres/seven heavy-triple hand checks,
+source RNA classification and nonreacting HO2P. The incoming O3′–P gap is
+**4.098 Å** and the outgoing distance **1.514 Å**. Three complete Phenix
+**2.2.1-6174**, dispatcher **2.2.1**, interpretations preserve the baseline,
+stale-policy counterexample and final recompiled-policy control. The final
+ATL definition matches all six source-projected numerical categories; all
+unselected definitions and eight unaffected proxy categories remain unchanged.
+The outgoing bond and its four junction angles exist; the incoming bond does not.
+Repeated energy/gradient evaluations are finite, but derivatives, clashes,
+geometry and diffraction refinement are unqualified/not run. No ReadySet/Coot.
+
+**Important integration finding:** the old DT policy silently loses ATL C5M from
+three planes because it selects C7. Existing NARestraints compilation regenerates
+the changed pair and both adjacent stacks, replacing seven request blocks while
+preserving all other policy lines. The final capture matches all **201** requests
+and instantiated custom proxies. Placement does not itself regenerate policy.
+A preserved initial compiler preflight fails on a token-per-line projected DZ
+bond loop; the successful control uses maintained curated DZ for source-role
+validation, retaining every active C98 numerical dictionary. Generalize the
+curated bond reader's CIF parsing in a separate regression-backed fix.
+
+**Next geometry degrees of freedom:** 27 fixed starts/3,315 evaluations of the
+three source-graph acyclic phosphate-arm rotors preserve base/ring geometry and
+all hands but do not close the link. A separate full-precision triangle-inequality
+bound proves fixed C5′/fixed C5′–P radius cannot reach below **1.826 Å**, above the
+observed 1.607 Å native target. No model is written by this feasibility calculation.
+Generalize the existing FANA source-preserving seed search with bounded body/junction
+motion and base/pair objectives; qualify both links/all angles, actual NAR membership,
+source hands and numerical/achieved geometry. Do not force a short bond or invert
+ATL to fit the rigid host pose. Combined construction now exists **for review**;
+complete connected-scaffold support remains open.
+
+Validation: 17 initial new cases fail before the API exists; 18 final new cases
+pass. Related placement/reaction suite: 89 pass before the final independent-host
+naming case; final new suite: 18 pass. Focused: **1492 passed, 36 subtests passed in 136.96s (0:02:16)**.
+All 574 Python source/test/script hashes remain fixed. **No full suite, as Simon
+requested.** Last full-tested implementation remains
+`809abd44df8885ac14f1a02a67a13338209a8707` (7175 tests + 276 subtests).
+Cold replay recomputes old/new placement, reaction and NAR compiler capsules,
+reauthenticates all three native captures and exact 201 custom restraints,
+preserves 224 files and refuses seven corrupted/rehashed controls with the owned
+original gone and SDK/historical reads/execution denied. C98's 213 files retain
+bytes/times. A fresh full integration run remains required before merging.
+
+Changed: whole-furanose runtime, new regression file/profile and maintained
+contracts/overview/caption/map/ledger. Exact commands, files, compatibility,
+limitations and anchored hashes: `base_anchored_mixed_atl_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Raw science,
+workbooks, native/test outputs, failed attempts and runners stay local outside Git.
+No job is active. Implementation and focused validation complete; publication pending.
+PDU changed-objective geometry, PNA/other family gates and ordinary selected-bundle
+orchestration remain independent. No new branch or merge.
+— Rowan · Codex desktop
+
 ## C144 published: graph-bound native reaction states
 
 Base: `27d3cdcddbb83670b6cc7f1df68866a34151a0e7`; existing cedar only.
@@ -1799,7 +1866,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; evidence updated through C144 on 2026-10-31.** Every ligand in the selected
+**Scope revised 2026-10-28; evidence updated through C145 on 2026-10-31.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -1815,14 +1882,17 @@ not an estimate for complete catalogue support.
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. C141 makes exact component selection public-reader compatible with frozen source/native replay and plain-language diagnostic scope. Ordinary orchestration/adoption, chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 
-**Next bounded work, in order:** construct an explicit different-backbone ATL
-placement/junction control that preserves alpha-LNA-T source stereochemistry and
-the original eight mixed-scaffold pairs. The compatible-host rigid adapter correctly
-refuses the D-DNA host, while C144 now supplies independently checked reaction-state
-modifiers. Use those modifiers without inverting the source, relabeling it DNA or
-removing its bridge. Qualify complete active linked mechanics, sampled derivatives
-and achieved geometry before claiming combined-scaffold support. The combined
-scaffold remains an acceptance test to run, not a demonstrated capability.
+**Next bounded work, in order:** generalize a source-preserving connected seed
+for the now-constructed eight-pair-plus-ATL diagnostic. C145 matches ATL effective
+definitions and complete regenerated NAR membership, but the incoming link remains
+absent. The fixed-base/C5′ reachability bound rules out exact 1.607 Å closure using
+only its three phosphate-arm rotors. Use bounded body/junction motion with explicit
+base/pair objectives; preserve every source hand and the prior scientific inputs.
+Recompile actual changed-site NAR relationships instead of reusing stale DT names.
+Qualify both native bonds/all junction angles, sampled derivatives and achieved
+geometry before claiming connected support. Separately repair the curated CIF
+bond reader's token-per-line-loop handling, demonstrated by the preserved failed
+policy preflight. No source inversion, RNA→DNA relabeling or bridge removal.
 
 PDU's changed-objective initial numerics now pass. The next numerical step is a
 new bounded geometry trial with fresh endpoint qualification; old objective scores

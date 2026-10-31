@@ -54179,5 +54179,605 @@
     "focused_tested_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "base_anchored_mixed_atl_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "cef43738dad2c556c79223d32349d5248bce117c",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "before": "Compatible-host sugar placement correctly refused ATL/DT shared-role hand differences, leaving the requested mixed scaffold unconstructed.",
+    "after": "Separate explicitly selected graph/NAR-bound base placement preserves target source geometry/hands and every bystander while recording host differences. Mixed ATL construction now exists for review; source-projected definitions and regenerated NAR policy match, with the incoming junction still absent.",
+    "changed_files": [
+      "src/nasolve/cif_whole_furanose.py",
+      "tests/test_cif_base_anchored_furanose.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-base-anchored-whole-furanose-control-v1; selection includes explicit base_frame_roles; exact frozen input/output inventory plus rederived report and model",
+      "unchanged": "Compatible-host placement v1, source attachment/reaction, FANA/L-FANA/PNA, NAR compiler, native captures, CLI and checkpoint schemas"
+    },
+    "compatibility": "Additive explicit Python API; old compatible-host behavior and archived capsule replay pass. No migration, defaults, installed-library/source edit, adopted coordinate change, new branch or merge.",
+    "regressions": {
+      "new_cases": 18,
+      "before": "17 initial cases fail before the new API exists; an eighteenth independent-host atom-name case was added before final validation. Initial post-implementation failures came from writing fixture role columns to an empty worksheet; corrected without relaxing runtime checks.",
+      "related": "89 passed in 19.20s before the final independent-host naming regression; final new suite 18 passed in 3.62s.",
+      "focused": {
+        "exit_code": 0,
+        "summary": "1492 passed, 36 subtests passed in 136.96s (0:02:16)",
+        "seconds": 137.3078261249466,
+        "files": 574,
+        "changed_files": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH: explicit user request. Last full-tested implementation remains 809abd44df8885ac14f1a02a67a13338209a8707; fresh full integration required before merging."
+    },
+    "science": {
+      "status": "PLACED_COMBINED_SCAFFOLD_JUNCTION_REVIEW",
+      "sites": 42,
+      "model_heavy_atoms": 865,
+      "before_heavy_atoms": 863,
+      "requested_original_pairs": 8,
+      "all_bystander_atoms_unchanged": true,
+      "original_eight_pair_atoms_unchanged": true,
+      "source_sugar_centres": 4,
+      "source_hand_checks": 7,
+      "base_anchor_residuals_angstrom": [
+        0.0,
+        0.04477722635447375,
+        0.029223278392404985
+      ],
+      "junction_distances": [
+        {
+          "partner": "A:10:O3'",
+          "target_atom": "P",
+          "before_angstrom": 1.608861087850657,
+          "after_angstrom": 4.097638832303305
+        },
+        {
+          "partner": "A:12:P",
+          "target_atom": "O3'",
+          "before_angstrom": 1.608719677258907,
+          "after_angstrom": 1.5137866428265248
+        }
+      ],
+      "pair_distances": [
+        {
+          "atoms": [
+            "A:11:N3",
+            "B:5:N1"
+          ],
+          "before": 3.005996174315597,
+          "after": 2.8513735286700004
+        },
+        {
+          "atoms": [
+            "A:11:O4",
+            "B:5:N6"
+          ],
+          "before": 2.7262857517142254,
+          "after": 2.535636409266912
+        }
+      ],
+      "deleted_atoms": [
+        "HA",
+        "HXT",
+        "OXT"
+      ],
+      "retained_phosphate_protonation": "HO2P retained",
+      "native_formal_charge_readback": "UNSUPPORTED",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "dry_run": false,
+      "derivative_qualification": "NOT_RUN",
+      "geometry_optimization": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "final_receipt": "native/ATL-policy-rebound-02/cif-native-4eu1o89a/native_receipt.json",
+      "complete_native_interpretations": 3,
+      "unaffected_proxy_categories": {
+        "angle": true,
+        "bond_asu": true,
+        "bond_simple": true,
+        "chirality": true,
+        "const_dihedral": true,
+        "dihedral": true,
+        "parallelity": true,
+        "planarity": true
+      },
+      "unselected_definitions_preserved": true,
+      "native_classification": {
+        "status": "RECORDED",
+        "value": "RNA"
+      },
+      "energy_checks": {
+        "energy_inventory": true,
+        "finite_energy_and_gradient": true,
+        "fixed_coordinate_repeats": true
+      },
+      "native_junctions": [
+        {
+          "atoms": [
+            [
+              "A:11",
+              "O3'"
+            ],
+            [
+              "A:12",
+              "P"
+            ]
+          ],
+          "target": 1.607,
+          "weight": 6944.444444444444
+        }
+      ],
+      "base_placement": "COMPLETE_EXPLICIT_DIAGNOSTIC",
+      "combined_scaffold": "CONSTRUCTED_FOR_REVIEW_INCOMING_LINK_ABSENT",
+      "linked_numerical_support": "NOT_QUALIFIED",
+      "prior_policy_capture": "PRESERVED_COUNTEREXAMPLE_MISSING_C5M_IN_THREE_PLANES",
+      "projected_numerical_categories_match": true,
+      "outgoing_cross_link_angles": 4,
+      "NARestraints_policy": {
+        "status": "EXACT_NARESTRAINTS_POLICY_NATIVE_MATCH",
+        "replaced_request_blocks": 7,
+        "expected_request_count": 201,
+        "native_request_count": 201,
+        "native_custom_proxy_count": 201,
+        "exact_requests_match": true,
+        "exact_instantiated_proxies_match": true,
+        "all_other_policy_lines_preserved": true,
+        "source_role_remap": {
+          "site": "A:11",
+          "semantic_role": "C7",
+          "host_atom": "C7",
+          "ATL_atom": "C5M"
+        }
+      },
+      "reachability_bound": {
+        "status": "ANALYTIC_FIXED_C5_REACHABILITY_BOUND",
+        "distance_C5_to_incoming_O3_angstrom": 4.441296212311625,
+        "fixed_C5_to_P_radius_angstrom": 2.6157444695535514,
+        "minimum_possible_P_to_incoming_O3_angstrom_lower_bound": 1.8255517427580732,
+        "observed_native_link_target_angstrom": 1.607,
+        "lower_bound_exceeds_target": true,
+        "proof": "Triangle inequality: distance(P, partner) >= abs(distance(C5, partner) - distance(C5, P)). The three tested acyclic rotors keep C5 fixed and preserve C5-O5-P bond lengths and angle, hence preserve distance(C5,P).",
+        "coordinate_basis": "Full-precision numerical source after the same proper base transform; partner from frozen host PDB.",
+        "scope": "Proves these rigid-base, fixed-ring, three-arm-rotor degrees of freedom cannot attain the observed 1.607 A link target. Does not forbid native linking at a longer distance, or closure after body/neighbor movement or chemically qualified angle relaxation.",
+        "recommendation": "Generalize the existing source-preserving FANA seed search with bounded whole-body motion and explicit base/pair objectives, then qualify all source hands, graph-derived junctions, actual NARestraints membership, derivatives and geometry. Do not force a short bond onto this immutable placement.",
+        "model_written": false,
+        "automatic_adoption": false
+      }
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_gone": true,
+      "original_sdk_historical_reads_and_execution_denied": true,
+      "placement_capsules_rederived": 2,
+      "reaction_capsules_rederived": 1,
+      "NARestraints_compiler_capsules_rederived": 1,
+      "native_captures_reauthenticated": 3,
+      "exact_custom_requests_and_proxies": 201,
+      "frozen_files_unchanged": 224,
+      "negative_controls": [
+        "model",
+        "report",
+        "roles",
+        "source",
+        "schema",
+        "extra",
+        "policy"
+      ]
+    },
+    "auxiliary": {
+      "compileall": "PASS",
+      "compile_environment": {
+        "PYTHONPYCACHEPREFIX": "/private/tmp/c145-compile-cache"
+      },
+      "docs": {
+        "relative_links_checked": 305,
+        "missing": [],
+        "json_parse": "PASS"
+      },
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources_equal_base": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "svg_visual_review": "PASS: regenerated SVG unchanged and legible; caption now states explicit base placement, regenerated NAR membership and the unresolved incoming junction.",
+      "parent_artifacts_unchanged": 213,
+      "previous_C144_refs_verified": 63
+    },
+    "validation_commands": {
+      "new": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <nasolve_python> -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_base_anchored_furanose.py",
+      "related": "Same command with tests/test_cif_base_anchored_furanose.py tests/test_cif_whole_furanose.py tests/test_cif_furanose_reaction.py",
+      "focused": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <nasolve_python> scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused-final/pytest.xml",
+      "native": "Same scoped environment: c145_live.py then c145_policy_final.py. Three complete Phenix interpretations; first policy preflight refusal preserved. Exact ordered inputs/receipts and scripts retained locally.",
+      "science": "c145_science.py, c145_final_science.py, c145_reachability.py and c145_bound.py; no model emitted by feasibility calculations.",
+      "cold": "<nasolve_python> c145_cold_final.py; separate process against relocated src after original path disappears, original capsule/SDK/historical reads and execution denied.",
+      "auxiliary": "compileall -q src tests with external PYTHONPYCACHEPREFIX; check_docs.py; unchanged SVG regeneration/render/visual review; git diff --check"
+    },
+    "software": {
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_native_interpretations": 3,
+      "dry_run": false,
+      "coot": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN"
+    },
+    "artifacts": "Only code/tests/profile and maintained technical summary/hash references publish. Raw source/model/workbook, native/test output, compiler attempts, feasibility controls and runners stay local. All 213 C98 files retain bytes/times; 63 preceding C144 ledger refs retain hashes. No unpublished input cleanup or movement.",
+    "limitations": [
+      "Explicit Python diagnostic only; new placement policy does not grant base chemical equivalence, compile NAR policy automatically, optimize, choose chemistry, or activate ordinary PostMR/ReadySet/refinement.",
+      "Unique unbridged/2O4C-bridged furanose source and host profiles, three explicitly mapped bonded heavy base anchors with matching elements/orders, complete source-preserving target numerics, heavy-only unambiguous PDB and two explicit neutral identity-symmetry ports are required. PNA, charged ports, symmetry and arbitrary model mutation remain separate.",
+      "The actual combined scaffold is constructed for review, but incoming O3-P at 4.098 A has no native link. Outgoing 1.514 A link and four cross-link angles exist. No source inversion, RNA-to-DNA relabeling or bridge removal; formal-charge readback and linked numerical/geometry qualification remain open.",
+      "Finite repeated energy/gradients are not sampled derivative, torsion, clash, protonation, achieved geometry or diffraction qualification. The native dictionary reflects intended linked chemistry even when the intended incoming link is absent, so this is not an adoptable connected model.",
+      "The preserved stale-DT-policy capture silently loses ATL C5M from three planes. The final diagnostic invokes existing NAR compilation for one pair/two stacks and matches all 201 requests/proxies; general automatic mutation-policy orchestration is not added.",
+      "The curated-DZ line-oriented bond reader cannot consume the token-per-line projected dictionary used in the first preflight. Successful source-role validation uses maintained curated DZ; all C98 active numerical dictionaries are retained. A separate parser regression/fix is required.",
+      "The 27-start arm-rotor exploration is not a global minimum or native geometry result and writes no model. Its separate fixed-C5 reachability bound proves the three arm rotors cannot attain 1.607 A in this fixed base/ring pose. Generalized bounded body/junction placement and qualification remain next. PDU changed-objective geometry and other family/adoption gates are unchanged."
+    ],
+    "next": "Generalize the existing FANA source-preserving connected-seed search to graph-bound bridged/unbridged furanoses with bounded whole-body/junction motion and explicit base/pair objectives; retain every declared source hand, recompile actual NAR selectors, then require both native links/all angles and sampled numerical/geometry qualification. Separately replace the curated bond reader's line-based loop assumption with a proper CIF loop reader. Preserve the old fixed-base and stale-policy counterexamples.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/final-science-audit.json",
+        "size": 6949,
+        "sha256": "0672c4227f8191acaa2c0d89782ed672570d01356cfa29d740e160cdabdf56fb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/science-audit.json",
+        "size": 13066,
+        "sha256": "a5801e6681ba4eed4265aebd2bdb2da3213bbb76aac4d9aa957ed6bc9b10684d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/reachability.json",
+        "size": 7541,
+        "sha256": "7312b4b3351ead1c4b30a8bbef038b4a5829584a088d925eb38852bc662515c3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/reachability-bound.json",
+        "size": 1334,
+        "sha256": "43e48176e07a9e4ac15a35150daaaac831306ef973a5585159db71901cda47c9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/base-role-comparison.json",
+        "size": 1055,
+        "sha256": "afcdc9136635171df6f75685320e9576fe13904a2aad61e7aed679e606508a24"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/combined-pair-plan.json",
+        "size": 15751,
+        "sha256": "4262b88941306798052de67e3ccbe06ae6b951c574fb247a27260c6413ee180c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/parent-bindings.json",
+        "size": 8724,
+        "sha256": "a852b92391f7d6bbe0021ceed2becacc66eb95828d89684bf198e511558c1567"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/parent-before.json",
+        "size": 33029,
+        "sha256": "ea813163a8e090bdd2dd64912eb867c03fd44181005cede4ac3c520236af46c4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/parent-preservation.json",
+        "size": 36,
+        "sha256": "343a93ee1115f3eae7ab6515abf75ab66fe4c3e322f4e91b341dbd6d0e9e50a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/legacy-replay.json",
+        "size": 102,
+        "sha256": "6c5ede69acac4f873606d210a413d1b8f726e21e19276d5dd334ac5fd11aef20"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/native-state.json",
+        "size": 922,
+        "sha256": "a446bf8f66ed27e099ddc0bb66347654325f022cb31e6b0756c16f91145692d9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/live.log",
+        "size": 947,
+        "sha256": "ab71817b79aa13008453fcde93139d507af22ccb2f2ba8392789fa31f43615bd"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/policy.log",
+        "size": 2229,
+        "sha256": "7d36ee182469805cf591fcf1a5d55668a5b4ef21bffdc3e91741ff6c64bbdccb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/policy-final.log",
+        "size": 1427,
+        "sha256": "6535d7a1daea1f1c4c44066a537eb6d3e77ca629aad8839ddfa1306a81976924"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/ATL-projected.cif",
+        "size": 10728,
+        "sha256": "5e104ec1c6f69fe63b1af71ff1da400b649ce0c34dc9e9e70de94941b324fb56"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/cold-final/result.json",
+        "size": 953,
+        "sha256": "797a827195857ecd46bdd545b3eaffd78b1b79fc4b0569abfb424e71d0475ac6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/cold-final/replay.log",
+        "size": 419,
+        "sha256": "37c0bedd21b15330b6e57ffcef71c1c53aa2c602ff92618e69bd1d2291109e17"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/before.log",
+        "size": 34929,
+        "sha256": "cbbf21c10128aefa80bc9ad239af4e7c56c32ff23845be8580c53e290993f99f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/related-1.log",
+        "size": 15486,
+        "sha256": "79ee7c945037d73b74515220f25cd04afef7fa05f25fe3b3928b147067087461"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/related-2.log",
+        "size": 180,
+        "sha256": "c79bec1880aac7b3aaf50e9ec0518661c22ffcb6d452fbd78762b9bfc520577b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/base-final.log",
+        "size": 99,
+        "sha256": "36a64723f1a0abd99e3b5641af56b1c86f5ff9106927937d43ec82acd63d4026"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/focused-final/result.json",
+        "size": 603,
+        "sha256": "bd48edb3abe8a8d6ff5c879088b0e5a29460b7215a8357d3bcf5ba10bda2e570"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/focused-final/pytest.log",
+        "size": 6576,
+        "sha256": "f093cee13202e9b0a50af23cc4dec33a390f5320833226914af994ae965d4c02"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/focused-final/pytest.xml",
+        "size": 219522,
+        "sha256": "56a68fb38f4d281fbf420baca2335e2240a7d6367d2d894427955a6e219c6fda"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/focused-final/source-hashes.json",
+        "size": 62493,
+        "sha256": "2bd0ce6fb3d197651ae266c3c2647184ca6cfa45fa432a6a559a52a5c4ad17d5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/validation/auxiliary.json",
+        "size": 2664,
+        "sha256": "8255ff0411b7704842fa796f831db7eb573b94d3588e9faeaf32a0a85cc5d566"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/policy-rebound-02/summary.json",
+        "size": 1427,
+        "sha256": "6535d7a1daea1f1c4c44066a537eb6d3e77ca629aad8839ddfa1306a81976924"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/policy-rebound-02/parent_policy.phil",
+        "size": 56365,
+        "sha256": "79053e8e22fbde8424b219cac4e00d0220ec2f0a97b807c001ea2d409fd0fbd2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/policy-rebound-02/retained_policy.phil",
+        "size": 54290,
+        "sha256": "dceaf6213327042b7dc1aa44ca37299e160f8b0c0cf23782d2ff9cda3090fee8"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/policy-rebound-02/compiled/explicit_na_policy.json",
+        "size": 271410,
+        "sha256": "c6b81fab1ae8a44cd3a2172ff7c0864b381da097675e6ece753ccc106f3a9bb3"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/policy-rebound-02/compiled/explicit_na_policy.phil",
+        "size": 2211,
+        "sha256": "b1bace2d95c31157a5bb078a4c933b37f83450fc45d995db501cb93adf5c753b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/Ligands.xlsx",
+        "size": 194621,
+        "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/context.json",
+        "size": 468,
+        "sha256": "5783320ee840c4c0c0106a676518c72f246d47e08787fd55c9a98b53215a7f09"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/frame.pdb",
+        "size": 70395,
+        "sha256": "a5d056eb032734f3f357a5e194f3559f09ab84aab1f40711f896814d14e6ada7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/host.cif",
+        "size": 9049,
+        "sha256": "47a7972b4707d3d2b4bd01ab4916b90bbfa659867d612f58a3a79665cce5e9d7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/model.pdb",
+        "size": 70513,
+        "sha256": "c7abdb1795be21957280704e76bf626e2d059b20595e303a3e1844438165ec20"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/placement.json",
+        "size": 29849,
+        "sha256": "bcd7dcb265bc83b577fe1a9a9946e021723b16e8d1145ade7c1d704231bfc107"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/receipt.json",
+        "size": 1289,
+        "sha256": "d191b573bc21c72115f5d5d612462851ab735f37a490ec2283387211b706ea3f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/selection.json",
+        "size": 78,
+        "sha256": "23eb26f0a1e12657ede2d5cec95e1b9c5adfc783578be9f326dbd520d9944615"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/placement/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/Ligands.xlsx",
+        "size": 194621,
+        "sha256": "94a66af42081188fd95f3fdcbe04cb01bed8f1826772597272320a8b4c0433b2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/base_dictionary.cif",
+        "size": 11347,
+        "sha256": "27ece5a9fe5b92370157e06638e4093939a8781699af9705ef7090b5bbd068cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/contexts.json",
+        "size": 522,
+        "sha256": "fcad3d6ae886b8a3c0ea0489342bc927c37927445cfa671ee5f21ab0cdf09e16"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/model.pdb",
+        "size": 70513,
+        "sha256": "c7abdb1795be21957280704e76bf626e2d059b20595e303a3e1844438165ec20"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/numerical.cif",
+        "size": 14339,
+        "sha256": "d1f460933b473fefca722852c55eaee1aec2c4993da80311af068fb491851bc6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/preparation.json",
+        "size": 38805,
+        "sha256": "75e21ea9e4b9ca8e5796f2dc73f84928be0f631c093a999cf12bdad3ef376e3f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/receipt.json",
+        "size": 1451,
+        "sha256": "a5d202ddd3a6f3975add8f1954675e162e00641fb185c4f577a2a9d24c157a56"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/selection.json",
+        "size": 20,
+        "sha256": "c84106afe5a5299163a13dc6adbb1100d935e3e1b8164ad5f52b58b0333213a5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/site_modifications.cif",
+        "size": 392,
+        "sha256": "69aeb65b738d2b83662aea82671ff7b90ebcbbd4f669204791067e5bbe1f64a4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/site_modifications.phil",
+        "size": 148,
+        "sha256": "a0e52c808b22d5fce55be0a2f75e80ba5b445a7a16f80d1a38a2d91f2cfb8275"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/preparation/source.cif",
+        "size": 8402,
+        "sha256": "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/native/baseline/cif-native-s4_s5h18/native_receipt.json",
+        "size": 5897211,
+        "sha256": "9e0f9fefd289edb3a163bf11e7836e531cbd231763145417e38da2d254a802f2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/native/ATL/cif-native-nzrk3suw/native_receipt.json",
+        "size": 6007327,
+        "sha256": "e601ebde566b39481cdd8f1b64c50882169d4795ace03bda24ba9ccc9ed752eb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/native/ATL-policy-rebound-02/cif-native-4eu1o89a/native_receipt.json",
+        "size": 6009020,
+        "sha256": "760451eb1dbdcfabea582404d4b5126de5dc13801650af8a7b4048edb63dde22"
+      }
+    ]
   }
 }

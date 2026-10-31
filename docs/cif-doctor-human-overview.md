@@ -120,14 +120,18 @@ networks but lacks linked numerical qualification. C142 adds a usable source-pre
 four sugar centres and its bridge. C143 adds a graph-based rigid whole-sugar
 placement control with explicit ports, preserved stereochemistry and replayable
 frozen inputs. The workbook identifies ATL as alpha-LNA-T. The adapter refuses its D-DNA
-host because two shared sugar hands differ; the combined scaffold remains unconstructed. Directional Phenix
+host because two shared sugar hands differ. C145 adds a separate explicit base-anchored route and constructs ATL alongside the original eight pairs without moving their atoms. Directional Phenix
 controls originally recognized both links while leaving reacting atoms undeleted.
 C144 now derives explicit site modifiers from the source graph and matches the
 projected ATL numerical definitions in two directional controls and a three-site
 control. It preserves source RNA classification, the bridge, all four sugar
-centres and nonreacting phosphate protonation. Complete linked numerical and
-combined-scaffold support remain separate qualifications. See the
-[placement methods and limits](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143).
+centres and nonreacting phosphate protonation. The mixed-scaffold control matches all projected ATL definitions and all 201
+regenerated NARestraints requests/proxies. Regeneration matters: the old DT
+selectors silently omit ATL's C5M from three planes. The incoming backbone link
+is still absent at 4.098 Å; the outgoing link and all four junction angles exist.
+The rigid base pose leaves too little phosphate-arm reach for the 1.607 Å target,
+so connected geometry and complete linked numerical support remain open. See the
+[placement methods and limits](cif-doctor.md#base-anchored-whole-furanose-placement-and-mixed-atl-test-c145).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
 A new fixed-objective geometry trial and endpoint qualification remain open. Earlier mixed-endpoint proof using a NASolve-local
@@ -726,8 +730,10 @@ supply literal bond membership and effective-definition observations, with faile
 interpretations, naming differences and missing charge readback kept explicit.
 The C144 reaction adapter separately closes the selected ATL leaving-atom mismatch
 using explicit per-site graph operations and preserved source classification;
-its three native controls do not add an automatic adoption arrow or establish
-combined-scaffold geometry. Hash-bound JSON receipts preserve audit findings
+its three native controls do not add an automatic adoption arrow. C145 separately
+places ATL through a graph-bound base frame and reuses NARestraints to regenerate
+the affected pair/stack selectors. The complete custom policy is observed, but the
+incoming backbone gap keeps connected geometry unqualified. Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,
 declared site modifications and historical generation findings; equality does
