@@ -245,7 +245,7 @@
     "status": "QUEUED_NOT_BUILT",
     "queue": "docs/cif-doctor-completion-queue.md",
     "job": "Q03",
-    "latest_completed_delivery": "151_Cedar",
+    "latest_completed_delivery": "152_Cedar",
     "delivery_prefix": null
   },
   "boundaries": {
@@ -5690,7 +5690,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Q03: bind graph-selected repaired dictionaries and maintained attribution to independently source-qualified component/preparation and C141 selected-bundle evidence; establish a usable candidate or separately verified fallback without implicitly adopting an unconverged coordinate trial. Q02 curated CIF loop parsing remains a small independent early fix; keep all other completion-queue jobs visible.",
+  "next_action": "Continue Q03: establish explicit authoritative phosphate source/site state and matching preparation for the repaired PDU/5PC example, using existing or separately qualified graph/state operations. Do not silently add H, change OP2/OP3 charge, infer pH or replace source authority with a numerical dictionary. Then run one positive matching source/preparation/full-native repair/derivative join and freeze the selected result through C141. Q13 owns broader state-policy coverage; Q02 remains an independent early parser fix.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -30040,7 +30040,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "full_native_capture_bridge_2026_10_31",
+  "current_diagnostic_record": "source_bound_repaired_bundle_decision_2026_10_31",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -57620,6 +57620,13 @@
         "scope": "Complete native identity and numerical capture compatibility; chemical source qualification remains Q03",
         "implementation_commit": "edec9a53c157418a82696a3f8cda35f8af478fad"
       }
+    },
+    "active_job": {
+      "id": "Q03",
+      "latest_checkpoint": "C152",
+      "evidence_key": "source_bound_repaired_bundle_decision_2026_10_31",
+      "status": "PARTIAL",
+      "remaining": "Explicit matching source/site-state authority, positive native join, C141 publication"
     }
   },
   "full_native_capture_bridge_2026_10_31": {
@@ -58027,5 +58034,373 @@
     "focused_tested_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "source_bound_repaired_bundle_decision_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "1dc871d594ad420e54159191838b589d883db28b",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "completion_queue_job": "Q03",
+    "completion_queue_disposition": "PARTIAL; decision adapter implemented, positive native join and runtime publication remain open",
+    "before": "Source-qualified component preparation, maintained linear repair and fixed-coordinate numerical checks existed separately. No maintained gate bound them into one complete repaired/original dictionary decision with independently proved fallback.",
+    "after": "A bounded read-only adapter replays source/site preparation, exact ordered repair ownership, all full-native stage identities and the exact original/repaired derivative captures. Existing selection policy chooses one complete bundle or no usable result; a path resolver exposes the unchanged prepared model and ordered CIF/PHIL only after repeating the checks.",
+    "changed_files": [
+      "src/nasolve/cif_dictionary_bundle_repair.py",
+      "tests/test_cif_dictionary_bundle_repair.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-source-bound-repaired-bundle-selection-v1 inspection result",
+      "unchanged": "All prior saved capture, source/preparation, numerical and runtime-publication schemas; CLI/defaults, caches and checkpoints"
+    },
+    "compatibility": "Additive explicit Python APIs, no existing caller/default or migration change. No immutable runtime publication is introduced. Historical C139/C151 evidence retains its original scope and replays offline.",
+    "regressions": {
+      "new_cases": 33,
+      "isolated_old_source": "33 failed in 0.44s",
+      "initial_new": "26 passed in 7.23s",
+      "hardened_new": "33 passed in 1.62s; renamed-source consistency tightened before the final affected/focused runs",
+      "affected": "335 passed in 79.97s (0:01:19)",
+      "focused": {
+        "summary": "1719 passed, 36 subtests passed in 242.81s (0:04:02)",
+        "seconds": 243.20614620903507,
+        "files": 587,
+        "source_changes_during_validation": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH; last C143 full gate 7175 tests +276 subtests"
+    },
+    "native_replay": {
+      "status": "PASS",
+      "source_qualified_control": "C139 full-model component bundle remains independently qualified",
+      "attribution": "CAPTURED_LINEAR_ATTRIBUTION_PASS",
+      "derivatives": "CAPTURED_MIXED_DERIVATIVES_PASS",
+      "combined_control": "REFUSED_UNRELATED_SOURCE_BUNDLE",
+      "reason": "Repair does not start from the exact ordered source-qualified dictionaries",
+      "source_state_audit": "DECLARED_STATE_MISMATCH_5PC_PDU",
+      "new_native_calls": 0,
+      "positive_repaired_source_join": "NOT_ESTABLISHED_THIS_PUSH",
+      "owned_original_gone": true,
+      "historical_and_sdk_reads": "DENIED",
+      "process_execution": "DENIED",
+      "source_components": [
+        "0DG",
+        "AAJ"
+      ],
+      "repaired_components": [
+        "5PC",
+        "PDU"
+      ]
+    },
+    "source_state_audit": {
+      "status": "DECLARED_STATE_MISMATCH",
+      "cases": [
+        {
+          "component": "5PC",
+          "source_sha256": "b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025",
+          "original_dictionary_sha256": "8d444dad891bf247b8c0536675657dcb274fe7e4789c66991491cdafe608da0c",
+          "repaired_dictionary_sha256": "7736039747c43e31e9303090b7935a5fe43eefd8d628ded53a76782e592af372",
+          "source_only_atoms": [
+            "HOP2",
+            "HOP3"
+          ],
+          "candidate_only_atoms": [],
+          "changed_formal_charges": [
+            {
+              "atom": "HOP2",
+              "source": 0.0,
+              "dictionary": null
+            },
+            {
+              "atom": "HOP3",
+              "source": 0.0,
+              "dictionary": null
+            },
+            {
+              "atom": "OP2",
+              "source": 0.0,
+              "dictionary": -1.0
+            },
+            {
+              "atom": "OP3",
+              "source": 0.0,
+              "dictionary": -1.0
+            }
+          ],
+          "source_reassessment_before": [
+            "generated-atom-bond-or-hydrogen-identity-changed",
+            "generated-explicit-formal-charge-changed",
+            "source-explicit-formal-charges-not-preserved"
+          ],
+          "source_reassessment_after": [
+            "generated-atom-bond-or-hydrogen-identity-changed",
+            "generated-explicit-formal-charge-changed",
+            "source-explicit-formal-charges-not-preserved"
+          ],
+          "source_stereo": [
+            "PRESERVED",
+            "PRESERVED"
+          ],
+          "repair_preserved_existing_graph_and_state": true,
+          "interpretation": "DECLARED_STATE_MISMATCH; source/site chemical-state authority is required before source-qualified selection. This is not a pH or protonation recommendation."
+        },
+        {
+          "component": "PDU",
+          "source_sha256": "98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258",
+          "original_dictionary_sha256": "889540841e5885610b612aa457d2337fa8d30e877539344da9b3e90234b9d422",
+          "repaired_dictionary_sha256": "7f9d72951d0f83b4007e16a214b3b3a2e3ce7cc4ea619e26340b9f56b36c6956",
+          "source_only_atoms": [
+            "HOP2",
+            "HOP3"
+          ],
+          "candidate_only_atoms": [],
+          "changed_formal_charges": [
+            {
+              "atom": "HOP2",
+              "source": 0.0,
+              "dictionary": null
+            },
+            {
+              "atom": "HOP3",
+              "source": 0.0,
+              "dictionary": null
+            },
+            {
+              "atom": "OP2",
+              "source": 0.0,
+              "dictionary": -1.0
+            },
+            {
+              "atom": "OP3",
+              "source": 0.0,
+              "dictionary": -1.0
+            }
+          ],
+          "source_reassessment_before": [
+            "generated-atom-bond-or-hydrogen-identity-changed",
+            "generated-explicit-formal-charge-changed",
+            "source-explicit-formal-charges-not-preserved"
+          ],
+          "source_reassessment_after": [
+            "generated-atom-bond-or-hydrogen-identity-changed",
+            "generated-explicit-formal-charge-changed",
+            "source-explicit-formal-charges-not-preserved"
+          ],
+          "source_stereo": [
+            "PRESERVED",
+            "PRESERVED"
+          ],
+          "repair_preserved_existing_graph_and_state": true,
+          "interpretation": "DECLARED_STATE_MISMATCH; source/site chemical-state authority is required before source-qualified selection. This is not a pH or protonation recommendation."
+        }
+      ],
+      "automatic_adoption": false,
+      "new_native_calls": 0,
+      "source_authority": "Exact frozen C98 source references, not inferred from the numerical dictionary"
+    },
+    "auxiliary": {
+      "status": "PASS",
+      "unchanged_numerical_native_selection_modules": [
+        "cif_mixed_gradient.py",
+        "cif_gradient_audit.py",
+        "cif_parallelity_audit.py",
+        "cif_parallelity_correction.py",
+        "cif_recovered_gradient.py",
+        "cif_native_validation.py",
+        "cif_native_monomers.py",
+        "cif_attachment_native.py",
+        "cif_mixed_geometry.py",
+        "cif_fixed_geometry.py",
+        "cif_mixed_torsion.py",
+        "cif_linear_torsion_candidate.py",
+        "cif_linked_linear_torsion.py",
+        "cif_linked_torsion_energy.py",
+        "cif_linear_torsion_bundle.py",
+        "cif_captured_linear_attribution.py",
+        "cif_component_runtime.py"
+      ],
+      "compileall": "PASS",
+      "compile_cache": "external temporary cache",
+      "relative_links_checked": 368,
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources": 17,
+      "static_source_resource_hashes": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "parent_artifacts_unchanged": 451,
+      "previous_C151_and_queue_refs_verified": 29
+    },
+    "validation_commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "python": "3.12.14; pytest 9.1.1",
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_dictionary_bundle_repair.py",
+        "tests/test_cif_dictionary_bundle.py",
+        "tests/test_cif_dictionary_bundle_readyset.py",
+        "tests/test_cif_dictionary_sites.py",
+        "tests/test_cif_component_runtime.py",
+        "tests/test_cif_captured_full_monomers.py",
+        "tests/test_cif_captured_linear_attribution.py",
+        "tests/test_cif_captured_mixed_gradients.py",
+        "tests/test_cif_linear_torsion_bundle.py",
+        "tests/test_cif_doctor_selection.py"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/152_Cedar_source-bound-repair-cnp24863/validation/focused/pytest.xml"
+      ],
+      "baseline": "python c152_baseline.py: all 33 current regressions against an isolated git archive of base src, imported source location verified",
+      "replay": "python c152_replay.py: verify recorded artifact hashes; copy declared C139/C151 roots and C98 sources; rename owned originals away; deny historical/SDK opens and process execution; replay each evidence layer and refuse unrelated combined authority",
+      "auxiliary": "python c152_auxiliary.py: compileall external cache, links/JSON, unchanged numerical/native/source-selection cores and resources/figure, prior evidence and parent bytes/timestamps, git diff --check"
+    },
+    "software": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "replayed_phenix_installation": "2.2.1-6174",
+      "replayed_dispatcher": "2.2.1",
+      "new_native_processes": 0,
+      "execution_scope": "OFFLINE_CAPTURE_REPLAY",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN"
+    },
+    "artifacts": "Raw source/native capsules, source-state comparisons, validation logs and procedural helpers stay local. Publish only implementation/tests, maintained technical contracts and anchored hash references. 451 snapshotted parent artifacts retain bytes and timestamps.",
+    "limitations": [
+      "Q03 is not complete. Positive new selection tests use explicitly synthetic upstream source/native verifiers; actual C139 source and C151 attribution/derivative capsules replay independently, and their mismatched join correctly refuses. A positive matching source/preparation/repair native demonstration remains required.",
+      "Current PDU/5PC base dictionaries and exact retained C98 sources differ in phosphate H/charge state. The linear torsion repair leaves these pre-existing differences unchanged. This is a source/state authority boundary, not a pH inference, a recommendation to add H, or proof that either chemical state is wrong.",
+      "The read-only adapter returns an unchanged prepared model and complete ordered dictionary/PHIL selection. It does not freeze a C141 runtime publication, change ordinary PostMR, adopt a checkpoint or rank/adopt a geometry endpoint. Downstream ownership must freeze/revalidate returned paths before execution.",
+      "Existing source-relative stereo limitations and the diagnostic-only unavailable-native-formal-charge exception remain explicit. No new chemical operation, native force field, NAR restraint policy, representation permission, repair threshold or installed-library change occurs.",
+      "Failed/prepared/absent derivative evidence cannot establish usability. A fallback needs its own exact passing derivative capture. Malformed or mismatched evidence raises rather than being swallowed as a routine failed improvement.",
+      "No new Phenix, ReadySet, Coot, optimizer or diffraction-refinement execution. The replayed Phenix captures were produced under 2.2.1-6174; this pass is offline verification, not a fresh native run or a dry-run claim.",
+      "No full regression this bounded development pass. Last full-tested remains C143; full regression and representative ordinary-route integration remain required before branch integration."
+    ],
+    "next": "Continue Q03: establish explicit authoritative phosphate source/site state and matching preparation for the repaired PDU/5PC example, using existing or separately qualified graph/state operations. Do not silently add H, change OP2/OP3 charge, infer pH or replace source authority with a numerical dictionary. Then run one positive matching source/preparation/full-native repair/derivative join and freeze the selected result through C141. Q13 owns broader state-policy coverage; Q02 remains an independent early parser fix.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/replay/result.json",
+        "size": 729,
+        "sha256": "55afa8a736d8a8bac7b67b64d1537023ac9860dc11b48a53ba98d590569283e6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/replay/source-qualified-control.json",
+        "size": 31264,
+        "sha256": "98c7281258e2802189415e36060329803de30780b272a826453a80293c101806"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/source-state-audit.json",
+        "size": 3473,
+        "sha256": "907ac923255b1a77c5c8c76682b06b4185f3676600b4a1e8aa20cad6d8287e23"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/parent-before.json",
+        "size": 112618,
+        "sha256": "9331d78c2517c8e040cc8f781925f9acf417941341c118022e50be72319b784e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/baseline-isolated/result.json",
+        "size": 4729,
+        "sha256": "5d8de8e561e15dcc00b7d817788b5a3918b3b20339ff8b836ce0f59579ac0c81"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/baseline-isolated/pytest.log",
+        "size": 50954,
+        "sha256": "8f5e62aaeab3694e2fef88be408a066c1c448f2d945579528cfcbbf7a1d04a4c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/new-hardened.log",
+        "size": 99,
+        "sha256": "b88f5545699f17fd75071d1031c9e7f2b85f399bda9f41200ed7c24854b70f94"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/affected.log",
+        "size": 431,
+        "sha256": "1b12182be8623d362d7aae4ddf852c5bf1084de846205a272be9d57d0cabebe6"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/focused/result.json",
+        "size": 1322,
+        "sha256": "a1728d370589ddbd420e4894c9d40cbe146cae0ca9058f22bb5e73e0aac739cf"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/focused/pytest.log",
+        "size": 7046,
+        "sha256": "8e2a9b9c6a98a57bba9677bf1bee90ea368d6cdfaf901a39548c5f50d5b24805"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/focused/pytest.xml",
+        "size": 252589,
+        "sha256": "f4dc2552d59298d393cafae40b73bebbf0bfe5ba7e97e345408de75882f45038"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/focused/source-hashes.json",
+        "size": 63985,
+        "sha256": "a2c6654d4371baff4396cc4087c41b085c97092b6db04fa3eb96c6298e4e026f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "152_Cedar_source-bound-repair-cnp24863/validation/auxiliary.json",
+        "size": 3017,
+        "sha256": "9f914b4839d2534adf0724443faa257ac374235a1910119f4cdd1c3f961ba046"
+      }
+    ]
   }
 }

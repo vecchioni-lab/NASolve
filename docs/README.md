@@ -40,7 +40,10 @@ milestone statements preserve their original scope; they are not a second queue.
   attribution job and portable offline replay, reproducing all six proxy references.
   C151 closes Q01 by retaining complete native identities through attribution,
   derivatives and geometry readback. Q03 source-qualified repaired selection is
-  next; ordinary adoption/refinement remain separate.
+  next; ordinary adoption/refinement remain separate. C152 implements a read-only
+  source-bound repair/fallback decision gate. A matching positive native join and
+  C141 publication remain open; PDU/5PC phosphate-state authority is the immediate
+  evidence boundary, not something the numerical pass can infer.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

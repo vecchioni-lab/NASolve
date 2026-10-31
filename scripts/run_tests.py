@@ -23,7 +23,7 @@ PROFILES = {
         'test_cif_preparation_qualification', 'test_cif_linked_preparation',
         'test_cif_linked_usability_bridge', 'test_cif_terminal_preparation',
         'test_cif_candidate_usability', 'test_cif_purine_representation',
-        'test_cif_captured_full_monomers', 'test_cif_captured_linear_attribution', 'test_cif_linear_torsion_bundle', 'test_cif_linked_torsion_energy', 'test_cif_linked_linear_torsion', 'test_cif_linear_torsion_candidate',
+        'test_cif_dictionary_bundle_repair', 'test_cif_captured_full_monomers', 'test_cif_captured_linear_attribution', 'test_cif_linear_torsion_bundle', 'test_cif_linked_torsion_energy', 'test_cif_linked_linear_torsion', 'test_cif_linear_torsion_candidate',
         'test_cif_captured_geometry_trial', 'test_cif_captured_mixed_gradients', 'test_cif_furanose_bridge', 'test_cif_base_anchored_furanose', 'test_cif_furanose_reaction', 'test_cif_whole_furanose', 'test_cif_fana_placement', 'test_cif_fana', 'test_cif_fana_enantiomer', 'test_cif_fana_component',
         'test_cif_stereochemistry_audit', 'test_cif_terminal_qualification',
         'test_cif_source_classification', 'test_cif_attachment_profiles',

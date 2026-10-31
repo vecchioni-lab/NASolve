@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Source-bound repaired-bundle decision (C152)
+
+- Add a read-only composition gate binding independently source-qualified site
+  preparation to the exact full-native repair chain and fixed-coordinate
+  derivative evidence. Return the model, ordered dictionaries and PHIL together.
+- Reuse the existing usable-candidate policy. A fallback requires its own passing
+  derivative evidence; absent, failed or merely preserved input is not promoted.
+  Malformed or mismatched evidence refuses instead of masquerading as failure.
+- Q03 remains open for a positive native source/repair join and C141 publication.
+  Retained PDU/5PC sources and current numerical dictionaries differ in phosphate
+  H/charge state; torsion repair does not authorize resolving that difference.
+
 ### Full native identity through captured numerical jobs (C151)
 
 - Accept the existing opt-in full-monomer capture contract in maintained repair

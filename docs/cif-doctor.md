@@ -96,7 +96,9 @@
 
 <a id="current-capability-boundary-c150"></a>
 
-## Current capability boundary (C151)
+<a id="current-capability-boundary-c151"></a>
+
+## Current capability boundary (C152)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -116,6 +118,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. Q03 must still bind repaired dictionaries to source-qualified preparation and selected-bundle evidence. |
+| Source-bound repaired-bundle decision | C152 composes source-qualified site preparation, exact full-native repair attribution and independent original/repaired derivative proofs. Synthetic verifier controls exercise whole-bundle selection, fallback and refusal; actual C139/C151 evidence replays and an unrelated source/repair join refuses. | Positive native qualification of one matching source/preparation/repair chain remains open. PDU/5PC phosphate H/charge state needs explicit source/site authority. C141 publication and ordinary adoption remain separate. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -163,6 +166,57 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Source-bound repaired-bundle decision (C152)
+
+`inspect_dictionary_bundle_repair(bundle, baseline_receipt, attribution_directory,
+repaired_gradient_directory=..., original_gradient_directory=...)` is a read-only
+composition gate. The maintained component-bundle reader replays independent
+stored source qualification and site projection. The existing whole-model native
+checker binds its preparation baseline and prepared result. The maintained repair
+reader replays the complete graph-selected omission chain and native attribution.
+Every repaired component must own that exact original dictionary; model bytes,
+ordered dictionaries, PHIL, consumer and complete residue identities must bind
+through every stage. Extra stages or a legacy identity downgrade refuse.
+
+Derivative evidence is independently read and must contain the exact final repair
+capture, or the exact prepared original capture for a fallback. Missing/prepared/
+failed derivatives are unqualified alternatives, not permission to continue.
+Malformed or mismatched evidence raises. The existing component selection policy
+prefers the repaired bundle only after all gates pass; otherwise a separately
+verified original can remain. Every component must select the same bundle, so
+no unchecked mixture of alternatives is assembled. Targets under different
+objectives and geometry convergence are not ranking inputs. Source-relative
+stereochemistry retains the existing policy's explicit limitations.
+
+`repaired_dictionary_bundle_inputs(...)` repeats the checks and returns the
+unchanged prepared model, complete ordered CIF/PHIL paths and review together;
+it refuses when neither bundle is usable. A downstream owner still must freeze
+and revalidate these inputs before execution. Schema 1 /
+`cif-source-bound-repaired-bundle-selection-v1` is an additive inspection result,
+not a new immutable runtime publication. No native tools, ReadySet, optimization,
+C141 publication, checkpoint adoption or diffraction refinement run in this API.
+The existing unavailable-native-charge exception remains diagnostic only; this
+adapter does not infer protonation or absolute CIP.
+
+**Evidence boundary:** synthetic upstream-verifier regressions cover successful
+repair, verified fallback, no usable result, changed sources, wrong owners/order,
+missing/copied monomers, mismatched derivatives, relocation and concurrent source
+changes. Actual C139 source-qualified preparation and C151 repair/derivative
+capsules replay after relocation with original/SDK access and execution denied.
+Combining those different models/dictionaries correctly refuses. This is not a
+positive native demonstration of a matching repaired/source-qualified bundle.
+
+A direct reassessment of the exact retained C98 PDU/5PC source files against C151
+base dictionaries reconfirms a chemical-state difference: HOP2/HOP3 are present
+in those sources and absent from the numerical bases, while OP2/OP3 charges are
+0 versus -1. The torsion repair preserves that pre-existing state. Source-relative
+configuration is preserved, but neither numerical success nor a disappearing
+internal leaving group authorizes the separate OP2 protonation change. This does
+not prove either source state is chemically wrong or recommend adding hydrogens.
+Q03 next needs explicit source/site-state authority and a matching qualified
+preparation, then a positive native join and C141 publication. Q13 retains the
+broader chemical-state policy work; ordinary adoption stays Q05.
 
 ### Full native capture bridge (C151)
 

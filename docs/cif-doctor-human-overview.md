@@ -161,6 +161,12 @@ derivative checks and geometry readback. The mixed scaffold retains all 42 resid
 identities, including every chain copy. This joins two previously incompatible
 pieces of the engine; source-qualified repair selection is still the next gate.
 See the [full-capture contract](cif-doctor.md#full-native-capture-bridge-c151).
+C152 adds the check that a numerical repair belongs to the exact source-qualified
+prepared model and dictionaries. A fallback needs its own passing evidence.
+The live mixed example still needs explicit phosphate-state authority: its
+retained source and numerical bases differ in phosphate H and charge. This is a
+qualification boundary, not an instruction to add atoms or infer a pH.
+See the [source-bound decision contract](cif-doctor.md#source-bound-repaired-bundle-decision-c152).
 See the [attribution methods and limits](cif-doctor.md#maintained-captured-linear-torsion-attribution-c150).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
@@ -780,7 +786,10 @@ engine; it adds evidence traceability without enlarging chemical or adoption cla
 C151 carries complete native monomer identities through the numerical and geometry
 boxes, including fresh endpoint readback. The figure's separate source-chemistry
 and adoption gates therefore remain unchanged; a complete identity record does
-not itself authorize selecting a repaired dictionary.
+not itself authorize selecting a repaired dictionary. C152 explicitly joins the
+source/preparation and numerical gates before a whole-bundle decision. Its
+unchanged-model choice stays separate from coordinate improvement; positive
+native composition and immutable runtime publication remain unfinished.
 Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,

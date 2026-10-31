@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "full_native_capture_bridge_2026_10_31",
+    "current_diagnostic_record": "source_bound_repaired_bundle_decision_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27712,6 +27712,29 @@
       "focused_tested_commit": "edec9a53c157418a82696a3f8cda35f8af478fad",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "source_bound_repaired_bundle_decision": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "A bounded read-only adapter replays source/site preparation, exact ordered repair ownership, all full-native stage identities and the exact original/repaired derivative captures. Existing selection policy chooses one complete bundle or no usable result; a path resolver exposes the unchanged prepared model and ordered CIF/PHIL only after repeating the checks.",
+      "schemas": {
+        "new": "schema 1 / cif-source-bound-repaired-bundle-selection-v1 inspection result",
+        "unchanged": "All prior saved capture, source/preparation, numerical and runtime-publication schemas; CLI/defaults, caches and checkpoints"
+      },
+      "compatibility": "Additive explicit Python APIs, no existing caller/default or migration change. No immutable runtime publication is introduced. Historical C139/C151 evidence retains its original scope and replays offline.",
+      "limitations": [
+        "Q03 is not complete. Positive new selection tests use explicitly synthetic upstream source/native verifiers; actual C139 source and C151 attribution/derivative capsules replay independently, and their mismatched join correctly refuses. A positive matching source/preparation/repair native demonstration remains required.",
+        "Current PDU/5PC base dictionaries and exact retained C98 sources differ in phosphate H/charge state. The linear torsion repair leaves these pre-existing differences unchanged. This is a source/state authority boundary, not a pH inference, a recommendation to add H, or proof that either chemical state is wrong.",
+        "The read-only adapter returns an unchanged prepared model and complete ordered dictionary/PHIL selection. It does not freeze a C141 runtime publication, change ordinary PostMR, adopt a checkpoint or rank/adopt a geometry endpoint. Downstream ownership must freeze/revalidate returned paths before execution.",
+        "Existing source-relative stereo limitations and the diagnostic-only unavailable-native-formal-charge exception remain explicit. No new chemical operation, native force field, NAR restraint policy, representation permission, repair threshold or installed-library change occurs.",
+        "Failed/prepared/absent derivative evidence cannot establish usability. A fallback needs its own exact passing derivative capture. Malformed or mismatched evidence raises rather than being swallowed as a routine failed improvement.",
+        "No new Phenix, ReadySet, Coot, optimizer or diffraction-refinement execution. The replayed Phenix captures were produced under 2.2.1-6174; this pass is offline verification, not a fresh native run or a dry-run claim.",
+        "No full regression this bounded development pass. Last full-tested remains C143; full regression and representative ordinary-route integration remain required before branch integration."
+      ],
+      "next": "Continue Q03: establish explicit authoritative phosphate source/site state and matching preparation for the repaired PDU/5PC example, using existing or separately qualified graph/state operations. Do not silently add H, change OP2/OP3 charge, infer pH or replace source authority with a numerical dictionary. Then run one positive matching source/preparation/full-native repair/derivative join and freeze the selected result through C141. Q13 owns broader state-policy coverage; Q02 remains an independent early parser fix.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "source_bound_repaired_bundle_decision_2026_10_31",
+      "validation": "1719 passed, 36 subtests passed in 242.81s (0:04:02); 335 passed in 79.97s (0:01:19); cold native replay and mismatched-join refusal pass. No new native execution or full suite."
     }
   },
   "audience": [

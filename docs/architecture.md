@@ -3699,6 +3699,16 @@ chemistry authorities are unchanged. This closes capture compatibility Q01;
 independent source-qualified repaired selection remains Q03. See the
 [full-capture contract](cif-doctor.md#full-native-capture-bridge-c151).
 
+C152 adds read-only composition of source-qualified preparation, full-native
+repair attribution and exact original/repaired derivative evidence. Every repaired
+component retains its source owner and the original model/ordered-CIF/PHIL context.
+The existing selection policy chooses one whole bundle; a fallback needs its own
+proof. The result exposes verified paths for a downstream owner but does not
+publish a C141 runtime bundle or adopt a geometry endpoint. A matching positive
+native source/repair join is still required, including explicit phosphate-state
+authority for the current PDU/5PC example. See the
+[source-bound decision contract](cif-doctor.md#source-bound-repaired-bundle-decision-c152).
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

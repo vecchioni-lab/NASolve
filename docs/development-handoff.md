@@ -11,6 +11,72 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C152 validated: source-bound repaired-bundle decision; Q03 remains open
+
+Base/pushed-before-work `1dc871d594ad420e54159191838b589d883db28b`; existing **cedar** only.
+Capsule `live_tests_directory/152_Cedar_source-bound-repair-cnp24863`.
+Before, source-qualified preparation and native/numerical repair existed as separate
+proofs. After, a read-only adapter binds the exact prepared model, ordered CIF/PHIL,
+component ownership, full monomer identities and derivative captures before choosing
+one whole repaired or original bundle. The existing component policy makes the
+choice; an original fallback needs its own passing derivatives. Missing proof does
+not become usability, and malformed evidence refuses. Geometry is not an input.
+
+New `src/nasolve/cif_dictionary_bundle_repair.py` exposes
+`inspect_dictionary_bundle_repair` and `repaired_dictionary_bundle_inputs`.
+Schema 1 / `cif-source-bound-repaired-bundle-selection-v1` is an inspection result;
+the path resolver repeats all checks but does not freeze a C141 runtime bundle.
+Downstream ownership must freeze/revalidate before execution. No CLI/default,
+cache/checkpoint or historical-capsule migration. Existing numerical cores, source
+qualification, phosphate operations, NARestraints and selection policy are unchanged.
+
+**Evidence:** all positive new selection/fallback cases use explicitly synthetic
+upstream verifiers. Actual C139 source-qualified preparation and C151 maintained
+repair/derivative capsules replay after the owned originals are renamed away, with
+historical/SDK opens and process execution denied. Combining their different
+models/dictionaries correctly refuses. **A positive matching native repaired/source
+join is not established by this push.** No new Phenix/ReadySet/Coot/refinement call;
+replayed native captures are from Phenix 2.2.1-6174 (dispatcher 2.2.1).
+
+Exact retained C98 sources reconfirm the PDU/5PC base-state mismatch: source
+HOP2/HOP3 are absent from the current numerical bases, and source OP2/OP3 charges
+0 become -1 there. The torsion repair changes neither graph nor that existing
+state; source-relative configuration is preserved. This does not establish which
+state is chemically appropriate or recommend adding H. It does require explicit
+source/site-state authority before these numerical dictionaries inherit source
+qualification. Q03 and the relevant Q13 dependency remain open.
+
+**Validation:** **33 failed in 0.44s** against isolated base source; all **33** new
+cases pass in the final affected/focused runs. Affected: **335 passed in 79.97s (0:01:19)**.
+Focused chemistry/workflow: **1719 passed, 36 subtests passed in 242.81s (0:04:02)**; all **587** frozen Python
+files unchanged during validation. Commands use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_dictionary_bundle_repair.py tests/test_cif_dictionary_bundle.py tests/test_cif_dictionary_bundle_readyset.py tests/test_cif_dictionary_sites.py tests/test_cif_component_runtime.py tests/test_cif_captured_full_monomers.py tests/test_cif_captured_linear_attribution.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_linear_torsion_bundle.py tests/test_cif_doctor_selection.py
+python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused/pytest.xml
+python c152_baseline.py
+python c152_replay.py
+python c152_auxiliary.py
+```
+
+Compileall with external cache, links/JSON, unchanged figure regeneration, core/
+resource checks, preserved **451** parent artifacts and `git diff --check` pass.
+No full suite; last full-tested remains `809abd44df8885ac14f1a02a67a13338209a8707`
+(7,175 tests +276 subtests). Source-state audit and exact commands/hashes are in
+`source_bound_repaired_bundle_decision_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json).
+
+Changed files: new adapter/regressions, chemistry profile, changelog, methods,
+overview/caption, architecture/index, queue, this handoff and both ledgers.
+Raw source/native/scientific data, logs and helpers remain local. No new branch
+or merge. Implementation and focused validation complete; publication pending.
+No active jobs remain.
+
+**Next:** Continue Q03: establish explicit authoritative phosphate source/site state and matching preparation for the repaired PDU/5PC example, using existing or separately qualified graph/state operations. Do not silently add H, change OP2/OP3 charge, infer pH or replace source authority with a numerical dictionary. Then run one positive matching source/preparation/full-native repair/derivative join and freeze the selected result through C141. Q13 owns broader state-policy coverage; Q02 remains an independent early parser fix.
+Q03 stays active; C152 closes the bounded decision-contract checkpoint only.
+— Rowan · Codex desktop
+
 ## C151 published: Q01 complete native capture bridge
 
 Base/pushed-before-work `7b8c74c24101cac2defddde2b4daab7f9da84087`; existing **cedar** only.

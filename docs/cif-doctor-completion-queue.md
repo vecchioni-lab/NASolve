@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-10-31, after C151.** This queue owns unfinished
+**Current planning authority, 2026-10-31, after C152.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -92,7 +92,24 @@ a formatter to change scientific inputs.
 
 ### Q03 — Qualify repaired dictionaries and select a usable bundle
 
-**Open; next implementation checkpoint. Q01 is complete.** Compose C149/C150 graph-selected repair with independently
+**Open; active integration package. Q01 is complete.** C152 implements the
+read-only source/preparation → repair-attribution → derivative decision gate,
+including separately proved fallback and one complete selected input list.
+Its positive selection tests use explicit synthetic upstream verifiers. Actual
+C139 source and C151 numerical evidence replay, but cannot be combined because
+they qualify different inputs. A positive matching native join remains open.
+
+The exact retained C98 PDU/5PC sources carry HOP2/HOP3 and neutral OP2/OP3; current
+C151 numerical bases omit those H and declare OP2/OP3 -1. The graph-selected
+torsion repair leaves that state unchanged. **Next bounded checkpoint:** resolve
+and record the authoritative source/site chemical state using existing operations
+or a separately qualified explicit operation, then build matching source-qualified
+preparation/native evidence. Do not silently add H, change charge or infer pH.
+This is a concrete Q13 boundary, not a reason to defer all Q03 work until every
+chemical-state family is supported. Then validate the complete positive repair
+join and freeze its selection through the C141/public bundle route.
+
+Compose C149/C150 graph-selected repair with independently
 source-qualified preparation and C141 selected-bundle evidence. The exact omitted
 torsions, full source graph/H/charge/stereo, site projections and native effective
 definitions must all refer to the same candidate. Use the existing
@@ -258,7 +275,11 @@ NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
 
-**Open; incremental prerequisite for affected Q04/Q09/Q10/Q12 cases.**
+**Open; incremental prerequisite for affected Q03/Q04/Q09/Q10/Q12 cases.**
+C152 reconfirms the specific Q03 phosphate-state boundary: retained PDU/5PC
+sources and numerical base dictionaries differ in HOP2/HOP3 and OP2/OP3 charge.
+Account for the intended state and each source/site operation explicitly; the
+linear-torsion omission neither repairs nor authorizes that state transition.
 Finish explicit source-preserving H/charge/protonation, atom aliases and attachment
 ownership where current DNA/L-DNA or neutral amide contracts do not apply.
 Include aliased terminal operations, charged reactive PNA states and a real
