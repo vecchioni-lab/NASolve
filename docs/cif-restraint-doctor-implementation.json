@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-30",
+    "updated_date": "2026-10-31",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -27358,6 +27358,31 @@
       "full_tested_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "qualified_component_bundle": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "Compose explicit qualified entries under one immutable model/consumer/context, retain source-owned phosphate names through qualified internal-site operations, and independently recheck the actual ReadySet endpoint; preserve a checked diagnostic start when optional endpoint evidence fails.",
+      "schemas": {
+        "bundle": "schema 1 / cif-stored-dictionary-bundle-v1; dictionary_bundle_directory anchor; unique component/site/modifier ownership; sorted components and ordered common/native PHILs",
+        "site": "opt-in schema 1 / cif-stored-dictionary-sites-v4; explicit cif-source-phosphate-aliases-v1 internal-site policy",
+        "roundtrip": "schema 1 / cif-stored-bundle-readyset-roundtrip-v1; final effective native binding with diagnostic-only fallback",
+        "unchanged": "Legacy site policies/worker bytes, ordinary ReadySet, store/CLI/run/checkpoint/production refinement schemas"
+      },
+      "compatibility": "Opt-in only; new contracts require the updated reader. No in-place migration or renaming. Five historical site cases replay byte-exact results, including the old blocked copied-chain attempt.",
+      "limitations": [
+        "Internal opt-in diagnostic APIs only; no ordinary PostMR/CLI/checkpoint/default change or automatic adoption.",
+        "Formal-charge readback is unavailable at all three sites. Source H/charge/protonation is preserved, not experimentally chosen; continuation is diagnostic only.",
+        "The source-name policy currently covers internal incoming phosphate sites only. Aliased terminal-phosphate/free-five-prime-OH operations, generic PNA/ATL native ports and unsupported names refuse.",
+        "The first ReadySet output changes atom/proxy ordering while preserving named heavy coordinates and effective definitions. Strict comparison retains the verified fallback. Stable-order success does not prove arbitrary order equivalence.",
+        "Fixed-geometry numerical equality is a measured diagnostic, not a full potential/derivative proof, convergence or scientific acceptance. No new tolerance or proxy canonicalization is introduced.",
+        "The mixed control has two explicit source-named junction angle edits; it is not new complete base-pair/stack, arbitrary-ligand, L-FDNA, diffraction or geometry-optimization evidence.",
+        "NARestraints remains the pairing/stacking authority and ReadySet the ordinary preparation consumer. Existing protected terminal phosphates, immutable attempts, copied-chain refusals and chemical/source gates remain.",
+        "Full-model interpretation/repeated readback may cost more for large bundles; two to sixteen selected components are supported by the contract, with installed scientific evidence scoped to this two-component three-site control."
+      ],
+      "next": "Reconcile ReadySet atom ordering under an explicit identity/native contract without relaxing signed chirality, torsion, symmetry, origin or numerical checks. Preserve the verified starting diagnostic until that proof passes. Then connect this opt-in bundle route to ordinary continuation/adoption with representative held-out cases; generic PNA/ATL ports, PDU changed-objective numerics and catalogue-wide coverage remain separate.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "qualified_component_bundle_2026_10_31",
+      "validation": "7062 passed, 276 subtests passed in 1107.68s (0:18:27); focused 1153 passed, 36 subtests passed in 111.10s (0:01:51); two final native/ReadySet controls; seven cold replays plus ten negatives."
     }
   },
   "audience": [
@@ -27872,7 +27897,7 @@
           "src/nasolve/cif_dictionary_reuse.py"
         ],
         "delivery": "Historical C66 evidence retained; current contracts in cif-doctor.md and C135 evidence.",
-        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C138 add exact current-site preparation, terminal/custom context, complete native identity capture and diagnostic continuation. Ordinary automatic selection/adoption and multiple-component composition remain separate."
+        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C138 add exact current-site preparation, terminal/custom context and complete native identity. C139 composes multiple qualified components and checks actual final ReadySet/native evidence with verified diagnostic fallback; ordinary automatic selection/adoption remains separate."
       },
       "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },

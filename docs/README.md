@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-10-30**. Use the subsystem contract for actual behavior, the
+Updated **2026-10-31**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -17,7 +17,9 @@ milestone statements preserve their original scope; they are not a second queue.
   evidence. C137 adds explicit terminal-phosphate and custom-restraint context
   with exact native consumption checks. C138 adds explicit full-model native
   interpretation and complete residue identities while preserving old captures.
-  Automatic PostMR continuation/adoption remains separate.
+  C139 composes multiple qualified components, preserves source phosphate names
+  at internal links and checks the final ReadySet/native result with a verified
+  fallback. Automatic PostMR continuation/adoption remains separate.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

@@ -3756,9 +3756,27 @@ Changing that neighbourhood requires separate linked-configuration authority.
 The opt-in linked v3 and terminal v2 receipts record these bindings and projected
 centre states. Previous callers and policy identifiers remain unchanged. Explicit
 DNA/L-DNA source declarations select existing native polymer machinery; conventional
-backbone names are still required, with explicit element/bond and neutral-reacting-
-port checks shared with the source-operation rule. Generic source ports do not yet imply a universal
+backbone names remain the default. An explicit source-named internal-phosphate
+adapter also checks unique aliases against the graph and neutral-reacting-port
+state; it preserves literal names and does not authorize aliased terminal operations. Generic source ports do not yet imply a universal
 native adapter. Native effective definitions, formal-charge availability, actual
 model coordinates and numerical derivatives remain separate qualifications.
 No new CLI, run/checkpoint migration, installed-library mutation or automatic
 adoption is introduced. See the [contract and evidence](cif-doctor.md#source-bound-qualified-site-preparation-c133).
+
+
+## Qualified component bundles and ReadySet endpoint checks
+
+The opt-in bundle contract composes independent stored source/numerical entries
+under one exact model, consumer, declared links, native context and ordered input
+list. Ownership is explicit by component, site and modifier. Readback rederives
+all generated files; whole-model before/after captures qualify all selected sites
+together. Source-name phosphate aliases are opt-in, graph-bound internal operations.
+
+Ordinary per-component ReadySet consumption remains the preparation step. Its
+observer/argument/source/effective-output proof is replayed before a fresh native
+readback of the final model and effective dictionaries. Failed or missing endpoint
+evidence keeps the qualified starting diagnostic; a damaged start is refused.
+Strict ordered proxies are unchanged: harmless-looking atom reorderings still
+need a separate equivalence proof. No automatic ordinary adoption or checkpoint
+migration follows. See the [contract](cif-doctor.md#qualified-component-bundles-and-final-readyset-readback-c139).

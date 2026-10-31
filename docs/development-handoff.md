@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-30** from native receipts, user visual review and verified geometry/DF
+Updated **2026-10-31** from native receipts, user visual review and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,60 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C139 validated: qualified component bundles and final ReadySet readback
+
+Base: `dd318021b328e4aa83fd3ba5d7afd0a3a011e355`; existing cedar only.
+Capsule: `live_tests_directory/139_Cedar_component-bundle-whiru70v`.
+Before: stored components lacked one shared source/site/native contract; source-
+named L-FANA phosphate atoms could not use conventional stored-site preparation.
+After: compose explicit entries under one ordered model/consumer/context, qualify
+all sites together, replay ordinary ReadySet consumption and independently check
+its actual final effective bundle. A failed improvement retains a verified start.
+
+Changed: six runtime modules, three regression modules (50 new cases), focused
+profile membership, maintained contracts/evidence/milestones and editable figure.
+New schema-1 bundle/roundtrip policies and explicit stored-site v4 use declared
+anchors/checksums. Internal phosphate aliases bind unique source P-bound oxygens
+and neutral reacting ports; names and retained hydrogens are preserved. Aliased
+terminal operations refuse. Legacy policies and captures replay unchanged;
+no migration, ordinary defaults, CLI/checkpoint or installed-library change.
+
+Initial composition regression: **18 failures before implementation**.
+Focused chemistry/workflow: **1153 passed, 36 subtests passed in 111.10s (0:01:51)**.
+Full unfiltered suite: **7062 passed, 276 subtests passed in 1107.68s (0:18:27)**.
+All 515 source/test/runner hashes remained unchanged throughout both suites.
+Compilation, documentation links/JSON, exact SVG regeneration/visual inspection
+and whitespace checks pass. Exact commands and outputs are in the evidence ledger.
+
+Phenix **2.2.1-6174**, dispatcher **2.2.1**: final controls execute six native
+interpretations and two ordinary ReadySet calls. Matching exploratory attempts
+(six interpretations/two ReadySet calls) remain preserved. These are complete
+executions, not dry-runs; no Coot, generation, optimization or refinement.
+Both mixed 0DG/AAJ controls pass 53 definition and 55 active-native checks;
+three formal-charge readbacks remain unsupported, with diagnostic-only continuation.
+All eight ReadySet checks pass. The initial atom-reordered output keeps exact
+named heavy coordinates and effective definitions but fails strict proxy ordering,
+so the verified starting model is retained. A fresh independently qualified
+stable-order control passes all 28 endpoint checks. No attempt is repaired and no
+model is automatically adopted. Fixed-point target/term equality and near-roundoff
+named-gradient differences are observations, not a new equivalence tolerance.
+
+Seven current/historical cases replay exact results from relocated source after
+the owned original checkout is gone, with historical paths/SDK/subprocesses denied.
+Ten missing/corrupt controls demonstrate fallback or refusal of an invalid start;
+all 540 evidence files retain bytes/sizes/timestamps. The old incomplete copied-
+chain attempt remains blocked. Only code/tests, durable contracts, figure and
+summary/hash evidence are published; raw scientific artifacts and runners stay local.
+No job is active. Implementation and validation are complete; signed publication remains.
+Evidence key: `qualified_component_bundle_2026_10_31`.
+
+Next: explicit ReadySet atom-order reconciliation with signed chirality/torsion,
+symmetry/origin and numerical proof, followed by ordinary continuation/adoption
+and held-out coverage. Keep the qualified fallback until that proof passes.
+Experimental state authority, generic PNA/ATL adapters, PDU numerics and catalogue-
+wide release remain separate. Work stays on cedar; no new branch or merge.
+— Rowan · Codex desktop
 
 ## C138 published: complete native monomer identity capture
 
@@ -1466,7 +1520,7 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; evidence updated through C138 on 2026-10-30.** Every ligand in the selected
+**Scope revised 2026-10-28; evidence updated through C139 on 2026-10-31.** Every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -1478,18 +1532,20 @@ not an estimate for complete catalogue support.
 | G1 — Catalogue baseline | Reproducible audit of every row/code, duplicate operational mappings, explicit source availability, graph/role findings and unqualified families; no code disappears silently. | **C105 complete.** Exact sources, rows, mapping gaps and cold relocation validated; qualification remains separate. |
 | G2 — Chemical and attachment contracts | Explicit family/site profiles for connectivity, leaving groups, terminal state, stereochemistry and source authority; held-out ligands test transfer. | **C109 exact source/native link audit, C112 observed name bindings and C113 hydrogen inventories validated. G2 remains partial.** Unmodelled naming/protonation differences and ATL numerical dictionaries need explicit reconciliation/qualification; C114 adds neutral PNA amide source operations and C119 freezes explicit connected source networks; charged reaction states and numerical PNA qualification remain open. C133 links source-bound DNA/L-DNA candidates to explicit terminal reconstruction, protects all retained centres and leaves experimental protonation/native formal charge unqualified. C120 adds source-declared FANA identity and four-centre candidate preservation; C122 checks explicit enantiomer source intent under a separate target identity. |
 | G3 — Bounded recovery and usable fallback | Immutable attempts repair only authorized source/representation defects, regenerate when justified, preserve identity and NAR mappings, and select only a qualified usable result. | C118 adds explicit whole-purine generation; C121 adds bounded neutral 6-oxo five-ring representation and transfers across FANA/L-DNA/PNA. Exact stage checks, immutable attempts and isolated controls pass. Decision/reuse pieces exist; general orchestration remains open. |
-| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. C122 adds one explicitly derived L-FANA-C native control. DG retains an explicit native name-mapping failure. C123–C130 establish local L-FANA-C binding, connected placement, sampled derivatives and a bounded unconverged trial. C133 establishes exact source-projected flank definitions and fresh sampled ordinary derivatives; C136–C138 bind saved dictionaries to exact site/native evidence, declared terminal/custom context and complete native identities. Broader linked chemistry, symmetry/parallelity consumers and geometry qualification remain open. |
+| G4 — Native and numerical qualification | Exact consumer inventories, energy/gradient attribution, derivatives and round-trip checks for each changed manager/family; failures remain explicit. | **PDU C104 inventory passes; energy/gradient and derivative proof remains open.** C120/C121 complete isolated A/C/G/T/U FANA candidate controls; 0DG/40G also pass C121 controls. C122 adds one explicitly derived L-FANA-C native control. DG retains an explicit native name-mapping failure. C123–C130 establish local L-FANA-C binding, connected placement, sampled derivatives and a bounded unconverged trial. C133 establishes exact source-projected flank definitions and fresh sampled ordinary derivatives; C136–C138 bind saved dictionaries to exact site/native evidence, declared terminal/custom context and complete native identities. C139 composes independent components and rechecks the actual ReadySet endpoint, preserving a qualified fallback when strict ordering differs. Broader linked chemistry, symmetry/parallelity consumers and geometry qualification remain open. |
 | G5 — Ordinary workflow | Recovery, qualification, adoption/checkpoints and plain-language reporting run together on representative and held-out cases. | C110 opt-in full-model NAR recipe passes ordinary L-DNA PostMR and exact native membership. Chemical-state/refinement qualification and general recovery remain open. |
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 
-**Next bounded work, in order:** compose multiple qualified stored components
-under one exact ordered model/CIF/PHIL contract, using complete native identities
-and source-preserving site/end states; integrate this with existing preparation
-and ReadySet without turning technical choices into user work. C137/C138 establish
-declared terminal context and diagnostic-only continuation for unavailable charge
-readback, not experimental protonation authority. Then connect generic source
-ports to native construction adapters (including a PNA network) and join bounded
-recovery, qualification, reuse and adoption in an ordinary held-out route.
+**Next bounded work, in order:** reconcile ReadySet atom ordering under an
+explicit source/native identity contract without relaxing signed chirality,
+torsion, symmetry or origin checks. C139 already composes multiple qualified
+components and preserves a verified fallback when that endpoint check fails;
+the stable-order case passes the actual final native readback. Then connect this
+opt-in route to ordinary continuation/adoption with held-out cases, keeping
+unavailable charge evidence distinct from experimental state authority and
+technical choices out of user work. Generic source ports still need native
+construction adapters, including a PNA network; catalogue coverage follows these
+per-family proofs rather than assuming that composition solves every chemistry.
 PDU's exact changed-objective numerical audit is an independent queued gate.
 Catalogue-wide coverage follows per-family evidence, not labels. A provisional
 integration can ship the existing assessment/reuse/explicit diagnostics before

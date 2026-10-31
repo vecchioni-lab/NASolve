@@ -86,7 +86,7 @@ def build():
              f'viewBox="0 0 {WIDTH} {HEIGHT}" role="img" '
              'aria-labelledby="title description">',
              '<title id="title">CIF Doctor around PostMR and ReadySet</title>',
-             '<desc id="description">CIF Doctor audits exact source and effective dictionaries around ordinary PostMR construction and Phenix ReadySet. Separate explicit diagnostics bind graph, hydrogen, charge and every declared stereocentre to site preparation, then inspect native definitions, topology and numerical evidence. Qualified cache reuse and opt-in frozen dictionary-to-site/native binding include explicit terminal-phosphate and exact custom-restraint context plus opt-in complete native monomer identities; ReadySet remains the preparation consumer and NARestraints owns pair/stack intent; general automatic recovery and candidate adoption remain separate. Source protonation, unsupported formal-charge readback and scientific validation are not inferred from numerical success. Detailed evidence is linked from the feature guide.</desc>',
+             '<desc id="description">CIF Doctor audits exact source and effective dictionaries around ordinary PostMR construction and Phenix ReadySet. Separate explicit diagnostics bind graph, hydrogen, charge and every declared stereocentre to site preparation, then inspect native definitions, topology and numerical evidence. Qualified cache reuse and opt-in frozen dictionary-to-site/native binding include explicit terminal-phosphate/custom-restraint context and complete native identities; multiple qualified components share one final ReadySet/native check with verified fallback; ReadySet remains the preparation consumer and NARestraints owns pair/stack intent; general automatic recovery and candidate adoption remain separate. Source protonation, unsupported formal-charge readback and scientific validation are not inferred from numerical success. Detailed evidence is linked from the feature guide.</desc>',
              '<rect width="1200" height="1190" fill="white"/>',
              text(50, 47, "CIF Doctor: evidence around model preparation", size=33, weight="bold"),
              text(50, 84, "Assessment + decision policy · exact inputs · preserved provenance", size=24),
@@ -133,7 +133,7 @@ def build():
         text(70, 1014, "Checks: graph, numerical consistency and bonded-atom coordinate degeneracy", size=24, weight="bold"),
         text(70, 1048, "PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.", size=24),
         text(70, 1082, "Usable nonconvergence: continue with notes; no student CIF approval.", size=24),
-        text(70, 1116, "Native checks: chemistry, restraints, complete identities; no adoption.", size=24),
+        text(70, 1116, "Component bundles: final native check or verified fallback; no adoption.", size=24),
         '</g>',
         '</svg>'])
     return "\n".join(parts) + "\n"

@@ -74,7 +74,9 @@
 
 <a id="current-capability-boundary-c137"></a>
 
-## Current capability boundary (C138)
+<a id="current-capability-boundary-c138"></a>
+
+## Current capability boundary (C139)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -88,12 +90,12 @@ sections below retain exact methods, failures and evidence-time next steps.
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
 | Other fluorinated D/L sugars, including future L-FDNA | The new source-bound guard tests all declared centres, graph/element/H/charge identity and retained-neighbour projections. Renamed deoxy, arabino-fluoro and ribo-fluoro controls exercise transfer through both the source guard and stored three-site preparation. | Synthetic transfer checks are not a live L-FDNA build/refinement proof. No residue-code whitelist grants support or relabels ribo as FANA. |
-| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Conventional backbone names and explicit DNA/L-DNA metadata remain required; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
+| Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. PDU omission candidates have exact inventory evidence. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs energy/gradient and derivative qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
-| Generalizer workflow | Immutable attempts, usable-fallback decisions, source-bound reuse, exact native inventories and readable reports exist as components. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
+| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
 “add OP3”; a retained true terminal phosphate is protected. Lower scores under
@@ -138,6 +140,77 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Qualified component bundles and final ReadySet readback (C139)
+
+`prepare_dictionary_bundle()` composes two to sixteen explicit qualified
+snapshots. Each entry supplies its site contexts and, where required, the existing
+terminal resource or source-named phosphate policy. Every selected component site
+must be declared. All entries share one frozen model, exact captured consumer,
+complete declared links and full-model native context. Component codes are sorted;
+active modifier dictionaries follow their owning component. Common PHIL files
+retain caller order, then site modifications, then the explicit full-model policy.
+Empty modifier placeholders remain archived evidence and are not registered.
+
+The schema-1 `cif-stored-dictionary-bundle-v1` receipt uses the
+`dictionary_bundle_directory` anchor. Child preparations retain their source,
+qualification, consumer and chemical-policy bindings. Readback reconstructs
+ownership and generated files, including combined source/numerical dictionaries;
+duplicate codes, conflicting site/modifier owners, extra files, altered policy
+or rehashed generated bytes cannot acquire readiness. It performs no native call.
+`inspect_dictionary_bundle_native()` binds two actual ordered captures and checks
+all affected and unaffected sites together. An isolated component pass is never
+inherited as a whole-model pass.
+
+The explicit `cif-source-phosphate-aliases-v1` option selects a narrow internal
+phosphodiester adapter. Each OP1/O1P, OP2/O2P and OP3/O3P role must resolve to one
+source-owned P-bound oxygen, with identical source/candidate names and qualified
+element, graph, charge and neutral reacting-port state. Names are not rewritten.
+Only the declared leaving oxygen and its source-bound hydrogens are removed;
+nonreacting phosphate protonation and sugar/base stereochemistry are preserved.
+Ambiguous aliases, substituted/bridged/charged reacting ports and aliased terminal
+operations refuse. Stored-site v4 records the explicit policy; omitted options
+preserve earlier policies and bytes. This extends the reviewed C125 source-name
+principle to preparation; it does not infer phosphate chemistry for PNA/ATL.
+
+Use the existing `audit_readyset_bundle_consumption()` with the returned separate
+component dictionaries. `readyset_endpoint_inputs()` then replays the maintained
+observer, ordered invocation, frozen source snapshots, raw actions/process trace,
+effective-dictionary selection and heavy-coordinate checks. It returns the actual
+ReadySet model, effective dictionary, active modifiers and exact shared PHILs for
+a fresh full native capture. `inspect_dictionary_bundle_readyset()` applies the
+schema-1 `cif-stored-bundle-readyset-roundtrip-v1` contract: complete native site
+definitions, both links, explicit requests, all eight ordered proxy families and
+fixed-energy evidence must pass before selecting the endpoint as a diagnostic.
+Missing or failed endpoint evidence retains the verified prepared model. A damaged
+starting contract refuses; no readiness is invented from a saved PASS field.
+
+Two installed Phenix **2.2.1-6174** controls use independently stored L-DNA `0DG`
+and source-derived L-FANA-C `AAJ`. Each starts with 53 passing definition checks,
+three unsupported formal-charge readbacks and 55 passing active-native checks.
+ReadySet completes all eight consumption checks in both. In the first, it reorders
+AAJ atoms without changing named heavy coordinates or effective definitions;
+the deliberately strict ordered-proxy comparator rejects that endpoint and keeps
+the verified start. A fresh independently qualified control using the resulting
+stable input order passes all 28 final native roundtrip checks. The first attempt
+is preserved, not repaired. Future order reconciliation needs an explicit proof,
+especially for signed chirality/torsion permutations; this patch relaxes no gate.
+
+Final controls comprise six complete native interpretations and two complete
+ordinary ReadySet calls, with matching exploratory attempts retained separately.
+No Coot, generation, optimization or diffraction refinement is run. Native charge
+availability still limits continuation to a separate diagnostic phase; neither
+model is automatically adopted. Seven current/legacy cases reproduce exactly from
+relocated source with original paths, the SDK and subprocesses denied. Ten
+negative controls exercise fallback/refusal; all 540 copied evidence files keep
+their bytes, sizes and timestamps. Older blocked attempts remain blocked.
+
+New policies require this reader; existing saved policies require no migration.
+There is no new ordinary PostMR/CLI/checkpoint behavior. Production adoption,
+experimental state choice, broader backbone adapters and catalogue-wide support
+remain separate. Exact commands, hashes and results are in
+`qualified_component_bundle_2026_10_31` in the
+[native evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Complete native monomer identities (C138)
 

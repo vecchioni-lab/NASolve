@@ -50072,5 +50072,739 @@
     "full_tested_commit": "87894cbf6d079af966ee30be9bbcb7a02c67db86",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "qualified_component_bundle_2026_10_31": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "dd318021b328e4aa83fd3ba5d7afd0a3a011e355",
+    "before": "Independently stored components had no shared frozen site/native contract. Source-named L-FANA phosphate atoms could not use the conventional stored-site adapter. Standalone evidence could not establish final ReadySet readiness.",
+    "after": "Compose explicit qualified entries under one immutable model/consumer/context, retain source-owned phosphate names through qualified internal-site operations, and independently recheck the actual ReadySet endpoint; preserve a checked diagnostic start when optional endpoint evidence fails.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_dictionary_bundle.py",
+      "src/nasolve/cif_dictionary_bundle_readyset.py",
+      "src/nasolve/cif_phosphate_names.py",
+      "src/nasolve/cif_dictionary_sites.py",
+      "src/nasolve/cif_linked_preparation.py",
+      "src/nasolve/cif_preparation_qualification.py",
+      "tests/test_cif_dictionary_bundle.py",
+      "tests/test_cif_dictionary_bundle_readyset.py",
+      "tests/test_cif_phosphate_names.py"
+    ],
+    "schemas": {
+      "bundle": "schema 1 / cif-stored-dictionary-bundle-v1; dictionary_bundle_directory anchor; unique component/site/modifier ownership; sorted components and ordered common/native PHILs",
+      "site": "opt-in schema 1 / cif-stored-dictionary-sites-v4; explicit cif-source-phosphate-aliases-v1 internal-site policy",
+      "roundtrip": "schema 1 / cif-stored-bundle-readyset-roundtrip-v1; final effective native binding with diagnostic-only fallback",
+      "unchanged": "Legacy site policies/worker bytes, ordinary ReadySet, store/CLI/run/checkpoint/production refinement schemas"
+    },
+    "compatibility": "Opt-in only; new contracts require the updated reader. No in-place migration or renaming. Five historical site cases replay byte-exact results, including the old blocked copied-chain attempt.",
+    "regressions": {
+      "initial": "18 failed in 0.29s before implementation; missing composition module. One later malformed-argv regression failed before the final type check; the partial full run was interrupted and retained, then both suites restarted.",
+      "new_cases": 50,
+      "focused": {
+        "wrapper_pid": 22642,
+        "pytest_wrapper_pid": 22657,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/139_Cedar_component-bundle-whiru70v/validation-final/focused/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "focused",
+        "exit_code": 0,
+        "seconds": 111.40038450004067,
+        "files": 515,
+        "changed_files": [],
+        "summary": "1153 passed, 36 subtests passed in 111.10s (0:01:51)",
+        "finished": true
+      },
+      "full": {
+        "wrapper_pid": 22642,
+        "pytest_wrapper_pid": 23176,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/139_Cedar_component-bundle-whiru70v/validation-final/full/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "full",
+        "exit_code": 0,
+        "seconds": 1108.8042506249622,
+        "files": 515,
+        "changed_files": [],
+        "summary": "7062 passed, 276 subtests passed in 1107.68s (0:18:27)",
+        "finished": true
+      },
+      "source_test_runner_hashes_unchanged": 515
+    },
+    "native": {
+      "phenix_release": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "final_complete_interpretations": 6,
+      "final_complete_readyset_calls": 2,
+      "exploratory_complete_interpretations": 6,
+      "exploratory_complete_readyset_calls": 2,
+      "exploratory_attempts": "Preserved separately; the first exploratory runner assertion expected endpoint selection, but the maintained checker correctly retained fallback. Fresh final versioned attempts repeated both outcomes.",
+      "dry_run": false,
+      "generation": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "optimization": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "cases": [
+        {
+          "case": "reordered",
+          "components": [
+            "0DG",
+            "AAJ"
+          ],
+          "definition_checks": {
+            "PASS": 53,
+            "UNSUPPORTED": 3
+          },
+          "native_checks": {
+            "PASS": 55
+          },
+          "readyset_checks": {
+            "effective_actions": true,
+            "effective_numerics_exact": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_unclassified_subprocess_calls": true,
+            "observer_complete": true,
+            "readyset_completed": true,
+            "single_effective_dictionary": true,
+            "unchanged_heavy_sites": true
+          },
+          "endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": true,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": false,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": false,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": false,
+            "exact_named_proxies:chirality": false,
+            "exact_named_proxies:const_dihedral": false,
+            "exact_named_proxies:dihedral": false,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": false,
+            "same_installed_api_sources": true
+          },
+          "decision": {
+            "status": "CONTINUE_WITH_NOTES",
+            "selected": "verified_prepared_model",
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "requires_cif_review": false,
+            "automatic_adoption": false
+          },
+          "initial_status": "REVIEW",
+          "initial_diagnostic_continuation": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          }
+        },
+        {
+          "case": "stable",
+          "components": [
+            "0DG",
+            "AAJ"
+          ],
+          "definition_checks": {
+            "PASS": 53,
+            "UNSUPPORTED": 3
+          },
+          "native_checks": {
+            "PASS": 55
+          },
+          "readyset_checks": {
+            "effective_actions": true,
+            "effective_numerics_exact": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_unclassified_subprocess_calls": true,
+            "observer_complete": true,
+            "readyset_completed": true,
+            "single_effective_dictionary": true,
+            "unchanged_heavy_sites": true
+          },
+          "endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": true,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": true,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": true,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": true,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": true,
+            "exact_named_proxies:dihedral": true,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": true,
+            "same_installed_api_sources": true
+          },
+          "decision": {
+            "status": "CONTINUE_WITH_NOTES",
+            "selected": "readyset_checked_model",
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "requires_cif_review": false,
+            "automatic_adoption": false
+          },
+          "initial_status": "REVIEW",
+          "initial_diagnostic_continuation": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          }
+        }
+      ],
+      "executions": [
+        {
+          "case": "reordered",
+          "phase": "before",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:08:09.779224+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:08:13.001852+00:00",
+            "elapsed_seconds": 3.222678
+          },
+          "receipt": "qualified-controls/native/before/cif-native-vqhu91pp/native_receipt.json"
+        },
+        {
+          "case": "reordered",
+          "phase": "after",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:08:13.048754+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:08:13.895218+00:00",
+            "elapsed_seconds": 0.846485
+          },
+          "receipt": "qualified-controls/native/after/cif-native-9_p86ht7/native_receipt.json"
+        },
+        {
+          "case": "reordered",
+          "phase": "endpoint",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:08:27.572982+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:08:28.473629+00:00",
+            "elapsed_seconds": 0.900676
+          },
+          "receipt": "qualified-controls/native/endpoint/cif-native-qqrvzdm2/native_receipt.json"
+        },
+        {
+          "case": "stable",
+          "phase": "before",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:08:33.662509+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:08:34.500977+00:00",
+            "elapsed_seconds": 0.838501
+          },
+          "receipt": "qualified-controls/stable-order/native/before/cif-native-s_054_2f/native_receipt.json"
+        },
+        {
+          "case": "stable",
+          "phase": "after",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:08:34.546142+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:08:35.455366+00:00",
+            "elapsed_seconds": 0.909249
+          },
+          "receipt": "qualified-controls/stable-order/native/after/cif-native-flxyghri/native_receipt.json"
+        },
+        {
+          "case": "stable",
+          "phase": "endpoint",
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:08:45.081276+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:08:45.969176+00:00",
+            "elapsed_seconds": 0.887926
+          },
+          "receipt": "qualified-controls/stable-order/native/endpoint/cif-native-_634ljq9/native_receipt.json"
+        }
+      ]
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "cases": [
+        {
+          "case": "current_reordered",
+          "selected": "verified_prepared_model"
+        },
+        {
+          "case": "current_stable",
+          "selected": "readyset_checked_model"
+        },
+        {
+          "case": "legacy_137_terminal_required_002",
+          "selected": false
+        },
+        {
+          "case": "legacy_138_linked_required",
+          "selected": true
+        },
+        {
+          "case": "legacy_138_terminal_absent",
+          "selected": true
+        },
+        {
+          "case": "legacy_138_terminal_required_002",
+          "selected": true
+        },
+        {
+          "case": "legacy_138_terminal_required_003",
+          "selected": true
+        }
+      ],
+      "negative_controls": [
+        "missing_endpoint",
+        {
+          "defect": "stale_native_summary",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Native report differs from embedded receipt"
+        },
+        {
+          "defect": "wrong_native_input",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Attachment-link input hash/size differs from manifest"
+        },
+        {
+          "defect": "changed_native_worker",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Attachment-link input hash/size differs from manifest"
+        },
+        {
+          "defect": "false_readyset_pass",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: ReadySet consumption did not qualify"
+        },
+        {
+          "defect": "false_actions",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: ReadySet observation differs from raw evidence"
+        },
+        {
+          "defect": "changed_effective_cif",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: ReadySet frozen artifact changed"
+        },
+        {
+          "defect": "changed_modification",
+          "result": "INVALID_START_REFUSED",
+          "reason": "Bundle artifact inventory or checksum differs"
+        },
+        {
+          "defect": "changed_source",
+          "result": "INVALID_START_REFUSED",
+          "reason": "Bundle artifact inventory or checksum differs"
+        },
+        {
+          "defect": "malformed_arguments",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: ReadySet model argument does not bind to its declared anchor"
+        }
+      ],
+      "unchanged_files": 540,
+      "forbidden_reads_attempted": 0,
+      "native_execution": "FORBIDDEN",
+      "original_owned_checkout_removed": true,
+      "source": "RELOCATED_CHECKOUT"
+    },
+    "order_diagnostic": {
+      "cases": [
+        {
+          "case": "reordered",
+          "decision": "verified_prepared_model",
+          "maximum_named_gradient_difference": 1.7124079931818414e-12,
+          "target_difference": 0.0,
+          "term_differences": {
+            "angle_residual_sum": 0.0,
+            "bond_residual_sum": 0.0,
+            "bond_similarity_residual_sum": 0.0,
+            "chirality_residual_sum": 0.0,
+            "den_residual_sum": 0.0,
+            "dihedral_residual_sum": 0.0,
+            "dihedral_restraints_residual_sum": 0.0,
+            "ncs_dihedral_residual_sum": 0.0,
+            "nonbonded_residual_sum": 0.0,
+            "parallelity_residual_sum": 0.0,
+            "planarity_residual_sum": 0.0,
+            "ramachandran_residual_sum": 0.0,
+            "reference_coordinate_residual_sum": 0.0,
+            "reference_dihedral_residual_sum": 0.0
+          },
+          "gradient_norm_difference": 0.0,
+          "repeated_snapshots_exact": [
+            true,
+            true
+          ]
+        },
+        {
+          "case": "stable",
+          "decision": "readyset_checked_model",
+          "maximum_named_gradient_difference": 0.0,
+          "target_difference": 0.0,
+          "term_differences": {
+            "angle_residual_sum": 0.0,
+            "bond_residual_sum": 0.0,
+            "bond_similarity_residual_sum": 0.0,
+            "chirality_residual_sum": 0.0,
+            "den_residual_sum": 0.0,
+            "dihedral_residual_sum": 0.0,
+            "dihedral_restraints_residual_sum": 0.0,
+            "ncs_dihedral_residual_sum": 0.0,
+            "nonbonded_residual_sum": 0.0,
+            "parallelity_residual_sum": 0.0,
+            "planarity_residual_sum": 0.0,
+            "ramachandran_residual_sum": 0.0,
+            "reference_coordinate_residual_sum": 0.0,
+            "reference_dihedral_residual_sum": 0.0
+          },
+          "gradient_norm_difference": 0.0,
+          "repeated_snapshots_exact": [
+            true,
+            true
+          ]
+        }
+      ],
+      "native_execution": "NOT_RUN",
+      "scope": "Read-only numerical observation at one fixed geometry, not a proxy equivalence proof or new acceptance tolerance.",
+      "gate_changed": false,
+      "automatic_adoption": false
+    },
+    "validation_commands": {
+      "initial": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q tests/test_cif_dictionary_bundle.py",
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/139_Cedar_component-bundle-whiru70v/validation-final/focused/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/139_Cedar_component-bundle-whiru70v/validation-final/full/pytest.xml"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "native": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c139_final_controls.py (fresh native, ReadySet, stable-order controls)",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c139_replay_final.py (relocated source, original/SDK/subprocess access denied)",
+      "numerical": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c139_order_diagnostic.py (saved fixed-geometry evidence only)",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c139-final-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "documents": "check_docs.py; JSON parse; exact SVG regeneration, rsvg-convert and visual inspection; git diff --check"
+    },
+    "auxiliary": {
+      "compile": "PASS",
+      "svg_regeneration": "BYTE_EXACT",
+      "svg_visual": "PASS"
+    },
+    "artifacts": "Only code/tests, maintained contracts, editable overview and summary/hash evidence are committed. Raw models/dictionaries, frozen source snapshots, all native/ReadySet attempts/logs and runner scripts remain local outside Git.",
+    "limitations": [
+      "Internal opt-in diagnostic APIs only; no ordinary PostMR/CLI/checkpoint/default change or automatic adoption.",
+      "Formal-charge readback is unavailable at all three sites. Source H/charge/protonation is preserved, not experimentally chosen; continuation is diagnostic only.",
+      "The source-name policy currently covers internal incoming phosphate sites only. Aliased terminal-phosphate/free-five-prime-OH operations, generic PNA/ATL native ports and unsupported names refuse.",
+      "The first ReadySet output changes atom/proxy ordering while preserving named heavy coordinates and effective definitions. Strict comparison retains the verified fallback. Stable-order success does not prove arbitrary order equivalence.",
+      "Fixed-geometry numerical equality is a measured diagnostic, not a full potential/derivative proof, convergence or scientific acceptance. No new tolerance or proxy canonicalization is introduced.",
+      "The mixed control has two explicit source-named junction angle edits; it is not new complete base-pair/stack, arbitrary-ligand, L-FDNA, diffraction or geometry-optimization evidence.",
+      "NARestraints remains the pairing/stacking authority and ReadySet the ordinary preparation consumer. Existing protected terminal phosphates, immutable attempts, copied-chain refusals and chemical/source gates remain.",
+      "Full-model interpretation/repeated readback may cost more for large bundles; two to sixteen selected components are supported by the contract, with installed scientific evidence scoped to this two-component three-site control."
+    ],
+    "next": "Reconcile ReadySet atom ordering under an explicit identity/native contract without relaxing signed chirality, torsion, symmetry, origin or numerical checks. Preserve the verified starting diagnostic until that proof passes. Then connect this opt-in bundle route to ordinary continuation/adoption with representative held-out cases; generic PNA/ATL ports, PDU changed-objective numerics and catalogue-wide coverage remain separate.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/before-execution.json",
+        "sha256": "f486edf189f29461bf4564f21cfd5c6c8247858efc960c1e82227724f0aa8406",
+        "size": 344
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/before/cif-native-vqhu91pp/native_receipt.json",
+        "sha256": "b022c9eea7ede7dce2734366ba4f7b11654d54287a6f0195e3d748d37535631f",
+        "size": 939213
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/after-execution.json",
+        "sha256": "c1059146bfcd6470115ba7d0b58786f94cf4ce8eaf75017d7b8f3509a4a74aa5",
+        "size": 344
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/after/cif-native-9_p86ht7/native_receipt.json",
+        "sha256": "f558184a0e37bf1bc9926b79ab885bee6d96373a157e640336b9a1a8d15707f0",
+        "size": 935280
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/endpoint-execution.json",
+        "sha256": "238d1c153febb0c425aff1735ab928ef8956304e442ebfe035b2260f5d8a4c0a",
+        "size": 314
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/endpoint/cif-native-qqrvzdm2/native_receipt.json",
+        "sha256": "e25f636388065e4569003127995828193a2d143f3e2e06f4e17afcfcf4511336",
+        "size": 934408
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native-review.json",
+        "sha256": "98c7281258e2802189415e36060329803de30780b272a826453a80293c101806",
+        "size": 31264
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/roundtrip-review.json",
+        "sha256": "56f7020c3c70beccefd949cfdfa09d02c396bc2322add26feffc3293b05d5ec9",
+        "size": 36321
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/bundle/bundle_receipt.json",
+        "sha256": "976413047184140e311301555f4ec4ad0fe87873b88d88e903a80fdf458e37ee",
+        "size": 10460
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/readyset/readyset_consumption.json",
+        "sha256": "a8580b660f2deb3e545481d5722935f78c998773dbbdd0aa9c052c1c172965c0",
+        "size": 52580
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/before-execution.json",
+        "sha256": "b76ace7b384eac9dbc7ac7e6965730ab0ddd4a1ebd969860a0944f955a5aa1bc",
+        "size": 312
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/before/cif-native-s_054_2f/native_receipt.json",
+        "sha256": "7a6b31e89903c60f6ed4f4c326366cc48ea65f90ea3650aa790fbbe5690fe9cb",
+        "size": 939303
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/after-execution.json",
+        "sha256": "aee35cf29a198b783d2dcd944e014c433c6f14bdba5fd2afb6208c1d6129787a",
+        "size": 311
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/after/cif-native-flxyghri/native_receipt.json",
+        "sha256": "9e99613fc01937b28dbe75dfd7e238844e3555e23f26604631e6085ae7f2e34c",
+        "size": 935422
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/endpoint-execution.json",
+        "sha256": "1a9cda1454350d7b271f1c523ea9f0decc73b5189365ffacabd4c6a5e9a203d6",
+        "size": 314
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/endpoint/cif-native-_634ljq9/native_receipt.json",
+        "sha256": "fd7fc8880f26d4b5dc3bb030b3dfa16daf80da3bd6f7efebcbe4387e4a4c4362",
+        "size": 934538
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native-review.json",
+        "sha256": "dfe54ccb1e2644f758c2787d355bea494a3dc3c312e9502d0bc79ba2ad02ade6",
+        "size": 31264
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/roundtrip-review.json",
+        "sha256": "c593e2d6329292e8fb092c3e430d11d283b262c1481a74ca06bf2a7c231f630d",
+        "size": 36340
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/bundle/bundle_receipt.json",
+        "sha256": "c50c01d8f33bf572887eb08000a2d667db593ef4a48d321ad8acfc5b1d33aeee",
+        "size": 10460
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/readyset/readyset_consumption.json",
+        "sha256": "d5c3f434489c541ed38193f7a0be38c7794b28e66ed760b0471c88971e3a9375",
+        "size": 52658
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation/initial-regression.log",
+        "sha256": "0ca579264cf034b2dbe919eeba57d3cf04b5503b6f28e320b4805f667802bbea",
+        "size": 15021
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation/readyset-regressions.log",
+        "sha256": "2617e7a3db68f531a32d85c2326d89a44277d49a0249cf54013187198f57b5cd",
+        "size": 100
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation/argument-before.log",
+        "sha256": "55b9387486ceda85278b053fe546ebdcf983d9bcc5c46d71682a1c02edebb512",
+        "size": 6088
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation/argument-after.log",
+        "sha256": "e7e3da5de6992fba59f6d20eddf6d225ead49345f58dac6e404638ea10bdf232",
+        "size": 98
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation/interruption.json",
+        "sha256": "025f2161f020279ae1c23173d9335495e124bbcde5b58b57b6930e021c531245",
+        "size": 404
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/focused/result.json",
+        "sha256": "8c0aa867c29ba9396ed9c4b76f2b695cad17e912de1fce5d9bcdfcc4c5517139",
+        "size": 711
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/focused/pytest.log",
+        "sha256": "45974a409d415e6349420c149d1c80d130808a766661e326b4738efec375edf2",
+        "size": 5774
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/focused/pytest.xml",
+        "sha256": "245b369353527596fdf8114c65462ea8ace55d98673da36e8c195e6397cea91a",
+        "size": 171323
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/focused/source-hashes.json",
+        "sha256": "6fd063c17738fe6ad002d7fe15fc7dace0a55935b8d0aa8b2b1bc3812ac297dc",
+        "size": 55662
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/full/result.json",
+        "sha256": "9ba2a3413c3ed5312f3841f3dc985193098f51dc45946de4f391512b7a90dca6",
+        "size": 686
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/full/pytest.log",
+        "sha256": "e52362b4115bb7833178f2593d51909048d1fe2a0c90b7d976210bb0bbc1ec83",
+        "size": 10785
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/full/pytest.xml",
+        "sha256": "ce3cc08773bf4d29457ababc2d3ec53c407163b77103a4c2dc02cc44adbeafd4",
+        "size": 1076286
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/validation-final/full/source-hashes.json",
+        "sha256": "6fd063c17738fe6ad002d7fe15fc7dace0a55935b8d0aa8b2b1bc3812ac297dc",
+        "size": 55662
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/replay-final/result.json",
+        "sha256": "1569c857bcd4c93aedceb7a4a21c78bed416b8afd955d714dbf18a6597349f42",
+        "size": 2335
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/replay-final/replay.log",
+        "sha256": "8f600046815432508630ea0086388f27e32ac31e9d7adb74644930ef8e75a47b",
+        "size": 1899
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/order-diagnostic.json",
+        "sha256": "fe2ae959d0012e2adbc16dbba75c0a7c6b614ace98dc21c64d2b1600f236ef10",
+        "size": 2022
+      }
+    ]
   }
 }

@@ -31,7 +31,7 @@ PROFILES = {
     ),
     'workflow': (
         'test_test_suites', 'test_cif_doctor_selection', 'test_cif_dictionary_store',
-        'test_cif_source_reuse', 'test_cif_dictionary_policy', 'test_cif_dictionary_sites', 'test_cif_native_context', 'test_cif_native_monomers', 'test_cif_postmr_cache', 'test_postmr_cache_workflow',
+        'test_cif_source_reuse', 'test_cif_dictionary_policy', 'test_cif_dictionary_sites', 'test_cif_dictionary_bundle', 'test_cif_dictionary_bundle_readyset', 'test_cif_phosphate_names', 'test_cif_native_context', 'test_cif_native_monomers', 'test_cif_postmr_cache', 'test_postmr_cache_workflow',
         'test_postmr_component_inputs', 'test_cif_postmr_cached_model',
         'test_postmr', 'test_postmr_phosphate', 'test_postmr_context',
         'test_checkpoints', 'test_run_context', 'test_campaign_pipeline',

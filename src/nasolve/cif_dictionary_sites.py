@@ -18,6 +18,7 @@ from .cif_terminal_preparation import load_terminal_recipe, prepare_terminal_com
 POLICY_ID = 'cif-stored-dictionary-sites-v1'
 CONTEXT_POLICY_ID = 'cif-stored-dictionary-sites-v2'
 FULL_MODEL_POLICY_ID = 'cif-stored-dictionary-sites-v3'
+SOURCE_NAMES_POLICY_ID = 'cif-stored-dictionary-sites-v4'
 ANCHOR = 'dictionary_site_directory'
 _SNAPSHOT_FILES = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
     'entry/dictionary.cif', 'entry/qualification.json', 'entry/provenance.json')
@@ -120,6 +121,13 @@ def _derive(root, controls, destination):
     _need(terminal==(resource is not None), 'Exactly the free 5-prime OH sites require terminal resources')
     options=dict(code=manifest['request']['component'],native_qualification=saved['qualification'],
         bond_representation_policy=policy)
+    if 'phosphate_atom_policy' in controls:
+        from .cif_phosphate_names import POLICY_ID as names_policy
+        _need(controls['phosphate_atom_policy']==names_policy
+            and controls.get('native_context',{}).get('monomer_inventory')=='full_model',
+            'Source-named preparation requires explicit current policy and full native context')
+        _need(not terminal, 'Source-named terminal recipe is not qualified')
+        options['phosphate_atom_policy']=controls['phosphate_atom_policy']
     if terminal:
         _need(_safe(resource) and resource.startswith('resources/'), 'Unsafe terminal resource reference')
         _resource(root/resource,consumer)
@@ -136,6 +144,7 @@ def _derive(root, controls, destination):
 def _report(root, controls, saved, links, policy):
     site_policy=CONTEXT_POLICY_ID if 'native_context' in controls else POLICY_ID
     if controls.get('native_context',{}).get('monomer_inventory')=='full_model':site_policy=FULL_MODEL_POLICY_ID
+    if 'phosphate_atom_policy' in controls:site_policy=SOURCE_NAMES_POLICY_ID
     return {'schema_version':1,'policy_id':site_policy,'status':'PREPARED_REVIEW',
         'entry_id':saved['entry_id'],'request_key':saved['manifest']['request_key'],
         'component':saved['manifest']['request']['component'],'bond_representation_policy':policy,
@@ -164,7 +173,7 @@ def _inputs(root, controls):
 
 
 def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, expected_links,
-        terminal_resource=None, supplementary_dictionaries=(), supplementary_phils=(), native_context=None):
+        terminal_resource=None, supplementary_dictionaries=(), supplementary_phils=(), native_context=None, phosphate_atom_policy=None):
     """Freeze only explicit inputs and publish a fresh, replayable preparation.
 
     Consumer must equal the saved isolated qualification. Changed installations
@@ -188,6 +197,8 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
     if native_context is not None:
         from .cif_native_context import validate_native_context
         controls['native_context']=validate_native_context(native_context)
+    if phosphate_atom_policy is not None:
+        controls['phosphate_atom_policy']=phosphate_atom_policy
     original={}
     def freeze(source,target):
         source=Path(source); data=_read(source);original[source]=data
@@ -226,13 +237,15 @@ def read_dictionary_sites(output):
     """Read frozen inputs and rederive every generated file; never mutate the bundle."""
     root=Path(output).absolute();report=_json(_read(root/'site_receipt.json'))
     _need(type(report.get('schema_version')) is int and report['schema_version']==1
-        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID}, 'Unknown site preparation schema/policy')
+        and report.get('policy_id') in {POLICY_ID,CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID}, 'Unknown site preparation schema/policy')
     _need(report.get('files')==_files(root), 'Site artifact inventory or checksum differs')
     controls={k:report[k] for k in ('consumer','contexts','expected_links','terminal_resource',
         'supplementary_dictionaries','supplementary_phils')}
-    if report['policy_id'] in {CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID}:
+    if report['policy_id'] in {CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID}:
         _need('native_context' in report, 'Missing frozen native context')
         controls['native_context']=report['native_context']
+    if 'phosphate_atom_policy' in report:
+        controls['phosphate_atom_policy']=report['phosphate_atom_policy']
     inputs=_inputs(root,controls)
     allowed={'snapshot/'+name for name in _SNAPSHOT_FILES}|{'inputs/model.pdb'}
     allowed.update(controls['supplementary_dictionaries']);allowed.update(controls['supplementary_phils'])
@@ -373,8 +386,10 @@ def _site_native_checks(before, after, prepared):
                 p=next(i for i,a in atoms.items() if _site(a)==site and a['atom_id']=='P')
                 neighbors={next(i for i in r['i_seqs'] if i!=p) for r in details['bond_simple'] if p in r['i_seqs']}
                 angles={min(tuple(r['i_seqs']),tuple(r['i_seqs'])[::-1]) for r in details['angle']}
-                expected={(site,'OP3') if terminal else (context['incoming_site'],"O3'"),
-                    (site,"O5'"),(site,'OP1'),(site,'OP2')}
+                from .cif_phosphate_names import phosphate_names
+                names=phosphate_names(component_values(path,code),leaving_required=terminal)
+                expected={(site,names['OP3']) if terminal else (context['incoming_site'],"O3'"),
+                    (site,"O5'"),(site,names['OP1']),(site,names['OP2'])}
                 check(('terminal' if terminal else 'linked')+'-phosphate-tetrahedral-coverage:'+site,
                     {(_site(atoms[i]),atoms[i]['atom_id']) for i in neighbors}==expected
                     and all(min((a,p,b),(b,p,a)) in angles for a,b in combinations(neighbors,2)))
@@ -411,7 +426,7 @@ def inspect_dictionary_site_native(output, baseline_receipt, candidate_receipt):
         record,native,captured=_capture(path,_read(model))
         snapshots.update(captured)
         _bind_capture(record,report['consumer'],model,prepared[label+'_dictionaries'],prepared[label+'_phils'])
-        if report['policy_id']==FULL_MODEL_POLICY_ID:
+        if report.get('native_context',{}).get('monomer_inventory')=='full_model':
             from .cif_native_monomers import POLICY_ID as monomer_policy, review_full_monomers
             _need(record.get('full_monomer_inventory_policy')==monomer_policy,
                 'Site context requires a maintained full native monomer capture')

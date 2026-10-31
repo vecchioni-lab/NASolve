@@ -12,8 +12,9 @@ python3 docs/figures/build_cif_doctor_overview.py
 ```
 
 The current scope note includes declared chemistry, exact restraint consumption
-and C138's opt-in complete native monomer identities. It retains ReadySet and
-NARestraints ownership and does not alter production NCS refinement.
+and complete native identities, plus C139's composed component/final ReadySet
+check with verified fallback. It retains ReadySet and NARestraints ownership
+and does not alter production NCS refinement.
 It adds no automatic adoption arrow; the companion contract retains unsupported
 formal-charge readback, source-state and integration limits.
 

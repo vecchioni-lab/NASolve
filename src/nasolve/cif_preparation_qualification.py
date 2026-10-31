@@ -115,7 +115,7 @@ def project_source_configurations(binding: dict, before: dict, after: dict) -> l
 
 
 
-def qualify_native_backbone_ports(values: dict, context: dict) -> dict:
+def qualify_native_backbone_ports(values: dict, context: dict, *, phosphate_names=None) -> dict:
     """Check the conventional native adapter's elements and source port state.
 
     This is intentionally narrower than generic graph recognition. Other element
@@ -126,7 +126,13 @@ def qualify_native_backbone_ports(values: dict, context: dict) -> dict:
     from .cif_attachment_sites import _neutral_hydroxyl_hydrogens
     from .cif_stereochemistry_audit import _graph
     elements, bonds, charges, neighbors = _graph(values)
-    expected = {'P': 'P', 'OP1': 'O', 'OP2': 'O', 'OP3': 'O',
+    if phosphate_names is not None:
+        from .cif_phosphate_names import phosphate_names as resolve_names
+        if phosphate_names != resolve_names(values):
+            raise ValueError('Backbone role names differ from source graph')
+    names = phosphate_names or {'OP1':'OP1','OP2':'OP2','OP3':'OP3'}
+    p1,p2,p3 = (names[n] for n in ('OP1','OP2','OP3'))
+    expected = {'P': 'P', p1: 'O', p2: 'O', p3: 'O',
                 "O5'": 'O', "C5'": 'C', "C3'": 'C', "O3'": 'O'}
     if any(elements.get(name) != element for name, element in expected.items()):
         raise ValueError('Unsupported elements at conventional native backbone ports')
@@ -134,8 +140,8 @@ def qualify_native_backbone_ports(values: dict, context: dict) -> dict:
         return {n for n in neighbors[atom] if elements[n] not in {'H', 'D'}}
     def single(a, b):
         return bonds.get(tuple(sorted((a, b)))) == 'SINGLE'
-    if (neighbors['P'] != {'OP1', 'OP2', 'OP3', "O5'"}
-            or any(heavy(n) != {'P'} for n in ('OP1', 'OP2', 'OP3'))
+    if (neighbors['P'] != {p1, p2, p3, "O5'"}
+            or any(heavy(n) != {'P'} for n in (p1, p2, p3))
             or neighbors["O5'"] != {'P', "C5'"}
             or charges["O5'"] != 0 or not single('P', "O5'")
             or not single("O5'", "C5'") or heavy("O3'") != {"C3'"}
@@ -146,8 +152,8 @@ def qualify_native_backbone_ports(values: dict, context: dict) -> dict:
         raise ValueError('Source O3-prime hydroxyl requires separate chemical-state authority')
     leaving = None
     if context.get('incoming_site'):
-        leaving = _neutral_hydroxyl_hydrogens('OP3', elements, bonds, charges, neighbors)
-        if not single('P', 'OP3') or leaving is None:
+        leaving = _neutral_hydroxyl_hydrogens(p3, elements, bonds, charges, neighbors)
+        if not single('P', p3) or leaving is None:
             raise ValueError('Source phosphate leaving port requires separate chemical-state authority')
     return {'scope': 'CONVENTIONAL_NATIVE_DNA_PORTS', 'elements': expected,
         'source_o3_hydrogens': sorted(outgoing),

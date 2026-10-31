@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-30:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-10-31:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -83,6 +83,18 @@ and eight-case cold replay establish reproducible consumption, not refinement
 success. This changes no production NCS-refinement setting and may cost more
 for large repeated assemblies. The [early design principles](cif-doctor.md#design-principles-retained-from-the-early-cedar-work)
 remain the guide for automatic recovery and usable fallback.
+
+The explicit component route now composes independently qualified dictionaries
+under one model and native context. In the L-DNA/L-FANA-C control it preserves
+the source's O1P/O2P/O3P names, checks the actual phosphate graph and removes only
+the declared leaving group. Shared whole-model checks precede ordinary ReadySet;
+the final effective model and dictionaries receive a fresh native readback.
+A stable-order control passes all 28 endpoint checks. A separate atom-reordered
+output preserves coordinates/definitions but fails the strict ordered-proxy gate,
+so the verified starting model is retained. This is a working diagnostic fallback,
+not evidence of chemical damage or permission to weaken chirality checks.
+Source formal-charge limitations remain visible, and automatic adoption is still
+separate. See the [bundle methods](cif-doctor.md#qualified-component-bundles-and-final-readyset-readback-c139).
 
 FANA A/C/G/T/U have isolated controls; only the explicitly derived L-FANA-C route
 has the linked model evidence above. L-FDNA transfer is tested synthetically, not

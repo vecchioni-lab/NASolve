@@ -132,7 +132,8 @@ def _render(values: dict, code: str) -> str:
 def prepare_linked_component(source: Path, numerical: Path, model: Path,
                              contexts: Sequence[dict], output_directory: Path, *, code: str,
                              native_qualification: dict | None = None,
-                             bond_representation_policy: str | None = None) -> dict:
+                             bond_representation_policy: str | None = None,
+                             phosphate_atom_policy: str | None = None) -> dict:
     """Prepare a DNA base dictionary, site modifiers and projected assessments.
 
     Links and end states are explicit caller evidence, never guessed from a
@@ -188,11 +189,25 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
     original_group=values.get('_chem_comp.group')
     values['_chem_comp.group']=['DNA']
     atoms=atom_rows(values)
-    required={'P','OP1','OP2',"O5'","C5'","C3'","O3'"}
-    if not required<=atoms.keys() or 'O3P' in atoms:
+    aliases = {'OP1':'OP1', 'OP2':'OP2', 'OP3':'OP3'}
+    if phosphate_atom_policy is not None:
+        from .cif_phosphate_names import POLICY_ID, phosphate_names
+        if phosphate_atom_policy != POLICY_ID or not qualified:
+            raise ValueError('Source-named phosphate preparation requires explicit policy and isolated qualification')
+        aliases = phosphate_names(values)
+        if phosphate_names(source_values) != aliases:
+            raise ValueError('Source and numerical phosphate names differ')
+        if not contexts or any(not c.get('incoming_site') for c in contexts):
+            raise ValueError('Source-named phosphate adapter currently requires internal linked sites')
+        from .cif_preparation_qualification import qualify_native_backbone_ports
+        for context in contexts:
+            qualify_native_backbone_ports(values, context, phosphate_names=aliases)
+    p1,p2,p3 = (aliases[n] for n in ('OP1','OP2','OP3'))
+    required={'P',p1,p2,"O5'","C5'","C3'","O3'"}
+    if not required<=atoms.keys() or (phosphate_atom_policy is None and 'O3P' in atoms):
         raise ValueError('Unsupported standard-phosphodiester atom convention')
     bonds={frozenset((a,b)) for a,b in zip(values[_BOND+'atom_id_1'],values[_BOND+'atom_id_2'])}
-    if not all(frozenset(pair) in bonds for pair in [('P','OP1'),('P','OP2'),('P',"O5'"),("O3'","C3'")]):
+    if not all(frozenset(pair) in bonds for pair in [('P',p1),('P',p2),('P',"O5'"),("O3'","C3'")]):
         raise ValueError('Selected graph does not support standard phosphodiester chemistry')
     model_sites=_model_inventory(paths[2])
     if not contexts: raise ValueError('Require explicit site contexts')
@@ -215,25 +230,25 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
             if endpoint and (endpoint==site or endpoint not in model_sites or atom not in model_sites[endpoint]['atoms']):
                 raise ValueError('Declared link endpoint absent or self-linked: '+site)
         coordinate_atoms=model_sites[site]['atoms']
-        phosphate={'P','OP1','OP2','OP3'}
-        if 'O3P' in coordinate_atoms: raise ValueError('Unrequested coordinate O3P')
+        phosphate={'P',p1,p2,p3}
+        if phosphate_atom_policy is None and 'O3P' in coordinate_atoms: raise ValueError('Unrequested coordinate O3P')
         if five=='free_OH':
             if coordinate_atoms & phosphate: raise ValueError('Free 5prime OH contains a phosphate: '+site)
         elif five=='phosphate':
             if not phosphate<=coordinate_atoms: raise ValueError('Requested terminal phosphate is incomplete: '+site)
-        elif not {'P','OP1','OP2'}<=coordinate_atoms or 'OP3' in coordinate_atoms:
+        elif not {'P',p1,p2}<=coordinate_atoms or {p3,'OP3','O3P'} & coordinate_atoms:
             raise ValueError('Internal coordinate phosphate is incomplete or contains OP3: '+site)
         port_qualification=None
         if binding is not None:
             from .cif_preparation_qualification import qualify_native_backbone_ports
-            port_qualification=qualify_native_backbone_ports(values,context)
+            port_qualification=qualify_native_backbone_ports(values,context,phosphate_names=aliases if phosphate_atom_policy is not None else None)
         removed=set()
         if incoming:
-            if 'OP3' in atoms:
-                heavy_neighbors={next(iter(pair-{'OP3'})) for pair in bonds if 'OP3' in pair
-                                 and atoms[next(iter(pair-{'OP3'}))]['type_symbol'].upper() not in {'H','D'}}
+            if p3 in atoms:
+                heavy_neighbors={next(iter(pair-{p3})) for pair in bonds if p3 in pair
+                                 and atoms[next(iter(pair-{p3}))]['type_symbol'].upper() not in {'H','D'}}
                 if heavy_neighbors!={'P'}: raise ValueError('OP3 has unsupported heavy-atom adjacency')
-                removed.add('OP3');removed.update(hydrogen_neighbors(values,'OP3'))
+                removed.add(p3);removed.update(hydrogen_neighbors(values,p3))
         elif five=='free_OH':
             removed.update(phosphate & atoms.keys())
             for name in phosphate: removed.update(hydrogen_neighbors(values,name))
@@ -256,7 +271,7 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
               'deleted_atoms':sorted(removed),'expected_atoms':sorted(actual),
               'expected_energy_types':{name:row.get('type_energy') for name,row in actual.items()},
               'expected_formal_charges':{name:row.get('charge',row.get('pdbx_formal_charge')) for name,row in actual.items()},
-              'retained_op2_hydrogens':hydrogen_neighbors(derivative,'OP2'),
+              'retained_op2_hydrogens':hydrogen_neighbors(derivative,p2),
               'expected_hydrogen_attachments':{name:sorted(next(iter(pair-{name})) for pair in bonds
                   if name in pair and not pair & removed) for name,row in actual.items()
                   if row['type_symbol'].upper() in {'H','D'}}}
@@ -306,6 +321,9 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         receipt['candidate_reassessment']=fresh
     if binding is not None:
         receipt['preparation_qualification']=binding
+    if phosphate_atom_policy is not None:
+        receipt['phosphate_atom_policy']=phosphate_atom_policy
+        receipt['phosphate_names']=aliases
     if not receipt['source_preserved']: raise ValueError('Input changed while publishing preparation')
     (output/'preparation_receipt.json').write_text(json.dumps(receipt,indent=2,sort_keys=True)+'\n')
     return receipt

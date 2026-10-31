@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualified component bundles and final ReadySet readback (C139)
+
+- Compose two to sixteen explicit stored components under one frozen model,
+  consumer, link/context and ordered CIF/PHIL contract. Reject duplicate codes,
+  conflicting site/modifier ownership and undeclared supplementary inputs.
+- Add an explicit source-named internal-phosphate adapter: unique OP1/O1P,
+  OP2/O2P and OP3/O3P roles must match the source graph and qualified neutral
+  reacting ports. Preserve literal names and retained source hydrogens. Aliased
+  terminal-phosphate/free-5′-OH operations remain outside this adapter.
+- Recheck the ordinary per-component ReadySet proof and its actual effective
+  model/dictionaries with complete native readback. Failed or missing endpoint
+  evidence retains a qualified diagnostic start; no automatic adoption follows.
+- Add schema-1 bundle/roundtrip contracts and opt-in stored-site policy v4.
+  Existing site policies and saved reports replay unchanged; no migration,
+  ordinary PostMR default, CLI, run/checkpoint or installed-library change.
+
 ### Complete native monomer identities (C138)
 
 - Add an opt-in full-model native capture contract. Use Phenix's existing
