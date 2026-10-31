@@ -3690,6 +3690,15 @@ selection integration is still open. See the
 [attribution contract](cif-doctor.md#maintained-captured-linear-torsion-attribution-c150).
 
 
+C151 composes the existing full-monomer capture contract into these adapters.
+Preparation preserves the explicit no-copying native policy and maintained worker;
+each fresh numerical job and geometry endpoint must retain the exact complete
+identity proof. Legacy capsules retain their original scope, and full-policy
+endpoints cannot be downgraded to legacy evidence. The numerical cores and source
+chemistry authorities are unchanged. This closes capture compatibility Q01;
+independent source-qualified repaired selection remains Q03. See the
+[full-capture contract](cif-doctor.md#full-native-capture-bridge-c151).
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

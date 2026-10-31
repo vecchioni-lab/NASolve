@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-10-31, after C150.** This queue owns unfinished
+**Current planning authority, 2026-10-31, after C151.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -35,7 +35,7 @@ consumer qualification and honest coverage/reporting. All-catalogue completion
 requires every catalogue entry to be accounted for and unresolved cases retained
 as work; it cannot be inferred from a few successful family exemplars.
 
-Recommended order is **Q01 → Q03 → Q04 → Q05 → Q07**, with Q06 qualifying the
+Q01 is complete at C151. Remaining priority is **Q03 → Q04 → Q05 → Q07**, with Q06 qualifying the
 actual refinement consumer before Q07 can claim refinement support. Q02 is a
 small independent parser repair that should land early. Q08 diagnoses the known
 mixed-scaffold geometry while Q09–Q14 close chemistry and evidence gaps. Q15 and
@@ -55,16 +55,22 @@ acceptance criteria.
 
 ### Q01 — Compose full native capture and numerical attribution
 
-**Open; next implementation checkpoint. Dependencies: none.**
+**Complete at C151: native identity/capture compatibility. Dependencies: none.**
 C133–C141 require complete full-model monomer identities for source-qualified
-selection. C147–C150 currently accept the simpler linked energy/policy capture;
-C150 rejects the extra metadata. Build an explicit versioned compatibility path
-which validates and retains the richer evidence rather than stripping it.
+selection. C147–C150 initially rejected this richer capture. C151 validates the
+existing full-monomer request/worker/proof, retains it in fresh derivative and
+geometry jobs, and requires it in endpoint readback. Maintained attribution now
+consumes the same full capture without stripping metadata. Three fresh native
+stages preserve all 42 residue identities/865 atoms and C150 numerical inventories;
+six-proxy attribution, derivatives and bounded geometry mechanics pass. Legacy,
+copied-chain, rehashed tamper and cold-relocation controls pass. No independent
+source-chemical approval or automatic selection is claimed; that remains Q03.
+See the [C151 contract](cif-doctor.md#full-native-capture-bridge-c151).
 Relevant seams: [captured gradients](../src/nasolve/cif_captured_mixed_gradients.py),
 [maintained attribution](../src/nasolve/cif_captured_linear_attribution.py) and
 [component runtime](../src/nasolve/cif_component_runtime.py).
 
-Done when one exact full-model bundle passes source/site identity and maintained
+Acceptance retained: one exact full-model bundle passes captured source/site identity and maintained
 repair-attribution replay together, including unchanged sites, ordered CIF/PHIL
 inputs and native source pins. Test legacy captures, extra/contradictory monomer
 data, copied-chain identities, tampering and cold relocation. Old capture schemas
@@ -86,7 +92,7 @@ a formatter to change scientific inputs.
 
 ### Q03 — Qualify repaired dictionaries and select a usable bundle
 
-**Open. Depends on Q01.** Compose C149/C150 graph-selected repair with independently
+**Open; next implementation checkpoint. Q01 is complete.** Compose C149/C150 graph-selected repair with independently
 source-qualified preparation and C141 selected-bundle evidence. The exact omitted
 torsions, full source graph/H/charge/stereo, site projections and native effective
 definitions must all refer to the same candidate. Use the existing

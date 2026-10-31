@@ -48,7 +48,7 @@ def _inputs(parent):
     _native_atoms(expected, model.read_bytes())
     spec = _json((parent/'native_spec.json').read_bytes())
     _need(set(spec) <= {'policy_id','model','dictionaries','phil_files','phil_namespace_policy',
-        'inventory_detail','policy_inventory','energy_inventory','installed_library_only'}
+        'inventory_detail','policy_inventory','energy_inventory','installed_library_only','full_monomer_inventory'}
         and spec.get('policy_inventory') is True and spec.get('energy_inventory') is True)
     dictionaries = [parent/p for p in spec['dictionaries']]; phils = [parent/p for p in spec['phil_files']]
     bind = lambda p:numerical._ref(p,parent,'captured_native_directory')
@@ -57,15 +57,46 @@ def _inputs(parent):
     return capture, model, dictionaries, phils, expected, bindings
 
 
+def _full_monomers(capture, native, expected=None):
+    """Keep full identity evidence mandatory when the authenticated request owns it."""
+    from .cif_native_monomers import POLICY_ID, review_full_monomers
+    policy = capture.get('full_monomer_inventory_policy')
+    if policy is None:
+        _need('full_monomer_inventory' not in native)
+        return False
+    _need(policy == POLICY_ID)
+    proof = review_full_monomers(native)
+    if expected is not None:
+        # Identity-only proof is unchanged by a coordinate trial. Full effective
+        # definitions remain covered separately by exact manager/native gates.
+        _need(proof == review_full_monomers(expected))
+    return True
+
+
+def _preserve_native_context(root, capture, preparation, reference=numerical._ref):
+    """Compose the existing opt-in monomer worker without changing numerical cores."""
+    path = root/'job/native_spec.json'; spec = _json(path.read_bytes())
+    spec['phil_namespace_policy'] = capture['phil_namespace_policy']
+    if capture['dictionary_source_policy'] == 'INSTALLED_LIBRARY_ONLY':
+        spec['installed_library_only'] = True
+    if capture.get('full_monomer_inventory_policy') is not None:
+        _full_monomers(capture, capture['native_validation'])
+        from .cif_native_monomers import native_monomer_worker, POLICY_ID
+        spec['full_monomer_inventory'] = True
+        worker = root/'job/native_worker.py'
+        worker.write_text(native_monomer_worker(worker.read_text()))
+        preparation['native_worker'] = reference(worker, root)
+        preparation['full_monomer_inventory_policy'] = POLICY_ID
+    numerical._compact_dump(path, spec)
+    preparation['native_spec'] = reference(path, root)
+    return preparation
+
+
 def _prepare(root, model, dictionaries, phils, expected, capture):
     # Preserve the consumer namespace and dictionary authority. Numerical cores
     # and their original policies stay byte-identical for historical replay.
     preparation = numerical._prepare(root, model, dictionaries, phils, expected)
-    path = root/'job/native_spec.json'; spec = _json(path.read_bytes())
-    spec['phil_namespace_policy'] = capture['phil_namespace_policy']
-    if capture['dictionary_source_policy'] == 'INSTALLED_LIBRARY_ONLY':spec['installed_library_only'] = True
-    numerical._compact_dump(path, spec); preparation['native_spec'] = numerical._ref(path, root)
-    return preparation
+    return _preserve_native_context(root, capture, preparation)
 
 
 def _publish(root, report):
@@ -125,7 +156,9 @@ def audit_captured_mixed_gradients(native_receipt, phenix, output, *, timeout_se
                 except BaseException:_stop(process);raise
                 else:report['execution']={'status':'COMPLETED' if code==0 else 'FAILED','returncode':code}
             if report['execution']['status']=='COMPLETED':
-                result=_json((root/'job/gradient_result.json').read_bytes());q=numerical._validate_result(result,expected,preparation['selected_indices'])
+                result=_json((root/'job/gradient_result.json').read_bytes())
+                _full_monomers(capture, _json((root/'job/native_validation.json').read_bytes()), expected)
+                q=numerical._validate_result(result,expected,preparation['selected_indices'])
                 numerical._compact_dump(root/'qualification.json',q);report['qualification']={'artifact':numerical._ref(root/'qualification.json',root)}
                 if q['sampled_derivatives_pass']:report['status']='CAPTURED_MIXED_DERIVATIVES_PASS'
         except (OSError,ValueError,KeyError,TypeError) as exc:
@@ -160,7 +193,11 @@ def _read_captured_mixed_gradients(directory):
         and report['directories']==sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir()))
     capture,model,dictionaries,phils,expected,bindings=_inputs(parent);_need(report['inputs']==bindings)
     prep=report['preparation'];work=root/'job'
-    _need((work/'native_worker.py').read_bytes()==native_energy_worker(_NATIVE_WORKER).encode() and (work/'gradient_worker.py').read_bytes()==numerical._WORKER.encode())
+    worker = native_energy_worker(_NATIVE_WORKER)
+    if _full_monomers(capture, expected):
+        from .cif_native_monomers import native_monomer_worker
+        worker = native_monomer_worker(worker)
+    _need((work/'native_worker.py').read_bytes()==worker.encode() and (work/'gradient_worker.py').read_bytes()==numerical._WORKER.encode())
     for name,source in numerical._CORE_FILES.items():_need((work/name).read_bytes()==Path(__file__).with_name(source).read_bytes())
     from tempfile import TemporaryDirectory
     with TemporaryDirectory(prefix='mixed-gradient-reader-') as temporary:
@@ -182,6 +219,7 @@ def _read_captured_mixed_gradients(directory):
         _need(report['qualification']=={'artifact':numerical._ref(root/'qualification.json',root)})
         q=_json(_resolve(root,parent,report['qualification']['artifact']).read_bytes())
         result=_json((work/'gradient_result.json').read_bytes());native=_json((work/'native_validation.json').read_bytes())
+        _full_monomers(capture, native, expected)
         from .cif_corrected_geometry import QUALIFIED_CORRECTION_SHA256
         _need(numerical._manager_digest(native)==numerical._manager_digest(expected) and result['manager_sha256']==numerical._manager_digest(expected)
             and result['coordinates_unchanged'] is True and result['special_position_indices']==[]

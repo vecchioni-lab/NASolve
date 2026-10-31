@@ -94,7 +94,9 @@
 
 <a id="current-capability-boundary-c149"></a>
 
-## Current capability boundary (C150)
+<a id="current-capability-boundary-c150"></a>
+
+## Current capability boundary (C151)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -113,6 +115,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
+| Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. Q03 must still bind repaired dictionaries to source-qualified preparation and selected-bundle evidence. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -160,6 +163,46 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Full native capture bridge (C151)
+
+The captured derivative, maintained linear-attribution and geometry adapters now
+accept the existing `cif-native-full-monomer-inventory-v1` contract. An explicit
+`full_monomer_inventory=True` request must already have an authenticated native
+receipt, maintained monomer worker, complete atom/residue mapping and explicit
+`use_ncs_to_build_restraints=False` PHIL. The adapter neither invents missing
+copied-chain identities nor silently changes that native parameter.
+
+Derivative and geometry preparation compose the existing full-monomer worker
+around the unchanged native-energy worker, retain its policy in preparation,
+and hash the resulting worker/specification. Fresh numerical jobs must reproduce
+the captured full identity proof. Geometry endpoint readback requests the same
+full policy and verifies exact residue identities alongside its existing model,
+ordered CIF/PHIL, source-pin and native-definition gates. A valid legacy endpoint
+cannot substitute for a full-policy endpoint. The attribution adapter reuses this
+validated input path; its unchanged staged gates still prove each planned removal
+and the complete energy/gradient difference.
+
+Existing schema-1 capture/derivative/geometry/attribution policies retain their
+meaning. Full mode adds the already defined monomer policy to preparation and
+requires its existing native proof; no default, checkpoint or cache migration is
+introduced. Old plain captures remain valid under their old scope. Offline readers
+rederive worker/specification and identity checks without executing saved code or
+opening historical installation paths. Renamed-away originals, proof removal,
+rehashed wrong identities, copied-chain policy and endpoint downgrades are covered.
+
+Seven complete native processes under Phenix 2.2.1-6174 capture the three repair
+stages, rerun maintained attribution and derivatives, run a five-iteration geometry
+transfer control and capture its endpoint. All three 865-atom/42-residue captures
+retain exactly the corresponding C150 coordinates, native definitions, energy and
+201 custom restraints. Six removed-proxy references reproduce C150 exactly;
+target delta remains 15.11250671668131. Derivative and geometry mechanics checks
+pass, with all 42 endpoint identities retained. Five iterations do not establish
+convergence; `INPUT_MODEL_UNCHANGED` remains selected and its usability is not
+established by this numerical capsule. No ReadySet, Coot or diffraction refinement
+is run. Independent source chemistry, usable fallback and selected-bundle binding
+remain [Q03](cif-doctor-completion-queue.md#q03--qualify-repaired-dictionaries-and-select-a-usable-bundle).
+This closes Q01 compatibility, not chemical permission or ordinary adoption.
 
 ### Maintained captured linear-torsion attribution (C150)
 
@@ -218,8 +261,9 @@ gate remains composition with source-qualified component/preparation and selecte
 bundle evidence, including a genuinely qualified fallback. One concrete seam is
 capture policy: this adapter inherits C147's linked energy/policy capture contract;
 the component-runtime path requires additional full-model monomer evidence.
-Those extended captures are currently rejected, not silently stripped or treated
-as equivalent. A future bridge must explicitly validate that richer contract. Existing pure gates,
+At C150 those extended captures were rejected rather than silently stripped or
+treated as equivalent. C151 explicitly validates and retains that richer contract
+through numerical jobs and endpoint readback; source-qualified selection remains Q03. Existing pure gates,
 native schemas, CLI/defaults, cache entries and checkpoints require no migration.
 See `captured_linear_attribution_2026_10_31` in the
 [evidence ledger](cif-linked-native-registration-evidence.json).

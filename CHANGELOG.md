@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Full native identity through captured numerical jobs (C151)
+
+- Accept the existing opt-in full-monomer capture contract in maintained repair
+  attribution and derivative adapters. Validate the original request, worker and
+  complete residue identities; preserve the same proof in fresh numerical jobs.
+- Carry the explicit restraint-copying policy through geometry preparation and
+  endpoint native readback. Missing, contradictory or downgraded evidence refuses;
+  legacy captures retain their prior meaning and replay without migration.
+- The 42-residue mixed scaffold passes full-identity capture, six-proxy attribution,
+  sampled derivatives and a bounded geometry transfer control. This closes queue
+  Q01; source-qualified repaired selection remains Q03, without automatic adoption.
+
 ### CIF Doctor completion queue and project continuity
 
 - Reconcile C00–C150 evidence into one dependency-ordered completion queue,

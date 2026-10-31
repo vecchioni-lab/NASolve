@@ -244,8 +244,8 @@
   "next_delivery": {
     "status": "QUEUED_NOT_BUILT",
     "queue": "docs/cif-doctor-completion-queue.md",
-    "job": "Q01",
-    "latest_completed_delivery": "150_Cedar",
+    "job": "Q03",
+    "latest_completed_delivery": "151_Cedar",
     "delivery_prefix": null
   },
   "boundaries": {
@@ -5690,7 +5690,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Completion queue Q01: explicitly reconcile full-model monomer capture with maintained repair attribution, then Q03 source-qualified selection; preserve complete evidence and usable fallback.",
+  "next_action": "Q03: bind graph-selected repaired dictionaries and maintained attribution to independently source-qualified component/preparation and C141 selected-bundle evidence; establish a usable candidate or separately verified fallback without implicitly adopting an unconverged coordinate trial. Q02 curated CIF loop parsing remains a small independent early fix; keep all other completion-queue jobs visible.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -30040,7 +30040,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "captured_linear_attribution_2026_10_31",
+  "current_diagnostic_record": "full_native_capture_bridge_2026_10_31",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -57611,6 +57611,415 @@
         "path": "150_Cedar_linear-attribution-kl1btmvd/completion-audit/publication.json",
         "size": 294,
         "sha256": "4cada64d2b98ed9f3cb20944780dc21f2f09e821f1334e8dc77f0d6a8c3d0784"
+      }
+    ],
+    "completed_jobs": {
+      "Q01": {
+        "delivery": "C151",
+        "evidence_key": "full_native_capture_bridge_2026_10_31",
+        "scope": "Complete native identity and numerical capture compatibility; chemical source qualification remains Q03"
+      }
+    }
+  },
+  "full_native_capture_bridge_2026_10_31": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "7b8c74c24101cac2defddde2b4daab7f9da84087",
+    "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "completion_queue_job": "Q01",
+    "before": "C147 input validation rejected authentic full-model monomer captures needed by component-runtime qualification. Allowing that flag alone would drop full identity proof in fresh derivative/geometry jobs and endpoint readback.",
+    "after": "Accept only the existing authenticated full-monomer contract, preserve the explicit native copying policy and maintained worker, and require complete equal identity proofs in fresh derivative/geometry jobs and endpoint capture. Maintained attribution inherits the validated full input path. Legacy capsules retain their prior meaning.",
+    "changed_files": [
+      "src/nasolve/cif_captured_mixed_gradients.py",
+      "src/nasolve/cif_captured_geometry_trial.py",
+      "tests/test_cif_captured_full_monomers.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": {
+      "new": "None",
+      "additive": "Existing cif-native-full-monomer-inventory-v1 is now accepted and retained by existing schema-1 captured numerical adapters; full-mode preparation includes full_monomer_inventory_policy.",
+      "unchanged": "Numerical cores, native capture schemas, source/preparation/selection policies, CLI/defaults, caches and checkpoints"
+    },
+    "compatibility": "No migration or default behavior change. Existing C149 derivatives/geometry and C150 attribution replay with bytes/timestamps unchanged. Full-policy captures refuse missing or downgraded evidence.",
+    "regressions": {
+      "new_cases": 24,
+      "isolated_old_source": "12 failed, 12 passed in 4.54s",
+      "final_new": "24 passed in 18.59s",
+      "affected": "313 passed in 97.22s (0:01:37)",
+      "focused": {
+        "summary": "1686 passed, 36 subtests passed in 264.65s (0:04:24)",
+        "seconds": 265.10598450002726,
+        "files": 585,
+        "source_changes_during_validation": [],
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "full": "NOT_RUN_THIS_PUSH; last C143 full gate 7175 tests +276 subtests"
+    },
+    "live": {
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_execution": true,
+      "native_captures": 3,
+      "unchanged_prior_scientific_inventories": [
+        {
+          "atoms": true,
+          "atom_count": true,
+          "geometry": true,
+          "restraint_policy": true,
+          "energy_inventory": true,
+          "monomer_mappings": true
+        },
+        {
+          "atoms": true,
+          "atom_count": true,
+          "geometry": true,
+          "restraint_policy": true,
+          "energy_inventory": true,
+          "monomer_mappings": true
+        },
+        {
+          "atoms": true,
+          "atom_count": true,
+          "geometry": true,
+          "restraint_policy": true,
+          "energy_inventory": true,
+          "monomer_mappings": true
+        }
+      ],
+      "attribution_status": "CAPTURED_LINEAR_ATTRIBUTION_PASS",
+      "removed_proxy_count": 6,
+      "target_delta": 15.11250671668131,
+      "derivative_status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+      "geometry_status": "CAPTURED_GEOMETRY_MECHANICS_PASS",
+      "geometry_decision": {
+        "status": "MECHANICS_PASS",
+        "selected": "INPUT_MODEL_UNCHANGED",
+        "candidate_mechanics_pass": true,
+        "checks": {
+          "qualified_endpoint_derivatives": true,
+          "exact_identity_serialization": true,
+          "fixed_native_mechanics": true,
+          "fresh_rounded_target": true,
+          "nonworse_fixed_objective": true
+        },
+        "stopping": {
+          "calls": 8,
+          "error": null,
+          "iterations": 5,
+          "max_iterations": 5,
+          "native_criterion_met": false,
+          "reason": "max_iterations"
+        },
+        "input_usability": "NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE",
+        "chemical_qualification": "NOT_ASSESSED",
+        "scientific_qualification": "NOT_ASSESSED",
+        "automatic_adoption": false
+      },
+      "geometry_finding": null,
+      "new_native_calls": 7,
+      "source_chemical_qualification": "NOT_ESTABLISHED_BY_CAPTURE_BRIDGE",
+      "automatic_adoption": false,
+      "monomer_identity_summary": {
+        "atom_count": 865,
+        "mapping_count": 42,
+        "policy_id": "cif-native-full-monomer-inventory-v1",
+        "residue_count": 42,
+        "schema_version": 1,
+        "status": "RECORDED",
+        "use_ncs_to_build_restraints": false
+      }
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "files_unchanged": 666,
+      "legacy_replays": {
+        "C150_attribution": {
+          "status": "CAPTURED_LINEAR_ATTRIBUTION_PASS",
+          "files_unchanged": 224
+        },
+        "C149_gradients": {
+          "status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "files_unchanged": 137
+        },
+        "C149_geometry": {
+          "status": "CAPTURED_GEOMETRY_MECHANICS_PASS",
+          "files_unchanged": 287
+        }
+      },
+      "negative_controls": [
+        "gradient_proof",
+        "gradient_copying",
+        "gradient_worker",
+        "attribution_missing_monomer",
+        "attribution_wrong_identity",
+        "geometry_initial_proof",
+        "geometry_endpoint_downgrade",
+        "geometry_endpoint_proof"
+      ],
+      "owned_original_gone": true,
+      "historical_and_sdk_reads": "DENIED",
+      "process_execution": "DENIED",
+      "readers": [
+        "attribution",
+        "derivatives",
+        "geometry"
+      ]
+    },
+    "auxiliary": {
+      "status": "PASS",
+      "unchanged_numerical_native_selection_modules": [
+        "cif_mixed_gradient.py",
+        "cif_gradient_audit.py",
+        "cif_parallelity_audit.py",
+        "cif_parallelity_correction.py",
+        "cif_recovered_gradient.py",
+        "cif_native_validation.py",
+        "cif_native_monomers.py",
+        "cif_attachment_native.py",
+        "cif_mixed_geometry.py",
+        "cif_fixed_geometry.py",
+        "cif_mixed_torsion.py",
+        "cif_linear_torsion_candidate.py",
+        "cif_linked_linear_torsion.py",
+        "cif_linked_torsion_energy.py",
+        "cif_linear_torsion_bundle.py",
+        "cif_captured_linear_attribution.py",
+        "cif_component_runtime.py"
+      ],
+      "compileall": "PASS",
+      "compile_cache": "external temporary cache",
+      "relative_links_checked": 365,
+      "json_parse": "PASS",
+      "diff_check": "PASS",
+      "static_source_resources": 17,
+      "static_source_resource_hashes": {
+        "src/nasolve/data/ligands/DP.provenance.json": "ee5b029a1307900241157346af499e07f59cc8c6ae8b2620a86318be85d67b02",
+        "src/nasolve/data/ligands/5IU.cif": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+        "src/nasolve/data/ligands/DE.cif": "b1227ad41a783c0a122f5872dc9b1ef5753d9af6289aa43c53f9c5dc4c417b2f",
+        "src/nasolve/data/ligands/DP.cif": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "src/nasolve/data/ligands/DF.cif": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "src/nasolve/data/ligands/C38.cif": "852944f129b28115112c4cc0d16acc6ca09fbb1b1d66d7838d8d612a9522caa5",
+        "src/nasolve/data/ligands/OHU.cif": "1a820d7bf16ecc1715c15888df4dbc1da06892cb675bf3a4ae6b8b976354b9e3",
+        "src/nasolve/data/ligands/1AP.cif": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "src/nasolve/data/ligands/S6G.cif": "2def78c8f23e18f4c7fd56d77b0a901df6a9a64380b755f38a6868f5a574f931",
+        "src/nasolve/data/ligands/5CM.cif": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "src/nasolve/data/ligands/5CM.provenance.json": "b432af85344381aa5a78b2302e4bb0df4c808c11cee998f9c8a43ffd3868a65f",
+        "src/nasolve/data/ligands/DZ.cif": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "src/nasolve/data/ligands/DZ.provenance.json": "f8350b3ef3bd8324ddb5321f9c302767703ca58bc28f19cf0a925d363223af82",
+        "src/nasolve/data/restraints/5W6W_secondary_structure.eff": "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8",
+        "src/nasolve/data/restraints/5W6W_Std_padd.txt": "6bf81211a0f92d76e92b2580c356e3fa47f4e0a1a2c2e1e08612fc9bff9dc7e1",
+        "src/nasolve/data/presets/5w6w.toml": "01db578bcfe5960061a52400fb48ef91c8318a7dd92b9f85acce95a395e67cf6",
+        "src/nasolve/data/sequence_references/w-metal-scaffold.json": "d658b6bc3f14e9d91f5067574ad5ebe98c4d28625a94d015eb9c245690b6c630"
+      },
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "parent_artifacts_unchanged": 224,
+      "previous_C150_and_queue_refs_verified": 28
+    },
+    "validation_commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "python": "3.12.14; pytest 9.1.1",
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_captured_full_monomers.py",
+        "tests/test_cif_captured_mixed_gradients.py",
+        "tests/test_cif_captured_geometry_trial.py",
+        "tests/test_cif_captured_linear_attribution.py",
+        "tests/test_cif_native_monomers.py",
+        "tests/test_cif_native_validation.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_component_runtime.py",
+        "tests/test_cif_linear_torsion_bundle.py"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/151_Cedar_full-native-bridge-jo0jaoz4/validation/focused/pytest.xml"
+      ],
+      "baseline": "python c151_baseline.py: current 24 regression cases against git archive of base src, temporary PYTHONPATH verified",
+      "native": "python c151_live_r2.py: 3 full-model native captures, maintained attribution, derivatives, 5-iteration geometry and fresh full-model endpoint; 7 complete Phenix 2.2.1-6174 processes",
+      "cold": "python c151_cold.py: old C149/C150 readers plus three renamed-away C151 capsules, historical/SDK reads and process execution denied, eight rehashed negative controls",
+      "auxiliary": "python c151_auxiliary.py: compileall external cache, relative links/anchors, JSON, unchanged source/resources/figure, prior evidence and parent bytes/timestamps, git diff --check"
+    },
+    "software": {
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher": "2.2.1",
+      "complete_native_processes": 7,
+      "dry_run": false,
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN"
+    },
+    "artifacts": "Raw models, CIF/PHIL snapshots, native outputs, validation logs and helpers remain local. Only runtime/tests/current contracts and anchored hash references publish. Prior C150 frozen input artifacts retain bytes and timestamps.",
+    "limitations": [
+      "Q01 closes authenticated native identity/capture compatibility, not independent chemical source authority. Q03 must compose the exact repaired candidates, source-qualified preparation and selected bundle before declaring a usable candidate/fallback.",
+      "Five geometry iterations are a downstream evidence-transfer control, not a convergence campaign. The iteration-limited endpoint is unadopted; input usability, chemical and scientific qualification remain unestablished by this capsule.",
+      "No ordinary PostMR orchestration, ReadySet execution, Coot, diffraction refinement, checkpoint/cache migration, new chemical inference, NAR policy change or installed-library edit occurs.",
+      "Local corrected-evaluator mechanics do not qualify ordinary Phenix refinement. Q06 remains open, as do native charge readback, residual pair strain, connected PNA, post-flank L-FANA/L-FDNA and linked 10C coverage.",
+      "Old capture/adapter schemas retain their meaning; full-mode preparation adds the existing monomer policy and requires its full proof. Legacy evidence is not retroactively promoted. No captured code is executed during readback.",
+      "An initial helper preflight refused an output nested beneath its PHIL input directory before any native process or native output reservation. The preserved failure was followed by a fresh correctly anchored input/output layout; no partial native attempt was repaired.",
+      "No full suite in this bounded development push. Last full-tested revision remains C143; full regression and representative ordinary-route integration remain required before merge."
+    ],
+    "next": "Q03: bind graph-selected repaired dictionaries and maintained attribution to independently source-qualified component/preparation and C141 selected-bundle evidence; establish a usable candidate or separately verified fallback without implicitly adopting an unconverged coordinate trial. Q02 curated CIF loop parsing remains a small independent early fix; keep all other completion-queue jobs visible.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/attribution/captured_linear_attribution.json",
+        "size": 45659,
+        "sha256": "3dc2aa54bf6a5506d5992a3df3f1e7d2be8432d9962d3da4daa957bea5f537b5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/gradients/captured_mixed_gradients.json",
+        "size": 43527,
+        "sha256": "adfdb7af35c805a1f4f30fb29be93bc50010db90ea7ab3a132238f31aaed8ea8"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/geometry/captured_geometry_trial.json",
+        "size": 71777,
+        "sha256": "6324581964b58de5e7dff6a65872d02f0f9d64f398d6b2fbbf8de15ecfe92f17"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/full-model-comparison.json",
+        "size": 23174,
+        "sha256": "7e3d6a9dd4bee745ff469566e960535e1fd34fa083c4117753356f8524851e90"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/native-receipts.json",
+        "size": 171,
+        "sha256": "163852b1d88e4763663ece93aedfef3aa25dafc93e50eb3407b48ff660f5fa82"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/science_inputs/full-model.phil",
+        "size": 61,
+        "sha256": "2b8d27f764f34a34b9b70b99affa6137e24d84129f2add139dc17bb82b939bee"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/live-result.json",
+        "size": 8696,
+        "sha256": "db0bb49da33fe2fb657b4c84f02d69cc0bff60d0018706d1ea1464a400aa7519"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/parent-before.json",
+        "size": 55609,
+        "sha256": "b0e0d82e110ea236663db249a8556a50eddcd629129bd0db37d32701299d3817"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/cold/result.json",
+        "size": 851,
+        "sha256": "f0f2d9e07925f383e150ee7ebf1a5358666abeb4187cfaebceac77bb55711e7b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/baseline-isolated/result.json",
+        "size": 1956,
+        "sha256": "7c0d0fb5b22db7b7266dab0e140853d9713502e5bfc556fe7f47ff8c46ff337c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/baseline-isolated/pytest.log",
+        "size": 24522,
+        "sha256": "b2510102f87b29858cfdd80bd4378ba6c63aaaeb9f6c3a3c9efbde586935d94d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/new-tests.log",
+        "size": 100,
+        "sha256": "68cf4db81cb8c7ed78596825c75e46d28026bc06c72c970b78d7a9cf7230ac3d"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/affected.log",
+        "size": 431,
+        "sha256": "1a60a6655db86f29cfbdea150f58bdf16eff07fd824034fab1b39db8aa498de8"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/focused/result.json",
+        "size": 1268,
+        "sha256": "ffa99f5c2154bf5eeb7466be88277a2afbed04ee8154cbcafa43e5282befa61e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/focused/pytest.log",
+        "size": 6896,
+        "sha256": "0a257b6b0ff1b22f40af06c09162d0fd7913cd1338cd2e57b4152cdbc2939c54"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/focused/pytest.xml",
+        "size": 247456,
+        "sha256": "930a819fca6fcc160068809b6eb98a5314a59e9e364178a943f3d3ba17919a2a"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/focused/source-hashes.json",
+        "size": 63752,
+        "sha256": "bb5561991beb924402639dadece99bb65099e71576e22a97c9530e677a089375"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/auxiliary.json",
+        "size": 3017,
+        "sha256": "4b61a48f504063368cadd04c4b8b73ac1b475e734072610a1a45dcb666edffa4"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/validation/native-preflight-failure.log",
+        "size": 697,
+        "sha256": "fb6fc38252f7851bf0b5cbd01a2ab871f2cd785fedcf6b94d3d86ebf5c7329c2"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/native/000/cif-native-6c2nn5ig/native_receipt.json",
+        "size": 6021823,
+        "sha256": "d6205f6947a31538b1f288f8217b32e54930f07e3463421bf2b4ada4a7018912"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/native/001/cif-native-_j8e2l5z/native_receipt.json",
+        "size": 6015801,
+        "sha256": "6488b3acbe8cc89855062e552032f102c209f4c1d6b2c84c342b920918017ff7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "151_Cedar_full-native-bridge-jo0jaoz4/native/002/cif-native-heohl0wg/native_receipt.json",
+        "size": 6009743,
+        "sha256": "86ea7294856001572c92240de9ed91eedf3dfc5ce087d962cec6aa7038427896"
       }
     ]
   }

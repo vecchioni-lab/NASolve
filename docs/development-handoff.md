@@ -11,6 +11,70 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C151 validated: Q01 complete native capture bridge
+
+Base/pushed-before-work `7b8c74c24101cac2defddde2b4daab7f9da84087`; existing **cedar** only.
+Capsule `live_tests_directory/151_Cedar_full-native-bridge-jo0jaoz4`.
+Before, the captured numerical adapter rejected full-model monomer evidence.
+After, the existing authenticated full request/worker/proof survives derivative
+and geometry preparation, fresh jobs and native endpoint readback. The maintained
+attribution path consumes the same validated full capture. Missing/copied-chain
+identities and a downgrade to an otherwise valid legacy endpoint refuse. No
+numerical core, source-chemical policy, NAR membership or selection rule changes.
+
+**Live:** seven complete Phenix 2.2.1-6174 processes (dispatcher 2.2.1): three
+original/intermediate/final native captures, maintained attribution, complete-policy
+sampled derivatives, a five-iteration geometry transfer control and fresh full
+endpoint capture. All **42 residue identities / 865 atoms** are retained. Each
+native stage's coordinates, definitions, energy and 201 custom restraints match
+C150 exactly. All six proxy references reproduce; target delta remains
+**15.11250671668131**. Derivatives and geometry mechanics pass. The short trial
+reaches its iteration limit, and no coordinate candidate is adopted. Input
+usability and source/scientific qualification remain explicitly unestablished.
+No ReadySet, Coot or diffraction refinement. The first helper preflight failed
+before native reservation/execution due to input/output nesting; its evidence is
+preserved and the successful attempt uses a sibling input directory.
+
+**Validation:** new regression file against isolated old source: **12 failed, 12 passed in 4.54s**;
+current source: **24 passed in 18.59s**. Affected: **313 passed in 97.22s (0:01:37)**.
+Focused chemistry/workflow: **1686 passed, 36 subtests passed in 264.65s (0:04:24)**, with all **585**
+frozen Python files unchanged during validation. Commands use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_captured_full_monomers.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_captured_geometry_trial.py tests/test_cif_captured_linear_attribution.py tests/test_cif_native_monomers.py tests/test_cif_native_validation.py tests/test_cif_attachment_native.py tests/test_cif_component_runtime.py tests/test_cif_linear_torsion_bundle.py
+python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused/pytest.xml
+python c151_baseline.py
+python c151_live_r2.py
+python c151_cold.py
+python c151_auxiliary.py
+```
+
+Cold replay of attribution/derivatives/geometry preserves **666 files** after
+renaming away the owned originals, with historical/SDK reads and process execution
+denied. Eight rehashed tampering controls refuse. Actual legacy C150 attribution
+and C149 derivative/geometry readers also pass without changing bytes/timestamps.
+Compileall (external cache), links/JSON, unchanged figure regeneration, numerical
+core/static-resource checks and `git diff --check` pass. No full suite this bounded
+push; last full-tested stays `809abd44df8885ac14f1a02a67a13338209a8707`
+(7,175 tests +276 subtests). Exact commands/results/hashes are in the
+[evidence ledger](cif-linked-native-registration-evidence.json), record `full_native_capture_bridge_2026_10_31`.
+
+Changed runtime: captured-gradient/geometry adapters, one regression module and
+chemistry profile. Changed docs: changelog, methods, overview/caption, architecture,
+index, completion queue, this handoff and both ledgers. Existing schema-1 policies
+retain their meaning; full-mode preparation adds the existing monomer policy.
+No CLI/default, cache/checkpoint or historical-capsule migration. Generated
+scientific artifacts, logs and helpers stay local. No new branch or merge.
+Implementation and focused validation complete; publication pending.
+No active jobs remain.
+
+**Next:** Q03: bind graph-selected repaired dictionaries and maintained attribution to independently source-qualified component/preparation and C141 selected-bundle evidence; establish a usable candidate or separately verified fallback without implicitly adopting an unconverged coordinate trial. Q02 curated CIF loop parsing remains a small independent early fix; keep all other completion-queue jobs visible.
+Q01 closes native identity compatibility only; do not claim independent source
+chemistry approval or automatic selection. Queue Q06 still owns qualification of
+the actual ordinary refinement consumer. All chemistry coverage jobs remain visible.
+— Rowan · Codex desktop
+
 ## Post-C150 completion audit and maintained job queue
 
 Published on existing `cedar` as `7f2f10d1edb53df7b5c2a50d08c3a8920e02eb8d`; remote head verified.

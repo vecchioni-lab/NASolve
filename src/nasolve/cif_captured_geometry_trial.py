@@ -52,6 +52,8 @@ def _inputs(gradient):
 
 def _prepare(root,model,cifs,phils,expected,proof,proof_bytes,digest,max_iterations,capture):
     prep=geometry._prepare(root,model,cifs,phils,expected,proof,proof_bytes,digest,max_iterations)
+    if capture.get('full_monomer_inventory_policy') is not None:
+        return gradients._preserve_native_context(root,capture,prep,geometry._ref)
     path=root/'job/native_spec.json';spec=geometry._load(path)
     spec['phil_namespace_policy']=capture['phil_namespace_policy']
     if capture['dictionary_source_policy']=='INSTALLED_LIBRARY_ONLY':spec['installed_library_only']=True
@@ -74,7 +76,9 @@ def _readback(root,ref,model,cifs,phils,capture):
     expected=[('model',model),*[('dictionary',p) for p in cifs],*[('phil',p) for p in phils]]
     _need(len(receipt['inputs'])==len(expected)
         and receipt['phil_namespace_policy']==capture['phil_namespace_policy']
-        and receipt['dictionary_source_policy']==capture['dictionary_source_policy'])
+        and receipt['dictionary_source_policy']==capture['dictionary_source_policy']
+        and receipt.get('full_monomer_inventory_policy')==capture.get('full_monomer_inventory_policy'))
+    gradients._full_monomers(capture,native,capture.get('native_validation'))
     for row,(role,source) in zip(receipt['inputs'],expected):
         _need(row['role']==role and (path.parent/row['path']).read_bytes()==source.read_bytes())
     return receipt
@@ -96,6 +100,7 @@ def _analysis(root,gradient,report,expected,proof,model,cifs,phils,source_captur
         result=None
         try:
             result=geometry._completed_result(root,expected)
+            gradients._full_monomers(source_capture,geometry._load(root/'job/native_validation.json'),expected)
             qualification=geometry._validate_endpoint(result,proof,expected['atom_count'],report['max_iterations'],report['gradient_report_sha256'])
         except (OSError,ValueError,KeyError,TypeError,IndexError,ZeroDivisionError,OverflowError) as exc:
             qualification={'status':'REVIEW','sampled_derivatives_pass':False,'finding_type':type(exc).__name__,'finding':'OPTIONAL_ENDPOINT_UNQUALIFIED'}
@@ -186,12 +191,14 @@ def trial_captured_geometry(gradient_directory,phenix,output,*,max_iterations=10
                 else:report['execution']={'status':'COMPLETED' if code==0 else 'FAILED','returncode':code}
             if report['execution']['status']=='COMPLETED':
                 result=geometry._completed_result(root,expected)
+                gradients._full_monomers(capture,geometry._load(root/'job/native_validation.json'),expected)
                 geometry._validate_endpoint(result,proof,expected['atom_count'],max_iterations,digest)
                 candidate=root/'candidate/mixed_geometry_model.pdb';candidate.parent.mkdir()
                 serialization=write_geometry_candidate(model,candidate,expected,result['final_sites_cart']);geometry._dump(root/'serialization.json',serialization)
                 geometry._dump(root/'full_precision_geometry.json',review_fixed_coordinates(expected,result['final_sites_cart']))
                 readback=inspect_native_bundle(candidate,cifs,root/'native_readback',executable,environment=phenix.environment,phenix_version=phenix.version,
-                    timeout_seconds=min(timeout_seconds,60),phil_files=phils,phil_namespace_policy=capture['phil_namespace_policy'],inventory_detail='linked',policy_inventory=True,energy_inventory=True,installed_library_only=capture['dictionary_source_policy']=='INSTALLED_LIBRARY_ONLY')
+                    timeout_seconds=min(timeout_seconds,60),phil_files=phils,phil_namespace_policy=capture['phil_namespace_policy'],inventory_detail='linked',policy_inventory=True,energy_inventory=True,installed_library_only=capture['dictionary_source_policy']=='INSTALLED_LIBRARY_ONLY',
+                    **({'full_monomer_inventory':True} if capture.get('full_monomer_inventory_policy') is not None else {}))
                 report['new_native_calls']+=int('returncode' in readback.get('execution',{}))
                 report['native_readback']={'receipt':geometry._ref(Path(readback['native_directory'])/'native_receipt.json',root)}
                 if readback.get('status')=='REVIEW' and readback['execution'].get('returncode')==0:

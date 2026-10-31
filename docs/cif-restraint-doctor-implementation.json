@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "captured_linear_attribution_2026_10_31",
+    "current_diagnostic_record": "full_native_capture_bridge_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27684,7 +27684,31 @@
       "published_branch": "cedar",
       "remote_verified": true
     },
-    "completion_queue": "docs/cif-doctor-completion-queue.md"
+    "completion_queue": "docs/cif-doctor-completion-queue.md",
+    "full_native_capture_bridge": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "Accept only the existing authenticated full-monomer contract, preserve the explicit native copying policy and maintained worker, and require complete equal identity proofs in fresh derivative/geometry jobs and endpoint capture. Maintained attribution inherits the validated full input path. Legacy capsules retain their prior meaning.",
+      "schemas": {
+        "new": "None",
+        "additive": "Existing cif-native-full-monomer-inventory-v1 is now accepted and retained by existing schema-1 captured numerical adapters; full-mode preparation includes full_monomer_inventory_policy.",
+        "unchanged": "Numerical cores, native capture schemas, source/preparation/selection policies, CLI/defaults, caches and checkpoints"
+      },
+      "compatibility": "No migration or default behavior change. Existing C149 derivatives/geometry and C150 attribution replay with bytes/timestamps unchanged. Full-policy captures refuse missing or downgraded evidence.",
+      "limitations": [
+        "Q01 closes authenticated native identity/capture compatibility, not independent chemical source authority. Q03 must compose the exact repaired candidates, source-qualified preparation and selected bundle before declaring a usable candidate/fallback.",
+        "Five geometry iterations are a downstream evidence-transfer control, not a convergence campaign. The iteration-limited endpoint is unadopted; input usability, chemical and scientific qualification remain unestablished by this capsule.",
+        "No ordinary PostMR orchestration, ReadySet execution, Coot, diffraction refinement, checkpoint/cache migration, new chemical inference, NAR policy change or installed-library edit occurs.",
+        "Local corrected-evaluator mechanics do not qualify ordinary Phenix refinement. Q06 remains open, as do native charge readback, residual pair strain, connected PNA, post-flank L-FANA/L-FDNA and linked 10C coverage.",
+        "Old capture/adapter schemas retain their meaning; full-mode preparation adds the existing monomer policy and requires its full proof. Legacy evidence is not retroactively promoted. No captured code is executed during readback.",
+        "An initial helper preflight refused an output nested beneath its PHIL input directory before any native process or native output reservation. The preserved failure was followed by a fresh correctly anchored input/output layout; no partial native attempt was repaired.",
+        "No full suite in this bounded development push. Last full-tested revision remains C143; full regression and representative ordinary-route integration remain required before merge."
+      ],
+      "next": "Q03: bind graph-selected repaired dictionaries and maintained attribution to independently source-qualified component/preparation and C141 selected-bundle evidence; establish a usable candidate or separately verified fallback without implicitly adopting an unconverged coordinate trial. Q02 curated CIF loop parsing remains a small independent early fix; keep all other completion-queue jobs visible.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "full_native_capture_bridge_2026_10_31",
+      "validation": "1686 passed, 36 subtests passed in 264.65s (0:04:24); 313 passed in 97.22s (0:01:37); 7 complete native jobs and relocated replay pass; no full suite."
+    }
   },
   "audience": [
     "NASolve contributors"
