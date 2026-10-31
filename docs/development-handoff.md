@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C154 validated: absent-parallelity derivative integration and history policy
+## C154 published: absent-parallelity derivative integration and history policy
 
 Base `bcb0691bd70dd037ec7be8cca5d8418b5518dc42`; existing **cedar** only.
 Capsule `live_tests_directory/154_Cedar_absent-parallelity-jl4ich0_`.
@@ -74,8 +74,9 @@ Scientific inputs, bundles, logs and helpers remain local and excluded from Git.
 The [evidence ledger](cif-linked-native-registration-evidence.json) record
 `captured_absent_parallelity_2026_10_31` owns exact references and commands.
 
-Implementation/full-tested SHA is pending publication; previous full-tested
-implementation was `962737c2cb1a956d785fc430393cf65ef2e2f40b`.
+Implementation/full-tested SHA `ea7f74c7c5f7e0df03972975650b27ae28eef94a` is published and verified on
+`origin/cedar`. This continuity-only commit changes no runtime/test bytes. The
+previous full-tested implementation was `962737c2cb1a956d785fc430393cf65ef2e2f40b`.
 **Next:** Q04 bounded exact-source/current-consumer acquisition with durable
 attempt ownership and cache-first reuse. Optional nonbonded capture composition
 and zero-context geometry remain unqualified; Q13/Q07 retain scaffold state and

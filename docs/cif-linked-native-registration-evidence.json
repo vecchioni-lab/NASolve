@@ -59839,12 +59839,12 @@
     "full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
   },
   "captured_absent_parallelity_2026_10_31": {
-    "status": "FULL_VALIDATED_UNPUBLISHED",
+    "status": "PUBLISHED_FULL_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "bcb0691bd70dd037ec7be8cca5d8418b5518dc42",
     "previous_full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
-    "full_validation_revision": "FROZEN_SOURCE_MANIFEST_PENDING_COMMIT",
+    "full_validation_revision": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
     "completion_queue_job": "Q04",
     "completion_queue_disposition": "ZERO_PARALLELITY_DERIVATIVE_PREREQUISITE_CLOSED; AUTOMATIC_RECOVERY_REMAINS_OPEN",
     "before": "The generic captured derivative adapter required at least one parallelity proxy, so C153 source-faithful repaired PDU/5PC could not qualify in its original empty-custom-restraint context.",
@@ -60158,6 +60158,8 @@
         "sha256": "c5c132039d0593e986d80b5bd3d5521bfc7cbda142ae052446cd6bc952c7b45e",
         "size": 593
       }
-    ]
+    ],
+    "implementation_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
+    "full_tested_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a"
   }
 }

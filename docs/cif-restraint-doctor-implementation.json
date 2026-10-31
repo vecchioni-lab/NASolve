@@ -27772,7 +27772,7 @@
       "full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
     },
     "captured_absent_parallelity": {
-      "status": "FULL_VALIDATED_UNPUBLISHED",
+      "status": "PUBLISHED_FULL_VALIDATED",
       "after": "Authenticated zero-proxy captures use the unchanged eight-family audit with explicit NOT_APPLICABLE plane-order proof, zero-family and raw-native-gradient identity guards. Source-bound repaired selection/publication succeeds without invented restraints.",
       "schemas": {
         "new_embedded": [
@@ -27803,7 +27803,11 @@
         },
         "source_files": 589,
         "scope": "Final frozen sources only; earlier test attempts and partial full run are preserved separately."
-      }
+      },
+      "implementation_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
+      "full_tested_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
