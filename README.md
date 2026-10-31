@@ -33,7 +33,9 @@ features. Automatic repair on a cache miss, general modified-sugar mutation and
 end-to-end candidate adoption remain separate integration work.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
-restraint membership, derivatives and bounded coordinate candidates. They preserve
+restraint membership, derivatives and bounded coordinate candidates.
+Source-qualified graph repairs can also be frozen with their evidence and
+rechecked through the public bundle assessor after relocation. They preserve
 source chemistry and distinguish missing evidence from demonstrated corruption.
 The catalogue programme includes all selected NARestraints ligands, including
 FANA, L-FANA, PNA and ATL; it does not claim that every family is already usable.

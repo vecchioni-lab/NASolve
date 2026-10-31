@@ -117,8 +117,8 @@ sections below retain exact methods, failures and evidence-time next steps.
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
-| Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. Q03 must still bind repaired dictionaries to source-qualified preparation and selected-bundle evidence. |
-| Source-bound repaired-bundle decision | C152 composes source-qualified site preparation, exact full-native repair attribution and independent original/repaired derivative proofs. Synthetic verifier controls exercise whole-bundle selection, fallback and refusal; actual C139/C151 evidence replays and an unrelated source/repair join refuses. | Positive native qualification of one matching source/preparation/repair chain remains open. PDU/5PC phosphate H/charge state needs explicit source/site authority. C141 publication and ordinary adoption remain separate. |
+| Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
+| Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -166,6 +166,59 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Source-faithful repaired runtime publication (C153)
+
+`cif_component_runtime.prepare_repaired_component_runtime_bundle(bundle,
+baseline_receipt, attribution_directory, output, *,
+repaired_gradient_directory=None, original_gradient_directory=None)` freezes one
+complete source-bound choice from the C152 decision adapter. It copies the exact
+preparation, baseline capture, maintained repair chain and supplied derivative
+capsules into a fresh bounded evidence tree. The unchanged model, ordered CIFs
+and PHIL are published together only after replay. A retained original needs its
+own passing derivative evidence; missing or failed proof never becomes usability.
+
+Schema 1 / `cif-qualified-repaired-component-runtime-bundle-v1` has a distinct
+policy identifier. Existing ReadySet publication retains its original policy,
+manifest semantics and selection path. The public `resolve_runtime_bundle` and
+`nasolve cif-doctor assess --bundle PATH --json` recognize both. Readers derive
+selection from the frozen evidence, compare all selected bytes/order and reject
+changed or rehashed resources, substituted sources, incomplete proof, extra roots
+and path escapes. They run no native tools or captured programs. No migration,
+new CLI argument, automatic cache acquisition or checkpoint adoption is needed.
+
+**Native evidence.** Exact C98 source hashes identify previously qualified PDU
+and 5PC entries in the local dictionary store. Both independently requalify at
+source and generated seed coordinates. Source phosphate H/charge and all three
+sugar configurations per component are preserved before and after graph-selected
+repair. In a separate 77-atom/two-monomer control with declared complete terminal
+phosphates, the source/preparation gate, full native identity, maintained repair
+attribution and fresh sampled derivatives agree. Six undefined torsions per
+component are omitted (12 total); hydrogen-dependent rows account for the larger
+count than the six omissions in the older hydrogen-free mixed scaffold. Every
+other definition and the one explicit NARestraints parallelity request remain
+unchanged. The separated monomers and that numerical request make no physical
+stacking, base-pair or polymer claim. The repaired bundle is selected and exported;
+API and JSON CLI replay agree after the owned publication is renamed away, with
+original evidence, cache, SDK access and process execution denied.
+
+Phenix 2.2.1-6174 (dispatcher 2.2.1) executes these controls. A fresh PDU builder
+attempt reaches its 300-second limit without a candidate; its partial output is
+preserved. A fresh 5PC build also passes four isolated native checks, before and
+after graph repair at source and generated coordinates. That output is retained
+but is not the selected cached candidate. Reuse avoids
+another PDU retry. The existing standalone derivative protocol requires at least
+one parallelity proxy and excludes the optional nonbonded-inventory capture
+extension; the earlier control/preflight attempts remain recorded. Supporting
+those additional contexts is Q04 qualification coverage, not permission to insert
+restraints into experimental models or weaken the numerical test.
+
+This closes Q03's diagnostic source/repair/publication composition. It does not
+resolve the intended linked-scaffold phosphate state: the old C151 numerical
+bases still differ from the retained sources, and are not retroactively approved.
+Q13 owns explicit state/operation authority; Q07 owns the ordinary mixed scaffold.
+Q04 next connects bounded recovery and usable fallback to ordinary acquisition.
+No ReadySet, Coot, diffraction refinement or model adoption runs in this control.
 
 ### Source-bound repaired-bundle decision (C152)
 
@@ -217,6 +270,9 @@ not prove either source state is chemically wrong or recommend adding hydrogens.
 Q03 next needs explicit source/site-state authority and a matching qualified
 preparation, then a positive native join and C141 publication. Q13 retains the
 broader chemical-state policy work; ordinary adoption stays Q05.
+C153 subsequently closes the diagnostic source/repair/publication composition
+with exact-source cached candidates in a separate complete-monomer control; it
+does not authorize the C151 mixed-scaffold state transition.
 
 ### Full native capture bridge (C151)
 

@@ -167,6 +167,26 @@ The live mixed example still needs explicit phosphate-state authority: its
 retained source and numerical bases differ in phosphate H and charge. This is a
 qualification boundary, not an instruction to add atoms or infer a pH.
 See the [source-bound decision contract](cif-doctor.md#source-bound-repaired-bundle-decision-c152).
+C153 finds exact-source qualified candidates already in the local store and
+proves a complete repair/publication route using them. Twelve graph-selected
+undefined torsions are removed across full PDU/5PC monomers; all source hydrogen,
+charge and sugar-hand declarations survive. Fresh native attribution and sampled
+derivatives pass, and the public bundle reader rechecks the frozen proof after
+relocation. A timed-out fresh PDU build is preserved rather than retried in place.
+The positive control contains two separated complete monomers with one NAR
+numerical parallelity request. It does not establish a physical pair or select
+the phosphate state of the existing mixed scaffold.
+
+**Methods.** Bind reusable candidate bytes to exact independent source hashes and
+current native consumer pins; requalify both source and generated coordinate
+seeds. Compose explicit terminal/site preparation with declaration-selected
+linear-torsion omissions. Require exact before/after native inventories and
+single-proxy energy/gradient attribution, then an independent derivative pass.
+Freeze the complete selected model and ordered restraints together with those
+proofs. Public readback rederives selection without the original paths, cache or
+SDK. Ordinary automatic recovery/adoption and experimental validation remain
+separate. See the [publication contract](cif-doctor.md#source-faithful-repaired-runtime-publication-c153).
+
 See the [attribution methods and limits](cif-doctor.md#maintained-captured-linear-torsion-attribution-c150).
 C142 also passes PDU's changed-objective
 energy attribution and fresh sampled derivatives on the DF-repaired scaffold.
@@ -788,8 +808,10 @@ boxes, including fresh endpoint readback. The figure's separate source-chemistry
 and adoption gates therefore remain unchanged; a complete identity record does
 not itself authorize selecting a repaired dictionary. C152 explicitly joins the
 source/preparation and numerical gates before a whole-bundle decision. Its
-unchanged-model choice stays separate from coordinate improvement; positive
-native composition and immutable runtime publication remain unfinished.
+unchanged-model choice stays separate from coordinate improvement. C153 proves
+a matching source/repair choice on two complete monomers and freezes its evidence
+for public offline readback. This closes the diagnostic publication connection,
+while ordinary adoption and the mixed scaffold's phosphate-state choice stay open.
 Hash-bound JSON receipts preserve audit findings
 without changing coordinates, dictionary precedence or readiness decisions.
 The mixed-bundle source inventory distinguishes current base declarations,

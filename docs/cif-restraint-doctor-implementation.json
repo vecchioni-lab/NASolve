@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "source_bound_repaired_bundle_decision_2026_10_31",
+    "current_diagnostic_record": "source_faithful_repaired_runtime_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27739,6 +27739,35 @@
       "focused_tested_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "source_faithful_repaired_runtime_publication": {
+      "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+      "after": "An additive public runtime policy freezes complete repaired/fallback selection plus source/site/native/derivative evidence. Exact-source saved PDU/5PC candidates pass fresh qualification, twelve graph-selected omissions, matching full-native attribution and derivatives; public API/CLI replay after relocation with original evidence/SDK/cache unavailable.",
+      "schemas": {
+        "new": "schema 1 / cif-qualified-repaired-component-runtime-bundle-v1",
+        "unchanged": "Existing ReadySet component/runtime policies, source chemistry and numerical workers; no CLI argument or checkpoint/cache migration"
+      },
+      "compatibility": "Additive explicit publication function; old C141 runtime replays unchanged. New policy requires an updated public reader; older readers refuse it. No automatic default, adoption or installed-library change.",
+      "limitations": [
+        "Separate complete-monomer numerical control: two residues/77 atoms, one NAR parallelity request, no physical pairing/polymer or 42-residue mixed-scaffold claim.",
+        "The old C151 base-state difference is not retroactively approved; experimental/linked protonation and explicit operation authority remain Q13/Q07.",
+        "Ordinary cache-miss recovery, durable retries and automatic PostMR/checkpoint adoption remain Q04/Q05; ordinary Phenix refinement consumer remains Q06.",
+        "Existing derivative protocol requires parallelity and excludes optional nonbonded-inventory captures; failed preflights stay preserved and coverage is queued under Q04.",
+        "Native formal-charge availability and absolute CIP remain distinct from exact source charge/configuration preservation."
+      ],
+      "next": "Start Q04 with a bounded ordinary-acquisition recovery checkpoint: consult exact-source/current-consumer stored numerics first, inspect for supported graph faults, compose source-faithful repair and native/derivative qualification, retain only an independently usable fallback, and preserve durable attempts/process ownership. Current-site, zero-parallelity and optional capture contexts need their own qualification; Q13/Q07 retain mixed-scaffold phosphate-state authority.",
+      "previous_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "source_faithful_repaired_runtime_2026_10_31",
+      "validation": {
+        "before": "22 failed in 3.33s before implementation",
+        "new_and_existing_runtime": "48 passed in 4.77s",
+        "affected": "282 passed in 166.18s (0:02:46)",
+        "focused": "1741 passed, 36 subtests passed in 719.13s (0:11:59)",
+        "full": "7482 passed, 276 subtests passed in 2211.96s (0:36:51)",
+        "source_files": 588,
+        "source_changes_during_validation": []
+      }
     }
   },
   "audience": [

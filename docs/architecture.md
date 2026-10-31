@@ -3704,10 +3704,15 @@ repair attribution and exact original/repaired derivative evidence. Every repair
 component retains its source owner and the original model/ordered-CIF/PHIL context.
 The existing selection policy chooses one whole bundle; a fallback needs its own
 proof. The result exposes verified paths for a downstream owner but does not
-publish a C141 runtime bundle or adopt a geometry endpoint. A matching positive
-native source/repair join is still required, including explicit phosphate-state
-authority for the current PDU/5PC example. See the
-[source-bound decision contract](cif-doctor.md#source-bound-repaired-bundle-decision-c152).
+publish a C141 runtime bundle or adopt a geometry endpoint. C153 adds an explicit
+publication route under `cif-qualified-repaired-component-runtime-bundle-v1`:
+freeze all source/native/numerical evidence, rederive selection on public readback,
+and expose the unchanged model plus exact ordered CIF/PHIL together. Existing
+ReadySet publications retain their policy. A matching source-preserved PDU/5PC
+complete-monomer control passes; this is not the older mixed scaffold and does
+not resolve its intended phosphate state. No acquisition or adoption default
+changes. See the [decision contract](cif-doctor.md#source-bound-repaired-bundle-decision-c152)
+and [publication contract](cif-doctor.md#source-faithful-repaired-runtime-publication-c153).
 
 ## Source-bound FANA junction angle adapter (C125)
 

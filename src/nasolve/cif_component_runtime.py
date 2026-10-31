@@ -14,6 +14,7 @@ from .cif_dictionary_bundle_readyset import inspect_dictionary_bundle_readyset, 
 from .cif_runtime_bundle import MANIFEST_FILE, _json_bytes, _load_json, _reference, _resolve_reference
 
 POLICY_ID = 'cif-qualified-component-runtime-bundle-v1'
+REPAIRED_POLICY_ID = 'cif-qualified-repaired-component-runtime-bundle-v1'
 MAX_FILES = 1024
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_BYTES = 128 * 1024 * 1024
@@ -62,7 +63,9 @@ def _controls(root, controls):
     return {k:root/v if v is not None else None for k,v in controls.items()}
 
 
-def _selection(root, controls):
+def _selection(root, controls, *, policy_id=POLICY_ID):
+    if policy_id == REPAIRED_POLICY_ID:
+        return _repaired_selection(root, controls)
     args=_controls(root,controls)
     review=deepcopy(inspect_dictionary_bundle_readyset(**args))
     # Exception text can contain the current evidence root. Keep its declared
@@ -87,6 +90,43 @@ def _selection(root, controls):
     return review,decision,inputs,unavailable
 
 
+def _repaired_selection(root, controls):
+    # Import lazily: the decision adapter shares this module's bounded tree reader.
+    from .cif_dictionary_bundle_repair import repaired_dictionary_bundle_inputs
+    fixed = {'bundle':'evidence/bundle',
+        'baseline_receipt':'evidence/baseline/native_receipt.json',
+        'attribution_directory':'evidence/attribution'}
+    optional = {'repaired_gradient_directory':'evidence/repaired-gradient',
+        'original_gradient_directory':'evidence/original-gradient'}
+    _need(isinstance(controls, dict) and set(controls) == set(fixed) | set(optional)
+        and all(controls[k] == v for k,v in fixed.items())
+        and all(controls[k] in (None,v) for k,v in optional.items()),
+        'Incomplete or unsafe repaired source selection')
+    names = {'bundle', 'baseline', 'attribution'} | {
+        v.split('/')[-1] for k,v in optional.items() if controls[k] is not None}
+    evidence = root/'evidence'
+    _need(evidence.is_dir() and {p.name for p in evidence.iterdir()} == names
+        and all(p.is_dir() and not p.is_symlink() for p in evidence.iterdir()),
+        'Unexpected repaired source evidence roots')
+    args = {k:root/v if v is not None else None for k,v in controls.items()}
+    result = repaired_dictionary_bundle_inputs(**args)
+    review = deepcopy(result['review']); decision = deepcopy(review['decision'])
+    _need(decision.get('status') == 'CONTINUE_WITH_NOTES'
+        and decision.get('scope') == 'SEPARATE_DIAGNOSTIC_PHASE_ONLY'
+        and decision.get('automatic_adoption') is False
+        and decision.get('requires_cif_review') is False
+        and decision.get('selected') in {'repaired_prepared_bundle', 'verified_prepared_bundle'},
+        'No qualified repaired diagnostic selection')
+    unavailable = [{k:r[k] for k in ('check','status')}
+        for r in review['source_qualification']['qualification']['checks'] if r['status'] != 'PASS']
+    notes = ['Separate diagnostic continuation; scientific qualification and production adoption remain unassessed.']
+    if unavailable: notes.append('Unavailable native evidence remains recorded; source chemical state is preserved.')
+    if decision['selected'] == 'verified_prepared_bundle':
+        notes.append('Repair was not selected; the independently verified starting bundle was retained.')
+    decision['notes'] = notes
+    return review, decision, {k:result[k] for k in ('model','dictionaries','phils')}, unavailable
+
+
 def _resources(root, inputs, *, write=False):
     refs={'model':None,'dictionaries':[],'phils':[]}
     for key,folder,suffix,paths in [('model','model','.pdb',[inputs['model']]),
@@ -103,9 +143,9 @@ def _resources(root, inputs, *, write=False):
     return refs
 
 
-def _manifest(root, controls, review, decision, resources, unavailable):
+def _manifest(root, controls, review, decision, resources, unavailable, *, policy_id=POLICY_ID):
     files=[_reference(root/name,root) for name in _tree(root,manifest=True)]
-    return dict(**deepcopy(_FIXED),source_selection=controls,source_review=review,decision=decision,
+    return dict(**{**deepcopy(_FIXED), 'policy_id':policy_id},source_selection=controls,source_review=review,decision=decision,
         resources=resources,unavailable_native_checks=unavailable,files=files)
 
 
@@ -129,6 +169,34 @@ def prepare_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt
         controls[field]='evidence/'+folder+'/'+p.name
     if atom_order_directory is not None:
         roots['atom-order']=Path(atom_order_directory);controls['atom_order_directory']='evidence/atom-order'
+    return _publish(output, roots, controls, POLICY_ID)
+
+
+def prepare_repaired_component_runtime_bundle(bundle, baseline_receipt, attribution_directory, output,
+        *, repaired_gradient_directory=None, original_gradient_directory=None):
+    """Freeze the source-bound whole-bundle repair decision and every proof.
+
+    All scientific checks are replayed by the existing decision adapter. A
+    preserved original is eligible only with its own passing derivative proof.
+    This explicit publication does not run tools or adopt experimental coordinates.
+    """
+    baseline = Path(baseline_receipt)
+    _need(baseline.name == 'native_receipt.json', 'Require exact native baseline receipt')
+    roots = {'bundle':Path(bundle), 'baseline':baseline.parent,
+        'attribution':Path(attribution_directory)}
+    controls = dict(bundle='evidence/bundle', baseline_receipt='evidence/baseline/native_receipt.json',
+        attribution_directory='evidence/attribution', repaired_gradient_directory=None,
+        original_gradient_directory=None)
+    for key, folder, path in [('repaired_gradient_directory','repaired-gradient',repaired_gradient_directory),
+            ('original_gradient_directory','original-gradient',original_gradient_directory)]:
+        if path is not None:
+            roots[folder] = Path(path); controls[key] = 'evidence/'+folder
+    return _publish(Path(output).absolute(), roots, controls, REPAIRED_POLICY_ID)
+
+
+def _publish(output, roots, controls, policy_id):
+    if output.exists() or output.is_symlink(): raise FileExistsError(output)
+    _need(not any(p.is_symlink() for p in output.parents), 'Unsafe runtime destination')
     snapshots={}
     for name,source in roots.items():
         if source is not None:
@@ -144,9 +212,9 @@ def prepare_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt
             dest=root/'evidence'/name;dest.mkdir(parents=True)
             for relative,data in files.items():
                 target=dest/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
-        review,decision,inputs,unavailable=_selection(root,controls)
+        review,decision,inputs,unavailable=_selection(root,controls,policy_id=policy_id)
         resources=_resources(root,inputs,write=True)
-        value=_manifest(root,controls,review,decision,resources,unavailable)
+        value=_manifest(root,controls,review,decision,resources,unavailable,policy_id=policy_id)
         (root/MANIFEST_FILE).write_bytes(_json_bytes(value))
         resolve_component_runtime_bundle(root/MANIFEST_FILE)
         _need(all(_tree(source)==snapshots[name] for name,source in roots.items() if source is not None), 'Source evidence changed during publication')
@@ -159,7 +227,10 @@ def verify_component_runtime_resources(path, value):
     """Final byte/inventory check after a verified read, without repeating science."""
     path=Path(path);root=path.parent
     _need(path.name==MANIFEST_FILE and _json_bytes(_load_json(path))==_json_bytes(value), 'Runtime manifest changed')
-    _need(all(type(value.get(k)) is type(v) and value.get(k)==v for k,v in _FIXED.items()), 'Unsupported component runtime policy')
+    policy = value.get('policy_id')
+    _need(policy in (POLICY_ID, REPAIRED_POLICY_ID), 'Unsupported component runtime policy')
+    fixed = {**_FIXED, 'policy_id':policy}
+    _need(all(type(value.get(k)) is type(v) and value.get(k)==v for k,v in fixed.items()), 'Unsupported component runtime policy')
     actual=[_reference(root/name,root) for name in _tree(root,manifest=True)]
     _need(_json_bytes(actual)==_json_bytes(value['files']), 'Frozen runtime inventory changed')
     refs=value['resources'];rows=[refs['model'],*refs['dictionaries'],*refs['phils']]
@@ -172,9 +243,9 @@ def resolve_component_runtime_bundle(path, value=None):
     path=Path(path);value=_load_json(path) if value is None else value;root=path.parent
     try:
         verify_component_runtime_resources(path,value)
-        review,decision,inputs,unavailable=_selection(root,value['source_selection'])
+        review,decision,inputs,unavailable=_selection(root,value['source_selection'],policy_id=value['policy_id'])
         resources=_resources(root,inputs)
-        expected=_manifest(root,value['source_selection'],review,decision,resources,unavailable)
+        expected=_manifest(root,value['source_selection'],review,decision,resources,unavailable,policy_id=value['policy_id'])
         _need(_json_bytes(value)==_json_bytes(expected), 'Runtime selection or evidence does not replay')
         verify_component_runtime_resources(path,value)
         return dict(model=_resolve_reference(root,resources['model']),
@@ -188,7 +259,9 @@ def component_runtime_summary(value):
     selected=value['decision']['selected']
     label={'verified_prepared_model':'the verified starting model',
         'readyset_checked_model':'the verified ReadySet model',
-        'readyset_ordered_checked_model':'the verified order-restored ReadySet model'}[selected]
+        'readyset_ordered_checked_model':'the verified order-restored ReadySet model',
+        'repaired_prepared_bundle':'the source-verified model and repaired dictionaries',
+        'verified_prepared_bundle':'the independently verified starting model and dictionaries'}[selected]
     return dict(text='NASolve prepared '+label+' with its exact checked restraint bundle for a separate diagnostic continuation. '
         +' '.join(value['decision']['notes'])+' CIF inspection is not required.',
         qualification_scope='SEPARATE_DIAGNOSTIC_PHASE_ONLY',scientific_qualification='NOT_ASSESSED',

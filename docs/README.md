@@ -42,8 +42,10 @@ milestone statements preserve their original scope; they are not a second queue.
   derivatives and geometry readback. Q03 source-qualified repaired selection is
   next; ordinary adoption/refinement remain separate. C152 implements a read-only
   source-bound repair/fallback decision gate. A matching positive native join and
-  C141 publication remain open; PDU/5PC phosphate-state authority is the immediate
-  evidence boundary, not something the numerical pass can infer.
+  C141 publication were open at C152. C153 now qualifies exact-source saved
+  PDU/5PC complete-monomer candidates, proves their repaired selection and freezes
+  it for public replay. Q03 diagnostic composition is complete; Q04 acquisition
+  recovery is next. The old mixed scaffold's intended phosphate state stays Q13.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

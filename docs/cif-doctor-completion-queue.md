@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-10-31, after C152.** This queue owns unfinished
+**Current planning authority, 2026-10-31, after C153.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -35,7 +35,7 @@ consumer qualification and honest coverage/reporting. All-catalogue completion
 requires every catalogue entry to be accounted for and unresolved cases retained
 as work; it cannot be inferred from a few successful family exemplars.
 
-Q01 is complete at C151. Remaining priority is **Q03 → Q04 → Q05 → Q07**, with Q06 qualifying the
+Q01 is complete at C151 and Q03 diagnostic composition at C153. Remaining priority is **Q04 → Q05 → Q07**, with Q06 qualifying the
 actual refinement consumer before Q07 can claim refinement support. Q02 is a
 small independent parser repair that should land early. Q08 diagnoses the known
 mixed-scaffold geometry while Q09–Q14 close chemistry and evidence gaps. Q15 and
@@ -92,44 +92,48 @@ a formatter to change scientific inputs.
 
 ### Q03 — Qualify repaired dictionaries and select a usable bundle
 
-**Open; active integration package. Q01 is complete.** C152 implements the
-read-only source/preparation → repair-attribution → derivative decision gate,
-including separately proved fallback and one complete selected input list.
-Its positive selection tests use explicit synthetic upstream verifiers. Actual
-C139 source and C151 numerical evidence replay, but cannot be combined because
-they qualify different inputs. A positive matching native join remains open.
+**Complete at C153: diagnostic source/repair selection and publication.**
+C152 implements the read-only source/preparation → repair-attribution → derivative
+decision. C153 supplies a positive matching native chain and freezes its complete
+proof under a distinct public runtime policy. Exact-source saved PDU/5PC candidates
+retain phosphate H/charge and sugar configuration. Two complete separated monomers
+(77 atoms, one explicit NAR numerical parallelity request) pass source/site/full
+native gates, twelve declared-linear torsion omissions, exact attribution and fresh
+derivatives. Public API/CLI rederive the repaired choice after relocation without
+original inputs, cache, SDK or execution. A separately qualified original remains
+the fallback; absent or malformed proof never grants usability.
 
-The exact retained C98 PDU/5PC sources carry HOP2/HOP3 and neutral OP2/OP3; current
-C151 numerical bases omit those H and declare OP2/OP3 -1. The graph-selected
-torsion repair leaves that state unchanged. **Next bounded checkpoint:** resolve
-and record the authoritative source/site chemical state using existing operations
-or a separately qualified explicit operation, then build matching source-qualified
-preparation/native evidence. Do not silently add H, change charge or infer pH.
-This is a concrete Q13 boundary, not a reason to defer all Q03 work until every
-chemical-state family is supported. Then validate the complete positive repair
-join and freeze its selection through the C141/public bundle route.
+The demonstrated control is not the 42-residue mixed scaffold, a physical pair,
+ordinary refinement or a new experimental phosphate-state choice. The retained C98
+source and C151 numerical bases still differ in HOP2/HOP3 and OP2/OP3 charge; Q13
+owns explicit authority for that state transition and Q07 its ordinary integration.
+No old evidence is upgraded. See the
+[C153 contract](cif-doctor.md#source-faithful-repaired-runtime-publication-c153).
 
-Compose C149/C150 graph-selected repair with independently
-source-qualified preparation and C141 selected-bundle evidence. The exact omitted
-torsions, full source graph/H/charge/stereo, site projections and native effective
-definitions must all refer to the same candidate. Use the existing
-[selection policy](../src/nasolve/cif_doctor_selection.py); keep dictionary usability
-separate from coordinate improvement and experimental acceptance.
-
-Done when a repaired candidate can be selected, or a separately verified usable
-fallback retained, without adopting C149's unconverged endpoint by implication.
-Test an unrelated dictionary change, source-state mismatch, no usable fallback,
-valid nonconverged mechanics and a failed improvement. An input is not usable
-merely because it was preserved. Nonconvergence alone is not chemical invalidity.
+Acceptance met for this package: source-qualified repaired dictionaries can be
+selected and immutably published with exact source/native/derivative proof,
+without adopting an unconverged coordinate trial. Cold native replay, synthetic
+fallback/refusal controls, rehashed tampering, altered order/resources, missing
+proof and concurrent-source changes are tested. Automatic acquisition is Q04;
+ordinary adoption is Q05 and the actual refinement consumer is Q06.
 
 ### Q04 — Bounded automatic recovery and durable attempts
 
-**Open. Depends on Q03; broader state cases depend on Q13.** Connect existing
+**Open; active next package. Q03 diagnostic composition is complete; broader state cases depend on Q13.** Connect existing
 source-preserving generation, representation policies, graph-selected repairs
 and dictionary storage on ordinary cache misses or stale qualifications.
 [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) currently reuses a narrow
 qualified recipe and intentionally skips explicit representation-policy entries;
 it neither generates a missing repair nor proves the ordinary fallback usable.
+C153 demonstrates exact-source cache reuse after a bounded PDU timeout; ordinary
+orchestration should consult that store before generation. A cache hit supplies
+a candidate; it does not replace current source/site/derivative qualification or
+a newly applicable graph-repair check. Preserve the failed
+attempt and require a dead owned process before any fresh retry. The current
+captured derivative adapter also needs explicit qualification for zero-parallelity
+contexts and optional nonbonded-inventory captures. C153's declared NAR numerical
+control is evidence for its own context, never an automatic workaround for a
+restraint-free experimental model.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;
@@ -275,11 +279,13 @@ NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
 
-**Open; incremental prerequisite for affected Q03/Q04/Q09/Q10/Q12 cases.**
+**Open; incremental prerequisite for affected Q04/Q07/Q09/Q10/Q12 cases.**
 C152 reconfirms the specific Q03 phosphate-state boundary: retained PDU/5PC
 sources and numerical base dictionaries differ in HOP2/HOP3 and OP2/OP3 charge.
 Account for the intended state and each source/site operation explicitly; the
 linear-torsion omission neither repairs nor authorizes that state transition.
+C153 closes Q03 diagnostic composition using exact-source saved candidates in a
+separate complete-monomer control. It leaves this mixed-scaffold transition open.
 Finish explicit source-preserving H/charge/protonation, atom aliases and attachment
 ownership where current DNA/L-DNA or neutral amide contracts do not apply.
 Include aliased terminal operations, charged reactive PNA states and a real

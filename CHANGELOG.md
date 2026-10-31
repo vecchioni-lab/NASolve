@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Source-faithful repaired runtime bundles (C153)
+
+- Freeze a verified repaired or independently qualified fallback bundle, including
+  source/site preparation, complete native attribution and derivative evidence.
+  Public bundle resolution/assessment replays that proof after relocation.
+- Add schema-1 `cif-qualified-repaired-component-runtime-bundle-v1`; existing
+  ReadySet bundle policies and callers retain their meaning. No automatic PostMR
+  adoption, installed-dictionary edit or checkpoint migration is introduced.
+- Exact-source saved PDU/5PC candidates preserve the retained phosphate H/charge
+  state. Twelve graph-selected torsion omissions pass native attribution,
+  derivatives and public replay in a separate complete-monomer NAR control.
+  The current mixed scaffold's intended phosphate state remains a separate gate.
+
 ### Source-bound repaired-bundle decision (C152)
 
 - Add a read-only composition gate binding independently source-qualified site

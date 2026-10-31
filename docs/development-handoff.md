@@ -11,6 +11,71 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C153 validated: source-faithful repaired publication; Q03 complete
+
+Base/pushed-before-work `949770fcc2048c98e3025478497131271c82e0ec`; existing **cedar** only.
+Capsule `live_tests_directory/153_Cedar_source-faithful-repair-i5ssvn27`. Before, C152 exposed verified paths
+without immutable publication. After, `prepare_repaired_component_runtime_bundle`
+freezes source/site preparation, complete native repair attribution, supplied
+original/repaired derivative proof and the whole selected model/CIF/PHIL bundle.
+Public API/CLI rederive selection under schema 1 /
+`cif-qualified-repaired-component-runtime-bundle-v1`. Existing ReadySet policies
+retain their meaning; older readers refuse the new policy. No automatic PostMR,
+checkpoint/cache migration or installed-library edit.
+
+**Actual native evidence:** exact-source PDU/5PC cache entries pass eight isolated
+source/generated-coordinate controls. A complete two-monomer, 77-atom diagnostic
+retains source phosphate H/charge, all three sugar centres/component and legitimate
+terminal OP3. Twelve undefined torsions (six/component, including hydrogen rows)
+are omitted by the existing graph rule. Exact native attribution, 1,367 derivative
+evaluations and 364 plane-order comparisons pass, with one NAR parallelity request
+unchanged. Source/preparation, full monomer identity and repaired selection agree.
+This is a separated-monomer numerical control, not a physical pair, polymer or the
+42-residue mixed scaffold. Its intended linked-scaffold phosphate state stays Q13/Q07.
+
+Phenix **2.2.1-6174**, dispatcher **2.2.1**: actual controls, not dry-runs.
+A fresh PDU build times out after its 300-second bound without output candidate;
+a fresh 5PC build also passes four isolated native before/after-repair controls.
+Both attempts are retained. Fresh 5PC is not selected in the published control;
+its selected exact-source candidates come from verified prior store entries.
+Earlier nonbonded-inventory and zero-parallelity preflights are preserved; their
+unsupported contexts are Q04 qualification work. No ReadySet, Coot, diffraction
+refinement or experimental model adoption. Numerical/chemistry cores are unchanged.
+
+**Validation:** 22 new regressions fail before implementation. New/existing runtime:
+48 passed in 4.77s. Affected: **282 passed in 166.18s (0:02:46)**.
+Focused chemistry/workflow: **1741 passed, 36 subtests passed in 719.13s (0:11:59)**.
+Full unfiltered suite: **7482 passed, 276 subtests passed in 2211.96s (0:36:51)**.
+All **588** frozen Python files stay unchanged through these runs.
+Commands, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_repaired_component_runtime.py tests/test_cif_component_runtime.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_runtime_bundle.py tests/test_cif_dictionary_bundle.py tests/test_cif_dictionary_bundle_readyset.py tests/test_cif_dictionary_store.py tests/test_cif_source_candidate.py tests/test_cif_candidate_usability.py
+python scripts/run_tests.py chemistry workflow --junitxml <capsule>/validation/focused.xml
+python scripts/run_tests.py full --junitxml <capsule>/validation/full.xml
+python c153_reuse.py; python c153_qualify.py; python c153_stack_control.py
+python c153_fresh_control.py
+python c153_export.py; python c153_cold.py; python c153_auxiliary.py
+```
+
+Public API/JSON CLI agree after publication relocation (140 files unchanged).
+A second test relocates source code and runtime together, removes the owned original
+path and denies original checkout/evidence/SDK/cache reads and execution (346 files
+unchanged). Old C141 publication replays unchanged (88 files). Compileall with an
+external cache, 372 document links, 21 unchanged scientific cores,
+17 unchanged resources/figure, 283 parent artifacts and whitespace checks pass.
+Previous full-tested commit was `809abd44df8885ac14f1a02a67a13338209a8707`; this full pass is tied to the
+frozen source manifest pending the implementation commit below.
+
+Changed: two runtime modules, one regression module/profile, changelog, README,
+contracts/methods/caption/index, queue, this handoff and both ledgers. Scientific
+artifacts/logs/helpers remain local; the [evidence ledger](cif-linked-native-registration-evidence.json)
+record `source_faithful_repaired_runtime_2026_10_31` carries exact references, commands and limitations.
+Implementation and all validation complete; publication pending. No active jobs.
+
+**Next:** Start Q04 with a bounded ordinary-acquisition recovery checkpoint: consult exact-source/current-consumer stored numerics first, inspect for supported graph faults, compose source-faithful repair and native/derivative qualification, retain only an independently usable fallback, and preserve durable attempts/process ownership. Current-site, zero-parallelity and optional capture contexts need their own qualification; Q13/Q07 retain mixed-scaffold phosphate-state authority.
+— Rowan · Codex desktop
+
 ## C152 published: source-bound repaired-bundle decision; Q03 remains open
 
 Base/pushed-before-work `1dc871d594ad420e54159191838b589d883db28b`; existing **cedar** only.

@@ -244,8 +244,8 @@
   "next_delivery": {
     "status": "QUEUED_NOT_BUILT",
     "queue": "docs/cif-doctor-completion-queue.md",
-    "job": "Q03",
-    "latest_completed_delivery": "152_Cedar",
+    "job": "Q04",
+    "latest_completed_delivery": "153_Cedar",
     "delivery_prefix": null
   },
   "boundaries": {
@@ -5690,7 +5690,7 @@
       "native_enforcement": "VERIFIED_DIAGNOSTIC_ONLY_NOT_PRODUCTION_INTEGRATED"
     }
   },
-  "next_action": "Continue Q03: establish explicit authoritative phosphate source/site state and matching preparation for the repaired PDU/5PC example, using existing or separately qualified graph/state operations. Do not silently add H, change OP2/OP3 charge, infer pH or replace source authority with a numerical dictionary. Then run one positive matching source/preparation/full-native repair/derivative join and freeze the selected result through C141. Q13 owns broader state-policy coverage; Q02 remains an independent early parser fix.",
+  "next_action": "Start Q04 with a bounded ordinary-acquisition recovery checkpoint: consult exact-source/current-consumer stored numerics first, inspect for supported graph faults, compose source-faithful repair and native/derivative qualification, retain only an independently usable fallback, and preserve durable attempts/process ownership. Current-site, zero-parallelity and optional capture contexts need their own qualification; Q13/Q07 retain mixed-scaffold phosphate-state authority.",
   "narestraints_membership_probe_2026_10_18": {
     "status": "RETURNED_NATIVE_MEMBERSHIP_PASS_SCIENTIFIC_REVIEW",
     "delivery_prefix": "21_Cedar",
@@ -30040,7 +30040,7 @@
       "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
     ]
   },
-  "current_diagnostic_record": "source_bound_repaired_bundle_decision_2026_10_31",
+  "current_diagnostic_record": "source_faithful_repaired_runtime_2026_10_31",
   "mixed_saved_endpoint_portable_replay_2026_10_25": {
     "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
     "recorded_date": "2026-10-25",
@@ -57619,15 +57619,19 @@
         "evidence_key": "full_native_capture_bridge_2026_10_31",
         "scope": "Complete native identity and numerical capture compatibility; chemical source qualification remains Q03",
         "implementation_commit": "edec9a53c157418a82696a3f8cda35f8af478fad"
+      },
+      "Q03": {
+        "delivery": "C153",
+        "evidence_key": "source_faithful_repaired_runtime_2026_10_31",
+        "scope": "Diagnostic source-qualified repaired selection, immutable public publication and positive native/cold-replay control; ordinary integration and mixed-scaffold state remain separate"
       }
     },
     "active_job": {
-      "id": "Q03",
-      "latest_checkpoint": "C152",
-      "evidence_key": "source_bound_repaired_bundle_decision_2026_10_31",
-      "status": "PARTIAL",
-      "remaining": "Explicit matching source/site-state authority, positive native join, C141 publication",
-      "implementation_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d"
+      "id": "Q04",
+      "latest_checkpoint": "C153",
+      "evidence_key": "source_faithful_repaired_runtime_2026_10_31",
+      "status": "QUEUED",
+      "remaining": "Bounded automatic recovery and durable attempts"
     }
   },
   "full_native_capture_bridge_2026_10_31": {
@@ -58407,5 +58411,1428 @@
     "focused_tested_commit": "a7c8f6fb9029598ce85aadbdc582f038eed9170d",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "source_faithful_repaired_runtime_2026_10_31": {
+    "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "949770fcc2048c98e3025478497131271c82e0ec",
+    "previous_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+    "full_validation_revision": "FROZEN_WORKTREE_SOURCE_MANIFEST; implementation commit assigned on publication",
+    "completion_queue_job": "Q03",
+    "completion_queue_disposition": "COMPLETE_DIAGNOSTIC_COMPOSITION; Q04 next",
+    "before": "Source-bound repaired selection exposed ephemeral paths; no immutable public bundle replayed its complete proof. The mixed-scaffold numerical bases differed from source H/charge state.",
+    "after": "An additive public runtime policy freezes complete repaired/fallback selection plus source/site/native/derivative evidence. Exact-source saved PDU/5PC candidates pass fresh qualification, twelve graph-selected omissions, matching full-native attribution and derivatives; public API/CLI replay after relocation with original evidence/SDK/cache unavailable.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_component_runtime.py",
+      "src/nasolve/cif_runtime_bundle.py",
+      "tests/test_cif_repaired_component_runtime.py"
+    ],
+    "schemas": {
+      "new": "schema 1 / cif-qualified-repaired-component-runtime-bundle-v1",
+      "unchanged": "Existing ReadySet component/runtime policies, source chemistry and numerical workers; no CLI argument or checkpoint/cache migration"
+    },
+    "compatibility": "Additive explicit publication function; old C141 runtime replays unchanged. New policy requires an updated public reader; older readers refuse it. No automatic default, adoption or installed-library change.",
+    "regression": {
+      "before": "22 failed in 3.33s before implementation",
+      "new_and_existing_runtime": "48 passed in 4.77s",
+      "affected": "282 passed in 166.18s (0:02:46)",
+      "focused": "1741 passed, 36 subtests passed in 719.13s (0:11:59)",
+      "full": "7482 passed, 276 subtests passed in 2211.96s (0:36:51)",
+      "source_files": 588,
+      "source_changes_during_validation": []
+    },
+    "validation_commands": {
+      "status": "PASS",
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "results": {
+        "affected": {
+          "pid": 13122,
+          "wrapper_pid": 13106,
+          "phase": "affected",
+          "command": [
+            "{python}",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "-o",
+            "addopts=",
+            "tests/test_cif_repaired_component_runtime.py",
+            "tests/test_cif_component_runtime.py",
+            "tests/test_cif_dictionary_bundle_repair.py",
+            "tests/test_cif_runtime_bundle.py",
+            "tests/test_cif_dictionary_bundle.py",
+            "tests/test_cif_dictionary_bundle_readyset.py",
+            "tests/test_cif_dictionary_store.py",
+            "tests/test_cif_source_candidate.py",
+            "tests/test_cif_candidate_usability.py"
+          ],
+          "exit_code": 0,
+          "seconds": 167.20481945900247,
+          "summary": "282 passed in 166.18s (0:02:46)",
+          "source_changes_during_validation": [],
+          "files": 588
+        },
+        "focused": {
+          "pid": 14251,
+          "wrapper_pid": 13106,
+          "phase": "focused",
+          "command": [
+            "{python}",
+            "scripts/run_tests.py",
+            "chemistry",
+            "workflow",
+            "--junitxml",
+            "{live_tests_directory}/153_Cedar_source-faithful-repair-i5ssvn27/validation/focused.xml"
+          ],
+          "exit_code": 0,
+          "seconds": 722.371563707944,
+          "summary": "1741 passed, 36 subtests passed in 719.13s (0:11:59)",
+          "source_changes_during_validation": [],
+          "files": 588
+        },
+        "full": {
+          "pid": 15512,
+          "wrapper_pid": 13106,
+          "phase": "full",
+          "command": [
+            "{python}",
+            "scripts/run_tests.py",
+            "full",
+            "--junitxml",
+            "{live_tests_directory}/153_Cedar_source-faithful-repair-i5ssvn27/validation/full.xml"
+          ],
+          "exit_code": 0,
+          "seconds": 2214.010948249954,
+          "summary": "7482 passed, 276 subtests passed in 2211.96s (0:36:51)",
+          "source_changes_during_validation": [],
+          "files": 588
+        }
+      }
+    },
+    "science": {
+      "status": "SOURCE_FAITHFUL_REPAIR_AND_PUBLICATION_PASS",
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "execution": "ACTUAL_COMPLETE_NATIVE_CONTROLS; ONE_PRESERVED_PDU_GENERATION_TIMEOUT",
+      "source_authority": "Exact retained C98 source bytes matched by qualified local dictionary-store requests",
+      "reused": {
+        "PDU": {
+          "status": "REUSED",
+          "entry_id": "79e393518bbbf0ac000dadbca8684fed25c8f8151c11839e074f7969c87573c9",
+          "source_sha256": "98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258",
+          "formal_charges_preserved": true,
+          "stereo": "PRESERVED",
+          "fixed_centres": 3
+        },
+        "5PC": {
+          "status": "REUSED",
+          "entry_id": "f4379b0da23d33c5841efc89c50c5062b5d588cee85fd8b8cf34ff0aa29c468b",
+          "source_sha256": "b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025",
+          "formal_charges_preserved": true,
+          "stereo": "PRESERVED",
+          "fixed_centres": 3
+        }
+      },
+      "isolated": {
+        "PDU": {
+          "generated_usable": true,
+          "repaired_usable": true,
+          "cases": {
+            "generated_source_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:22:51.679166+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:22:57.120197+00:00",
+                "elapsed_seconds": 5.441021
+              }
+            },
+            "generated_generated_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:22:57.182528+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:22:58.067691+00:00",
+                "elapsed_seconds": 0.885176
+              }
+            },
+            "repaired_source_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:22:58.158309+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:22:59.024230+00:00",
+                "elapsed_seconds": 0.865935
+              }
+            },
+            "repaired_generated_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:22:59.270933+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:23:00.244375+00:00",
+                "elapsed_seconds": 0.973455
+              }
+            }
+          }
+        },
+        "5PC": {
+          "generated_usable": true,
+          "repaired_usable": true,
+          "cases": {
+            "generated_source_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:23:00.479580+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:23:01.301155+00:00",
+                "elapsed_seconds": 0.82159
+              }
+            },
+            "generated_generated_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:23:01.358268+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:23:02.155570+00:00",
+                "elapsed_seconds": 0.797314
+              }
+            },
+            "repaired_source_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:23:02.229162+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:23:03.066172+00:00",
+                "elapsed_seconds": 0.837023
+              }
+            },
+            "repaired_generated_seed": {
+              "native_usable": true,
+              "checks": 21,
+              "execution": {
+                "status": "COMPLETED",
+                "started_at": "2026-10-31T21:23:03.152051+00:00",
+                "timeout_seconds": 90,
+                "returncode": 0,
+                "finished_at": "2026-10-31T21:23:03.953588+00:00",
+                "elapsed_seconds": 0.801552
+              }
+            }
+          }
+        }
+      },
+      "fresh_generation": {
+        "PDU": {
+          "status": "FAILED",
+          "execution": {
+            "status": "TIMED_OUT",
+            "timeout_seconds": 300,
+            "returncode": -9,
+            "elapsed_seconds": 306.198966
+          },
+          "candidate_retained": false,
+          "stopping": "NOT_REPORTED",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "FAILED",
+            "candidate_state": "ABSENT",
+            "blocking_stage": "EXECUTION",
+            "summary": "Native execution timed out.",
+            "builder_started": null,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": null,
+            "execution_status": "TIMED_OUT",
+            "execution_returncode": -9,
+            "rejection_reasons": [],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "selected": false
+        },
+        "5PC": {
+          "status": "CANDIDATE_REVIEW",
+          "execution": {
+            "status": "COMPLETED",
+            "timeout_seconds": 300,
+            "returncode": 0,
+            "elapsed_seconds": 53.58653
+          },
+          "candidate_retained": true,
+          "stopping": "NOT_REPORTED",
+          "diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "CANDIDATE_REVIEW",
+            "candidate_state": "RETAINED_REVIEW",
+            "blocking_stage": null,
+            "summary": "Candidate retained for review; native usability requires separate qualification.",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": null,
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "selected": false
+        }
+      },
+      "fresh_5PC_isolated_control": {
+        "status": "FRESH_ISOLATED_REPAIR_PASS",
+        "removed_torsions": 6,
+        "generated_usable": true,
+        "repaired_usable": true,
+        "candidate_selected_in_published_control": false,
+        "cases": {
+          "generated_source_seed": {
+            "native_usable": true,
+            "checks": 21,
+            "execution": {
+              "status": "COMPLETED",
+              "started_at": "2026-10-31T21:44:35.674293+00:00",
+              "timeout_seconds": 90,
+              "returncode": 0,
+              "finished_at": "2026-10-31T21:44:40.585190+00:00",
+              "elapsed_seconds": 4.911027
+            }
+          },
+          "generated_generated_seed": {
+            "native_usable": true,
+            "checks": 21,
+            "execution": {
+              "status": "COMPLETED",
+              "started_at": "2026-10-31T21:44:40.846673+00:00",
+              "timeout_seconds": 90,
+              "returncode": 0,
+              "finished_at": "2026-10-31T21:44:44.653444+00:00",
+              "elapsed_seconds": 3.806883
+            }
+          },
+          "repaired_source_seed": {
+            "native_usable": true,
+            "checks": 21,
+            "execution": {
+              "status": "COMPLETED",
+              "started_at": "2026-10-31T21:44:44.833938+00:00",
+              "timeout_seconds": 90,
+              "returncode": 0,
+              "finished_at": "2026-10-31T21:44:48.475246+00:00",
+              "elapsed_seconds": 3.641425
+            }
+          },
+          "repaired_generated_seed": {
+            "native_usable": true,
+            "checks": 21,
+            "execution": {
+              "status": "COMPLETED",
+              "started_at": "2026-10-31T21:44:48.628756+00:00",
+              "timeout_seconds": 90,
+              "returncode": 0,
+              "finished_at": "2026-10-31T21:44:52.314577+00:00",
+              "elapsed_seconds": 3.685916
+            }
+          }
+        }
+      },
+      "control": {
+        "purpose": "Two complete separated source-state monomers with one explicit NARestraints numerical parallelity control; not a connected polymer, physical stack or base-pair claim",
+        "role_resolution": {
+          "5PC": {
+            "resolution": "UNIQUE_RECORD",
+            "matching_records": 1,
+            "operational_role_signature": {
+              "context": {
+                "Base Analog": "C",
+                "Phosphate": null,
+                "Sugar Type": "DNA",
+                "SugarType": null,
+                "Saenger": null,
+                "Function": null,
+                "Source sheet": "cytosine",
+                "Glycosidic atom": "N1"
+              },
+              "atom_roles": {
+                "N1": "N1",
+                "C2": "C2",
+                "O2": "O2",
+                "N3": "N3",
+                "C4": "C4",
+                "N4": "N4",
+                "C5": "C5",
+                "C6": "C6"
+              }
+            },
+            "source_policy_records": [
+              {
+                "Ligand code": "5PC",
+                "Name": "5-propynyl-dC",
+                "Abbreviation": "propynyl-dC",
+                "Base Analog": "C",
+                "Phosphate": null,
+                "Sugar Type": "DNA",
+                "Saenger": null,
+                "Notes": "C5-mod",
+                "Ref": null,
+                "Entries": null,
+                "Function": null,
+                "N1": "N1",
+                "C2": "C2",
+                "O2": "O2",
+                "N3": "N3",
+                "C4": "C4",
+                "N4": "N4",
+                "C5": "C5",
+                "C6": "C6",
+                "Source sheet": "cytosine",
+                "Glycosidic atom": "N1"
+              }
+            ]
+          },
+          "PDU": {
+            "resolution": "UNIQUE_RECORD",
+            "matching_records": 1,
+            "operational_role_signature": {
+              "context": {
+                "Base Analog": "T",
+                "Phosphate": null,
+                "Sugar Type": "DNA",
+                "SugarType": null,
+                "Saenger": null,
+                "Function": null,
+                "Source sheet": "thymine",
+                "Glycosidic atom": "N1"
+              },
+              "atom_roles": {
+                "N1": "N1",
+                "C2": "C2",
+                "O2": "O2",
+                "N3": "N3",
+                "C4": "C4",
+                "O4": "O4",
+                "C5": "C5",
+                "C6": "C6",
+                "C7": "C5A"
+              }
+            },
+            "source_policy_records": [
+              {
+                "Ligand code": "PDU",
+                "Name": "5-propynyl-dU",
+                "Abbreviation": "propynyl-dU",
+                "Base Analog": "T",
+                "Phosphate": null,
+                "Sugar Type": "DNA",
+                "Saenger": null,
+                "Notes": "C5-mod",
+                "Ref": null,
+                "Entries": 4,
+                "Function": null,
+                "N1": "N1",
+                "C2": "C2",
+                "O2": "O2",
+                "N3": "N3",
+                "C4": "C4",
+                "O4": "O4",
+                "C5": "C5",
+                "C6": "C6",
+                "C7": "C5A",
+                "Source sheet": "thymine",
+                "Glycosidic atom": "N1"
+              }
+            ]
+          }
+        },
+        "policy_authority": "NARestraints",
+        "model_unchanged": true,
+        "automatic_adoption": false
+      },
+      "monomers": {
+        "atom_count": 77,
+        "identities": [
+          {
+            "altloc": "",
+            "chain_id": "A",
+            "icode": "",
+            "model_id": "",
+            "resname": "5PC",
+            "resseq": "1"
+          },
+          {
+            "altloc": "",
+            "chain_id": "B",
+            "icode": "",
+            "model_id": "",
+            "resname": "PDU",
+            "resseq": "1"
+          }
+        ],
+        "mapping_count": 2,
+        "policy_id": "cif-native-full-monomer-inventory-v1",
+        "residue_count": 2,
+        "schema_version": 1,
+        "status": "RECORDED",
+        "use_ncs_to_build_restraints": false
+      },
+      "source_preparation": {
+        "status": "REVIEW",
+        "diagnostic_continuation": {
+          "status": "CONTINUE_WITH_NOTES",
+          "allowed": true,
+          "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+          "automatic_adoption": false,
+          "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+        },
+        "unavailable": [
+          {
+            "check": "effective-site-formal-charges:A:1",
+            "status": "UNSUPPORTED",
+            "unavailable": [
+              {
+                "atom_id": "OP3",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "P",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "OP1",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "OP2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C5'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O5'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C4'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O4'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C3'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O3'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C2'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C1'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "N1",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "N3",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C4",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "N4",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C5",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C6",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C7",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C8",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C9",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "HOP3",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "HOP2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H5'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H5''",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H4'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H3'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "HO3'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H2'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H2''",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H1'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H41",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H42",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H6",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H91",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H92",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H93",
+                "expected": "0",
+                "observed": null
+              }
+            ],
+            "contradictions": [],
+            "native_readback": {
+              "missing_attribute_atoms": [
+                "OP3",
+                "P",
+                "OP1",
+                "OP2",
+                "C5'",
+                "O5'",
+                "C4'",
+                "O4'",
+                "C3'",
+                "O3'",
+                "C2'",
+                "C1'",
+                "N1",
+                "C2",
+                "O2",
+                "N3",
+                "C4",
+                "N4",
+                "C5",
+                "C6",
+                "C7",
+                "C8",
+                "C9",
+                "HOP3",
+                "HOP2",
+                "H5'",
+                "H5''",
+                "H4'",
+                "H3'",
+                "HO3'",
+                "H2'",
+                "H2''",
+                "H1'",
+                "H41",
+                "H42",
+                "H6",
+                "H91",
+                "H92",
+                "H93"
+              ],
+              "null_value_atoms": [
+                "OP3",
+                "P",
+                "OP1",
+                "OP2",
+                "C5'",
+                "O5'",
+                "C4'",
+                "O4'",
+                "C3'",
+                "O3'",
+                "C2'",
+                "C1'",
+                "N1",
+                "C2",
+                "O2",
+                "N3",
+                "C4",
+                "N4",
+                "C5",
+                "C6",
+                "C7",
+                "C8",
+                "C9",
+                "HOP3",
+                "HOP2",
+                "H5'",
+                "H5''",
+                "H4'",
+                "H3'",
+                "HO3'",
+                "H2'",
+                "H2''",
+                "H1'",
+                "H41",
+                "H42",
+                "H6",
+                "H91",
+                "H92",
+                "H93"
+              ],
+              "status": "UNSUPPORTED"
+            },
+            "partial_charge_substituted": false
+          },
+          {
+            "check": "effective-site-formal-charges:B:1",
+            "status": "UNSUPPORTED",
+            "unavailable": [
+              {
+                "atom_id": "P",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "OP2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "OP1",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O5'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C5'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C4'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O4'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C3'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O3'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C2'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C1'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "N1",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "N3",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C4",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "O4",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C5",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C5A",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C5B",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C5M",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "C6",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "OP3",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "HOP2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H5'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H5''",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H4'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H3'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H2",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H2''",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H2'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H1'",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H3",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H71",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H72",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H73",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "H6",
+                "expected": "0",
+                "observed": null
+              },
+              {
+                "atom_id": "HOP3",
+                "expected": "0",
+                "observed": null
+              }
+            ],
+            "contradictions": [],
+            "native_readback": {
+              "missing_attribute_atoms": [
+                "P",
+                "OP2",
+                "OP1",
+                "O5'",
+                "C5'",
+                "C4'",
+                "O4'",
+                "C3'",
+                "O3'",
+                "C2'",
+                "C1'",
+                "N1",
+                "C2",
+                "O2",
+                "N3",
+                "C4",
+                "O4",
+                "C5",
+                "C5A",
+                "C5B",
+                "C5M",
+                "C6",
+                "OP3",
+                "HOP2",
+                "H5'",
+                "H5''",
+                "H4'",
+                "H3'",
+                "H2",
+                "H2''",
+                "H2'",
+                "H1'",
+                "H3",
+                "H71",
+                "H72",
+                "H73",
+                "H6",
+                "HOP3"
+              ],
+              "null_value_atoms": [
+                "P",
+                "OP2",
+                "OP1",
+                "O5'",
+                "C5'",
+                "C4'",
+                "O4'",
+                "C3'",
+                "O3'",
+                "C2'",
+                "C1'",
+                "N1",
+                "C2",
+                "O2",
+                "N3",
+                "C4",
+                "O4",
+                "C5",
+                "C5A",
+                "C5B",
+                "C5M",
+                "C6",
+                "OP3",
+                "HOP2",
+                "H5'",
+                "H5''",
+                "H4'",
+                "H3'",
+                "H2",
+                "H2''",
+                "H2'",
+                "H1'",
+                "H3",
+                "H71",
+                "H72",
+                "H73",
+                "H6",
+                "HOP3"
+              ],
+              "status": "UNSUPPORTED"
+            },
+            "partial_charge_substituted": false
+          }
+        ]
+      },
+      "repairs": [
+        {
+          "component": "5PC",
+          "removed_torsions": 6,
+          "source_preserved": true,
+          "parsed_allowlist_pass": true
+        },
+        {
+          "component": "PDU",
+          "removed_torsions": 6,
+          "source_preserved": true,
+          "parsed_allowlist_pass": true
+        }
+      ],
+      "attribution": {
+        "status": "CAPTURED_LINEAR_ATTRIBUTION_PASS",
+        "removed_proxy_count": 12,
+        "target_delta": 0.010024968578818516,
+        "new_native_calls": 1
+      },
+      "derivatives": {
+        "status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+        "evaluation_calls": 1367,
+        "plane_order_pairs": 364,
+        "selected_indices": [
+          18,
+          20,
+          21,
+          58,
+          59,
+          60
+        ],
+        "new_native_calls": 1
+      },
+      "selected": {
+        "status": "CONTINUE_WITH_NOTES",
+        "selected": "repaired_prepared_bundle",
+        "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+        "requires_cif_review": false,
+        "automatic_adoption": false
+      },
+      "publication": {
+        "status": "PASS",
+        "new_policy": "cif-qualified-repaired-component-runtime-bundle-v1",
+        "selection": "repaired_prepared_bundle",
+        "files": 140,
+        "owned_original_gone": true,
+        "original_and_sdk_cache_reads": "DENIED",
+        "process_execution": "DENIED",
+        "public_api_and_cli_agree": true,
+        "cli_exit_code": 0,
+        "source_state": "DECLARED_SOURCE_PRESERVED; NOT_EXPERIMENTAL_PROTONATION_SELECTION",
+        "legacy_runtime_selection": "verified_prepared_model",
+        "legacy_artifacts_preserved": 88,
+        "new_native_processes": 0
+      },
+      "cold_code": {
+        "status": "PASS",
+        "selection": "repaired_prepared_bundle",
+        "relocated_source": "{temporary_checkout_parent}/relocated-checkout/src",
+        "original_code_and_evidence_access": "DENIED",
+        "sdk_and_cache_access": "DENIED",
+        "process_execution": "DENIED",
+        "files_preserved": 346,
+        "cli_exit_code": 0,
+        "owned_original_checkout_gone": true,
+        "command": [
+          "{python}",
+          "{temporary_checkout_parent}/cold_check.py",
+          "{temporary_checkout_parent}/relocated-checkout",
+          "{temporary_checkout_parent}/owned-checkout",
+          "{nasolve_checkout}",
+          "{live_tests_directory}/153_Cedar_source-faithful-repair-i5ssvn27"
+        ]
+      },
+      "native_worker_executions": {
+        "cached_isolated_complete": 8,
+        "fresh_isolated_complete": 4,
+        "bundle_complete": 12,
+        "attribution_complete": 2,
+        "derivative_complete": 1,
+        "source_anchor_complete": 1,
+        "candidate_generation_complete": 1,
+        "candidate_generation_timed_out": 1,
+        "scope": "Owned scientific/probe workers; version/help subprocesses excluded"
+      },
+      "preserved_preflight_findings": [
+        "First attribution request refused optional nonbonded-inventory capture extension before attribution execution. Four complete native captures preserved.",
+        "Second control passed source/native preparation and attribution; derivative preparation refused zero parallelity proxies before execution. Original physical intent preserved. A separately declared two-monomer NAR numerical control was then created, not substituted into an experimental model."
+      ],
+      "automatic_adoption": false,
+      "model_optimization": "NOT_RUN_AFTER_SOURCE_CANDIDATE_GENERATION",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "experimental_protonation": "NOT_SELECTED",
+      "mixed_42_residue_scaffold": "NOT_CHANGED_OR_REQUALIFIED_THIS_PUSH",
+      "ordinary_engine": "RECOVERY_ORCHESTRATION_REMAINS_Q04"
+    },
+    "auxiliary": {
+      "status": "PASS",
+      "compileall": "PASS",
+      "compile_cache": "external temporary cache",
+      "relative_links_checked": 372,
+      "unchanged_core_modules": [
+        "cif_mixed_gradient.py",
+        "cif_gradient_audit.py",
+        "cif_parallelity_audit.py",
+        "cif_parallelity_correction.py",
+        "cif_recovered_gradient.py",
+        "cif_native_validation.py",
+        "cif_native_monomers.py",
+        "cif_attachment_native.py",
+        "cif_mixed_geometry.py",
+        "cif_fixed_geometry.py",
+        "cif_mixed_torsion.py",
+        "cif_linear_torsion_candidate.py",
+        "cif_linked_linear_torsion.py",
+        "cif_linked_torsion_energy.py",
+        "cif_linear_torsion_bundle.py",
+        "cif_captured_linear_attribution.py",
+        "cif_captured_mixed_gradients.py",
+        "cif_linked_preparation.py",
+        "cif_terminal_preparation.py",
+        "cif_source_candidate.py",
+        "cif_doctor_selection.py"
+      ],
+      "static_source_resources": 17,
+      "svg_unchanged": true,
+      "svg_sha256": "923f2b415dfbe68f8caf3f2d252ed700a3e1336ab70b46cbdee80cfe6262c552",
+      "caption_updated": true,
+      "preserved_parent_artifacts": 283,
+      "previous_evidence_refs_verified": 42
+    },
+    "artifacts": "Raw crystallographic/source/native data, models, worker logs, attempted generations, cache snapshots and helper scripts remain local. Only implementation, tests, maintained technical documentation and anchored evidence hashes are committed.",
+    "limitations": [
+      "Separate complete-monomer numerical control: two residues/77 atoms, one NAR parallelity request, no physical pairing/polymer or 42-residue mixed-scaffold claim.",
+      "The old C151 base-state difference is not retroactively approved; experimental/linked protonation and explicit operation authority remain Q13/Q07.",
+      "Ordinary cache-miss recovery, durable retries and automatic PostMR/checkpoint adoption remain Q04/Q05; ordinary Phenix refinement consumer remains Q06.",
+      "Existing derivative protocol requires parallelity and excludes optional nonbonded-inventory captures; failed preflights stay preserved and coverage is queued under Q04.",
+      "Native formal-charge availability and absolute CIP remain distinct from exact source charge/configuration preservation."
+    ],
+    "next": "Start Q04 with a bounded ordinary-acquisition recovery checkpoint: consult exact-source/current-consumer stored numerics first, inspect for supported graph faults, compose source-faithful repair and native/derivative qualification, retain only an independently usable fallback, and preserve durable attempts/process ownership. Current-site, zero-parallelity and optional capture contexts need their own qualification; Q13/Q07 retain mixed-scaffold phosphate-state authority.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/science-summary.json",
+        "sha256": "7eeb8b0945aae5a5ad553c899ee2cb896031d657f52ede3d89e755f451210157",
+        "size": 28127
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/generation-summary.json",
+        "sha256": "1d8991e6b553615f72d727cf840af6b2bbbf5d551d2609d3cc363eacdef52239",
+        "size": 522931
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/reuse-summary.json",
+        "sha256": "774cc5a96febdfc9656557030599c42fa82f850903805666338fb6fe4fb011fe",
+        "size": 1090841
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/isolated-summary.json",
+        "sha256": "c462b553e51b67e46afc48af769a713eec213bc3cb3642aecd76e04eea503989",
+        "size": 4861314
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/fresh-5PC-control/summary.json",
+        "sha256": "a17a19d2e76c9857eaec6a87d3bc4a0402082387a3227cc6439a8ea85fa51280",
+        "size": 2334690
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/parent-sources.json",
+        "sha256": "1c1979720b342d1484b0afa485c1f8b48120b34f3582f51a843a7c79bee7c957",
+        "size": 471
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/parent-store.json",
+        "sha256": "04696ff6362e44399800fc368ad2d7971b946c9ba04b02fd19ad42fa6fec98a2",
+        "size": 3553
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/parent-matching.json",
+        "sha256": "0570822ddc311cfb98c5162fb067eb5e12ddff9f38b18483fce88ae9f73e6cf7",
+        "size": 48145
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/PDU/generation/source_candidate_receipt.json",
+        "sha256": "7030dc0f09971e1f3c8b8001f567e1cd484e65ede78f67318f3cd82d7ddad208",
+        "size": 10662
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/5PC/generation/source_candidate_receipt.json",
+        "sha256": "77c2ce429f2d7c57324e8fb1b7633392534106c748c50e2685b0eb101cf0a193",
+        "size": 557720
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/PDU/isolated-qualification.json",
+        "sha256": "464a3964fe7d60926f28cab15156877129c37abd06d0d1f452c922a4d898b03f",
+        "size": 2282951
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/5PC/isolated-qualification.json",
+        "sha256": "36683a4a669fc663954e929db091dc705ab8f94660cc3feb865cb3a4aa316e08",
+        "size": 2335156
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/scope.json",
+        "sha256": "dca8f43ad86e6ccafa5e826fd3b1a483df8ebab34922e38b63d0e854f82d811f",
+        "size": 2871
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/bundle/bundle_receipt.json",
+        "sha256": "4a39b4f41313aa41eb61595a395a896bfa1f65ce5d8e78d7c0ade0c33ccdb77c",
+        "size": 9037
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/linear-repair/linear_torsion_bundle.json",
+        "sha256": "9f928a9b3a01dc755a0b2a4fd8bce3d3250da0718dd3da42c70c82387b851543",
+        "size": 10849
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/native-receipts.json",
+        "sha256": "88a3c399b7e16b2c525fa7c393f28875b01cb3d25171b1b22d070b30c9a573c7",
+        "size": 280
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/preparation-review.json",
+        "sha256": "d9d6922a5c1a3153e61c84ca81954fad7a9c27ad377c2af33e592ade4b79b3a4",
+        "size": 24583
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/attribution/captured_linear_attribution.json",
+        "sha256": "2e7540ac8dc1a1478e3173efbcacad1262de12ddafd9ba1ea3d98696f22d6da3",
+        "size": 13000
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/gradients/captured_mixed_gradients.json",
+        "sha256": "c8002e6aca4af40d9b69bf21e71a591911d3a1518e9f694bf71464b713770878",
+        "size": 11330
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/matching-r3/source-bound-selection.json",
+        "sha256": "94732c0d7553e4c371a5d7682133f3fa81e003e7fd753fa166bf73b5ac8b42a0",
+        "size": 33502
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/publication/relocated/runtime_bundle.json",
+        "sha256": "3f7689e964cc4146a1e6eee57807ff8bb2b3be152338cccfda66b461cc7937f0",
+        "size": 70355
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/publication/public-assessment.json",
+        "sha256": "970fca110d969cff456e8517a96401f7c8ec74920037de2dc5791030c193b31d",
+        "size": 198566
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/publication/cli-assessment.json",
+        "sha256": "6c0cc1e1fe14f89714829ed0ff2812bdc7cf4a3c8f8f313f268d6e8fc80f3d77",
+        "size": 198566
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/publication/result.json",
+        "sha256": "314315c33aeeeca591f3a0cbb2a8ae486f812dfd93cb84e902d4d20fb29336a4",
+        "size": 527
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/publication/legacy-preserved.json",
+        "sha256": "cced0679a16fa843fe8310f330107208684c574255da6853fae3a45fc4c2ab57",
+        "size": 24085
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/validation/cold.json",
+        "sha256": "6492d89065b376f154045cc02b7491264f9c72911aaeb304fc48a2380e53a158",
+        "size": 769
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/validation/auxiliary.json",
+        "sha256": "4058cef7f8cd829edc5635f1f2d3b8eb9a96a75d3858730aca6c742cb293b804",
+        "size": 1106
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/validation/source-hashes.json",
+        "sha256": "38bdda46d8cd5bcab97fc21d5c0c55f20add35d7b5416b343c58021eb7e72597",
+        "size": 64103
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/validation/results.json",
+        "sha256": "43bfb9ec610f760220bbc7a6b9563259ac0352ee07849f5e5e7d0cbe1c9a5d76",
+        "size": 2021
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/validation/completed.json",
+        "sha256": "23ce9babb956709a72df327d1b9201807cbd016dd8caf66513256724c24d56f5",
+        "size": 2272
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/validation/regression-before.log",
+        "sha256": "10edbb6794e9b1921dcbc3ffd0900e941f8fc7caeebf9bfc9d0eef7c6d06784c",
+        "size": 40069
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "153_Cedar_source-faithful-repair-i5ssvn27/validation/regression-new.log",
+        "sha256": "a3242ad9f64714fea13d9cea0c58b67dac1806a23e8851e31ff15d29a324b772",
+        "size": 99
+      }
+    ]
   }
 }
