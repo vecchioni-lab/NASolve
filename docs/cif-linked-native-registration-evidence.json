@@ -57623,7 +57623,8 @@
       "Q03": {
         "delivery": "C153",
         "evidence_key": "source_faithful_repaired_runtime_2026_10_31",
-        "scope": "Diagnostic source-qualified repaired selection, immutable public publication and positive native/cold-replay control; ordinary integration and mixed-scaffold state remain separate"
+        "scope": "Diagnostic source-qualified repaired selection, immutable public publication and positive native/cold-replay control; ordinary integration and mixed-scaffold state remain separate",
+        "implementation_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
       }
     },
     "active_job": {
@@ -58413,12 +58414,12 @@
     "remote_verified": true
   },
   "source_faithful_repaired_runtime_2026_10_31": {
-    "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FULL_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "949770fcc2048c98e3025478497131271c82e0ec",
     "previous_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
-    "full_validation_revision": "FROZEN_WORKTREE_SOURCE_MANIFEST; implementation commit assigned on publication",
+    "full_validation_revision": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
     "completion_queue_job": "Q03",
     "completion_queue_disposition": "COMPLETE_DIAGNOSTIC_COMPOSITION; Q04 next",
     "before": "Source-bound repaired selection exposed ephemeral paths; no immutable public bundle replayed its complete proof. The mixed-scaffold numerical bases differed from source H/charge state.",
@@ -59833,6 +59834,8 @@
         "sha256": "a3242ad9f64714fea13d9cea0c58b67dac1806a23e8851e31ff15d29a324b772",
         "size": 99
       }
-    ]
+    ],
+    "implementation_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
+    "full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
   }
 }

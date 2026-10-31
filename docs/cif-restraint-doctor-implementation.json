@@ -27741,7 +27741,7 @@
       "remote_verified": true
     },
     "source_faithful_repaired_runtime_publication": {
-      "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FULL_VALIDATED",
       "after": "An additive public runtime policy freezes complete repaired/fallback selection plus source/site/native/derivative evidence. Exact-source saved PDU/5PC candidates pass fresh qualification, twelve graph-selected omissions, matching full-native attribution and derivatives; public API/CLI replay after relocation with original evidence/SDK/cache unavailable.",
       "schemas": {
         "new": "schema 1 / cif-qualified-repaired-component-runtime-bundle-v1",
@@ -27767,7 +27767,9 @@
         "full": "7482 passed, 276 subtests passed in 2211.96s (0:36:51)",
         "source_files": 588,
         "source_changes_during_validation": []
-      }
+      },
+      "implementation_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b",
+      "full_tested_commit": "962737c2cb1a956d785fc430393cf65ef2e2f40b"
     }
   },
   "audience": [

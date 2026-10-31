@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C153 validated: source-faithful repaired publication; Q03 complete
+## C153 published: source-faithful repaired publication; Q03 complete
 
 Base/pushed-before-work `949770fcc2048c98e3025478497131271c82e0ec`; existing **cedar** only.
 Capsule `live_tests_directory/153_Cedar_source-faithful-repair-i5ssvn27`. Before, C152 exposed verified paths
@@ -65,13 +65,15 @@ unchanged). Old C141 publication replays unchanged (88 files). Compileall with a
 external cache, 372 document links, 21 unchanged scientific cores,
 17 unchanged resources/figure, 283 parent artifacts and whitespace checks pass.
 Previous full-tested commit was `809abd44df8885ac14f1a02a67a13338209a8707`; this full pass is tied to the
-frozen source manifest pending the implementation commit below.
+frozen source manifest and implementation commit below.
 
 Changed: two runtime modules, one regression module/profile, changelog, README,
 contracts/methods/caption/index, queue, this handoff and both ledgers. Scientific
 artifacts/logs/helpers remain local; the [evidence ledger](cif-linked-native-registration-evidence.json)
 record `source_faithful_repaired_runtime_2026_10_31` carries exact references, commands and limitations.
-Implementation and all validation complete; publication pending. No active jobs.
+Implementation `962737c2cb1a956d785fc430393cf65ef2e2f40b` is published and verified on `origin/cedar`.
+It is the new full-tested revision; this continuity-only commit does not change
+runtime/test bytes. No active jobs.
 
 **Next:** Start Q04 with a bounded ordinary-acquisition recovery checkpoint: consult exact-source/current-consumer stored numerics first, inspect for supported graph faults, compose source-faithful repair and native/derivative qualification, retain only an independently usable fallback, and preserve durable attempts/process ownership. Current-site, zero-parallelity and optional capture contexts need their own qualification; Q13/Q07 retain mixed-scaffold phosphate-state authority.
 — Rowan · Codex desktop
