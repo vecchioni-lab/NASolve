@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Lossless ReadySet atom serialization (C140)
+
+- Add an explicit source-bound heavy-PDB serialization before the existing
+  strict final native check. Restore checked atom order, serials and name padding
+  only when all scientific atom fields, residue boundaries and metadata agree.
+- Freeze the raw/reference/output files in a fresh schema-1 anchored receipt;
+  readback rederives the output. Unsupported record families and changed science
+  refuse; missing or failed final evidence retains the verified starting model.
+- Optional bundle roundtrip v2 records the serialization receipt and requires
+  fresh exact final native evidence. Default v1 reports replay unchanged; no
+  proxy-permutation tolerance, automatic adoption, CLI or checkpoint migration.
+
 ### Qualified component bundles and final ReadySet readback (C139)
 
 - Compose two to sixteen explicit stored components under one frozen model,

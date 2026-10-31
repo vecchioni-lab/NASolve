@@ -50810,5 +50810,458 @@
     "full_tested_commit": "61d878edda9c8a7a0e0f3c3700ef1fd2f7dd540c",
     "published_branch": "cedar",
     "remote_verified": true
+  },
+  "readyset_atom_serialization_2026_10_31": {
+    "status": "VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "5e28b849df66cb1ebf9cc5b394cf4094db85dc96",
+    "before": "ReadySet atom serialization differences could fail strict signed native proxy comparison despite unchanged named scientific atom fields; the verified starting model was retained.",
+    "after": "An explicit fresh lossless heavy-PDB serialization restores checked ordering/serials/padding only after exact scientific-field and boundary comparison. Fresh native checks use actual effective ReadySet dictionaries; missing or damaged improvement evidence retains verified fallback.",
+    "changed_files": [
+      "src/nasolve/cif_readyset_atom_order.py",
+      "src/nasolve/cif_dictionary_bundle_readyset.py",
+      "tests/test_cif_readyset_atom_order.py",
+      "scripts/run_tests.py",
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/figures/README.md",
+      "docs/figures/build_cif_doctor_overview.py",
+      "docs/figures/cif-doctor-overview.svg"
+    ],
+    "schemas": {
+      "serialization": "schema 1 / cif-readyset-heavy-pdb-order-v1; readyset_atom_order_directory anchor; frozen reference/raw/output plus exact reconstruction",
+      "roundtrip": "schema 1 / cif-stored-bundle-readyset-roundtrip-v2 only with explicit atom_order_directory; binds serialization receipt and actual final model/dictionary/native capture",
+      "unchanged": "Default bundle roundtrip v1, site/store/native capture policies, CLI, run/checkpoint and ordinary refinement"
+    },
+    "compatibility": "Optional internal Python API only. Omitted keyword preserves exact legacy reports and decisions. No migration or historical rewriting; the strict proxy comparator is unchanged.",
+    "regressions": {
+      "initial": "27 failed in 1.83s before the implementation existed; final module has 31 regression cases.",
+      "new_cases": 31,
+      "focused": {
+        "wrapper_pid": 28660,
+        "pytest_wrapper_pid": 28675,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "chemistry",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/140_Cedar_readyset-order-6fbnrf7n/validation/focused/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "focused",
+        "exit_code": 0,
+        "seconds": 125.25068504095543,
+        "files": 517,
+        "changed_files": [],
+        "summary": "1184 passed, 36 subtests passed in 124.92s (0:02:04)",
+        "finished": true
+      },
+      "full": {
+        "wrapper_pid": 28660,
+        "pytest_wrapper_pid": 29160,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/140_Cedar_readyset-order-6fbnrf7n/validation/full/pytest.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "profile": "full",
+        "exit_code": 0,
+        "seconds": 1097.3078455830691,
+        "files": 517,
+        "changed_files": [],
+        "summary": "7093 passed, 276 subtests passed in 1096.04s (0:18:16)",
+        "finished": true
+      },
+      "source_test_runner_hashes_unchanged": 517
+    },
+    "native": {
+      "cases": [
+        {
+          "case": "reordered",
+          "checks": 28,
+          "decision": {
+            "status": "CONTINUE_WITH_NOTES",
+            "selected": "readyset_ordered_checked_model",
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "requires_cif_review": false,
+            "automatic_adoption": false
+          },
+          "exact_energy_and_gradients": true,
+          "legacy_replay_exact": true,
+          "changed": true,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:56:34.738191+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:56:39.608829+00:00",
+            "elapsed_seconds": 4.870655
+          },
+          "receipt": "reordered/native/cif-native-_io8otpe/native_receipt.json"
+        },
+        {
+          "case": "stable",
+          "checks": 28,
+          "decision": {
+            "status": "CONTINUE_WITH_NOTES",
+            "selected": "readyset_ordered_checked_model",
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "requires_cif_review": false,
+            "automatic_adoption": false
+          },
+          "exact_energy_and_gradients": true,
+          "legacy_replay_exact": true,
+          "changed": false,
+          "execution": {
+            "status": "COMPLETED",
+            "started_at": "2026-10-31T00:56:45.162995+00:00",
+            "timeout_seconds": 120,
+            "returncode": 0,
+            "finished_at": "2026-10-31T00:56:45.933965+00:00",
+            "elapsed_seconds": 0.77099
+          },
+          "receipt": "stable/native/cif-native-7bejfici/native_receipt.json"
+        }
+      ],
+      "phenix_installation": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "new_native_calls": 2,
+      "new_readyset_calls": 0,
+      "readyset_evidence": "Frozen C139 ordinary complete executions, replayed read-only",
+      "scientific_qualification": "NOT_ASSESSED"
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "cases": [
+        {
+          "case": "reordered",
+          "mode": "new",
+          "selected": "readyset_ordered_checked_model"
+        },
+        {
+          "case": "reordered",
+          "mode": "legacy",
+          "selected": "verified_prepared_model"
+        },
+        {
+          "case": "stable",
+          "mode": "new",
+          "selected": "readyset_ordered_checked_model"
+        },
+        {
+          "case": "stable",
+          "mode": "legacy",
+          "selected": "readyset_checked_model"
+        }
+      ],
+      "negative_controls": [
+        {
+          "defect": "missing_endpoint",
+          "result": "VERIFIED_FALLBACK"
+        },
+        {
+          "defect": "signed_chirality",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Native report differs from embedded receipt"
+        },
+        {
+          "defect": "signed_torsion",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Native report differs from embedded receipt"
+        },
+        {
+          "defect": "native_worker",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Attachment-link input hash/size differs from manifest"
+        },
+        {
+          "defect": "order_output",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Atom-order receipt does not replay"
+        },
+        {
+          "defect": "order_reference",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Blank or trailing PDB records are unsupported"
+        },
+        {
+          "defect": "order_candidate",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Blank or trailing PDB records are unsupported"
+        },
+        {
+          "defect": "order_receipt",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Atom-order receipt does not replay"
+        },
+        {
+          "defect": "order_missing",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: Require a regular site artifact without symlink traversal"
+        },
+        {
+          "defect": "effective_dictionary",
+          "result": "VERIFIED_FALLBACK",
+          "reason": "ValueError: ReadySet frozen artifact changed"
+        },
+        {
+          "defect": "bad_start",
+          "result": "INVALID_START_REFUSED",
+          "reason": "Bundle artifact inventory or checksum differs"
+        }
+      ],
+      "unchanged_files": 340,
+      "forbidden_reads_attempted": 0,
+      "original_owned_checkout_removed": true,
+      "source": "RELOCATED_CHECKOUT",
+      "native_execution": "FORBIDDEN"
+    },
+    "validation_commands": {
+      "initial": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../NASolve/.venv/bin/python -m pytest -q tests/test_cif_readyset_atom_order.py",
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "chemistry",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/140_Cedar_readyset-order-6fbnrf7n/validation/focused/pytest.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/140_Cedar_readyset-order-6fbnrf7n/validation/full/pytest.xml"
+      ],
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "native": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c140_native.py",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 ../NASolve/.venv/bin/python c140_replay.py",
+      "compile": "PYTHONPYCACHEPREFIX=/private/tmp/c140-compile-cache ../NASolve/.venv/bin/python -m compileall -q src tests",
+      "documents": "check_docs.py; JSON parse; exact SVG regeneration, rsvg-convert and visual inspection; git diff --check"
+    },
+    "auxiliary": {
+      "compile": "PASS",
+      "svg_regeneration": "BYTE_EXACT",
+      "svg_visual": "PASS",
+      "svg_sha256": "92136df932a7da15dd625c080ae0ab9a960f2394cfe0da44e0f9e2c3806ff129"
+    },
+    "artifacts": "Only code/tests, maintained contracts, figure and summary/hash evidence published. All raw models, dictionaries, native/ReadySet evidence, attempts, logs and runners remain local; old C139 attempts are untouched.",
+    "limitations": [
+      "Single-model ASCII heavy PDB only; ANISOU, CONECT, LINK, MODEL/ENDMDL and unknown records refuse. Scientific columns compare exactly; no coordinate/occupancy/B/element/charge or residue-boundary change is repaired.",
+      "No general signed-proxy permutation equivalence is claimed. Both controls retain exact existing endpoint checks, signed targets, origins/symmetry and captured energies/gradients; full nondefault restraint-potential coverage remains separate.",
+      "New Phenix native interpretations use frozen actual C139 ReadySet executions. No new ReadySet, Coot, generation, coordinate optimization or diffraction refinement runs in C140.",
+      "Formal-charge readback remains unavailable at three sites. Source phosphate chemistry/protonation and all stereocentres remain authoritative; no OP3 addition or experimental-state inference.",
+      "Ordinary PostMR adoption/checkpoint integration, general cache-miss recovery, held-out family release, PNA/ATL adapters and PDU changed-objective numerics remain open."
+    ],
+    "next": "Connect the qualified component/ReadySet endpoint and verified fallback to ordinary continuation/adoption with held-out controls and exact selected-artifact provenance. Keep chemistry/state authority and unavailable evidence explicit; broader PDB support is separately qualified when concrete cases require it.",
+    "evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/native-results.json",
+        "size": 1783,
+        "sha256": "35b4db45a8ac953dc837fb9b77eb5405bae235c03f78fdda3fcb01d7be00888e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/replay/result.json",
+        "size": 2332,
+        "sha256": "4b8c8f50eda2b2cba57847ceb70d4c5e649b797862d3212967ff1f06e32e21cf"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/replay/replay.log",
+        "size": 1892,
+        "sha256": "0d4b73fbb7da75f2dced1138a207d0d8fbc17cedbcc9696f26c9263c32c1e37c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/before.log",
+        "size": 56684,
+        "sha256": "6adfc44cd03bf36f133497ea1dd301e129797e1dc996dbac1349e4040b6347f9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/focused/result.json",
+        "size": 703,
+        "sha256": "e44469950a69ebde9a1e01cb426eac25aa0bddda3287296735130989a662ddaa"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/focused/pytest.log",
+        "size": 5798,
+        "sha256": "d8cdc86e18b03e9447c7f60dc238003d976a2307e4d4d7f918e14ebd2f25853b"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/focused/pytest.xml",
+        "size": 175560,
+        "sha256": "867419a0c19f177027c300c2a3da7a50a376c2d2cff9e4b9644b0c73458155b5"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/focused/source-hashes.json",
+        "size": 55885,
+        "sha256": "48cec6063e67a68f8c99a2e791bde2e99d052b93091942590355f5f7d955ce3f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/full/result.json",
+        "size": 678,
+        "sha256": "7a0fa54f452d2f73c1ab67a1f2218b474f1a1e6db0fbe5ff8418c3fca0dbeb08"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/full/pytest.log",
+        "size": 10863,
+        "sha256": "95eabcbbc65d3e9a31796339596f53a1ddd05f1b3857d09dc952cc930c8004e7"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/full/pytest.xml",
+        "size": 1080523,
+        "sha256": "efafbabaf2cf331bafb68512c095d4462c43ec57f5fca1423fe814ed46f8cf04"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/full/source-hashes.json",
+        "size": 55885,
+        "sha256": "48cec6063e67a68f8c99a2e791bde2e99d052b93091942590355f5f7d955ce3f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/validation/auxiliary.json",
+        "size": 168,
+        "sha256": "541b10813b83790e817ffa72d210b56fd320233556aab48c4273dfbf1980c4ad"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/reordered/review.json",
+        "size": 36447,
+        "sha256": "e5d5cfa431d22e0953263bea5ad57bb6c9141725e6b5b3684f5912df56b25f9e"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/reordered/execution.json",
+        "size": 315,
+        "sha256": "0a127bf823a2ff56cc02aeac6b1d03ba3f2976d7e48ce117f408cd4d9c6ca6eb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/reordered/atom-order/atom_order.json",
+        "size": 737,
+        "sha256": "d0a850254ffe758e3d9433d444ef76440f1bd9c981730b80fef151395da759ae"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/reordered/native/cif-native-_io8otpe/native_receipt.json",
+        "size": 934348,
+        "sha256": "dbe5553b63a27603e02d87a2cae307378dd519716c3b1bd0d1f72227914396c0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/stable/review.json",
+        "size": 36447,
+        "sha256": "bd577cbea8e100409766bc7620a6864109f61a450e8a9f9fb552bab1661e49ae"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/stable/execution.json",
+        "size": 311,
+        "sha256": "e49d1f73b13281fa5f5cbaf77bfcd6f3bfaf60015470bb99cd8af917559f2554"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/stable/atom-order/atom_order.json",
+        "size": 738,
+        "sha256": "8af0fdd2d5705c747fb319626cee5711bbf4e5e157cb3f598db992ffb17659b0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "140_Cedar_readyset-order-6fbnrf7n/stable/native/cif-native-7bejfici/native_receipt.json",
+        "size": 934444,
+        "sha256": "96b33789c651abdbee29e2880e587e31feff3751f25a10e52d14fcc31fe259d0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/before/cif-native-vqhu91pp/native_receipt.json",
+        "size": 939213,
+        "sha256": "b022c9eea7ede7dce2734366ba4f7b11654d54287a6f0195e3d748d37535631f"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/after/cif-native-9_p86ht7/native_receipt.json",
+        "size": 935280,
+        "sha256": "f558184a0e37bf1bc9926b79ab885bee6d96373a157e640336b9a1a8d15707f0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/native/endpoint/cif-native-qqrvzdm2/native_receipt.json",
+        "size": 934408,
+        "sha256": "e25f636388065e4569003127995828193a2d143f3e2e06f4e17afcfcf4511336"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/readyset/readyset_consumption.json",
+        "size": 52580,
+        "sha256": "a8580b660f2deb3e545481d5722935f78c998773dbbdd0aa9c052c1c172965c0"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/roundtrip-review.json",
+        "size": 36321,
+        "sha256": "56f7020c3c70beccefd949cfdfa09d02c396bc2322add26feffc3293b05d5ec9"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/before/cif-native-s_054_2f/native_receipt.json",
+        "size": 939303,
+        "sha256": "7a6b31e89903c60f6ed4f4c326366cc48ea65f90ea3650aa790fbbe5690fe9cb"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/after/cif-native-flxyghri/native_receipt.json",
+        "size": 935422,
+        "sha256": "9e99613fc01937b28dbe75dfd7e238844e3555e23f26604631e6085ae7f2e34c"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/native/endpoint/cif-native-_634ljq9/native_receipt.json",
+        "size": 934538,
+        "sha256": "fd7fc8880f26d4b5dc3bb030b3dfa16daf80da3bd6f7efebcbe4387e4a4c4362"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/readyset/readyset_consumption.json",
+        "size": 52658,
+        "sha256": "d5c3f434489c541ed38193f7a0be38c7794b28e66ed760b0471c88971e3a9375"
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "139_Cedar_component-bundle-whiru70v/qualified-controls/stable-order/roundtrip-review.json",
+        "size": 36340,
+        "sha256": "c593e2d6329292e8fb092c3e430d11d283b262c1481a74ca06bf2a7c231f630d"
+      }
+    ]
   }
 }

@@ -93,6 +93,15 @@ A stable-order control passes all 28 endpoint checks. A separate atom-reordered
 output preserves coordinates/definitions but fails the strict ordered-proxy gate,
 so the verified starting model is retained. This is a working diagnostic fallback,
 not evidence of chemical damage or permission to weaken chirality checks.
+C140 adds a bounded lossless serialization for that case. It first proves exact
+agreement of all scientific atom fields, residue boundaries and supported metadata,
+then writes a fresh file in the original checked order with original serials/name
+padding. Raw ReadySet output stays preserved. Its actual effective dictionaries
+and the newly serialized model undergo the unchanged strict native comparison.
+Both installed controls pass all 28 checks with exact captured energy/gradient
+equality. Unsupported records (including ANISOU/CONECT and multiple models) refuse
+rather than losing metadata. This is not a general proxy-permutation equivalence
+claim. See the [serialization method](cif-doctor.md#lossless-readyset-atom-serialization-c140).
 Source formal-charge limitations remain visible, and automatic adoption is still
 separate. See the [bundle methods](cif-doctor.md#qualified-component-bundles-and-final-readyset-readback-c139).
 

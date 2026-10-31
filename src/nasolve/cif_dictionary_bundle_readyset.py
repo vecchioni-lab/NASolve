@@ -13,6 +13,7 @@ from .cif_dictionary_sites import _bind_capture, _need, _read, _safe
 from .cif_dictionary_bundle import read_dictionary_bundle, inspect_dictionary_bundle_native
 
 POLICY_ID = 'cif-stored-bundle-readyset-roundtrip-v1'
+ATOM_ORDER_POLICY_ID = 'cif-stored-bundle-readyset-roundtrip-v2'
 
 
 def _artifact(root, ref):
@@ -24,12 +25,14 @@ def _artifact(root, ref):
     return path
 
 
-def readyset_endpoint_inputs(bundle, readyset_directory):
+def readyset_endpoint_inputs(bundle, readyset_directory, *, atom_order_directory=None):
     """Recheck the ordinary consumption proof and return exact final native inputs.
 
     Does not run ReadySet or trust its saved PASS/check booleans. This accepts the
     maintained per-component input policy only; incomplete attempts raise and
     can be retained as failed improvements by the final inspection function.
+    An explicit atom-order directory must reconstruct from these exact inputs;
+    it changes serialization only and still requires a fresh native capture.
     """
     from .cif_postmr_readyset import (read_readyset_consumption, COMPONENT_POLICY_ID,
         EXPECTED_ACTIONS, WORKER, _atoms, heavy_control, effective_cached_input, OBSERVED_MODULES)
@@ -94,13 +97,19 @@ def readyset_endpoint_inputs(bundle, readyset_directory):
         no_unclassified_subprocess_calls=classified['accepted'])
     _need(_bytes(checks) == _bytes(r['checks']) and len(checks) == 8 and all(v is True for v in checks.values())
         and r['status'] == 'READYSET_CACHED_INPUT_PASS', 'ReadySet consumption did not qualify')
+    if atom_order_directory is not None:
+        from .cif_readyset_atom_order import read_readyset_atom_order
+        ordered = read_readyset_atom_order(atom_order_directory)
+        _need(_read(ordered['reference']) == _read(b['model'])
+            and _read(ordered['candidate']) == _read(model), 'Atom-order evidence belongs to different inputs')
+        model = ordered['model']
     modifiers = [p for p in b['after_dictionaries'] if p not in b['component_dictionaries'].values()]
     return dict(model=model, dictionaries=[dictionary, *modifiers], phils=b['after_phils'],
         native_options=b['native_options'], checks=checks)
 
 
 def inspect_dictionary_bundle_readyset(bundle, baseline_receipt, candidate_receipt,
-        readyset_directory, endpoint_receipt=None):
+        readyset_directory, endpoint_receipt=None, *, atom_order_directory=None):
     """Choose diagnostic evidence only after rechecking the final effective bundle.
 
     Unavailable charge evidence keeps its existing diagnostic-only limitation.
@@ -116,7 +125,7 @@ def inspect_dictionary_bundle_readyset(bundle, baseline_receipt, candidate_recei
     endpoint = None; error = None; accepted = False; pins = {}
     if usable:
         try:
-            inputs = readyset_endpoint_inputs(bundle, readyset_directory)
+            inputs = readyset_endpoint_inputs(bundle, readyset_directory, atom_order_directory=atom_order_directory)
             _need(endpoint_receipt is not None, 'Final effective ReadySet native readback is missing')
             before_record, before, before_files = _capture(Path(candidate_receipt), _read(b['model']))
             record, after, after_files = _capture(Path(endpoint_receipt), _read(inputs['model']))
@@ -129,6 +138,10 @@ def inspect_dictionary_bundle_readyset(bundle, baseline_receipt, candidate_recei
             _need(all(_read(p) == data for p,data in {**before_files,**after_files}.items()), 'Native evidence changed during inspection')
             pins = dict(endpoint_receipt_sha256=sha256(_read(Path(endpoint_receipt))).hexdigest(),
                 readyset_receipt_sha256=sha256(_read(Path(readyset_directory)/'readyset_consumption.json')).hexdigest())
+            if atom_order_directory is not None:
+                repeated = readyset_endpoint_inputs(bundle, readyset_directory, atom_order_directory=atom_order_directory)
+                _need(all(_read(p) == data for p,data in after_files.items()), 'Atom-order evidence changed during inspection')
+                pins['atom_order_receipt_sha256'] = sha256(_read(Path(atom_order_directory)/'atom_order.json')).hexdigest()
         except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
             error = type(exc).__name__+': '+str(exc); accepted = False
     # Revalidate shared evidence after the optional endpoint inspection.
@@ -136,9 +149,9 @@ def inspect_dictionary_bundle_readyset(bundle, baseline_receipt, candidate_recei
     _need(sha256(_read(Path(baseline_receipt))).hexdigest() == initial['baseline_receipt_sha256']
         and sha256(_read(Path(candidate_receipt))).hexdigest() == initial['candidate_receipt_sha256'],
         'Starting native receipts changed during inspection')
-    return dict(schema_version=1, policy_id=POLICY_ID, initial=initial, endpoint=endpoint,
+    return dict(schema_version=1, policy_id=ATOM_ORDER_POLICY_ID if atom_order_directory is not None else POLICY_ID, initial=initial, endpoint=endpoint,
         endpoint_error=error, **pins,
         decision=dict(status='CONTINUE_WITH_NOTES' if usable else 'NO_USABLE_MODEL',
-            selected='readyset_checked_model' if accepted else 'verified_prepared_model' if usable else None,
+            selected=('readyset_ordered_checked_model' if atom_order_directory is not None else 'readyset_checked_model') if accepted else 'verified_prepared_model' if usable else None,
             scope='SEPARATE_DIAGNOSTIC_PHASE_ONLY', requires_cif_review=False, automatic_adoption=False),
         scientific_qualification='NOT_ASSESSED', native_execution='NOT_RUN', automatic_adoption=False)

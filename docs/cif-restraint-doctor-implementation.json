@@ -27387,6 +27387,27 @@
       "full_tested_commit": "61d878edda9c8a7a0e0f3c3700ef1fd2f7dd540c",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "readyset_atom_serialization": {
+      "status": "VALIDATED_PUBLICATION_PENDING",
+      "after": "An explicit fresh lossless heavy-PDB serialization restores checked ordering/serials/padding only after exact scientific-field and boundary comparison. Fresh native checks use actual effective ReadySet dictionaries; missing or damaged improvement evidence retains verified fallback.",
+      "schemas": {
+        "serialization": "schema 1 / cif-readyset-heavy-pdb-order-v1; readyset_atom_order_directory anchor; frozen reference/raw/output plus exact reconstruction",
+        "roundtrip": "schema 1 / cif-stored-bundle-readyset-roundtrip-v2 only with explicit atom_order_directory; binds serialization receipt and actual final model/dictionary/native capture",
+        "unchanged": "Default bundle roundtrip v1, site/store/native capture policies, CLI, run/checkpoint and ordinary refinement"
+      },
+      "compatibility": "Optional internal Python API only. Omitted keyword preserves exact legacy reports and decisions. No migration or historical rewriting; the strict proxy comparator is unchanged.",
+      "limitations": [
+        "Single-model ASCII heavy PDB only; ANISOU, CONECT, LINK, MODEL/ENDMDL and unknown records refuse. Scientific columns compare exactly; no coordinate/occupancy/B/element/charge or residue-boundary change is repaired.",
+        "No general signed-proxy permutation equivalence is claimed. Both controls retain exact existing endpoint checks, signed targets, origins/symmetry and captured energies/gradients; full nondefault restraint-potential coverage remains separate.",
+        "New Phenix native interpretations use frozen actual C139 ReadySet executions. No new ReadySet, Coot, generation, coordinate optimization or diffraction refinement runs in C140.",
+        "Formal-charge readback remains unavailable at three sites. Source phosphate chemistry/protonation and all stereocentres remain authoritative; no OP3 addition or experimental-state inference.",
+        "Ordinary PostMR adoption/checkpoint integration, general cache-miss recovery, held-out family release, PNA/ATL adapters and PDU changed-objective numerics remain open."
+      ],
+      "next": "Connect the qualified component/ReadySet endpoint and verified fallback to ordinary continuation/adoption with held-out controls and exact selected-artifact provenance. Keep chemistry/state authority and unavailable evidence explicit; broader PDB support is separately qualified when concrete cases require it.",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "readyset_atom_serialization_2026_10_31",
+      "validation": "7093 passed, 276 subtests passed in 1096.04s (0:18:16); focused 1184 passed, 36 subtests passed in 124.92s (0:02:04); two actual native interpretations, four exact current/legacy cold replays and eleven negative controls."
     }
   },
   "audience": [
@@ -27901,7 +27922,7 @@
           "src/nasolve/cif_dictionary_reuse.py"
         ],
         "delivery": "Historical C66 evidence retained; current contracts in cif-doctor.md and C135 evidence.",
-        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C138 add exact current-site preparation, terminal/custom context and complete native identity. C139 composes multiple qualified components and checks actual final ReadySet/native evidence with verified diagnostic fallback; ordinary automatic selection/adoption remains separate."
+        "explicit_representation": "C135 binds recipe/v3 isolated storage. C136–C139 compose source-bound site preparations under exact shared native/ReadySet evidence. C140 adds explicit lossless heavy-PDB serialization followed by unchanged strict final checks and verified fallback; ordinary automatic adoption remains separate."
       },
       "component_key_scope": "Full immutable entry identity includes producer and consumer versions; the semantic base-numerics lookup uses source/state/authority/recipe/backend family. Consumer/native-policy/combined-tool upgrades retain saved numerics for affected-layer requalification before generation."
     },

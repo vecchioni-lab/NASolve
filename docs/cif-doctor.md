@@ -76,7 +76,9 @@
 
 <a id="current-capability-boundary-c138"></a>
 
-## Current capability boundary (C139)
+<a id="current-capability-boundary-c139"></a>
+
+## Current capability boundary (C140)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -95,7 +97,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. | Installed linked controls lack usable energy types. A qualified numerical dictionary and native construction remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. PDU omission candidates have exact inventory evidence. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs energy/gradient and derivative qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
-| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
+| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
 “add OP3”; a retained true terminal phosphate is protected. Lower scores under
@@ -140,6 +142,46 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Lossless ReadySet atom serialization (C140)
+
+ReadySet can reorder and repad atom records while leaving their scientific fields
+unchanged. The strict comparator still treats signed restraint endpoint order as
+meaningful. `prepare_readyset_atom_order(reference, candidate, output)` provides
+a separate, explicit serialization step instead of weakening that comparison.
+It requires identical named heavy atoms, record types, alternate locations,
+coordinates, occupancy, B factors, segment identifiers, elements and formal charge.
+Scientific columns compare exactly, without a numerical tolerance. Residue order,
+TER boundaries and supported header metadata must also agree. Only atom order,
+decimal serials, atom-name padding and TER/END formatting can differ. After that
+proof, the reference serialization is the exact lossless output.
+
+The fresh schema-1 `cif-readyset-heavy-pdb-order-v1` receipt freezes reference,
+raw ReadySet and serialized PDB bytes under `readyset_atom_order_directory` with
+sizes/checksums. `read_readyset_atom_order()` reconstructs both the output and
+receipt from frozen inputs; rehashing changed scientific columns cannot pass.
+Neither input is modified. The bounded format is ASCII heavy PDB with one
+implicit model. ANISOU, CONECT, LINK, MODEL/ENDMDL wrappers and unrecognized
+records refuse. Supported
+CRYST1/SCALE/ORIGX/TITLE/REMARK headers must match. Broader format handling is
+separate work, and a refusal retains the existing usable fallback.
+
+Pass `atom_order_directory=...` explicitly to `readyset_endpoint_inputs()` and
+`inspect_dictionary_bundle_readyset()`. The directory must bind to the exact
+prepared and actual ReadySet models. The returned serialized model is interpreted
+afresh with the actual effective ReadySet dictionary and unchanged modifiers/PHILs.
+Only all 28 strict final checks can select `readyset_ordered_checked_model` for
+separate diagnostics. Bundle roundtrip v2 records the extra receipt checksum;
+omitting the option retains v1 bytes and decisions. Preparation alone, a missing
+capture or a stale/corrupt improvement never replaces the verified start.
+
+Two complete Phenix 2.2.1-6174 interpretations (dispatcher 2.2.1) qualify the
+frozen C139 reordered and stable controls. Captured energies and gradients match
+the verified starts exactly; no new ReadySet, Coot, optimization or refinement
+was executed. This is a serialization and consumption proof, not general signed
+proxy permutation equivalence or scientific acceptance. Formal-charge limitations
+and ordinary adoption remain separate. Exact tests and cold replay are recorded
+under `readyset_atom_serialization_2026_10_31` in the [evidence ledger](cif-linked-native-registration-evidence.json).
 
 ### Qualified component bundles and final ReadySet readback (C139)
 

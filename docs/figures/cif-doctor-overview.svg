@@ -176,6 +176,6 @@
 <text x="70" y="1014" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="bold" fill="#213443" text-anchor="start">Checks: graph, numerical consistency and bonded-atom coordinate degeneracy</text>
 <text x="70" y="1048" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">PASS / REVIEW / INVALID / UNASSESSED describe the checked evidence.</text>
 <text x="70" y="1082" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Usable nonconvergence: continue with notes; no student CIF approval.</text>
-<text x="70" y="1116" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Component bundles: final native check or verified fallback; no adoption.</text>
+<text x="70" y="1116" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="normal" fill="#213443" text-anchor="start">Lossless atom ordering; strict native check or fallback; no adoption.</text>
 </g>
 </svg>
