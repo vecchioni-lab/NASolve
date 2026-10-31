@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C144 validated: graph-bound native reaction states
+## C144 published: graph-bound native reaction states
 
 Base: `27d3cdcddbb83670b6cc7f1df68866a34151a0e7`; existing cedar only.
 Capsule: `live_tests_directory/144_Cedar_graph-port-state-y7vvj9fd`.
@@ -59,7 +59,9 @@ Changed: one runtime module, tests/profile and maintained contracts/map/ledger.
 Exact commands, schema/file list, results and anchors are under
 `graph_furanose_reaction_states_2026_10_31` in the evidence ledger. Raw science,
 workbook, native/test outputs and runners remain local outside Git.
-No job is active. Implementation and focused validation complete; publication pending.
+No job is active. Implementation and focused validation are complete. Focused-tested implementation
+`fcb99a6fe88d77892b0c58871393d7e131c1ccba` is published and verified on `origin/cedar`;
+this follow-up records continuity. The full-tested revision above is unchanged.
 Next: explicit different-backbone ATL placement/junction control preserving the
 source and eight existing pairs; complete linked numerical/geometry checks.
 PDU changed-objective geometry and ordinary selected-bundle orchestration remain

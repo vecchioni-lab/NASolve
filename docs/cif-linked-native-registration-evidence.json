@@ -53351,7 +53351,7 @@
     "remote_verified": true
   },
   "graph_furanose_reaction_states_2026_10_31": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "27d3cdcddbb83670b6cc7f1df68866a34151a0e7",
@@ -54174,6 +54174,10 @@
         "size": 506805,
         "sha256": "8c5554531fb6c437ea3f5f00941a175dda677b894b19170213fd2155d163b417"
       }
-    ]
+    ],
+    "implementation_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
+    "focused_tested_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }

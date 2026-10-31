@@ -27487,7 +27487,7 @@
       "remote_verified": true
     },
     "graph_furanose_reaction_states": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "An additive graph-bound furanose adapter reuses explicit neutral source-port authority, preserves complete candidate chemistry/configuration, supplies independent site modifiers and graph-selected outgoing OC2 typing, and copies missing source classification without accepting contradictory relabeling. Exact native text and projections replay offline.",
       "schemas": {
         "new": "schema 1 / cif-graph-furanose-native-reaction-v1; exact frozen input/output inventory plus rederived projections/modifier blocks/selectors",
@@ -27506,7 +27506,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "graph_furanose_reaction_states_2026_10_31",
-      "validation": "1474 passed, 36 subtests passed in 132.92s (0:02:12); three final native controls and cold replay pass; no full run this push."
+      "validation": "1474 passed, 36 subtests passed in 132.92s (0:02:12); three final native controls and cold replay pass; no full run this push.",
+      "implementation_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
+      "focused_tested_commit": "fcb99a6fe88d77892b0c58871393d7e131c1ccba",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
