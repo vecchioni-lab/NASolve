@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C141 validated: exact selected component bundle through public assessment
+## C141 published: exact selected component bundle through public assessment
 
 Base: `560bf96b2996c96fc85f17b4bbb053a682cbee25`; existing cedar only.
 Capsule: `live_tests_directory/141_Cedar_component-runtime-cc_r1hql`.
@@ -58,7 +58,9 @@ checkout is gone, with original paths/SDK reads and external execution forbidden
 Seven rehashed corruptions refuse; 555 frozen files retain bytes and timestamps.
 Only code/tests, maintained contracts, figure and summary/hash evidence publish.
 Raw science, failed attempt and runner scripts remain local outside Git.
-No job is active. Implementation and validation are complete; signed publication remains.
+No job is active. Implementation, full validation and signed publication are complete. Tested
+implementation `a9ec988d562155f44399503c58e2579d3459785f` is published and verified
+on `origin/cedar`; this follow-up records continuity. No branch creation or merge.
 Evidence key: `component_runtime_handoff_2026_10_31`.
 
 Next: ordinary PostMR orchestration around this exact selection contract, with

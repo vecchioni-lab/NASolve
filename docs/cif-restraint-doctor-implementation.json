@@ -27414,7 +27414,7 @@
       "remote_verified": true
     },
     "component_runtime_handoff": {
-      "status": "VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_VALIDATED",
       "after": "An immutable export replays maintained source/native evidence before public assessment exposes the selected model and exact ordered restraints. Failed optional improvements keep the verified start with its own resources; damaged saved exports refuse. Public summaries retain diagnostic scope and unavailable evidence.",
       "schemas": {
         "runtime": "schema 1 / cif-qualified-component-runtime-bundle-v1; existing runtime_bundle anchor, runtime_bundle.json and exact selected model/ordered CIF/PHIL resources plus bounded frozen evidence",
@@ -27432,7 +27432,11 @@
       "next": "Connect the public selected-bundle seam to ordinary PostMR orchestration with exact selected-artifact provenance and usable fallback; exercise representative and held-out ordinary routes, failures/interruption and reporting before a bounded Cedar-to-pine integration review. Keep production adoption gated on appropriate evidence.",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "component_runtime_handoff_2026_10_31",
-      "validation": "7119 passed, 276 subtests passed in 1105.20s (0:18:25); focused 1281 passed, 36 subtests passed in 108.16s (0:01:48); three actual native interpretations, four cold public CLI cases and seven rehashed corruption controls."
+      "validation": "7119 passed, 276 subtests passed in 1105.20s (0:18:25); focused 1281 passed, 36 subtests passed in 108.16s (0:01:48); three actual native interpretations, four cold public CLI cases and seven rehashed corruption controls.",
+      "implementation_commit": "a9ec988d562155f44399503c58e2579d3459785f",
+      "full_tested_commit": "a9ec988d562155f44399503c58e2579d3459785f",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
