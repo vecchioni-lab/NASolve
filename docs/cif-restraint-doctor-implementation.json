@@ -27540,7 +27540,7 @@
       "remote_verified": true
     },
     "graph_bound_connected_furanose_seed": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "Graph-bound acyclic-arm/body construction with an explicit base-motion bound produces a connected mixed ATL seed, preserves source geometry/hands and bystanders, and retains exact native definitions and NAR policy. Remaining junction/pair strain withholds geometry qualification and adoption.",
       "schemas": {
         "new": "schema 1 / cif-graph-furanose-bounded-bridge-seed-v1; frozen parent placement, explicit endpoint_weight and max_base_displacement, deterministic report/model and exact receipt inventory",
@@ -27561,7 +27561,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "graph_bound_connected_furanose_seed_2026_10_31",
-      "validation": "1515 passed, 36 subtests passed in 153.89s (0:02:33); one complete native interpretation and cold replay pass; no full suite."
+      "validation": "1515 passed, 36 subtests passed in 153.89s (0:02:33); one complete native interpretation and cold replay pass; no full suite.",
+      "implementation_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
+      "focused_tested_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [

@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C146 validated: source-preserving connected ATL construction seed
+## C146 published: source-preserving connected ATL construction seed
 
 Base/pushed-before-work: `809f78a752b54370294cda0754dd0e999e91616a`;
 existing cedar only. Capsule: `live_tests_directory/146_Cedar_connected-seed-c2r1bsu5`.
@@ -72,7 +72,9 @@ roadmap and evidence ledger. Exact commands, file/schema lists, compatibility an
 anchored hashes: `graph_bound_connected_furanose_seed_2026_10_31` in the
 [evidence ledger](cif-linked-native-registration-evidence.json). Raw models,
 workbooks, native/test outputs and runners remain local outside Git. No job active.
-Implementation and focused validation complete; publication pending.
+Implementation and focused validation are complete. Focused-tested implementation
+`337676e09f476d5fda1de8b2273f5e618f5f22ef` is published and verified on `origin/cedar`;
+this follow-up records continuity. The full-tested revision above is unchanged.
 
 Next: establish the current connected seed's complete numerical objective with
 all native source definitions and 201 NAR requests retained; then a bounded

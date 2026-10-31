@@ -54785,7 +54785,7 @@
     "remote_verified": true
   },
   "graph_bound_connected_furanose_seed_2026_10_31": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "809f78a752b54370294cda0754dd0e999e91616a",
@@ -55368,6 +55368,10 @@
         "size": 6013875,
         "sha256": "8f2b0dfbe84694b2cdda6c3025a01423a90b4632a1aeeaaa5d4a132184cc0cee"
       }
-    ]
+    ],
+    "implementation_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
+    "focused_tested_commit": "337676e09f476d5fda1de8b2273f5e618f5f22ef",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }
