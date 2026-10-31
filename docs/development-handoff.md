@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C149 validated: graph-selected bundle repair and endpoint mechanics pass
+## C149 published: graph-selected bundle repair and endpoint mechanics pass
 
 Base/pushed-before-work `2a47056895f25bed258fdc781b9176f2f5047290`; existing
 **cedar** only. Capsule `live_tests_directory/149_Cedar_linear-bundle-h_6buxy6`.
@@ -107,7 +107,9 @@ token-per-line parsing, broader L-FANA/L-FDNA/PNA, unavailable formal charges an
 ordinary orchestration remain open milestones; see the reconciled generalizer
 boundary below. This is tool-building progress, not a solved structure.
 
-Implementation and focused validation complete; publication pending.
+Implementation and focused validation are complete. Focused-tested implementation
+`2321939e7445840acaa8b5358d3c722840e2fd01` is published and verified on `origin/cedar`;
+this follow-up records continuity. The full-tested revision above is unchanged.
 No active jobs. Signed evidence key `declared_linear_torsion_bundle_2026_10_31`.
 — Rowan · Codex desktop
 

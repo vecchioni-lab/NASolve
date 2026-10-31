@@ -56464,7 +56464,7 @@
     "remote_verified": true
   },
   "declared_linear_torsion_bundle_2026_10_31": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "2a47056895f25bed258fdc781b9176f2f5047290",
@@ -57230,6 +57230,10 @@
         "size": 6000648,
         "sha256": "9052601ac15772a1b8aad5849b63c76b6057c6eb8a56df30f3682bcd8fbee698"
       }
-    ]
+    ],
+    "implementation_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
+    "focused_tested_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
+    "published_branch": "cedar",
+    "remote_verified": true
   }
 }

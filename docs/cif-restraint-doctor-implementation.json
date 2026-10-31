@@ -27627,7 +27627,7 @@
       "remote_verified": true
     },
     "declared_linear_torsion_bundle": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "after": "A reusable graph-screened bundle freezes every complete omission and intermediate state. Consecutive exact native inventory/energy attribution and authenticated consumer bindings qualify the 5PC/PDU changes. Fresh complete derivatives and full/rounded/native endpoint mechanics pass; the iteration-limited coordinate candidate remains unconverged and unadopted.",
       "schemas": {
         "new": "schema 1 / cif-declared-linear-torsion-bundle-v1; frozen inputs, complete scan, deterministic step candidates, before/after ordered bundles and separate qualification results",
@@ -27650,7 +27650,11 @@
       "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
       "evidence_file": "cif-linked-native-registration-evidence.json",
       "evidence_key": "declared_linear_torsion_bundle_2026_10_31",
-      "validation": "1624 passed, 36 subtests passed in 210.06s (0:03:30); 156 affected tests; staged native attribution, full/rounded derivatives and endpoint mechanics pass; cold replay passes; endpoint unconverged and unadopted; no full suite."
+      "validation": "1624 passed, 36 subtests passed in 210.06s (0:03:30); 156 affected tests; staged native attribution, full/rounded derivatives and endpoint mechanics pass; cold replay passes; endpoint unconverged and unadopted; no full suite.",
+      "implementation_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
+      "focused_tested_commit": "2321939e7445840acaa8b5358d3c722840e2fd01",
+      "published_branch": "cedar",
+      "remote_verified": true
     }
   },
   "audience": [
