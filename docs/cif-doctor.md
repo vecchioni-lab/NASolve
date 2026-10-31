@@ -90,7 +90,9 @@
 
 <a id="current-capability-boundary-c147"></a>
 
-## Current capability boundary (C148)
+<a id="current-capability-boundary-c148"></a>
+
+## Current capability boundary (C149)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -107,8 +109,8 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
-| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. Geometry-selected PDU/5PC torsions meet the existing declared-linear graph screen; a separately qualified changed objective is next. |
-| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 PDU omissions have exact inventory, fixed-coordinate energy/gradient attribution and fresh sampled derivative evidence on the DF-repaired mixed scaffold. Saved mixed endpoints can be replayed and selected with original stopping notes. | PDU's changed objective still needs a new bounded geometry trial and endpoint qualification. The older mixed proof uses the explicit NASolve-local corrected evaluator; ordinary Phenix refinement is not thereby qualified. |
+| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
+| DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | The C149 trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -154,6 +156,107 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Declared-linear repair across an ordered bundle (C149)
+
+`prepare_linear_torsion_bundle(dictionaries, modeled_components, output)` makes
+an immutable explicit candidate bundle. It scans every modeled component with an
+explicit dictionary provider, using declared elements, bond orders and linear
+angle targets. It never selects by a laboratory code, family label, current angle
+or optimizer score. Components supplied only by the installed library are recorded
+as `NO_EXPLICIT_DICTIONARY`, not rewritten or declared clean. Ordinary graphs
+without a declared triple are recorded without edits. Unsupported triple chemistry,
+ambiguous providers, duplicate graph identities or incomplete linear declarations
+refuse before the requested output is reserved.
+
+The existing single-component rule requires a declared C–C or C–N triple,
+unambiguous neighboring connectivity and an explicit 180-degree angle with a
+positive finite ESD. A removable torsion must contain that declared-linear
+three-atom segment and be a unique consecutive graph path with supported numerical
+parameters. Torsions elsewhere remain untouched. A valid triple with no matching
+torsion produces no change. All other parsed fields, including charges, hydrogen
+attachments, stereochemistry, bond/angle targets and unknown categories, remain
+exact; unrelated data blocks retain their original text. Affected blocks may be
+reformatted by the existing renderer. This does not infer or repair protonation.
+
+Order is deterministic: original dictionary position, then component code within
+that dictionary. The code is a stable identity/order key, never a chemistry
+allowlist. Each step freezes its exact source, candidate, omitted rows and complete
+before/after ordered bundle. Multiple components in one file are handled by
+consecutive candidates, so a later step retains earlier verified omissions.
+Bounds are 1–64 explicit dictionaries, 1–128 modeled codes and at most 32 repair steps.
+Schema 1 `cif-declared-linear-torsion-bundle-v1` owns these snapshots;
+`read_linear_torsion_bundle(directory)` rebuilds every candidate and the entire
+plan from frozen inputs, checks exact types and inventories, and rejects rehashed
+extra files/directories. Original paths and an installed SDK are unnecessary.
+The plan remains `CANDIDATE_REVIEW` or `NO_CANDIDATE`; later qualifications are
+separate records and never rewrite it into an adopted result.
+
+`qualify_linear_torsion_bundle(directory, inventories, references)` requires
+one more native inventory than repair steps and a complete repeated single-proxy
+reference set for every consecutive transition. It reuses the unchanged C141/C142
+exact linked-inventory and fixed-coordinate energy gates. Every modeled occurrence
+of the selected component must lose exactly the complete planned definition/proxy
+set; all other inventory fields, including future unknown fields and custom
+pair/stack restraints, must compare exactly. The full energy terms, counts and
+scattered gradient delta must equal the omitted proxies' repeated native values.
+Skipping an intermediate state or changing an unrelated category refuses the chain.
+This pure gate does not authenticate external execution by itself.
+
+`qualify_captured_linear_torsion_bundle(directory, native_receipts, references)`
+adds that native-consumption boundary. It authenticates every native receipt and
+requires the exact planned dictionary bytes/order, identical model and PHIL bytes,
+consumer version/executable, namespace and dictionary authority throughout.
+Its stage references use declared numbered anchors corresponding to the supplied
+receipt directories, with sizes/checksums. The raw kernel execution that generated
+single-proxy references remains the caller's responsibility; the numerical gate
+checks their complete repeated values against the authenticated native deltas.
+The live runner records its maintained conditioning core, source pins, deadline
+and execution, and cold replay checks that evidence without running captured code.
+Neither API launches Phenix, changes a model or claims source-chemical approval.
+
+**Mixed-scaffold validation.** The 17 modeled codes have 13 explicit providers;
+DA/DC/DG/DT remain installed-library context. Only 5PC and PDU have declared triples
+in those explicit graphs. The planner removes six complete dictionary torsion rows
+from each; three per component are active in the hydrogen-free model. Fresh
+original/intermediate/final native captures show only those six active proxy
+removals, with all other captured definitions and all 201 custom requests intact.
+The total fixed-coordinate target change is 15.1125067167, exactly attributable to
+the removed proxies; full gradient errors are about 1.2e-14 and 9.1e-13 for the two
+steps. Inactive H-dependent rows are retained in the omission evidence rather
+than mistaken for missing native proxies. No atom or protonation change occurs.
+
+The final changed objective passes C147 complete-policy sampled derivatives with
+all 58 parallelity proxies retained, using the inherited corrected-parallelity
+evaluator. This does not qualify unmodified Phenix gradients or ordinary
+diffraction refinement. It then passes C148 bounded geometry checks at full
+precision and PDB precision. A fresh endpoint native readback preserves all exact
+changed definitions and custom policy and matches the rounded target. The trial
+uses 1000 iterations/1043 optimizer calls with no error but **does not meet the
+native convergence criterion**. Within this fixed changed objective, target
+5966.4021 falls to 2791.7798 (2794.5197 rounded); this is not an unqualified
+cross-objective comparison to C148's original target.
+
+ATL's incoming/outgoing links become 1.6060/1.6101 Å, with all eight junction
+angles still defined. Its O4–N6 contact improves from 2.2767 to 2.6919 Å, while
+N3–N1 moves from 2.7413 to 3.0088 Å. All seven source-handed triples across four
+ATL centres remain consistent, and captured native chirality has no sign conflicts.
+The fixed phosphate/H state survives and no virtual OP3 is written. These are
+specific descriptive observations, not absolute CIP, sugar-pucker, full clash or
+scientific qualification. The complete scaffold retains substantial pair strain,
+including a roughly 4.957 Å CGY–DX contact against a 2.8 Å target. The endpoint is
+therefore a **mechanics-pass, unconverged diagnostic candidate**; the selected
+model remains the unchanged input and automatic adoption is false.
+
+All live native calls used Phenix 2.2.1-6174, dispatcher 2.2.1. No ReadySet, Coot,
+diffraction refinement, installed-library modification, production/default change
+or checkpoint migration was run. This explicit repair/qualification layer is an
+engine building block for faithful ReadySet integration, not a replacement for
+ReadySet or an ordinary automatic-repair claim. Source/chemical authorization,
+achieved geometry and scientific acceptance remain separate from numerical proof.
+See `declared_linear_torsion_bundle_2026_10_31` in the
+[evidence ledger](cif-linked-native-registration-evidence.json) for exact commands,
+focused validation, relocation checks and anchored local evidence.
 
 ### Bounded geometry from a qualified captured manager (C148)
 

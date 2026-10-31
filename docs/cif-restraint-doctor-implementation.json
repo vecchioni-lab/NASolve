@@ -26196,7 +26196,7 @@
         "Ordinary end-to-end adoption, refinement, cache publication and automatic solution-PDF integration are not added."
       ]
     },
-    "current_diagnostic_record": "captured_fixed_geometry_trial_2026_10_31",
+    "current_diagnostic_record": "declared_linear_torsion_bundle_2026_10_31",
     "mixed_saved_endpoint_portable_replay_2026_10_25": {
       "status": "LOCAL_VALIDATION_PASS;FRESH_MAC_C94_PENDING",
       "recorded_date": "2026-10-25",
@@ -27625,6 +27625,32 @@
       "focused_tested_commit": "b1738400ec3e204e93c8a45efa6e5ecbf395d4a0",
       "published_branch": "cedar",
       "remote_verified": true
+    },
+    "declared_linear_torsion_bundle": {
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "after": "A reusable graph-screened bundle freezes every complete omission and intermediate state. Consecutive exact native inventory/energy attribution and authenticated consumer bindings qualify the 5PC/PDU changes. Fresh complete derivatives and full/rounded/native endpoint mechanics pass; the iteration-limited coordinate candidate remains unconverged and unadopted.",
+      "schemas": {
+        "new": "schema 1 / cif-declared-linear-torsion-bundle-v1; frozen inputs, complete scan, deterministic step candidates, before/after ordered bundles and separate qualification results",
+        "unchanged": "Existing single-component omission/inventory/energy gates, C147 gradients, C148 geometry, native captures, CLI/cache/checkpoints"
+      },
+      "compatibility": "Additive Python APIs and chemistry test-profile entry. No migration, production default, installed-library or adopted-model change. Existing cedar only; 14 maintained numerical/native cores remain byte-identical.",
+      "limitations": [
+        "Explicit additive Python diagnostic only. No ordinary automatic repair/adoption, CLI/default, cache/checkpoint migration, installed-library edit or ReadySet replacement.",
+        "Only modeled components with one explicit dictionary provider are graph-screened. Installed-library-only components are recorded unassessed. Up to 64 dictionaries, 128 modeled codes and 32 deterministic repair steps. Unsupported or ambiguous declared-linear chemistry refuses before output reservation.",
+        "The unchanged rule requires declared C-C/C-N triples, explicit 180-degree positive-ESD targets and complete unique consecutive torsion paths; geometry, residue codes and family labels do not authorize omission. No inference of missing source chemistry, protonation, stereochemistry or general linear chemistry.",
+        "All other parsed fields and unrelated data blocks remain exact; affected blocks can be reformatted. Every intermediate bundle is preserved, including multiple components within a file. All modeled occurrences must match complete planned native removals, not only diagnostic-selected proxies.",
+        "The pure numerical chain gate requires caller-authenticated native execution. The captured wrapper authenticates every ordered native stage/model/PHIL/namespace/consumer; single-proxy kernel execution remains caller-attested. This live run records the maintained core, source pins and completed process, then replays numerical attribution offline.",
+        "Changed-objective derivatives and full/rounded endpoint mechanics pass in the inherited corrected-parallelity scope. This does not qualify ordinary unmodified Phenix gradients/refinement. No cross-objective score is treated as unchanged progress.",
+        "The 1000-iteration trial reaches 1043 calls with no error but does not converge. All source-handed ATL triples and native chirality checks survive; remaining CGY/DX pair strain, pucker/clash geometry, absolute CIP and scientific acceptance are not closed. Input usability remains NOT_ESTABLISHED_BY_NUMERICAL_CAPTURE and automatic adoption stays false.",
+        "Dictionary source preservation and numerical repair are distinct from independently qualified chemical authority and usable candidate selection. Connect those existing gates before ordinary continuation; never treat a mechanics pass as source approval or a failed trial as proof the input is usable.",
+        "Linked 10C remains beyond its isolated/two-copy checks. Broader L-FANA/L-FDNA/PNA, curated-DZ token-per-line parsing, native formal-charge limits, symmetry and ordinary orchestration/release remain explicit milestones. Generalizer table and next-work prose were reconciled through C149.",
+        "All raw scientific inputs/native/test artifacts and procedural scripts remain local. Early development test-literal/shared-fixture issues were corrected before final validation; prior scientific/native attempts and original inputs were preserved. No full suite this bounded pass."
+      ],
+      "next": "Compose the graph-selected repair/attribution report with existing source-qualified candidate/preparation and public selected-bundle evidence. Establish dictionary usability and a verified fallback independently of the unconverged coordinate trial before automatic continuation. Diagnose remaining whole-model pair geometry from exact NAR/source evidence without weakening restraints. Preserve separate held-out linked 10C, broader chemistry, parser repair and ordinary workflow milestones; a merge still needs full regression/integration review.",
+      "last_full_tested_commit": "809abd44df8885ac14f1a02a67a13338209a8707",
+      "evidence_file": "cif-linked-native-registration-evidence.json",
+      "evidence_key": "declared_linear_torsion_bundle_2026_10_31",
+      "validation": "1624 passed, 36 subtests passed in 210.06s (0:03:30); 156 affected tests; staged native attribution, full/rounded derivatives and endpoint mechanics pass; cold replay passes; endpoint unconverged and unadopted; no full suite."
     }
   },
   "audience": [

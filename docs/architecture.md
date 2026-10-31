@@ -3667,6 +3667,19 @@ candidates for a freshly qualified objective, not a residue-name exception.
 See the [captured geometry contract](cif-doctor.md#bounded-geometry-from-a-qualified-captured-manager-c148).
 
 
+C149 adds a deterministic declared-linear repair planner over the complete ordered
+explicit dictionary bundle. Its immutable intermediate candidates rederive from
+source declarations, including shared-file components, without coordinate-based
+permission or component allowlists. Consecutive native inventory/energy gates
+allow exactly the planned omissions; an authenticated-capture wrapper binds model,
+PHIL, dictionary order, namespace and consumer throughout. Kernel execution remains
+caller-attested and numerical/chemical/geometry/adoption judgments stay separate.
+The complete mixed scaffold now passes changed-objective derivatives and geometry
+mechanics after 5PC/PDU omissions, but the iteration-limited endpoint retains pair
+strain and is not adopted. No ordinary runtime default or ReadySet behavior changes.
+See the [bundle contract](cif-doctor.md#declared-linear-repair-across-an-ordered-bundle-c149).
+
+
 ## Source-bound FANA junction angle adapter (C125)
 
 The separate schema-1 `cif-source-bound-fana-junction-angles-v1` package binds a

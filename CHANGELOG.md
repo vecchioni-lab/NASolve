@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Graph-selected linear-torsion bundle repair (C149)
+
+- Add an explicit ordered-bundle planner that scans modeled component graphs
+  and omits only torsions containing an already declared linear triple-bond
+  angle. Freeze every intermediate candidate; no residue-name exceptions,
+  coordinate-based permission or installed-library edits are introduced.
+- Schema 1 `cif-declared-linear-torsion-bundle-v1` rederives every candidate
+  offline. Separate staged gates authenticate exact native consumption and
+  attribute all inventory, energy and gradient changes to planned omissions.
+- In the mixed ATL scaffold, 5PC/PDU repairs pass complete derivative and bounded
+  geometry mechanics checks. The trial reaches its iteration limit unconverged;
+  improved local geometry does not authorize automatic adoption or refinement.
+
 ### Captured fixed-objective geometry trial (C148)
 
 - Add a bounded geometry adapter consuming a qualified native-capture derivative
