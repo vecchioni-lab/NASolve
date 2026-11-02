@@ -62506,7 +62506,7 @@
   },
   "prepared_repair_execution_2026_11_02": {
     "milestone": "C160",
-    "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FULL_VALIDATED",
     "base_revision": "4462bb22cec7f3377931c727d1abe73b30833123",
     "previous_full_tested_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
     "before": "The acquired/prepared bundle and qualified repair/publication adapters required an external local runner.",
@@ -63086,6 +63086,12 @@
         "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/native/002/cif-native-of0z904i/native_receipt.json",
         "sha256": "e509578a63e1e61182fa7fb63fd452e3c1e2ec45e171cc906b27c9878598dbba",
         "size": 469887
+      },
+      "auxiliary.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/auxiliary.json",
+        "sha256": "bb54dc1026f1ee8f799961bab3319d509c313bc004b0b0c1a4fe4863ec1f9a71",
+        "size": 1424
       }
     },
     "remaining": [
@@ -63094,6 +63100,9 @@
       "Automatic discovery, ordinary checkpoint adoption Q05, actual refinement consumer Q06 and experimental phosphate-state authority Q13."
     ],
     "generated_artifacts": "All scientific inputs/candidates/models/caches/native output, partial failures, logs/XML and runners remain local or ignored; no generated payload committed/uploaded.",
-    "handoff_author": "Rowan · Codex desktop"
+    "handoff_author": "Rowan · Codex desktop",
+    "implementation_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "implementation_published_on": "origin/cedar"
   }
 }

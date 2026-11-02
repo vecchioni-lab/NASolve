@@ -27882,7 +27882,7 @@
     },
     "prepared_repair_execution": {
       "milestone": "C160",
-      "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FULL_VALIDATED",
       "queue": "Q04 remains open",
       "contract": "docs/cif-doctor.md#maintained-prepared-bundle-repair-execution-c160",
       "evidence_key": "prepared_repair_execution_2026_11_02",
@@ -27894,7 +27894,8 @@
       ],
       "ordinary_adoption": false,
       "new_native_execution": true,
-      "full_regression": "7740 passed, 276 subtests passed in 1804.39s (0:30:04)"
+      "full_regression": "7740 passed, 276 subtests passed in 1804.39s (0:30:04)",
+      "full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
     }
   },
   "audience": [

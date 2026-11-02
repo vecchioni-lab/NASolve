@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C160 fully validated; publication pending: maintained native repair execution
+## C160 published: maintained native repair execution
 
 Base `4462bb22cec7f3377931c727d1abe73b30833123`; existing **cedar** only.
 Capsule `live_tests_directory/160_Cedar_repair-execution-wbdnci2a`.
@@ -83,8 +83,9 @@ Broader qualified continuation needs its own proof, without invented repair
 evidence. Q05 adoption, Q06 actual refinement and Q13 phosphate-state authority
 remain separate. No merge or ordinary adoption is implied. No active jobs.
 
-Full validation is complete; same-Cedar publication is pending. The prior
-full-tested commit remains `28a6c1b22be70f8480dbd6e755e601a1ef774353` until publication.
+Full-tested implementation `d9e481661edcc3a04404df250360b9db63184ae1` is published and verified
+on `origin/cedar`. It replaces `28a6c1b22be70f8480dbd6e755e601a1ef774353` as the
+latest full-tested implementation; this continuity update changes no runtime/test bytes.
 — Rowan · Codex desktop
 
 ## C159 published: exact-source retained fallback
