@@ -27845,7 +27845,7 @@
     },
     "cache_first_generation": {
       "milestone": "C158",
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "contract": "docs/cif-doctor.md#cache-first-owned-source-generation-c158",
       "evidence_key": "cache_first_generation_2026_11_02",
       "queue": "Q04",
@@ -27859,7 +27859,8 @@
         "Whole-acquisition identity/coordination and total budget",
         "Ordinary adoption/checkpoints and actual refinement consumer qualification"
       ],
-      "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST"
+      "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST",
+      "focused_validation_revision": "e7f202410f33016a031afe6093a0c3ec857ec082"
     }
   },
   "audience": [

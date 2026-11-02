@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C158 validated; publication pending: cache-first owned source generation
+## C158 published: cache-first owned source generation
 
 Base `691e4767898e99a8232247c7d853be130f809f28`; existing **cedar** only.
 Capsule `live_tests_directory/158_Cedar_cache-generation-_naiocxv`.
@@ -85,7 +85,8 @@ separate. No active jobs remain. Last full-tested implementation remains
 `28a6c1b22be70f8480dbd6e755e601a1ef774353` (7517 tests + 276 subtests); a new full
 integration gate is required before merging.
 
-Implementation is focused-validated; publication on existing Cedar is pending.
+Focused-tested implementation `e7f202410f33016a031afe6093a0c3ec857ec082` is published and verified
+on `origin/cedar`. This continuity update changes no runtime/test bytes.
 — Rowan · Codex desktop
 
 ## C157 published: durable source-generation requests and attempts

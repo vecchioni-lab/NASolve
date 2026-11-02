@@ -61330,7 +61330,7 @@
     "implementation_published_on": "origin/cedar"
   },
   "cache_first_generation_2026_11_02": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "milestone": "C158",
     "queue": "Q04 remains open",
     "base_revision": "691e4767898e99a8232247c7d853be130f809f28",
@@ -61935,6 +61935,8 @@
     ],
     "excluded_artifacts": "All scientific sources/dictionaries/models/native output, store copies, logs/XML and helpers remain local or ignored; no generated scientific payload committed or uploaded.",
     "handoff_author": "Rowan · Codex desktop",
+    "focused_validation_revision": "e7f202410f33016a031afe6093a0c3ec857ec082",
+    "implementation_published_on": "origin/cedar",
     "auxiliary": {
       "status": "PASS",
       "changed_files": [
