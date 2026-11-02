@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C155 validated: dictionary acquisition destination preflight
+## C155 published: dictionary acquisition destination preflight
 
 Base `f30ab9e8299a89cba7a3915f418b23478bf35949`; existing **cedar** only.
 Capsule `live_tests_directory/155_Cedar_acquisition-preflight-2dgozwxf`.
@@ -63,8 +63,9 @@ open for durable attempt identity, process ownership, bounded recovery and
 independently qualified fallback; Q05 owns ordinary adoption. Scientific workers
 and prior scientific evidence are unchanged. No active jobs remain.
 
-Publication pending; the previous full-tested implementation was
-`ea7f74c7c5f7e0df03972975650b27ae28eef94a`.
+Implementation/full-tested SHA `28a6c1b22be70f8480dbd6e755e601a1ef774353` is published and verified
+on `origin/cedar`. This continuity-only update changes no runtime/test bytes.
+Previous full-tested implementation: `ea7f74c7c5f7e0df03972975650b27ae28eef94a`.
 — Rowan · Codex desktop
 
 ## C154 published: absent-parallelity derivative integration and history policy

@@ -27810,13 +27810,14 @@
       "remote_verified": true
     },
     "dictionary_destination_preflight": {
-      "status": "IMPLEMENTED_FULL_VALIDATED; PUBLICATION_PENDING",
+      "status": "PUBLISHED_FULL_VALIDATED",
       "evidence": "docs/cif-linked-native-registration-evidence.json#dictionary_destination_preflight_2026_11_02",
       "contract": "docs/cif-doctor.md#persistent-local-reuse-of-qualified-repairs",
       "scope": "Read-only shared-resolver destination preflight before cache/adapters, with final recheck; not durable attempt management.",
       "completion_queue": "Q04 remains open",
       "schema_changes": false,
-      "new_native_execution": false
+      "new_native_execution": false,
+      "full_validation_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353"
     }
   },
   "audience": [

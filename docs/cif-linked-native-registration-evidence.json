@@ -60163,7 +60163,7 @@
     "full_tested_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a"
   },
   "dictionary_destination_preflight_2026_11_02": {
-    "status": "FULL_VALIDATED; PUBLICATION_PENDING",
+    "status": "PUBLISHED_FULL_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "f30ab9e8299a89cba7a3915f418b23478bf35949",
@@ -60299,6 +60299,8 @@
       "tests/test_cif_dictionary_store.py"
     ],
     "runtime_sha256": "0c9dc4c42a625fecab1ab9f2cfdd2f590bdcb816fe630df16229cb29a3f78485",
-    "regression_sha256": "87fda22c0b3602905826b540cdee0d6734d03cefda0767c532e530350b479a2b"
+    "regression_sha256": "87fda22c0b3602905826b540cdee0d6734d03cefda0767c532e530350b479a2b",
+    "full_validation_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+    "implementation_published_on": "origin/cedar"
   }
 }
