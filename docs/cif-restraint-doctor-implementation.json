@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-10-31",
+    "updated_date": "2026-11-02",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -27842,6 +27842,24 @@
       "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST",
       "last_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
       "focused_validation_revision": "9407d508a548ab9e883fb208f37c47fe19ddb266"
+    },
+    "cache_first_generation": {
+      "milestone": "C158",
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "contract": "docs/cif-doctor.md#cache-first-owned-source-generation-c158",
+      "evidence_key": "cache_first_generation_2026_11_02",
+      "queue": "Q04",
+      "ordinary_adoption": false,
+      "new_native_execution": true,
+      "summary": "Explicit cache-first acquisition maps exact source/recipe/producer and caller-verified consumer; misses perform one owned generation attempt, complete chemical reassessment and independent native qualification; stale evidence requalifies saved copies first.",
+      "remaining": [
+        "Independently qualified fallback and cross-recipe/older-entry candidate compatibility",
+        "Graph-selected repair composition",
+        "Source discovery and qualification adapter ownership",
+        "Whole-acquisition identity/coordination and total budget",
+        "Ordinary adoption/checkpoints and actual refinement consumer qualification"
+      ],
+      "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST"
     }
   },
   "audience": [

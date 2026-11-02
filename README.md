@@ -32,6 +32,10 @@ cache acquisition and supported connected-base construction are ordinary runtime
 features. Automatic repair on a cache miss, general modified-sugar mutation and
 end-to-end candidate adoption remain separate integration work.
 
+An explicit cache-first acquisition API now joins qualified reuse to bounded,
+owned source-generation attempts and independent native qualification. Complete
+acquisition recovery/fallback and ordinary adoption remain integration work.
+
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.
 Source-qualified graph repairs can also be frozen with their evidence and

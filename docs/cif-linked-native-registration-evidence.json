@@ -61328,5 +61328,654 @@
     ],
     "focused_validation_revision": "9407d508a548ab9e883fb208f37c47fe19ddb266",
     "implementation_published_on": "origin/cedar"
+  },
+  "cache_first_generation_2026_11_02": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "milestone": "C158",
+    "queue": "Q04 remains open",
+    "base_revision": "691e4767898e99a8232247c7d853be130f809f28",
+    "behavior_before": "Cache resolver and durable source generator were separate explicit APIs.",
+    "behavior_after": "Explicit cache-first acquisition maps exact source/recipe/producer and caller-verified consumer; misses perform one owned generation attempt, complete chemical reassessment and independent native qualification; stale evidence requalifies saved copies first.",
+    "prior_work": {
+      "cache": "5f90e70",
+      "ordinary_source_copying": "e441477",
+      "explicit_representation_policy": "d4c0e57",
+      "destination_preflight": "28a6c1b",
+      "generation_request": "9407d50"
+    },
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_generation_acquisition.py",
+      "tests/test_cif_generation_acquisition.py"
+    ],
+    "policy_id": "cif-source-generation-acquisition-v1",
+    "recipe_policy_id": "cif-source-preserving-generation-recipe-v1",
+    "schemas": "Store/snapshot/request/phase schemas unchanged; optional generation_acquisition provenance in existing dictionary entry.",
+    "compatibility": "Additive explicit API. Distinct recipe/backend family; older entries remain usable through their existing resolvers and are not relabelled. No ordinary PostMR/default/CLI/dependency change or migration.",
+    "validation_commands": [
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_generation_acquisition.py",
+        "tests/test_cif_dictionary_store.py",
+        "tests/test_cif_source_reuse.py",
+        "tests/test_cif_dictionary_policy.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_generation_attempt.py",
+        "tests/test_cif_generation_process.py",
+        "tests/test_cif_source_candidate.py",
+        "tests/test_cif_source_representation.py",
+        "--junitxml",
+        "{live_tests_directory}/158_Cedar_cache-generation-_naiocxv/affected-r2.xml"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_generation_acquisition.py",
+        "--junitxml",
+        "{live_tests_directory}/158_Cedar_cache-generation-_naiocxv/new-r3.xml"
+      ],
+      [
+        "{python}",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "{live_tests_directory}/158_Cedar_cache-generation-_naiocxv/workflow-r4.xml"
+      ],
+      [
+        "{python}",
+        "c158_native.py"
+      ],
+      [
+        "{python}",
+        "c158_cold.py"
+      ],
+      [
+        "{python}",
+        "c158_auxiliary.py"
+      ]
+    ],
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src"
+    },
+    "regression": {
+      "new_cases": 48,
+      "affected-r2": "386 passed in 47.79s",
+      "new-r3": "48 passed in 3.45s",
+      "workflow-r4": "893 passed, 45 subtests passed in 130.61s (0:02:10)",
+      "full": "NOT_RUN_BY_EXPLICIT_USER_REQUEST"
+    },
+    "last_full_tested_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+    "final_validation_source_files": 524,
+    "final_native_runtime_files": 193,
+    "validated_source_hashes_unchanged": true,
+    "native": {
+      "installed_build": "2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "execution": "ACTUAL; NOT_DRY_RUN",
+      "5PC_generation": {
+        "status": "COMPLETED",
+        "timeout_seconds": 120,
+        "returncode": 0,
+        "elapsed_seconds": 9.264788
+      },
+      "source_relative_hand": "PRESERVED",
+      "formal_charges_preserved": true,
+      "qualification_executions": 4,
+      "checks_per_qualification": 21,
+      "coordinates": "Source and generated coordinates, both fresh and requalification controls; matching covalent proxy signatures.",
+      "cache_hit": "Exact same entry; subprocesses forbidden; no qualification directory created; generation bytes/mtimes unchanged.",
+      "consumer_change": "Explicit descriptor change on same installed version; no claim of an actual Phenix upgrade.",
+      "PDU_generation": {
+        "status": "TIMED_OUT",
+        "timeout_seconds": 8,
+        "returncode": -15,
+        "elapsed_seconds": 8.046072
+      },
+      "PDU_selection": "No usable snapshot; sealed exhausted single attempt and partial output retained.",
+      "scope": "Isolated dictionary acquisition/usability only; no ReadySet, Coot, linked-site qualification, graph repair, model optimization or diffraction refinement."
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_files": 626,
+      "new_cold_snapshot_files": 6,
+      "original_files_bytes_mtimes_unchanged": true,
+      "original_owned_path_absent": true,
+      "historical_checkout_science_and_sdk_reads": "DENIED",
+      "external_execution": "DENIED",
+      "replay": {
+        "status": "PASS",
+        "cases": {
+          "first": {
+            "entry_id": "d786e482bd279ac231f50079bc820f658855fe1cce5060fb235c3483648e3d1a",
+            "native_usable": true
+          },
+          "hit": {
+            "entry_id": "d786e482bd279ac231f50079bc820f658855fe1cce5060fb235c3483648e3d1a",
+            "native_usable": true
+          },
+          "requalified": {
+            "entry_id": "b3a795131b4dfc9562febe90b9295449a3c7a33132a1ad0e3bed6974c1e52630",
+            "native_usable": true
+          },
+          "5PC": {
+            "availability": "AVAILABLE",
+            "attempts": 1
+          },
+          "PDU": {
+            "availability": "EXHAUSTED",
+            "attempts": 1
+          },
+          "cold_hit": {
+            "entry_id": "d786e482bd279ac231f50079bc820f658855fe1cce5060fb235c3483648e3d1a",
+            "status": "REUSED"
+          }
+        },
+        "external_execution": "DENIED",
+        "historical_paths": "DENIED"
+      }
+    },
+    "evidence_refs": {
+      "stopping-before.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/stopping-before.log",
+        "sha256": "8cbdc29402ff6fd9f4c9eaee6ab556aa30de2c90d21d20ed75807c1c8cb5fa77",
+        "size": 6105
+      },
+      "native/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native/summary.json",
+        "sha256": "d02b543b67d61bc1407b82a788363d74eb31b7c1fbae634eb56cebb30b81da0d",
+        "size": 2503067
+      },
+      "cold-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/cold-result.json",
+        "sha256": "83db63927dfa1814b6273597c8d75c6af8a4cee36bcb300a6e3085ba70ef1e77",
+        "size": 1616
+      },
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/base.json",
+        "sha256": "78ba6bc800b42922151729e1b93036c0f5bad7f886e8c63fdc8b762ec8659d2f",
+        "size": 177
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/before.log",
+        "sha256": "edd5ae2ba6406e667edbac8a6ff2744f5c75d040d0e4b3cb830b5c0f698261ef",
+        "size": 1044
+      },
+      "eligibility-before.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/eligibility-before.log",
+        "sha256": "0c671922be0d9eb5de4fcb9606bd6ab6d2c1dd4cf7d71245e51adf91177e51a1",
+        "size": 2548
+      },
+      "initial.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/initial.log",
+        "sha256": "335b72d2c44f8aab727f3cd423fea0a6c6435c046b4fe75faa698a78a610f645",
+        "size": 99
+      },
+      "expanded.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/expanded.log",
+        "sha256": "95078ebb9ef088e94356083e876e3115f382749ba1ad1e20f1bdad2c19c181dc",
+        "size": 99
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/new.log",
+        "sha256": "a1b6fa986b807ed3ce03ef3a700de1e0f0a060acb1d33bf7ff13655d59710a03",
+        "size": 2445
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/new-result.json",
+        "sha256": "c47ac9fb4d7c44e0b13071f7b762f751d4015c709f9c363a126d11ff6a7c40b3",
+        "size": 576
+      },
+      "workflow-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/workflow-r2.log",
+        "sha256": "5ddd6cdb187db1d82af403f373784c5fd3ea89ad016c451827f30db1902c081f",
+        "size": 7442
+      },
+      "workflow-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/workflow-r2-result.json",
+        "sha256": "fa0b0ed7a36de8aa06d552834a7638541e8eedded4f26b51aba08ef7ec10e540",
+        "size": 496
+      },
+      "cold-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/cold-r2.log",
+        "sha256": "2e4d3d6d582471ddf4901b5510c8abf892ce36cafd0a2557b255c858e5cf1ca0",
+        "size": 658
+      },
+      "cold-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/cold-r2-result.json",
+        "sha256": "add1a299f7a65509c5e19c38e6534370b1b948ddb707ab66941189c09b56fc0c",
+        "size": 1616
+      },
+      "native-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/summary.json",
+        "sha256": "17d3bf0e005653983068c930601e0947c49b0fd691f73e31b9c8d0d6def42e11",
+        "size": 2503516
+      },
+      "native-r2/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/installation.json",
+        "sha256": "cc36a5e7d4113657b9958922076cbd4136b7607e5f66b35ce369dd4c95cb9fa2",
+        "size": 114
+      },
+      "native-r2/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/parent-inputs.json",
+        "sha256": "4f3c1ead0aa30a55da06cd2f8dea5fb7d05a5bf002718f4eac4883992549ed8d",
+        "size": 403
+      },
+      "native-r2/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/runtime-sources.json",
+        "sha256": "c9712ae2b63ffc2a4905898268c601071a80f97f82bdaabc90ef4719c3ae83ff",
+        "size": 20966
+      },
+      "native-r2/fresh_sources/source_capture.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/fresh_sources/source_capture.json",
+        "sha256": "ed78b7ca1aaa52b0c09ce895668b15362daa3ce94de86effd9ebae135b045495",
+        "size": 2010
+      },
+      "affected-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/affected-r2.log",
+        "sha256": "a5c4c5bf07b121071cfc01adafbff8e1e80c0af71c78d02f8baed19befeb1752",
+        "size": 501
+      },
+      "affected-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/affected-r2.xml",
+        "sha256": "79180709a203cf8447f5e4efa1274bb460dbf853e64084ff3483bf72389e8f98",
+        "size": 60866
+      },
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/affected-r2-result.json",
+        "sha256": "0c4e95b92726d10cd5576873f04aa4bd012bc0329c3a26e19d576956cea889bf",
+        "size": 938
+      },
+      "affected-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/affected-r2-sources.json",
+        "sha256": "1b7df0d51c71da0e1436253791bdc8593dbca405e6c268aeb80b2e24ff610014",
+        "size": 56710
+      },
+      "new-r3.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/new-r3.log",
+        "sha256": "cc4f427978a528e6019d68eb7540cdc94a0a7ba2a6803897083505258ac768e4",
+        "size": 99
+      },
+      "new-r3.xml": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/new-r3.xml",
+        "sha256": "c88054d0d468e770a9ca6d9cceb28fb5a3120888427ed9b977973ace6f4e95e8",
+        "size": 7902
+      },
+      "new-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/new-r3-result.json",
+        "sha256": "9e4377b85e4c5026ff2bba0e851edb881e2e07536cbbc914934bd18448e71a92",
+        "size": 582
+      },
+      "new-r3-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/new-r3-sources.json",
+        "sha256": "1b7df0d51c71da0e1436253791bdc8593dbca405e6c268aeb80b2e24ff610014",
+        "size": 56710
+      },
+      "workflow-r4.log": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/workflow-r4.log",
+        "sha256": "b06408d6150b9010ed212ac0e9c77fbeeaba31e4bc0fdf3a2f02a0aa26b300f5",
+        "size": 5158
+      },
+      "workflow-r4.xml": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/workflow-r4.xml",
+        "sha256": "3d4ade940315d258eacf89e5c40028cc6dc0440160538a4e8bea1db3a01c6b6f",
+        "size": 133673
+      },
+      "workflow-r4-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/workflow-r4-result.json",
+        "sha256": "3712be28ff6f399a2f3d9f4239d5260106a7cb2d4b2dc992261d3f3fcdf35bd4",
+        "size": 496
+      },
+      "workflow-r4-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/workflow-r4-sources.json",
+        "sha256": "1b7df0d51c71da0e1436253791bdc8593dbca405e6c268aeb80b2e24ff610014",
+        "size": 56710
+      },
+      "native-r2/5PC-request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/request.json",
+        "sha256": "7660afcaa375796e88eae63e066666bd8dbaad73042988e3469e5ad52b054e72",
+        "size": 2628
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/attempt.json",
+        "sha256": "410dc89089da079586776bac9d2a772cf3cb58da83f39caf51be1b723b923513",
+        "size": 696
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/finished.json",
+        "sha256": "d81a8f4a2eefa0b52114dda6136ac9637d9142931fedfc1abec0e89e56430ef0",
+        "size": 1111
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/generation/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/generation/source_candidate_receipt.json",
+        "sha256": "684657ee9fd6619e211f4b3e9292c46c9c3e1524df77165d8e81db14c21752f7",
+        "size": 558955
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/generation/execution/capabilities/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/generation/execution/capabilities/job.json",
+        "sha256": "5a16f8dfeeab07ff1ed9cc5e59ecc2796da1750cfd5c5543ca2232a89b5e71e4",
+        "size": 1454
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/generation/execution/capabilities/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/generation/execution/capabilities/process.json",
+        "sha256": "be2d2666785e85f5e4b3cc3a55fb2d8e92fc46f06fadb65033f7eacc80b8ed97",
+        "size": 482
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/generation/execution/capabilities/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/generation/execution/capabilities/finished.json",
+        "sha256": "462d26715b9c78f94f293893f861eec206ea56d9e7e6987b43b1f7e82a4c4e35",
+        "size": 451
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/generation/execution/candidate/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/generation/execution/candidate/job.json",
+        "sha256": "db042ee290aa101cfaef8c354240afa1788b69c1f58fe513ff078e78c8649507",
+        "size": 1522
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/generation/execution/candidate/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/generation/execution/candidate/process.json",
+        "sha256": "7b25fb385e8b4c755677e783ee46d0097c39ef0a9d66fc6e69baa5b4f97391c2",
+        "size": 482
+      },
+      "native-r2/5PC-request/attempts/attempt-0001/generation/execution/candidate/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/5PC-request/attempts/attempt-0001/generation/execution/candidate/finished.json",
+        "sha256": "f44c57b9755d33d417f92469b4f12e2d02b3f0cccb8d9664d3feafbbd2e63f76",
+        "size": 449
+      },
+      "native-r2/PDU-request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/request.json",
+        "sha256": "74ec817d3ebeaf56ae46fcaf4659c9be7604d8900c3c2f696a380cb147dc43f0",
+        "size": 2626
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/attempt.json",
+        "sha256": "bc6f8d3d4d9a051a036e55901f53ed2f795af5028d50cd48cc5815225d27503d",
+        "size": 696
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/finished.json",
+        "sha256": "a3776e7ac5040efbbd49282df0d51939890fe5780cb8ea6c8a78a8868523e7cf",
+        "size": 1110
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/generation/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/generation/source_candidate_receipt.json",
+        "sha256": "98b7f052d2c84727595a827e7c05eaca6aaaedd7d0e8a0861bfc30143beaa30d",
+        "size": 11712
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/generation/execution/capabilities/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/generation/execution/capabilities/job.json",
+        "sha256": "434ff0d8ec0721a65061da92449143f79d077424362a16e57b8e218bea72533f",
+        "size": 1451
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/generation/execution/capabilities/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/generation/execution/capabilities/process.json",
+        "sha256": "71860779a3ee960f17316f8b0c9106ee7675d805a7deebd4411a120cf0ac1144",
+        "size": 482
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/generation/execution/capabilities/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/generation/execution/capabilities/finished.json",
+        "sha256": "177ea73fc906afd6208d5ac93374d6919978dc79d7a2587ef03ff599d7c0bb38",
+        "size": 450
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/generation/execution/candidate/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/generation/execution/candidate/job.json",
+        "sha256": "edc4e26e9dfbcc424c3780ba871be9d1fc85ab6ea5699be896c29b00a91ad7d1",
+        "size": 1518
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/generation/execution/candidate/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/generation/execution/candidate/process.json",
+        "sha256": "30e76dc030baf6bc739fd8afdac20d9516657a8263124cdbfcd425717fc9b224",
+        "size": 482
+      },
+      "native-r2/PDU-request/attempts/attempt-0001/generation/execution/candidate/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/PDU-request/attempts/attempt-0001/generation/execution/candidate/finished.json",
+        "sha256": "495a97f189e6bce6a45bd99e9e6ee5ce4ce8286cb70f8a2e2b684687c7213b57",
+        "size": 464
+      },
+      "native-r2/first/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/first/resolution.json",
+        "sha256": "09cf0f74ffba9c65a4e0ee1e6f626113c52a3265ad3e7fc6ffcf7f4335711345",
+        "size": 1062
+      },
+      "native-r2/first/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/first/entry/manifest.json",
+        "sha256": "d786e482bd279ac231f50079bc820f658855fe1cce5060fb235c3483648e3d1a",
+        "size": 5525
+      },
+      "native-r2/first/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/first/entry/qualification.json",
+        "sha256": "bd0cdedd7b9c3680498bd493a96e3532af773c847bcaec7ae570699d25c3f923",
+        "size": 190347
+      },
+      "native-r2/first/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/first/entry/provenance.json",
+        "sha256": "e8181140baa1672aa5ec8ee2f25d6914bed3fc77175f9f9e0a5fd4ac0beff552",
+        "size": 6553
+      },
+      "native-r2/hit/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/hit/resolution.json",
+        "sha256": "c019ed6d3c848d9bc8c864f6047d94bcea363bd0b4178014d12c191a6947c4eb",
+        "size": 1058
+      },
+      "native-r2/hit/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/hit/entry/manifest.json",
+        "sha256": "d786e482bd279ac231f50079bc820f658855fe1cce5060fb235c3483648e3d1a",
+        "size": 5525
+      },
+      "native-r2/hit/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/hit/entry/qualification.json",
+        "sha256": "bd0cdedd7b9c3680498bd493a96e3532af773c847bcaec7ae570699d25c3f923",
+        "size": 190347
+      },
+      "native-r2/hit/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/hit/entry/provenance.json",
+        "sha256": "e8181140baa1672aa5ec8ee2f25d6914bed3fc77175f9f9e0a5fd4ac0beff552",
+        "size": 6553
+      },
+      "native-r2/requalified/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/requalified/resolution.json",
+        "sha256": "0745447873612a44a9435136a89fc779b42f54e998ef22a78bc0d5c3ca0a4de2",
+        "size": 1065
+      },
+      "native-r2/requalified/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/requalified/entry/manifest.json",
+        "sha256": "b3a795131b4dfc9562febe90b9295449a3c7a33132a1ad0e3bed6974c1e52630",
+        "size": 5605
+      },
+      "native-r2/requalified/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/requalified/entry/qualification.json",
+        "sha256": "bd0cdedd7b9c3680498bd493a96e3532af773c847bcaec7ae570699d25c3f923",
+        "size": 190347
+      },
+      "native-r2/requalified/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/requalified/entry/provenance.json",
+        "sha256": "e8181140baa1672aa5ec8ee2f25d6914bed3fc77175f9f9e0a5fd4ac0beff552",
+        "size": 6553
+      },
+      "native-r2/first-qualification/qualification-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/first-qualification/qualification-summary.json",
+        "sha256": "b3b0ce480b8aaa0150647314ae2e108764af1e968e95497a1d83cfb74a01ad63",
+        "size": 1119297
+      },
+      "native-r2/second-qualification/qualification-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/second-qualification/qualification-summary.json",
+        "sha256": "e1eb79128e43ce9600692658044b368eec304621b2b7242d8994bf274a9b5a27",
+        "size": 1119299
+      },
+      "native-r2/first-qualification/native/source_seed/cif-native-pmwo1ir5/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/first-qualification/native/source_seed/cif-native-pmwo1ir5/native_receipt.json",
+        "sha256": "da1f7e960fbd6ead78c635961d0dd3a41a7d2815a60eb2a577c3f8ee5703eb60",
+        "size": 249053
+      },
+      "native-r2/first-qualification/native/candidate_seed/cif-native-vqpooaec/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/first-qualification/native/candidate_seed/cif-native-vqpooaec/native_receipt.json",
+        "sha256": "6c7f4583296a7e591eed70dafc9ff99272bbcecaf4a3de71db620ea66b93fb8c",
+        "size": 249091
+      },
+      "native-r2/second-qualification/native/source_seed/cif-native-r_3zjr2j/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/second-qualification/native/source_seed/cif-native-r_3zjr2j/native_receipt.json",
+        "sha256": "f8048159313a71e7d87822c6d1b1068901c3cda4255c377f9287ec72a7f31e47",
+        "size": 249057
+      },
+      "native-r2/second-qualification/native/candidate_seed/cif-native-pgp7nryr/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/native-r2/second-qualification/native/candidate_seed/cif-native-pgp7nryr/native_receipt.json",
+        "sha256": "05fe408bdc1c8140e6581b7c9181377dac296a7371004d21328f6f94ad1a8103",
+        "size": 249095
+      },
+      "auxiliary-r3.json": {
+        "anchor": "live_tests_directory",
+        "path": "158_Cedar_cache-generation-_naiocxv/auxiliary-r3.json",
+        "sha256": "f124440e3e4fa6b2a9104d69a7d4a68809d194f7f233ec3a7d821613623aab87",
+        "size": 1368
+      }
+    },
+    "retained_intermediate_outcomes": [
+      "Missing API reproduced before implementation.",
+      "Unknown convergence was incorrectly labelled false and original diagnostics were dropped; three before-fix controls reproduced this. Final fresh native/cold evidence is native-r2/cold-r2; original native/cold results remain intermediate.",
+      "A strict generator-status gate refused a retained independently qualifiable candidate; complete-candidate reassessment now owns chemistry eligibility.",
+      "A strengthened unoriented-volume fixture incorrectly expected legacy inspection to reject; it already reports review. Corrected the fixture and explicitly modeled a post-write reporting failure; runtime chemistry remained unchanged. Failed new/workflow-r2 results retained."
+    ],
+    "remaining": [
+      "Independently qualified fallback and cross-recipe/older-entry candidate compatibility",
+      "Graph-selected repair composition",
+      "Source discovery and qualification adapter ownership",
+      "Whole-acquisition identity/coordination and total budget",
+      "Ordinary adoption/checkpoints and actual refinement consumer qualification"
+    ],
+    "excluded_artifacts": "All scientific sources/dictionaries/models/native output, store copies, logs/XML and helpers remain local or ignored; no generated scientific payload committed or uploaded.",
+    "handoff_author": "Rowan · Codex desktop",
+    "auxiliary": {
+      "status": "PASS",
+      "changed_files": [
+        "CHANGELOG.md",
+        "README.md",
+        "docs/README.md",
+        "docs/architecture.md",
+        "docs/cif-doctor-completion-queue.md",
+        "docs/cif-doctor-human-overview.md",
+        "docs/cif-doctor.md",
+        "docs/cif-linked-native-registration-evidence.json",
+        "docs/cif-restraint-doctor-implementation.json",
+        "docs/development-handoff.md",
+        "scripts/run_tests.py",
+        "src/nasolve/cif_generation_acquisition.py",
+        "tests/test_cif_generation_acquisition.py"
+      ],
+      "relative_document_links": 130,
+      "changed_json": "PASS",
+      "whitespace": "PASS",
+      "compileall": {
+        "command": [
+          "{python}",
+          "-m",
+          "compileall",
+          "-q",
+          "src",
+          "tests"
+        ],
+        "returncode": 0,
+        "cache": "EXTERNAL_LOCAL_CAPSULE"
+      },
+      "scientific_generator_worker_ownership_auditors_store_and_ordinary_callers": "UNCHANGED_BYTES",
+      "final_workflow_source_files": 524,
+      "final_native_runtime_files": 193,
+      "final_source_hashes_unchanged": true,
+      "runtime_test_sha256": {
+        "scripts/run_tests.py": "eb29e050fccee9fd609b6ad224cc8bce577a836f20e6cdc4a5abd8288e8af0e5",
+        "src/nasolve/cif_generation_acquisition.py": "4ea5cdd50b363017d36d0c0878d190e5bee627320eef332c0ed75f003de02057",
+        "tests/test_cif_generation_acquisition.py": "ef7a34dc88b7de32f7ea312e2035671a2a98d101ce2e175dedd1a48da1bbf0b7"
+      }
+    }
   }
 }

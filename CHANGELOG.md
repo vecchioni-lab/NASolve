@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Cache-first owned source generation (C158)
+
+- Add an explicit acquisition API composing qualified dictionary reuse with
+  immutable source-generation attempts. A current hit skips generation and
+  qualification; a changed consumer requalifies saved bytes before generation.
+  Without a qualification adapter, misses remain non-mutating.
+- Map the declared source authority, reader dialect, step budget, representation
+  policy and producer family into a distinct reusable recipe. Native pins/version
+  remain producer provenance; execution deadlines/attempt limits stay frozen in
+  the generation request. Existing recipes/entries retain their meaning.
+- Independently reassess retained candidate chemistry, then require complete
+  current native evidence before publication. Qualification uses disposable
+  copies and cannot silently change source/candidate/consumer inputs. Preserve
+  every failed attempt; no automatic retry or unqualified source fallback.
+- Preserve unknown convergence as unknown; a lack of a convergence claim is
+  not evidence of nonconvergence. Freeze original stopping, execution and error
+  diagnostics with the usable dictionary, including post-write failures.
+- Store schema 1 and snapshot readers remain unchanged. New optional acquisition
+  provenance records exact request/consumer and generation identities. This is
+  an explicit component API, not ordinary PostMR adoption or whole-acquisition
+  ownership/deadline/fallback. No CLI, dependency or chemistry threshold change.
+
 ### Durable source-generation requests and attempts (C157)
 
 - Add an explicit request-owned generation API with an exact frozen source,

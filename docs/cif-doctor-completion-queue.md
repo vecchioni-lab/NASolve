@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-02, after C157.** This queue owns unfinished
+**Current planning authority, 2026-11-02, after C158.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -159,14 +159,24 @@ retries preserve partial output and consume a fresh reservation. A real macOS
 timezone identity regression is fixed. Separate request directories remain
 separate coordination scopes, and the legacy one-shot API remains available.
 
-**Next bounded checkpoint:** connect the owned generation-request API to the
-cache-first acquisition boundary with a defined exact source/current-consumer
-request mapping. A hit must avoid generation; a miss must reuse the same durable
-request scope, preserve bounded failures and independently qualify any fallback.
-Source discovery and other native/qualification adapters still need appropriate
-ownership coverage before claiming a fully owned acquisition. Define the total
-acquisition budget across these phases; C157 bounds explicit generation attempts
-only. No automatic retry loop or ordinary adoption is enabled by C157.
+C158 closes the explicit cache-first generation bridge: a current hit skips
+generation, stale consumer evidence requalifies saved copies first, and a miss
+performs one owned attempt plus independent chemical/native qualification.
+Its distinct recipe maps source authority, dialect, steps and representation
+permission; old recipes/producer identities are not silently relabelled. Actual
+5PC generation/qualification/reuse and bounded PDU failure pass, with cold cache
+reuse after relocation. This is an explicit component API, not ordinary adoption.
+
+**Next bounded checkpoint:** compose an independently qualified retained fallback
+and graph-repair candidate with this acquisition boundary. Include exact-source
+older-recipe candidates without silently changing their recipe or producer; the
+C153 saved entries remain available through their existing resolver. Requalify
+for the current declared source/consumer/policy before selection, and preserve
+failed generation/qualification attempts. Avoid a second numerical/chemical gate.
+Complete acquisition coordination must cover qualification/source-discovery
+ownership and a total budget; C158 owns generation only and accepts a caller-owned
+qualification adapter. Keep these explicit sub-gates under Q04 before ordinary
+automation. No automatic retry loop or unqualified-source usability is enabled.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;

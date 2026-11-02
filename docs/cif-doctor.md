@@ -100,7 +100,7 @@
 
 <a id="current-capability-boundary-c152"></a>
 
-## Current capability boundary (C157)
+## Current capability boundary (C158)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -122,7 +122,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Source-generation ownership | C156 owns help/build process groups; C157 adds frozen exact requests, finite immutable attempts, persistent locks, exact parent bindings and conservative coordinator/worker recovery. Actual 5PC completion, bounded PDU attempts, interruption and cold replay pass. | Explicit generation API only. Callers must share a request scope; source discovery, complete cache-first acquisition, independently qualified fallback and ordinary adoption remain Q04/Q05. Process completion is not chemical usability. |
+| Cache-first owned generation | C156/C157 own generation phases and finite immutable attempts. C158 composes explicit source/recipe/consumer cache lookup, saved-byte requalification and one owned generation attempt with independent native qualification. Actual 5PC acquisition/reuse, bounded PDU failure and cold replay pass. | Explicit component API only. Cross-recipe fallback, graph-repair composition, complete acquisition ownership/budget, source discovery and ordinary adoption remain Q04/Q05. Process completion is not chemical usability. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -170,6 +170,76 @@ author CIFs, choose implementation flags or adjudicate routine technical faults.
 Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
+
+### Cache-first owned source generation (C158)
+
+`cif_generation_acquisition.resolve_generated_dictionary` composes the existing
+qualified store and C157 attempt owner. It accepts an explicit selected source,
+authority, caller-verified current-consumer identity, native generation controls,
+shared request directory, fresh qualification directory and run snapshot path.
+It does not discover or independently verify a consumer installation: the caller
+must supply that identity and a native qualification adapter appropriate to it.
+
+`generation_dictionary_options` defines the new
+`cif-source-preserving-generation-recipe-v1` recipe: reader dialect, optimization
+step budget and optional supported bond-representation policy. The complete
+source/authority and recipe enter the existing store key. Producer family is
+`phenix.elbow.source-preserving`; native source pins and version record original
+production. Incidental capture paths are excluded. A producer upgrade can reuse
+qualified bytes or requalify them for a new consumer. Timeout/attempt allowances
+do not change chemical cache identity, but cannot be relaxed in an existing
+generation request. This deliberately distinct recipe does not relabel older
+entries; existing resolvers still consume them. Cross-recipe candidate/fallback
+selection remains Q04 work and requires explicit compatibility/qualification.
+
+Destination checks precede lookup and callbacks. Snapshot, qualification,
+generation request and store scopes are separate, and none may contain or sit
+inside the selected installation. A current hit freezes the existing dictionary
+without reading installed builder files, invoking adapters or creating a
+qualification/request directory. Stale consumer evidence requalifies saved
+numerics first, preserving their original producer and stopping notes. Failure
+does not fall through to generation. Without a qualifier, MISS or
+REQUALIFICATION_REQUIRED returns without acquisition.
+
+On a miss, one call performs at most one C157 attempt in the supplied shared
+scope. A retained regular candidate must match its sealed receipt and pass the
+existing complete-candidate chemical reassessment; an exit/status label is not
+a chemical verdict. The independent native adapter receives disposable source,
+candidate and consumer copies plus a fresh native output path. It returns the
+existing complete isolated usability record. Input mutations refuse, and the
+store independently validates source, native and explicit-policy evidence before
+publication. Generation evidence is rechecked after qualification. All failed
+copies and partial outputs remain for diagnosis; repeating a miss uses a fresh
+qualification folder and consumes a fresh generation attempt. Unknown/live
+generation ownership or exhausted allowance still blocks through C157.
+
+There is no new snapshot schema. Optional `generation_acquisition` provenance
+under `cif-source-generation-acquisition-v1` retains the exact store request,
+consumer, UUIDs and request/attempt/completion/receipt digests. Those digests are
+historical provenance, not an operational dependency on the old request path or
+proof of scientific usability. Original stopping, execution, diagnostic and error
+records are retained too. Unknown convergence remains null; only explicitly
+reported nonconvergence/iteration-limit stopping maps to false. The absence of a
+convergence claim never establishes nonconvergence or a new acceptance gate. Frozen dictionaries continue to use the existing
+independent source/native checks after relocation.
+
+This explicit composition does not yet select independently qualified fallbacks,
+apply graph-selected repairs, coordinate the complete qualification lifecycle,
+own source discovery or impose a total acquisition deadline. Native execution
+inside the qualifier remains the adapter's responsibility. Separate request
+directories are separate generation scopes. No ordinary PostMR call is switched,
+and no linked-site/model/refinement or experimental phosphate-state qualification
+is inferred. Q04 remains open; Q05/Q06 own adoption and refinement.
+
+Actual Phenix **2.2.1-6174** (dispatcher **2.2.1**) controls generate 5PC, pass
+21 isolated checks at both source/generated coordinates, reuse without execution,
+and requalify for an explicitly changed consumer descriptor without regeneration.
+That descriptor change is a same-installation control, not a Phenix upgrade.
+A deliberate eight-second PDU timeout retains its attempt and publishes no usable
+snapshot. Cold replay reads three snapshots and both sealed requests, then
+reuses the relocated store with historical science/SDK reads and execution denied.
+Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
 
 ### Durable source-generation requests and attempts (C157)
 

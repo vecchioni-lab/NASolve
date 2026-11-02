@@ -1778,6 +1778,33 @@ layers; cache reuse never certifies a new crystal. C66 uses saved Phenix
 resource-file qualification. It does not upload chemistry, change native
 mechanics or ask students to inspect CIFs.
 
+C158 connects the store to that generator through an explicit component API.
+A qualified hit avoids generation entirely. If the consumer changes, NASolve
+qualifies the saved numerical bytes before considering generation. On a miss it
+uses one immutable generation attempt, reassesses the retained file against its
+declared chemistry, and requires independent native evidence before storing it.
+The qualifier works on copies; a failure preserves both prior evidence and its
+new partial work. A process error or iteration limit alone cannot decide whether
+a retained dictionary is chemically usable.
+Unknown convergence remains unknown, and original stopping/error diagnostics
+travel with the saved dictionary instead of being lost on reuse.
+
+Methods: derive a source/authority/recipe key from declared dialect, step budget
+and representation permission; preserve producer version/source pins separately
+from the current consumer; consult the existing validated store; use the shared
+attempt owner only on a miss; check the complete-candidate and native usability
+contracts before atomic store/run publication. SHA-256/UUID provenance links
+generation to the selected bytes without making old machine paths operational.
+No new force field, chemistry thresholds or dependency is introduced.
+
+Actual Phenix 2.2.1-6174 controls qualify a fresh 5PC dictionary, reuse it without
+execution and requalify the same bytes for an explicit consumer-identity control.
+A timed-out PDU attempt is retained without publishing a usable result. The
+new recipe remains distinct from older entries; compatibility-based fallback,
+graph repair, complete acquisition ownership/deadline and ordinary adoption
+remain work. This is an explicit engine component, not a change to the ordinary
+workflow diagram. See the [C158 contract](cif-doctor.md#cache-first-owned-source-generation-c158).
+
 C157 gives that generator a durable request owner. A request freezes its source,
 recipe, native pins and finite attempt allowance. A persistent lock prevents
 overlapping calls to the same request; retries receive fresh numbered folders
@@ -1790,8 +1817,8 @@ and inspected without the original installation. The implementation also fixes
 a macOS timezone ambiguity that could misidentify a live coordinator as dead.
 
 This explicit API supplies execution safety for the future background engine.
-It does not yet connect ordinary cache misses, source discovery, current-consumer
-qualification or automatic fallback/adoption. It never infers chemistry from
+C158 composes explicit cache misses and current-consumer qualification; ordinary
+cache-miss continuation, source discovery and automatic fallback/adoption remain open. It never infers chemistry from
 process exit. The [request contract](cif-doctor.md#durable-source-generation-requests-and-attempts-c157)
 defines its scope, immutable records and finite per-attempt policy.
 

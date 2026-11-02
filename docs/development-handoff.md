@@ -11,6 +11,83 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C158 validated; publication pending: cache-first owned source generation
+
+Base `691e4767898e99a8232247c7d853be130f809f28`; existing **cedar** only.
+Capsule `live_tests_directory/158_Cedar_cache-generation-_naiocxv`.
+Before, the cache resolver and request-owned generator were separate APIs.
+After, an explicit bridge maps source/authority/recipe/producer and a caller-
+verified consumer, reuses qualified numerics first, requalifies saved bytes for
+changed consumers, and performs one owned generation attempt on a miss.
+Retained output must pass the existing complete-candidate and independent native
+qualification gates before publication. Qualification uses disposable copies;
+mutated inputs/consumer or changed generation evidence refuse. Failures preserve
+partial work and never turn the ordinary source into a usability verdict.
+
+Prior-work review: C66 `5f90e70`, C68 `e441477`, C135 `d4c0e57`, C155 `28a6c1b`
+and C156/C157 supply reuse, source copies, representation, preflight and ownership.
+No replacement chemistry gate, retry loop or native worker was introduced.
+The new explicit recipe binds dialect, steps and representation permission;
+generation request limits remain independently frozen. Producer upgrades preserve
+credit for saved bytes. Old recipe entries remain valid through their existing
+resolvers; this API does not silently relabel or automatically select them.
+
+**Actual Phenix 2.2.1-6174**, dispatcher **2.2.1**, not dry-runs: fresh 5PC
+generation completes in **9.26s**, preserving source hand/charge.
+Two source/generated coordinate checks pass all **21** isolated checks, followed
+by an exact cache hit with subprocesses forbidden. An explicit changed consumer
+descriptor triggers two fresh qualifications of the same bytes, without another
+generation. This is a same-installation identity control, not a software upgrade.
+PDU stops at its **eight-second** limit (8.05s with cleanup), retaining
+one sealed exhausted attempt and no usable snapshot. No ReadySet, Coot, graph
+repair, linked/model adoption or diffraction refinement executes.
+
+**Focused tests only; no full suite.** 48 passed in 3.45s (48 new cases).
+Affected: **386 passed in 47.79s**. Final workflow:
+**893 passed, 45 subtests passed in 130.61s (0:02:10)**. All 524 final test-source hashes and
+193 native-runtime hashes remain exact. Missing-API/strict-status before
+results and a corrected test-fixture assumption are preserved. The final retained-
+output fixture includes supported omitted unoriented volume terms with complete
+native tetrahedral coverage; no chemical gate was weakened. Unknown convergence
+remains unknown; original stopping/execution/error diagnostics survive reuse.
+
+Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_generation_acquisition.py
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_generation_acquisition.py tests/test_cif_dictionary_store.py tests/test_cif_source_reuse.py tests/test_cif_dictionary_policy.py tests/test_cif_candidate_usability.py tests/test_cif_generation_attempt.py tests/test_cif_generation_process.py tests/test_cif_source_candidate.py tests/test_cif_source_representation.py
+python scripts/run_tests.py workflow --junitxml <capsule>/workflow-r4.xml
+python c158_native.py
+python c158_cold.py
+python c158_auxiliary.py
+```
+
+Cold replay preserves all **626** copied files' bytes/timestamps after
+the owned original path is gone. Three snapshots and two sealed requests replay;
+the relocated store supplies a new six-file snapshot with historical checkout,
+science and SDK reads and external execution denied. Existing snapshot readers
+need no generation directory to validate selected chemistry/native evidence.
+
+Changed: new `cif_generation_acquisition.py`, its tests and workflow profile;
+README, changelog, subsystem/architecture/human contracts, index, queue, handoff
+and both ledgers. Store/snapshot/request schemas and scientific worker/auditor
+bytes remain unchanged; optional acquisition provenance is additive. No migration,
+CLI or default PostMR change. Inputs, native output, cache copies, logs/XML and
+helpers stay local/ignored; no generated scientific payload is committed/uploaded.
+Exact commands/hashes are in `cache_first_generation_2026_11_02`.
+
+**Next under Q04:** independently qualified fallback, including exact-source
+older-recipe candidates without relabelling provenance, and graph-selected repair
+composition. Source discovery/qualification ownership, whole-acquisition identity
+and total budget remain open. C158 owns generation, not arbitrary qualifier jobs.
+Q05 adoption, Q06 refinement and Q13 mixed-scaffold phosphate authority remain
+separate. No active jobs remain. Last full-tested implementation remains
+`28a6c1b22be70f8480dbd6e755e601a1ef774353` (7517 tests + 276 subtests); a new full
+integration gate is required before merging.
+
+Implementation is focused-validated; publication on existing Cedar is pending.
+— Rowan · Codex desktop
+
 ## C157 published: durable source-generation requests and attempts
 
 Base `19a1ebbecb472f304edfc1c98fc2b83b1fd6b567`; existing **cedar** only.

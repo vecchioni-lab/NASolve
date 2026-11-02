@@ -1027,6 +1027,16 @@ source/native/site gates and adoption remain unchanged.
 See [generation ownership](cif-doctor.md#durable-source-generation-process-evidence-c156) and
 [request attempts](cif-doctor.md#durable-source-generation-requests-and-attempts-c157).
 
+The explicit C158 acquisition adapter composes this owner with the qualified
+store. Declared source/authority, dialect, steps and representation policy define
+a distinct recipe; current consumer and producer provenance remain separate.
+Hits skip generation; stale entries qualify saved copies first; misses perform
+one owned attempt and independent complete-candidate/native qualification.
+Failed qualification does not authorize regeneration or make the source usable.
+Snapshot/store schemas are unchanged. Source discovery, cross-recipe fallback,
+graph repairs, full acquisition ownership/budget and ordinary adoption remain
+separate; see [cache-first generation](cif-doctor.md#cache-first-owned-source-generation-c158).
+
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
 persistent local reuse independently of ordinary PostMR orchestration. Its
 semantic lookup binds source/state/authority, original-name graph mapping,
