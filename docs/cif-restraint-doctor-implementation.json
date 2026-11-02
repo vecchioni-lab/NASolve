@@ -27879,6 +27879,22 @@
       ],
       "validation_scope": "TARGETED_ONLY; NO PROFILE OR FULL SUITE",
       "implementation_revision": "9e1ca0507c35a455a0bf0cea5a4af2259d6152a4"
+    },
+    "prepared_repair_execution": {
+      "milestone": "C160",
+      "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+      "queue": "Q04 remains open",
+      "contract": "docs/cif-doctor.md#maintained-prepared-bundle-repair-execution-c160",
+      "evidence_key": "prepared_repair_execution_2026_11_02",
+      "summary": "A maintained explicit executor freezes and verifies prepared acquisitions, runs graph/native/source/original and repaired derivative/attribution stages, then uses existing whole-bundle selection and independent runtime publication.",
+      "remaining": [
+        "Whole-acquisition durable identity, source/qualification process ownership and cleanup/recovery plus total budget.",
+        "Deterministic qualified continuation for early native-stage failure and no-repair candidates; these currently stop/non-select.",
+        "Automatic discovery, ordinary checkpoint adoption Q05, actual refinement consumer Q06 and experimental phosphate-state authority Q13."
+      ],
+      "ordinary_adoption": false,
+      "new_native_execution": true,
+      "full_regression": "7740 passed, 276 subtests passed in 1804.39s (0:30:04)"
     }
   },
   "audience": [

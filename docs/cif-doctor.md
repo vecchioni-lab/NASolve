@@ -242,6 +242,74 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Maintained prepared-bundle repair execution (C160)
+
+`cif_prepared_repair_execution.execute_prepared_dictionary_repair(bundle, phenix,
+output, ...)` is an explicit coordinator for the existing prepared bundle. The
+bundle may contain C158/C159 acquisition snapshots; source authority, site and
+terminal context, ordered supplementary PHIL and native consumer remain bound by
+`prepare_dictionary_bundle`. This API does not discover sources or edit a model.
+
+Before creating output, it validates the bundle, rejects output/source/SDK
+overlap and verifies the installed Phenix consumer against the recorded pins.
+It freezes the source bundle, then uses the existing declared-linear graph
+planner. No supported graph repair returns a truthful non-selection, without
+native execution or a whole-bundle usability claim. Existing outputs refuse;
+the function never resumes or retries them.
+
+For a repair plan, execution follows the existing scientific contracts:
+
+1. Capture baseline and prepared inputs with full native monomer identities,
+   ordered dictionaries, exact PHIL, policy and energy inventories.
+2. Apply the existing source/site preparation gate. A negative result stops
+   before numerical improvement and grants no continuation.
+3. Independently qualify the prepared starting bundle's derivatives.
+4. Capture every graph-repair stage, then run maintained native attribution
+   and independent derivatives for the final repaired bundle.
+5. Recompute C152's whole-bundle decision and publish through C153. Prefer a
+   qualified repair; retain the original only with its own passing qualification.
+   If neither is usable, publish no runtime. Never combine independently selected
+   component endpoints into an unchecked new bundle or rank changed restraints
+   by lower energy.
+
+Valid negative numerical records remain selectable evidence about an unsuccessful
+alternative. Contradictory/malformed evidence, adapter exceptions or changed
+source/plan/native receipt bytes raise and preserve partial work. They are not
+silently converted into a failed improvement or permission to continue. An early
+native-stage failure currently stops without runtime publication, even if some
+earlier work passed; broader recovery belongs to Q04.
+
+Defaults are 120 seconds per native capture, 90 seconds for attribution and
+300 seconds per derivative job. Capture/derivative limits accept integers 1–600;
+attribution accepts 1–300. These are **phase limits**, not a total wall-clock
+deadline. Underlying adapters own child cleanup. The new append-only
+`progress.jsonl` and schema-1 `repair_execution.json` under
+`cif-prepared-bundle-repair-execution-v1` are diagnostic execution records, not
+durable process identities or authorization to retry. Incomplete output requires
+independent ownership/recovery handling; no new job may infer inactivity from it.
+
+A completed report carries exact relative receipt/plan/runtime references and
+the independent source/selection reports. The authoritative selected artifact
+is the unchanged public runtime bundle; use its existing reader to revalidate
+source/site, full identities, attribution, derivatives and model/CIF/PHIL choice.
+It remains readable after the execution directory and historical paths are gone.
+No new public runtime policy, existing schema migration, ordinary PostMR call,
+ReadySet/Coot execution or diffraction refinement is introduced. Scientific
+phosphate-state authority and Q05/Q06/Q13 remain separate.
+
+Actual Phenix **2.2.1-6174**, dispatcher **2.2.1**, executes the C159 PDU/5PC
+prepared control through the maintained function. Both original and repaired
+derivatives pass. Normal attribution selects the repair; a deliberate one-second
+attribution timeout retains the failed record and selects the independently
+qualified original. Both public bundles cold-replay after relocation, with 903
+files unchanged and historical code/science/SDK access and execution denied.
+This is a separated-monomer numerical control, not a physical pair, polymer,
+experimental phosphate-state decision or diffraction refinement.
+
+Validation and exact native/full-suite results are recorded under
+`prepared_repair_execution_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
+
 ### Exact-source retained acquisition fallback (C159)
 
 The optional `retained_snapshot` argument to `resolve_generated_dictionary`

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-02, after C158.** This queue owns unfinished
+**Current planning authority, 2026-11-02, after C160.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -178,12 +178,22 @@ ordered CIF/PHIL bytes and both graph-repair steps exactly; no new whole-bundle
 native or derivative qualification is claimed. This does not scan for candidates or recover from a failed
 new qualification by silently trying another source.
 
-**Next bounded checkpoint:** compose the graph-selected repair candidate with
-qualified retained acquisition. Reuse the existing C152/C153 whole-bundle
-source/site/derivative selection and immutable publication; do not demote those
-context checks to isolated monomer qualification. Define deterministic current
-and fallback selection when candidates fail or need different current evidence,
-preserving all attempts. Avoid a second numerical/chemical gate.
+C160 provides the maintained prepared-bundle repair executor. C159 acquisition
+snapshots enter existing preparation; full native source/site checks, graph stages,
+attribution, original/repaired derivatives and C152/C153 selection/publication now
+run together. Valid failed improvement records can retain an independently
+qualified original. Contradictory evidence and early native-stage failures stop
+without a success claim. No graph fault launches no native job and remains a
+non-selection, not automatic whole-bundle qualification. No scientific gate or
+worker is replaced.
+
+**Next bounded checkpoint:** establish whole-acquisition coordination around
+source discovery, component qualification and prepared-bundle execution. Reuse
+campaign/C157 request/attempt/phase identities and preserve every partial result;
+own cleanup/recovery and a total budget rather than interpreting the new diagnostic
+progress log as a process journal. Then extend deterministic qualified fallback
+to early capture failures and no-repair candidates without manufacturing repair
+proof or weakening current source/site/derivative gates.
 Complete acquisition coordination must cover qualification/source-discovery
 ownership and a total budget; C158 owns generation only and accepts a caller-owned
 qualification adapter. Keep these explicit sub-gates under Q04 before ordinary

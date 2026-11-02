@@ -30,6 +30,11 @@ qualification; the C153 preparation/graph plan replays unchanged. Diagram arrows
 remain unchanged because ordinary adoption and whole-acquisition ownership are
 still open.
 
+C160's caption connects the explicit prepared-bundle native repair sequence
+to the existing qualified-selection box. The figure keeps its ordinary adoption
+boundary: phase limits and diagnostic progress do not claim complete acquisition
+ownership, automatic recovery or scientific phosphate-state qualification.
+
 Edit its labels/layout and regenerate both source-controlled files together.
 For one-off manuscript edits in a vector editor, save a separate derivative and
 record the source commit; coordinate changes in the figure do not establish a

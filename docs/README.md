@@ -56,8 +56,10 @@ milestone statements preserve their original scope; they are not a second queue.
   requalification and one owned generation attempt with independent native
   qualification. C159 adds explicitly retained exact-source older-recipe fallback,
   preserving the original producer and requalifying stale native evidence.
-  Graph repairs, discovery, complete acquisition ownership/budget and ordinary
-  cache-miss continuation remain Q04.
+  C160 runs prepared acquisitions through the maintained graph/native/source/
+  derivative and selection/publication chain, retaining an independently qualified
+  fallback when a valid improvement attempt fails. Discovery, complete acquisition
+  ownership/budget and ordinary cache-miss continuation remain Q04.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

@@ -1040,6 +1040,15 @@ original recipe, producer and stopping notes survive unchanged. This consumes no
 generation attempt, including after a preserved exhausted request. Snapshot/store
 schemas are unchanged. Source discovery, graph repairs, full acquisition ownership/budget and ordinary adoption remain
 separate; see [cache-first generation](cif-doctor.md#cache-first-owned-source-generation-c158).
+C160 adds a maintained executor for the existing prepared bundle: verify the
+installed consumer, freeze source/site inputs, plan graph-selected omissions,
+capture exact native stages, qualify source preparation, run original/repaired
+derivatives and native attribution, then use the existing selector and immutable
+publisher. Every selected model/CIF/PHIL travels together. A valid negative
+improvement record can retain the independently qualified original; corrupt or
+missing evidence cannot. Per-phase limits and append-only diagnostic progress
+do not provide whole-acquisition process ownership or recovery permission.
+See [prepared repair execution](cif-doctor.md#maintained-prepared-bundle-repair-execution-c160).
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
 persistent local reuse independently of ordinary PostMR orchestration. Its

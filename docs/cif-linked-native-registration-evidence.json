@@ -62503,5 +62503,597 @@
     "handoff_author": "Rowan · Codex desktop",
     "implementation_revision": "9e1ca0507c35a455a0bf0cea5a4af2259d6152a4",
     "implementation_published_on": "origin/cedar"
+  },
+  "prepared_repair_execution_2026_11_02": {
+    "milestone": "C160",
+    "status": "FULL_VALIDATED_PUBLICATION_PENDING",
+    "base_revision": "4462bb22cec7f3377931c727d1abe73b30833123",
+    "previous_full_tested_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+    "before": "The acquired/prepared bundle and qualified repair/publication adapters required an external local runner.",
+    "after": "A maintained explicit executor freezes and verifies prepared acquisitions, runs graph/native/source/original and repaired derivative/attribution stages, then uses existing whole-bundle selection and independent runtime publication.",
+    "prior_work": [
+      "C149/C150 graph planning and maintained native attribution",
+      "C152/C153 source-bound selection/publication",
+      "C154 zero-parallelity derivatives",
+      "C159 acquisition snapshots and exact C153 preparation/graph compatibility"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "tests/test_cif_prepared_repair_execution.py"
+    ],
+    "policy_id": "cif-prepared-bundle-repair-execution-v1",
+    "schemas": "Additive diagnostic schema-1 repair_execution.json and append-only progress.jsonl. Existing public runtime/store/request/qualification schemas unchanged.",
+    "compatibility": "No CLI/default PostMR, dependency, migration, native worker or chemistry/numerical threshold changes. Fresh explicit outputs only. No whole-acquisition ownership, retry authority or total deadline.",
+    "validation_commands": [
+      [
+        "{python}",
+        "scripts/run_tests.py",
+        "workflow"
+      ],
+      [
+        "{python}",
+        "scripts/run_tests.py",
+        "full"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_dictionary_bundle_repair.py",
+        "tests/test_cif_repaired_component_runtime.py",
+        "tests/test_cif_captured_linear_attribution.py",
+        "tests/test_cif_captured_mixed_gradients.py",
+        "tests/test_cif_dictionary_bundle.py"
+      ],
+      [
+        "{python}",
+        "c160_native_final.py",
+        "final"
+      ],
+      [
+        "{python}",
+        "c160_native_final.py",
+        "fallback"
+      ],
+      [
+        "{python}",
+        "c160_cold.py"
+      ],
+      [
+        "{python}",
+        "c160_auxiliary.py"
+      ]
+    ],
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src"
+    },
+    "regression": {
+      "new_cases": 35,
+      "before": "31 missing-API errors; two later receipt/plan-mutation controls fail before the integrity guard.",
+      "affected": "203 passed in 96.30s (0:01:36)",
+      "focused": "959 passed, 45 subtests passed in 361.01s (0:06:01)",
+      "full": "7740 passed, 276 subtests passed in 1804.39s (0:30:04)",
+      "affected_scope_note": "203 affected checks precede two added interruption cases; final workflow/full include all 35 new cases.",
+      "final_source_files": 598,
+      "focused_full_source_manifests_equal": true,
+      "final_sources_unchanged": true
+    },
+    "native": {
+      "build": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "mode": "ACTUAL; NOT_DRY_RUN",
+      "final_controls": {
+        "final": {
+          "status": "PASS",
+          "elapsed_seconds": 71.232,
+          "source": "C159 exact-source PDU/5PC; source H/charge/sugars/terminal OP3 preserved; separated monomers with one NAR numerical parallelity control",
+          "selected": "repaired_prepared_bundle",
+          "original_derivative_status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "repaired_derivative_status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "attribution_status": "CAPTURED_LINEAR_ATTRIBUTION_PASS",
+          "attribution_execution": {
+            "elapsed_seconds": 2.002471,
+            "returncode": 0,
+            "status": "COMPLETED"
+          },
+          "native_captures": 4,
+          "native_derivative_jobs": 2,
+          "native_attribution_jobs": 1,
+          "runtime_source_files": 194,
+          "parent_bytes_mtimes_unchanged": true,
+          "source_qualification": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          },
+          "whole_acquisition_ownership": "NOT_CLAIMED",
+          "readyset": "NOT_RUN",
+          "coot": "NOT_RUN",
+          "diffraction_refinement": "NOT_RUN"
+        },
+        "fallback": {
+          "status": "PASS",
+          "elapsed_seconds": 72.163,
+          "source": "C159 exact-source PDU/5PC; source H/charge/sugars/terminal OP3 preserved; separated monomers with one NAR numerical parallelity control",
+          "selected": "verified_prepared_bundle",
+          "original_derivative_status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "repaired_derivative_status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "attribution_status": "REVIEW",
+          "attribution_execution": {
+            "elapsed_seconds": 1.048761,
+            "returncode": -9,
+            "status": "TIMED_OUT"
+          },
+          "native_captures": 4,
+          "native_derivative_jobs": 2,
+          "native_attribution_jobs": 1,
+          "runtime_source_files": 194,
+          "parent_bytes_mtimes_unchanged": true,
+          "source_qualification": {
+            "status": "CONTINUE_WITH_NOTES",
+            "allowed": true,
+            "scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+            "automatic_adoption": false,
+            "policy": "EXISTING_MECHANICS_CONTINUATION; UNAVAILABLE_FORMAL_CHARGE_ONLY"
+          },
+          "whole_acquisition_ownership": "NOT_CLAIMED",
+          "readyset": "NOT_RUN",
+          "coot": "NOT_RUN",
+          "diffraction_refinement": "NOT_RUN"
+        }
+      },
+      "total_final_native_jobs": 14,
+      "native_captures": 8,
+      "derivative_jobs": 4,
+      "attribution_jobs": 2,
+      "scientific_scope": "C159 exact-source PDU/5PC separated-monomer control with one NAR numerical parallelity request; no physical pair/polymer or mixed-scaffold phosphate-state inference.",
+      "intermediate": "Earlier seven-job positive control precedes the reference-integrity guard and remains preserved.",
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "model_optimization": "NOT_RUN"
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_files": 903,
+      "original_files_bytes_mtimes_unchanged": true,
+      "original_owned_path_absent": true,
+      "historical_checkout_science_and_sdk_reads": "DENIED",
+      "external_execution": "DENIED",
+      "replay": {
+        "status": "PASS",
+        "cases": {
+          "final": {
+            "selected": "repaired_prepared_bundle",
+            "dictionaries": 2,
+            "phils": 2,
+            "summary": {
+              "text": "NASolve prepared the source-verified model and repaired dictionaries with its exact checked restraint bundle for a separate diagnostic continuation. Separate diagnostic continuation; scientific qualification and production adoption remain unassessed. Unavailable native evidence remains recorded; source chemical state is preserved. CIF inspection is not required.",
+              "qualification_scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+              "scientific_qualification": "NOT_ASSESSED",
+              "unavailable_native_checks": [
+                {
+                  "check": "effective-site-formal-charges:A:1",
+                  "status": "UNSUPPORTED"
+                },
+                {
+                  "check": "effective-site-formal-charges:B:1",
+                  "status": "UNSUPPORTED"
+                }
+              ],
+              "automatic_adoption": false
+            }
+          },
+          "fallback": {
+            "selected": "verified_prepared_bundle",
+            "dictionaries": 2,
+            "phils": 2,
+            "summary": {
+              "text": "NASolve prepared the independently verified starting model and dictionaries with its exact checked restraint bundle for a separate diagnostic continuation. Separate diagnostic continuation; scientific qualification and production adoption remain unassessed. Unavailable native evidence remains recorded; source chemical state is preserved. Repair was not selected; the independently verified starting bundle was retained. CIF inspection is not required.",
+              "qualification_scope": "SEPARATE_DIAGNOSTIC_PHASE_ONLY",
+              "scientific_qualification": "NOT_ASSESSED",
+              "unavailable_native_checks": [
+                {
+                  "check": "effective-site-formal-charges:A:1",
+                  "status": "UNSUPPORTED"
+                },
+                {
+                  "check": "effective-site-formal-charges:B:1",
+                  "status": "UNSUPPORTED"
+                }
+              ],
+              "automatic_adoption": false
+            }
+          }
+        },
+        "external_execution": "DENIED",
+        "historical_paths": "DENIED"
+      }
+    },
+    "evidence_refs": {
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/base.json",
+        "sha256": "26d619948a5dd633f6fb773f342dd29e5540e0957005ec929b83c96bb01eb443",
+        "size": 200
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/before.log",
+        "sha256": "78c93bef84bbf3b491362cbe0b53ff20ba23f99bb91160ad7678573194719d8d",
+        "size": 24937
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/before-result.json",
+        "sha256": "5785f94c20130d5ee5a61e38c062ae72fad3eb8c2fdff3c76342d63046aac807",
+        "size": 583
+      },
+      "before-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/before-r2.log",
+        "sha256": "e1bdcfb32ff0d1d1d4bf3e3b4e324a7ce11d531d6fea2db9cc223bf3a7773747",
+        "size": 3025
+      },
+      "before-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/before-r2-result.json",
+        "sha256": "31b0ccc4740150948df5a552a78273ae468a9f86a30e6220c0941aa56bbb43f0",
+        "size": 589
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/new.log",
+        "sha256": "ba9c5f5ddb96410a57232a9efeed7dd827341d2938b48040ca6c06218fb0be9c",
+        "size": 99
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/new-result.json",
+        "sha256": "3d5642ffce11679a65f7c42a002951401e10417b4ddb8f743635a8ed506732be",
+        "size": 577
+      },
+      "cold.log": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/cold.log",
+        "sha256": "17164243808f7989a5fe28009f337f794414425be7246ae07dd0d177672ef55a",
+        "size": 1740
+      },
+      "cold-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/cold-result.json",
+        "sha256": "92f336de95c9846dc27232bc019163f312b7c989b25213baf8abd9d20e8b210e",
+        "size": 2919
+      },
+      "native-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-summary.json",
+        "sha256": "8bad1689065df243e2c74c542404ac90a00c658709095113fbd208f8a838f1b9",
+        "size": 933
+      },
+      "native-runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-runtime-sources.json",
+        "sha256": "45b166bacaa956fa8de55c5b77c5d1bae9349b2e004a90175eb2f9dd6fe375ee",
+        "size": 21084
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/affected.log",
+        "sha256": "5a630e065baecc7c332e1d3063afd6c346c8d1f7e617c31d6f4aa867e73c742b",
+        "size": 271
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/affected.xml",
+        "sha256": "715369931e9d8ebd2971cc387fe0afbff0ed57146cc8df785d08873c85175ed9",
+        "size": 31188
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/affected-result.json",
+        "sha256": "b7365f4f048f0f3e3c4af794e92c9ef2531e16dd7635abd80d673820ef213a56",
+        "size": 836
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/affected-sources.json",
+        "sha256": "f77248c8ce83b525790505bf0fb22149883af919a60f5fdf88f7980f8b2ac143",
+        "size": 65240
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/focused.log",
+        "sha256": "422b4ca985b74e67be25a2367d3a2bd6403164d062019b55255097017ef02eb5",
+        "size": 5150
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/focused.xml",
+        "sha256": "9ebdb21893f9a8fa7fccc2dfede7cb2d8a319cf131105ddb7e48b68958693f47",
+        "size": 144382
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/focused-result.json",
+        "sha256": "c9a69258967a06bbe870259361b9461c777c9e5b2a46118d8047db1b58df8ec1",
+        "size": 486
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/focused-sources.json",
+        "sha256": "2868c769dd8dad28ed7a2b1660a1838d93cc25c83f0679d9010b2edcd588e31a",
+        "size": 65240
+      },
+      "full.log": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/full.log",
+        "sha256": "619e5e15d9ffe253025137927d9e7affb00f8f072dfed8b67ab18caf1e06350e",
+        "size": 11541
+      },
+      "full.xml": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/full.xml",
+        "sha256": "d61ff17ce6182ceb430b2a887d9cf8cb8b0218eb784401a86e9a4f36394d19d1",
+        "size": 1177271
+      },
+      "full-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/full-result.json",
+        "sha256": "b317d9bdc0cd3ab8ca59b4d037cf926c88b0d75f46317d07686145a91d1e9245",
+        "size": 477
+      },
+      "full-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/full-sources.json",
+        "sha256": "2868c769dd8dad28ed7a2b1660a1838d93cc25c83f0679d9010b2edcd588e31a",
+        "size": 65240
+      },
+      "native-final/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/summary.json",
+        "sha256": "efe7e8899f3e0ac2f5ad9cd95bab89659c5c73177bef2ab549da754714c03747",
+        "size": 1096
+      },
+      "native-final/parent.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/parent.json",
+        "sha256": "471f3b69e55caec30477566fe746770292e57429bc0dd3e4f76f5a8cdcaff3c3",
+        "size": 5039
+      },
+      "native-final/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/runtime-sources.json",
+        "sha256": "b49bb664dfe2d7146184590b0535ce430c24fca3a5239b006565ecb13c78258d",
+        "size": 21084
+      },
+      "native-final/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/installation.json",
+        "sha256": "d8f241b7aaa2884967846ad3bf2ab8c584800fbc9c2c9a5666ffa84776bfc1b0",
+        "size": 120
+      },
+      "native-final/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/repair_execution.json",
+        "sha256": "a3fb8131f3772b1e51de35edc89d1509192f8a8632489d07139e27109aa2acd7",
+        "size": 33666
+      },
+      "native-final/execution/progress.jsonl": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/progress.jsonl",
+        "sha256": "b1ac9cd54b9cba7bdcaebead687638a2641ea42503178294fc44817e7e57596e",
+        "size": 421
+      },
+      "native-final/execution/bundle/bundle_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/bundle/bundle_receipt.json",
+        "sha256": "d64d8d5146288363f9fe9da39dbbb7d6935ea50110d8b24a2ab150a1a6ab0a1e",
+        "size": 9392
+      },
+      "native-final/execution/plan/linear_torsion_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/plan/linear_torsion_bundle.json",
+        "sha256": "9f928a9b3a01dc755a0b2a4fd8bce3d3250da0718dd3da42c70c82387b851543",
+        "size": 10849
+      },
+      "native-final/execution/original-gradient/captured_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/original-gradient/captured_mixed_gradients.json",
+        "sha256": "67f30dcfb984db83d75296b3f911bfe4142437018eb25bd6ee4436703ac6e322",
+        "size": 11330
+      },
+      "native-final/execution/original-gradient/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/original-gradient/qualification.json",
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1",
+        "size": 414
+      },
+      "native-final/execution/repaired-gradient/captured_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/repaired-gradient/captured_mixed_gradients.json",
+        "sha256": "d83737b76ef58929d6426f97c5aab99b3efbc97c237182a931a2f5918a12344e",
+        "size": 11330
+      },
+      "native-final/execution/repaired-gradient/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/repaired-gradient/qualification.json",
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1",
+        "size": 414
+      },
+      "native-final/execution/attribution/captured_linear_attribution.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/attribution/captured_linear_attribution.json",
+        "sha256": "6607160016894709d4fa8cd99ae5c16626285998a7d4e979d42a29907b4f3789",
+        "size": 13000
+      },
+      "native-final/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/runtime/runtime_bundle.json",
+        "sha256": "dfeaa57218a478bc78ada06a2fbcf00de300f7b4761143aef9c30868bb80c127",
+        "size": 78322
+      },
+      "native-final/execution/native/baseline/cif-native-fqxf3fwa/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/native/baseline/cif-native-fqxf3fwa/native_receipt.json",
+        "sha256": "084a770edee5a7202ceb0c2b0553ba5649121ba07bc71ecb337b63fa0adddb55",
+        "size": 485063
+      },
+      "native-final/execution/native/000/cif-native-dd53t3cd/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/native/000/cif-native-dd53t3cd/native_receipt.json",
+        "sha256": "a161fc6fd068b8122bf5547b638be0e0cc1e6a28944a901a2be8aeea2d193928",
+        "size": 484994
+      },
+      "native-final/execution/native/001/cif-native-6m0s0xrf/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/native/001/cif-native-6m0s0xrf/native_receipt.json",
+        "sha256": "c6eb8a827e8a63854f0d7f92bc49124630fc6b8aa05bc7d45e0407e68b376682",
+        "size": 477435
+      },
+      "native-final/execution/native/002/cif-native-40rbpufo/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-final/execution/native/002/cif-native-40rbpufo/native_receipt.json",
+        "sha256": "8c93a7fd685d9008a20d15cab1f12982c26b1a24449ae321e9bd3a2f2233a04e",
+        "size": 469869
+      },
+      "native-fallback/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/summary.json",
+        "sha256": "28b51cff37b7cdfe196938a7f7b8720e37ae9385e1f2b93689f82ece99492882",
+        "size": 1071
+      },
+      "native-fallback/parent.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/parent.json",
+        "sha256": "471f3b69e55caec30477566fe746770292e57429bc0dd3e4f76f5a8cdcaff3c3",
+        "size": 5039
+      },
+      "native-fallback/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/runtime-sources.json",
+        "sha256": "b49bb664dfe2d7146184590b0535ce430c24fca3a5239b006565ecb13c78258d",
+        "size": 21084
+      },
+      "native-fallback/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/installation.json",
+        "sha256": "d8f241b7aaa2884967846ad3bf2ab8c584800fbc9c2c9a5666ffa84776bfc1b0",
+        "size": 120
+      },
+      "native-fallback/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/repair_execution.json",
+        "sha256": "1257afffaf29c9c771cc92187387a586fcab23e053ac285ca112cfa87041399e",
+        "size": 34258
+      },
+      "native-fallback/execution/progress.jsonl": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/progress.jsonl",
+        "sha256": "b1ac9cd54b9cba7bdcaebead687638a2641ea42503178294fc44817e7e57596e",
+        "size": 421
+      },
+      "native-fallback/execution/bundle/bundle_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/bundle/bundle_receipt.json",
+        "sha256": "d64d8d5146288363f9fe9da39dbbb7d6935ea50110d8b24a2ab150a1a6ab0a1e",
+        "size": 9392
+      },
+      "native-fallback/execution/plan/linear_torsion_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/plan/linear_torsion_bundle.json",
+        "sha256": "9f928a9b3a01dc755a0b2a4fd8bce3d3250da0718dd3da42c70c82387b851543",
+        "size": 10849
+      },
+      "native-fallback/execution/original-gradient/captured_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/original-gradient/captured_mixed_gradients.json",
+        "sha256": "90a74b66fa163d52abe4b4eda4ac12843cca8c31efe52235a7907deff49ce928",
+        "size": 11330
+      },
+      "native-fallback/execution/original-gradient/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/original-gradient/qualification.json",
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1",
+        "size": 414
+      },
+      "native-fallback/execution/repaired-gradient/captured_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/repaired-gradient/captured_mixed_gradients.json",
+        "sha256": "68b7483df1aa48e31b3f055c4e073f21b18196343053d10b2666c8cb2e4a48e5",
+        "size": 11330
+      },
+      "native-fallback/execution/repaired-gradient/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/repaired-gradient/qualification.json",
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1",
+        "size": 414
+      },
+      "native-fallback/execution/attribution/captured_linear_attribution.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/attribution/captured_linear_attribution.json",
+        "sha256": "e5c7151fc0445cc2da42754f40a8958a3f3366a75c40c5eda13ec756e43aef7c",
+        "size": 9625
+      },
+      "native-fallback/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/runtime/runtime_bundle.json",
+        "sha256": "dbaeeec9eb916e19c54d6913e67125b1eaaac2231ac3801b00320c27dd7091d2",
+        "size": 79046
+      },
+      "native-fallback/execution/native/baseline/cif-native-7p84xhf0/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/native/baseline/cif-native-7p84xhf0/native_receipt.json",
+        "sha256": "76d029c77c449e70cf9dd0fb2903e4f0937c36b07608eff8afb7a9b5d8b10e89",
+        "size": 485081
+      },
+      "native-fallback/execution/native/000/cif-native-el92o89v/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/native/000/cif-native-el92o89v/native_receipt.json",
+        "sha256": "2019eb8362233be7141e805dd4222e686213c3e544e31545aabde8cc555e1276",
+        "size": 485012
+      },
+      "native-fallback/execution/native/001/cif-native-wpvsjtzx/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/native/001/cif-native-wpvsjtzx/native_receipt.json",
+        "sha256": "b46f7b3bb450c25fb473c6739d7c947b54d16afd182ba509bd19d0ca34a7b948",
+        "size": 477452
+      },
+      "native-fallback/execution/native/002/cif-native-of0z904i/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "160_Cedar_repair-execution-wbdnci2a/native-fallback/execution/native/002/cif-native-of0z904i/native_receipt.json",
+        "sha256": "e509578a63e1e61182fa7fb63fd452e3c1e2ec45e171cc906b27c9878598dbba",
+        "size": 469887
+      }
+    },
+    "remaining": [
+      "Whole-acquisition durable identity, source/qualification process ownership and cleanup/recovery plus total budget.",
+      "Deterministic qualified continuation for early native-stage failure and no-repair candidates; these currently stop/non-select.",
+      "Automatic discovery, ordinary checkpoint adoption Q05, actual refinement consumer Q06 and experimental phosphate-state authority Q13."
+    ],
+    "generated_artifacts": "All scientific inputs/candidates/models/caches/native output, partial failures, logs/XML and runners remain local or ignored; no generated payload committed/uploaded.",
+    "handoff_author": "Rowan · Codex desktop"
   }
 }

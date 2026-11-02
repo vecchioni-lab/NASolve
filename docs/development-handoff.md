@@ -11,6 +11,82 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C160 fully validated; publication pending: maintained native repair execution
+
+Base `4462bb22cec7f3377931c727d1abe73b30833123`; existing **cedar** only.
+Capsule `live_tests_directory/160_Cedar_repair-execution-wbdnci2a`.
+Before, acquisition/preparation and repair/publication required a local runner.
+After, `execute_prepared_dictionary_repair` verifies the installed consumer,
+freezes the source/site bundle, plans graph-selected repairs, captures exact
+native stages, qualifies source preparation and both original/repaired
+derivatives, authenticates attribution and uses C152/C153 selection/publication.
+A qualified repair is preferred; a valid failed improvement retains only an
+independently qualified starting bundle. Missing, contradictory or changed proof
+never becomes permission to continue. No source/model chemistry is simplified.
+
+Prior-work review: C149/C150 supply graph planning and maintained attribution;
+C152/C153 supply source-bound whole-bundle selection/publication; C154 supplies
+zero-parallelity derivatives; C159 proves acquisition outputs reproduce the
+C153 source/site/graph inputs exactly. These scientific adapters remain unchanged.
+The new coordinator adds no residue allowlist or replacement force field.
+
+**Validation:** 35 new cases. The first 31 fail with the missing API; two added
+receipt/plan-mutation controls reproduce a publication-integrity gap before its
+guard. Affected: **203 passed in 96.30s (0:01:36)** (before two added interruption cases).
+Final workflow: **959 passed, 45 subtests passed in 361.01s (0:06:01)**.
+Full unfiltered suite: **7740 passed, 276 subtests passed in 1804.39s (0:30:04)**.
+All **598** final source/test/script hashes remain frozen through workflow/full
+collection; all **194** final native-runtime hashes match. Exact commands:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_prepared_repair_execution.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repaired_component_runtime.py tests/test_cif_captured_linear_attribution.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_dictionary_bundle.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py full --junitxml <capsule>/full.xml
+python c160_native_final.py final
+python c160_native_final.py fallback
+python c160_cold.py
+python c160_auxiliary.py
+```
+
+**Actual Phenix 2.2.1-6174**, dispatcher **2.2.1**, not dry-runs: C159's qualified
+PDU/5PC snapshots feed the maintained source/site/graph/native chain. Both final
+controls pass original and repaired derivatives. Normal attribution selects the
+repaired bundle in **71.232s**. A deliberate one-second attribution timeout
+(1.048761s with cleanup) preserves its failed output and selects the independently
+qualified original in **72.163s**. Fourteen final native jobs: eight full
+captures, four derivative jobs and two attribution attempts. An earlier positive
+control is preserved separately. Source hydrogen/charge/sugars and legitimate
+terminal OP3 remain intact; this separated-monomer numerical control does not
+select a linked scaffold's experimental phosphate state. No generation, ReadySet,
+Coot, model optimization or diffraction refinement executes.
+
+Both final public runtime bundles replay from a relocated checkout with the
+owned original path gone and historical code/science/SDK reads and execution
+denied. All **903** copied files retain bytes/timestamps. All parent evidence
+stays unchanged. The existing runtime reader, not the new diagnostic progress
+log, remains the selected artifact's authority.
+
+Changed: new executor and regressions, profile registration, README/changelog,
+contracts/human caption/index, queue, handoff and both ledgers. Additive schema-1
+diagnostic `repair_execution.json` and append-only `progress.jsonl`; existing
+public runtime, dictionary, qualification and attempt schemas stay unchanged.
+No migration, dependency, CLI/default PostMR or threshold change. Scientific
+artifacts, logs/XML and runners stay local/ignored; none is committed/uploaded.
+Exact validation refs: `prepared_repair_execution_2026_11_02` in the technical ledger.
+
+**Next Q04 boundary:** whole-acquisition coordination around source discovery,
+component qualification and this executor, using existing campaign/C157 durable
+request/attempt/process machinery and a total budget. Diagnostic progress never
+proves inactivity or grants retry authority. Early native-stage failure currently
+stops; graph no-op launches no native work and grants no whole-bundle usability.
+Broader qualified continuation needs its own proof, without invented repair
+evidence. Q05 adoption, Q06 actual refinement and Q13 phosphate-state authority
+remain separate. No merge or ordinary adoption is implied. No active jobs.
+
+Full validation is complete; same-Cedar publication is pending. The prior
+full-tested commit remains `28a6c1b22be70f8480dbd6e755e601a1ef774353` until publication.
+— Rowan · Codex desktop
+
 ## C159 published: exact-source retained fallback
 
 Base `0f25cf53af5bd6fdd6203ca959d2541459ad0771`; existing **cedar** only.

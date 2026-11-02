@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Maintained prepared-bundle repair execution (C160)
+
+- Add an explicit execution API composing graph repair planning, full native
+  before/after capture, source/site checks, separate starting/repaired derivative
+  checks, native attribution and existing whole-bundle selection/publication.
+  Inputs are the existing prepared bundle containing qualified acquisitions.
+- Select a qualified repair or an independently qualified starting bundle using
+  the existing policy. Missing proof grants no fallback. Malformed evidence,
+  changed source/plan/receipt bytes or adapter exceptions refuse and preserve
+  partial outputs. A graph no-op launches no native job and grants no usability.
+- Verify the selected installed consumer before reservation, require a fresh
+  output separate from source/SDK, and bound each native phase. Append diagnostic
+  progress and return exact relative evidence references; these records do not
+  authorize recovery or imply whole-acquisition ownership/a total deadline.
+- Reuse existing independent runtime publication/readers. No existing artifact
+  migration, CLI/default PostMR, worker, numerical/chemistry threshold or installed
+  SDK changes. Ordinary adoption and actual refinement remain separate.
+
 ### Exact-source retained dictionary fallback (C159)
 
 - Extend explicit cache-first acquisition with an optional retained snapshot on

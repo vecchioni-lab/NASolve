@@ -853,6 +853,12 @@ or fresh qualification. PDU/5PC compatibility replay reproduces the existing C15
 prepared inputs and graph plan exactly. This does not add an ordinary automatic
 repair/adoption arrow or promote isolated evidence to whole-bundle qualification.
 
+C160 connects prepared acquisition snapshots to the existing native source,
+graph-attribution, derivative and whole-bundle selection/publication checks.
+A failed improvement may retain an independently qualified starting bundle;
+missing or corrupt evidence supplies no such permission. This explicit executor
+does not add an ordinary adoption arrow or imply complete acquisition ownership.
+
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. C112 adds observed native name bindings to
 the source/native comparison layer, preserving literal findings and keeping
@@ -1817,6 +1823,17 @@ notes survive unchanged. This avoids repeating generation for the independently
 qualified PDU/5PC controls, while leaving graph-repair and ordinary integration
 gates open. See the [retained fallback contract](cif-doctor.md#exact-source-retained-acquisition-fallback-c159)
 and [C158 contract](cif-doctor.md#cache-first-owned-source-generation-c158).
+
+C160 now runs the existing prepared-bundle repair chain as a maintained engine
+function. It verifies the selected installation, freezes inputs, qualifies source
+preparation and starting derivatives, captures graph-repair stages, checks native
+attribution and repaired derivatives, and publishes only the independently selected
+whole bundle. Original and repaired model/restraint choices cannot be mixed.
+Methods use the existing graph planner, native adapters, source/site gates,
+derivative evaluators and immutable publisher; no new chemistry model is added.
+Phase deadlines bound individual jobs. Complete acquisition ownership, recovery,
+total budgets and ordinary integration remain separate. See the
+[execution contract](cif-doctor.md#maintained-prepared-bundle-repair-execution-c160).
 
 C157 gives that generator a durable request owner. A request freezes its source,
 recipe, native pins and finite attempt allowance. A persistent lock prevents
