@@ -61982,7 +61982,7 @@
   },
   "retained_acquisition_2026_11_02": {
     "milestone": "C159",
-    "status": "TARGETED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_TARGETED_VALIDATED",
     "base_revision": "0f25cf53af5bd6fdd6203ca959d2541459ad0771",
     "queue": "Q04 remains open",
     "behavior_before": "A generation-recipe miss could not use an explicit exact-source snapshot from an older recipe.",
@@ -62485,6 +62485,12 @@
         "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU-request/attempts/attempt-0001/generation/source_candidate_receipt.json",
         "sha256": "98b7f052d2c84727595a827e7c05eaca6aaaedd7d0e8a0861bfc30143beaa30d",
         "size": 11712
+      },
+      "auxiliary.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/auxiliary.json",
+        "sha256": "3bebc6634f8986bb70cdb1e264470d256f67080198a69cbad14852245b3aa6d0",
+        "size": 1501
       }
     },
     "remaining": [
@@ -62494,6 +62500,8 @@
       "Ordinary adoption/checkpoints (Q05), actual refinement consumer (Q06), experimental phosphate state (Q13), full integration gate."
     ],
     "generated_artifacts": "All scientific sources, models, dictionaries, caches, native output, failed attempts, logs/XML and runners remain local/ignored; no generated payload committed/uploaded.",
-    "handoff_author": "Rowan · Codex desktop"
+    "handoff_author": "Rowan · Codex desktop",
+    "implementation_revision": "9e1ca0507c35a455a0bf0cea5a4af2259d6152a4",
+    "implementation_published_on": "origin/cedar"
   }
 }

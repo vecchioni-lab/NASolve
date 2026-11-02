@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C159 validated; publication pending: exact-source retained fallback
+## C159 published: exact-source retained fallback
 
 Base `0f25cf53af5bd6fdd6203ca959d2541459ad0771`; existing **cedar** only.
 Capsule `live_tests_directory/159_Cedar_retained-fallback-o9n2rgis`.
@@ -79,7 +79,8 @@ remain separate. Last full-tested implementation stays
 `28a6c1b22be70f8480dbd6e755e601a1ef774353` (7517 tests + 276 subtests).
 A new full integration gate is required before merging. No active jobs.
 
-Implementation is targeted-validated; same-Cedar publication is pending.
+Targeted-tested implementation `9e1ca0507c35a455a0bf0cea5a4af2259d6152a4` is published and
+verified on `origin/cedar`; this continuity update changes no runtime/test bytes.
 — Rowan · Codex desktop
 
 ## C158 published: cache-first owned source generation

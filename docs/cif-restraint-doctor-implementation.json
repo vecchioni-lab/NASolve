@@ -27864,7 +27864,7 @@
     },
     "retained_acquisition": {
       "milestone": "C159",
-      "status": "TARGETED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_TARGETED_VALIDATED",
       "queue": "Q04",
       "contract": "docs/cif-doctor.md#exact-source-retained-acquisition-fallback-c159",
       "evidence_key": "retained_acquisition_2026_11_02",
@@ -27877,7 +27877,8 @@
         "Source discovery, qualification process ownership, whole-acquisition durable identity/coordination and total budget.",
         "Ordinary adoption/checkpoints (Q05), actual refinement consumer (Q06), experimental phosphate state (Q13), full integration gate."
       ],
-      "validation_scope": "TARGETED_ONLY; NO PROFILE OR FULL SUITE"
+      "validation_scope": "TARGETED_ONLY; NO PROFILE OR FULL SUITE",
+      "implementation_revision": "9e1ca0507c35a455a0bf0cea5a4af2259d6152a4"
     }
   },
   "audience": [
