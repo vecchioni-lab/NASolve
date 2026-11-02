@@ -1778,6 +1778,11 @@ layers; cache reuse never certifies a new crystal. C66 uses saved Phenix
 resource-file qualification. It does not upload chemistry, change native
 mechanics or ask students to inspect CIFs.
 
+C155 checks the destination before looking up or acquiring a dictionary, so a
+symlinked or non-directory output ancestor cannot trigger costly work first.
+Valid read-only misses create no output directory. Publication checks again;
+this is a filesystem preflight, not a new chemistry gate or attempt scheduler.
+
 Methods: accept only complete source/candidate-bound isolated native evidence,
 reassess the current declared graph/configuration, look up reusable numerical
 bytes, and copy their checksummed source/qualification/provenance into an owned

@@ -60161,5 +60161,144 @@
     ],
     "implementation_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
     "full_tested_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a"
+  },
+  "dictionary_destination_preflight_2026_11_02": {
+    "status": "FULL_VALIDATED; PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "f30ab9e8299a89cba7a3915f418b23478bf35949",
+    "previous_full_tested_commit": "ea7f74c7c5f7e0df03972975650b27ae28eef94a",
+    "completion_queue_job": "Q04",
+    "completion_queue_disposition": "DESTINATION_PREFLIGHT_ONLY; DURABLE_ATTEMPTS_AND_RECOVERY_OPEN",
+    "prior_work_review": [
+      "C66/5f90e70: shared immutable store already consults reusable candidates before acquisition and requalifies stale consumers first.",
+      "C68 ordinary source wrapper already checks symlinked output parents before adapters.",
+      "d4c0e57: explicit representation policies preserve the same shared resolver; no new chemistry route is needed.",
+      "Current shared resolver delayed ancestor validation to freezing; a miss could report MISS and callbacks could run before rejection."
+    ],
+    "before": "Invalid parent paths could reach lookup, generation/requalification adapters or a misleading read-only MISS before failing at snapshot freezing.",
+    "after": "A shared read-only destination check precedes lookup/callbacks and runs again at freezing. Missing valid parents remain absent on a read-only MISS.",
+    "schemas": "UNCHANGED: cif-qualified-dictionary-store-v1 and all scientific qualification policies",
+    "compatibility": "No migration, dependency or CLI change. Invalid path layouts fail earlier; valid cache/source/consumer selection is unchanged.",
+    "science": "NO_NEW_NATIVE_EXECUTION; no Phenix/Coot, generation, optimization, refinement or scientific input changes. Tests use explicit synthetic qualification fixtures.",
+    "regression": {
+      "new_cases": 15,
+      "failing_before": "12 fault cases fail against original implementation; 3 positive/publication controls also added.",
+      "affected": "147 passed in 16.42s",
+      "workflow": "688 passed, 26 subtests passed in 117.71s (0:01:57)",
+      "full": "7517 passed, 276 subtests passed in 1263.91s (0:21:03)"
+    },
+    "validation_environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src"
+    },
+    "validation_commands": [
+      "{python} -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_dictionary_store.py -k invalid_snapshot_parent",
+      "{python} -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_dictionary_store.py tests/test_cif_source_reuse.py tests/test_cif_postmr_cache.py tests/test_cif_postmr_cached_model.py",
+      "{python} scripts/run_tests.py workflow --junitxml {live_tests_directory}/155_Cedar_acquisition-preflight-2dgozwxf/workflow.xml",
+      "{python} scripts/run_tests.py full --junitxml {live_tests_directory}/155_Cedar_acquisition-preflight-2dgozwxf/full.xml",
+      "{python} c155_cold.py",
+      "{python} c155_auxiliary.py"
+    ],
+    "evidence_root": "{live_tests_directory}/155_Cedar_acquisition-preflight-2dgozwxf",
+    "generated_artifacts": "Synthetic test inputs, XML, logs and validation helpers remain local under live-tests/ignored runners; none committed.",
+    "limitations": [
+      "Read-only preflight is not an atomic reservation, writability/disk-space guarantee or complete filesystem race defense.",
+      "Durable attempt identities, owned-process recovery, bounded automatic repair, current-site qualification and ordinary adoption remain Q04/Q05.",
+      "No new chemistry or native-consumer qualification is claimed."
+    ],
+    "validation_source_files": 518,
+    "validation_source_files_unchanged": true,
+    "evidence_refs": {
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/before-result.json",
+        "sha256": "7c386d82fec6a2941c1c5fc9cc92646daa932d296698ec11a35abaaecd300188",
+        "size": 694
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/before.xml",
+        "sha256": "970d3b704e05cb98a186b83755c9759abffdd2240d804e91176b2be31556dc67",
+        "size": 37971
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/affected-result.json",
+        "sha256": "f5d0dbfe1638317b448839e2a8837a2998d7a767253682191998bb5879fdd9ba",
+        "size": 778
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/affected.xml",
+        "sha256": "bcb8799cc3fbeb15043467c3dd723bd1f44d478a62e8a0c8174d71bf85076b50",
+        "size": 22125
+      },
+      "workflow-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/workflow-result.json",
+        "sha256": "bef6799a5c8146926498a5fbc9f46f6011e4c806c51bfb531d290d0f493e660d",
+        "size": 566
+      },
+      "workflow.xml": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/workflow.xml",
+        "sha256": "ff37cb17459867ec4350d755239b5fc0c5dc65fdd8b125b9259e6e1e247fab86",
+        "size": 101835
+      },
+      "full-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/full-result.json",
+        "sha256": "7192d069ac203c95bffd060b9099057b18786dfa89f6ba1ea3c56a5097de8857",
+        "size": 555
+      },
+      "full.xml": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/full.xml",
+        "sha256": "0fb5bd4563066d0c50a6b9a83c668a388d161d7f297dbdb00b702ea24413ed67",
+        "size": 1142563
+      },
+      "auxiliary.json": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/auxiliary.json",
+        "sha256": "f3bd4ec6c705eb3fa88523a4d380307cc5248f69d5bd688214ba5b9ae03677e1",
+        "size": 1990
+      },
+      "cold-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/cold-result.json",
+        "sha256": "79923d817ffd975d98d924d115c88d648a7b5f6d63addb20b49822b289575a5b",
+        "size": 754
+      },
+      "cold.xml": {
+        "anchor": "live_tests_directory",
+        "path": "155_Cedar_acquisition-preflight-2dgozwxf/cold.xml",
+        "sha256": "e1c27e6c8c1d084ae5b2febe4df57b58372034787fb1cd0e53735b09e1411900",
+        "size": 9641
+      }
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "original_owned_checkout_absent": true,
+      "actual_checkout_reads": "DENIED",
+      "external_execution": "DENIED",
+      "copied_files": 541,
+      "files_unchanged": true
+    },
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "src/nasolve/cif_dictionary_store.py",
+      "tests/test_cif_dictionary_store.py"
+    ],
+    "runtime_sha256": "0c9dc4c42a625fecab1ab9f2cfdd2f590bdcb816fe630df16229cb29a3f78485",
+    "regression_sha256": "87fda22c0b3602905826b540cdee0d6734d03cefda0767c532e530350b479a2b"
   }
 }

@@ -1022,8 +1022,12 @@ is atomic; corrupt/unusable entries are excluded without overwrite. Current
 consumer or native-policy changes requalify saved numerics before generation,
 including a combined Phenix upgrade; original producer provenance is retained.
 
-The resolver consults this store before its verified acquisition callback and
-freezes independently hash-bound relative run artifacts. Cache-write failure
+The resolver validates snapshot destination structure before cache lookup or
+verified acquisition/requalification callbacks (C155), rejecting existing output,
+symlinked/dangling and non-directory ancestors without writes. It consults the
+store before acquisition and rechecks the destination when freezing independently
+hash-bound relative run artifacts. This preflight does not reserve an attempt
+or implement process ownership. Cache-write failure
 retains a verified per-run copy. No site modifier or model is cached as reusable
 component numerics; new coordinates need fresh geometry assessment and site
 checks. Curated/explicit source authority remains upstream and in the key.

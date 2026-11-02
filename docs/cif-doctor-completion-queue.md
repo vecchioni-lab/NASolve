@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-10-31, after C154.** This queue owns unfinished
+**Current planning authority, 2026-11-02, after C155.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -137,6 +137,12 @@ not completion of Q04. Optional nonbonded-inventory captures still need support;
 zero-context geometry trials remain unqualified and must not inherit a legacy
 plane-correction proof. C153's declared NAR numerical control is evidence for
 its own context, never an automatic workaround for a model with no custom restraints.
+
+C155 closes one shared-resolver preflight gap: invalid snapshot parents now
+refuse before cache lookup or acquisition/requalification callbacks. Valid
+read-only misses remain non-mutating, and freezing rechecks the destination.
+This is not durable reservation, process ownership or automatic recovery; those
+acceptance gates remain open under this same package.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-31** from native receipts, user visual review and verified geometry/DF
+Updated **2026-11-02** from software validation, native receipts and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,62 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C155 validated: dictionary acquisition destination preflight
+
+Base `f30ab9e8299a89cba7a3915f418b23478bf35949`; existing **cedar** only.
+Capsule `live_tests_directory/155_Cedar_acquisition-preflight-2dgozwxf`.
+Before, invalid snapshot ancestors could reach cache lookup and acquisition or
+requalification callbacks before refusal at freezing; a read-only miss could
+return MISS for an invalid layout. After, the shared resolver rejects symlinked,
+dangling-symlink and non-directory ancestors before lookup/callbacks and checks
+again when freezing. Valid missing parents remain absent on a read-only miss.
+
+Prior-work review: C66 (`5f90e70`) already implements cache-first lookup and stale-
+consumer requalification; C68's ordinary wrapper already checks symlinked output
+parents. The shared lower-level path still delayed that check. C135 (`d4c0e57`)
+retains the same shared resolver under explicit representation policies. No new
+chemistry route, generator or selection algorithm was needed.
+
+**Validation:** 12 new fault cases fail before the change; 15 new regressions in
+total include valid missing-parent, nested-reuse and final-recheck controls.
+Affected: **147 passed in 16.42s**.
+Workflow: **688 passed, 26 subtests passed in 117.71s (0:01:57)**.
+Full unfiltered: **7517 passed, 276 subtests passed in 1263.91s (0:21:03)**.
+All 518 frozen source/test/runner Python files remain unchanged. Commands use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_dictionary_store.py -k invalid_snapshot_parent
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_dictionary_store.py tests/test_cif_source_reuse.py tests/test_cif_postmr_cache.py tests/test_cif_postmr_cached_model.py
+python scripts/run_tests.py workflow --junitxml <capsule>/workflow.xml
+python scripts/run_tests.py full --junitxml <capsule>/full.xml
+python c155_cold.py
+python c155_auxiliary.py
+```
+
+The relocated checkout passes all 62 dictionary-store tests after its owned
+original path is gone, with original checkout reads and external execution denied;
+all 541 copied files remain unchanged. Compilation with an external cache, 110
+relative document links, JSON and whitespace checks pass. These are synthetic
+software fixtures: no Phenix/Coot, generation, optimization or refinement ran.
+
+Changed: one shared store module, its regression module, changelog, contracts,
+human descriptor, documentation index, queue, this handoff and both ledgers.
+No schema, dependency, chemistry/numerical threshold, source/consumer binding,
+checkpoint or CLI migration changes. Invalid paths refuse earlier; valid reuse
+retains its meaning. Logs/XML/helpers remain local and excluded from Git. Exact
+references are in evidence key `dictionary_destination_preflight_2026_11_02`.
+
+**Boundary:** read-only destination preflight is not an atomic reservation,
+writability/disk-space guarantee or complete filesystem race defense. Q04 remains
+open for durable attempt identity, process ownership, bounded recovery and
+independently qualified fallback; Q05 owns ordinary adoption. Scientific workers
+and prior scientific evidence are unchanged. No active jobs remain.
+
+Publication pending; the previous full-tested implementation was
+`ea7f74c7c5f7e0df03972975650b27ae28eef94a`.
+— Rowan · Codex desktop
 
 ## C154 published: absent-parallelity derivative integration and history policy
 

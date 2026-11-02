@@ -278,10 +278,18 @@ def lookup_dictionary(root, request, consumer):
     return {**selected, 'status':'HIT' if compatible else 'REQUALIFICATION_REQUIRED', 'decision':decision, 'notes':notes}
 
 
-def _freeze(output, manifest, data, *, origin, persistent_store, notes):
+def _snapshot_destination(output):
+    """Check destination shape without writing or reserving an attempt."""
     output = Path(output).absolute()
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
     _need(not any(p.is_symlink() for p in output.parents), 'Snapshot output parent cannot traverse a symlink')
+    _need(all(not p.exists() or p.is_dir() for p in output.parents),
+        'Snapshot output parent is not a directory')
+    return output
+
+
+def _freeze(output, manifest, data, *, origin, persistent_store, notes):
+    output = _snapshot_destination(output)
     output.parent.mkdir(parents=True, exist_ok=True)
     entry_id = sha256(_bytes(manifest)).hexdigest(); provenance = _json(data['provenance'])
     report = {'schema_version':1, 'policy_id':POLICY_ID, 'status':origin, 'entry_id':entry_id,
@@ -329,8 +337,9 @@ def resolve_qualified_dictionary(source, code, store_root, output, *, source_aut
     dictionary into a linked structure. Source precedence is chosen upstream and
     is part of the request. No crystal coordinates enter the reusable key.
     """
-    output = Path(output)
-    if output.exists() or output.is_symlink(): raise FileExistsError(output)
+    # Reject invalid destinations before lookup or potentially expensive adapters.
+    # Publication checks again; this read-only preflight is not a reservation.
+    output = _snapshot_destination(output)
     store = Path(store_root).expanduser().resolve()
     destination = output.expanduser().resolve()
     _need(destination != store and destination not in store.parents and store not in destination.parents,

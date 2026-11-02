@@ -3920,6 +3920,14 @@ C66 explicitly exercises this API with the qualified DP/PDU/5PC candidates.
 It does not silently enable production repair/adoption or make students save,
 select or inspect CIF tables.
 
+C155 rejects structurally invalid snapshot destinations before lookup or any
+acquisition/requalification adapter: existing output, symlinked (including dangling)
+ancestors and non-directory ancestors refuse. The read-only preflight creates
+no directories on a miss and is repeated at snapshot freezing. It is not an
+attempt reservation, a writability/disk-space guarantee or complete filesystem
+race protection. Durable ownership and retry handling remain Q04. The existing
+store/snapshot policy and chemistry/consumer gates are unchanged.
+
 The semantic lookup binds exact source bytes and authority, original atom names,
 declared elements/orders/formal charges/explicit hydrogens/stereochemistry, the
 numerical recipe and generator family. Component code alone is insufficient.

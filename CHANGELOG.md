@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Dictionary acquisition destination preflight (C155)
+
+- Reject symlinked, dangling-symlink and regular-file snapshot ancestors before
+  cache lookup or acquisition/requalification callbacks. A read-only miss keeps
+  valid missing output parents absent; existing output is still refused.
+- Recheck the destination when freezing the snapshot. Store/snapshot schemas,
+  source/chemistry qualification and numerical selection are unchanged. This
+  preflight does not reserve an attempt or establish process ownership.
+
 ### Captured derivatives with absent parallelity (C154)
 
 - Qualify an authenticated zero-parallelity capture using the unchanged

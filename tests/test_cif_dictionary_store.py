@@ -211,3 +211,84 @@ def test_snapshot_cannot_upgrade_evidence_or_erase_original_notes(tmp_path,field
     path=tmp_path/'run/resolution.json';report=json.loads(path.read_bytes());report[field]=value
     path.write_text(json.dumps(report))
     with pytest.raises(ValueError):resolve_dictionary_snapshot(tmp_path/'run')
+
+
+@pytest.mark.parametrize('mode', ['miss', 'acquire', 'requalify', 'hit'])
+@pytest.mark.parametrize('obstacle', ['symlink', 'dangling_symlink', 'file'])
+def test_invalid_snapshot_parent_refuses_before_lookup_or_adapter(tmp_path, monkeypatch, mode, obstacle):
+    import nasolve.cif_dictionary_store as cache
+    if mode in {'hit', 'requalify'}:
+        s, c, m, q, options, request, provenance, entry = publish(tmp_path)
+    else:
+        s, c, m, q, options, request, provenance = inputs(tmp_path)
+    if mode == 'requalify':
+        options['consumer']['version'] = 'NEW_TEST_VERSION'
+    parent = tmp_path / 'blocked'
+    target = tmp_path / 'untouched-target'
+    if obstacle == 'file':
+        parent.write_bytes(b'EXISTING FILE')
+    else:
+        if obstacle == 'symlink':
+            target.mkdir()
+            (target / 'sentinel').write_bytes(b'EXISTING TARGET')
+        parent.symlink_to(target, target_is_directory=True)
+    def inventory():
+        return {p.relative_to(tmp_path).as_posix():
+                ('symlink', str(p.readlink())) if p.is_symlink() else
+                ('file', p.read_bytes()) if p.is_file() else ('directory',)
+                for p in tmp_path.rglob('*')}
+    before = inventory()
+    calls = []
+    original_lookup = cache.lookup_dictionary
+    def lookup(*args):
+        calls.append('lookup')
+        return original_lookup(*args)
+    def acquire():
+        calls.append('acquire')
+        return dict(candidate=c, qualification=q, provenance=provenance)
+    def requalify(*args):
+        calls.append('requalify')
+        return deepcopy(q)
+    monkeypatch.setattr(cache, 'lookup_dictionary', lookup)
+    with pytest.raises(cache.DictionaryStoreError, match='Snapshot output parent'):
+        cache.resolve_qualified_dictionary(s, 'Q17', tmp_path / 'store', parent / 'new' / 'snapshot',
+            acquire=acquire if mode == 'acquire' else None,
+            requalify=requalify if mode == 'requalify' else None, **options)
+    assert calls == []
+    assert inventory() == before
+
+
+def test_valid_missing_snapshot_parents_are_not_created_on_read_only_miss(tmp_path):
+    from nasolve.cif_dictionary_store import resolve_qualified_dictionary
+    s, c, m, q, options, request, provenance = inputs(tmp_path)
+    absent = tmp_path / 'not-created'
+    result = resolve_qualified_dictionary(s, 'Q17', tmp_path / 'store', absent / 'nested' / 'snapshot', **options)
+    assert result['status'] == 'MISS'
+    assert not absent.exists() and not (tmp_path / 'store').exists()
+
+
+def test_valid_nested_snapshot_parents_still_allow_cached_reuse(tmp_path):
+    from nasolve.cif_dictionary_store import resolve_qualified_dictionary, resolve_dictionary_snapshot
+    s, c, m, q, options, request, provenance, entry = publish(tmp_path)
+    output = tmp_path / 'new' / 'nested' / 'snapshot'
+    result = resolve_qualified_dictionary(s, 'Q17', tmp_path / 'store', output,
+        acquire=lambda: pytest.fail('a valid cache hit must not regenerate'), **options)
+    assert result['status'] == 'REUSED'
+    assert resolve_dictionary_snapshot(output)['dictionary'].read_bytes() == c.read_bytes()
+
+
+def test_snapshot_parent_is_rechecked_after_cache_lookup(tmp_path, monkeypatch):
+    import nasolve.cif_dictionary_store as cache
+    s, c, m, q, options, request, provenance, entry = publish(tmp_path)
+    parent, target = tmp_path / 'changed-parent', tmp_path / 'external-target'
+    target.mkdir()
+    (target / 'sentinel').write_bytes(b'KEEP')
+    original_lookup = cache.lookup_dictionary
+    def changed_after_preflight(*args):
+        hit = original_lookup(*args)
+        parent.symlink_to(target, target_is_directory=True)
+        return hit
+    monkeypatch.setattr(cache, 'lookup_dictionary', changed_after_preflight)
+    with pytest.raises(cache.DictionaryStoreError, match='Snapshot output parent'):
+        cache.resolve_qualified_dictionary(s, 'Q17', tmp_path / 'store', parent / 'snapshot', **options)
+    assert {p.name: p.read_bytes() for p in target.iterdir()} == {'sentinel': b'KEEP'}
