@@ -27899,12 +27899,13 @@
     },
     "curated_cif_loops": {
       "milestone": "C161",
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "queue": "Q02 COMPLETE",
       "contract": "docs/cif-doctor.md#curated-cif-loop-parsing-c161",
       "evidence_key": "curated_cif_loops_2026_11_02",
       "summary": "Both readers use existing CIF1 block and lexical parsing; exact identifiers, component consistency, row completeness and finite preferred coordinates are checked without rewriting source data.",
-      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "implementation_revision": "f0b125b0acd7c91e3fa8bc68417727d79ff25734"
     }
   },
   "audience": [

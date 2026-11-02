@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C161 validated; publication pending: Q02 curated CIF parser closure
+## C161 published: Q02 curated CIF parser closure
 
 Base `693b955637eee27fb4ab6800e60d998a9c06f0d3`; existing Cedar only.
 Capsule `live_tests_directory/161_Cedar_curated-loops-san9oh4r`.
@@ -53,7 +53,7 @@ Q04 whole-acquisition ownership/recovery/budget is next; Q05/Q06/Q13 remain open
 No jobs active and no merge/adoption claim. Exact evidence in
 `curated_cif_loops_2026_11_02`.
 
-Same-Cedar publication pending.
+Implementation `f0b125b0acd7c91e3fa8bc68417727d79ff25734` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C160 published: maintained native repair execution

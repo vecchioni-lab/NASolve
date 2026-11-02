@@ -63107,7 +63107,7 @@
   },
   "curated_cif_loops_2026_11_02": {
     "milestone": "C161",
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "queue": "Q02 COMPLETE; Q04 remains next",
     "base_revision": "693b955637eee27fb4ab6800e60d998a9c06f0d3",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
@@ -63318,6 +63318,7 @@
       "Q04 whole-acquisition ownership/recovery and total budget",
       "Q05 ordinary adoption, Q06 actual refinement, Q13 phosphate-state authority"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "f0b125b0acd7c91e3fa8bc68417727d79ff25734"
   }
 }
