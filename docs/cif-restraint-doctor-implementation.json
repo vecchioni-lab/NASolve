@@ -27820,7 +27820,7 @@
       "full_validation_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353"
     },
     "source_generation_ownership": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "evidence": "docs/cif-linked-native-registration-evidence.json#source_generation_ownership_2026_11_02",
       "contract": "docs/cif-doctor.md#durable-source-generation-process-evidence-c156",
       "scope": "Both invocations use campaign-owned cleanup, immutable prelaunch/identity/stopped records, read-only conservative inspection and a shared generation budget. Partial outputs and all chemistry/qualification gates remain intact.",
@@ -27828,7 +27828,8 @@
       "schema_changes": "Additive process evidence only",
       "new_native_execution": true,
       "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST; full integration gate remains pending",
-      "last_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353"
+      "last_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+      "focused_validation_revision": "36aab06e81414e70c8f1cd9ea5654860b6228324"
     }
   },
   "audience": [

@@ -60304,7 +60304,7 @@
     "implementation_published_on": "origin/cedar"
   },
   "source_generation_ownership_2026_11_02": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "fc8255553f04ec44db3a469be03354c47802645d",
@@ -60710,6 +60710,8 @@
       "Initial process test expected raw OSError; existing campaign wrapper correctly returns CampaignProcessError. Test expectation corrected; original log retained.",
       "Initial cold harness named inspect.py shadowed the standard-library module; corrected fresh harness passes, failed copy/log retained.",
       "Slow identity publication and expired prelaunch budgets originally bypassed the deadline. Both reproduced before correction and pass afterward."
-    ]
+    ],
+    "focused_validation_revision": "36aab06e81414e70c8f1cd9ea5654860b6228324",
+    "implementation_published_on": "origin/cedar"
   }
 }

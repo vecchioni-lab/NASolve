@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C156 validated; publication pending: durable source-generation process evidence
+## C156 published: durable source-generation process evidence
 
 Base `fc8255553f04ec44db3a469be03354c47802645d`; existing **cedar** only.
 Capsule `live_tests_directory/156_Cedar_generation-ownership-1ep9c4u0`.
@@ -94,7 +94,8 @@ There are no active jobs or in-place retries. **No full regression was run**;
 last full-tested implementation remains `28a6c1b22be70f8480dbd6e755e601a1ef774353`
 (7517 tests + 276 subtests). A new full gate remains required before integration.
 
-Implementation is validated and ready to publish on existing `cedar`; no merge is requested.
+Focused-tested implementation `36aab06e81414e70c8f1cd9ea5654860b6228324` is published and verified
+on `origin/cedar`. This continuity-only update changes no runtime/test bytes.
 — Rowan · Codex desktop
 
 ## C155 published: dictionary acquisition destination preflight
