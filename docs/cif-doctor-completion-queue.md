@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-02, after C156.** This queue owns unfinished
+**Current planning authority, 2026-11-02, after C157.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -151,13 +151,22 @@ inspection distinguishes old/missing, live, stopped and unknown evidence. Both
 phases share one execution budget. Actual 5PC completion and deliberate PDU
 timeout pass under Phenix 2.2.1-6174 without promoting chemical usability.
 
-**Next bounded checkpoint:** bind the complete logical acquisition request to a
-durable coordinator/attempt identity and persistent lock, then consume these
-per-invocation records before any fresh retry. A stopped phase alone does not
-prove its coordinator is dead; unknown spawn gaps must stay blocked. Source
-discovery and other native adapters still need appropriate ownership coverage.
-After that, compose cache-first generation/requalification and the independently
-qualified usable fallback. No retry loop is enabled by C156.
+C157 closes the explicit generation-request ownership layer: frozen exact source,
+recipe/native pins and attempt allowance; a persistent shared lock; immutable
+numbered attempts; and read-only recovery observations. Unsealed attempts require
+both coordinator and worker inactivity; publication gaps remain blocked. Explicit
+retries preserve partial output and consume a fresh reservation. A real macOS
+timezone identity regression is fixed. Separate request directories remain
+separate coordination scopes, and the legacy one-shot API remains available.
+
+**Next bounded checkpoint:** connect the owned generation-request API to the
+cache-first acquisition boundary with a defined exact source/current-consumer
+request mapping. A hit must avoid generation; a miss must reuse the same durable
+request scope, preserve bounded failures and independently qualify any fallback.
+Source discovery and other native/qualification adapters still need appropriate
+ownership coverage before claiming a fully owned acquisition. Define the total
+acquisition budget across these phases; C157 bounds explicit generation attempts
+only. No automatic retry loop or ordinary adoption is enabled by C157.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;

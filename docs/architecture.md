@@ -1017,10 +1017,15 @@ for its help/build invocations (C156). Immutable per-phase UUID/job, owned-proce
 and verified-stop records distinguish retained partial work from known inactivity;
 SIGTERM, interruption and timeout follow the existing group-cleanup contract.
 Both phases share one generation execution budget. The read-only process reader
-never authorizes a retry or supplies chemical qualification. Logical acquisition
-identity, coordination across output directories and dead-coordinator recovery
-remain Q04; scientific source/native/site gates and other adapters are unchanged.
-See [generation ownership](cif-doctor.md#durable-source-generation-process-evidence-c156).
+never authorizes a retry or supplies chemical qualification. C157 adds an explicit
+request wrapper with frozen source/recipe/native pins, a persistent lock, immutable
+numbered attempts and a finite allowance. Unsealed attempts require coordinator
+and worker inactivity; uncertainty blocks a fresh reservation. Relative evidence
+replays read-only after relocation. This owns generation under one shared request
+directory; full cache-first acquisition and other adapters remain Q04. Scientific
+source/native/site gates and adoption remain unchanged.
+See [generation ownership](cif-doctor.md#durable-source-generation-process-evidence-c156) and
+[request attempts](cif-doctor.md#durable-source-generation-requests-and-attempts-c157).
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
 persistent local reuse independently of ordinary PostMR orchestration. Its

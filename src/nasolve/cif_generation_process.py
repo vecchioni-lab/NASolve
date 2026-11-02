@@ -36,12 +36,21 @@ def _directory(work, phase):
     return work, directory
 
 
+def _valid_attempt_identity(identity):
+    return (isinstance(identity, dict) and set(identity) == {'request_sha256', 'attempt_sha256', 'attempt_id'}
+            and all(isinstance(identity[k], str) and re.fullmatch('[0-9a-f]{64}', identity[k]) is not None
+                    for k in ('request_sha256', 'attempt_sha256'))
+            and isinstance(identity['attempt_id'], str)
+            and re.fullmatch('[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}', identity['attempt_id']) is not None)
+
+
 def _valid_context(context):
     return (isinstance(context, dict)
             and isinstance(context.get('source_sha256'), str)
             and re.fullmatch('[0-9a-f]{64}', context['source_sha256']) is not None
             and isinstance(context.get('component'), str)
-            and re.fullmatch('[A-Z0-9]{1,3}', context['component']) is not None)
+            and re.fullmatch('[A-Z0-9]{1,3}', context['component']) is not None
+            and ('attempt_owner' not in context or _valid_attempt_identity(context['attempt_owner'])))
 
 
 def _valid_identity(identity, *, child=False):
@@ -166,15 +175,17 @@ def inspect_generation_process(work, phase):
             or not math.isfinite(job['timeout_seconds']) or not 0 < job['timeout_seconds'] <= 600):
         raise ValueError('Invalid generation process job')
     result.update(job=job, state='UNKNOWN')
+    # Completion is published after identity. Observe it first, so a concurrent
+    # publication cannot pair a new completion with an earlier missing identity.
+    finished_path = directory / 'finished.json'
+    finished = read_record(finished_path) if finished_path.exists() else None
     identity_path = directory / 'process.json'
     owner = read_record(identity_path) if identity_path.exists() else None
     if owner is not None:
         if owner.get('job_sha256') != job['record_sha256'] or not _valid_identity(owner.get('identity'), child=True):
             raise ValueError('Generation process identity belongs to another job')
         result['identity'] = owner['identity']
-    finished_path = directory / 'finished.json'
-    if finished_path.exists():
-        finished = read_record(finished_path)
+    if finished is not None:
         code = finished.get('returncode')
         if (finished.get('job_sha256') != job['record_sha256']
                 or finished.get('process_sha256') != (None if owner is None else owner['record_sha256'])

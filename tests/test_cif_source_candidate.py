@@ -63,9 +63,24 @@ def test_finished_coordinate_handedness_uses_named_source_centres_and_keeps_unkn
     assert not q['requires_cif_review'] and (s.read_bytes(),c.read_bytes())==before
 
 
+@pytest.mark.parametrize('request_owned', [False, True])
 @pytest.mark.parametrize('mode',['correct','exception_after_output','exception_before_output','charge_change','missing_charge','bad_pin','bad_reference','timeout','help_timeout','budget_exhausted'])
-def test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit(tmp_path,monkeypatch,mode):
+def test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit(tmp_path,monkeypatch,mode,request_owned):
     from nasolve.cif_source_candidate import generate_source_candidate
+
+    from nasolve.cif_generation_attempt import generate_source_candidate_attempt
+    def request_generate(root, python, selected, api, source, code, out, **kwargs):
+        # The legacy fixture used only a library locator. Owned requests require
+        # actual pinned API bytes, as supplied by fresh native source capture.
+        api = [dict(row) for row in api]
+        for row in api:
+            path = root/row['path']; path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('# SYNTHETIC API LOCATOR\n')
+            row.update(sha256=sha256(path.read_bytes()).hexdigest(), size=path.stat().st_size)
+        wrapped = generate_source_candidate_attempt(root, python, selected, api, source, code, out, **kwargs)
+        return wrapped['generation']
+    if request_owned:
+        generate_source_candidate = request_generate
     root,python,site,proof,api=installation(tmp_path,'correct')
     reader=site/'elbow/chemistry/any_chemical_format_reader.py'
     reader.write_text(reader.read_text().replace("['constructor_worker.py']","['source_candidate_worker.py']").replace(' return [m]',' m[1].charge=-1;m.charge=-1\n return [m]'))
@@ -112,12 +127,17 @@ def post_process(molecule,options):
         expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=pins,phenix_version='2.2.1-FAKE',single_block_steps=12,timeout_seconds=0.5 if mode in {'timeout','help_timeout'} else 10)
     if mode in {'bad_pin','bad_reference'}:
         with pytest.raises(ValueError):generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
-        assert not out.exists();return
+        if request_owned and mode=='bad_reference':
+            from nasolve.cif_generation_attempt import inspect_source_generation_request
+            assert inspect_source_generation_request(out)['attempts'][0]['state']=='STOPPED'
+        else:assert not out.exists()
+        return
     if mode=='budget_exhausted':
         from types import SimpleNamespace
         ticks=iter([0,11,11])
         monkeypatch.setattr('nasolve.cif_source_candidate.time',SimpleNamespace(monotonic=lambda:next(ticks)))
     r=generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
+    if request_owned:out=out/'attempts/attempt-0001/generation'
     # Even a timeout must leave immutable prelaunch/owner/stopped evidence.
     from nasolve.cif_generation_process import inspect_generation_process
     for phase in (('capabilities',) if mode in {'help_timeout','budget_exhausted'} else ('capabilities', 'candidate')):

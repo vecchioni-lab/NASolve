@@ -11,6 +11,90 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C157 validated; publication pending: durable source-generation requests and attempts
+
+Base `19a1ebbecb472f304edfc1c98fc2b83b1fd6b567`; existing **cedar** only.
+Capsule `live_tests_directory/157_Cedar_generation-attempts-i3trld__`.
+Before, phase records did not own a complete generation call or coordinate fresh
+output attempts. After, an explicit API freezes source/recipe/native pins and an
+attempt allowance, holds a persistent lock, and reserves immutable numbered
+attempts with UUIDs. Each help/build phase binds its exact request and attempt.
+An old stopped record cannot stand in for another attempt. Unsealed calls require
+both coordinator and worker inactivity; unknown publication gaps remain blocked.
+Every partial output is retained. Each explicit retry consumes a fresh attempt.
+
+Prior-work review: C156 (`36aab06`) supplies phase ownership/shared deadlines;
+campaign `0613f38` supplies persistent locks, cleanup and immutable records.
+C66/C68/C135 reuse and C155 preflight remain separate. The new coordinator check
+does not misuse group liveness for a PID that is not a group leader. A reproduced
+macOS timezone change could make the same live PID appear dead: UTC/C markers
+fix it, and incomparable legacy markers remain unknown. Whole-attempt activity
+includes surviving workers. Completion-first reads avoid pairing new completion
+records with stale dependency observations during concurrent publication.
+
+Additive schema 1 / `cif-source-generation-request-v1`; phase context gains a
+validated optional parent identity, required by the new wrapper. Existing
+one-shot output layouts, scientific worker/audit logic, native source/stereo/charge
+gates, store/checkpoint schemas, CLI and dependencies remain unchanged. Request destinations normalize dot segments before containment checks. Native
+source path checks reuse existing installation containment, including internal
+links; request evidence stays symlink-free. No migration or automatic adoption.
+
+**Actual native controls:** Phenix **2.2.1-6174**, dispatcher **2.2.1**, not dry-runs.
+Final 5PC build completes in **9.39s**, retains a reviewable candidate,
+and preserves source-relative handedness/formal charges; convergence is not
+claimed. Two explicit PDU attempts each stop at an **eight-second budget**
+(8.06s and 8.06s including cleanup). They have distinct IDs, retain
+partial files and leave the first attempt's bytes/timestamps unchanged. A third
+attempt refuses without mutation. All three attempts/six phase groups are sealed
+stopped. Source capture is a separate bounded preflight, not covered by this
+request journal. No ReadySet, Coot, refinement or new usability/adoption runs.
+
+**Focused validation only**, per Simon: **no full suite**. There are 72 new cases
+(62 request/identity controls and 10 existing generator scenarios through the
+owned API). Initial missing APIs and specific timezone, aggregate activity,
+copied-attempt, concurrent-read and destination-alias failures are preserved before their fixes.
+Actual subprocess controls kill the owned synthetic coordinator, retain its
+worker, block recovery while it lives, then reserve a new attempt after both stop.
+Final affected: **297 passed, 27 subtests passed in 63.57s (0:01:03)**.
+Workflow: **845 passed, 45 subtests passed in 126.77s (0:02:06)**.
+All 522 test-source and 192 native-runtime hashes remain exact.
+Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_generation_attempt.py -k <recorded-before-selection>
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_generation_attempt.py tests/test_campaign_process.py tests/test_campaign_execution.py tests/test_cif_generation_process.py tests/test_cif_source_candidate.py tests/test_cif_source_representation.py tests/test_cif_generation.py tests/test_cedar55_delivery.py
+python scripts/run_tests.py workflow --junitxml <capsule>/workflow-r2.xml
+python c157_native.py native-r4
+python c157_cold.py
+python c157_auxiliary.py
+```
+
+Cold replay validates the three final attempts and four older C156 phase records
+after the owned original path is gone, denying historical checkout/science/SDK
+reads and external execution. All **657** copied files retain bytes/timestamps.
+Compilation with an external cache, **110** relative links, JSON and whitespace
+checks pass. Intermediate fixture errors, an initial harness lacking Biopython,
+and earlier native controls remain preserved; final evidence is explicitly named.
+
+Changed: `cif_generation_attempt.py`, `campaign_process.py`,
+`cif_generation_process.py`, `cif_source_candidate.py`; request/source-candidate
+tests and workflow profile; changelog, contracts, human overview, index, queue,
+this handoff and both ledgers. Exact files/commands/hashes are in
+`source_generation_attempts_2026_11_02`. Scientific inputs/candidates/partial
+outputs, logs, XML and helpers stay local/ignored; none is committed.
+
+**Next:** Q04 cache-first acquisition must map an exact source/current-consumer
+request to this shared generation scope and compose independently qualified
+fallback, ownership for source discovery/other adapters and an overall budget.
+This API performs one explicit attempt per call, not an automatic retry loop or
+global deduplication. Q05 adoption, Q06 refinement and mixed-scaffold phosphate
+state remain open. No active jobs remain. Last full-tested implementation stays
+`28a6c1b22be70f8480dbd6e755e601a1ef774353` (7517 tests + 276 subtests); a new full
+integration gate is required before merging.
+
+Implementation is validated and ready to publish on existing `cedar`; no merge is requested.
+— Rowan · Codex desktop
+
 ## C156 published: durable source-generation process evidence
 
 Base `fc8255553f04ec44db3a469be03354c47802645d`; existing **cedar** only.

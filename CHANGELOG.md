@@ -8,6 +8,28 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Durable source-generation requests and attempts (C157)
+
+- Add an explicit request-owned generation API with an exact frozen source,
+  recipe/native pins, persistent nonblocking lock, numbered immutable attempts
+  and a fixed finite allowance. Each call performs at most one fresh attempt;
+  prior output and incomplete records are never repaired or overwritten.
+- Unsealed attempts require both coordinator inactivity and stopped known worker
+  groups before another attempt. Missing ownership publication or foreign/unknown
+  activity blocks recovery. Read-only inspection creates no lock and grants no
+  retry authority. Completion evidence binds the phase records and candidate
+  receipt; it does not grant chemical usability.
+- Read completion records before their dependencies to avoid false corruption
+  during concurrent publication. Normalize destination dot segments before
+  installation containment checks, refusing aliases before creating request files.
+- Normalize POSIX `ps` start identities to UTC/C locale. A timezone change must
+  not make a live coordinator appear dead; older incomparable markers remain
+  uncertain. Existing campaign worker-group liveness semantics are unchanged.
+- Add schema 1 / `cif-source-generation-request-v1`. Legacy one-shot generation,
+  chemistry/qualification, cache/checkpoint formats and CLI remain unchanged.
+  Ordinary cache-first acquisition, other native adapters and adoption remain
+  separate Q04/Q05 integration work. No automatic retry loop is enabled.
+
 ### Durable source-generation process evidence (C156)
 
 - Source-preserving native generation now uses campaign-owned process cleanup

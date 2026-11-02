@@ -1778,6 +1778,23 @@ layers; cache reuse never certifies a new crystal. C66 uses saved Phenix
 resource-file qualification. It does not upload chemistry, change native
 mechanics or ask students to inspect CIFs.
 
+C157 gives that generator a durable request owner. A request freezes its source,
+recipe, native pins and finite attempt allowance. A persistent lock prevents
+overlapping calls to the same request; retries receive fresh numbered folders
+and preserve every earlier partial result. Each worker is bound to that exact
+request and attempt, preventing reuse of an older stopped record as current proof.
+A dead worker alone is insufficient:
+an unsealed coordinator must also be known inactive, and uncertain ownership
+blocks another attempt. Inspection is read-only and sealed requests can be moved
+and inspected without the original installation. The implementation also fixes
+a macOS timezone ambiguity that could misidentify a live coordinator as dead.
+
+This explicit API supplies execution safety for the future background engine.
+It does not yet connect ordinary cache misses, source discovery, current-consumer
+qualification or automatic fallback/adoption. It never infers chemistry from
+process exit. The [request contract](cif-doctor.md#durable-source-generation-requests-and-attempts-c157)
+defines its scope, immutable records and finite per-attempt policy.
+
 C156 adds durable execution evidence to explicit source-preserving generation.
 Before the help probe or builder starts, NASolve saves an immutable invocation
 identity; it then records the owned worker and proves the process group stopped
@@ -1785,8 +1802,8 @@ before sealing completion. Interruptions retain partial output. A missing record
 means unknown, and successful process execution does not certify chemistry.
 The two invocations share one timeout budget and reuse campaign cleanup. This
 supports future automatic recovery without authorizing retry from a dead phase
-alone: the acquisition coordinator and full request still need their own owner
-and recovery contract. Actual Phenix 2.2.1-6174 controls complete a 5PC build and
+alone. C157 adds explicit generation-request coordination; the full acquisition
+and its other native adapters still need their own composition contract. Actual Phenix 2.2.1-6174 controls complete a 5PC build and
 preserve a deliberately timed-out PDU attempt; neither is automatically adopted.
 The [execution contract](cif-doctor.md#durable-source-generation-process-evidence-c156)
 defines the reader states and remaining integration boundary.

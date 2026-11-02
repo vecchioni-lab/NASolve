@@ -98,7 +98,9 @@
 
 <a id="current-capability-boundary-c151"></a>
 
-## Current capability boundary (C152)
+<a id="current-capability-boundary-c152"></a>
+
+## Current capability boundary (C157)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -120,6 +122,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
+| Source-generation ownership | C156 owns help/build process groups; C157 adds frozen exact requests, finite immutable attempts, persistent locks, exact parent bindings and conservative coordinator/worker recovery. Actual 5PC completion, bounded PDU attempts, interruption and cold replay pass. | Explicit generation API only. Callers must share a request scope; source discovery, complete cache-first acquisition, independently qualified fallback and ordinary adoption remain Q04/Q05. Process completion is not chemical usability. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -168,6 +171,78 @@ Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
 
+### Durable source-generation requests and attempts (C157)
+
+`cif_generation_attempt.generate_source_candidate_attempt` wraps the existing
+source-preserving generator with one explicit logical request. Callers supply
+the selected installation/dispatchers, freshly pinned API/source evidence,
+declared source/component, recipe and request directory. The request freezes
+source bytes, component, dialect, representation policy, optimization steps,
+per-attempt timeout, producer version, installation-relative dispatcher/source
+hashes and an allowance of **one to five attempts** (default two). Snapshot
+locations and caller-absolute paths do not define chemical/request identity.
+Environment contents are not serialized. Pins are checked before reservation
+and after generation; this is not a snapshot of the entire installed SDK.
+
+Schema 1 / `cif-source-generation-request-v1` persists `request.json` and
+`inputs/source.cif`. A persistent `request.lock` is never unlinked. Under that
+nonblocking lock, each explicit call reserves `attempts/attempt-0001/` (then
+0002, etc.) and publishes an immutable attempt UUID, request digest, coordinator
+identity and relative output reference before generation. Every reservation,
+including a failed or empty attempt, consumes the frozen allowance. Each attempt
+has its own `generation/` directory, containing the unchanged scientific receipt
+and C156 phase records. Every phase binds the parent request digest, attempt
+digest and attempt UUID; a stopped record from an earlier same-source attempt
+cannot stand in for the current worker. The return value carries the original generation result
+and a `request_directory`-anchored reference to that directory. This API is a
+building block for Q04; legacy one-shot callers keep their original output layout.
+
+`inspect_source_generation_request` never creates a lock, edits evidence, replays
+commands or signals a saved PID. It validates request/source, consecutive attempts,
+coordinator/phase ownership, completion bindings and receipt hashes. `AVAILABLE`
+is advisory: the modifying API rechecks all attempts while holding the lock.
+`retry_authorized` is always false on inspection. `BLOCKED` includes live workers,
+live coordinators and unknown publication gaps. `EXHAUSTED` is a stopped request
+with no remaining reservations. Whole-attempt activity includes surviving workers;
+`coordinator_activity` separately describes an unsealed coordinator observation.
+
+A sealed attempt proves this generation call returned or raised after its known
+workers stopped, even if the hosting caller remains alive. Without that seal,
+**both** coordinator inactivity and inactivity of every recorded worker group
+are required for a fresh attempt. A stopped phase alone is insufficient. Missing
+prelaunch/worker ownership stays unknown, even after coordinator death. Recovery
+never fills in the old completion record. Unexpected files, symlinks, changed
+source/policy/native pins and mismatched records refuse. Request destinations
+normalize dot segments before containment checks, preventing an alias from
+placing request files inside the selected installation. Checksums detect accidental
+corruption, not hostile rewriting of all evidence. All callers coordinating one
+logical request must use the same directory; separate directories are separate
+requests, not a global source-deduplication service.
+
+Coordinator checks do not assume PID equals process-group ID. Local PID absence,
+a changed known boot or a changed comparable start marker can prove the saved
+coordinator gone. Permission failures, foreign hosts and incomparable markers
+remain uncertain. `ps` markers use UTC and C locale, with a distinct representation
+tag; old locale-dependent markers cannot authorize recovery through a mismatch.
+Worker groups retain their existing conservative checks and live-handle cleanup.
+Completion records are observed before their dependencies, so a completion
+published mid-read cannot be paired with an earlier worker observation.
+Sealed requests replay offline after relocation without OS process probes.
+
+The allowance bounds the number of explicit native generation attempts, each
+with the C156 shared help/build timeout; preparation/publication and bounded
+cleanup add elapsed time. There is no automatic loop, overall acquisition wall-
+clock deadline, cache selection, source-discovery ownership, requalification or
+adoption here. Process completion does not establish convergence, chemical
+correctness, a usable fallback or refinement readiness. Q04 still owns composition
+with cache-first resolution and other native adapters; Q05 owns ordinary adoption.
+No CLI/dependency/cache/checkpoint migration or scientific acceptance change.
+
+Validation and exact local evidence are recorded under
+`source_generation_attempts_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json). Full regression
+remains a separate integration gate; this checkpoint uses focused validation.
+
 ### Durable source-generation process evidence (C156)
 
 `generate_source_candidate` now delegates both the installed help probe and its
@@ -200,8 +275,9 @@ publication can add elapsed time. Execution requires POSIX process-group support
 
 **Boundary:** activity describes one invocation, not its whole acquisition
 coordinator. `retry_authorized` is always false. The logical acquisition identity,
-cross-output lock, dead-coordinator proof, fresh-attempt sequencing and cache-first
-fallback orchestration are still Q04. Source probing and other native diagnostic
+cross-output lock, dead-coordinator proof and fresh-attempt sequencing are now
+provided for explicit generation requests by C157 above. Cache-first fallback
+orchestration and ownership of the complete acquisition remain Q04. Source probing and other native diagnostic
 adapters have not all adopted this journal. No source-state choice, chemical
 repair, native-usability verdict, numerical threshold or automatic adoption is
 introduced. Old scientific captures remain unchanged and read as lacking this

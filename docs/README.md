@@ -50,8 +50,10 @@ milestone statements preserve their original scope; they are not a second queue.
   scaffold's intended phosphate state stays Q13. C155 validates dictionary
   snapshot destinations before acquisition. C156 shares campaign process ownership
   with source-generation help/build, preserves immutable invocation records and
-  adds read-only stopped/live/unknown inspection. Logical acquisition coordination,
-  dead-owner recovery and automatic cache-miss continuation remain Q04.
+  adds read-only stopped/live/unknown inspection. C157 binds explicit generation
+  requests to finite immutable attempts, persistent locks and dead-coordinator/
+  worker recovery checks. Full acquisition composition, other native adapters and
+  automatic cache-miss continuation remain Q04.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

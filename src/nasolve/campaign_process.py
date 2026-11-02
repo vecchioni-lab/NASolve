@@ -111,8 +111,9 @@ def _start_marker(pid: int) -> str | None:
         result = subprocess.run(
             ["/bin/ps", "-p", str(pid), "-o", "lstart="],
             capture_output=True, text=True, timeout=2, check=False,
+            env={**os.environ, "LC_ALL": "C", "TZ": "UTC"},
         )
-        return "ps-lstart:" + result.stdout.strip() if result.returncode == 0 and result.stdout.strip() else None
+        return "ps-lstart-utc:" + result.stdout.strip() if result.returncode == 0 and result.stdout.strip() else None
     except (OSError, ValueError, IndexError, subprocess.SubprocessError):
         return None
 
@@ -193,6 +194,38 @@ def process_alive(identity: Mapping[str, object] | None) -> bool | None:
     if isinstance(saved_boot, str) and saved_boot and boot_id and saved_boot != boot_id:
         return False
     return _group_alive(pgid)
+
+
+def coordinator_alive(identity: Mapping[str, object] | None) -> bool | None:
+    """Observe one saved coordinator, which need not lead a process group.
+
+    A missing PID, different known boot, or different known start identity
+    proves that coordinator gone. Worker groups must be checked separately.
+    Permission failures, foreign hosts and missing identity markers are unknown.
+    This never sends a terminating signal or grants recovery authority itself.
+    """
+    if os.name != "posix" or not isinstance(identity, Mapping) or identity.get("host") != platform.node():
+        return None
+    pid = identity.get("pid")
+    if type(pid) is not int or pid <= 1:
+        return None
+    boot, saved_boot = _boot_id(), identity.get("boot_id")
+    if isinstance(saved_boot, str) and saved_boot and boot and saved_boot != boot:
+        return False
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except OSError:
+        return None
+    marker, saved_marker = _start_marker(pid), identity.get("start_marker")
+    if not (boot and saved_boot == boot and marker and isinstance(saved_marker, str) and saved_marker):
+        return None
+    # Old locale/timezone-dependent ps markers are diagnostic only. A change
+    # of marker representation cannot establish that the original process died.
+    if marker.partition(":")[0] != saved_marker.partition(":")[0]:
+        return None
+    return marker == saved_marker
 
 
 @contextmanager

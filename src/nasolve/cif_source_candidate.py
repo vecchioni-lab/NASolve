@@ -12,7 +12,7 @@ import subprocess,time
 
 from .cif_declared_charge_control import native_inventory,control_declared_charges
 from .campaigns import CampaignError
-from .cif_generation_process import run_generation_command
+from .cif_generation_process import _valid_attempt_identity, run_generation_command
 from .cif_elbow_chirality import _library_anchor
 from .cif_elbow_contract import _inside,MAX_SOURCE_BYTES
 from .cif_generation import _generator_capabilities,_ideal_seed,inspect_component_generation,_explicit_formal_charges
@@ -191,8 +191,11 @@ def candidate_generation_diagnostic(report):
 
 
 def generate_source_candidate(installation_root,python_executable,elbow_executable,api_sources,source,code,output,*,
-        environment,expected_dialect,prior_sources,phenix_version,single_block_steps=180,timeout_seconds=600,bond_representation_policy=None):
+        environment,expected_dialect,prior_sources,phenix_version,single_block_steps=180,timeout_seconds=600,bond_representation_policy=None,attempt_identity=None):
     """Request one bounded full native builder and retain its exact written CIF."""
+    if attempt_identity is not None:
+        if not _valid_attempt_identity(attempt_identity):raise ValueError('Invalid generation attempt identity')
+        attempt_identity=dict(attempt_identity)
     from .cif_purine_representation import validate_policy
     validate_policy(bond_representation_policy)
     if type(single_block_steps) is not int or not 1<=single_block_steps<=600:raise ValueError('Require 1--600 optimization steps')
@@ -240,6 +243,7 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
     process_context={'component':code,'source_sha256':sha256(original).hexdigest(),
         'candidate_policy_id':report['policy_id'],'phenix_version':phenix_version,
         'single_block_steps':single_block_steps,'total_timeout_seconds':timeout_seconds}
+    if attempt_identity is not None:process_context['attempt_owner']=attempt_identity
     def help_command(command,timeout):
         return run_generation_command(command,output,phase='capabilities',environment=environment,
             timeout_seconds=timeout,context=process_context)
