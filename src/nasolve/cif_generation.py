@@ -425,7 +425,7 @@ def _help_option_definitions(help_text: str) -> dict[str, bool | None]:
 
 def _generator_capabilities(executable: Path, work: Path,
                             environment: Mapping[str, str], timeout_seconds: float,
-                            phenix_version: str) -> dict:
+                            phenix_version: str, *, command_runner=None) -> dict:
     timeout = min(float(timeout_seconds), 20.0)
     command = [str(executable), "--help"]
     clock = time.monotonic()
@@ -435,37 +435,42 @@ def _generator_capabilities(executable: Path, work: Path,
                "definition_parser": "exact-installed-help-option-definitions-v1"}
     try:
         receipt["executable_sha256"] = _sha(executable.read_bytes())
-        with (work / "elbow_help.log").open("xb") as log:
-            process = subprocess.Popen(command, cwd=work, env=dict(environment),
-                stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
-                start_new_session=os.name == "posix")
-            try:
-                receipt["returncode"] = process.wait(timeout=timeout)
-            except subprocess.TimeoutExpired:
-                _terminate_owned_group(process)
-                receipt.update(reason="help-timeout", returncode=process.returncode)
-            except BaseException:
-                _terminate_owned_group(process)
-                raise
+        try:
+            if command_runner is not None:
+                receipt["returncode"] = command_runner(command, timeout)
             else:
-                if receipt["returncode"] != 0:
-                    receipt["reason"] = "help-nonzero-exit"
-                else:
-                    definitions = _help_option_definitions((work / "elbow_help.log").read_text(encoding="utf-8", errors="replace"))
-                    receipt["supported_option_definitions"] = definitions
-                    missing = []
-                    for semantic, aliases in _OPTION_ALIASES.items():
-                        expected_value = semantic != "opt"
-                        selected = next((option for option in aliases if definitions.get(option) is expected_value), None)
-                        if selected is None:
-                            missing.append(semantic)
-                        else:
-                            receipt["selected_aliases"][semantic] = selected
-                    receipt["unsupported_semantics"] = missing
-                    if missing:
-                        receipt["reason"] = "required-option-semantics-unavailable"
+                with (work / "elbow_help.log").open("xb") as log:
+                    process = subprocess.Popen(command, cwd=work, env=dict(environment),
+                        stdin=subprocess.DEVNULL, stdout=log, stderr=subprocess.STDOUT,
+                        start_new_session=os.name == "posix")
+                    try:
+                        receipt["returncode"] = process.wait(timeout=timeout)
+                    except BaseException as exc:
+                        _terminate_owned_group(process)
+                        if isinstance(exc, subprocess.TimeoutExpired):
+                            exc.returncode = process.returncode
+                        raise
+        except subprocess.TimeoutExpired as exc:
+            receipt.update(reason="help-timeout", returncode=getattr(exc, "returncode", None))
+        else:
+            if receipt["returncode"] != 0:
+                receipt["reason"] = "help-nonzero-exit"
+            else:
+                definitions = _help_option_definitions((work / "elbow_help.log").read_text(encoding="utf-8", errors="replace"))
+                receipt["supported_option_definitions"] = definitions
+                missing = []
+                for semantic, aliases in _OPTION_ALIASES.items():
+                    expected_value = semantic != "opt"
+                    selected = next((option for option in aliases if definitions.get(option) is expected_value), None)
+                    if selected is None:
+                        missing.append(semantic)
                     else:
-                        receipt["status"] = "SUPPORTED"
+                        receipt["selected_aliases"][semantic] = selected
+                receipt["unsupported_semantics"] = missing
+                if missing:
+                    receipt["reason"] = "required-option-semantics-unavailable"
+                else:
+                    receipt["status"] = "SUPPORTED"
         if _sha(executable.read_bytes()) != receipt["executable_sha256"]:
             receipt.update(status="UNSUPPORTED_GENERATOR", reason="executable-changed-during-help")
     except OSError as exc:

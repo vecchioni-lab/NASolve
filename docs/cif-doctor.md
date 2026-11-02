@@ -168,6 +168,55 @@ Ask only when scientific intent remains unresolved after available evidence and
 qualified usable fallbacks have been considered. Early receipts retain their
 original scope; current APIs and the support matrix own present capability.
 
+### Durable source-generation process evidence (C156)
+
+`generate_source_candidate` now delegates both the installed help probe and its
+native builder to the campaign-owned command runner. Each invocation reserves
+`execution/capabilities/` or `execution/candidate/` inside the already fresh
+candidate directory. Atomic checksummed schema-1 records under
+`cif-source-generation-process-v1` persist a UUID, source/component context and
+command provenance **before launch**, then the owned child identity, then a
+completion record only after the group is verifiably stopped. Logs retain their
+existing filenames; the candidate receipt's normal inventory includes the new
+records. Saved commands and absolute executable paths are provenance, never
+instructions to replay or locate scientific inputs.
+
+`inspect_generation_process(candidate_directory, phase)` reads this evidence
+without creating files or repairing history. It reports `NOT_RECORDED` for old
+outputs, `UNKNOWN` for incomplete publication or unidentifiable activity, `LIVE`
+for a live recorded group, `STOPPED_UNFINISHED` for a dead group without a sealed
+completion, and `STOPPED` for validated completion evidence. Unfinished local
+records may require operating-system liveness probes; sealed records replay
+offline without the original SDK or paths. A copied foreign live identity stays
+unknown. This checksummed evidence detects corruption, not hostile rewriting.
+
+The shared live-handle implementation defers interruption during spawn, handles
+SIGTERM/Ctrl-C and stops its owned process group on timeout or callback failure.
+It never signals a saved identity. A hard kill before identity publication remains
+unknown; missing output does not imply that the worker stopped. Every log/phase
+is created exclusively and prior partial output is preserved. Help and builder
+share one configured execution budget; bounded termination grace and filesystem
+publication can add elapsed time. Execution requires POSIX process-group support.
+
+**Boundary:** activity describes one invocation, not its whole acquisition
+coordinator. `retry_authorized` is always false. The logical acquisition identity,
+cross-output lock, dead-coordinator proof, fresh-attempt sequencing and cache-first
+fallback orchestration are still Q04. Source probing and other native diagnostic
+adapters have not all adopted this journal. No source-state choice, chemical
+repair, native-usability verdict, numerical threshold or automatic adoption is
+introduced. Old scientific captures remain unchanged and read as lacking this
+new process evidence; no cache/checkpoint migration or CLI change is required.
+
+Actual Phenix **2.2.1-6174** (dispatcher **2.2.1**) controls use the exact frozen
+C153 sources: 5PC produces a reviewable candidate within 120 seconds, while PDU
+is deliberately stopped at an eight-second execution budget. Both help/build
+groups have sealed stopped records and preserve source bytes. These are complete
+process-behavior executions, not dry-runs or new native-usability/refinement
+qualification. Synthetic controls also exercise interruption, hard-kill gaps,
+overlap, failed publication, unknown descendants and relocated inspection.
+See evidence key `source_generation_ownership_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
+
 ### Captured derivatives with absent parallelity (C154)
 
 `audit_captured_mixed_gradients` now chooses its derivative policy from the

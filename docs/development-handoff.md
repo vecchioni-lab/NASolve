@@ -11,6 +11,92 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C156 validated; publication pending: durable source-generation process evidence
+
+Base `fc8255553f04ec44db3a469be03354c47802645d`; existing **cedar** only.
+Capsule `live_tests_directory/156_Cedar_generation-ownership-1ep9c4u0`.
+Before, SIGTERM could lose a source-generation coordinator without cleaning up
+its child, and no immutable prelaunch/worker record remained. Help and builder
+each received a complete timeout allowance. After, both use the existing campaign
+live-handle cleanup and immutable per-invocation intent, identity and verified-stop
+records. They share one generation budget, including prelaunch/identity-publication
+time. Slow publication cannot silently extend that budget. Partial output stays
+intact and a reused phase or log refuses.
+
+Prior-work review: campaign commit `0613f38` already supplies process groups,
+deferred spawn interruption, conservative liveness and durable record writes.
+C53/C55 source candidates retain written CIFs but had a separate wait/cleanup
+path. C153 preserves a PDU timeout and exact-source usable alternatives; it never
+establishes that absent output means a dead worker. C155 preflight does not
+reserve an attempt. This change shares that existing ownership machinery.
+
+Schema 1 / `cif-source-generation-process-v1` is additive execution evidence.
+Read-only inspection distinguishes `NOT_RECORDED`, `UNKNOWN`, `LIVE`,
+`STOPPED_UNFINISHED` and `STOPPED`. It never signals a saved identity or authorizes
+a retry. A stopped invocation does not prove its coordinator is dead. Missing
+publication and foreign live identities remain unknown. Scientific candidate
+policies, worker programs, chemistry/stereo/charge gates, source qualification,
+cache/checkpoint schemas and adoption remain unchanged. No CLI/dependency or
+stored-data migration is needed; execution requires POSIX group support.
+
+**Actual native controls:** Phenix **2.2.1-6174**, dispatcher **2.2.1**, not a dry-run.
+Exact frozen C153 5PC/PDU sources are copied into fresh attempts. Final 5PC build
+completes in **9.33s** with a retained reviewable candidate, source-relative
+handedness and charges preserved; convergence is not claimed. PDU deliberately
+times out at an **eight-second budget** (8.07s including cleanup), retaining its
+partial files. All four help/build groups are verified stopped. No ReadySet,
+Coot, diffraction refinement, new native-usability qualification or adoption runs.
+Earlier complete attempts and all failed validation evidence are preserved.
+
+**Focused validation only**, as explicitly requested. Six generation checks fail
+before process evidence is implemented; two deadline regressions fail before
+their fixes. There are **37 new cases**, plus strengthened existing controls.
+Final process checks: **57 passed + 19 subtests (13.64s)**.
+Affected checks: **219 passed + 27 subtests (50.71s)**; later record/deadline cases
+also pass in the final process/workflow scope.
+Final workflow: **773 passed + 45 subtests (113.55s)**.
+All **520** final test-source and **191** final native-runtime hashes stay exact.
+Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
+
+```text
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_source_candidate.py -k owned_complete_builder
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_generation_process.py -k test_deadline_
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_campaign_process.py tests/test_cif_generation_process.py
+python -m pytest -q -p no:cacheprovider -o addopts= tests/test_campaign_process.py tests/test_campaign_execution.py tests/test_cif_generation_process.py tests/test_cif_source_candidate.py tests/test_cif_source_representation.py tests/test_cif_generation.py tests/test_cedar55_delivery.py
+python scripts/run_tests.py workflow --junitxml <capsule>/workflow-r2.xml
+python c156_native.py native-r2
+python c156_cold.py
+python c156_auxiliary.py
+```
+
+Cold replay passes all four actual process records after the owned original path
+is gone, with original checkout/science/SDK reads and external execution denied.
+All **584** copied files retain bytes and timestamps. Compilation with an external
+cache, **110** document links, JSON and whitespace checks pass. The first cold
+harness filename shadowed Python's `inspect`; its failed copy/log is retained
+and the corrected fresh harness passes. A first fixture's expected raw OSError
+was corrected to the existing campaign wrapper's CampaignProcessError.
+
+Changed runtime: `campaign_process.py`, `cif_generation_process.py`,
+`cif_generation.py`, `cif_source_candidate.py`; tests:
+`test_cif_generation_process.py`, `test_cif_source_candidate.py`; workflow profile,
+changelog, contracts, human overview, index, queue, handoff and both ledgers.
+Exact files, commands and evidence hashes are in
+`source_generation_ownership_2026_11_02`. Native sources/candidates, logs, XML,
+partial output and helpers remain local/ignored; none is committed.
+
+**Next:** Q04 still needs a durable logical acquisition identity, persistent
+cross-output coordination and verified coordinator death before a fresh retry,
+then cache-first bounded recovery and independently qualified fallback. Source
+probing/other native adapters are not all journaled yet. Q05 ordinary adoption,
+Q06 refinement and the mixed-scaffold phosphate-state decision remain open.
+There are no active jobs or in-place retries. **No full regression was run**;
+last full-tested implementation remains `28a6c1b22be70f8480dbd6e755e601a1ef774353`
+(7517 tests + 276 subtests). A new full gate remains required before integration.
+
+Implementation is validated and ready to publish on existing `cedar`; no merge is requested.
+— Rowan · Codex desktop
+
 ## C155 published: dictionary acquisition destination preflight
 
 Base `f30ab9e8299a89cba7a3915f418b23478bf35949`; existing **cedar** only.

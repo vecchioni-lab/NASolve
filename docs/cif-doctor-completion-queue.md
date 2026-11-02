@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-02, after C155.** This queue owns unfinished
+**Current planning authority, 2026-11-02, after C156.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -143,6 +143,21 @@ refuse before cache lookup or acquisition/requalification callbacks. Valid
 read-only misses remain non-mutating, and freezing rechecks the destination.
 This is not durable reservation, process ownership or automatic recovery; those
 acceptance gates remain open under this same package.
+
+C156 closes the explicit source-generator invocation boundary: shared campaign
+cleanup handles help/build SIGTERM, interruption and timeout; immutable intent,
+child identity and verified-stop records survive partial execution. Read-only
+inspection distinguishes old/missing, live, stopped and unknown evidence. Both
+phases share one execution budget. Actual 5PC completion and deliberate PDU
+timeout pass under Phenix 2.2.1-6174 without promoting chemical usability.
+
+**Next bounded checkpoint:** bind the complete logical acquisition request to a
+durable coordinator/attempt identity and persistent lock, then consume these
+per-invocation records before any fresh retry. A stopped phase alone does not
+prove its coordinator is dead; unknown spawn gaps must stay blocked. Source
+discovery and other native adapters still need appropriate ownership coverage.
+After that, compose cache-first generation/requalification and the independently
+qualified usable fallback. No retry loop is enabled by C156.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;

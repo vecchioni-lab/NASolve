@@ -48,7 +48,10 @@ milestone statements preserve their original scope; they are not a second queue.
   recovery is next. C154 closes the zero-parallelity derivative prerequisite and
   publishes the original PDU/5PC context without adding restraints. The old mixed
   scaffold's intended phosphate state stays Q13. C155 validates dictionary
-  snapshot destinations before acquisition; Q04 ownership/recovery remains open.
+  snapshot destinations before acquisition. C156 shares campaign process ownership
+  with source-generation help/build, preserves immutable invocation records and
+  adds read-only stopped/live/unknown inspection. Logical acquisition coordination,
+  dead-owner recovery and automatic cache-miss continuation remain Q04.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

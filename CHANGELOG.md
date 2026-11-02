@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Durable source-generation process evidence (C156)
+
+- Source-preserving native generation now uses campaign-owned process cleanup
+  for both the installed help probe and builder. SIGTERM, Ctrl-C, timeout and
+  process-record publication failure stop the owned group when verifiable.
+  Surviving or uncertain descendants cannot produce a stopped receipt.
+- Add immutable schema-1 `cif-source-generation-process-v1` invocation records:
+  prelaunch UUID/request context, live child identity and verified completion.
+  Read-only inspection preserves missing/unknown state and never authorizes a
+  retry or treats process completion as chemical qualification. Reusing a phase
+  directory or log refuses; partial outputs remain intact.
+- Help and builder share the existing generation timeout budget. Cleanup has
+  its own bounded grace period. Existing candidate/representation chemistry,
+  native worker bytes, cache policies and adoption gates retain their meaning.
+  Automatic acquisition scheduling/retry and other native adapters remain Q04.
+
 ### Dictionary acquisition destination preflight (C155)
 
 - Reject symlinked, dangling-symlink and regular-file snapshot ancestors before

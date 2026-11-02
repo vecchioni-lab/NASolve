@@ -63,8 +63,8 @@ def test_finished_coordinate_handedness_uses_named_source_centres_and_keeps_unkn
     assert not q['requires_cif_review'] and (s.read_bytes(),c.read_bytes())==before
 
 
-@pytest.mark.parametrize('mode',['correct','exception_after_output','exception_before_output','charge_change','missing_charge','bad_pin','bad_reference','timeout'])
-def test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit(tmp_path,mode):
+@pytest.mark.parametrize('mode',['correct','exception_after_output','exception_before_output','charge_change','missing_charge','bad_pin','bad_reference','timeout','help_timeout','budget_exhausted'])
+def test_owned_complete_builder_keeps_output_even_without_convergence_or_success_exit(tmp_path,monkeypatch,mode):
     from nasolve.cif_source_candidate import generate_source_candidate
     root,python,site,proof,api=installation(tmp_path,'correct')
     reader=site/'elbow/chemistry/any_chemical_format_reader.py'
@@ -103,16 +103,35 @@ def post_process(molecule,options):
     names=['elbow/chemistry/any_chemical_format_reader.py','elbow/chemistry/MoleculeClass.py','elbow/chemistry/SimpleMoleculeClass.py','elbow/command_line/builder.py']
     pins=[{'anchor':'phenix_installation','path':(p:=site/name).relative_to(root).as_posix(),'sha256':sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size} for name in names]
     if mode=='bad_pin':pins[0]['sha256']='a'*64
-    elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n')
+    elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n',
+        help_body='import time;time.sleep(4)' if mode=='help_timeout' else None)
     # The helper dispatcher lives outside this fake installation; copy it into
     # the selected installation so containment is exercised too.
     selected=root/'bin/phenix.elbow';selected.write_bytes(elbow.read_bytes());selected.chmod(0o755)
     out=tmp_path/'generation';kwargs=dict(environment={**os.environ,'PYTHONPATH':str(site),'CANDIDATE_FIXTURE':str(fixture)},
-        expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=pins,phenix_version='2.2.1-FAKE',single_block_steps=12,timeout_seconds=0.5 if mode=='timeout' else 10)
+        expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=pins,phenix_version='2.2.1-FAKE',single_block_steps=12,timeout_seconds=0.5 if mode in {'timeout','help_timeout'} else 10)
     if mode in {'bad_pin','bad_reference'}:
         with pytest.raises(ValueError):generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
         assert not out.exists();return
+    if mode=='budget_exhausted':
+        from types import SimpleNamespace
+        ticks=iter([0,11,11])
+        monkeypatch.setattr('nasolve.cif_source_candidate.time',SimpleNamespace(monotonic=lambda:next(ticks)))
     r=generate_source_candidate(root,python,selected,api,source,'Q17',out,**kwargs)
+    # Even a timeout must leave immutable prelaunch/owner/stopped evidence.
+    from nasolve.cif_generation_process import inspect_generation_process
+    for phase in (('capabilities',) if mode in {'help_timeout','budget_exhausted'} else ('capabilities', 'candidate')):
+        state = inspect_generation_process(out, phase)
+        assert state['state'] == 'STOPPED'
+        assert state['activity'] is False and not state['retry_authorized']
+        assert state['job']['context']['source_sha256'] == sha256(source.read_bytes()).hexdigest()
+    if mode in {'help_timeout','budget_exhausted'}:
+        assert inspect_generation_process(out,'candidate')['state']=='NOT_RECORDED'
+        assert r['candidate'] is None and r['status']=='FAILED'
+        assert r['execution']['status']==('NOT_RUN' if mode=='help_timeout' else 'TIMED_OUT')
+        if mode=='help_timeout':assert r['generator_capabilities']['reason']=='help-timeout'
+        return
+    assert inspect_generation_process(out,'candidate')['job']['timeout_seconds'] < kwargs['timeout_seconds']
     from nasolve.cif_source_candidate import candidate_generation_diagnostic
     assert r['diagnostic']==candidate_generation_diagnostic(r)
     assert r['source_preserved'] and r['native_proxy_validation']=='NOT_RUN' and not r['automatic_adoption'] and not r['requires_cif_review']

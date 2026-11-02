@@ -6,14 +6,16 @@ written output across soft stopping/errors for later native usability selection.
 import ast
 from hashlib import sha256
 from inspect import getsource
-import json,math,os
+import json,math
 from pathlib import Path
 import subprocess,time
 
 from .cif_declared_charge_control import native_inventory,control_declared_charges
+from .campaigns import CampaignError
+from .cif_generation_process import run_generation_command
 from .cif_elbow_chirality import _library_anchor
 from .cif_elbow_contract import _inside,MAX_SOURCE_BYTES
-from .cif_generation import _generator_capabilities,_ideal_seed,_terminate_owned_group,inspect_component_generation,_explicit_formal_charges
+from .cif_generation import _generator_capabilities,_ideal_seed,inspect_component_generation,_explicit_formal_charges
 from .cif_stereochemistry_audit import _values,_graph,_coordinates,_volume,reader_stereo_inventory,VOLUME_EPSILON,audit_optimizer_log
 
 POLICY_ID='cif-source-native-complete-candidate-v1'
@@ -235,8 +237,15 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
         report.update(policy_id='cif-source-native-complete-candidate-v2',bond_representation_policy=bond_representation_policy,
             source_representation_contract=representation_contract)
     started=time.monotonic()
+    process_context={'component':code,'source_sha256':sha256(original).hexdigest(),
+        'candidate_policy_id':report['policy_id'],'phenix_version':phenix_version,
+        'single_block_steps':single_block_steps,'total_timeout_seconds':timeout_seconds}
+    def help_command(command,timeout):
+        return run_generation_command(command,output,phase='capabilities',environment=environment,
+            timeout_seconds=timeout,context=process_context)
     try:
-        caps=_generator_capabilities(elbow_executable,output,environment,timeout_seconds,phenix_version);report['generator_capabilities']=caps
+        caps=_generator_capabilities(elbow_executable,output,environment,timeout_seconds,phenix_version,
+            command_runner=help_command);report['generator_capabilities']=caps
         if caps['status']!='SUPPORTED':raise ValueError('Installed generator options unsupported')
         flags=caps['selected_aliases'];definitions=caps['supported_option_definitions']
         step=next((s for s in ['--opt_steps','--opt-steps'] if definitions.get(s) is True),None)
@@ -250,14 +259,17 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
                   'charges':{n:int(q) for n,q in charges.items()},'bonds':[{'atoms':list(p),'order':orders[o]} for p,o in bonds.items()]}}
         if representation_contract is not None:spec['source_representation_contract']=representation_contract
         (output/'candidate_spec.json').write_text(json.dumps(spec,indent=2)+'\n');report['arguments']=args
-        with (output/'candidate_worker.log').open('xb') as log:
-            process=subprocess.Popen([str(python_executable),'-B','candidate_worker.py','candidate_spec.json'],cwd=output,
-                env={**environment,'PYTHONDONTWRITEBYTECODE':'1'},stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=os.name=='posix')
-            try:rc=process.wait(timeout=timeout_seconds)
-            except subprocess.TimeoutExpired:
-                _terminate_owned_group(process);report['execution'].update(status='TIMED_OUT',returncode=process.returncode)
-            except BaseException:_terminate_owned_group(process);raise
-            else:report['execution'].update(status='COMPLETED' if rc==0 else 'FAILED',returncode=rc)
+        remaining=timeout_seconds-(time.monotonic()-started)
+        if remaining<=0:
+            report['execution'].update(status='TIMED_OUT',returncode=None)
+            raise ValueError('Generation budget exhausted before candidate launch')
+        try:
+            rc=run_generation_command([str(python_executable),'-B','candidate_worker.py','candidate_spec.json'],
+                output,phase='candidate',environment={**environment,'PYTHONDONTWRITEBYTECODE':'1'},
+                timeout_seconds=remaining,context=process_context)
+        except subprocess.TimeoutExpired as exc:
+            report['execution'].update(status='TIMED_OUT',returncode=getattr(exc,'returncode',None))
+        else:report['execution'].update(status='COMPLETED' if rc==0 else 'FAILED',returncode=rc)
         if (output/'candidate_result.json').is_file():report['result']=json.loads((output/'candidate_result.json').read_text())
         if representation_contract is not None:
             report['representation_validation']=generation_representation_validation(report.get('result',{}),spec['declared_charge_control'],representation_contract)
@@ -277,7 +289,7 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
             if representation_contract is not None and report['representation_validation']['status']!='SOURCE_REPRESENTATION_PASS':report['status']='REJECTED'
         trajectory=audit_optimizer_log((output/'candidate_worker.log').read_text(errors='replace'))
         report['stopping']={'status':trajectory['stopping'],'convergence_claimed':False,'trajectory':trajectory}
-    except (OSError,ValueError,KeyError,TypeError) as exc:report.update(status='FAILED',error=type(exc).__name__+': '+str(exc))
+    except (OSError,ValueError,KeyError,TypeError,CampaignError) as exc:report.update(status='FAILED',error=type(exc).__name__+': '+str(exc))
     report['source_preserved']=(source.read_bytes()==original and (output/'source.cif').read_bytes()==original
         and all(p.read_bytes()==d for p,d in dispatchers.items()))
     for row in rows:

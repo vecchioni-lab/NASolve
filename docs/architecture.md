@@ -1012,6 +1012,16 @@ Full linked ReadySet reproduction, mapped-SMILES graphs, native stereo and
 scientific qualification remain open. All production/default resource and curated-ligand
 precedence rules remain fixed.
 
+Explicit source-preserving generation shares the campaign live-process runner
+for its help/build invocations (C156). Immutable per-phase UUID/job, owned-process
+and verified-stop records distinguish retained partial work from known inactivity;
+SIGTERM, interruption and timeout follow the existing group-cleanup contract.
+Both phases share one generation execution budget. The read-only process reader
+never authorizes a retry or supplies chemical qualification. Logical acquisition
+identity, coordination across output directories and dead-coordinator recovery
+remain Q04; scientific source/native/site gates and other adapters are unchanged.
+See [generation ownership](cif-doctor.md#durable-source-generation-process-evidence-c156).
+
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
 persistent local reuse independently of ordinary PostMR orchestration. Its
 semantic lookup binds source/state/authority, original-name graph mapping,

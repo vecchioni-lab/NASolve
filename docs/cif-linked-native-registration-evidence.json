@@ -60302,5 +60302,414 @@
     "regression_sha256": "87fda22c0b3602905826b540cdee0d6734d03cefda0767c532e530350b479a2b",
     "full_validation_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
     "implementation_published_on": "origin/cedar"
+  },
+  "source_generation_ownership_2026_11_02": {
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_commit": "fc8255553f04ec44db3a469be03354c47802645d",
+    "previous_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+    "completion_queue_job": "Q04",
+    "completion_queue_disposition": "INVOCATION_OWNERSHIP_FOUNDATION; LOGICAL_ACQUISITION_AND_RETRY_OPEN",
+    "prior_work_review": [
+      "0613f38: campaign process groups, deferred spawn interrupts, conservative liveness and durable records already implemented.",
+      "C53/C55: source generation retains candidate files but lacks durable prelaunch evidence and SIGTERM ownership cleanup.",
+      "C153: preserved PDU timeout and exact-source reuse demonstrate why missing output is not dead-process proof.",
+      "C155: destination preflight does not reserve an attempt or own a process."
+    ],
+    "before": "Explicit generation could lose its coordinator on SIGTERM and retained no durable worker identity; help and builder each received a complete timeout allowance.",
+    "after": "Both invocations use campaign-owned cleanup, immutable prelaunch/identity/stopped records, read-only conservative inspection and a shared generation budget. Partial outputs and all chemistry/qualification gates remain intact.",
+    "schemas": {
+      "new": "schema 1 / cif-source-generation-process-v1, per-invocation execution evidence",
+      "unchanged": "Candidate scientific policies, native worker programs, store/snapshot/checkpoint schemas and chemistry acceptance"
+    },
+    "compatibility": "No CLI/dependency/cache/checkpoint migration. Explicit source generation requires POSIX process ownership. Legacy outputs report NOT_RECORDED; no retry is authorized. Help now consumes part of the existing generation execution budget.",
+    "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST; full integration gate remains pending",
+    "validation_environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src"
+    },
+    "evidence_root": "{live_tests_directory}/156_Cedar_generation-ownership-1ep9c4u0",
+    "native_execution": {
+      "installation": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "mode": "ACTUAL_EXECUTION; NOT_DRY_RUN",
+      "5PC": "bounded complete source-preserving build, candidate retained for separate qualification",
+      "PDU": "deliberate eight-second execution timeout, partial output retained",
+      "scope": "PROCESS_BEHAVIOR_ONLY; NO_NEW_NATIVE_USABILITY_OR_REFINEMENT_QUALIFICATION",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "five_pc_elapsed_seconds": 9.332805,
+      "pdu_elapsed_seconds": 8.071284,
+      "source_handedness": "5PC PRESERVED",
+      "source_formal_charges": "5PC PRESERVED",
+      "convergence_claimed": false,
+      "parent_sources_bytes_mtimes": "UNCHANGED",
+      "verified_stopped_invocations": 4
+    },
+    "generated_artifacts": "Native sources/candidates, partial output, records, logs, XML and helpers remain local under live-tests/ignored runners; none committed.",
+    "limitations": [
+      "Per-invocation inactivity does not establish coordinator inactivity or authorize a new attempt.",
+      "Cross-output coordination, durable logical acquisition identity, cache-first automatic recovery and usable fallback remain Q04.",
+      "Hard-kill publication gaps and unidentifiable/foreign live activity stay unknown; no guessed retry.",
+      "Source probing and other native adapters have not all adopted this journal.",
+      "No new chemical source-state authority, native-usability verdict, threshold, derivative/geometry/refinement qualification or adoption.",
+      "Only focused regression requested; full suite remains an integration gate."
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "scripts/run_tests.py",
+      "src/nasolve/campaign_process.py",
+      "src/nasolve/cif_generation.py",
+      "src/nasolve/cif_generation_process.py",
+      "src/nasolve/cif_source_candidate.py",
+      "tests/test_cif_generation_process.py",
+      "tests/test_cif_source_candidate.py"
+    ],
+    "regression": {
+      "new_cases": 37,
+      "before": "6 existing generation ownership checks fail; 2 deadline-overrun regressions fail before their fixes",
+      "process_final": "57 passed, 19 subtests passed in 13.64s",
+      "affected": "219 passed, 27 subtests passed in 50.71s; final deadline/reader additions also covered by final process/workflow passes",
+      "workflow_final": "773 passed, 45 subtests passed in 113.55s (0:01:53)",
+      "full": "NOT_RUN_BY_EXPLICIT_USER_REQUEST"
+    },
+    "validation_commands": [
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_source_candidate.py",
+        "-k",
+        "owned_complete_builder",
+        "--junitxml",
+        "{live_tests_directory}/156_Cedar_generation-ownership-1ep9c4u0/before.xml"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_generation_process.py",
+        "-k",
+        "test_deadline_",
+        "--junitxml",
+        "{live_tests_directory}/156_Cedar_generation-ownership-1ep9c4u0/deadline-before.xml"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_campaign_process.py",
+        "tests/test_cif_generation_process.py",
+        "--junitxml",
+        "{live_tests_directory}/156_Cedar_generation-ownership-1ep9c4u0/process-r2.xml"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_campaign_process.py",
+        "tests/test_campaign_execution.py",
+        "tests/test_cif_generation_process.py",
+        "tests/test_cif_source_candidate.py",
+        "tests/test_cif_source_representation.py",
+        "tests/test_cif_generation.py",
+        "tests/test_cedar55_delivery.py",
+        "--junitxml",
+        "{live_tests_directory}/156_Cedar_generation-ownership-1ep9c4u0/affected-r2.xml"
+      ],
+      [
+        "{python}",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "{live_tests_directory}/156_Cedar_generation-ownership-1ep9c4u0/workflow-r2.xml"
+      ],
+      [
+        "{python}",
+        "c156_native.py",
+        "native-r2"
+      ],
+      [
+        "{python}",
+        "c156_cold.py"
+      ],
+      [
+        "{python}",
+        "c156_auxiliary.py"
+      ]
+    ],
+    "validation_source_files": 520,
+    "validation_sources_unchanged": true,
+    "native_runtime_source_files": 191,
+    "native_runtime_sources_unchanged": true,
+    "cold_relocation": {
+      "status": "PASS",
+      "copied_files": 584,
+      "files_bytes_mtimes_unchanged": true,
+      "original_owned_path_absent": true,
+      "historical_checkout_science_and_sdk_reads": "DENIED",
+      "external_execution": "DENIED"
+    },
+    "auxiliary": {
+      "compilation": "PASS_EXTERNAL_CACHE",
+      "relative_links": 110,
+      "changed_json": "PASS",
+      "whitespace": "PASS",
+      "scientific_worker_and_chemical_audits": "UNCHANGED_AST",
+      "source_representation_qualification_and_store": "UNCHANGED_BYTES"
+    },
+    "evidence_refs": {
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/base.json",
+        "sha256": "37fccac58283976dc90afe46a173f390ac2718cbad66e9aeee0f56457fe45a01",
+        "size": 189
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/before-result.json",
+        "sha256": "aa6104ab772fa43f854211ab0690a703d14b1af1ee494494b7fd0b04036bb4ff",
+        "size": 620
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/before.xml",
+        "sha256": "ed3138026b5d4535f6b83615d4ce151f7e7220d13a9435993be0317c95e922d8",
+        "size": 29615
+      },
+      "deadline-before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/deadline-before-result.json",
+        "sha256": "4345b219eff9b4a57e8739d502177ab0a4ee88773080be99510a32d1dc5e9b2e",
+        "size": 630
+      },
+      "deadline-before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/deadline-before.xml",
+        "sha256": "ead52e50810d1b2393da5997b73fd16cd10ad8d138c13656fb94cd7d4a4d9324",
+        "size": 3736
+      },
+      "process-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/process-result.json",
+        "sha256": "4f387ab1d6af9ae4396050402caf839d893779c07ba19c941e3c60d1271eec06",
+        "size": 623
+      },
+      "process-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/process-r2-result.json",
+        "sha256": "bab391594f1d7210e9689a751f4d065fafe0ad43fb45eebb032e6207ba84184f",
+        "size": 629
+      },
+      "process-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/process-r2.xml",
+        "sha256": "1ff4a3cd6779e8a0cac539005b6c8dd13f2a41d76b00eb68cb8b9e8d18e6929f",
+        "size": 8538
+      },
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/affected-r2-result.json",
+        "sha256": "d5c85f9e72dedfc6f3ce43cad9f2072025524926786753940eeb6d27b087b866",
+        "size": 834
+      },
+      "affected-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/affected-r2.xml",
+        "sha256": "b34e4dc80b60c156f139331e30f747380d95f629f55f2195d3d7f02e62a257a4",
+        "size": 34168
+      },
+      "workflow-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/workflow-r2-result.json",
+        "sha256": "34a489654ce74dad39d826c5fe60526acb1cda067d63f7741e824942d32d814f",
+        "size": 500
+      },
+      "workflow-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/workflow-r2.xml",
+        "sha256": "c8526bc29155f502cf7e41b604b90ff33eb0ec866024b100d842888dc4e7bfdb",
+        "size": 114999
+      },
+      "cold.log": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/cold.log",
+        "sha256": "6ba3d0bc3d8b8980c4e080eec11081ea509859a8913f7be05d99e5a1a6dca740",
+        "size": 1270
+      },
+      "cold-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/cold-r2-result.json",
+        "sha256": "aa67f3127a57ae733fe29aa028691f80dc4536e1c4f3320091a9637e95fadd6d",
+        "size": 1540
+      },
+      "cold-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/cold-r2.log",
+        "sha256": "9b296f4ab7c1825b8bc2373d695a17cef8c318c619e9c51c5231f169ff50c006",
+        "size": 576
+      },
+      "auxiliary.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/auxiliary.json",
+        "sha256": "50da4ab74c0f6cbdf2761308bd6ae32878a28e3d858c1ac256720217e3fd5272",
+        "size": 2081
+      },
+      "native/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native/summary.json",
+        "sha256": "dd71adb7f647a7de736dfd9bfe0c92c1e55843de81d1fcb1341ab15a29ad8403",
+        "size": 14077
+      },
+      "native-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/summary.json",
+        "sha256": "9a6f01831a4443cef24eaed838aa85be9b5570e6ca0f639f5474b5c94ef17283",
+        "size": 14078
+      },
+      "native-r2/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/parent-inputs.json",
+        "sha256": "2626c50536ce53cef408b40b623dbd786b5bbeae52f9b0d737e7f79393198d3a",
+        "size": 447
+      },
+      "native-r2/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/installation.json",
+        "sha256": "b68f9cae4955691b322a650c08a2cc6e558ec211bd7bfe68466f99872cd2c940",
+        "size": 190
+      },
+      "native-r2/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/runtime-sources.json",
+        "sha256": "4dc9da5b8a2ed9ce757dc8914d4fce0870fdf8f731c9802ff8cfcad48e4fb200",
+        "size": 20740
+      },
+      "native-r2/fresh_sources/source_capture.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/fresh_sources/source_capture.json",
+        "sha256": "ed78b7ca1aaa52b0c09ce895668b15362daa3ce94de86effd9ebae135b045495",
+        "size": 2010
+      },
+      "native-r2/5PC/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/5PC/source_candidate_receipt.json",
+        "sha256": "9165e8731341d23ba87ac63c7de2fcdbd4c4258e1b115d87a9ea12755ee9e91b",
+        "size": 558949
+      },
+      "native-r2/5PC/execution/capabilities/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/5PC/execution/capabilities/job.json",
+        "sha256": "52319429aa1d176190e1b1fa70efa4543c971bad1c52cadc24b4ca487ad496fb",
+        "size": 1177
+      },
+      "native-r2/5PC/execution/capabilities/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/5PC/execution/capabilities/process.json",
+        "sha256": "299efc209145043b8396e6b33e3b9ca85f6f8f7b547df28db2b950b7dcbd7f58",
+        "size": 478
+      },
+      "native-r2/5PC/execution/capabilities/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/5PC/execution/capabilities/finished.json",
+        "sha256": "4c4fee7c2c1ad2725464cfc6017a18272ed1d851646c5489c31e02950e1f21fa",
+        "size": 451
+      },
+      "native-r2/5PC/execution/candidate/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/5PC/execution/candidate/job.json",
+        "sha256": "14656d321a600e570799c52ba43888f994f00899796717ec1a13522c5b115b5b",
+        "size": 1245
+      },
+      "native-r2/5PC/execution/candidate/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/5PC/execution/candidate/process.json",
+        "sha256": "301f6772ee2a771420a92b79c4f2aebe12d7318d8d1d22072c5ad5e3e388ef75",
+        "size": 478
+      },
+      "native-r2/5PC/execution/candidate/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/5PC/execution/candidate/finished.json",
+        "sha256": "59652185468906e1ceed7d88314e27a1f18580f55d7df9e2c41189a2cd6c964b",
+        "size": 450
+      },
+      "native-r2/PDU/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/PDU/source_candidate_receipt.json",
+        "sha256": "d5049b2bcc078c0c18dfc16981375a3814805098a6144c5dab7f85cd8194245f",
+        "size": 11712
+      },
+      "native-r2/PDU/execution/capabilities/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/PDU/execution/capabilities/job.json",
+        "sha256": "e95d84bf3be7f11bba1120c373c1073a4a909d14f8fa6e25b47e7c070a63e083",
+        "size": 1174
+      },
+      "native-r2/PDU/execution/capabilities/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/PDU/execution/capabilities/process.json",
+        "sha256": "3d93c27a9dd69e42281d5a2df907973c513e63fc67ee171190355750b53c59d0",
+        "size": 478
+      },
+      "native-r2/PDU/execution/capabilities/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/PDU/execution/capabilities/finished.json",
+        "sha256": "f383c12985d50c8e35ac16d6af0029ef6dcb9694fe6fe126c6c27b4b3c3a3379",
+        "size": 451
+      },
+      "native-r2/PDU/execution/candidate/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/PDU/execution/candidate/job.json",
+        "sha256": "745c21280f91cc789987b40133572ec96df60505dd9706b3d1454b52d2e3692e",
+        "size": 1242
+      },
+      "native-r2/PDU/execution/candidate/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/PDU/execution/candidate/process.json",
+        "sha256": "8cf097ffd3e7a4fd73eb8f2f3cf04b8acd135e63d946f51eb9e4b8dba94d7106",
+        "size": 478
+      },
+      "native-r2/PDU/execution/candidate/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "156_Cedar_generation-ownership-1ep9c4u0/native-r2/PDU/execution/candidate/finished.json",
+        "sha256": "45e3d93f94b0b0693f48afbe961b50e5b4475cd7528bb9508305097b1a648c26",
+        "size": 464
+      }
+    },
+    "retained_intermediate_outcomes": [
+      "Initial process test expected raw OSError; existing campaign wrapper correctly returns CampaignProcessError. Test expectation corrected; original log retained.",
+      "Initial cold harness named inspect.py shadowed the standard-library module; corrected fresh harness passes, failed copy/log retained.",
+      "Slow identity publication and expired prelaunch budgets originally bypassed the deadline. Both reproduced before correction and pass afterward."
+    ]
   }
 }

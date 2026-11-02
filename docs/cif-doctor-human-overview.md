@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-10-31:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-11-02:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -1777,6 +1777,19 @@ layers; cache reuse never certifies a new crystal. C66 uses saved Phenix
 2.2.1-6174 evidence without new native processes or an installed energy-library
 resource-file qualification. It does not upload chemistry, change native
 mechanics or ask students to inspect CIFs.
+
+C156 adds durable execution evidence to explicit source-preserving generation.
+Before the help probe or builder starts, NASolve saves an immutable invocation
+identity; it then records the owned worker and proves the process group stopped
+before sealing completion. Interruptions retain partial output. A missing record
+means unknown, and successful process execution does not certify chemistry.
+The two invocations share one timeout budget and reuse campaign cleanup. This
+supports future automatic recovery without authorizing retry from a dead phase
+alone: the acquisition coordinator and full request still need their own owner
+and recovery contract. Actual Phenix 2.2.1-6174 controls complete a 5PC build and
+preserve a deliberately timed-out PDU attempt; neither is automatically adopted.
+The [execution contract](cif-doctor.md#durable-source-generation-process-evidence-c156)
+defines the reader states and remaining integration boundary.
 
 C155 checks the destination before looking up or acquiring a dictionary, so a
 symlinked or non-directory output ancestor cannot trigger costly work first.
