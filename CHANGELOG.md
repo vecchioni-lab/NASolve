@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Exact-source retained dictionary fallback (C159)
+
+- Extend explicit cache-first acquisition with an optional retained snapshot on
+  a generation-recipe cache miss. Reuse independently qualified older-recipe
+  numerics before spending a new generation attempt; preserve their exact original
+  recipe, producer, stopping evidence and diagnostic notes.
+- Require exact selected source bytes, authority and representation permission.
+  Existing snapshot/store gates validate chemistry and native evidence. Changed
+  consumers or supported stale native policies require qualification of disposable
+  copies; no qualifier leaves a read-only requalification request. Failure never
+  silently retries generation or treats the source itself as a usable dictionary.
+- Keep current-generation-recipe cache precedence and original-recipe cache reuse.
+  Preserve failed generation attempts and independently freeze the chosen entry
+  for relocation. No schema migration, CLI/default PostMR, scientific threshold,
+  source projection or automatic graph-repair change. Full acquisition ownership
+  and budget remain separate.
+
 ### Cache-first owned source generation (C158)
 
 - Add an explicit acquisition API composing qualified dictionary reuse with

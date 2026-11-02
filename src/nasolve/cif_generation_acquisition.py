@@ -2,8 +2,8 @@
 
 Generation and native usability remain distinct. The qualification adapter owns
 its native execution; this API is not a whole-acquisition scheduler or deadline.
-Failed evidence and partial outputs are retained. No implicit retries, fallback
-usability, ordinary PostMR adoption or model edits are authorized here.
+Failed evidence and partial outputs are retained. An explicit exact-source retained snapshot may supply older-recipe numerics.
+No implicit retries, ordinary PostMR adoption or model edits are authorized here.
 """
 from __future__ import annotations
 
@@ -15,7 +15,8 @@ from pathlib import Path
 
 from .campaign_records import path_in
 from .cif_dictionary_store import (_identity, _regular, _snapshot_destination,
-    make_dictionary_request, resolve_qualified_dictionary)
+    make_dictionary_request, resolve_qualified_dictionary, lookup_dictionary,
+    resolve_dictionary_snapshot, recipe_representation_policy)
 from .cif_generation_attempt import _pins, _root, generate_source_candidate_attempt, inspect_source_generation_request
 
 POLICY_ID = 'cif-source-generation-acquisition-v1'
@@ -64,7 +65,7 @@ def generation_dictionary_options(generation):
 
 
 def resolve_generated_dictionary(source, code, store_root, output, request_directory, qualification_directory,
-        *, source_authority, consumer, generation, qualify=None):
+        *, source_authority, consumer, generation, qualify=None, retained_snapshot=None):
     """Reuse first; otherwise perform at most one owned generation and qualification.
 
     ``qualify(source_copy, candidate_copy, consumer_copy, fresh_native_output)``
@@ -72,6 +73,12 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
     native output remain in the fresh qualification directory. Without this
     adapter, misses/stale evidence return without generation. A stale candidate
     is requalified first and failure never falls through to regeneration.
+
+    On a generation-recipe cache miss, an explicit ``retained_snapshot`` may
+    supply older-recipe numerics. Exact source bytes/authority and representation
+    permission must match. Its recipe, producer and stopping evidence survive
+    unchanged; stale native evidence requires current qualification. This does
+    not project chemistry between sources or recover by retrying a failed job.
 
     Repeated explicit misses must share request_directory to share the frozen
     generation allowance, and use fresh output/qualification directories. The
@@ -169,6 +176,45 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
         if receipt.get('error'):
             provenance['notes'].append('Generation diagnostic: ' + str(receipt['error']))
         return {'candidate': candidate, 'qualification': qualification, 'provenance': provenance}
+
+    if retained_snapshot is not None and lookup_dictionary(store, request, consumer)['status'] == 'MISS':
+        retained = Path(retained_snapshot).absolute()
+        _need(not any(p.is_symlink() for p in (retained, *retained.parents)),
+              'Retained snapshot cannot traverse a symlink')
+        retained = retained.resolve()
+        _need(all(not retained.is_relative_to(p) and not p.is_relative_to(retained) for p in roots),
+              'Retained snapshot and acquisition outputs/store must be separate')
+        saved = resolve_dictionary_snapshot(retained)
+        prior = saved['manifest']['request']
+        prior_options = {k: prior[k] for k in ('recipe', 'generator')}
+        current = make_dictionary_request(source, code, source_authority=source_authority, **prior_options)
+        _need(current == prior and _regular(source) == original,
+              'Retained snapshot differs from the exact selected source or authority')
+        _need(recipe_representation_policy(prior['recipe']) == recipe_representation_policy(options['recipe']),
+              'Retained snapshot representation permission differs')
+        names = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
+                 'entry/dictionary.cif', 'entry/qualification.json', 'entry/provenance.json')
+        frozen = {name: _regular(retained/name) for name in names}
+        current_native = saved['qualification_current'] and saved['manifest']['consumer'] == consumer
+
+        def acquire_retained():
+            qualification = (saved['qualification'] if current_native else
+                             checked_qualify(source, saved['dictionary'], consumer))
+            _need(all(_regular(retained/name) == data for name, data in frozen.items())
+                  and _regular(source) == original, 'Retained snapshot changed during qualification')
+            return {'candidate': saved['dictionary'], 'qualification': qualification,
+                    'provenance': saved['provenance']}
+
+        # Reuse the original recipe's current cache entry when available. Otherwise
+        # import only this verified snapshot; never label it as the new generator.
+        result = resolve_qualified_dictionary(source, code, store_root, output,
+            source_authority=source_authority, consumer=consumer, **prior_options,
+            acquire=acquire_retained if current_native or qualify is not None else None,
+            requalify=checked_qualify if qualify is not None else None)
+        if result['status'] == 'MISS':
+            return {**result, 'status': 'REQUALIFICATION_REQUIRED', 'entry_id': saved['entry_id'],
+                    'regeneration': 'NOT_RUN; REQUALIFY_RETAINED_NUMERICS_FIRST'}
+        return result
 
     return resolve_qualified_dictionary(source, code, store_root, output, source_authority=source_authority,
         consumer=consumer, **options, acquire=acquire if qualify is not None else None,

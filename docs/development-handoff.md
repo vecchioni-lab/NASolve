@@ -11,6 +11,77 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C159 validated; publication pending: exact-source retained fallback
+
+Base `0f25cf53af5bd6fdd6203ca959d2541459ad0771`; existing **cedar** only.
+Capsule `live_tests_directory/159_Cedar_retained-fallback-o9n2rgis`.
+Before, a generation-recipe miss could not use an older-recipe saved snapshot.
+After, optional `retained_snapshot` supplies exact-source/authority numerics with
+matching representation permission. Current native evidence is reused; changed
+consumer or stale policy evidence requires disposable-copy qualification. The
+original recipe, producer, stopping and diagnostics remain unchanged. The
+original recipe's qualified cache still takes precedence over importing a copy.
+Invalid/failed evidence refuses without generation. Current generation-recipe
+hits and stale entries retain their prior behavior. No source is called usable
+merely because a candidate failed, and no attempt is retried in place.
+
+Prior-work review: C66 `5f90e70` already supplies qualified storage/selection;
+C68 `e441477` supplies source projection and disposable copies but requires the
+same recipe/backend. C135 preserves explicit representation permission.
+C152/C153 supplies source-bound repaired selection and immutable publication;
+C158 owns cache-first generation. This step composes existing gates, not a new
+chemistry or numerical validator. Source matching here is exact, not graph-only.
+
+**Targeted checks only, no profile or full suite:** 31 new cases, including
+26 missing-argument failures before implementation. The changed acquisition and
+shared store/policy checks pass: **170 passed in 14.88s**. All 524 source/test and
+193 native-runtime hashes remain unchanged. Command:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_retained_acquisition.py tests/test_cif_generation_acquisition.py tests/test_cif_dictionary_store.py tests/test_cif_dictionary_policy.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c159_native.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c159_cold.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c159_graph_bridge.py
+python c159_auxiliary.py
+```
+
+**Actual Phenix 2.2.1-6174**, dispatcher **2.2.1**, not dry-runs: recorded
+C153 PDU/5PC candidates each pass all 21 isolated checks at source and saved
+coordinates, with matching covalent signatures. Four native qualifications;
+zero generations. The changed consumer descriptor is a same-installation
+control, not an upgrade. Current import/hit controls prohibit subprocesses.
+The C158 exhausted PDU request and all original parent evidence retain exact
+bytes/timestamps. No ReadySet, Coot or diffraction refinement executes.
+
+Cold replay preserves all **584** copied files after the owned original path
+is gone, imports both retained candidates and reuses their new cache entries
+with old checkout/science/SDK reads and external execution denied. The current
+snapshot reader needs no old snapshot/cache/request/installation to validate.
+A second compatibility replay feeds the freshly qualified snapshots through
+the existing C153 source/site preparation: model, ordered CIF/PHIL bytes and
+both graph-repair steps are **exactly unchanged**. It runs no new whole-bundle
+native/derivative qualification and grants no repaired selection/adoption.
+
+Changed: acquisition module, new regressions/profile registration, README,
+changelog, contracts/human caption/index, queue, handoff and both ledgers.
+Store/snapshot/request/qualification schemas and all scientific workers/auditors
+remain unchanged. No migration, CLI, default PostMR or threshold change.
+Scientific payloads, copied store/attempts, native output, logs/XML and helpers
+stay local/ignored; none is committed or uploaded. Exact references and results:
+`retained_acquisition_2026_11_02` in the technical ledger.
+
+**Next under Q04:** compose acquisition with existing graph-repair, exact
+source/site/ordered-bundle native and derivative qualification, then the existing
+C152/C153 selection/publication. Isolated monomer passes cannot replace those
+context checks. Multi-candidate failure selection, discovery, qualifier process
+ownership, whole-acquisition identity and total budget remain open. Q05/Q06/Q13
+remain separate. Last full-tested implementation stays
+`28a6c1b22be70f8480dbd6e755e601a1ef774353` (7517 tests + 276 subtests).
+A new full integration gate is required before merging. No active jobs.
+
+Implementation is targeted-validated; same-Cedar publication is pending.
+— Rowan · Codex desktop
+
 ## C158 published: cache-first owned source generation
 
 Base `691e4767898e99a8232247c7d853be130f809f28`; existing **cedar** only.

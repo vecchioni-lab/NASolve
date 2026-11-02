@@ -24,6 +24,12 @@ C154's companion caption explains the verified absent-parallelity derivative
 context within the existing numerical box. The diagram and ownership/adoption
 arrows are unchanged; no new optimizer or refinement claim is made.
 
+C159's caption distinguishes explicit exact-source retained acquisition from
+ordinary automatic recovery. Old recipe/producer evidence survives current native
+qualification; the C153 preparation/graph plan replays unchanged. Diagram arrows
+remain unchanged because ordinary adoption and whole-acquisition ownership are
+still open.
+
 Edit its labels/layout and regenerate both source-controlled files together.
 For one-off manuscript edits in a vector editor, save a separate derivative and
 record the source commit; coordinate changes in the figure do not establish a

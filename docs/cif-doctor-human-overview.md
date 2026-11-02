@@ -847,6 +847,12 @@ C103 supplies independent decimal arithmetic and input-sensitivity evidence;
 C104 separately verifies the complete declaration-based omission candidate
 against native inventories. This preserves the bystander, phosphate and NAR
 terms; energy/gradient and derivative qualification remain separate.
+C159 extends explicit saved-numerics acquisition: exact-source older-recipe
+snapshots retain their producer and stopping evidence, with current native proof
+or fresh qualification. PDU/5PC compatibility replay reproduces the existing C153
+prepared inputs and graph plan exactly. This does not add an ordinary automatic
+repair/adoption arrow or promote isolated evidence to whole-bundle qualification.
+
 The figure depicts the implemented assessment layer and notes separate linked
 candidate/native-proxy diagnostics. C112 adds observed native name bindings to
 the source/native comparison layer, preserving literal findings and keeping
@@ -1800,10 +1806,17 @@ No new force field, chemistry thresholds or dependency is introduced.
 Actual Phenix 2.2.1-6174 controls qualify a fresh 5PC dictionary, reuse it without
 execution and requalify the same bytes for an explicit consumer-identity control.
 A timed-out PDU attempt is retained without publishing a usable result. The
-new recipe remains distinct from older entries; compatibility-based fallback,
-graph repair, complete acquisition ownership/deadline and ordinary adoption
-remain work. This is an explicit engine component, not a change to the ordinary
-workflow diagram. See the [C158 contract](cif-doctor.md#cache-first-owned-source-generation-c158).
+new recipe remains distinct from older entries. Broader candidate discovery,
+graph repair composition, complete acquisition ownership/deadline and ordinary
+adoption remain work. This is an explicit engine component, not a change to the ordinary
+workflow diagram. C159 additionally accepts an explicitly retained older-recipe
+snapshot when the new generation recipe has no cache entry. Exact source bytes,
+authority and representation permission must match; current native proof is
+reused or regenerated on disposable copies. Original producer/recipe and stopping
+notes survive unchanged. This avoids repeating generation for the independently
+qualified PDU/5PC controls, while leaving graph-repair and ordinary integration
+gates open. See the [retained fallback contract](cif-doctor.md#exact-source-retained-acquisition-fallback-c159)
+and [C158 contract](cif-doctor.md#cache-first-owned-source-generation-c158).
 
 C157 gives that generator a durable request owner. A request freezes its source,
 recipe, native pins and finite attempt allowance. A persistent lock prevents

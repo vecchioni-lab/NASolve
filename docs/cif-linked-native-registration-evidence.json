@@ -61979,5 +61979,521 @@
         "tests/test_cif_generation_acquisition.py": "ef7a34dc88b7de32f7ea312e2035671a2a98d101ce2e175dedd1a48da1bbf0b7"
       }
     }
+  },
+  "retained_acquisition_2026_11_02": {
+    "milestone": "C159",
+    "status": "TARGETED_VALIDATED_PUBLICATION_PENDING",
+    "base_revision": "0f25cf53af5bd6fdd6203ca959d2541459ad0771",
+    "queue": "Q04 remains open",
+    "behavior_before": "A generation-recipe miss could not use an explicit exact-source snapshot from an older recipe.",
+    "behavior_after": "Explicit retained_snapshot on a generation-recipe miss uses validated older-recipe numerics or requalifies stale evidence, preserving source authority, representation permission, original producer/recipe and stopping diagnostics; no new generation is spent.",
+    "prior_work": {
+      "qualified_store": "5f90e70",
+      "ordinary_source_projection": "e441477",
+      "representation_policy": "d4c0e57",
+      "source_bound_bundle_publication": "962737c2",
+      "owned_generation_bridge": "e7f20241"
+    },
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_generation_acquisition.py",
+      "tests/test_cif_retained_acquisition.py"
+    ],
+    "schemas": "Unchanged. Optional explicit argument; existing store/snapshot/request/qualification schemas retained.",
+    "compatibility": "No migration, CLI/default PostMR/dependency/threshold change. Current generation-recipe entries retain precedence. No automatic discovery, cross-source projection or fail-through retry.",
+    "validation_commands": [
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_retained_acquisition.py",
+        "tests/test_cif_generation_acquisition.py",
+        "tests/test_cif_dictionary_store.py",
+        "tests/test_cif_dictionary_policy.py"
+      ],
+      [
+        "{python}",
+        "c159_native.py"
+      ],
+      [
+        "{python}",
+        "c159_cold.py"
+      ],
+      [
+        "{python}",
+        "c159_graph_bridge.py"
+      ],
+      [
+        "{python}",
+        "c159_auxiliary.py"
+      ]
+    ],
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src"
+    },
+    "regression": {
+      "new_cases": 31,
+      "before": "26 fail with missing retained_snapshot argument",
+      "targeted": "170 passed in 14.88s",
+      "profile_suites": "NOT_RUN_BY_EXPLICIT_USER_REQUEST",
+      "full_suite": "NOT_RUN_BY_EXPLICIT_USER_REQUEST"
+    },
+    "last_full_tested_revision": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+    "validation_source_files": 524,
+    "native_runtime_source_files": 193,
+    "source_hashes_unchanged": true,
+    "native": {
+      "installed_build": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "mode": "ACTUAL_ISOLATED_QUALIFICATION; NOT_DRY_RUN",
+      "components": [
+        "PDU",
+        "5PC"
+      ],
+      "qualification_executions": 4,
+      "checks_each": 21,
+      "coordinates": "Source and saved-candidate seed for each component; matching covalent proxy signatures.",
+      "consumer": "Prior installed consumer pins verified; explicit descriptor change forces fresh qualification on the same installation, not a version-upgrade claim.",
+      "generation_executions": 0,
+      "reuse": "Current imports and subsequent cache hits forbid subprocesses; no new generation request.",
+      "preserved": "C153 source/recipe/producer/stopping records and all parent bytes/mtimes; copied C158 exhausted PDU request untouched.",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "phosphate_state_authority": "EXACT_SOURCE_ONLY; Q13 EXPERIMENTAL/MIXED-SCAFFOLD STATE NOT_INFERRED"
+    },
+    "cold_relocation": {
+      "status": "PASS",
+      "returncode": 0,
+      "original_files": 584,
+      "new_files": 34,
+      "original_files_bytes_mtimes_unchanged": true,
+      "original_owned_path_absent": true,
+      "historical_checkout_science_and_sdk_reads": "DENIED",
+      "external_execution": "DENIED",
+      "replay": {
+        "status": "PASS",
+        "cases": {
+          "PDU": {
+            "entry_id": "0dc3d53f78becef18599d5454445e4073c651bef87b7118405939349c4397372",
+            "import_status": "PREPARED_AND_FROZEN",
+            "hit_status": "REUSED",
+            "native_usable": true
+          },
+          "5PC": {
+            "entry_id": "6e8c4da29ef6baa57e6ffd49b34fbb2bda2a61614133022220b7ffa78818b731",
+            "import_status": "PREPARED_AND_FROZEN",
+            "hit_status": "REUSED",
+            "native_usable": true
+          }
+        },
+        "failed_PDU_request": "EXHAUSTED",
+        "external_execution": "DENIED",
+        "historical_paths": "DENIED"
+      }
+    },
+    "graph_bridge": {
+      "status": "PASS",
+      "scope": "COMPATIBILITY_REPLAY_ONLY; NO NEW BUNDLE NATIVE OR DERIVATIVE QUALIFICATION",
+      "consumer": "C159 freshly qualified descriptor",
+      "prepared_model_dictionaries_and_phils": "BYTE_IDENTICAL_TO_VERIFIED_C153_CONTEXT",
+      "graph_plan": "EXACTLY_EQUAL_TO_C153",
+      "steps": 2,
+      "components": [
+        "5PC",
+        "PDU"
+      ],
+      "native_execution": "DENIED",
+      "parent_bytes_mtimes_unchanged": true,
+      "automatic_adoption": false,
+      "remaining": "Run source/site/ordered bundle native and derivative checks before any repaired selection; whole-acquisition ownership remains separate."
+    },
+    "evidence_refs": {
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/base.json",
+        "sha256": "18b8c8048a1f819ce30bc168a7ae5b9018a29266df8c5606b642577ffc035287",
+        "size": 191
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/before.log",
+        "sha256": "04584f72830dd86107c966c9998ae477930480db47e76ca21d8c24a18c858e63",
+        "size": 46447
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/before-result.json",
+        "sha256": "5c47c9138a19ad039ffdf6241112e7dec3b5dd857501667c9c1dcda358da6bb3",
+        "size": 581
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/before-sources.json",
+        "sha256": "b8a46ac199b6d551fec9d9f839c0ca69523e2d43539b72d7e3d5ed8970f66546",
+        "size": 56729
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/new.log",
+        "sha256": "c06f988f273439de21c9549aa6617964df8ee46edbfd4076fe0fc746b4d71af6",
+        "size": 99
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/new-result.json",
+        "sha256": "7170449675ee15b95cd3d73fb50790fe7571494832937cdd29c70acdea412b3b",
+        "size": 575
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/affected.log",
+        "sha256": "b48c42c7f4e8c247412aa6bfbfb60cf397dbde604017db24b97bb30722b1b9b5",
+        "size": 261
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/affected.xml",
+        "sha256": "73902a4a79fbd3b6d1933778c22d0a25e158d355737d98b71ea9f0b509b32f92",
+        "size": 26851
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/affected-result.json",
+        "sha256": "c59abfa4f41fc1a35a95511960bc467985cd23713665df7b901931751075267e",
+        "size": 718
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/affected-sources.json",
+        "sha256": "7d8adc0aa3072c82cf4522553981187aa914e303c134f3f30805aeb36491c29f",
+        "size": 56729
+      },
+      "cold.log": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/cold.log",
+        "sha256": "fb6e02b9899505497da9cf4d1f5b0846bf734cd5fc00ac98b103638133b1bfab",
+        "size": 479
+      },
+      "cold-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/cold-result.json",
+        "sha256": "c7dde3a4b65619e0006063dbd4feb3b0b6478b03bf0c6868a66eb37310720e83",
+        "size": 1341
+      },
+      "native/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/summary.json",
+        "sha256": "d2c13462bd647dbc2f748414dcff51f675cef5370b27611b0f1b70af8db92cea",
+        "size": 2680776
+      },
+      "native/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/installation.json",
+        "sha256": "c8473047b9ec8c85a1c5eb0ef1ce05b5b2d981a29c5d210bfed165121f5ac7d4",
+        "size": 133
+      },
+      "native/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/parent-inputs.json",
+        "sha256": "edf3ae1a028c18a1fca76d47158ac0dae54adb411f04a4bab1670310a2c745c4",
+        "size": 5909
+      },
+      "native/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/runtime-sources.json",
+        "sha256": "d89a5601be9f2e755ad3b8314f6ba309e7abde661552d360e313e210953c8a76",
+        "size": 20966
+      },
+      "native/generation-options.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/generation-options.json",
+        "sha256": "e2723d86c5d95c38074e8ce8c8563ca4fa869a18c1880001028eaebe2a29a31e",
+        "size": 1959
+      },
+      "native/fresh_sources/source_capture.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/fresh_sources/source_capture.json",
+        "sha256": "ed78b7ca1aaa52b0c09ce895668b15362daa3ce94de86effd9ebae135b045495",
+        "size": 2010
+      },
+      "graph-bridge/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/graph-bridge/summary.json",
+        "sha256": "a0d2beafcce5a1be6693c9b22078c18a985aec856c9825d3cd6170c04580cafc",
+        "size": 608
+      },
+      "graph-bridge/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/graph-bridge/parent-inputs.json",
+        "sha256": "415df34ca5127c79e5b2d6442ac79b226c8ea775494f74b2f092693f62df2f6a",
+        "size": 35380
+      },
+      "graph-bridge/bundle/bundle_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/graph-bridge/bundle/bundle_receipt.json",
+        "sha256": "d64d8d5146288363f9fe9da39dbbb7d6935ea50110d8b24a2ab150a1a6ab0a1e",
+        "size": 9392
+      },
+      "graph-bridge/linear-repair/linear_torsion_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/graph-bridge/linear-repair/linear_torsion_bundle.json",
+        "sha256": "9f928a9b3a01dc755a0b2a4fd8bce3d3250da0718dd3da42c70c82387b851543",
+        "size": 10849
+      },
+      "native/PDU/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/summary.json",
+        "sha256": "1b2841d51bef577cf7bac33efbf9c9d6da203b26da436ac904db4c6c829e43ef",
+        "size": 1196756
+      },
+      "native/PDU/current/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/current/resolution.json",
+        "sha256": "ed4ff8aa0ca9d71367b83d63e3f1db07653f2fd37ada6ac42b8fcd14f1e07724",
+        "size": 1293
+      },
+      "native/PDU/current/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/current/entry/manifest.json",
+        "sha256": "79e393518bbbf0ac000dadbca8684fed25c8f8151c11839e074f7969c87573c9",
+        "size": 7704
+      },
+      "native/PDU/current/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/current/entry/qualification.json",
+        "sha256": "45363e102897e63686b3607155f63322f9f249295a911def2841f8a90901f3db",
+        "size": 186301
+      },
+      "native/PDU/current/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/current/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native/PDU/fresh/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/fresh/resolution.json",
+        "sha256": "eb636d0a0fadb9213039e888924eccfa6d90cf6a8f0a19a83732f10c47edebdd",
+        "size": 1293
+      },
+      "native/PDU/fresh/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/fresh/entry/manifest.json",
+        "sha256": "0dc3d53f78becef18599d5454445e4073c651bef87b7118405939349c4397372",
+        "size": 7866
+      },
+      "native/PDU/fresh/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/fresh/entry/qualification.json",
+        "sha256": "45363e102897e63686b3607155f63322f9f249295a911def2841f8a90901f3db",
+        "size": 186301
+      },
+      "native/PDU/fresh/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/fresh/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native/PDU/hit/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/hit/resolution.json",
+        "sha256": "ba0c4cf8a25baa7b026193c4bf2a7719985bd3f92251be35405645e93209b037",
+        "size": 1289
+      },
+      "native/PDU/hit/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/hit/entry/manifest.json",
+        "sha256": "0dc3d53f78becef18599d5454445e4073c651bef87b7118405939349c4397372",
+        "size": 7866
+      },
+      "native/PDU/hit/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/hit/entry/qualification.json",
+        "sha256": "45363e102897e63686b3607155f63322f9f249295a911def2841f8a90901f3db",
+        "size": 186301
+      },
+      "native/PDU/hit/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/hit/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native/PDU/qualification/native/source_seed/cif-native-4kndloj2/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/qualification/native/source_seed/cif-native-4kndloj2/native_receipt.json",
+        "sha256": "cb52b5981bf1c821b7e72ec727a3bea917831856a4c37662a344cbebd70862ad",
+        "size": 242550
+      },
+      "native/PDU/qualification/native/candidate_seed/cif-native-5jp03nc1/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU/qualification/native/candidate_seed/cif-native-5jp03nc1/native_receipt.json",
+        "sha256": "9a09c189fe280cc6c8950454b096508edafcae9d8479e5d384fb48e4b98697cc",
+        "size": 243591
+      },
+      "native/retained/PDU/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/retained/PDU/resolution.json",
+        "sha256": "36d354e77b52ae434befb3c7653d161b07bb54e0802a367cf918afac2d24d4ce",
+        "size": 1289
+      },
+      "native/retained/PDU/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/retained/PDU/entry/manifest.json",
+        "sha256": "79e393518bbbf0ac000dadbca8684fed25c8f8151c11839e074f7969c87573c9",
+        "size": 7704
+      },
+      "native/5PC/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/summary.json",
+        "sha256": "f497c3ebe15247f78931aaea39a0f0d0ce6bf44e49d576b996060487d3a06bf9",
+        "size": 1223274
+      },
+      "native/5PC/current/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/current/resolution.json",
+        "sha256": "f0e787cc93f8facbe50e84a7a9b26f4f88b7bb95d0eed74f12608addfb3c9360",
+        "size": 1258
+      },
+      "native/5PC/current/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/current/entry/manifest.json",
+        "sha256": "f4379b0da23d33c5841efc89c50c5062b5d588cee85fd8b8cf34ff0aa29c468b",
+        "size": 7778
+      },
+      "native/5PC/current/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/current/entry/qualification.json",
+        "sha256": "a61a22404fee1bd04b57e4fb8807ef02f43d3e745ffcdcad5e34f5eaade3b76a",
+        "size": 190339
+      },
+      "native/5PC/current/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/current/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native/5PC/fresh/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/fresh/resolution.json",
+        "sha256": "1773539885c59fbafb8903618707ef0e9e9044e59223a9f0d77273d8ae151db2",
+        "size": 1258
+      },
+      "native/5PC/fresh/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/fresh/entry/manifest.json",
+        "sha256": "6e8c4da29ef6baa57e6ffd49b34fbb2bda2a61614133022220b7ffa78818b731",
+        "size": 7940
+      },
+      "native/5PC/fresh/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/fresh/entry/qualification.json",
+        "sha256": "a61a22404fee1bd04b57e4fb8807ef02f43d3e745ffcdcad5e34f5eaade3b76a",
+        "size": 190339
+      },
+      "native/5PC/fresh/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/fresh/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native/5PC/hit/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/hit/resolution.json",
+        "sha256": "d2d923357e42028fa400147f8f0a87893dabbcad192c65074411790b2c44798b",
+        "size": 1254
+      },
+      "native/5PC/hit/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/hit/entry/manifest.json",
+        "sha256": "6e8c4da29ef6baa57e6ffd49b34fbb2bda2a61614133022220b7ffa78818b731",
+        "size": 7940
+      },
+      "native/5PC/hit/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/hit/entry/qualification.json",
+        "sha256": "a61a22404fee1bd04b57e4fb8807ef02f43d3e745ffcdcad5e34f5eaade3b76a",
+        "size": 190339
+      },
+      "native/5PC/hit/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/hit/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native/5PC/qualification/native/source_seed/cif-native-5utykt02/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/qualification/native/source_seed/cif-native-5utykt02/native_receipt.json",
+        "sha256": "2df36049a9f00986ddc77a0d8cadc9f9343b9a2c6d496be70a20e573f95fddd4",
+        "size": 249021
+      },
+      "native/5PC/qualification/native/candidate_seed/cif-native-igrfuf7k/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/5PC/qualification/native/candidate_seed/cif-native-igrfuf7k/native_receipt.json",
+        "sha256": "b787d30ff8c3771f63c158b9e42786025a0b254d92e01a48c05f76fb6fdf2c97",
+        "size": 249058
+      },
+      "native/retained/5PC/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/retained/5PC/resolution.json",
+        "sha256": "a0543ec9ce79f5df9e3251ccfdce32b5d4b9d6ce2a5c2e08150fd6f0f16d6228",
+        "size": 1254
+      },
+      "native/retained/5PC/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/retained/5PC/entry/manifest.json",
+        "sha256": "f4379b0da23d33c5841efc89c50c5062b5d588cee85fd8b8cf34ff0aa29c468b",
+        "size": 7778
+      },
+      "native/PDU-request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU-request/request.json",
+        "sha256": "74ec817d3ebeaf56ae46fcaf4659c9be7604d8900c3c2f696a380cb147dc43f0",
+        "size": 2626
+      },
+      "native/PDU-request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU-request/attempts/attempt-0001/attempt.json",
+        "sha256": "bc6f8d3d4d9a051a036e55901f53ed2f795af5028d50cd48cc5815225d27503d",
+        "size": 696
+      },
+      "native/PDU-request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU-request/attempts/attempt-0001/finished.json",
+        "sha256": "a3776e7ac5040efbbd49282df0d51939890fe5780cb8ea6c8a78a8868523e7cf",
+        "size": 1110
+      },
+      "native/PDU-request/attempts/attempt-0001/generation/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "159_Cedar_retained-fallback-o9n2rgis/native/PDU-request/attempts/attempt-0001/generation/source_candidate_receipt.json",
+        "sha256": "98b7f052d2c84727595a827e7c05eaca6aaaedd7d0e8a0861bfc30143beaa30d",
+        "size": 11712
+      }
+    },
+    "remaining": [
+      "Compose existing source/site-qualified graph repair and whole-bundle native/derivative selection with acquisition.",
+      "Deterministic multiple-candidate failure selection; explicit retained route currently runs on generation-recipe MISS only.",
+      "Source discovery, qualification process ownership, whole-acquisition durable identity/coordination and total budget.",
+      "Ordinary adoption/checkpoints (Q05), actual refinement consumer (Q06), experimental phosphate state (Q13), full integration gate."
+    ],
+    "generated_artifacts": "All scientific sources, models, dictionaries, caches, native output, failed attempts, logs/XML and runners remain local/ignored; no generated payload committed/uploaded.",
+    "handoff_author": "Rowan · Codex desktop"
   }
 }

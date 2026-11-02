@@ -189,8 +189,9 @@ production. Incidental capture paths are excluded. A producer upgrade can reuse
 qualified bytes or requalify them for a new consumer. Timeout/attempt allowances
 do not change chemical cache identity, but cannot be relaxed in an existing
 generation request. This deliberately distinct recipe does not relabel older
-entries; existing resolvers still consume them. Cross-recipe candidate/fallback
-selection remains Q04 work and requires explicit compatibility/qualification.
+entries; existing resolvers still consume them. The C159 retained-snapshot route below supports an explicitly supplied
+older recipe under exact-source and representation checks; broad automatic
+discovery and graph-repair composition remain Q04.
 
 Destination checks precede lookup and callbacks. Snapshot, qualification,
 generation request and store scopes are separate, and none may contain or sit
@@ -223,8 +224,8 @@ reported nonconvergence/iteration-limit stopping maps to false. The absence of a
 convergence claim never establishes nonconvergence or a new acceptance gate. Frozen dictionaries continue to use the existing
 independent source/native checks after relocation.
 
-This explicit composition does not yet select independently qualified fallbacks,
-apply graph-selected repairs, coordinate the complete qualification lifecycle,
+C159 adds exact-source retained fallback as described below. This explicit
+composition does not apply graph-selected repairs, coordinate the complete qualification lifecycle,
 own source discovery or impose a total acquisition deadline. Native execution
 inside the qualifier remains the adapter's responsibility. Separate request
 directories are separate generation scopes. No ordinary PostMR call is switched,
@@ -240,6 +241,59 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### Exact-source retained acquisition fallback (C159)
+
+The optional `retained_snapshot` argument to `resolve_generated_dictionary`
+provides an explicit older numerical candidate on a generation-recipe **MISS**.
+Current hits and stale entries under the generation recipe retain their existing
+precedence; an unused fallback path is not read. There is no directory scan,
+basename search, automatic retry or catch-all exception-to-success path.
+
+The existing snapshot reader independently validates retained source, numerical
+bytes, recipe, native evidence and stopping provenance. A request rebuilt from
+the current selected source and authority must equal the complete original
+request; even changed source comments/bytes refuse. The original and requested
+explicit bond-representation permissions must match. This is not the more
+permissive C68 source projection, and it never changes a protonation/phosphate
+state, adds OP3 or substitutes a source on the basis of component name alone.
+
+The existing resolver first consults the **original recipe's** cache. If needed,
+it imports the explicit snapshot using its original recipe and generator.
+Complete current consumer/policy evidence may be reused. Otherwise the existing
+native adapter qualifies disposable source/candidate/consumer copies; all input
+and retained-snapshot bytes are checked afterward. Missing qualification returns
+`REQUALIFICATION_REQUIRED` without writes. Invalid or failed evidence refuses
+without generation and retains partial qualification output. Snapshot, store,
+qualification and generation scopes cannot overlap the retained snapshot.
+
+Publication keeps the actual selected recipe/producer in the manifest and
+preserves original convergence, stopping, diagnostics and notes. It does not
+credit the newly requested builder for old numerics or publish those bytes under
+the generation recipe's key. Existing snapshot readers resolve the independently
+frozen output without the previous snapshot, cache, SDK or generation directory.
+All schemas remain unchanged. A current fallback may be reused even when a
+previous generation allowance is exhausted; it creates no new generation
+attempt and leaves the failed request's bytes/timestamps unchanged.
+
+Actual Phenix **2.2.1-6174**, dispatcher **2.2.1**, requalifies the recorded C153
+PDU and 5PC candidates at both source and saved-candidate coordinates: four
+isolated executions, each passing all 21 checks, with matching covalent proxy
+signatures. The consumer descriptor change is a same-installation control, not
+a software upgrade. Verified current reuse and subsequent cache hits prohibit
+native execution. Cold imports/hits pass after relocating an owned checkout and
+removing its original path, with historical science/SDK reads and subprocesses
+denied. C158's failed PDU attempt and all parent evidence remain unchanged.
+A no-execution compatibility replay feeds the new snapshots through C153 site
+preparation and reproduces its model, ordered CIF/PHIL bytes and full graph plan
+exactly. This does not inherit whole-bundle native/derivative qualification.
+Exact commands and hashes are in `retained_acquisition_2026_11_02` in the
+[technical ledger](cif-linked-native-registration-evidence.json).
+
+This closes the explicit retained-candidate bridge, not Q04 as a whole. Graph-
+selected repair composition, acquisition-wide ownership/budget and source
+discovery remain open. No ordinary caller changes, linked-site/model adoption,
+experimental phosphate-state qualification or diffraction refinement occurs.
 
 ### Durable source-generation requests and attempts (C157)
 

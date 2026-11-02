@@ -34,7 +34,9 @@ end-to-end candidate adoption remain separate integration work.
 
 An explicit cache-first acquisition API now joins qualified reuse to bounded,
 owned source-generation attempts and independent native qualification. Complete
-acquisition recovery/fallback and ordinary adoption remain integration work.
+acquisition recovery and ordinary adoption remain integration work. An explicitly
+supplied older snapshot can provide an exact-source fallback without changing its
+recipe or producer; stale consumer evidence requires fresh qualification.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

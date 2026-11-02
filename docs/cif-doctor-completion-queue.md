@@ -167,12 +167,23 @@ permission; old recipes/producer identities are not silently relabelled. Actual
 5PC generation/qualification/reuse and bounded PDU failure pass, with cold cache
 reuse after relocation. This is an explicit component API, not ordinary adoption.
 
-**Next bounded checkpoint:** compose an independently qualified retained fallback
-and graph-repair candidate with this acquisition boundary. Include exact-source
-older-recipe candidates without silently changing their recipe or producer; the
-C153 saved entries remain available through their existing resolver. Requalify
-for the current declared source/consumer/policy before selection, and preserve
-failed generation/qualification attempts. Avoid a second numerical/chemical gate.
+C159 closes the explicit retained-candidate bridge on a generation-recipe miss.
+An exact-source/authority snapshot with matching representation permission keeps
+its original recipe/producer/stopping proof. Current evidence is reused; stale
+consumer/policy evidence is requalified on disposable copies. Recorded C153 PDU
+and 5PC candidates pass fresh isolated native controls. The old failed PDU request
+stays unchanged; no new generation is needed. Current generation-recipe entries
+retain precedence. C159 compatibility replay reproduces C153's prepared model,
+ordered CIF/PHIL bytes and both graph-repair steps exactly; no new whole-bundle
+native or derivative qualification is claimed. This does not scan for candidates or recover from a failed
+new qualification by silently trying another source.
+
+**Next bounded checkpoint:** compose the graph-selected repair candidate with
+qualified retained acquisition. Reuse the existing C152/C153 whole-bundle
+source/site/derivative selection and immutable publication; do not demote those
+context checks to isolated monomer qualification. Define deterministic current
+and fallback selection when candidates fail or need different current evidence,
+preserving all attempts. Avoid a second numerical/chemical gate.
 Complete acquisition coordination must cover qualification/source-discovery
 ownership and a total budget; C158 owns generation only and accepts a caller-owned
 qualification adapter. Keep these explicit sub-gates under Q04 before ordinary

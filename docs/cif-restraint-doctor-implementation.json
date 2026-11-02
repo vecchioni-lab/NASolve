@@ -27861,6 +27861,23 @@
       ],
       "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST",
       "focused_validation_revision": "e7f202410f33016a031afe6093a0c3ec857ec082"
+    },
+    "retained_acquisition": {
+      "milestone": "C159",
+      "status": "TARGETED_VALIDATED_PUBLICATION_PENDING",
+      "queue": "Q04",
+      "contract": "docs/cif-doctor.md#exact-source-retained-acquisition-fallback-c159",
+      "evidence_key": "retained_acquisition_2026_11_02",
+      "summary": "Explicit retained_snapshot on a generation-recipe miss uses validated older-recipe numerics or requalifies stale evidence, preserving source authority, representation permission, original producer/recipe and stopping diagnostics; no new generation is spent.",
+      "ordinary_adoption": false,
+      "new_native_execution": true,
+      "remaining": [
+        "Compose existing source/site-qualified graph repair and whole-bundle native/derivative selection with acquisition.",
+        "Deterministic multiple-candidate failure selection; explicit retained route currently runs on generation-recipe MISS only.",
+        "Source discovery, qualification process ownership, whole-acquisition durable identity/coordination and total budget.",
+        "Ordinary adoption/checkpoints (Q05), actual refinement consumer (Q06), experimental phosphate state (Q13), full integration gate."
+      ],
+      "validation_scope": "TARGETED_ONLY; NO PROFILE OR FULL SUITE"
     }
   },
   "audience": [
