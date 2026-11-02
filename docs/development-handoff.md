@@ -11,6 +11,51 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C161 validated; publication pending: Q02 curated CIF parser closure
+
+Base `693b955637eee27fb4ab6800e60d998a9c06f0d3`; existing Cedar only.
+Capsule `live_tests_directory/161_Cedar_curated-loops-san9oh4r`.
+Before, physical-line readers rejected legal wrapped CIFs and silently accepted
+some malformed tables. After, shared CIF1 block/lexical parsing preserves exact
+atom identifiers and preferred coordinates, checking component consistency,
+complete rows, unique atom names and finite requested values. Source definitions
+and topology/chemical guards remain unchanged. Q02 is complete.
+
+Prior work: C145 recorded the projected-DZ failure and used the curated source as
+an explicit workaround; the C150 queue audit retained Q02. Existing `_blocks`
+and lexical preflight supply parsing; no new CIF parser or dependency is added.
+All ten packaged curated resources pass two alternative layouts. Ordinary PostMR
+accepts wrapped DZ using fixture ReadySet, preserving input intent and lineage.
+The exact C145 projected input reproduces `No closing quotation` in both old
+readers; the new readers validate 35 bonds and the 1.5099778144 Å C1′–C1 distance.
+All historical parent bytes/timestamps remain unchanged. No native execution.
+
+**Validation:** 42 new cases; first capture **41 failed, 1 passed in 2.72s**.
+A preparation/cache source mismatch in the initial integration fixture was fixed
+before final collection. Affected **151 passed in 29.58s**.
+Focused workflow **1001 passed, 45 subtests passed in 129.71s (0:02:09)**; all 599 source/test/script hashes frozen.
+**No full suite, at Simon's request.** Last full-tested implementation remains
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 tests + 276 subtests).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_curated_cif_loops.py tests/test_component_lookup_repairs.py tests/test_component_normalization_postmr.py tests/test_component_normalization.py tests/test_1ap_dictionary.py tests/test_dictionary_postmr.py tests/test_postmr.py tests/test_cif_base_anchored_furanose.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c161_replay_r2.py
+python c161_publish.py
+```
+
+Changed: curated reader, new regressions/profile registration, changelog,
+contracts/human descriptor/index, architecture, Q02 queue closure, handoff and
+both ledgers. Schemas and valid source semantics unchanged; no migration.
+Previously ambiguous/malformed inputs refuse explicitly. Sources, raw data,
+logs/XML and runners stay local/ignored. No generated scientific payload uploaded.
+Q04 whole-acquisition ownership/recovery/budget is next; Q05/Q06/Q13 remain open.
+No jobs active and no merge/adoption claim. Exact evidence in
+`curated_cif_loops_2026_11_02`.
+
+Same-Cedar publication pending.
+— Rowan · Codex desktop
+
 ## C160 published: maintained native repair execution
 
 Base `4462bb22cec7f3377931c727d1abe73b30833123`; existing **cedar** only.
@@ -3085,8 +3130,7 @@ not an estimate for complete catalogue support.
 **Current ordering:** the [completion queue](cif-doctor-completion-queue.md) is
 the sole maintained job backlog. Q01/Q03 connect full native capture and repaired
 source-qualified selection; Q04/Q05 provide ordinary recovery/adoption; Q06/Q07
-qualify the actual refinement route and mixed-scaffold workflow. Q02 is the
-independent parser fix. Q08–Q14 retain geometry, family, source-state and catalogue
+qualify the actual refinement route and mixed-scaffold workflow. Q02 is closed at C161 by the layout-independent curated readers. Q08–Q14 retain geometry, family, source-state and catalogue
 gaps; Q15/Q16 cover reports, documentation consolidation and final integration.
 The table above summarizes G1–G6 coverage and does not independently schedule work.
 

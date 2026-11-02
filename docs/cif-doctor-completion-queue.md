@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-02, after C160.** This queue owns unfinished
+**Current planning authority, 2026-11-02, after C161.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -36,8 +36,7 @@ requires every catalogue entry to be accounted for and unresolved cases retained
 as work; it cannot be inferred from a few successful family exemplars.
 
 Q01 is complete at C151 and Q03 diagnostic composition at C153. Remaining priority is **Q04 → Q05 → Q07**, with Q06 qualifying the
-actual refinement consumer before Q07 can claim refinement support. Q02 is a
-small independent parser repair that should land early. Q08 diagnoses the known
+actual refinement consumer before Q07 can claim refinement support. Q02 is complete at C161: curated CIF parsing is independent of line wrapping. Q08 diagnoses the known
 mixed-scaffold geometry while Q09–Q14 close chemistry and evidence gaps. Q15 and
 Q16 close reporting and release. Dependencies below concern completion evidence;
 they need not prevent bounded design or fixture preparation. These are **16 work
@@ -78,17 +77,16 @@ must retain their existing meaning; no fabricated missing evidence.
 
 ### Q02 — Read curated CIF loops independently of line wrapping
 
-**Open; independent small fix.** C145 exposed a projected DZ dictionary whose
-legal token-per-line layout defeats the line-based curated bond reader.
-[`_dictionary_bonds` and `dictionary_ideal_bond_length`](../src/nasolve/curated_ligands.py)
-still parse physical lines with `shlex`. Reuse an existing suitable CIF loop
-reader; preserve source fields, component selection and strict identity checks.
-
-Done when row-wrapped, token-per-line and quoted/prime atom names produce the
-same bonds/ideal distances and ordinary curated preparation, with malformed or
-ambiguous/multi-component inputs refused as appropriate. Include the actual
-projected-DZ shape and unrelated valid controls; do not special-case DZ or install
-a formatter to change scientific inputs.
+**Complete at C161.** C145 exposed a valid projected-DZ dictionary that the
+physical-line bond reader rejected. Both curated bond and ideal-coordinate
+readers now reuse existing CIF1 block/token parsing, preserve exact identifiers
+and coordinate preference, and refuse incomplete/ambiguous/conflicting tables.
+All ten curated resources retain topology under token-per-line and mixed-width
+layouts; ordinary PostMR fixture preparation accepts wrapped DZ. The exact C145
+input now validates all 35 bonds and its C-glycosidic distance, without changing
+parent bytes/timestamps. 42 new cases and affected/focused workflow checks pass;
+no native run or full regression is claimed. See the
+[C161 contract](cif-doctor.md#curated-cif-loop-parsing-c161).
 
 ### Q03 — Qualify repaired dictionaries and select a usable bundle
 

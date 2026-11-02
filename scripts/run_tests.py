@@ -20,6 +20,7 @@ PROFILES = {
         'test_cif_postmr_cache', 'test_postmr_cache_workflow', 'test_checkpoints', 'test_run_context',
     ),
     'chemistry': (
+        'test_curated_cif_loops',
         'test_cif_preparation_qualification', 'test_cif_linked_preparation',
         'test_cif_linked_usability_bridge', 'test_cif_terminal_preparation',
         'test_cif_candidate_usability', 'test_cif_purine_representation',
@@ -31,6 +32,7 @@ PROFILES = {
         'test_cif_topology_gate', 'test_phosphate', 'test_recipe_phosphates',
     ),
     'workflow': (
+        'test_curated_cif_loops',
         'test_test_suites', 'test_cif_doctor_selection', 'test_cif_dictionary_store',
         'test_cif_generation_acquisition', 'test_cif_prepared_repair_execution', 'test_cif_retained_acquisition', 'test_cif_generation_attempt', 'test_cif_generation_process', 'test_cif_source_candidate', 'test_campaign_process',
         'test_cif_source_reuse', 'test_cif_dictionary_policy', 'test_cif_dictionary_sites', 'test_cif_dictionary_bundle', 'test_cif_dictionary_bundle_readyset', 'test_cif_readyset_atom_order', 'test_cif_component_runtime', 'test_cif_runtime_bundle', 'test_cif_mixed_runtime_bundle', 'test_cif_phosphate_names', 'test_cif_native_context', 'test_cif_native_monomers', 'test_cif_postmr_cache', 'test_postmr_cache_workflow',

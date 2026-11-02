@@ -1049,6 +1049,11 @@ improvement record can retain the independently qualified original; corrupt or
 missing evidence cannot. Per-phase limits and append-only diagnostic progress
 do not provide whole-acquisition process ownership or recovery permission.
 See [prepared repair execution](cif-doctor.md#maintained-prepared-bundle-repair-execution-c160).
+C161 makes the shared curated bond/coordinate readers independent of CIF line
+layout using existing block/token parsing. Declared component identities and
+requested tables must be unambiguous; malformed data refuses. Source chemical
+fields and coordinate preference remain unchanged. See
+[curated parsing](cif-doctor.md#curated-cif-loop-parsing-c161).
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
 persistent local reuse independently of ordinary PostMR orchestration. Its

@@ -63104,5 +63104,220 @@
     "implementation_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "implementation_published_on": "origin/cedar"
+  },
+  "curated_cif_loops_2026_11_02": {
+    "milestone": "C161",
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "queue": "Q02 COMPLETE; Q04 remains next",
+    "base_revision": "693b955637eee27fb4ab6800e60d998a9c06f0d3",
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Two physical-line curated readers reject valid wrapped CIFs and can silently accept ambiguous/incomplete data. C145 records the projected-DZ failure.",
+    "after": "Both readers use existing CIF1 block and lexical parsing; exact identifiers, component consistency, row completeness and finite preferred coordinates are checked without rewriting source data.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "scripts/run_tests.py",
+      "src/nasolve/curated_ligands.py",
+      "tests/test_curated_cif_loops.py"
+    ],
+    "schemas": "UNCHANGED",
+    "compatibility": "No migration, dependency or threshold change. Valid layout alternatives are accepted. Ambiguous/incomplete/conflicting input now refuses; minimal legacy undeclared tables remain readable. No native or ordinary-adoption qualification is inferred.",
+    "regressions": {
+      "new_cases": 42,
+      "before": "41 failed, 1 passed in 2.72s",
+      "affected": "151 passed in 29.58s",
+      "focused": "1001 passed, 45 subtests passed in 129.71s (0:02:09)",
+      "source_files_frozen": 599,
+      "full": "NOT_RUN; EXPLICIT_USER_REQUEST",
+      "fixture_note": "The first integration fixture supplied mismatched sources to preparation and cache lookup; corrected to a single declared dictionary directory before affected/focused collection."
+    },
+    "historical_replay": {
+      "status": "PASS",
+      "scope": "READ_ONLY_LOCAL_PARSER_REPLAY; NO_NATIVE_EXECUTION",
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "98_Cedar_df-source-recovery-29jul13e/recovery/inputs/projections/A_12.cif",
+        "sha256": "767f728332473e437f10073e98a2b3496a0b51008016856adf969a5106a387f5",
+        "size": 10709
+      },
+      "C145_binding": {
+        "anchor": "live_tests_directory",
+        "path": "145_Cedar_base-anchor-2avljt9l/parent-bindings.json",
+        "size": 8724,
+        "sha256": "a852b92391f7d6bbe0021ceed2becacc66eb95828d89684bf198e511558c1567"
+      },
+      "source_ref": {
+        "anchor": "mixed_source_recovery_directory",
+        "path": "inputs/projections/A_12.cif",
+        "sha256": "767f728332473e437f10073e98a2b3496a0b51008016856adf969a5106a387f5",
+        "size": 10709
+      },
+      "before": {
+        "bonds": {
+          "error": "No closing quotation"
+        },
+        "distance": {
+          "error": "No closing quotation"
+        }
+      },
+      "after": {
+        "bond_count": 35,
+        "distance": 1.5099778144065532,
+        "curated_validation": "PASS",
+        "independent_parsed_pairs_equal": true
+      },
+      "parents_bytes_mtimes_unchanged": true,
+      "full_regression": "NOT_RUN_USER_REQUEST"
+    },
+    "native_execution": "NOT_RUN; READ_ONLY_PARSER_AND_FIXTURE_READYSET_ONLY",
+    "evidence_refs": {
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/base.json",
+        "sha256": "24d8c0bf1525783d774319426f01c2ddb51a6acdebaaa3b5d23dc2a61e7f92d9",
+        "size": 197
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/before.log",
+        "sha256": "b7d885bad4f2b9a3820fd9608b4f1f7c8f8a74c58ac1b450b36dffc942b6291a",
+        "size": 140492
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/before-result.json",
+        "sha256": "4bfa4ab5dd78a54846e4e5f01c6e983bcacdf48d956e6316fb2f8e924ac9680e",
+        "size": 571
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/new.log",
+        "sha256": "33c6a12c361613086904b008a976267bbfc2ba4e66035876e2e6e22bb7c3f37f",
+        "size": 25964
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/new-result.json",
+        "sha256": "5866c95fbc89b38b7709bbe6ff4a7759b0ac9758dedcb645af0e394e2210162d",
+        "size": 565
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/affected.log",
+        "sha256": "89d11e775ce9b72c04d8d2a5e89b646553b4023328b0390b6aa97a9c8914ec92",
+        "size": 261
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/affected.xml",
+        "sha256": "4bb35c1e90586c529e2559afc304340345a5089be68f041b2526c373929ff87a",
+        "size": 25079
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/affected-result.json",
+        "sha256": "02289c628a59d8b278c9fecdb7278e9531fe547aa6fe989d8023c6155523a9aa",
+        "size": 870
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/affected-sources.json",
+        "sha256": "ab7d30c9cf9800fb7fdcc50571a5fd1d3d108d18c5f1f0149cac29f0f5ac693f",
+        "size": 65345
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/focused.log",
+        "sha256": "f3f712a0d311ac9405e9573d76c2f1ae3905d42b8b2c338b7ebf6812c621ae6e",
+        "size": 5348
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/focused.xml",
+        "sha256": "7a3eff72b7d0dba65104bf120ced6b31ff8f50d95c76815b75b5af81765f2cc1",
+        "size": 152666
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/focused-result.json",
+        "sha256": "65e78dab40d826a7c8603c804764ce592e557753a557a221f86650d8355ca498",
+        "size": 486
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/focused-sources.json",
+        "sha256": "ab7d30c9cf9800fb7fdcc50571a5fd1d3d108d18c5f1f0149cac29f0f5ac693f",
+        "size": 65345
+      },
+      "historical-replay.json": {
+        "anchor": "live_tests_directory",
+        "path": "161_Cedar_curated-loops-san9oh4r/historical-replay.json",
+        "sha256": "c76249110ac4d0b224daf16ae0444b0b63a35243decec59d127d54206342fcdb",
+        "size": 1159
+      }
+    },
+    "validation_commands": [
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_curated_cif_loops.py",
+        "--junitxml",
+        "{live_tests_directory}/161_Cedar_curated-loops-san9oh4r/before.xml"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_curated_cif_loops.py",
+        "tests/test_component_lookup_repairs.py",
+        "tests/test_component_normalization_postmr.py",
+        "tests/test_component_normalization.py",
+        "tests/test_1ap_dictionary.py",
+        "tests/test_dictionary_postmr.py",
+        "tests/test_postmr.py",
+        "tests/test_cif_base_anchored_furanose.py",
+        "--junitxml",
+        "{live_tests_directory}/161_Cedar_curated-loops-san9oh4r/affected.xml"
+      ],
+      [
+        "{python}",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "{live_tests_directory}/161_Cedar_curated-loops-san9oh4r/focused.xml"
+      ],
+      [
+        "{python}",
+        "c161_replay_r2.py"
+      ],
+      [
+        "{python}",
+        "c161_publish.py"
+      ]
+    ],
+    "generated_artifacts": "Raw inputs, old evidence, models, logs/XML and runners remain local/ignored; no scientific payload uploaded.",
+    "remaining": [
+      "Q04 whole-acquisition ownership/recovery and total budget",
+      "Q05 ordinary adoption, Q06 actual refinement, Q13 phosphate-state authority"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

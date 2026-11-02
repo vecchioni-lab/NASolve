@@ -27896,6 +27896,15 @@
       "new_native_execution": true,
       "full_regression": "7740 passed, 276 subtests passed in 1804.39s (0:30:04)",
       "full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+    },
+    "curated_cif_loops": {
+      "milestone": "C161",
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "queue": "Q02 COMPLETE",
+      "contract": "docs/cif-doctor.md#curated-cif-loop-parsing-c161",
+      "evidence_key": "curated_cif_loops_2026_11_02",
+      "summary": "Both readers use existing CIF1 block and lexical parsing; exact identifiers, component consistency, row completeness and finite preferred coordinates are checked without rewriting source data.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
     }
   },
   "audience": [

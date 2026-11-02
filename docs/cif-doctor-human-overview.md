@@ -3563,3 +3563,14 @@ stereocentre. The figure distinguishes ordinary report-only audits from explicit
 diagnostic work; neither a native mechanics pass nor a lower score grants chemical
 approval or automatic adoption. Detailed evidence belongs in the linked ledger,
 not in the SVG accessibility description.
+
+### Curated dictionary layout compatibility (C161)
+
+A valid CIF can wrap one logical table row across several lines. The curated
+bond and coordinate readers now use the same existing CIF1 parser as other
+NASolve dictionary tools, preserving exact atom names and all source values.
+Ambiguous identities/tables and incomplete or nonfinite requested coordinates
+refuse. Forty-two regression cases cover all ten packaged curated ligands,
+ordinary fixture preparation and the exact earlier projected-DZ failure.
+This closes Q02, a reader compatibility defect; it adds no chemistry repair or
+new scientific qualification. See the [contract](cif-doctor.md#curated-cif-loop-parsing-c161).

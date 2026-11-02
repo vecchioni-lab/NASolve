@@ -60,6 +60,8 @@ milestone statements preserve their original scope; they are not a second queue.
   derivative and selection/publication chain, retaining an independently qualified
   fallback when a valid improvement attempt fails. Discovery, complete acquisition
   ownership/budget and ordinary cache-miss continuation remain Q04.
+  C161 closes Q02: curated bond/coordinate reading is independent of legal CIF
+  line wrapping, with the exact historical DZ failure replayed read-only.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

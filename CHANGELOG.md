@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Curated CIF loop parsing (C161)
+
+- Read curated bonds and ideal atom coordinates with existing CIF1 block/token
+  parsing, independent of row wrapping, comments and blank lines. Preserve exact
+  prime atom names, source chemistry and preferred coordinate values.
+- Refuse repeated/ambiguous tables, conflicting declared components, incomplete
+  rows, duplicate atom identities and nonfinite requested coordinates instead of
+  silently selecting or truncating them. No source rewrite or schema migration.
+- Close Q02 with all ten packaged curated sources, ordinary PostMR fixture
+  preparation and the exact recorded C145 projected-DZ parser failure.
+
 ### Maintained prepared-bundle repair execution (C160)
 
 - Add an explicit execution API composing graph repair planning, full native

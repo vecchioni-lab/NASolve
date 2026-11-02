@@ -242,6 +242,32 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Curated CIF loop parsing (C161)
+
+The curated bond reader and `dictionary_ideal_bond_length` use the existing
+`ligand_profiles._blocks` CIF1 parser and lexical duplicate-tag checks. Physical
+rows, comments and blank lines cannot change atom pairs or coordinate selection.
+Exact atom identifiers, including unquoted/quoted primes, remain distinct.
+One unambiguous requested category and consistent declared component identity
+are required. Component-list metadata in a separate block remains supported;
+minimal legacy tables without component declarations remain readable. Multiple
+candidate tables are refused rather than silently merged or selected.
+
+Incomplete columns, repeated fields, conflicting component IDs, missing/self bond
+identifiers and duplicate atom identities refuse. Distances retain the existing
+preference for complete `pdbx_model_Cartn_*_ideal` coordinates over `x/y/z`;
+invalid or nonfinite preferred values do not silently fall back to other values.
+Source files, chemical fields, topology requirements and numerical targets are
+never rewritten. No dependency, artifact schema, CLI or migration changes.
+
+Q02 closes with 42 regression cases, all ten packaged curated ligands under two
+alternative layouts, ordinary PostMR using fixture ReadySet, and read-only replay
+of C145's exact projected DZ source. The old readers raise `No closing quotation`;
+the new readers validate all 35 bonds and the 1.5099778144 Å C1′–C1 distance.
+Historical source bytes/timestamps remain unchanged. No Phenix/Coot execution,
+new geometry qualification or ordinary repair adoption is inferred. Exact focused
+commands/results are in the handoff and `curated_cif_loops_2026_11_02` ledger entry.
+
 ### Maintained prepared-bundle repair execution (C160)
 
 `cif_prepared_repair_execution.execute_prepared_dictionary_repair(bundle, phenix,
@@ -1127,7 +1153,7 @@ placement API. Generic successful parsing is insufficient evidence of membership
 A preliminary attempt also exposed the line-oriented curated-DZ bond reader's
 inability to consume a token-per-line projected CIF. The preserved successful
 control uses the maintained curated DZ source for role validation while retaining
-all original active numerical dictionaries. That parser issue remains follow-up.
+all original active numerical dictionaries. The parser issue is closed by [C161](#curated-cif-loop-parsing-c161); the original C145 evidence remains unchanged.
 
 A bounded 27-start, 3,315-evaluation phosphate-arm feasibility calculation writes
 no model. It preserves the base/sugar core and internal bonds/angles but reaches
