@@ -27832,7 +27832,7 @@
       "focused_validation_revision": "36aab06e81414e70c8f1cd9ea5654860b6228324"
     },
     "source_generation_attempts": {
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "evidence": "docs/cif-linked-native-registration-evidence.json#source_generation_attempts_2026_11_02",
       "contract": "docs/cif-doctor.md#durable-source-generation-requests-and-attempts-c157",
       "scope": "Explicit generation request ownership, immutable finite attempts and conservative recovery; no full acquisition orchestration or adoption.",
@@ -27840,7 +27840,8 @@
       "schema_changes": "Additive generation request/attempt evidence",
       "new_native_execution": true,
       "full_regression": "NOT_RUN_BY_EXPLICIT_USER_REQUEST",
-      "last_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353"
+      "last_full_tested_commit": "28a6c1b22be70f8480dbd6e755e601a1ef774353",
+      "focused_validation_revision": "9407d508a548ab9e883fb208f37c47fe19ddb266"
     }
   },
   "audience": [

@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C157 validated; publication pending: durable source-generation requests and attempts
+## C157 published: durable source-generation requests and attempts
 
 Base `19a1ebbecb472f304edfc1c98fc2b83b1fd6b567`; existing **cedar** only.
 Capsule `live_tests_directory/157_Cedar_generation-attempts-i3trld__`.
@@ -92,7 +92,8 @@ state remain open. No active jobs remain. Last full-tested implementation stays
 `28a6c1b22be70f8480dbd6e755e601a1ef774353` (7517 tests + 276 subtests); a new full
 integration gate is required before merging.
 
-Implementation is validated and ready to publish on existing `cedar`; no merge is requested.
+Focused-tested implementation `9407d508a548ab9e883fb208f37c47fe19ddb266` is published and verified
+on `origin/cedar`. This continuity-only update changes no runtime/test bytes.
 — Rowan · Codex desktop
 
 ## C156 published: durable source-generation process evidence

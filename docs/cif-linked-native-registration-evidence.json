@@ -60715,7 +60715,7 @@
     "implementation_published_on": "origin/cedar"
   },
   "source_generation_attempts_2026_11_02": {
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
     "base_commit": "19a1ebbecb472f304edfc1c98fc2b83b1fd6b567",
@@ -61325,6 +61325,8 @@
       "First actual-coordinator fixture had nested-string escaping error; no worker launched; corrected fresh run passes.",
       "First native harness used a Python lacking Biopython and stopped before native execution; rerun used existing NASolve venv. Its input copy is retained.",
       "Native-r2 precedes exact attempt-owner binding; native-r3 precedes destination normalization. Both remain intermediate evidence; final native-r4 and cold replay own the final qualification scope."
-    ]
+    ],
+    "focused_validation_revision": "9407d508a548ab9e883fb208f37c47fe19ddb266",
+    "implementation_published_on": "origin/cedar"
   }
 }
