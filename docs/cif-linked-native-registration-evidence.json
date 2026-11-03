@@ -63866,7 +63866,7 @@
   },
   "prepared_repair_process_2026_11_03": {
     "milestone": "C163",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "queue": "Q04 remains open; prepared native ownership sub-gate complete",
     "base_revision": "b4be4c762c6a44c105ba600476689f1f8a6bb7ad",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
@@ -64652,6 +64652,7 @@
       "src/nasolve/cif_prepared_repair_execution.py",
       "src/nasolve/cif_repair_process.py",
       "tests/test_cif_repair_process.py"
-    ]
+    ],
+    "implementation_revision": "c13515d28033e337723a89be252f39b5c291c602"
   }
 }

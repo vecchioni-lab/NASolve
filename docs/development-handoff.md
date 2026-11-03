@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C163 validated: prepared-repair process ownership
+## C163 published: prepared-repair process ownership
 
 Base `b4be4c762c6a44c105ba600476689f1f8a6bb7ad`; existing Cedar only.
 Capsule `live_tests_directory/163_Cedar_repair-ownership-d_pcos4_`.
@@ -71,6 +71,7 @@ Simon's eight-residue held-out modified Watson–Crick builder challenge is queu
 under Q07 for closure, with unchanged ligand definitions and explicit backbone/
 phosphorothioate intent; it is not the next task. No merge authorization.
 Evidence key `prepared_repair_process_2026_11_03`. No active jobs.
+Implementation `c13515d28033e337723a89be252f39b5c291c602` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C162 published: shared prepared-repair allowance

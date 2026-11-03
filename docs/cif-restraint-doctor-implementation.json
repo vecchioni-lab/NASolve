@@ -27925,7 +27925,7 @@
     },
     "prepared_repair_process": {
       "milestone": "C163",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 remains open",
       "contract": "docs/cif-doctor.md#prepared-repair-process-evidence-c163",
       "evidence_key": "prepared_repair_process_2026_11_03",
@@ -27937,7 +27937,8 @@
         "POSIX native/process controls executed on this Mac; Linux-specific execution not rerun.",
         "Scientific PDU/5PC evidence remains separated-monomer diagnostic scope; no ReadySet, Coot, model optimization or diffraction refinement.",
         "Q05 ordinary adoption, Q06 refinement consumer and Q13 chemical-state authority remain open."
-      ]
+      ],
+      "implementation_revision": "c13515d28033e337723a89be252f39b5c291c602"
     }
   },
   "audience": [
