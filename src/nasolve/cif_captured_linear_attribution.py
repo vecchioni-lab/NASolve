@@ -140,7 +140,7 @@ def _publish(root, report):
     return read_captured_linear_attribution(root)
 
 
-def audit_captured_linear_attribution(directory, native_receipts, phenix, output, *, timeout_seconds=90):
+def audit_captured_linear_attribution(directory, native_receipts, phenix, output, *, timeout_seconds=90, _process_runner=None):
     """Freeze exact staged captures; None prepares, otherwise run one fresh kernel.
 
     Failed and interrupted attempts are preserved. A fresh output is mandatory;
@@ -182,19 +182,20 @@ def audit_captured_linear_attribution(directory, native_receipts, phenix, output
         new_native_calls=0, execution={'status':'NOT_RUN'}, qualification={'status':'NOT_RUN'},
         kernel_execution_authentication='NOT_RUN')
     if executable is not None:
-        from .cif_native_validation import _stop
+        from .cif_native_validation import _run_native_command
         report.update(status='REVIEW',phenix_version=phenix.version,
             executable_provenance=str(executable),executable_sha256=context['executable_sha256'])
         started=time.monotonic()
         try:
-            with (root/'job/execution.log').open('xb') as log:
-                process=subprocess.Popen([str(executable),'-B','worker.py'],cwd=root/'job',env=dict(phenix.environment),
-                    stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=os.name=='posix')
-                report['new_native_calls']=1
-                try:code=process.wait(timeout=timeout_seconds)
-                except subprocess.TimeoutExpired:_stop(process);report['execution']={'status':'TIMED_OUT','returncode':process.returncode}
-                except BaseException:_stop(process);raise
-                else:report['execution']={'status':'COMPLETED' if code==0 else 'FAILED','returncode':code}
+            try:
+                code=_run_native_command([str(executable),'-B','worker.py'],cwd=root/'job',
+                    log_path=root/'job/execution.log',environment=phenix.environment,
+                    timeout_seconds=timeout_seconds,process_runner=_process_runner,
+                    on_started=lambda:report.update(new_native_calls=1))
+            except subprocess.TimeoutExpired as exc:
+                report['execution']={'status':'TIMED_OUT','returncode':exc.returncode}
+            else:
+                report['execution']={'status':'COMPLETED' if code==0 else 'FAILED','returncode':code}
             if report['execution']['status']=='COMPLETED':
                 report['qualification']=_result(root,receipts)
                 report.update(status='CAPTURED_LINEAR_ATTRIBUTION_PASS',kernel_execution_authentication='MAINTAINED_FRESH_NATIVE_JOB')

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-02** from software validation, native receipts and verified geometry/DF
+Updated **2026-11-03** from software validation, native receipts and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,68 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C163 validated: prepared-repair process ownership
+
+Base `b4be4c762c6a44c105ba600476689f1f8a6bb7ad`; existing Cedar only.
+Capsule `live_tests_directory/163_Cedar_repair-ownership-d_pcos4_`.
+Before, native capture/derivative/attribution jobs lacked durable process identity.
+After, they use campaign-owned cleanup with immutable invocation intent, child
+identity and verified-stop seals, bound to a frozen prepared bundle. The outer
+seal distinguishes finished execution from a stopped worker under a live caller.
+Read-only inspection never executes saved argv, mutates evidence or permits retry.
+Missing identity/publication and uncertain cleanup stay unknown. An observed dead
+coordinator must precede final worker enumeration; the reproduced exit/publication
+race is fixed. Original errors survive a secondary sealing failure with a note.
+
+Prior-work review: C156/C157 supply generation process/request ownership. C160's
+native composition and C162's cooperative allowance did not own repair workers.
+This closes that prerequisite, without changing chemistry, native workers, source
+state, selection, NAR membership or the scientific qualification thresholds.
+
+**Validation:** 39 new cases. First four fail before implementation; an additional
+read-order race separately fails before its fix. Final affected **273 passed +
+19 subtests in 51.32s**; focused workflow **1,060 passed + 45 subtests in 137.99s**.
+All 602 source/test/script hashes stayed frozen. Intermediate failures are retained
+in the capsule. **No full suite, explicitly requested.** Last full-tested source
+remains C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_repair_process.py tests/test_cif_prepared_repair_budget.py tests/test_cif_prepared_repair_execution.py tests/test_cif_native_validation.py tests/test_cif_captured_linear_attribution.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_generation_process.py tests/test_campaign_process.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c163_native.py positive
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c163_native.py short
+PYTHONDONTWRITEBYTECODE=1 python c163_cold.py
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1**, not dry-runs: the C159 separated
+PDU/5PC control selects the qualified repair in **20.623s**, with all seven workers
+sealed stopped. A five-second control stops in **4.534s**, retains all three worker
+records and partial output, and publishes no selected runtime. The derivative
+worker times out with return code -15; its process group is verified stopped.
+All original parent bytes/mtimes and 195 native-runtime source hashes stay fixed.
+Cold replay from a relocated temporary checkout passes both ownership states and
+the positive scientific runtime, with the original copy absent, original source/
+SDK/output/checkout paths and process launch denied. All 741 copied files preserve
+bytes/mtimes. No generation, ReadySet, Coot, optimization or diffraction refinement.
+
+Changed: new process owner/reader, three native adapters and prepared executor,
+regressions/profile registration, contracts/human descriptor/caption, queue and
+both ledgers. New diagnostic schema 1 `cif-prepared-repair-process-v1`; execution
+report gains an anchored header reference. Existing scientific artifact schemas
+and standalone defaults remain unchanged. Prepared execution requires POSIX
+ownership; no migration or general Linux execution claim. Source/tests/docs only
+are published; generated payloads, logs/XML, cold copies and runners stay local.
+
+**Next Q04:** frozen prepared request, persistent lock, finite immutable numbered
+attempts and conservative fresh-attempt recovery, reusing C157/C163. Then finish
+ownership/budget across discovery/qualification and acquisition; broaden qualified
+continuation for early native failures/no-repair candidates. Q05/Q06/Q13 remain open.
+Simon's eight-residue held-out modified Watson–Crick builder challenge is queued
+under Q07 for closure, with unchanged ligand definitions and explicit backbone/
+phosphorothioate intent; it is not the next task. No merge authorization.
+Evidence key `prepared_repair_process_2026_11_03`. No active jobs.
+— Rowan · Codex desktop
 
 ## C162 published: shared prepared-repair allowance
 

@@ -118,9 +118,9 @@ def _publish(root, report):
     return report
 
 
-def audit_captured_mixed_gradients(native_receipt, phenix, output, *, timeout_seconds=600):
+def audit_captured_mixed_gradients(native_receipt, phenix, output, *, timeout_seconds=600, _process_runner=None):
     """Freeze and audit a fixed captured manager; None prepares without execution."""
-    from .cif_native_validation import _stop
+    from .cif_native_validation import _run_native_command
     if type(timeout_seconds) is not int or not 1<=timeout_seconds<=600:raise ValueError('Require a native deadline from 1 to 600 seconds')
     receipt = _path(native_receipt); original = receipt.parent; root = Path(output).expanduser().absolute()
     _need(receipt.name == 'native_receipt.json')
@@ -156,14 +156,15 @@ def audit_captured_mixed_gradients(native_receipt, phenix, output, *, timeout_se
         report.update(status='REVIEW',phenix_version=phenix.version,executable_provenance=str(executable),executable_sha256=before)
         started=time.monotonic()
         try:
-            with (root/'job/gradient.log').open('xb') as log:
-                process=subprocess.Popen([str(executable),'-B','gradient_worker.py'],cwd=root/'job',env=dict(phenix.environment),
-                    stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=os.name=='posix')
-                report['new_native_calls']=1
-                try:code=process.wait(timeout=timeout_seconds)
-                except subprocess.TimeoutExpired:_stop(process);report['execution']={'status':'TIMED_OUT','returncode':process.returncode}
-                except BaseException:_stop(process);raise
-                else:report['execution']={'status':'COMPLETED' if code==0 else 'FAILED','returncode':code}
+            try:
+                code=_run_native_command([str(executable),'-B','gradient_worker.py'],cwd=root/'job',
+                    log_path=root/'job/gradient.log',environment=phenix.environment,
+                    timeout_seconds=timeout_seconds,process_runner=_process_runner,
+                    on_started=lambda:report.update(new_native_calls=1))
+            except subprocess.TimeoutExpired as exc:
+                report['execution']={'status':'TIMED_OUT','returncode':exc.returncode}
+            else:
+                report['execution']={'status':'COMPLETED' if code==0 else 'FAILED','returncode':code}
             if report['execution']['status']=='COMPLETED':
                 result=_json((root/'job/gradient_result.json').read_bytes())
                 _full_monomers(capture, _json((root/'job/native_validation.json').read_bytes()), expected)

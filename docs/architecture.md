@@ -1059,6 +1059,14 @@ limits never exceed whole seconds remaining; boundary checks reject late success
 and preserve partial output. Local work/cleanup remain cooperative, and diagnostic
 progress still grants no recovery authority. Whole-acquisition ownership and its
 budget remain separate; see [repair allowance](cif-doctor.md#shared-prepared-repair-allowance-c162).
+C163 routes prepared native capture/derivative/attribution invocations through
+campaign cleanup. A frozen-bundle-bound execution header, immutable phase intent,
+child identity and verified-stop seals live separately from scientific receipts.
+Read-only inspection observes coordinator exit before final worker enumeration;
+both must be inactive for unsealed work. Publication gaps stay unknown and grant
+no retry authority. Request locking/fresh attempts remain Q04; see
+[prepared process evidence](cif-doctor.md#prepared-repair-process-evidence-c163).
+
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
 persistent local reuse independently of ordinary PostMR orchestration. Its

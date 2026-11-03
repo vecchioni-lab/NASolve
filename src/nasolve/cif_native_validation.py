@@ -408,6 +408,43 @@ def _check_native_report(report: dict, dictionary_count: int) -> None:
             raise ValueError("Native worker did not record its geometry manager inventory")
 
 
+def _run_native_command(command, *, cwd, log_path, environment, timeout_seconds, process_runner=None, on_started=None):
+    """Run one adapter command; uncertain owned cleanup must escape scientific catches."""
+    if process_runner is not None:
+        from .campaign_process import CampaignProcessError
+        try:
+            if on_started is not None:
+                on_started()
+            return process_runner(command, cwd=cwd, log_path=log_path,
+                                  environment=environment, timeout_seconds=timeout_seconds)
+        except subprocess.TimeoutExpired as exc:
+            if getattr(exc, "native_not_launched", False) is True:
+                raise CampaignProcessError("Native allowance expired before process launch", stopped_verified=True) from exc
+            if getattr(exc, "stopped_verified", False) is not True:
+                raise CampaignProcessError("Native process timeout has unverified cleanup") from exc
+            raise
+        except (KeyboardInterrupt, SystemExit):
+            raise
+        except Exception as exc:
+            if isinstance(exc, CampaignProcessError):
+                raise
+            raise CampaignProcessError("Owned native execution failed; preserve process evidence") from exc
+    with log_path.open("xb") as log:
+        process = subprocess.Popen(command, cwd=cwd, env=dict(environment), stdin=subprocess.DEVNULL,
+            stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name == "posix")
+        try:
+            if on_started is not None:
+                on_started()
+            return process.wait(timeout=timeout_seconds)
+        except subprocess.TimeoutExpired as exc:
+            _stop(process)
+            exc.returncode = process.returncode
+            raise
+        except BaseException:
+            _stop(process)
+            raise
+
+
 def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_parent: Path,
                           executable: Path, *, environment: Mapping[str, str],
                           phenix_version: str, timeout_seconds: float = 600,
@@ -420,7 +457,8 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           atom_name_mapping: bool = False,
                           nonbonded_inventory: bool = False,
                           full_monomer_inventory: bool = False,
-                          gradient_indices: Sequence[int] | None = None) -> dict:
+                          gradient_indices: Sequence[int] | None = None,
+                          _process_runner=None) -> dict:
     """Freeze explicit inputs and record native reader/manager evidence.
 
     ``executable`` is the selected installation's phenix.python. Optional PHIL
@@ -543,48 +581,42 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         receipt["atom_name_mapping_policy"] = mapping_policy
     try:
         receipt["executable_sha256"] = _sha(executable.read_bytes())
-        with (work / "native.log").open("xb") as log:
-            process = subprocess.Popen(command, cwd=work, env=dict(environment), stdin=subprocess.DEVNULL,
-                stdout=log, stderr=subprocess.STDOUT, start_new_session=os.name == "posix")
-            try:
-                code = process.wait(timeout=timeout_seconds)
-            except subprocess.TimeoutExpired:
-                _stop(process)
-                receipt["execution"].update(status="TIMED_OUT", returncode=process.returncode)
-                receipt["error"] = "Owned native interpreter process group exceeded the requested timeout"
-            except BaseException:
-                _stop(process)
-                raise
+        try:
+            code = _run_native_command(command, cwd=work, log_path=work/"native.log", environment=environment,
+                                       timeout_seconds=timeout_seconds, process_runner=_process_runner)
+        except subprocess.TimeoutExpired as exc:
+            receipt["execution"].update(status="TIMED_OUT", returncode=exc.returncode)
+            receipt["error"] = "Owned native interpreter process group exceeded the requested timeout"
+        else:
+            receipt["execution"].update(status="COMPLETED" if code == 0 else "FAILED", returncode=code)
+            report_path = work / "native_validation.json"
+            if not report_path.is_file() or report_path.is_symlink():
+                receipt["error"] = "Native worker did not produce the exact regular native_validation.json"
             else:
-                receipt["execution"].update(status="COMPLETED" if code == 0 else "FAILED", returncode=code)
-                report_path = work / "native_validation.json"
-                if not report_path.is_file() or report_path.is_symlink():
-                    receipt["error"] = "Native worker did not produce the exact regular native_validation.json"
+                native = json.loads(report_path.read_text())
+                _check_native_report(native, len(dictionaries))
+                if inventory_detail == "linked" and native.get("status") == "REVIEW" and native.get("inventory_detail") != "linked":
+                    raise ValueError("Native worker omitted requested linked inventory details")
+                if atom_name_mapping and native.get("status") == "REVIEW" and native.get("atom_name_mapping_policy") != mapping_policy:
+                    raise ValueError("Native worker omitted requested atom mapping inventory")
+                if full_monomer_inventory and native.get("status") == "REVIEW":
+                    from .cif_native_monomers import review_full_monomers
+                    review_full_monomers(native)
+                if nonbonded_inventory and native.get("status") == "REVIEW":
+                    from .cif_native_nonbonded import review_native_nonbonded
+                    review_native_nonbonded(native)
+                if gradient_indices is not None and native.get("status") == "REVIEW":
+                    from .cif_native_gradients import review_native_gradients
+                    if native.get("gradient_inventory", {}).get("selected_indices") != list(gradient_indices):
+                        raise ValueError("Native worker omitted requested derivative probes")
+                    review_native_gradients(native)
+                receipt["native_validation"] = native
+                if native.get("status") == "REVIEW" and code == 0:
+                    receipt["status"] = "REVIEW"
+                elif native.get("status") == "UNSUPPORTED":
+                    receipt["status"] = "UNSUPPORTED"
                 else:
-                    native = json.loads(report_path.read_text())
-                    _check_native_report(native, len(dictionaries))
-                    if inventory_detail == "linked" and native.get("status") == "REVIEW" and native.get("inventory_detail") != "linked":
-                        raise ValueError("Native worker omitted requested linked inventory details")
-                    if atom_name_mapping and native.get("status") == "REVIEW" and native.get("atom_name_mapping_policy") != mapping_policy:
-                        raise ValueError("Native worker omitted requested atom mapping inventory")
-                    if full_monomer_inventory and native.get("status") == "REVIEW":
-                        from .cif_native_monomers import review_full_monomers
-                        review_full_monomers(native)
-                    if nonbonded_inventory and native.get("status") == "REVIEW":
-                        from .cif_native_nonbonded import review_native_nonbonded
-                        review_native_nonbonded(native)
-                    if gradient_indices is not None and native.get("status") == "REVIEW":
-                        from .cif_native_gradients import review_native_gradients
-                        if native.get("gradient_inventory", {}).get("selected_indices") != list(gradient_indices):
-                            raise ValueError("Native worker omitted requested derivative probes")
-                        review_native_gradients(native)
-                    receipt["native_validation"] = native
-                    if native.get("status") == "REVIEW" and code == 0:
-                        receipt["status"] = "REVIEW"
-                    elif native.get("status") == "UNSUPPORTED":
-                        receipt["status"] = "UNSUPPORTED"
-                    else:
-                        receipt["error"] = native.get("error", "Native worker failed or returned an unsupported result state")
+                    receipt["error"] = native.get("error", "Native worker failed or returned an unsupported result state")
     except (OSError, ValueError) as exc:
         receipt["error"] = type(exc).__name__ + ": " + str(exc)
         receipt["execution"]["status"] = "FAILED"

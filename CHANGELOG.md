@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepared-repair process ownership (C163)
+
+- Route prepared native capture, derivatives and attribution through campaign
+  cleanup, preserving immutable prelaunch intent, child identities and verified
+  stop records outside scientific evidence inventories.
+- Add conservative read-only inspection of the execution and all its workers.
+  Unsealed work requires coordinator and worker inactivity; publication gaps
+  remain unknown. Observe coordinator exit before enumerating final workers.
+  No reader signals saved processes, mutates records or authorizes a retry.
+- Add diagnostic schema 1 / `cif-prepared-repair-process-v1` and an anchored header
+  reference in the existing execution report. Prepared execution now requires
+  POSIX ownership; standalone adapter defaults/scientific schemas stay unchanged.
+- Preserve original failures when completion cannot be sealed. Unknown cleanup
+  cannot masquerade as ordinary negative scientific evidence. Request locking,
+  fresh-attempt recovery and whole-acquisition coordination remain Q04.
+
 ### Shared prepared-repair allowance (C162)
 
 - Add optional `total_timeout_seconds` (integer 1–3600) to the explicit prepared

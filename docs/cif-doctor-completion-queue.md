@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-02, after C162.** This queue owns unfinished
+**Current planning authority, 2026-11-03, after C163.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -192,7 +192,17 @@ including any late publication, remains intact and grants no retry permission.
 Local work and cleanup remain cooperative; this is not whole-acquisition process
 ownership or a hard deadline. Default per-phase behavior remains available.
 
-**Next bounded checkpoint:** establish whole-acquisition coordination around
+C163 closes prepared-execution native process evidence: capture, derivatives and
+attribution use campaign cleanup with durable identities and verified-stop seals.
+Read-only inspection checks coordinator/worker inactivity without granting retry;
+missing publication and unknown cleanup remain unresolved. Scientific artifacts,
+selection and source authority are unchanged.
+
+**Next bounded checkpoint:** wrap prepared execution in a frozen logical request,
+persistent lock and finite immutable numbered attempts, using C157's generation
+principles and C163's process evidence. Preserve partial outputs and authorize a
+fresh attempt only after the previous coordinator and workers are known stopped.
+Then establish whole-acquisition coordination around
 source discovery, component qualification and prepared-bundle execution. Reuse
 campaign/C157 request/attempt/phase identities and preserve every partial result;
 own cleanup/recovery and a total budget rather than interpreting the new diagnostic
@@ -261,6 +271,33 @@ all intended pair/stack membership, source centres, phosphate/H state and unaffe
 sites checked. Include cache reuse and one changed-source rejection. Report
 nonconvergence, residual strain and scientific uncertainty separately. A one-off
 runner that chooses its repair from an ATL/PDU name does not satisfy this package.
+
+**Queued closure challenge — held-out mixed modifications (Simon, 2026-11-03):**
+After the current Q04 checkpoint, add a separate builder generalization control
+before the proposed Cedar integration with main. Mutate **eight residues** into
+Watson–Crick pairs spanning different base and sugar modifications, including an
+LNA:RNA combination and a source-supported PNA combination where its declared
+backbone context is compatible. Prefer catalogue ligands not explicitly repaired
+in earlier Cedar pushes. Choose exact codes, sequence/sites and existing source
+hashes when preparing the experiment; family names alone do not define chemistry.
+Use the existing ligand definitions unchanged: this is a builder transfer test,
+not a new dictionary-patching exercise or replacement for the original Q07 matrix.
+
+Include a phosphorothioate case if its exact substitution, linkage, source charge
+and phosphorus stereochemical intent (or explicitly declared mixture) can be
+represented faithfully. Do not infer that state from an ordinary phosphate or
+force PNA into a phosphodiester-link contract. Unsupported input/attachment routes
+remain recorded coverage gaps and go into their owning queue package.
+
+Acceptance: preserved input/source bytes, intended mutation and unaffected sites,
+base/sugar/declared phosphorus stereochemistry, native atom/link/junction coverage,
+and exact NAR Watson–Crick pair membership. Separate construction success,
+unsupported chemistry, builder defect and dictionary/native-consumer defect;
+a failed case is useful evidence, not authority to alter a ligand or weaken a
+guard. Inspect geometry/clashes without equating builder success to refinement
+or experimental validation. Catalogue/source selection and the compatible
+host/segment recipe are preparation gates; Q09–Q13 retain family/state ownership.
+**Queued for closure, not the next test; finish active Q04 work first.**
 
 ### Q08 — Explain persistent mixed-pair geometry
 
@@ -416,9 +453,11 @@ full suite on the final combined source, relevant ordinary/native controls and
 relocation with original paths unavailable. Exercise macOS/Linux process/path
 assumptions for supported environments; record any untested platform explicitly.
 
-C150 has 1,662 focused tests + 36 subtests passing; the last full-tested revision
-is C143 `809abd44df8885ac14f1a02a67a13338209a8707` (7,175 + 276). Neither count is
-a final merge pass for subsequent changes. Preserve published evidence and archive
+The C150 audit recorded 1,662 focused tests + 36 subtests and a C143 full baseline.
+The current last full-tested implementation is C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C163 have focused
+validation only. C163 passes 1,060 workflow tests + 45 subtests. None is a final
+merge pass for the subsequent combined integration state. Preserve published evidence and archive
 owned runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,
 old environments or user material. Keep older readers/receipts and documented

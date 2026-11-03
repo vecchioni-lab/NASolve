@@ -3586,3 +3586,19 @@ cleanup remain cooperative, so this is not a hard wall-clock kill or the whole
 acquisition recovery owner. Twenty regressions and actual Phenix positive/short
 controls validate this bounded prerequisite. See the
 [contract](cif-doctor.md#shared-prepared-repair-allowance-c162).
+
+
+### Knowing whether repair work has stopped (C163)
+
+Prepared repair now keeps a durable record of the native jobs it starts. It uses
+the same process-group cleanup as campaigns and distinguishes a stopped worker
+from a finished coordinator. A completion seal proves cleanup; it does not approve
+chemistry. Missing identity records and uncertain activity block an inactivity
+claim. Read-only inspection preserves files and grants no retry permission.
+
+Methods: bind an execution UUID to frozen bundle bytes, publish invocation intent
+before launch, record child identity, and seal only verified cleanup. Read the
+coordinator before enumerating final workers to avoid an exit/publication race.
+This closes a prerequisite for safe recovery. Request locking and fresh numbered
+attempts remain the next layer; ordinary adoption and refinement remain separate.
+See the [contract](cif-doctor.md#prepared-repair-process-evidence-c163).

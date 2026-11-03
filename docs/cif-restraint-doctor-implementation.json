@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-11-02",
+    "updated_date": "2026-11-03",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -27922,6 +27922,22 @@
         "Q06 actual refinement and Q13 experimental phosphate state remain separate."
       ],
       "implementation_revision": "cf3a6cc374708749b52323732a0ca8ca9a972895"
+    },
+    "prepared_repair_process": {
+      "milestone": "C163",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 remains open",
+      "contract": "docs/cif-doctor.md#prepared-repair-process-evidence-c163",
+      "evidence_key": "prepared_repair_process_2026_11_03",
+      "summary": "Campaign-owned native jobs save immutable intent, child identity and verified-stop evidence bound to one frozen prepared bundle. Conservative read-only inspection distinguishes coordinator and worker activity; it never authorizes retry.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "One prepared output only: no persistent logical request lock, numbered fresh attempts or retry authorization yet.",
+        "Source discovery/qualification and complete acquisition budget remain Q04; early native failures/no-repair fallback continuation remains open.",
+        "POSIX native/process controls executed on this Mac; Linux-specific execution not rerun.",
+        "Scientific PDU/5PC evidence remains separated-monomer diagnostic scope; no ReadySet, Coot, model optimization or diffraction refinement.",
+        "Q05 ordinary adoption, Q06 refinement consumer and Q13 chemical-state authority remain open."
+      ]
     }
   },
   "audience": [

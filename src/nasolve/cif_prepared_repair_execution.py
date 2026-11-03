@@ -19,6 +19,7 @@ from .cif_captured_linear_attribution import audit_captured_linear_attribution
 from .cif_captured_mixed_gradients import audit_captured_mixed_gradients
 from .cif_postmr_cache import verify_current_consumer
 from .cif_runtime_bundle import resolve_runtime_bundle
+from .cif_repair_process import PreparedRepairProcesses
 
 POLICY_ID = 'cif-prepared-bundle-repair-execution-v1'
 
@@ -96,6 +97,9 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         total_timeout_seconds=total_timeout_seconds,
         retry='NOT_AUTHORIZED; USE_FRESH_OUTPUT', refinement='NOT_RUN', model_optimization='NOT_RUN')
 
+    processes = PreparedRepairProcesses(output)
+    report['process_evidence'] = {'anchor':'repair_directory','path':'ownership/repair.json'}
+
     def event(state):
         # Append-only progress is diagnostic, not process ownership or a resumable
         # request. In particular, a RUNNING event never authorizes a new attempt.
@@ -124,7 +128,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
             phenix_version=phenix.version, timeout_seconds=phase_limit('native'),
             phil_files=phils, phil_namespace_policy='refinement-root-to-interpreter-v1',
             inventory_detail='linked', policy_inventory=True, energy_inventory=True,
-            full_monomer_inventory=True)
+            full_monomer_inventory=True, _process_runner=processes.runner('native-'+label))
         receipt = Path(result['native_directory']).absolute()/'native_receipt.json'
         _need(receipt.is_relative_to(parent), 'Native capture returned another phase directory')
         report['native_receipts'].append(reference(receipt))
@@ -141,6 +145,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         report['elapsed_seconds'] = elapsed
         with (output/'repair_execution.json').open('xb') as stream: stream.write(_bytes(report))
         event(status)
+        _need(processes.finish('RETURNED'), 'Prepared native process cleanup remains unverified')
         return report
 
     try:
@@ -162,19 +167,19 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         phase = 'ORIGINAL_DERIVATIVES'; event('STARTED')
         original_gradient = output/'original-gradient'
         audit_captured_mixed_gradients(receipts[0], phenix, original_gradient,
-                                      timeout_seconds=phase_limit('derivatives'))
+                                      timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(original_gradient.name))
         unchanged()
         phase = 'REPAIRED_NATIVE'; event('STARTED')
         for i, refs in enumerate(stages[1:], 1):
             receipts.append(capture(f'{i:03d}', [output/'plan'/r['path'] for r in refs], prepared['after_phils']))
         phase = 'ATTRIBUTION'; event('STARTED')
         audit_captured_linear_attribution(output/'plan', receipts, phenix, output/'attribution',
-                                         timeout_seconds=phase_limit('attribution'))
+                                         timeout_seconds=phase_limit('attribution'), _process_runner=processes.runner('attribution'))
         unchanged()
         phase = 'REPAIRED_DERIVATIVES'; event('STARTED')
         repaired_gradient = output/'repaired-gradient'
         audit_captured_mixed_gradients(receipts[-1], phenix, repaired_gradient,
-                                      timeout_seconds=phase_limit('derivatives'))
+                                      timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(repaired_gradient.name))
         unchanged()
         phase = 'SELECTION'; event('STARTED')
         options = dict(bundle=frozen, baseline_receipt=baseline, attribution_directory=output/'attribution',
@@ -192,11 +197,19 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
               'Published repair selection changed')
         report['runtime'] = reference(output/'runtime/runtime_bundle.json')
         return finish('QUALIFIED_DIAGNOSTIC_RUNTIME')
-    except PreparedRepairBudgetExceeded:
+    except PreparedRepairBudgetExceeded as exc:
+        try:
+            processes.finish('RAISED')
+        except Exception as seal_error:
+            exc.add_note(f'Ownership completion could not be sealed: {seal_error}')
         event('BUDGET_EXHAUSTED; PARTIAL_OUTPUT_PRESERVED; NO_RECOVERY_AUTHORITY')
         raise
-    except BaseException:
+    except BaseException as exc:
         # Do not convert corrupt/contradictory evidence or interrupted jobs into
         # routine negative chemistry. Underlying adapters own their child cleanup.
+        try:
+            processes.finish('RAISED')
+        except Exception as seal_error:
+            exc.add_note(f'Ownership completion could not be sealed: {seal_error}')
         event('EXCEPTION; PARTIAL_OUTPUT_PRESERVED; NO_RECOVERY_AUTHORITY')
         raise

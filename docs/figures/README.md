@@ -348,3 +348,7 @@ no production-adoption arrow or numerical mechanics change is added.
 C162 adds an optional cooperative elapsed allowance within the explicit prepared
 repair executor. It does not add an ordinary adoption/recovery arrow; source,
 chemistry, native and selection gates in the figure retain their existing meaning.
+
+C163 adds durable process evidence around the same explicit prepared native
+branch. Its completion seals mean stopped jobs, not chemistry approval. No new
+ordinary adoption/retry arrow is claimed; request recovery remains pending.

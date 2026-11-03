@@ -242,6 +242,45 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Prepared-repair process evidence (C163)
+
+The explicit prepared repair executor now owns each native capture, captured
+derivative and attribution process through the campaign process runner. Before
+launch it saves an immutable invocation UUID, execution-header digest, relative
+working/log paths, deadline and coordinator identity. Child process identity is
+published immediately after spawn; a completion record requires verified group
+cleanup. SIGTERM, interruption, timeout and identity-publication failures share
+the existing campaign cleanup contract. A hard-kill publication gap stays unknown.
+Commands are provenance only and environment variables are never saved.
+
+`cif_repair_process.inspect_prepared_repair_processes(directory)` is read-only.
+It validates frozen bundle bytes, execution/phase bindings and any completion
+seals without launching saved commands, changing records or taking locks.
+A sealed execution is stopped even if its hosting Python process remains alive.
+An unsealed execution requires both its coordinator and every recorded worker to
+be demonstrably inactive. Observe coordinator inactivity before enumerating final
+worker records, so a last reservation cannot be missed during coordinator exit.
+Foreign, missing or unverifiable identities remain unknown; legacy output without
+ownership records is `NOT_RECORDED`. No state authorizes a retry.
+
+New diagnostic schema 1 / `cif-prepared-repair-process-v1` lives under
+`ownership/`, outside the unchanged scientific adapter inventories. The header
+binds the frozen bundle and execution UUID; phase completions bind job/child
+records, and the outer seal binds every phase completion. The existing diagnostic
+`repair_execution.json` gains an anchored `process_evidence` header reference.
+Completion means process cleanup, not chemical usability or scientific success.
+Unverifiable cleanup escapes the adapters rather than becoming a negative
+scientific review. If sealing fails during another error, preserve that original
+error and attach the sealing failure as a diagnostic note.
+
+Prepared execution now requires campaign-supported POSIX process ownership
+(macOS/Linux); existing standalone adapter defaults remain available. This owns
+one fresh prepared output, not a logical acquisition request: persistent request
+locking, immutable numbered fresh attempts, recovery authorization, discovery/
+qualification ownership and a complete acquisition budget remain Q04. No in-place
+resume, automatic retry, chemistry change, public artifact migration, ordinary
+adoption or refinement is introduced. The C162 allowance remains cooperative.
+
 ### Shared prepared-repair allowance (C162)
 
 `execute_prepared_dictionary_repair(..., total_timeout_seconds=N)` optionally
