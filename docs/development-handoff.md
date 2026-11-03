@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C162 validated; publication pending: shared prepared-repair allowance
+## C162 published: shared prepared-repair allowance
 
 Base `93a515b57f1fc140a8b07145973a0c0b935c93d0`; existing Cedar only.
 Capsule `live_tests_directory/162_Cedar_repair-budget-hwflwp2h`.
@@ -71,7 +71,7 @@ native failures and no-repair candidates still need broader qualified continuati
 Q05 adoption, Q06 refinement and Q13 state authority remain separate. No active jobs.
 Exact evidence: `prepared_repair_budget_2026_11_02`.
 
-Same-Cedar publication pending.
+Implementation `cf3a6cc374708749b52323732a0ca8ca9a972895` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C161 published: Q02 curated CIF parser closure

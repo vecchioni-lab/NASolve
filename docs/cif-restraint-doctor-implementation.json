@@ -27909,7 +27909,7 @@
     },
     "prepared_repair_budget": {
       "milestone": "C162",
-      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "status": "PUBLISHED_FOCUSED_VALIDATED",
       "queue": "Q04 remains open",
       "contract": "docs/cif-doctor.md#shared-prepared-repair-allowance-c162",
       "evidence_key": "prepared_repair_budget_2026_11_02",
@@ -27920,7 +27920,8 @@
         "Late publication may leave a preserved independently readable artifact but the executor returns no success or completed report.",
         "Whole-acquisition source discovery/qualification ownership, durable request/recovery, a complete acquisition budget and ordinary adoption remain Q04/Q05.",
         "Q06 actual refinement and Q13 experimental phosphate state remain separate."
-      ]
+      ],
+      "implementation_revision": "cf3a6cc374708749b52323732a0ca8ca9a972895"
     }
   },
   "audience": [

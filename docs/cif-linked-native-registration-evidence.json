@@ -63323,7 +63323,7 @@
   },
   "prepared_repair_budget_2026_11_02": {
     "milestone": "C162",
-    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "status": "PUBLISHED_FOCUSED_VALIDATED",
     "queue": "Q04 prepared-executor allowance prerequisite complete; whole-acquisition ownership/recovery remains open",
     "base_revision": "93a515b57f1fc140a8b07145973a0c0b935c93d0",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
@@ -63861,6 +63861,7 @@
       "PYTHONPATH": "src"
     },
     "artifacts": "All scientific inputs/models/native candidates and failed output, logs/XML and runners remain local/ignored; no scientific payload committed/uploaded.",
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "cf3a6cc374708749b52323732a0ca8ca9a972895"
   }
 }
