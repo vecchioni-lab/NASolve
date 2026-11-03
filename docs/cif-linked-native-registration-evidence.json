@@ -64657,7 +64657,7 @@
   },
   "prepared_repair_attempts_2026_11_03": {
     "milestone": "C164",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "queue": "Q04 remains open; explicit prepared-request recovery sub-gate complete",
     "base_revision": "01568007c2d5973939bb3843d58514ebdb4a03f9",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
@@ -65202,6 +65202,7 @@
       "src/nasolve/cif_repair_attempt.py",
       "src/nasolve/cif_repair_process.py",
       "tests/test_cif_repair_attempt.py"
-    ]
+    ],
+    "implementation_revision": "6576852f435af6787a2d1d0c3a7cb3581bcdb0b8"
   }
 }

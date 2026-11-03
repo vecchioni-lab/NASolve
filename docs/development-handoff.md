@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C164 validated: prepared requests and fresh-attempt recovery
+## C164 published: prepared requests and fresh-attempt recovery
 
 Base `01568007c2d5973939bb3843d58514ebdb4a03f9`; existing Cedar only.
 Capsule `live_tests_directory/164_Cedar_repair-attempts-g6nfepvi`.
@@ -75,6 +75,7 @@ fallback for early native failures/no-repair candidates. Q05 adoption, Q06 actua
 refinement, Q13 state authority and the queued held-out builder challenge remain
 open. No automatic retry loop or merge authorization. No active jobs.
 Exact evidence: `prepared_repair_attempts_2026_11_03`.
+Implementation `6576852f435af6787a2d1d0c3a7cb3581bcdb0b8` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C163 published: prepared-repair process ownership

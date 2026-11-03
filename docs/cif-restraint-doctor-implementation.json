@@ -27942,7 +27942,7 @@
     },
     "prepared_repair_attempts": {
       "milestone": "C164",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 remains open; explicit prepared-request recovery sub-gate complete",
       "contract": "docs/cif-doctor.md#prepared-repair-requests-and-immutable-attempts-c164",
       "evidence_key": "prepared_repair_attempts_2026_11_03",
@@ -27955,7 +27955,8 @@
         "Total timeout applies per prepared execution, not request initialization or complete acquisition. Local work/cleanup remain cooperative.",
         "Source discovery, independent component qualification and acquisition-wide ownership/budget/continuation remain Q04; Q05/Q06/Q13 stay separate.",
         "Actual native/process controls ran on macOS, not a fresh Linux validation. Scientific scope remains separated PDU/5PC diagnostic, not mixed-scaffold chemistry or refinement."
-      ]
+      ],
+      "implementation_revision": "6576852f435af6787a2d1d0c3a7cb3581bcdb0b8"
     }
   },
   "audience": [
