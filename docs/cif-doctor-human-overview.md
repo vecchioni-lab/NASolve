@@ -3602,3 +3602,20 @@ coordinator before enumerating final workers to avoid an exit/publication race.
 This closes a prerequisite for safe recovery. Request locking and fresh numbered
 attempts remain the next layer; ordinary adoption and refinement remain separate.
 See the [contract](cif-doctor.md#prepared-repair-process-evidence-c163).
+
+
+### Recovering with a fresh repair attempt (C164)
+
+An explicit repair request now preserves its input bundle and execution limits,
+then assigns each attempt a fresh number and identity. A persistent lock prevents
+overlapping callers from using the same request. Interrupted work stays intact;
+known stopped work permits another explicit attempt within the frozen allowance.
+Uncertain worker identity blocks recovery rather than guessing that a job ended.
+
+Methods: reuse campaign locking and C163 process-group evidence, bind the parent
+request/attempt into the child execution header, and validate those bindings when
+reading or reserving work. Completion records prove execution ownership and bind
+saved reports; the existing scientific gates still decide usable chemistry.
+The allowance is per prepared execution. Broader acquisition, ordinary PostMR
+adoption and refinement qualification remain the next integration boundaries.
+See the [contract](cif-doctor.md#prepared-repair-requests-and-immutable-attempts-c164).

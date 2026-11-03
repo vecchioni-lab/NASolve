@@ -242,6 +242,53 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Prepared-repair requests and immutable attempts (C164)
+
+`cif_repair_attempt.execute_prepared_dictionary_repair_attempt(bundle, phenix,
+request_directory, ...)` performs one explicit fresh prepared execution under a
+logical request. The request freezes every prepared input byte and relative name,
+execution/process policies, phase limits, a per-execution total allowance and a
+finite maximum of one to five attempts (default two). Phase defaults remain
+120/90/300 seconds for native capture/attribution/derivatives; the request API
+requires an integer total allowance from 1 to 3600 seconds (default 600).
+Preflight and request copying precede that execution allowance. Local work and
+cleanup stay cooperative; no complete acquisition wall-clock limit is claimed.
+
+A persistent, nonblocking campaign lock serializes callers using the same request
+directory. Every call reserves a new `attempts/attempt-0001/` (then 0002, etc.)
+and a fresh UUID. Intent binds the request digest, coordinator and exact relative
+execution directory. C163's execution header additionally binds the parent request
+and attempt digests/UUID. Copied ownership evidence from another attempt cannot
+prove inactivity. Attempt completion binds the execution ownership seal and any
+execution-report bytes; it does not assert scientific usability.
+
+`inspect_prepared_repair_request(directory)` reads frozen checksums and ownership
+without creating locks or changing files. Its `AVAILABLE`, `BLOCKED` or `EXHAUSTED`
+value is advisory, with `retry_authorized=false` in every result. The modifying API
+rechecks under the lock. A sealed attempt can be closed while its caller remains
+alive; an unsealed attempt requires the outer coordinator and inner execution's
+workers to be demonstrably stopped. Inspect the coordinator before its final
+output snapshot. Missing intent, unknown identity/publication or an existing
+execution directory without ownership evidence blocks further attempts. A known
+failure before any execution directory exists can be sealed by its live owner;
+read-only recovery still requires the coordinator gone. No reader signals a PID.
+
+Every reservation consumes the frozen allowance, including failures. Original
+output is never resumed, resealed or overwritten. Changed inputs/limits cannot
+reuse the request identity; a copied byte-identical input at a new declared path
+can. Separate request directories remain separate coordination scopes. Pins and
+source preservation are rechecked before/after execution. Errors retain partial
+work; a secondary sealing failure is attached to the original exception.
+
+New schema 1 / `cif-prepared-repair-request-v1` comprises `request.json`,
+`inputs/bundle/`, the persistent `request.lock` and numbered attempt records.
+C163 headers gain an optional `attempt_owner`; older one-shot records retain their
+meaning and require no migration. One-shot prepared execution, scientific/native
+schemas, source chemistry and selection gates remain unchanged. This is an
+explicit prepared execution API, not ordinary PostMR adoption or full acquisition
+recovery. Discovery, component qualification, acquisition-wide ownership/budget
+and broader qualified fallback continuation remain Q04.
+
 ### Prepared-repair process evidence (C163)
 
 The explicit prepared repair executor now owns each native capture, captured

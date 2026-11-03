@@ -42,7 +42,9 @@ native/source/derivative checks and freezes the selected diagnostic bundle.
 An optional shared elapsed allowance bounds that prepared repair chain; complete
 acquisition ownership and recovery remain separate. Native stages now retain
 durable process identities and verified cleanup evidence; read-only inspection
-never authorizes a retry.
+never authorizes a retry. An explicit request wrapper freezes the inputs and
+limits, serializes callers, and creates a fresh numbered attempt only after prior
+work is known stopped; complete acquisition recovery remains separate.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

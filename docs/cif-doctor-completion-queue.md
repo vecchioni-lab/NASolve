@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-03, after C163.** This queue owns unfinished
+**Current planning authority, 2026-11-03, after C164.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -198,11 +198,16 @@ Read-only inspection checks coordinator/worker inactivity without granting retry
 missing publication and unknown cleanup remain unresolved. Scientific artifacts,
 selection and source authority are unchanged.
 
-**Next bounded checkpoint:** wrap prepared execution in a frozen logical request,
-persistent lock and finite immutable numbered attempts, using C157's generation
-principles and C163's process evidence. Preserve partial outputs and authorize a
-fresh attempt only after the previous coordinator and workers are known stopped.
-Then establish whole-acquisition coordination around
+C164 closes the explicit prepared-request layer: exact bundle/limits frozen under
+one logical request, persistent lock, finite immutable numbered attempts and
+request/attempt bindings in C163 execution evidence. An explicit retry gets a
+fresh directory only after the previous outer coordinator and workers are known
+stopped; no prior record is repaired. Unknown publication stays blocked. Actual
+Phenix interruption followed by a successful fresh attempt retains the first
+attempt byte-for-byte. The total allowance applies per prepared execution, not
+the complete acquisition request.
+
+**Next bounded checkpoint:** establish whole-acquisition coordination around
 source discovery, component qualification and prepared-bundle execution. Reuse
 campaign/C157 request/attempt/phase identities and preserve every partial result;
 own cleanup/recovery and a total budget rather than interpreting the new diagnostic
@@ -455,8 +460,9 @@ assumptions for supported environments; record any untested platform explicitly.
 
 The C150 audit recorded 1,662 focused tests + 36 subtests and a C143 full baseline.
 The current last full-tested implementation is C160
-`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C163 have focused
-validation only. C163 passes 1,060 workflow tests + 45 subtests. None is a final
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C164 have focused
+validation only. C164 passes 1,113 workflow tests + 45 subtests; exact validation is recorded in
+the current handoff. None is a final
 merge pass for the subsequent combined integration state. Preserve published evidence and archive
 owned runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,

@@ -14,7 +14,7 @@ import uuid
 from .campaign_process import current_process_identity, coordinator_alive, process_alive, run_owned_command
 from .campaign_records import now, path_in, read_record, write_record
 from .cif_component_runtime import _tree
-from .cif_generation_process import _valid_identity, _valid_command, FINISHED
+from .cif_generation_process import _valid_identity, _valid_command, _valid_attempt_identity, FINISHED
 
 POLICY_ID = 'cif-prepared-repair-process-v1'
 ANCHOR = 'repair_directory'
@@ -74,7 +74,8 @@ def _header(root):
           and value.get('policy_id') == POLICY_ID and _uuid(value.get('execution_id'))
           and _valid_identity(value.get('coordinator'))
           and value.get('bundle') == {'anchor': ANCHOR, 'path': 'bundle'}
-          and value.get('bundle_files') == _bundle(root))
+          and value.get('bundle_files') == _bundle(root)
+          and ('attempt_owner' not in value or _valid_attempt_identity(value['attempt_owner'])))
     return value
 
 
@@ -164,7 +165,8 @@ def inspect_prepared_repair_processes(root):
 class PreparedRepairProcesses:
     """Own native invocations for one fresh prepared execution, never an attempt retry."""
 
-    def __init__(self, root):
+    def __init__(self, root, *, attempt_identity=None):
+        _need(attempt_identity is None or _valid_attempt_identity(attempt_identity), 'Invalid prepared attempt identity')
         self.root = _root(root)
         coordinator = current_process_identity()
         bundle = _bundle(self.root)
@@ -172,7 +174,8 @@ class PreparedRepairProcesses:
         directory.mkdir(exist_ok=False)
         self.header = write_record(directory/'repair.json', dict(schema_version=1, policy_id=POLICY_ID,
             execution_id=str(uuid.uuid4()), coordinator=coordinator, created_utc=now(),
-            bundle={'anchor':ANCHOR,'path':'bundle'}, bundle_files=bundle))
+            bundle={'anchor':ANCHOR,'path':'bundle'}, bundle_files=bundle,
+            **({'attempt_owner':dict(attempt_identity)} if attempt_identity is not None else {})))
 
     def runner(self, phase):
         _need(_phase(phase))

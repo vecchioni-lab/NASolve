@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepared-repair requests and fresh-attempt recovery (C164)
+
+- Add an explicit request wrapper freezing prepared input bytes, phase/total
+  limits and a finite attempt allowance. Reuse the campaign persistent lock;
+  each call creates one fresh numbered directory and UUID, preserving prior work.
+- Bind prepared process evidence to its exact request and attempt. Retry checks
+  require known coordinator/worker inactivity; unknown identities, missing intent
+  and publication gaps remain blocked. Readers only report advisory availability.
+- Add diagnostic schema 1 / `cif-prepared-repair-request-v1` and optional parent
+  ownership in C163 headers. Existing one-shot/scientific formats remain readable.
+  No automatic retry loop, chemistry change, migration or ordinary adoption.
+- Preserve original errors when sealing cannot finish, recheck source/consumer
+  identity, and retain every failed or interrupted attempt. The per-execution
+  total allowance remains cooperative; whole-acquisition ownership remains Q04.
+
 ### Prepared-repair process ownership (C163)
 
 - Route prepared native capture, derivatives and attribution through campaign

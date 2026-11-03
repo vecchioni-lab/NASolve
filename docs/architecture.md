@@ -1066,6 +1066,14 @@ Read-only inspection observes coordinator exit before final worker enumeration;
 both must be inactive for unsealed work. Publication gaps stay unknown and grant
 no retry authority. Request locking/fresh attempts remain Q04; see
 [prepared process evidence](cif-doctor.md#prepared-repair-process-evidence-c163).
+C164 composes those records with frozen prepared requests and campaign locks.
+Each explicit call reserves one bounded fresh numbered attempt; request and
+attempt digests/UUID bind the inner execution header. Readers never grant retry
+permission, and the writer rechecks coordinator/worker inactivity under its lock.
+Partial output remains immutable. Scientific selection/adoption and acquisition-
+wide coordination stay separate; see
+[prepared requests](cif-doctor.md#prepared-repair-requests-and-immutable-attempts-c164).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

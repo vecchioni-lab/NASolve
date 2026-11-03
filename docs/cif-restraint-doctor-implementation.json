@@ -27939,6 +27939,23 @@
         "Q05 ordinary adoption, Q06 refinement consumer and Q13 chemical-state authority remain open."
       ],
       "implementation_revision": "c13515d28033e337723a89be252f39b5c291c602"
+    },
+    "prepared_repair_attempts": {
+      "milestone": "C164",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 remains open; explicit prepared-request recovery sub-gate complete",
+      "contract": "docs/cif-doctor.md#prepared-repair-requests-and-immutable-attempts-c164",
+      "evidence_key": "prepared_repair_attempts_2026_11_03",
+      "summary": "An explicit wrapper freezes exact prepared input bytes and execution limits, holds a persistent campaign lock, reserves one fresh numbered attempt/UUID per call, and binds its child execution to the request/attempt. Unknown activity/publication blocks retry; every prior output remains intact.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "One logical prepared request per shared directory; different directories do not coordinate each other.",
+        "Each call performs one explicit attempt; no automatic retry loop or in-place resume/reseal.",
+        "Unknown publication or an existing execution without ownership evidence remains blocked rather than retroactively repaired.",
+        "Total timeout applies per prepared execution, not request initialization or complete acquisition. Local work/cleanup remain cooperative.",
+        "Source discovery, independent component qualification and acquisition-wide ownership/budget/continuation remain Q04; Q05/Q06/Q13 stay separate.",
+        "Actual native/process controls ran on macOS, not a fresh Linux validation. Scientific scope remains separated PDU/5PC diagnostic, not mixed-scaffold chemistry or refinement."
+      ]
     }
   },
   "audience": [

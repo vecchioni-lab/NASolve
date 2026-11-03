@@ -11,6 +11,72 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C164 validated: prepared requests and fresh-attempt recovery
+
+Base `01568007c2d5973939bb3843d58514ebdb4a03f9`; existing Cedar only.
+Capsule `live_tests_directory/164_Cedar_repair-attempts-g6nfepvi`.
+Before, C163 owned workers within one output but did not coordinate repair requests.
+After, an explicit request wrapper freezes prepared bytes and limits, serializes
+callers with the persistent campaign lock, and reserves a fresh numbered attempt
+and UUID for each call. The child execution binds both parent digests and UUID.
+Readers report advisory availability only; the writer rechecks under its lock.
+Unsealed work requires the outer coordinator and workers known inactive. Missing
+intent/identity or ownership publication stays blocked; prior work is never
+resumed, resealed or overwritten. Every reservation consumes the finite allowance.
+
+Prior-work review: C157 already supplies the source-generation request pattern;
+C163 supplies prepared process evidence and the coordinator-before-snapshot rule;
+C162 supplies the cooperative per-execution total allowance. Scientific selection,
+source chemistry, native workers, NAR ownership and thresholds are unchanged.
+
+**Validation:** 53 new cases. Initial six import errors precede implementation;
+then six pass. Three subprocess-fixture quoting errors were corrected and preserved.
+Final affected **266 passed + 19 subtests in 39.33s**; focused workflow
+**1,113 passed + 45 subtests in 146.50s**. All 604 source/test/script hashes stay
+frozen. **No full suite, explicitly requested.** Last full-tested implementation
+remains C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_repair_attempt.py tests/test_cif_repair_process.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_budget.py tests/test_cif_generation_attempt.py tests/test_cif_generation_process.py tests/test_campaign_process.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c164_native.py
+PYTHONDONTWRITEBYTECODE=1 python c164_cold.py
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1**, not dry-runs: a deliberate
+interruption immediately after native identity publication stops/seals attempt 1
+in **1.356s**. A fresh attempt 2 under the same frozen 180-second allowance passes
+all seven native stages and selects the qualified PDU/5PC repair in **22.036s**.
+All attempt-1 and original parent bytes/mtimes remain unchanged; the two-attempt
+allowance is exhausted. All 196 native-runtime source hashes stay fixed.
+Real synthetic-process tests additionally cover lock overlap, killed coordinators,
+surviving workers and an unrecorded child identity that remains blocked.
+Cold replay from a relocated temporary checkout passes both attempts, the selected
+runtime and legacy C163 records without migration. The original copy is absent;
+old checkout/input/SDK/output paths and execution are denied. All 1,140 copied
+files preserve bytes/mtimes. No generation, ReadySet, Coot, optimization or
+diffraction refinement. The scientific control remains separated monomers.
+
+Changed: new request owner/reader, optional parent binding in prepared execution/
+process headers, regressions/profile registration, contracts/human descriptor/
+caption, queue, handoff and both ledgers. New schema 1
+`cif-prepared-repair-request-v1`; existing scientific formats and one-shot behavior
+remain compatible. New API uses POSIX ownership and one to five attempts (default
+two), with a mandatory bounded integer total per execution (default 600 seconds).
+No migration, ordinary adoption or broader Linux execution claim. Only code/tests/
+docs are published; scientific payloads, request records, logs/XML and runners
+remain local/ignored.
+
+**Next Q04:** unify ownership and shared budget across source discovery, independent
+component qualification, cache-first acquisition and prepared repair. Generation
+and prepared execution now have bounded request layers; the surrounding acquisition
+still needs its own coordinated identity/continuation. Broaden independently usable
+fallback for early native failures/no-repair candidates. Q05 adoption, Q06 actual
+refinement, Q13 state authority and the queued held-out builder challenge remain
+open. No automatic retry loop or merge authorization. No active jobs.
+Exact evidence: `prepared_repair_attempts_2026_11_03`.
+— Rowan · Codex desktop
+
 ## C163 published: prepared-repair process ownership
 
 Base `b4be4c762c6a44c105ba600476689f1f8a6bb7ad`; existing Cedar only.

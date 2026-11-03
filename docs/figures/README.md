@@ -352,3 +352,7 @@ chemistry, native and selection gates in the figure retain their existing meanin
 C163 adds durable process evidence around the same explicit prepared native
 branch. Its completion seals mean stopped jobs, not chemistry approval. No new
 ordinary adoption/retry arrow is claimed; request recovery remains pending.
+
+C164 wraps that prepared branch in a frozen request and finite immutable attempts.
+The lock/recovery boundary adds execution ownership, not a new chemical approval
+or ordinary-adoption arrow. Complete acquisition coordination remains pending.

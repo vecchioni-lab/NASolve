@@ -65,7 +65,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C162 adds an optional shared prepared-repair allowance, with conservative native
   limits and late-result refusal. Whole-acquisition ownership/recovery remain Q04.
   C163 adds prepared-execution native ownership and read-only process inspection.
-  Request locking, fresh attempts and whole-acquisition recovery remain open.
+  C164 adds frozen prepared requests, persistent locks, finite fresh numbered
+  attempts and conservative recovery inspection. Whole-acquisition recovery
+  across discovery and component qualification remains open.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

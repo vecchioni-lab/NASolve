@@ -30,7 +30,7 @@ class PreparedRepairBudgetExceeded(TimeoutError):
 
 def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout_seconds=120,
         attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=None):
+        total_timeout_seconds=None, _attempt_identity=None):
     """Run a bounded repair chain and freeze only an independently usable result.
 
     The input is the existing source/site bundle, including acquired component
@@ -52,6 +52,8 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
               for k, v in limits.items()), 'Require bounded native phase deadlines')
     _need(total_timeout_seconds is None or (type(total_timeout_seconds) is int
           and 1 <= total_timeout_seconds <= 3600), 'Require a bounded integer total repair allowance')
+    from .cif_generation_process import _valid_attempt_identity
+    _need(_attempt_identity is None or _valid_attempt_identity(_attempt_identity), 'Invalid prepared attempt identity')
     started = monotonic()
     phase = 'PREFLIGHT'
 
@@ -97,7 +99,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         total_timeout_seconds=total_timeout_seconds,
         retry='NOT_AUTHORIZED; USE_FRESH_OUTPUT', refinement='NOT_RUN', model_optimization='NOT_RUN')
 
-    processes = PreparedRepairProcesses(output)
+    processes = PreparedRepairProcesses(output, attempt_identity=_attempt_identity)
     report['process_evidence'] = {'anchor':'repair_directory','path':'ownership/repair.json'}
 
     def event(state):
