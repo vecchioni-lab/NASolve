@@ -344,3 +344,7 @@ See the [ordinary cache contract](../cif-doctor.md#persistent-local-reuse-of-qua
 The existing native diagnostic branch covers isolated source binding. Local
 saved-data/inspect-only evidence is distinct from fresh Mac qualification;
 no production-adoption arrow or numerical mechanics change is added.
+
+C162 adds an optional cooperative elapsed allowance within the explicit prepared
+repair executor. It does not add an ordinary adoption/recovery arrow; source,
+chemistry, native and selection gates in the figure retain their existing meaning.

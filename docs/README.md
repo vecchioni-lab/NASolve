@@ -62,6 +62,8 @@ milestone statements preserve their original scope; they are not a second queue.
   ownership/budget and ordinary cache-miss continuation remain Q04.
   C161 closes Q02: curated bond/coordinate reading is independent of legal CIF
   line wrapping, with the exact historical DZ failure replayed read-only.
+  C162 adds an optional shared prepared-repair allowance, with conservative native
+  limits and late-result refusal. Whole-acquisition ownership/recovery remain Q04.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

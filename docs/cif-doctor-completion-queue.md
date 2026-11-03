@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-02, after C161.** This queue owns unfinished
+**Current planning authority, 2026-11-02, after C162.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -184,6 +184,13 @@ qualified original. Contradictory evidence and early native-stage failures stop
 without a success claim. No graph fault launches no native job and remains a
 non-selection, not automatic whole-bundle qualification. No scientific gate or
 worker is replaced.
+
+C162 closes the prepared-executor elapsed-allowance sub-gate: an optional
+monotonic allowance begins before preflight, caps each worker to whole seconds
+remaining, and refuses later work/completion when exhausted. Partial output,
+including any late publication, remains intact and grants no retry permission.
+Local work and cleanup remain cooperative; this is not whole-acquisition process
+ownership or a hard deadline. Default per-phase behavior remains available.
 
 **Next bounded checkpoint:** establish whole-acquisition coordination around
 source discovery, component qualification and prepared-bundle execution. Reuse

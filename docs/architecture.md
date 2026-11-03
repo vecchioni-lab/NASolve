@@ -1054,6 +1054,11 @@ layout using existing block/token parsing. Declared component identities and
 requested tables must be unambiguous; malformed data refuses. Source chemical
 fields and coordinate preference remain unchanged. See
 [curated parsing](cif-doctor.md#curated-cif-loop-parsing-c161).
+C162 optionally shares one monotonic allowance across prepared repair. Worker
+limits never exceed whole seconds remaining; boundary checks reject late success
+and preserve partial output. Local work/cleanup remain cooperative, and diagnostic
+progress still grants no recovery authority. Whole-acquisition ownership and its
+budget remain separate; see [repair allowance](cif-doctor.md#shared-prepared-repair-allowance-c162).
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
 persistent local reuse independently of ordinary PostMR orchestration. Its

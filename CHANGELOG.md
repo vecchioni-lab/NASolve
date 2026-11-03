@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Shared prepared-repair allowance (C162)
+
+- Add optional `total_timeout_seconds` (integer 1–3600) to the explicit prepared
+  repair executor. One monotonic allowance begins before preflight and limits
+  each worker to the smaller of its phase limit and whole seconds remaining.
+- Refuse later work and successful completion after the allowance expires,
+  including an overrun during publication or the final recorded-time boundary.
+  Preserve all partial files and grant no retry or fallback permission.
+- Keep local Python preparation/publication and worker cleanup cooperative;
+  this is not a hard wall-clock kill or whole-acquisition process ownership.
+  Omitted total allowance preserves existing per-phase execution behavior.
+- Add diagnostic configured/elapsed fields and distinguish no configured total
+  from a cooperative allowance. Existing public runtime schemas and scientific
+  gates remain unchanged; no migration or ordinary adoption is introduced.
+
 ### Curated CIF loop parsing (C161)
 
 - Read curated bonds and ideal atom coordinates with existing CIF1 block/token

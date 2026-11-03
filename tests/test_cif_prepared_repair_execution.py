@@ -82,7 +82,7 @@ def test_uses_existing_source_derivative_attribution_and_selection_gates(case,or
     assert calls[:9]==['consumer','native-baseline','native-000','source','original','native-001','attribution','repaired','selection']
     assert (out/'runtime').exists()==bool(selected) and len(r['native_receipts'])==3
     assert r['status']==('QUALIFIED_DIAGNOSTIC_RUNTIME' if selected else 'NO_USABLE_BUNDLE')
-    assert r['automatic_adoption'] is False and r['total_deadline']=='NOT_IMPLEMENTED'
+    assert r['automatic_adoption'] is False and r['total_deadline']=='NOT_CONFIGURED'
 
 
 def test_no_graph_fault_does_not_claim_native_usability_or_launch_jobs(case):

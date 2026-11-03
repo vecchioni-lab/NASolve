@@ -27906,6 +27906,21 @@
       "summary": "Both readers use existing CIF1 block and lexical parsing; exact identifiers, component consistency, row completeness and finite preferred coordinates are checked without rewriting source data.",
       "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
       "implementation_revision": "f0b125b0acd7c91e3fa8bc68417727d79ff25734"
+    },
+    "prepared_repair_budget": {
+      "milestone": "C162",
+      "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+      "queue": "Q04 remains open",
+      "contract": "docs/cif-doctor.md#shared-prepared-repair-allowance-c162",
+      "evidence_key": "prepared_repair_budget_2026_11_02",
+      "summary": "An optional monotonic allowance spans prepared-repair preflight and execution. Workers receive at most whole seconds remaining. Expiry refuses later work and completion, preserves partial output and grants no retry/fallback authority.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Cooperative boundary checks; local Python, adapter preparation, file writes and cleanup are not forcibly interrupted.",
+        "Late publication may leave a preserved independently readable artifact but the executor returns no success or completed report.",
+        "Whole-acquisition source discovery/qualification ownership, durable request/recovery, a complete acquisition budget and ordinary adoption remain Q04/Q05.",
+        "Q06 actual refinement and Q13 experimental phosphate state remain separate."
+      ]
     }
   },
   "audience": [

@@ -242,6 +242,46 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Shared prepared-repair allowance (C162)
+
+`execute_prepared_dictionary_repair(..., total_timeout_seconds=N)` optionally
+shares one monotonic allowance across preflight, preparation, native capture,
+source/derivative/attribution checks, selection and publication. `N` must be an
+integer from 1 to 3600; booleans/floats refuse before output. Omitting it preserves
+C160's per-phase execution behavior. Each native call receives the smaller of
+its configured phase limit and the whole seconds remaining. Less than one second
+cannot be rounded up into permission to launch another worker.
+
+Budget checks at execution boundaries and against the exact elapsed value in the
+completion record raise `PreparedRepairBudgetExceeded` on exhaustion. Source and
+receipt integrity checks remain independent. Exhaustion never becomes chemical
+usability, a fallback selection, recovery permission or an in-place retry. Every
+partial output remains intact. An overrun while publishing may leave an independently
+readable runtime artifact, but the executor returns no success and writes no
+completed `repair_execution.json`; the diagnostic progress log records the stop.
+
+This is a **cooperative prepared-repair allowance**, not a hard wall-clock limit:
+local Python work, native-adapter preparation, filesystem operations and process
+cleanup are not forcibly interrupted. A worker's own phase timeout and the next
+boundary check limit subsequent work. The final small record write is also
+cooperative. Whole-acquisition source discovery/qualification ownership, durable
+request/recovery and total scheduling remain Q04. No native worker, chemistry
+criterion, provenance validator or public runtime policy is replaced.
+
+Diagnostic schema 1 gains `total_timeout_seconds` (integer or null) and the checked
+`elapsed_seconds`; `total_deadline` is `NOT_CONFIGURED` or
+`COOPERATIVE_PREPARED_REPAIR_BUDGET`. Historical C160 reports remain unchanged.
+The diagnostic record is not a public runtime authority or process journal.
+No existing artifact migration or ordinary workflow adoption is introduced.
+
+Twenty new controls cover phase sharing, expiry before reservation, subsecond
+refusal, late local/publication results, the final completion-clock boundary,
+corruption and no-op/default compatibility. Actual Phenix controls use the same
+C159 PDU/5PC separated-monomer bundle as C160. A generous shared allowance retains
+the qualified repair; a five-second control preserves partial native/derivative
+evidence and returns no selected runtime. Exact execution times, commands and
+source hashes are in `prepared_repair_budget_2026_11_02` and the handoff.
+
 ### Curated CIF loop parsing (C161)
 
 The curated bond reader and `dictionary_ideal_bond_length` use the existing
@@ -307,8 +347,9 @@ earlier work passed; broader recovery belongs to Q04.
 
 Defaults are 120 seconds per native capture, 90 seconds for attribution and
 300 seconds per derivative job. Capture/derivative limits accept integers 1–600;
-attribution accepts 1–300. These are **phase limits**, not a total wall-clock
-deadline. Underlying adapters own child cleanup. The new append-only
+attribution accepts 1–300. These remain **phase limits**; C162 adds an optional
+[shared cooperative allowance](#shared-prepared-repair-allowance-c162), not a hard
+wall-clock deadline. Underlying adapters own child cleanup. The new append-only
 `progress.jsonl` and schema-1 `repair_execution.json` under
 `cif-prepared-bundle-repair-execution-v1` are diagnostic execution records, not
 durable process identities or authorization to retry. Incomplete output requires

@@ -39,6 +39,8 @@ supplied older snapshot can provide an exact-source fallback without changing it
 recipe or producer; stale consumer evidence requires fresh qualification.
 An explicit repair executor now carries prepared acquisitions through existing
 native/source/derivative checks and freezes the selected diagnostic bundle.
+An optional shared elapsed allowance bounds that prepared repair chain; complete
+acquisition ownership and recovery remain separate.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

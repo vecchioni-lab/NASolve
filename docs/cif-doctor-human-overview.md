@@ -3574,3 +3574,15 @@ refuse. Forty-two regression cases cover all ten packaged curated ligands,
 ordinary fixture preparation and the exact earlier projected-DZ failure.
 This closes Q02, a reader compatibility defect; it adds no chemistry repair or
 new scientific qualification. See the [contract](cif-doctor.md#curated-cif-loop-parsing-c161).
+
+### Shared prepared-repair allowance (C162)
+
+The prepared repair executor can share one explicit elapsed allowance across its
+stages. A monotonic clock starts before input validation; each native worker gets
+at most the whole seconds remaining. Boundary and final-record checks refuse
+late success, preserving every partial output. Existing phase limits and all
+scientific decisions remain authoritative. Local Python work, publication and
+cleanup remain cooperative, so this is not a hard wall-clock kill or the whole
+acquisition recovery owner. Twenty regressions and actual Phenix positive/short
+controls validate this bounded prerequisite. See the
+[contract](cif-doctor.md#shared-prepared-repair-allowance-c162).

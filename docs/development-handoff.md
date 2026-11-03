@@ -11,6 +11,69 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C162 validated; publication pending: shared prepared-repair allowance
+
+Base `93a515b57f1fc140a8b07145973a0c0b935c93d0`; existing Cedar only.
+Capsule `live_tests_directory/162_Cedar_repair-budget-hwflwp2h`.
+Before, C160 gave every native stage its complete phase allowance. After, optional
+`total_timeout_seconds` (integer 1–3600) starts one monotonic clock before preflight,
+caps each worker to whole seconds remaining, and refuses later work/late completion.
+Omitting it preserves per-phase execution. Every partial file remains intact;
+exhaustion grants neither fallback usability nor retry authority. This is a
+cooperative prepared-repair allowance, not a hard wall-clock kill or complete
+acquisition owner. Source/site, numerical and selection gates remain unchanged.
+
+Prior-work review: C156 already shares help/build execution time and C157 owns
+generation request/attempt identities and recovery. C160 composes prepared repair
+but intentionally has no durable owner. This change is one bounded Q04 prerequisite;
+it does not reinterpret diagnostic progress as a process journal. Q02 closed at C161.
+
+**Validation:** 20 new cases. First 19 fail without the API; the final recorded-time
+race separately reproduces a late success before its guard (**1 failed, 19 passed in 1.82s**).
+Final affected: **205 passed in 25.56s**.
+Final focused workflow: **1021 passed, 45 subtests passed in 131.77s (0:02:11)**.
+All **600** source/test/script hashes and **194** final native-runtime hashes stay
+frozen. **No full suite, explicitly requested.** Last full-tested implementation
+remains C160 `d9e481661edcc3a04404df250360b9db63184ae1`
+(7,740 tests + 276 subtests). Intermediate failed fixture checks and pre-guard
+native/focused evidence are preserved; final evidence is explicitly distinguished.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_prepared_repair_budget.py tests/test_cif_prepared_repair_execution.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repaired_component_runtime.py tests/test_cif_captured_linear_attribution.py tests/test_cif_captured_mixed_gradients.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r2.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c162_native_final.py positive
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c162_native_final.py short
+python c162_publish.py
+```
+
+**Actual Phenix 2.2.1-6174**, dispatcher **2.2.1**, not dry-runs: the existing
+C159 PDU/5PC separated-monomer control selects its qualified repair in
+**19.32s** with a 180-second shared allowance. The five-second control
+stops after **4.382s**, preserves native/derivative evidence and publishes no
+selected runtime. Local preparation/verification/cleanup may exceed the allowance
+before the next boundary check; no hard cutoff is claimed. All parent bytes and
+timestamps remain unchanged. No generation, ReadySet, Coot, model optimization
+or diffraction refinement. Scientific phosphate-state/geometry approval unchanged.
+
+Changed: executor, budget regressions and existing diagnostic expectation,
+profile registration, README/changelog, contract/human descriptor/figure caption,
+architecture/index, queue, handoff and both ledgers. Diagnostic schema 1 adds
+configured/elapsed fields; the total-deadline label distinguishes absent versus
+cooperative configuration. Existing public runtime/store/attempt schemas stay
+unchanged; no migration. All scientific payloads, logs/XML and runners stay local.
+
+**Next Q04:** whole-acquisition coordination around source discovery, component
+qualification and prepared execution, with durable request/attempt/process
+ownership, cleanup/recovery and a complete budget. A late publication can leave
+an independently readable artifact while the executor refuses success; preserve
+it and use explicit ownership/recovery, never infer permission to retry. Early
+native failures and no-repair candidates still need broader qualified continuation.
+Q05 adoption, Q06 refinement and Q13 state authority remain separate. No active jobs.
+Exact evidence: `prepared_repair_budget_2026_11_02`.
+
+Same-Cedar publication pending.
+— Rowan · Codex desktop
+
 ## C161 published: Q02 curated CIF parser closure
 
 Base `693b955637eee27fb4ab6800e60d998a9c06f0d3`; existing Cedar only.

@@ -63320,5 +63320,547 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "f0b125b0acd7c91e3fa8bc68417727d79ff25734"
+  },
+  "prepared_repair_budget_2026_11_02": {
+    "milestone": "C162",
+    "status": "FOCUSED_VALIDATED_PUBLICATION_PENDING",
+    "queue": "Q04 prepared-executor allowance prerequisite complete; whole-acquisition ownership/recovery remains open",
+    "base_revision": "93a515b57f1fc140a8b07145973a0c0b935c93d0",
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "C160 resets a complete configured allowance for each native phase, with no shared elapsed boundary.",
+    "after": "An optional monotonic allowance spans prepared-repair preflight and execution. Workers receive at most whole seconds remaining. Expiry refuses later work and completion, preserves partial output and grants no retry/fallback authority.",
+    "prior_work": [
+      "C156 shares generation help/build execution allowance",
+      "C157 owns immutable generation requests/attempts and recovery",
+      "C160 composes prepared repair but diagnostic progress is not process ownership"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "tests/test_cif_prepared_repair_execution.py",
+      "tests/test_cif_prepared_repair_budget.py"
+    ],
+    "schemas": "Additive diagnostic schema-1 total_timeout_seconds and elapsed_seconds; total_deadline distinguishes NOT_CONFIGURED and COOPERATIVE_PREPARED_REPAIR_BUDGET. Public runtime/store/attempt schemas unchanged.",
+    "compatibility": "Optional keyword only; omitted total keeps per-phase execution behavior. No migration, chemistry/numerical threshold, native worker or default ordinary-workflow change.",
+    "regression": {
+      "new_cases": 20,
+      "before": "19 failed in 0.53s",
+      "completion_boundary_before": "1 failed, 19 passed in 1.82s",
+      "affected": "205 passed in 25.56s",
+      "focused": "1021 passed, 45 subtests passed in 131.77s (0:02:11)",
+      "source_files_frozen": 600,
+      "full": "NOT_RUN; EXPLICIT_USER_REQUEST",
+      "intermediate": "Two synthetic overrun cases initially used a total lower than their fixed adapter-fixture expectation; corrected before final affected collection. Initial positive/short controls and focused run precede the final recorded-time guard and remain preserved."
+    },
+    "native": {
+      "build": "Phenix 2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "mode": "ACTUAL; NOT_DRY_RUN",
+      "final_controls": {
+        "positive": {
+          "status": "PASS",
+          "mode": "positive",
+          "total_allowance_seconds": 180,
+          "elapsed_seconds": 19.32,
+          "error": null,
+          "selected": "repaired_prepared_bundle",
+          "native_captures": [
+            {
+              "path": "execution/native/000/cif-native-5dbcdg0q/native_receipt.json",
+              "execution": {
+                "elapsed_seconds": 0.88253,
+                "finished_at": "2026-11-03T00:15:47.615616+00:00",
+                "returncode": 0,
+                "started_at": "2026-11-03T00:15:46.733103+00:00",
+                "status": "COMPLETED",
+                "timeout_seconds": 120
+              }
+            },
+            {
+              "path": "execution/native/001/cif-native-qxi5j52i/native_receipt.json",
+              "execution": {
+                "elapsed_seconds": 0.816339,
+                "finished_at": "2026-11-03T00:15:51.287960+00:00",
+                "returncode": 0,
+                "started_at": "2026-11-03T00:15:50.471636+00:00",
+                "status": "COMPLETED",
+                "timeout_seconds": 120
+              }
+            },
+            {
+              "path": "execution/native/002/cif-native-02ik34uq/native_receipt.json",
+              "execution": {
+                "elapsed_seconds": 0.792227,
+                "finished_at": "2026-11-03T00:15:52.112906+00:00",
+                "returncode": 0,
+                "started_at": "2026-11-03T00:15:51.320695+00:00",
+                "status": "COMPLETED",
+                "timeout_seconds": 120
+              }
+            },
+            {
+              "path": "execution/native/baseline/cif-native-rxv9layb/native_receipt.json",
+              "execution": {
+                "elapsed_seconds": 1.011522,
+                "finished_at": "2026-11-03T00:15:46.690491+00:00",
+                "returncode": 0,
+                "started_at": "2026-11-03T00:15:45.678989+00:00",
+                "status": "COMPLETED",
+                "timeout_seconds": 120
+              }
+            }
+          ],
+          "gradients": [
+            {
+              "phase": "original",
+              "timeout_seconds": 176,
+              "execution": {
+                "elapsed_seconds": 2.049812,
+                "returncode": 0,
+                "status": "COMPLETED"
+              },
+              "status": "CAPTURED_MIXED_DERIVATIVES_PASS"
+            },
+            {
+              "phase": "repaired",
+              "timeout_seconds": 171,
+              "execution": {
+                "elapsed_seconds": 2.148478,
+                "returncode": 0,
+                "status": "COMPLETED"
+              },
+              "status": "CAPTURED_MIXED_DERIVATIVES_PASS"
+            }
+          ],
+          "runtime_source_files": 194,
+          "parent_bytes_mtimes_unchanged": true,
+          "scope": "C159 PDU/5PC separated monomers; diagnostic only; no model optimization or diffraction refinement",
+          "whole_acquisition_ownership": "NOT_CLAIMED",
+          "cooperative_local_work_and_cleanup": true,
+          "full_regression": "NOT_RUN_USER_REQUEST"
+        },
+        "short": {
+          "status": "PASS",
+          "mode": "short",
+          "total_allowance_seconds": 5,
+          "elapsed_seconds": 4.382,
+          "error": {
+            "type": "PreparedRepairBudgetExceeded",
+            "message": "Prepared repair budget exhausted during REPAIRED_NATIVE; 0.618540s remain, 1s required; use no recovery inference"
+          },
+          "selected": null,
+          "native_captures": [
+            {
+              "path": "execution/native/000/cif-native-lddx9jl0/native_receipt.json",
+              "execution": {
+                "elapsed_seconds": 0.890508,
+                "finished_at": "2026-11-03T00:17:02.321337+00:00",
+                "returncode": 0,
+                "started_at": "2026-11-03T00:17:01.430846+00:00",
+                "status": "COMPLETED",
+                "timeout_seconds": 3
+              }
+            },
+            {
+              "path": "execution/native/baseline/cif-native-rdspvzob/native_receipt.json",
+              "execution": {
+                "elapsed_seconds": 1.069622,
+                "finished_at": "2026-11-03T00:17:01.375541+00:00",
+                "returncode": 0,
+                "started_at": "2026-11-03T00:17:00.305936+00:00",
+                "status": "COMPLETED",
+                "timeout_seconds": 4
+              }
+            }
+          ],
+          "gradients": [
+            {
+              "phase": "original",
+              "timeout_seconds": 1,
+              "execution": {
+                "elapsed_seconds": 1.012221,
+                "returncode": -9,
+                "status": "TIMED_OUT"
+              },
+              "status": "REVIEW"
+            }
+          ],
+          "runtime_source_files": 194,
+          "parent_bytes_mtimes_unchanged": true,
+          "scope": "C159 PDU/5PC separated monomers; diagnostic only; no model optimization or diffraction refinement",
+          "whole_acquisition_ownership": "NOT_CLAIMED",
+          "cooperative_local_work_and_cleanup": true,
+          "full_regression": "NOT_RUN_USER_REQUEST"
+        }
+      },
+      "final_runtime_files_frozen": 194,
+      "scope": "Existing C159 PDU/5PC separated-monomer numerical control; no new chemistry/geometry or experimental phosphate-state approval.",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "model_optimization": "NOT_RUN"
+    },
+    "limitations": [
+      "Cooperative boundary checks; local Python, adapter preparation, file writes and cleanup are not forcibly interrupted.",
+      "Late publication may leave a preserved independently readable artifact but the executor returns no success or completed report.",
+      "Whole-acquisition source discovery/qualification ownership, durable request/recovery, a complete acquisition budget and ordinary adoption remain Q04/Q05.",
+      "Q06 actual refinement and Q13 experimental phosphate state remain separate."
+    ],
+    "evidence_refs": {
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/base.json",
+        "sha256": "1f31b23fd13427e76a51a78a453ee4894186eeaa3886401302c1ab9c64de1f40",
+        "size": 223
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/before.log",
+        "sha256": "bb707f62e8386bb354705821b962142cd9341b5389433155c67baa8315a2a1f4",
+        "size": 22133
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/before-result.json",
+        "sha256": "62c6940e176576a5ea265850a9cfb20bdae9346652afe5e65102455c3209d7db",
+        "size": 580
+      },
+      "before-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/before-r2.log",
+        "sha256": "61a73208b526583145117cc1e5063a2851357aa0360198d8477d18fd6d650867",
+        "size": 1408
+      },
+      "before-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/before-r2-result.json",
+        "sha256": "6d106b04e334afbb57e768aff66e1da6ba6023867721e124295b9df512ce3687",
+        "size": 586
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected.log",
+        "sha256": "5628f2c9ce4c846a5162f224a3e348f489047932975c99ca71770e55e882b2ae",
+        "size": 5976
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected-result.json",
+        "sha256": "396403d1163eb0559811bf72e61d39dd3746ce6c5d30ddc1ab66d04221e3f865",
+        "size": 840
+      },
+      "affected-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected-r2.log",
+        "sha256": "d77a372bb9d663dcfeb8402eb000d9c952a10b51e26c80a8b31de23661a1f64a",
+        "size": 261
+      },
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected-r2-result.json",
+        "sha256": "eb1ec8e096dc6db0d9659c2dd0f025d186ee227df18da941fdc148caed1c9923",
+        "size": 847
+      },
+      "affected-r3.log": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected-r3.log",
+        "sha256": "6209b3f7518309824102bfd1631540130fbe94d2f54ea07ea55a2807d37e41c8",
+        "size": 261
+      },
+      "affected-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected-r3-result.json",
+        "sha256": "522000a87cec83b8e15f1cb9cc67aa6dfb3545cb85c0c765135a5359858d8d64",
+        "size": 847
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/focused.log",
+        "sha256": "c61e9059edd6a1711b47f85c8b9b8cf331c6374c61bf1d016a5346f3ed19faee",
+        "size": 5393
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/focused-result.json",
+        "sha256": "f2beb33682691f0b3d9cb7a515c201e8b07c73e6acb8de6f895f38a2a81de64b",
+        "size": 486
+      },
+      "focused-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/focused-r2.log",
+        "sha256": "654d86043df30bfa3a0e454c5be8d018525c45523b94ed13973a697a7d9243cf",
+        "size": 5398
+      },
+      "focused-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/focused-r2-result.json",
+        "sha256": "68ef62e433d0460689784affd9120e547bf5f1bccefeac268560e7593c0e5e50",
+        "size": 492
+      },
+      "affected-r3.xml": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected-r3.xml",
+        "sha256": "9f85cd0dacb4e00ce1b51831ab70eacb12a694e05d7bcc0584a1b212e290fff7",
+        "size": 31528
+      },
+      "affected-r3-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/affected-r3-sources.json",
+        "sha256": "14b27c6db1c0473b00da8c7c57ede581e6430b425173877039b362ac0fd8cedf",
+        "size": 65459
+      },
+      "focused-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/focused-r2.xml",
+        "sha256": "7f5cda5a8a49987c39252c6e44900436a2895193b0d49a69705be20802b67cdb",
+        "size": 155514
+      },
+      "focused-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/focused-r2-sources.json",
+        "sha256": "14b27c6db1c0473b00da8c7c57ede581e6430b425173877039b362ac0fd8cedf",
+        "size": 65459
+      },
+      "native-final-positive/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/summary.json",
+        "sha256": "0821e542922d1f6b37fa9f23d2264a77a8e664744d33883b9e6c44d223faa23e",
+        "size": 2469
+      },
+      "native-final-positive/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/installation.json",
+        "sha256": "bd54a4c4e3908d52df44ca43a46c21f304b67473778224380d35b02f7f8ec7dd",
+        "size": 101
+      },
+      "native-final-positive/parent.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/parent.json",
+        "sha256": "471f3b69e55caec30477566fe746770292e57429bc0dd3e4f76f5a8cdcaff3c3",
+        "size": 5039
+      },
+      "native-final-positive/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/runtime-sources.json",
+        "sha256": "4b58d2f1744823822181b25a2d42a65c7271da94ac26e506320fb70f4e0dd27f",
+        "size": 21084
+      },
+      "native-final-positive/execution/progress.jsonl": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/progress.jsonl",
+        "sha256": "b1ac9cd54b9cba7bdcaebead687638a2641ea42503178294fc44817e7e57596e",
+        "size": 421
+      },
+      "native-final-positive/execution/bundle/bundle_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/bundle/bundle_receipt.json",
+        "sha256": "d64d8d5146288363f9fe9da39dbbb7d6935ea50110d8b24a2ab150a1a6ab0a1e",
+        "size": 9392
+      },
+      "native-final-positive/execution/plan/linear_torsion_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/plan/linear_torsion_bundle.json",
+        "sha256": "9f928a9b3a01dc755a0b2a4fd8bce3d3250da0718dd3da42c70c82387b851543",
+        "size": 10849
+      },
+      "native-final-positive/execution/native/000/cif-native-5dbcdg0q/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/native/000/cif-native-5dbcdg0q/native_receipt.json",
+        "sha256": "9097936e2a0cdbd9ee9540bfa49a257afebbf044a80497c801ebdad8ef54ddf1",
+        "size": 485029
+      },
+      "native-final-positive/execution/native/001/cif-native-qxi5j52i/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/native/001/cif-native-qxi5j52i/native_receipt.json",
+        "sha256": "fe173a662552a8626e8b621addc47668875fb4b20a1df2be7f84f555753016a0",
+        "size": 477471
+      },
+      "native-final-positive/execution/native/002/cif-native-02ik34uq/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/native/002/cif-native-02ik34uq/native_receipt.json",
+        "sha256": "33e5c20203edf8e07ec211265e7825216cfe44c7b69a499e8141256483a59fd4",
+        "size": 469905
+      },
+      "native-final-positive/execution/native/baseline/cif-native-rxv9layb/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/native/baseline/cif-native-rxv9layb/native_receipt.json",
+        "sha256": "68cd2ab1806d339bb4227b22df16dd85f6755e0e587369fcd5af3c221ba8c66d",
+        "size": 485099
+      },
+      "native-final-positive/execution/original-gradient/captured_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/original-gradient/captured_mixed_gradients.json",
+        "sha256": "e5c596b68cb363ad385e9eae574bee764545de8536c88530bfdad07b507fbe91",
+        "size": 11330
+      },
+      "native-final-positive/execution/repaired-gradient/captured_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/repaired-gradient/captured_mixed_gradients.json",
+        "sha256": "6a67cbf73202dea6fc5894c3cd90cbd28da73c139173feb69ac7070c3a9998c6",
+        "size": 11330
+      },
+      "native-final-short/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/summary.json",
+        "sha256": "c06432b593f4358d8bab82608c26473a6748fa188680dd3aa7570a04e16daa18",
+        "size": 1625
+      },
+      "native-final-short/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/installation.json",
+        "sha256": "bd54a4c4e3908d52df44ca43a46c21f304b67473778224380d35b02f7f8ec7dd",
+        "size": 101
+      },
+      "native-final-short/parent.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/parent.json",
+        "sha256": "471f3b69e55caec30477566fe746770292e57429bc0dd3e4f76f5a8cdcaff3c3",
+        "size": 5039
+      },
+      "native-final-short/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/runtime-sources.json",
+        "sha256": "4b58d2f1744823822181b25a2d42a65c7271da94ac26e506320fb70f4e0dd27f",
+        "size": 21084
+      },
+      "native-final-short/execution/progress.jsonl": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/execution/progress.jsonl",
+        "sha256": "fa9b479869f8e7b74399fae49efff7bf508b83dd130b3d57c6350d56012a9f59",
+        "size": 287
+      },
+      "native-final-short/execution/bundle/bundle_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/execution/bundle/bundle_receipt.json",
+        "sha256": "d64d8d5146288363f9fe9da39dbbb7d6935ea50110d8b24a2ab150a1a6ab0a1e",
+        "size": 9392
+      },
+      "native-final-short/execution/plan/linear_torsion_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/execution/plan/linear_torsion_bundle.json",
+        "sha256": "9f928a9b3a01dc755a0b2a4fd8bce3d3250da0718dd3da42c70c82387b851543",
+        "size": 10849
+      },
+      "native-final-short/execution/native/000/cif-native-lddx9jl0/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/execution/native/000/cif-native-lddx9jl0/native_receipt.json",
+        "sha256": "88fdf85deb160a1d1fe9475b0fbe3525f4c46c413ff3ceb061499fe36e10cb4b",
+        "size": 485010
+      },
+      "native-final-short/execution/native/baseline/cif-native-rdspvzob/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/execution/native/baseline/cif-native-rdspvzob/native_receipt.json",
+        "sha256": "a2389f79e213201465c6fc2f4e5de7c870023274d54f0ef254677c518682e817",
+        "size": 485079
+      },
+      "native-final-short/execution/original-gradient/captured_mixed_gradients.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-short/execution/original-gradient/captured_mixed_gradients.json",
+        "sha256": "d440d4c33c60e1e2bc785264c6bdb311b65bbe56aa454f8102ea018094a7e8f7",
+        "size": 10820
+      },
+      "native-final-positive/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/repair_execution.json",
+        "sha256": "77e92fd7f448017bea67ab2318824da6b611594e7aa9f6e0b113f4125d0cf8af",
+        "size": 33750
+      },
+      "native-final-positive/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/runtime/runtime_bundle.json",
+        "sha256": "2cca3115aeda0395b3ab552ae294e9106cea69971c41d6afe31c422011ec3aff",
+        "size": 78322
+      },
+      "native-final-positive/execution/attribution/captured_linear_attribution.json": {
+        "anchor": "live_tests_directory",
+        "path": "162_Cedar_repair-budget-hwflwp2h/native-final-positive/execution/attribution/captured_linear_attribution.json",
+        "sha256": "b21c7449a84f3be4460332416d7bfd3135120fe3ebb95c43b8072e749ef0931b",
+        "size": 12999
+      }
+    },
+    "validation_commands": [
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_prepared_repair_budget.py",
+        "--junitxml",
+        "{live_tests_directory}/162_Cedar_repair-budget-hwflwp2h/before.xml"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_prepared_repair_budget.py",
+        "--junitxml",
+        "{live_tests_directory}/162_Cedar_repair-budget-hwflwp2h/before-r2.xml"
+      ],
+      [
+        "{python}",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_prepared_repair_budget.py",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_dictionary_bundle_repair.py",
+        "tests/test_cif_repaired_component_runtime.py",
+        "tests/test_cif_captured_linear_attribution.py",
+        "tests/test_cif_captured_mixed_gradients.py",
+        "--junitxml",
+        "{live_tests_directory}/162_Cedar_repair-budget-hwflwp2h/affected-r3.xml"
+      ],
+      [
+        "{python}",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "{live_tests_directory}/162_Cedar_repair-budget-hwflwp2h/focused-r2.xml"
+      ],
+      [
+        "{python}",
+        "c162_native_final.py",
+        "positive"
+      ],
+      [
+        "{python}",
+        "c162_native_final.py",
+        "short"
+      ],
+      [
+        "{python}",
+        "c162_publish.py"
+      ]
+    ],
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src"
+    },
+    "artifacts": "All scientific inputs/models/native candidates and failed output, logs/XML and runners remain local/ignored; no scientific payload committed/uploaded.",
+    "author": "Rowan · Codex desktop"
   }
 }
