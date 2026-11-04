@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C165 validated: shared process ownership for isolated qualification
+## C165 published: shared process ownership for isolated qualification
 
 Base `75532c83477b165d81182f2244b20db45fd84e7f`; existing Cedar only.
 Capsule `live_tests_directory/165_Cedar_candidate-ownership-pj4rxb1l`.
@@ -67,6 +67,7 @@ remain queued. No merge authorization. No active jobs.
 Wall-clock discontinuities exceeded the intended session window; scope was narrowed
 to this tested foundation instead of starting the larger callback integration.
 Evidence key `candidate_qualification_process_2026_11_03`.
+Implementation `4e0e61204b2541191bf217830b309e2f6caeec33` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C164 published: prepared requests and fresh-attempt recovery

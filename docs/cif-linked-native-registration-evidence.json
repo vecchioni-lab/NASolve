@@ -65207,7 +65207,7 @@
   },
   "candidate_qualification_process_2026_11_03": {
     "milestone": "C165",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "base_revision": "75532c83477b165d81182f2244b20db45fd84e7f",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Isolated qualification was caller-owned; repair process backend was operation-specific.",
@@ -65716,6 +65716,7 @@
       "No fresh Linux execution or full regression",
       "No merge authorization"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "4e0e61204b2541191bf217830b309e2f6caeec33"
   }
 }

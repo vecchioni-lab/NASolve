@@ -27960,7 +27960,7 @@
     },
     "candidate_qualification_process": {
       "milestone": "C165",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 ownership primitive complete; qualification callback/budget and acquisition coordination next",
       "contract": "docs/cif-doctor.md#isolated-qualification-process-evidence-c165",
       "evidence_key": "candidate_qualification_process_2026_11_03",
@@ -27972,7 +27972,8 @@
         "No connected-polymer, ReadySet, Coot, optimization or refinement execution",
         "No fresh Linux execution or full regression",
         "No merge authorization"
-      ]
+      ],
+      "implementation_revision": "4e0e61204b2541191bf217830b309e2f6caeec33"
     }
   },
   "audience": [
