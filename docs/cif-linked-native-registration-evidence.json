@@ -65718,5 +65718,810 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "4e0e61204b2541191bf217830b309e2f6caeec33"
+  },
+  "candidate_qualification_execution_2026_11_04": {
+    "milestone": "C166",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "f34cd46f063fbc67758e73283820c25d39c5f4be",
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Scientific two-seed qualification was caller-supplied.",
+    "after": "Maintained owned executor/callback shares a cooperative allowance and supplies strict portable scientific readback.",
+    "prior_work": [
+      "C158/C159 scientific callback",
+      "C162 cooperative boundaries",
+      "C165 ownership",
+      "Existing strict capture and consumer binders"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_candidate_qualification_execution.py",
+      "src/nasolve/cif_triple_bond_audit.py",
+      "tests/test_cif_candidate_qualification_execution.py"
+    ],
+    "schemas": [
+      "New cif-two-seed-qualification-execution-v1 schema 1; qualification_directory anchors",
+      "Existing isolated qualification/cache and C165 process schemas unchanged"
+    ],
+    "compatibility": "No migration; model bytes identical; explicit API only; POSIX owned cleanup",
+    "regression": {
+      "before": "4 import errors before implementation",
+      "initial": "4 passed",
+      "expanded": "38 passed, 1 failed extra-claim regression before fix",
+      "new_cases": 40,
+      "affected": {
+        "active": false,
+        "pid": 56010,
+        "runner_pid": 55949,
+        "phase": "affected",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_candidate_qualification_execution.py",
+          "tests/test_cif_candidate_qualification.py",
+          "tests/test_cif_candidate_usability.py",
+          "tests/test_cif_triple_bond_audit.py",
+          "tests/test_cif_generation_acquisition.py",
+          "tests/test_cif_retained_acquisition.py",
+          "tests/test_cif_dictionary_store.py",
+          "tests/test_cif_repair_process.py",
+          "tests/test_cif_native_validation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/166_Cedar_two-seed-qualification-f1iziky0/affected.xml"
+        ],
+        "started_utc": "2026-11-04T14:26:26.836213+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 43.395,
+        "sources_unchanged": true,
+        "source_files": 608
+      },
+      "focused": {
+        "active": false,
+        "pid": 57210,
+        "runner_pid": 57209,
+        "phase": "focused",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/166_Cedar_two-seed-qualification-f1iziky0/focused.xml"
+        ],
+        "started_utc": "2026-11-04T14:33:24.478194+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 168.264,
+        "sources_unchanged": true,
+        "source_files": 608
+      },
+      "focused_summary": "1168 passed, 45 subtests passed in 168.00s (0:02:47)",
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "status": "PASS",
+      "cases": {
+        "PDU": {
+          "status": "PASS",
+          "native_calls": 2,
+          "qualifications_both_usable": true,
+          "same_covalent_proxies": true,
+          "cache_hit": "REUSED",
+          "source_recipe_and_producer_preserved": true
+        },
+        "5PC": {
+          "status": "PASS",
+          "native_calls": 2,
+          "qualifications_both_usable": true,
+          "same_covalent_proxies": true,
+          "cache_hit": "REUSED",
+          "source_recipe_and_producer_preserved": true
+        }
+      },
+      "native_calls": 6,
+      "short_control": "2s passes honestly; 1s refuses before launch",
+      "parent_bytes_mtimes_unchanged_in_positive_controls": true,
+      "runtime_sources_unchanged": true,
+      "old_control_model_bytes_identical": true,
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "scope": "ISOLATED_COMPONENT_ONLY",
+      "runner_notes": [
+        "First helper failed before native work on historical-ledger key shape.",
+        "Second helper validated both callback/cache paths but wrongly expected 2s to be insufficient; preserved successful evidence and verified it here without rerunning."
+      ]
+    },
+    "short": {
+      "two_second_status": "PASS_WITHIN_BUDGET",
+      "two_second_elapsed": 1.7935636250003881,
+      "one_second_status": "WITHHELD_BEFORE_LAUNCH",
+      "one_second_elapsed": 0.14195599999948172,
+      "one_second_error": "Qualification allowance exhausted; partial output is not usable",
+      "owner_state": "STOPPED"
+    },
+    "relocation": {
+      "status": "PASS",
+      "completed_qualifications": 3,
+      "native_seeds": 6,
+      "cache_snapshots": 2,
+      "withheld_prelaunch": 1,
+      "original_copy_absent": true,
+      "historical_paths_and_launches_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 340
+    },
+    "evidence_refs": {
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/affected-result.json",
+        "sha256": "2a55a8478656c29bd1a0f3bce314c304973488ac87b84cd3057f98f5380e8b12",
+        "size": 961
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/affected-sources.json",
+        "sha256": "9dc371144552cfc53bbd3247ab86b791c5af22753cccfa1ac26c41fe6108bc76",
+        "size": 66367
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/affected.log",
+        "sha256": "fb8b6522afa3e4267be93f889131b82b351064fed2dbfde101da4ce3e73b16d2",
+        "size": 501
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/affected.xml",
+        "sha256": "b2e2dd1292e5f8b27cd8071132d21eeb99aa03cc2bbdaf9f1adf53c5de2c6a0f",
+        "size": 59015
+      },
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/base.json",
+        "sha256": "009fdf6f44bdc3271d4bf00dd80473e9adbd27e526435b2b7215e7ae4b438476",
+        "size": 245
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/before-result.json",
+        "sha256": "a428a77b2e2996f07ce8e385e0e3d1af565d0b31d742c1bdb7a7f1e4fec7046c",
+        "size": 600
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/before-sources.json",
+        "sha256": "04f932fdf047cb7d12dd2800acd6b3cc8c2670eca2536d52f5b307e2965024c8",
+        "size": 66241
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/before.log",
+        "sha256": "793a3e74c51b35d2e0218a57c26640c67bcdf0bdd1c7d68eb4979abf1899fe83",
+        "size": 3394
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/before.xml",
+        "sha256": "a70be1f16a7496b4b5e778f2f33b12f093ca3da75345db1ca1ab6d3242031eb2",
+        "size": 4187
+      },
+      "cold/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/cold/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/cold/stdout.txt",
+        "sha256": "dce7c2fecb03a3543f1955c38b0aaab5c033371d9f3f0580465e6e0196ad5cdb",
+        "size": 238
+      },
+      "cold/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/cold/summary.json",
+        "sha256": "9896257da7e9d5f848ecbce1dac334ba6f61f92a1daaa2cb12186caca6c57e27",
+        "size": 258
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/focused-result.json",
+        "sha256": "bccf99c99229ba7998d9ce854ace86fcec6cf7feb430d0d017612bdd999410f4",
+        "size": 495
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/focused-sources.json",
+        "sha256": "9dc371144552cfc53bbd3247ab86b791c5af22753cccfa1ac26c41fe6108bc76",
+        "size": 66367
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/focused.log",
+        "sha256": "c79689d0e3b51368da27cf2727861faec81e6e3b1b4529d3f9610748029a2b4d",
+        "size": 5707
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/focused.xml",
+        "sha256": "9759d3c5eaab13e4f1f4fd774239469273f0b737b5da4822e7ec8b848377920d",
+        "size": 176508
+      },
+      "native-r2/5PC/hit/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/hit/entry/manifest.json",
+        "sha256": "bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc",
+        "size": 7835
+      },
+      "native-r2/5PC/hit/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/hit/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native-r2/5PC/hit/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/hit/entry/qualification.json",
+        "sha256": "aab75194fbec9cbcd8c29b92932a1c16e2c07447d11c3c5534e71338bb26bafd",
+        "size": 190337
+      },
+      "native-r2/5PC/hit/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/hit/resolution.json",
+        "sha256": "13671f8887303597e697d5f0d10ec808f8454613d0d8646024947b66493a4f40",
+        "size": 1254
+      },
+      "native-r2/5PC/qualification/native/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/inputs/protocol.json",
+        "sha256": "def64ec93928fe00291d9f3db0e0438f320df92fb28f42fc445a52da2871702d",
+        "size": 2645
+      },
+      "native-r2/5PC/qualification/native/native/000/cif-native-d9v0umpt/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/native/000/cif-native-d9v0umpt/native_receipt.json",
+        "sha256": "b72e37a6acbf3b9cfcf63bf859552517d7283cee496a95496649b38a2417e42c",
+        "size": 249080
+      },
+      "native-r2/5PC/qualification/native/native/000/cif-native-d9v0umpt/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/native/000/cif-native-d9v0umpt/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native-r2/5PC/qualification/native/native/000/cif-native-d9v0umpt/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/native/000/cif-native-d9v0umpt/native_validation.json",
+        "sha256": "2439ec34ef2613e85b5ab35448c6677ff62f2837cb11688b91c850a7c2f280fd",
+        "size": 226407
+      },
+      "native-r2/5PC/qualification/native/native/001/cif-native-7yww08l0/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/native/001/cif-native-7yww08l0/native_receipt.json",
+        "sha256": "a843d968406e0b40792dde10a68e19083f36ef566295092913aa216154304f6d",
+        "size": 249115
+      },
+      "native-r2/5PC/qualification/native/native/001/cif-native-7yww08l0/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/native/001/cif-native-7yww08l0/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native-r2/5PC/qualification/native/native/001/cif-native-7yww08l0/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/native/001/cif-native-7yww08l0/native_validation.json",
+        "sha256": "86c7b95e866b56bb41ab62fba7595dc96698b84762db8a387dc9afc689a08456",
+        "size": 226439
+      },
+      "native-r2/5PC/qualification/native/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/finished.json",
+        "sha256": "3f4648e618fc05569e2be66ed53f231a72b099dab9af7221b70e7426f82514f3",
+        "size": 481
+      },
+      "native-r2/5PC/qualification/native/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/phases/native-000/finished.json",
+        "sha256": "112052fdb605f2a746816f633a7d869be94c1df649bdec6b81ecbcbe799204dd",
+        "size": 451
+      },
+      "native-r2/5PC/qualification/native/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/phases/native-000/job.json",
+        "sha256": "3a000d1ba2ea5217dd9df7169d2edab37a9c0145b7297f6ebaad2b30846db63c",
+        "size": 1067
+      },
+      "native-r2/5PC/qualification/native/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/phases/native-000/process.json",
+        "sha256": "0a024acb8a0882458456982a1b5ddee6b2d4aaff8d8a762b729f89f51a187733",
+        "size": 482
+      },
+      "native-r2/5PC/qualification/native/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/phases/native-001/finished.json",
+        "sha256": "78772c5ac454d61fa4ccafcede6cda08b8c8defa58391a4d298e850cb6df705a",
+        "size": 451
+      },
+      "native-r2/5PC/qualification/native/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/phases/native-001/job.json",
+        "sha256": "23ecb72bd0775352328e02ca76f416ba7a8089a736fed4ec9b818b84fdb1cb79",
+        "size": 1067
+      },
+      "native-r2/5PC/qualification/native/ownership/phases/native-001/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/phases/native-001/process.json",
+        "sha256": "2dc757e22d9db03f23c5a8e843673d80682d8c63efac2f51f25dbee91cea6287",
+        "size": 482
+      },
+      "native-r2/5PC/qualification/native/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/ownership/qualification.json",
+        "sha256": "32d74debd71fd84dcd0140a90b4430a134b94cd4fa158bdd2966eabf538beaa4",
+        "size": 1518
+      },
+      "native-r2/5PC/qualification/native/qualification_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/qualification/native/qualification_execution.json",
+        "sha256": "e928f180677aaca6a0f8cdd5909922f789f80049e73be05befb5f4bd92db1538",
+        "size": 1653392
+      },
+      "native-r2/5PC/snapshot/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/snapshot/entry/manifest.json",
+        "sha256": "bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc",
+        "size": 7835
+      },
+      "native-r2/5PC/snapshot/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/snapshot/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native-r2/5PC/snapshot/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/snapshot/entry/qualification.json",
+        "sha256": "aab75194fbec9cbcd8c29b92932a1c16e2c07447d11c3c5534e71338bb26bafd",
+        "size": 190337
+      },
+      "native-r2/5PC/snapshot/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/snapshot/resolution.json",
+        "sha256": "51c1126a89c26fbf61575b19e5e12f3437662aa89d627a40466559390db3823e",
+        "size": 1258
+      },
+      "native-r2/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc/manifest.json",
+        "sha256": "bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc",
+        "size": 7835
+      },
+      "native-r2/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native-r2/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/bf8cd80f8c1130dfcb6c24409976cd93b6b048a611416dfa6ee99f4714b4f9fc/qualification.json",
+        "sha256": "aab75194fbec9cbcd8c29b92932a1c16e2c07447d11c3c5534e71338bb26bafd",
+        "size": 190337
+      },
+      "native-r2/PDU/hit/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/hit/entry/manifest.json",
+        "sha256": "d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e",
+        "size": 7761
+      },
+      "native-r2/PDU/hit/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/hit/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native-r2/PDU/hit/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/hit/entry/qualification.json",
+        "sha256": "c6f6e710731c21a9d8b074d880e1a3693ae1cc8f12c670396cf1ee25faece8fa",
+        "size": 186299
+      },
+      "native-r2/PDU/hit/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/hit/resolution.json",
+        "sha256": "dacb287cd80b2338944ac87e20f729282ac7312326858374e567cbb32f000c78",
+        "size": 1289
+      },
+      "native-r2/PDU/qualification/native/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/inputs/protocol.json",
+        "sha256": "c8a6126f8fdbf85285331f2d7c4822429a0b1b453c4c25482712ab62b0f858b6",
+        "size": 2645
+      },
+      "native-r2/PDU/qualification/native/native/000/cif-native-54yqe8if/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/native/000/cif-native-54yqe8if/native_receipt.json",
+        "sha256": "2b577bcd0dc382fcc95d043b3b9561ec769e34d237a295414c244547211b1c2c",
+        "size": 242608
+      },
+      "native-r2/PDU/qualification/native/native/000/cif-native-54yqe8if/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/native/000/cif-native-54yqe8if/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native-r2/PDU/qualification/native/native/000/cif-native-54yqe8if/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/native/000/cif-native-54yqe8if/native_validation.json",
+        "sha256": "f3cccccfc84b7ca9069b70fe0575e03dd91070e6adc29d263ee899b357ffd9f6",
+        "size": 220292
+      },
+      "native-r2/PDU/qualification/native/native/001/cif-native-kzhggpkp/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/native/001/cif-native-kzhggpkp/native_receipt.json",
+        "sha256": "4b6184706567510d45ac41482e358381c31d6d9d06fbca62f9ba3ce9f5d02768",
+        "size": 243647
+      },
+      "native-r2/PDU/qualification/native/native/001/cif-native-kzhggpkp/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/native/001/cif-native-kzhggpkp/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native-r2/PDU/qualification/native/native/001/cif-native-kzhggpkp/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/native/001/cif-native-kzhggpkp/native_validation.json",
+        "sha256": "961cc10659262b0d1fce03dd59b641d564d5fbce762d49c9490936e8163d339e",
+        "size": 221327
+      },
+      "native-r2/PDU/qualification/native/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/finished.json",
+        "sha256": "acaadc7ca0f587f5ff06926b36556d9838b1c6f89f1f4d4bcf06f583aeb8de28",
+        "size": 481
+      },
+      "native-r2/PDU/qualification/native/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/phases/native-000/finished.json",
+        "sha256": "a7066a2627b222fcf84d5e48d4605d36f508436c6b3526c5b8b69430ca12cf7a",
+        "size": 451
+      },
+      "native-r2/PDU/qualification/native/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/phases/native-000/job.json",
+        "sha256": "4ea40dd88e57392cb9f66b037f520461a9ac0ab4babb04c69e1ceb3022989eda",
+        "size": 1067
+      },
+      "native-r2/PDU/qualification/native/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/phases/native-000/process.json",
+        "sha256": "6683a05cb76f6caccd7dfc0e1705d2c1eb421113166673d7c993aabee021d342",
+        "size": 482
+      },
+      "native-r2/PDU/qualification/native/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/phases/native-001/finished.json",
+        "sha256": "3e8291d8c611cf78b51ee8d784d87a37f0e1ed2339604e4037703a6be35caaf5",
+        "size": 450
+      },
+      "native-r2/PDU/qualification/native/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/phases/native-001/job.json",
+        "sha256": "38c2c0e2e9645448fa41e605ab8672112070af1a6a6177073e5dc0d8bd0ee67d",
+        "size": 1067
+      },
+      "native-r2/PDU/qualification/native/ownership/phases/native-001/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/phases/native-001/process.json",
+        "sha256": "b3b14de7949096eb2b0e7d263baa1bef56b85a9aa3b6b1f1725e7a02948f5b07",
+        "size": 482
+      },
+      "native-r2/PDU/qualification/native/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/ownership/qualification.json",
+        "sha256": "d67597037e95d61d86d8af0631add5341d9a384eb12131ee78398fe4db420dc6",
+        "size": 1518
+      },
+      "native-r2/PDU/qualification/native/qualification_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/qualification/native/qualification_execution.json",
+        "sha256": "fa14d0e5d9c2a399b6ed2a5930792334f51521d79ee323b5d24b390a6c47a24f",
+        "size": 1617118
+      },
+      "native-r2/PDU/snapshot/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/snapshot/entry/manifest.json",
+        "sha256": "d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e",
+        "size": 7761
+      },
+      "native-r2/PDU/snapshot/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/snapshot/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native-r2/PDU/snapshot/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/snapshot/entry/qualification.json",
+        "sha256": "c6f6e710731c21a9d8b074d880e1a3693ae1cc8f12c670396cf1ee25faece8fa",
+        "size": 186299
+      },
+      "native-r2/PDU/snapshot/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/snapshot/resolution.json",
+        "sha256": "bb0e19b09d069162aa26ecaf0a133155587c8ca12fe286bcf48c39ccc5782c4b",
+        "size": 1293
+      },
+      "native-r2/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e/manifest.json",
+        "sha256": "d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e",
+        "size": 7761
+      },
+      "native-r2/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native-r2/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/d59e1fc6628ef1a3b1f8f3825503fe6e83be9c9b8cc4f64162249f1e07e4fb0e/qualification.json",
+        "sha256": "c6f6e710731c21a9d8b074d880e1a3693ae1cc8f12c670396cf1ee25faece8fa",
+        "size": 186299
+      },
+      "native-r2/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/installation.json",
+        "sha256": "c839320092d00c18ea3e95821e9482174ce71b277f370970b1ba88af8fdb4359",
+        "size": 110
+      },
+      "native-r2/one-second/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/one-second/inputs/protocol.json",
+        "sha256": "e15a5a51b47074dae62e611c722e1e5b9631b9db69a84d7e3a2782ec12799478",
+        "size": 2587
+      },
+      "native-r2/one-second/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/one-second/ownership/finished.json",
+        "sha256": "820392cb6c96cb6a6676ea36250a668f781b888b34d9f7b8d1206c8077037d75",
+        "size": 305
+      },
+      "native-r2/one-second/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/one-second/ownership/qualification.json",
+        "sha256": "390e49387b750b9565aeb2d1926341ffeabb4c2885d3d8c65495af5e0b07faed",
+        "size": 1518
+      },
+      "native-r2/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/runtime-sources.json",
+        "sha256": "706a85a428495c37f0589893fcba3d64f8a1bb478edf140a8f89b63ecab9aa52",
+        "size": 21540
+      },
+      "native-r2/short/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/inputs/protocol.json",
+        "sha256": "31c3d07d508847ebd5d52156aa3ba41d61c247a49108e2a9b49a78e0283bb1cd",
+        "size": 2587
+      },
+      "native-r2/short/native/000/cif-native-ogk9u2o_/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/native/000/cif-native-ogk9u2o_/native_receipt.json",
+        "sha256": "f155b08aafc501bcc2c734ee7f0b1ed18e86645b2a138de6482737b3fa7e1dc2",
+        "size": 242532
+      },
+      "native-r2/short/native/000/cif-native-ogk9u2o_/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/native/000/cif-native-ogk9u2o_/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native-r2/short/native/000/cif-native-ogk9u2o_/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/native/000/cif-native-ogk9u2o_/native_validation.json",
+        "sha256": "f3cccccfc84b7ca9069b70fe0575e03dd91070e6adc29d263ee899b357ffd9f6",
+        "size": 220292
+      },
+      "native-r2/short/native/001/cif-native-p1j6ieiu/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/native/001/cif-native-p1j6ieiu/native_receipt.json",
+        "sha256": "74aa73b2e65d0dfa59a74a9ab1577a948efbee97b715d2455ba8146b1e3595a3",
+        "size": 243570
+      },
+      "native-r2/short/native/001/cif-native-p1j6ieiu/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/native/001/cif-native-p1j6ieiu/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native-r2/short/native/001/cif-native-p1j6ieiu/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/native/001/cif-native-p1j6ieiu/native_validation.json",
+        "sha256": "961cc10659262b0d1fce03dd59b641d564d5fbce762d49c9490936e8163d339e",
+        "size": 221327
+      },
+      "native-r2/short/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/finished.json",
+        "sha256": "4d7dce1a6d59ea163adbf55abe64ca4247b9d20ebb5e1638b0b9f7c00d024040",
+        "size": 481
+      },
+      "native-r2/short/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/phases/native-000/finished.json",
+        "sha256": "ff7129be6e7a578ce40ecff86bfd72f66347dedf46eb4e49f6e87440b047d274",
+        "size": 451
+      },
+      "native-r2/short/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/phases/native-000/job.json",
+        "sha256": "9c505c993f0873f696bb2d542d9923012e35bfbe38334b393a019858b915dd71",
+        "size": 1066
+      },
+      "native-r2/short/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/phases/native-000/process.json",
+        "sha256": "26a60c87acae34bf1fcf620719256daab7ac05e5c3ad31d9aebdc74cdf2eff00",
+        "size": 482
+      },
+      "native-r2/short/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/phases/native-001/finished.json",
+        "sha256": "516b38581e260451631d9324d54c710a066f1a8a26c69516e91e061439d68fc4",
+        "size": 451
+      },
+      "native-r2/short/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/phases/native-001/job.json",
+        "sha256": "d5b689ba97ab3dd2a3407bae457cbc3e69ee89809bac7d22e657ea7b3f5c37c6",
+        "size": 1066
+      },
+      "native-r2/short/ownership/phases/native-001/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/phases/native-001/process.json",
+        "sha256": "76191d35838f954cd6d4a793fe62567d49c02aacbd718823760b59d0b0a422ce",
+        "size": 482
+      },
+      "native-r2/short/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/ownership/qualification.json",
+        "sha256": "bd451f34fca574de0f59d621289e822cf5ece9d378707673964108bea6c83f6e",
+        "size": 1518
+      },
+      "native-r2/short/qualification_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short/qualification_execution.json",
+        "sha256": "81686a59782d7115c220071bad066d0d0a8ffd031ca4a39bf64731cccf5dc450",
+        "size": 1617119
+      },
+      "native-r2/short-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/short-summary.json",
+        "sha256": "d0f617ffc56d432f5bcbbc642c9ef3d7921471130a93359e9e3101c37c156327",
+        "size": 303
+      },
+      "native-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/native-r2/summary.json",
+        "sha256": "7a259ae930fcf4a527f8bd77e9471e5321b497aae3bc2d7931cc433e760328f6",
+        "size": 1170
+      },
+      "new-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new-r2-result.json",
+        "sha256": "3b21274c5bf6d6dc55997c22f7de5d36e8c779569461c0383046a58d35251607",
+        "size": 601
+      },
+      "new-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new-r2-sources.json",
+        "sha256": "fdef2f32d2d6130d418caacbfc6b0d4bf97a159fc448b016e069f4d8382d9ffb",
+        "size": 66367
+      },
+      "new-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new-r2.log",
+        "sha256": "40d6e3ba97627a3efe063ddcf28985a2990f27cae998d743e9f46bf00160f0ed",
+        "size": 2994
+      },
+      "new-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new-r2.xml",
+        "sha256": "985c0eb1c8dfc8430b52ae039662260735849f4089e6aff658a0abdf0778467a",
+        "size": 8882
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new-result.json",
+        "sha256": "a6d6f96ba931f53d7c23a5063c654de625d433658e1c11ebdf6323429b267e14",
+        "size": 593
+      },
+      "new-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new-sources.json",
+        "sha256": "abbafdcf446a2ac50fc04767c0a155a03488e9fd1c8d3d25fcdbf7be9812f226",
+        "size": 66367
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new.log",
+        "sha256": "471aee96a9693db9ae0388b987e983e7da6ebec43625fc185934c714babb50b5",
+        "size": 98
+      },
+      "new.xml": {
+        "anchor": "live_tests_directory",
+        "path": "166_Cedar_two-seed-qualification-f1iziky0/new.xml",
+        "sha256": "60bae44949dcd10cb325c3a6adbd4c7b2bcc1d7a4f640a7b495f0f1dd36692bd",
+        "size": 823
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_candidate_qualification_execution.py",
+        "tests/test_cif_candidate_qualification.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_triple_bond_audit.py",
+        "tests/test_cif_generation_acquisition.py",
+        "tests/test_cif_retained_acquisition.py",
+        "tests/test_cif_dictionary_store.py",
+        "tests/test_cif_repair_process.py",
+        "tests/test_cif_native_validation.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/166_Cedar_two-seed-qualification-f1iziky0/affected.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/166_Cedar_two-seed-qualification-f1iziky0/focused.xml"
+      ],
+      "native": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c166_native_r2.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c166_native_finish.py"
+      ],
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c166_cold.py"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual not dry-run"
+    },
+    "artifacts": "Only code/tests/docs published; scientific payloads, logs/XML, records and runners remain local/ignored",
+    "limitations": [
+      "Explicit isolated qualification only; no linked/ordinary adoption or refinement support expansion",
+      "Final atomic publication/cleanup cooperative; recorded elapsed is pre-publication",
+      "Whole-acquisition request, discovery, total budget, retry/recovery and broader fallback still open",
+      "No new Linux execution or full suite; no merge authorization"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

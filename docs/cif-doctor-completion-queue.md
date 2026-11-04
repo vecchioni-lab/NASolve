@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-03, after C165.** This queue owns unfinished
+**Current planning authority, 2026-11-04, after C166.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -213,20 +213,23 @@ identity/cleanup, and reads without mutation. Four actual PDU/5PC jobs and cold
 legacy/new replay pass. The scientific callback is still supplied by callers;
 process completion does not establish usability, and this owner has no total budget.
 
-**Next bounded checkpoint:** promote the existing C158/C159 two-seed scientific
-callback into a maintained acquisition-compatible adapter using C165, preserving
-both independent usability checks and identical covalent proxy signatures. Add one
-shared cooperative qualification allowance and strict saved-evidence readback.
-Then establish whole-acquisition coordination around source discovery, component
-qualification and prepared-bundle execution. Reuse
-campaign/C157 request/attempt/phase identities and preserve every partial result;
-own cleanup/recovery and a total budget rather than interpreting the new diagnostic
-progress log as a process journal. Then extend deterministic qualified fallback
-to early capture failures and no-repair candidates without manufacturing repair
-proof or weakening current source/site/derivative gates.
+C166 closes that maintained callback/allowance/readback sub-gate. Both source and
+candidate coordinates must pass the unchanged scientific checks with matching
+covalent proxies. The callback feeds the existing store; exact recipes/producers
+survive fresh qualification and subsequent cache hits run no native job. Portable
+readback independently rederives the result. Its total allowance covers this
+qualification only, with final atomic publication/cleanup remaining cooperative.
+
+**Next bounded checkpoint:** establish complete acquisition request identity and
+coordination across declared source discovery, generation, independent qualification
+and prepared repair. Reuse the existing frozen request/attempt/phase contracts;
+propagate one acquisition allowance, preserve all partial outputs, and recover only
+after previous owners/workers are known inactive. Then extend independently usable
+fallback to early capture failures and no-repair candidates without manufacturing
+repair proof or weakening current source/site/derivative gates.
 Complete acquisition coordination must cover qualification/source-discovery
-ownership and a total budget; C158 owns generation only and accepts a caller-owned
-qualification adapter. Keep these explicit sub-gates under Q04 before ordinary
+ownership and a total budget; C158 composes generation and a qualification callback; C166 now supplies the
+maintained callback, but the surrounding request is not yet coordinated. Keep these explicit sub-gates under Q04 before ordinary
 automation. No automatic retry loop or unqualified-source usability is enabled.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
@@ -470,8 +473,8 @@ assumptions for supported environments; record any untested platform explicitly.
 
 The C150 audit recorded 1,662 focused tests + 36 subtests and a C143 full baseline.
 The current last full-tested implementation is C160
-`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C165 have focused
-validation only. C165 passes 1,128 workflow tests + 45 subtests; exact validation is recorded in
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C166 have focused
+validation only. C166 focused results are recorded exactly in its handoff; no later full pass is claimed; exact validation is recorded in
 the current handoff. None is a final
 merge pass for the subsequent combined integration state. Preserve published evidence and archive
 owned runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)

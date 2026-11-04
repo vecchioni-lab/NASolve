@@ -3631,3 +3631,20 @@ coordinate seeds; their covalent proxies agree. Ownership itself makes no chemic
 claim and permits no retry. Promoting the whole scientific callback, sharing its
 budget and coordinating complete acquisition remain the next integration steps.
 See the [contract](cif-doctor.md#isolated-qualification-process-evidence-c165).
+
+
+### Independently qualifying both coordinate seeds (C166)
+
+The existing isolated qualification protocol is now a maintained engine adapter.
+It freezes the declared source and candidate, builds both coordinate controls,
+verifies exact native consumption and requires each control to be usable with the
+same covalent proxies. A shared cooperative allowance limits the explicit job.
+Saved evidence is rechecked without the original SDK or executing captured code.
+The existing store receives its established qualification format; later cache hits
+avoid native work and retain the original numerical recipe and producer.
+
+Methods reuse the existing chemical/native checks and exact consumer pins, with
+process ownership from C165 and an in-memory version of the unchanged control
+serializer. Real PDU/5PC and relocated controls pass. This supports isolated
+numerics; whole-acquisition recovery, ordinary adoption, linked construction and
+refinement remain separate. See the [contract](cif-doctor.md#maintained-two-seed-qualification-c166).

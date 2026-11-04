@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-11-03",
+    "updated_date": "2026-11-04",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -27974,6 +27974,21 @@
         "No merge authorization"
       ],
       "implementation_revision": "4e0e61204b2541191bf217830b309e2f6caeec33"
+    },
+    "candidate_qualification_execution": {
+      "milestone": "C166",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 qualification adapter/allowance/readback complete; acquisition request/recovery next",
+      "contract": "docs/cif-doctor.md#maintained-two-seed-qualification-c166",
+      "evidence_key": "candidate_qualification_execution_2026_11_04",
+      "summary": "Maintained owned executor/callback shares a cooperative allowance and supplies strict portable scientific readback.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Explicit isolated qualification only; no linked/ordinary adoption or refinement support expansion",
+        "Final atomic publication/cleanup cooperative; recorded elapsed is pre-publication",
+        "Whole-acquisition request, discovery, total budget, retry/recovery and broader fallback still open",
+        "No new Linux execution or full suite; no merge authorization"
+      ]
     }
   },
   "audience": [

@@ -47,8 +47,9 @@ limits, serializes callers, and creates a fresh numbered attempt only after prio
 work is known stopped; complete acquisition recovery remains separate.
 
 The isolated qualification protocol now has a separate two-job process owner
-sharing the same cleanup/inspection backend. Its full scientific callback and
-acquisition-wide budget/recovery still require integration.
+sharing the same cleanup/inspection backend. A maintained explicit callback now
+qualifies both coordinate seeds within a shared allowance and replays their saved
+evidence without the SDK. Acquisition-wide budget/recovery still requires integration.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Maintained isolated candidate qualification (C166)
+
+- Promote the two-coordinate-seed qualification protocol into a maintained owned
+  executor and lazy callback for cache-first acquisition, preserving scientific
+  validators, explicit representation permission and existing store qualification.
+- Share a cooperative elapsed allowance across preflight, controls and readback;
+  preserve partial failures and publish success only after both seeds qualify.
+- Add strict portable scientific readback, frozen input/consumer/process bindings,
+  and exact report-field validation. Extract the unchanged isolated model serializer
+  for non-mutating replay; existing generated control bytes remain identical.
+- New execution schema is separate from existing cache and C165 ownership formats.
+  No migration, automatic retries, ordinary adoption or new chemistry support claim.
+
 ### Isolated qualification process ownership (C165)
 
 - Reuse the prepared process backend with fixed operation-specific scopes, keeping

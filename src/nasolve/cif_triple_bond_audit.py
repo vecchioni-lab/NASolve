@@ -141,20 +141,30 @@ def audit_triple_bonds(reference,code,*,dictionary=None,native=None):
     return report
 
 
-def write_component_control_model(source,code,output):
-    """Write a separate single-residue PDB from complete declared ideal seeds."""
-    source,output=Path(source).resolve(strict=True),Path(output).absolute();original=source.read_bytes()
+def component_control_model_bytes(source,code):
+    """Derive the exact isolated control bytes without creating any artifact."""
+    source=Path(source).resolve(strict=True);original=source.read_bytes()
     v=_values(source,code);elements=_graph(v)[0];family,xyz=_coordinates(v,source=True)
-    if (not re.fullmatch(r'[A-Z0-9]{1,3}',code) or len(xyz)!=len(elements) or len(elements)>99999
-            or output.resolve().is_relative_to(source.parent) or output.exists() or output.is_symlink()
-            or any(p.is_symlink() for p in output.parents)):
+    if (not re.fullmatch(r'[A-Z0-9]{1,3}',code) or len(xyz)!=len(elements) or len(elements)>99999):
         raise ValueError('Require a fresh output and complete representable component coordinates')
     lines=[]
     for i,(name,element) in enumerate(elements.items(),1):
         if not re.fullmatch(r"[A-Za-z0-9'*]+",name) or len(name)>4 or len(element)>2 or any(not math.isfinite(x) or abs(x)>=999 for x in xyz[name]):raise ValueError('Unrepresentable isolated control atom')
         x,y,z=xyz[name];lines.append(f'HETATM{i:5d} {name:>4s} {code:>3s} A   1    {x:8.3f}{y:8.3f}{z:8.3f}  1.00 20.00          {element:>2s}\n')
-    output.parent.mkdir(parents=True,exist_ok=True)
-    with output.open('x') as f:f.write(''.join(lines)+'END\n')
+    payload=(''.join(lines)+'END\n').encode()
     if source.read_bytes()!=original:raise ValueError('Component control source changed')
-    return {'coordinate_origin':family,'source_sha256':sha256(source.read_bytes()).hexdigest(),'model_sha256':sha256(output.read_bytes()).hexdigest(),
+    return payload, {'coordinate_origin':family,'source_sha256':sha256(original).hexdigest(),'model_sha256':sha256(payload).hexdigest(),
             'scope':'SEPARATE_SOURCE_SEED_COMPONENT_CONTROL_PDB_ROUNDED','experimental_model_used':False}
+
+
+def write_component_control_model(source,code,output):
+    """Write a separate single-residue PDB from complete declared ideal seeds."""
+    source,output=Path(source).resolve(strict=True),Path(output).absolute();original=source.read_bytes()
+    if (output.resolve().is_relative_to(source.parent) or output.exists() or output.is_symlink()
+            or any(p.is_symlink() for p in output.parents)):
+        raise ValueError('Require a fresh output and complete representable component coordinates')
+    payload,evidence=component_control_model_bytes(source,code)
+    output.parent.mkdir(parents=True,exist_ok=True)
+    with output.open('xb') as f:f.write(payload)
+    if source.read_bytes()!=original:raise ValueError('Component control source changed')
+    return evidence

@@ -24,7 +24,7 @@ PROFILES = {
         'test_cif_preparation_qualification', 'test_cif_linked_preparation',
         'test_cif_linked_usability_bridge', 'test_cif_terminal_preparation',
         'test_cif_candidate_usability', 'test_cif_purine_representation',
-        'test_cif_repaired_component_runtime', 'test_cif_repair_attempt', 'test_cif_repair_process', 'test_cif_candidate_qualification', 'test_cif_prepared_repair_execution', 'test_cif_prepared_repair_budget', 'test_cif_dictionary_bundle_repair', 'test_cif_captured_full_monomers', 'test_cif_captured_linear_attribution', 'test_cif_linear_torsion_bundle', 'test_cif_linked_torsion_energy', 'test_cif_linked_linear_torsion', 'test_cif_linear_torsion_candidate',
+        'test_cif_repaired_component_runtime', 'test_cif_repair_attempt', 'test_cif_repair_process', 'test_cif_candidate_qualification', 'test_cif_candidate_qualification_execution', 'test_cif_prepared_repair_execution', 'test_cif_prepared_repair_budget', 'test_cif_dictionary_bundle_repair', 'test_cif_captured_full_monomers', 'test_cif_captured_linear_attribution', 'test_cif_linear_torsion_bundle', 'test_cif_linked_torsion_energy', 'test_cif_linked_linear_torsion', 'test_cif_linear_torsion_candidate',
         'test_cif_captured_geometry_trial', 'test_cif_captured_mixed_gradients', 'test_cif_furanose_bridge', 'test_cif_base_anchored_furanose', 'test_cif_furanose_reaction', 'test_cif_whole_furanose', 'test_cif_fana_placement', 'test_cif_fana', 'test_cif_fana_enantiomer', 'test_cif_fana_component',
         'test_cif_stereochemistry_audit', 'test_cif_terminal_qualification',
         'test_cif_source_classification', 'test_cif_attachment_profiles',
@@ -34,7 +34,7 @@ PROFILES = {
     'workflow': (
         'test_curated_cif_loops',
         'test_test_suites', 'test_cif_doctor_selection', 'test_cif_dictionary_store',
-        'test_cif_generation_acquisition', 'test_cif_repair_attempt', 'test_cif_repair_process', 'test_cif_candidate_qualification', 'test_cif_prepared_repair_execution', 'test_cif_prepared_repair_budget', 'test_cif_retained_acquisition', 'test_cif_generation_attempt', 'test_cif_generation_process', 'test_cif_source_candidate', 'test_campaign_process',
+        'test_cif_generation_acquisition', 'test_cif_repair_attempt', 'test_cif_repair_process', 'test_cif_candidate_qualification', 'test_cif_candidate_qualification_execution', 'test_cif_prepared_repair_execution', 'test_cif_prepared_repair_budget', 'test_cif_retained_acquisition', 'test_cif_generation_attempt', 'test_cif_generation_process', 'test_cif_source_candidate', 'test_campaign_process',
         'test_cif_source_reuse', 'test_cif_dictionary_policy', 'test_cif_dictionary_sites', 'test_cif_dictionary_bundle', 'test_cif_dictionary_bundle_readyset', 'test_cif_readyset_atom_order', 'test_cif_component_runtime', 'test_cif_runtime_bundle', 'test_cif_mixed_runtime_bundle', 'test_cif_phosphate_names', 'test_cif_native_context', 'test_cif_native_monomers', 'test_cif_postmr_cache', 'test_postmr_cache_workflow',
         'test_postmr_component_inputs', 'test_cif_postmr_cached_model',
         'test_postmr', 'test_postmr_phosphate', 'test_postmr_context',

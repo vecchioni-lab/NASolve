@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-03** from software validation, native receipts and verified geometry/DF
+Updated **2026-11-04** from software validation, native receipts and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,71 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C166 validated: maintained two-seed qualification and allowance
+
+Base `f34cd46f063fbc67758e73283820c25d39c5f4be`; existing Cedar only.
+Capsule `live_tests_directory/166_Cedar_two-seed-qualification-f1iziky0`.
+Before, C158/C159 callers supplied scientific qualification callbacks; C165 supplied
+only their process owner. After, a maintained executor/lazy callback runs both
+coordinate seeds, shares one cooperative allowance, binds exact consumer/inputs,
+and returns unchanged isolated qualification only when both checks and covalent
+proxy comparison pass. SDK-independent readback rederives models and native proof.
+
+History checked: C158/C159 callback semantics, C162 deadline boundaries, C165
+ownership, existing strict native capture/consumer/input readers. Reused scientific
+gates and exact serialization; no phosphate/OP3, sugar, stereo, NAR, threshold,
+selection or refinement changes. Whole-acquisition ownership remains Q04.
+
+**Validation:** 4 import errors before implementation; initial 4 pass. Expanded
+regressions exposed an extra forged report field, now rejected. **40 new cases;
+373 affected tests passed in 42.43s.** Workflow: **1168 passed, 45 subtests passed in 168.00s (0:02:47)**.
+All 608 source/test/script hashes remain fixed. **No full suite, as requested.**
+Last full-tested implementation remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_candidate_qualification_execution.py tests/test_cif_candidate_qualification.py tests/test_cif_candidate_usability.py tests/test_cif_triple_bond_audit.py tests/test_cif_generation_acquisition.py tests/test_cif_retained_acquisition.py tests/test_cif_dictionary_store.py tests/test_cif_repair_process.py tests/test_cif_native_validation.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c166_native_r2.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c166_native_finish.py
+PYTHONDONTWRITEBYTECODE=1 python c166_cold.py
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1**, not dry-runs: PDU and 5PC
+pass both coordinate seeds through the maintained acquisition callback. Subsequent
+cache hits run no native process; original recipe/producer and earlier model
+serialization are preserved. Six actual native calls include a two-second PDU
+control passing in **1.794s**. A one-second allowance refuses
+before launch and leaves a stopped owner without a qualification report.
+The first helper failed before native work on an older ledger shape. The second
+wrongly expected two seconds to be insufficient; its successful output was kept
+and verified without rerunning. Both helper limitations are retained in evidence.
+Synthetic tests additionally cover owned timeout/partial-output cleanup,
+interruption, frozen-input changes, every deadline boundary and forged reports.
+
+Cold replay passes three completed qualifications/six native seeds, two cache
+snapshots and the withheld control. Original copied checkout absent; old checkout,
+SDK/input/output paths and execution denied. All 340 files retain bytes/mtimes.
+No generation, ReadySet, Coot, optimization or diffraction refinement. Actual
+execution is macOS only; scientific scope remains isolated components.
+
+Changed: new execution/readback/callback module, pure model-byte serializer,
+regressions/profile, contracts/overview/caption, queue and both ledgers. New schema 1
+`cif-two-seed-qualification-execution-v1`; existing cache qualification and C165
+ownership schemas unchanged. No migration. Native limits 1–600s (default 90),
+total 1–3600s (default 180); final publication/cleanup are cooperative, and elapsed
+is measured before final publication. Failed/interrupted outputs require fresh
+locations and grant no retry authority. Source/tests/docs only are published;
+scientific data, captures, records, logs/XML and runners remain local/ignored.
+
+**Next Q04:** acquisition-wide request/attempt identity, one shared allowance and
+conservative recovery across discovery/generation/qualification/prepared repair.
+Then broaden qualified fallback for early failures/no-repair candidates. Q05
+adoption, Q06 refinement, Q13 state authority and Q07 held-out builder challenge
+remain queued. No merge authorization. No active jobs.
+Evidence key `candidate_qualification_execution_2026_11_04`.
+— Rowan · Codex desktop
 
 ## C165 published: shared process ownership for isolated qualification
 

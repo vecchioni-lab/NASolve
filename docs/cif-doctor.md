@@ -242,6 +242,61 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Maintained two-seed qualification (C166)
+
+`cif_candidate_qualification_execution.execute_candidate_qualification(source,
+candidate, code, consumer, phenix, output, ...)` now implements the existing
+C158/C159 isolated qualification protocol. It preserves exact source/candidate
+bytes, verifies the configured current consumer, and rejects a source-chemistry
+contradiction before launching. Both coordinate models are derived by the same
+serializer as the historical control writer. The candidate dictionary is tested
+at source and candidate coordinates under the fixed isolated PHIL. Each capture
+must pass the existing chemical/native usability checks, exact input/consumer
+binding and maintained-worker readback; both covalent proxy signatures must agree.
+No residue-code whitelist or alternative chemical validator is introduced.
+
+`make_candidate_qualifier(phenix, code, ...)` returns the four-argument callback
+accepted by `resolve_generated_dictionary`. Creating it does not discover or run
+the SDK. A qualifying call returns the existing source-seed qualification unchanged
+only after both controls pass. Existing cache/store schemas and recipe/producer
+provenance remain authoritative; a cache hit does not call the adapter.
+
+The fresh output freezes source/candidate, models, PHIL and protocol/consumer under
+`inputs`, with C165 ownership records outside native capture inventories. Schema 1
+`cif-two-seed-qualification-execution-v1` publishes `qualification_execution.json`
+only after successful checks and verified process cleanup. All operational refs
+use `qualification_directory` anchors with hashes. The report binds its input
+protocol, both captures, both scientific qualifications, ownership header/seal,
+file inventory and elapsed allowance. Unknown extra report fields are rejected.
+
+`read_candidate_qualification(output)` is non-mutating and independent of the SDK.
+It regenerates model bytes in memory, verifies exact inventories and process/input/
+consumer bindings, replays both scientific checks and compares the proxy signatures.
+Captured code and saved argv are never executed. A report alone cannot replace
+missing/contradictory native proof. Partial work has no usable report; its C165
+process state remains separately inspectable without retry permission.
+
+Defaults are 90 seconds per native job and 180 seconds total; explicit integer
+limits are 1–600 and 1–3600 seconds respectively. The monotonic total starts before
+preflight; each job gets at most the whole seconds remaining. Boundary checks
+refuse late preflight, preparation, capture, derivation and pre-publication work.
+Cleanup and final atomic publication are cooperative, not a hard wall-clock kill;
+the recorded elapsed value is measured before final publication. Exceptions retain
+all partial output and preserve the original error if sealing also fails. Repeated
+calls require fresh output. This does not own a whole acquisition request, source
+discovery, retries, linked chemistry, ordinary adoption or diffraction refinement.
+
+Validation: 40 new cases; 373 affected tests; focused workflow and real Phenix
+2.2.1-6174 / dispatcher 2.2.1 qualification/cache controls. PDU and 5PC pass both
+coordinate seeds; exact earlier model bytes, original recipes and producer
+provenance survive. A real two-second PDU control passes in 1.794s; a one-second
+allowance refuses before launch. Cold replay validates three completed two-seed
+qualifications, two cache snapshots and the withheld control with originals and
+execution denied; 340 files retain bytes/mtimes. Synthetic owned-worker timeout
+and interruption tests cover cleanup. No full suite, generation, ReadySet, Coot,
+optimization or refinement execution; macOS evidence does not establish Linux or
+connected-polymer qualification.
+
 ### Isolated qualification process evidence (C165)
 
 `cif_candidate_qualification.CandidateQualificationProcesses(root)` owns the two

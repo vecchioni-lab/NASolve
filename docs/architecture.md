@@ -1082,6 +1082,15 @@ are unchanged. This low-level owner grants neither scientific qualification nor
 retry authority; the maintained two-seed callback and acquisition-wide allowance
 remain separate. See [qualification process evidence](cif-doctor.md#isolated-qualification-process-evidence-c165).
 
+C166 composes the existing source reassessment, two-seed native usability and proxy
+comparison with C165 ownership. The lazy callback feeds unchanged qualification
+into the store; cache hits remain independent of native execution. A pure extraction
+of the historical model serializer supports exact, non-mutating saved-seed replay.
+One cooperative allowance covers the explicit qualification before final atomic
+publication. Readback binds consumer/input/worker/process inventories and rederives
+both qualifications; it rejects extra approval claims. Source discovery and complete
+acquisition recovery remain separate. See [maintained qualification](cif-doctor.md#maintained-two-seed-qualification-c166).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

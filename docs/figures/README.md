@@ -361,3 +361,8 @@ C165 shares that process backend with the two isolated qualification jobs. Its
 records prove execution ownership, not usable chemistry or ordinary adoption.
 The scientific callback/total acquisition budget remain pending; no new diagram
 arrow or blanket modified-ligand support is implied.
+
+C166 implements the existing two-seed isolated qualification box as a maintained
+owned callback with a cooperative allowance and portable scientific readback.
+Its output feeds the existing qualified store. Whole-acquisition orchestration
+and ordinary-adoption arrows remain pending; no chemical scope expansion is drawn.

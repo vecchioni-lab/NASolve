@@ -71,6 +71,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C165 shares the process backend with a distinct two-job isolated qualification
   owner and reader; legacy repair records remain compatible. The full callback
   and acquisition-wide budget/recovery remain the next Q04 integration step.
+  C166 adds the maintained two-seed scientific callback, shared qualification
+  allowance and strict SDK-independent readback. Whole-acquisition coordination
+  remains open; qualification does not authorize ordinary adoption.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry
