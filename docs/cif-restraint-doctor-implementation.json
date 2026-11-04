@@ -27977,7 +27977,7 @@
     },
     "candidate_qualification_execution": {
       "milestone": "C166",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 qualification adapter/allowance/readback complete; acquisition request/recovery next",
       "contract": "docs/cif-doctor.md#maintained-two-seed-qualification-c166",
       "evidence_key": "candidate_qualification_execution_2026_11_04",
@@ -27988,7 +27988,8 @@
         "Final atomic publication/cleanup cooperative; recorded elapsed is pre-publication",
         "Whole-acquisition request, discovery, total budget, retry/recovery and broader fallback still open",
         "No new Linux execution or full suite; no merge authorization"
-      ]
+      ],
+      "implementation_revision": "1717c6af269c9842d7f937a022c108b77c65c6dd"
     }
   },
   "audience": [

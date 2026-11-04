@@ -65721,7 +65721,7 @@
   },
   "candidate_qualification_execution_2026_11_04": {
     "milestone": "C166",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "base_revision": "f34cd46f063fbc67758e73283820c25d39c5f4be",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Scientific two-seed qualification was caller-supplied.",
@@ -66522,6 +66522,7 @@
       "Whole-acquisition request, discovery, total budget, retry/recovery and broader fallback still open",
       "No new Linux execution or full suite; no merge authorization"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "1717c6af269c9842d7f937a022c108b77c65c6dd"
   }
 }

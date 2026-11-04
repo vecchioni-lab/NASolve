@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C166 validated: maintained two-seed qualification and allowance
+## C166 published: maintained two-seed qualification and allowance
 
 Base `f34cd46f063fbc67758e73283820c25d39c5f4be`; existing Cedar only.
 Capsule `live_tests_directory/166_Cedar_two-seed-qualification-f1iziky0`.
@@ -74,6 +74,7 @@ Then broaden qualified fallback for early failures/no-repair candidates. Q05
 adoption, Q06 refinement, Q13 state authority and Q07 held-out builder challenge
 remain queued. No merge authorization. No active jobs.
 Evidence key `candidate_qualification_execution_2026_11_04`.
+Implementation `1717c6af269c9842d7f937a022c108b77c65c6dd` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C165 published: shared process ownership for isolated qualification
