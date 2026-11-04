@@ -3619,3 +3619,15 @@ saved reports; the existing scientific gates still decide usable chemistry.
 The allowance is per prepared execution. Broader acquisition, ordinary PostMR
 adoption and refinement qualification remain the next integration boundaries.
 See the [contract](cif-doctor.md#prepared-repair-requests-and-immutable-attempts-c164).
+
+
+### Owning independent qualification jobs (C165)
+
+The two isolated coordinate controls now share campaign process protection through
+a distinct qualification owner. Frozen input checksums, invocation identities and
+verified-stop seals keep unfinished work inspectable. The same backend preserves
+older prepared-repair records without migration. Real PDU/5PC controls pass both
+coordinate seeds; their covalent proxies agree. Ownership itself makes no chemical
+claim and permits no retry. Promoting the whole scientific callback, sharing its
+budget and coordinating complete acquisition remain the next integration steps.
+See the [contract](cif-doctor.md#isolated-qualification-process-evidence-c165).

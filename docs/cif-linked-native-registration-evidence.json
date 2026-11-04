@@ -65204,5 +65204,518 @@
       "tests/test_cif_repair_attempt.py"
     ],
     "implementation_revision": "6576852f435af6787a2d1d0c3a7cb3581bcdb0b8"
+  },
+  "candidate_qualification_process_2026_11_03": {
+    "milestone": "C165",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "75532c83477b165d81182f2244b20db45fd84e7f",
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Isolated qualification was caller-owned; repair process backend was operation-specific.",
+    "after": "Shared private process scope preserves repair schemas and adds distinct two-phase qualification owner/reader.",
+    "prior_work": [
+      "C158/C159 two independent coordinate seeds and matching covalent proxy signatures",
+      "C163 owned process record/read protocol",
+      "C164 immutable attempt binding"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_candidate_qualification.py",
+      "src/nasolve/cif_repair_process.py",
+      "tests/test_cif_candidate_qualification.py"
+    ],
+    "schemas": [
+      "New cif-candidate-qualification-process-v1 schema 1; qualification_directory anchor",
+      "Existing repair schemas and optional attempt bindings unchanged"
+    ],
+    "compatibility": "No migration; POSIX cleanup; no scientific API or native worker change",
+    "regression": {
+      "before": "6 failed imports before implementation",
+      "new_cases": 15,
+      "affected": {
+        "active": false,
+        "pid": 45210,
+        "runner_pid": 45209,
+        "phase": "affected-r2",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_candidate_qualification.py",
+          "tests/test_cif_candidate_usability.py",
+          "tests/test_cif_repair_process.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_prepared_repair_budget.py",
+          "tests/test_cif_generation_acquisition.py",
+          "tests/test_cif_retained_acquisition.py",
+          "tests/test_cif_native_validation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/165_Cedar_candidate-ownership-pj4rxb1l/affected-r2.xml"
+        ],
+        "started_utc": "2026-11-04T00:42:47.060011+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 37.937,
+        "sources_unchanged": true,
+        "source_files": 606
+      },
+      "focused": {
+        "active": false,
+        "pid": 46230,
+        "runner_pid": 46229,
+        "phase": "focused",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/165_Cedar_candidate-ownership-pj4rxb1l/focused.xml"
+        ],
+        "started_utc": "2026-11-04T00:43:52.871943+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 162.205,
+        "sources_unchanged": true,
+        "source_files": 606
+      },
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 4.441,
+      "native_calls": 4,
+      "parent_bytes_mtimes_unchanged": true,
+      "runtime_sources_unchanged": true,
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "scope": "ISOLATED_COMPONENT_ONLY; CALLBACK_NOT_YET_MAINTAINED",
+      "cases": {
+        "PDU": {
+          "status": "PASS",
+          "seeds": 2,
+          "native_usable_both": true,
+          "covalent_proxy_signatures_equal": true,
+          "ownership": "STOPPED"
+        },
+        "5PC": {
+          "status": "PASS",
+          "seeds": 2,
+          "native_usable_both": true,
+          "covalent_proxy_signatures_equal": true,
+          "ownership": "STOPPED"
+        }
+      }
+    },
+    "relocation": {
+      "status": "PASS",
+      "qualification_processes": 4,
+      "isolated_native_readback": 4,
+      "legacy_C163": "STOPPED_WITHOUT_MIGRATION",
+      "legacy_C164": "EXHAUSTED_WITHOUT_MIGRATION",
+      "original_copy_absent": true,
+      "historical_paths_and_launches_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 1211
+    },
+    "evidence_refs": {
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected-r2-result.json",
+        "sha256": "2b1f1199e403ff0517ffde309feac302293e5d68aa79234a5c5e24fb042f8f6f",
+        "size": 959
+      },
+      "affected-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected-r2-sources.json",
+        "sha256": "2b94adf13c7cfe264194929ffcf1b8a69fdc89917191a7af98782b43515e8232",
+        "size": 66116
+      },
+      "affected-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected-r2.log",
+        "sha256": "f4fa936f52f318aac8e4242614bcb50007e8353efa19810568ea4c486129afc8",
+        "size": 421
+      },
+      "affected-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected-r2.xml",
+        "sha256": "4a3e6fef90c77f4e3956997a8554d39e7fca7c5b6afdbe4b80bf2aa7afd6fa2c",
+        "size": 48455
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected-result.json",
+        "sha256": "7ee9412d1d01de40ad50e348d95c7b2aa3eb5a2f20a9be631326937206f88ad7",
+        "size": 953
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected-sources.json",
+        "sha256": "fd4fa62079d42366dccb44a1ec8924d44fe18fe2e04886816cb7b0de6f452aee",
+        "size": 66116
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected.log",
+        "sha256": "ff4a97f3bd4169f01739a2e00ef1bacacbf8797a15b154e74cd7c9bd0a9d85e6",
+        "size": 421
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/affected.xml",
+        "sha256": "aee345ac52abb797328b7d3dc0614af9cb3cf9b71fba1b1f8d44333800e19261",
+        "size": 47188
+      },
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/base.json",
+        "sha256": "763cdaaa74461871952e904482e1d80c10d5c90c7effc4766106b820ee57991c",
+        "size": 195
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/before-result.json",
+        "sha256": "b06d8c756df456d467a9f7802440c1618e839de88a3c0b4d2d297437732d71d1",
+        "size": 587
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/before-sources.json",
+        "sha256": "7623e69640a7ebbd433829b4cbf5df240289cfbf16e625b146905b3d6028631e",
+        "size": 66000
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/before.log",
+        "sha256": "84442da0fbe0315037fd36a77d02c3f306e48837e91a720dabe90cde4e8e1e2f",
+        "size": 4734
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/before.xml",
+        "sha256": "6910263126856a1edde175291f3e14e4ff8da5adbdb1dbab1de235f0abdf100b",
+        "size": 5119
+      },
+      "cold/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/cold/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/cold/stdout.txt",
+        "sha256": "f4054a3cc2046f5ef938ecbeb08739e0656075c0317ad13c3643bf5752734c44",
+        "size": 293
+      },
+      "cold/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/cold/summary.json",
+        "sha256": "0a5e59088c4af7c4505e187bf7fa33b1be422c2c79410565a6d78ccbfbbda8e8",
+        "size": 313
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/focused-result.json",
+        "sha256": "63386b08d2fc32fed88282dce4ec6f49c39f0c658e7e495579c939a4c61de926",
+        "size": 492
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/focused-sources.json",
+        "sha256": "2b94adf13c7cfe264194929ffcf1b8a69fdc89917191a7af98782b43515e8232",
+        "size": 66116
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/focused.log",
+        "sha256": "78ac2c45541abba0a16ce7e1c2fd1bc0b50c83fdde022eb897974566144adf13",
+        "size": 5623
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/focused.xml",
+        "sha256": "cc9a040e56e953e2b8e63b5082acbbf4f9d283f30a76ff4e9752d68d79e2bdb0",
+        "size": 170330
+      },
+      "native/5PC/inputs/consumer.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/inputs/consumer.json",
+        "sha256": "c4e5747b01c75e9335bbb8cac0ffa222eed731e9f030c9ea6ee75f3bc97f382d",
+        "size": 2792
+      },
+      "native/5PC/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/inputs/protocol.json",
+        "sha256": "e79e91b881047f1dc374e173285316dad137b1e3eef3ba6905973a72662687a6",
+        "size": 117
+      },
+      "native/5PC/native/000/cif-native-d74ddpm3/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/native/000/cif-native-d74ddpm3/native_receipt.json",
+        "sha256": "900d4836df49f798debab13d2f476623487c5593aca6a0b4a3ddf089f9452b9f",
+        "size": 248972
+      },
+      "native/5PC/native/000/cif-native-d74ddpm3/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/native/000/cif-native-d74ddpm3/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/5PC/native/000/cif-native-d74ddpm3/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/native/000/cif-native-d74ddpm3/native_validation.json",
+        "sha256": "2439ec34ef2613e85b5ab35448c6677ff62f2837cb11688b91c850a7c2f280fd",
+        "size": 226407
+      },
+      "native/5PC/native/001/cif-native-mu19qjpb/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/native/001/cif-native-mu19qjpb/native_receipt.json",
+        "sha256": "653001af15bf6ec9be54c1ad661622c28a7e09712ee60dd9cd99ea0d41df3627",
+        "size": 249007
+      },
+      "native/5PC/native/001/cif-native-mu19qjpb/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/native/001/cif-native-mu19qjpb/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/5PC/native/001/cif-native-mu19qjpb/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/native/001/cif-native-mu19qjpb/native_validation.json",
+        "sha256": "86c7b95e866b56bb41ab62fba7595dc96698b84762db8a387dc9afc689a08456",
+        "size": 226439
+      },
+      "native/5PC/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/finished.json",
+        "sha256": "fe2c48a1f8129a7217645b7e4086f4a0a4991469809e69dca189ba47dcb5784d",
+        "size": 481
+      },
+      "native/5PC/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/phases/native-000/finished.json",
+        "sha256": "57a5ebb35053eb5ed1065ae49a9a9ae27e0497b0dde1db71a4282c3c9d6712d7",
+        "size": 451
+      },
+      "native/5PC/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/phases/native-000/job.json",
+        "sha256": "6ed5e2ea6de32f5a85712a4e54451002f0ec10019528eaced06e7b1e4885096c",
+        "size": 1067
+      },
+      "native/5PC/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/phases/native-000/process.json",
+        "sha256": "c5646e406361c112af4db749705c150e4eee6817a468ff42d85a010d4faba618",
+        "size": 482
+      },
+      "native/5PC/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/phases/native-001/finished.json",
+        "sha256": "194f9ca8e7b678974052b56c1697b4368b98ba19d097af1fff4babfcfec6c183",
+        "size": 451
+      },
+      "native/5PC/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/phases/native-001/job.json",
+        "sha256": "1911ed5ed75667e0c51c271eb9db61d820fadadc9de2337567d417450a5be29e",
+        "size": 1067
+      },
+      "native/5PC/ownership/phases/native-001/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/phases/native-001/process.json",
+        "sha256": "b0c2983562e09d509b8884b980b18e51f3cabac7921ee39cc2d0e5a207cabe6b",
+        "size": 482
+      },
+      "native/5PC/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/5PC/ownership/qualification.json",
+        "sha256": "f48e5256d75b596c274102558e96aceae8563e124b2e13e9aa32c726c7e28c33",
+        "size": 1650
+      },
+      "native/PDU/inputs/consumer.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/inputs/consumer.json",
+        "sha256": "c4e5747b01c75e9335bbb8cac0ffa222eed731e9f030c9ea6ee75f3bc97f382d",
+        "size": 2792
+      },
+      "native/PDU/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/inputs/protocol.json",
+        "sha256": "e79e91b881047f1dc374e173285316dad137b1e3eef3ba6905973a72662687a6",
+        "size": 117
+      },
+      "native/PDU/native/000/cif-native-0rctptdd/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/native/000/cif-native-0rctptdd/native_receipt.json",
+        "sha256": "18c2528e7dbfeefeaf15fe7008493e0d364e6d4d99cd9d1957775272c2505df7",
+        "size": 242500
+      },
+      "native/PDU/native/000/cif-native-0rctptdd/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/native/000/cif-native-0rctptdd/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/PDU/native/000/cif-native-0rctptdd/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/native/000/cif-native-0rctptdd/native_validation.json",
+        "sha256": "f3cccccfc84b7ca9069b70fe0575e03dd91070e6adc29d263ee899b357ffd9f6",
+        "size": 220292
+      },
+      "native/PDU/native/001/cif-native-rk3rmmej/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/native/001/cif-native-rk3rmmej/native_receipt.json",
+        "sha256": "ae9f05c5a89737fb69203623b61964ce61ac73815a69fd4480f4b8d41d2eb021",
+        "size": 243539
+      },
+      "native/PDU/native/001/cif-native-rk3rmmej/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/native/001/cif-native-rk3rmmej/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/PDU/native/001/cif-native-rk3rmmej/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/native/001/cif-native-rk3rmmej/native_validation.json",
+        "sha256": "961cc10659262b0d1fce03dd59b641d564d5fbce762d49c9490936e8163d339e",
+        "size": 221327
+      },
+      "native/PDU/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/finished.json",
+        "sha256": "21828156592866848e5519e81c9099ca5c9abb7653a4e662e81581f579f57aa5",
+        "size": 481
+      },
+      "native/PDU/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/phases/native-000/finished.json",
+        "sha256": "de5320c7dd2a350dc07004cec7f5f344dc759a3686c0f95b3401e593a1a4aa9b",
+        "size": 451
+      },
+      "native/PDU/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/phases/native-000/job.json",
+        "sha256": "e87744f489c09f35ed5e5fc93c44bf85a21eb65c286130e29256e6438dbe2d87",
+        "size": 1067
+      },
+      "native/PDU/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/phases/native-000/process.json",
+        "sha256": "23277dc1b8681caf9ea8f5f281f9bc6d0200d3f7493a4afbde4c41359645030a",
+        "size": 482
+      },
+      "native/PDU/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/phases/native-001/finished.json",
+        "sha256": "9f6b0c5e831e51571f159bf893e50b90afd90f11fa0b4f0f093a79cc19edc0a7",
+        "size": 451
+      },
+      "native/PDU/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/phases/native-001/job.json",
+        "sha256": "7d0004c05d8d5b4fffdace67626bd4c3fd6f2d5942b43fd809041ba59d95b3e1",
+        "size": 1067
+      },
+      "native/PDU/ownership/phases/native-001/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/phases/native-001/process.json",
+        "sha256": "f5a40bd7c7eb986d1f8b975f34147b653063007f3ef2a8c4665c88243fcd513c",
+        "size": 482
+      },
+      "native/PDU/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/PDU/ownership/qualification.json",
+        "sha256": "c46423d0f59575ca2642c49983cbe1132e18fd4b1ca31253bf1ec30b955f84b7",
+        "size": 1650
+      },
+      "native/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/installation.json",
+        "sha256": "c839320092d00c18ea3e95821e9482174ce71b277f370970b1ba88af8fdb4359",
+        "size": 110
+      },
+      "native/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/parent-inputs.json",
+        "sha256": "16088a38e25ae1e6ebf0fe31d25315b98d65da0a0e309cf4dea8ad36aa541243",
+        "size": 1857
+      },
+      "native/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/runtime-sources.json",
+        "sha256": "47a8fa037225a98f253c97c7c0078e0f286f3c38892070a4ca4230f09b9f8038",
+        "size": 21414
+      },
+      "native/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "165_Cedar_candidate-ownership-pj4rxb1l/native/summary.json",
+        "sha256": "68674717c5e64be94cca63903a3893f2f1e4ec9c32aaf257de70d38cf005fe7e",
+        "size": 2458900
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_candidate_qualification.py",
+        "tests/test_cif_candidate_usability.py",
+        "tests/test_cif_repair_process.py",
+        "tests/test_cif_repair_attempt.py",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_prepared_repair_budget.py",
+        "tests/test_cif_generation_acquisition.py",
+        "tests/test_cif_retained_acquisition.py",
+        "tests/test_cif_native_validation.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/165_Cedar_candidate-ownership-pj4rxb1l/affected-r2.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/165_Cedar_candidate-ownership-pj4rxb1l/focused.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c165_native.py",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c165_cold.py"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174; dispatcher 2.2.1; actual not dry-run"
+    },
+    "artifacts": "Only code/tests/docs published. Scientific payloads, records, logs/XML, cold copies and runners local/ignored.",
+    "limitations": [
+      "Ownership primitive only; full independent scientific callback remains caller-owned",
+      "No qualification total budget, complete acquisition lock/recovery or automatic retry",
+      "No connected-polymer, ReadySet, Coot, optimization or refinement execution",
+      "No fresh Linux execution or full regression",
+      "No merge authorization"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

@@ -46,6 +46,10 @@ never authorizes a retry. An explicit request wrapper freezes the inputs and
 limits, serializes callers, and creates a fresh numbered attempt only after prior
 work is known stopped; complete acquisition recovery remains separate.
 
+The isolated qualification protocol now has a separate two-job process owner
+sharing the same cleanup/inspection backend. Its full scientific callback and
+acquisition-wide budget/recovery still require integration.
+
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.
 Source-qualified graph repairs can also be frozen with their evidence and

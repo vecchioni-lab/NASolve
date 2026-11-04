@@ -27957,6 +27957,22 @@
         "Actual native/process controls ran on macOS, not a fresh Linux validation. Scientific scope remains separated PDU/5PC diagnostic, not mixed-scaffold chemistry or refinement."
       ],
       "implementation_revision": "6576852f435af6787a2d1d0c3a7cb3581bcdb0b8"
+    },
+    "candidate_qualification_process": {
+      "milestone": "C165",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 ownership primitive complete; qualification callback/budget and acquisition coordination next",
+      "contract": "docs/cif-doctor.md#isolated-qualification-process-evidence-c165",
+      "evidence_key": "candidate_qualification_process_2026_11_03",
+      "summary": "Shared private process scope preserves repair schemas and adds distinct two-phase qualification owner/reader.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Ownership primitive only; full independent scientific callback remains caller-owned",
+        "No qualification total budget, complete acquisition lock/recovery or automatic retry",
+        "No connected-polymer, ReadySet, Coot, optimization or refinement execution",
+        "No fresh Linux execution or full regression",
+        "No merge authorization"
+      ]
     }
   },
   "audience": [

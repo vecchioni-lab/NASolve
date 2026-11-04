@@ -356,3 +356,8 @@ ordinary adoption/retry arrow is claimed; request recovery remains pending.
 C164 wraps that prepared branch in a frozen request and finite immutable attempts.
 The lock/recovery boundary adds execution ownership, not a new chemical approval
 or ordinary-adoption arrow. Complete acquisition coordination remains pending.
+
+C165 shares that process backend with the two isolated qualification jobs. Its
+records prove execution ownership, not usable chemistry or ordinary adoption.
+The scientific callback/total acquisition budget remain pending; no new diagram
+arrow or blanket modified-ligand support is implied.

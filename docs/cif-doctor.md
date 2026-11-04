@@ -242,6 +242,44 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Isolated qualification process evidence (C165)
+
+`cif_candidate_qualification.CandidateQualificationProcesses(root)` owns the two
+native jobs in the existing source-seed/candidate-seed qualification protocol.
+Prepare all explicit inputs under `root/inputs` first, including dictionaries,
+models, consumer/policy records and PHIL. The owner freezes their exact file
+inventory, creates `ownership/qualification.json`, and supplies
+`runner("native-000")` / `runner("native-001")` to the native adapter; use capture
+parents `root/native/000` and `root/native/001`. Each phase may run once. Call
+`finish("RETURNED")` or `finish("RAISED")` after execution; it seals only known
+stopped phases. Preserve the original error if secondary sealing fails.
+
+`inspect_candidate_qualification_processes(root)` is read-only. Its schema-1
+`cif-candidate-qualification-process-v1` records use `qualification_directory`
+anchors, an `inputs` reference and `input_files` checksums, with invocation/seal
+bindings named `qualification_sha256`. Optional parent attempt binding follows
+the existing request/attempt digest-and-UUID contract. Unknown publication or
+cleanup stays unknown; observed inactivity never grants retry authority. Saved
+argv is provenance only. The shared implementation preserves C163 repair policy,
+field names, anchors and C164 attempt bindings without migration.
+
+This layer records execution, not scientific completion: even a sealed owner with
+zero or one job is not qualified chemistry. Callers still must run both seeds,
+apply `qualify_candidate_native` independently and require identical covalent
+proxy signatures. The full callback remains caller-owned; its maintained adapter,
+shared cooperative allowance and complete acquisition request/recovery are the
+next Q04 step. No ordinary adoption or automatic retry is enabled. Native limits
+remain per job (greater than zero, at most 600 seconds); there is no total budget
+in this low-level owner. POSIX campaign cleanup is required.
+
+Validation: 15 new cases; 314 affected tests; 1,128 workflow tests + 45 subtests.
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 passes four isolated PDU/5PC jobs,
+both coordinate seeds and matching covalent proxies. Cold relocation reads new
+ownership/scientific captures plus old C163/C164 records with originals and
+execution denied; 1,211 copied files retain bytes/mtimes. No full suite, ReadySet,
+Coot, generation, optimization or diffraction refinement was run. This is macOS
+execution evidence, not a new Linux or connected-polymer qualification.
+
 ### Prepared-repair requests and immutable attempts (C164)
 
 `cif_repair_attempt.execute_prepared_dictionary_repair_attempt(bundle, phenix,

@@ -11,6 +11,64 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C165 validated: shared process ownership for isolated qualification
+
+Base `75532c83477b165d81182f2244b20db45fd84e7f`; existing Cedar only.
+Capsule `live_tests_directory/165_Cedar_candidate-ownership-pj4rxb1l`.
+Before, independent qualification lived in caller callbacks with no distinct
+maintained process owner. After, a private scope-based backend supports the
+original prepared repair protocol and a separate two-job qualification owner.
+It freezes inputs, preserves immutable job identities, records verified cleanup
+and observes stopped/live/unknown without mutation or retry authorization.
+
+History checked: C158/C159 require both source/candidate coordinate seeds to pass
+independently with identical covalent proxies. C163 already supplies process
+identity/cleanup and coordinator-before-worker read ordering; C164 binds attempts.
+Those contracts are reused. No native worker, chemistry gate, phosphate/OP3 rule,
+NAR boundary, scientific selection or acceptance threshold changed.
+
+**Validation:** six failing-before import cases; 15 final new cases. Affected
+**314 passed in 37.76s**; focused workflow **1,128 passed + 45 subtests in 161.96s**.
+All 606 source/test/script hashes remained fixed. **No full suite, as requested.**
+Last full-tested implementation remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_candidate_qualification.py tests/test_cif_candidate_usability.py tests/test_cif_repair_process.py tests/test_cif_repair_attempt.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_budget.py tests/test_cif_generation_acquisition.py tests/test_cif_retained_acquisition.py tests/test_cif_native_validation.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c165_native.py
+PYTHONDONTWRITEBYTECODE=1 python c165_cold.py
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1**, not dry-runs: all four
+PDU/5PC isolated native jobs pass, source/candidate seed covalent proxies agree,
+and both owners seal stopped (4.441s combined). Parent bytes/mtimes and
+runtime source hashes are unchanged. Cold replay from a relocated temporary
+checkout passes new ownership and all four scientific qualifications plus old
+C163/C164 ownership/request records without migration. Original copy absent;
+old checkout, SDK, scientific input and output paths and process execution denied.
+All 1,211 copied files retain bytes/mtimes. No generation, ReadySet, Coot,
+optimization or diffraction refinement. Actual execution was macOS only.
+
+Changed: scoped process backend, qualification owner/reader, tests/profile,
+contracts, overview/caption, queue and ledgers. New schema 1
+`cif-candidate-qualification-process-v1` uses `qualification_directory` references;
+repair schemas and parent bindings stay compatible. Source/tests/docs only are
+published; raw scientific inputs/captures, local records, XML/logs and runners stay
+local/ignored. No artifact migration or production adoption.
+
+**Next Q04:** promote the existing complete two-seed callback into a maintained
+adapter using this owner, add its shared cooperative budget and exact scientific
+readback, then coordinate discovery/acquisition/repair under one durable request.
+This checkpoint completes the ownership primitive only: it does not yet replace
+caller-supplied qualification or own a total deadline. Broader qualified fallback,
+Q05 adoption, Q06 refinement, Q13 state authority and Q07 held-out builder challenge
+remain queued. No merge authorization. No active jobs.
+Wall-clock discontinuities exceeded the intended session window; scope was narrowed
+to this tested foundation instead of starting the larger callback integration.
+Evidence key `candidate_qualification_process_2026_11_03`.
+— Rowan · Codex desktop
+
 ## C164 published: prepared requests and fresh-attempt recovery
 
 Base `01568007c2d5973939bb3843d58514ebdb4a03f9`; existing Cedar only.

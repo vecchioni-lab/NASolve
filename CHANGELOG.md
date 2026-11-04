@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Isolated qualification process ownership (C165)
+
+- Reuse the prepared process backend with fixed operation-specific scopes, keeping
+  existing repair record schemas and recovery bindings compatible.
+- Add a distinct two-job isolated qualification owner and non-mutating reader,
+  binding frozen inputs, invocation intent, child identity and verified cleanup.
+  Missing identity and uncertain cleanup remain unknown; no saved command replay.
+- Validate real PDU/5PC source/candidate seeds, legacy repair replay and relocation.
+  This process layer does not qualify chemistry, own the full callback, provide a
+  total acquisition budget or enable ordinary adoption. Focused tests only.
+
 ### Prepared-repair requests and fresh-attempt recovery (C164)
 
 - Add an explicit request wrapper freezing prepared input bytes, phase/total

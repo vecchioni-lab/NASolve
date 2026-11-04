@@ -1074,6 +1074,14 @@ Partial output remains immutable. Scientific selection/adoption and acquisition-
 wide coordination stay separate; see
 [prepared requests](cif-doctor.md#prepared-repair-requests-and-immutable-attempts-c164).
 
+C165 parameterizes that backend with private immutable operation scopes rather
+than duplicating process lifecycle logic. Isolated qualification binds a separate
+input inventory and two native phases under its own schema/anchor. Existing
+repair records retain their original fields; scientific workers and thresholds
+are unchanged. This low-level owner grants neither scientific qualification nor
+retry authority; the maintained two-seed callback and acquisition-wide allowance
+remain separate. See [qualification process evidence](cif-doctor.md#isolated-qualification-process-evidence-c165).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements
