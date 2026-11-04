@@ -28,7 +28,7 @@ from .phaser import execute_phaser
 from .postmr import prepare_postmr
 from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
-from .campaign_policy import (workflow_policy, continuation_warning,
+from .campaign_policy import (autosol_policy, workflow_policy, continuation_warning,
     select_provisional_recommendation, record_runtime_policy)
 from .anomalous_expectations import iodine_refinement_audit
 
@@ -229,6 +229,7 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         dataset=files, mode=mode, frame=frame,
         pair_text=effective.get("pair"), pair=pair,
         force_text=force_text, force_pair=force_pair,
+        restraint_scope=effective.get("restraint_scope"),
         model=model, model_source=effective["model_source"],
         model_pair=model_pair,
         exact_pair_model=exact_pair_model,
@@ -343,11 +344,54 @@ def execute_stage(
         if run.parent != root / name / "AutoMR" or not re.fullmatch(r"run_\d{3,}", run.name):
             raise CampaignStageError("Campaign run must be one numbered AutoMR directory")
     workflow = workflow_policy(policy)
+    phase_policy = None
+    if stage in {"autosol", "autorefine"}:
+        try:
+            phase_policy = autosol_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
     config = load_config()
     report = _read_report(run / "report.json") if run is not None else None
     if report is not None and report.get("workflow") != "automr":
         raise CampaignStageError("Campaign stage requires an AutoMR run")
-    if stage == "autosol" and not _autosol_required(report):
+    if stage in {"autosol", "autorefine"}:
+        anomalous_required = _autosol_required(report)
+    disabled = None
+    if phase_policy is not None and phase_policy["policy"] == "disabled":
+        disabled = {
+            "status": "SKIPPED", "policy": "disabled",
+            "reason": phase_policy["reason"], "use_for_refinement": False,
+            "nucleotide_candidates_present": anomalous_required,
+        }
+    if stage == "autosol" and phase_policy["policy"] == "disabled":
+        # Preserve candidate classification and observation bytes. This is an
+        # explicit phase-stage opt-out, not a claim that anomalous atoms vanished.
+        if ((run / "AutoSol").exists()
+                or (report.get("autosol") is not None and report["autosol"] != disabled)):
+            raise CampaignStageError("Disabled AutoSol refuses an existing AutoSol execution/report")
+        report["autosol"] = disabled
+        path = run / "report.json"
+        temporary = path.with_name("campaign-autosol-disabled.tmp")
+        with temporary.open("x", encoding="utf-8") as handle:
+            json.dump(report, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+        temporary.replace(path)
+        warnings = list((_postmr_report(report).get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
+        outcome = {
+            "status": "SKIPPED",
+            "message": f"AutoSol disabled by frozen recipe: {phase_policy['reason']}; refinement uses no experimental phases",
+            "autosol_policy": phase_policy, "use_for_refinement": False,
+            "nucleotide_candidates_present": anomalous_required,
+            "scientific_warnings": warnings,
+        }
+        automation = record_runtime_policy(run, policy, stage, outcome)
+        snapshot = _snapshot_report(root, attempt, run)
+        return {**outcome,
+            "run": run.relative_to(root).as_posix(), "artifacts": [snapshot],
+            "run_report_snapshot": snapshot, "tool_versions": {},
+            **({"automation_policy": workflow} if automation is not None else {}),
+        }
+    if stage == "autosol" and not anomalous_required:
         warnings = list((_postmr_report(report).get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
         outcome = {"status": "SKIPPED", "message": (
             "No detected nucleotide anomalous candidate; inspect iodine warnings"
@@ -360,7 +404,11 @@ def execute_stage(
             "run_report_snapshot": snapshot, "tool_versions": {},
             **({"automation_policy": workflow} if automation is not None else {}),
         }
-    if stage == "autorefine" and _autosol_required(report):
+    if stage == "autorefine" and disabled is not None:
+        if (report.get("autosol") != disabled or (run / "AutoSol").exists()):
+            raise CampaignStageError("Phase-disabled refinement requires the frozen AutoSol skip and no AutoSol execution")
+    if (stage == "autorefine" and phase_policy["policy"] != "disabled"
+            and anomalous_required):
         autosol = _object(report.get("autosol"), "Accepted AutoSol report")
         if (autosol.get("status") != "AUTOSOL_READY"
                 or autosol.get("use_for_refinement") is not True):
@@ -419,12 +467,6 @@ def execute_stage(
         stage_directory = result.postmr_directory
         required = [result.model_path, result.readyset_log, *result.restraint_paths]
     elif stage == "autosol":
-        autosol_policy = _object(policy.get("autosol"), "AutoSol policy")
-        allowed_autosol = [{"policy": "when-anomalous", "on_unaccepted": "inspect"}]
-        if workflow["mode"] == "full-auto":
-            allowed_autosol.append({"policy": "when-anomalous", "on_unaccepted": "continue-without-phases"})
-        if autosol_policy not in allowed_autosol:
-            raise CampaignStageError("Unsupported campaign AutoSol policy")
         result = execute_autosol(
             run, _program(phenix, "phenix.autosol"), _program(phenix, "phenix.mtz.dump"),
             environment=phenix.environment,
@@ -457,6 +499,7 @@ def execute_stage(
             phenix_version=phenix.version, environment=phenix.environment,
             from_checkpoint="postmr", recipe=refine_policy["recipe"],
             macro_cycles=refine_policy["cycles"],
+            **({"use_experimental_phases": False} if phase_policy["policy"] == "disabled" else {}),
         )
         stage_directory = result.round_directory
         required = [result.log_path]

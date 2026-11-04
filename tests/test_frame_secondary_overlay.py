@@ -2,6 +2,8 @@
 
 Uses the *real committed* NARestraints workbook and the packaged W template.
 No fixture swaps a modified pair's identity or stubs its atom-role generator.
+The DF compatibility regression explicitly covers its historical and corrected
+workbook atom-role mapping independently of the installed workbook version.
 """
 from __future__ import annotations
 
@@ -92,7 +94,33 @@ def _run(tmp_path: Path, *, changed: bool = True,
     return model, source, secondary, pair_file
 
 
-def test_two_modified_scaffold_pairs_are_replaced_by_atom_role_recipes(tmp_path):
+@pytest.mark.parametrize(
+    "df_o2,expected_corrections",
+    [
+        ("S2", [{
+            "ligand_code": "DF", "canonical_atom": "O2",
+            "before": "S2", "after": "S1", "scope": "process-local",
+        }]),
+        ("S1", []),
+    ],
+    ids=["legacy-DF-mapping", "corrected-DF-mapping"],
+)
+def test_two_modified_scaffold_pairs_are_replaced_by_atom_role_recipes(
+    tmp_path, monkeypatch, df_o2, expected_corrections,
+):
+    from restraints import residue_library
+
+    # Keep the actual workbook's identities and every other mapped atom role.
+    # Only the reviewed DF O2 migration is made explicit, so both dependency
+    # versions exercise the production correction and pair generator.
+    records = load_residue_records()
+    df_records = [record for record in records if record.get("Ligand code") == "DF"]
+    assert len(df_records) == 1
+    df_records[0]["O2"] = df_o2
+    monkeypatch.setattr(
+        residue_library, "load_residue_records",
+        lambda: [dict(record) for record in records],
+    )
     model, source, secondary, pair_file = _run(tmp_path)
     original_text = source.read_text(encoding="utf-8")
     original_pair = pair_file.read_text(encoding="utf-8")
@@ -120,10 +148,8 @@ def test_two_modified_scaffold_pairs_are_replaced_by_atom_role_recipes(tmp_path)
     assert t_a["old_saenger_class"] == 20
     assert t_a["narestraints_recipe"] == "AT"
     assert t_a["explicit_bond_count"] == 2
-    assert result["workbook_compatibility_corrections"] == [{
-        "ligand_code": "DF", "canonical_atom": "O2",
-        "before": "S2", "after": "S1", "scope": "process-local",
-    }]
+    assert result["workbook_compatibility_corrections"] == expected_corrections
+    assert df_records[0]["O2"] == df_o2
 
     effective = secondary.read_text(encoding="utf-8")
     assert effective.count("base_pair {") == 15

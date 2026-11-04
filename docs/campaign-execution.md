@@ -17,9 +17,9 @@ The original TestSets plan does not gain these permissions retroactively.
 `--through refine-doctor` applies in the initial run as well as on resume.
 A newly reached AutoRefine REVIEW with an eligible preserved checkpoint
 continues in the same invocation under the normal receipt/integrity checks.
-The default `autorefine` endpoint still stops for inspection. MR/AutoSol
-reviews and technical failures do not acquire Doctor eligibility. A
-recommendation remains unselected, and a completed Doctor receipt is not
+The guarded default `autorefine` endpoint still stops for inspection. MR/AutoSol
+reviews and technical failures do not acquire Doctor eligibility. Under guarded
+policy a recommendation remains unselected, and a completed Doctor receipt is not
 executed again. Stage-boundary pause requests still take precedence.
 
 The prior post-stage loop used a narrower status-only test than resume;
@@ -82,10 +82,11 @@ exercise the phased path separately:
 
 Omitting `--dataset` runs all eligible datasets in the frozen plan. Repeating
 the option selects several exact planned names. `--through` accepts
-`preflight`, `phaser`, `postmr`, `autosol` or `autorefine` (the default). A stage
-boundary leaves the attempt paused with its next stage recorded. A later
-`run` resumes from that boundary. Requests cannot admit an unplanned dataset
-or silently replace a frozen input.
+`preflight`, `phaser`, `postmr`, `autosol`, `autorefine` or `refine-doctor`.
+Without it, the frozen recipe's Doctor policy selects the endpoint; guarded
+defaults end at AutoRefine. A stage boundary leaves the attempt paused with its
+next stage recorded. A later `run` resumes from that boundary. Requests cannot
+admit an unplanned dataset or silently replace a frozen input.
 
 An explicit Phenix installation applies to this invocation:
 
@@ -119,6 +120,7 @@ Representation ambiguity still stops that dataset for inspection.
 | `MR_FAILED` | Record `NO_SOLUTION` for this bounded attempt |
 | PostMR fails, or required output validation fails | Preserve the attempt and record its diagnostic |
 | No supported anomalous candidate | Record the AutoSol skip and continue ordinary refinement |
+| Schema-2 AutoSol policy explicitly disabled with a reason | Record the policy skip without calling AutoSol; refine the PostMR model without experimental phases |
 | AutoSol does not return accepted phases | Stop for inspection under the frozen preset's `on_unaccepted = "inspect"` policy |
 | `AUTOREFINE_REVIEW` | Preserve the unselected checkpoint and stop for inspection |
 | Numerical refinement passes | Record `SOLVED`, the checkpoint, `numerical_success = true`, and `inspection_required = true` |
@@ -126,8 +128,18 @@ Representation ambiguity still stops that dataset for inspection.
 `SOLVED` is the current numerical workflow outcome. It is not structural
 approval or deposition readiness. The normal model compatibility, R-factor,
 observation and Free-R checks remain in place. Raw validation scores and
-scientific warnings remain in the stage reports. No automatic Refine Doctor
-branch selection is introduced in this executor.
+scientific warnings remain in the stage reports. Under guarded policy, Refine
+Doctor recommendations are not automatically selected. Full-auto provisional
+selection follows only the explicit frozen policy described above.
+
+An explicit AutoSol-disabled skip retains the PostMR anomalous report and
+observation/Free-R inputs. The stage receipt and live run report record its
+frozen reason and whether nucleotide anomalous candidates were present.
+Refinement requires that matching skip and refuses an existing AutoSol
+execution/report; the campaign's first-refinement guard also refuses an existing
+AutoRefine directory. This fresh path creates phase-free checkpoints for
+subsequent Doctor trials. Numerical results against synthetic donor data remain
+mechanics evidence, not scientific validation of the proposed chemistry.
 
 One dataset reaching `BLOCKED`, `NO_SOLUTION` or `AWAITING_INSPECTION` does not
 stop other selected datasets. A subsequent `run` does not bypass these states
@@ -206,129 +218,21 @@ Status checks read the frozen plan and execution record without launching tools.
 Exit code `0` does not approve the structure. Read the per-dataset state,
 checkpoint, integrity and diagnostic fields when automating the command.
 
-## Historical four-member W live validation — 2026-09-28
+## Preserved native validation
 
-The following is a **dated native checkpoint**, not an active campaign or
-the current next action. It records a disposable real-environment validation
-of the W coordinator independently of the newer nonstandard-provider path.
-For active work see the [current handoff](development-handoff.md) and the
-[later full-auto native checkpoint](full-auto-patch-handoff.md). The sandbox
-is `/tmp/NASolve-W-live-20260928` and contains clean top-level copies of:
+The historical four-member W campaign completed planning, preflight, Phaser
+and PostMR for all four members. Its unattended refinement resume produced
+three SOLVED outcomes and a preserved QiC review; the later explicit
+campaign-owned QiC Doctor continuation produced a recommendation without
+changing current. These checks established the scoped W orchestration path,
+not geometry-diverse prepared-nonstandard execution.
 
-- `DOHU`;
-- `QiC_120325_0513`;
-- `QE_120325_0607`; and
-- `EG_091325-0302`.
-
-The planning-only phase has now been completed successfully:
-
-```text
-4 total
-4 DISCOVERED
-0 blocked
-frozen input integrity OK
-runtime: Python 3.12.14 / NARestraints 1.1.2 /
-         Phenix 2.2.1 / Coot 1.3.3
-```
-
-All four members froze the expected W recipe chemistry with D:1 as the explicit
-5-prime-phosphate/OP3 site. No scientific stage had been launched at the time
-of that check.
-
-The bounded **PostMR** phase has now completed successfully for all four
-datasets. Every member completed preflight, Phaser and PostMR in campaign-owned
-`AutoMR/run_001`; campaign and status both exited 0, frozen integrity remained
-`OK`, and all four paused at the next conditional AutoSol gate.
-
-The coordinator's generic `next_stage = autosol` display is a stage-boundary
-label, not evidence that AutoSol is scientifically required. At execution time,
-the stage engine verifies PostMR's anomalous report. If
-`autosol_required = false`, it records accepted status `SKIPPED` and does not
-launch `phenix.autosol`.
-
-The next live command can therefore simply resume to the ordinary default
-endpoint:
-
-```bash
-./nasolve campaign run /tmp/NASolve-W-live-20260928
-./nasolve campaign status /tmp/NASolve-W-live-20260928
-```
-
-A plain campaign run defaults through AutoRefine. This is already unattended
-within the fixed built-in stage order: each dataset independently evaluates
-conditional AutoSol, skips or runs it as appropriate, then advances to
-AutoRefine unless a scientific gate stops that dataset.
-
-The unattended resume has now completed:
-
-- DOHU: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
-- EG_091325-0302: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
-- QE_120325_0607: AutoSol `SKIPPED`, `SOLVED`, `refine-001`;
-- QiC_120325_0513: `AUTOSOL_READY`, then `AWAITING_INSPECTION` at
-  `refine-001` because numerical refinement acceptance failed. The final
-  refinement had Rwork/Rfree = 0.1646/0.1561
-  (`Rfree - Rwork = -0.0085`), clashscore 32.23, and a terminal-phosphate
-  geometry audit `PASS` with maximum normalized deviation 1.74 sigma. Its
-  iodine `B:4` anomalous site refined to f'' = 7.51547 at wavelength
-  1.377618 A. `refine-001` remained REVIEW/non-current; current stayed
-  `postmr`.
-
-The campaign ended `COMPLETE_WITH_FLAGS` with frozen integrity `OK`.
-Run/status exit code 3 correctly represented the QiC review case while the other
-three datasets completed independently.
-
-This closes the **real W orchestration smoke validation**. It demonstrates
-one-command multi-dataset progression, conditional AutoSol skip/run behavior,
-independent dataset stops, exact run/checkpoint ownership and a useful final
-solution/review list. It does **not** count as the prepared-nonstandard
-geometry-diverse Pine live gate.
-
-Future campaign-recipe work should make the **workflow endpoint and conditional
-graph explicit frozen recipe data** rather than leaving the endpoint implicit in
-the executor default. Refine Doctor escalation also needs to become a
-campaign-owned transition before it is used on a campaign-owned run: standalone
-Doctor appends history to `RUN/report.json`, while the completed AutoRefine
-campaign receipt intentionally freezes/checksums that report. Running standalone
-Doctor after the receipt would therefore appear as out-of-band report drift.
-Pine now contains a campaign-owned Refine Doctor bridge with that shape: an
-explicit optional `refine-doctor` stage after `AUTOREFINE_REVIEW`, exact
-AutoRefine receipt dependency, report-integrity checking, and preserved
-non-auto-selection semantics. The default campaign endpoint remains AutoRefine;
-Doctor runs only when explicitly continued through the Doctor boundary until
-workflow-recipe policy is implemented.
-
-The real QiC campaign continuation has now succeeded: Doctor consumed
-`refine-001`, ran `RefineDoctor/ML-fixed-scattering`, and produced
-`refine-002` with Rwork/Rfree = 0.1500/0.1502. It returned
-`REFINE_DOCTOR_RECOMMEND`, preserved `postmr` as current, and did not
-auto-select the candidate. Focused regression passed 4 tests + 4 subtests. After correcting the obsolete
-CLI expectation, the campaign executor CLI passed 9 tests + 4 subtests, the
-entire campaign family passed 132 tests + 85 subtests, and the full NASolve
-regression passed 688 tests + 224 subtests. Patch/doc hygiene also passed.
-The campaign-owned Refine Doctor continuation is therefore **regression + live
-validated** for its current explicit scope.
-
-The intended workflow-recipe policy is simple at the human level: a recipe may
-include **"apply Doctor as needed"** or omit it. Omission leaves an eligible
-review as an inspection stop. Opt-in permits the campaign to enter only
-validated, bounded stage-specific Doctor transitions when their eligibility
-conditions are met. It does not mean "try arbitrary fixes", and it does not by
-itself select a Doctor recommendation as current.
-
-The same review/inspection transitions must be operable from both control
-surfaces. CLI prompts/commands and future GUI actions are alternate interfaces
-to the same backend operations: inspect/open in Coot, yes/no confirmation,
-continue from review, inspect Doctor candidates, and explicitly select a
-checkpoint.
-
-**Next live campaign stress test:** use the user-local `examples/TestSets/`
-folder (roughly nine datasets) as one frozen campaign and execute from MR through
-`--through refine-doctor` in a single invocation. Each member should advance
-independently through conditional AutoSol, AutoRefine and, only when refinement
-lands in review, the campaign-owned Doctor stage. The success criterion is not
-"nine green statuses at any cost"; it is one command producing the maximum
-scientifically valid set of solved/recommended/inspection outcomes while
-preserving any honest blockers.
+The complete dated results, exact historical runtime and test counts are
+[archived](history/campaign-execution-2026-10-10-pre-reconciliation.md.txt).
+The separately executed four-member full-auto campaign and provisional Doctor
+selection are recorded in the [full-auto checkpoint](full-auto-patch-handoff.md).
+Neither receipt is a request to repeat a completed campaign. Current remaining
+checks are owned by the [development handoff](development-handoff.md).
 
 ## Validation limits
 
@@ -340,7 +244,7 @@ including relocation, plus a mixed W/nonstandard campaign under one
 coordinator.
 
 Real geometry-diverse campaign execution with the user's Phenix/Coot
-installations remains the next live gate. The existing standalone DOHU
+installations remains a separate live gate. The existing standalone DOHU
 validation does not by itself validate every campaign recovery path, the QiC
 phased path on a new Phenix installation, or a 3-5 member prepared-nonstandard
 campaign.

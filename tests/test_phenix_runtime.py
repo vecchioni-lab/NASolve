@@ -33,6 +33,7 @@ class PhenixRuntimeTests(unittest.TestCase):
             self.assertEqual(installation.root, root.resolve())
             self.assertIn("phenix.mtz.dump", installation.executables)
             self.assertIn("phenix.autosol", installation.executables)
+            self.assertIn("phenix.python", installation.executables)
 
     def test_path_discovery(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -52,6 +53,16 @@ class PhenixRuntimeTests(unittest.TestCase):
             )
             self.assertTrue(installation.source.startswith("standard location"))
             self.assertEqual(installation.version, "9.8.7")
+
+    def test_native_python_from_other_installation_is_not_selected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            selected = Path(directory) / "selected"
+            selected_bin = self.fake_install(selected)
+            (selected_bin / "phenix.python").unlink()
+            foreign_bin = self.fake_install(Path(directory) / "foreign")
+            installation = installation_from_candidate(selected, base_environment={"PATH": str(foreign_bin)})
+            self.assertNotIn("phenix.python", installation.executables)
+            self.assertEqual(installation.executables["phenix.phaser"], (selected_bin / "phenix.phaser").resolve())
 
 
 if __name__ == "__main__":

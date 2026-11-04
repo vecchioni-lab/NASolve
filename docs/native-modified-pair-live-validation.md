@@ -1,46 +1,78 @@
 # Native modified-base pair matrix — live validation ledger
 
-Updated **2026-10-08**. **Z:P + off-pair 5CM:G/DF:A integration:
-SOLVED numerically, user visual PASS.** User now requests **one combined
-D:T+B:S+Z:P+K:X W challenge** before isolated follow-up controls;
-this simultaneous native experiment is **NOT RUN**.
-Upstream **NARestraints v1.1.3 is released**, and the audited NASolve
-Saenger-overlay [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-**merged into Pine** at `0017081` after green integrated regression. This file is the current scientific/evidence
-ledger; the detailed original attempt chronology is
-[archived](history/native-modified-pair-2026-10-08-pre-consolidation.md).
-See the [compact handoff](development-handoff.md) for project-wide priority.
+Updated **2026-10-14** from user visual review, returned native output and checksum-verified
+geometry, DF candidate, repaired-native and minimization bundles.
+**Combined W: PostMR PASS; generic linkage mechanics PASS; custom restraint
+coverage recorded; repaired 5CM/DF native interpretation PASS; minimization
+COMPLETED_AWAITING_REVIEW in its receipt; user visual PASS; DP native
+interpretation PASS; DP geometry trial completed awaiting review; full
+qualification PENDING.** This updates the earlier
+[exact ledger snapshot](history/native-modified-pair-live-validation-2026-10-10-pre-reconciliation.md.txt).
+See the [handoff](development-handoff.md) for current priorities.
+
+The separate **fresh synthetic DNA run** has now returned **MR_SUCCESS**
+(TFZ **13.10**, H 3), then **PostMR BLOCKED** on a generated IGU zero-length
+bond target. This new acquisition failure does not change the historical
+combined diagnostic's passes. See [the returned blocker](#fresh-synthetic-dna-run--returned-readyset-blocker).
+Independent optimized eLBOW generation has now removed the numerical collapse,
+and fresh v3 generation retains the source graph/hydrogens/formal charges as
+**CANDIDATE_REVIEW**. Metadata, native proxy and linked-site qualification
+remain open; the v2 chemical-state rejection remains historical evidence.
 
 ## What is actually green?
 
-| Gate | Current verdict | Evidence / boundary |
-| --- | --- | --- |
-| NARestraints Z:P + K:X role/stacking fix | **RELEASED v1.1.3** | [Release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`, wheel/sdist/SHA256SUMS, CI green Python 3.10/3.12/3.14. Committed `Ligands.xlsx` unchanged. |
-| NASolve PR #24 Saenger overlay | **MERGED into Pine; combined regression PASS** | User's exact reconciled `612881d` returned **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**, with real workbook-based 4-family simultaneous fixture. Native only tested for Z:P+5CM:G+DF:A previously. |
-| Native Z:P preparation, modified-W overlay | **PASS** | `run_003` PostMR: 17 original W pairs → 15 unchanged Saenger + 2 explicit modified pairs (5CM:G GC/3 contacts; DF:A AT/2). Z:P atom-role correction separately audited; 42 sequence-family targets, zero mismatches, no `force = G:C`. |
-| Native Z:P/W AutoRefine | **SOLVED (numerical)** | New `GZ11_ZP/AutoMR/run_003`, `refine-001`; frozen integrity OK; D:1 phosphate protection retained. No Rwork/Rfree numbers or final `.geo` metrics copied into this ledger. |
-| Human Coot review of `run_003` | **INSPECTED_PASS (overall visual only)** | User reported excellent refinement appearance, bonds and planes present and mild tolerable nonideal planarity. Individual-site map/clash/angular statistics and true experimental chemistry remain unverified. |
-| `nasolve show` workflow | **USER LIVE PASS** | PR #25 merged at `e8613bf`; user `workspace use` for existing `run_003`, then **bare `./nasolve show` succeeded in Coot**. New-campaign automatic workspace activation has regression, not yet this specific live exercise. |
-| Combined D:T+B:S+Z:P+K:X native W test | **PROPOSED, NOT STAGED/PLANNED/RUN** | One new dataset/model with four distinct named pair sites, plus 5CM:G and DF:A. **Workbook overlay regression passed**, but genuine native chemistry/monomer preparation is NOT RUN. IGU/IMC/CGY/DX CIFs still absent from committed resources. |
-| Five independent A:T/D:T/B:S/Z:P/K:X controls | **OPTIONAL DIAGNOSTIC FALLBACK; NOT RUN** | Retain released upstream staging helper for later failure isolation; do not mistake its five datasets for the requested simultaneous test. |
-| Independent source `1W5→DZ`, `1WA→DP` P2 | **SEPARATELY PENDING NATIVE** | This 42-residue synthetic-target W test does not exercise genuine source-code normalization. |
-| Prepared nonstandard P5, Registration/Topo/GUI | **SEPARATE WORKSTREAMS** | Their prior evidence and unfinished gates retain exactly their original scope. |
+- [x] NARestraints v1.1.3 released/installed, corrected Z:P/K:X roles;
+  committed workbook unchanged.
+- [x] PR #24 W Saenger overlay and PR #25 pathless viewing merged into Pine.
+  Earlier Z:P `run_003/refine-001`: numerical SOLVED and overall user visual PASS.
+- [x] Installed IGU/IMC/CGY/DX CCD lookup and isolated Coot construction.
+- [x] Frozen combined 42-target preflight, Phaser and PostMR.
+- [x] Native interpretation, fresh IMC structural audit and linked diagnostic.
+- [x] Exact custom-restraint target/weight coverage and duplicate checks.
+- [x] Supplied geometry bundle verified against all 23 manifest hashes; active
+  5CM and ReadySet DF defects identified.
+- [x] Fresh DF generated natively; source-graph/numerical-reference audit passed.
+- [x] Repaired native interpretation passed with the narrow 5CM correction and
+  linked DF candidate in a separate diagnostic; originals unchanged.
+- [x] Bounded combined geometry minimization completed; metrics and 57-file
+  evidence bundle returned, original inputs preserved.
+- [x] Source-preserving DP candidate and complete B:4 native interpretation
+  passed; original source and coordinates preserved.
+- [x] Geometry trial with the DP-native manager completed; 56-file evidence
+  bundle returned and original inputs preserved.
+- [x] Verify relief of the DP N5 conflict and preserved chirality/backbone links.
+- [x] User visual PASS for bases in the exact new DP geometry model; sugars not assessed by eye.
+- [x] User-reported Coot visual PASS for the exact relaxed model; all modified
+  pairs looked satisfactory and WC-like.
+- [x] Fresh source-acquisition run reached Phaser MR_SUCCESS; returned ReadySet
+  numerical defect and phosphate-state changes are checksum-verified.
+- [ ] Full numerical qualification and later refinement;
+  source-specific phosphate states remain explicit.
+- [ ] Fresh ordinary full-auto run without preselected numerical resources
+  or ad hoc linkage scripts.
+- [ ] Independent source-native P2 and geometry-diverse real P5 gates.
 
-**Chemistry caveat:** real GZ11 diffraction reflections were used with
-hypothetical modified target identities. Neither an automated SOLVED result
-nor an overall Coot PASS shows the *actual experimental GZ11 crystal* has
-Z:P, B:S, K:X, D:T, 5CM or DF, or permits deposition of such a model.
+**Evidence boundary:** Phenix **2.2.1-6174**, Coot **1.3.3**, NARestraints
+**1.1.3** were used in the native work. The later laptop check reports clean
+Cedar **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, matching the frozen
+combined manifest. This local unpublished head must not be replaced by a remote
+head or pulled over merely to continue the diagnostic. Earlier test counts do
+not certify its unidentified changes. The supplied bundles were inspected in a
+separate analysis environment; that analysis is not a new Phenix execution.
 
-## Next chemistry experiment — **one simultaneous four-family W model**
+Real GZ11 observations carry **hypothetical modified target chemistry**.
+Software success is not experimental identity validation or deposition approval.
+Independent A:T/D:T/B:S/Z:P/K:X datasets remain optional diagnostic controls,
+not a replacement for the combined test or an additional mandatory rerun.
 
-The user explicitly prefers to test **all four named modified-pair families
-in the same model**, so their common backbone, stacking, Saenger-template
-and effective-dictionary interactions are exercised together. This is a
-**single new synthetic-target W dataset**, not four independent 42-residue
-models. Retain the original frozen Z:P run untouched.
+## Frozen combined model and receipts
 
-The proposed pairing layout deliberately uses distinct source W sites
-that already have the corresponding canonical geometric class:
+Provenance anchor **LIVE** is the user's `~/NASolve-live-tests` directory.
+Combined root **COMBINED** is `LIVE/cedar-combined-w-cb3h3414`;
+run **RUN** is `COMBINED/dataset/AutoMR/run_001`;
+probe **PROBE** is `RUN/NativeInterpretation/probe-tfv94ryc`.
+These are retained evidence locations, not portable executable configuration.
+All relative paths below resolve against these explicit anchors.
 
 | Role | W pair sites | Original W geometry | Target component codes | Reviewed recipe |
 | --- | --- | --- | --- | --- |
@@ -59,112 +91,915 @@ restraining and packing. The `GC` and `AT` designations are shared
 `DA` is canonical DNA adenine. The test must never fabricate a
 `D:A` pair or write `force = G:C`.
 
-### Proposed 42-site sequence request — review before freezing
+### Frozen targets and native preparation
 
-This is a **candidate**, derived from the versioned
-`w-metal-scaffold` 21/7/7/7 site inventory and the existing
-reviewed `A1AAZ→DF` alias. The `pair = Z:P` route used successfully
-in `run_003` targets A:12/B:4; the other named pairs and prior off-pair
-modifications are supplied as site-specific chain sequence changes.
+The candidate layout above was staged and checked, superseding the October 9
+“not staged” status. Compiled targets, with source A:19 `(A1AAZ)` prepared as DF:
 
-```ini
-[automr]
-mode = standard
-frame = W
-pair = Z:P
-model = combined_input_W.pdb
-sequence_reference = w-metal-scaffold
-
-[sequences]
-A = GAGC(1AP)(IGU)(5CM)CTGTATGGACA(A1AAZ)(CGY)A
-C = GG(IMC)TGCT
-D = CT(DX)ATGT
+```text
+A: DG DA DG DC 1AP IGU 5CM DC DT DG DT DZ DT DG DG DA DC DA DF CGY DA
+B: DC DC DA DP DA DC DA
+C: DG DG IMC DT DG DC DT
+D: DC DT DX DA DT DG DT
 ```
 
-B remains the referenced canonical sequence until the explicit Z:P
-selector prepares B:4=DP. Verify the full compiled targets independently
-against the *actual* frozen 42-residue model. The tested Saenger overlay
-would see five modified template pairs (D:T, B:S, K:X, 5CM:G, DF:A):
-**17 inherited W Saenger blocks → 12 retained + 5 replaced**;
-the central Z:P site is already within the frame's ordinary
-`Std_padd` input. This exact combined configuration has **not**
-yet passed native preflight, PostMR or Phenix refinement.
+- Preflight: **READY_POST_MR_MUTATION**, 42/42 targets, D:1 terminal phosphate.
+- Phaser: **MR_SUCCESS**, TFZ **12.9**, LLG **210**; source inputs preserved.
+- PostMR: **POSTMR_READY**, 42/42 targets, `mismatches=[]`;
+  **17 → 12 retained + 5 replaced** Saenger blocks, **8 explicit pairs**,
+  stacking enabled, **13 effective restraint inputs**. All four frozen
+  generic dictionary hashes verified. OP3 removed at A:5/6/7/12/19/20,
+  B:4, C:10 and D:3 before restraints; none removed after ReadySet;
+  D:1 terminal phosphate preserved.
+- Receipts: `COMBINED/manifest.json`, `RUN/postmr_receipt.json`,
+  `RUN/postmr_driver.log`; model `RUN/PostMR/Model/readyset_model.pdb`.
+  The source bundle is `COMBINED/resource_bundle/data`.
+- Optional local replay fixture `LIVE/fixtures/nasolve-synthetic-combined-w-v1.zip`,
+  SHA-256 `9fcd0f70a646045156158a85e4fd7cedff833729bce49a0271502acf48b272a3`,
+  preserves the **PostMR baseline only**, not geometry qualification.
+  Its prepared dictionaries mean replay is not a fresh acquisition test.
 
 ### Dictionary availability is a hard prerequisite
 
-Actual NASolve Pine source audit on 2026-10-08 confirms packaged
-`S6G.cif`, `1AP.cif`, `DZ.cif`, `DP.cif`, `5CM.cif` and
-`DF.cif`, but **not `IGU.cif`, `IMC.cif`, `CGY.cif` or `DX.cif`**.
-`S6G` is thioguanine and is G-like, **not** the Benner S analogue;
-its existing CIF cannot substitute for `IMC`. The 2026-10-08
-user correction is supported by the published IMC-containing
-[PDB 7SDK](https://www.rcsb.org/structure/7SDK), but the exact S-role
-atom mapping must still pass the bundled-workbook regression.
-Resolve existing, authoritative Phenix/CCD monomer definitions for these
-**four** codes using a validated library-first pathway. Verify atom
-names, coordinates, component group, bonds, stereochemistry and source
-provenance; only then freeze a derived per-run dictionary or curate a
-known-problem exception. NARestraints workbook roles alone cannot define
-complete monomer geometry. If unavailable, **BLOCK** the combined native
-PostMR attempt with that reason; do not invent molecules, mislabel
-canonical ones or count a skipped chemistry case as a pass.
+A new [fresh DNA mechanics recipe](synthetic-dna-mechanics-test.md) now stages
+the same target sites from canonical coordinates, with four free 5′-OH ends
+and AutoSol explicitly disabled. Unlike the frozen trial below, it supplies no
+preselected numerical dictionary bundle. Offline input/planning checks passed;
+the returned native run reached Phaser and stopped at ReadySet numerical
+qualification, as recorded below. Generic linkage and refinement were not reached.
 
-The first candidate mixed-family unit run on the old S6G fixture
-returned **39 passed, 1 failed, 2 subtests passed**. The new case correctly
-stopped with `No reviewed NARestraints recipe for B:G` at A:6/C:10;
-NARestraints had read S6G as G-like. Following the user's correction, the candidate uses **IMC**, explicitly
-asserts the published workbook classifies it as Benner **S**, and checks
-exact pair contact counts. **The corrected mixed-family case passed
-1/1; full focused integration passed 40 + 2 subtests and full NASolve
-passed 967 + 226 subtests (85.38 s).**
+### Fresh synthetic DNA run — returned ReadySet blocker
 
-The released upstream
-[NARestraints five-case source stager](https://github.com/vecchioni-lab/NARestraints/blob/v1.1.3/scripts/stage_nasolve_pair_matrix.py)
-still stages **five separate** W datasets (A:T control, D:T, B:S,
-Z:P, K:X), not this simultaneous test. Keep it as an optional
-**diagnostic fallback** when an individual pair needs isolation.
-Do not point it at the combined root or conflate its manifest with
-the requested experiment. A reviewed **new source-only** combined
-stager/config and disjoint hashed copies are needed before planning.
+Fresh session **SYNTHETIC** is
+`LIVE/synthetic-dna-mechanics-om4jv7qq`; campaign root is
+`SYNTHETIC/synthetic-dna-combined-2n4kszi5`; fresh run is
+`dataset/AutoMR/run_001` relative to that root. These are historical evidence
+anchors, not executable host-specific configuration. The run staged all **42**
+DNA targets on fresh canonical coordinates with **four free 5′-OH ends**,
+AutoSol **disabled**, experimental phases **off**, and no prior numerical
+resource bundle. The source-bundled shuttle records NASolve source commit
+`edcc84a2979a065c15fdaf09347ddaa730800a05` and NARestraints source commit
+`a1fdaa8561f0889834283174d42bdcbbfd2fc5db`; the frozen laptop checkout was not
+updated to perform this test.
 
-## Execution gates — one frozen combined dataset, stage by stage
+The returned `NASolve_IGU_ReadySet_review_c00a25c1.zip` SHA-256 is
+`06896394ef173df67e066a469c34510d90bddb5c247df1163be98cc67888f6dd`.
+All **16** manifest entries were verified; manifest SHA-256 is
+`aaa3b4fa1dec426d6a07503c0c4e8a2fecb82989a494d61758cca63cc3a5a257`.
+The [machine-readable evidence](igu-readyset-generation-evidence.json) retains
+the exact file hashes and observed-field findings without committing the
+private input or generated CIF payloads.
 
-1. **Overlay integration complete:** PR #24 is merged to Pine at
-   `0017081`. The exact tested integrated candidate had all current Pine
-   code and passed **40 focused + 2 subtests**, **967 full + 226 subtests**.
-   It checks D:T, B:S (IGU:IMC), K:X, 5CM:G, DF:A against the real
-   NARestraints workbook, with Z:P retained in the frame Std_padd.
-   The native **all-family** experiment remains unrun. Verify installed
-   v1.1.3 imports/workbook checksum before new execution; do not
-   modify the dirty sibling NARestraints tree.
-2. **Source component dictionaries first:** review authoritative
-   `IGU`, `IMC`, `CGY`, `DX` monomer CIFs and atom-role compatibility, explicitly
-   documenting any missing names/dictionaries. No synthetic source data
-   becomes a release resource without scientific provenance.
-3. **Stage and freeze *one* combined challenge:** allocate a fresh disjoint
-   directory under `~/NASolve-live-tests`, hash/copy the real GZ11
-   reflections/CIF/summary and W search model, record the exact above
-   sequence request and aliases. Confirm all **42 compiled targets**,
-   4 named pair identities at 4 disjoint sites, 2 off-pair contextual
-   modifications, 5 Saenger replacements, and D:1 phosphate policy.
-   Do not reuse/alter any of `run_001`, `run_002`, `run_003`.
-4. **Native stages one at a time:** preflight → Phaser → PostMR →
-   conditional AutoSol → AutoRefine if preparation passes. Record exact
-   atom contacts and planes/stacking for **all four named families**,
-   source/effective dictionaries, Saenger overlay counts, target
-   mismatches, TFZ/LLG, Rwork/Rfree, map authority, Free-R and geometry
-   warnings. Preserve and diagnose any BLOCKED stage.
-5. **Human Coot review:** inspect all six paired sites, nearby backbone,
-   phosphate, sugar pucker, angular hydrogen bonds, stacking, difference
-   maps, clashes and actual `.geo` output. Record reviewer, date,
-   run/checkpoint, selected PHIL and `INSPECTED_PASS`,
-   `INSPECTED_REVIEW` or `INSPECTED_FAIL`; `SOLVED` alone never
-   grants experimental approval. Follow with **isolated five-member
-   controls only when diagnostic resolution demands it**.
+Phaser reports **MR_SUCCESS**, native exit **0**, TFZ **13.10**, LLG **196**,
+and input space group **H 3** (MTZ number **146**, matrix setting **R 3 :H**).
+Its report SHA-256 is
+`24686a54e315235ade0c038488c0220fc6ca9a353b0d4fdc621154971043037a`.
+This is separate from the older combined trial's TFZ **12.9** / LLG **210**.
+The report identifies Phenix **2.2.1** and the executable in installation
+**2.2.1-6174**; a new Coot version receipt was not included.
 
-**Scientific scope:** this remains a software compatibility test on
-unrelated GZ11 diffraction, *not* proof the original crystal contains
-the artificially requested bases or permission to deposit the model.
+PostMR is **BLOCKED**, with no selected prepared checkpoint, AutoSol or
+refinement. ReadySet's log records eLBOW execution for IGU and writing an output
+dictionary. In that dictionary IGU has **35 atoms**, complete atom energy types,
+**37 numerical bond terms / 65 angle terms**, but **C2–N3 = 0.000 ± 0.020 Å**.
+Both generated atom coordinates are **(−3.0660, 3.0937, −0.1804) Å**. The source
+has distinct supplier ideal coordinates. The defect is therefore a collapsed
+generated numerical candidate, not an unchanged raw CCD substituted for targets.
+The whole generated bundle SHA-256 is
+`1533ec9cf52fabc212f9ea59163f5a0db289311e38de0ef149762dc07db5da2e`;
+the frozen source IGU hash remains
+`1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f`.
+
+Generation independently altered IGU's chemical state: **37 → 35 atoms**,
+**39 → 37 bonds**, removal of **HOP2/HOP3** and their bonds, OP2/OP3 formal
+charges **0 → −1**, total formal charge **0 → −2**, and phosphate P–OP1/P–OP2/
+P–OP3 bond-order declarations changed to **DELOC**. No other retained bond-order
+difference was found after normalizing SINGLE/DOUBLE spelling. These edits
+are not approved polymer linkage changes or a generic protonation policy.
+They must be reported separately from numerical validity.
+
+The existing production rule preserving explicitly supplied numerical
+dictionaries is retained. A ReadySet rewrite alone is not authority to replace
+an input dictionary; the actual selected effective bundle must be audited.
+Recovery now targets **whole-component candidate regeneration from frozen
+graph plus supplier ideal coordinates**, with optimized eLBOW, provenance,
+source-state comparison and quarantine of nonpositive targets or collapsed
+bonded geometry. Candidate generation does not adopt a dictionary or certify
+linked-site chemistry. Fresh source/ReadySet/hook comparison, a viable native
+candidate, linkage interpretation and later refinement remain **pending**.
+No old successful candidate or minimized model is transplanted into this run.
+
+### Independent eLBOW candidate probe — CLI failure, no candidate
+
+The candidate probe is `LIVE/cif-generation-probe-fp4afs_7`; its attempted
+IGU directory is `candidates/cif-generation-9_t3qtnl` relative to that root.
+The returned `cif_generation_review.zip` SHA-256 is
+`dc6d798b74cece7518c831200d42e8f6a94813d746362f6f1394fb7b106bb129`;
+all **18** manifest entries were verified. Manifest SHA-256:
+`c573d1a01aa797f6a7da85883e0b6730dcbbd44a9a02c968f8f4143fc5b58909`.
+The [machine-readable CLI compatibility evidence](elbow-cli-compatibility-evidence.json)
+owns all file hashes, command options, the exact native failure and remaining
+layers. The archive's private inputs and generated seed stay outside Git.
+
+The probe inspected generic **CGY/DX/IGU/IMC**, selected only **IGU** for
+regeneration, and preserved all input hashes and the original failed PostMR
+run. The selected graph-only IGU source remains **37 atoms / 39 bonds**,
+formal charge **0**, SHA-256
+`1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f`.
+Its supplier-ideal naming/initial-geometry seed SHA-256 is
+`6c8df07a3dffafc445845f019568813dfe4ccf37dd0f0f0530fe9ad734aae068`.
+Writing this seed is not successful native interpretation or optimization.
+
+Installed Phenix **2.2.1-6174** eLBOW returned **exit 2**, elapsed **2.071012 s**,
+at command-line parsing: `no such option: --initial-geometry`. The native log
+SHA-256 is
+`c2b0d8d9a79fec1985da28617473dd7fdae002a6fa39a59a9bbcf3b4998c305c`;
+the IGU generation receipt SHA-256 is
+`ffdddb643b24b58612d4a1368a05be2c5f90b6dedf59281c9353a034c3b9614a`.
+No `candidate.cif` exists in the returned outputs. New generated chemistry,
+numerical geometry, optimization, native proxies and linkage are **unassessed**.
+The original and frozen source checksums remain unchanged. This is a wrapper
+compatibility failure, separate from the earlier actual ReadySet numerical
+collapse; it adds no chemical verdict about IGU.
+
+The top-level receipt's `CANDIDATES_AWAITING_REVIEW` is a **summary bug**:
+the actual generation receipt is **FAILED**, native exit **2**, with no candidate
+to review or adopt. Preserve that discrepancy as returned evidence; corrected
+summary logic must propagate generation failure rather than erase the old
+receipt. The next wrapper selects only aliases advertised by installed eLBOW
+`--help`, records the capability evidence, and preserves required seed naming,
+initial geometry, hydrogen, chirality and optimized-generation semantics.
+Installed help output was absent from this first bundle. The corrected native
+attempt below returned that help and a generated candidate; it does not change
+this preserved failed attempt. Candidate/linkage/refinement qualification
+remains separate.
+
+### Optimized eLBOW v2 — interface pass, chemical-state rejection
+
+The second probe is `LIVE/cif-generation-probe-le2ki6f4`, with candidate
+directory `candidates/cif-generation-6rk5wkm1`. The returned
+`cif_generation_review(1).zip` SHA-256 is
+`7e2b9a50118773b638b066c649217b5e877706bc2cbd2bd645b478c9e502ba37`;
+all **22** manifest entries were verified. Manifest SHA-256:
+`6053a94fec7d4028487acf7470542a14f7a7dda2462b9e5f13cde5be82e73077`.
+The [optimized-state evidence](elbow-optimized-state-evidence.json) records
+exact returned fields and hashes without adding private input/candidate payloads
+to Git.
+
+Installed-help capability inspection returned **SUPPORTED**, exit **0**,
+with exact aliases **`--initial_geometry`** and **`--add_hydrogens`**.
+Help SHA-256:
+`acb6a8944f43e4a733478586b9d439580e1f4275f6e9919f7956a2d57eebd248`.
+Native eLBOW execution is **COMPLETED**, exit **0**, elapsed **24.107482 s**;
+its actual optimization backend is **Recife Model 1 (RM1)**. Do not label this
+attempt AM1 from general documentation. Native log SHA-256:
+`d8b1d9f3a83d23a5bfc1519eea48a7ea86c991bdb5980742558f01d053877331`.
+
+The new `candidate.cif` SHA-256 is
+`3049dd5b5d79e2b6961d70a87e8b2c16c793a6078f4122d824697ffda43ed27b`.
+All **37** numerical bond targets are positive. **C2–N3 = 1.387 ± 0.029 Å**
+and its atom coordinates are distinct; **C1′–N9 = 1.473 ± 0.035 Å**. The
+earlier zero-target/coincident-bonded-coordinate defect is relieved in this
+candidate. The dictionary-geometry verdict is **PASS**; numerical verdict
+remains **REVIEW**. These are dictionary checks, not achieved model geometry,
+native polymer interpretation or experimental validity.
+
+The generation receipt is **REJECTED**, and the corrected probe summary is
+**CANDIDATES_REJECTED**, despite native exit **0**. IGU source remains **37
+atoms / 39 bonds**, formal charge **0**, while the candidate has **35 atoms /
+37 bonds**, formal charge **−2**: HOP2/HOP3 and their bonds were removed,
+OP2/OP3 changed **0 → −1**, and P–OP1/P–OP2/P–OP3 became **DELOC**. These are
+source-state differences, not approved internal linkage edits. The original
+and frozen source hashes are unchanged. Nothing was adopted or retried in
+the failed PostMR run.
+
+The returned v2 inspector additionally promoted four **PLANE-01 REVIEW** findings
+into its `generated-restraints-invalid-or-incomplete` rejection reason:
+
+| Centre | Interior planar-branch angle deviation | Sigma-adjustment lower bound |
+| --- | --- | --- |
+| C8 | 0.08° | 0.018066 |
+| N1 | 0.06° | 0.014381 |
+| N6 | 0.10° | 0.021285 |
+| N9 | 0.13° | 0.029667 |
+
+These diagnostic lower bounds exclude correlations and finite plane weights;
+they are not calibrated scientific significance or source-defect thresholds.
+Retain them as soft review evidence. Numerical invalidity remains distinct
+from uncalibrated angle/plane tension; forcing 360° or changing dictionary
+angles is not the fix. Correcting that gate does not approve the independent
+hydrogen/charge differences.
+
+Installed help explicitly advertises **`--pH=low` to retain exact input
+chemistry**. The v3 interface requires that advertised source-state-
+preservation mode and records its capability evidence. It does not choose an
+experimental pH or prescribe one protonation state for all nucleotides.
+The fresh source-preserving v3 attempt below has now returned; it did not
+relabel or adopt this rejected v2 candidate. Native proxy, site-specific linkage,
+achieved geometry and campaign continuation remain **NOT_RUN**.
+
+### Source-retaining eLBOW v3 — candidate review, not adoption
+
+The fresh probe is `LIVE/cif-generation-probe-zjzm0gk7`, candidate directory
+`candidates/cif-generation-zxw2zfpz`. Returned `cif_generation_review(3).zip`
+SHA-256 is
+`5bf699bd49a051c09f63f2cdbc2754c4e7d7522a0112de6ce328937a4cad3c4c`;
+all **22** manifest entries were verified. Manifest SHA-256:
+`bf17ab4e9b68651fe9149cde7051a366de2489ad13f1b921d68aa3e71a3a53ef`.
+The [machine-readable source-retention evidence](elbow-source-retention-evidence.json)
+owns exact fields and artifact hashes without private payloads in Git.
+
+The frozen runtime records source commit
+`3b9146fc31ba4d41aa87fa75b31983d723dd88c9`, policy
+**`cif-independent-elbow-candidate-v3`**, and runtime archive SHA-256
+`dc2f4fcef97886388f9ba054d5edcc499cbe720d72cc99ca9b15fb0fe4c1acf8`.
+Its build receipt reports a dirty source tree, so the commit alone is not a
+complete runtime identifier; the bundled runtime/file hashes remain evidence.
+Installed-help selection retains the naming/initial-geometry/hydrogen/chirality/
+optimization controls and adds **`--pH=low`**. Native execution is **COMPLETED**,
+exit **0**, elapsed **19.958581 s**. The actual log reports **RM1/GDIIS**;
+the output CIF header labels its method **AM1**. Preserve both observations;
+the executed backend claim follows the log, not that inconsistent header.
+
+New candidate SHA-256:
+`23d11d4175fc14d492004ba70a751470c43ca1ce733ca3fcd89d49f82e12cc1c`.
+The generation receipt is **CANDIDATE_REVIEW**, with no rejection reasons;
+the probe is **CANDIDATES_AWAITING_REVIEW**. All **37 exact atom IDs**
+(**23 heavy / 14 H**), **39 bond endpoints/normalized orders**, hydrogen
+attachments and explicit formal charges match the source. **HOP2/HOP3 and
+their bonds remain**, OP2/OP3 charges remain **0**, and total formal charge
+remains **0**. No atom, bond or hydrogen inventory was silently removed.
+This closes the observed v2 source-state loss for this exact input.
+
+There are **39 positive bond targets / 67 angles / 57 torsion rows**, comprising
+**32 positive-sigma / 25 zero-sigma** rows under the native convention; actual
+native proxy activity is **NOT_RUN**. There are **3 signed sugar chirality
+restraints** and **16 plane-atom rows**. Positive heavy-bond
+targets span **1.221–1.616 Å**. **C2–N3 = 1.397 ± 0.030 Å** and **C1′–N9 =
+1.458 ± 0.034 Å**; the prior numerical collapse is absent. Dictionary graph
+and geometry verdicts are **PASS**, numerical verdict **REVIEW**.
+
+Metadata and consumer context remain review work. Source CCD atom CIP
+annotations, atom/bond aromatic flags and bond-stereo metadata are omitted
+from the generated dictionary. New partial charges are distinct from the
+preserved formal charges; three signed sugar-chirality restraints are added.
+The coordinate signs match the source ideal seed under the **same ordered
+atom triples**: **C4′ negative / C3′ positive / C1′ negative**. That observation
+does not establish native stereochemical mapping or absolute CIP validation.
+The generated component group is **`non-polymer`**, versus source **`DNA
+LINKING`**. Exact retained graph state is therefore separate from polymer
+classification and linked-site interpretation.
+
+Five positive-semidefinite **PLANE-01 REVIEW** diagnostics remain:
+
+| Centre | Interior planar-branch angle deviation | Sigma-adjustment lower bound |
+| --- | --- | --- |
+| C2 | 0.03° | 0.007498 |
+| C4 | 0.03° | 0.007005 |
+| C5 | 0.04° | 0.008540 |
+| C6 | 0.02° | 0.004933 |
+| N9 | 0.21° | 0.048241 |
+
+These are retained soft review findings with uncalibrated material significance;
+they no longer imply hard numerical invalidity. They neither approve chemistry
+nor prescribe changing angle targets to force exact planarity.
+
+The intervening `cif_generation_review(2).zip` repeated the **old v2 runtime**
+(`586d748e`, archive `db523448…`) without the source-preservation flag. Its
+**REJECTED** output is preserved, but is not a v3 test or a new chemical-state
+finding. Source, frozen source and old failed runs remain unchanged in v3.
+Nothing has been adopted; ReadySet retry, native proxies, site-specific linkage,
+diffraction refinement and scientific approval remain **NOT_RUN/unassessed**.
+
+### 04_Cedar returned repeat — visible prefix PASS, same candidate values
+
+`LIVE/04_Cedar_cif-generation-probe-r2cunjcc`, candidate directory
+`candidates/cif-generation-xpj7v6bw`, returned
+`04_Cedar_r2cunjcc_cif_generation_review.zip`. Archive SHA-256:
+`7eba3d65f11e6b32b9120a70d1bf48341ed6686d7ff1e791831271630dd7de1f`;
+all **22** manifest entries verified. Manifest SHA-256:
+`1f7a7ec9c151d7d1854093c7b8cc558531886fe9bb262f5e375265b14559a454`.
+Both build metadata and top-level receipt carry **`04_Cedar`**; the requested
+leading number/letter/plant identifier has a **user-live PASS**.
+
+The runtime archive remains
+`dc2f4fcef97886388f9ba054d5edcc499cbe720d72cc99ca9b15fb0fe4c1acf8`.
+Native generation completed at **exit 0**, elapsed **22.019048 s**, and remains
+**CANDIDATE_REVIEW**. New candidate SHA-256:
+`875826476e9c3adee3b22b87ac6748eb94829e4382a1b40efc6aef8bbcbc9fb6`.
+Independent comparison confirms **all parsed CIF values and all 37 PDB atom
+rows equal the earlier v3 candidate**; timestamp text accounts for different
+file bytes. Source-state retention, numerical targets, metadata omissions and
+soft-review boundaries are therefore unchanged. This repeat is not new
+chemistry, native-reader validation or linked-site qualification. The existing
+[source-retention evidence](elbow-source-retention-evidence.json) appends the
+compact hash-bound repeat record.
+
+The next **05_Cedar** bounded diagnostic is intended to use the installed native
+CIF parser and model interpretation on an explicitly selected dictionary
+bundle while preserving originals. It will capture reader/consumer behavior
+without coordinate optimization, metadata adaptation, ReadySet retry or
+dictionary adoption. Its implementation and native execution remain **PENDING**;
+there is no new reader, proxy, linkage or refinement result at this boundary.
+
+### Cedar 05 return and source-state audit
+
+The returned `05_Cedar_dy4qx3qg_cif_native_review.zip` has SHA-256
+`7ab8f0dee87a5490539017e2af006f23b4c989f6794f1670db8db821da9d3db4`.
+All 57 payload hashes and byte sizes match. Its native worker completed at exit
+0 in 5.589398 s on Phenix 2.2.1-6174. NASolve source was
+`b745b79ffbcc4525b81ab2b340975f71574f1def`; NARestraints source was
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. The 858-atom model snapshot is
+byte-identical to the prepared input, with 42 mapped residues and no OP3/O3P.
+All 38 declared intra-strand O3′–P links are recorded. Missing heavy-atom
+expectations are only OP3 at IGU A:6, CGY A:20, IMC C:10 and DX D:3; their
+effective monomers remain non-polymer with no applied modifications. REVIEW
+is the inventory worker's deliberate success status, not chemistry approval.
+Optimization, ReadySet retry, refinement and adoption were not performed.
+
+The frozen-source/effective comparison identifies an additional source-state
+loss in the current fresh bundle: CGY's OP2-bound H1, IMC's HOP2 and DX's H14
+are absent from their ReadySet definitions. Their atom/bond/hydrogen and formal
+charge differences must be reviewed or regenerated before a source-preserving
+linked candidate is prepared. IGU's accepted source-retaining candidate keeps
+HOP2 and qualifies for explicit preparation. Graph-selected linkage removes
+only OP3 and its attached H plus outgoing O3′ H; OP2 protonation is preserved.
+The earlier linked diagnostic below used separately selected numerical sources
+and is not evidence that this fresh ReadySet path retained those source states.
+
+The implemented `06_Cedar` diagnostic reuses the source-preserving generator,
+prepares per-site linked candidates, records detailed native monomer/proxy
+evidence and runs an internal/free-OH same-code control. **Its native linked
+interpretation remains pending after the Cedar 06 source-recovery stop below.**
+Existing 5CM torsion and numerical/geometry reviews remain
+independent. The [command guide](cif-doctor.md#source-preserving-linked-state-diagnostic)
+owns implementation scope; the [handoff](development-handoff.md) owns the next
+native action. No candidate or checkpoint was adopted during this analysis.
+
+### Cedar 06 return: source recovery and aromatic representation
+
+`06_Cedar_rkmjesl4_cif_linked_review.zip` has SHA-256
+`869432b07c45c7de48fc0c6fec95e8e802f2dbe897f9394ebfb3aca739be464e`;
+all 87 payloads verify. Its source bundle is NASolve
+`f433102f5fddca49a323ba27ad099d4ebd094c2c` and NARestraints
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. The returned status is
+`SOURCE_RECOVERY_REVIEW`. All three native eLBOW executions completed at exit
+zero on Phenix 2.2.1-6174, using source-retention controls and RM1/GDIIS.
+
+| Component | Native generation (s) | Returned v3 candidate status | Source-state result |
+| --- | --- | --- | --- |
+| IMC | 13.774458 | CANDIDATE_REVIEW | All 37 atoms, 38 bonds, 16 H attachments and formal charges retained; two soft plane reviews. |
+| CGY | 18.797596 | REJECTED | All 38 atoms, 39 connections, 15 H attachments and formal charges retained; six source-declared aromatic ring bonds change representation; five soft plane reviews. |
+| DX | 12.487223 | CANDIDATE_REVIEW | All 36 atoms, 38 bonds, 13 H attachments and formal charges retained; no generated numerical issues in this inspection. |
+
+The v3 gate classified CGY's six aromatic types as changed bond identity even
+though its source declares each ring bond aromatic. Generation-v4 adds a
+bounded declaration/graph check for a complete isolated alternating neutral
+six-member C/N ring, retaining raw differences and independent chemistry and
+numerical checks. Offline replay of the same four selected candidates now
+prepares all linked derivatives; graph-selected deletion retains CGY H1,
+IMC/IGU HOP2 and DX H14 on OP2. No candidate bytes, source bytes or original
+model coordinates were rewritten during this reanalysis. The compact
+[source-recovery record](cif-linked-source-recovery-evidence.json) owns the
+exact source/candidate and replay evidence.
+
+**New native bundle interpretation, the shared-code end control, model optimization,
+ReadySet retry, refinement and adoption were NOT_RUN.** Source generation is
+native evidence; the subsequent linked preparation is offline evidence.
+Installed linked qualification remains the next Cedar 07 action. Generated
+stereochemical metadata, numerical/plane and existing 5CM reviews remain open.
+
+### Cedar 07 return: native modifier registration
+
+`07_Cedar_okkb2are_cif_linked_review.zip` has SHA-256
+`66798468a5fb7db40f9468c0f72eb43bafdea4146917f7232f8cd61fb3f9086b`;
+all 164 payloads verify. It uses NASolve
+`6522e23e3125bf21fafca563253f1c646c21b595` and the pinned NARestraints
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. IMC/CGY/DX source recovery
+reaches `CANDIDATE_REVIEW`; IGU remains reused. Detailed baseline interpretation
+completes at exit zero in 2.896598 s, recording 858 atoms, 42 mappings and
+38 backbone links. Linked interpretation fails at exit two in 1.082309 s:
+`Missing CIF modification: data_mod_NASL9809b6bd9c`.
+
+All four emitted files use `data_mod_linked_sites`; the native converter derives
+registry IDs from block suffixes, registering `linked_sites` four times instead
+of the requested `NASL...` IDs. The corrected serializer writes one block per
+requested ID, including multiple contexts for the same code. Replaying the
+exact returned candidates preserves base dictionaries, PHIL requests and every
+site plan while resolving all four distinct IDs. The
+[registration record](cif-linked-native-registration-evidence.json) owns exact
+failure, reader references, hashes/counts and offline replay.
+
+The returned baseline's detailed atoms also contain no native formal-charge
+values. The retry records missing attributes and null values separately, and
+qualification distinguishes unavailable readback from an actual contradiction.
+Neither partial charge nor a presumed zero can supply missing native evidence.
+No linked manager, shared-code control or complete chemistry qualification
+passed at this boundary. No model optimization, ReadySet retry, refinement or
+adoption ran. The subsequent installed Cedar 08 result follows.
+
+### Cedar 08 return: modifiers recovered, list metadata skipped
+
+`08_Cedar_g4gzbeeb_cif_linked_review.zip` has SHA-256
+`325cca4d6a6e301ceaadd186e07040676be62ec1c31e3416e6ea419550b30a33`;
+all **207 payloads** verify. Clean NASolve source is
+`147c1fbaabb41f73f5680852625189b0e1295ca7`, with the same pinned NARestraints.
+Source-preserving IMC/CGY/DX generation reaches CANDIDATE_REVIEW. Phenix
+2.2.1-6174 completes baseline/linked/control interpretation at exit zero in
+**2.522322 / 1.381361 / 1.412638 s**. All requested modifier IDs register.
+
+The linked manager preserves 858 atoms, 42 mappings, 38 backbone links,
+the exact custom 21 bonds/34 angles/8 planes/23 parallelities, all 58 native
+parallelities and unaffected definitions. Expected effective atom sets are
+IGU 34 / IMC 34 / CGY 35 / DX 33; every atom set, H adjacency and energy
+type matches, with no dangling references. OP2 HOP2/HOP2/H1/H14 survive.
+The synthetic control has 877 atoms/43 mappings: internal IGU A:6 keeps HOP2
+and O3′ OC2, while isolated free-OH E:1 lacks phosphate and keeps O3′ OH1.
+Its 31-atom definition and distinct modifier match the declaration; all original
+atoms, effective definitions and backbone links remain unchanged.
+
+Qualification and control remain **REVIEW**. The old atom-inventory check also
+required native group DNA; atom inventories match, but group is null. Scalar
+`_chem_comp` fields in `comp_list` are ignored by the reader's loop traversal.
+Native logs still classify the 42 linked residues as DNA, a distinct field.
+All formal-charge attributes are absent in the installed atom API and remain
+UNSUPPORTED, with no observed contradictory known charge.
+
+Corrected preparation preserves the one-row metadata loop, with unchanged
+parsed dictionary/projection values, site plans, modifier and PHIL bytes.
+Atom/group checks are separated and detailed native classification is recorded;
+neither required group nor charge gate is relaxed. The
+[registration/list-metadata record](cif-linked-native-registration-evidence.json)
+owns the exact return and offline replay. Installed Cedar 09 metadata readback,
+complete qualification and numerical/stereochemical review remain open.
+No model optimization, ReadySet retry, refinement or adoption ran.
+
+### Cedar 09 return: installed metadata recovered, charge readback unsupported
+
+`09_Cedar_nn9cyghr_cif_linked_review.zip` has SHA-256
+`db9f39ff423f0331ab26e4e3b7e65b176a767c5d64b0c698ce043f552f9dcb2a`;
+all **207 payloads** verify. Clean NASolve source is
+`4f1cde11b540c24adc27c97cb5f891f6710bf17e`; NARestraints remains pinned to
+`a7b6a0c93365f7a480b7eee9cc4e860b13f702de`. Phenix 2.2.1-6174 completes
+baseline/linked/control at exit zero in **2.924922 / 1.354201 / 1.272176 s**.
+Each of the four internal modified sites has native DNA group/classification.
+
+Qualification is **29 PASS / four UNSUPPORTED**, with no noncharge failure.
+The native charge attribute is absent; source charge or partial charge does not
+replace it. Preserve overall REVIEW. The 858-atom/42-mapping linked manager,
+38 links, exact custom coverage and 58 parallelities remain unchanged. The
+synthetic control has 877 atoms/43 mappings, 10 PASS/two charge UNSUPPORTED,
+with original coordinates, all 42 definitions and all 38 links preserved.
+E:1 is group DNA/classification undetermined; O5′ has type O2 and no attached H.
+Its atom-isolation result is not complete free-OH terminal qualification.
+
+Separate read-only replay finds **148/148** source/candidate charges unchanged
+and consistent ordered signed volumes at **12/12** sugar centres, including
+actual native proxy order and initial model sign. This is not independent
+absolute stereochemistry or achieved geometry. Projected dictionaries retain
+five IGU, two IMC and five CGY plane-angle reviews; DX passes the implemented
+projection assessment only. No calibrated material-strain threshold is added.
+The actual 5CM A:7 native definition still includes the known
+`C4′–O4′–C1′–C2` torsion; no old repaired resource was substituted.
+
+The [registration/list-metadata record](cif-linked-native-registration-evidence.json)
+owns exact hashes/counts and review boundaries. No runtime/gate/schema change,
+model optimization, ReadySet retry, diffraction refinement or adoption occurred.
+Next review terminal chemistry, explicit 5CM preparation and numerical/stereo
+limits before another geometry trial; no identical charge-readback rerun is due.
+
+### Earlier manually selected numerical resources
+
+Phenix CCD graph sources are available; IGU/IMC/CGY/DX remain unbundled in
+NASolve. The installed sources lack numerical refinement targets. Cedar's
+resolver deduplicates symlink aliases and rejects distinct competing sources.
+A successful raw lookup alone cannot qualify numerical geometry.
+
+| Code | Installed CCD SHA-256 | Original frozen numerical candidate SHA-256 |
+| --- | --- | --- |
+| IGU | `1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f` | `c514301d826d8d98dbe9dfc5aac86f3b9bfbba859c56e9f691a674431f3d9e06` |
+| IMC | `c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c` | `94f0f5a8052a08fedb95e134ba2801416540c4ceb7290024dde84e055db7ffab` |
+| CGY | `14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d` | `3c5be2c4660fc99ca5c013d5461d944c040e2fc178360601e46eb367068f9367` |
+| DX | `6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0` | `4384a13bace6c74a1c73cd6c803aa752b412a2e9ce249dfd2bb932e5d5b28450` |
+
+The earlier combined trial selected parameterized candidates manually before PostMR. ReadySet
+completion therefore does **not** establish automatic generation from those
+four raw CCDs. Nor does it establish an automatic AceDRG fallback.
+
+### Interpretation and IMC follow-up
+
+`PROBE/native_audit.json`, `combined_W.geo` and `native.log` recorded native
+interpretation exit 0, 42 mappings, no unused PHIL or unexpected mappings.
+The initial monomer dictionaries still expected OP3 at the four internal generic
+sites. Incoming O3'–P links were present (target **1.607 Å**, sigma **0.012 Å**,
+observed **1.5955–1.6203 Å**); a link alone did not apply the needed monomer edits.
+
+`PROBE/geometry-followup-dpu8soly/audit.json` exposed an old IMC sugar torsion
+using base **C2** instead of **C2'** in `C4' O4' C1' C2` (91.75° deviation),
+and active torsion/protonation questions elsewhere. Graph consistency alone
+would not catch this numerical-restraint reference error.
+
+Fresh IMC was generated from the frozen source with AceDRG (`-K -p`):
+`LIVE/cedar-cgy-acedrg-0bjcghxa/generate-imc-l3c4njhk/IMC.cif`, SHA-256
+`2a753de61b9f5264645f7a3934e50baa5c117d7178423dcadbb84462274ab7ca`.
+Its `semantic-audit-p5xne9kj/audit.json` reported structural checks true:
+**37 atoms / 21 heavy / 38 bonds**, unchanged graph, elements, formal charges
+and hydrogen attachments; correct sugar chirality and DNA group; C1'–N1 target
+**1.478 Å**, sigma **0.0146 Å**. Large active torsion deviations still require
+review. This candidate was substituted only in the later diagnostic derivative.
+
+Two unsuccessful introspection probes are preserved:
+`PROBE/phosphate-profile-m4041t96/audit.json` (assumed absent `DEL_OP3`) and
+`PROBE/phosphate-inventory-wv8036j4/audit.json` (assumed native `DA` rather
+than `Ad`). Corrected `mapping-inventory-8q5j38cb/mapping_audit.json` recorded
+**NATIVE_MAPPING_INVENTORY_RECORDED**, with matching baseline counts.
+Native canonical mappings are Ad/Gd/Cd/Td; `rna3p` has no attached monomer
+modifications. Legacy `NA-STAND` atom names do not match all generic sources.
+
+### Linked diagnostic — mechanics pass, chemistry still pending
+
+**LINKED** is `PROBE/generic-linked-probe-1dp9rx4o`.
+`LINKED/linked_audit.json` and `driver.log` report
+**GENERIC_LINKAGE_MECHANICS_PASS** with fresh IMC substituted.
+Graph-based leaving-atom/H deletion and O3' type `OC2` were verified;
+retained dictionary rows otherwise matched exactly, no orphan H or dangling
+references remained, no missing heavy atoms were reported, incoming/outgoing
+links were preserved and every selected P had four model neighbors.
+Original and diagnostic input checksums matched; D:1 remained protected.
+
+| Site / code | Deleted atoms | Retained OP2 hydrogen | Resulting component formal charge |
+| --- | --- | --- | --- |
+| A:6 IGU | HO3', OP3 | none | −1 |
+| C:10 IMC | HO3', HOP3, OP3 | HOP2 | 0 |
+| A:20 CGY | H3'2, HO3', OP3 | H1 | 0 |
+| D:3 DX | H1, H6, OP3 | H14 | 0 |
+
+Atom names do not determine their attachment: CGY HO3' is OP3-bound;
+DX H1 is OP3-bound and H6 O3'-bound. **OP2 protonation was retained from each
+chosen source**, not chemically standardized or approved. Formal component
+charges here are not comparable to the canonical library's partial charges.
+
+Native proxies: **1015 simple bonds / 0 ASU bonds / 1574 angles /
+513 dihedrals / 313 constant dihedrals / 155 chirality /
+53 planarity / 58 parallelity**. These totals establish interpretation,
+not achieved geometry or general handling of ends/nicks/cyclic/symmetry links.
+
+### Custom restraint coverage — preserved baseline
+
+`LINKED/geometry-coverage-kczyxyyc/coverage_audit.json` and `coverage.log`
+report **CUSTOM_RESTRAINT_COVERAGE_RECORDED**:
+
+| Configured restraint | Matched target and weight |
+| --- | --- |
+| Bonds | 21 / 21 |
+| Angles | 34 / 34 |
+| Planarity | 8 / 8 |
+| Parallelity | 23 / 23 |
+
+Plane origins: **45 covalent + 8 edits**. Parallelity origins:
+**23 edits + 12 base-pair parallelity + 23 base-pair stacking**.
+**0 exact duplicate planes, 0 exact duplicate parallelities, 0 parallelity
+support-overlap candidates.** Geometry qualification remains **PENDING**.
+
+## Effective-geometry findings and bounded recovery
+
+The supplied `combined_geometry_evidence.zip` has SHA-256
+`9aefce71cfe1d2c73c7f86f4379cb1d76dd24410e3f77cbf259338449beae551`;
+all **23** manifest entries matched their hashes. It preserves the linked model,
+**15 effective inputs**, native audits and `.geo` evidence. It is separate from
+the earlier PostMR-only replay fixture and is not committed scientific data.
+
+### 5CM — confirmed active torsion defect
+
+The frozen `inputs/06_07_5CM.cif` has SHA-256
+`38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858`.
+Its `C2e-nyu0` term uses **C4' O4' C1' C2**, with base C2 in place of sugar
+C2': target **340.7°**, sigma **6.3°**, period **1**. A separate C3e term uses
+the correct C2' quartet at **2.8°**, sigma **6.1°**. The wrong quartet is active
+in native interpretation with a residual of approximately **481**: this is a
+real restraint blocker, not merely starting-model strain. Source-byte equality
+recorded on October 9 did not establish correct geometry.
+
+A scratch-only proof changed that one atom reference and then used the existing
+CCP4-alternate normalizer. It produced one correct quartet with primary
+**340.7°**, alternate **2.8°**, retaining the first-row sigma **6.3°**. No
+supplier target was guessed. The later repaired-native diagnostic below
+verified this derivative in Phenix; the frozen source remains unchanged.
+
+### DF — generated replacement and source audit
+
+The effective ReadySet DF supplement (SHA-256
+`b6f935aaef73562d34f500222071fc658dec5b2ddb41ed3b1d88153372170f20`)
+contains aromatic sugar typing/bonds, single C4–O4 at **1.384 Å**, single C2–S1
+at **1.812 Å**, and no active DF sugar chirality restraints. This is distinct
+from the bundled DF/A1AAZ graph source and its valid short-label bridge.
+
+The user generated a new candidate under **DF-CANDIDATE** =
+`LIVE/combined-df-candidate-rbb1_cpv`, using the prior IMC environment:
+AceDRG **334** (database **12**), RDKit **2026.09.1**, Servalcat **0.4.105**, with `-K -p`.
+Generation returned exit **0**; source and prior receipt hashes were unchanged.
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `DF-CANDIDATE/DF_source_CCD.cif` | `27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e` |
+| `DF-CANDIDATE/DF.cif` | `cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293` |
+| Supplied `DF_candidate_review.zip` | `fd5ad43b666de68809da684e0acafb2df9bbb8d0353d946ffa9d23acce8bf443` |
+
+Separate analysis passed the source-preservation audit: **36 atoms / 21 heavy /
+15 H / 37 bonds**, with unchanged graph, formal charges and bond orders;
+**65 angles / 19 torsions** with connected valid references and numerical
+values. Sugar centres **C1': R, C3': S, C4': R** retain their source
+assignments with matching dictionary signs; P is `both`. The candidate targets
+include C1'–C2' **1.522 Å**, C3'–C4' **1.530 Å**, C1'–O4' **1.413 Å**,
+double C4=O4 **1.231 Å** and double C2=S1 **1.672 Å**. The generation log's two
+`non-ring atom 3 marked aromatic` warnings remain preserved; the final audited graph
+has no corresponding defect. Copied descriptors are not independent chemical
+validation. This initial source/numerical audit was followed by the repaired
+native interpretation below; neither result is geometry minimization or
+scientific approval.
+
+### Repaired native interpretation — returned PASS
+
+**REPAIRED** = `LIVE/combined-repaired-native-4v81kp0f`. Its `receipt.json`
+reports **REPAIRED_NATIVE_INTERPRETATION_PASS**, native exit **0**, repaired
+checks **PASS** and `originals_unchanged=true`, on the same Cedar `e7451eed`.
+The supplied `repaired_native_review.zip` has SHA-256
+`76345aca29e42353c55285a5d2b9bfaa4ff8aecee67bfc00c3ccc68f270b1651`;
+all **34** manifest entries were verified. The single-use diagnostic driver is
+not an installed NASolve command.
+
+The native checks verified the corrected 5CM quartet and alternate, all **21 DF
+heavy-atom bonds** and **3 signed sugar chirality restraints**. DF modification
+`NASpDF` deletes OP3/HOP3/HO3', retains HOP2 and sets O3' to OC2. The old DF
+OP1 formal charge −1 versus new source charges 0 remains recorded; this is not
+a pH correction. All **42 mappings** matched, with no missing heavy atoms or
+unexpected mappings. Non-target dihedrals, other preserved/custom proxies and
+D:1 were unchanged; the model still has **868 atoms with unchanged coordinates**.
+
+Native proxy counts are **1015 bonds / 0 ASU bonds / 1574 angles / 506 dihedrals /
+298 constant dihedrals / 158 chirality / 56 planarity / 58 parallelity**.
+The **506** active dihedrals carry energetic restraints; the **298 constant
+dihedrals** are preserved zero-weight connectivity annotations, not additional
+energetic torsions. Independent review found no new pre-minimization blocker.
+The adopted 5CM derivative SHA-256 is
+`61bf14a1f52e5294bb38a1a27144d464010e01e95ac60da0e1b2ce13070ea562`;
+DF retains the candidate hash above. `repaired_geometry_details.json`,
+`native_audit.json`, `native_effective.phil`, `combined_W.geo` and `native.log`
+preserve the effective evidence. **Geometry qualification remains PENDING.**
+
+### Geometry minimization — completed, awaiting review
+
+**GEO** = `LIVE/combined-geometry-trial-ek59lvp1`. Its receipt reports
+**GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW**, native exit **0**,
+`originals_unchanged=true` and **geometry qualification PENDING**. The supplied
+`geometry_trial_review.zip` SHA-256 is
+`c08f33b4bdce2916cd29232f63035c77fcc6646637ae6ae8967b56c8ed6d846c`;
+all **57** manifest entries were verified. The single-use
+`combined_geometry_trial.py` driver SHA-256 is
+`b2f05d7123bb7914eb8f43cff9da95325d1a6374bf392ff2b94a177d8693c675`.
+
+The direct cctbx L-BFGS trial used the same interpreted manager and all native
+restraint flags, bounded to **5 cycles × 500 iterations**. The recorded fixed
+restraint-definition hash stayed
+`c0258325d9fefa0c022762d635006b9768d6e7516b43c6ae18af10c062e4c3cf`.
+All **868 atoms / 42 residues** were retained, and all **158 chirality signs**
+were preserved. Coordinates moved in the disposable output; original inputs
+were unchanged.
+
+| Metric | Before | After |
+| --- | ---: | ---: |
+| Geometry target | 69970.884082 | 1786.562999 |
+| 38 backbone-link bond RMS error (Å) | 0.0107568 | 0.0024323 |
+| 205 modified-residue bond RMS error (Å) | 0.111291 | 0.004177 |
+| 21 custom-bond RMS error (Å) | 0.821005 | 0.162361 |
+
+The target decreased **97.45%**; atom displacement was **1.290590 Å RMS**,
+**3.687739 Å maximum**. These changes are useful numerical evidence, not an
+overall geometry pass. Cycle 1 reached its **500-iteration cap**; cycles 2–5
+retained native-tolerated rounding/line-search notes. The final gradient norm
+was **87.9935**. **Convergence is not claimed.** Per-term energies, raw metrics,
+full-precision coordinates and displacement/chirality evidence remain in the
+bundle. No MTZ/Free-R refinement or production full-auto run occurred.
+
+### Review findings — DP angle/plane inconsistency remains open
+
+The 5CM/DF repairs remained stable through minimization, all **158 chirality
+signs** and **38 backbone links** survived, and D:1 OP3 was preserved. The
+initial terminal symmetry contact moved from **1.331 Å to 4.265 Å**. All six
+paired sites have bond deviations **≤1.39 configured sigma**. Visual-review
+foci include DF:A N3–N1 **3.354 Å** (configured sigma **0.4 Å**), Z:P pair tilt
+**5.61°**, and D:T N6–O4 **2.581 Å**. These are inspection targets, not evidence
+of severe pair-restraint failure.
+
+A concrete remaining problem belongs to the exact **DP dictionary**, not a
+native fallback. `GEO/source_evidence/inputs/08_09_DP.cif`, SHA-256
+`ae10aa3e7066082a9e423cae877dca04928ff4089cbd464bbc3590d6148f0f5a`,
+puts N5 and all three neighbours in one plane while declaring:
+
+| N5-centred angle | Target ± sigma (°) | After minimization (°) |
+| --- | ---: | ---: |
+| C4–N5–C7 | 109.471 ± 3 | 109.006 |
+| C4–N5–C6 | 120.772 ± 1.58 | 123.080 |
+| C7–N5–C6 | 109.471 ± 3 | 127.914 |
+
+The target sum is **339.714°**, versus **360°** in the relaxed plane; the third
+angle retains a **6.15-sigma** discrepancy. This angle/planarity inconsistency
+requires a source-preserving candidate and audit. **DP numerical repair is
+OPEN**: do not invent replacement angles or overwrite the frozen source.
+A SMILES graph comparison alone would miss this conflict between restraints.
+
+### User visual review — PASS for the relaxed model
+
+On **2026-10-10 at 23:30 Europe/London**, the user reported that all modified
+pairs looked satisfactory and WC-like in Coot. The viewer loaded **9
+dictionaries** and displayed
+`LIVE/combined-geometry-view-z2nrp9n0/geometry_review.pdb`, an exact copy of
+`GEO/geometry_after.pdb`, SHA-256
+`35bc3a48bd953c328744fdba4722785b4403c4d0ed9a23c9494c543138f04b95`.
+This is **user-reported visual PASS** for that model; no screenshots were
+required or independently inspected. Preserve that positive visual verdict
+separately from the open DP numerical-restraint conflict and convergence review.
+
+### DP candidate attempt — blocked by seed-parser disagreement
+
+The first attempt under `LIVE/combined-dp-candidate-csg41ov4` returned
+**BLOCKED**, AceDRG exit **1**, with no candidate produced or adopted. The
+supplied `DP_candidate_review.zip` SHA-256 is
+`ade2e48d70e59e748fcc1c47f3cebc7675e5ee424f4c425159229db914b1b902`;
+all **8** manifest entries were verified. The receipt confirms original source,
+frozen copy and seed unchanged. The failed seed SHA-256 is
+`93c4ebaee4467b235998dea62d03dee35de4bfa2c32e86c41b7c5d5a154f0312`.
+
+`combined_dp_candidate.py` preserved **35 atoms / 37 bonds / 4 chirality
+declarations**, source coordinates, explicit charges/H and alias metadata in
+a graph-only seed, excluding old numerical targets/types and copied neutral-
+phosphate descriptors. The selected graph remains dianionic (OP2/OP3 each −1);
+no new protonation state was selected. Generation used `-K` and `-p`.
+
+The emitted seed passed the Biopython round-trip but single-quoted primed IDs
+such as `'C5''` were mishandled by AceDRG's `aLineToAlist2` reader. AceDRG
+reported only **20 atoms / 21 bonds** and stopped with **KeyError: "'C5'"**.
+Offline replay also found zero parsed chirality declarations.
+This is a serialization/consumer-parser mismatch, not a new DP chemistry
+finding. A successful parse by the writer's own library was insufficient.
+
+### DP v2 candidate — generated and audited for native testing
+
+**DP-V2** = `LIVE/combined-dp-candidate-yllkyygx`. The double-quoted seed passed
+the **installed AceDRG reader preflight** with **35 atoms / 37 bonds / 4 chirality
+declarations**, exact selected-field agreement and coordinates present.
+Reader source SHA-256 remains
+`ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981`.
+AceDRG then returned **exit 0**; source, frozen copy and seed remained unchanged.
+The supplied `DP_candidate_review(1).zip` SHA-256 is
+`362078a37ca2e293a61d1395ec8b13b88b634573441cde6ca3cf9059daba0e53`;
+all **13** manifest entries were verified. `DP-V2/DP.cif` SHA-256 is
+`6ba5b6a3ce86019c97129dcb5ea08f26a8395f68074c81d4c8ed6f04f7ad6f1f`.
+
+The original receipt conservatively reports
+`GENERATED_WITH_GRAPH_DIFFERENCES_AWAITING_REVIEW`. Subsequent review resolves
+its combined bond-order/aromatic-flag `false`: **all 37 explicit bond orders and
+endpoints are unchanged**. Only four aromatic annotations changed Y→N:
+**C4–N9, C8–N9, C7–C8 and C7–N5**. The audited **35 atoms, 12 H attachments,
+formal charge −2 and four chirality declarations** are retained. These flags
+are a representation difference in this inspected candidate, not a change of
+bond order or chemical state. Alias metadata was dropped by generation and
+remains preserved in the source/seed; do not silently discard its provenance.
+
+New N5 targets for C4–N5–C7 / C4–N5–C6 / C7–N5–C6 are
+**108.817° / 120.468° / 130.715°**, each sigma **3°**, summing to **360°**.
+The N5 Gram eigenvalues are approximately **0 / 1.308599 / 1.691401**; the
+five-/six-member ring angle sums are **540° / 720.003°**. This is broader
+numerical regeneration, not a single-angle patch: **34/37 bond targets or sigmas**,
+all **65 angle terms**, **21 torsions** (15 positive-sigma / 6 zero-sigma), and
+**five plane groups versus two** were audited. Three signed sugar centres retain their
+source signs. Small residuals in generator-produced coordinates are internal
+consistency evidence, not independent validation.
+This candidate is ready for a scoped native diagnostic, **not adopted or
+geometry-qualified**. Its source/audit evidence does not close the earlier
+minimization's convergence question or replace the user-approved visual model.
+
+### DP native diagnostic — preserved checker failure
+
+`LIVE/combined-dp-native-_6jpz1i8` staged the audited DP candidate and requested
+B:4 `NASdp3prime` (delete H3, O3'→OC2) alongside `NASnoOP3`, on unchanged
+repaired pre-minimization coordinates. Its receipt is **BLOCKED**, diagnostic
+exit **2**, `DP heavy torsion coverage`; originals are unchanged. The supplied
+`DP_native_review.zip` SHA-256 is
+`97ba75e8a94b5cfdfee999056a9c54656834c113baf55c9db2d94b5340792a9a`;
+all **34** manifest entries were verified. Before stopping, checks passed for
+mapping/868 coordinates, unchanged non-DP/cross-link/custom proxies, **24 heavy
+bonds / 35 angles**, N5 targets and two base planes. Later sugar/effective-
+monomer checks did not execute; this receipt is **not a native full PASS**.
+
+Review found all **19 heavy torsions (13 active / 6 constant)** present and
+matching target, weight, period, kind and alternates under cctbx's documented
+proxy ordering. `dihedral.h` blob `ee41da7a84b3ae1155f39e70021abe943f6bb97e`
+sorts terminal and central index pairs independently, negating ideal/alternate
+angles per swap. The checker allowed only full reversal. This is a checker
+representation failure, not a chemistry change. Offline corrected-check replay
+passed all 19 torsions and three sugar chirals; missing/duplicate or altered
+central-pair/target/weight/period cases were rejected. Independent effective
+inventory found 33 atoms (35 minus OP3/H3) and preserved 1.607 ± 0.012 Å links;
+actual O3' energy typing still needs the added native capture.
+
+### DP native v2 — returned PASS
+
+**DP-NATIVE** = `LIVE/combined-dp-native-abp6f409`. Its corrected-checker receipt
+reports **DP_NATIVE_INTERPRETATION_PASS**, exit **0**, DP checks **PASS** and
+originals unchanged. All **868 original pre-minimization atom coordinates**
+remain unchanged. The returned `DP_native_review.zip` SHA-256 is
+`6e0f33dab2cd179542e68269a7cca2806058d3b47c214af3d4fabddc189d2cf2`;
+all **33** manifest entries were verified. Manifest SHA-256:
+`5989ede3f755decfec0efbd88805feb58e0f44de51995cba2de66264baae6eae`;
+`native_audit.json` SHA-256:
+`e64d7a633e0ff3f2c42cae30808293a9ea61486ff3ae76a465c34f5f77ed8423`.
+
+Checks passed for **24 DP heavy bonds / 35 angles / 19 torsions**, the new N5
+angle targets and preserved non-DP/custom/cross-link proxies. Both **OP3 and H3
+are absent**; actual runtime **O3' energy type OC2** was captured. Native counts
+are **1015 bonds / 0 ASU bonds / 1574 angles / 501 active dihedrals /
+304 constant dihedrals / 158 chirality / 57 planes / 58 parallelity**.
+Effective atom charge fields were null: this receipt adds **no native charge
+claim** beyond the separately preserved source graph. The earlier blocked
+checker receipt remains intact; this pass belongs to the new diagnostic only.
+
+### DP geometry trial — N5 conflict relieved, review pending
+
+**DP-GEO** = `LIVE/combined-dp-geometry-trial-e3awaveh`. Its receipt reports
+**GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW**, native exit **0**,
+originals unchanged and **geometry qualification PENDING**. The supplied
+`DP_geometry_trial_review.zip` SHA-256 is
+`c215258a895b2997d56b1b08aed42e3acc91a1b7619d828ee9fe48affbc50d2e`;
+all **56** manifest entries were verified. Manifest SHA-256:
+`82b8b205b2f5ffd97be5202f1a404dae8d6c1743d544e9a59edec93b0ef21176`.
+The new `DP-GEO/geometry_after.pdb` SHA-256 is
+`a8345a9e1695adb6cf484c9ee57d644546057e6b738fd91556ff370555981dfb`.
+
+`combined_dp_geometry_trial.py` started from the original **868-atom
+pre-minimization model**, with the verified DP-native restraints. That manager
+remained fixed during this trial. The target changed **69756.492476 →
+1836.748168** over **500 / 256 / 219 / 180 / 128** iterations in five bounded
+cycles. Cycle 1 reached its cap; later cycles retained native-tolerated
+rounding/line-search notes. **Convergence is not claimed.** Targets from the
+earlier differently parameterized trial are not an independent ranking of
+models.
+
+The concrete N5 angle/plane conflict is relieved: achieved angles are
+**108.115293° / 119.720831° / 132.163422°** against **108.817° / 120.468° /
+130.715°**, sigma **3°**, sum **359.99955°**. All three are within **0.483 sigma**;
+the formerly offending third angle improved from **6.15 to 0.483 sigma**.
+DP heavy-bond RMS target error is **0.00264747 Å**; its current 35-angle
+residual sum is **15.10364**. Base-plane RMS deviations are
+**0.001171 / 0.000927 Å**. Remaining sugar angle C2'–C1'–O4' is **102.377105°**
+against **106.567°**, sigma **2.03°** (about −2.06 sigma); residual strain alone
+is not evidence for another dictionary repair.
+
+All **158 chirality signs** survived without zero volumes. All six modified
+pairs remain represented, with **21 custom bonds ≤1.73 sigma**, **34 custom
+angles ≤1.40 sigma**, and **38 backbone links** at **0.002359 Å RMS error**.
+D:1 OP3 is retained (P–OP3 **1.480457 Å**). Modest global residuals remain:
+rounded `.geo` van der Waals overlap entries above 0.4 Å fell **214 → 35**
+(previous trial endpoint: 30), maximum **0.580 Å**; these entries include
+reciprocals and are **not a clashscore**. No symmetry overlap exceeds 0.4 Å;
+the former D:1 OP3–C:14 C2' contact moved **1.331 → 4.370 Å**. No new assembly
+blocker was identified, but neither convergence nor full qualification follows
+from these bounded-run improvements.
+
+### New-model visual review — bases PASS, sugars unassessed
+
+On **2026-10-11 at 00:59 Europe/London**, after the pinned
+`view_dp_geometry_trial.py` workflow, the user reported that the bases looked
+good throughout and explicitly did not assess sugar geometry. Record **base
+visual PASS** for the exact DP-GEO model hash above, with **sugars unassessed
+by eye**. Preserve the earlier model's separate visual PASS. No new coordinates
+or dictionary changes accompanied this report.
+
+The largest remaining DP torsion residual belongs to candidate `sp3_sp3_7`,
+**C5'–C4'–O4'–C1'** (ideal 60°, sigma 10°, period 3), involving the sugar and
+an exocyclic substituent. Its native canonical ordering is C1'–C4'–O4'–C5'
+with ideal −60° and residual **17.73648**. This periodic residual is not a
+Gaussian sigma score or proof of another dictionary defect. It is separate
+from the resolved N5 base angle/plane conflict and from the earlier corrected
+torsion-coverage checker failure. Numerical sugar/termination review, full
+qualification, and any MTZ/Free-R refinement remain open; another sugar verdict
+by eye is not required from the user.
+
+These DP-specific scripts implement bespoke diagnostic checks and supply the
+blueprint for the **general read-only CIF/restraint assessor**. The first
+[offline CIF Doctor slice](cif-doctor.md) is now implemented with report-only
+PostMR hooks and explicit reviewed preparation. It does not replace these exact
+native proxy receipts or certify the diagnostic candidates. Remaining numerical
+qualification is independent; the assessor is not an added gate on this trial.
+
+The four earlier generic linked sites retain their mixed source-dependent
+phosphate protonation, with no orphan hydrogens and complete incoming links.
+Do not invent a uniform protonation/tautomer policy to remove that distinction.
+A later refinement and human verdict must name the new model/checkpoint, date
+and exact effective restraints; earlier Z:P approval does not transfer.
+Production integration and a fresh ordinary full-auto acquisition test remain
+separate. The staged audit/automation plan builds on this trial evidence; see the
+[component contract](modified-component-preparation.md#proposed-smiles-and-cif-audit).
 
 ## Historical Z:P attempts — preserved, never rerun in place
 
@@ -187,7 +1022,8 @@ Frozen root:
   **`SOLVED/refine-001`**, frozen integrity OK; user Coot visible
   bonds/planes **INSPECTED_PASS (overall)**. Model/map paths were
   `AutoRefine/round_001/refined_001.pdb` and `refined_001.mtz`.
-  No new native chemistry matrix or experimental verification followed.
+  This earlier verdict is distinct from the later combined trial below;
+  experimental chemistry remains unverified.
 
 **Separate angle research note:** user observed that some displayed
 hydrogen-bond contacts looked tilted relative to a wished-for straight
@@ -198,17 +1034,12 @@ historic `run_003`. This is not a `show` or Z:P role bug.
 
 ## Preservation and scope
 
-The user's original NASolve checkout has many **untracked but valuable**
-models, runs, patches, and an older virtual environment. Their sibling
-`../NARestraints` tree includes **uncommitted `Ligands.xlsx` changes
-and an Excel lockfile**. Never reset, clean, stash, checkout into or pip
-install/edit over this dirty library tree. Use separate clean worktrees
-and process-local imports until reviewed. Existing data and runs must not
-be copied into Git or substituted for future test observations.
-
-Separate unresolved questions include I:C, A:G and G:T atom-role geometry,
-source P2 `1W5/1WA` conversions, Pine P5 geometry-diverse real models,
-Scout and topology/GUI work. They are **not silently closed** by this
-five-pair W validation plan. The full original attempt-era diagnostic
-transcript, site-resolved SHA and log chronology are preserved in the
-[dated history snapshot](history/native-modified-pair-2026-10-08-pre-consolidation.md).
+Preserve original models, raw CIFs, frozen runs, maps, Free-R and failed probes.
+Do not commit the user's native data or dirty/unpublished NARestraints workbook.
+The mandatory 1W5→DZ/1WA→DP transformations, A1AAZ→DF label bridge and unresolved
+DE geometry retain their [component-contract scope](modified-component-preparation.md).
+The original independent five-case stager remains available in released
+NARestraints for later failure isolation. Source-native P2, real nonstandard P5,
+noncanonical I:C/A:G/G:T geometry and operational Scout/Topo remain distinct
+unfinished work; neither this combined preparation nor the older Z:P result
+closes them.

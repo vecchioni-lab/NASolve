@@ -47,6 +47,27 @@ def default_endpoint(policy: Mapping[str, Any]) -> str:
     return "refine-doctor" if workflow_policy(policy)["run_doctor"] else "autorefine"
 
 
+def autosol_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate the frozen phase policy without changing anomalous evidence."""
+    supplied = policy.get("autosol")
+    if not isinstance(supplied, dict):
+        raise ValueError("autosol must be an object")
+    if supplied.get("policy") == "disabled":
+        if policy.get("schema_version", 1) != 2:
+            raise ValueError("autosol.policy = disabled requires preset schema_version = 2")
+        reason = supplied.get("reason")
+        if (set(supplied) != {"policy", "reason"}
+                or type(reason) is not str or not reason.strip()):
+            raise ValueError("Disabled AutoSol requires only policy and a nonempty reason")
+        return dict(supplied)
+    allowed = [{"policy": "when-anomalous", "on_unaccepted": "inspect"}]
+    if workflow_policy(policy)["mode"] == "full-auto":
+        allowed.append({"policy": "when-anomalous", "on_unaccepted": "continue-without-phases"})
+    if supplied not in allowed:
+        raise ValueError("Unsupported campaign AutoSol policy")
+    return dict(supplied)
+
+
 def continuation_warning(policy: Mapping[str, Any], stage: str,
                          receipt: Mapping[str, Any]) -> str | None:
     """Authorize a bounded trial without relabelling the upstream evidence.

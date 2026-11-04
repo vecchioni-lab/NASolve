@@ -10,7 +10,7 @@ import subprocess
 from collections import OrderedDict
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
-from math import dist, sqrt
+from math import dist, isfinite, sqrt
 from pathlib import Path
 from typing import Callable, Mapping
 
@@ -21,6 +21,7 @@ from .curated_ligands import (
     ligand_dictionary,
     validate_ligand_dictionary,
 )
+from .cif_doctor import assess_dictionaries
 from .component_normalization import (
     POLICY as COMPONENT_POLICY, PREFERRED_COMPONENTS,
     normalize_model as normalize_component_model, preparation_targets,
@@ -508,7 +509,11 @@ def _run_coot(
     environment: Mapping[str, str] | None,
     dictionary_paths: Mapping[str, Path],
     parent_models: Mapping[str, Path],
+    *,
+    timeout_seconds: float | None = None,
 ) -> tuple[Path, Path]:
+    if timeout_seconds is not None and (isinstance(timeout_seconds, bool) or not isfinite(timeout_seconds) or timeout_seconds <= 0):
+        raise PostMRPreparationError("Coot timeout must be finite and positive")
     script = coot_directory / "mutate.py"
     log = coot_directory / "coot.log"
     backups = coot_directory / "backups"
@@ -546,7 +551,16 @@ def _run_coot(
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             check=False,
+            **({"timeout": timeout_seconds} if timeout_seconds is not None else {}),
         )
+    except subprocess.TimeoutExpired as exc:
+        captured = exc.stdout or ""
+        if isinstance(captured, bytes):
+            captured = captured.decode("utf-8", errors="replace")
+        log.write_text(captured + "\nNASolve: bounded Coot construction timed out.\n", encoding="utf-8")
+        raise PostMRPreparationError(
+            f"Coot construction exceeded {timeout_seconds:g} seconds; inspect {log}"
+        ) from exc
     except OSError as exc:
         raise PostMRPreparationError(f"Could not launch Coot: {exc}") from exc
     log.write_text(completed.stdout, encoding="utf-8")
@@ -657,6 +671,72 @@ def _unique_named_atom(
 
 
 def _restore_shared_parent_coordinates(
+    raw_model: Path,
+    output_model: Path,
+    actions: tuple[MutationAction, ...],
+    parent_models: Mapping[str, Path],
+    dictionary_paths: Mapping[str, Path] | None = None,
+) -> dict[str, object]:
+    """Restore supported DNA scaffolds without copying partial same-name bases.
+
+    Explicit curated substitution/ring placements retain their declared legacy
+    rule. Every other overlap uses the source connectivity and one intact base
+    transport, or retains the entire raw site automatically with a note.
+    """
+    from tempfile import TemporaryDirectory
+    from .postmr_restoration import POLICY_ID, restore_graph_site
+
+    raw_model, output_model = Path(raw_model), Path(output_model)
+    if output_model.exists() or output_model.is_symlink():
+        raise FileExistsError(output_model)
+    modified = tuple(a for a in actions if a.method == "coot-parent-overlap")
+    if len({a.site for a in modified}) != len(modified):
+        raise PostMRPreparationError("Duplicate selected restoration sites")
+    records = _coordinate_records(raw_model)
+    report: dict[str, object] = {}
+    special = tuple(a for a in modified if (ligand := CURATED_LIGANDS.get(a.after)) is not None
+                    and (ligand.atom_substitutions or ligand.ring_substituents))
+    if special:
+        # Only explicit curated metadata authorizes the historical placement
+        # rule; a graph failure must never fall through to name-based copying.
+        with TemporaryDirectory(prefix="nasolve-curated-restoration-") as temporary:
+            intermediate = Path(temporary) / "curated.pdb"
+            report.update(_restore_curated_parent_coordinates(
+                raw_model, intermediate, special, parent_models, dictionary_paths))
+            records = _coordinate_records(intermediate)
+        for action in special:
+            report[action.site].update(status="CURATED_DECLARED_PLACEMENT",
+                policy_id="postmr-curated-declared-placement-v1", requires_cif_review=False)
+    for action in modified:
+        if action in special:
+            continue
+        chain, resid = _site_parts(action.site)
+        indices = [i for i,line in enumerate(records)
+                   if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
+        try:
+            if not dictionary_paths or action.after not in dictionary_paths:
+                raise ValueError("No explicit construction source dictionary was supplied")
+            if action.site not in parent_models or not action.parent_code:
+                raise ValueError("No explicit canonical parent snapshot was supplied")
+            parent_records = [line for line in _coordinate_records(Path(parent_models[action.site]))
+                if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
+            replacements, item = restore_graph_site([records[i] for i in indices], parent_records,
+                dictionary_paths[action.after], action.after, action.parent_code)
+        except (OSError, ValueError, KeyError, PostMRPreparationError) as exc:
+            item = {"policy_id": POLICY_ID, "component": action.after,
+                "status": "RAW_SITE_RETAINED", "count": 0, "atoms": [],
+                "substitutions": [], "reason": str(exc), "requires_cif_review": False,
+                "notes": ["The complete raw Coot site was retained because this DNA transport rule does not support its graph or coordinate context."]}
+        else:
+            for index,line in zip(indices,replacements):
+                records[index] = line
+        report[action.site] = item
+    with output_model.open("x", encoding="utf-8") as handle:
+        handle.write("".join(records))
+    return report
+
+
+def _restore_curated_parent_coordinates(
     raw_model: Path,
     output_model: Path,
     actions: tuple[MutationAction, ...],
@@ -999,6 +1079,19 @@ def _patch_narestraints_records(
     """Apply reviewed, process-local corrections to NARestraints records."""
     patched = [dict(record) for record in records]
     corrections: list[dict[str, str]] = []
+    from .component_records import resolve_component_record
+    for code in sorted(required_codes):
+        matches = [r for r in patched if str(r.get('Ligand code')) == code]
+        if len(matches) > 1:
+            try:
+                selected, proof = resolve_component_record(matches, code)
+            except ValueError as exc:
+                raise PostMRPreparationError(str(exc)) from exc
+            first = next(i for i, r in enumerate(patched) if str(r.get('Ligand code')) == code)
+            patched = [r for r in patched if str(r.get('Ligand code')) != code]
+            patched.insert(first, selected)
+            corrections.append({'ligand_code':code,'canonical_atom':'equivalent-role-records',
+                'before':str(proof['matching_records']),'after':'1','scope':'process-local'})
     correction_specs = (
         ("DF", "O2", "S1", frozenset({"S1", "S2"})),
         ("S6G", "C5", "C5", frozenset({"C5", "C5 "})),
@@ -1371,12 +1464,13 @@ def _run_readyset(
     model: Path,
     ready_set_executable: Path,
     readyset_directory: Path,
-    ligand_cif: Path | None,
+    ligand_cif: Path | Sequence[Path] | None,
     environment: Mapping[str, str] | None,
     *,
     phosphate_sites: tuple[str, ...] = (),
     allow_op3_sites: tuple[str, ...] = (),
     passthrough_sites: tuple[str, ...] = (),
+    process_runner=None,
 ) -> tuple[Path, Path, Path | None, list[str], dict[str, object]]:
     command = [
         str(ready_set_executable),
@@ -1386,10 +1480,17 @@ def _run_readyset(
         "ready_set.actions.optimise_ligand_geometry=False",
     ]
     if ligand_cif is not None:
-        command.append(f"ready_set.input.cif_file_name={ligand_cif}")
+        # ReadySet registers one molecule id per input file. Preserve the
+        # existing single-file form; explicit sequences supply separate inputs.
+        cifs = list(ligand_cif) if isinstance(ligand_cif, (list, tuple)) else [ligand_cif]
+        if not 1 <= len(cifs) <= 64 or any(not isinstance(p, (str, Path)) for p in cifs):
+            raise ValueError("Require one to 64 explicit ReadySet CIF paths")
+        if len({str(p) for p in cifs}) != len(cifs):
+            raise ValueError("Duplicate ReadySet CIF input")
+        command.extend(f"ready_set.input.cif_file_name={p}" for p in cifs)
     log = readyset_directory / "ready_set.log"
     try:
-        completed = subprocess.run(
+        completed = (subprocess.run if process_runner is None else process_runner)(
             command,
             cwd=readyset_directory,
             env=dict(environment) if environment is not None else None,
@@ -1444,8 +1545,288 @@ def _run_readyset(
     return checked, log, generated_cif if generated_cif.is_file() else None, command, phosphate_audit
 
 
+def _require_generic_parameterization(
+    sources: Mapping[str, Mapping[str, object]],
+    generated_cif: Path | None,
+    readyset_log: Path,
+    *,
+    failure_report: Path | None = None,
+) -> None:
+    """Quarantine unusable generated numerics for generic source-only graphs.
+
+    Curated ligand behavior remains unchanged: only non-curated, unparameterized
+    inputs must be backed by usable ReadySet numerical rows of the same ID.
+    Dictionary assessment elsewhere remains report-only. This generation gate
+    never edits targets, adopts a candidate or judges supplier chemical identity.
+    """
+    required = sorted(code for code, source_info in sources.items()
+                      if code not in CURATED_LIGANDS and not source_info["parameterized"])
+    if not required:
+        return  # Explicit parameterized inputs have established precedence.
+    parse_error = None
+    try:
+        generated = (
+            _parameterized_codes(generated_cif)
+            if generated_cif is not None else set()
+        )
+    except (OSError, ValueError, TypeError) as exc:
+        generated = set()
+        parse_error = type(exc).__name__
+    assessment = assess_dictionaries([generated_cif], stage="postmr-generated") if generated_cif else None
+    findings = assessment["findings"] if assessment else []
+    components = {component["component_id"] for component in assessment["components"]} if assessment else set()
+    affected = []
+    for code in required:
+        selected = [finding for finding in findings if finding.get("component_id") == code
+                    and finding["rule_id"] == "NUM-01"]
+        failures = [finding for finding in selected if finding["status"] in {"FAIL", "ERROR"}]
+        if code in generated and not failures:
+            continue
+        reasons = failures
+        if code not in generated:
+            reasons = [finding for finding in selected
+                       if finding["status"] in {"FAIL", "ERROR", "REVIEW", "NOT_RUN"}]
+            missing = generated_cif is None or not generated_cif.is_file()
+            reason_code = ("missing-generated-dictionary" if missing else
+                           "missing-generated-component" if code not in components else
+                           "unusable-numerical-parameterization")
+            reasons = [{"rule_id": "GEN-01", "status": "FAIL", "code": reason_code,
+                        "message": "The required generated component does not satisfy the numerical parameterization gate.",
+                        "measurements": {"component_id": code, "parse_error_type": parse_error}},
+                       *reasons]
+        affected.append({"component_id": code, "legacy_parameterization_passed": code in generated,
+                         "reasons": reasons})
+    if not affected:
+        return
+    if failure_report is not None:
+        payload = {"schema_version": 1, "audit_kind": "readyset_generic_generation_failure",
+                   "status": "QUARANTINED", "policy": "generic-generated-numerics-v2",
+                   "affected_components": affected, "assessment": assessment,
+                   "action": "regenerate-whole-component-from-frozen-chemical-source",
+                   "input_handling": "Original source and generated CIFs are preserved; no target numbers were patched."}
+        try:
+            with failure_report.open("x", encoding="utf-8") as handle:
+                handle.write(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+        except OSError as exc:
+            raise PostMRPreparationError(
+                "ReadySet could not supply usable parameterized ligand restraints for "
+                + ", ".join(item["component_id"] for item in affected)
+                + f"; cannot write exclusive generation-failure receipt {failure_report}: {exc}. "
+                "Original CIFs and any existing receipt are preserved."
+            ) from exc
+    diagnostics = []
+    for item in affected:
+        for finding in item["reasons"]:
+            details = finding["measurements"]
+            atoms = "–".join(details.get("atoms", []))
+            key = finding["code"]
+            if key == "missing-generated-dictionary":
+                description = "numerical output dictionary is absent"
+            elif key == "missing-generated-component":
+                description = "generated dictionary omits the component"
+            elif key == "coincident-bonded-heavy-atoms":
+                description = f"coincident bonded heavy atoms {atoms} in {details['coordinate_set']}"
+            elif key in {"numeric-domain-violation", "invalid-numeric-value"}:
+                raw = details.get("value")
+                try:
+                    value = float(raw)
+                    adjective = "non-finite" if not isfinite(value) else "zero" if value == 0 else "invalid"
+                except (ValueError, TypeError, OverflowError):
+                    adjective = "unusable"
+                description = f"{adjective} numerical parameter {atoms} {details.get('field')}={raw}"
+            else:
+                description = key
+            diagnostics.append(f"{item['component_id']}: {description}")
+    raise PostMRPreparationError(
+        "ReadySet could not supply usable parameterized ligand restraints for "
+        + ", ".join(item["component_id"] for item in affected)
+        + "; " + "; ".join(diagnostics)
+        + ". Regenerate the affected whole component dictionary from its frozen chemical source; "
+        "do not patch individual target numbers. Original CIFs are preserved; "
+        + f"inspect {readyset_log}"
+        + (f" and {failure_report}" if failure_report is not None else "")
+    )
+
+
 def _write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _cif_doctor_assessment(
+    paths: list[Path], run: Path, *, stage: str, model: Path | None = None,
+) -> dict[str, object]:
+    """Attach exact portable references to a read-only dictionary assessment."""
+    assessment = assess_dictionaries(paths, stage=stage, model=model)
+    inputs = []
+    for index, path in enumerate(paths):
+        item = assessment["inputs"][index]
+        reference = frozen_reference(path, run)
+        if any(item.get(key) != reference[key] for key in ("sha256", "size")):
+            raise PostMRPreparationError(
+                f"Dictionary input changed while binding CIF Doctor assessment: {path}"
+            )
+        inputs.append({**item, **reference})
+    assessment["inputs"] = inputs
+    if model is not None:
+        item = assessment.get("model") or {}
+        reference = frozen_reference(model, run)
+        if any(item.get(key) != reference[key] for key in ("sha256", "size")):
+            raise PostMRPreparationError(
+                f"Model changed while binding CIF Doctor assessment: {model}"
+            )
+        assessment["model"] = {**item, **reference}
+    return assessment
+
+
+def _cif_doctor_receipt(
+    path: Path, assessment: Mapping[str, object], run: Path,
+) -> dict[str, object]:
+    """Describe the report without turning findings into a readiness gate."""
+    from .cif_doctor_selection import assessment_report_summary
+
+    return {
+        "report": frozen_reference(path, run),
+        "status": assessment["status"],
+        "summary": assessment["summary"],
+        "solution_report": assessment_report_summary(assessment),
+    }
+
+
+def construct_postmr_model(
+    input_model: Path,
+    actions: tuple[MutationAction, ...],
+    dictionary_paths: Mapping[str, Path],
+    output_model: Path,
+    *,
+    coot_executable: Path | None = None,
+    environment: Mapping[str, str] | None = None,
+    coot_directory: Path | None = None,
+    reference_model: Path | None = None,
+    timeout_seconds: float | None = None,
+    allow_op3_sites: tuple[str, ...] = (),
+    passthrough_sites: tuple[str, ...] = (),
+) -> dict[str, object]:
+    """Run the ordinary PostMR Coot construction stage without MR/MTZ state.
+
+    This shared stage writes a separate model and retains raw output and parent
+    snapshots. Existing phosphate policy proves only selected internal OP3
+    context deletion before intact-base transport. It does not run NARestraints, ReadySet,
+    optimization, or claim a completed PostMR run. The optional external-process
+    budget leaves default production invocation behavior unchanged.
+    """
+    input_model, output_model = Path(input_model), Path(output_model)
+    reference_model = Path(reference_model) if reference_model is not None else input_model
+    if output_model.exists() or output_model.is_symlink():
+        raise FileExistsError(output_model)
+    inputs = [input_model, reference_model, *map(Path, dictionary_paths.values())]
+    if output_model.resolve() in {p.resolve() for p in inputs}:
+        raise PostMRPreparationError("Construction output must be separate from every input")
+    coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
+    if len({a.site for a in coot_actions}) != len(coot_actions):
+        raise PostMRPreparationError("Duplicate Coot construction sites")
+    output_model.parent.mkdir(parents=True, exist_ok=True)
+    if not coot_actions:
+        with output_model.open("xb") as handle:
+            handle.write(input_model.read_bytes())
+        return {"model": output_model, "raw_model": None, "geometry_model": None,
+                "parent_models": {}, "coot_log": None, "coordinate_restoration": {},
+                "restoration_input": None, "context_receipt": None,
+                "context_shadow": None, "context_sanitized_shadow": None, "context_rechecked_model": None}
+    if coot_executable is None:
+        sites = ", ".join(a.site for a in coot_actions)
+        raise PostMRPreparationError(f"Coot is required for supported mutation site(s) {sites}")
+    overlap_actions = tuple(a for a in coot_actions if a.method == "coot-parent-overlap")
+    canonical_actions = tuple(a for a in coot_actions if a.method == "coot-mutate-base")
+    coot_directory = Path(coot_directory) if coot_directory is not None else output_model.parent / "Coot"
+    raw_model = output_model.with_name(output_model.stem + "_raw.pdb")
+    geometry_model = output_model.with_name(output_model.stem + "_geometry.pdb")
+    parent_models = {a.site: coot_directory / f"parent_{a.site.replace(':', '_')}_{a.parent_code}.pdb"
+                     for a in overlap_actions}
+    for path in [raw_model, geometry_model, coot_directory / "mutate.py",
+                 coot_directory / "coot.log", *parent_models.values()]:
+        if path.exists() or path.is_symlink():
+            raise FileExistsError(path)
+        if path.resolve() in {p.resolve() for p in inputs}:
+            raise PostMRPreparationError("Construction intermediates must be separate from every input")
+    coot_dictionaries = {a.after: Path(dictionary_paths[a.after]) for a in overlap_actions}
+    coot_directory.mkdir(parents=True, exist_ok=True)
+    _, coot_log = _run_coot(input_model, raw_model, coot_actions, coot_executable,
+        coot_directory, environment, coot_dictionaries, parent_models,
+        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
+    from .postmr_context import prepare_construction_context
+    context = prepare_construction_context(raw_model, reference_model, overlap_actions,
+        dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
+        allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites)
+    restoration_input = context["model"]
+    restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
+    if restoration_actions:
+        restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
+            restoration_actions, parent_models, dictionary_paths)
+    else:
+        shutil.copyfile(restoration_input, geometry_model)
+        restoration = {}
+    for action in overlap_actions:
+        if action.site in passthrough_sites:
+            restoration[action.site] = {"status": "RAW_SITE_RETAINED", "count": 0,
+                "atoms": [], "substitutions": [], "requires_cif_review": False,
+                "reason": "Frozen experimental backbone passthrough is preserved.",
+                "notes": ["The raw site was retained under its explicit frozen backbone policy."]}
+    if canonical_actions:
+        restoration.update(_restore_canonical_mutation_backbones(reference_model,
+            geometry_model, output_model, canonical_actions))
+    else:
+        shutil.copyfile(geometry_model, output_model)
+    rechecked = None
+    if context["receipt"]["status"] == "CONTEXT_PREPARED":
+        rechecked = output_model.with_name(output_model.stem + "_context_rechecked.pdb")
+        if rechecked.exists() or rechecked.is_symlink():
+            raise FileExistsError(rechecked)
+        try:
+            final_check = sanitize_phosphates(output_model, rechecked, reference_model=reference_model,
+                check_sites=tuple(row["site"] for row in context["receipt"]["removed_atoms"]),
+                allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites)
+            if final_check["removed"] or rechecked.read_bytes() != output_model.read_bytes():
+                raise PhosphateError("Final context recheck changed the restored model")
+        except (OSError, ValueError) as exc:
+            # Roll back only the new context stage. Replay the established
+            # curated/canonical restoration from immutable raw Coot records so
+            # a failed new proof cannot discard their legitimate behavior.
+            rollback_geometry = output_model.with_name(output_model.stem + "_context_rollback_geometry.pdb")
+            if restoration_actions:
+                restoration = _restore_shared_parent_coordinates(raw_model, rollback_geometry,
+                    restoration_actions, parent_models, dictionary_paths)
+            else:
+                shutil.copyfile(raw_model, rollback_geometry)
+                restoration = {}
+            for action in overlap_actions:
+                if action.site in passthrough_sites:
+                    restoration[action.site] = {"status": "RAW_SITE_RETAINED", "count": 0,
+                        "atoms": [], "substitutions": [], "requires_cif_review": False,
+                        "reason": "Frozen experimental backbone passthrough is preserved.",
+                        "notes": ["The raw site was retained under its explicit frozen backbone policy."]}
+            if canonical_actions:
+                restoration.update(_restore_canonical_mutation_backbones(reference_model,
+                    rollback_geometry, output_model, canonical_actions))
+            else:
+                shutil.copyfile(rollback_geometry, output_model)
+            attempted_geometry = geometry_model
+            geometry_model = rollback_geometry
+            rechecked = rechecked if rechecked.is_file() else None
+            restoration_input = raw_model
+            context["receipt"].update(status="RAW_CONTEXT_RETAINED", reason=str(exc),
+                attempted_serial_repairs=context["receipt"]["serial_repairs"],
+                attempted_removed_atoms=context["receipt"]["removed_atoms"],
+                serial_repairs=[], removed_atoms=[],
+                restoration_input_sha256=file_sha256(raw_model),
+                attempted_geometry_sha256=file_sha256(attempted_geometry),
+                notes=["The new context changes were discarded after final phosphate revalidation failed; established ordinary restoration was retained."])
+        else:
+            context["receipt"]["final_sanitizer_recheck"] = final_check
+    return {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,
+            "parent_models": parent_models, "coot_log": coot_log,
+            "coordinate_restoration": restoration, "restoration_input": restoration_input,
+            "context_receipt": context["receipt"], "context_shadow": context["shadow"],
+            "context_sanitized_shadow": context["sanitized_shadow"], "context_rechecked_model": rechecked}
 
 
 def prepare_postmr(
@@ -1456,6 +1837,7 @@ def prepare_postmr(
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
     modified_pairs_only: bool = False,
+    restraint_scope: str | None = None,
     allow_unreviewed_backbone: bool = False,
     data_root: Path | None = None,
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
@@ -1463,6 +1845,17 @@ def prepare_postmr(
 ) -> PostMRResult:
     """Prepare a completed Phaser solution without modifying the MR outputs."""
     run, report = _read_report(run_directory)
+    from .automr_input import validate_restraint_scope, AutoMRInputError
+    plan = report.get("post_mr_plan", {})
+    try:
+        recorded_scope = validate_restraint_scope(plan.get("restraint_scope"))
+        selected_scope = validate_restraint_scope(restraint_scope) or recorded_scope
+    except (AutoMRInputError, AttributeError) as exc:
+        raise PostMRPreparationError(f"Invalid restraint scope: {exc}") from exc
+    if selected_scope == "all" and modified_pairs_only:
+        raise PostMRPreparationError("Full-model restraint_scope conflicts with --modified-pairs-only")
+    if selected_scope == "all" and plan.get("restraint_geometry_override") is not None:
+        raise PostMRPreparationError("Full-model restraint_scope cannot discard a frame-specific force override")
     mr_status = report.get("status")
     if mr_status == "MR_REVIEW" and not allow_mr_review:
         raise PostMRPreparationError(
@@ -1526,13 +1919,45 @@ def prepare_postmr(
     })
     ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes}
     ligand_sources: dict[str, Path] = {}
+    initial_dictionary_hashes: dict[str, str] = {}
     for code in target_ligand_codes:
         try:
-            dictionary = ligand_dictionary(code, data_root).resolve()
+            dictionary = ligand_dictionary(
+                code, data_root, ready_set_executable=ready_set_executable
+            ).resolve()
             validate_ligand_dictionary(code, dictionary)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
         ligand_sources[code] = dictionary
+        initial_dictionary_hashes[code] = file_sha256(dictionary)
+
+    # These audit-only copies retain the exact target definitions inspected
+    # before mutation. Coot still uses the original verified inputs and the
+    # existing post-Coot source freeze/hash check remains authoritative.
+    mutation_doctor: dict[str, object] | None = None
+    if ligand_sources:
+        mutation_snapshots = coot_dir / "source_dictionaries"
+        mutation_snapshots.mkdir()
+        mutation_inputs = []
+        for code, source in ligand_sources.items():
+            snapshot = mutation_snapshots / f"{code}.cif"
+            shutil.copyfile(source, snapshot)
+            if (file_sha256(snapshot) != initial_dictionary_hashes[code]
+                    or file_sha256(source) != initial_dictionary_hashes[code]):
+                raise PostMRPreparationError(
+                    f"Dictionary changed while screening mutation {code}"
+                )
+            mutation_inputs.append(snapshot)
+        mutation_assessment = _cif_doctor_assessment(
+            mutation_inputs, run, stage="postmr-mutation-source",
+        )
+        mutation_assessment["mutation_targets"] = [
+            asdict(action) for action in actions
+            if action.after in ligand_sources
+        ]
+        mutation_report = restraints_dir / "cif_doctor_mutation.json"
+        _write_json(mutation_report, mutation_assessment)
+        mutation_doctor = _cif_doctor_receipt(mutation_report, mutation_assessment, run)
 
     raw_targets = _target_sites(report, original, run_directory=run)
     requested_changes = component_target_changes(raw_targets)
@@ -1563,68 +1988,16 @@ def prepare_postmr(
             "output": frozen_reference(coot_input, run),
         }
 
-    coot_actions = tuple(
-        action
-        for action in actions
-        if action.method in {"coot-mutate-base", "coot-parent-overlap"}
-    )
-    overlap_actions = tuple(
-        action for action in coot_actions if action.method == "coot-parent-overlap"
-    )
-    canonical_actions = tuple(
-        action for action in coot_actions if action.method == "coot-mutate-base"
-    )
-    coot_log: Path | None = None
-    coordinate_restoration: dict[str, object] = {}
     after_coot = model_dir / "after_coot.pdb"
-    if coot_actions:
-        if coot_executable is None:
-            sites = ", ".join(action.site for action in coot_actions)
-            raise PostMRPreparationError(
-                f"Coot is required for supported mutation site(s) {sites}"
-            )
-        raw_after_coot = model_dir / "after_coot_raw.pdb"
-        parent_models = {
-            action.site: coot_dir
-            / f"parent_{action.site.replace(':', '_')}_{action.parent_code}.pdb"
-            for action in overlap_actions
-        }
-        coot_dictionaries = {
-            action.after: ligand_sources[action.after] for action in overlap_actions
-        }
-        _, coot_log = _run_coot(
-            coot_input,
-            raw_after_coot,
-            coot_actions,
-            coot_executable,
-            coot_dir,
-            environment,
-            coot_dictionaries,
-            parent_models,
-        )
-        geometry_after_coot = model_dir / "after_coot_geometry.pdb"
-        if overlap_actions:
-            coordinate_restoration = _restore_shared_parent_coordinates(
-                raw_after_coot,
-                geometry_after_coot,
-                overlap_actions,
-                parent_models,
-                ligand_sources,
-            )
-        else:
-            shutil.copyfile(raw_after_coot, geometry_after_coot)
-        if canonical_actions:
-            canonical_restoration = _restore_canonical_mutation_backbones(
-                original,
-                geometry_after_coot,
-                after_coot,
-                canonical_actions,
-            )
-            coordinate_restoration.update(canonical_restoration)
-        else:
-            shutil.copyfile(geometry_after_coot, after_coot)
-    else:
-        shutil.copyfile(coot_input, after_coot)
+    construction = construct_postmr_model(
+        coot_input, actions, ligand_sources, after_coot,
+        coot_executable=coot_executable, environment=environment,
+        coot_directory=coot_dir, reference_model=original,
+        allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
+    )
+    coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
+    coot_log = construction["coot_log"]
+    coordinate_restoration = construction["coordinate_restoration"]
 
     terminal_ready = model_dir / "terminal_phosphate_model.pdb"
     try:
@@ -1668,7 +2041,23 @@ def prepare_postmr(
     compatibility_codes = {
         code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
     }
-    if modified_pairs_only:
+    if selected_scope == "all":
+        from .full_model_restraints import prepare_full_model_restraints
+        full_root = restraints_dir / "full_model"
+        try:
+            narestraints_report = prepare_full_model_restraints(
+                prepared, full_root, data_root=data_root,
+                ready_set_executable=ready_set_executable,
+            )
+        except (ValueError, OSError, KeyError) as exc:
+            raise PostMRPreparationError(f"Full-model NARestraints preparation failed: {exc}") from exc
+        narestraints = full_root / narestraints_report["restraint_file"]
+        narestraints_report["restraint_file"] = frozen_reference(narestraints, run)
+        narestraints_report["compiler_receipt"] = frozen_reference(
+            full_root / narestraints_report["compiler_receipt"], run)
+        narestraints_report["scope_source"] = "explicit-postmr-override" if restraint_scope is not None else "frozen-input-card"
+        restraint_paths.append(narestraints)
+    elif modified_pairs_only:
         _rewrite_codes(prepared, compatibility, compatibility_codes)
         pair_file = restraints_dir / "guessed_modified_pairs.txt"
         narestraints = restraints_dir / "narestraints_modified_pairs.phil"
@@ -1840,9 +2229,22 @@ def prepare_postmr(
     )
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []
+    dictionary_source_provenance: dict[str, dict[str, object]] = {}
+    from .cif_postmr_cache import prepare_postmr_dictionaries, read_postmr_dictionaries
+    reuse_directory = restraints_dir / "dictionary_reuse"
+    try:
+        reuse_report = prepare_postmr_dictionaries(
+            ligand_codes, ready_set_executable, reuse_directory,
+            data_root=data_root, environment=environment,
+        )
+        reused_dictionaries = read_postmr_dictionaries(reuse_directory)
+    except (OSError, ValueError, KeyError) as exc:
+        raise PostMRPreparationError(f"Dictionary acquisition failed: {exc}") from exc
     for code in ligand_codes:
         try:
-            source = ligand_sources.get(code) or ligand_dictionary(code, data_root).resolve()
+            source = ligand_sources.get(code) or ligand_dictionary(
+                code, data_root, ready_set_executable=ready_set_executable
+            ).resolve()
             validate_ligand_dictionary(code, source)
         except (KeyError, FileNotFoundError, ValueError) as exc:
             raise PostMRPreparationError(str(exc)) from exc
@@ -1853,13 +2255,29 @@ def prepare_postmr(
         source_directory.mkdir(exist_ok=True)
         source_snapshot = source_directory / f"{code}.cif"
         source_sha = file_sha256(source)
+        if code in initial_dictionary_hashes and source_sha != initial_dictionary_hashes[code]:
+            raise PostMRPreparationError(
+                f"Source dictionary for {code} changed since Coot mutation"
+            )
+        dictionary_source_provenance[code] = {
+            "origin": str(source),
+            "sha256": source_sha,
+            "kind": (
+                "installed-phenix-ccd" if code not in CURATED_LIGANDS
+                and source.name == f"data_{code}.cif" else "local-verified"
+            ),
+            "source_parameterized": code in _parameterized_codes(source),
+            "parameterized": code in _parameterized_codes(reused_dictionaries[code]["dictionary"]),
+            "local_dictionary_reuse": reused_dictionaries[code]["report"]["status"],
+        }
         shutil.copyfile(source, source_snapshot)
         if (file_sha256(source_snapshot) != source_sha
-                or file_sha256(source) != source_sha):
+                or file_sha256(source) != source_sha
+                or file_sha256(reused_dictionaries[code]["source"]) != source_sha):
             raise PostMRPreparationError(f"Dictionary changed while freezing {code}")
         try:
             normalize_ccp4_torsion_alternates(
-                source_snapshot, destination, audit=dictionary_input_audit)
+                reused_dictionaries[code]["dictionary"], destination, audit=dictionary_input_audit)
         except (PhosphateError, ValueError, OSError) as exc:
             raise PostMRPreparationError(f"Dictionary preparation failed for {code}: {exc}") from exc
         copied_cifs.append(destination)
@@ -1883,14 +2301,44 @@ def prepare_postmr(
             raise PostMRPreparationError(f"Linked dictionary profile failed: {exc}") from exc
         restraint_paths.extend(modification_paths)
 
+    source_assessment = _cif_doctor_assessment(
+        [restraints_dir / "source_dictionaries" / f"{code}.cif" for code in ligand_codes],
+        run, stage="postmr-source", model=prepared,
+    )
+    source_assessment["runtime_assessment"] = _cif_doctor_assessment(
+        restraint_paths, run, stage="postmr-runtime-source", model=prepared,
+    )
+    site_context = {
+        "phosphate_policy": "op3-explicit-opt-in-v1",
+        "allow_op3_sites": list(allowed_op3),
+        "experimental_passthrough_sites": list(passthrough_sites),
+    }
+    source_assessment["declared_site_context"] = site_context
+    source_assessment["readyset_dictionary_input"] = (
+        frozen_reference(readyset_cif, run) if readyset_cif is not None else None
+    )
+    # Preserve the combined compatibility artifact above, but register each
+    # selected component independently with ReadySet. Its native reader binds
+    # one molecule id per supplied file; a combined container can be skipped.
+    source_assessment["readyset_dictionary_input_policy"] = "per-component-files-v1"
+    source_assessment["readyset_dictionary_inputs"] = [
+        frozen_reference(path, run) for path in copied_cifs
+    ]
+    source_report = restraints_dir / "cif_doctor_source.json"
+    _write_json(source_report, source_assessment)
+
     updated, readyset_log, generated_cif, readyset_command, phosphate_after = _run_readyset(
         prepared,
         ready_set_executable.expanduser().resolve(),
         readyset_dir,
-        readyset_cif,
+        tuple(copied_cifs) if copied_cifs else None,
         environment,
         phosphate_sites=tuple(item["site"] for item in phosphate_before["removed"]),
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
+    )
+    _require_generic_parameterization(
+        dictionary_source_provenance, generated_cif, readyset_log,
+        failure_report=readyset_dir / "cif_doctor_generation_failure.json",
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)
@@ -1927,6 +2375,46 @@ def prepare_postmr(
             prefer_parameterized_inputs=True)
     except (PhosphateError, ValueError, OSError) as exc:
         raise PostMRPreparationError(f"Cannot prepare effective dictionary inputs: {exc}") from exc
+    effective_assessment = _cif_doctor_assessment(
+        effective, run, stage="postmr-effective", model=final_model,
+    )
+    effective_assessment["declared_site_context"] = site_context
+    effective_assessment["dictionary_precedence"] = {
+        "policy": "parameterized-inputs-over-readyset-v2",
+        "authoritative_codes": sorted(
+            (set(ligand_codes) & AUTHORITATIVE_CODES)
+            | {code for path in copied_cifs for code in _parameterized_codes(path)}
+        ),
+        "normalized_inputs": [frozen_reference(path, run) for path in copied_cifs],
+        "effective_dictionaries": [frozen_reference(path, run) for path in view_dictionaries],
+        "raw_readyset_dictionary": (
+            frozen_reference(generated_cif, run) if generated_cif is not None else None
+        ),
+    }
+    effective_report = restraints_dir / "cif_doctor_effective.json"
+    _write_json(effective_report, effective_assessment)
+    cif_doctor = {
+        "schema_version": 1,
+        "mode": "report-only",
+        "coordinate_changes": False,
+        "native_interpretation": "UNASSESSED",
+        "source": _cif_doctor_receipt(source_report, source_assessment, run),
+        "effective": _cif_doctor_receipt(effective_report, effective_assessment, run),
+        "dictionary_reuse": {
+            "policy_id": reuse_report["policy_id"],
+            "report": frozen_reference(reuse_directory / "postmr_dictionaries.json", run),
+            "reused_components": [c for c, row in reuse_report["components"].items()
+                                  if row["status"] == "REUSED"],
+            "solution_report": {
+                "requires_cif_review": False, "pdf_status": "PLANNED",
+                "text": "Qualified local dictionaries were reused where the selected source and current native consumer match; ordinary preparation was retained otherwise.",
+                "notes": {c: row["notes"] for c, row in reuse_report["components"].items()},
+                "current_links_and_model": "ORDINARY_PIPELINE_CHECKS; ISOLATED_CACHE_IS_NOT_MODEL_QUALIFICATION",
+            },
+        },
+    }
+    if mutation_doctor is not None:
+        cif_doctor["mutation"] = mutation_doctor
     anomalous_candidates = scan_anomalous_candidates(final_model)
     from .anomalous_expectations import audit_iodine_targets
     iodine_expectations = audit_iodine_targets(final_model, anomalous_candidates)
@@ -1939,10 +2427,13 @@ def prepare_postmr(
         "input_sha256": file_sha256(source_model),
         "mutation_actions": [asdict(action) for action in actions],
         "coot": {
-            "ran": bool(coot_actions),
+            "ran": construction["raw_model"] is not None,
             "executable": str(coot_executable) if coot_executable else None,
             "log": str(coot_log) if coot_log else None,
             "shared_parent_coordinates_restored": coordinate_restoration,
+            "parent_context": construction["context_receipt"],
+            "restoration_input": (frozen_reference(construction["restoration_input"], run)
+                if construction["restoration_input"] is not None else None),
         },
         "phosphate_policy": phosphate_policy,
         **({"sequence_family_audit": family_audit} if family_audit is not None else {}),
@@ -1977,6 +2468,7 @@ def prepare_postmr(
             for code in ligand_codes
         },
         "restraints": [str(path) for path in restraint_paths],
+        "cif_doctor": cif_doctor,
         "narestraints": narestraints_report,
         "readyset": {
             "command": readyset_command,
@@ -2026,6 +2518,7 @@ def prepare_postmr(
     }
     postmr_payload["dictionary_precedence"] = {
         "policy": "parameterized-inputs-over-readyset-v2",
+        "input_source_provenance": dictionary_source_provenance,
         "authoritative_codes": sorted(
             (set(ligand_codes) & AUTHORITATIVE_CODES)
             | {code for path in copied_cifs for code in _parameterized_codes(path)}),
@@ -2054,6 +2547,9 @@ def prepare_postmr(
             ),
             f"NARestraints mode: {narestraints_report['mode']}",
             "ReadySet hydrogens: False",
+            f"CIF Doctor source assessment: {source_assessment['status']} (report-only)",
+            f"CIF Doctor effective assessment: {effective_assessment['status']} (report-only)",
+            "CIF Doctor native interpretation: UNASSESSED",
             f"Prepared model: {final_model}",
             "",
         ]),

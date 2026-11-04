@@ -11,7 +11,7 @@ from nasolve.campaign_records import job_relative, read_record
 from nasolve.campaigns import plan_campaign
 from nasolve.presets import load_preset, PresetError
 from nasolve.checkpoints import initialize_registry, select_checkpoint
-from .test_campaign_pipeline import CampaignPipelineTests
+from . import test_campaign_pipeline as campaign_pipeline
 from .test_postmr import postmr_model_text
 from .test_autorefine import make_refine
 
@@ -25,7 +25,7 @@ mode = "full-auto"
 
 @pytest.fixture
 def full_case(tmp_path):
-    case = CampaignPipelineTests()
+    case = campaign_pipeline.CampaignPipelineTests()
     try:
         case.setUp()
         # Test-owned plan only: production plans are never edited in place.
@@ -92,7 +92,7 @@ def test_explicit_endpoint_overrides_recipe(full_case):
 
 
 def test_guarded_recipe_retains_original_mr_stop():
-    case = CampaignPipelineTests()
+    case = campaign_pipeline.CampaignPipelineTests()
     try:
         case.setUp()
         set_tfz(case, 7.6)
@@ -196,6 +196,42 @@ def test_phase_warning_can_continue_without_ever_importing_rejected_phases(full_
     assert refinement["inputs"].get("phase_file") is None
     assert any("phases were not accepted" in text for text in item["scientific_warnings"])
     assert receipt(case, "autosol")["status"] == "AUTOSOL_WARNING"
+
+
+def test_disabled_autosol_remains_phase_free_through_doctor_after_relocation(full_case, monkeypatch):
+    from nasolve import campaign_stages
+    case = full_case
+    replan(case, '\n[autosol]\npolicy = "disabled"\nreason = "Synthetic DNA against donor data"\n')
+    source = case.root / "dataset/staraniso-alldata.mtz"
+    source_bytes = source.read_bytes()
+    original = case.root
+    relocated = case.base / "disabled-relocated"
+    shutil.copytree(original, relocated)
+    shutil.rmtree(original)
+    case.root = relocated
+    monkeypatch.setattr(campaign_stages, "execute_autosol", lambda *args, **kwargs: pytest.fail("Disabled AutoSol executed"))
+    make_refine(case.tools, final_work=0.17, final_free=0.16)
+    original_doctor = campaign_stages.execute_refine_doctor
+    def doctor(*args, **kwargs):
+        make_refine(case.tools, final_work=0.15, final_free=0.20)
+        return original_doctor(*args, **kwargs)
+    monkeypatch.setattr(campaign_stages, "execute_refine_doctor", doctor)
+    item = execute_campaign(case.root)["execution"]["datasets"][0]
+    assert item["status"] == "SOLVED", item["diagnostic"]
+    assert "refine-doctor" in case.jobs
+    run = case.root / item["run"]
+    assert not (run / "AutoSol").exists()
+    assert receipt(case, "autosol")["status"] == "SKIPPED"
+    assert "Synthetic DNA against donor data" in receipt(case, "autosol")["message"]
+    report = json.loads((run / "report.json").read_text())
+    assert report["autosol"]["use_for_refinement"] is False
+    for path in (run / "AutoRefine").glob("round_*/report.json"):
+        refinement = json.loads(path.read_text())
+        assert refinement["refinement"]["use_experimental_phases"] is False
+        assert refinement["inputs"].get("phase_file") is None
+    _, registry = initialize_registry(run)
+    assert all(item.get("phases") is None for item in registry["checkpoints"])
+    assert (case.root / "dataset/staraniso-alldata.mtz").read_bytes() == source_bytes
 
 
 def test_new_preset_is_typed_and_old_bytes_keep_the_same_semantics(tmp_path):

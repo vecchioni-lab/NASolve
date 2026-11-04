@@ -55,6 +55,7 @@ class AutoMRIntent:
     backbone_sites: dict[str, str] = field(default_factory=dict)
     allow_unreviewed_backbone: bool = False
     sequence_reference: str | None = None
+    restraint_scope: str | None = None
 
 
 @dataclass(frozen=True)
@@ -96,6 +97,7 @@ class ResolvedAutoMRInput:
     frame_sequence_source: Path | None = None
     force_text: str | None = None
     force_pair: tuple[str, str] | None = None
+    restraint_scope: str | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
@@ -113,7 +115,14 @@ _ALLOWED_AUTOMR_KEYS = {
     "allow_op3_sites",
     "five_prime_phosphate_sites",
     "allow_unreviewed_backbone",
+    "restraint_scope",
 }
+
+
+def validate_restraint_scope(value: object) -> str | None:
+    if value is not None and value != "all":
+        raise AutoMRInputError("restraint_scope must be 'all' or omitted for the existing recipe")
+    return value
 
 
 def _validated_model_family(value: object) -> str | None:
@@ -332,6 +341,7 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         frame=automr.get("frame") or None,
         pair=automr.get("pair") or None,
         force=automr.get("force") or None,
+        restraint_scope=validate_restraint_scope(automr.get("restraint_scope")),
         model=automr.get("model") or None,
         model_family=_validated_model_family(automr.get("model_family")),
         sequence_file=automr.get("sequence_file") or None,
@@ -652,6 +662,7 @@ def resolve_automr_input(
         raise AutoMRInputError(str(exc)) from exc
     if type(intent.allow_unreviewed_backbone) is not bool:
         raise AutoMRInputError("allow_unreviewed_backbone must be true or false")
+    restraint_scope = validate_restraint_scope(intent.restraint_scope)
     dataset = discover_dataset(root)
     configured_mode = intent.mode.strip().casefold() if intent.mode else None
     if configured_mode not in {None, "standard", "nonstandard"}:
@@ -840,6 +851,7 @@ def resolve_automr_input(
         pair=pair,
         force_text=force_text,
         force_pair=force_pair,
+        restraint_scope=restraint_scope,
         model=model,
         model_source=model_source,
         model_pair=model_pair,
@@ -934,6 +946,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
                 except ValueError as exc:
                     raise AutoMRInputError("Sequence reference must be built-in or dataset-relative") from exc
         lines.append(f"sequence_reference = {reference_text}")
+    if resolved.restraint_scope is not None:
+        lines.append("restraint_scope = " + validate_restraint_scope(resolved.restraint_scope))
     if resolved.mirror:
         lines.append("mirror = true")
     if resolved.allow_unreviewed_backbone:

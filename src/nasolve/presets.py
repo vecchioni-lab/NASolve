@@ -19,7 +19,7 @@ from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
 from .phosphate import PhosphateError, validate_op3_sites
-from .campaign_policy import workflow_policy
+from .campaign_policy import autosol_policy, workflow_policy
 
 try:
     import tomllib
@@ -248,6 +248,12 @@ def load_preset(source: str | Path = "5w6w") -> ProjectPreset:
         policy["workflow"] = workflow
     for name, defaults in _DEFAULTS.items():
         supplied = _table(data, name)
+        if name == "autosol" and supplied.get("policy") == "disabled":
+            try:
+                policy[name] = autosol_policy({**policy, "autosol": supplied})
+            except ValueError as exc:
+                raise PresetError(str(exc)) from exc
+            continue
         allowed = set(defaults) | ({"pair"} if name == "automr" else set())
         _unknown_keys(supplied, allowed, name)
         resolved = {**defaults, **supplied}

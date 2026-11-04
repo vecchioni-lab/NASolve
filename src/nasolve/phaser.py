@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 import re
 import shutil
 import subprocess
@@ -12,7 +13,7 @@ from pathlib import Path
 from typing import Mapping
 
 from .model_assessment import file_sha256
-from .run_context import resolve_artifact_path
+from .run_context import artifact_reference, resolve_artifact_path
 
 
 class PhaserExecutionError(RuntimeError):
@@ -42,9 +43,58 @@ class PhaserExecutionResult:
         return 4
 
 
-_NUMBER = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)"
+_NUMBER = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][+-]?\d+)?"
 _TFZ_RE = re.compile(rf"\bTFZ\s*={{0,2}}\s*({_NUMBER})", re.I)
 _LLG_RE = re.compile(rf"\bLLG\s*={{0,2}}\s*({_NUMBER})", re.I)
+_ANNOTATION_FIELD_RE = re.compile(r"\b(TFZ|LLG)(?:\s*(={1,2})\s*|\s+)(\S+)", re.I)
+
+
+def _annotation_scores(line: str) -> tuple[float | None, float | None, str | None]:
+    """Read the final scores in one solution's chronological annotation.
+
+    Phaser distinguishes orientation-dependent TFZ= from refined-orientation
+    TFZ== (TFZ-equivalent); repeated LLGs describe successive refinement stages.
+    https://www.phenix-online.org/documentation/reference/phaser.html#annotation
+    """
+    fields = list(_ANNOTATION_FIELD_RE.finditer(line))
+    translations = [m for m in fields if m.group(1).upper() == "TFZ"]
+    equivalents = [m for m in translations if m.group(2) == "=="]
+    selected = (equivalents or translations)[-1:]
+    likelihoods = [m for m in fields if m.group(1).upper() == "LLG"]
+
+    def number(match):
+        if match is None:
+            return None
+        token = match.group(3)
+        if re.fullmatch(_NUMBER, token) is None:
+            return None
+        value = float(token)
+        return value if math.isfinite(value) else None
+
+    tfz = number(selected[0] if selected else None)
+    llg = number(likelihoods[-1] if likelihoods else None)
+    kind = ("tfz-equivalent" if equivalents else "translation-search-tfz") if selected else None
+    return tfz, llg, kind
+
+
+def parse_selected_solution_scores(pdb_text: str) -> dict[str, object]:
+    """Read scores only from the selected PDB's own Phaser REMARK annotation.
+
+    An invalid/conflicting annotation is deliberately distinct from an absent
+    one: callers must not replace it with a more favourable unrelated log score.
+    """
+    lines = [line.strip() for line in pdb_text.splitlines()
+             if line.startswith("REMARK") and re.search(r"\bTFZ\b", line, re.I)]
+    if not lines:
+        return {"status": "ABSENT", "tfz": None, "llg": None, "score_kind": None,
+                "raw_annotations": []}
+    unique = list(dict.fromkeys(lines))
+    if len(unique) != 1:
+        return {"status": "AMBIGUOUS", "tfz": None, "llg": None, "score_kind": None,
+                "raw_annotations": unique}
+    tfz, llg, kind = _annotation_scores(unique[0])
+    return {"status": "PARSED" if tfz is not None else "INVALID",
+            "tfz": tfz, "llg": llg, "score_kind": kind, "raw_annotations": unique}
 
 
 def _phil_string(value: str | Path) -> str:
@@ -145,7 +195,12 @@ def build_phaser_eff(report: Mapping[str, object], phaser_directory: Path) -> st
 
 
 def parse_best_tfz(log_text: str) -> tuple[float | None, float | None]:
-    """Return the highest final-solution TFZ and its same-line LLG when present."""
+    """Return the highest per-annotation final TFZ for legacy log diagnostics.
+
+    This public tuple API is retained; execution gates instead use the selected
+    output's annotation, since the highest-scoring log solution may not be the
+    PDB selected by Phaser's output ranking.
+    """
     solution_lines = [
         line for line in log_text.splitlines()
         if re.search(r"\bSOLU\s+SET\b", line, re.I) and _TFZ_RE.search(line)
@@ -155,11 +210,9 @@ def parse_best_tfz(log_text: str) -> tuple[float | None, float | None]:
     ]
     scored: list[tuple[float, float | None]] = []
     for line in candidate_lines:
-        tfz_match = _TFZ_RE.search(line)
-        if not tfz_match:
-            continue
-        llg_match = _LLG_RE.search(line)
-        scored.append((float(tfz_match.group(1)), float(llg_match.group(1)) if llg_match else None))
+        tfz, llg, _kind = _annotation_scores(line)
+        if tfz is not None:
+            scored.append((tfz, llg))
     return max(scored, key=lambda item: item[0]) if scored else (None, None)
 
 
@@ -177,6 +230,43 @@ def _find_solution(phaser_directory: Path, suffix: str) -> Path | None:
         key=_solution_sort_key,
     )
     return candidates[0] if candidates else None
+
+
+def _selected_scores(raw_pdb: Path | None, output: str, directory: Path,
+                     run: Path) -> dict[str, object]:
+    """Bind the gate score to one selected artifact, with a narrow legacy fallback."""
+    evidence: dict[str, object] = {
+        "schema_version": 1, "selection_rule": "selected-output-final-annotation",
+        "tfz": None, "llg": None, "score_kind": None, "source": None,
+        "raw_annotations": [], "status": "NO_SELECTED_MODEL",
+    }
+    if raw_pdb is None:
+        return evidence
+    parsed = parse_selected_solution_scores(raw_pdb.read_text(encoding="utf-8", errors="replace"))
+    evidence.update(parsed)
+    evidence["source"] = {**artifact_reference(raw_pdb, run), "sha256": file_sha256(raw_pdb)}
+    if parsed["status"] != "ABSENT":
+        evidence["method"] = "selected-pdb-remark"
+        return evidence
+    # Older simple output fixtures/builds may omit the PDB score annotation.
+    # Only a single output pair and one distinct SOLU SET annotation can bind
+    # such a log score to this model. Never fall back to arbitrary TFZ text.
+    pdbs = list(directory.glob("PHASER*.pdb"))
+    mtzs = list(directory.glob("PHASER*.mtz"))
+    lines = list(dict.fromkeys(
+        line.strip() for line in output.splitlines()
+        if re.search(r"\bSOLU\s+SET\b", line, re.I) and re.search(r"\bTFZ\b", line, re.I)
+    ))
+    if len(pdbs) != 1 or len(mtzs) != 1 or mtzs[0] != raw_pdb.with_suffix(".mtz") or len(lines) != 1:
+        evidence.update(status="UNASSOCIATED_LOG", method="no-unambiguous-score-source")
+        return evidence
+    tfz, llg, kind = _annotation_scores(lines[0])
+    evidence.update(status="PARSED" if tfz is not None else "INVALID",
+                    tfz=tfz, llg=llg, score_kind=kind, raw_annotations=lines,
+                    method="single-output-single-annotation-log-compatibility",
+                    source={**artifact_reference(directory / "phaser.log", run),
+                            "sha256": file_sha256(directory / "phaser.log")})
+    return evidence
 
 
 def _write_report(path: Path, payload: Mapping[str, object]) -> None:
@@ -239,9 +329,13 @@ def execute_phaser(
         return_code = 127
     log_path.write_text(output, encoding="utf-8")
 
-    tfz, llg = parse_best_tfz(output)
     raw_pdb = _find_solution(phaser_directory, ".pdb")
-    raw_mtz = _find_solution(phaser_directory, ".mtz")
+    # Phaser ranks numbered output models. Require that exact model's MTZ;
+    # independently sorting extensions could silently pair .1.pdb with .2.mtz.
+    paired_mtz = raw_pdb.with_suffix(".mtz") if raw_pdb else None
+    raw_mtz = paired_mtz if paired_mtz is not None and paired_mtz.is_file() else None
+    score_evidence = _selected_scores(raw_pdb, output, phaser_directory, run_directory)
+    tfz, llg = score_evidence["tfz"], score_evidence["llg"]
     solution_pdb: Path | None = None
     solution_mtz: Path | None = None
     if raw_pdb:
@@ -255,9 +349,12 @@ def execute_phaser(
     if return_code != 0:
         status = "MR_FAILED"
         message = f"Phaser exited with status {return_code}; inspect phaser.log"
+    elif not outputs_complete and (raw_pdb is not None or _TFZ_RE.search(output)):
+        status = "MR_FAILED"
+        message = "Phaser did not produce both PDB and MTZ outputs for the same selected solution"
     elif tfz is None:
         status = "MR_FAILED"
-        message = "Phaser did not report a TFZ; inspect phaser.log"
+        message = "Phaser did not report a TFZ associated unambiguously with the selected output; inspect score_evidence and phaser.log"
     elif tfz < 7.0:
         status = "MR_FAILED"
         message = f"Best TFZ {tfz:.2f} is below the 7.0 acceptance floor"
@@ -298,10 +395,13 @@ def execute_phaser(
             ),
             "best_tfz": tfz,
             "best_llg": llg,
+            "score_evidence": score_evidence,
             "raw_solution_pdb": str(raw_pdb) if raw_pdb else None,
             "raw_solution_mtz": str(raw_mtz) if raw_mtz else None,
             "solution_pdb": str(solution_pdb) if solution_pdb else None,
             "solution_mtz": str(solution_mtz) if solution_mtz else None,
+            "solution_pdb_sha256": file_sha256(solution_pdb) if solution_pdb else None,
+            "solution_mtz_sha256": file_sha256(solution_mtz) if solution_mtz else None,
         },
     }
     _write_report(frozen_report_path, report)
@@ -344,4 +444,5 @@ __all__ = [
     "build_phaser_eff",
     "execute_phaser",
     "parse_best_tfz",
+    "parse_selected_solution_scores",
 ]

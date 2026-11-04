@@ -1,15 +1,14 @@
 {
   "schema_version": 1,
   "kind": "modified-component-preparation-development-intent",
-  "date": "2026-10-07",
-  "status": "P2_FULL_CHECKOUT_REGRESSION_PASSED_NATIVE_PENDING",
+  "date": "2026-10-11",
+  "status": "DP_GEOMETRY_BASE_VISUAL_PASS_SUGAR_NUMERICAL_REVIEW_OPEN",
   "runtime_authority": false,
   "human_note": "docs/development-handoff.md",
   "subsystem_contract": "docs/modified-component-preparation.md",
-  "work_queue_ref": "docs/development-handoff.md#pine-close-out",
-  "next_project_priority_ref": "docs/development-handoff.md#after-pine-blind-alphafold-geometry-campaign-then-scout",
-  "history_snapshot": "docs/history/modified-component-preparation-intent-2026-10-01.json",
-  "scope": "Component development policy and returned validation evidence. No runtime schema migration or gate relaxation; detailed status and ordering remain in the handoff.",
+  "native_evidence_ref": "docs/native-modified-pair-live-validation.md",
+  "history_snapshot": "docs/history/modified-component-preparation-intent-2026-10-10-pre-reconciliation.json",
+  "scope": "Compact development intent; exact native receipts and project ordering belong to the linked ledger and handoff. No runtime schema or chemistry change.",
   "user_requested_component_normalization": [
     {
       "source_component": "1W5",
@@ -37,7 +36,7 @@
     }
   ],
   "construction_hop_policy": {
-    "status": "IMPLEMENTED_FULL_REGRESSION_PASS_GZ11_LIVE_WORKFLOW_PASS_OTHER_CATEGORIES_NOT_NEWLY_LIVE_VALIDATED",
+    "status": "IMPLEMENTED_REGRESSION_PASSED_COMBINED_PREPARED_BUNDLE_POSTMR_PASSED_GEOMETRY_PENDING",
     "implementation": "src/nasolve/curated_ligands.py:construction_parent_code",
     "category_intermediates": {
       "Z": "C",
@@ -67,369 +66,9 @@
     "missing_final_target_or_dictionary_is_not_supplied_by_fallback": true,
     "provenance": "Existing mutation_actions.parent_code; no checkpoint/report schema migration"
   },
-  "returned_category_hop_regression": {
-    "reported_by": "user-local-run",
-    "reported_full_tests": 735,
-    "status": "USER_REPORTED_PASS",
-    "context": "After the 88e2f53 ferry; superseded by returned_dictionary_regression",
-    "exact_checked_out_sha": null,
-    "subtest_count": null,
-    "runtime_seconds": null,
-    "raw_transcript_supplied": false,
-    "independently_executed": false,
-    "github_ci": false,
-    "new_live_crystallographic_validation": false,
-    "older_evidence_ref": "docs/history/modified-component-preparation-intent-2026-10-01.json"
-  },
-  "returned_dictionary_regression": {
-    "reported_by": "user-local-run",
-    "base_checkout": "dd59b4fdb70967adc6c240e7599b0a67e69188e9",
-    "tested_working_tree_committed_as": "66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08",
-    "focused_tests": 151,
-    "focused_runtime_seconds": 3.66,
-    "full_tests": 771,
-    "full_subtests": 224,
-    "full_runtime_seconds": 66.78,
-    "status": "PASSED_FROM_USER_TRANSCRIPT",
-    "raw_transcript_supplied": true,
-    "published_to_pine": true,
-    "remote_ref_verified": true,
-    "independently_executed": false,
-    "github_ci": false,
-    "new_live_crystallographic_validation": false
-  },
-  "current_blocker": {
-    "status": "HISTORICAL_EXECUTION_BLOCKER_PASSED_IN_FRESH_ORDINARY_RUN",
-    "next_slice": "Validate the implemented same-invocation Doctor transition on fresh QiC; GZ11 visual inspection already passed",
-    "experimental_postmr": "PASSED_DZ_VIA_DC_WITH_TEMPORARY_PROVIDER",
-    "experimental_refinement": "HISTORICAL_PRE_PATCH_FAILURE_BEFORE_R_STATISTICS",
-    "residue_site": "DZ B:4",
-    "torsion_family": "C2e/C3e nyu0",
-    "atoms": [
-      "C4'",
-      "O4'",
-      "C1'",
-      "C2'"
-    ],
-    "consumed_dictionary": "PostMR/ReadySet/prepared_model.ligands.cif",
-    "consumed_dictionary_scope": "Historical failed temporary probe only; do not assign this path as the fresh successful run's effective definition without inspecting its receipt",
-    "torsion_history_commit": "d203d2e32effd8c5f7b4b319ee2774b05972aa82",
-    "historical_dispatch": "1AP only before 66cb7a2",
-    "current_dispatch": "Content-based input/effective dictionary handling independent of phosphate-profile presence",
-    "production_gz11_refinement_validated": true,
-    "validation_scope": "User-returned ordinary campaign execution reached SOLVED and the requested local Coot visual check passed; detailed receipts and numerical geometry values remain unreturned",
-    "details_ref": "docs/history/development-handoff-2026-10-01-addendum.md.txt"
-  },
-  "returned_gz11_live_validation": {
-    "reported_by": "user-local-run",
-    "raw_transcript_supplied": true,
-    "printed_checkout": "66cb7a2",
-    "code_commit": "66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08",
-    "campaign_root": "~/NASolve-live-tests/TestSets-dd59b4f-jjra04s9",
-    "attempt": 2,
-    "run_relative_to_campaign": "GZ11/AutoMR/run_002",
-    "checkpoint": "refine-001",
-    "requested_endpoint": "autorefine",
-    "invocation": "ordinary campaign retry/run, no temporary provider override",
-    "stages_reported": [
-      "preflight",
-      "phaser",
-      "postmr",
-      "autosol",
-      "autorefine"
-    ],
-    "autosol_launched_or_skipped": "NOT_SHOWN_BY_STAGE_BOUNDARY_LOG",
-    "status": "SOLVED",
-    "numerical_criteria_passed": true,
-    "frozen_input_and_member_integrity": "OK",
-    "exit_codes": {
-      "retry": 3,
-      "run": 3,
-      "status": 3
-    },
-    "exit_code_scope": "Other campaign members remain flagged; not GZ11 failure",
-    "rwork": null,
-    "rfree": null,
-    "native_tool_versions_in_transcript": null,
-    "detailed_identity_force_dictionary_geometry_audit_returned": false,
-    "model_map_inspection_returned": true,
-    "visual_inspection": {
-      "status": "USER_REPORTED_PASS",
-      "recorded_date": "2026-10-06",
-      "reviewer": "Simon",
-      "requested_check": "DG A:12 / DZ B:4 identity, base placement against density, adjoining sugar/phosphate",
-      "user_response": "It's a perfect speckled sheep. Well done good sir!",
-      "show_launch_transcript_returned": true,
-      "model_relative_to_run": "AutoRefine/round_001/refined_001.pdb",
-      "maps_relative_to_run": "AutoRefine/round_001/refined_001.mtz",
-      "numerical_geometry_values_supplied": false,
-      "repeat_visual_confirmation_needed": false,
-      "checkpoint_approval_state_changed_by_documentation": false
-    },
-    "structurally_approved": false,
-    "standing_component_conversions_validated": false,
-    "independently_executed": false,
-    "github_ci": false,
-    "do_not_confuse_with": "Earlier standalone examples/TestSets/GZ11/AutoMR/run_002 or temporary MR_snapshot"
-  },
-  "library_backed_continuation_policy": {
-    "status": "USER_AGREED_DIRECTION_PENDING_RUNTIME_IMPLEMENTATION",
-    "nasolve_recognition_failure_alone_is_fatal": false,
-    "continue_when": "Applicable library resolves intended component and Phenix can use it; retain provenance and warning/inspection caveats for optional diagnostics.",
-    "necessary_stops": [
-      "Unusable required definitions or scientific inputs",
-      "External execution cannot produce usable output",
-      "Contradictory required restraints after supported corrections",
-      "Silent target change or omission of explicit required operation",
-      "Observation/Free-R integrity failure"
-    ],
-    "stop_scope": "Affected stage/dataset; unrelated members continue",
-    "known_component_exceptions_supported": true,
-    "existing_runtime_gates_changed_by_this_note": false
-  },
-  "generalization_review": {
-    "ownership": "NASolve construction/dictionaries; NARestraints retains atom-role and pair/stacking semantics",
-    "separate_concerns": [
-      "component normalization",
-      "construction scaffold",
-      "torsion representation",
-      "effective dictionary precedence"
-    ],
-    "torsion_review_requires": [
-      "ordered or correctly reversed quartets",
-      "period compatibility",
-      "unequal uncertainties",
-      "existing alternate fields",
-      "no arbitrary conflict collapse",
-      "source/derivative provenance"
-    ],
-    "downstream_requirement": "Intended normalized definition must reach refinement; inspect the successful run's receipt rather than infer exact dictionary details from SOLVED.",
-    "torsion_current_dispatch": "Input and effective dictionaries independent of residue name and phosphate profiles; regression and fresh GZ11 execution passed"
-  },
-  "guardrails": [
-    "Pine merge gates and Scout priority live in the handoff",
-    "Standing conversion direction is settled; derivative construction still needs implementation and validation",
-    "Preserve raw/frozen identities, source dictionaries, observations/Free-R and failed attempts",
-    "No arbitrary bond/protonation repair, blanket tautomer equivalence or inferred deposition rewrite",
-    "No installed-workbook changes, silent dictionary download, new 1W0 mapping or Scout authority promotion",
-    "Successful numerical execution and user local visual inspection do not supply missing numerical audits or change checkpoint approval state"
-  ],
-  "dictionary_compatibility_candidate": {
-    "status": "IMPLEMENTED_REGRESSION_GZ11_NATIVE_EXECUTION_AND_USER_VISUAL_CHECK_PASSED_DETAILED_RECEIPTS_PENDING",
-    "code_commit": "66cb7a2295bd9ea79fb946b2312ea7e3acd7eb08",
-    "source_test_count": 34,
-    "source_test_scope": "Historical isolated test; later checkout and live evidence are recorded separately",
-    "new_tests": [
-      "tests/test_dictionary_compatibility.py",
-      "tests/test_dictionary_postmr.py"
-    ],
-    "torsion_policy": "ccp4-alternates-primary-sigma-v2",
-    "source_and_effective_bundles": true,
-    "unclassified_conflicts": "retain unchanged with warnings for native interpretation",
-    "parameterized_inputs_override_generated": true,
-    "raw_ccd_can_defer_to_readyset": true,
-    "dz_source_git_blob": "9e6151658d2887ef3902d170c77752ccc90159d4",
-    "dz_resource_bundled": true,
-    "dz_constructor_parent": "DC",
-    "legacy_profile_scope": "Profiles without profile_codes remain 1AP-only",
-    "category_intermediates_changed": false,
-    "standing_component_conversions_implemented": false,
-    "main_merge_authorized_by_this_evidence": false
-  },
-  "baseline_campaign": {
-    "reported_by": "user",
-    "started_before_dictionary_patch": true,
-    "command_returned_before_patch_applied": true,
-    "source_head": "dd59b4fdb70967adc6c240e7599b0a67e69188e9",
-    "user_local_root": "~/NASolve-live-tests/TestSets-dd59b4f-jjra04s9",
-    "plan_exit": 0,
-    "run_exit": 3,
-    "status_exit": 3,
-    "original_copied_input_bytes_unchanged": true,
-    "outputs_retained": true,
-    "evidence_scope": "Pre-patch footer/member status; subsequent GZ11 retry stored separately",
-    "per_dataset_outcomes_returned": true,
-    "execution_state": "COMPLETE_WITH_FLAGS",
-    "all_member_and_frozen_input_integrity": "OK",
-    "outcome_counts": {
-      "SOLVED": 4,
-      "BLOCKED": 3,
-      "AWAITING_INSPECTION": 2
-    },
-    "member_results_ref": "docs/development-handoff.md#nine-member-baseline-results",
-    "component_followups": {
-      "GZ11": "Pre-patch missing DZ.cif; patched attempt_002 SOLVED and user visual inspection passed; detailed receipt review remains",
-      "Q5cm": "Missing local 5CM.cif; not supplied by DZ patch",
-      "DiU": "Ideal-coordinate C5-I5 distance 8.843 A at B:4; inspect dictionary/atom mapping, not a measured refined bond"
-    },
-    "doctor_continuation": {
-      "QiC_status": "AWAITING_INSPECTION",
-      "checkpoint": "refine-001",
-      "next_stage": "refine-doctor",
-      "initial_ferry_endpoint": "refine-doctor",
-      "code_defect": "execute_campaign post-stage break bypasses _runnable and stops on AUTOREFINE_REVIEW before Doctor in the same invocation",
-      "inspected_ref": "79588aca4e403e53ea05d9bcd6204d974c792576",
-      "fix_status": "IMPLEMENTED_LOCAL_REGRESSION_PASSED_NATIVE_PENDING",
-      "new_doctor_result_validated": false,
-      "fix": "Post-stage break uses the same _runnable(item, through) predicate as entry/resume",
-      "test_file": "tests/test_campaign_doctor_transition.py",
-      "schema_migration": false,
-      "validation": {
-        "base": "a3353c5001e64dc5196c1df4cb684cc9f479b136",
-        "source_after_git_blob": "23a4cab2f32d3e91e65c8e4ad4fe7b794e1eac27",
-        "focused_summary": "148 passed, 85 subtests passed in 37.94s",
-        "full_summary": "785 passed, 224 subtests passed in 67.75s (0:01:07)"
-      },
-      "new_doctor_result_ref": "returned_qic_same_invocation_validation"
-    },
-    "nine_member_gate_validated": false,
-    "next_action": "Fresh campaign-owned QiC attempt through refine-doctor after patch regression; preserve successful GZ11 and every baseline attempt"
-  },
-  "campaign_after_gz11_retry": {
-    "execution_state": "COMPLETE_WITH_FLAGS",
-    "outcome_counts": {
-      "SOLVED": 5,
-      "BLOCKED": 2,
-      "AWAITING_INSPECTION": 2
-    },
-    "solved": [
-      "DOHU",
-      "DT",
-      "ED",
-      "FA",
-      "GZ11"
-    ],
-    "blocked": [
-      "DiU",
-      "Q5cm"
-    ],
-    "awaiting_inspection": [
-      "EA",
-      "QiC"
-    ],
-    "all_member_and_frozen_input_integrity": "OK",
-    "other_members_retain_reported_run_checkpoint_paths": true,
-    "nine_member_gate_validated": false
-  },
-  "full_auto_policy": {
-    "status": "LOCAL_FULL_REGRESSION_PASSED_NATIVE_FULL_AUTO_PENDING",
-    "contract": "docs/campaign-full-auto.md",
-    "preset_schema": 2,
-    "requires_new_frozen_plan": true,
-    "legacy_guarded_behavior_unchanged": true,
-    "trialled_mr": "MR_REVIEW with original 7 <= TFZ < 8 retained",
-    "doctor": "existing bounded recommender only",
-    "automatic_selection": "separate provisional working choice; never USER_APPROVED",
-    "user_veto": "existing checkpoint selection; no reselection on completed-stage resume"
-  },
-  "component_lookup_followup": {
-    "status": "USER_LOCAL_LOOKUP_AUDIT_PASSED_NATIVE_COMPONENT_RUNS_PENDING",
-    "DiU": {
-      "cause": "CIF quote stripping erased C5-prime and overwrote ring C5",
-      "correct_ring_C5_I5_distance": 2.0951107369301507,
-      "incorrect_sugar_C5prime_I5_distance": 8.843030419488558,
-      "supplier_coordinates_changed": false,
-      "iodine_diagnostics": "expected atom, candidate, accepted phases and selected-branch anomalous usage kept distinct"
-    },
-    "5CM": {
-      "identity": "5CM",
-      "construction_parent": "DC",
-      "pair_class_changed": false,
-      "source_repository": "MonomerLibrary/monomers",
-      "source_path": "5/5CM.cif",
-      "source_git_blob": "a8a590f15f0b50c42ed9ad46d59eec3aab11d583",
-      "runtime_download": false,
-      "workbook_modified": false
-    }
-  },
-  "returned_qic_same_invocation_validation": {
-    "reported_by": "user-local-transcript",
-    "published_code_head_verified": "d3e1fa389b73843edb5bf33569622cf7b839220e",
-    "run": "QiC/AutoMR/run_002",
-    "attempt": 2,
-    "requested_endpoint": "refine-doctor",
-    "same_invocation_transition": true,
-    "status": "REFINE_DOCTOR_RECOMMEND",
-    "recommended_checkpoint": "refine-002",
-    "current_checkpoint": "postmr",
-    "old_reports_registries_plan_preserved": true,
-    "other_members_preserved": true,
-    "scope": "guarded policy; not new full-auto selection validation",
-    "rwork": null,
-    "rfree": null
-  },
-  "full_auto_patch_recovery": {
-    "status": "LOCAL_FULL_REGRESSION_PASSED",
-    "base_commit": "d3e1fa389b73843edb5bf33569622cf7b839220e",
-    "contract": "docs/full-auto-patch-handoff.md",
-    "original_returned_tests": {
-      "failed": 1,
-      "passed": 350,
-      "subtests_passed": 59,
-      "runtime_seconds": 48.72
-    },
-    "publication_at_failure": false,
-    "native_runs_launched": false,
-    "failure": "Legacy Doctor mock lacks AutoRefineResult checkpoint_id/report_path",
-    "production_audit_weakened": false,
-    "returned_component_audit": {
-      "5CM_records": 1,
-      "5CM_sheet": "cytosine",
-      "5CM_base_analog": "C",
-      "5CM_sugar": "DNA",
-      "5CM_parent": "DC",
-      "5CM_dictionary_resolved": true,
-      "5IU_ring_C5_I5_distance": 2.0951107369301507,
-      "5IU_sugar_C5prime_I5_distance": 8.843030419488558
-    },
-    "returned_tests": {
-      "fixture": {
-        "summary": "1 passed in 2.87s",
-        "command": [
-          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
-          "-m",
-          "pytest",
-          "-q",
-          "tests/test_campaign_stages.py::CampaignStageTests::test_campaign_refine_doctor_receipts_new_trials_and_preserves_current"
-        ]
-      },
-      "focused": {
-        "summary": "351 passed, 59 subtests passed in 49.26s",
-        "command": [
-          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
-          "-m",
-          "pytest",
-          "-q",
-          "tests/test_campaign_full_auto_policy.py",
-          "tests/test_campaign_full_auto_pipeline.py",
-          "tests/test_component_lookup_repairs.py",
-          "tests/test_presets.py",
-          "tests/test_campaigns.py",
-          "tests/test_campaign_execution.py",
-          "tests/test_campaign_doctor_transition.py",
-          "tests/test_campaign_pipeline.py",
-          "tests/test_campaign_stages.py",
-          "tests/test_campaign_executor_cli.py",
-          "tests/test_construction_scaffolds.py",
-          "tests/test_dictionary_compatibility.py",
-          "tests/test_dictionary_postmr.py",
-          "tests/test_linked_phosphate_profile.py"
-        ]
-      },
-      "full": {
-        "summary": "851 passed, 224 subtests passed in 80.67s (0:01:20)",
-        "command": [
-          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
-          "-m",
-          "pytest",
-          "-q"
-        ]
-      }
-    }
-  },
-  "metal_restraint_builder_ref": "docs/metal-restraint-builder-intent.json",
   "p2_component_preparation": {
-    "status": "FULL_CHECKOUT_REGRESSION_PASSED_NATIVE_PENDING",
+    "status": "IMPLEMENTED_FULL_CHECKOUT_REGRESSION_PASSED_SOURCE_NATIVE_PENDING",
+    "published_commit": "dec56c2",
     "implementation": "src/nasolve/component_normalization.py",
     "targets": {
       "1W5": "DZ",
@@ -437,68 +76,414 @@
     },
     "ph_conditioned": false,
     "raw_sources_and_old_reports_changed": false,
-    "intermediate_hops_changed": false,
-    "coordinate_map": "explicit same heavy-atom identities; phosphate spelling aliases only",
+    "coordinate_map": "Explicit same heavy-atom identities; phosphate spelling aliases only",
     "source_hydrogens_and_charge_carried_forward": false,
-    "dictionary_authority": "parameterized target definition",
-    "dp_source_git_blob": "50218f6ebd8ccaa5582c32286c675f466d8a6d0d",
-    "dp_group_adaptation": "NON-POLYMER to DNA only",
-    "runtime_download": false,
-    "native_validation": false,
-    "local_validation": [
-      {
-        "label": "focused",
-        "summary": "276 passed, 20 subtests passed in 20.59s",
-        "command": [
-          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
-          "-m",
-          "pytest",
-          "-q",
-          "tests/test_component_normalization.py",
-          "tests/test_component_normalization_postmr.py",
-          "tests/test_construction_scaffolds.py",
-          "tests/test_dictionary_compatibility.py",
-          "tests/test_dictionary_postmr.py",
-          "tests/test_linked_phosphate_profile.py",
-          "tests/test_postmr.py",
-          "tests/test_sequence_family_integration.py",
-          "tests/test_campaign_full_auto_pipeline.py",
-          "tests/test_phase_usage_audit.py"
-        ],
-        "log_sha256": "d65993c11a3909c189d753daeaa984cccc8cf2e34bd296bf3b7e09a86829fe77"
-      },
-      {
-        "label": "full",
-        "summary": "927 passed, 224 subtests passed in 78.72s (0:01:18)",
-        "command": [
-          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
-          "-m",
-          "pytest",
-          "-q"
-        ],
-        "log_sha256": "313c97f0629190baadee3c4b5da7649d373c48991cc92af4167b5f362967a321"
-      }
-    ],
-    "tested_base": "e13df41e027942d855475fa882d882237cbe5e1e"
+    "dictionary_authority": "Parameterized target definition; reviewed chemical-state transformation, not synonym equivalence",
+    "source_native_validation": false,
+    "focused_regression": "276 passed, 20 subtests passed in 20.59s",
+    "full_regression": "927 passed, 224 subtests passed in 78.72s",
+    "exact_commands_and_logs_ref": "docs/history/modified-component-preparation-intent-2026-10-10-pre-reconciliation.json"
   },
-  "post_pine_order": [
-    "merge-Pine-and-return-to-main",
-    "blind-AlphaFold-geometry-campaign",
-    "operational-Scout"
-  ],
-  "blind_geometry_campaign": {
-    "status": "USER_REQUESTED_NOT_RUN_FILES_NOT_INSPECTED",
-    "inputs_reported_by_user": [
-      "diffraction datasets",
-      "AlphaFold PDBs",
-      "sequences"
+  "effective_dictionary_policy": {
+    "status": "IMPLEMENTED",
+    "explicit_parameterized_inputs_override_generated": true,
+    "raw_ccd_can_defer_to_readyset": true,
+    "selection_by": "Component IDs in content",
+    "source_and_effective_bundles_preserved": true,
+    "torsion_policy": "ccp4-alternates-primary-sigma-v2",
+    "torsion_grouping": "Component plus ordered or fully reversed quartets; no arbitrary atom permutation",
+    "torsion_review_requires": [
+      "Period compatibility",
+      "Existing alternate values",
+      "Unequal source uncertainties recorded; first-row sigma retained",
+      "Unsupported conflicts retained with warnings, no guessed collapse"
     ],
-    "experimental_answers_known_to_user": false,
-    "route": "prepared-nonstandard first; explicit chain-labelled targets",
-    "scout_prerequisite": "only if actual correspondence/registration needs it, not for model provenance alone",
-    "new_pine_merge_gate": false,
-    "existing_P5_smoke_gate_waived": false,
-    "preserve_blind_baseline": true,
-    "details_ref": "docs/development-handoff.md#after-pine-blind-alphafold-geometry-campaign-then-scout"
-  }
+    "linked_profile_codes": [
+      "1AP",
+      "DZ",
+      "DP",
+      "5CM"
+    ],
+    "legacy_profile_scope": "Missing profile_codes retains historical 1AP-only scope",
+    "effective_native_geometry_certified_by_parameterized_flag": false
+  },
+  "generic_preparation": {
+    "target": "Fresh ordinary full-auto from component code and declared sequence/chemistry; no NASolve patch or test-only component preset",
+    "source_policy": "Ordinary source acquisition/cache separate from a small justified override registry",
+    "implemented": "Local-first configured-Phenix CCD lookup for supported mutation targets, source snapshots and numerical ReadySet requirement",
+    "current_gaps": [
+      "No network acquisition",
+      "No automatic alternate numerical-generator fallback",
+      "Not all unchanged non-curated residues acquired",
+      "Generic graph-based polymer-context adapter remains diagnostic"
+    ],
+    "required_receipts": [
+      "Exact source identity and hash",
+      "Declared source-to-derivative chemical changes",
+      "Prepared target identity and atom mapping",
+      "Actual effective native restraint inputs"
+    ],
+    "ordinary_cold_start_acceptance_passed": false,
+    "source_audit_ref": "docs/modified-component-preparation.md#bundled-ligand-audit-2026-10-09",
+    "DE_geometry_repaired": false,
+    "bundled_source_or_guard_removed": false,
+    "optional_recognition_failure_alone_is_fatal": false,
+    "necessary_stops": [
+      "Unusable required definitions or scientific inputs",
+      "External execution cannot produce usable output",
+      "Contradictory required restraints after supported corrections",
+      "Silent target change or omission of explicit required operation",
+      "Observation/Free-R integrity failure"
+    ],
+    "stop_scope": "Affected stage/dataset; unrelated members continue"
+  },
+  "combined_native_evidence": {
+    "reported_by": "User-local October 10 native results and supplied checksum-verified geometry/DF bundles",
+    "independently_executed": false,
+    "last_recorded_regression_commit": "1443979b2308e4a2e507f0859370b44e0e124a86",
+    "last_recorded_full_regression": "983 passed, 257 subtests passed in 80.81s",
+    "native_probe_checkout_exact_sha": "e7451eedbc03c3accc93bc3138dfa9d1d031a7a9",
+    "preparation": "Hand-prepared frozen resource bundle",
+    "phaser": "MR_SUCCESS; TFZ 12.9; LLG 210",
+    "postmr": "POSTMR_READY; 42/42 identities matched",
+    "A1AAZ_to_DF_target_bridge": "Verified at A:19 in combined PostMR identity audit",
+    "generic_linkage": "GENERIC_LINKAGE_MECHANICS_PASS; separate diagnostic with fresh IMC",
+    "custom_restraint_coverage": {
+      "bonds": 21,
+      "angles": 34,
+      "planes": 8,
+      "parallelities": 23,
+      "all_configured_matched": true,
+      "exact_duplicates": 0,
+      "overlap_candidates": 0
+    },
+    "effective_geometry_qualified": false,
+    "combined_refinement_completed": false,
+    "production_generic_linkage_integrated": false,
+    "pending": [
+      "Numerical review of remaining sugar torsions and minimizer termination; user base visual PASS recorded, sugars not assessed by eye",
+      "Full numerical qualification/convergence remain open; earlier visual PASS stays tied to prior model",
+      "General read-only CIF/restraint assessor is not implemented; current bespoke diagnostics supply its blueprint",
+      "Ordinary full-auto reproduction after runtime integration"
+    ],
+    "scientific_scope": "Software integration with synthetic target chemistry on real GZ11 observations; not experimental chemistry or deposition approval",
+    "native_checkout_status": "Returned clean and matches frozen manifest; local unpublished head, do not pull or replace for this diagnostic",
+    "effective_recovery": {
+      "details_ref": "docs/native-modified-pair-live-validation.md#effective-geometry-findings-and-bounded-recovery",
+      "geometry_bundle_sha256": "9aefce71cfe1d2c73c7f86f4379cb1d76dd24410e3f77cbf259338449beae551",
+      "geometry_manifest_hashes_verified": 23,
+      "5CM": "Confirmed base-C2/sugar-C2-prime reference error; narrow correction plus existing alternate normalizer adopted and verified in separate native interpretation",
+      "DF": "Source-audited generated replacement passed separate native linkage, 21 heavy-bond and 3 signed sugar-chirality checks",
+      "DF_candidate_sha256": "cedfc7099d7679146dc59a46dec655f93c2639e419f5aaec96ec3d02d0a8c293",
+      "native_adoption": true,
+      "geometry_minimization_completed": true,
+      "next": "Numerical sugar/termination review after base visual PASS; full qualification pending",
+      "DF_state_difference": "Old effective DF OP1 formal charge -1 versus fresh source formal charges 0; retain source OP2 H, no inferred pH correction",
+      "other_generic_phosphates": "Mixed source protonation retained; complete incoming links and no orphan H",
+      "CGY": "Severe starting N1-C2-C1 angle strain is not by itself evidence of a dictionary defect",
+      "native_status": "REPAIRED_NATIVE_INTERPRETATION_PASS",
+      "native_root": "LIVE/combined-repaired-native-4v81kp0f",
+      "review_zip_sha256": "76345aca29e42353c55285a5d2b9bfaa4ff8aecee67bfc00c3ccc68f270b1651",
+      "review_manifest_hashes_verified": 34,
+      "originals_unchanged": true,
+      "model_atoms": 868,
+      "model_coordinates_unchanged": true,
+      "production_integration": false
+    },
+    "geometry_trial": {
+      "status": "GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW",
+      "geometry_qualification": "PENDING",
+      "root": "LIVE/combined-geometry-trial-ek59lvp1",
+      "review_zip_sha256": "c08f33b4bdce2916cd29232f63035c77fcc6646637ae6ae8967b56c8ed6d846c",
+      "manifest_hashes_verified": 57,
+      "driver_sha256": "b2f05d7123bb7914eb8f43cff9da95325d1a6374bf392ff2b94a177d8693c675",
+      "restraint_definition_sha256": "c0258325d9fefa0c022762d635006b9768d6e7516b43c6ae18af10c062e4c3cf",
+      "originals_unchanged": true,
+      "atoms": 868,
+      "residues": 42,
+      "target_before": 69970.884082,
+      "target_after": 1786.562999,
+      "displacement_rms_angstrom": 1.29059,
+      "displacement_max_angstrom": 3.687739,
+      "chirality_signs_preserved": 158,
+      "termination": "Cycle 1 capped at 500 iterations; cycles 2-5 retained native-tolerated rounding/line-search notes",
+      "final_gradient_norm": 87.9935,
+      "convergence_claimed": false,
+      "MTZ_Free_R_refinement": false,
+      "production_full_auto": false,
+      "DP_numerical_repair": "OPEN: exact dictionary N5 angle targets sum 339.714 degrees while N5 and its three neighbors share a plane; no invented target or frozen-source overwrite",
+      "backbone_links_preserved": 38,
+      "D1_OP3_preserved": true,
+      "six_pair_max_bond_deviation_configured_sigma": 1.39,
+      "user_visual_review": {
+        "verdict": "PASS",
+        "reported_at": "2026-10-10T23:30:00+01:00",
+        "timezone": "Europe/London",
+        "scope": "All modified pairs in the relaxed model looked satisfactory and WC-like",
+        "model": "LIVE/combined-geometry-view-z2nrp9n0/geometry_review.pdb",
+        "exact_copy_of": "GEO/geometry_after.pdb",
+        "sha256": "35bc3a48bd953c328744fdba4722785b4403c4d0ed9a23c9494c543138f04b95",
+        "dictionaries_loaded": 9,
+        "evidence": "User-reported Coot verdict; no independent screenshot inspection",
+        "numerical_qualification_closed": false
+      }
+    },
+    "DP_generation_attempt": {
+      "status": "BLOCKED",
+      "root": "LIVE/combined-dp-candidate-csg41ov4",
+      "returncode": 1,
+      "review_zip_sha256": "ade2e48d70e59e748fcc1c47f3cebc7675e5ee424f4c425159229db914b1b902",
+      "manifest_hashes_verified": 8,
+      "seed_sha256": "93c4ebaee4467b235998dea62d03dee35de4bfa2c32e86c41b7c5d5a154f0312",
+      "intended_inventory": {
+        "atoms": 35,
+        "bonds": 37,
+        "chirality_declarations": 4
+      },
+      "AceDRG_parsed_inventory": {
+        "atoms": 20,
+        "bonds": 21,
+        "chirality_declarations": 0,
+        "evidence": "Native log reports atoms/bonds; unchanged-reader offline replay also establishes zero parsed chirality declarations"
+      },
+      "diagnosis": "Single-quoted primed atom IDs round-trip in Biopython but are mishandled by AceDRG aLineToAlist2; KeyError on quoted C5",
+      "originals_unchanged": true,
+      "candidate_produced": false,
+      "adopted_into_run": false,
+      "retry": "combined_dp_candidate_v2.py: double-quoted primed IDs, exact round-trip and installed reader atoms/bonds/chirality preflight",
+      "retry_native_status": "Subsequently completed; see DP_candidate_v2",
+      "retry_offline_validation": {
+        "scope": "Unchanged source-extracted AceDRG FileTransformer reader class only, not full generator/native execution",
+        "reader_source_sha256": "ef033210acddd161090b93724490fb5bd8a4c95c706fbebf54f829e758027981",
+        "inventory": {
+          "atoms": 35,
+          "bonds": 37,
+          "chirality_declarations": 4
+        },
+        "selected_fields_matched": {
+          "atom": 7,
+          "bond": 5,
+          "chirality": 7
+        },
+        "normalization": "Remove one outer quote; additional reader-derived fields excluded from source-field comparison",
+        "has_coordinates": true,
+        "OP2_OP3_formal_charges": [
+          -1,
+          -1
+        ],
+        "rejected_mutations": [
+          "drop atom",
+          "change charge",
+          "change coordinate",
+          "change bond order",
+          "drop chirality",
+          "change chirality sign",
+          "hascoords false"
+        ],
+        "installed_preflight": "Subsequently PASS; see DP_candidate_v2",
+        "simulated_failure_receipts": "Parser exit 19 and generator exit 17: BLOCKED, source/seed preserved, valid manifest-backed review ZIP"
+      }
+    },
+    "DP_candidate_v2": {
+      "root": "LIVE/combined-dp-candidate-yllkyygx",
+      "receipt_status": "GENERATED_WITH_GRAPH_DIFFERENCES_AWAITING_REVIEW",
+      "review_status": "AUDITED_READY_FOR_SCOPED_NATIVE_DIAGNOSTIC",
+      "installed_reader_preflight": "PASS: 35 atoms/37 bonds/4 chirality declarations; selected fields exact",
+      "generator_exit": 0,
+      "review_zip_sha256": "362078a37ca2e293a61d1395ec8b13b88b634573441cde6ca3cf9059daba0e53",
+      "manifest_hashes_verified": 13,
+      "candidate_sha256": "6ba5b6a3ce86019c97129dcb5ea08f26a8395f68074c81d4c8ed6f04f7ad6f1f",
+      "preserved": {
+        "atoms": 35,
+        "bond_endpoints_and_explicit_orders": 37,
+        "H_attachments": 12,
+        "formal_charge": -2,
+        "chirality_declarations": 4
+      },
+      "aromatic_flags_Y_to_N": [
+        "C4-N9",
+        "C8-N9",
+        "C7-C8",
+        "C7-N5"
+      ],
+      "aromatic_review": "Annotation differences, not explicit bond-order or chemical-state change in this inspected candidate",
+      "alias_metadata": "Dropped in generated output; retained in source/seed",
+      "N5_angles_degrees": [
+        108.817,
+        120.468,
+        130.715
+      ],
+      "N5_angle_sigmas_degrees": [
+        3,
+        3,
+        3
+      ],
+      "source_unchanged": true,
+      "native_validation": "DP_NATIVE_INTERPRETATION_PASS; see DP_native_v2",
+      "numerical_audit": {
+        "scope": "Broader numerical regeneration, not single-angle patch; supports native testing only",
+        "bond_targets_or_sigmas_changed": 34,
+        "total_bonds": 37,
+        "angle_terms_changed": 65,
+        "torsions": {
+          "positive_sigma": 15,
+          "zero_sigma": 6,
+          "heavy_active_expected_native": 13,
+          "heavy_constant_expected_native": 6
+        },
+        "planes_before": 2,
+        "planes_after": 5,
+        "N5_Gram_eigenvalues_approx": [
+          0,
+          1.308599,
+          1.691401
+        ],
+        "ring_angle_sums_degrees": [
+          540,
+          720.003
+        ],
+        "signed_sugar_centres_preserved": 3,
+        "generator_coordinate_residuals": "Internal consistency, not independent evidence"
+      },
+      "planned_native_modification": "B:4 NASdp3prime deletes H3 and sets O3-prime OC2, alongside existing NASnoOP3; source candidate unchanged",
+      "adopted_into_production_run": false,
+      "native_diagnostic_adoption": true
+    },
+    "DP_native_attempt": {
+      "root": "LIVE/combined-dp-native-_6jpz1i8",
+      "receipt_status": "BLOCKED",
+      "native_exit": 2,
+      "error": "DP heavy torsion coverage",
+      "review_zip_sha256": "97ba75e8a94b5cfdfee999056a9c54656834c113baf55c9db2d94b5340792a9a",
+      "manifest_hashes_verified": 34,
+      "originals_unchanged": true,
+      "passed_before_stop": "Mapping/868 coordinates, non-DP/cross-link/custom proxies, 24 heavy bonds/35 angles, N5 and two base planes",
+      "not_executed": "Later sugar/effective-monomer checks",
+      "review": "All19 torsions (13 active/6 constant) match under verified cctbx terminal/central-pair sorting and ideal/alternate sign normalization; checker representation failure",
+      "offline_corrected_replay": "19 torsions/3 sugar chirals pass; negative cases reject",
+      "next": "Closed by new corrected-checker DP_native_v2 receipt; original BLOCKED receipt retained",
+      "chemical_change_for_retry": false
+    },
+    "DP_native_v2": {
+      "status": "DP_NATIVE_INTERPRETATION_PASS",
+      "root": "LIVE/combined-dp-native-abp6f409",
+      "native_exit": 0,
+      "dp_checks": "PASS: 24 heavy bonds / 35 angles / 19 torsions, new N5 targets; non-DP/custom/cross-link proxies preserved",
+      "review_zip_sha256": "6e0f33dab2cd179542e68269a7cca2806058d3b47c214af3d4fabddc189d2cf2",
+      "manifest_entries_verified": 33,
+      "manifest_sha256": "5989ede3f755decfec0efbd88805feb58e0f44de51995cba2de66264baae6eae",
+      "native_audit_sha256": "e64d7a633e0ff3f2c42cae30808293a9ea61486ff3ae76a465c34f5f77ed8423",
+      "OP3_H3_removed": true,
+      "O3_energy_type": "OC2",
+      "native_atom_charge_fields": "null; no native charge claim beyond source graph",
+      "originals_unchanged": true,
+      "original_coordinate_atoms": 868,
+      "geometry_qualification": "PENDING",
+      "adopted_into_production_run": false
+    },
+    "DP_geometry_trial": {
+      "status": "GEOMETRY_MINIMIZATION_COMPLETED_AWAITING_REVIEW",
+      "root": "LIVE/combined-dp-geometry-trial-e3awaveh",
+      "review_zip_sha256": "c215258a895b2997d56b1b08aed42e3acc91a1b7619d828ee9fe48affbc50d2e",
+      "manifest_entries_verified": 56,
+      "native_exit": 0,
+      "originals_unchanged": true,
+      "model_basis": "Original 868-atom pre-minimization model",
+      "manager_fixed_within_trial": true,
+      "target_before": 69756.492476,
+      "target_after": 1836.748168,
+      "iterations_per_cycle": [
+        500,
+        256,
+        219,
+        180,
+        128
+      ],
+      "termination": "First cycle capped; later native-tolerated rounding/line-search notes",
+      "convergence_claimed": false,
+      "geometry_qualification": "PENDING",
+      "numerical_review": "Concrete N5 target/plane conflict relieved; modest global residual strain remains, no convergence/full-qualification verdict",
+      "MTZ_Free_R_refinement": false,
+      "production_full_auto": false,
+      "manifest_sha256": "82b8b205b2f5ffd97be5202f1a404dae8d6c1743d544e9a59edec93b0ef21176",
+      "output_model_sha256": "a8345a9e1695adb6cf484c9ee57d644546057e6b738fd91556ff370555981dfb",
+      "N5_achieved_degrees": [
+        108.115293,
+        119.720831,
+        132.163422
+      ],
+      "N5_max_configured_sigma": 0.483,
+      "chirality_signs_preserved": 158,
+      "backbone_links_preserved": 38,
+      "D1_OP3_preserved": true,
+      "visual_review": "User base visual PASS; sugars explicitly unassessed by eye; earlier model retains its separate PASS",
+      "comparison_boundary": "Cross-trial total objectives are not comparable rankings when restraint definitions differ",
+      "user_visual_review": {
+        "reported_at": "2026-10-11T00:59:27+01:00",
+        "model_sha256": "a8345a9e1695adb6cf484c9ee57d644546057e6b738fd91556ff370555981dfb",
+        "bases": "PASS",
+        "sugars": "NOT_ASSESSED_BY_EYE",
+        "full_numerical_qualification_closed": false
+      }
+    }
+  },
+  "smiles_cif_audit": {
+    "status": "PROPOSED_STAGED_ASSESSOR_THEN_POLICY_BOUNDED_AUTOMATION_NOT_IMPLEMENTED",
+    "order": "After current combined geometry test, before Topo/Scout",
+    "prerequisite_for_current_geometry_trial": false,
+    "initial_mode": "Read-only assessor, no automatic repairs",
+    "comparison": "Parsed molecular graphs, not raw SMILES strings; explicit atom map and aromaticity convention",
+    "reported_differences": [
+      "Elements",
+      "Connectivity",
+      "Bond orders",
+      "Formal charges",
+      "Hydrogens",
+      "Stereochemistry"
+    ],
+    "reference_provenance": [
+      "Source and checksum",
+      "Descriptor program/version",
+      "Independent reference versus same-CIF internal consistency"
+    ],
+    "chemical_state_policy": "Do not erase tautomer/protonation differences; compare reviewed conversions against declared targets and linked derivatives against declared transformations",
+    "separate_numeric_audit": [
+      "Atom references",
+      "Finite targets and uncertainties",
+      "Conflicting or duplicate terms",
+      "Chirality and planes",
+      "Effective sugar/glycosidic torsions",
+      "Angle/planarity consistency; demonstrated DP conflict is invisible to SMILES graph comparison alone"
+    ],
+    "graph_match_certifies_numeric_geometry": false,
+    "details_ref": "docs/modified-component-preparation.md#proposed-smiles-and-cif-audit",
+    "subsequent_integration": {
+      "deterministic": true,
+      "ordinary_run_requires_AI": false,
+      "stages": [
+        "Independent source acquisition/cache and reviewed-override registry",
+        "Graph/H/charge/stereo/numerical-reference/coverage/effective-Phenix assessment",
+        "Bounded versioned generation under declared policy, then source and effective-native validation",
+        "Automatic continuation for passing ordinary cases; explicit diagnosis otherwise"
+      ],
+      "reviewed_repairs": "Source version/hash-scoped policy and preserved derivative provenance; no broad atom-name guesses",
+      "ambiguous_chemistry": "Protonation, tautomer or target ambiguity requires declared intent/reviewed policy; no invented intent",
+      "runtime_implemented": false
+    },
+    "methods_ref": "docs/cif-restraint-audit-methods.md",
+    "parser_agreement": "GRAPH-01 compares exact serialized atom/bond/chirality fields through an independent CIF reader and the installed consumer reader before generation"
+  },
+  "other_completed_evidence_refs": {
+    "four_member_full_auto_and_doctor": "docs/full-auto-patch-handoff.md",
+    "older_GZ11_and_dictionary_regression": "docs/history/modified-component-preparation-intent-2026-10-10-pre-reconciliation.json"
+  },
+  "guardrails": [
+    "Project ordering and bounded Pine gates live in the handoff; future audit/Topo/Scout features do not enlarge them",
+    "Preserve raw/frozen identities, source dictionaries, observations/Free-R and failed attempts",
+    "No arbitrary bonds, protonation repairs, blanket tautomer equivalence or inferred deposition rewrite",
+    "No installed-workbook edits or new 1W0/8RO chemical equivalence",
+    "Keep NASolve monomer/backbone preparation separate from NARestraints atom-role and pair/stacking semantics",
+    "Numerical success, graph agreement, geometry qualification and human approval are separate outcomes",
+    "No runtime capability is added by this development-intent record"
+  ]
 }

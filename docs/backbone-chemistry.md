@@ -35,6 +35,31 @@ runs, but new user-facing configuration should use `five_prime_phosphate_sites`.
 The chemistry request is a terminal-phosphate state; OP3 is only one atom in
 that state.
 
+Coordinate cleanup and effective dictionary chemistry require separate checks.
+Removing OP3 from a PDB does not itself remove a monomer dictionary's OP3,
+attached hydrogen or terminal O3' typing. Production linked profiles currently
+cover the declared 1AP/DZ/DP/5CM scope; they are not a generic monomer-to-polymer
+adapter.
+
+The explicit `06_Cedar` diagnostic now prepares source-preserving, per-site
+DNA derivatives using declared incoming/outgoing links and terminal states.
+It requires a context for every model site sharing a component code, finds H
+through graph adjacency, retains source OP2 protonation, and audits projected
+and actual native monomers. This remains external diagnostic preparation;
+production profiles and PostMR continuation are unchanged. The fresh 05 trial
+has four declared free 5′-OH ends and zero coordinate OP3 atoms. Its earlier
+D:1-phosphate exception must not be inherited. See [CIF Doctor](cif-doctor.md#source-preserving-linked-state-diagnostic).
+
+The October 10 combined-W diagnostic passed graph-based leaving-atom/hydrogen
+removal and O3' typing for IGU/IMC/CGY/DX, with no missing heavy atoms or dangling
+references and D:1 terminal phosphate preserved. This was a separate diagnostic,
+not integrated production behavior. Source-specific OP2 protonation was retained
+and remains a geometry/chemical-state review item. Generalization must follow
+verified site connectivity, preserve terminal/nick intent and audit the effective
+native restraints; it must not assume that a hydrogen-free coordinate model has
+an unprotonated dictionary. Exact evidence and remaining checks are in the
+[native ledger](native-modified-pair-live-validation.md).
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an
