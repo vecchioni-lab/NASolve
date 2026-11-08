@@ -371,3 +371,7 @@ C167 connects explicit component cache lookup, shared generation and maintained
 qualification under one owned request/allowance. Source discovery and multi-component
 prepared-repair coordination remain unclosed arrows; ordinary adoption is unchanged.
 The real fresh-generation 5PC failure is preserved evidence, not a support claim.
+
+C168 supplies the frozen ordinary source-selection input to component acquisition.
+The box preserves source authority and bytes; it does not assert numerical/native
+usability. Complete multi-component coordination remains an unfinished connection.

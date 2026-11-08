@@ -54,6 +54,11 @@ generation and qualification with immutable attempts, shared limits and conserva
 recovery. Source discovery and multi-component repair coordination remain separate;
 this API does not change ordinary adoption.
 
+An explicit source-selection stage freezes the ordinary chosen definitions before
+component acquisition, preserving curated precedence and detecting changes across
+a batch. Its portable snapshot records source authority without claiming native
+usability. Multi-component orchestration still needs integration.
+
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.
 Source-qualified graph repairs can also be frozen with their evidence and

@@ -3666,3 +3666,15 @@ A separate fresh 5PC generation control fails safely without a retained candidat
 This is explicit single-component coordination; source discovery, multi-component
 repair, ordinary adoption and refinement remain separate gates. See the
 [contract](cif-doctor.md#explicit-component-acquisition-requests-c167).
+
+
+### Keeping one source choice across acquisition attempts (C168)
+
+A new explicit preparation step freezes the ordinary selected dictionaries for a
+declared component set before numerical work. It uses the existing precedence and
+identity/topology validators, detects sources changing during the batch, and keeps
+interrupted copies intact. Readback checks the frozen files and authority without
+revisiting a local library or SDK. DF/PDU/5PC/ATL source selection and relocated
+replay pass. These are source definitions, not newly qualified restraints: complete
+multi-component request coordination and ordinary adoption remain later stages.
+See the [contract](cif-doctor.md#frozen-acquisition-source-selection-c168).

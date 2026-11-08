@@ -1102,6 +1102,15 @@ frozen inputs, closed inventories and scientific provenance without the old SDK.
 Source discovery and multi-component prepared repair still need a complete outer
 request. See [component requests](cif-doctor.md#explicit-component-acquisition-requests-c167).
 
+C168 freezes a declared source set through the existing ordinary source selector,
+retaining curated/local/configured-CCD precedence and complete source bytes. It
+rechecks the entire selection before copying and completion, preserves failed
+partial output, and publishes completion last. Its strict reader validates the
+source snapshot without rediscovery or historical paths, then supplies explicit
+source/authority arguments to C167. This is the preparation input boundary; complete
+request coordination, shared deadlines and multi-component repair remain separate.
+See [source selection](cif-doctor.md#frozen-acquisition-source-selection-c168).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

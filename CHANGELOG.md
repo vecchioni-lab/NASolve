@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Frozen acquisition source selection (C168)
+
+- Freeze explicit component sources through the existing curated/local/configured-
+  Phenix selector, preserving precedence and missing-curated refusal.
+- Detect source bytes or precedence changing across a batch; require fresh output
+  and preserve interrupted copies. Publish source-selection completion last.
+- Add strict portable readback with exact inventories, authority, typed claims and
+  post-validation byte checks. Historical paths are provenance only.
+- New source-selection schema, no migration or change to ordinary PostMR. Native
+  usability, complete request ownership and multi-component repair remain separate.
+
 ### Durable explicit component acquisition (C167)
 
 - Add a frozen component request with persistent locking, immutable bounded attempts,

@@ -67501,5 +67501,433 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "014e93366321ef965665dcfb9e48bf07ed1e2918"
+  },
+  "acquisition_source_selection_2026_11_08": {
+    "milestone": "C168",
+    "status": "FOCUSED_AND_SOURCE_REPLAY_VALIDATED",
+    "base_revision": "b1ed43d6b3911e39e7233e3ef5cc9c688eeb4d57",
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Component callers had to declare sources without a reusable complete source-selection snapshot.",
+    "after": "Explicit frozen source set reuses ordinary precedence, detects selection changes and supplies portable exact source/authority for later acquisition.",
+    "prior_work": [
+      "C68 ordinary-source reuse",
+      "C69 ordinary PostMR preflight",
+      "C161 curated parser",
+      "C167 component acquisition"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_acquisition_sources.py",
+      "tests/test_cif_acquisition_sources.py"
+    ],
+    "schemas": [
+      "New cif-acquisition-source-selection-v1 schema 1; source_selection_directory anchor",
+      "Existing request/cache/scientific schemas unchanged"
+    ],
+    "compatibility": "Explicit API only; no migration or ordinary runtime change; canonical PDB component codes; aliases stay upstream",
+    "regression": {
+      "before": "9 import errors",
+      "initial": "9 passed",
+      "expanded": "27 passed, 4 readback defects and 1 incomplete fixture; all preserved",
+      "new_cases": 32,
+      "affected": {
+        "active": false,
+        "pid": 14889,
+        "runner_pid": 14875,
+        "phase": "affected-r3",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_acquisition_sources.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_cif_source_reuse.py",
+          "tests/test_cif_postmr_cache.py",
+          "tests/test_curated_cif_loops.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/168_Cedar_source-selection-4_xv77h_/affected-r3.xml"
+        ],
+        "started_utc": "2026-11-08T19:17:08.436393+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 29.748,
+        "sources_unchanged": true,
+        "source_files": 612
+      },
+      "affected_summary": "158 passed in 29.58s",
+      "focused": {
+        "active": false,
+        "pid": 15487,
+        "runner_pid": 15473,
+        "phase": "focused-r2",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/168_Cedar_source-selection-4_xv77h_/focused-r2.xml"
+        ],
+        "started_utc": "2026-11-08T19:35:50.466894+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 180.56,
+        "sources_unchanged": true,
+        "source_files": 612
+      },
+      "focused_summary": "1230 passed, 45 subtests passed in 180.07s (0:03:00)",
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "installed_sources": {
+      "status": "PASS",
+      "codes": [
+        "5PC",
+        "ATL",
+        "DF",
+        "PDU"
+      ],
+      "authorities": {
+        "5PC": "NATIVE",
+        "ATL": "NATIVE",
+        "DF": "CURATED",
+        "PDU": "NATIVE"
+      },
+      "selection_sha256": "576cf68da1220388b99dfbed1dac3f4b7c5c458792f8279f9e13f2602ceb8f14",
+      "parent_bytes_mtimes_unchanged": true,
+      "source_files": {
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src/nasolve/data/ligands/DF.cif": [
+          "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+          1793013717742670309
+        ],
+        "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/chem_data/chemical_components/p/data_PDU.cif": [
+          "98421454d759d217f48dc7cec1daa3d8ded6b7a64503486c8fd8b4e46e717258",
+          1788492465000000000
+        ],
+        "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/chem_data/chemical_components/5/data_5PC.cif": [
+          "b0adede0c334091261cba543d9848c47165d8fdf3d46baf22b064e455bf38025",
+          1788492461000000000
+        ],
+        "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/chem_data/chemical_components/a/data_ATL.cif": [
+          "cd7bd864ac5fb1a125294d30ff6da7bd36ac95fc7a4b72e6c7aaeee92f7f3c01",
+          1788492463000000000
+        ]
+      },
+      "installation": {
+        "build": "2.2.1-6174",
+        "dispatcher": "2.2.1",
+        "mode": "ACTUAL_NATIVE_NOT_DRY_RUN"
+      },
+      "installation_version_provenance": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/installation.json",
+        "sha256": "2a6e5593f624f8f7eb968c2615d012b91bb4b90bd0a8eaae2081cd62d848c8d5",
+        "size": 92
+      },
+      "native_execution": "NOT_RUN; FILE_SELECTION_ONLY",
+      "scientific_qualification": "NOT_ASSESSED"
+    },
+    "relocation": {
+      "status": "PASS",
+      "components": [
+        "5PC",
+        "ATL",
+        "DF",
+        "PDU"
+      ],
+      "original_copy_absent": true,
+      "historical_paths_discovery_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 222
+    },
+    "evidence_refs": {
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r2-result.json",
+        "sha256": "0843daf05529b31899db9a93fa312ff0742989c94eb93f736f6840f606581067",
+        "size": 751
+      },
+      "affected-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r2-sources.json",
+        "sha256": "6894e8c25c07ea25f725b6b363dd13d058993799d1c3311a346d95ac29979d2e",
+        "size": 66813
+      },
+      "affected-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r2.log",
+        "sha256": "1d677d78698d2686d1db43f66a28c23c36f6614d5b52722bda8ca69a2f6629d9",
+        "size": 2986
+      },
+      "affected-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r2.xml",
+        "sha256": "cf676193b1fa837229766b9e32bafeed262e38a91e518b2037ba97c203b3111a",
+        "size": 27600
+      },
+      "affected-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r3-result.json",
+        "sha256": "a49035b9fd276fe62e283cc969b25d467150120e48b9dc58084e895a71beab32",
+        "size": 751
+      },
+      "affected-r3-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r3-sources.json",
+        "sha256": "3217a405e642262c1349b883a75945e91ca0db404b300c2cbdc2a06d5570e2c5",
+        "size": 66813
+      },
+      "affected-r3.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r3.log",
+        "sha256": "80ab79397eea45e35d255284f916d8c092adc9a16b70fcecbdd4e8e5d53ef3ba",
+        "size": 261
+      },
+      "affected-r3.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-r3.xml",
+        "sha256": "68511d53053f259fb4408e2e3b6d1a17ce6349314375ec83742614b6ed42d7f9",
+        "size": 25088
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-result.json",
+        "sha256": "cf81699dd429c3551a0d8b56e2e02f7c6c483c4ffb4aa7aa289dabefd5af4728",
+        "size": 743
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected-sources.json",
+        "sha256": "fdc1e4219b7ba655ed4f8d62de71d0c3514e952e11198d55108e2e508c748519",
+        "size": 66813
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected.log",
+        "sha256": "d3be1ef9f11d59746deb14e011290170bc53c653a1696fe62b773385c0a126bb",
+        "size": 5973
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/affected.xml",
+        "sha256": "7d88c0c3f45b1ef62d8368e0abc5da4d4b9c5d4143eb1c59248668bbde66fa40",
+        "size": 30472
+      },
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/base.json",
+        "sha256": "f0c67db32863decf9c0315bee48f5b32b4a86f9a907e4f8b8fe5689349520ac2",
+        "size": 206
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/before-result.json",
+        "sha256": "71a6473f43cfbd12a013a4ebfca3f60adc48785e0e6cf2f295b413bdb9f3b1fa",
+        "size": 578
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/before-sources.json",
+        "sha256": "6ca83b5688b85e7b79d856a84b94c314ec1297f7a1e61351c61f87ab5aef7dea",
+        "size": 66701
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/before.log",
+        "sha256": "003be7fc4c4c6ade57741de36643c5cc3e522e8833939e928da9ca12254caea9",
+        "size": 7416
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/before.xml",
+        "sha256": "c23d1a3c2de135c9c24e400d865720a00c73c19f41b5f37bb3505d40f9922f49",
+        "size": 9073
+      },
+      "cold/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/cold/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/cold/stdout.txt",
+        "sha256": "ca00f5e480414d09ce3e3f6dd1c8c41aec415fb759ff515da31cfc434b35c526",
+        "size": 195
+      },
+      "cold/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/cold/summary.json",
+        "sha256": "42882dd654403918558b13606f25b78407834a1161bf567e582d1bc3368bebb0",
+        "size": 229
+      },
+      "focused-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused-r2-result.json",
+        "sha256": "aa2185ad5bf53e91c14615bf9e0b02d4e2d9282305d61fbd2fe4b2a6c6e0f599",
+        "size": 494
+      },
+      "focused-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused-r2-sources.json",
+        "sha256": "3217a405e642262c1349b883a75945e91ca0db404b300c2cbdc2a06d5570e2c5",
+        "size": 66813
+      },
+      "focused-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused-r2.log",
+        "sha256": "7dd9003c1de12d5b64763b2d596de1b980ffc461594e4dcc90a36229227cf2db",
+        "size": 5814
+      },
+      "focused-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused-r2.xml",
+        "sha256": "ac0df8e1e640824715810c1f84eadcbe21fd0e2afba230d006933d3c0d3a864a",
+        "size": 185228
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused-result.json",
+        "sha256": "c716eeb31f47badd847cb7224482dc4d36c3978bf38b166ab34a84079c319d7a",
+        "size": 489
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused-sources.json",
+        "sha256": "6894e8c25c07ea25f725b6b363dd13d058993799d1c3311a346d95ac29979d2e",
+        "size": 66813
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused.log",
+        "sha256": "5ce865881e91b411e02a48c2a05a89b55006387890868f3bee92cdad5e96ca52",
+        "size": 8539
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/focused.xml",
+        "sha256": "5d86b067e4e0786f23194f89b194b13619e7d749f8f412c0ebcb86d8d522c5d2",
+        "size": 187740
+      },
+      "installed-selection/source_selection.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/installed-selection/source_selection.json",
+        "sha256": "d16b3ca5f32504edc70c7be816116e6b29f1200fc6a28b4890d1074f15e8f3fd",
+        "size": 2485
+      },
+      "installed-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/installed-summary.json",
+        "sha256": "fea6fb5bba0d3d6ead122cad559084c31dc4689825a29311edc02d9d0232e64e",
+        "size": 1742
+      },
+      "new-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new-r2-result.json",
+        "sha256": "2223f893b816e5cfd016a32aa4a10eb50734584827f091548de55aa7e37daa60",
+        "size": 578
+      },
+      "new-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new-r2-sources.json",
+        "sha256": "49c8dae40511d8d18a2921e535caae6c6af9f510028d536796c49c525b659ea3",
+        "size": 66813
+      },
+      "new-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new-r2.log",
+        "sha256": "cae2a3df24aa07dd8b46e3a69b70123e0092c8d4f4aba4320a3d479c80f0b827",
+        "size": 11864
+      },
+      "new-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new-r2.xml",
+        "sha256": "1322e9ba608a4a232214146858756a1cbb8c70ea38af1b8cf5e5f18af9eb0c56",
+        "size": 15859
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new-result.json",
+        "sha256": "66baebba9e2ec6ec2a8aa3b8ac341e47968c890678d703815fc03711b36172ee",
+        "size": 572
+      },
+      "new-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new-sources.json",
+        "sha256": "f666fd371e344c990fcc6cbf655f98945e16653c8544bfe74ad2801889cd8e7e",
+        "size": 66813
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new.log",
+        "sha256": "4edead23d57c419b6af2520a77f6af6059bcce7e38079be95b8d533b90693c24",
+        "size": 98
+      },
+      "new.xml": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/new.xml",
+        "sha256": "d0e2de7c7be38cb6db374708fd7c4cf7dd3bbca8f6a25556495c4baceac16959",
+        "size": 1495
+      },
+      "source-runtime.json": {
+        "anchor": "live_tests_directory",
+        "path": "168_Cedar_source-selection-4_xv77h_/source-runtime.json",
+        "sha256": "fb807281a159100605e64210eb61f12615f7ef0f41b66ceda8093758b8e88fb2",
+        "size": 21764
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_acquisition_sources.py",
+        "tests/test_cif_acquisition_attempt.py",
+        "tests/test_cif_source_reuse.py",
+        "tests/test_cif_postmr_cache.py",
+        "tests/test_curated_cif_loops.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/168_Cedar_source-selection-4_xv77h_/affected-r3.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/168_Cedar_source-selection-4_xv77h_/focused-r2.xml"
+      ],
+      "installed_and_cold": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c168_sources_cold.py"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1 from verified C167; no C168 native/version execution"
+    },
+    "artifacts": "Only source/tests/docs and evidence hashes published; scientific payloads/logs/XML/runners local",
+    "limitations": [
+      "Source selection only; no numerical/native usability verdict",
+      "Caller must retain snapshot; complete multi-component request, deadline and preparation coordination remain open",
+      "Reader uses current source validators but performs no live source or NARestraints registry lookup",
+      "Fresh output only; partial files preserved, no recovery authorization",
+      "No full suite, Linux execution, native jobs, ordinary adoption or merge authorization"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

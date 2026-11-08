@@ -11,6 +11,67 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C168 validated: frozen ordinary source selection
+
+Base `b1ed43d6b3911e39e7233e3ef5cc9c688eeb4d57`; existing Cedar only.
+Capsule `live_tests_directory/168_Cedar_source-selection-4_xv77h_`.
+Before, C167 required already-declared sources and callers could rediscover them
+between attempts. After, an explicit source-selection stage freezes the complete
+declared set and its authority through the existing ordinary selector/validator.
+It detects changing source bytes/precedence, preserves interrupted copies, and
+supplies a strict SDK-independent reader for subsequent component requests.
+Callers must retain this snapshot; full orchestration does not yet consume it.
+
+Prior work checked: C68 ordinary-source reuse, C69 PostMR source preflight, C161
+curated parser, C167 component request, and current ordinary selector/validator.
+No parallel lookup policy, residue whitelist, chemistry fix or new alias introduced.
+No phosphate/OP3, sugar/stereo, NARestraints, acceptance or adoption changes.
+
+**Validation:** 9 import errors before implementation; initial 9 pass. Expanded
+tests caught four reader gaps: false/zero and true/one confusion, unbound temporary
+files, and a source changing during readback. Fixed all. Integration fixture pins,
+representation permission and retained-copy/cache-hit status assertions were then
+corrected without changing runtime semantics. All failed outputs are preserved.
+**32 new cases**; affected: **158 passed in 29.58s**.
+Workflow: **1230 passed, 45 subtests passed in 180.07s (0:03:00)**. All 612 source/test/script hashes fixed.
+**No full suite, as requested.** Last full-tested C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_acquisition_sources.py tests/test_cif_acquisition_attempt.py tests/test_cif_source_reuse.py tests/test_cif_postmr_cache.py tests/test_curated_cif_loops.py --junitxml <capsule>/affected-r3.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r2.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c168_sources_cold.py
+```
+
+Installed source-selection control: DF/PDU/5PC/ATL pass the unchanged ordinary
+selector/validator with parent bytes/mtimes preserved. Phenix library 2.2.1-6174 /
+dispatcher 2.2.1 identity comes from verified C167 evidence; **no native execution
+or version command** in C168 (file-selection check only, not a native dry-run).
+Cold replay validates four selected sources after moving a temporary checkout;
+original copy absent, historical checkout/SDK/source paths, discovery and execution
+denied. All 222 files retain bytes/mtimes. No chemical usability claim.
+Synthetic C167 integration removes live sources, freezes an already qualified
+retained snapshot and then hits cache; rediscovery and native callbacks are forbidden.
+
+Changed: new source-selector/reader module, regressions/profile, contracts/overview/
+caption, queue and both ledgers. New schema 1
+`cif-acquisition-source-selection-v1`, `source_selection_directory` anchor.
+Existing schemas and ordinary PostMR unchanged; no migration. One to sixteen
+unique canonical PDB codes; alias resolution stays upstream. Fresh output only;
+partial copies grant no usable completion, no process owner or retry authority.
+Current source validators still apply during replay. Sources/tests/docs and hash
+references published; scientific dictionaries, logs/XML and runners remain local.
+
+**Next Q04:** bind this source selection plus model/site/context under complete
+multi-component request ownership, then compose C167 acquisition and C164 prepared
+repair with one allowance and durable child identity. Independent fallback for
+early/no-repair failures, Q05 adoption, Q06 refinement, Q13 state authority and Q07
+held-out builder challenge remain queued. No merge authorization. No active jobs.
+Substantial wall-clock discontinuities occurred during tool pauses; the active
+checkpoint and exact job state stayed recorded, and no second scope was started.
+Evidence key `acquisition_source_selection_2026_11_08`.
+— Rowan · Codex desktop
+
 ## C167 published: durable component acquisition requests
 
 Base `c9930da3c7a0aa1dff12567836e610f56712b33c`; existing Cedar only.

@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-03**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-08**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -77,6 +77,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C167 adds a durable explicit single-component request across cache/generation/
   qualification, shared limits, parent-bound children and exact-attempt readback.
   Discovery and multi-component prepared-repair coordination remain Q04.
+  C168 freezes a complete explicit ordinary source selection before acquisition,
+  preserving precedence and allowing replay without live source discovery. This
+  is a preparation boundary, not complete multi-component request ownership.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

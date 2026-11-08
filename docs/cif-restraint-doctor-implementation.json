@@ -28008,6 +28008,22 @@
         "No new Linux execution or full suite; no merge authorization"
       ],
       "implementation_revision": "014e93366321ef965665dcfb9e48bf07ed1e2918"
+    },
+    "acquisition_source_selection": {
+      "milestone": "C168",
+      "status": "FOCUSED_AND_SOURCE_REPLAY_VALIDATED",
+      "queue": "Q04 source snapshot complete; full multi-component request coordination next",
+      "contract": "docs/cif-doctor.md#frozen-acquisition-source-selection-c168",
+      "evidence_key": "acquisition_source_selection_2026_11_08",
+      "summary": "Explicit frozen source set reuses ordinary precedence, detects selection changes and supplies portable exact source/authority for later acquisition.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Source selection only; no numerical/native usability verdict",
+        "Caller must retain snapshot; complete multi-component request, deadline and preparation coordination remain open",
+        "Reader uses current source validators but performs no live source or NARestraints registry lookup",
+        "Fresh output only; partial files preserved, no recovery authorization",
+        "No full suite, Linux execution, native jobs, ordinary adoption or merge authorization"
+      ]
     }
   },
   "audience": [

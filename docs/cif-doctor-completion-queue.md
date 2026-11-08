@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-08, after C167.** This queue owns unfinished
+**Current planning authority, 2026-11-08, after C168.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -230,13 +230,20 @@ durable parent identity. Real PDU interruption/recovery and PDU/5PC qualificatio
 cache controls pass. Fresh 5PC generation still fails without a retained candidate;
 the failure is safely preserved, not evidence of generated-chemistry usability.
 
-**Next bounded checkpoint:** compose declared source discovery, multiple component
-acquisitions and C164 prepared repair under one complete request and shared
-allowance. Reuse C167 child identity/recovery; do not reset child generation limits
-or repair interrupted outputs in place. Establish the preparation/discovery boundary
-and its frozen identities first, then add the remaining orchestration without
-manufacturing repair proof. Extend independently usable fallback to early capture
-failures and no-repair candidates after these foundations. Preserve current
+C168 closes the frozen source-selection input boundary. It reuses ordinary
+curated/local/configured-CCD precedence, validates the complete batch and detects
+source or precedence changes before completion. Interrupted copies remain intact;
+strict portable replay supplies exact source/authority to C167 without rediscovery.
+DF/PDU/5PC/ATL source selection and cold replay pass. This does not establish native
+usability or own the complete acquisition request.
+
+**Next bounded checkpoint:** compose the C168 source snapshot, multiple C167
+component acquisitions and C164 prepared repair under one complete request and
+shared allowance. Freeze model/site/context and selected-source identities before
+starting children; keep each component's shared generation allowance across outer
+attempts. Establish parent identity and interruption handling at the preparation
+boundary, then complete orchestration. Broaden independent fallback for early
+capture failures and no-repair candidates after these foundations. Preserve current
 source/site/derivative gates. No automatic retry loop or ordinary adoption is enabled.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
@@ -480,8 +487,8 @@ assumptions for supported environments; record any untested platform explicitly.
 
 The C150 audit recorded 1,662 focused tests + 36 subtests and a C143 full baseline.
 The current last full-tested implementation is C160
-`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C167 have focused
-validation only. C167 focused results are recorded exactly in its handoff; no later full pass is claimed; exact validation is recorded in
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C168 have focused
+validation only. C168 focused results are recorded exactly in its handoff; no later full pass is claimed; exact validation is recorded in
 the current handoff. None is a final
 merge pass for the subsequent combined integration state. Preserve published evidence and archive
 owned runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)

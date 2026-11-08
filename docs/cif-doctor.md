@@ -242,6 +242,46 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Frozen acquisition source selection (C168)
+
+`cif_acquisition_sources.freeze_acquisition_sources(codes, output, *, data_root=None,
+ready_set_executable=None)` freezes one to sixteen explicit unique PDB component
+codes before numerical acquisition. It reuses the ordinary selector and source
+validator: reviewed curated definitions retain precedence, verified local sources
+precede the configured Phenix CCD, and missing curated resources never silently
+fall back. It introduces no new search paths, aliases or chemical inference.
+
+The complete batch is selected and validated before creating output. Every chosen
+path, authority/kind and byte string is rechecked before copying and completion,
+so a changed earlier source or newly appearing higher-precedence file fails the
+batch. A fresh destination is required; exclusive directory/file creation and
+durable writes preserve partial output on interruption. A failed copy is never
+resumed or overwritten in place. The completion record is written last.
+
+Schema 1 `cif-acquisition-source-selection-v1` stores sorted component identities,
+authority/kind, exact checksummed `sources/CODE.cif` references anchored to
+`source_selection_directory`, and original paths marked `PROVENANCE_ONLY`.
+`read_acquisition_sources(output)` validates the exact file/field inventory,
+authority/kind and current source validator, rejects extra approval claims and
+wrong boolean types, and rechecks bytes after validation. It performs no source
+rediscovery, live NARestraints registry lookup, SDK access, subprocess or write.
+Captured source choice is input provenance, not proof of numerical usability.
+
+The reader supplies `source` and `source_authority` directly to C167 component
+acquisition. Tests remove the original local source tree, consume a retained
+qualified snapshot, then reuse the resulting cache without discovery or native
+execution. Current consumer/recipe/representation gates remain C167's responsibility.
+The caller must retain and re-read this source snapshot for a retry; automatic
+multi-component orchestration is not yet wired to it. This stage owns no native
+process, shared deadline or recovery loop and grants no retry/adoption authority.
+
+Validation: 32 new cases, affected tests and the focused workflow profile; actual
+ordinary selection of DF/PDU/5PC/ATL with unchanged parent bytes/mtimes; relocated
+replay with the original copy absent and historical paths, discovery and execution
+denied (222 files unchanged). The configured library is Phenix 2.2.1-6174,
+dispatcher 2.2.1 as recorded in C167; no version command or native job was run in
+C168. No full suite, chemical-support expansion or ordinary runtime change.
+
 ### Explicit component acquisition requests (C167)
 
 `cif_acquisition_attempt.acquire_dictionary_attempt(source, code, store_root,
