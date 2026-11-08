@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C167 validated: durable component acquisition requests
+## C167 published: durable component acquisition requests
 
 Base `c9930da3c7a0aa1dff12567836e610f56712b33c`; existing Cedar only.
 Capsule `live_tests_directory/167_Cedar_acquisition-request-t0gb3apd`.
@@ -80,6 +80,7 @@ refinement, Q13 state authority and Q07 held-out builder challenge remain queued
 No merge authorization. No active jobs. The requested hour was exceeded during
 tool/approval pauses and closure; no second implementation scope was started.
 Evidence key `component_acquisition_request_2026_11_08`.
+Implementation `014e93366321ef965665dcfb9e48bf07ed1e2918` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C166 published: maintained two-seed qualification and allowance

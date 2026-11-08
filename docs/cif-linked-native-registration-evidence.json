@@ -66527,7 +66527,7 @@
   },
   "component_acquisition_request_2026_11_08": {
     "milestone": "C167",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "base_revision": "c9930da3c7a0aa1dff12567836e610f56712b33c",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Composed cache/generation/qualification without an enclosing request.",
@@ -67499,6 +67499,7 @@
       "Independent fallback for early capture failures/no-repair candidates still open",
       "No new Linux execution or full suite; no merge authorization"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "014e93366321ef965665dcfb9e48bf07ed1e2918"
   }
 }

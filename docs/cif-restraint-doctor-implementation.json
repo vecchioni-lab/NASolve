@@ -27993,7 +27993,7 @@
     },
     "component_acquisition_request": {
       "milestone": "C167",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 explicit component request complete; discovery/multi-component preparation and whole-request coordination next",
       "contract": "docs/cif-doctor.md#explicit-component-acquisition-requests-c167",
       "evidence_key": "component_acquisition_request_2026_11_08",
@@ -28006,7 +28006,8 @@
         "Exact cache hit consumes one outer attempt; actual producer hashes pinned only when generation first needed",
         "Independent fallback for early capture failures/no-repair candidates still open",
         "No new Linux execution or full suite; no merge authorization"
-      ]
+      ],
+      "implementation_revision": "014e93366321ef965665dcfb9e48bf07ed1e2918"
     }
   },
   "audience": [
