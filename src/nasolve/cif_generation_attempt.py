@@ -17,7 +17,7 @@ import uuid
 
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
-from .cif_generation_process import PHASES, _valid_identity, inspect_generation_process
+from .cif_generation_process import PHASES, _valid_identity, _valid_attempt_identity, inspect_generation_process
 from .cif_source_candidate import generate_source_candidate
 from .cif_elbow_contract import _inside, _safe
 
@@ -151,7 +151,8 @@ def _attempt_state(directory, number, request):
             or type(intent.get('number')) is not int or intent['number'] != number
             or not isinstance(intent.get('attempt_id'), str) or re.fullmatch(_UUID, intent['attempt_id']) is None
             or not _valid_identity(intent.get('coordinator'))
-            or intent.get('generation') != {'anchor': 'attempt_directory', 'path': 'generation'}):
+            or intent.get('generation') != {'anchor': 'attempt_directory', 'path': 'generation'}
+            or ('parent_attempt' in intent and not _valid_attempt_identity(intent['parent_attempt']))):
         raise ValueError('Invalid generation attempt intent')
     # Observe the final immutable record before its dependencies: a completion
     # published mid-read must not be paired with an earlier phase observation.
@@ -251,7 +252,7 @@ def _seal(attempt, intent, request, outcome, error=None):
 def generate_source_candidate_attempt(installation_root, python_executable, elbow_executable,
         api_sources, source, code, request_directory, *, environment, expected_dialect,
         prior_sources, phenix_version, single_block_steps=180, timeout_seconds=600,
-        bond_representation_policy=None, max_attempts=2):
+        bond_representation_policy=None, max_attempts=2, _parent_attempt_identity=None, _remaining_seconds=None):
     """Run one fresh generation attempt under a frozen request (at most five).
 
     Repeated calls are explicit retries, not cache hits. Each gets a fresh UUID
@@ -259,6 +260,10 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
     The unchanged low-level generator remains available for legacy one-shot
     callers. A different request directory is a different coordination scope.
     """
+    if _parent_attempt_identity is not None and not _valid_attempt_identity(_parent_attempt_identity):
+        raise ValueError('Invalid acquisition parent attempt identity')
+    if _remaining_seconds is not None and not callable(_remaining_seconds):
+        raise ValueError('Invalid outer generation allowance')
     root = _root(request_directory)
     if root.exists():
         _members(root, {'request.json', 'request.lock', 'inputs', 'attempts'})
@@ -301,12 +306,19 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
         attempt = root/'attempts'/f'attempt-{number:04d}'; attempt.mkdir(parents=True, exist_ok=False)
         intent = write_record(attempt/'attempt.json', {'request_sha256': request['record_sha256'],
             'number': number, 'attempt_id': str(uuid.uuid4()), 'coordinator': coordinator, 'created_utc': now(),
-            'generation': {'anchor': 'attempt_directory', 'path': 'generation'}})
+            'generation': {'anchor': 'attempt_directory', 'path': 'generation'},
+            **({'parent_attempt':dict(_parent_attempt_identity)} if _parent_attempt_identity is not None else {})})
         try:
+            effective = dict(options)
+            if _remaining_seconds is not None:
+                remaining = _remaining_seconds()
+                if type(remaining) not in (int,float) or not math.isfinite(remaining) or remaining <= 0:
+                    raise ValueError('Outer generation allowance is exhausted or invalid')
+                effective['timeout_seconds'] = min(timeout_seconds, remaining)
             result = generate_source_candidate(installation, python, elbow, config['generator']['api_sources'],
                 root/'inputs/source.cif', code, attempt/'generation', environment=environment,
                 attempt_identity=_attempt_identity(intent),
-                **{**options, 'prior_sources': config['generator']['prior_sources']})
+                **{**effective, 'prior_sources': config['generator']['prior_sources']})
             if _digest((root/'inputs/source.cif').read_bytes()) != config['source']:
                 raise ValueError('Generation request source snapshot changed during execution')
             # Mutable installed files cannot silently change a frozen request.

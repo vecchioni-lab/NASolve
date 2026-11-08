@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-11-04",
+    "updated_date": "2026-11-08",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -27990,6 +27990,23 @@
         "No new Linux execution or full suite; no merge authorization"
       ],
       "implementation_revision": "1717c6af269c9842d7f937a022c108b77c65c6dd"
+    },
+    "component_acquisition_request": {
+      "milestone": "C167",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 explicit component request complete; discovery/multi-component preparation and whole-request coordination next",
+      "contract": "docs/cif-doctor.md#explicit-component-acquisition-requests-c167",
+      "evidence_key": "component_acquisition_request_2026_11_08",
+      "summary": "Explicit component request freezes inputs/limits, owns immutable attempts and children, shares one generation allowance and elapsed budget, and replays exact successful results.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Explicit single-component acquisition only; no discovery/multi-component repair orchestration or ordinary adoption",
+        "Local work/final sealing/publication/cleanup cooperative; no hard wall-clock deadline",
+        "Actual fresh 5PC generation yielded no retained candidate; failure preservation validated, not fresh-generation usability",
+        "Exact cache hit consumes one outer attempt; actual producer hashes pinned only when generation first needed",
+        "Independent fallback for early capture failures/no-repair candidates still open",
+        "No new Linux execution or full suite; no merge authorization"
+      ]
     }
   },
   "audience": [

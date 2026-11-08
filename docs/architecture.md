@@ -1091,6 +1091,17 @@ publication. Readback binds consumer/input/worker/process inventories and rederi
 both qualifications; it rejects extra approval claims. Source discovery and complete
 acquisition recovery remain separate. See [maintained qualification](cif-doctor.md#maintained-two-seed-qualification-c166).
 
+C167 wraps explicit single-component cache/generation/qualification in a frozen
+request with a persistent lock and finite immutable attempts. Nested generation
+retains one shared allowance and binds its durable parent; a prospective child
+number alone cannot establish ownership after a pre-reservation failure. Native
+qualification uses the existing owner/scientific reader. A shrinking cooperative
+allowance withholds late outer success, preserving partial publications. Read-only
+inspection observes the coordinator before children; exact-attempt replay binds
+frozen inputs, closed inventories and scientific provenance without the old SDK.
+Source discovery and multi-component prepared repair still need a complete outer
+request. See [component requests](cif-doctor.md#explicit-component-acquisition-requests-c167).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

@@ -366,3 +366,8 @@ C166 implements the existing two-seed isolated qualification box as a maintained
 owned callback with a cooperative allowance and portable scientific readback.
 Its output feeds the existing qualified store. Whole-acquisition orchestration
 and ordinary-adoption arrows remain pending; no chemical scope expansion is drawn.
+
+C167 connects explicit component cache lookup, shared generation and maintained
+qualification under one owned request/allowance. Source discovery and multi-component
+prepared-repair coordination remain unclosed arrows; ordinary adoption is unchanged.
+The real fresh-generation 5PC failure is preserved evidence, not a support claim.

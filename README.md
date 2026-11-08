@@ -49,7 +49,10 @@ work is known stopped; complete acquisition recovery remains separate.
 The isolated qualification protocol now has a separate two-job process owner
 sharing the same cleanup/inspection backend. A maintained explicit callback now
 qualifies both coordinate seeds within a shared allowance and replays their saved
-evidence without the SDK. Acquisition-wide budget/recovery still requires integration.
+evidence without the SDK. An explicit component request now coordinates cache,
+generation and qualification with immutable attempts, shared limits and conservative
+recovery. Source discovery and multi-component repair coordination remain separate;
+this API does not change ordinary adoption.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

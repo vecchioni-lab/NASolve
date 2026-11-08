@@ -66524,5 +66524,981 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "1717c6af269c9842d7f937a022c108b77c65c6dd"
+  },
+  "component_acquisition_request_2026_11_08": {
+    "milestone": "C167",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "c9930da3c7a0aa1dff12567836e610f56712b33c",
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Composed cache/generation/qualification without an enclosing request.",
+    "after": "Explicit component request freezes inputs/limits, owns immutable attempts and children, shares one generation allowance and elapsed budget, and replays exact successful results.",
+    "prior_work": [
+      "C157 generation request",
+      "C158/C159 cache/retained semantics",
+      "C163/C164 ownership and recovery ordering",
+      "C166 two-seed qualification"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_acquisition_attempt.py",
+      "src/nasolve/cif_generation_acquisition.py",
+      "src/nasolve/cif_generation_attempt.py",
+      "tests/test_cif_acquisition_attempt.py"
+    ],
+    "schemas": [
+      "New cif-component-acquisition-request-v1 schema 1; request_directory and attempt_directory anchors",
+      "Optional parent_attempt in C157 attempt intent; existing standalone requests/cache/scientific formats compatible"
+    ],
+    "compatibility": "No migration; explicit API only; POSIX owned cleanup; no ordinary adoption",
+    "regression": {
+      "before": "7 import errors before implementation",
+      "initial": "7 passed",
+      "expanded": "29 passed, 1 failed pre-reservation parent identity regression before fix",
+      "new_cases": 30,
+      "affected": {
+        "active": false,
+        "pid": 707,
+        "runner_pid": 685,
+        "phase": "affected",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_cif_generation_attempt.py",
+          "tests/test_cif_generation_process.py",
+          "tests/test_cif_generation_acquisition.py",
+          "tests/test_cif_retained_acquisition.py",
+          "tests/test_cif_candidate_qualification_execution.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_campaign_process.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/167_Cedar_acquisition-request-t0gb3apd/affected.xml"
+        ],
+        "started_utc": "2026-11-08T13:32:06.386061+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 67.748,
+        "sources_unchanged": true,
+        "source_files": 610
+      },
+      "affected_summary": "321 passed, 19 subtests passed in 67.59s",
+      "focused": {
+        "active": false,
+        "pid": 3393,
+        "runner_pid": 3379,
+        "phase": "focused",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/167_Cedar_acquisition-request-t0gb3apd/focused.xml"
+        ],
+        "started_utc": "2026-11-08T13:38:53.962329+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 180.133,
+        "sources_unchanged": true,
+        "source_files": 610
+      },
+      "focused_summary": "1198 passed, 45 subtests passed in 179.75s (0:02:59)",
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "status": "PASS",
+      "cases": {
+        "PDU": {
+          "status": "PASS",
+          "completed_attempt": 2,
+          "cache_attempt": 3,
+          "availability": "EXHAUSTED",
+          "interrupted_first": true,
+          "prior_bytes_mtimes_preserved": true,
+          "no_generation": true
+        },
+        "5PC": {
+          "status": "PASS",
+          "completed_attempt": 1,
+          "cache_attempt": 2,
+          "availability": "AVAILABLE",
+          "interrupted_first": false,
+          "prior_bytes_mtimes_preserved": true,
+          "no_generation": true
+        }
+      },
+      "generation": {
+        "status": "BOUNDED_FAILURE_RETAINED",
+        "error": "ValueError: Generation has no retained candidate; retained attempt requires separate recovery",
+        "ownership": "STOPPED"
+      },
+      "elapsed_seconds": 22.042004791997897,
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scope": "EXPLICIT_ISOLATED_COMPONENT_REQUEST; NOT_WHOLE_PIPELINE"
+    },
+    "relocation": {
+      "status": "PASS",
+      "requests": {
+        "PDU": {
+          "attempts": 3,
+          "usable": 2,
+          "availability": "EXHAUSTED"
+        },
+        "5PC": {
+          "attempts": 2,
+          "usable": 2,
+          "availability": "AVAILABLE"
+        },
+        "generated-5PC": {
+          "attempts": 1,
+          "usable": 0,
+          "availability": "AVAILABLE"
+        }
+      },
+      "original_copy_absent": true,
+      "historical_paths_and_launches_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 393
+    },
+    "evidence_refs": {
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/affected-result.json",
+        "sha256": "11d13518b37bb557a6e323b35f7ff42bba913db52f9d65e9313f5b3366f86eb6",
+        "size": 903
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/affected-sources.json",
+        "sha256": "432ffe4a6d62dab2a55f0b8314f81588779f6e9cb5d06a945d50b6e29a2296d7",
+        "size": 66590
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/affected.log",
+        "sha256": "7c6e9e99ce8806f6304b33600e3572ffd87d1f518e4f07dd40f57efdb7979580",
+        "size": 432
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/affected.xml",
+        "sha256": "81b7481a1d99743f4ca7f779455dca214e3e341464c0e59ec1e09166e2b809ea",
+        "size": 48173
+      },
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/base.json",
+        "sha256": "25e9679dfa136530a39df64f3c39ff12198ac50c384b1022538d480959902191",
+        "size": 275
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/before-result.json",
+        "sha256": "33f8b8c9b2eef1c058b26d5bfd7ad293eb3d780bd0e0ad8be4638dd13bd18c9a",
+        "size": 583
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/before-sources.json",
+        "sha256": "f29cd59aaf34c34a8510cd35c42a9b8bb530bbf070444c59ee4d00b9fff8c427",
+        "size": 66478
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/before.log",
+        "sha256": "4f5cfcb64d0b299b40025b52971e2bc209e3b2bfbb1a522531ca01417e432bbc",
+        "size": 7149
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/before.xml",
+        "sha256": "05d9614e1844ece95e48b6a99573708f51581818d6dccf26bb23644bcd6087b7",
+        "size": 8466
+      },
+      "cold/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/cold/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/cold/stdout.txt",
+        "sha256": "e8dfaead0174f0069bdc6f68b7bb0f9d8d00ebb34e0a18685a2ab816af4bf4c9",
+        "size": 363
+      },
+      "cold/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/cold/summary.json",
+        "sha256": "becc8261de82986874d07c6c11885e58c3c23822bc9463ac8e66b8f70d67f54d",
+        "size": 465
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/focused-result.json",
+        "sha256": "b68dc1da2227db99ee2ae70e5a6a6b73677c08687b488794308b09ff9641a9e8",
+        "size": 490
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/focused-sources.json",
+        "sha256": "432ffe4a6d62dab2a55f0b8314f81588779f6e9cb5d06a945d50b6e29a2296d7",
+        "size": 66590
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/focused.log",
+        "sha256": "2715e53d98c25d3e1bd98f2055bb78fcbb0e8fa86259c7398560a137e873f832",
+        "size": 5732
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/focused.xml",
+        "sha256": "532b582d31a2784087c77a3bef9ac48a1ba486498bbac7ff60c4d4c5f044837f",
+        "size": 180708
+      },
+      "native/5PC/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/attempt.json",
+        "sha256": "86549a31cc9b72625aea3106065c4a0b3534a1925c0de942e18d70a379029bc9",
+        "size": 611
+      },
+      "native/5PC/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/finished.json",
+        "sha256": "6485b3921ba260c5aa210e02c2dcf191a5fa77cb2a02c735ed61de069f6c997f",
+        "size": 8415
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/inputs/protocol.json",
+        "sha256": "0673f536c4adbae2ef6bf6528991afa7d1308bb6c6ffa1412ff13d63a31f2324",
+        "size": 2640
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/native/000/cif-native-pr3dxyas/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/native/000/cif-native-pr3dxyas/native_receipt.json",
+        "sha256": "f3b64cdc9d42a54ca81414c90ebd7f7f5aba97d3340969b058ea91475a0f12bd",
+        "size": 249176
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/native/000/cif-native-pr3dxyas/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/native/000/cif-native-pr3dxyas/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/native/000/cif-native-pr3dxyas/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/native/000/cif-native-pr3dxyas/native_validation.json",
+        "sha256": "2439ec34ef2613e85b5ab35448c6677ff62f2837cb11688b91c850a7c2f280fd",
+        "size": 226407
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/native/001/cif-native-wb9xoicw/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/native/001/cif-native-wb9xoicw/native_receipt.json",
+        "sha256": "c244f4b9ac6b67abaf518282bfb4d901764fe3bd8292023389804495396dcf26",
+        "size": 249211
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/native/001/cif-native-wb9xoicw/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/native/001/cif-native-wb9xoicw/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/native/001/cif-native-wb9xoicw/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/native/001/cif-native-wb9xoicw/native_validation.json",
+        "sha256": "86c7b95e866b56bb41ab62fba7595dc96698b84762db8a387dc9afc689a08456",
+        "size": 226439
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/finished.json",
+        "sha256": "1596e6643628fd15caa1442cdd80deb29a1c40bdb29a86cd3c8619e7257e3f7f",
+        "size": 481
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/finished.json",
+        "sha256": "2c3668a78a35da45db3c5521b82cdf18ac6029454aeffb6c7dc85e4b20e27e7b",
+        "size": 451
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/job.json",
+        "sha256": "6ffeda32e117e53e89a38bdea58a4844ca4ae8d65572fa9b7a136cd50e9a4171",
+        "size": 1065
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/process.json",
+        "sha256": "a532a33c0893fb0ec4caa3f74dec32dac99f753586471a8dda60ffe45bced5b0",
+        "size": 480
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-001/finished.json",
+        "sha256": "19f25c931c1c2415c91d58b5a7e3e4cbdb745f48e38a30f84cabca56d48337a4",
+        "size": 451
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-001/job.json",
+        "sha256": "06ff28641c90a9f53c95d461b95851f640a36a78445aa24b0f224bcbd8ff8da5",
+        "size": 1065
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-001/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/phases/native-001/process.json",
+        "sha256": "6498c15e3a4f040391b386c0da117926ddacd4e004bbe5ec1aa2a92ff1a8e046",
+        "size": 480
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/ownership/qualification.json",
+        "sha256": "0feaea68bc649a45c02929298d945a63966b8ca78863027b2b8208105928585d",
+        "size": 1779
+      },
+      "native/5PC/request/attempts/attempt-0001/qualification/native/qualification_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/qualification/native/qualification_execution.json",
+        "sha256": "2c69b4c546b64daf4b3d78b63e7d281f5216526225d8b048d996095418507a20",
+        "size": 1653393
+      },
+      "native/5PC/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/result.json",
+        "sha256": "9e7696255a97db6ea4bb910756e5e65fcc39e65cb50ad91602acefbded552a30",
+        "size": 1741
+      },
+      "native/5PC/request/attempts/attempt-0001/snapshot/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/snapshot/entry/manifest.json",
+        "sha256": "63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37",
+        "size": 7830
+      },
+      "native/5PC/request/attempts/attempt-0001/snapshot/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/snapshot/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native/5PC/request/attempts/attempt-0001/snapshot/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/snapshot/entry/qualification.json",
+        "sha256": "aab75194fbec9cbcd8c29b92932a1c16e2c07447d11c3c5534e71338bb26bafd",
+        "size": 190337
+      },
+      "native/5PC/request/attempts/attempt-0001/snapshot/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0001/snapshot/resolution.json",
+        "sha256": "8d09025b3fba6727d63444179c92d9279e6cb486b9244eea4b3c82b7e9c2a2d4",
+        "size": 1258
+      },
+      "native/5PC/request/attempts/attempt-0002/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0002/attempt.json",
+        "sha256": "9ac1ffe4cdf41029a722615798ed1a7a8f701a5a3ccedb50d36f011681149506",
+        "size": 611
+      },
+      "native/5PC/request/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0002/finished.json",
+        "sha256": "7f31c91bdc10e543d95c2bbd7c016248232b6adb8d3371910e24a2e57d8b1263",
+        "size": 1550
+      },
+      "native/5PC/request/attempts/attempt-0002/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0002/result.json",
+        "sha256": "d44198cc37ba33e0e29e13d0da7dfb7549223a859e8a0c5ac93faacc747e5872",
+        "size": 1738
+      },
+      "native/5PC/request/attempts/attempt-0002/snapshot/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0002/snapshot/entry/manifest.json",
+        "sha256": "63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37",
+        "size": 7830
+      },
+      "native/5PC/request/attempts/attempt-0002/snapshot/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0002/snapshot/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native/5PC/request/attempts/attempt-0002/snapshot/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0002/snapshot/entry/qualification.json",
+        "sha256": "aab75194fbec9cbcd8c29b92932a1c16e2c07447d11c3c5534e71338bb26bafd",
+        "size": 190337
+      },
+      "native/5PC/request/attempts/attempt-0002/snapshot/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/attempts/attempt-0002/snapshot/resolution.json",
+        "sha256": "449029968f3579fe49500a75df148626b07dd1083f5e43433348c8f7afb78150",
+        "size": 1254
+      },
+      "native/5PC/request/inputs/retained/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/inputs/retained/entry/manifest.json",
+        "sha256": "f4379b0da23d33c5841efc89c50c5062b5d588cee85fd8b8cf34ff0aa29c468b",
+        "size": 7778
+      },
+      "native/5PC/request/inputs/retained/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/inputs/retained/entry/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native/5PC/request/inputs/retained/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/inputs/retained/entry/qualification.json",
+        "sha256": "a61a22404fee1bd04b57e4fb8807ef02f43d3e745ffcdcad5e34f5eaade3b76a",
+        "size": 190339
+      },
+      "native/5PC/request/inputs/retained/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/inputs/retained/resolution.json",
+        "sha256": "a0543ec9ce79f5df9e3251ccfdce32b5d4b9d6ce2a5c2e08150fd6f0f16d6228",
+        "size": 1254
+      },
+      "native/5PC/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/request/request.json",
+        "sha256": "efe0f16e9c1149a6badfe78bc708c5ba9a388170fc9df9723bad374b12e6934d",
+        "size": 16091
+      },
+      "native/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37/manifest.json",
+        "sha256": "63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37",
+        "size": 7830
+      },
+      "native/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37/provenance.json",
+        "sha256": "abc04b88783e3d64867d396b6477c74c301bed698fd57fc50e1d6d6dfb492b25",
+        "size": 10972
+      },
+      "native/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/5PC/store/entries/5c1b5356949ff528b8eda68172d96c6ab0002f732890a6ff2a1a28c17d1eae97/63615c5eecd445942286c0da6349b165a3bd2601fefe65c483e281ba5c88da37/qualification.json",
+        "sha256": "aab75194fbec9cbcd8c29b92932a1c16e2c07447d11c3c5534e71338bb26bafd",
+        "size": 190337
+      },
+      "native/PDU/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/attempt.json",
+        "sha256": "6a2e21189b0d415d5820d8090d5ee7efc3c5845f6ea63bd51caab0afda3f258f",
+        "size": 611
+      },
+      "native/PDU/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/finished.json",
+        "sha256": "77194bbe1ded9eb361eb20af9f69e308503ae3f1a208c2d658433b03539f2ad9",
+        "size": 4013
+      },
+      "native/PDU/request/attempts/attempt-0001/qualification/native/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/qualification/native/inputs/protocol.json",
+        "sha256": "29e265275266a4e53af8df88ab9c2823c8f427c73e364d9f6d4f1fd90243e70c",
+        "size": 2640
+      },
+      "native/PDU/request/attempts/attempt-0001/qualification/native/native/000/cif-native-hyi8kp5c/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/qualification/native/native/000/cif-native-hyi8kp5c/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/PDU/request/attempts/attempt-0001/qualification/native/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/qualification/native/ownership/finished.json",
+        "sha256": "34d6f507561a3d5b2494cbb58101f579a0964717a06c6e84b609688239f4bf63",
+        "size": 393
+      },
+      "native/PDU/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/finished.json",
+        "sha256": "ef5333fafc706c3df0896c84c03ce69f72b484cc9a4cdc4f1992afddd2c46b7f",
+        "size": 472
+      },
+      "native/PDU/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/job.json",
+        "sha256": "4eef31b5500e8cb99147bbfe6cc77582c56f04a434676101c260d857104cd8ec",
+        "size": 1065
+      },
+      "native/PDU/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/qualification/native/ownership/phases/native-000/process.json",
+        "sha256": "23d7035bce5a13352ae3fd458b247d90f7a79e980b82c0341dd211bacb9c3967",
+        "size": 480
+      },
+      "native/PDU/request/attempts/attempt-0001/qualification/native/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0001/qualification/native/ownership/qualification.json",
+        "sha256": "6107a9dba9e9b07b707cf144dd62dbe585d3c1ad6fc10a770d515f99f50c642d",
+        "size": 1779
+      },
+      "native/PDU/request/attempts/attempt-0002/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/attempt.json",
+        "sha256": "c1accb9014f9e49fd556886b97e02312664b5a8ce1cdb8d56e4a0b800ae842a1",
+        "size": 611
+      },
+      "native/PDU/request/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/finished.json",
+        "sha256": "8b27a3a787af468897bccac768dbb52dfc580842ecb67ebf5ca20588d149e884",
+        "size": 8415
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/inputs/protocol.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/inputs/protocol.json",
+        "sha256": "29e265275266a4e53af8df88ab9c2823c8f427c73e364d9f6d4f1fd90243e70c",
+        "size": 2640
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/native/000/cif-native-x88fzxt_/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/native/000/cif-native-x88fzxt_/native_receipt.json",
+        "sha256": "fe54a3f1c44935026ae01d69569a6b67f8796a61db4db861f81ee7018a0e7d18",
+        "size": 242705
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/native/000/cif-native-x88fzxt_/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/native/000/cif-native-x88fzxt_/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/native/000/cif-native-x88fzxt_/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/native/000/cif-native-x88fzxt_/native_validation.json",
+        "sha256": "f3cccccfc84b7ca9069b70fe0575e03dd91070e6adc29d263ee899b357ffd9f6",
+        "size": 220292
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/native/001/cif-native-3sat0ftw/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/native/001/cif-native-3sat0ftw/native_receipt.json",
+        "sha256": "6a82ccbe7bafa2ebdc5c6cce64fc2dd1d0c95cfaa0627578d769b85d4f2748c7",
+        "size": 243743
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/native/001/cif-native-3sat0ftw/native_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/native/001/cif-native-3sat0ftw/native_spec.json",
+        "sha256": "c5eb6dd9874b506b4fbed4f0bdae44ca88e6c788eb77b8af4284d518503b5ac0",
+        "size": 319
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/native/001/cif-native-3sat0ftw/native_validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/native/001/cif-native-3sat0ftw/native_validation.json",
+        "sha256": "961cc10659262b0d1fce03dd59b641d564d5fbce762d49c9490936e8163d339e",
+        "size": 221327
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/finished.json",
+        "sha256": "1488ddb16e879fff79bd49f50d2462ca99c2392a51777418a93438c3bf2a1e98",
+        "size": 481
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-000/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-000/finished.json",
+        "sha256": "dbade5a8de626f0ea3181842053c0fbe44c91d5329c7b71530bb7d4c4ce7a265",
+        "size": 450
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-000/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-000/job.json",
+        "sha256": "c949f505902c2fdb01b00f5ab15427d37f9466b871f6fed3eebd605dd8bb6429",
+        "size": 1065
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-000/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-000/process.json",
+        "sha256": "60e320596d70d0592324d1758da8f475dfef36ec21bf61ebbd1aa762312a543c",
+        "size": 480
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-001/finished.json",
+        "sha256": "fa3d9040fff0fc22f96e8514a750ec39646d17a0252a687d05536ea2d73a1f74",
+        "size": 451
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-001/job.json",
+        "sha256": "ab465335bb0938d0df10a783f344da4a847f711d8e1da3aafb75c1ff71b56da6",
+        "size": 1065
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-001/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/phases/native-001/process.json",
+        "sha256": "2fe6db68097b52de4555643a3cff12aca740913fd504b0569e5ca7c99cfcb5b9",
+        "size": 480
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/ownership/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/ownership/qualification.json",
+        "sha256": "9c0773a3bcdfb8049d0c2a289f839a963249ade1628353e0d2205395fc8f40ea",
+        "size": 1779
+      },
+      "native/PDU/request/attempts/attempt-0002/qualification/native/qualification_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/qualification/native/qualification_execution.json",
+        "sha256": "c3d53184197af6ce386ee3c37fd1b5e8912f1b2de99f5e0e748b70601a0ddcf5",
+        "size": 1617118
+      },
+      "native/PDU/request/attempts/attempt-0002/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/result.json",
+        "sha256": "9a84d8275204187df916ff7c16f7ab02597b185dd7104253e5ba5e42c395e415",
+        "size": 1776
+      },
+      "native/PDU/request/attempts/attempt-0002/snapshot/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/snapshot/entry/manifest.json",
+        "sha256": "64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047",
+        "size": 7756
+      },
+      "native/PDU/request/attempts/attempt-0002/snapshot/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/snapshot/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native/PDU/request/attempts/attempt-0002/snapshot/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/snapshot/entry/qualification.json",
+        "sha256": "c6f6e710731c21a9d8b074d880e1a3693ae1cc8f12c670396cf1ee25faece8fa",
+        "size": 186299
+      },
+      "native/PDU/request/attempts/attempt-0002/snapshot/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0002/snapshot/resolution.json",
+        "sha256": "f829cf9ffdd51c7c4d0fa25432f249aa59256bdb6525c5c57bd601182fecbd43",
+        "size": 1293
+      },
+      "native/PDU/request/attempts/attempt-0003/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0003/attempt.json",
+        "sha256": "d7ba95e988ed4bdb446cd12283054e8e16bf4189af5f769477fc7538723a9c4a",
+        "size": 611
+      },
+      "native/PDU/request/attempts/attempt-0003/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0003/finished.json",
+        "sha256": "34e31cbd454d20d61aa6f9a7d3e51cc2136708c8eb249ab4a4e7a2bd7a4e61db",
+        "size": 1550
+      },
+      "native/PDU/request/attempts/attempt-0003/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0003/result.json",
+        "sha256": "a2316621b24840a798b004677cb8add3ac2783b869f2b20e6d5ffabc6a3d9e72",
+        "size": 1773
+      },
+      "native/PDU/request/attempts/attempt-0003/snapshot/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0003/snapshot/entry/manifest.json",
+        "sha256": "64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047",
+        "size": 7756
+      },
+      "native/PDU/request/attempts/attempt-0003/snapshot/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0003/snapshot/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native/PDU/request/attempts/attempt-0003/snapshot/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0003/snapshot/entry/qualification.json",
+        "sha256": "c6f6e710731c21a9d8b074d880e1a3693ae1cc8f12c670396cf1ee25faece8fa",
+        "size": 186299
+      },
+      "native/PDU/request/attempts/attempt-0003/snapshot/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/attempts/attempt-0003/snapshot/resolution.json",
+        "sha256": "d79c10ac7e9fe00ed5f6befb5eadc68c85ee0a63f6982f2f33442034bc40b92b",
+        "size": 1289
+      },
+      "native/PDU/request/inputs/retained/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/inputs/retained/entry/manifest.json",
+        "sha256": "79e393518bbbf0ac000dadbca8684fed25c8f8151c11839e074f7969c87573c9",
+        "size": 7704
+      },
+      "native/PDU/request/inputs/retained/entry/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/inputs/retained/entry/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native/PDU/request/inputs/retained/entry/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/inputs/retained/entry/qualification.json",
+        "sha256": "45363e102897e63686b3607155f63322f9f249295a911def2841f8a90901f3db",
+        "size": 186301
+      },
+      "native/PDU/request/inputs/retained/resolution.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/inputs/retained/resolution.json",
+        "sha256": "36d354e77b52ae434befb3c7653d161b07bb54e0802a367cf918afac2d24d4ce",
+        "size": 1289
+      },
+      "native/PDU/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/request/request.json",
+        "sha256": "6998ca64f4c70454c55fee404c871543c3c1d9de2a2514dc36690f5d15c78047",
+        "size": 15842
+      },
+      "native/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047/manifest.json",
+        "sha256": "64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047",
+        "size": 7756
+      },
+      "native/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047/provenance.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047/provenance.json",
+        "sha256": "bc4708b3fc601e893d30594a85ad3211559a06a826beb3c9744ba92d9c70cda6",
+        "size": 10958
+      },
+      "native/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/PDU/store/entries/3a78e9644b1573399957ca89a2b238f27d1693bbc7a5e070d82ecce0bbc00230/64feef17e0bebaa6a22123a5a9e1ccc03368ea217cff1f48fe5abecbea26e047/qualification.json",
+        "sha256": "c6f6e710731c21a9d8b074d880e1a3693ae1cc8f12c670396cf1ee25faece8fa",
+        "size": 186299
+      },
+      "native/generated-5PC/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/attempts/attempt-0001/attempt.json",
+        "sha256": "56a40cab85c7f028c02143188f485c4f180408d3a403e08d250af46aac06650f",
+        "size": 611
+      },
+      "native/generated-5PC/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/attempts/attempt-0001/finished.json",
+        "sha256": "8f7b05b29db431d531cbee440c4bd9cd5366c1c286e158dc0ce9142b483da48e",
+        "size": 4357
+      },
+      "native/generated-5PC/request/attempts/attempt-0001/generation.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/attempts/attempt-0001/generation.json",
+        "sha256": "ba4173cc65dbe5fe385b22fa3822d64436e18d5ce3683989eb6b02a02124fb95",
+        "size": 309
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/attempt.json",
+        "sha256": "b94151812f28e677f3c6ecdfc2bdb93cd17e3e9862c470cc1884451d2958bf90",
+        "size": 958
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/finished.json",
+        "sha256": "69bafc4887f91cf7b1b69bfadc91d643c7383a81c6e8b7d6a407b5ad7e73d2d0",
+        "size": 1110
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/candidate_spec.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/candidate_spec.json",
+        "sha256": "0ac5b98c78460281e33aa43df12c2324d137e021e196f181971f86ca885de67f",
+        "size": 9712
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/candidate/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/candidate/finished.json",
+        "sha256": "1859f8e4b6f5520fd19c2ffea332aba2ea8e4eebb5c0da39a3ab2a3982b0c3d2",
+        "size": 463
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/candidate/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/candidate/job.json",
+        "sha256": "434424f5aad112aa13390d9083b07ce16dee7a55635063183df006d5b794ca1d",
+        "size": 1517
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/candidate/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/candidate/process.json",
+        "sha256": "684895c9647fd781c78b56a6b1d5278ddc0c81c11b8cb339a0d72738852d7007",
+        "size": 480
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/capabilities/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/capabilities/finished.json",
+        "sha256": "3cdc808cace8cde117f788356d85777c4841743d1a881eb547535836e656297a",
+        "size": 451
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/capabilities/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/capabilities/job.json",
+        "sha256": "18b620625abe859d30009624e9ed323aae835848b9faf34944f3ca8d87fecc60",
+        "size": 1449
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/capabilities/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/execution/capabilities/process.json",
+        "sha256": "d735d266e84d45bf60a2b497ab06473ae80abf7acbd8573c476c8fe647329cbc",
+        "size": 480
+      },
+      "native/generated-5PC/request/generation/attempts/attempt-0001/generation/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/attempts/attempt-0001/generation/source_candidate_receipt.json",
+        "sha256": "e98a940481f758cff6027c1234e39e6ceef4474bbc1b8cf117922ec00ad06962",
+        "size": 11519
+      },
+      "native/generated-5PC/request/generation/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/generation/request.json",
+        "sha256": "df41c06dbcb79f4157f9122b8d838e4593acc7139b9b650f63222f15be4f3251",
+        "size": 2626
+      },
+      "native/generated-5PC/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/request/request.json",
+        "sha256": "c0e0e21ecc62a99608f6613d2a913575ff6e2e96ff94ed44cc37f204293b1a02",
+        "size": 15140
+      },
+      "native/generated-5PC/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/generated-5PC/summary.json",
+        "sha256": "8780f5f3732833472256ff9d91f06c4e21059eba9ee4f2d86f2f633dd657c1be",
+        "size": 177
+      },
+      "native/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/installation.json",
+        "sha256": "2a6e5593f624f8f7eb968c2615d012b91bb4b90bd0a8eaae2081cd62d848c8d5",
+        "size": 92
+      },
+      "native/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/parent-inputs.json",
+        "sha256": "16088a38e25ae1e6ebf0fe31d25315b98d65da0a0e309cf4dea8ad36aa541243",
+        "size": 1857
+      },
+      "native/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/runtime-sources.json",
+        "sha256": "e22ac60b2cdde58eac248d558c94396be350369ee8dd2d8ccafc0de757356bed",
+        "size": 21652
+      },
+      "native/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/native/summary.json",
+        "sha256": "e4b51737a52b994108968360e8589be21f7d8eac95a8bc5c047af5186d2eaa0d",
+        "size": 983
+      },
+      "new-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new-r2-result.json",
+        "sha256": "1164f01b40097f27f324ddfc86579030dfc558941adec4f9de3396e447b77e7c",
+        "size": 582
+      },
+      "new-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new-r2-sources.json",
+        "sha256": "ce02d9a67727cf2dca53325b5debe13f290ea689f90d3177ace7d7b83b0a235d",
+        "size": 66590
+      },
+      "new-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new-r2.log",
+        "sha256": "347effdde4cd3e0a404b9fe155d233402f5a97dbd7f1740fd006cf8f7c88a6b0",
+        "size": 2931
+      },
+      "new-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new-r2.xml",
+        "sha256": "df094737d0415dee48a0191621a40364686719131d0097716b8b9ca9bc98f0a4",
+        "size": 7029
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new-result.json",
+        "sha256": "ed01a4f2b25df7b91a4294f479c71aef187c6e4fd77a9a89d11d3608e32f4243",
+        "size": 577
+      },
+      "new-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new-sources.json",
+        "sha256": "653266ee49740d931c26a1683f8d31640b4c6271aa89918b307beef47ba65935",
+        "size": 66590
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new.log",
+        "sha256": "7225a886ed2d0ee26989a5edc66a960226dace0a2bf20ed082d82ed2e4f51519",
+        "size": 98
+      },
+      "new.xml": {
+        "anchor": "live_tests_directory",
+        "path": "167_Cedar_acquisition-request-t0gb3apd/new.xml",
+        "sha256": "51dfc46429eed1f1d704221342d31b2b0a735e24fedf780e420fffa994649dec",
+        "size": 1179
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_acquisition_attempt.py",
+        "tests/test_cif_generation_attempt.py",
+        "tests/test_cif_generation_process.py",
+        "tests/test_cif_generation_acquisition.py",
+        "tests/test_cif_retained_acquisition.py",
+        "tests/test_cif_candidate_qualification_execution.py",
+        "tests/test_cif_repair_attempt.py",
+        "tests/test_campaign_process.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/167_Cedar_acquisition-request-t0gb3apd/affected.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/167_Cedar_acquisition-request-t0gb3apd/focused.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c167_native.py",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c167_cold.py"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual not dry-run"
+    },
+    "artifacts": "Only code/tests/docs published; scientific payloads, logs/XML, records and runners remain local/ignored",
+    "limitations": [
+      "Explicit single-component acquisition only; no discovery/multi-component repair orchestration or ordinary adoption",
+      "Local work/final sealing/publication/cleanup cooperative; no hard wall-clock deadline",
+      "Actual fresh 5PC generation yielded no retained candidate; failure preservation validated, not fresh-generation usability",
+      "Exact cache hit consumes one outer attempt; actual producer hashes pinned only when generation first needed",
+      "Independent fallback for early capture failures/no-repair candidates still open",
+      "No new Linux execution or full suite; no merge authorization"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

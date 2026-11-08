@@ -65,7 +65,7 @@ def generation_dictionary_options(generation):
 
 
 def resolve_generated_dictionary(source, code, store_root, output, request_directory, qualification_directory,
-        *, source_authority, consumer, generation, qualify=None, retained_snapshot=None):
+        *, source_authority, consumer, generation, qualify=None, retained_snapshot=None, _generate=None):
     """Reuse first; otherwise perform at most one owned generation and qualification.
 
     ``qualify(source_copy, candidate_copy, consumer_copy, fresh_native_output)``
@@ -85,6 +85,7 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
     generation scope binds its source/recipe/producer, independently of consumer
     qualification. No whole-acquisition ownership or automatic retry is claimed.
     """
+    _need(_generate is None or callable(_generate), "Generation adapter must be callable")
     generation = deepcopy(generation)
     options = generation_dictionary_options(generation)
     _need(qualify is None or callable(qualify), 'Qualification adapter must be callable')
@@ -126,7 +127,7 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
 
     def acquire():
         _need(_regular(source) == original, 'Selected source changed before generation')
-        result = generate_source_candidate_attempt(source=source, code=code,
+        result = (generate_source_candidate_attempt if _generate is None else _generate)(source=source, code=code,
             request_directory=request_directory, **generation)
         state = inspect_source_generation_request(request_directory)
         attempt = state['attempts'][result['attempt_number']-1]

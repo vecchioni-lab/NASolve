@@ -3648,3 +3648,21 @@ process ownership from C165 and an in-memory version of the unchanged control
 serializer. Real PDU/5PC and relocated controls pass. This supports isolated
 numerics; whole-acquisition recovery, ordinary adoption, linked construction and
 refinement remain separate. See the [contract](cif-doctor.md#maintained-two-seed-qualification-c166).
+
+
+### Recovering one declared component acquisition (C167)
+
+The explicit acquisition engine now freezes the source, recipe, consumer and any
+retained snapshot under one request. It creates a fresh attempt for each call,
+shares the generation allowance across retries and keeps the native qualification
+linked to its owner. Interrupted output stays intact; a later attempt can start
+only after earlier owners and workers are known inactive. One cooperative allowance
+covers the component call, and late work cannot claim success.
+
+The same scientific validators still decide usability. Saved successful attempts
+can be checked after relocation without their old SDK; failed attempts remain
+failed. Real PDU interruption/recovery and PDU/5PC qualification/cache checks pass.
+A separate fresh 5PC generation control fails safely without a retained candidate.
+This is explicit single-component coordination; source discovery, multi-component
+repair, ordinary adoption and refinement remain separate gates. See the
+[contract](cif-doctor.md#explicit-component-acquisition-requests-c167).

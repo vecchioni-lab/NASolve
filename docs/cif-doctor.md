@@ -242,6 +242,71 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Explicit component acquisition requests (C167)
+
+`cif_acquisition_attempt.acquire_dictionary_attempt(source, code, store_root,
+request_directory, ..., generation, consumer, phenix=None, retained_snapshot=None)`
+owns one explicit cache-first component acquisition. The source is already declared.
+It composes C158/C159 cache/retained semantics, the C157 shared generation request
+and C166 maintained two-seed qualification. Chemistry, representation permission,
+native usability, original recipe/producer and store selection remain unchanged.
+This is a new explicit API; ordinary PostMR acquisition is not redirected to it.
+
+Schema 1 `cif-component-acquisition-request-v1` freezes exact source bytes, declared
+source authority/recipe/generator identity, current consumer, optional exact retained
+snapshot and limits. Operational references are anchored to `request_directory` or
+`attempt_directory`. A persistent lock serializes callers sharing the request path.
+Each explicit call reserves a fresh numbered attempt with its own UUID/coordinator;
+previous partial output is never repaired. Even a cache hit consumes one outer
+attempt, but does not discover or launch the SDK. The cache path is an explicit
+per-call binding; changing cache contents is expected, not an input mutation.
+
+One nested generation request retains its own frozen producer and finite allowance
+across all outer attempts. Outer retries cannot reset it. Declared relative
+dispatcher paths are frozen in the outer request; actual dispatcher hashes are
+frozen by C157 when generation is first needed, not by cache lookup. An optional
+`parent_attempt` binding in C157 attempt intent links that child to its owning
+outer attempt without changing standalone request semantics or cache formats.
+The prospective next child number is only an observation: a pre-reservation
+failure must not adopt a later attempt's child occupying that slot. Readback uses
+the durable parent digest/UUID and rejects foreign children.
+
+The monotonic allowance starts before preflight and is shared across cache lookup,
+generation and qualification. Native jobs receive the remaining allowance; checks
+withhold late results even if a valid cache entry or snapshot was already published.
+Partial outputs remain intact. Defaults are 90s per qualification job, 600s total,
+and two outer attempts; integer ranges are 1–600s, 1–3600s and 1–5 respectively.
+Generation retains its separately frozen phase/attempt limits. Local work, final
+sealing/publication and cleanup are cooperative, not a hard wall-clock deadline;
+the recorded elapsed value precedes final sealing. No automatic retry loop exists.
+
+`inspect_acquisition_request(directory)` is read-only and never grants retry
+authority. The writer rechecks under its lock. An unsealed attempt is recoverable
+only after its coordinator is known inactive and its owned children are stopped
+or absent; unknown identities/publication gaps block. The coordinator is observed
+before children. Closed attempts bind child records and full output inventories.
+`read_acquisition_result(directory, attempt_number)` requires one exact successful
+sealed attempt, checks its frozen inputs/store snapshot and replays fresh native
+qualification and generation provenance when present. Failed attempts cannot
+become successful merely because they left a snapshot. Replay needs neither the
+old source/cache/SDK nor execution of captured code.
+
+Validation: 30 new regressions, 321 affected tests + 19 subtests, and 1,198 focused
+workflow tests + 45 subtests pass. Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 PDU
+interruption leaves a stopped immutable first attempt; fresh PDU and 5PC qualify
+both coordinate seeds and later cache hits run no native adapter. Original recipes
+and producers survive. A separate actual fresh-generation 5PC control produces no
+retained candidate and fails acquisition honestly, preserving its stopped child
+and all evidence; this is not a successful generated-chemistry result. Cold replay
+validates all three requests, four usable results and two failed attempts with
+original copies absent, historical paths/execution denied and 393 files unchanged.
+No full suite, ReadySet, Coot or diffraction refinement was run. Evidence is macOS.
+
+Remaining Q04: source-discovery ownership, multi-component preparation and prepared
+repair under a complete shared request/allowance, then independent fallback for
+early capture failures and no-repair candidates. This component request does not
+authorize ordinary adoption, linked chemistry, refinement or retries from inspection.
+
 ### Maintained two-seed qualification (C166)
 
 `cif_candidate_qualification_execution.execute_candidate_qualification(source,

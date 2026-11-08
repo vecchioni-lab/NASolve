@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-04, after C166.** This queue owns unfinished
+**Current planning authority, 2026-11-08, after C167.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -220,17 +220,24 @@ survive fresh qualification and subsequent cache hits run no native job. Portabl
 readback independently rederives the result. Its total allowance covers this
 qualification only, with final atomic publication/cleanup remaining cooperative.
 
-**Next bounded checkpoint:** establish complete acquisition request identity and
-coordination across declared source discovery, generation, independent qualification
-and prepared repair. Reuse the existing frozen request/attempt/phase contracts;
-propagate one acquisition allowance, preserve all partial outputs, and recover only
-after previous owners/workers are known inactive. Then extend independently usable
-fallback to early capture failures and no-repair candidates without manufacturing
-repair proof or weakening current source/site/derivative gates.
-Complete acquisition coordination must cover qualification/source-discovery
-ownership and a total budget; C158 composes generation and a qualification callback; C166 now supplies the
-maintained callback, but the surrounding request is not yet coordinated. Keep these explicit sub-gates under Q04 before ordinary
-automation. No automatic retry loop or unqualified-source usability is enabled.
+C167 closes the explicit single-component acquisition request sub-gate: frozen
+source/recipe/consumer/retained inputs, persistent locking, finite fresh attempts,
+one shared generation request and parent-bound maintained qualification. One
+cooperative per-call allowance crosses those stages; late output grants no success.
+Read-only exact-attempt replay validates completed scientific evidence. Recovery
+requires known-inactive owners/workers; prospective child numbers cannot replace
+durable parent identity. Real PDU interruption/recovery and PDU/5PC qualification/
+cache controls pass. Fresh 5PC generation still fails without a retained candidate;
+the failure is safely preserved, not evidence of generated-chemistry usability.
+
+**Next bounded checkpoint:** compose declared source discovery, multiple component
+acquisitions and C164 prepared repair under one complete request and shared
+allowance. Reuse C167 child identity/recovery; do not reset child generation limits
+or repair interrupted outputs in place. Establish the preparation/discovery boundary
+and its frozen identities first, then add the remaining orchestration without
+manufacturing repair proof. Extend independently usable fallback to early capture
+failures and no-repair candidates after these foundations. Preserve current
+source/site/derivative gates. No automatic retry loop or ordinary adoption is enabled.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;
@@ -473,8 +480,8 @@ assumptions for supported environments; record any untested platform explicitly.
 
 The C150 audit recorded 1,662 focused tests + 36 subtests and a C143 full baseline.
 The current last full-tested implementation is C160
-`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C166 have focused
-validation only. C166 focused results are recorded exactly in its handoff; no later full pass is claimed; exact validation is recorded in
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C167 have focused
+validation only. C167 focused results are recorded exactly in its handoff; no later full pass is claimed; exact validation is recorded in
 the current handoff. None is a final
 merge pass for the subsequent combined integration state. Preserve published evidence and archive
 owned runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)

@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Durable explicit component acquisition (C167)
+
+- Add a frozen component request with persistent locking, immutable bounded attempts,
+  one shared generation allowance and parent-bound native qualification. Recover
+  explicitly only after earlier owners and workers are known inactive.
+- Share a cooperative elapsed allowance across lookup/generation/qualification;
+  preserve every partial output and withhold late or incomplete success claims.
+- Add read-only process inspection and exact-attempt portable scientific readback.
+  Bind generation children by durable parent identity, including pre-reservation
+  interruptions where a later attempt legitimately uses the same next slot.
+- New request schema and optional nested parent binding; existing standalone
+  generation, cache formats and chemistry remain compatible. No migration or
+  ordinary adoption; discovery and whole-pipeline coordination remain separate.
+
 ### Maintained isolated candidate qualification (C166)
 
 - Promote the two-coordinate-seed qualification protocol into a maintained owned

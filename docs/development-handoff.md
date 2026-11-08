@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-04** from software validation, native receipts and verified geometry/DF
+Updated **2026-11-08** from software validation, native receipts and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,77 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C167 validated: durable component acquisition requests
+
+Base `c9930da3c7a0aa1dff12567836e610f56712b33c`; existing Cedar only.
+Capsule `live_tests_directory/167_Cedar_acquisition-request-t0gb3apd`.
+Before, cache/generation/qualification were composed without one enclosing request.
+After, an explicit component API freezes source/recipe/consumer/retained inputs and
+limits, serializes callers, preserves immutable attempts and shares one generation
+request across them. Qualification/generation children bind the exact parent;
+a shrinking cooperative allowance withholds late results. Exact-attempt replay
+validates saved scientific evidence independently of historical paths or the SDK.
+
+History checked: C157 bounded generation, C158/C159 cache/retained semantics,
+C163/C164 ownership/recovery ordering, C166 maintained scientific qualification.
+Reused these contracts and validators. No phosphate/OP3, sugar/stereo, NAR,
+selection or scientific acceptance changes. This completes a Q04 component layer,
+not complete acquisition orchestration or Cedar closure.
+
+**Validation:** 7 import errors before implementation; initial 7 passed. Expanded
+regressions exposed pre-reservation child-number confusion (29 passed, 1 failed).
+Fixed child lookup to use durable parent identity; all **30 new cases** now pass
+within **321 affected tests + 19 subtests in 67.59s**. Workflow: **1198 passed, 45 subtests passed in 179.75s (0:02:59)**.
+All 610 source/test/script hashes remain fixed. **No full suite, as requested.**
+Last full-tested implementation remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_acquisition_attempt.py tests/test_cif_generation_attempt.py tests/test_cif_generation_process.py tests/test_cif_generation_acquisition.py tests/test_cif_retained_acquisition.py tests/test_cif_candidate_qualification_execution.py tests/test_cif_repair_attempt.py tests/test_campaign_process.py --junitxml <capsule>/affected.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c167_native.py
+PYTHONDONTWRITEBYTECODE=1 python c167_cold.py
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1**, not dry-runs: interrupting PDU
+immediately after native process identity publication leaves a stopped first
+attempt; a fresh attempt qualifies both seeds, and a third is a cache hit with
+native adapters forbidden. A fourth refuses the exhausted allowance. 5PC qualifies
+both seeds and reuses its cache likewise. Original producer/recipe, parent inputs
+and interrupted-attempt bytes/mtimes are preserved. A separate actual fresh 5PC
+generation control fails without a retained candidate; nested generation and outer
+acquisition are stopped, all partial evidence remains, and no successful result
+can be read. This is bounded-failure validation, not fresh-generation usability.
+Native helper elapsed 22.042s. Synthetic regressions cover
+overlap, changed inputs/consumer/limits, generation allowance exhaustion, every
+budget boundary, unknown/live owners, parent substitution and snapshot tampering.
+
+Cold replay passes three relocated requests: four usable results, one interrupted
+PDU attempt and one failed generated-5PC attempt. Original copied checkout absent;
+old checkout/SDK/source/output paths and execution denied. All 393 files
+retain bytes/mtimes. No ReadySet, Coot or diffraction refinement. Actual execution
+is macOS only; isolated component evidence does not establish linked support.
+
+Changed: new acquisition request/reader module; private generation callback,
+optional nested-parent and remaining-allowance hooks; regressions/profile;
+contracts/overview/caption, queue and both ledgers. Schema 1
+`cif-component-acquisition-request-v1`; C157 attempt intent gains optional
+`parent_attempt`. Existing standalone generation/cache/scientific schemas remain
+compatible; no migration. Cache hits consume an explicit outer attempt but do not
+require SDK discovery. Actual producer hashes freeze on first needed generation.
+Local work, final sealing/publication and cleanup remain cooperative. Late published
+snapshots may exist but do not make a raised attempt successful. Source/tests/docs
+only are published; raw science, native captures, logs/XML and runners stay local.
+
+**Next Q04:** source-discovery/preparation boundary, then one complete request and
+shared allowance across multiple components and prepared repair. Afterward broaden
+independent fallback to early failures/no-repair candidates. Q05 adoption, Q06
+refinement, Q13 state authority and Q07 held-out builder challenge remain queued.
+No merge authorization. No active jobs. The requested hour was exceeded during
+tool/approval pauses and closure; no second implementation scope was started.
+Evidence key `component_acquisition_request_2026_11_08`.
+— Rowan · Codex desktop
 
 ## C166 published: maintained two-seed qualification and allowance
 

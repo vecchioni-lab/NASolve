@@ -74,6 +74,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C166 adds the maintained two-seed scientific callback, shared qualification
   allowance and strict SDK-independent readback. Whole-acquisition coordination
   remains open; qualification does not authorize ordinary adoption.
+  C167 adds a durable explicit single-component request across cache/generation/
+  qualification, shared limits, parent-bound children and exact-attempt readback.
+  Discovery and multi-component prepared-repair coordination remain Q04.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry
