@@ -28011,7 +28011,7 @@
     },
     "acquisition_source_selection": {
       "milestone": "C168",
-      "status": "FOCUSED_AND_SOURCE_REPLAY_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_SOURCE_REPLAY_VALIDATED",
       "queue": "Q04 source snapshot complete; full multi-component request coordination next",
       "contract": "docs/cif-doctor.md#frozen-acquisition-source-selection-c168",
       "evidence_key": "acquisition_source_selection_2026_11_08",
@@ -28023,7 +28023,8 @@
         "Reader uses current source validators but performs no live source or NARestraints registry lookup",
         "Fresh output only; partial files preserved, no recovery authorization",
         "No full suite, Linux execution, native jobs, ordinary adoption or merge authorization"
-      ]
+      ],
+      "implementation_revision": "a088a9d4ff5f4f527c8cabde486a65ccc61e4fae"
     }
   },
   "audience": [

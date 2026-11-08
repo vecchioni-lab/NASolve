@@ -67504,7 +67504,7 @@
   },
   "acquisition_source_selection_2026_11_08": {
     "milestone": "C168",
-    "status": "FOCUSED_AND_SOURCE_REPLAY_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_SOURCE_REPLAY_VALIDATED",
     "base_revision": "b1ed43d6b3911e39e7233e3ef5cc9c688eeb4d57",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Component callers had to declare sources without a reusable complete source-selection snapshot.",
@@ -67928,6 +67928,7 @@
       "Fresh output only; partial files preserved, no recovery authorization",
       "No full suite, Linux execution, native jobs, ordinary adoption or merge authorization"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "a088a9d4ff5f4f527c8cabde486a65ccc61e4fae"
   }
 }

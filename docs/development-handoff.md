@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C168 validated: frozen ordinary source selection
+## C168 published: frozen ordinary source selection
 
 Base `b1ed43d6b3911e39e7233e3ef5cc9c688eeb4d57`; existing Cedar only.
 Capsule `live_tests_directory/168_Cedar_source-selection-4_xv77h_`.
@@ -70,6 +70,7 @@ held-out builder challenge remain queued. No merge authorization. No active jobs
 Substantial wall-clock discontinuities occurred during tool pauses; the active
 checkpoint and exact job state stayed recorded, and no second scope was started.
 Evidence key `acquisition_source_selection_2026_11_08`.
+Implementation `a088a9d4ff5f4f527c8cabde486a65ccc61e4fae` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C167 published: durable component acquisition requests
