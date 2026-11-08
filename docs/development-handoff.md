@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C169 validated: exact acquired components into model/site preparation
+## C169 published: exact acquired components into model/site preparation
 
 Base `c671fba7cc995e99a2b49bf3ca6e4bc33a465279`; existing Cedar only.
 Capsule `live_tests_directory/169_Cedar_acquired-preparation-ka32l05m`.
@@ -86,6 +86,7 @@ Q07 mixed/held-out builder controls remain queued. No merge authorization.
 Tool pauses stretched the requested hour; no second implementation scope started.
 All job records are inactive at publication. Evidence key
 `acquired_bundle_preparation_2026_11_08`.
+Focused/native-tested implementation `a80f7d9bdc158127c7e1f6f72fe7be5bb05f65d1` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C168 published: frozen ordinary source selection

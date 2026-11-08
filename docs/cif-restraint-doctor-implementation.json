@@ -28028,7 +28028,7 @@
     },
     "acquired_bundle_preparation": {
       "milestone": "C169",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED_FULL_DEFERRED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED_FULL_DEFERRED",
       "queue": "Q04 exact acquired preparation complete; complete outer request identity/budget next",
       "contract": "docs/cif-doctor.md#exact-acquired-components-into-modelsite-preparation-c169",
       "evidence_key": "acquired_bundle_preparation_2026_11_08",
@@ -28042,7 +28042,8 @@
         "Copied complete acquisition histories incur storage/tree bounds and must not be retried as independent requests",
         "Existing derivation scratch cleanup unchanged; artifact inputs and completed bundle preserved",
         "No Linux execution, new chemistry support, ordinary diffraction refinement or merge authorization"
-      ]
+      ],
+      "implementation_revision": "a80f7d9bdc158127c7e1f6f72fe7be5bb05f65d1"
     }
   },
   "audience": [

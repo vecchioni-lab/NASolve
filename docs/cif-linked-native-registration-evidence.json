@@ -67933,7 +67933,7 @@
   },
   "acquired_bundle_preparation_2026_11_08": {
     "milestone": "C169",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED_FULL_DEFERRED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED_FULL_DEFERRED",
     "base_revision": "c671fba7cc995e99a2b49bf3ca6e4bc33a465279",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "previous_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
@@ -68391,6 +68391,7 @@
       "No Linux execution, new chemistry support, ordinary diffraction refinement or merge authorization"
     ],
     "author": "Rowan · Codex desktop",
-    "validated_utc": "2026-11-08T21:40:29.126021+00:00"
+    "validated_utc": "2026-11-08T21:40:29.126021+00:00",
+    "implementation_revision": "a80f7d9bdc158127c7e1f6f72fe7be5bb05f65d1"
   }
 }
