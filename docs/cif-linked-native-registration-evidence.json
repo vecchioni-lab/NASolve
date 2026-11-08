@@ -67930,5 +67930,467 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "a088a9d4ff5f4f527c8cabde486a65ccc61e4fae"
+  },
+  "acquired_bundle_preparation_2026_11_08": {
+    "milestone": "C169",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED_FULL_DEFERRED",
+    "base_revision": "c671fba7cc995e99a2b49bf3ca6e4bc33a465279",
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "previous_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Callers manually composed exact completed acquisitions with model/site preparation.",
+    "after": "Maintained explicit bridge binds exact attempts and selected source/authority/consumer to existing model/site preparation and portable replay.",
+    "prior_work": [
+      "C139 site/bundle preparation",
+      "C159/C160 acquired repair",
+      "C164 repair requests",
+      "C167 exact acquisition reader",
+      "C168 source selection"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_acquisition_preparation.py",
+      "tests/test_cif_acquisition_preparation.py"
+    ],
+    "schemas": [
+      "New cif-acquired-bundle-preparation-v1 schema 1; acquisition_preparation_directory anchor",
+      "Existing scientific/cache/request schemas unchanged"
+    ],
+    "compatibility": "Explicit API only; no migration or ordinary PostMR change; two to sixteen exact component attempts; copied requests are evidence, not operational retries",
+    "regression": {
+      "before": "6 import errors",
+      "initial": "6 passed",
+      "expanded": "275 passed, 4 test-assumption failures; failed helper and unchanged repeat preserved",
+      "new_cases": 24,
+      "affected": {
+        "active": false,
+        "pid": 22916,
+        "runner_pid": 22902,
+        "phase": "affected-r3",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_acquisition_preparation.py",
+          "tests/test_cif_acquisition_sources.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_cif_dictionary_bundle.py",
+          "tests/test_cif_dictionary_sites.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_repair_attempt.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/169_Cedar_acquired-preparation-ka32l05m/affected-r3.xml"
+        ],
+        "started_utc": "2026-11-08T21:16:36.891794+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 90.338,
+        "sources_unchanged": true,
+        "source_files": 614
+      },
+      "affected_summary": "279 passed in 90.15s (0:01:30)",
+      "focused": {
+        "active": false,
+        "pid": 24327,
+        "runner_pid": 24326,
+        "phase": "focused",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/169_Cedar_acquired-preparation-ka32l05m/focused.xml"
+        ],
+        "started_utc": "2026-11-08T21:18:13.447692+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 206.503,
+        "sources_unchanged": true,
+        "source_files": 614
+      },
+      "focused_summary": "1254 passed, 45 subtests passed in 206.26s (0:03:26)",
+      "full": {
+        "status": "DEFERRED_BY_USER",
+        "reason": "Simon: no worries there we can do full suite later",
+        "recorded_utc": "2026-11-08T21:40:20.456667+00:00",
+        "interrupted_attempt": "full-interruption.json",
+        "fresh_retry_started": false,
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/169_Cedar_acquired-preparation-ka32l05m/full.xml"
+        ],
+        "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+      },
+      "full_summary": "Interrupted at 68%; complete run deferred by Simon; no full-suite pass claimed",
+      "source_files": 614
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 35.97926387500047,
+      "selected_attempts": {
+        "5PC": 1,
+        "PDU": 2
+      },
+      "prepared_scientific_inputs": "BYTE_IDENTICAL_TO_C159",
+      "selected": "repaired_prepared_bundle",
+      "repair_state": "STOPPED",
+      "native_phases": 7,
+      "parent_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "EXPLICIT_SAVED_PDU_5PC_MONOMER_PREPARATION_AND_REPAIR; NOT_ORDINARY_ADOPTION"
+    },
+    "relocation": {
+      "status": "PASS",
+      "selected_attempts": {
+        "PDU": 2,
+        "5PC": 1
+      },
+      "selected": "repaired_prepared_bundle",
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 863
+    },
+    "evidence_refs": {
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r2-result.json",
+        "sha256": "8964a5a2576be223025dc57874f9f60ebd0510a8c1411dea1f169d4a993a54ac",
+        "size": 865
+      },
+      "affected-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r2-sources.json",
+        "sha256": "30f724e2e0c19bf12a04e7e0e2265a47846659b9219a00c0ae15e7c3ca405bc0",
+        "size": 67044
+      },
+      "affected-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r2.log",
+        "sha256": "e5ad41f77ba535a9bbf693b28e11007a8eb1df7756ba7cafcd77f3040523d2c0",
+        "size": 18601
+      },
+      "affected-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r2.xml",
+        "sha256": "e4aa1eacb37202c2257d69144441b9e43b9e5eae7ae13e45acbb426115f1aaad",
+        "size": 59597
+      },
+      "affected-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r3-result.json",
+        "sha256": "dadffc00958b7ff189368e225f365e3b8cd0c57ab8f1fe6fd4d8bb7e4efc3d1c",
+        "size": 865
+      },
+      "affected-r3-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r3-sources.json",
+        "sha256": "82daab9ef18cad45410a52715d65b46ffe86504eb01e5213a710814cc7ec0351",
+        "size": 67044
+      },
+      "affected-r3.log": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r3.log",
+        "sha256": "05a320068081f9ebf8164618bd57bb0cab5a9126076baf745f2b1e9bd4645432",
+        "size": 351
+      },
+      "affected-r3.xml": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-r3.xml",
+        "sha256": "0f83e10128085f3fa54f03566fccaba05c3144e03e3d9fdb7c7bdf092ceb37f3",
+        "size": 41232
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-result.json",
+        "sha256": "77c75c3a9b080ceea9e67fe7e2b304994eac9d1bb9350f00b84c2fdb42c64c6a",
+        "size": 860
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected-sources.json",
+        "sha256": "30f724e2e0c19bf12a04e7e0e2265a47846659b9219a00c0ae15e7c3ca405bc0",
+        "size": 67044
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected.log",
+        "sha256": "9f4707d00ecc841c632481dc90f38d39d2dd7d19344a3b1f75d5cd1c7d3b1ff0",
+        "size": 18602
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/affected.xml",
+        "sha256": "9b09ff7c2faf2b17a9fa664f34fc4d16da08f9e51809fd9de85d9f2650e603fe",
+        "size": 59597
+      },
+      "base.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/base.json",
+        "sha256": "ed19a614aeaabf45670321253068f05a1ea7b83cd16918e5abab1c829da41449",
+        "size": 222
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/before-result.json",
+        "sha256": "55ae0e1bb24021577436be8d5266ed6136f1507e69ada9025e5507944dc1ab8d",
+        "size": 588
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/before-sources.json",
+        "sha256": "a6fa331a106397743005f1191e524a52ba72b2397cb824f7452b930883a93323",
+        "size": 66928
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/before.log",
+        "sha256": "10f20967e22b6461c57dc215c7db09798a0f2a3ca0924e24434f67d0bcc0a305",
+        "size": 4764
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/before.xml",
+        "sha256": "c42af488a57f2b7129a9978b6dc03aa7c653c48438e744efa2e5b1f0f549ae5b",
+        "size": 5894
+      },
+      "cold/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/cold/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/cold/stdout.txt",
+        "sha256": "b85db53aa3356c7545ecb2840178a20ae5d59346794f2d9365be2f75bb5d30b6",
+        "size": 225
+      },
+      "cold/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/cold/summary.json",
+        "sha256": "5becd1c2cc758fdea8057f7e82705b9e4e26a68c2f689a3de98e24d8302cfef2",
+        "size": 253
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/focused-result.json",
+        "sha256": "cf3994c341b35f79fb1e443dfb69e0a23a7d692a1abf3d0a368ea50b30a1fe1c",
+        "size": 493
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/focused-sources.json",
+        "sha256": "82daab9ef18cad45410a52715d65b46ffe86504eb01e5213a710814cc7ec0351",
+        "size": 67044
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/focused.log",
+        "sha256": "11ab5226e653408411786fcda1b0cbb4d5f7af6cef3512d30beb6c154d832296",
+        "size": 5781
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/focused.xml",
+        "sha256": "a9ccad1744e42b2248c5c2a91b88c2519db140c8c9199c2a8018bea0cd48e5cf",
+        "size": 188636
+      },
+      "full-deferred.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/full-deferred.json",
+        "sha256": "a10b9f2a380ddcf21f2c90b37cc4b89f9f8ac357a0fc089c805a24e631f91cd6",
+        "size": 562
+      },
+      "full-interruption.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/full-interruption.json",
+        "sha256": "57e83b684ab1da870d0fca21033583049da7a1bc64ed0fafb78c4381705c3ace",
+        "size": 861
+      },
+      "full-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/full-sources.json",
+        "sha256": "82daab9ef18cad45410a52715d65b46ffe86504eb01e5213a710814cc7ec0351",
+        "size": 67044
+      },
+      "full.log": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/full.log",
+        "sha256": "ea316eaa7f7a183e78f84acc293f73e84627ea8c421922e1e47bec8980f6936c",
+        "size": 6482
+      },
+      "native/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/installation.json",
+        "sha256": "37c03490fc3519f09ed31cf786a652cf816522ab0f74803ea717774a724a1f9b",
+        "size": 111
+      },
+      "native/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/parent-inputs.json",
+        "sha256": "9bdd29fe2a3e9f7b04b43fe031ef1ba7103feccfc0bc0ee0daa1d65a9644fd64",
+        "size": 32821
+      },
+      "native/preparation/acquisition_preparation.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/preparation/acquisition_preparation.json",
+        "sha256": "13b539e8fba41c51f39b8694d13254dec8cd540db077387b50a51305621a8938",
+        "size": 45802
+      },
+      "native/preparation/preparation_intent.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/preparation/preparation_intent.json",
+        "sha256": "f71ba1b92da9b2a8681fbdb1a4b6aaea42ceff469898cabde6e5de364c9ba37e",
+        "size": 40560
+      },
+      "native/repair-request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/repair-request/attempts/attempt-0001/attempt.json",
+        "sha256": "73fea4e535b73744493bbf545129a18c1d3ac7a14704a73fa146b810bd94ea17",
+        "size": 694
+      },
+      "native/repair-request/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/repair-request/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "e82ff50a5223fffb1c15e02c5ad3d37d38ba7904d20a1ccc4da75b703f317f6d",
+        "size": 33829
+      },
+      "native/repair-request/attempts/attempt-0001/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/repair-request/attempts/attempt-0001/execution/runtime/runtime_bundle.json",
+        "sha256": "083ae84fb310b2bbd71d2832abae0705a7fa4ec4357451e2cefd514052ba3454",
+        "size": 78322
+      },
+      "native/repair-request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/repair-request/attempts/attempt-0001/finished.json",
+        "sha256": "d5d5847d1318c3ad0050c08f605b450d52b85febfd3e97fd5e71bcbf63a3bf8c",
+        "size": 712
+      },
+      "native/repair-request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/repair-request/request.json",
+        "sha256": "110c459f2aef9a34a6007d6d4cc7dcd0080f23536c98213e0d3bf021398e6f97",
+        "size": 6415
+      },
+      "native/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/runtime-sources.json",
+        "sha256": "964bdb95e91fdaf65ea1710fb966af507a660e324805bda0b8ca49161e768355",
+        "size": 21880
+      },
+      "native/sources/source_selection.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/sources/source_selection.json",
+        "sha256": "6a25ca7cf6f9f038437d2528048c860b7e15bd95e9c56fc79c8f2a30b40a8591",
+        "size": 1472
+      },
+      "native/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/native/summary.json",
+        "sha256": "3433f639f3a43e1de45911d1aab0ed88b22791b8fe3859d30e667c63f107cc78",
+        "size": 550
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/new-result.json",
+        "sha256": "3ccac5153be43b764f3c4c78b39b7bb4c06f8f4a284921ba918b9e639c303620",
+        "size": 582
+      },
+      "new-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/new-sources.json",
+        "sha256": "abc017f83ff07252aceadcfa46f75b013070b650045efec3f2da5793911471b9",
+        "size": 67044
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/new.log",
+        "sha256": "ffa65587c094ccc34555162564bf694c1650e6acb860fe1ef6f664ce72a4f793",
+        "size": 98
+      },
+      "new.xml": {
+        "anchor": "live_tests_directory",
+        "path": "169_Cedar_acquired-preparation-ka32l05m/new.xml",
+        "sha256": "eeeab391107f1e697e78ee3c07792c0884761f3f3d980c7ddeef32ee60221d0f",
+        "size": 1094
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_acquisition_preparation.py",
+        "tests/test_cif_acquisition_sources.py",
+        "tests/test_cif_acquisition_attempt.py",
+        "tests/test_cif_dictionary_bundle.py",
+        "tests/test_cif_dictionary_sites.py",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_repair_attempt.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/169_Cedar_acquired-preparation-ka32l05m/affected-r3.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/169_Cedar_acquired-preparation-ka32l05m/focused.xml"
+      ],
+      "full": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "full",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/169_Cedar_acquired-preparation-ka32l05m/full.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c169_native.py",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c169_cold.py"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "narestraints": "1.1.3",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual prepared repair, not dry-run"
+    },
+    "artifacts": "Only code/tests/docs/hash references published; scientific payloads/logs/XML/runners local",
+    "limitations": [
+      "Full regression interrupted and deferred by user; C160 remains the last completed full-tested revision",
+      "Explicit preparation/composition only; complete outer request identity/deadline and ordinary adoption remain open",
+      "Model/site context is frozen after acquired attempts; outer orchestration must bind it before launching children",
+      "Copied complete acquisition histories incur storage/tree bounds and must not be retried as independent requests",
+      "Existing derivation scratch cleanup unchanged; artifact inputs and completed bundle preserved",
+      "No Linux execution, new chemistry support, ordinary diffraction refinement or merge authorization"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-08T21:40:29.126021+00:00"
   }
 }

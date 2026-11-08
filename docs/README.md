@@ -80,6 +80,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C168 freezes a complete explicit ordinary source selection before acquisition,
   preserving precedence and allowing replay without live source discovery. This
   is a preparation boundary, not complete multi-component request ownership.
+  C169 binds exact completed component attempts to source/model/site preparation
+  and the existing repair input. Real saved PDU/5PC preparation/repair and portable
+  replay pass; interrupted/deferred full regression is recorded in the handoff.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

@@ -375,3 +375,8 @@ The real fresh-generation 5PC failure is preserved evidence, not a support claim
 C168 supplies the frozen ordinary source-selection input to component acquisition.
 The box preserves source authority and bytes; it does not assert numerical/native
 usability. Complete multi-component coordination remains an unfinished connection.
+
+C169 connects exact completed acquisitions and frozen source/model/site context to
+the existing preparation and repair boxes. Real PDU/5PC composition passes. The
+outer request/deadline and ordinary-adoption connections remain unfinished; the
+copied histories are evidence, not separate operational retry scopes.

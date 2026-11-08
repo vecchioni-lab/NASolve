@@ -242,6 +242,59 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Exact acquired components into model/site preparation (C169)
+
+`cif_acquisition_preparation.prepare_acquired_dictionary_bundle(source_selection,
+components, model, output, *, consumer, expected_links, native_context,
+supplementary_phils=())` joins C168 source selection and exact completed C167
+attempts to the existing C139 bundle preparer. Each component declares its code,
+request directory, exact attempt number and site contexts, plus optional terminal
+resource and source-phosphate naming policy. Two to sixteen unique components
+must cover the complete selected source set. No latest-attempt inference occurs.
+
+Before output, the selected attempt must be successfully sealed and its exact
+source bytes, source authority, component and consumer must match the declared
+source/model context. Existing readers establish scientific evidence; this API
+does not introduce another chemistry validator. Original recipes, producer,
+representation permission, terminal intent and phosphate policy remain intact.
+The model, ordered shared PHIL, source selection, acquisition histories and any
+explicit terminal resources are frozen together. Empty historical directories
+are retained. Original inputs are rechecked before copying and after preparation.
+
+Schema 1 `cif-acquired-bundle-preparation-v1` uses the
+`acquisition_preparation_directory` anchor. `preparation_intent.json` binds exact
+inputs, directory membership and site/native controls. Completion in
+`acquisition_preparation.json` binds the exact request/attempt digests and UUIDs,
+entry identities, prepared bundle and complete output inventory. Interrupted
+enclosing output and any completed bundle remain; a fresh output is required.
+The existing preparer's disposable derivation scratch keeps its existing cleanup
+behavior. No native process is started by this stage.
+
+`read_acquired_dictionary_bundle(output)` replays the copied exact-attempt evidence
+and source/site preparation, compares the prepared snapshots/model/PHIL/resources
+with their frozen inputs, and rejects substituted attempts or approval claims.
+Historical source/SDK locations and captured-code execution are unnecessary.
+Readers do not change the artifact; existing derivation readers may use temporary
+scratch elsewhere. Returned `bundle_directory` feeds the unchanged C164 prepared
+repair request API. Copied acquisition requests are readback evidence only and
+must not be used to reset or retry the original generation allowance.
+
+The complete histories are copied, with existing bounded tree limits (1,024 files,
+128 MiB total, 32 MiB per file) applying when each evidence tree is read. There is
+no history pruning or new whole-request coordinator/deadline. The stage freezes
+model/site intent after component acquisition; a complete outer request must bind
+that intent before starting its children. Ordinary PostMR/adoption stays unchanged.
+
+Validation: 24 new regressions and affected/focused checks. Full regression was
+interrupted and then deferred by Simon; no complete pass is claimed. A real
+PDU attempt 2 / 5PC attempt 1 control produces byte-identical scientific inputs to
+C159 and completes all seven Phenix prepared-repair phases, selecting the repaired
+diagnostic bundle. Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution, not a
+dry-run. Relocated preparation and repaired runtime replay with original copies
+absent and historical paths/execution denied. These are the established separated-
+monomer controls, not the mixed scaffold or new ordinary refinement qualification.
+No generation, ReadySet, Coot, diffraction refinement or SDK modification occurred.
+
 ### Frozen acquisition source selection (C168)
 
 `cif_acquisition_sources.freeze_acquisition_sources(codes, output, *, data_root=None,

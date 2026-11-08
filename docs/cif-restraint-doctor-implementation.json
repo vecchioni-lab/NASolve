@@ -28025,6 +28025,24 @@
         "No full suite, Linux execution, native jobs, ordinary adoption or merge authorization"
       ],
       "implementation_revision": "a088a9d4ff5f4f527c8cabde486a65ccc61e4fae"
+    },
+    "acquired_bundle_preparation": {
+      "milestone": "C169",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED_FULL_DEFERRED",
+      "queue": "Q04 exact acquired preparation complete; complete outer request identity/budget next",
+      "contract": "docs/cif-doctor.md#exact-acquired-components-into-modelsite-preparation-c169",
+      "evidence_key": "acquired_bundle_preparation_2026_11_08",
+      "summary": "Maintained explicit bridge binds exact attempts and selected source/authority/consumer to existing model/site preparation and portable replay.",
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_summary": "Interrupted at 68%; complete run deferred by Simon; no full-suite pass claimed",
+      "limitations": [
+        "Full regression interrupted and deferred by user; C160 remains the last completed full-tested revision",
+        "Explicit preparation/composition only; complete outer request identity/deadline and ordinary adoption remain open",
+        "Model/site context is frozen after acquired attempts; outer orchestration must bind it before launching children",
+        "Copied complete acquisition histories incur storage/tree bounds and must not be retried as independent requests",
+        "Existing derivation scratch cleanup unchanged; artifact inputs and completed bundle preserved",
+        "No Linux execution, new chemistry support, ordinary diffraction refinement or merge authorization"
+      ]
     }
   },
   "audience": [

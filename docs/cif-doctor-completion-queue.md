@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-08, after C168.** This queue owns unfinished
+**Current planning authority, 2026-11-08, after C169.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -237,14 +237,24 @@ strict portable replay supplies exact source/authority to C167 without rediscove
 DF/PDU/5PC/ATL source selection and cold replay pass. This does not establish native
 usability or own the complete acquisition request.
 
-**Next bounded checkpoint:** compose the C168 source snapshot, multiple C167
-component acquisitions and C164 prepared repair under one complete request and
-shared allowance. Freeze model/site/context and selected-source identities before
-starting children; keep each component's shared generation allowance across outer
-attempts. Establish parent identity and interruption handling at the preparation
-boundary, then complete orchestration. Broaden independent fallback for early
-capture failures and no-repair candidates after these foundations. Preserve current
-source/site/derivative gates. No automatic retry loop or ordinary adoption is enabled.
+C169 closes the exact-acquisition to model/site preparation bridge. Complete
+selected source coverage, exact successful attempt identities, source authority,
+current consumer and explicit site/native/PHIL context are frozen and checked by
+the existing preparer. Portable replay retains that lineage. The existing C164
+repair API consumes the output; actual PDU/5PC preparation reproduces the previous
+scientific inputs and all seven native repair phases pass. This is explicit
+composition, not full-request ownership or ordinary adoption.
+
+**Next bounded checkpoint:** establish the complete outer request before component
+work: freeze source-selection and model/site/context identity plus all limits, then
+bind component acquisitions, C169 preparation and C164 repair to immutable outer
+attempts. Keep one operational component request per source/configuration across
+outer retries; never retry the C169 evidence copies or reset generation limits.
+Propagate one remaining allowance, preserve every partial output, and require
+known-inactive outer/child owners before a fresh attempt. Reuse the existing
+campaign lock/identity/cleanup contracts and durable parent bindings. After that,
+broaden independently qualified fallback for early capture failures/no-repair
+candidates. Keep source/site/derivative gates and ordinary adoption separate.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;
@@ -486,12 +496,13 @@ relocation with original paths unavailable. Exercise macOS/Linux process/path
 assumptions for supported environments; record any untested platform explicitly.
 
 The C150 audit recorded 1,662 focused tests + 36 subtests and a C143 full baseline.
-The current last full-tested implementation is C160
-`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276); C161–C168 have focused
-validation only. C168 focused results are recorded exactly in its handoff; no later full pass is claimed; exact validation is recorded in
-the current handoff. None is a final
-merge pass for the subsequent combined integration state. Preserve published evidence and archive
-owned runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
+The last completed full-tested implementation remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276). C169 passes its
+focused/native/cold checks; its full run was interrupted at 68%, then explicitly
+deferred by Simon. No fresh retry started and no complete full-suite pass is
+claimed. Complete regression remains required for the eventual combined
+Cedar/pine/main merge candidate. Preserve published evidence and archive owned
+runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,
 old environments or user material. Keep older readers/receipts and documented
 migration behavior. This queue does not authorize a merge.

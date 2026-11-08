@@ -1111,6 +1111,15 @@ source/authority arguments to C167. This is the preparation input boundary; comp
 request coordination, shared deadlines and multi-component repair remain separate.
 See [source selection](cif-doctor.md#frozen-acquisition-source-selection-c168).
 
+C169 connects C168 selected sources and explicit completed C167 attempts to the
+existing C139 site/bundle preparer. It freezes model/context/ordered PHIL and the
+input histories, validates exact source/authority/consumer, and binds prepared
+snapshots to the selected request/attempt identities. Readback reuses the scientific
+readers without historical SDK/source paths. The unchanged C164 repair API consumes
+the resulting bundle; copied requests remain evidence, not fresh retry scopes.
+Whole-request identity/deadline before child acquisition and ordinary adoption are
+still separate. See [acquired preparation](cif-doctor.md#exact-acquired-components-into-modelsite-preparation-c169).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

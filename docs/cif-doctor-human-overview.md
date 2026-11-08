@@ -3678,3 +3678,16 @@ revisiting a local library or SDK. DF/PDU/5PC/ATL source selection and relocated
 replay pass. These are source definitions, not newly qualified restraints: complete
 multi-component request coordination and ordinary adoption remain later stages.
 See the [contract](cif-doctor.md#frozen-acquisition-source-selection-c168).
+
+
+### Connecting acquired components to their model (C169)
+
+The explicit preparation bridge now matches each completed component attempt to
+the frozen source choice and declared model/site context, then invokes the existing
+source-preserving bundle preparer. It freezes the model, ordered custom restraints,
+terminal resources and acquisition evidence together. Replay checks exact attempt
+identities and scientific inputs without old SDK/source locations. A saved PDU/5PC
+control reproduces the earlier prepared inputs and completes the existing native
+repair pipeline. This validates explicit composition; whole-request ownership,
+ordinary adoption and actual diffraction refinement remain later gates. See the
+[contract](cif-doctor.md#exact-acquired-components-into-modelsite-preparation-c169).

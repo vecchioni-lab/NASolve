@@ -11,6 +11,83 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C169 validated: exact acquired components into model/site preparation
+
+Base `c671fba7cc995e99a2b49bf3ca6e4bc33a465279`; existing Cedar only.
+Capsule `live_tests_directory/169_Cedar_acquired-preparation-ka32l05m`.
+Before, callers manually joined completed component acquisitions and model/site
+preparation. After, a maintained explicit bridge requires exact successful attempt
+numbers, complete selected-source coverage and matching source/authority/consumer.
+It freezes the histories, model/site/native context, ordered PHIL and optional
+terminal resources, then invokes the existing preparer. Strict portable readback
+binds that evidence to the resulting bundle, which feeds unchanged C164 repair.
+
+Prior work checked: C139 source-preserving composition; C159/C160 acquired repair;
+C164 immutable repair requests; C167 exact acquisition readback; C168 source choice.
+No new chemistry validator, residue-specific repair, phosphate/OP3, sugar/stereo,
+NARestraints, scientific threshold, ordinary PostMR or selection-policy change.
+
+**Validation:** six import errors before implementation; initial six pass.
+Expanded affected tests exposed four fixture assumptions (valid native-context
+value and missing-record exception type), corrected without runtime changes.
+A local edit helper failed before touching source; failed helper/repeated run
+remain preserved. All **24 new cases** pass. Affected: **279 passed in 90.15s (0:01:30)**.
+Focused workflow: **1254 passed, 45 subtests passed in 206.26s (0:03:26)**.
+**Full suite: Interrupted at 68%; complete run deferred by Simon; no full-suite pass claimed**. All 614 source/test/script hashes remained fixed
+across final affected, focused and native validation and the interrupted full run.
+The last completed full-tested implementation remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+The interrupted log/source hashes and process-state check are preserved. Every
+recorded old process was verified absent. A fresh full-r2 run was prepared but
+never started after Simon deferred full regression; see `full-deferred.json`.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_acquisition_preparation.py tests/test_cif_acquisition_sources.py tests/test_cif_acquisition_attempt.py tests/test_cif_dictionary_bundle.py tests/test_cif_dictionary_sites.py tests/test_cif_prepared_repair_execution.py tests/test_cif_repair_attempt.py --junitxml <capsule>/affected-r3.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c169_native.py
+PYTHONDONTWRITEBYTECODE=1 python c169_cold.py
+# INTERRUPTED, not a completed pass; rerun deferred:
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py full --junitxml <capsule>/full.xml
+```
+
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution, not dry-run.**
+Exact C167 PDU attempt 2 / 5PC attempt 1 bind fresh C168-format source selection.
+C169 reproduces the C159 model, before/after dictionaries and PHIL byte-for-byte.
+The C164 repair request completes all seven phases in a combined control elapsed
+35.979s and selects `repaired_prepared_bundle`; ownership
+is stopped. Parent bytes/mtimes and source hashes remain unchanged. No generation,
+ReadySet, Coot, model optimization or diffraction refinement. This is the existing
+separated-monomer diagnostic, not the original mixed scaffold or new family support.
+Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3; actual execution is macOS arm64.
+
+Cold replay passes both the acquired preparation and repaired runtime from a
+relocated temporary checkout. Original copied checkout absent; historical
+checkout/SDK/source/output paths and execution denied. All 863 files
+retain bytes/mtimes. Synthetic cases cover wrong attempts/source/consumer/coverage,
+site/link/context refusal, copy/preparation/completion interruption, changing
+originals, ordered PHIL, tampering and preservation of an unselected empty
+historical attempt. No inspection grants retry permission.
+
+Changed: new bridge/reader module, regressions/profile, contracts/overview/caption,
+queue and both ledgers. New schema 1 `cif-acquired-bundle-preparation-v1` with
+`acquisition_preparation_directory` references. Existing schemas and ordinary
+runtime unchanged; no migration. Enclosing partial output survives; existing
+disposable derivation scratch keeps its cleanup behavior. Complete histories are
+copied under existing tree bounds; no pruning. Copied requests are readback-only
+evidence and must not reset operational generation allowance. Readers may derive
+temporary scratch outside the artifact. Source/tests/docs/hash references only
+are published; models/CIF/PHIL, native captures, logs/XML and runners stay local.
+
+**Next Q04:** freeze one complete outer request before child work, bind component
+acquisition/preparation/repair identities, share one remaining allowance and require
+inactive owners for fresh attempts. Then broaden independent fallback for early
+and no-repair failures. Q05 adoption, Q06 actual refinement, Q13 state authority and
+Q07 mixed/held-out builder controls remain queued. No merge authorization.
+Tool pauses stretched the requested hour; no second implementation scope started.
+All job records are inactive at publication. Evidence key
+`acquired_bundle_preparation_2026_11_08`.
+— Rowan · Codex desktop
+
 ## C168 published: frozen ordinary source selection
 
 Base `b1ed43d6b3911e39e7233e3ef5cc9c688eeb4d57`; existing Cedar only.

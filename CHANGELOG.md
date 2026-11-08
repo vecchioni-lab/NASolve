@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Exact acquisitions into model/site preparation (C169)
+
+- Join frozen source selection and exact successfully completed component attempts
+  to the existing site/bundle preparer, requiring matching source, authority,
+  consumer and complete component coverage.
+- Freeze model/site/native context, ordered PHIL, terminal resources and acquisition
+  evidence; preserve partial enclosing outputs and require a fresh destination.
+- Add strict portable replay binding request/attempt identities to the prepared
+  model and dictionaries. Copied requests are readback evidence, not new retries.
+- New preparation schema; existing scientific/repair schemas and ordinary PostMR
+  unchanged. Validate real PDU/5PC preparation-to-repair and focused tests;
+  full regression remains pending after interruption and explicit user deferral.
+
 ### Frozen acquisition source selection (C168)
 
 - Freeze explicit component sources through the existing curated/local/configured-

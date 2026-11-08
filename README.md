@@ -59,6 +59,11 @@ component acquisition, preserving curated precedence and detecting changes acros
 a batch. Its portable snapshot records source authority without claiming native
 usability. Multi-component orchestration still needs integration.
 
+An explicit preparation bridge now joins exact completed component attempts to
+their frozen source selection, model and site context. Its output feeds the
+existing prepared-repair API and replays without historical source/SDK paths.
+Complete request ownership and ordinary adoption remain separate.
+
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.
 Source-qualified graph repairs can also be frozen with their evidence and
