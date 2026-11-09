@@ -28122,12 +28122,12 @@
     },
     "single_component_complete_request": {
       "milestone": "C174",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 singleton boundary closed in demonstrated scope; ordinary entry-point recovery next",
       "contract": "docs/cif-doctor.md#one-selected-component-through-the-complete-request-c174",
       "evidence_key": "single_component_complete_request_2026_11_09",
       "summary": "One to sixteen selected types traverse the same complete request, preserving all declared sites and exact source/attempt ownership; actual singleton original/repair routes qualify.",
-      "implementation_revision": null,
+      "implementation_revision": "cfdb54c5f2f0ab72b0cb6c6decf144dba50aed88",
       "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
       "full_regression": "NOT_RUN_USER_REQUEST",
       "limitations": [

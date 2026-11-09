@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C174 validated: single-component composition and Q04 consolidation
+## C174 published: single-component composition and Q04 consolidation
 
 Base `4a293e15b33d645dbcadbb6906ba6f2a1e85b761`; existing Cedar only. Capsule
 `live_tests_directory/174_Cedar_single-component-jrmp3vuf`. C172/C173 are completed and pushed.
@@ -80,6 +80,7 @@ singleton linked-polymer coverage and broader states remain separate. Existing
 bounded tree/byte budgets still apply. The [Q04 acceptance table](cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts)
 is the current queue; historical milestone-time next steps are evidence only.
 Evidence key `single_component_complete_request_2026_11_09`.
+Focused/native-tested implementation `cfdb54c5f2f0ab72b0cb6c6decf144dba50aed88` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C173 published: owned optional-native failure and proven-original fallback
