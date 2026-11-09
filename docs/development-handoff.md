@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C170 validated: parent-bound acquisition and prepared repair
+## C170 published: parent-bound acquisition and prepared repair
 
 Base `162367cef6f14dd3875d8b2f96b0d68ecc26ff36`; existing Cedar only.
 Capsule `live_tests_directory/170_Cedar_outer-context-u7zd1lu0`.
@@ -81,6 +81,7 @@ C169 evidence copies. Shared total allowance and conservative recovery remain
 required. Then independent fallback expansion; Q05 adoption, Q06 refinement,
 Q13 state authority and Q07 mixed/held-out builder controls remain queued.
 Evidence key `outer_child_context_2026_11_09`.
+Focused/native-tested implementation `81bf58b01f2777ae4c2d35fb6a3b076e2859a866` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C169 published: exact acquired components into model/site preparation

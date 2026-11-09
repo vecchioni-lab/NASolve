@@ -28047,12 +28047,12 @@
     },
     "outer_child_context": {
       "milestone": "C170",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 child parent/budget hooks complete; frozen outer request/coordinator next",
       "contract": "docs/cif-doctor.md#enclosing-attempt-context-for-child-requests-c170",
       "evidence_key": "outer_child_context_2026_11_09",
       "summary": "Optional detached parent claims and non-renewable remaining allowances cross acquisition/qualification/prepared repair without changing frozen child limits.",
-      "implementation_revision": null,
+      "implementation_revision": "81bf58b01f2777ae4c2d35fb6a3b076e2859a866",
       "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
       "full_regression": "NOT_RUN_USER_REQUEST",
       "limitations": [

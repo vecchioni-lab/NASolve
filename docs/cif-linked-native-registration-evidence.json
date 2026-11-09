@@ -68396,9 +68396,9 @@
   },
   "outer_child_context_2026_11_09": {
     "milestone": "C170",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "base_revision": "162367cef6f14dd3875d8b2f96b0d68ecc26ff36",
-    "implementation_revision": null,
+    "implementation_revision": "81bf58b01f2777ae4c2d35fb6a3b076e2859a866",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Acquisition and prepared-repair wrappers could not bind an enclosing attempt or accept its remaining allowance.",
     "after": "Optional detached parent claims and non-renewable remaining allowances cross acquisition/qualification/prepared repair without changing frozen child limits.",
