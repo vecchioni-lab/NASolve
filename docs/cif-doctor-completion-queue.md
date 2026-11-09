@@ -143,6 +143,26 @@ The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a n
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
 ReadySet continuation and immutable checkpoint adoption remain **Q05**.
 
+The C174 integration-seam audit narrows the next implementation boundary:
+
+1. Bridge an already prepared ordinary model/recipe into the existing declared
+   request: exact sources, all selected sites, verified incoming/outgoing links,
+   explicit terminal/backbone policy and ordered NAR/PHIL membership. Ordinary
+   `declared_site_context` currently records only OP3/passthrough policy; it is
+   not a complete source-qualified declaration. Reuse existing readers and fail
+   on unavailable intent rather than inferring a supported chemistry.
+2. Keep one owner for site modifications. Ordinary `write_linked_profile` and the
+   qualified composer both emit modifier PHIL; integrating them must not apply
+   both to the same site. Preserve NAR targets and keep its stacking/pair edges
+   distinct from covalent backbone links. C84's frozen-fixture context helper is
+   evidence to reuse carefully, not a generic topology oracle.
+3. Exercise that bridge through the owned request before enabling ordinary
+   continuation. The newly mutated-model route additionally crosses pre-Coot
+   source acquisition and post-construction qualification; retain its source,
+   producer and generation-attempt lineage across that boundary under Q05.
+
+This is planned integration, not a new user-facing API or an enabled default.
+
 **Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not
 qualify zero-context geometry or optional nonbonded-inventory captures. A required
 NAR restraint must never be silently omitted to fit a proven context. Source/state,

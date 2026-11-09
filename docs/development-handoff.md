@@ -80,6 +80,21 @@ singleton linked-polymer coverage and broader states remain separate. Existing
 bounded tree/byte budgets still apply. The [Q04 acceptance table](cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts)
 is the current queue; historical milestone-time next steps are evidence only.
 Evidence key `single_component_complete_request_2026_11_09`.
+
+**Next-seam audit (documentation only):** `postmr.prepare_postmr` owns construction,
+phosphate sanitization and NAR compilation before cache reuse/linked profiles and
+ReadySet. Its current site-context report is not the complete per-site declaration
+required by C174. The next Q04 bridge should first cover an already prepared model,
+preserve exact NAR/PHIL and verified link/terminal intent, and choose one site-modifier
+owner so legacy profiles and the composer cannot both apply the same operation.
+C84's fixture-specific context helper must not reinterpret ordinary NAR stack edges
+as covalent links. New mutation also crosses pre-Coot acquisition; source/producer
+and generation counts must survive that Q05 boundary. No ordinary API/default or
+scientific gate was changed by this audit. Changed files: this handoff and the
+completion queue; schemas unchanged. Validation: source hashes unchanged plus
+Markdown local-link and `git diff --check` checks; no additional pytest/native/full
+run for these prose-only edits. Audit/source hashes stay local in
+`integration-seam-audit.json`; source modules are linked from the queue/contracts.
 Focused/native-tested implementation `cfdb54c5f2f0ab72b0cb6c6decf144dba50aed88` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
