@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C173 validated: owned optional-native failure and proven-original fallback
+## C173 published: owned optional-native failure and proven-original fallback
 
 Base `5ce05688f5957bed6eb8b0d4d9660e29dfa83466`; existing Cedar only. Capsule
 `live_tests_directory/173_Cedar_owned-failure-fallback-omw4ujpx`. C172 was completed/pushed first.
@@ -82,6 +82,7 @@ tests, docs and hash references enter Git. No active owned job at publication.
 Q05 adoption, Q06 actual refinement, Q07 mixed/held-out builders and Q13 state
 choices remain separate. Generic/unknown failures deliberately remain blocking.
 Evidence key `owned_native_failure_fallback_2026_11_09`.
+Focused/native-tested implementation `3e2955dbac047e779b47c6ad89e73feeccdfa646` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C172 published: independent original and no-repair qualification

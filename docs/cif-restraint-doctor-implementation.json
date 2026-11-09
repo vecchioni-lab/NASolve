@@ -28102,12 +28102,12 @@
     },
     "owned_native_failure_fallback": {
       "milestone": "C173",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 classified optional-native fallback closed in demonstrated scope; singleton composition next",
       "contract": "docs/cif-doctor.md#classified-optional-native-failures-and-original-fallback-c173",
       "evidence_key": "owned_native_failure_fallback_2026_11_09",
       "summary": "An explicit frozen policy classifies exact stopped optional-native negatives, rechecks the consumer and independently qualifies the original; only proven originals publish, with failed work preserved and no retry/budget renewal.",
-      "implementation_revision": null,
+      "implementation_revision": "3e2955dbac047e779b47c6ad89e73feeccdfa646",
       "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
       "full_regression": "NOT_RUN_USER_REQUEST",
       "limitations": [

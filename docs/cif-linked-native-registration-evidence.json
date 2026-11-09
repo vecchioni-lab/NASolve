@@ -69942,9 +69942,9 @@
   },
   "owned_native_failure_fallback_2026_11_09": {
     "milestone": "C173",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "base_revision": "5ce05688f5957bed6eb8b0d4d9660e29dfa83466",
-    "implementation_revision": null,
+    "implementation_revision": "3e2955dbac047e779b47c6ad89e73feeccdfa646",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Early optional native failures stopped execution even with independently usable original evidence.",
     "after": "An explicit frozen policy classifies exact stopped optional-native negatives, rechecks the consumer and independently qualifies the original; only proven originals publish, with failed work preserved and no retry/budget renewal.",
