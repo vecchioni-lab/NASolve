@@ -9,6 +9,7 @@ from pathlib import Path
 from time import monotonic
 
 from .cif_component_runtime import _tree, prepare_repaired_component_runtime_bundle
+from .cif_outer_context import OuterAllowance
 from .cif_dictionary_store import _bytes, _snapshot_destination
 from .cif_dictionary_bundle import read_dictionary_bundle, inspect_dictionary_bundle_native
 from .cif_dictionary_bundle_repair import inspect_dictionary_bundle_repair
@@ -30,7 +31,7 @@ class PreparedRepairBudgetExceeded(TimeoutError):
 
 def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout_seconds=120,
         attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=None, _attempt_identity=None):
+        total_timeout_seconds=None, _attempt_identity=None, _remaining_seconds=None):
     """Run a bounded repair chain and freeze only an independently usable result.
 
     The input is the existing source/site bundle, including acquired component
@@ -44,7 +45,9 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     Each native job receives at most the whole seconds remaining. Local Python
     work and worker cleanup are cooperative boundaries, not forcibly interrupted;
     an overrun refuses later work/success and preserves all partial output. This
-    does not own discovery, acquisition, recovery or an interrupted attempt.
+    does not own discovery, acquisition, recovery or an interrupted attempt. An
+    optional enclosing allowance additionally clamps every native phase and
+    publication boundary without changing the configured local limits.
     """
     limits = {'native': native_timeout_seconds, 'attribution': attribution_timeout_seconds,
               'derivatives': derivative_timeout_seconds}
@@ -55,12 +58,18 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     from .cif_generation_process import _valid_attempt_identity
     _need(_attempt_identity is None or _valid_attempt_identity(_attempt_identity), 'Invalid prepared attempt identity')
     started = monotonic()
+    outer = OuterAllowance(_remaining_seconds, monotonic, PreparedRepairBudgetExceeded)
     phase = 'PREFLIGHT'
 
     def check_budget(minimum=0, *, elapsed=None):
+        cap = outer.remaining()
         if total_timeout_seconds is None:
+            remaining = cap
+        else:
+            remaining = total_timeout_seconds - (monotonic() - started if elapsed is None else elapsed)
+            if cap is not None: remaining = min(remaining, cap)
+        if remaining is None:
             return None
-        remaining = total_timeout_seconds - (monotonic() - started if elapsed is None else elapsed)
         if remaining <= 0 or remaining < minimum:
             raise PreparedRepairBudgetExceeded(
                 f'Prepared repair budget exhausted during {phase}; '

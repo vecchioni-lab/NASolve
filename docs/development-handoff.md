@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-08** from software validation, native receipts and verified geometry/DF
+Updated **2026-11-09** from software validation, native receipts and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,78 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C170 validated: parent-bound acquisition and prepared repair
+
+Base `162367cef6f14dd3875d8b2f96b0d68ecc26ff36`; existing Cedar only.
+Capsule `live_tests_directory/170_Cedar_outer-context-u7zd1lu0`.
+Before, generation could bind its parent but the acquisition/prepared-repair
+wrappers could not accept an enclosing attempt or remaining allowance. After,
+those wrappers record a detached validated parent claim per immutable attempt and
+propagate one shrinking allowance through native qualification and repair.
+Persistent child limits/attempt allowances remain unchanged across different
+parents, preserving shared generation and the existing fresh-retry guards.
+
+Prior work checked: C157/C167 parent-bound generation, C162/C166 phase clocks,
+C164 owned prepared requests, and C169 exact source/site composition. This is the
+missing child seam for Q04, not another chemistry validator or complete coordinator.
+No phosphate/OP3, sugar/stereo, NAR, source definitions, scientific thresholds,
+ordinary PostMR/adoption or installed SDK change.
+
+**Validation:** two regressions fail before the hooks; **56 new cases**.
+Affected: **320 passed in 101.22s (0:01:41)**. Workflow: **1310 passed, 45 subtests passed in 228.43s (0:03:48)**.
+All 616 source/test/script hashes fixed through final affected/focused validation;
+native source hashes fixed. No full suite, explicitly requested by Simon.
+Last completed full-tested implementation remains C160 `d9e481661edcc3a04404df250360b9db63184ae1`
+(7,740 + 276). The C169 interrupted full log remains preserved and is not a pass.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_outer_context.py tests/test_cif_acquisition_attempt.py tests/test_cif_acquisition_preparation.py tests/test_cif_repair_attempt.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_budget.py tests/test_cif_candidate_qualification_execution.py tests/test_cif_generation_attempt.py --junitxml <capsule>/affected.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c170_native.py
+PYTHONDONTWRITEBYTECODE=1 python c170_cold.py
+```
+
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution, not dry-run.**
+The manual validation driver expires PDU after one native seed and verifies its
+stopped failed child; a fresh child under the next parent succeeds without
+changing the earlier attempt. PDU/5PC exact acquired attempts 2/1 and cache hits
+3/2 preserve their request limits. C169 preparation reproduces the preceding
+scientific inputs byte-for-byte. All seven repair phases select
+`repaired_prepared_bundle`, with the same parent claim and shared remaining
+allowance. Combined elapsed 48.579s. All children stopped;
+parent bytes/mtimes unchanged. No generation, ReadySet, Coot, model optimization
+or diffraction refinement. The parent driver is an explicit test, not the missing
+production coordinator or a mixed-scaffold/ordinary-refinement qualification.
+Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3; execution on macOS arm64.
+
+Cold replay passes acquired preparation, parent-bound histories and repaired
+runtime from a relocated temporary checkout after its original copy is absent.
+Historical checkout/SDK/source/output paths and execution are denied; all
+868 files retain bytes/mtimes. The expired child and distinct parent
+claims remain visible. Existing standalone fixtures retain legacy readback.
+
+Changed: five runtime modules (including the small shared allowance helper),
+five test modules, workflow profile, contracts/overview/caption, queue and ledgers.
+Optional `parent_attempt` extends the existing schema-1 acquisition/prepared
+attempt intents; old records remain readable, no migration. Readers validate
+claim shape and child digest bindings, not the existence/authority of the supplied
+outer record. The complete owner must verify the reciprocal join. Deadlines are
+call-scoped and not persisted as restartable process evidence. Local Python,
+final atomic writes and cleanup remain cooperative; a native call already running
+is bounded by its launch limit, not asynchronously cancelled by a new callback.
+Only code/tests/docs/hash references published; scientific payloads/logs/XML and
+runners remain local. No active job at publication; no merge authorization.
+
+**Next Q04:** freeze the complete source/model/site/context request before children,
+then use these hooks to bind persistent operational component requests, C169
+preparation and C164 repair under finite immutable outer attempts. Verify parent
+claims against the actual outer request/attempt and coordinator; never retry
+C169 evidence copies. Shared total allowance and conservative recovery remain
+required. Then independent fallback expansion; Q05 adoption, Q06 refinement,
+Q13 state authority and Q07 mixed/held-out builder controls remain queued.
+Evidence key `outer_child_context_2026_11_09`.
+— Rowan · Codex desktop
 
 ## C169 published: exact acquired components into model/site preparation
 

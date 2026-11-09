@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Parent-bound acquisition and repair children (C170)
+
+- Accept and validate optional enclosing attempt identities in component and
+  prepared-repair intents while preserving legacy standalone requests.
+- Pass a shrinking parent allowance through generation, qualification and repair
+  without changing frozen child limits or resetting their attempt allowance.
+- Prevent constant/increasing callbacks from renewing elapsed time; reject late
+  enclosing success while retaining every partial child artifact.
+- Add focused and real Phenix expiry/recovery/repair validation plus cold replay.
+  Complete outer-request coordination and ordinary adoption remain open.
+
 ### Exact acquisitions into model/site preparation (C169)
 
 - Join frozen source selection and exact successfully completed component attempts

@@ -231,3 +231,22 @@ def test_callback_feeds_existing_store_and_cache_hit_runs_nothing(case):
     hit=resolve_qualified_dictionary(s,code,store,second,acquire=forbidden,**options)
     assert hit['entry_id']==result['entry_id'] and hit['status']=='REUSED' and len(calls)==2
     assert resolve_dictionary_snapshot(second)['qualification']==m.read_candidate_qualification(out)['qualification']
+
+
+def test_outer_shrink_reaches_second_seed_and_elapsed_stays_local(case,monkeypatch):
+    m,args,calls,native=case;clock=[0.];cap=[8.];monkeypatch.setattr(m,'monotonic',lambda:clock[0]);capture=m.inspect_native_bundle
+    def run(*a,**k):r=capture(*a,**k);clock[0]+=1;cap[0]=3.;return r
+    monkeypatch.setattr(m,'inspect_native_bundle',run)
+    r=m.execute_candidate_qualification(*args,total_timeout_seconds=30,_remaining_seconds=lambda:cap[0])
+    assert calls==[8,3] and r['elapsed_seconds']==2
+    assert m.read_candidate_qualification(args[-1])==r
+
+
+def test_outer_expiry_after_first_seed_withholds_second_and_receipt(case,monkeypatch):
+    m,args,calls,native=case;cap=[8.];capture=m.inspect_native_bundle
+    def run(*a,**k):r=capture(*a,**k);cap[0]=0.;return r
+    monkeypatch.setattr(m,'inspect_native_bundle',run)
+    with pytest.raises(TimeoutError):m.execute_candidate_qualification(*args,_remaining_seconds=lambda:cap[0])
+    assert len(calls)==1 and not (args[-1]/m.REPORT).exists()
+    from nasolve.cif_candidate_qualification import inspect_candidate_qualification_processes
+    assert inspect_candidate_qualification_processes(args[-1])['state']=='STOPPED'

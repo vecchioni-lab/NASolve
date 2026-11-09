@@ -5,7 +5,7 @@
   "created_utc": "2026-10-11T14:16:46.555890+00:00",
   "status": "DESIGN_AND_KNOWLEDGE_HANDOFF_NOT_NEW_RUNTIME_IMPLEMENTATION",
   "runtime_progress": {
-    "updated_date": "2026-11-08",
+    "updated_date": "2026-11-09",
     "contract": "docs/cif-doctor.md",
     "implemented_initial_slice": [
       "Deterministic offline source/effective dictionary assessment with exact atom IDs and explicit unassessed layers",
@@ -28044,6 +28044,23 @@
         "No Linux execution, new chemistry support, ordinary diffraction refinement or merge authorization"
       ],
       "implementation_revision": "a80f7d9bdc158127c7e1f6f72fe7be5bb05f65d1"
+    },
+    "outer_child_context": {
+      "milestone": "C170",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 child parent/budget hooks complete; frozen outer request/coordinator next",
+      "contract": "docs/cif-doctor.md#enclosing-attempt-context-for-child-requests-c170",
+      "evidence_key": "outer_child_context_2026_11_09",
+      "summary": "Optional detached parent claims and non-renewable remaining allowances cross acquisition/qualification/prepared repair without changing frozen child limits.",
+      "implementation_revision": null,
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "Full regression not run at user request; C160 remains last completed baseline",
+        "Parent identity is a supplied child claim; complete frozen outer intent and reciprocal coordinator validation remain next",
+        "Shared deadlines are cooperative at boundaries; running children retain their launch timeout and cleanup is not preempted",
+        "No new chemistry, ordinary PostMR adoption, diffraction refinement, Linux-native validation or merge authorization"
+      ]
     }
   },
   "audience": [

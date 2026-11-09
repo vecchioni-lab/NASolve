@@ -18,7 +18,8 @@ from .cif_dictionary_store import _bytes, _json, make_dictionary_request, resolv
 from .cif_dictionary_sites import _consumer, _read, _safe
 from .cif_generation_acquisition import generation_dictionary_options, resolve_generated_dictionary
 from .cif_generation_attempt import _attempt_identity, generate_source_candidate_attempt, inspect_source_generation_request
-from .cif_generation_process import _valid_identity
+from .cif_generation_process import _valid_identity, _valid_attempt_identity
+from .cif_outer_context import OuterAllowance, parent_identity
 from .cif_candidate_qualification import inspect_candidate_qualification_processes
 from .cif_candidate_qualification_execution import execute_candidate_qualification, read_candidate_qualification, _inputs
 from .cif_repair_attempt import _root, _members, _inventory
@@ -160,7 +161,8 @@ def _attempt_state(root,attempt,number,request):
         _need(not any(p.name!='attempt.json' for p in attempt.iterdir()), 'Acquisition output has no intent')
         return result
     intent=read_record(attempt/'attempt.json');_need(intent.get('request_sha256')==request['record_sha256']
-        and type(intent.get('number')) is int and intent['number']==number and _uuid(intent.get('attempt_id')) and _valid_identity(intent.get('coordinator')))
+        and type(intent.get('number')) is int and intent['number']==number and _uuid(intent.get('attempt_id')) and _valid_identity(intent.get('coordinator'))
+        and ('parent_attempt' not in intent or _valid_attempt_identity(intent['parent_attempt'])))
     finished=read_record(attempt/'finished.json') if (attempt/'finished.json').exists() else None
     caller=coordinator_alive(intent['coordinator']) if finished is None else None
     children,binding=_children(root,attempt,intent,request['configuration'],closed_no_child=finished is not None and finished.get('children',{}).get('generation') is not None and finished['children']['generation'].get('attempt') is None);result.update(intent=intent,children=children)
@@ -219,7 +221,8 @@ def read_acquisition_result(directory,attempt_number):
 
 
 def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source_authority,consumer,generation,phenix=None,
-        retained_snapshot=None,native_timeout_seconds=90,total_timeout_seconds=600,max_attempts=2):
+        retained_snapshot=None,native_timeout_seconds=90,total_timeout_seconds=600,max_attempts=2,
+        _parent_attempt_identity=None,_remaining_seconds=None):
     """Perform one explicit cache-first attempt; preserve every prior output.
 
     All callers share the request directory. Source/declared recipe/consumer and
@@ -227,11 +230,17 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
     operational provenance. The one shared generation request retains its own
     immutable producer and finite allowance across outer attempts. No SDK is
     discovered on a qualified cache hit. The total clock starts before preflight;
-    local work, final sealing and cleanup remain cooperative.
+    local work, final sealing and cleanup remain cooperative. Optional enclosing
+    identity is recorded per attempt, not in the persistent request configuration.
+    A remaining-allowance callback can shorten, never reset, nested work limits.
     """
-    started=monotonic();generation=deepcopy(generation);consumer=_json(_bytes(consumer))
+    started=monotonic();parent=parent_identity(_parent_attempt_identity)
+    outer=OuterAllowance(_remaining_seconds,monotonic,AcquisitionBudgetExceeded)
+    generation=deepcopy(generation);consumer=_json(_bytes(consumer))
     def remaining(minimum=0):
+        cap=outer.remaining()
         value=total_timeout_seconds-(monotonic()-started)
+        if cap is not None:value=min(value,cap)
         if value<=0 or value<minimum:raise AcquisitionBudgetExceeded('Component acquisition allowance exhausted; partial output grants no successful result')
         return value
     root=_root(request_directory);store=_root(store_root);source=Path(source).absolute();original=_read(source)
@@ -268,7 +277,8 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
         if state['availability']!='AVAILABLE':raise CampaignProcessError('Acquisition request has '+('exhausted attempt allowance' if state['availability']=='EXHAUSTED' else 'unresolved previous attempt'))
         remaining();_need(_read(source)==original and (retained is None or _tree(retained)==retained_before),'Selected acquisition inputs changed')
         number=len(state['attempts'])+1;attempt=root/'attempts'/f'attempt-{number:04d}';attempt.mkdir(parents=True,exist_ok=False)
-        intent=write_record(attempt/'attempt.json',dict(request_sha256=request['record_sha256'],number=number,attempt_id=str(uuid.uuid4()),coordinator=coordinator,created_utc=now()))
+        intent=write_record(attempt/'attempt.json',dict(request_sha256=request['record_sha256'],number=number,attempt_id=str(uuid.uuid4()),coordinator=coordinator,created_utc=now(),
+            **({'parent_attempt':parent} if parent is not None else {})))
         def generate(**kwargs):
             remaining();child=inspect_source_generation_request(root/'generation')
             _need(child['state']=='NOT_RECORDED' or child['availability']=='AVAILABLE','Shared generation request is blocked or exhausted')
@@ -280,13 +290,13 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
             allowance=int(remaining(1))
             return execute_candidate_qualification(a,b,code,current,phenix,out,native_timeout_seconds=native_timeout_seconds,
                 total_timeout_seconds=allowance,bond_representation_policy=options['recipe'].get('bond_representation_policy'),
-                _attempt_identity=_attempt_identity(intent))['qualification']
+                _attempt_identity=_attempt_identity(intent),_remaining_seconds=remaining)['qualification']
         try:
             result=resolve_generated_dictionary(root/'inputs/source.cif',code,store,attempt/'snapshot',root/'generation',attempt/'qualification',
                 source_authority=source_authority,consumer=consumer,generation=generation,qualify=qualify,
                 retained_snapshot=root/'inputs/retained' if retained is not None else None,_generate=generate)
             _need(_read(source)==original and _tree(root/'inputs')==inputs and (retained is None or _tree(retained)==retained_before),'Acquisition inputs changed during execution')
-            elapsed=total_timeout_seconds-remaining()
+            remaining();elapsed=monotonic()-started
             write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,snapshot=dict(anchor='attempt_directory',path='snapshot'),acquisition=result,elapsed_seconds=elapsed))
             _result(root,attempt,config);remaining();_seal(root,attempt,intent,request,'RETURNED')
         except BaseException as exc:

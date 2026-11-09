@@ -111,3 +111,28 @@ def test_final_report_cannot_record_elapsed_time_past_its_allowance(timed, monke
         m.execute_prepared_dictionary_repair(b,sdk,out,total_timeout_seconds=20,**o)
     assert (out/'runtime/runtime_bundle.json').exists()
     assert not (out/'repair_execution.json').exists()
+
+
+def test_outer_shrink_caps_each_native_job_without_changing_local_limit(timed,monkeypatch):
+    (m,b,sdk,out,state,calls,o),clock=timed;cap=[20.];limits=[];native=m.inspect_native_bundle;gradient=m.audit_captured_mixed_gradients;attribution=m.audit_captured_linear_attribution
+    def capture(*a,**k):
+        limits.append(k['timeout_seconds']);r=native(*a,**{**k,'timeout_seconds':7});clock[0]+=1;cap[0]=5.;return r
+    def derivative(*a,**k):
+        limits.append(k['timeout_seconds']);return gradient(*a,**{**k,'timeout_seconds':11})
+    def attribute(*a,**k):
+        limits.append(k['timeout_seconds']);return attribution(*a,**{**k,'timeout_seconds':9})
+    monkeypatch.setattr(m,'inspect_native_bundle',capture);monkeypatch.setattr(m,'audit_captured_mixed_gradients',derivative);monkeypatch.setattr(m,'audit_captured_linear_attribution',attribute)
+    r=m.execute_prepared_dictionary_repair(b,sdk,out,total_timeout_seconds=30,_remaining_seconds=lambda:cap[0],**o)
+    assert limits==[7,5,4,4,3,3] and r['total_timeout_seconds']==30 and r['elapsed_seconds']==3
+
+
+@pytest.mark.parametrize('adapter',['prepare_linear_torsion_bundle','audit_captured_mixed_gradients','prepare_repaired_component_runtime_bundle'])
+def test_outer_expiry_withholds_later_work_and_success(timed,monkeypatch,adapter):
+    (m,b,sdk,out,state,calls,o),clock=timed;cap=[20.];original=getattr(m,adapter)
+    def late(*a,**k):r=original(*a,**k);cap[0]=0.;return r
+    monkeypatch.setattr(m,adapter,late)
+    with pytest.raises(TimeoutError):m.execute_prepared_dictionary_repair(b,sdk,out,total_timeout_seconds=100,_remaining_seconds=lambda:cap[0],**o)
+    assert not (out/'repair_execution.json').exists() and (out/'bundle').exists()
+    if adapter=='prepare_repaired_component_runtime_bundle':assert (out/'runtime/runtime_bundle.json').exists()
+    elif adapter=='prepare_linear_torsion_bundle':assert not any(c.startswith('native') for c in calls)
+    else:assert 'native-001' not in calls

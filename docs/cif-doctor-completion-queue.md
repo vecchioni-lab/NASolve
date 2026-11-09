@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-08, after C169.** This queue owns unfinished
+**Current planning authority, 2026-11-09, after C170.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -244,6 +244,13 @@ the existing preparer. Portable replay retains that lineage. The existing C164
 repair API consumes the output; actual PDU/5PC preparation reproduces the previous
 scientific inputs and all seven native repair phases pass. This is explicit
 composition, not full-request ownership or ordinary adoption.
+
+C170 closes a prerequisite exposed while composing that coordinator: acquisition
+and prepared-repair children now accept the enclosing attempt claim and remaining
+allowance without changing persistent limits or resetting generation attempts.
+Native PDU expiry/fresh recovery plus PDU/5PC preparation/repair and portable replay
+pass. The supplied parent claim still needs reciprocal verification by the outer
+owner; callbacks are not durable recovery evidence.
 
 **Next bounded checkpoint:** establish the complete outer request before component
 work: freeze source-selection and model/site/context identity plus all limits, then
@@ -501,7 +508,8 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. Preserve published evidence and archive owned
+Cedar/pine/main merge candidate. C170 also has focused/native/cold validation only,
+with no full suite requested. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,
 old environments or user material. Keep older readers/receipts and documented

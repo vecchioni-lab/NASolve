@@ -3691,3 +3691,16 @@ control reproduces the earlier prepared inputs and completes the existing native
 repair pipeline. This validates explicit composition; whole-request ownership,
 ordinary adoption and actual diffraction refinement remain later gates. See the
 [contract](cif-doctor.md#exact-acquired-components-into-modelsite-preparation-c169).
+
+
+### Sharing ownership and time limits across children (C170)
+
+Acquisition and prepared repair can now be called as children of a recorded
+attempt. Each records that parent's identity while retaining its own immutable
+request limits. A shared monotonic deadline can shorten generation, qualification
+and repair; later callback values cannot replenish elapsed time. Expiry preserves
+scientific evidence but withholds enclosing success. Real PDU interruption and
+fresh recovery, PDU/5PC repair and relocated replay pass. The complete coordinator
+that freezes source/model/site intent before those children remains unfinished.
+The [child-context contract](cif-doctor.md#enclosing-attempt-context-for-child-requests-c170)
+records validation scope and cooperative timing limitations.

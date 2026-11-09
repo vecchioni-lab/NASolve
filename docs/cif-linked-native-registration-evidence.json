@@ -68393,5 +68393,441 @@
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-08T21:40:29.126021+00:00",
     "implementation_revision": "a80f7d9bdc158127c7e1f6f72fe7be5bb05f65d1"
+  },
+  "outer_child_context_2026_11_09": {
+    "milestone": "C170",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "162367cef6f14dd3875d8b2f96b0d68ecc26ff36",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Acquisition and prepared-repair wrappers could not bind an enclosing attempt or accept its remaining allowance.",
+    "after": "Optional detached parent claims and non-renewable remaining allowances cross acquisition/qualification/prepared repair without changing frozen child limits.",
+    "prior_work": [
+      "C157 generation parent shape",
+      "C162 repair allowance",
+      "C164 immutable prepared requests",
+      "C166 qualification clock/readback",
+      "C167 component ownership",
+      "C169 exact preparation bridge"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_acquisition_attempt.py",
+      "src/nasolve/cif_candidate_qualification_execution.py",
+      "src/nasolve/cif_outer_context.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "src/nasolve/cif_repair_attempt.py",
+      "tests/test_cif_acquisition_attempt.py",
+      "tests/test_cif_candidate_qualification_execution.py",
+      "tests/test_cif_outer_context.py",
+      "tests/test_cif_prepared_repair_budget.py",
+      "tests/test_cif_repair_attempt.py"
+    ],
+    "schemas": [
+      "Optional parent_attempt in existing schema-1 acquisition/prepared attempt intents; legacy absence valid",
+      "No source, scientific, cache, repair runtime or native process schema migration"
+    ],
+    "compatibility": "Existing standalone API defaults and request limits preserved. New reader validates present parent claims; full reciprocal outer ownership remains unimplemented.",
+    "regression": {
+      "before": "2 failed: unexpected _parent_attempt_identity",
+      "new_cases": 56,
+      "affected": {
+        "active": false,
+        "pid": 40097,
+        "runner_pid": 40090,
+        "phase": "affected",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_outer_context.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_cif_acquisition_preparation.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_prepared_repair_budget.py",
+          "tests/test_cif_candidate_qualification_execution.py",
+          "tests/test_cif_generation_attempt.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/170_Cedar_outer-context-u7zd1lu0/affected.xml"
+        ],
+        "started_utc": "2026-11-09T12:54:46.234249+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 101.458,
+        "sources_unchanged": true,
+        "source_files": 616
+      },
+      "affected_summary": "320 passed in 101.22s (0:01:41)",
+      "focused": {
+        "active": false,
+        "pid": 42876,
+        "runner_pid": 42875,
+        "phase": "focused",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/170_Cedar_outer-context-u7zd1lu0/focused.xml"
+        ],
+        "started_utc": "2026-11-09T12:57:45.553478+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 228.689,
+        "sources_unchanged": true,
+        "source_files": 616
+      },
+      "focused_summary": "1310 passed, 45 subtests passed in 228.43s (0:03:48)",
+      "full": "NOT_RUN_USER_REQUEST",
+      "source_files": 616
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 48.579461458997685,
+      "cases": {
+        "PDU": {
+          "completed_attempt": 2,
+          "cached_attempt": 3,
+          "all_stopped": true,
+          "prior_output_preserved": true,
+          "no_generation": true
+        },
+        "5PC": {
+          "completed_attempt": 1,
+          "cached_attempt": 2,
+          "all_stopped": true,
+          "prior_output_preserved": false,
+          "no_generation": true
+        }
+      },
+      "parent": {
+        "request_sha256": "f009b16d5b1af16e786200280809cc0b4232fcec1d1296562f6f1e014331692b",
+        "attempt_sha256": "a6ef3b85dba2adbe9f02f2d0b36b5f506621755c216af8b876f48255d235f49c",
+        "attempt_id": "b58f1bb9-4d5b-475b-b8d9-7186f13a6e78"
+      },
+      "repair_native_phases": 7,
+      "selected": "repaired_prepared_bundle",
+      "prepared_scientific_inputs": "BYTE_IDENTICAL_TO_C169",
+      "all_children_stopped": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "MANUAL_VALIDATION_DRIVER_WITH_PARENT_HOOKS; NOT_PRODUCTION_OUTER_COORDINATOR"
+    },
+    "relocation": {
+      "status": "PASS",
+      "parent_binding_preserved": true,
+      "interrupted_child_preserved": true,
+      "selected_attempts": {
+        "PDU": 2,
+        "5PC": 1
+      },
+      "selected": "repaired_prepared_bundle",
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 868
+    },
+    "evidence_refs": {
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/affected-result.json",
+        "sha256": "5c07466d1652d0acae3491538e3c4adceaaa70c60557ff588be666f93c8d8b21",
+        "size": 913
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/affected-sources.json",
+        "sha256": "21fa710cb30bb8e1e48a6d5354fb289de90f60f0bbf7710e34442c2cbd3ad021",
+        "size": 67255
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/affected.log",
+        "sha256": "5767a9fbb38418ec21c39f810991980127d4cc80952511984db424a43dbfb117",
+        "size": 432
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/affected.xml",
+        "sha256": "919f0e284c2fe4390c44d50452a9f1d869da8267daedb78f9356d46c813a69fd",
+        "size": 46898
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/before-result.json",
+        "sha256": "a2b378c8915f3771e4ffe89520fe4936acabc86d783e005fed6670d268c5b4b7",
+        "size": 743
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/before-sources.json",
+        "sha256": "8a0b37d09cbec2dcc000cad72e25d16a5353bdec95bf280812dbfe3fad7da774",
+        "size": 67044
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/before.log",
+        "sha256": "28758f9d9f7a46bcb5e4a38719aaf8b0fe66058df420004773e78cb11667142b",
+        "size": 2513
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/before.xml",
+        "sha256": "08a888c30a88bb3fa2c8c67666d2c640d31c6428dc52671f97905063e648f44b",
+        "size": 2710
+      },
+      "cold/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/cold/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/cold/stdout.txt",
+        "sha256": "6927a88e9463d6287225ca395ce25940e78d6eed97b6525b194fcf192ba68437",
+        "size": 296
+      },
+      "cold/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/cold/summary.json",
+        "sha256": "ad155e7a12527450eaf86b3b0824e00754e870ea495deb31a6a8a28a452d7b95",
+        "size": 328
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/focused-result.json",
+        "sha256": "520f27f8edf104cb5d9ba083ff25027bc488f72cbb480ec1a0a547e3ec6190f6",
+        "size": 486
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/focused-sources.json",
+        "sha256": "21fa710cb30bb8e1e48a6d5354fb289de90f60f0bbf7710e34442c2cbd3ad021",
+        "size": 67255
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/focused.log",
+        "sha256": "3c4ca46f33a164b0e07e2d704357724db360a68e450e3089f87f823836e6aac5",
+        "size": 5815
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/focused.xml",
+        "sha256": "3336f03f6ecaeca278a8f457aa5a99f5c0a078140c20db9b27d5376a44c61ce3",
+        "size": 196368
+      },
+      "native/5PC/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/5PC/request/attempts/attempt-0001/attempt.json",
+        "sha256": "e5dab377f5da5cca5c1d66fd0ccf9cbaf8b9dd45375bf55daef1cc4b0eb822e5",
+        "size": 877
+      },
+      "native/5PC/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/5PC/request/attempts/attempt-0001/finished.json",
+        "sha256": "68784b3e0b8771ac999706845ad3bb3d49aff8fdeef7e78fcfb528b695d2f5fc",
+        "size": 8415
+      },
+      "native/5PC/request/attempts/attempt-0002/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/5PC/request/attempts/attempt-0002/attempt.json",
+        "sha256": "e6bd7c98107f996588dded606266e71352df98f8df05aa106ad309f69329e638",
+        "size": 877
+      },
+      "native/5PC/request/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/5PC/request/attempts/attempt-0002/finished.json",
+        "sha256": "6175fa7f3e83d9d3acf99a897c5b807f5cfb0935d141821a2cd2e5f1a1a2cbed",
+        "size": 1550
+      },
+      "native/5PC/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/5PC/request/request.json",
+        "sha256": "9f05ba2ebc21d648c64c6fe00024f714b02b03f6bc012513a908e1a94aa05739",
+        "size": 16095
+      },
+      "native/PDU/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/PDU/request/attempts/attempt-0001/attempt.json",
+        "sha256": "bfc8ffaba79277ca62cc7b08f76c0def4818774ab4f194acef8ab5cff86f4c4f",
+        "size": 877
+      },
+      "native/PDU/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/PDU/request/attempts/attempt-0001/finished.json",
+        "sha256": "eae24c63d24b6de9120ad9c2b4de980225b9b2398e18744783e3a15d427030ea",
+        "size": 4794
+      },
+      "native/PDU/request/attempts/attempt-0002/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/PDU/request/attempts/attempt-0002/attempt.json",
+        "sha256": "c5fc71ed94acc85b7e27b11220136c6306618a9e5496e0823714d3d2db0b3418",
+        "size": 877
+      },
+      "native/PDU/request/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/PDU/request/attempts/attempt-0002/finished.json",
+        "sha256": "cacf25cbca151ac0b33a2041f6f6218ffa43186c9f2e22a9611fcbfeaea5bee8",
+        "size": 8415
+      },
+      "native/PDU/request/attempts/attempt-0003/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/PDU/request/attempts/attempt-0003/attempt.json",
+        "sha256": "91fb5e4d78eb9c86b694dc3f5a78548e0356f5e62c66e2b0441c094c716191ed",
+        "size": 877
+      },
+      "native/PDU/request/attempts/attempt-0003/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/PDU/request/attempts/attempt-0003/finished.json",
+        "sha256": "d3b600016c782c3d01858d9bca56455c7006c63f21f17d33cea6a62ddfbe137e",
+        "size": 1550
+      },
+      "native/PDU/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/PDU/request/request.json",
+        "sha256": "e88f55f1d2ee29bb4e05f7a2c3409622d094d0a66c7cb1039034e01da55a154e",
+        "size": 15846
+      },
+      "native/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/parent-inputs.json",
+        "sha256": "f33562946b12c74680901d4c7065b50dca070e0e92ad236551ddd0506cb57cb6",
+        "size": 37432
+      },
+      "native/preparation/acquisition_preparation.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/preparation/acquisition_preparation.json",
+        "sha256": "319cce7b884f913fdcda0d09f44ba8467c19e357c36d9bb8384fa2ab300e8536",
+        "size": 46759
+      },
+      "native/repair-request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/repair-request/attempts/attempt-0001/attempt.json",
+        "sha256": "6ce87322e4d7971db09008d24aec104e8a3d989d00e6be2ea6bae4bc33aac8af",
+        "size": 958
+      },
+      "native/repair-request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/repair-request/attempts/attempt-0001/finished.json",
+        "sha256": "5e6718b47a6e26b2be9ecea2f68370e473f34a5fb5ba1f06cbc69ca472f49946",
+        "size": 712
+      },
+      "native/repair-request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/repair-request/request.json",
+        "sha256": "223b48bd7d05daf583c7a0af219c0e30416fd10f03ab0b0af4ae7ab3aae8a936",
+        "size": 6415
+      },
+      "native/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/runtime-sources.json",
+        "sha256": "2085c722a153f61a3ebbf31bdbe1444917ecf626db7b38f13020c86b8706923f",
+        "size": 21986
+      },
+      "native/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/summary.json",
+        "sha256": "94f9e13b3b099c36c0f030883bc4f209d80169ed0f4a0ae9731b91f9ca3d6306",
+        "size": 1118
+      },
+      "native/validation-parent/attempt-0001.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/validation-parent/attempt-0001.json",
+        "sha256": "beae5fefe012f6e281bc7e2848bc6a8eb4dd9baa5e5d3a5c2cc6fcdf1203d397",
+        "size": 613
+      },
+      "native/validation-parent/attempt-0002.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/validation-parent/attempt-0002.json",
+        "sha256": "0715f1842541a9ba877981e4a972f0524e5ac2d336251cc0b1ad79035621451a",
+        "size": 613
+      },
+      "native/validation-parent/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/native/validation-parent/request.json",
+        "sha256": "14ca14024fe8e4e2904c8db522a0b16566644ecc5767d2598ca3d64498fe65bd",
+        "size": 219
+      },
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "170_Cedar_outer-context-u7zd1lu0/start.json",
+        "sha256": "18cbf67a46cdbe29335a25db12a464bb52f4c8a530f9dd8d3b547e7f774a6d5d",
+        "size": 249
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_outer_context.py",
+        "tests/test_cif_acquisition_attempt.py",
+        "tests/test_cif_acquisition_preparation.py",
+        "tests/test_cif_repair_attempt.py",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_prepared_repair_budget.py",
+        "tests/test_cif_candidate_qualification_execution.py",
+        "tests/test_cif_generation_attempt.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/170_Cedar_outer-context-u7zd1lu0/affected.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/170_Cedar_outer-context-u7zd1lu0/focused.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c170_native.py",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c170_cold.py"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "narestraints": "1.1.3",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual execution"
+    },
+    "artifacts": "Source/tests/docs/hash references only; generated science/logs/XML/runners local",
+    "limitations": [
+      "Full regression not run at user request; C160 remains last completed baseline",
+      "Parent identity is a supplied child claim; complete frozen outer intent and reciprocal coordinator validation remain next",
+      "Shared deadlines are cooperative at boundaries; running children retain their launch timeout and cleanup is not preempted",
+      "No new chemistry, ordinary PostMR adoption, diffraction refinement, Linux-native validation or merge authorization"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-09T13:02:54.469513+00:00"
   }
 }

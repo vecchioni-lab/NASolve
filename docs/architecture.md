@@ -1120,6 +1120,14 @@ the resulting bundle; copied requests remain evidence, not fresh retry scopes.
 Whole-request identity/deadline before child acquisition and ordinary adoption are
 still separate. See [acquired preparation](cif-doctor.md#exact-acquired-components-into-modelsite-preparation-c169).
 
+C170 equips C167/C164 child wrappers with optional enclosing attempt claims and
+remaining-allowance callbacks. Parent identity is per immutable attempt; child
+request limits/generation allowance remain persistent. An earliest-deadline clamp
+propagates through native qualification and prepared repair without renewing time.
+Old intents without a parent remain valid. The enclosing coordinator must still
+freeze the full source/model/site intent and validate reciprocal ownership; these
+hooks do not implement it. See [child context](cif-doctor.md#enclosing-attempt-context-for-child-requests-c170).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

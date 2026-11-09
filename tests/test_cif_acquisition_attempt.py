@@ -177,3 +177,91 @@ def test_corrupt_or_unknown_evidence_cannot_authorize_retry(setup,monkeypatch,da
     else:
         with pytest.raises((ValueError,RuntimeError,KeyError)):m.inspect_acquisition_request(root)
     assert inventory(root)==before
+
+
+def test_outer_parent_and_allowance_preserve_one_component_request(setup):
+    from nasolve.campaign_records import read_record
+    m,args,options,calls,generated=setup
+    parent=dict(request_sha256='a'*64,attempt_sha256='b'*64,attempt_id='11111111-1111-1111-1111-111111111111')
+    first=m.acquire_dictionary_attempt(*args,**options,_parent_attempt_identity=parent,_remaining_seconds=lambda:20)
+    initial=inventory(args[-1]/'attempts/attempt-0001')
+    next_parent=dict(parent,attempt_sha256='c'*64,attempt_id='22222222-2222-2222-2222-222222222222')
+    second=m.acquire_dictionary_attempt(*args,**options,_parent_attempt_identity=next_parent,_remaining_seconds=lambda:10)
+    state=m.inspect_acquisition_request(args[-1])
+    assert [row['intent']['parent_attempt'] for row in state['attempts']]==[parent,next_parent]
+    assert first['request_id']==second['request_id'] and second['attempt_number']==2 and len(generated)==1
+    assert state['request']['configuration']['limits']['total_timeout_seconds']==30
+    assert inventory(args[-1]/'attempts/attempt-0001')==initial
+    assert m.read_acquisition_result(args[-1],2)['report']['status']=='REUSED'
+
+
+@pytest.mark.parametrize('parent',[False,{},{'request_sha256':'a'*64,'attempt_sha256':'b'*64,'attempt_id':'bad'},{'request_sha256':'x'*64,'attempt_sha256':'b'*64,'attempt_id':'11111111-1111-1111-1111-111111111111'}])
+def test_invalid_enclosing_identity_never_reserves(setup,parent):
+    m,args,options,calls,generated=setup
+    with pytest.raises(ValueError):m.acquire_dictionary_attempt(*args,**options,_parent_attempt_identity=parent)
+    assert not args[-1].exists() and not calls
+
+
+@pytest.mark.parametrize('value',[True,None,'10',float('nan'),float('inf'),0,-1])
+def test_invalid_or_expired_enclosing_allowance_never_reserves(setup,value):
+    m,args,options,calls,generated=setup
+    with pytest.raises((ValueError,TimeoutError)):m.acquire_dictionary_attempt(*args,**options,_remaining_seconds=lambda:value)
+    assert not args[-1].exists() and not calls
+
+
+def test_noncallable_enclosing_allowance_refuses(setup):
+    m,args,options,calls,generated=setup
+    with pytest.raises(ValueError):m.acquire_dictionary_attempt(*args,**options,_remaining_seconds=10)
+    assert not args[-1].exists() and not calls
+
+
+def test_parent_claim_is_detached_before_callback(setup):
+    m,args,options,calls,generated=setup
+    parent=dict(request_sha256='a'*64,attempt_sha256='b'*64,attempt_id='11111111-1111-1111-1111-111111111111');expected=dict(parent)
+    def allowance():parent['attempt_id']='changed by caller';return 20
+    m.acquire_dictionary_attempt(*args,**options,_parent_attempt_identity=parent,_remaining_seconds=allowance)
+    assert m.inspect_acquisition_request(args[-1])['attempts'][0]['intent']['parent_attempt']==expected
+
+
+@pytest.mark.parametrize('value',[None,False,{},{'request_sha256':'a'*64,'attempt_sha256':'b'*64,'attempt_id':'bad'}])
+def test_readback_rejects_malformed_parent_claim(setup,value):
+    from nasolve.campaign_records import read_record,write_record
+    m,args,options,calls,generated=setup;m.acquire_dictionary_attempt(*args,**options)
+    p=args[-1]/'attempts/attempt-0001/attempt.json';r=read_record(p);r['parent_attempt']=value;write_record(p,r,replace=True)
+    before=inventory(args[-1])
+    with pytest.raises(ValueError):m.inspect_acquisition_request(args[-1])
+    assert inventory(args[-1])==before
+
+
+def test_parent_deadline_includes_preflight_and_cannot_refresh(setup,monkeypatch):
+    m,args,options,calls,generated=setup;clock=[0.];monkeypatch.setattr(m,'monotonic',lambda:clock[0]);configure=m._configuration
+    def slow(*a,**k):r=configure(*a,**k);clock[0]=21.;return r
+    monkeypatch.setattr(m,'_configuration',slow)
+    with pytest.raises(TimeoutError):m.acquire_dictionary_attempt(*args,**options,_remaining_seconds=lambda:20)
+    assert not args[-1].exists() and not generated and not calls
+
+
+def test_parent_expiry_after_generation_stops_qualification(setup,monkeypatch):
+    m,args,options,calls,generated=setup;cap=[20];run=m.generate_source_candidate_attempt
+    def expired(*a,**k):result=run(*a,**k);cap[0]=0;return result
+    monkeypatch.setattr(m,'generate_source_candidate_attempt',expired)
+    with pytest.raises(TimeoutError):m.acquire_dictionary_attempt(*args,**options,_remaining_seconds=lambda:cap[0])
+    state=m.inspect_acquisition_request(args[-1]);row=state['attempts'][0]
+    assert row['state']=='STOPPED' and row['finished']['outcome']=='RAISED' and len(generated)==1 and not calls
+    assert row['children']['qualification']['state']=='NOT_CREATED'
+    assert (args[-1]/'generation/attempts/attempt-0001/generation/candidate.cif').exists()
+
+
+def test_late_cache_result_is_retained_but_not_returned_as_success(setup,monkeypatch):
+    m,args,options,calls,generated=setup;cap=[20];resolve=m.resolve_generated_dictionary
+    def late(*a,**k):r=resolve(*a,**k);cap[0]=0;return r
+    monkeypatch.setattr(m,'resolve_generated_dictionary',late)
+    with pytest.raises(TimeoutError):m.acquire_dictionary_attempt(*args,**options,_remaining_seconds=lambda:cap[0])
+    row=m.inspect_acquisition_request(args[-1])['attempts'][0]
+    assert row['state']=='STOPPED' and row['finished']['outcome']=='RAISED'
+    assert (args[-1]/'attempts/attempt-0001/snapshot/resolution.json').exists()
+    with pytest.raises(ValueError):m.read_acquisition_result(args[-1],1)
+    old=inventory(args[-1]/'attempts/attempt-0001');monkeypatch.setattr(m,'resolve_generated_dictionary',resolve);cap[0]=10
+    r=m.acquire_dictionary_attempt(*args,**options,_remaining_seconds=lambda:cap[0])
+    assert r['attempt_number']==2 and r['acquisition']['status']=='REUSED' and len(generated)==1
+    assert inventory(args[-1]/'attempts/attempt-0001')==old

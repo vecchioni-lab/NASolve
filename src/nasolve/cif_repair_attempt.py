@@ -8,15 +8,17 @@ from hashlib import sha256
 import os
 from pathlib import Path
 import uuid
+from time import monotonic
 
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
 from .cif_component_runtime import _tree
 from .cif_dictionary_bundle import read_dictionary_bundle
-from .cif_generation_process import _valid_identity
+from .cif_generation_process import _valid_identity, _valid_attempt_identity
+from .cif_outer_context import OuterAllowance, parent_identity
 from .cif_generation_attempt import _attempt_identity
 from .cif_postmr_cache import verify_current_consumer
-from .cif_prepared_repair_execution import execute_prepared_dictionary_repair, POLICY_ID as EXECUTION_POLICY
+from .cif_prepared_repair_execution import execute_prepared_dictionary_repair, POLICY_ID as EXECUTION_POLICY, PreparedRepairBudgetExceeded
 from .cif_repair_process import inspect_prepared_repair_processes, _uuid, POLICY_ID as PROCESS_POLICY
 
 POLICY_ID = 'cif-prepared-repair-request-v1'
@@ -116,7 +118,8 @@ def _attempt_state(attempt, number, request):
     _need(intent.get('request_sha256') == request['record_sha256']
           and type(intent.get('number')) is int and intent['number'] == number
           and _uuid(intent.get('attempt_id')) and _valid_identity(intent.get('coordinator'))
-          and intent.get('execution') == {'anchor':'attempt_directory','path':'execution'})
+          and intent.get('execution') == {'anchor':'attempt_directory','path':'execution'}
+          and ('parent_attempt' not in intent or _valid_attempt_identity(intent['parent_attempt'])))
     # Final records precede their dependencies. For unsealed work, observe the
     # caller before inspecting output that may be published immediately before exit.
     finished = read_record(attempt/'finished.json') if (attempt/'finished.json').exists() else None
@@ -171,14 +174,26 @@ def _seal(attempt, intent, request, outcome, error=None):
 
 def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory, *,
         native_timeout_seconds=120, attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=600, max_attempts=2):
+        total_timeout_seconds=600, max_attempts=2,
+        _parent_attempt_identity=None, _remaining_seconds=None):
     """Perform one fresh, bounded repair attempt under an immutable logical request.
 
     Calls are explicit attempts, not cache lookups. All limits and exact prepared
     bytes stay frozen across calls. Unknown ownership/publication blocks another
     reservation; prior work is never resumed, resealed, deleted or overwritten.
-    A different request directory is a different coordination scope.
+    A different request directory is a different coordination scope. Optional
+    enclosing identity is per attempt; a remaining callback clamps preflight,
+    execution and sealing without replacing the frozen request limits.
     """
+    started = monotonic()
+    parent = parent_identity(_parent_attempt_identity)
+    outer = OuterAllowance(_remaining_seconds, monotonic, PreparedRepairBudgetExceeded)
+    def remaining():
+        cap = outer.remaining()
+        if cap is None: return None  # Preserve standalone execution-clock semantics.
+        value = min(cap, total_timeout_seconds - (monotonic() - started))
+        if value <= 0: raise PreparedRepairBudgetExceeded('Enclosing prepared request allowance exhausted')
+        return value
     root = _root(request_directory);original = _root(bundle)
     installation = Path(phenix.root).resolve()
     _need(not original.is_relative_to(root) and not root.is_relative_to(original)
@@ -195,6 +210,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
     consumer = read_dictionary_bundle(original)['report']['consumer']
     _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer differs')
     _need(_tree(original) == before, 'Prepared source changed during preflight')
+    remaining()
     coordinator = current_process_identity()
     root.mkdir(parents=True,exist_ok=True)
     with exclusive_lock(root/'request.lock'):
@@ -218,17 +234,21 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
             raise CampaignProcessError('Prepared repair request has '+reason)
         _need(_tree(original) == before, 'Prepared source changed before reservation')
         _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer changed')
+        remaining()
         number = len(state['attempts'])+1
         attempt=root/'attempts'/f'attempt-{number:04d}';attempt.mkdir(parents=True,exist_ok=False)
         intent=write_record(attempt/'attempt.json',dict(request_sha256=request['record_sha256'],number=number,
             attempt_id=str(uuid.uuid4()),coordinator=coordinator,created_utc=now(),
-            execution={'anchor':'attempt_directory','path':'execution'}))
+            execution={'anchor':'attempt_directory','path':'execution'},
+            **({'parent_attempt':parent} if parent is not None else {})))
         try:
             result=execute_prepared_dictionary_repair(root/'inputs/bundle',phenix,attempt/'execution',
-                                                     _attempt_identity=_attempt_identity(intent),**limits)
+                                                     _attempt_identity=_attempt_identity(intent),**limits,
+                                                     **({'_remaining_seconds':remaining} if _remaining_seconds is not None else {}))
             _need(_tree(original) == before and _tree(root/'inputs/bundle') == before,
                   'Prepared source or request snapshot changed during execution')
             _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer changed')
+            remaining()
             _seal(attempt,intent,request,'RETURNED')
         except BaseException as exc:
             try:

@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-08**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-09**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -83,6 +83,9 @@ milestone statements preserve their original scope; they are not a second queue.
   C169 binds exact completed component attempts to source/model/site preparation
   and the existing repair input. Real saved PDU/5PC preparation/repair and portable
   replay pass; interrupted/deferred full regression is recorded in the handoff.
+  C170 adds parent identities and shrinking allowances to acquisition/repair
+  children, preserving their frozen limits and recovery checks. Real expiry,
+  fresh recovery, repair and cold replay pass; the complete outer owner remains open.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

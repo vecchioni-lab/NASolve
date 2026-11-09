@@ -242,6 +242,53 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Enclosing attempt context for child requests (C170)
+
+The explicit C167 acquisition and C164 prepared-repair wrappers accept private
+`_parent_attempt_identity` and `_remaining_seconds` composition hooks. The parent
+claim uses the existing request digest, attempt digest and attempt UUID shape.
+It is validated and detached before callbacks, then recorded as optional
+`parent_attempt` in the immutable child intent. Readers reject malformed present
+claims; legacy intents without the field retain their existing behavior. The
+child's own digest/UUID still binds its native descendants and stopped receipt.
+This is a supplied identity claim, not independent validation of an enclosing
+request: the future outer coordinator must check that reciprocal binding.
+
+Parent identity varies per attempt; exact source/consumer/recipe, configured
+limits and the child's finite attempt allowance remain frozen in its persistent
+request. A smaller remaining allowance must not be supplied by changing those
+frozen limits or creating a fresh generation scope. Existing lock, unknown/live
+owner refusal and fresh numbered recovery checks are unchanged.
+
+The shared private `OuterAllowance` helper clamps to the earliest observed
+monotonic deadline. Callback time consumes allowance, and a later constant or
+larger callback result cannot extend an observed deadline. Invalid/nonfinite or
+boolean results refuse; exhaustion stops at the next cooperative boundary.
+Acquisition passes the same allowance through generation and both qualification
+seeds. Prepared repair passes it through preflight, each native phase and final
+success checks. Worker limits never round fractional seconds up. Recorded elapsed
+seconds still measure the local call, not configured time minus a smaller parent
+allowance. Existing standalone execution-clock semantics and local limits remain.
+
+Python work, final record writes and child cleanup remain cooperative. Already
+published lower-level scientific evidence can survive a late enclosing failure;
+it does not make that enclosing attempt successful. Readers neither invoke the
+callback nor signal/lock anything. Callback/deadline values are not restartable
+ownership evidence. No full source/model/site request or automatic retry loop is
+introduced, and ordinary PostMR/adoption remains unchanged.
+
+Validation includes malformed/mutated parent claims, distinct parents across
+fresh attempts, fixed request limits, cache reuse, shrinking/non-renewable
+allowances, no work after expiry, late-result retention and legacy behavior.
+A manual validation driver using Phenix 2.2.1-6174 / dispatcher 2.2.1 expires PDU
+after its first native seed, verifies stopped ownership, then succeeds freshly;
+PDU/5PC cache reuse, C169 preparation and all seven prepared-repair phases pass
+with one shared parent allowance. Prepared scientific inputs match C169 exactly.
+Cold relocation preserves parent bindings and partial evidence without historical
+SDK/source access or execution. This validates the hooks, not a production outer
+coordinator, new chemistry or ordinary diffraction refinement. Full regression
+was not run at Simon's request; the last completed full baseline remains C160.
+
 ### Exact acquired components into model/site preparation (C169)
 
 `cif_acquisition_preparation.prepare_acquired_dictionary_bundle(source_selection,

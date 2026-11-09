@@ -380,3 +380,8 @@ C169 connects exact completed acquisitions and frozen source/model/site context 
 the existing preparation and repair boxes. Real PDU/5PC composition passes. The
 outer request/deadline and ordinary-adoption connections remain unfinished; the
 copied histories are evidence, not separate operational retry scopes.
+
+C170 connects parent identity and a shrinking allowance to the acquisition and
+prepared-repair child boxes. Their frozen limits and recovery checks remain.
+The enclosing source/model/site coordinator and ordinary-adoption boxes are still
+open; a supplied parent claim alone does not validate that complete request.

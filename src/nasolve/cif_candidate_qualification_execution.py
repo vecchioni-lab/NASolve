@@ -10,6 +10,7 @@ import re
 from time import monotonic
 
 from .campaign_records import path_in, read_record, write_record
+from .cif_outer_context import OuterAllowance
 from .cif_attachment_native import _capture
 from .cif_candidate_qualification import CandidateQualificationProcesses, inspect_candidate_qualification_processes
 from .cif_candidate_usability import reassess_complete_candidate, qualify_candidate_native, covalent_proxy_signature
@@ -124,19 +125,23 @@ def read_candidate_qualification(directory):
 
 
 def execute_candidate_qualification(source,candidate,code,consumer,phenix,output,*,
-        native_timeout_seconds=90,total_timeout_seconds=180,bond_representation_policy=None,_attempt_identity=None):
+        native_timeout_seconds=90,total_timeout_seconds=180,bond_representation_policy=None,_attempt_identity=None,_remaining_seconds=None):
     """Run both isolated seeds once within a cooperative monotonic allowance.
 
     Time begins before preflight. Each job receives at most whole seconds left;
     late local work is refused before publication. Final atomic publication and
     owned cleanup are cooperative, not a hard wall-clock kill. Failed/interrupted
-    work is preserved and must use a fresh output; no retry is inferred.
+    work is preserved and must use a fresh output; no retry is inferred. An optional
+    enclosing allowance also clamps both jobs and the publication boundaries.
     """
     started=monotonic()
+    outer=OuterAllowance(_remaining_seconds,monotonic,CandidateQualificationBudgetExceeded)
     p=_protocol(code,consumer,native_timeout_seconds,total_timeout_seconds,bond_representation_policy)
     _need(_attempt_identity is None or _valid_attempt_identity(_attempt_identity), 'Invalid parent attempt identity')
     def remaining(minimum=0):
+        cap=outer.remaining()
         value=total_timeout_seconds-(monotonic()-started)
+        if cap is not None:value=min(value,cap)
         if value<=0 or value<minimum:raise CandidateQualificationBudgetExceeded('Qualification allowance exhausted; partial output is not usable')
         return value
     originals=[Path(source).absolute(),Path(candidate).absolute()];before=[_read(path) for path in originals]
@@ -168,7 +173,7 @@ def execute_candidate_qualification(source,candidate,code,consumer,phenix,output
         _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],p['consumer']), 'Native consumer changed during qualification')
         remaining();_need(owner.finish('RETURNED'), 'Native cleanup remains unverified');sealed=True
         state=inspect_candidate_qualification_processes(root);inventory=_inventory(root)
-        elapsed=total_timeout_seconds-remaining()
+        remaining();elapsed=monotonic()-started
         report=dict(schema_version=1,policy_id=POLICY_ID,status='ISOLATED_NATIVE_USABILITY_PASS',scope='ISOLATED_COMPONENT_ONLY',automatic_adoption=False,
             protocol=_ref(base/'protocol.json',root),native_receipts=refs,elapsed_seconds=elapsed,outputs=inventory,
             process_header_sha256=state['header']['record_sha256'],process_finish_sha256=state['finished']['record_sha256'],**derived)

@@ -64,6 +64,10 @@ their frozen source selection, model and site context. Its output feeds the
 existing prepared-repair API and replays without historical source/SDK paths.
 Complete request ownership and ordinary adoption remain separate.
 
+Acquisition and repair child requests can now record an enclosing attempt and
+share its shrinking time allowance without resetting their frozen limits. The
+complete source/model/site coordinator remains the next integration boundary.
+
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.
 Source-qualified graph repairs can also be frozen with their evidence and

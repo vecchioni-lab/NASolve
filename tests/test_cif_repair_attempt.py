@@ -292,3 +292,87 @@ m.execute_prepared_dictionary_repair_attempt(source,sdk,request,total_timeout_se
             (tmp_path/'release').touch()
             if process.poll() is None:process.kill()
             process.wait(timeout=3)
+
+
+def test_outer_parent_and_allowance_preserve_one_prepared_request(setup):
+    m,args,options,calls=setup
+    parent=dict(request_sha256='a'*64,attempt_sha256='b'*64,attempt_id='11111111-1111-1111-1111-111111111111')
+    first=m.execute_prepared_dictionary_repair_attempt(*args,**options,_parent_attempt_identity=parent,_remaining_seconds=lambda:8)
+    initial=inventory(args[-1]/'attempts/attempt-0001')
+    next_parent=dict(parent,attempt_sha256='c'*64,attempt_id='22222222-2222-2222-2222-222222222222')
+    second=m.execute_prepared_dictionary_repair_attempt(*args,**options,_parent_attempt_identity=next_parent,_remaining_seconds=lambda:6)
+    state=m.inspect_prepared_repair_request(args[-1])
+    assert [row['intent']['parent_attempt'] for row in state['attempts']]==[parent,next_parent]
+    assert first['request_id']==second['request_id'] and second['attempt_number']==2
+    assert state['request']['configuration']['limits']['total_timeout_seconds']==10
+    assert inventory(args[-1]/'attempts/attempt-0001')==initial
+
+
+@pytest.mark.parametrize('parent',[False,{},{'request_sha256':'a'*64,'attempt_sha256':'b'*64,'attempt_id':'bad'},{'request_sha256':'x'*64,'attempt_sha256':'b'*64,'attempt_id':'11111111-1111-1111-1111-111111111111'}])
+def test_invalid_enclosing_identity_never_reserves(setup,parent):
+    m,args,options,calls=setup
+    with pytest.raises(ValueError):m.execute_prepared_dictionary_repair_attempt(*args,**options,_parent_attempt_identity=parent)
+    assert not args[-1].exists() and not calls
+
+
+@pytest.mark.parametrize('value',[True,None,'10',float('nan'),float('inf'),0,-1])
+def test_invalid_or_expired_enclosing_allowance_never_reserves(setup,value):
+    m,args,options,calls=setup
+    with pytest.raises((ValueError,TimeoutError)):m.execute_prepared_dictionary_repair_attempt(*args,**options,_remaining_seconds=lambda:value)
+    assert not args[-1].exists() and not calls
+
+
+def test_noncallable_enclosing_allowance_refuses(setup):
+    m,args,options,calls=setup
+    with pytest.raises(ValueError):m.execute_prepared_dictionary_repair_attempt(*args,**options,_remaining_seconds=10)
+    assert not args[-1].exists() and not calls
+
+
+def test_parent_claim_is_detached_before_callback(setup):
+    m,args,options,calls=setup
+    parent=dict(request_sha256='a'*64,attempt_sha256='b'*64,attempt_id='11111111-1111-1111-1111-111111111111');expected=dict(parent)
+    def allowance():parent['attempt_id']='changed by caller';return 20
+    m.execute_prepared_dictionary_repair_attempt(*args,**options,_parent_attempt_identity=parent,_remaining_seconds=allowance)
+    assert m.inspect_prepared_repair_request(args[-1])['attempts'][0]['intent']['parent_attempt']==expected
+
+
+@pytest.mark.parametrize('value',[None,False,{},{'request_sha256':'a'*64,'attempt_sha256':'b'*64,'attempt_id':'bad'}])
+def test_readback_rejects_malformed_parent_claim(setup,value):
+    from nasolve.campaign_records import read_record,write_record
+    m,args,options,calls=setup;m.execute_prepared_dictionary_repair_attempt(*args,**options)
+    p=args[-1]/'attempts/attempt-0001/attempt.json';r=read_record(p);r['parent_attempt']=value;write_record(p,r,replace=True)
+    before=inventory(args[-1])
+    with pytest.raises(ValueError):m.inspect_prepared_repair_request(args[-1])
+    assert inventory(args[-1])==before
+
+
+def test_parent_expiry_during_preflight_keeps_destination_absent(setup,monkeypatch):
+    m,args,options,calls=setup;cap=[8]
+    def verify(*a):cap[0]=0;return True
+    monkeypatch.setattr(m,'verify_current_consumer',verify)
+    with pytest.raises(TimeoutError):m.execute_prepared_dictionary_repair_attempt(*args,**options,_remaining_seconds=lambda:cap[0])
+    assert not args[-1].exists() and not calls
+
+
+def test_parent_expiry_after_native_return_seals_failure_and_preserves_outputs(setup,monkeypatch):
+    m,args,options,calls=setup;cap=[8];execute=m.execute_prepared_dictionary_repair
+    def late(*a,**k):r=execute(*a,**k);cap[0]=0;return r
+    monkeypatch.setattr(m,'execute_prepared_dictionary_repair',late)
+    with pytest.raises(TimeoutError):m.execute_prepared_dictionary_repair_attempt(*args,**options,_remaining_seconds=lambda:cap[0])
+    state=m.inspect_prepared_repair_request(args[-1]);row=state['attempts'][0]
+    assert row['state']=='STOPPED' and row['finished']['outcome']=='RAISED'
+    assert (args[-1]/'attempts/attempt-0001/execution/repair_execution.json').exists()
+    old=inventory(args[-1]/'attempts/attempt-0001');monkeypatch.setattr(m,'execute_prepared_dictionary_repair',execute);cap[0]=6
+    assert m.execute_prepared_dictionary_repair_attempt(*args,**options,_remaining_seconds=lambda:cap[0])['attempt_number']==2
+    assert inventory(args[-1]/'attempts/attempt-0001')==old
+
+
+def test_execution_receives_live_parent_clock_without_changing_frozen_limits(setup,monkeypatch):
+    m,args,options,calls=setup;clock=[0.];monkeypatch.setattr(m,'monotonic',lambda:clock[0]);execute=m.execute_prepared_dictionary_repair;seen=[]
+    def observe(*a,**k):
+        assert k['total_timeout_seconds']==10
+        seen.append(k['_remaining_seconds']());clock[0]=2;seen.append(k['_remaining_seconds']())
+        return execute(*a,**k)
+    monkeypatch.setattr(m,'execute_prepared_dictionary_repair',observe)
+    m.execute_prepared_dictionary_repair_attempt(*args,**options,_remaining_seconds=lambda:8)
+    assert seen==[8,6]
