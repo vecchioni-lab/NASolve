@@ -68832,9 +68832,9 @@
   },
   "complete_dictionary_request_2026_11_09": {
     "milestone": "C171",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "base_revision": "3bdda09f5eba0769a1cbe09328bd7c866471ed33",
-    "implementation_revision": null,
+    "implementation_revision": "86463d627c233a2bc54927ca0d118982f8ac1fea",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "No complete frozen source/model/site request owned component acquisition and prepared repair.",
     "after": "Explicit immutable outer attempts own persistent component requests, exact preparation and repair with reciprocal ownership, shared allowance and conservative readback/recovery.",
@@ -69465,7 +69465,8 @@
       "Shared allowance is cooperative; final atomic publication and cleanup are not preempted",
       "Existing frozen artifact caps apply; maximum-size multi-component throughput unmeasured",
       "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
-      "Pre-existing direct exception-note calls in C164/C167 need Python-floor audit in Q16"
+      "Pre-existing direct exception-note calls in C164/C167 need Python-floor audit in Q16",
+      "Complete composition currently requires 2–16 selected component types; validate the single-modified-component route before ordinary adoption."
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-09T14:16:26.844930+00:00"

@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C171 validated: complete frozen request and explicit outer attempts
+## C171 published: complete frozen request and explicit outer attempts
 
 Base `3bdda09f5eba0769a1cbe09328bd7c866471ed33`; existing Cedar only.
 Capsule `live_tests_directory/171_Cedar_complete-request-iaycfs4u`.
@@ -81,6 +81,7 @@ and no-graph-repair candidates. Keep source/site/native/state gates, truthful
 negative outcomes and finite immutable attempts. Q05 adoption, Q06 refinement,
 Q07 mixed/held-out builder controls and Q13 state authority remain queued.
 Evidence key `complete_dictionary_request_2026_11_09`.
+Focused/native-tested implementation `86463d627c233a2bc54927ca0d118982f8ac1fea` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C170 published: parent-bound acquisition and prepared repair

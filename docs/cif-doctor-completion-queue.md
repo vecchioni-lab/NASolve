@@ -268,6 +268,10 @@ and state authority, immutable attempts and retained failures. Keep ordinary
 adoption separate (Q05), with final refinement-consumer proof in Q06. Existing
 artifact file/byte caps still apply to composed requests; exercise larger/held-out
 multi-component requests in Q07/Q16 before claiming that scale.
+Before Q05 enables ordinary recovery, also qualify a single selected modified
+component: the current composed-bundle path requires two to sixteen. Reuse the
+single-component preparation contract or validate a broader composer boundary;
+do not add a dummy component to satisfy the count.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;
