@@ -242,6 +242,89 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Complete frozen dictionary requests (C171)
+
+`cif_complete_request.initialize_dictionary_request()` freezes an explicit
+C168 source selection, model, complete selected-component site declarations,
+consumer/native context, ordered shared PHIL, optional retained snapshots and
+terminal resources before any child work. Each component supplies the existing
+generation recipe/pins and relative dispatcher/attempt limits. The initializer
+accepts two to sixteen selected component types and checks their exact model-site
+coverage. Existing scientific preparation/qualification remains downstream and
+unchanged. Interrupted initialization leaves an unsealed, blocked directory;
+completion is published last, and the same destination is never repaired in place.
+
+`execute_dictionary_request_attempt()` performs one explicitly requested attempt.
+The caller supplies the current Phenix installation, cache and per-code generation
+runtime bindings; they must match the frozen consumer/recipe/pins and remain
+outside the request. SDK roots and environments are not saved operational paths.
+One persistent lock serializes callers. Each reservation gets a new number, UUID,
+request digest and coordinator identity before any acquisition starts.
+
+The new schema-1 `cif-complete-dictionary-request-v1` uses this layout:
+
+```text
+request.json                    # complete frozen intent; dictionary_request_directory anchor
+inputs/                         # sources, model, optional snapshots/resources, ordered PHIL
+request.lock
+acquisitions/CODE/               # persistent operational C167 request across outer attempts
+attempts/attempt-0001/
+  attempt.json
+  preparation/                  # C169 exact-attempt composition; copies are evidence only
+  repair/                       # C164 request, one attempt for these exact prepared bytes
+  result.json
+  finished.json
+```
+
+Component requests live outside numbered outer attempts. Their source/consumer/
+recipe, configured limits and generation request persist across retries; a new
+outer attempt cannot reset the generation allowance. C169 uses exact successful
+child attempts, then C164 consumes the resulting prepared bundle. Each child must
+name an actual outer intent and the same coordinator, not merely a well-shaped
+parent claim. Readers cross-check the reciprocal digests/UUIDs, all operational
+component histories, exact preparation inputs and repair configuration. They
+reuse existing scientific readers and bind the selected result and full outer
+artifact inventory. Additional/missing/changed evidence refuses.
+
+`inspect_dictionary_request()` is read-only and advisory: it does not lock,
+signal, rewrite history or authorize retry. The writer rechecks under its lock.
+A fresh attempt requires prior outer and child ownership to be known stopped;
+unknown initial publication, missing ownership and blocked shared generation
+remain blocked. A known-dead unsealed outer attempt may be followed, but is never
+resealed. One to five outer attempts are allowed; no automatic retry loop or
+source scanning is added. All callers for one logical request must share its
+request directory. Recorded digests detect corruption, not hostile rewriting.
+
+One cooperative monotonic allowance spans preflight, acquisitions, preparation,
+repair, scientific readback and final inventory checks. Each child retains its
+own configured bounds and receives the remaining outer allowance. Expiry before
+success publication withholds outer success even when valid lower-level output
+already exists. Atomic final writes and cleanup remain cooperative; this is not
+a hard wall-clock kill or restartable deadline. A fresh explicit attempt receives
+its own configured allowance while the finite attempt counts remain persistent.
+
+`read_dictionary_request_result(directory, attempt_number)` requires an exact
+successfully returned outer attempt and replays the selected evidence without the
+old source paths, cache or SDK. RETURNED means the operation returned, not that a
+usable bundle exists. Existing no-graph-repair, source-unqualified and no-usable-
+bundle statuses remain explicit negative/non-selection results. Only the existing
+`QUALIFIED_DIAGNOSTIC_RUNTIME` status resolves a qualified runtime. Automatic
+adoption remains false. This API does not enable ordinary PostMR recovery, change
+chemistry or add a new CLI.
+
+Validation covers frozen input changes, overlaps, consumer/recipe mismatch,
+concurrent writers, unknown/live/dead owners, interrupted publication, shared
+generation exhaustion, parent/coordinator mismatches, exact readback, preserved
+partials, expiry during final sealing and completion-record capacity. Actual Phenix 2.2.1-6174 / dispatcher
+2.2.1 executes the saved PDU/5PC separated-monomer control: outer attempt 1 expires
+after the PDU source seed; attempt 2 retains those partials, completes all seven
+repair phases and selects the repaired diagnostic bundle. Model/CIF/PHIL bytes
+match C169. Cold replay rejects historical paths and native execution. This is
+not the mixed scaffold, new ligand-family qualification or diffraction refinement.
+Publication reserves the completion record within the existing 1,024-file,
+128-MiB total and 32-MiB per-file caps before success. Maximum-size multi-component throughput
+has not been demonstrated. Full regression remains deferred to the integration gate.
+
 ### Enclosing attempt context for child requests (C170)
 
 The explicit C167 acquisition and C164 prepared-repair wrappers accept private

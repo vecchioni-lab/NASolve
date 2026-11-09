@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-09, after C170.** This queue owns unfinished
+**Current planning authority, 2026-11-09, after C171.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -252,16 +252,22 @@ Native PDU expiry/fresh recovery plus PDU/5PC preparation/repair and portable re
 pass. The supplied parent claim still needs reciprocal verification by the outer
 owner; callbacks are not durable recovery evidence.
 
-**Next bounded checkpoint:** establish the complete outer request before component
-work: freeze source-selection and model/site/context identity plus all limits, then
-bind component acquisitions, C169 preparation and C164 repair to immutable outer
-attempts. Keep one operational component request per source/configuration across
-outer retries; never retry the C169 evidence copies or reset generation limits.
-Propagate one remaining allowance, preserve every partial output, and require
-known-inactive outer/child owners before a fresh attempt. Reuse the existing
-campaign lock/identity/cleanup contracts and durable parent bindings. After that,
-broaden independently qualified fallback for early capture failures/no-repair
-candidates. Keep source/site/derivative gates and ordinary adoption separate.
+C171 closes that complete explicit request/owner sub-gate. Sources, model/site/
+restraint context, recipes and limits freeze before child work. Persistent component
+requests retain generation counts across immutable outer attempts; actual parent
+and coordinator records bind children reciprocally. The shared allowance includes
+final scientific replay/inventory. Unknown shared generation blocks reservation,
+and known-dead recovery preserves every partial. Actual PDU/5PC expiry/fresh
+recovery, seven-stage repair and cold replay pass; no chemistry scope is expanded.
+
+**Next bounded checkpoint:** broaden independently qualified fallback for early
+capture failures and no-graph-repair candidates. Define truthful outcomes for
+both: an independently qualified original can remain usable; missing or failed
+source/site/native evidence cannot become a fallback. Preserve current exact-source
+and state authority, immutable attempts and retained failures. Keep ordinary
+adoption separate (Q05), with final refinement-consumer proof in Q06. Existing
+artifact file/byte caps still apply to composed requests; exercise larger/held-out
+multi-component requests in Q07/Q16 before claiming that scale.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;
@@ -495,6 +501,13 @@ already noted after C133, not permission to delete historical evidence.
 
 ### Q16 — Final integration, portability and retained-artifact closure
 
+Compatibility follow-up found during C171: audit the pre-existing direct
+`BaseException.add_note` calls in C164/C167 against the declared Python >=3.10
+floor. C171 guards its own note path and tests an exception without note support;
+no Python 3.10 interpreter execution is claimed here. Preserve the original
+failure when recording cleanup diagnostics fails or notes are unavailable.
+
+
 **Open; release gate.** State whether the proposed checkpoint ships bounded
 explicit tools or the automatic engine, then review the actual Cedar→pine→main
 diff and interactions with the other NARestraints/metal work. Run the unfiltered
@@ -508,7 +521,7 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. C170 also has focused/native/cold validation only,
+Cedar/pine/main merge candidate. C170 and C171 also have focused/native/cold validation only,
 with no full suite requested. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,

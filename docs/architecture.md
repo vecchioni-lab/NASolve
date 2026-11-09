@@ -1128,6 +1128,18 @@ Old intents without a parent remain valid. The enclosing coordinator must still
 freeze the full source/model/site intent and validate reciprocal ownership; these
 hooks do not implement it. See [child context](cif-doctor.md#enclosing-attempt-context-for-child-requests-c170).
 
+C171 composes these boundaries under `cif-complete-dictionary-request-v1`.
+Initialization freezes all source/model/site/resource/recipe/limit intent without
+children. Explicit execution reserves a durable outer identity, acquires through
+persistent per-component requests, binds exact successes into C169 preparation,
+and runs one C164 repair request for that attempt. Readers verify actual parent
+records and coordinator identities, not just supplied claims; blocked shared
+acquisition/generation state also blocks new outer reservation. One allowance
+includes final replay/inventory, and fresh attempts preserve all prior evidence.
+Operational child histories stay outside outer attempts; C169 copies remain
+readback-only. This closes complete explicit ownership, with broader fallback and
+ordinary adoption still open. See [complete requests](cif-doctor.md#complete-frozen-dictionary-requests-c171).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

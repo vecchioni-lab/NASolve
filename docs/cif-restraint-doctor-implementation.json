@@ -28061,6 +28061,25 @@
         "Shared deadlines are cooperative at boundaries; running children retain their launch timeout and cleanup is not preempted",
         "No new chemistry, ordinary PostMR adoption, diffraction refinement, Linux-native validation or merge authorization"
       ]
+    },
+    "complete_dictionary_request": {
+      "milestone": "C171",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 complete explicit ownership closed; broader qualified-original fallback next",
+      "contract": "docs/cif-doctor.md#complete-frozen-dictionary-requests-c171",
+      "evidence_key": "complete_dictionary_request_2026_11_09",
+      "summary": "Explicit immutable outer attempts own persistent component requests, exact preparation and repair with reciprocal ownership, shared allowance and conservative readback/recovery.",
+      "implementation_revision": null,
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "Full regression not run at user request; C160 remains last completed baseline",
+        "Broader early-failure/no-graph-repair proven-original fallback and ordinary adoption remain open",
+        "Shared allowance is cooperative; final atomic publication and cleanup are not preempted",
+        "Existing frozen artifact caps apply; maximum-size multi-component throughput unmeasured",
+        "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+        "Pre-existing direct exception-note calls in C164/C167 need Python-floor audit in Q16"
+      ]
     }
   },
   "audience": [

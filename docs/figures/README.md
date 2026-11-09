@@ -385,3 +385,9 @@ C170 connects parent identity and a shrinking allowance to the acquisition and
 prepared-repair child boxes. Their frozen limits and recovery checks remain.
 The enclosing source/model/site coordinator and ordinary-adoption boxes are still
 open; a supplied parent claim alone does not validate that complete request.
+
+C171 supplies the explicit frozen owner around acquisition, preparation and
+repair. Persistent component histories and a shared allowance cross those boxes;
+readback verifies reciprocal child ownership. The existing scientific flow and
+ordinary-adoption boundary are unchanged. Saved PDU/5PC interruption/recovery and
+relocation support this ownership claim, not new chemistry or refinement support.

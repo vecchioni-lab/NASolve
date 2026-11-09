@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Complete frozen acquisition and repair requests (C171)
+
+- Freeze the selected sources, model/site/native context, resources, recipes and
+  limits before component work; execute explicit immutable numbered outer attempts.
+- Keep operational component/generation histories shared across outer retries,
+  validate reciprocal child ownership and preserve every partial output.
+- Carry one cooperative allowance through acquisition, preparation, repair and
+  final evidence checks; propagate unknown shared-generation ownership before
+  another outer reservation. Add read-only inspection and exact-result replay.
+- New opt-in request schema; existing scientific/cache formats and standalone APIs
+  remain unchanged. Validate saved PDU/5PC expiry/recovery/repair and relocation.
+  Broader fallback and ordinary PostMR adoption remain open; no full suite this push.
+
 ### Parent-bound acquisition and repair children (C170)
 
 - Accept and validate optional enclosing attempt identities in component and

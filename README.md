@@ -32,41 +32,20 @@ cache acquisition and supported connected-base construction are ordinary runtime
 features. Automatic repair on a cache miss, general modified-sugar mutation and
 end-to-end candidate adoption remain separate integration work.
 
-An explicit cache-first acquisition API now joins qualified reuse to bounded,
-owned source-generation attempts and independent native qualification. Complete
-acquisition recovery and ordinary adoption remain integration work. An explicitly
-supplied older snapshot can provide an exact-source fallback without changing its
-recipe or producer; stale consumer evidence requires fresh qualification.
-An explicit repair executor now carries prepared acquisitions through existing
-native/source/derivative checks and freezes the selected diagnostic bundle.
-An optional shared elapsed allowance bounds that prepared repair chain; complete
-acquisition ownership and recovery remain separate. Native stages now retain
-durable process identities and verified cleanup evidence; read-only inspection
-never authorizes a retry. An explicit request wrapper freezes the inputs and
-limits, serializes callers, and creates a fresh numbered attempt only after prior
-work is known stopped; complete acquisition recovery remains separate.
+An explicit [complete-request API](docs/cif-doctor.md#complete-frozen-dictionary-requests-c171)
+now freezes selected sources, model/site context, ordered restraints, recipes and
+limits before work. It coordinates cache-first component acquisition, independent
+qualification, site preparation and graph-selected repair through existing
+scientific validators. Exact-source retained candidates keep their original recipe
+and producer; stale consumer evidence requires fresh qualification.
 
-The isolated qualification protocol now has a separate two-job process owner
-sharing the same cleanup/inspection backend. A maintained explicit callback now
-qualifies both coordinate seeds within a shared allowance and replays their saved
-evidence without the SDK. An explicit component request now coordinates cache,
-generation and qualification with immutable attempts, shared limits and conservative
-recovery. Source discovery and multi-component repair coordination remain separate;
-this API does not change ordinary adoption.
-
-An explicit source-selection stage freezes the ordinary chosen definitions before
-component acquisition, preserving curated precedence and detecting changes across
-a batch. Its portable snapshot records source authority without claiming native
-usability. Multi-component orchestration still needs integration.
-
-An explicit preparation bridge now joins exact completed component attempts to
-their frozen source selection, model and site context. Its output feeds the
-existing prepared-repair API and replays without historical source/SDK paths.
-Complete request ownership and ordinary adoption remain separate.
-
-Acquisition and repair child requests can now record an enclosing attempt and
-share its shrinking time allowance without resetting their frozen limits. The
-complete source/model/site coordinator remains the next integration boundary.
+Each call creates one immutable numbered attempt. Component and generation
+histories persist across retries, a shared allowance bounds the work, and a new
+attempt requires prior ownership to be known stopped. Read-only inspection and
+exact-result replay preserve failures and lineage without the old source paths or
+SDK. A returned diagnostic can explicitly report no usable selection; only proven
+runtime bundles qualify. Broader fallback and ordinary automatic PostMR adoption
+remain integration work.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

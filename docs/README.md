@@ -86,6 +86,10 @@ milestone statements preserve their original scope; they are not a second queue.
   C170 adds parent identities and shrinking allowances to acquisition/repair
   children, preserving their frozen limits and recovery checks. Real expiry,
   fresh recovery, repair and cold replay pass; the complete outer owner remains open.
+  C171 adds the complete frozen request and explicit outer owner: persistent
+  component histories, reciprocal ownership, shared allowance and conservative
+  recovery. Real PDU/5PC expiry/recovery/repair and cold replay pass. Broader
+  fallback and ordinary adoption remain open; focused validation only.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

@@ -1,0 +1,426 @@
+"""Explicit frozen multi-component acquisition/preparation/repair requests.
+
+No source rediscovery, automatic retry, ordinary adoption or chemistry policy is
+implemented here. Existing child owners and scientific readers remain authoritative.
+"""
+from copy import deepcopy
+import json
+import math
+from pathlib import Path
+from time import monotonic
+import uuid
+
+from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
+from .campaign_records import _sync_directory, now, path_in, read_record, write_record
+from . import cif_acquisition_attempt as acquisition
+from . import cif_component_runtime as frozen_tree
+from . import cif_repair_attempt as repair
+from .cif_acquisition_preparation import _capture, _freeze, _terminal, prepare_acquired_dictionary_bundle, read_acquired_dictionary_bundle
+from .cif_acquisition_sources import read_acquisition_sources
+from .cif_component_runtime import _tree
+from .cif_dictionary_bundle import _context
+from .cif_dictionary_sites import _consumer, _links, _model_inventory, _need, _read, _safe
+from .cif_dictionary_store import _bytes, _json, make_dictionary_request, recipe_representation_policy, resolve_dictionary_snapshot
+from .cif_generation_acquisition import generation_dictionary_options
+from .cif_generation_attempt import _attempt_identity
+from .cif_generation_process import _valid_identity
+from .cif_postmr_cache import verify_current_consumer
+from .cif_repair_attempt import _root, _members, _inventory
+from .cif_repair_process import _uuid
+from .cif_runtime_bundle import resolve_runtime_bundle
+
+POLICY_ID = 'cif-complete-dictionary-request-v1'
+ANCHOR = 'dictionary_request_directory'
+_LIMITS = dict(native_timeout_seconds=600, component_timeout_seconds=3600,
+               attribution_timeout_seconds=300, derivative_timeout_seconds=600,
+               total_timeout_seconds=3600)
+_STOPPED = {'STOPPED', 'STOPPED_UNFINISHED', 'NOT_CREATED'}
+_OUTCOMES = {'NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED',
+             'SOURCE_PREPARATION_UNQUALIFIED', 'NO_USABLE_BUNDLE', 'QUALIFIED_DIAGNOSTIC_RUNTIME'}
+
+
+def _same(left, right):
+    return _bytes(left) == _bytes(right)
+
+
+def _component_config(source, code, authority, consumer, declaration, retained, limits, maximum):
+    inputs = {'source.cif': _read(source)}
+    if retained is not None:
+        saved = resolve_dictionary_snapshot(retained); tree = _tree(retained)
+        _need(set(tree) == acquisition._SNAPSHOT_FILES, 'Unexpected retained snapshot members')
+        prior = saved['manifest']['request']
+        _need(make_dictionary_request(source, code, source_authority=authority,
+            **{k:prior[k] for k in ('recipe','generator')}) == prior
+            and recipe_representation_policy(prior['recipe']) == recipe_representation_policy(declaration['options']['recipe']),
+            'Retained source/authority/representation permission differs')
+        inputs.update({'retained/'+n:data for n,data in tree.items()})
+    return acquisition._configuration(source, code, authority, declaration['options'], consumer,
+        declaration['binding'], inputs, dict(native_timeout_seconds=limits['native_timeout_seconds'],
+        total_timeout_seconds=limits['component_timeout_seconds']), maximum)
+
+
+def _configuration(inputs, controls, limits, maximum):
+    _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
+          'Require bounded integer complete-request limits')
+    _need(type(maximum) is int and 1 <= maximum <= 5, 'Require one to five outer attempts')
+    _need(isinstance(controls,dict) and set(controls) == {'sites','consumer','expected_links','native_context','supplementary_phils'},
+          'Unexpected complete-request controls')
+    _consumer(controls['consumer']); _context(controls['native_context'])
+    selected = read_acquisition_sources(inputs/'sources'); codes = selected['report']['components']
+    _need(2 <= len(codes) <= 16 and isinstance(controls['sites'],dict) and set(controls['sites']) == set(codes),
+          'Require complete selected component coverage')
+    names = controls['supplementary_phils']
+    _need(isinstance(names,list) and names == [f'phils/{i:03}.phil' for i in range(len(names))], 'Invalid shared PHIL order')
+    allowed = {'model.pdb', *names, *('sources/'+n for n in _tree(inputs/'sources'))}
+    model_sites = _model_inventory(inputs/'model.pdb'); all_contexts = []; components = {}
+    for code in codes:
+        site = controls['sites'][code]
+        _need(isinstance(site,dict) and set(site) == {'contexts','generation','retained','terminal_resource','phosphate_atom_policy'},
+              'Unexpected complete component declaration')
+        contexts = site['contexts']
+        _need(isinstance(contexts,list) and contexts and all(isinstance(c,dict) and isinstance(c.get('site'),str) for c in contexts)
+              and len({c['site'] for c in contexts}) == len(contexts)
+              and {c['site'] for c in contexts} == {s for s,r in model_sites.items() if r['code'] == code},
+              'Require each selected model site exactly once')
+        all_contexts.extend(contexts)
+        _need(site['retained'] in (None, f'retained/{code}'), 'Invalid retained reference')
+        retained = inputs/site['retained'] if site['retained'] is not None else None
+        if retained is not None: allowed.update(f'retained/{code}/'+n for n in _tree(retained))
+        generation = site['generation']
+        _need(isinstance(generation,dict) and set(generation) == {'options','binding'}, 'Invalid generation declaration')
+        choice = selected['sources'][code]
+        components[code] = _component_config(choice['source'],code,choice['source_authority'],controls['consumer'],generation,retained,limits,maximum)
+        resource = site['terminal_resource']
+        if resource is not None:
+            _need(_safe(resource) and resource.startswith(f'resources/{code}/') and len(resource.split('/')) == 3,
+                  'Invalid terminal resource reference')
+            allowed.update(f'resources/{code}/'+n for n in _terminal(inputs/resource,controls['consumer']))
+    _need(_same(_links(inputs/'model.pdb',all_contexts,controls['expected_links']), controls['expected_links']), 'Model links differ')
+    files, directories = _capture(inputs)
+    _need(set(files) == allowed, 'Unrequested complete-request input')
+    expected_dirs = {str(p) for name in files for p in Path(name).parents if str(p) != '.'}
+    _need(set(directories) == expected_dirs, 'Unrequested complete-request directory')
+    return _json(_bytes(dict(controls=controls,limits=limits,max_attempts=maximum,components=components,
+        input_files=_inventory(files),input_directories=directories)))
+
+
+def _request(root):
+    r = read_record(path_in(root,'request.json'))
+    _need(set(r) == {'schema_version','policy_id','request_id','created_utc','inputs','configuration','record_sha256'}
+          and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
+          and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
+    c = r['configuration']
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'])
+    _need(_same(c,expected), 'Frozen complete request changed')
+    return r
+
+
+def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
+        expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
+        component_timeout_seconds=600, attribution_timeout_seconds=90,
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2):
+    """Freeze all declared inputs before children exist. Require a fresh destination.
+
+    Each component declares code, contexts and generation settings, with optional
+    retained_snapshot, terminal_resource and phosphate_atom_policy. Runtime SDK
+    roots/environment are not saved as operational paths; execution supplies and
+    revalidates them against the frozen recipe/pins/relative dispatchers.
+    """
+    root = _root(output)
+    if root.exists(): raise FileExistsError(root)
+    selected = read_acquisition_sources(source_selection); codes = selected['report']['components']
+    _need(isinstance(components,(list,tuple)) and len(components) == len(codes), 'Incomplete component declarations')
+    trees = {'sources':_root(source_selection)}; originals = {Path(model):_read(model)}
+    files = {'model.pdb':originals[Path(model)]}; sites = {}; directories = set()
+    for item in components:
+        _need(isinstance(item,dict) and {'code','contexts','generation'} <= item.keys()
+            and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource','phosphate_atom_policy'},
+            'Unexpected component declaration')
+        code = item['code']; _need(code in codes and code not in sites, 'Duplicate or unselected component')
+        generation = item['generation']; retained = item.get('retained_snapshot'); resource = item.get('terminal_resource')
+        if retained is not None: trees[f'retained/{code}'] = _root(retained)
+        relative = None
+        if resource is not None:
+            resource = Path(resource); relative = f'resources/{code}/{resource.name}'
+            data = _terminal(resource,consumer); files.update({f'resources/{code}/'+n:b for n,b in data.items()})
+            originals.update({resource.parent/n:b for n,b in data.items()})
+        sites[code] = dict(contexts=item['contexts'],generation=dict(options=generation_dictionary_options(generation),
+            binding=acquisition._generation_binding(generation)),retained=None if retained is None else f'retained/{code}',
+            terminal_resource=relative,phosphate_atom_policy=item.get('phosphate_atom_policy'))
+    controls = _json(_bytes(dict(sites=sites,consumer=consumer,expected_links=expected_links,native_context=native_context,
+        supplementary_phils=[f'phils/{i:03}.phil' for i in range(len(supplementary_phils))])))
+    limits = dict(native_timeout_seconds=native_timeout_seconds,component_timeout_seconds=component_timeout_seconds,
+        attribution_timeout_seconds=attribution_timeout_seconds,derivative_timeout_seconds=derivative_timeout_seconds,
+        total_timeout_seconds=total_timeout_seconds)
+    for i,p in enumerate(supplementary_phils): originals[Path(p)] = _read(p); files[f'phils/{i:03}.phil'] = originals[Path(p)]
+    captured = {}
+    for name,p in trees.items():
+        _need(not p.is_relative_to(root) and not root.is_relative_to(p), 'Complete request overlaps input tree')
+        captured[name] = _capture(p); tree,dirs = captured[name]
+        files.update({name+'/'+n:b for n,b in tree.items()}); directories.update([name,*[name+'/'+n for n in dirs]])
+    _need(all(not p.resolve().is_relative_to(root) for p in originals), 'Complete request overlaps input file')
+    def unchanged():
+        _need(all(_capture(p) == captured[name] for name,p in trees.items())
+              and all(_read(p) == b for p,b in originals.items()), 'Complete request source changed while freezing')
+    unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
+    _freeze(root/'inputs',files,sorted(directories))
+    config = _configuration(root/'inputs',controls,limits,max_attempts); unchanged()
+    r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
+        created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
+    _request(root)
+    return r
+
+
+def _intent(attempt, number, request):
+    r = read_record(attempt/'attempt.json')
+    _need(set(r) == {'request_sha256','number','attempt_id','coordinator','created_utc','record_sha256'}
+        and r['request_sha256'] == request['record_sha256'] and type(r['number']) is int and r['number'] == number
+        and _uuid(r['attempt_id']) and _valid_identity(r['coordinator']), 'Invalid outer attempt intent')
+    return r
+
+
+def _owned(child, intent):
+    r = child['intent']
+    _need(r.get('parent_attempt') == _attempt_identity(intent)
+        and all(r['coordinator'].get(k) == intent['coordinator'].get(k) for k in ('pid','pgid','host','boot_id','start_marker')),
+        'Child belongs to another outer attempt or coordinator')
+
+
+def _binding(request, child):
+    return dict(request_sha256=request['record_sha256'],number=child['number'],attempt_sha256=child['intent']['record_sha256'],
+        attempt_id=child['intent']['attempt_id'],finished_sha256=child.get('finished',{}).get('record_sha256'))
+
+
+def _children(root, attempt, intent, config, closed=None):
+    states = {}; bindings = {}; identity = _attempt_identity(intent)
+    for code, expected in config['components'].items():
+        state = acquisition.inspect_acquisition_request(root/'acquisitions'/code)
+        child = None; unknown = state['state'] not in {'NOT_RECORDED','RECORDED'}
+        if state['state'] == 'RECORDED':
+            _need(_same(state['request']['configuration'],expected), 'Component request differs from frozen outer intent')
+            rows = [r for r in state['attempts'] if r.get('intent',{}).get('parent_attempt') == identity]
+            _need(len(rows) <= 1, 'Multiple component children under one outer attempt')
+            child = rows[0] if rows else None
+            unknown = any('intent' not in r for r in state['attempts'])
+        if child is not None:
+            _owned(child,intent); states[code] = child; bindings[code] = _binding(state['request'],child)
+        else:
+            absent = not unknown or (closed is not None and closed.get(code) is None)
+            states[code] = dict(state='NOT_CREATED' if absent else 'UNKNOWN',activity=False if absent else None)
+            bindings[code] = None
+    state = repair.inspect_prepared_repair_request(attempt/'repair')
+    if state['state'] == 'RECORDED':
+        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1)
+        _need(_same(state['request']['configuration'],expected) and len(state['attempts']) <= 1,
+              'Prepared repair differs from enclosing input or limits')
+        if state['attempts']:
+            child = state['attempts'][0]
+            if 'intent' in child:
+                _owned(child,intent); bindings['repair'] = _binding(state['request'],child)
+            else: bindings['repair'] = None
+            states['repair'] = child
+        else: states['repair'] = dict(state='NOT_CREATED',activity=False); bindings['repair'] = None
+    else:
+        states['repair'] = dict(state='NOT_CREATED' if state['state'] == 'NOT_RECORDED' else 'UNKNOWN',activity=False if state['state'] == 'NOT_RECORDED' else None)
+        bindings['repair'] = None
+    return states,bindings
+
+
+def _repair_limits(config):
+    return {k:v for k,v in config['limits'].items() if k != 'component_timeout_seconds'}
+
+
+def _attempt_files(attempt):
+    files,dirs = _capture(attempt); files.pop('finished.json',None)
+    return dict(files=_inventory(files),directories=dirs)
+
+
+def _result(root, attempt, intent, config, children, bindings):
+    report = read_record(attempt/'result.json'); elapsed = report.get('elapsed_seconds')
+    _need(type(elapsed) in (int,float) and math.isfinite(elapsed) and 0 <= elapsed < config['limits']['total_timeout_seconds'],
+          'Invalid complete request elapsed allowance')
+    _need(all(r['state'] == 'STOPPED' and r['finished']['outcome'] == 'RETURNED' for r in children.values()),
+          'Complete request has an unsuccessful child')
+    prepared = read_acquired_dictionary_bundle(attempt/'preparation'); controls = config['controls']
+    selection = {code:bindings[code]['number'] for code in config['components']}
+    pc = read_record(attempt/'preparation/preparation_intent.json')['controls']
+    sites = {code:dict(attempt_number=selection[code],contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
+        terminal_resource=None if site['terminal_resource'] is None else 'inputs/'+site['terminal_resource']) for code,site in controls['sites'].items()}
+    expected = dict(components=sorted(selection),sites=sites,consumer=controls['consumer'],expected_links=controls['expected_links'],
+        native_context=controls['native_context'],supplementary_phils=['inputs/'+n for n in controls['supplementary_phils']])
+    _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
+    for name,data in _tree(root/'inputs').items():
+        if not name.startswith('retained/'):
+            _need(_read(attempt/'preparation/inputs'/name) == data, 'Prepared input differs from frozen outer intent')
+    for code,chosen in prepared['report']['selected_attempts'].items():
+        bound = bindings[code]
+        _need(all(chosen[k] == bound[k] for k in ('request_sha256','attempt_sha256','attempt_id'))
+            and chosen['attempt_number'] == bound['number'], 'Preparation selected another component attempt')
+    execution = _json(_read(attempt/'repair/attempts/attempt-0001/execution/repair_execution.json'))
+    _need(execution.get('status') in _OUTCOMES, 'Unsupported prepared-repair outcome')
+    runtime = None
+    if execution['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME':
+        runtime = resolve_runtime_bundle(attempt/'repair/attempts/attempt-0001/execution/runtime')
+    expected = dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],selected_attempts=selection,
+        preparation=dict(anchor='attempt_directory',path='preparation'),repair=dict(anchor='attempt_directory',path='repair'),
+        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed)
+    _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
+    return dict(result=report,preparation=prepared,execution=execution,runtime=runtime)
+
+
+def _attempt_state(root, attempt, number, request):
+    _members(attempt,{'attempt.json','result.json','finished.json'},{'preparation','repair'})
+    if not (attempt/'attempt.json').exists():
+        _need(not any(attempt.iterdir()), 'Outer output has no intent')
+        return dict(number=number,state='UNKNOWN',activity=None)
+    intent = _intent(attempt,number,request)
+    finished = read_record(attempt/'finished.json') if (attempt/'finished.json').exists() else None
+    caller = coordinator_alive(intent['coordinator']) if finished is None else None
+    children,bindings = _children(root,attempt,intent,request['configuration'],None if finished is None else finished.get('children'))
+    result = dict(number=number,intent=intent,children=children)
+    if finished is not None:
+        _need(set(finished) == {'attempt_sha256','outcome','error_type','stopped_verified','finished_utc','children','artifacts','record_sha256'}
+            and finished['attempt_sha256'] == intent['record_sha256'] and finished['outcome'] in {'RETURNED','RAISED'}
+            and finished['stopped_verified'] is True and _same(finished['children'],bindings)
+            and _same(finished['artifacts'],_attempt_files(attempt))
+            and all(r['state'] in {'STOPPED','NOT_CREATED'} for r in children.values()), 'Outer completion does not bind stopped children/files')
+        if finished['outcome'] == 'RETURNED': _result(root,attempt,intent,request['configuration'],children,bindings)
+        return dict(result,state='STOPPED',activity=False,finished=finished)
+    safe = caller is False and all(r['state'] in _STOPPED for r in children.values())
+    live = caller is True or any(r.get('activity') is True for r in children.values())
+    return dict(result,state='STOPPED_UNFINISHED' if safe else 'LIVE' if live else 'UNKNOWN',activity=False if safe else True if live else None)
+
+
+def inspect_dictionary_request(directory):
+    """Read advisory state without locks, signals, writes or retry authority."""
+    root = _root(directory)
+    result = dict(schema_version=1,policy_id=POLICY_ID,state='NOT_RECORDED',availability='BLOCKED',attempts=[],retry_authorized=False)
+    if not root.exists(): return result
+    _members(root,{'request.json','request.lock'},{'inputs','acquisitions','attempts'})
+    if not (root/'request.json').exists(): return dict(result,state='UNKNOWN')
+    request = _request(root); config = request['configuration']; rows = []
+    if (root/'attempts').exists():
+        for number,p in enumerate(sorted((root/'attempts').iterdir()),1):
+            _need(p.is_dir() and not p.is_symlink() and p.name == f'attempt-{number:04d}', 'Outer attempts must be consecutive immutable directories')
+            rows.append(_attempt_state(root,p,number,request))
+    _need(len(rows) <= config['max_attempts'], 'Outer attempt allowance exceeded')
+    unknown = False
+    if (root/'acquisitions').exists(): _members(root/'acquisitions',set(),set(config['components']))
+    owners = {_bytes(_attempt_identity(r['intent'])):r['intent'] for r in rows if 'intent' in r}
+    for code,expected in config['components'].items():
+        state = acquisition.inspect_acquisition_request(root/'acquisitions'/code)
+        if state['state'] == 'RECORDED':
+            _need(_same(state['request']['configuration'],expected), 'Operational component request changed')
+            # Shared generation can be unresolved outside the numbered child
+            # rows. Preserve the component owner's full conservative verdict.
+            if state['availability'] == 'BLOCKED': unknown = True
+            for child in state['attempts']:
+                if 'intent' not in child: unknown = True; continue
+                key = _bytes(child['intent'].get('parent_attempt'))
+                _need(key in owners, 'Component child has no recorded enclosing owner'); _owned(child,owners[key])
+        elif state['state'] != 'NOT_RECORDED': unknown = True
+    safe = not unknown and all(r['state'] in {'STOPPED','STOPPED_UNFINISHED'} for r in rows)
+    return dict(result,state='RECORDED',request=request,attempts=rows,
+        availability='BLOCKED' if not safe else 'EXHAUSTED' if len(rows) == config['max_attempts'] else 'AVAILABLE')
+
+
+def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
+    children,bindings = _children(root,attempt,intent,request['configuration'])
+    if any(r['state'] not in {'STOPPED','NOT_CREATED'} for r in children.values()):
+        raise CampaignProcessError('Complete request has unresolved child ownership')
+    if outcome == 'RETURNED': _result(root,attempt,intent,request['configuration'],children,bindings)
+    artifacts = _attempt_files(attempt)
+    # Scientific readback and inventory can be expensive; include them in the
+    # final cooperative deadline check, leaving only atomic publication after it.
+    completion = dict(attempt_sha256=intent['record_sha256'],outcome=outcome,error_type=error,
+        stopped_verified=True,finished_utc=now(),children=bindings,artifacts=artifacts)
+    # write_record adds one 64-character digest and a final newline. Reserve
+    # that complete record too, so successful publication stays readable.
+    encoded = json.dumps(dict(completion,record_sha256='0'*64),indent=2,sort_keys=True,allow_nan=False).encode('utf-8')
+    completion_size = len(encoded)+1
+    _need(len(artifacts['files'])+1 <= frozen_tree.MAX_FILES
+          and completion_size <= frozen_tree.MAX_FILE_BYTES
+          and sum(r['size'] for r in artifacts['files'].values())+completion_size <= frozen_tree.MAX_BYTES,
+          'Outer completion exceeds frozen artifact bounds')
+    if remaining is not None: remaining()
+    write_record(attempt/'finished.json',completion)
+
+
+def read_dictionary_request_result(directory, attempt_number):
+    """Read one exact successfully returned attempt; diagnostic status is retained."""
+    root = _root(directory); state = inspect_dictionary_request(root)
+    _need(type(attempt_number) is int and 1 <= attempt_number <= len(state['attempts']), 'Require an exact outer attempt number')
+    row = state['attempts'][attempt_number-1]
+    _need(row['state'] == 'STOPPED' and row['finished']['outcome'] == 'RETURNED', 'Outer attempt did not return successfully')
+    attempt = root/'attempts'/f'attempt-{attempt_number:04d}'
+    children,bindings = _children(root,attempt,row['intent'],state['request']['configuration'],row['finished']['children'])
+    return _result(root,attempt,row['intent'],state['request']['configuration'],children,bindings)
+
+
+def execute_dictionary_request_attempt(directory, phenix, store_root, *, generation):
+    """Execute one explicit fresh attempt from frozen intent; never retry in place.
+
+    generation maps each code to its explicit runtime SDK/environment settings.
+    These must reproduce frozen recipe/pins/relative dispatchers. All callers for
+    a logical request must share its directory; the cache is an explicit binding.
+    """
+    started = monotonic(); root = _root(directory); store = _root(store_root); sdk = _root(phenix.root)
+    _need(not store.is_relative_to(root) and not root.is_relative_to(store)
+          and not root.is_relative_to(sdk) and not sdk.is_relative_to(root), 'Complete request overlaps cache or SDK')
+    request = _request(root); config = request['configuration']; controls = config['controls']; limits = config['limits']
+    generation = deepcopy(generation)
+    _need(isinstance(generation,dict) and set(generation) == set(config['components']), 'Require every runtime generation binding')
+    def remaining():
+        value = limits['total_timeout_seconds'] - (monotonic()-started)
+        if value <= 0: raise TimeoutError('Complete dictionary request allowance exhausted; preserve partial output')
+        return value
+    for code,g in generation.items():
+        installed = _root(g['installation_root'])
+        _need(not root.is_relative_to(installed) and not installed.is_relative_to(root), 'Complete request overlaps generator')
+        _need(_same(dict(options=generation_dictionary_options(g),binding=acquisition._generation_binding(g)),controls['sites'][code]['generation']),
+              'Runtime generation identity differs from frozen request')
+    _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],controls['consumer']), 'Complete request consumer differs')
+    remaining()
+    with exclusive_lock(root/'request.lock'):
+        state = inspect_dictionary_request(root)
+        _need(state['request']['record_sha256'] == request['record_sha256'], 'Complete request changed before reservation')
+        if state['availability'] != 'AVAILABLE': raise CampaignProcessError('Complete request is '+state['availability'])
+        remaining(); number = len(state['attempts'])+1
+        attempt = root/'attempts'/f'attempt-{number:04d}'; attempt.mkdir(parents=True,exist_ok=False)
+        _sync_directory(attempt.parent); _sync_directory(root)
+        intent = write_record(attempt/'attempt.json',dict(request_sha256=request['record_sha256'],number=number,
+            attempt_id=str(uuid.uuid4()),coordinator=current_process_identity(),created_utc=now()))
+        parent = _attempt_identity(intent)
+        try:
+            selected = read_acquisition_sources(root/'inputs/sources'); components = []
+            for code in config['components']:
+                remaining(); site = controls['sites'][code]; choice = selected['sources'][code]
+                child = acquisition.acquire_dictionary_attempt(choice['source'],code,store,root/'acquisitions'/code,
+                    source_authority=choice['source_authority'],consumer=controls['consumer'],generation=generation[code],phenix=phenix,
+                    retained_snapshot=None if site['retained'] is None else root/'inputs'/site['retained'],
+                    native_timeout_seconds=limits['native_timeout_seconds'],total_timeout_seconds=limits['component_timeout_seconds'],
+                    max_attempts=config['max_attempts'],_parent_attempt_identity=parent,_remaining_seconds=remaining)
+                components.append(dict(code=code,request_directory=root/'acquisitions'/code,attempt_number=child['attempt_number'],
+                    contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
+                    **({'terminal_resource':root/'inputs'/site['terminal_resource']} if site['terminal_resource'] is not None else {})))
+            remaining()
+            prepare_acquired_dictionary_bundle(root/'inputs/sources',components,root/'inputs/model.pdb',attempt/'preparation',
+                consumer=controls['consumer'],expected_links=controls['expected_links'],native_context=controls['native_context'],
+                supplementary_phils=[root/'inputs'/n for n in controls['supplementary_phils']])
+            remaining()
+            child = repair.execute_prepared_dictionary_repair_attempt(attempt/'preparation/bundle',phenix,attempt/'repair',
+                **_repair_limits(config),max_attempts=1,_parent_attempt_identity=parent,_remaining_seconds=remaining)
+            _need(_same(_request(root),request), 'Frozen complete intent changed during execution')
+            remaining(); elapsed = monotonic()-started
+            result = write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],
+                selected_attempts={c['code']:c['attempt_number'] for c in components},preparation=dict(anchor='attempt_directory',path='preparation'),
+                repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed))
+            children,bindings = _children(root,attempt,intent,config); _result(root,attempt,intent,config,children,bindings)
+            remaining(); _seal(root,attempt,intent,request,'RETURNED',remaining=remaining)
+        except BaseException as exc:
+            try: _seal(root,attempt,intent,request,'RAISED',type(exc).__name__)
+            except Exception as error:
+                add_note = getattr(exc,'add_note',None)
+                if callable(add_note): add_note(f'Outer completion could not be sealed: {error}')
+            raise
+        return dict(request_id=request['request_id'],attempt_id=intent['attempt_id'],attempt_number=number,result=result)

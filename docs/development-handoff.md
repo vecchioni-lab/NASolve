@@ -11,6 +11,78 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C171 validated: complete frozen request and explicit outer attempts
+
+Base `3bdda09f5eba0769a1cbe09328bd7c866471ed33`; existing Cedar only.
+Capsule `live_tests_directory/171_Cedar_complete-request-iaycfs4u`.
+Before, a caller manually composed source selection, component acquisitions,
+model/site preparation and repair without a durable complete owner. After,
+initialization freezes that entire intent before children; explicit execution
+creates numbered outer attempts with persistent operational component requests,
+reciprocal ownership, one cooperative allowance and conservative recovery.
+C169 copies remain evidence only. Exact-result replay preserves negative outcomes
+and validates qualified runtimes through existing scientific readers.
+
+Prior work checked: C168 source snapshots, C167 persistent component/generation
+requests, C169 exact preparation, C164 repair ownership and C170 parent/budget hooks.
+No phosphate/OP3, sugar/stereo, NAR, source definitions, scientific thresholds,
+ordinary PostMR/adoption or installed SDK change.
+
+**Validation:** three import failures before implementation. Review also reproduced
+and fixed expiry during final sealing and failure to propagate unknown shared
+generation, plus insufficient completion-record capacity. **49 new cases**. Affected: **273 passed in 153.13s (0:02:33)**.
+Workflow: **1359 passed, 45 subtests passed in 311.06s (0:05:11)**. All 618 source/test/script hashes stayed fixed
+through final affected/workflow validation; final native hashes match. Earlier
+successful controls and all expected regression failures remain preserved.
+No full suite, explicitly requested by Simon. Last completed full-tested
+implementation remains C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+C169's interrupted/deferred full log is not a pass.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_complete_request.py tests/test_cif_acquisition_attempt.py tests/test_cif_acquisition_preparation.py tests/test_cif_acquisition_sources.py tests/test_cif_repair_attempt.py tests/test_cif_prepared_repair_execution.py tests/test_cif_outer_context.py --junitxml <capsule>/affected-r4.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r2.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c171_native_r4.py
+PYTHONDONTWRITEBYTECODE=1 python c171_cold_r3.py
+```
+
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution, not dry-run.**
+The maintained complete coordinator freezes the saved PDU/5PC separated-monomer
+context. Outer attempt 1 expires after the PDU source seed. Its stopped failure
+and both component attempts retain their bytes/mtimes; fresh outer attempt 2
+selects component attempts 2/2, completes all seven repair phases and publishes
+`repaired_prepared_bundle`. Every parent/coordinator join resolves to the actual
+outer record. Model/CIF/PHIL bytes match C169. Final control elapsed
+68.083s; every child stopped and parent/source bytes unchanged.
+No generation, ReadySet, Coot, model optimization or diffraction refinement.
+This is not the mixed scaffold, ordinary adoption or new family support.
+Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3; macOS arm64 execution.
+
+Cold replay passes the complete request, failed history, exact preparation and
+repaired runtime from a relocated checkout after its original copy is absent.
+Historical checkout/source/output/SDK paths and execution are denied; all
+1028 files retain bytes/mtimes. Tests additionally demonstrate that outer
+retries cannot reset a two-attempt generation allowance, and unknown shared
+publication prevents even a new outer reservation.
+
+Changed: new `cif_complete_request.py`, its regression module, workflow profile,
+README/docs map, architecture/contract/overview/caption, queue, handoff and ledgers.
+New schema-1 `cif-complete-dictionary-request-v1` and explicit Python APIs; no
+migration or change to standalone child/cache/scientific formats. SDK/cache paths
+are explicit runtime bindings, not sole historical operational references.
+RETURNED can contain a negative/non-selection diagnostic; adoption stays false.
+Cooperative local work/cleanup/final atomic writes are not a hard wall-clock bound.
+Existing artifact caps remain and large multi-component throughput is unmeasured.
+C171 guards exception notes; older C164/C167 Python-floor audit is queued in Q16.
+
+Only source/tests/docs/hash references published. Scientific payloads, logs, XML,
+runners and copied checkouts remain local. No active job at publication; no merge.
+**Next Q04:** independently qualified original fallback for early capture failures
+and no-graph-repair candidates. Keep source/site/native/state gates, truthful
+negative outcomes and finite immutable attempts. Q05 adoption, Q06 refinement,
+Q07 mixed/held-out builder controls and Q13 state authority remain queued.
+Evidence key `complete_dictionary_request_2026_11_09`.
+— Rowan · Codex desktop
+
 ## C170 published: parent-bound acquisition and prepared repair
 
 Base `162367cef6f14dd3875d8b2f96b0d68ecc26ff36`; existing Cedar only.

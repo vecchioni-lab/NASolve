@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-11-02:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-11-09:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -3704,3 +3704,24 @@ fresh recovery, PDU/5PC repair and relocated replay pass. The complete coordinat
 that freezes source/model/site intent before those children remains unfinished.
 The [child-context contract](cif-doctor.md#enclosing-attempt-context-for-child-requests-c170)
 records validation scope and cooperative timing limitations.
+
+
+### A frozen request across acquisition and repair (C171)
+
+The explicit engine can now record the whole requested job before starting:
+selected sources, model and sites, restraint context, generation recipes and
+limits. It acquires qualified components, prepares their model context and runs
+the existing repair/selection chain. Interrupted work stays in its original
+numbered attempt; a fresh attempt requires known-stopped ownership and shares
+component generation histories, so retrying cannot replenish their limits.
+
+**Methods.** Frozen input inventories and reciprocal request/attempt/coordinator
+bindings join the existing source, acquisition, preparation and repair validators.
+A cooperative monotonic allowance covers children and final readback. Exact-result
+replay distinguishes a returned negative result from a qualified diagnostic
+bundle. The saved PDU/5PC control passes expiry, preserved-partial recovery, all
+seven repair phases and relocated replay. Its scientific inputs match C169.
+This closes explicit ownership; broader proven-original fallback, ordinary
+PostMR adoption and final refinement-consumer qualification remain in the queue.
+The [complete-request contract](cif-doctor.md#complete-frozen-dictionary-requests-c171)
+records the scope, limits and validation.

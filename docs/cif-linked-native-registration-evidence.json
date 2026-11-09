@@ -68829,5 +68829,645 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-09T13:02:54.469513+00:00"
+  },
+  "complete_dictionary_request_2026_11_09": {
+    "milestone": "C171",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "3bdda09f5eba0769a1cbe09328bd7c866471ed33",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "No complete frozen source/model/site request owned component acquisition and prepared repair.",
+    "after": "Explicit immutable outer attempts own persistent component requests, exact preparation and repair with reciprocal ownership, shared allowance and conservative readback/recovery.",
+    "prior_work": [
+      "C168 source snapshots",
+      "C167 component/generation ownership",
+      "C169 exact preparation",
+      "C164 prepared request",
+      "C170 parent/allowance hooks"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_complete_request.py",
+      "tests/test_cif_complete_request.py"
+    ],
+    "schemas": [
+      "New cif-complete-dictionary-request-v1 schema 1; dictionary_request_directory and attempt_directory anchors",
+      "Existing child/cache/scientific schemas unchanged"
+    ],
+    "compatibility": "Opt-in explicit Python API; no migration or ordinary PostMR change. Two to sixteen declared component types, one to five outer attempts; existing artifact bounds remain.",
+    "regression": {
+      "before": "3 import errors; later seal-deadline, shared-generation block and completion-capacity regressions fail before fix",
+      "new_cases": 49,
+      "affected": {
+        "active": false,
+        "pid": 60890,
+        "runner_pid": 60889,
+        "phase": "affected-r4",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_cif_acquisition_preparation.py",
+          "tests/test_cif_acquisition_sources.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_outer_context.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/171_Cedar_complete-request-iaycfs4u/affected-r4.xml"
+        ],
+        "started_utc": "2026-11-09T14:07:09.345338+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 153.309,
+        "sources_unchanged": true,
+        "source_files": 618
+      },
+      "affected_summary": "273 passed in 153.13s (0:02:33)",
+      "focused": {
+        "active": false,
+        "pid": 62801,
+        "runner_pid": 62800,
+        "phase": "focused-r2",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/171_Cedar_complete-request-iaycfs4u/focused-r2.xml"
+        ],
+        "started_utc": "2026-11-09T14:10:36.634758+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 311.281,
+        "sources_unchanged": true,
+        "source_files": 618
+      },
+      "focused_summary": "1359 passed, 45 subtests passed in 311.06s (0:05:11)",
+      "full": "NOT_RUN_USER_REQUEST",
+      "source_files": 618
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 68.08284004199959,
+      "outer_attempts": 2,
+      "first_outcome": "RAISED",
+      "selected_outer_attempt": 2,
+      "selected_component_attempts": {
+        "5PC": 2,
+        "PDU": 2
+      },
+      "outer_availability": "EXHAUSTED",
+      "initialization_precedes_children": true,
+      "reciprocal_parent_bindings": true,
+      "repair_native_phases": 7,
+      "selected": "repaired_prepared_bundle",
+      "prepared_scientific_inputs": "BYTE_IDENTICAL_TO_C169",
+      "all_children_stopped": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "failed_outer_and_component_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "MAINTAINED_COMPLETE_REQUEST; SAVED_PDU_5PC_DIAGNOSTIC; NOT_ORDINARY_ADOPTION"
+    },
+    "relocation": {
+      "status": "PASS",
+      "outer_attempt": 2,
+      "parent_binding_preserved": true,
+      "interrupted_child_preserved": true,
+      "selected_attempts": {
+        "PDU": 2,
+        "5PC": 2
+      },
+      "selected": "repaired_prepared_bundle",
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 1028
+    },
+    "evidence_refs": {
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r2-result.json",
+        "sha256": "6c4ba2a5ebbe03c0fb2ada30bb94cc7a6b48eb110f697e52d2ac2eb41b1c05a0",
+        "size": 858
+      },
+      "affected-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r2-sources.json",
+        "sha256": "b28aebb15dc2e68ed3d1b7b8a744203c81f2f434502641fa2c9f2fd968585722",
+        "size": 67472
+      },
+      "affected-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r2.log",
+        "sha256": "033bf7f147a276a5e320cf0d33f33601f69ea4fcc560d35b65b45613b56212d3",
+        "size": 352
+      },
+      "affected-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r2.xml",
+        "sha256": "e2c2f3926b3b424ce4865c3caead47aead21150549636003fbfdf5313a152635",
+        "size": 38993
+      },
+      "affected-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r3-result.json",
+        "sha256": "a2bd68424f46243d5b64fd3a2e0c58369547389122d00bcc50afe3786968948f",
+        "size": 858
+      },
+      "affected-r3-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r3-sources.json",
+        "sha256": "b4d0dde3338ba39ddb20c6eec05cb7a84b85d1845b956495d3e07627dcd1f426",
+        "size": 67472
+      },
+      "affected-r3.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r3.log",
+        "sha256": "ab6d19fa92e22a005d23b40dd37eed2912a9c129d7808e879bccec5b5fecb5ab",
+        "size": 352
+      },
+      "affected-r3.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r3.xml",
+        "sha256": "01b1b25890841c036c54523d2f20de613df9d85a535c940f5b2748bbb0548104",
+        "size": 39125
+      },
+      "affected-r4-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r4-result.json",
+        "sha256": "cd7589cd3890413ae7c71710f5ec273aed07502d6d55f6ca7210904f2f66d66c",
+        "size": 858
+      },
+      "affected-r4-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r4-sources.json",
+        "sha256": "2164038a8579fa41b376d2825220bfd89c7fa131ee82c377c49abb178f0ae830",
+        "size": 67472
+      },
+      "affected-r4.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r4.log",
+        "sha256": "3bdb1e43bede076d6ee8b4747aefe0493d1b10e5ad0c19e1cef940e530c6a89e",
+        "size": 352
+      },
+      "affected-r4.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-r4.xml",
+        "sha256": "f9cd85da43e9017471913ac746d8c3b15084be637f7aba9d3b62f17960e4a8ee",
+        "size": 39417
+      },
+      "affected-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-result.json",
+        "sha256": "213523a7a20b1d3a2494c62b66c01764421dfe7ba9b55cc3480ff885032fbf78",
+        "size": 851
+      },
+      "affected-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected-sources.json",
+        "sha256": "2893a9f18d45e7d58f3cd2963bc69b3ae252337c5333d415d0235614aae218ec",
+        "size": 67472
+      },
+      "affected.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected.log",
+        "sha256": "697c5f8023e8235349d5642b96c094fa39518c5c231502dba71a35250300378d",
+        "size": 352
+      },
+      "affected.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/affected.xml",
+        "sha256": "f6e040adf25d493e686a63f948853449d60997ed75542d71680b40137909032d",
+        "size": 38451
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/before-result.json",
+        "sha256": "80dded0cd60b293c14c29633ae8281d04a16d6d4ccaf1543c6f5603b5a53e730",
+        "size": 577
+      },
+      "before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/before-sources.json",
+        "sha256": "2030996614ae345e7c07c7d1125c22cc6237c467135428404c65dc9cc33d89c6",
+        "size": 67363
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/before.log",
+        "sha256": "8538342b7301ca3766d314f49dcdb794cae6d9cf2f6eeab2f3ba11288534fce9",
+        "size": 2483
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/before.xml",
+        "sha256": "08597c534ce1a667a533a67d9261f763b81a9d49555456ab2bd14379607fc186",
+        "size": 2997
+      },
+      "capacity-before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/capacity-before-result.json",
+        "sha256": "e1b56d7ef6e1ca0987787f00dfe0db97d90c73fb517c331439b0e99297befac9",
+        "size": 633
+      },
+      "capacity-before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/capacity-before-sources.json",
+        "sha256": "d726bf52b395d5780f0f9b8ecdb57a7ac521e679db5dfe02c8b764faf90d0844",
+        "size": 67472
+      },
+      "capacity-before.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/capacity-before.log",
+        "sha256": "d9449e6d89669aafdddd88361397180b41809fa5156ddd365fe92a18e2ad8071",
+        "size": 3308
+      },
+      "capacity-before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/capacity-before.xml",
+        "sha256": "0973e0af2a6564daac7055e11660d6941066092295c2408ae9be260d0bc646a1",
+        "size": 3348
+      },
+      "cold-r3/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/cold-r3/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold-r3/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/cold-r3/stdout.txt",
+        "sha256": "a60705fc7c213c8b4b67fa01f889ae4e210cdaec361739a746349b28a94af835",
+        "size": 317
+      },
+      "cold-r3/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/cold-r3/summary.json",
+        "sha256": "793013c46253540e4b2b5743e11c0e3d3d63095bd8b8f1d257e49fbaa48ef1cd",
+        "size": 351
+      },
+      "focused-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused-r2-result.json",
+        "sha256": "b95bc555291d1d3c70a29ce973eefa2d5dfb52e52ad384bd44940154f60bc1cd",
+        "size": 495
+      },
+      "focused-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused-r2-sources.json",
+        "sha256": "2164038a8579fa41b376d2825220bfd89c7fa131ee82c377c49abb178f0ae830",
+        "size": 67472
+      },
+      "focused-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused-r2.log",
+        "sha256": "359bce93394f14189c7e480d43261daeb3d19a69e5750c1804ebf27ef7dd6622",
+        "size": 5988
+      },
+      "focused-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused-r2.xml",
+        "sha256": "c3663621019081336ba7ef66199ea394b09848deffb3bd6711114220329185a0",
+        "size": 203537
+      },
+      "focused-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused-result.json",
+        "sha256": "b563cc25dc798ea80cc9d4e91f18fcff2a21dcfa0973284fd7756c7fefcd700d",
+        "size": 489
+      },
+      "focused-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused-sources.json",
+        "sha256": "b4d0dde3338ba39ddb20c6eec05cb7a84b85d1845b956495d3e07627dcd1f426",
+        "size": 67472
+      },
+      "focused.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused.log",
+        "sha256": "5aa42fbe7a7408741c1cb79a39cb8fd6c17cdb745d5d86207e82e593c1ea444d",
+        "size": 5937
+      },
+      "focused.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/focused.xml",
+        "sha256": "0499ab3f6ceaba435c0e7ed852534b83cedcf55a7a544e84863b4543a0e635d8",
+        "size": 203245
+      },
+      "native-r4/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-r4/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/parent-inputs.json",
+        "sha256": "f33562946b12c74680901d4c7065b50dca070e0e92ad236551ddd0506cb57cb6",
+        "size": 37432
+      },
+      "native-r4/request/acquisitions/5PC/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/5PC/attempts/attempt-0001/attempt.json",
+        "sha256": "47d6f7cc4174dba411f56b57403f373bf39afec7f0441bd4e349c56916b3acea",
+        "size": 877
+      },
+      "native-r4/request/acquisitions/5PC/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/5PC/attempts/attempt-0001/finished.json",
+        "sha256": "d5615c0e4850ffde51b886ff2704e83f0c8233d3ebf8fa2cbaa2e327f16c0dcb",
+        "size": 8415
+      },
+      "native-r4/request/acquisitions/5PC/attempts/attempt-0002/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/5PC/attempts/attempt-0002/attempt.json",
+        "sha256": "29dc6904f93dbe97a46725510aac99b3f6439286d87dc82a6ee2ccaf68966509",
+        "size": 877
+      },
+      "native-r4/request/acquisitions/5PC/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/5PC/attempts/attempt-0002/finished.json",
+        "sha256": "11760c39bd2c49ff81266e6595a3205fdb58a3caa256504282bbcda466f47ff3",
+        "size": 1550
+      },
+      "native-r4/request/acquisitions/5PC/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/5PC/request.json",
+        "sha256": "69181c7190e610dfe6878b35dbefdaf461a9f4923abe0386ab2578ed7bbbd9fc",
+        "size": 16092
+      },
+      "native-r4/request/acquisitions/PDU/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/PDU/attempts/attempt-0001/attempt.json",
+        "sha256": "e3b9d03efada8c51f388561d4675ae5e8fe725c1659e090d2d1dbaa5f4002020",
+        "size": 877
+      },
+      "native-r4/request/acquisitions/PDU/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/PDU/attempts/attempt-0001/finished.json",
+        "sha256": "287a51a65f63101852be440894c18deb5103314f1471c10fba6940faeab3f86c",
+        "size": 4781
+      },
+      "native-r4/request/acquisitions/PDU/attempts/attempt-0002/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/PDU/attempts/attempt-0002/attempt.json",
+        "sha256": "54981bab253b43e916f4e801ac4b10c00a8183436290f4ad3fc7f707f3ab30ae",
+        "size": 877
+      },
+      "native-r4/request/acquisitions/PDU/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/PDU/attempts/attempt-0002/finished.json",
+        "sha256": "db089d80b5ad264ab4c1ac1fbd02ff64f794489cde544c705449a0e584802a5f",
+        "size": 8415
+      },
+      "native-r4/request/acquisitions/PDU/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/acquisitions/PDU/request.json",
+        "sha256": "df48aca3ae99a9915f5369cd6b37caa7684931cfc6f66effe4f7505178fdc272",
+        "size": 15843
+      },
+      "native-r4/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0001/attempt.json",
+        "sha256": "d29b93cc65853cd14fe15ba5b92deee98f8f68f1143186ab438794d001b1210e",
+        "size": 613
+      },
+      "native-r4/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0001/finished.json",
+        "sha256": "c3f300f7175b852bb0d76105590be80f9947c6a4a2c58db2409e839f9e758f19",
+        "size": 1309
+      },
+      "native-r4/request/attempts/attempt-0002/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0002/attempt.json",
+        "sha256": "ef5e8b83b38b30bc40151320a9e409c22d9000f091fa6ae442751b3664ec3cc3",
+        "size": 613
+      },
+      "native-r4/request/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0002/finished.json",
+        "sha256": "0684cad3fbb35c41403c0c4fcb711e6724c65227cdfcbcedd053530709f0c607",
+        "size": 157181
+      },
+      "native-r4/request/attempts/attempt-0002/preparation/acquisition_preparation.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0002/preparation/acquisition_preparation.json",
+        "sha256": "e333a7cfa334351f7323dd4dd511970564c157c3ab39ce836bea557e90093b14",
+        "size": 44874
+      },
+      "native-r4/request/attempts/attempt-0002/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0002/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json",
+        "sha256": "c5ddc5cc4575e74fe94ea3bad406a2b6d4f1575f888a29fa48c0d8705fa4253a",
+        "size": 78322
+      },
+      "native-r4/request/attempts/attempt-0002/repair/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0002/repair/attempts/attempt-0001/finished.json",
+        "sha256": "080fe1f40759b14933fb62518b6785ce16b8f70d49149661534ec871cdf8d730",
+        "size": 712
+      },
+      "native-r4/request/attempts/attempt-0002/repair/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0002/repair/request.json",
+        "sha256": "d7ef24233a838b8046eeea0a30b600d549ca437cc37f709eb0bdbeb829545b7a",
+        "size": 6415
+      },
+      "native-r4/request/attempts/attempt-0002/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/attempts/attempt-0002/result.json",
+        "sha256": "b0df9363cd64f75865f3c11820a3166768e0cc47deec5a2a4ec1fad4f91ebe95",
+        "size": 587
+      },
+      "native-r4/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/request/request.json",
+        "sha256": "46a9c35d61ade66bde87285116de42076bcd91cc107a3834fd0dbd925369c7be",
+        "size": 49158
+      },
+      "native-r4/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/runtime-sources.json",
+        "sha256": "44300f4053550549118ed246d3b5775c1d9e0fe79669cd7d815fafedd52cba09",
+        "size": 22095
+      },
+      "native-r4/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/native-r4/summary.json",
+        "sha256": "76004ed89b1049afff410a66afbc0620ad511abfe806122258bc273760a759f8",
+        "size": 833
+      },
+      "new-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new-r2-result.json",
+        "sha256": "59739355bfae80cb894cd186d65ee53710d1de51c7800e87177dc6a8ce52dcfc",
+        "size": 578
+      },
+      "new-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new-r2-sources.json",
+        "sha256": "11d486f9c5951e7e4a5483551b316bfe8c8adcd525d0578dd8aad2674191a376",
+        "size": 67472
+      },
+      "new-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new-r2.log",
+        "sha256": "ef9f940eed130d8304c5e9f33430efd2d2f57cd3796dd35905c06845580fe20d",
+        "size": 100
+      },
+      "new-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new-r2.xml",
+        "sha256": "9c3a0eb47767b135e1ed48c5c87ecd571bc4bb709d4b14103c7d7976d8108ef6",
+        "size": 6171
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new-result.json",
+        "sha256": "9bec61db42dceec7d1be4d60cac0cf242627e89a1416bd2003cc0d9323e76586",
+        "size": 572
+      },
+      "new-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new-sources.json",
+        "sha256": "9d8a779eb9e38a8f390281b98959de0284bc7413b4183226e693472b77c7d82a",
+        "size": 67472
+      },
+      "new.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new.log",
+        "sha256": "5e544e9dc27f60c91535718bd6ad649ec6fd6db39983b83b2a860e351a642f89",
+        "size": 99
+      },
+      "new.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/new.xml",
+        "sha256": "944d6a96ea66fdd16aabe2a61f510ad627ab495e1215773c7f5761d3bc3e2bef",
+        "size": 683
+      },
+      "seal-before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/seal-before-result.json",
+        "sha256": "0c5f660891eae91bf64af23551c2c76796e222bb975edbc17982f074a968cb13",
+        "size": 629
+      },
+      "seal-before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/seal-before-sources.json",
+        "sha256": "cad4aa3a7c1c6d4b87575077dec11e546aa5fac4d11b462694c101fca9858d3a",
+        "size": 67472
+      },
+      "seal-before.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/seal-before.log",
+        "sha256": "3a534b7b5f64ccf7af2c0dbfa1682560abae188f194da646c5177a285ee2ef9a",
+        "size": 1451
+      },
+      "seal-before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/seal-before.xml",
+        "sha256": "9e371e92066e5ddc69acf47302a86aa760fa92900a84fe099cde1cfa8282853b",
+        "size": 1460
+      },
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/start.json",
+        "sha256": "3fd421e9073db2c2e7136b3d814386b9a992d7481f67bf6d39c34e6546bc29c5",
+        "size": 256
+      },
+      "unknown-before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/unknown-before-result.json",
+        "sha256": "9058805ac1a20a094757787b0267365e5f9464c47762a84beb3f489aefbfb9a6",
+        "size": 636
+      },
+      "unknown-before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/unknown-before-sources.json",
+        "sha256": "da5a8329d361ebf136a5cc42427e6560fff43a7538a6ace3c5a91402a9fa2443",
+        "size": 67472
+      },
+      "unknown-before.log": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/unknown-before.log",
+        "sha256": "9519bca170905e522025be9be5cd4c27fb29f9046b0ff756b6b125a22d8919e4",
+        "size": 1878
+      },
+      "unknown-before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "171_Cedar_complete-request-iaycfs4u/unknown-before.xml",
+        "sha256": "fb37182c9658e1806e47001915837b732171de78115e231c642422356174c316",
+        "size": 1941
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_complete_request.py",
+        "tests/test_cif_acquisition_attempt.py",
+        "tests/test_cif_acquisition_preparation.py",
+        "tests/test_cif_acquisition_sources.py",
+        "tests/test_cif_repair_attempt.py",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_outer_context.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/171_Cedar_complete-request-iaycfs4u/affected-r4.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/171_Cedar_complete-request-iaycfs4u/focused-r2.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c171_native_r4.py",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c171_cold_r3.py"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "narestraints": "1.1.3",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual execution"
+    },
+    "artifacts": "Source/tests/docs/hash references only; generated science/logs/XML/runners/copied checkouts local",
+    "limitations": [
+      "Full regression not run at user request; C160 remains last completed baseline",
+      "Broader early-failure/no-graph-repair proven-original fallback and ordinary adoption remain open",
+      "Shared allowance is cooperative; final atomic publication and cleanup are not preempted",
+      "Existing frozen artifact caps apply; maximum-size multi-component throughput unmeasured",
+      "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+      "Pre-existing direct exception-note calls in C164/C167 need Python-floor audit in Q16"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-09T14:16:26.844930+00:00"
   }
 }
