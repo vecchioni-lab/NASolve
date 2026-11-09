@@ -69473,9 +69473,9 @@
   },
   "independent_original_qualification_2026_11_09": {
     "milestone": "C172",
-    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
     "base_revision": "1ffb7970b855383e161c8a9ecc4d94ec2aaa757b",
-    "implementation_revision": null,
+    "implementation_revision": "c886c84fb42f1fcd57490e2a0638e03dc366a702",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "No graph repair returned without native usability; original derivative-qualified selection depended on repair attribution.",
     "after": "Independent source/native/derivative-qualified originals publish through the shared runtime publisher; new complete requests freeze and enable no-repair qualification while old requests retain recorded behavior.",

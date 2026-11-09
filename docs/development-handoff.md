@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C172 validated: independent original and no-repair qualification
+## C172 published: independent original and no-repair qualification
 
 Base `1ffb7970b855383e161c8a9ecc4d94ec2aaa757b`; existing Cedar only. Capsule
 `live_tests_directory/172_Cedar_original-qualification-9avnjs_b`. Q04 explicit ownership/recovery is complete;
@@ -79,6 +79,7 @@ remain separate. Generic exception catches are not a safe fallback implementatio
 Only source/tests/docs/hash references enter Git; science/logs/XML/runners/copied
 checkouts remain local. No active job at publication; no merge.
 Evidence key `independent_original_qualification_2026_11_09`.
+Focused/native-tested implementation `c886c84fb42f1fcd57490e2a0638e03dc366a702` published and verified on `origin/cedar`.
 — Rowan · Codex desktop
 
 ## C171 published: complete frozen request and explicit outer attempts

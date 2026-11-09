@@ -28084,12 +28084,12 @@
     },
     "independent_original_qualification": {
       "milestone": "C172",
-      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "status": "PUBLISHED_FOCUSED_AND_NATIVE_VALIDATED",
       "queue": "Q04 no-graph original sub-gate closed; early optional-capture fallback next",
       "contract": "docs/cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172",
       "evidence_key": "independent_original_qualification_2026_11_09",
       "summary": "Independent source/native/derivative-qualified originals publish through the shared runtime publisher; new complete requests freeze and enable no-repair qualification while old requests retain recorded behavior.",
-      "implementation_revision": null,
+      "implementation_revision": "c886c84fb42f1fcd57490e2a0638e03dc366a702",
       "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
       "full_regression": "NOT_RUN_USER_REQUEST",
       "limitations": [
