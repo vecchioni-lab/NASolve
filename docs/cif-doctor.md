@@ -100,7 +100,9 @@
 
 <a id="current-capability-boundary-c152"></a>
 
-## Current capability boundary (C158)
+<a id="current-capability-boundary-c158"></a>
+
+## Current capability boundary (C174)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -122,7 +124,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Cache-first owned generation | C156/C157 own generation phases and finite immutable attempts. C158 composes explicit source/recipe/consumer cache lookup, saved-byte requalification and one owned generation attempt with independent native qualification. Actual 5PC acquisition/reuse, bounded PDU failure and cold replay pass. | Explicit component API only. Cross-recipe fallback, graph-repair composition, complete acquisition ownership/budget, source discovery and ordinary adoption remain Q04/Q05. Process completion is not chemical usability. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. | Ordinary cache-miss entry-point integration remains Q04; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -242,6 +244,52 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### One selected component through the complete request (C174)
+
+The existing dictionary composer, exact-acquisition preparer and complete request
+now accept **one to sixteen selected component types**. A single code can own
+multiple explicitly declared model sites. This uses the same ordered dictionaries,
+site modifiers, full-model context, source ownership and native/derivative gates;
+there is no dummy second ligand or alternate singleton engine.
+
+Every selected source must still have one exact successful acquisition, all its
+model sites must be declared, and shared links/PHIL must match the frozen intent.
+Duplicate codes, missing site/source coverage, empty requests and counts above
+sixteen still refuse. Whole-model qualification remains mandatory, including
+unaffected sites; an isolated acquisition never grants whole-model readiness.
+The existing bounds on files, bytes, work and attempts remain in force.
+
+Schema versions, policy IDs and artifact layouts are unchanged. The accepted
+cardinality expands from 2–16 to 1–16; new singleton artifacts require C174 readers.
+Existing multi-component artifacts replay without rewriting. C172 no-repair and
+C173 optional-failure mode defaults and historical absence semantics are unchanged.
+The separate opt-in `cif_postmr_readyset` round-trip adapter still requires 2–16
+components; this change does not qualify that adapter for singleton use or enable
+ordinary PostMR recovery/adoption.
+
+Three regressions failed at the old lower bounds. Synthetic linked two-site tests
+now prove one code retains every site/modifier and exact attempt lineage, with
+unchanged-byte cold replay. The obsolete minimum-two rejection was removed;
+empty/oversized controls retain the actual limits. Existing missing-source/site,
+duplicate, interrupted, stale-consumer and altered-proof tests remain applicable.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls select a retained, independently
+requalified clean 5PC original and a repaired PDU dictionary, respectively. These
+are newly declared isolated one-residue contexts, extracted without coordinate
+changes from the saved C171 diagnostic; they explicitly request no custom
+restraints. C171's two-component parallelity is not silently dropped from any
+existing request. Full native identity and the C154 zero-parallelity derivative
+gate still apply. Model and source chemistry remain unchanged, including the
+explicitly declared terminal phosphate. The 5PC input retains the C172 clean-control
+producer; it is not relabelled as new eLBOW output. Native linked-polymer singleton,
+ordinary refinement and new ligand-family claims are not established here.
+
+The existing Q04 engine now covers this singleton boundary. Ordinary entry-point
+recovery is next; Q05 still owns ReadySet continuation/checkpoint adoption, Q06
+actual refinement-consumer qualification, and Q07/Q13 broader scaffolds/states.
+See the [current Q04 acceptance table](cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts)
+for remaining work rather than historical milestone-time next steps.
+
 ### Classified optional-native failures and original fallback (C173)
 
 New complete requests freeze `optional_failure_policy=
@@ -300,8 +348,8 @@ plus C172 and C171 requests with historical paths and execution denied.
 
 This closes the demonstrated classified optional-native fallback sub-gate. It
 adds no ordinary checkpoint adoption, scientific approval or new chemistry.
-Single-selected-component composition is the next Q04 coverage boundary; ordinary
-integration (Q05), actual refinement-consumer proof (Q06), the mixed/held-out
+C174 closes the single-selected-component composition boundary above. Ordinary
+integration (Q04/Q05), actual refinement-consumer proof (Q06), the mixed/held-out
 scaffolds (Q07) and chemical-state cases (Q13) remain separate.
 
 ### Independently qualified originals and no-repair requests (C172)
@@ -357,7 +405,7 @@ C172 closes the no-graph original sub-gate. C173 adds the explicit classified
 optional-native policy above; an absent policy keeps the earlier raising behavior.
 `FAILED` alone never establishes safe fallback because it can include malformed
 reports or changed inputs. Classification, known-stop evidence and independent
-original proof remain distinct gates. Ordinary adoption, single-component composition, chemical-state extensions
+original proof remain distinct gates. C174 adds single-component composition. Ordinary adoption, chemical-state extensions
 and actual refinement-consumer qualification remain queued. No phosphate/OP3,
 sugar/stereo, NARestraints ownership or scientific threshold changes are made.
 
@@ -368,7 +416,7 @@ C168 source selection, model, complete selected-component site declarations,
 consumer/native context, ordered shared PHIL, optional retained snapshots and
 terminal resources before any child work. Each component supplies the existing
 generation recipe/pins and relative dispatcher/attempt limits. The initializer
-accepts two to sixteen selected component types and checks their exact model-site
+accepts one to sixteen selected component types (since C174) and checks their exact model-site
 coverage. Existing scientific preparation/qualification remains downstream and
 unchanged. Interrupted initialization leaves an unsealed, blocked directory;
 completion is published last, and the same destination is never repaired in place.
@@ -498,7 +546,7 @@ components, model, output, *, consumer, expected_links, native_context,
 supplementary_phils=())` joins C168 source selection and exact completed C167
 attempts to the existing C139 bundle preparer. Each component declares its code,
 request directory, exact attempt number and site contexts, plus optional terminal
-resource and source-phosphate naming policy. Two to sixteen unique components
+resource and source-phosphate naming policy. One to sixteen unique components (since C174)
 must cover the complete selected source set. No latest-attempt inference occurs.
 
 Before output, the selected attempt must be successfully sealed and its exact
@@ -2063,8 +2111,8 @@ under `readyset_atom_serialization_2026_10_31` in the [evidence ledger](cif-link
 
 ### Qualified component bundles and final ReadySet readback (C139)
 
-`prepare_dictionary_bundle()` composes two to sixteen explicit qualified
-snapshots. Each entry supplies its site contexts and, where required, the existing
+`prepare_dictionary_bundle()` composes one to sixteen explicit qualified
+snapshots (since C174). Each entry supplies its site contexts and, where required, the existing
 terminal resource or source-named phosphate policy. Every selected component site
 must be declared. All entries share one frozen model, exact captured consumer,
 complete declared links and full-model native context. Component codes are sorted;
@@ -2093,7 +2141,8 @@ operations refuse. Stored-site v4 records the explicit policy; omitted options
 preserve earlier policies and bytes. This extends the reviewed C125 source-name
 principle to preparation; it does not infer phosphate chemistry for PNA/ATL.
 
-Use the existing `audit_readyset_bundle_consumption()` with the returned separate
+The separate `cif_postmr_readyset` round-trip adapter retains its two-component
+minimum. Use the existing `audit_readyset_bundle_consumption()` with the returned separate
 component dictionaries. `readyset_endpoint_inputs()` then replays the maintained
 observer, ordered invocation, frozen source snapshots, raw actions/process trace,
 effective-dictionary selection and heavy-coordinate checks. It returns the actual

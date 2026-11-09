@@ -143,3 +143,17 @@ def test_source_change_during_preparation_keeps_output_unfinished(case,monkeypat
     monkeypatch.setattr(m,'prepare_dictionary_bundle',changed)
     with pytest.raises(ValueError,match='source changed'):m.prepare_acquired_dictionary_bundle(output=out,**args)
     assert (out/'bundle').is_dir() and not (out/'acquisition_preparation.json').exists()
+
+
+def test_single_acquisition_keeps_exact_attempt_and_site_bindings(case,tmp_path):
+    from tests.test_cif_dictionary_bundle import select_single_component
+    m,args,out=case;args=select_single_component(args,tmp_path)
+    with patch('subprocess.Popen',side_effect=AssertionError('Preparation must not execute')):
+        report=m.prepare_acquired_dictionary_bundle(output=out,**args)
+    loaded=m.read_acquired_dictionary_bundle(out)
+    assert set(report['selected_attempts'])=={'ZZZ'} and report['selected_attempts']['ZZZ']['attempt_number']==1
+    assert loaded['bundle']['report']['site_owners']=={'A:1':'ZZZ','A:2':'ZZZ'}
+    before=inventory(out);out=out.rename(tmp_path/'relocated');shutil.rmtree(args['components'][0]['request_directory']);shutil.rmtree(args['source_selection']);args['model'].unlink()
+    with patch('subprocess.Popen',side_effect=AssertionError('Replay must not execute')):
+        assert m.read_acquired_dictionary_bundle(out)['report']==report
+    assert inventory(out)==before

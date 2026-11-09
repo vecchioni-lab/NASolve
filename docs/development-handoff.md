@@ -11,6 +11,77 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C174 validated: single-component composition and Q04 consolidation
+
+Base `4a293e15b33d645dbcadbb6906ba6f2a1e85b761`; existing Cedar only. Capsule
+`live_tests_directory/174_Cedar_single-component-jrmp3vuf`. C172/C173 are completed and pushed.
+The explicit Q04 engine now covers one selected type as well as multiple types.
+Ordinary source/cache entry-point integration is next; Q05 owns ReadySet/checkpoint
+adoption, Q06 actual refinement, Q07 mixed/held-out scaffolds and Q13 chemical states.
+
+**Before → after:** composer, acquisition preparation and complete request each
+required at least two types despite existing single-component acquisition/site
+support. They now accept 1–16 through the same validators, with every selected
+source/site and exact acquisition attempt required. Existing dictionary ordering,
+modifier ownership, full-model native/derivative proof and request limits remain.
+No alternate singleton executor, dummy ligand or family-specific fix.
+
+**Prior work/redundancy:** reviewed C139/C154/C167/C169/C171–C173 before changing
+bounds. Five count checks across three modules changed; existing chemistry,
+workers, ownership and selectors are reused. Removed the obsolete minimum-two
+rejection, added empty/oversize controls and reused one linked-site test fixture.
+Q04's duplicated chronology and the documentation map now summarize current gates,
+with detailed historical methods and immutable ledgers preserved. The capability
+matrix's stale acquisition row is reconciled to C174. Hash-verified C167 generation
+receipts clarify that its 5PC failure was an eight-second timeout, not an established
+chemistry failure; immutable historical records remain untouched. No new status authority.
+
+**Validation:** three expected lower-bound failures before implementation; five new
+cases and one retired obsolete case (net +4). Affected: **309 passed in 164.13s (0:02:44)**.
+Workflow: **1566 passed, 45 subtests passed in 343.33s (0:05:43)**. All 621 source/test/script hashes remain fixed;
+final native source hashes match. Full suite not run at Simon's request; last
+completed full baseline C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c174_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c174_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c174_cold.py cold-r2
+```
+
+The exact nine-module affected command is in `affected-r1-result.json` and the
+ledger. **Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution:** independently
+requalified retained 5PC selects its clean original (3 repair-execution phases);
+PDU selects its graph-repaired dictionary (6 phases, one graph step). Both requests
+have one component and one immutable outer attempt, all children stopped, unchanged
+model coordinates and no automatic adoption. These are explicitly isolated new
+contexts with no custom restraints, not a modified C171 parallelity request.
+Parent C171/C172 bytes and mtimes are unchanged. Native controls: 73.021s.
+No generation/ReadySet/Coot/optimization/diffraction refinement. Python 3.12.14,
+pytest 9.1.1, NARestraints 1.1.3, macOS arm64.
+
+**Cold:** both singleton outputs and C173/C172/C171 multi-component requests replay
+from a relocated copied checkout with the old copy absent and historical
+paths/SDK/execution denied. All 2759 files retain bytes/mtimes and reciprocal
+parent bindings. Cold-r1's harness incorrectly denied the entire live-tests root,
+including its relocated copy; that harness failure is preserved. Corrected r2
+narrows the denial to declared historical capsules and passes; no product change.
+
+**Files/schemas/compatibility:** three source modules and three regression modules,
+current docs and ledgers. No schema/policy/layout change; accepted cardinality
+expands to 1–16. Singleton artifacts require C174 readers; existing multi-component
+records and C172/C173 mode defaults/absence semantics are unchanged. The separate
+`cif_postmr_readyset` adapter still requires 2–16. No phosphate/OP3, sugar/stereo,
+NAR ownership or acceptance-threshold change. Source/tests/docs/hash references
+only are committed; generated science/logs/XML/runners/checkouts stay local.
+
+**Limitations/next:** no ordinary recovery/adoption or refinement claim; native
+singleton linked-polymer coverage and broader states remain separate. Existing
+bounded tree/byte budgets still apply. The [Q04 acceptance table](cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts)
+is the current queue; historical milestone-time next steps are evidence only.
+Evidence key `single_component_complete_request_2026_11_09`.
+— Rowan · Codex desktop
+
 ## C173 published: owned optional-native failure and proven-original fallback
 
 Base `5ce05688f5957bed6eb8b0d4d9660e29dfa83466`; existing Cedar only. Capsule

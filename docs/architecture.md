@@ -1153,6 +1153,12 @@ can then publish a runtime. Consumer identity and the remaining budget are
 rechecked; partial outputs remain in that immutable request, without a retry.
 Legacy absent-policy requests keep their behavior. See
 [classified failures](cif-doctor.md#classified-optional-native-failures-and-original-fallback-c173).
+C174 expands the existing composer/preparer/complete-request cardinality to one
+through sixteen selected types, without a second execution or qualification path.
+All sites and exact source/attempt coverage remain required. New singleton artifacts
+need C174 readers; old multi-component records keep their layout and semantics.
+The separate ReadySet round-trip adapter retains its old minimum. See
+[single-component composition](cif-doctor.md#one-selected-component-through-the-complete-request-c174).
 
 
 

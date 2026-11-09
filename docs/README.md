@@ -7,96 +7,22 @@ milestone statements preserve their original scope; they are not a second queue.
 
 ## What's current?
 
-- **CIF Doctor:** the [current chemistry/support matrix](cif-doctor.md#current-capability-boundary)
-  distinguishes ordinary runtime, isolated components, linked diagnostics and
-  unresolved families. The [completion queue](cif-doctor-completion-queue.md) owns remaining work and
-  the [generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
-  summarize programme coverage. C133 connects explicit representation-qualified candidates
-  to source-preserving site preparation and tests retained stereocentres. C135
-  preserves that explicit policy through isolated storage and requalification.
-  C136 binds frozen storage to explicit current-site preparation and native
-  evidence. C137 adds explicit terminal-phosphate and custom-restraint context
-  with exact native consumption checks. C138 adds explicit full-model native
-  interpretation and complete residue identities while preserving old captures.
-  C139 composes multiple qualified components, preserves source phosphate names
-  at internal links and checks the final ReadySet/native result with a verified
-  fallback. C140 adds explicit lossless heavy-PDB serialization followed by the
-  unchanged strict final native comparison. C141 brings that exact selected model
-  and restraint bundle into public assessment with frozen source replay. Automatic
-  PostMR continuation/adoption remains separate. C142 adds exact graph-qualified
-  linked torsion energy attribution, a fresh PDU derivative pass on the repaired
-  mixed scaffold, and a source-preserving isolated ATL numerical control. The
-  C146 graph-bound arm/body seed connects ATL alongside the original eight pairs,
-  with both native links/eight junction angles, preserved source definitions and
-  exact NAR membership. C147 passes complete-policy numerical checks through a
-  generic native-capture API and adds an isolated/two-copy 10C transfer control.
-  C148 adds a bounded captured-manager geometry trial; endpoint dihedral and
-  line-search failures correctly withhold the candidate. Geometry-selected PDU/5PC
-  torsions match the declared-linear graph screen. C149 scans the complete explicit
-  bundle, qualifies both repairs and passes fresh derivatives/geometry mechanics.
-  The endpoint remains unconverged with pair strain; scientific qualification,
-  ordinary adoption and linked 10C construction remain open.
-  C150 closes the separate helper boundary with a bounded maintained native
-  attribution job and portable offline replay, reproducing all six proxy references.
-  C151 closes Q01 by retaining complete native identities through attribution,
-  derivatives and geometry readback. Q03 source-qualified repaired selection is
-  next; ordinary adoption/refinement remain separate. C152 implements a read-only
-  source-bound repair/fallback decision gate. A matching positive native join and
-  C141 publication were open at C152. C153 now qualifies exact-source saved
-  PDU/5PC complete-monomer candidates, proves their repaired selection and freezes
-  it for public replay. Q03 diagnostic composition is complete; Q04 acquisition
-  recovery is next. C154 closes the zero-parallelity derivative prerequisite and
-  publishes the original PDU/5PC context without adding restraints. The old mixed
-  scaffold's intended phosphate state stays Q13. C155 validates dictionary
-  snapshot destinations before acquisition. C156 shares campaign process ownership
-  with source-generation help/build, preserves immutable invocation records and
-  adds read-only stopped/live/unknown inspection. C157 binds explicit generation
-  requests to finite immutable attempts, persistent locks and dead-coordinator/
-  worker recovery checks. C158 joins explicit cache-first lookup, saved-byte
-  requalification and one owned generation attempt with independent native
-  qualification. C159 adds explicitly retained exact-source older-recipe fallback,
-  preserving the original producer and requalifying stale native evidence.
-  C160 runs prepared acquisitions through the maintained graph/native/source/
-  derivative and selection/publication chain, retaining an independently qualified
-  fallback when a valid improvement attempt fails. Discovery, complete acquisition
-  ownership/budget and ordinary cache-miss continuation remain Q04.
-  C161 closes Q02: curated bond/coordinate reading is independent of legal CIF
-  line wrapping, with the exact historical DZ failure replayed read-only.
-  C162 adds an optional shared prepared-repair allowance, with conservative native
-  limits and late-result refusal. Whole-acquisition ownership/recovery remain Q04.
-  C163 adds prepared-execution native ownership and read-only process inspection.
-  C164 adds frozen prepared requests, persistent locks, finite fresh numbered
-  attempts and conservative recovery inspection. Whole-acquisition recovery
-  across discovery and component qualification remains open.
-  C165 shares the process backend with a distinct two-job isolated qualification
-  owner and reader; legacy repair records remain compatible. The full callback
-  and acquisition-wide budget/recovery remain the next Q04 integration step.
-  C166 adds the maintained two-seed scientific callback, shared qualification
-  allowance and strict SDK-independent readback. Whole-acquisition coordination
-  remains open; qualification does not authorize ordinary adoption.
-  C167 adds a durable explicit single-component request across cache/generation/
-  qualification, shared limits, parent-bound children and exact-attempt readback.
-  Discovery and multi-component prepared-repair coordination remain Q04.
-  C168 freezes a complete explicit ordinary source selection before acquisition,
-  preserving precedence and allowing replay without live source discovery. This
-  is a preparation boundary, not complete multi-component request ownership.
-  C169 binds exact completed component attempts to source/model/site preparation
-  and the existing repair input. Real saved PDU/5PC preparation/repair and portable
-  replay pass; interrupted/deferred full regression is recorded in the handoff.
-  C170 adds parent identities and shrinking allowances to acquisition/repair
-  children, preserving their frozen limits and recovery checks. Real expiry,
-  fresh recovery, repair and cold replay pass; the complete outer owner remains open.
-  C171 adds the complete frozen request and explicit outer owner: persistent
-  component histories, reciprocal ownership, shared allowance and conservative
-  recovery. Real PDU/5PC expiry/recovery/repair and cold replay pass. Broader
-  fallback and ordinary adoption remain open; focused validation only.
-  C172 adds independent original qualification/publication and a frozen no-repair
-  mode for new complete requests. Actual positive/timeout controls and cold
-  legacy/new replay pass; early optional-capture fallback remains open.
-  C173 adds explicit classified optional-native fallback: exact stopped-failure
-  evidence plus independent original qualification, with no retry or budget reset.
-  Real first/later-stage and no-original controls replay cold; singleton composition
-  is next, with ordinary adoption still separate.
+- **CIF Doctor:** the [current support matrix](cif-doctor.md#current-capability-boundary)
+  distinguishes ordinary runtime, qualified diagnostic tools and unresolved
+  families. The [completion queue](cif-doctor-completion-queue.md) owns remaining
+  acceptance work; the [handoff](development-handoff.md) owns the tested/pushed edge.
+  The [complete request](cif-doctor.md#complete-frozen-dictionary-requests-c171)
+  freezes source/model/site/restraint intent and coordinates existing acquisition,
+  qualification, repair and immutable publication with shared ownership/budgets.
+  C172 proves originals without requiring repair; C173 permits only exact stopped
+  optional-native failures to reach independent original qualification; C174 uses
+  the same path for one selected component. Native controls and cold replay are
+  qualified in the [methods](cif-doctor.md#one-selected-component-through-the-complete-request-c174)
+  and [evidence ledger](cif-linked-native-registration-evidence.json). Ordinary
+  recovery/adoption, final refinement and broader chemical-state/scaffold proof
+  remain open. Full regression is deferred; the last completed baseline is C160.
+  Historical milestone-time next steps below the current support matrix are
+  evidence, not a parallel backlog.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

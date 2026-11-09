@@ -57,11 +57,10 @@ def test_multi_component_bundle_freezes_one_order_and_replays_cold(tmp_path):
     assert all(((out/p).read_bytes(),(out/p).stat().st_mtime_ns)==value for p,value in frozen.items())
 
 
-@pytest.mark.parametrize('defect',['single','duplicate','missing_site','wrong_site','missing_link','bad_context','consumer'])
+@pytest.mark.parametrize('defect',['duplicate','missing_site','wrong_site','missing_link','bad_context','consumer'])
 def test_ambiguous_or_inconsistent_components_do_not_publish(tmp_path,defect):
     from nasolve.cif_dictionary_bundle import prepare_dictionary_bundle
     args=fixture(tmp_path)
-    if defect=='single':args['components'].pop()
     if defect=='duplicate':args['components'][1]=deepcopy(args['components'][0])
     if defect=='missing_site':args['components'][0]['contexts'].pop()
     if defect=='wrong_site':args['components'][1]['contexts'][0]['site']='A:1'
@@ -121,3 +120,39 @@ def test_conflicting_component_modifiers_are_refused(tmp_path,monkeypatch):
     with pytest.raises(ValueError,match='Conflicting site modifier'):
         module.prepare_dictionary_bundle(output=tmp_path/'out',**args)
     assert not (tmp_path/'out').exists()
+
+
+def select_single_component(args, tmp_path):
+    """Declare one synthetic component, retaining both of its linked sites."""
+    args=deepcopy(args);args['components']=args['components'][:1]
+    args['model'].write_text(''.join(line for line in args['model'].read_text().splitlines(keepends=True)
+        if not line.startswith(('ATOM  ','HETATM')) or line[21]=='A'))
+    args['expected_links']=[['A:1','A:2']]
+    if 'source_selection' in args:
+        from nasolve.cif_acquisition_sources import freeze_acquisition_sources
+        args['source_selection']=tmp_path/'single-sources'
+        freeze_acquisition_sources(['ZZZ'],args['source_selection'],data_root=tmp_path/'data')
+    return args
+
+
+def test_single_component_keeps_all_sites_and_replays_without_originals(tmp_path):
+    from nasolve.cif_dictionary_bundle import prepare_dictionary_bundle,read_dictionary_bundle
+    args=select_single_component(fixture(tmp_path),tmp_path);out=tmp_path/'bundle'
+    report=prepare_dictionary_bundle(output=out,**args);loaded=read_dictionary_bundle(out)
+    assert report['components']==['ZZZ'] and report['site_owners']=={'A:1':'ZZZ','A:2':'ZZZ'}
+    assert report['expected_links']==[['A:1','A:2']] and report['automatic_adoption'] is False
+    assert len(loaded['before_dictionaries'])==1 and len(loaded['after_dictionaries'])==2
+    assert len(loaded['after_phils'])==2 and loaded['native_options']==dict(full_monomer_inventory=True)
+    frozen={p.relative_to(out):(p.read_bytes(),p.stat().st_mtime_ns) for p in out.rglob('*') if p.is_file()}
+    out=out.rename(tmp_path/'relocated');shutil.rmtree(tmp_path/'first');shutil.rmtree(tmp_path/'second');args['model'].unlink()
+    with patch('subprocess.Popen',side_effect=AssertionError('Read-only replay')):
+        assert read_dictionary_bundle(out)['report']==report
+    assert all(((out/p).read_bytes(),(out/p).stat().st_mtime_ns)==v for p,v in frozen.items())
+
+
+@pytest.mark.parametrize('count',[0,17])
+def test_composer_keeps_empty_and_oversized_requests_out(tmp_path,count):
+    from nasolve.cif_dictionary_bundle import prepare_dictionary_bundle
+    args=fixture(tmp_path);args['components']=[args['components'][0]]*count;out=tmp_path/'bundle'
+    with pytest.raises(ValueError):prepare_dictionary_bundle(output=out,**args)
+    assert not out.exists()

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Single-component complete requests (C174)
+
+- Accept one to sixteen selected component types in the existing composer,
+  exact-acquisition preparation and complete request. Preserve all declared sites,
+  source/attempt lineage, full-model qualification and existing upper/work bounds.
+- Keep existing schemas/layouts; singleton artifacts require C174 readers. Existing
+  multi-component requests remain compatible. The separate ReadySet round-trip
+  adapter and ordinary adoption defaults are unchanged.
+- Verify real isolated 5PC original and PDU repair routes, linked-site synthetic
+  ownership, cold legacy/new replay and focused tests. No full suite.
+- Consolidate Q04's duplicated milestone narrative into current acceptance gates;
+  retain exact historical methods/ledgers and keep unresolved chemistry explicit.
+
 ### Owned optional-native failure fallback (C173)
 
 - New complete requests freeze an explicit failure policy. After an exact,

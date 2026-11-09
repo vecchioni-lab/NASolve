@@ -399,3 +399,7 @@ existing selection/publication boxes are reused, with no second repair engine.
 C173 qualifies the existing failure-to-original edge with exact stopped native
 ownership and independent original proof. A generic exception does not traverse
 that edge. Failed work is preserved, and the selector/publisher remain shared.
+
+C174 lets a single selected component traverse the existing complete-request boxes;
+there is no extra singleton lane. Source/site and full-model native qualification
+remain mandatory, and the ordinary ReadySet/adoption boundary remains separate.

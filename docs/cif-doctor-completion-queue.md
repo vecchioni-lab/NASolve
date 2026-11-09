@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-09, after C173.** This queue owns unfinished
+**Current planning authority, 2026-11-09, after C174.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -117,184 +117,51 @@ ordinary adoption is Q05 and the actual refinement consumer is Q06.
 
 ### Q04 — Bounded automatic recovery and durable attempts
 
-**Open; active next package. Q03 diagnostic composition is complete; broader state cases depend on Q13.** Connect existing
-source-preserving generation, representation policies, graph-selected repairs
-and dictionary storage on ordinary cache misses or stale qualifications.
-[`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) currently reuses a narrow
-qualified recipe and intentionally skips explicit representation-policy entries;
-it neither generates a missing repair nor proves the ordinary fallback usable.
-C153 demonstrates exact-source cache reuse after a bounded PDU timeout; ordinary
-orchestration should consult that store before generation. A cache hit supplies
-a candidate; it does not replace current source/site/derivative qualification or
-a newly applicable graph-repair check. Preserve the failed
-attempt and require a dead owned process before any fresh retry. The current
-captured derivative adapter now qualifies genuine zero-parallelity contexts at
-C154: the preserved exact-source PDU/5PC control passes fresh derivatives and
-publication without an added custom request. This is one closed prerequisite,
-not completion of Q04. Optional nonbonded-inventory captures still need support;
-zero-context geometry trials remain unqualified and must not inherit a legacy
-plane-correction proof. C153's declared NAR numerical control is evidence for
-its own context, never an automatic workaround for a model with no custom restraints.
+**Open: the explicit engine is implemented; ordinary entry-point integration remains.**
+Q03 diagnostic composition is complete. The current acceptance state is below;
+the earlier C155–C173 narrative is retained in Git and the detailed
+[methods](cif-doctor.md#complete-frozen-dictionary-requests-c171)/
+[evidence ledger](cif-linked-native-registration-evidence.json), rather than repeated
+as competing next-step instructions here.
 
-C155 closes one shared-resolver preflight gap: invalid snapshot parents now
-refuse before cache lookup or acquisition/requalification callbacks. Valid
-read-only misses remain non-mutating, and freezing rechecks the destination.
-This is not durable reservation, process ownership or automatic recovery; those
-acceptance gates remain open under this same package.
+| Acceptance boundary | Current evidence and scope |
+| --- | --- |
+| Frozen source and numerical identity | C155/C158/C159/C168 validate destinations, preserve curated/local/configured-CCD precedence, freeze the complete source set, reuse current exact-source candidates, requalify stale evidence and retain original recipe/producer/representation permission. No live rediscovery during replay or arbitrary source fallback. |
+| Durable ownership and recovery | C156/C157/C163–C167 share campaign process cleanup, persistent locks, immutable numbered attempts and exact parent/child identities. Fresh attempts require known-inactive previous owners/workers; unknown publication/cleanup remains blocked. Prior partial outputs never change. |
+| Complete bounded request | C169–C171 join exact successful acquisitions, model/sites, ordered PHIL, preparation and repair. Reciprocal parent ownership is durable; persistent component/generation histories prevent resetting attempts. One shared allowance includes final scientific replay/inventory. Local work and cleanup remain cooperative, not a hard deadline. |
+| Scientific selection and immutable output | C160/C172 share source/site/full-native/derivative checks, selector and publisher. No-graph originals need independent proof. Only qualified selected model/CIF/PHIL bundles publish; negative results can truthfully return no usable bundle. |
+| Optional failure and original fallback | C173 binds optional native timeout or complete failed/unsupported worker evidence to the exact known-stopped job, declared inputs and maintained worker. Current consumer and independent original proof remain mandatory. Valid negative attribution/derivative results use the existing selector. Initial failures, malformed/contradictory reports, interruption and unknown cleanup remain blocking. No retry or renewed allowance. |
+| One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. The separate ReadySet round-trip adapter still requires 2–16. |
 
-C156 closes the explicit source-generator invocation boundary: shared campaign
-cleanup handles help/build SIGTERM, interruption and timeout; immutable intent,
-child identity and verified-stop records survive partial execution. Read-only
-inspection distinguishes old/missing, live, stopped and unknown evidence. Both
-phases share one execution budget. Actual 5PC completion and deliberate PDU
-timeout pass under Phenix 2.2.1-6174 without promoting chemical usability.
+**Next bounded checkpoint:** connect ordinary source/cache acquisition to this
+existing complete request, using declared model/recipe site and chemical intent.
+Keep source precedence, exact recipe/consumer checks, persistent attempt identity
+and independent usable-original proof. Exercise current hit, stale qualification,
+miss, classified repair failure and no-usable result through that entry point;
+do not implement a second acquisition loop or relax the old cache filter by itself.
+The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
+reuse-only adapter and skips explicit representation-policy entries. Ordinary
+ReadySet continuation and immutable checkpoint adoption remain **Q05**.
 
-C157 closes the explicit generation-request ownership layer: frozen exact source,
-recipe/native pins and attempt allowance; a persistent shared lock; immutable
-numbered attempts; and read-only recovery observations. Unsealed attempts require
-both coordinator and worker inactivity; publication gaps remain blocked. Explicit
-retries preserve partial output and consume a fresh reservation. A real macOS
-timezone identity regression is fixed. Separate request directories remain
-separate coordination scopes, and the legacy one-shot API remains available.
+**Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not
+qualify zero-context geometry or optional nonbonded-inventory captures. A required
+NAR restraint must never be silently omitted to fit a proven context. Source/state,
+site, order, policy/tool identity and coordinates where relevant invalidate reuse.
+Current fresh-generation success is contextual: C158 demonstrated 5PC generation,
+while C167's fresh 5PC control exhausted an eight-second generation allowance
+without retaining a candidate. Its hash-verified receipt and stopped-process seal
+show a bounded timeout, not a demonstrated chemistry failure or a contradiction
+of C158's success. Neither control establishes universal generation success.
+No maximum-size throughput, new family, Linux-native or ordinary refinement claim
+follows from these controls. Existing artifact caps and all source-chemistry gates
+remain. Q13 owns unresolved chemical states; Q06 the actual refinement consumer;
+Q07 mixed/held-out scaffolds; Q16 the eventual full integration regression.
 
-C158 closes the explicit cache-first generation bridge: a current hit skips
-generation, stale consumer evidence requalifies saved copies first, and a miss
-performs one owned attempt plus independent chemical/native qualification.
-Its distinct recipe maps source authority, dialect, steps and representation
-permission; old recipes/producer identities are not silently relabelled. Actual
-5PC generation/qualification/reuse and bounded PDU failure pass, with cold cache
-reuse after relocation. This is an explicit component API, not ordinary adoption.
-
-C159 closes the explicit retained-candidate bridge on a generation-recipe miss.
-An exact-source/authority snapshot with matching representation permission keeps
-its original recipe/producer/stopping proof. Current evidence is reused; stale
-consumer/policy evidence is requalified on disposable copies. Recorded C153 PDU
-and 5PC candidates pass fresh isolated native controls. The old failed PDU request
-stays unchanged; no new generation is needed. Current generation-recipe entries
-retain precedence. C159 compatibility replay reproduces C153's prepared model,
-ordered CIF/PHIL bytes and both graph-repair steps exactly; no new whole-bundle
-native or derivative qualification is claimed. This does not scan for candidates or recover from a failed
-new qualification by silently trying another source.
-
-C160 provides the maintained prepared-bundle repair executor. C159 acquisition
-snapshots enter existing preparation; full native source/site checks, graph stages,
-attribution, original/repaired derivatives and C152/C153 selection/publication now
-run together. Valid failed improvement records can retain an independently
-qualified original. Contradictory evidence and early native-stage failures stop
-without a success claim. No graph fault launches no native job and remains a
-non-selection, not automatic whole-bundle qualification. No scientific gate or
-worker is replaced.
-
-C162 closes the prepared-executor elapsed-allowance sub-gate: an optional
-monotonic allowance begins before preflight, caps each worker to whole seconds
-remaining, and refuses later work/completion when exhausted. Partial output,
-including any late publication, remains intact and grants no retry permission.
-Local work and cleanup remain cooperative; this is not whole-acquisition process
-ownership or a hard deadline. Default per-phase behavior remains available.
-
-C163 closes prepared-execution native process evidence: capture, derivatives and
-attribution use campaign cleanup with durable identities and verified-stop seals.
-Read-only inspection checks coordinator/worker inactivity without granting retry;
-missing publication and unknown cleanup remain unresolved. Scientific artifacts,
-selection and source authority are unchanged.
-
-C164 closes the explicit prepared-request layer: exact bundle/limits frozen under
-one logical request, persistent lock, finite immutable numbered attempts and
-request/attempt bindings in C163 execution evidence. An explicit retry gets a
-fresh directory only after the previous outer coordinator and workers are known
-stopped; no prior record is repaired. Unknown publication stays blocked. Actual
-Phenix interruption followed by a successful fresh attempt retains the first
-attempt byte-for-byte. The total allowance applies per prepared execution, not
-the complete acquisition request.
-
-C165 closes the shared process-backend prerequisite for independent qualification:
-a distinct input-bound owner permits the two native phases, records durable
-identity/cleanup, and reads without mutation. Four actual PDU/5PC jobs and cold
-legacy/new replay pass. The scientific callback is still supplied by callers;
-process completion does not establish usability, and this owner has no total budget.
-
-C166 closes that maintained callback/allowance/readback sub-gate. Both source and
-candidate coordinates must pass the unchanged scientific checks with matching
-covalent proxies. The callback feeds the existing store; exact recipes/producers
-survive fresh qualification and subsequent cache hits run no native job. Portable
-readback independently rederives the result. Its total allowance covers this
-qualification only, with final atomic publication/cleanup remaining cooperative.
-
-C167 closes the explicit single-component acquisition request sub-gate: frozen
-source/recipe/consumer/retained inputs, persistent locking, finite fresh attempts,
-one shared generation request and parent-bound maintained qualification. One
-cooperative per-call allowance crosses those stages; late output grants no success.
-Read-only exact-attempt replay validates completed scientific evidence. Recovery
-requires known-inactive owners/workers; prospective child numbers cannot replace
-durable parent identity. Real PDU interruption/recovery and PDU/5PC qualification/
-cache controls pass. Fresh 5PC generation still fails without a retained candidate;
-the failure is safely preserved, not evidence of generated-chemistry usability.
-
-C168 closes the frozen source-selection input boundary. It reuses ordinary
-curated/local/configured-CCD precedence, validates the complete batch and detects
-source or precedence changes before completion. Interrupted copies remain intact;
-strict portable replay supplies exact source/authority to C167 without rediscovery.
-DF/PDU/5PC/ATL source selection and cold replay pass. This does not establish native
-usability or own the complete acquisition request.
-
-C169 closes the exact-acquisition to model/site preparation bridge. Complete
-selected source coverage, exact successful attempt identities, source authority,
-current consumer and explicit site/native/PHIL context are frozen and checked by
-the existing preparer. Portable replay retains that lineage. The existing C164
-repair API consumes the output; actual PDU/5PC preparation reproduces the previous
-scientific inputs and all seven native repair phases pass. This is explicit
-composition, not full-request ownership or ordinary adoption.
-
-C170 closes a prerequisite exposed while composing that coordinator: acquisition
-and prepared-repair children now accept the enclosing attempt claim and remaining
-allowance without changing persistent limits or resetting generation attempts.
-Native PDU expiry/fresh recovery plus PDU/5PC preparation/repair and portable replay
-pass. The supplied parent claim still needs reciprocal verification by the outer
-owner; callbacks are not durable recovery evidence.
-
-C171 closes that complete explicit request/owner sub-gate. Sources, model/site/
-restraint context, recipes and limits freeze before child work. Persistent component
-requests retain generation counts across immutable outer attempts; actual parent
-and coordinator records bind children reciprocally. The shared allowance includes
-final scientific replay/inventory. Unknown shared generation blocks reservation,
-and known-dead recovery preserves every partial. Actual PDU/5PC expiry/fresh
-recovery, seven-stage repair and cold replay pass; no chemistry scope is expanded.
-
-C172 closes independent original qualification/publication and the no-graph
-request sub-gate. New complete requests freeze that mode and run baseline,
-prepared and original-derivative checks even when the graph has no repair.
-Existing source/native/selection/publisher machinery is shared; malformed proof
-still raises. Actual clean PDU/5PC and derivative-timeout controls produce a
-qualified original and no usable bundle respectively. Legacy requests keep their
-old absent-mode behavior, and all three publication/request paths replay cold.
-
-C173 closes classified optional-native fallback in the explicit complete request.
-An exact timeout or complete failed/unsupported report must match a launched,
-known-stopped owned job, unchanged declared inputs and the maintained worker.
-Contradictory claims, malformed evidence, initial-stage failure, interruptions and
-unknown cleanup remain blocking. The original's independent proof and current
-consumer are rechecked; only that original can be selected. The failed attempt is
-preserved without renewed time or native retry. Actual first/later-stage and
-no-usable-original controls plus legacy/cold replay pass. Existing valid negative
-attribution/derivative reports continue through their established selector.
-
-**Next bounded checkpoint:** qualify one selected modified component through the
-complete path, which currently requires two to sixteen. Reuse the single-component
-preparation contract or validate a broader composer boundary; no dummy component.
-Then connect the explicit engine to ordinary recovery without weakening source,
-state, site or consumer identity. Ordinary adoption remains Q05, final refinement
-consumer proof Q06, and larger/held-out requests Q07/Q16. Existing artifact bounds
-still apply; no maximum-size throughput claim is made. Unknown operational or
-malformed-evidence failures are deliberately not converted into fallback.
-
-Done when cache hit, cache miss, stale consumer, bounded repair failure and no
-usable candidate produce deterministic, truthful outcomes. Reuse passing content;
-invalidate by source/state/site/order/policy/tool identity, and by coordinates
-where relevant. Freeze chosen files into the run. Preserve durable attempt IDs,
-process ownership and every partial output; a retry gets a fresh identity only
-after the previous process is known dead. Test interruption, overlapping requests,
-repeated selection and budget exhaustion. Reuse campaign ownership machinery
-where appropriate; do not implement an unbounded repair loop or a second force field.
+**Done when** ordinary cache hit, miss, stale consumer, bounded repair failure and
+no usable candidate produce deterministic truthful outcomes using this engine,
+with selected inputs frozen into the run and interruption/overlap/recovery/budget
+controls passing. No unbounded repair loop, second force field, in-place retry or
+inference that process completion equals chemical usability.
 
 ### Q05 — Ordinary PostMR continuation and immutable adoption
 
@@ -539,7 +406,7 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. C170–C173 also have focused/native/cold validation only,
+Cedar/pine/main merge candidate. C170–C174 also have focused/native/cold validation only,
 with no full suite requested. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,

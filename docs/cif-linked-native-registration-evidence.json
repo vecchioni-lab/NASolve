@@ -70648,5 +70648,500 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-09T15:36:13.879174+00:00"
+  },
+  "single_component_complete_request_2026_11_09": {
+    "milestone": "C174",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "4a293e15b33d645dbcadbb6906ba6f2a1e85b761",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Composer/preparer/complete request required two selected types despite existing single-component acquisition/site support.",
+    "after": "One to sixteen selected types traverse the same complete request, preserving all declared sites and exact source/attempt ownership; actual singleton original/repair routes qualify.",
+    "prior_work": [
+      "C139 composer",
+      "C154 zero-parallelity derivatives",
+      "C167 single component acquisition",
+      "C169 preparation",
+      "C171 complete request",
+      "C172 originals",
+      "C173 optional failure"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "src/nasolve/cif_acquisition_preparation.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_dictionary_bundle.py",
+      "tests/test_cif_acquisition_preparation.py",
+      "tests/test_cif_complete_request.py",
+      "tests/test_cif_dictionary_bundle.py"
+    ],
+    "schemas": [
+      "No schema/policy/layout change; accepted component cardinality expands 2–16 to 1–16"
+    ],
+    "compatibility": "Singleton artifacts require C174 readers; existing multi-component artifacts and C172/C173 mode semantics unchanged; separate ReadySet round-trip adapter remains 2–16",
+    "regression": {
+      "before": "3 expected lower-bound failures",
+      "new_cases": 5,
+      "obsolete_cases_removed": 1,
+      "affected": {
+        "active": false,
+        "pid": 92207,
+        "runner_pid": 92204,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_dictionary_bundle.py",
+          "tests/test_cif_acquisition_preparation.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_outer_context.py",
+          "tests/test_cif_dictionary_bundle_repair.py",
+          "tests/test_cif_original_component_runtime.py",
+          "tests/test_cif_repaired_component_runtime.py",
+          "tests/test_cif_acquisition_sources.py",
+          "tests/test_cif_dictionary_sites.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/174_Cedar_single-component-jrmp3vuf/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-09T15:39:44.956253+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 164.27,
+        "sources_unchanged": true,
+        "source_files": 621
+      },
+      "affected_summary": "309 passed in 164.13s (0:02:44)",
+      "focused": {
+        "active": false,
+        "pid": 93097,
+        "runner_pid": 93096,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/174_Cedar_single-component-jrmp3vuf/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-09T15:43:11.401063+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 343.563,
+        "sources_unchanged": true,
+        "source_files": 621
+      },
+      "focused_summary": "1566 passed, 45 subtests passed in 343.33s (0:05:43)",
+      "source_files": 621,
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 73.0207877080029,
+      "controls": {
+        "original": {
+          "component": "5PC",
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "repair_steps": 0,
+          "native_phases": [
+            "native-000",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "all_children_stopped": true,
+          "model_bytes_unchanged": true,
+          "custom_restraints": "EXPLICITLY_ABSENT_IN_NEW_ISOLATED_CONTROL",
+          "native_context": "FULL_MODEL",
+          "dictionary_count": 1
+        },
+        "repair": {
+          "component": "PDU",
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "repair_steps": 1,
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient",
+            "repaired-gradient"
+          ],
+          "all_children_stopped": true,
+          "model_bytes_unchanged": true,
+          "custom_restraints": "EXPLICITLY_ABSENT_IN_NEW_ISOLATED_CONTROL",
+          "native_context": "FULL_MODEL",
+          "dictionary_count": 1
+        }
+      },
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "ISOLATED_SINGLE_COMPONENT_COMPLETE_REQUEST; NOT_LINKED_POLYMER_OR_ORDINARY_ADOPTION"
+    },
+    "relocation": {
+      "status": "PASS",
+      "cases": {
+        "original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "components": [
+            "5PC"
+          ],
+          "selected": "verified_prepared_bundle"
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "components": [
+            "PDU"
+          ],
+          "selected": "repaired_prepared_bundle"
+        },
+        "legacy173": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "components": [
+            "5PC",
+            "PDU"
+          ],
+          "selected": "verified_prepared_bundle"
+        },
+        "legacy172": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "components": [
+            "5PC",
+            "PDU"
+          ],
+          "selected": "verified_prepared_bundle"
+        },
+        "legacy171": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "components": [
+            "5PC",
+            "PDU"
+          ],
+          "selected": "repaired_prepared_bundle"
+        }
+      },
+      "parent_binding_preserved": true,
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 2759
+    },
+    "evidence_refs": {
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/affected-r1-result.json",
+        "sha256": "60e418aa884b13f844a5676d8626fc38a00da6427a83aa1470e3399bc3266714",
+        "size": 960
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/affected-r1-sources.json",
+        "sha256": "471bb258e2c6333445555c3485d49a2ef497f9236d2e215cf5fbe9c2a4432297",
+        "size": 67821
+      },
+      "affected-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/affected-r1.log",
+        "sha256": "32d8781792ff9f529fff817ab2649f6ffd332955ed94aba7c0b8ac794e4057f0",
+        "size": 432
+      },
+      "affected-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/affected-r1.xml",
+        "sha256": "82bebe8b0322a906ec6cb684f51a424924f6afa7c7f7ade6042fb530204cb35a",
+        "size": 45943
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/before-r1-result.json",
+        "sha256": "417188bd513b741c37dcc0f86658ba920d86fec1b7cd1046b829aee0e92f0e54",
+        "size": 875
+      },
+      "before-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/before-r1-sources.json",
+        "sha256": "f7f763d9baad4012f283309b520eed8e1114810f65350cb13d5cdcd5872120c0",
+        "size": 67821
+      },
+      "before-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/before-r1.log",
+        "sha256": "4fe42436779ef0ac70579fcf1bdcd02cdb85f2b3e42455748a27ad1a1a95d326",
+        "size": 5535
+      },
+      "before-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/before-r1.xml",
+        "sha256": "0cacc321c6feb525c200b77adcd795937fd53af60226b35cbe981bde874a8482",
+        "size": 5697
+      },
+      "cold-r1/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/cold-r1/stderr.txt",
+        "sha256": "0a039c94690e545937bb814d4c1102bf49cad826d1e2d06ad4e08956ef81f825",
+        "size": 729
+      },
+      "cold-r1/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/cold-r1/stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold-r2/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/cold-r2/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold-r2/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/cold-r2/stdout.txt",
+        "sha256": "251f85f3e84554d1f2456ef14644f2fcdc05b6ad416331504c4c426b2f428cd8",
+        "size": 805
+      },
+      "cold-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/cold-r2/summary.json",
+        "sha256": "37c3a25e8217bba836351e55e416f737277dad6ba8e343528c34d608595a4e6f",
+        "size": 1069
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/focused-r1-result.json",
+        "sha256": "a8cfef94435ace2ba4b6d5215bf0887f54d4bc4ee1993b93c453680ba5c0068b",
+        "size": 495
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/focused-r1-sources.json",
+        "sha256": "471bb258e2c6333445555c3485d49a2ef497f9236d2e215cf5fbe9c2a4432297",
+        "size": 67821
+      },
+      "focused-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/focused-r1.log",
+        "sha256": "316be554102b7c55aef7d1953aeb96af7344ee29d1c68be8a428d33ce8b90580",
+        "size": 6372
+      },
+      "focused-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/focused-r1.xml",
+        "sha256": "708b03a49c14299c86c631eec9823041fb2507791a3224adea7e7aa57c38d0de",
+        "size": 234419
+      },
+      "native-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-r1/original/isolated.pdb": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/isolated.pdb",
+        "sha256": "c0e82d8c334956e824532db34a86febcdadae2d9c025964606f6381041297079",
+        "size": 3085
+      },
+      "native-r1/original/public-assessment.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/public-assessment.json",
+        "sha256": "7a0ec3fc6b9c41ba9899d3c12835fcbe60a13869f038e600b086dda0c7ca468d",
+        "size": 102881
+      },
+      "native-r1/original/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/request/attempts/attempt-0001/attempt.json",
+        "sha256": "6bbcc8dc3519130fbab8e6dad217a7bb0992e3b0b38e547f9769ae27817cdfda",
+        "size": 613
+      },
+      "native-r1/original/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/request/attempts/attempt-0001/finished.json",
+        "sha256": "d5b550abb03290eba6054807258f07fdc1504f0e0ef8f441ab67e240359a5c45",
+        "size": 64586
+      },
+      "native-r1/original/request/attempts/attempt-0001/preparation/acquisition_preparation.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/request/attempts/attempt-0001/preparation/acquisition_preparation.json",
+        "sha256": "3b2bfef1b8648dd10ccbd2e288cccb4b46b38f4eb8d343b1a7c4ffe2c3e8433b",
+        "size": 18933
+      },
+      "native-r1/original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "a2150e58e400fdf40a0c0dd738b912554e8ff11b3168b0d27680b090fde49496",
+        "size": 23044
+      },
+      "native-r1/original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json",
+        "sha256": "f4a325060e9a1ddf92af9ccb9305c880ee084dcbfdd55b63c7a46215b800f57f",
+        "size": 41375
+      },
+      "native-r1/original/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/request/attempts/attempt-0001/result.json",
+        "sha256": "34f6bfc60aa3d16f185e9dc36b2593c723d514bc5b61d33465554c5ed573f475",
+        "size": 573
+      },
+      "native-r1/original/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/original/request/request.json",
+        "sha256": "fda673ef5f165c9028aaa4ad8263107072a33d6f4441728eb4017421f5a14523",
+        "size": 27047
+      },
+      "native-r1/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/parent-inputs.json",
+        "sha256": "f46b84fdd7a9a89339c7eb46109f2a4b4410fc62b7af5c9b52887db6d16cccf6",
+        "size": 269673
+      },
+      "native-r1/repair/isolated.pdb": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/isolated.pdb",
+        "sha256": "68a3916a52f50bde7e03e1b7687348aa22b12a66295ae3c91a35fb0ce913c5dc",
+        "size": 3006
+      },
+      "native-r1/repair/public-assessment.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/public-assessment.json",
+        "sha256": "6049aa9c24d9655b9fde3b67836233d60ee399dadd975d3878c5548679ab09cf",
+        "size": 100343
+      },
+      "native-r1/repair/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/request/attempts/attempt-0001/attempt.json",
+        "sha256": "1aaa22aa4c091b092d29552652b9057f078f3dd77326621d52177569d94f0df4",
+        "size": 613
+      },
+      "native-r1/repair/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/request/attempts/attempt-0001/finished.json",
+        "sha256": "ef8a36351541d54b761a847052b04f7d4d02c89156d95ffb299a35c074b70ef5",
+        "size": 95750
+      },
+      "native-r1/repair/request/attempts/attempt-0001/preparation/acquisition_preparation.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/request/attempts/attempt-0001/preparation/acquisition_preparation.json",
+        "sha256": "f65ef6b318b839ba0cb84b70da58ab72995b5f92c6eb60197719845dbf88113a",
+        "size": 18939
+      },
+      "native-r1/repair/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "04cd2d83ca9fcc693c8e092ec925f07e6898fa450382f43a65f0164fbb447905",
+        "size": 23346
+      },
+      "native-r1/repair/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json",
+        "sha256": "f024f3d95ab8552e0e8ca115174d78335db66ad3c12e4d982f39ac3e389ffe5a",
+        "size": 53002
+      },
+      "native-r1/repair/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/request/attempts/attempt-0001/result.json",
+        "sha256": "016326f38f7a81444f275d94f3bc0243c3b27edf4b6a862f410da8cd15b0aefd",
+        "size": 573
+      },
+      "native-r1/repair/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/repair/request/request.json",
+        "sha256": "1e64c23827ef44d5afcbe197380b59f325c0617d700265d0a14ce833e5d4683b",
+        "size": 26746
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/runtime-sources.json",
+        "sha256": "f85f833f5da84ed4d8959a6da6be9a22d6e7dd21184c543fc6e8f3d2a370d10b",
+        "size": 22211
+      },
+      "native-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/native-r1/summary.json",
+        "sha256": "79ac08c28bce76c67b90cdfc0157be1e7a637cc29efc34a4ba630f3d1914bdb5",
+        "size": 1424
+      },
+      "prior-work-audit.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/prior-work-audit.json",
+        "sha256": "62b50243fd7c9879f6b8bfde37ccdede5ebe1c1ace08981a42b87598f2f72239",
+        "size": 1622
+      },
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "174_Cedar_single-component-jrmp3vuf/start.json",
+        "sha256": "d8557577fa84830dacb38f8b3dca22b4989c74a8b302ef58209c7ca4ed7881c5",
+        "size": 463
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_dictionary_bundle.py",
+        "tests/test_cif_acquisition_preparation.py",
+        "tests/test_cif_complete_request.py",
+        "tests/test_cif_outer_context.py",
+        "tests/test_cif_dictionary_bundle_repair.py",
+        "tests/test_cif_original_component_runtime.py",
+        "tests/test_cif_repaired_component_runtime.py",
+        "tests/test_cif_acquisition_sources.py",
+        "tests/test_cif_dictionary_sites.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/174_Cedar_single-component-jrmp3vuf/affected-r1.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/174_Cedar_single-component-jrmp3vuf/focused-r1.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c174_native.py native-r1",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c174_cold.py cold-r2"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "narestraints": "1.1.3",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual execution",
+      "platform": "macOS arm64"
+    },
+    "redundancy_review": "Existing source/site validators, owners and selector reused; obsolete cardinality test retired; current Q04/map/matrix reconciled while historical methods and ledgers retained",
+    "artifacts": "Source/tests/docs/hash references only; scientific payload/logs/XML/runners/copied checkout local",
+    "limitations": [
+      "Ordinary source/cache entry-point integration remains Q04; ReadySet/checkpoint adoption Q05 and actual refinement consumer Q06",
+      "Separate cif_postmr_readyset adapter retains 2–16 minimum",
+      "Native singleton controls are isolated; linked two-site coverage is synthetic",
+      "No new family, chemical state, Linux-native or ordinary refinement claim",
+      "Existing artifact and cooperative time bounds remain",
+      "No full suite; C160 remains last completed full baseline"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-09T15:49:42.011725+00:00"
   }
 }

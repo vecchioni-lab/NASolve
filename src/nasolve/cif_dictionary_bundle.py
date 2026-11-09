@@ -38,9 +38,9 @@ def _context(context):
 
 def _children(root, controls):
     codes = controls['components']
-    _need(isinstance(codes, list) and 2 <= len(codes) <= 16
+    _need(isinstance(codes, list) and 1 <= len(codes) <= 16
         and all(isinstance(c, str) and c.isascii() and c.isalnum() and 1 <= len(c) <= 3 for c in codes)
-        and codes == sorted(set(codes)), 'Require two to sixteen unique ordered components')
+        and codes == sorted(set(codes)), 'Require one to sixteen unique ordered components')
     _consumer(controls['consumer']); _context(controls['native_context'])
     model = _read(root/'inputs/model.pdb')
     children = []; owners = {}; modifiers = set()
@@ -110,7 +110,7 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
         native_context, supplementary_phils=()):
     """Publish a fresh composition; no native execution or automatic adoption.
 
-    Each component is an explicit snapshot/contexts/optional terminal_resource
+    One to sixteen components each supply a snapshot/contexts/optional terminal_resource
     mapping. Every site of each selected code must be declared. Shared PHILs keep
     their caller order; component dictionaries are ordered by code, with active
     modifiers adjacent and the full-model interpretation policy last.
@@ -118,8 +118,8 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
     output = Path(output).absolute()
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
     _need(not any(p.is_symlink() for p in output.parents), 'Unsafe bundle destination')
-    _need(isinstance(components, (list, tuple)) and 2 <= len(components) <= 16,
-        'Require two to sixteen explicit components')
+    _need(isinstance(components, (list, tuple)) and 1 <= len(components) <= 16,
+        'Require one to sixteen explicit components')
     _consumer(consumer); _context(native_context)
     selected = {}
     for item in components:

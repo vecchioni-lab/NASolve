@@ -28119,6 +28119,25 @@
         "No new family, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
         "Cooperative budgets and existing artifact caps remain"
       ]
+    },
+    "single_component_complete_request": {
+      "milestone": "C174",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 singleton boundary closed in demonstrated scope; ordinary entry-point recovery next",
+      "contract": "docs/cif-doctor.md#one-selected-component-through-the-complete-request-c174",
+      "evidence_key": "single_component_complete_request_2026_11_09",
+      "summary": "One to sixteen selected types traverse the same complete request, preserving all declared sites and exact source/attempt ownership; actual singleton original/repair routes qualify.",
+      "implementation_revision": null,
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "Ordinary source/cache entry-point integration remains Q04; ReadySet/checkpoint adoption Q05 and actual refinement consumer Q06",
+        "Separate cif_postmr_readyset adapter retains 2–16 minimum",
+        "Native singleton controls are isolated; linked two-site coverage is synthetic",
+        "No new family, chemical state, Linux-native or ordinary refinement claim",
+        "Existing artifact and cooperative time bounds remain",
+        "No full suite; C160 remains last completed full baseline"
+      ]
     }
   },
   "audience": [

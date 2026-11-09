@@ -425,3 +425,21 @@ def test_complete_request_refuses_unknown_failure_policy(case,policy):
     m,args,root,sdk,store,generations,calls=case
     with pytest.raises(ValueError):m.initialize_dictionary_request(output=root,**dict(args,optional_failure_policy=policy))
     assert not (root/'request.json').exists() and not calls
+
+
+def test_single_complete_request_keeps_owned_children_and_replays_cold(case,tmp_path):
+    from unittest.mock import patch
+    from tests.test_cif_dictionary_bundle import select_single_component
+    m,args,root,sdk,store,generations,calls=case;args=select_single_component(args,tmp_path)
+    m.initialize_dictionary_request(output=root,**args)
+    result=m.execute_dictionary_request_attempt(root,sdk,store,generation={'ZZZ':generations['ZZZ']})
+    state=m.inspect_dictionary_request(root);row=state['attempts'][0]
+    assert set(row['children'])=={'ZZZ','repair'} and all(c['state']=='STOPPED' for c in row['children'].values())
+    exact=m.read_dictionary_request_result(root,1)
+    assert exact['preparation']['bundle']['report']['site_owners']=={'A:1':'ZZZ','A:2':'ZZZ'}
+    assert result['result']['selected_attempts']=={'ZZZ':1} and result['result']['automatic_adoption'] is False
+    before=inventory(root);root=root.rename(tmp_path/'relocated');shutil.rmtree(args['source_selection']);args['model'].unlink();shutil.rmtree(store)
+    for item in args['components']:shutil.rmtree(item['retained_snapshot'])
+    with patch('subprocess.Popen',side_effect=AssertionError('Cold replay must not execute')):
+        assert m.read_dictionary_request_result(root,1)['result']==result['result']
+    assert inventory(root)==before

@@ -52,7 +52,7 @@ def _bindings(root, controls):
         'Unexpected acquired preparation controls')
     sources = read_acquisition_sources(root/'inputs/sources')
     codes = controls['components']
-    _need(codes == sources['report']['components'] and 2 <= len(codes) <= 16
+    _need(codes == sources['report']['components'] and 1 <= len(codes) <= 16
         and isinstance(controls['sites'], dict) and set(controls['sites']) == set(codes),
         'Acquisition/source component coverage differs')
     _consumer(controls['consumer']); _context(controls['native_context'])
@@ -158,7 +158,7 @@ def prepare_acquired_dictionary_bundle(source_selection, components, model, outp
     _consumer(consumer); _context(native_context)
     source_selection = _root(source_selection); selected = read_acquisition_sources(source_selection)
     codes = selected['report']['components']
-    _need(isinstance(components,(list,tuple)) and 2 <= len(components) <= 16, 'Require two to sixteen acquired components')
+    _need(isinstance(components,(list,tuple)) and 1 <= len(components) <= 16, 'Require one to sixteen acquired components')
     trees = {'sources':source_selection}; sites = {}; resources = {}; originals = {Path(model):_read(model)}
     for item in components:
         _need(isinstance(item,dict) and {'code','request_directory','attempt_number','contexts'} <= item.keys()

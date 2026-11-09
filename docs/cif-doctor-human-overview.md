@@ -3730,8 +3730,11 @@ requests remain unchanged. C173 now distinguishes exact stopped optional-native
 failures from corrupt evidence. A failed repair can retain the separately proven
 original, with every partial output preserved and no retry or extra allowance.
 Actual failures at two repair stages pass that fallback; an unqualified original
-still produces no usable bundle. Singleton composition, ordinary PostMR adoption
-and final refinement-consumer qualification remain in the queue. See the
+still produces no usable bundle. C174 now carries one selected component type
+through that same engine, retaining every declared site. Real isolated 5PC and PDU
+controls qualify the original and repair routes; they do not establish new linked
+polymer or ordinary refinement support. Ordinary PostMR recovery/adoption and final
+refinement-consumer qualification remain in the queue. See the
 [independent-original method](cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172).
 The [complete-request contract](cif-doctor.md#complete-frozen-dictionary-requests-c171)
 records the scope, limits and validation.

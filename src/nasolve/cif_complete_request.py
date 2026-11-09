@@ -1,4 +1,4 @@
-"""Explicit frozen multi-component acquisition/preparation/repair requests.
+"""Explicit frozen one-or-more-component acquisition/preparation/repair requests.
 
 No source rediscovery, automatic retry, ordinary adoption or chemistry policy is
 implemented here. Existing child owners and scientific readers remain authoritative.
@@ -68,7 +68,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
           'Unexpected complete-request controls')
     _consumer(controls['consumer']); _context(controls['native_context'])
     selected = read_acquisition_sources(inputs/'sources'); codes = selected['report']['components']
-    _need(2 <= len(codes) <= 16 and isinstance(controls['sites'],dict) and set(controls['sites']) == set(codes),
+    _need(1 <= len(codes) <= 16 and isinstance(controls['sites'],dict) and set(controls['sites']) == set(codes),
           'Require complete selected component coverage')
     names = controls['supplementary_phils']
     _need(isinstance(names,list) and names == [f'phils/{i:03}.phil' for i in range(len(names))], 'Invalid shared PHIL order')
@@ -123,7 +123,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
-    Each component declares code, contexts and generation settings, with optional
+    One to sixteen component types declare code, contexts and generation settings, with optional
     retained_snapshot, terminal_resource and phosphate_atom_policy. Runtime SDK
     roots/environment are not saved as operational paths; execution supplies and
     revalidates them against the frozen recipe/pins/relative dispatchers. New
