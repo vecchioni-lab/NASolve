@@ -1145,8 +1145,14 @@ prepared and original-derivative qualification, followed by the existing immutab
 publisher. Independent original selection reuses the repair path's native input
 and component-choice checks, without inventing repair attribution. New runtime
 policy identifies that proof; old absent-mode requests keep their previous
-behavior. Early optional-capture failure classification remains separate. See
-[independent originals](cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172).
+behavior. See [independent originals](cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172).
+C173 adds a distinct frozen optional-failure policy. The shared native/plan/input
+readers bind a timeout or complete negative report to the actual stopped owner;
+missing/corrupt evidence still raises. Only independent original qualification
+can then publish a runtime. Consumer identity and the remaining budget are
+rechecked; partial outputs remain in that immutable request, without a retry.
+Legacy absent-policy requests keep their behavior. See
+[classified failures](cif-doctor.md#classified-optional-native-failures-and-original-fallback-c173).
 
 
 

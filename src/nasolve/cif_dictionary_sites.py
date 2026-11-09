@@ -280,6 +280,11 @@ def _bind_capture(record, consumer, model, dictionaries, phils):
     _need(record.get('execution',{}).get('status')=='COMPLETED'
         and record['execution'].get('returncode')==0 and _consumer_matches(record,consumer,None),
         'Native capture consumer or completion differs')
+    _bind_capture_inputs(record,model,dictionaries,phils)
+
+
+def _bind_capture_inputs(record, model, dictionaries, phils):
+    """Bind ordered bytes only; completion/consumer qualification is separate."""
     expected=[('model',model),*[('dictionary',p) for p in dictionaries],*[('phil',p) for p in phils]]
     pins=[(role,sha256(_read(path)).hexdigest(),path.stat().st_size) for role,path in expected]
     actual=[(r.get('role'),r.get('sha256'),r.get('size')) for r in record['inputs']]

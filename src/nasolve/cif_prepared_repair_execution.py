@@ -21,6 +21,7 @@ from .cif_captured_mixed_gradients import audit_captured_mixed_gradients
 from .cif_postmr_cache import verify_current_consumer
 from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_repair_process import PreparedRepairProcesses
+from .cif_prepared_repair_failure import inspect_prepared_native_failure, failure_policy_fields, FALLBACK_POLICY_ID
 
 POLICY_ID = 'cif-prepared-bundle-repair-execution-v1'
 
@@ -31,7 +32,7 @@ class PreparedRepairBudgetExceeded(TimeoutError):
 
 def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout_seconds=120,
         attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=None, qualify_no_repair=False, _attempt_identity=None, _remaining_seconds=None):
+        total_timeout_seconds=None, qualify_no_repair=False, optional_failure_policy=None, _attempt_identity=None, _remaining_seconds=None):
     """Run a bounded repair chain and freeze only an independently usable result.
 
     The input is the existing source/site bundle, including acquired component
@@ -42,6 +43,9 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     go through the existing selector; malformed evidence or adapter exceptions
     stop the call with every partial output preserved. A selected runtime is
     diagnostic only and remains independently readable after this job is gone.
+    An explicit optional-failure policy permits only exact, owned stopped native
+    failures after original checks to reach the independent original gate.
+    Corrupt evidence, unknown cleanup, interruptions and arbitrary exceptions raise.
 
     An optional integer total allowance (1-3600 seconds) begins before preflight.
     Each native job receives at most the whole seconds remaining. Local Python
@@ -51,6 +55,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     optional enclosing allowance additionally clamps every native phase and
     publication boundary without changing the configured local limits.
     """
+    failure_fields = failure_policy_fields(optional_failure_policy)
     _need(type(qualify_no_repair) is bool, 'Require a boolean no-repair qualification mode')
     limits = {'native': native_timeout_seconds, 'attribution': attribution_timeout_seconds,
               'derivatives': derivative_timeout_seconds}
@@ -111,6 +116,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         total_timeout_seconds=total_timeout_seconds,
         retry='NOT_AUTHORIZED; USE_FRESH_OUTPUT', refinement='NOT_RUN', model_optimization='NOT_RUN')
 
+    report.update(failure_fields)
     if qualify_no_repair: report['qualify_no_repair'] = True
 
     processes = PreparedRepairProcesses(output, attempt_identity=_attempt_identity)
@@ -149,8 +155,13 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         _need(receipt.is_relative_to(parent), 'Native capture returned another phase directory')
         report['native_receipts'].append(reference(receipt))
         unchanged()
-        _need(result['execution']['status'] == 'COMPLETED' and result['execution']['returncode'] == 0,
-              'Native capture did not complete; no selection is authorized')
+        completed = result['execution']['status'] == 'COMPLETED' and result['execution']['returncode'] == 0
+        if not completed and optional_failure_policy is not None and label not in {'baseline','000'}:
+            report['optional_failure'] = inspect_prepared_native_failure(output,'native-'+label)
+            _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer),
+                  'Current consumer changed after optional native failure')
+            return None
+        _need(completed, 'Native capture did not complete; no selection is authorized')
         return receipt
 
     def finish(status):
@@ -185,30 +196,32 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         audit_captured_mixed_gradients(receipts[0], phenix, original_gradient,
                                       timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(original_gradient.name))
         unchanged()
-        if not plan['steps']:
-            phase = 'SELECTION'; event('STARTED')
-            options = dict(bundle=frozen, baseline_receipt=baseline, candidate_receipt=receipts[0],
-                original_gradient_directory=original_gradient)
-            selector = inspect_dictionary_bundle_original
-            publisher = prepare_original_component_runtime_bundle
-        else:
+        original_options = dict(bundle=frozen, baseline_receipt=baseline, candidate_receipt=receipts[0],
+            original_gradient_directory=original_gradient)
+        options = original_options
+        selector = inspect_dictionary_bundle_original
+        publisher = prepare_original_component_runtime_bundle
+        if plan['steps']:
             phase = 'REPAIRED_NATIVE'; event('STARTED')
             for i, refs in enumerate(stages[1:], 1):
-                receipts.append(capture(f'{i:03d}', [output/'plan'/r['path'] for r in refs], prepared['after_phils']))
-            phase = 'ATTRIBUTION'; event('STARTED')
-            audit_captured_linear_attribution(output/'plan', receipts, phenix, output/'attribution',
-                                             timeout_seconds=phase_limit('attribution'), _process_runner=processes.runner('attribution'))
-            unchanged()
-            phase = 'REPAIRED_DERIVATIVES'; event('STARTED')
-            repaired_gradient = output/'repaired-gradient'
-            audit_captured_mixed_gradients(receipts[-1], phenix, repaired_gradient,
-                                          timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(repaired_gradient.name))
-            unchanged()
-            phase = 'SELECTION'; event('STARTED')
-            options = dict(bundle=frozen, baseline_receipt=baseline, attribution_directory=output/'attribution',
-                original_gradient_directory=original_gradient, repaired_gradient_directory=repaired_gradient)
-            selector = inspect_dictionary_bundle_repair
-            publisher = prepare_repaired_component_runtime_bundle
+                receipt = capture(f'{i:03d}', [output/'plan'/r['path'] for r in refs], prepared['after_phils'])
+                if receipt is None:break
+                receipts.append(receipt)
+            if 'optional_failure' not in report:
+                phase = 'ATTRIBUTION'; event('STARTED')
+                audit_captured_linear_attribution(output/'plan', receipts, phenix, output/'attribution',
+                    timeout_seconds=phase_limit('attribution'), _process_runner=processes.runner('attribution'))
+                unchanged()
+                phase = 'REPAIRED_DERIVATIVES'; event('STARTED')
+                repaired_gradient = output/'repaired-gradient'
+                audit_captured_mixed_gradients(receipts[-1], phenix, repaired_gradient,
+                    timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(repaired_gradient.name))
+                unchanged()
+                options = dict(bundle=frozen, baseline_receipt=baseline, attribution_directory=output/'attribution',
+                    original_gradient_directory=original_gradient, repaired_gradient_directory=repaired_gradient)
+                selector = inspect_dictionary_bundle_repair
+                publisher = prepare_repaired_component_runtime_bundle
+        phase = 'SELECTION'; event('STARTED')
         selection = selector(**options)
         report['selection'] = selection
         if selection['decision']['selected'] is None:

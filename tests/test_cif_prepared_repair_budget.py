@@ -161,3 +161,19 @@ def test_no_repair_qualification_obeys_outer_deadline_and_retains_partials(timed
     assert not (out/'repair_execution.json').exists() and (out/'original-gradient').exists()
     assert (out/'runtime').exists()==(boundary=='publication')
     assert not (out/'attribution').exists()
+
+
+
+def test_optional_failure_cannot_reset_expired_outer_allowance(timed,monkeypatch):
+    (m,b,sdk,out,state,calls,o),clock=timed;cap=[20.];native=m.inspect_native_bundle
+    def failed(*a,**k):
+        value=native(*a,**k)
+        if a[2].name=='001':value['execution']={'status':'TIMED_OUT','returncode':-15}
+        return value
+    def classify(*a):cap[0]=0.;return {'phase':'native-001','status':'KNOWN_STOPPED_NATIVE_FAILURE'}
+    monkeypatch.setattr(m,'inspect_native_bundle',failed);monkeypatch.setattr(m,'inspect_prepared_native_failure',classify)
+    monkeypatch.setattr(m,'inspect_dictionary_bundle_original',lambda **k:{'decision':{'selected':'verified_prepared_bundle'}})
+    with pytest.raises(TimeoutError):m.execute_prepared_dictionary_repair(b,sdk,out,optional_failure_policy=m.FALLBACK_POLICY_ID,
+        total_timeout_seconds=100,_remaining_seconds=lambda:cap[0],**o)
+    assert not (out/'runtime').exists() and not (out/'repair_execution.json').exists()
+    assert (out/'native/001/unique-capture/native_receipt.json').exists()

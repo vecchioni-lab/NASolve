@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Owned optional-native failure fallback (C173)
+
+- New complete requests freeze an explicit failure policy. After an exact,
+  known-stopped optional native timeout or valid worker refusal, independently
+  qualify the original and publish it only if its own source/native/derivative
+  proof passes. Preserve the failed job and skip later repair work.
+- Keep interruptions, corrupt evidence, initial-stage failures, changed consumers
+  and unknown cleanup blocking; do not renew time or retry in place. Historical
+  absent-policy requests and standalone defaults retain their prior behavior.
+- Share native artifact, ordered-input and repair-plan validators. Reject
+  contradictory negative-report claims and normalize malformed-report objects to
+  `ValueError`. Public failure review grants no usability or retry authority.
+- Validate actual first/later-stage timeout, no-usable-original and normal repair
+  controls, legacy/cold replay and focused tests. No full suite or adoption change.
+
 ### Independently qualified original bundles (C172)
 
 - Qualify and publish exact prepared originals without a repair-attribution job,

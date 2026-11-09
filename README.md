@@ -46,8 +46,10 @@ exact-result replay preserve failures and lineage without the old source paths o
 SDK. A returned diagnostic can explicitly report no usable selection; only proven
 runtime bundles qualify. New requests also check an unchanged original when the
 graph needs no repair, using its own source/native and derivative proof. Historical
-requests preserve their recorded behavior. Recovery from early optional-capture
-failures and ordinary automatic PostMR adoption remain integration work.
+requests preserve their recorded behavior. An exact, known-stopped optional native
+failure can now retain an independently qualified original, preserving the failed
+job. Corrupt or uncertain evidence still stops the request. Single-component
+composition and ordinary automatic PostMR adoption remain integration work.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

@@ -220,3 +220,49 @@ def test_no_repair_mode_requires_explicit_boolean(case,value):
     m,b,sdk,out,state,calls,o=case
     with pytest.raises(ValueError):m.execute_prepared_dictionary_repair(b,sdk,out,qualify_no_repair=value,**o)
     assert not out.exists() and not calls
+
+
+@pytest.mark.parametrize('original,expected',[(True,'QUALIFIED_DIAGNOSTIC_RUNTIME'),(False,'NO_USABLE_BUNDLE')])
+def test_classified_optional_native_failure_can_only_select_proven_original(case,monkeypatch,original,expected):
+    m,b,sdk,out,state,calls,o=case;state['original']=original;native=m.inspect_native_bundle
+    def failed(*a,**k):
+        value=native(*a,**k)
+        if a[2].name=='001':value['execution']={'status':'TIMED_OUT','returncode':-15}
+        return value
+    proof={'phase':'native-001','status':'KNOWN_STOPPED_NATIVE_FAILURE'}
+    monkeypatch.setattr(m,'inspect_native_bundle',failed)
+    monkeypatch.setattr(m,'inspect_prepared_native_failure',lambda *a:proof,raising=False)
+    monkeypatch.setattr(m,'inspect_dictionary_bundle_original',lambda **k:{'decision':{'selected':'verified_prepared_bundle' if state['original'] else None}})
+    def publish(output,**k):output.mkdir();(output/'runtime_bundle.json').write_text(json.dumps({'decision':{'selected':'verified_prepared_bundle'}}))
+    monkeypatch.setattr(m,'prepare_original_component_runtime_bundle',publish)
+    result=m.execute_prepared_dictionary_repair(b,sdk,out,optional_failure_policy='cif-owned-native-failure-original-v1',**o)
+    assert result['status']==expected and result['optional_failure']==proof
+    assert not {'attribution','repaired','selection','publication'} & set(calls)
+    assert (out/'native/001/unique-capture/native_receipt.json').exists() and (out/'runtime').exists()==original
+
+
+@pytest.mark.parametrize('obstacle',['malformed','consumer','baseline','initial','exception'])
+def test_failure_policy_never_swallows_unsafe_or_initial_failure(case,monkeypatch,obstacle):
+    m,b,sdk,out,state,calls,o=case;native=m.inspect_native_bundle;consumer=m.verify_current_consumer;seen=[0]
+    def failed(*a,**k):
+        value=native(*a,**k)
+        target='baseline' if obstacle=='baseline' else '000' if obstacle=='initial' else '001'
+        if a[2].name==target:
+            if obstacle=='exception':raise ValueError('adapter contradicted evidence')
+            value['execution']={'status':'TIMED_OUT','returncode':-15}
+        return value
+    def classify(*a):
+        if obstacle=='malformed':raise ValueError('malformed failure evidence')
+        return {'phase':'native-001','status':'KNOWN_STOPPED_NATIVE_FAILURE'}
+    def current(*a):seen[0]+=1;return False if obstacle=='consumer' and seen[0]>1 else consumer(*a)
+    monkeypatch.setattr(m,'inspect_native_bundle',failed);monkeypatch.setattr(m,'inspect_prepared_native_failure',classify)
+    monkeypatch.setattr(m,'verify_current_consumer',current)
+    with pytest.raises(ValueError):m.execute_prepared_dictionary_repair(b,sdk,out,optional_failure_policy=m.FALLBACK_POLICY_ID,**o)
+    assert not (out/'runtime').exists() and not (out/'repair_execution.json').exists()
+
+
+@pytest.mark.parametrize('policy',[True,False,'UNKNOWN',1])
+def test_unknown_failure_policy_refuses_before_side_effects(case,policy):
+    m,b,sdk,out,state,calls,o=case
+    with pytest.raises(ValueError):m.execute_prepared_dictionary_repair(b,sdk,out,optional_failure_policy=policy,**o)
+    assert not out.exists() and not calls

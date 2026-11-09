@@ -66,6 +66,21 @@ def _choose(prepared, root, candidates, eligible, source_usable):
     return decisions,sources,choices.pop()
 
 
+def _repair_dictionaries(prepared, plan, root):
+    """Bind graph steps to exact prepared dictionary order and component owners."""
+    source=prepared['report'];steps=plan['steps']
+    original=prepared['after_dictionaries'];final=[root/r['path'] for r in plan['final_dictionaries']]
+    _need([_read(p) for p in original]==[_read(root/r['path']) for r in plan['inputs']],
+        'Repair does not start from the exact ordered source-qualified dictionaries')
+    _need(len(final)==len(original),'Repair changed dictionary membership')
+    for step in steps:
+        code=step['component'];index=step['dictionary_index']
+        _need(code in source['components'] and type(index) is int and 0<=index<len(original)
+            and original[index]==prepared['component_dictionaries'][code],
+            'Repair component lacks its exact source-qualified owner')
+    return original,final
+
+
 def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_directory, original_gradient_directory):
     root=Path(bundle).absolute();attribution=Path(attribution_directory).absolute();baseline=Path(baseline_receipt).absolute()
     _need(baseline.name=='native_receipt.json','Require an exact preparation baseline receipt')
@@ -76,19 +91,11 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
     snapshots={name:_tree(p) for name,p in roots.items()}
     _need(sum(len(v) for v in snapshots.values())<=MAX_FILES
         and sum(len(b) for v in snapshots.values() for b in v.values())<=MAX_BYTES,'Combined repair evidence exceeds supported bounds')
-    prepared=read_dictionary_bundle(root);source=prepared['report']
+    prepared=read_dictionary_bundle(root)
     job=read_captured_linear_attribution(attribution);plan=read_linear_torsion_bundle(attribution/'bundle')
     steps=plan['steps'];_need(bool(steps),'No declared repair candidate')
     _need({p.name for p in (attribution/'captures').iterdir()}=={f'{i:03d}' for i in range(len(steps)+1)},'Unexpected repair stage')
-    original=prepared['after_dictionaries'];final=[attribution/'bundle'/r['path'] for r in plan['final_dictionaries']]
-    _need([_read(p) for p in original]==[_read(attribution/'bundle'/r['path']) for r in plan['inputs']],
-        'Repair does not start from the exact ordered source-qualified dictionaries')
-    _need(len(final)==len(original),'Repair changed dictionary membership')
-    for step in steps:
-        code=step['component'];index=step['dictionary_index']
-        _need(code in source['components'] and type(index) is int and 0<=index<len(original)
-            and original[index]==prepared['component_dictionaries'][code],
-            'Repair component lacks its exact source-qualified owner')
+    original,final=_repair_dictionaries(prepared,plan,attribution/'bundle')
     receipts=[];identity=None
     stages=[plan['inputs']]+[s['dictionaries_after'] for s in steps]
     for i,stage in enumerate(stages):

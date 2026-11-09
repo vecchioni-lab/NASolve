@@ -13,7 +13,7 @@ from time import monotonic
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
 from .cif_component_runtime import _tree
-from .cif_dictionary_store import _json
+from .cif_dictionary_store import _json, _bytes
 from .cif_dictionary_sites import _read
 from .cif_dictionary_bundle import read_dictionary_bundle
 from .cif_generation_process import _valid_identity, _valid_attempt_identity
@@ -22,6 +22,7 @@ from .cif_generation_attempt import _attempt_identity
 from .cif_postmr_cache import verify_current_consumer
 from .cif_prepared_repair_execution import execute_prepared_dictionary_repair, POLICY_ID as EXECUTION_POLICY, PreparedRepairBudgetExceeded
 from .cif_repair_process import inspect_prepared_repair_processes, _uuid, POLICY_ID as PROCESS_POLICY
+from .cif_prepared_repair_failure import inspect_prepared_native_failure, failure_policy_fields, FALLBACK_POLICY_ID
 
 POLICY_ID = 'cif-prepared-repair-request-v1'
 ANCHOR = 'request_directory'
@@ -56,7 +57,7 @@ def _inventory(tree):
     return {name:_digest(data) for name,data in tree.items()}
 
 
-def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False):
+def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False, optional_failure_policy=None):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k]
           for k,v in limits.items()), 'Require bounded integer repair deadlines')
@@ -64,7 +65,7 @@ def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False):
     _need(bool(tree), 'Require a nonempty prepared bundle')
     return dict(bundle_files=_inventory(tree), limits=dict(limits), max_attempts=max_attempts,
                 execution_policy=EXECUTION_POLICY, process_policy=PROCESS_POLICY,
-                **({'qualify_no_repair':True} if qualify_no_repair else {}))
+                **({'qualify_no_repair':True} if qualify_no_repair else {}),**failure_policy_fields(optional_failure_policy))
 
 
 def _request(root):
@@ -75,7 +76,7 @@ def _request(root):
     _members(root/'inputs',set(),{'bundle'})
     config = request.get('configuration')
     _need(isinstance(config,dict))
-    expected = _configuration(_tree(path_in(root,'inputs/bundle')),config.get('limits',{}),config.get('max_attempts'),qualify_no_repair=config.get('qualify_no_repair',False))
+    expected = _configuration(_tree(path_in(root,'inputs/bundle')),config.get('limits',{}),config.get('max_attempts'),qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'))
     _need(config == expected, 'Prepared request snapshot or configuration changed')
     return request
 
@@ -101,7 +102,13 @@ def _execution(attempt, intent, config):
             _need(evidence['job']['timeout_seconds'] <= config['limits'][limit], 'Worker exceeded frozen phase limit')
     report = work/'repair_execution.json'
     if report.exists():
-        mode = _json(_read(report)).get('qualify_no_repair',False)
+        value = _json(_read(report)); mode = value.get('qualify_no_repair',False)
+        _need(value.get('optional_failure_policy') == config.get('optional_failure_policy'),
+              'Execution optional failure policy differs from frozen request')
+        if 'optional_failure' in value:
+            _need(config.get('optional_failure_policy') == FALLBACK_POLICY_ID
+                and _bytes(value['optional_failure']) == _bytes(inspect_prepared_native_failure(work,value['optional_failure']['phase'])),
+                'Saved optional failure does not reproduce')
         _need(type(mode) is bool and mode == config.get('qualify_no_repair',False),
               'Execution no-repair mode differs from frozen request')
     binding = {'header':header['record_sha256'] if header else None,
@@ -183,7 +190,7 @@ def _seal(attempt, intent, request, outcome, error=None):
 
 def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory, *,
         native_timeout_seconds=120, attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=600, max_attempts=2, qualify_no_repair=False,
+        total_timeout_seconds=600, max_attempts=2, qualify_no_repair=False, optional_failure_policy=None,
         _parent_attempt_identity=None, _remaining_seconds=None):
     """Perform one fresh, bounded repair attempt under an immutable logical request.
 
@@ -215,7 +222,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
     before = _tree(original)
     limits = dict(native_timeout_seconds=native_timeout_seconds,attribution_timeout_seconds=attribution_timeout_seconds,
                   derivative_timeout_seconds=derivative_timeout_seconds,total_timeout_seconds=total_timeout_seconds)
-    config = _configuration(before,limits,max_attempts,qualify_no_repair=qualify_no_repair)
+    config = _configuration(before,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy)
     consumer = read_dictionary_bundle(original)['report']['consumer']
     _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer differs')
     _need(_tree(original) == before, 'Prepared source changed during preflight')
@@ -253,7 +260,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
         try:
             result=execute_prepared_dictionary_repair(root/'inputs/bundle',phenix,attempt/'execution',
                                                      _attempt_identity=_attempt_identity(intent),**limits,
-                                                     **({'qualify_no_repair':True} if qualify_no_repair else {}),
+                                                     **({'qualify_no_repair':True} if qualify_no_repair else {}),**failure_policy_fields(optional_failure_policy),
                                                      **({'_remaining_seconds':remaining} if _remaining_seconds is not None else {}))
             _need(_tree(original) == before and _tree(root/'inputs/bundle') == before,
                   'Prepared source or request snapshot changed during execution')

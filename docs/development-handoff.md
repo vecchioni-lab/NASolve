@@ -11,6 +11,79 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C173 validated: owned optional-native failure and proven-original fallback
+
+Base `5ce05688f5957bed6eb8b0d4d9660e29dfa83466`; existing Cedar only. Capsule
+`live_tests_directory/173_Cedar_owned-failure-fallback-omw4ujpx`. C172 was completed/pushed first.
+Q04 now has explicit ownership, no-graph qualification and classified optional-native
+fallback in the demonstrated multi-component request. Singleton composition is next;
+ordinary adoption/refinement and broader chemical-state/scaffold proof remain open.
+
+**Before → after:** early optional native failures always stopped execution even
+when the original had independent passing proof. New complete requests freeze
+`cif-owned-native-failure-original-v1`; exact stopped timeouts or complete negative
+worker reports may reach the C172 original gate. A pass publishes only the original;
+a valid negative original yields no usable bundle. Malformed/contradictory evidence,
+initial failures, interruption, unknown cleanup and consumer mismatch still raise.
+No native retry, budget renewal, source mutation or checkpoint adoption.
+
+**Reuse/review:** C109 capture integrity, C139/C152 source/choice, C163 ownership,
+C171 complete requests and C172 independent publication were checked first. Shared
+capture evidence, input-byte binding and repair-plan ownership are factored from
+existing validators; the strict scientific capture entry point still rejects a
+timeout. Review reproduced seven contradictory negative-report cases plus a
+malformed report's attribute error; those now refuse cleanly. No new process owner,
+chemistry validator, formatter or test runner. Focused profile paths remain deduplicated.
+
+**Validation:** three expected API failures before implementation, then eight
+review regressions before hardening. **57 new cases**. Affected:
+**829 passed in 183.42s (0:03:03)**. Workflow: **1562 passed, 45 subtests passed in 328.01s (0:05:28)**. All 621 source/test/script
+hashes remained fixed through final tests; final native source hashes match.
+No full suite, as requested. Last completed full baseline stays C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 tests + 276 subtests).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c173_validate.py affected-r3
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r2.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c173_native_r2.py native-r3
+PYTHONDONTWRITEBYTECODE=1 python c173_cold.py cold-r1
+```
+
+The affected runner's exact 20-module pytest command and all results are preserved
+in `affected-r3-result.json` and the evidence ledger command array.
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution, not dry-run:** the harness
+caps one optional adapter job at 50 ms, preserving its real worker/input/owner.
+First- and later-stage timeouts select original model/dictionary bytes identical
+to C171's prepared inputs. A separate original-derivative timeout leaves no usable
+bundle and no runtime. All owned phases stop; all partial outputs remain. Final
+controls take 144.476s. The initial one-second job completed
+in 0.792s and selected the repaired bundle; the harness's expected-timeout assertion
+failed, and that real normal-path result remains preserved. No generation,
+ReadySet, Coot, model optimization or diffraction refinement. Completed native
+refusal/unsupported classification is covered synthetically; actual controls use
+timeouts. Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3, macOS arm64.
+
+**Cold:** first/later failure, no-original and normal repair plus legacy C172/C171
+requests replay from a relocated checkout. Original copy absent; historical
+paths/SDK/execution denied. All 3720 files retain bytes/mtimes and parent
+scientific evidence stays unchanged.
+
+**Files/schemas/compatibility:** seven existing/new source modules, one new failure
+regression module plus execution/budget/request regressions, workflow profile and
+current documentation/ledgers. New schema-1 failure-review policy, plus optional
+frozen failure-policy and bound failure-review fields in existing request/execution
+records. Original runtime policy is unchanged. New policy-bearing artifacts require
+C173 readers; absence stays legacy `None`, including standalone defaults. No
+cache/source chemistry, phosphate/OP3, sugar/stereo, NAR ownership or threshold change.
+Generated science, logs, XML, runners and copied checkouts remain local; only code,
+tests, docs and hash references enter Git. No active owned job at publication.
+
+**Next Q04:** single-selected-component composition, then ordinary integration.
+Q05 adoption, Q06 actual refinement, Q07 mixed/held-out builders and Q13 state
+choices remain separate. Generic/unknown failures deliberately remain blocking.
+Evidence key `owned_native_failure_fallback_2026_11_09`.
+— Rowan · Codex desktop
+
 ## C172 published: independent original and no-repair qualification
 
 Base `1ffb7970b855383e161c8a9ecc4d94ec2aaa757b`; existing Cedar only. Capsule

@@ -395,3 +395,7 @@ C172 also takes a no-repair original through source/native and derivative checks
 before publication. Passing and timed-out controls distinguish usable originals
 from preserved but unqualified inputs; neither permits ordinary adoption. The
 existing selection/publication boxes are reused, with no second repair engine.
+
+C173 qualifies the existing failure-to-original edge with exact stopped native
+ownership and independent original proof. A generic exception does not traverse
+that edge. Failed work is preserved, and the selector/publisher remain shared.

@@ -93,6 +93,10 @@ milestone statements preserve their original scope; they are not a second queue.
   C172 adds independent original qualification/publication and a frozen no-repair
   mode for new complete requests. Actual positive/timeout controls and cold
   legacy/new replay pass; early optional-capture fallback remains open.
+  C173 adds explicit classified optional-native fallback: exact stopped-failure
+  evidence plus independent original qualification, with no retry or budget reset.
+  Real first/later-stage and no-original controls replay cold; singleton composition
+  is next, with ordinary adoption still separate.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

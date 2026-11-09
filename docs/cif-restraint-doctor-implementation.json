@@ -28099,6 +28099,26 @@
         "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
         "Shared allowance remains cooperative and existing artifact caps remain in force"
       ]
+    },
+    "owned_native_failure_fallback": {
+      "milestone": "C173",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 classified optional-native fallback closed in demonstrated scope; singleton composition next",
+      "contract": "docs/cif-doctor.md#classified-optional-native-failures-and-original-fallback-c173",
+      "evidence_key": "owned_native_failure_fallback_2026_11_09",
+      "summary": "An explicit frozen policy classifies exact stopped optional-native negatives, rechecks the consumer and independently qualifies the original; only proven originals publish, with failed work preserved and no retry/budget renewal.",
+      "implementation_revision": null,
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "No full suite; C160 remains last completed baseline",
+        "Classification only covers exact optional native timeout or complete valid worker refusal; generic/unknown/corrupt/initial failures still raise",
+        "Failed job binds dispatcher only; complete current-consumer check and independent original API proof remain mandatory",
+        "Complete composition remains 2–16 selected types; singleton route needed before ordinary adoption",
+        "Completed refusal/unsupported classification has synthetic controls; real native controls use timeouts",
+        "No new family, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+        "Cooperative budgets and existing artifact caps remain"
+      ]
     }
   },
   "audience": [

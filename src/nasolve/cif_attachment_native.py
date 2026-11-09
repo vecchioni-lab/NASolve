@@ -27,11 +27,21 @@ def _json(data):
 
 
 def _capture(path, model):
+    return _capture_evidence(path, model)
+
+
+def _capture_timeout(path, model):
+    """Validate preserved timeout artifacts, never a scientific native report."""
+    return _capture_evidence(path, model, timed_out=True)
+
+
+def _capture_evidence(path, model, *, timed_out=False):
     path = Path(path).expanduser().resolve(strict=True)
     if path.stat().st_size > MAX_RECEIPT_BYTES:
         raise ValueError('Native receipt size limit exceeded')
     snapshots = {path: path.read_bytes()}
     receipt = _json(snapshots[path])
+    if not isinstance(receipt,dict):raise ValueError('Native receipt must be an object')
     if (type(receipt.get('schema_version')) is not int or receipt['schema_version'] != 1
             or receipt.get('audit_kind') != 'cif_native_bundle_inspection'
             or receipt.get('policy_id') != NATIVE_POLICY_ID
@@ -42,8 +52,23 @@ def _capture(path, model):
             or any(receipt.get(k) != 'NOT_RUN' for k in ('scientific_approval', 'optimization', 'model_editing', 'readyset_retry'))):
         raise ValueError('Require a preserved read-only native capture receipt')
     execution = receipt.get('execution', {})
+    if not isinstance(execution,dict):raise ValueError('Native execution must be an object')
     rc = execution.get('returncode')
-    if (type(rc) is not int or execution.get('status') not in {'COMPLETED', 'FAILED'}
+    if timed_out:
+        integrity=receipt.get('input_integrity')
+        if (type(rc) is not int or execution.get('status')!='TIMED_OUT' or receipt['status']!='FAILED'
+                or receipt.get('native_validation') is not None
+                or any(type(execution.get(k)) not in (int,float) or not isfinite(execution[k])
+                    or execution[k]<0 for k in ('timeout_seconds','elapsed_seconds'))
+                or execution['timeout_seconds']==0
+                or receipt.get('error')!='Owned native interpreter process group exceeded the requested timeout'
+                or not isinstance(integrity,list) or len(integrity)!=len(receipt.get('inputs',[]))
+                or any(not isinstance(row,dict) or type(row.get('input_index')) is not int or row['input_index']!=i
+                    or row.get('source_preserved') is not True or row.get('snapshot_preserved') is not True
+                    for i,row in enumerate(integrity))
+                or not isinstance(receipt.get('phenix_version'),str) or not receipt['phenix_version'].strip()):
+            raise ValueError('Require exact preserved native timeout evidence')
+    elif (type(rc) is not int or execution.get('status') not in {'COMPLETED', 'FAILED'}
             or (execution['status'] == 'COMPLETED') != (rc == 0)
             or (receipt['status'] == 'REVIEW') != (rc == 0)):
         raise ValueError('Incomplete or inconsistent native execution receipt')
@@ -65,10 +90,13 @@ def _capture(path, model):
     for row in receipt['inputs']:
         if row['path'] not in records or _digest(records[row['path']]) != {k: row[k] for k in ('sha256','size')}:
             raise ValueError('Native input missing from preserved output inventory')
-    for name in ('native_spec.json', 'native_worker.py', 'native_validation.json', 'native.log'):
+    required=('native_spec.json','native_worker.py','native.log') + (() if timed_out else ('native_validation.json',))
+    for name in required:
         if name not in records:
             raise ValueError('Missing required native artifact: ' + name)
     spec = _json(records['native_spec.json'])
+    if timed_out and ('gradient_indices' in spec or 'atom_name_mapping' in spec):
+        raise ValueError('Unsupported timed-out capture extension')
     worker = _NATIVE_WORKER
     for flag in ('policy_inventory', 'energy_inventory', 'nonbonded_inventory', 'atom_name_mapping', 'full_monomer_inventory'):
         if flag in spec and spec[flag] is not True:
@@ -125,7 +153,12 @@ def _capture(path, model):
             or spec.get('installed_library_only', False) is not installed
             or installed != (not roles['dictionary'])):
         raise ValueError('Inconsistent native dictionary authority')
+    if timed_out:
+        # An interrupted report can be absent or partial. Keep its bytes as
+        # evidence, but never parse or promote it into native scientific proof.
+        return receipt, None, snapshots
     native = _json(records['native_validation.json'])
+    if not isinstance(native,dict):raise ValueError('Native report must be an object')
     if native.get('atom_name_mapping_policy') != receipt.get('atom_name_mapping_policy'):
         raise ValueError('Native atom mapping policy differs from receipt')
     if spec.get('full_monomer_inventory') and native.get('status')=='REVIEW':

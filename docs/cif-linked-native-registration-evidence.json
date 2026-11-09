@@ -69939,5 +69939,714 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-09T14:56:26.363332+00:00"
+  },
+  "owned_native_failure_fallback_2026_11_09": {
+    "milestone": "C173",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "5ce05688f5957bed6eb8b0d4d9660e29dfa83466",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Early optional native failures stopped execution even with independently usable original evidence.",
+    "after": "An explicit frozen policy classifies exact stopped optional-native negatives, rechecks the consumer and independently qualifies the original; only proven originals publish, with failed work preserved and no retry/budget renewal.",
+    "prior_work": [
+      "C109 native integrity",
+      "C139/C152 source and selection",
+      "C163 ownership",
+      "C171 complete requests",
+      "C172 independent original publication"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_attachment_native.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_dictionary_bundle_repair.py",
+      "src/nasolve/cif_dictionary_sites.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "src/nasolve/cif_prepared_repair_failure.py",
+      "src/nasolve/cif_repair_attempt.py",
+      "tests/test_cif_complete_request.py",
+      "tests/test_cif_prepared_repair_budget.py",
+      "tests/test_cif_prepared_repair_execution.py",
+      "tests/test_cif_prepared_repair_failure.py",
+      "tests/test_cif_repair_attempt.py"
+    ],
+    "schemas": [
+      "New cif-prepared-native-failure-review-v1 schema 1; repair_directory anchor",
+      "Optional frozen optional_failure_policy=cif-owned-native-failure-original-v1 and bound optional_failure execution review",
+      "Existing original runtime policy unchanged"
+    ],
+    "compatibility": "New complete requests enable policy by default; standalone/absent historical policy is None. New policy-bearing artifacts require C173 readers; no migration or source/cache change.",
+    "regression": {
+      "before": "3 API failures; 8 review regressions before hardening",
+      "new_cases": 57,
+      "affected": {
+        "active": false,
+        "pid": 84831,
+        "runner_pid": 84829,
+        "phase": "affected-r3",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_native_atom_mapping.py",
+          "tests/test_cif_native_nonbonded.py",
+          "tests/test_cif_native_gradients.py",
+          "tests/test_cif_captured_mixed_gradients.py",
+          "tests/test_cif_captured_linear_attribution.py",
+          "tests/test_cif_prepared_repair_failure.py",
+          "tests/test_cif_attachment_native.py",
+          "tests/test_cif_dictionary_sites.py",
+          "tests/test_cif_captured_full_monomers.py",
+          "tests/test_cif_candidate_qualification_execution.py",
+          "tests/test_cif_original_component_runtime.py",
+          "tests/test_cif_dictionary_bundle_repair.py",
+          "tests/test_cif_repaired_component_runtime.py",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_runtime_bundle.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_prepared_repair_budget.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_outer_context.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/173_Cedar_owned-failure-fallback-omw4ujpx/affected-r3.xml"
+        ],
+        "started_utc": "2026-11-09T15:25:01.150800+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 183.613,
+        "sources_unchanged": true,
+        "source_files": 621
+      },
+      "affected_summary": "829 passed in 183.42s (0:03:03)",
+      "focused": {
+        "active": false,
+        "pid": 87144,
+        "runner_pid": 87133,
+        "phase": "focused-r2",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/173_Cedar_owned-failure-fallback-omw4ujpx/focused-r2.xml"
+        ],
+        "started_utc": "2026-11-09T15:29:19.956178+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 328.295,
+        "sources_unchanged": true,
+        "source_files": 621
+      },
+      "focused_summary": "1562 passed, 45 subtests passed in 328.01s (0:05:28)",
+      "full": "NOT_RUN_USER_REQUEST",
+      "source_files": 621
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 144.47597379200306,
+      "controls": {
+        "first-stage": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "phase": "native-001",
+          "selected": "verified_prepared_bundle",
+          "native_phases": [
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "failure_kind": "NATIVE_TIMEOUT",
+          "all_children_stopped": true,
+          "partial_capture_preserved": true,
+          "attempts": 1
+        },
+        "later-stage": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "phase": "native-002",
+          "selected": "verified_prepared_bundle",
+          "native_phases": [
+            "native-000",
+            "native-001",
+            "native-002",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "failure_kind": "NATIVE_TIMEOUT",
+          "all_children_stopped": true,
+          "partial_capture_preserved": true,
+          "attempts": 1
+        },
+        "no-original": {
+          "status": "NO_USABLE_BUNDLE",
+          "phase": "native-001",
+          "selected": null,
+          "native_phases": [
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "failure_kind": "NATIVE_TIMEOUT",
+          "all_children_stopped": true,
+          "partial_capture_preserved": true,
+          "attempts": 1
+        }
+      },
+      "legacy_C171_request_replay": "PASS",
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "original_model_dictionaries": "BYTE_IDENTICAL_TO_C171_PREPARED_ORIGINAL",
+      "fault_injection": "FIFTY_MILLISECOND_CAP_ON_NAMED_OPTIONAL_NATIVE_PHASE; ACTUAL_WORKER_AND_OWNERSHIP",
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "MAINTAINED_COMPLETE_REQUEST; SAVED_PDU_5PC_DIAGNOSTIC; NOT_ORDINARY_ADOPTION"
+    },
+    "relocation": {
+      "status": "PASS",
+      "cases": {
+        "first-stage": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle"
+        },
+        "later-stage": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle"
+        },
+        "no-original": {
+          "status": "NO_USABLE_BUNDLE",
+          "selected": null
+        },
+        "normal-repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle"
+        }
+      },
+      "legacy172": true,
+      "legacy171": true,
+      "parent_binding_preserved": true,
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 3720
+    },
+    "evidence_refs": {
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r1-result.json",
+        "sha256": "7305112b962ede86044545dbc21e0adeb3ff034188018fcd3ea6fa9b2808c2e5",
+        "size": 1483
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r1-sources.json",
+        "sha256": "edb5ee71909401a6097076903438cbb5f53fc23976c9e97c90bbace0257c381e",
+        "size": 67821
+      },
+      "affected-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r1.log",
+        "sha256": "a8635449fe32341b9a74bdb444bdec3eef581d99c063a1847d9b4c1e30fb258d",
+        "size": 992
+      },
+      "affected-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r1.xml",
+        "sha256": "b1fc80c54b250781a982969c75804ac2417227df932d53a85b576ef6b782ac39",
+        "size": 121304
+      },
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r2-result.json",
+        "sha256": "9221eddb38691692b80257f76ffc1183be1f76678ba71c2c9704f769b5e37fa2",
+        "size": 1483
+      },
+      "affected-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r2-sources.json",
+        "sha256": "16dd1cff6ec931ef1a54bfa06d812235c68449a59681222c4e1b8e5f526320b3",
+        "size": 67821
+      },
+      "affected-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r2.log",
+        "sha256": "09822c4bf227db748c4b75729c339cff702db2e3abb10907645318c8c3d7d0b6",
+        "size": 992
+      },
+      "affected-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r2.xml",
+        "sha256": "b02e86ca27de6e3b8adfbca5371ad75ae40daf1985d3b3d7fffcc42e68b3d7d1",
+        "size": 122554
+      },
+      "affected-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r3-result.json",
+        "sha256": "f3bb75759f5162ad80f508344e4e869caf0db21ba8f3a7e003915ee983f742a2",
+        "size": 1483
+      },
+      "affected-r3-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r3-sources.json",
+        "sha256": "db0405cd0baf2dff4016abc8012518fcde0b6bc8f723a6f022fd8f9dc77b9d60",
+        "size": 67821
+      },
+      "affected-r3.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r3.log",
+        "sha256": "4997874ebda3588de310dadf017f03ce170eb5ee27a503c2197569c2569b3fb8",
+        "size": 992
+      },
+      "affected-r3.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/affected-r3.xml",
+        "sha256": "3cf00477077b0d78e5634cff8e048fc5883ae46d7b79f2e50be847ff1563cb63",
+        "size": 122701
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/before.log",
+        "sha256": "f67a33588d6306786cd56646441bfd2790d07ae417f1890e457499c23b8d2912",
+        "size": 5525
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/before.xml",
+        "sha256": "4309f6128eb528c900a324a20b34859f51a88142f00b533850a8f72036be2da2",
+        "size": 5802
+      },
+      "cold-r1/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/cold-r1/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold-r1/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/cold-r1/stdout.txt",
+        "sha256": "1eb6c49334a9e4a8460e69defd215da43e36065c9505591400f2a977b2bcd8e9",
+        "size": 590
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/cold-r1/summary.json",
+        "sha256": "ccf8457e6b74e8fa3f10e65df561b32a24f93067f1a712ad08b3d7b02e52e0c4",
+        "size": 702
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r1-result.json",
+        "sha256": "7260c8868770bbd46072af833b57bad482bccff276fd8a403ecb210fedefcbe2",
+        "size": 501
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r1-sources.json",
+        "sha256": "edb5ee71909401a6097076903438cbb5f53fc23976c9e97c90bbace0257c381e",
+        "size": 67821
+      },
+      "focused-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r1.log",
+        "sha256": "f9d00bf439c303e39ce99735a75fc674de0e5a7e8325c93071c11232d9c18ab3",
+        "size": 6398
+      },
+      "focused-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r1.xml",
+        "sha256": "a181ce9e36490a077ee607ca3e86978cac47fed9a21cd0e552927733e868ca17",
+        "size": 232464
+      },
+      "focused-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r2-result.json",
+        "sha256": "7020bd11870be6161f817e1a15d44912e52751ca8aa52ede2d69016eb4246d85",
+        "size": 501
+      },
+      "focused-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r2-sources.json",
+        "sha256": "db0405cd0baf2dff4016abc8012518fcde0b6bc8f723a6f022fd8f9dc77b9d60",
+        "size": 67821
+      },
+      "focused-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r2.log",
+        "sha256": "3f43864834ec2804150600c65c8c4493f69dd3db1e9a5e110ac30c1bdfdd3b48",
+        "size": 6398
+      },
+      "focused-r2.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/focused-r2.xml",
+        "sha256": "85df85924ba99155909c46d34364067ba7e3ea19f3c83ae9b5410e6399382d37",
+        "size": 233861
+      },
+      "native-r1/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r1/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "a90a0adc139162510f6397e5f1ee9cb281863feba4baafc145226696025cb91b",
+        "size": 33920
+      },
+      "native-r1/first-stage/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r1/first-stage/request/attempts/attempt-0001/result.json",
+        "sha256": "8ae31a0a729f822cf32e1e25903b4fb709bbc53a6a6a09ef75bad1e048f03cc4",
+        "size": 587
+      },
+      "native-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r1.log",
+        "sha256": "0519c4f066129e51d15e29c0a06850fec49126cc8ef77dc0a4acce491d1ed285",
+        "size": 1093
+      },
+      "native-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r2.log",
+        "sha256": "07974235fde929fe32a0e1af45bbffe2dc81e8777d7772f1b0b9c1d267c50912",
+        "size": 2443
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/attempt.json",
+        "sha256": "8c782df3e2b26530e1883d7f49d30ccb5f4659115acf6b359d9fcd7a9c6db2b4",
+        "size": 613
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/finished.json",
+        "sha256": "344c4c00b1558309ba6f6cbb2a01e5396badf55dd65c79652dc41a959980df31",
+        "size": 103614
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/finished.json",
+        "sha256": "502c0064f0d95ed503a8e3412099b477cf36733e9c0873ed633e2d8b6b6784f8",
+        "size": 466
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/job.json",
+        "sha256": "51f8d4ff61fcab8e86ec4b7b07b70a8f19c5973394b22eff3336627b620387f9",
+        "size": 1048
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "5e4a500835c1faa19ee27007d8942c9c92d53c8c27e6fb70c1b421d66279dabe",
+        "size": 34807
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json",
+        "sha256": "09b2d709c809a707bd3524fa0cb2c41f36efc4b1b3c3e2ebf2019a7369416011",
+        "size": 60977
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json",
+        "sha256": "cf9221c8b55375a809c92bfb08283e4a2ad7c8dfec37b2691d6914674cbaeedd",
+        "size": 712
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/repair/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/repair/request.json",
+        "sha256": "a3f3f58236c846f21d99f5d86bf1b4f580d50f3efd58c76ac0413a3e7759ce56",
+        "size": 6517
+      },
+      "native-r3/first-stage/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/attempts/attempt-0001/result.json",
+        "sha256": "f66d2ed6411c2f19870bebbc4ea17eaf073651c7c2cece52f82c19d8d051e479",
+        "size": 587
+      },
+      "native-r3/first-stage/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/first-stage/request/request.json",
+        "sha256": "a9bc18fbf4f994d40cc4574933211e07b63b45925bfcd4c673fdae041de6a83a",
+        "size": 49263
+      },
+      "native-r3/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/attempt.json",
+        "sha256": "e8fe776b515557de23c0fddcde1d7ac18a1b9ec8615680b6b284d4b1f39eab99",
+        "size": 613
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/finished.json",
+        "sha256": "5183d1976f7278cf9d2807e43c9fbe0aafeccbd95b1a7a63feb7b89f1e70ac4a",
+        "size": 107354
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-002/finished.json",
+        "sha256": "db60eb6fa95cb30f42afef51df0cacdb7a575db8f7a784e00ebd39c87c64b1ef",
+        "size": 466
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-002/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-002/job.json",
+        "sha256": "b849d17a3715114abdfb4bcae1976f12b225042aef8975eddcf170d9a43c614a",
+        "size": 1048
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "4319475aa1c51a9585e55657998f10808be8bd86935c8e0ae8bfa709f012d090",
+        "size": 34986
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json",
+        "sha256": "f04a81f2d78d846090480e649185868df9eb5d6491aaaef33cc4bd00d08f5352",
+        "size": 60977
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json",
+        "sha256": "d7679d8e42e5449cc07751cf98c97745796d9d0e831d495b241567699c6ec847",
+        "size": 712
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/repair/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/repair/request.json",
+        "sha256": "f647ef06379cec6ee74b586ab5ffcdc01d676e92d1934623d71710efd9e64a5c",
+        "size": 6517
+      },
+      "native-r3/later-stage/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/attempts/attempt-0001/result.json",
+        "sha256": "ed1430f37b347ed8fb1e3a55540a54f1c236a326c4320673de01a07bf62e771d",
+        "size": 586
+      },
+      "native-r3/later-stage/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/later-stage/request/request.json",
+        "sha256": "88cc648a1dfffa8dc03ec9a7d4ec8b0217c29a9cedd6276477aebf68d380d560",
+        "size": 49263
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/attempt.json",
+        "sha256": "82a094165f5201309df3b5db572a333d3ab5d862d109cef6bcdcf0342297d8a5",
+        "size": 613
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/finished.json",
+        "sha256": "2dc013998f1e49547ab1b1605181643f59967201cfe21bce952d264f25409c34",
+        "size": 77727
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/finished.json",
+        "sha256": "422e01960aab822bac13afc74a429f6f0773090963a9b053af87cd8cb6fa85a3",
+        "size": 466
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/ownership/phases/native-001/job.json",
+        "sha256": "7ec6a30a9a2c27747b09a799be74fbb9c5ddd8903071b14ca40fbd326c4c5840",
+        "size": 1048
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "45ca7313abe5ad8a36c20c661c63a4445573def62435e53cc3d8ec853cc8919c",
+        "size": 33208
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json",
+        "sha256": "2a2332c7c91a997de7a231b8f7dfdaa6dee6cf5620f5ec388ee8187996630612",
+        "size": 712
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/repair/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/repair/request.json",
+        "sha256": "b02683c23bf60c53062a2ead38d49f8763014df5c68346f4d51c5501e39920e7",
+        "size": 6515
+      },
+      "native-r3/no-original/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/attempts/attempt-0001/result.json",
+        "sha256": "9646fd087d099403e3e84417755638c42e1ffc1f03f5a219a3d3457cb8421b29",
+        "size": 574
+      },
+      "native-r3/no-original/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/no-original/request/request.json",
+        "sha256": "bc9c23f5b58243670448d6817f8a0b1114b4d313998c0b90cc023733c961757c",
+        "size": 49261
+      },
+      "native-r3/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/parent-inputs.json",
+        "sha256": "ce66c4611b90f45949da974e4222bf84e28ae7241db90580a6f8d7d877a24070",
+        "size": 178221
+      },
+      "native-r3/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/runtime-sources.json",
+        "sha256": "65648b3e61ee33c5167844ae267ebc6f169cb993e7537092c3fe149acfa361d1",
+        "size": 22211
+      },
+      "native-r3/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3/summary.json",
+        "sha256": "ff5d13ada4cafbcac9abd84049be214ed6ee6d405ee1901c4b781b5be8c10adc",
+        "size": 1837
+      },
+      "native-r3.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/native-r3.log",
+        "sha256": "1c439d60f2cc50c69f6e1eac54ffcbbcf6fe09181293f93d8aeed22ac0dff8c5",
+        "size": 2443
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/new-r1-result.json",
+        "sha256": "891595323b14cdef643e5e38eaab7215ed4897f050e8529656a7bf0426b76420",
+        "size": 843
+      },
+      "new-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/new-r1-sources.json",
+        "sha256": "fc6a05582f46df3b48975d00c4264cfb33ceaef803f8e9560fd25ed132fc9839",
+        "size": 67821
+      },
+      "new-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/new-r1.log",
+        "sha256": "ac9b45aa95703bd9aedbf8cf7580231fa1698bb5fb5722cc5804a5b7ff7aa611",
+        "size": 261
+      },
+      "new-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/new-r1.xml",
+        "sha256": "d6f70368cb7d0a0b5b286d526add2abd1e8edf04fa74ddc2b1c3e5917687148f",
+        "size": 26881
+      },
+      "redundancy-review.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/redundancy-review.json",
+        "sha256": "b6f761cbf590292f282a518a12977f2fc84967d6200006606a701f295c86cfe2",
+        "size": 1244
+      },
+      "review-before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/review-before-result.json",
+        "sha256": "41d42e610e4183e12fd96a0bb8b003dee4b0e200fb5566055e11c3fcce9b42b4",
+        "size": 677
+      },
+      "review-before-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/review-before-sources.json",
+        "sha256": "08ba0e95b98b2fc1ce02ed89e9074416e9e95111502045acc6c7d447088fa340",
+        "size": 67821
+      },
+      "review-before.log": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/review-before.log",
+        "sha256": "45aef7ca1259271f3ace29c4c6dbdb3eaa23a3832c6e4396cd32712815c4d212",
+        "size": 20218
+      },
+      "review-before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/review-before.xml",
+        "sha256": "7054018567a584632c33fc4a2cd7ee27846e537fef84ba116e9454400e0d43f9",
+        "size": 20444
+      },
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "173_Cedar_owned-failure-fallback-omw4ujpx/start.json",
+        "sha256": "4cf99b4b7f734669c0077bf9abfd641395387ab6c6f82755b648308ee14d8574",
+        "size": 204
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_native_atom_mapping.py",
+        "tests/test_cif_native_nonbonded.py",
+        "tests/test_cif_native_gradients.py",
+        "tests/test_cif_captured_mixed_gradients.py",
+        "tests/test_cif_captured_linear_attribution.py",
+        "tests/test_cif_prepared_repair_failure.py",
+        "tests/test_cif_attachment_native.py",
+        "tests/test_cif_dictionary_sites.py",
+        "tests/test_cif_captured_full_monomers.py",
+        "tests/test_cif_candidate_qualification_execution.py",
+        "tests/test_cif_original_component_runtime.py",
+        "tests/test_cif_dictionary_bundle_repair.py",
+        "tests/test_cif_repaired_component_runtime.py",
+        "tests/test_cif_component_runtime.py",
+        "tests/test_cif_runtime_bundle.py",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_prepared_repair_budget.py",
+        "tests/test_cif_repair_attempt.py",
+        "tests/test_cif_complete_request.py",
+        "tests/test_cif_outer_context.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/173_Cedar_owned-failure-fallback-omw4ujpx/affected-r3.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/173_Cedar_owned-failure-fallback-omw4ujpx/focused-r2.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c173_native_r2.py native-r3",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c173_cold.py cold-r1"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "narestraints": "1.1.3",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual execution"
+    },
+    "artifacts": "Source/tests/docs/hash references only; generated science/logs/XML/runners/copied checkouts local",
+    "limitations": [
+      "No full suite; C160 remains last completed baseline",
+      "Classification only covers exact optional native timeout or complete valid worker refusal; generic/unknown/corrupt/initial failures still raise",
+      "Failed job binds dispatcher only; complete current-consumer check and independent original API proof remain mandatory",
+      "Complete composition remains 2–16 selected types; singleton route needed before ordinary adoption",
+      "Completed refusal/unsupported classification has synthetic controls; real native controls use timeouts",
+      "No new family, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+      "Cooperative budgets and existing artifact caps remain"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-09T15:36:13.879174+00:00"
   }
 }

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-09, after C172.** This queue owns unfinished
+**Current planning authority, 2026-11-09, after C173.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -268,20 +268,24 @@ still raises. Actual clean PDU/5PC and derivative-timeout controls produce a
 qualified original and no usable bundle respectively. Legacy requests keep their
 old absent-mode behavior, and all three publication/request paths replay cold.
 
-**Next bounded checkpoint:** classify early optional repair-capture failures before
-allowing proven-original fallback. `FAILED` currently includes malformed output,
-input-integrity errors and ordinary worker failures; a generic catch would hide
-contradictions. Require an exact failed receipt, unchanged declared inputs and
-known-stopped owned process, preserve the entire failed attempt, and independently
-replay the original's source/site/native/derivative proof. Unknown cleanup or
-corrupt evidence must still block. No in-place repair or renewed allowance.
+C173 closes classified optional-native fallback in the explicit complete request.
+An exact timeout or complete failed/unsupported report must match a launched,
+known-stopped owned job, unchanged declared inputs and the maintained worker.
+Contradictory claims, malformed evidence, initial-stage failure, interruptions and
+unknown cleanup remain blocking. The original's independent proof and current
+consumer are rechecked; only that original can be selected. The failed attempt is
+preserved without renewed time or native retry. Actual first/later-stage and
+no-usable-original controls plus legacy/cold replay pass. Existing valid negative
+attribution/derivative reports continue through their established selector.
 
-Before Q05 enables ordinary recovery, also qualify a single selected modified
-component: the current composed-bundle path requires two to sixteen. Reuse the
-single-component preparation contract or validate a broader composer boundary;
-do not add a dummy component. Ordinary adoption remains Q05, final refinement
+**Next bounded checkpoint:** qualify one selected modified component through the
+complete path, which currently requires two to sixteen. Reuse the single-component
+preparation contract or validate a broader composer boundary; no dummy component.
+Then connect the explicit engine to ordinary recovery without weakening source,
+state, site or consumer identity. Ordinary adoption remains Q05, final refinement
 consumer proof Q06, and larger/held-out requests Q07/Q16. Existing artifact bounds
-still apply; no maximum-size throughput claim is made.
+still apply; no maximum-size throughput claim is made. Unknown operational or
+malformed-evidence failures are deliberately not converted into fallback.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;
@@ -535,7 +539,7 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. C170–C172 also have focused/native/cold validation only,
+Cedar/pine/main merge candidate. C170–C173 also have focused/native/cold validation only,
 with no full suite requested. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,

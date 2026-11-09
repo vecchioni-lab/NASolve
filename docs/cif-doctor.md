@@ -242,6 +242,68 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Classified optional-native failures and original fallback (C173)
+
+New complete requests freeze `optional_failure_policy=
+"cif-owned-native-failure-original-v1"`. Prepared execution/request APIs keep the
+standalone default `None`; historical configurations without the field preserve
+that behavior. A changed or unknown policy refuses. The mode is carried through
+and checked against child configuration and execution reports, including exact
+failure-proof replay. New policy-bearing requests require C173 readers; no
+historical record is rewritten.
+
+The policy applies only to optional native repair stages `native-001` onward,
+after baseline/prepared source checks and the original derivative attempt. It
+permits two classes of negative evidence: an actual stopped timeout, or a complete
+failed/unsupported maintained-worker report. It does not catch arbitrary
+exceptions, initial capture failures, interruptions, malformed reports, changed
+inputs or uncertain cleanup. Remaining attribution/derivative negatives continue
+through their existing readers and selection gate.
+
+`cif_prepared_repair_failure.inspect_prepared_native_failure(directory, phase)`
+reads one exact phase. It shares the existing bounded native artifact/spec/worker
+reader, ordered-input binding, source-qualified repair-plan binding and process
+owner inspection. The receipt must agree with a launched, verified-stopped job
+on command, return state/code, deadline and declared working directory. All owned
+phases must be stopped. The exact model, ordered dictionaries and PHIL must match
+that graph step; hashes, inventory, maintained worker and frozen source ownership
+are checked. No historical executable path is opened or run.
+
+A timeout's partial report is opaque preserved data, never a native usability
+proof. The ordinary scientific capture reader still rejects timeouts. A reported
+native failure needs a consistent complete report, a nonempty error and unchanged
+read-only/no-approval claims. Malformed report objects raise `ValueError`, rather
+than an attribute error. The failure review is schema 1,
+`cif-prepared-native-failure-review-v1`, with `repair_directory` references. It
+explicitly grants no retry, fallback or scientific qualification by itself.
+Failed jobs bind the dispatcher only; they cannot supply missing API/energy
+fingerprints. Execution rechecks the current consumer before evaluating fallback.
+
+After a classified failure, later repair/attribution work stops. The existing C172
+selector independently replays the original's source/site/native/derivative proof.
+Only a passing original can publish `verified_prepared_bundle`; a valid negative
+original produces `NO_USABLE_BUNDLE`. Source corruption still raises. The runtime
+uses the unchanged C172 original policy, while the execution/request preserves the
+failed job and its bound review. No candidate files are mixed, no native retry
+occurs, and no allowance is renewed. The existing publication and final-budget
+checks still apply.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls use the saved PDU/5PC source
+context. A harness shortens one optional native adapter deadline to 50 ms without
+changing its maintained worker, inputs or ownership; its actual job records that
+smaller allowance. Timeouts at stages 001 and 002 both retain their partial outputs
+and select byte-identical qualified original model/dictionaries. If the original
+derivative attempt also times out, no runtime is published. A one-second control
+completed successfully and selected the repaired bundle; it is preserved as a
+normal-path control, not reported as a timeout. Cold replay covers these outcomes
+plus C172 and C171 requests with historical paths and execution denied.
+
+This closes the demonstrated classified optional-native fallback sub-gate. It
+adds no ordinary checkpoint adoption, scientific approval or new chemistry.
+Single-selected-component composition is the next Q04 coverage boundary; ordinary
+integration (Q05), actual refinement-consumer proof (Q06), the mixed/held-out
+scaffolds (Q07) and chemical-state cases (Q13) remain separate.
+
 ### Independently qualified originals and no-repair requests (C172)
 
 `cif_dictionary_bundle_repair.inspect_dictionary_bundle_original()` checks an
@@ -291,11 +353,11 @@ derivative control times out with verified stopped ownership, returns
 original evidence also qualifies without attribution. Cold replay covers both
 new outcomes, the standalone original publication and the legacy repaired request.
 
-This closes the no-graph original sub-gate, not all fallback integration. Early
-optional repair-capture failures still raise: `FAILED` can include malformed
-reports or changed inputs, so it cannot be caught as routine negative chemistry.
-Future fallback needs explicit trustworthy failure classification and known-stop
-proof. Ordinary adoption, single-component composition, chemical-state extensions
+C172 closes the no-graph original sub-gate. C173 adds the explicit classified
+optional-native policy above; an absent policy keeps the earlier raising behavior.
+`FAILED` alone never establishes safe fallback because it can include malformed
+reports or changed inputs. Classification, known-stop evidence and independent
+original proof remain distinct gates. Ordinary adoption, single-component composition, chemical-state extensions
 and actual refinement-consumer qualification remain queued. No phosphate/OP3,
 sugar/stereo, NARestraints ownership or scientific threshold changes are made.
 

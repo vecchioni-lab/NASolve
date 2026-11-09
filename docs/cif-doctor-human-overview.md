@@ -3726,8 +3726,12 @@ there is no graph repair: exact source/native binding and its own passing
 derivatives are required before publication. A real PDU/5PC control passes; a
 separate timed-out derivative produces no usable bundle and preserves its evidence.
 The same selector and publisher serve both repair and original paths. Historical
-requests remain unchanged. Early optional-capture fallback, ordinary PostMR
-adoption and final refinement-consumer qualification remain in the queue. See the
+requests remain unchanged. C173 now distinguishes exact stopped optional-native
+failures from corrupt evidence. A failed repair can retain the separately proven
+original, with every partial output preserved and no retry or extra allowance.
+Actual failures at two repair stages pass that fallback; an unqualified original
+still produces no usable bundle. Singleton composition, ordinary PostMR adoption
+and final refinement-consumer qualification remain in the queue. See the
 [independent-original method](cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172).
 The [complete-request contract](cif-doctor.md#complete-frozen-dictionary-requests-c171)
 records the scope, limits and validation.

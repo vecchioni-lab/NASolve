@@ -407,3 +407,25 @@ def test_execution_cannot_discard_or_weaken_frozen_no_repair_mode(setup,monkeypa
     with pytest.raises(ValueError,match='mode'):m.execute_prepared_dictionary_repair_attempt(*args,qualify_no_repair=True,**options)
     assert not (args[-1]/'attempts/attempt-0001/finished.json').exists()
     assert (args[-1]/'attempts/attempt-0001/execution/repair_execution.json').exists()
+
+
+@pytest.mark.parametrize('enabled',[False,True])
+def test_optional_failure_policy_is_frozen_and_bound_to_execution(setup,monkeypatch,enabled):
+    m,args,options,calls=setup;old=m.execute_prepared_dictionary_repair;policy=m.FALLBACK_POLICY_ID if enabled else None
+    def execute(*a,**k):
+        assert k.get('optional_failure_policy')==policy
+        result=old(*a,**k)
+        if enabled:result['optional_failure_policy']=policy
+        (a[2]/'repair_execution.json').write_text(json.dumps(result));return result
+    monkeypatch.setattr(m,'execute_prepared_dictionary_repair',execute)
+    m.execute_prepared_dictionary_repair_attempt(*args,optional_failure_policy=policy,**options)
+    root=args[-1];assert read_record(root/'request.json')['configuration'].get('optional_failure_policy')==policy
+    before=inventory(root)
+    with pytest.raises(ValueError):m.execute_prepared_dictionary_repair_attempt(*args,optional_failure_policy=None if enabled else m.FALLBACK_POLICY_ID,**options)
+    assert inventory(root)==before and len(calls)==1
+
+
+def test_execution_cannot_drop_frozen_optional_failure_policy(setup):
+    m,args,options,calls=setup
+    with pytest.raises(ValueError,match='policy'):m.execute_prepared_dictionary_repair_attempt(*args,optional_failure_policy=m.FALLBACK_POLICY_ID,**options)
+    assert not (args[-1]/'attempts/attempt-0001/finished.json').exists()

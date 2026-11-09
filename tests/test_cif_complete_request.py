@@ -36,7 +36,7 @@ def case(tmp_path,monkeypatch):
         result=dict(status='NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED')
         (out/'repair_execution.json').write_text(json.dumps(result));return result
     monkeypatch.setattr(repair,'execute_prepared_dictionary_repair',execute)
-    args=dict(qualify_no_repair=False,source_selection=sources,components=components,model=ordinary['model'],consumer=ordinary['consumer'],expected_links=ordinary['expected_links'],native_context=ordinary['native_context'],total_timeout_seconds=60,component_timeout_seconds=30,max_attempts=3)
+    args=dict(qualify_no_repair=False,optional_failure_policy=None,source_selection=sources,components=components,model=ordinary['model'],consumer=ordinary['consumer'],expected_links=ordinary['expected_links'],native_context=ordinary['native_context'],total_timeout_seconds=60,component_timeout_seconds=30,max_attempts=3)
     return m,args,tmp_path/'request',sdk,tmp_path/'store',generations,calls
 
 
@@ -400,3 +400,28 @@ def test_legacy_complete_request_does_not_silently_enable_mode(case):
     result=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
     assert 'NOT_ASSESSED' in result['result']['status']
     assert 'qualify_no_repair' not in read_record(root/'attempts/attempt-0001/repair/request.json')['configuration']
+
+
+
+def test_complete_request_freezes_new_optional_failure_default(case,monkeypatch):
+    from nasolve import cif_repair_attempt as repair
+    m,args,root,sdk,store,generations,calls=case;args=dict(args);args.pop('optional_failure_policy')
+    old=repair.execute_prepared_dictionary_repair
+    def execute(*a,**k):
+        assert k['optional_failure_policy']==repair.FALLBACK_POLICY_ID
+        result=old(*a,**k);result['optional_failure_policy']=k['optional_failure_policy']
+        (a[2]/'repair_execution.json').write_text(json.dumps(result));return result
+    monkeypatch.setattr(repair,'execute_prepared_dictionary_repair',execute)
+    m.initialize_dictionary_request(output=root,**args)
+    assert read_record(root/'request.json')['configuration']['optional_failure_policy']==repair.FALLBACK_POLICY_ID
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    result=m.read_dictionary_request_result(root,1)
+    assert result['execution']['optional_failure_policy']==repair.FALLBACK_POLICY_ID
+    assert read_record(root/'attempts/attempt-0001/repair/request.json')['configuration']['optional_failure_policy']==repair.FALLBACK_POLICY_ID
+
+
+@pytest.mark.parametrize('policy',[True,False,'UNKNOWN',1])
+def test_complete_request_refuses_unknown_failure_policy(case,policy):
+    m,args,root,sdk,store,generations,calls=case
+    with pytest.raises(ValueError):m.initialize_dictionary_request(output=root,**dict(args,optional_failure_policy=policy))
+    assert not (root/'request.json').exists() and not calls
