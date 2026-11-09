@@ -19,6 +19,7 @@ from .cif_doctor_selection import ComponentCandidate, select_component_candidate
 from .cif_mixed_geometry import _ref
 
 POLICY_ID = 'cif-source-bound-repaired-bundle-selection-v1'
+ORIGINAL_POLICY_ID = 'cif-source-bound-prepared-bundle-selection-v1'
 
 
 def _gradient(directory, receipt, anchor):
@@ -28,6 +29,41 @@ def _gradient(directory, receipt, anchor):
         'Derivative evidence belongs to a different native capture')
     return dict(status=report['status'],qualified=report['status']=='CAPTURED_MIXED_DERIVATIVES_PASS',
         report=_ref(root/'captured_mixed_gradients.json',root,anchor))
+
+
+def _prepared_capture(prepared, receipt, expected_dictionaries):
+    capture,model,dictionaries,phils,native,_=_inputs(Path(receipt).parent)
+    _need(capture.get('full_monomer_inventory_policy')==MONOMER_POLICY,'Require full native identities throughout qualification')
+    proof=review_full_monomers(native)
+    _need(_read(model)==_read(prepared['model'])
+        and [_read(p) for p in phils]==[_read(p) for p in prepared['after_phils']]
+        and [_read(p) for p in dictionaries]==[_read(p) for p in expected_dictionaries],
+        'Native capture differs from the prepared model, dictionary order or PHIL')
+    _bind_capture(capture,prepared['report']['consumer'],prepared['model'],dictionaries,prepared['after_phils'])
+    return proof
+
+
+def _choose(prepared, root, candidates, eligible, source_usable):
+    source=prepared['report'];original=prepared['after_dictionaries']
+    decisions={};sources={}
+    for code in source['components']:
+        saved=resolve_dictionary_snapshot(root/'components'/code/'snapshot')
+        stereo=saved['qualification']['source_assessment']['finished_stereo']['stereochemistry']
+        chemistry=sha256(_bytes(saved['manifest']['request']['declared_chemistry'])).hexdigest()
+        index=original.index(prepared['component_dictionaries'][code])
+        sources[code]=_ref(saved['source'],root,'prepared_bundle_directory')
+        rows=[]
+        for label,paths in candidates.items():
+            path=paths[index]
+            rows.append(ComponentCandidate(candidate_id=label,component=code,source_priority=0,
+                artifact_sha256=sha256(_read(path)).hexdigest(),chemistry_sha256=chemistry,
+                integrity_verified=True,native_usable=eligible[label],chemistry_preserved=source_usable,
+                essential_restraints_present=source_usable,finite_parameters=eligible[label],stereochemistry=stereo,
+                warnings=('Source-bound diagnostic only; ordinary refinement and scientific qualification remain separate.',)))
+        decisions[code]=select_component_candidate(rows)
+    choices={d['selected_candidate'] for d in decisions.values()}
+    _need(len(choices)==1,'Component choices cannot be combined into a new unchecked bundle')
+    return decisions,sources,choices.pop()
 
 
 def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_directory, original_gradient_directory):
@@ -57,16 +93,9 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
     stages=[plan['inputs']]+[s['dictionaries_after'] for s in steps]
     for i,stage in enumerate(stages):
         parent=attribution/'captures'/f'{i:03d}';receipt=parent/'native_receipt.json'
-        capture,model,dictionaries,phils,native,_=_inputs(parent)
-        _need(capture.get('full_monomer_inventory_policy')==MONOMER_POLICY,'Require full native identities throughout repair')
-        proof=review_full_monomers(native)
+        proof=_prepared_capture(prepared,receipt,[attribution/'bundle'/r['path'] for r in stage])
         if identity is None:identity=proof
         else:_need(_bytes(proof)==_bytes(identity),'Repair changed full native identities')
-        _need(_read(model)==_read(prepared['model'])
-            and [_read(p) for p in phils]==[_read(p) for p in prepared['after_phils']]
-            and [_read(p) for p in dictionaries]==[_read(attribution/'bundle'/r['path']) for r in stage],
-            'Repair capture differs from the prepared model, dictionary order or PHIL')
-        _bind_capture(capture,source['consumer'],prepared['model'],dictionaries,prepared['after_phils'])
         receipts.append(receipt)
     initial=inspect_dictionary_bundle_native(root,baseline,receipts[0])
     source_usable=initial['diagnostic_continuation']['allowed'] is True
@@ -76,24 +105,9 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
         and job['kernel_execution_authentication']=='MAINTAINED_FRESH_NATIVE_JOB')
     eligible={'repaired_prepared_bundle':source_usable and attributed and repaired['qualified'],
         'verified_prepared_bundle':source_usable and starting['qualified']}
-    decisions={};sources={}
-    for code in source['components']:
-        saved=resolve_dictionary_snapshot(root/'components'/code/'snapshot')
-        stereo=saved['qualification']['source_assessment']['finished_stereo']['stereochemistry']
-        chemistry=sha256(_bytes(saved['manifest']['request']['declared_chemistry'])).hexdigest()
-        index=original.index(prepared['component_dictionaries'][code])
-        sources[code]=_ref(saved['source'],root,'prepared_bundle_directory')
-        rows=[]
-        for label,path in [('repaired_prepared_bundle',final[index]),('verified_prepared_bundle',original[index])]:
-            rows.append(ComponentCandidate(candidate_id=label,component=code,source_priority=0,
-                artifact_sha256=sha256(_read(path)).hexdigest(),chemistry_sha256=chemistry,
-                integrity_verified=True,native_usable=eligible[label],chemistry_preserved=source_usable,
-                essential_restraints_present=source_usable,finite_parameters=eligible[label],stereochemistry=stereo,
-                warnings=('Source-bound diagnostic only; ordinary refinement and scientific qualification remain separate.',)))
-        decisions[code]=select_component_candidate(rows)
-    choices={d['selected_candidate'] for d in decisions.values()}
-    _need(len(choices)==1,'Component choices cannot be combined into a new unchecked bundle')
-    selected=choices.pop();resources=None;inputs=None
+    decisions,sources,selected=_choose(prepared,root,
+        {'repaired_prepared_bundle':final,'verified_prepared_bundle':original},eligible,source_usable)
+    resources=None;inputs=None
     if selected is not None:
         ds=final if selected=='repaired_prepared_bundle' else original
         inputs=dict(model=prepared['model'],dictionaries=ds,phils=prepared['after_phils'])
@@ -140,4 +154,62 @@ def repaired_dictionary_bundle_inputs(bundle, baseline_receipt, attribution_dire
     try:report,inputs=_inspect(bundle,baseline_receipt,attribution_directory,repaired_gradient_directory,original_gradient_directory)
     except (KeyError,TypeError,IndexError) as exc:raise ValueError('Incomplete source-bound repair evidence') from exc
     _need(inputs is not None,'No usable source-bound dictionary bundle')
+    return dict(**inputs,review=report)
+
+
+def _inspect_original(bundle, baseline_receipt, candidate_receipt, original_gradient_directory):
+    root=Path(bundle).absolute();baseline=Path(baseline_receipt).absolute();candidate=Path(candidate_receipt).absolute()
+    _need(baseline.name==candidate.name=='native_receipt.json','Require exact original qualification receipts')
+    roots={'prepared_bundle_directory':root,'preparation_baseline_directory':baseline.parent,
+        'prepared_capture_directory':candidate.parent}
+    if original_gradient_directory is not None:roots['original_gradient_directory']=Path(original_gradient_directory).absolute()
+    snapshots={name:_tree(p) for name,p in roots.items()}
+    _need(sum(len(v) for v in snapshots.values())<=MAX_FILES
+        and sum(len(b) for v in snapshots.values() for b in v.values())<=MAX_BYTES,'Combined original evidence exceeds supported bounds')
+    prepared=read_dictionary_bundle(root)
+    identity=_prepared_capture(prepared,candidate,prepared['after_dictionaries'])
+    initial=inspect_dictionary_bundle_native(root,baseline,candidate)
+    source_usable=initial['diagnostic_continuation']['allowed'] is True
+    gradient=_gradient(original_gradient_directory,candidate,'original_gradient_directory')
+    decisions,sources,selected=_choose(prepared,root,{'verified_prepared_bundle':prepared['after_dictionaries']},
+        {'verified_prepared_bundle':source_usable and gradient['qualified']},source_usable)
+    inputs=None;resources=None
+    if selected is not None:
+        inputs=dict(model=prepared['model'],dictionaries=prepared['after_dictionaries'],phils=prepared['after_phils'])
+        resources=dict(model=_ref(inputs['model'],root,'prepared_bundle_directory'),
+            dictionaries=[_ref(p,root,'prepared_bundle_directory') for p in inputs['dictionaries']],
+            phils=[_ref(p,root,'prepared_bundle_directory') for p in inputs['phils']])
+    report=dict(schema_version=1,policy_id=ORIGINAL_POLICY_ID,
+        status='VERIFIED_PREPARED_BUNDLE' if selected else 'NO_USABLE_BUNDLE',
+        decision=dict(status='CONTINUE_WITH_NOTES' if selected else 'NO_USABLE_BUNDLE',selected=selected,
+            scope='SEPARATE_DIAGNOSTIC_PHASE_ONLY',requires_cif_review=False,automatic_adoption=False),
+        component_decisions=decisions,source_qualification=initial,source_references=sources,
+        preparation=_ref(root/'bundle_receipt.json',root,'prepared_bundle_directory'),
+        baseline=_ref(baseline,baseline.parent,'preparation_baseline_directory'),
+        prepared_capture=_ref(candidate,candidate.parent,'prepared_capture_directory'),
+        derivatives=dict(original=gradient),resources=resources,
+        full_monomer_inventory=identity,coordinate_selection='UNCHANGED_PREPARED_MODEL',
+        source_protonation='NOT_ASSESSED',scientific_qualification='NOT_ASSESSED',automatic_adoption=False,
+        new_native_calls=0,captured_code_execution='NOT_RUN',model_optimization='NOT_RUN',
+        readyset_execution='NOT_RUN',refinement='NOT_RUN',runtime_publication='NOT_RUN',checkpoint_adoption='NOT_RUN')
+    _need(all(_tree(roots[k])==v for k,v in snapshots.items()),'Evidence changed during original bundle inspection')
+    return report,inputs
+
+
+def inspect_dictionary_bundle_original(bundle, baseline_receipt, candidate_receipt, *, original_gradient_directory=None):
+    """Independently qualify unchanged prepared inputs, without repair attribution.
+
+    A preserved original requires its own exact source/native and derivative
+    proofs. Missing or valid negative proof grants no selection; corrupt proof
+    raises. No chemistry is inferred from a no-op graph plan.
+    """
+    try:return _inspect_original(bundle,baseline_receipt,candidate_receipt,original_gradient_directory)[0]
+    except (KeyError,TypeError,IndexError) as exc:raise ValueError('Incomplete source-bound original evidence') from exc
+
+
+def original_dictionary_bundle_inputs(bundle, baseline_receipt, candidate_receipt, *, original_gradient_directory=None):
+    """Resolve an independently verified original model/ordered-CIF/PHIL set."""
+    try:report,inputs=_inspect_original(bundle,baseline_receipt,candidate_receipt,original_gradient_directory)
+    except (KeyError,TypeError,IndexError) as exc:raise ValueError('Incomplete source-bound original evidence') from exc
+    _need(inputs is not None,'No usable source-bound original bundle')
     return dict(**inputs,review=report)

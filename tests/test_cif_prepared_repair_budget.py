@@ -136,3 +136,28 @@ def test_outer_expiry_withholds_later_work_and_success(timed,monkeypatch,adapter
     if adapter=='prepare_repaired_component_runtime_bundle':assert (out/'runtime/runtime_bundle.json').exists()
     elif adapter=='prepare_linear_torsion_bundle':assert not any(c.startswith('native') for c in calls)
     else:assert 'native-001' not in calls
+
+
+@pytest.mark.parametrize('boundary',['derivative','selection','publication'])
+def test_no_repair_qualification_obeys_outer_deadline_and_retains_partials(timed,monkeypatch,boundary):
+    import json
+    (m,b,sdk,out,state,calls,o),clock=timed;state['steps']=False;cap=[20.]
+    original=m.audit_captured_mixed_gradients
+    def derivative(*a,**k):
+        result=original(*a,**k)
+        if boundary=='derivative':cap[0]=0.
+        return result
+    def selection(**kwargs):
+        if boundary=='selection':cap[0]=0.
+        return {'decision':{'selected':'verified_prepared_bundle'}}
+    def publish(output,**kwargs):
+        output.mkdir();(output/'runtime_bundle.json').write_text(json.dumps(selection(**kwargs)))
+        if boundary=='publication':cap[0]=0.
+    monkeypatch.setattr(m,'audit_captured_mixed_gradients',derivative)
+    monkeypatch.setattr(m,'inspect_dictionary_bundle_original',selection)
+    monkeypatch.setattr(m,'prepare_original_component_runtime_bundle',publish)
+    with pytest.raises(TimeoutError):m.execute_prepared_dictionary_repair(b,sdk,out,
+        qualify_no_repair=True,total_timeout_seconds=100,_remaining_seconds=lambda:cap[0],**o)
+    assert not (out/'repair_execution.json').exists() and (out/'original-gradient').exists()
+    assert (out/'runtime').exists()==(boundary=='publication')
+    assert not (out/'attribution').exists()

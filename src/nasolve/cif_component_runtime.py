@@ -15,6 +15,7 @@ from .cif_runtime_bundle import MANIFEST_FILE, _json_bytes, _load_json, _referen
 
 POLICY_ID = 'cif-qualified-component-runtime-bundle-v1'
 REPAIRED_POLICY_ID = 'cif-qualified-repaired-component-runtime-bundle-v1'
+ORIGINAL_POLICY_ID = 'cif-qualified-prepared-component-runtime-bundle-v1'
 MAX_FILES = 1024
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_BYTES = 128 * 1024 * 1024
@@ -64,6 +65,8 @@ def _controls(root, controls):
 
 
 def _selection(root, controls, *, policy_id=POLICY_ID):
+    if policy_id == ORIGINAL_POLICY_ID:
+        return _original_selection(root, controls)
     if policy_id == REPAIRED_POLICY_ID:
         return _repaired_selection(root, controls)
     args=_controls(root,controls)
@@ -125,6 +128,28 @@ def _repaired_selection(root, controls):
         notes.append('Repair was not selected; the independently verified starting bundle was retained.')
     decision['notes'] = notes
     return review, decision, {k:result[k] for k in ('model','dictionaries','phils')}, unavailable
+
+
+def _original_selection(root, controls):
+    from .cif_dictionary_bundle_repair import original_dictionary_bundle_inputs
+    fixed={'bundle':'evidence/bundle','baseline_receipt':'evidence/baseline/native_receipt.json',
+        'candidate_receipt':'evidence/candidate/native_receipt.json',
+        'original_gradient_directory':'evidence/original-gradient'}
+    _need(isinstance(controls,dict) and controls==fixed,'Incomplete or unsafe original source selection')
+    evidence=root/'evidence'
+    _need(evidence.is_dir() and {p.name for p in evidence.iterdir()}=={'bundle','baseline','candidate','original-gradient'}
+        and all(p.is_dir() and not p.is_symlink() for p in evidence.iterdir()),'Unexpected original source evidence roots')
+    result=original_dictionary_bundle_inputs(**{k:root/v for k,v in controls.items()})
+    review=deepcopy(result['review']);decision=deepcopy(review['decision'])
+    _need(decision.get('status')=='CONTINUE_WITH_NOTES' and decision.get('scope')=='SEPARATE_DIAGNOSTIC_PHASE_ONLY'
+        and decision.get('automatic_adoption') is False and decision.get('requires_cif_review') is False
+        and decision.get('selected')=='verified_prepared_bundle','No qualified original diagnostic selection')
+    unavailable=[{k:r[k] for k in ('check','status')}
+        for r in review['source_qualification']['qualification']['checks'] if r['status']!='PASS']
+    decision['notes']=['Separate diagnostic continuation; scientific qualification and production adoption remain unassessed.',
+        'The original model and dictionaries passed independent source/native and fixed-coordinate derivative checks.']
+    if unavailable:decision['notes'].append('Unavailable native evidence remains recorded; source chemical state is preserved.')
+    return review,decision,{k:result[k] for k in ('model','dictionaries','phils')},unavailable
 
 
 def _resources(root, inputs, *, write=False):
@@ -194,6 +219,21 @@ def prepare_repaired_component_runtime_bundle(bundle, baseline_receipt, attribut
     return _publish(Path(output).absolute(), roots, controls, REPAIRED_POLICY_ID)
 
 
+def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt, output, *, original_gradient_directory):
+    """Freeze an independently qualified original through the shared publisher.
+
+    No repair history is required or invented. Existing original evidence is
+    replayed in full and frozen together before the output becomes visible.
+    """
+    baseline=Path(baseline_receipt);candidate=Path(candidate_receipt)
+    _need(baseline.name==candidate.name=='native_receipt.json','Require exact original native receipts')
+    roots={'bundle':Path(bundle),'baseline':baseline.parent,'candidate':candidate.parent,
+        'original-gradient':Path(original_gradient_directory)}
+    controls=dict(bundle='evidence/bundle',baseline_receipt='evidence/baseline/native_receipt.json',
+        candidate_receipt='evidence/candidate/native_receipt.json',original_gradient_directory='evidence/original-gradient')
+    return _publish(Path(output).absolute(),roots,controls,ORIGINAL_POLICY_ID)
+
+
 def _publish(output, roots, controls, policy_id):
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
     _need(not any(p.is_symlink() for p in output.parents), 'Unsafe runtime destination')
@@ -228,7 +268,7 @@ def verify_component_runtime_resources(path, value):
     path=Path(path);root=path.parent
     _need(path.name==MANIFEST_FILE and _json_bytes(_load_json(path))==_json_bytes(value), 'Runtime manifest changed')
     policy = value.get('policy_id')
-    _need(policy in (POLICY_ID, REPAIRED_POLICY_ID), 'Unsupported component runtime policy')
+    _need(policy in (POLICY_ID, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID), 'Unsupported component runtime policy')
     fixed = {**_FIXED, 'policy_id':policy}
     _need(all(type(value.get(k)) is type(v) and value.get(k)==v for k,v in fixed.items()), 'Unsupported component runtime policy')
     actual=[_reference(root/name,root) for name in _tree(root,manifest=True)]

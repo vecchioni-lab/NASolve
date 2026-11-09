@@ -90,6 +90,9 @@ milestone statements preserve their original scope; they are not a second queue.
   component histories, reciprocal ownership, shared allowance and conservative
   recovery. Real PDU/5PC expiry/recovery/repair and cold replay pass. Broader
   fallback and ordinary adoption remain open; focused validation only.
+  C172 adds independent original qualification/publication and a frozen no-repair
+  mode for new complete requests. Actual positive/timeout controls and cold
+  legacy/new replay pass; early optional-capture fallback remains open.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

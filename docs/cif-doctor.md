@@ -242,6 +242,63 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Independently qualified originals and no-repair requests (C172)
+
+`cif_dictionary_bundle_repair.inspect_dictionary_bundle_original()` checks an
+unchanged prepared model, ordered dictionaries and PHIL without requiring a
+repair plan or attribution. It reuses the existing source/site/native gate,
+full-monomer capture and derivative readers, and component-choice policy. The
+original needs its own exact passing derivative proof. Preserved files, an empty
+graph-repair plan, or missing proof never establish usability. Valid negative
+proof yields `NO_USABLE_BUNDLE`; malformed or contradictory evidence raises.
+The corresponding `original_dictionary_bundle_inputs()` returns only the exact
+verified model/dictionary/PHIL set. No coordinate ranking or optimization occurs.
+
+`cif_component_runtime.prepare_original_component_runtime_bundle()` freezes that
+selection through the existing bounded, immutable publisher. The new schema-1
+`cif-qualified-prepared-component-runtime-bundle-v1` carries the source review
+`cif-source-bound-prepared-bundle-selection-v1`. Evidence contains the prepared
+bundle, baseline capture, prepared capture and original derivative job. There is
+no invented attribution or repaired derivative. Public runtime resolution and
+`nasolve cif-doctor assess --bundle` replay the same proof after relocation.
+The prepared-capture reference uses the `prepared_capture_directory` anchor;
+all operational references remain relative with verified hashes.
+
+New complete requests enable `qualify_no_repair=True` by default and freeze that
+mode before any children. With no graph repair, execution captures baseline and
+prepared inputs, applies the existing source gate, and evaluates the original
+fixed-coordinate derivatives. A pass publishes `verified_prepared_bundle`; a
+negative source or derivative result remains unqualified. Existing repair plans
+follow the unchanged repair/attribution selection path. All work uses the same
+process owner, phase limits, outer allowance and immutable-attempt machinery.
+Expiry withholds success even if a partial publication already exists.
+
+Compatibility is explicit: standalone prepared execution and request APIs default
+to false. Historical frozen configurations without the field retain their old
+no-op result (`NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED`). Only true
+is serialized; non-boolean values and changed modes refuse. Complete requests
+bind their child's frozen mode, and child readers check any execution report's
+mode against its request. New mode-enabled requests and the original-only runtime
+policy require C172 readers; old artifacts are not migrated or rewritten.
+
+The actual Phenix 2.2.1-6174 / dispatcher 2.2.1 control requalifies the exact
+C171 repaired PDU/5PC numerical dictionaries on both isolated seeds and uses them
+as declared clean validation inputs. Their complete request has zero repair steps
+and exactly three native phases: baseline, prepared and original derivatives.
+It publishes the unchanged original model/dictionaries. A separate one-second
+derivative control times out with verified stopped ownership, returns
+`NO_USABLE_BUNDLE`, preserves evidence and publishes no runtime. Saved C171
+original evidence also qualifies without attribution. Cold replay covers both
+new outcomes, the standalone original publication and the legacy repaired request.
+
+This closes the no-graph original sub-gate, not all fallback integration. Early
+optional repair-capture failures still raise: `FAILED` can include malformed
+reports or changed inputs, so it cannot be caught as routine negative chemistry.
+Future fallback needs explicit trustworthy failure classification and known-stop
+proof. Ordinary adoption, single-component composition, chemical-state extensions
+and actual refinement-consumer qualification remain queued. No phosphate/OP3,
+sugar/stereo, NARestraints ownership or scientific threshold changes are made.
+
 ### Complete frozen dictionary requests (C171)
 
 `cif_complete_request.initialize_dictionary_request()` freezes an explicit

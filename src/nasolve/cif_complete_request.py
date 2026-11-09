@@ -59,7 +59,8 @@ def _component_config(source, code, authority, consumer, declaration, retained, 
         total_timeout_seconds=limits['component_timeout_seconds']), maximum)
 
 
-def _configuration(inputs, controls, limits, maximum):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False):
+    _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
     _need(type(maximum) is int and 1 <= maximum <= 5, 'Require one to five outer attempts')
@@ -101,7 +102,8 @@ def _configuration(inputs, controls, limits, maximum):
     expected_dirs = {str(p) for name in files for p in Path(name).parents if str(p) != '.'}
     _need(set(directories) == expected_dirs, 'Unrequested complete-request directory')
     return _json(_bytes(dict(controls=controls,limits=limits,max_attempts=maximum,components=components,
-        input_files=_inventory(files),input_directories=directories)))
+        input_files=_inventory(files),input_directories=directories,
+        **({'qualify_no_repair':True} if qualify_no_repair else {}))))
 
 
 def _request(root):
@@ -110,7 +112,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'])
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -118,13 +120,15 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     Each component declares code, contexts and generation settings, with optional
     retained_snapshot, terminal_resource and phosphate_atom_policy. Runtime SDK
     roots/environment are not saved as operational paths; execution supplies and
-    revalidates them against the frozen recipe/pins/relative dispatchers.
+    revalidates them against the frozen recipe/pins/relative dispatchers. New
+    requests independently qualify a no-repair original by default; historical
+    requests without that frozen mode retain their original no-op behavior.
     """
     root = _root(output)
     if root.exists(): raise FileExistsError(root)
@@ -164,7 +168,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
               and all(_read(p) == b for p,b in originals.items()), 'Complete request source changed while freezing')
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -210,7 +214,7 @@ def _children(root, attempt, intent, config, closed=None):
             bindings[code] = None
     state = repair.inspect_prepared_repair_request(attempt/'repair')
     if state['state'] == 'RECORDED':
-        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1)
+        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1,qualify_no_repair=config.get('qualify_no_repair',False))
         _need(_same(state['request']['configuration'],expected) and len(state['attempts']) <= 1,
               'Prepared repair differs from enclosing input or limits')
         if state['attempts']:
@@ -409,7 +413,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
                 supplementary_phils=[root/'inputs'/n for n in controls['supplementary_phils']])
             remaining()
             child = repair.execute_prepared_dictionary_repair_attempt(attempt/'preparation/bundle',phenix,attempt/'repair',
-                **_repair_limits(config),max_attempts=1,_parent_attempt_identity=parent,_remaining_seconds=remaining)
+                **_repair_limits(config),max_attempts=1,_parent_attempt_identity=parent,_remaining_seconds=remaining,
+                **({'qualify_no_repair':True} if config.get('qualify_no_repair',False) else {}))
             _need(_same(_request(root),request), 'Frozen complete intent changed during execution')
             remaining(); elapsed = monotonic()-started
             result = write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],

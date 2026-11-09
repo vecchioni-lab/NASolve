@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Independently qualified original bundles (C172)
+
+- Qualify and publish exact prepared originals without a repair-attribution job,
+  using the existing source/native, derivative and whole-bundle selection checks.
+- New complete requests freeze a no-repair qualification mode by default. A clean
+  graph now receives native checks; passing originals can continue diagnostically,
+  while missing/failed proof remains unusable and malformed evidence still raises.
+- Preserve historical request behavior when the optional mode is absent. Add a
+  distinct original runtime policy with public readback; new artifacts require
+  C172 readers. No automatic adoption or ordinary refinement claim is added.
+- Validate actual positive/timeout PDU/5PC controls, legacy and relocated replay,
+  and focused tests. No full suite this push.
+
 ### Complete frozen acquisition and repair requests (C171)
 
 - Freeze the selected sources, model/site/native context, resources, recipes and

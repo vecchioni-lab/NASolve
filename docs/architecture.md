@@ -1140,6 +1140,14 @@ Operational child histories stay outside outer attempts; C169 copies remain
 readback-only. This closes complete explicit ownership, with broader fallback and
 ordinary adoption still open. See [complete requests](cif-doctor.md#complete-frozen-dictionary-requests-c171).
 
+C172 uses that same owner for no-graph requests: the frozen mode enables baseline,
+prepared and original-derivative qualification, followed by the existing immutable
+publisher. Independent original selection reuses the repair path's native input
+and component-choice checks, without inventing repair attribution. New runtime
+policy identifies that proof; old absent-mode requests keep their previous
+behavior. Early optional-capture failure classification remains separate. See
+[independent originals](cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172).
+
 
 
 The shared `cif-qualified-dictionary-store-v1` component resolver now implements

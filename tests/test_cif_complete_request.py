@@ -36,7 +36,7 @@ def case(tmp_path,monkeypatch):
         result=dict(status='NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED')
         (out/'repair_execution.json').write_text(json.dumps(result));return result
     monkeypatch.setattr(repair,'execute_prepared_dictionary_repair',execute)
-    args=dict(source_selection=sources,components=components,model=ordinary['model'],consumer=ordinary['consumer'],expected_links=ordinary['expected_links'],native_context=ordinary['native_context'],total_timeout_seconds=60,component_timeout_seconds=30,max_attempts=3)
+    args=dict(qualify_no_repair=False,source_selection=sources,components=components,model=ordinary['model'],consumer=ordinary['consumer'],expected_links=ordinary['expected_links'],native_context=ordinary['native_context'],total_timeout_seconds=60,component_timeout_seconds=30,max_attempts=3)
     return m,args,tmp_path/'request',sdk,tmp_path/'store',generations,calls
 
 
@@ -366,3 +366,37 @@ def test_completion_must_fit_frozen_artifact_bounds_before_success(case,monkeypa
         m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
     assert not (root/'attempts/attempt-0001/finished.json').exists()
     assert (root/'attempts/attempt-0001/result.json').exists() and len(calls)==1
+
+
+
+def test_new_complete_requests_enable_independent_no_repair_qualification(case,monkeypatch):
+    from nasolve import cif_repair_attempt as repair
+    m,args,root,sdk,store,generations,calls=case;args=dict(args);args.pop('qualify_no_repair')
+    old=repair.execute_prepared_dictionary_repair
+    def execute(*a,**k):
+        assert k['qualify_no_repair'] is True
+        result=old(*a,**k);result.update(qualify_no_repair=True,status='NO_USABLE_BUNDLE')
+        (a[2]/'repair_execution.json').write_text(json.dumps(result));return result
+    monkeypatch.setattr(repair,'execute_prepared_dictionary_repair',execute)
+    m.initialize_dictionary_request(output=root,**args)
+    assert read_record(root/'request.json')['configuration']['qualify_no_repair'] is True
+    result=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    assert result['result']['status']=='NO_USABLE_BUNDLE'
+    assert m.read_dictionary_request_result(root,1)['execution']['qualify_no_repair'] is True
+    child=root/'attempts/attempt-0001/repair/request.json'
+    assert read_record(child)['configuration']['qualify_no_repair'] is True
+
+
+@pytest.mark.parametrize('mode',[1,0,None,'yes'])
+def test_complete_request_rejects_ambiguous_no_repair_mode(case,mode):
+    m,args,root,sdk,store,generations,calls=case;args=dict(args,qualify_no_repair=mode)
+    with pytest.raises(ValueError,match='boolean'):m.initialize_dictionary_request(output=root,**args)
+    assert not (root/'request.json').exists() and not calls
+
+
+def test_legacy_complete_request_does_not_silently_enable_mode(case):
+    m,args,root,sdk,store,generations,calls=case;m.initialize_dictionary_request(output=root,**args)
+    assert 'qualify_no_repair' not in read_record(root/'request.json')['configuration']
+    result=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    assert 'NOT_ASSESSED' in result['result']['status']
+    assert 'qualify_no_repair' not in read_record(root/'attempts/attempt-0001/repair/request.json')['configuration']

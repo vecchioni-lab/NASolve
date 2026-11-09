@@ -69470,5 +69470,474 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-09T14:16:26.844930+00:00"
+  },
+  "independent_original_qualification_2026_11_09": {
+    "milestone": "C172",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "base_revision": "1ffb7970b855383e161c8a9ecc4d94ec2aaa757b",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "No graph repair returned without native usability; original derivative-qualified selection depended on repair attribution.",
+    "after": "Independent source/native/derivative-qualified originals publish through the shared runtime publisher; new complete requests freeze and enable no-repair qualification while old requests retain recorded behavior.",
+    "prior_work": [
+      "C139 source/site/native gate",
+      "C152 source-bound component selection",
+      "C153 immutable runtime publisher",
+      "C160 repair execution",
+      "C164/C171 request/process ownership"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_component_runtime.py",
+      "src/nasolve/cif_dictionary_bundle_repair.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "src/nasolve/cif_repair_attempt.py",
+      "src/nasolve/cif_runtime_bundle.py",
+      "tests/test_cif_complete_request.py",
+      "tests/test_cif_original_component_runtime.py",
+      "tests/test_cif_prepared_repair_budget.py",
+      "tests/test_cif_prepared_repair_execution.py",
+      "tests/test_cif_repair_attempt.py"
+    ],
+    "schemas": [
+      "New cif-source-bound-prepared-bundle-selection-v1 schema 1",
+      "New cif-qualified-prepared-component-runtime-bundle-v1 schema 1",
+      "Optional true-only qualify_no_repair in existing complete/prepared configuration and execution report"
+    ],
+    "compatibility": "New complete requests default true; standalone default false; absent field is legacy false. New artifacts require C172 readers. No migration, cache/source change or ordinary PostMR adoption.",
+    "regression": {
+      "before": "4 expected failing regressions before implementation",
+      "new_cases": 42,
+      "affected": {
+        "active": false,
+        "pid": 69280,
+        "runner_pid": 69227,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_original_component_runtime.py",
+          "tests/test_cif_dictionary_bundle_repair.py",
+          "tests/test_cif_repaired_component_runtime.py",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_runtime_bundle.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_prepared_repair_budget.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_outer_context.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/172_Cedar_original-qualification-9avnjs_b/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-09T14:45:15.117037+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 103.594,
+        "sources_unchanged": true,
+        "source_files": 619
+      },
+      "affected_summary": "357 passed in 103.39s (0:01:43)",
+      "focused": {
+        "active": false,
+        "pid": 70377,
+        "runner_pid": 70376,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/172_Cedar_original-qualification-9avnjs_b/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-09T14:47:40.138717+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 324.862,
+        "sources_unchanged": true,
+        "source_files": 619
+      },
+      "focused_summary": "1456 passed, 45 subtests passed in 324.62s (0:05:24)",
+      "full": "NOT_RUN_USER_REQUEST",
+      "source_files": 619
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 72.48525358299958,
+      "controls": {
+        "positive": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "derivative_status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "repair_steps": 0,
+          "native_phases": [
+            "native-000",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "all_children_stopped": true,
+          "qualify_no_repair": true
+        },
+        "negative": {
+          "status": "NO_USABLE_BUNDLE",
+          "derivative_status": "REVIEW",
+          "repair_steps": 0,
+          "native_phases": [
+            "native-000",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "all_children_stopped": true,
+          "qualify_no_repair": true
+        }
+      },
+      "saved_original_without_attribution": "PASS",
+      "legacy_C171_request_replay": "PASS",
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "clean_input_producer": "EXACT_C171_QUALIFIED_GRAPH_PROJECTION; CURRENT_TWO_SEED_REQUALIFICATION",
+      "source_chemistry": "UNCHANGED",
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "MAINTAINED_COMPLETE_REQUEST; SAVED_PDU_5PC_DIAGNOSTIC; NOT_ORDINARY_ADOPTION"
+    },
+    "relocation": {
+      "status": "PASS",
+      "positive": "VERIFIED_ORIGINAL",
+      "negative": "NO_USABLE_BUNDLE",
+      "saved_original_without_attribution": true,
+      "legacy_repaired_request": true,
+      "parent_binding_preserved": true,
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 1804
+    },
+    "evidence_refs": {
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/affected-r1-result.json",
+        "sha256": "2a98241a27c0f2146f233555e2a197a82db2c6e5819bcf84a7c8cd7d147f89b2",
+        "size": 1010
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/affected-r1-sources.json",
+        "sha256": "35e841849f7ffeaca9fa752e698e6bd2b47967ac9937ddb211583f2caabe302b",
+        "size": 67590
+      },
+      "affected-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/affected-r1.log",
+        "sha256": "f4bd6938dbdbe83fbeab39c252ffe8608810e350c199436db9fa9d0b67673db8",
+        "size": 432
+      },
+      "affected-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/affected-r1.xml",
+        "sha256": "cbce9fedf301293963401afb8c1f17d8c613cbcaf9302f2f47858c4685103b90",
+        "size": 52791
+      },
+      "before.log": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/before.log",
+        "sha256": "6660d00099d9b314be987b3e250f0be168152f7ee8b5743f074e7c8ad97a62ad",
+        "size": 7434
+      },
+      "before.xml": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/before.xml",
+        "sha256": "e39e94113ba69207fce8ae972b92cd3baee4942690d4ea89295f5569cdd14892",
+        "size": 7814
+      },
+      "cold-r1/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/cold-r1/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      "cold-r1/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/cold-r1/stdout.txt",
+        "sha256": "f01fd8b150d7ee3573d3db4b5aa1f58932625f5066ff575859e8768e983b5bba",
+        "size": 319
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/cold-r1/summary.json",
+        "sha256": "15a91a51e867c00dd3611896e18346eb7c18fafaa5669beacb5468e954628c68",
+        "size": 341
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/focused-r1-result.json",
+        "sha256": "f81043f28bd13b27040a275928a380fa7aba54731345832c0138c5fc5f642470",
+        "size": 501
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/focused-r1-sources.json",
+        "sha256": "35e841849f7ffeaca9fa752e698e6bd2b47967ac9937ddb211583f2caabe302b",
+        "size": 67590
+      },
+      "focused-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/focused-r1.log",
+        "sha256": "399b75bde824a8906432b4383c3dcfc9935595e6b7d0023fbad369f7c3617716",
+        "size": 6185
+      },
+      "focused-r1.xml": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/focused-r1.xml",
+        "sha256": "10e8ef30e5a0a5e57cbf181932168ca31447d3a27ad2d5022199e5a27167a114",
+        "size": 218322
+      },
+      "native-r1.log": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r1.log",
+        "sha256": "b4a90646a387265a2e9b5673f58103138cfcd72e1bddcdd6dbb941df68e559f4",
+        "size": 450
+      },
+      "native-r2/clean-snapshots/5PC/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/clean-snapshots/5PC/entry/manifest.json",
+        "sha256": "89ed456d57319f159ea5f9e1cb685464b17806685836e3bb851ac24885d4d322",
+        "size": 6876
+      },
+      "native-r2/clean-snapshots/PDU/entry/manifest.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/clean-snapshots/PDU/entry/manifest.json",
+        "sha256": "6c3b8b797a131a96a5d1bc1fd9215159dede015eed7efdbe85f8cbcb09594b8f",
+        "size": 6802
+      },
+      "native-r2/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-r2/negative/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/negative/request/attempts/attempt-0001/attempt.json",
+        "sha256": "5f4e3c542a20182aee751fe70113657ffd6333ad9407bd247180486d0d2f4bda",
+        "size": 613
+      },
+      "native-r2/negative/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/negative/request/attempts/attempt-0001/finished.json",
+        "sha256": "2e9dfa578cc0199b8903532b9906a9c315343c3e52897c3533e663cb3deff25a",
+        "size": 52382
+      },
+      "native-r2/negative/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/negative/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "ca65ec18dfbb1473a4211b155f4878e5d3072ca39fd55cc9df33746bc031ecad",
+        "size": 31668
+      },
+      "native-r2/negative/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/negative/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json",
+        "sha256": "5849b30fbbd2266ed496767d21bbb91fedd5e839e9d51fca99c954c3b6f41dec",
+        "size": 712
+      },
+      "native-r2/negative/request/attempts/attempt-0001/repair/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/negative/request/attempts/attempt-0001/repair/request.json",
+        "sha256": "4b98321cf4038b0b5378ea568e9c1938faea77a2beb72521dbdc5c30deb68487",
+        "size": 6440
+      },
+      "native-r2/negative/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/negative/request/attempts/attempt-0001/result.json",
+        "sha256": "57fdc14d161cb61f0f3167efae4e020255b8190f2da8c6aa0f09e2e8dbdb30b5",
+        "size": 575
+      },
+      "native-r2/negative/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/negative/request/request.json",
+        "sha256": "abdb491b1bbd286ce01baea6e65cd0bcb9128706d2d314a916882db0b5f4332a",
+        "size": 49173
+      },
+      "native-r2/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/parent-inputs.json",
+        "sha256": "ce66c4611b90f45949da974e4222bf84e28ae7241db90580a6f8d7d877a24070",
+        "size": 178221
+      },
+      "native-r2/positive/request/attempts/attempt-0001/attempt.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/attempts/attempt-0001/attempt.json",
+        "sha256": "d3cfd22d8cb617f5e25fab1aefa53d48da33c12d1947e23d3859d742ba365266",
+        "size": 613
+      },
+      "native-r2/positive/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/attempts/attempt-0001/finished.json",
+        "sha256": "64e677b31de6a405f50cf5a97e765851d87ffdfe2085b9a89407a8246ab539b7",
+        "size": 78265
+      },
+      "native-r2/positive/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/repair_execution.json",
+        "sha256": "952febbf648767eb20ec49c78f9cca62079be914033ecde7b7ac2c675da6cffe",
+        "size": 33265
+      },
+      "native-r2/positive/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution/runtime/runtime_bundle.json",
+        "sha256": "31585a9d2a3b5df0bad5d61b507ac27de37d3d3d0d178446ff9f790ac4c5fdad",
+        "size": 60973
+      },
+      "native-r2/positive/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/attempts/attempt-0001/repair/attempts/attempt-0001/finished.json",
+        "sha256": "45b3cf328f57dd071c6f6d8dc2fa6b2b92b851aab17cda7b0b75a26c70c21d9d",
+        "size": 712
+      },
+      "native-r2/positive/request/attempts/attempt-0001/repair/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/attempts/attempt-0001/repair/request.json",
+        "sha256": "ec760273c4f9d161078d0f76b7fc41c7ec13ddaa50b574186347c82ba6cb1b01",
+        "size": 6442
+      },
+      "native-r2/positive/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/attempts/attempt-0001/result.json",
+        "sha256": "48ed9c23cc65a986c6928a2e87d92abe32b4ab3b95ffff4027664214f2552bc1",
+        "size": 586
+      },
+      "native-r2/positive/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/positive/request/request.json",
+        "sha256": "04694ee4ab47874fd34547aa9bc7fc95908c391af8c45ac7b50342c04fb8b65f",
+        "size": 49175
+      },
+      "native-r2/public-assessment.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/public-assessment.json",
+        "sha256": "d12cd3d2e42210ae7bd2369c2fee7369574694bfc95429743afd310da9c44cc1",
+        "size": 198920
+      },
+      "native-r2/qualification-5PC/qualification_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/qualification-5PC/qualification_execution.json",
+        "sha256": "32b3ca9f75b1faa61dfa684f05497b121411c0a3c8391df0249659c83d95ff3f",
+        "size": 1613646
+      },
+      "native-r2/qualification-PDU/qualification_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/qualification-PDU/qualification_execution.json",
+        "sha256": "901ff01e60ec31e99d75a0982c4eb790831ae79e3610d868a14ed998f772ed58",
+        "size": 1577147
+      },
+      "native-r2/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/runtime-sources.json",
+        "sha256": "a23fd254c4eda33954c4dbf33108bf643b8bd4cc5e2424db8bfd1e4dfc785ac7",
+        "size": 22095
+      },
+      "native-r2/saved-original-review.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/saved-original-review.json",
+        "sha256": "acd39439f7aeaebd02b497c24c819faab5bb4cba3ffaea55aa23afe9b3a2e9fc",
+        "size": 32670
+      },
+      "native-r2/saved-original-runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/saved-original-runtime/runtime_bundle.json",
+        "sha256": "c354741a3077c401e619e3486b1f8597a58cb5c24bddb724f7732a538b4b98af",
+        "size": 60977
+      },
+      "native-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2/summary.json",
+        "sha256": "ac65240286a26ecc0a5544c5bb2a54fdc7f8d00a06c30daacd5b99cb458d3045",
+        "size": 1227
+      },
+      "native-r2.log": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/native-r2.log",
+        "sha256": "8979fc093ed4933a62de43b0c9f85ad2a721e9b9d78dc0f7dc4324066a52825b",
+        "size": 1681
+      },
+      "redundancy-review.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/redundancy-review.json",
+        "sha256": "d63efc2b4b24055140f533854c906eacdc8668557b5a289d7da7816d54c421aa",
+        "size": 1478
+      },
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "172_Cedar_original-qualification-9avnjs_b/start.json",
+        "sha256": "d4e21cb2d30d8ec35114a2c7d4997d9a60cbc65527da720e6f6377f02f855bcb",
+        "size": 332
+      }
+    },
+    "commands": {
+      "affected": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_original_component_runtime.py",
+        "tests/test_cif_dictionary_bundle_repair.py",
+        "tests/test_cif_repaired_component_runtime.py",
+        "tests/test_cif_component_runtime.py",
+        "tests/test_cif_runtime_bundle.py",
+        "tests/test_cif_prepared_repair_execution.py",
+        "tests/test_cif_prepared_repair_budget.py",
+        "tests/test_cif_repair_attempt.py",
+        "tests/test_cif_complete_request.py",
+        "tests/test_cif_outer_context.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/172_Cedar_original-qualification-9avnjs_b/affected-r1.xml"
+      ],
+      "focused": [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/172_Cedar_original-qualification-9avnjs_b/focused-r1.xml"
+      ],
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c172_native_r2.py native-r2",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 python c172_cold.py cold-r1"
+    },
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "narestraints": "1.1.3",
+      "platform": "macOS arm64",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; actual execution"
+    },
+    "artifacts": "Source/tests/docs/hash references only; generated science/logs/XML/runners/copied checkouts local",
+    "limitations": [
+      "No full suite; C160 remains last completed baseline",
+      "Early optional-capture failures still raise; classify trustworthy negative records before fallback",
+      "Complete composition remains 2–16 selected types; single-component route needed before ordinary adoption",
+      "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+      "Shared allowance remains cooperative and existing artifact caps remain in force"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-09T14:56:26.363332+00:00"
   }
 }

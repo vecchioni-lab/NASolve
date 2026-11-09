@@ -3721,7 +3721,13 @@ A cooperative monotonic allowance covers children and final readback. Exact-resu
 replay distinguishes a returned negative result from a qualified diagnostic
 bundle. The saved PDU/5PC control passes expiry, preserved-partial recovery, all
 seven repair phases and relocated replay. Its scientific inputs match C169.
-This closes explicit ownership; broader proven-original fallback, ordinary
-PostMR adoption and final refinement-consumer qualification remain in the queue.
+This closes explicit ownership. C172 now independently checks the original when
+there is no graph repair: exact source/native binding and its own passing
+derivatives are required before publication. A real PDU/5PC control passes; a
+separate timed-out derivative produces no usable bundle and preserves its evidence.
+The same selector and publisher serve both repair and original paths. Historical
+requests remain unchanged. Early optional-capture fallback, ordinary PostMR
+adoption and final refinement-consumer qualification remain in the queue. See the
+[independent-original method](cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172).
 The [complete-request contract](cif-doctor.md#complete-frozen-dictionary-requests-c171)
 records the scope, limits and validation.

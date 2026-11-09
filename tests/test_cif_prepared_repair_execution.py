@@ -193,3 +193,30 @@ def test_interruption_preserves_partial_work_and_grants_no_retry(case,monkeypatc
     assert not (out/'runtime').exists() and not (out/'repair_execution.json').exists()
     assert 'NO_RECOVERY_AUTHORITY' in (out/'progress.jsonl').read_text()
     with pytest.raises(FileExistsError):m.execute_prepared_dictionary_repair(b,sdk,out,**o)
+
+
+@pytest.mark.parametrize('source,derivatives,expected', [(True,True,'QUALIFIED_DIAGNOSTIC_RUNTIME'),
+    (True,False,'NO_USABLE_BUNDLE'), (False,True,'SOURCE_PREPARATION_UNQUALIFIED')])
+def test_explicit_no_repair_mode_qualifies_original_independently(case,monkeypatch,source,derivatives,expected):
+    m,b,sdk,out,state,calls,o=case;state.update(steps=False,source=source,original=derivatives)
+    def select(**options):
+        calls.append('original-selection')
+        assert set(options)=={'bundle','baseline_receipt','candidate_receipt','original_gradient_directory'}
+        return {'decision':{'selected':'verified_prepared_bundle' if state['original'] else None}}
+    def publish(output,**options):
+        calls.append('original-publication');output.mkdir()
+        (output/'runtime_bundle.json').write_text(json.dumps(select(**options)))
+    monkeypatch.setattr(m,'inspect_dictionary_bundle_original',select,raising=False)
+    monkeypatch.setattr(m,'prepare_original_component_runtime_bundle',publish,raising=False)
+    result=m.execute_prepared_dictionary_repair(b,sdk,out,qualify_no_repair=True,**o)
+    assert result['status']==expected and result['qualify_no_repair'] is True
+    assert not {'native-001','attribution','repaired','selection','publication'} & set(calls)
+    assert len(result['native_receipts'])==2 and (out/'runtime').exists()==(expected=='QUALIFIED_DIAGNOSTIC_RUNTIME')
+    assert ('original' in calls)==source
+
+
+@pytest.mark.parametrize('value',[1,0,None,'yes'])
+def test_no_repair_mode_requires_explicit_boolean(case,value):
+    m,b,sdk,out,state,calls,o=case
+    with pytest.raises(ValueError):m.execute_prepared_dictionary_repair(b,sdk,out,qualify_no_repair=value,**o)
+    assert not out.exists() and not calls

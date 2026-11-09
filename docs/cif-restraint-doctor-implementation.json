@@ -28081,6 +28081,24 @@
         "Pre-existing direct exception-note calls in C164/C167 need Python-floor audit in Q16",
         "Complete composition currently requires 2–16 selected component types; validate the single-modified-component route before ordinary adoption."
       ]
+    },
+    "independent_original_qualification": {
+      "milestone": "C172",
+      "status": "FOCUSED_AND_NATIVE_VALIDATED",
+      "queue": "Q04 no-graph original sub-gate closed; early optional-capture fallback next",
+      "contract": "docs/cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172",
+      "evidence_key": "independent_original_qualification_2026_11_09",
+      "summary": "Independent source/native/derivative-qualified originals publish through the shared runtime publisher; new complete requests freeze and enable no-repair qualification while old requests retain recorded behavior.",
+      "implementation_revision": null,
+      "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_regression": "NOT_RUN_USER_REQUEST",
+      "limitations": [
+        "No full suite; C160 remains last completed baseline",
+        "Early optional-capture failures still raise; classify trustworthy negative records before fallback",
+        "Complete composition remains 2–16 selected types; single-component route needed before ordinary adoption",
+        "No new chemistry, mixed-scaffold, ordinary refinement, Linux-native or Python 3.10 execution claim",
+        "Shared allowance remains cooperative and existing artifact caps remain in force"
+      ]
     }
   },
   "audience": [

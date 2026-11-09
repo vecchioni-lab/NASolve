@@ -391,3 +391,7 @@ repair. Persistent component histories and a shared allowance cross those boxes;
 readback verifies reciprocal child ownership. The existing scientific flow and
 ordinary-adoption boundary are unchanged. Saved PDU/5PC interruption/recovery and
 relocation support this ownership claim, not new chemistry or refinement support.
+C172 also takes a no-repair original through source/native and derivative checks
+before publication. Passing and timed-out controls distinguish usable originals
+from preserved but unqualified inputs; neither permits ordinary adoption. The
+existing selection/publication boxes are reused, with no second repair engine.

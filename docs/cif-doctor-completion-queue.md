@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-09, after C171.** This queue owns unfinished
+**Current planning authority, 2026-11-09, after C172.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -260,18 +260,28 @@ final scientific replay/inventory. Unknown shared generation blocks reservation,
 and known-dead recovery preserves every partial. Actual PDU/5PC expiry/fresh
 recovery, seven-stage repair and cold replay pass; no chemistry scope is expanded.
 
-**Next bounded checkpoint:** broaden independently qualified fallback for early
-capture failures and no-graph-repair candidates. Define truthful outcomes for
-both: an independently qualified original can remain usable; missing or failed
-source/site/native evidence cannot become a fallback. Preserve current exact-source
-and state authority, immutable attempts and retained failures. Keep ordinary
-adoption separate (Q05), with final refinement-consumer proof in Q06. Existing
-artifact file/byte caps still apply to composed requests; exercise larger/held-out
-multi-component requests in Q07/Q16 before claiming that scale.
+C172 closes independent original qualification/publication and the no-graph
+request sub-gate. New complete requests freeze that mode and run baseline,
+prepared and original-derivative checks even when the graph has no repair.
+Existing source/native/selection/publisher machinery is shared; malformed proof
+still raises. Actual clean PDU/5PC and derivative-timeout controls produce a
+qualified original and no usable bundle respectively. Legacy requests keep their
+old absent-mode behavior, and all three publication/request paths replay cold.
+
+**Next bounded checkpoint:** classify early optional repair-capture failures before
+allowing proven-original fallback. `FAILED` currently includes malformed output,
+input-integrity errors and ordinary worker failures; a generic catch would hide
+contradictions. Require an exact failed receipt, unchanged declared inputs and
+known-stopped owned process, preserve the entire failed attempt, and independently
+replay the original's source/site/native/derivative proof. Unknown cleanup or
+corrupt evidence must still block. No in-place repair or renewed allowance.
+
 Before Q05 enables ordinary recovery, also qualify a single selected modified
 component: the current composed-bundle path requires two to sixteen. Reuse the
 single-component preparation contract or validate a broader composer boundary;
-do not add a dummy component to satisfy the count.
+do not add a dummy component. Ordinary adoption remains Q05, final refinement
+consumer proof Q06, and larger/held-out requests Q07/Q16. Existing artifact bounds
+still apply; no maximum-size throughput claim is made.
 
 Done when cache hit, cache miss, stale consumer, bounded repair failure and no
 usable candidate produce deterministic, truthful outcomes. Reuse passing content;
@@ -525,7 +535,7 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. C170 and C171 also have focused/native/cold validation only,
+Cedar/pine/main merge candidate. C170–C172 also have focused/native/cold validation only,
 with no full suite requested. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,

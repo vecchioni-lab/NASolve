@@ -376,3 +376,34 @@ def test_execution_receives_live_parent_clock_without_changing_frozen_limits(set
     monkeypatch.setattr(m,'execute_prepared_dictionary_repair',observe)
     m.execute_prepared_dictionary_repair_attempt(*args,**options,_remaining_seconds=lambda:8)
     assert seen==[8,6]
+
+
+@pytest.mark.parametrize('enabled',[False,True])
+def test_no_repair_mode_is_frozen_and_bound_to_execution(setup,monkeypatch,enabled):
+    m,args,options,calls=setup;old=m.execute_prepared_dictionary_repair
+    def execute(*a,**k):
+        assert k.get('qualify_no_repair',False) is enabled
+        result=old(*a,**k)
+        if enabled:result['qualify_no_repair']=True
+        (a[2]/'repair_execution.json').write_text(json.dumps(result));return result
+    monkeypatch.setattr(m,'execute_prepared_dictionary_repair',execute)
+    m.execute_prepared_dictionary_repair_attempt(*args,qualify_no_repair=enabled,**options)
+    root=args[-1];config=read_record(root/'request.json')['configuration']
+    assert config.get('qualify_no_repair',False) is enabled
+    if not enabled:assert 'qualify_no_repair' not in config
+    before=inventory(root)
+    with pytest.raises(ValueError):m.execute_prepared_dictionary_repair_attempt(*args,qualify_no_repair=not enabled,**options)
+    assert inventory(root)==before and len(calls)==1
+
+
+@pytest.mark.parametrize('reported',[False,None,1])
+def test_execution_cannot_discard_or_weaken_frozen_no_repair_mode(setup,monkeypatch,reported):
+    m,args,options,calls=setup;old=m.execute_prepared_dictionary_repair
+    def execute(*a,**k):
+        result=old(*a,**k)
+        if reported is not None:result['qualify_no_repair']=reported
+        (a[2]/'repair_execution.json').write_text(json.dumps(result));return result
+    monkeypatch.setattr(m,'execute_prepared_dictionary_repair',execute)
+    with pytest.raises(ValueError,match='mode'):m.execute_prepared_dictionary_repair_attempt(*args,qualify_no_repair=True,**options)
+    assert not (args[-1]/'attempts/attempt-0001/finished.json').exists()
+    assert (args[-1]/'attempts/attempt-0001/execution/repair_execution.json').exists()

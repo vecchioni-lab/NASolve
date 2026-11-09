@@ -44,8 +44,10 @@ histories persist across retries, a shared allowance bounds the work, and a new
 attempt requires prior ownership to be known stopped. Read-only inspection and
 exact-result replay preserve failures and lineage without the old source paths or
 SDK. A returned diagnostic can explicitly report no usable selection; only proven
-runtime bundles qualify. Broader fallback and ordinary automatic PostMR adoption
-remain integration work.
+runtime bundles qualify. New requests also check an unchanged original when the
+graph needs no repair, using its own source/native and derivative proof. Historical
+requests preserve their recorded behavior. Recovery from early optional-capture
+failures and ordinary automatic PostMR adoption remain integration work.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

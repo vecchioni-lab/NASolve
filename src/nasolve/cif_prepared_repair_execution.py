@@ -8,11 +8,11 @@ from hashlib import sha256
 from pathlib import Path
 from time import monotonic
 
-from .cif_component_runtime import _tree, prepare_repaired_component_runtime_bundle
+from .cif_component_runtime import _tree, prepare_repaired_component_runtime_bundle, prepare_original_component_runtime_bundle
 from .cif_outer_context import OuterAllowance
 from .cif_dictionary_store import _bytes, _snapshot_destination
 from .cif_dictionary_bundle import read_dictionary_bundle, inspect_dictionary_bundle_native
-from .cif_dictionary_bundle_repair import inspect_dictionary_bundle_repair
+from .cif_dictionary_bundle_repair import inspect_dictionary_bundle_repair, inspect_dictionary_bundle_original
 from .cif_dictionary_sites import _need, _read
 from .cif_linear_torsion_bundle import prepare_linear_torsion_bundle
 from .cif_native_validation import inspect_native_bundle
@@ -31,12 +31,14 @@ class PreparedRepairBudgetExceeded(TimeoutError):
 
 def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout_seconds=120,
         attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=None, _attempt_identity=None, _remaining_seconds=None):
+        total_timeout_seconds=None, qualify_no_repair=False, _attempt_identity=None, _remaining_seconds=None):
     """Run a bounded repair chain and freeze only an independently usable result.
 
     The input is the existing source/site bundle, including acquired component
     snapshots and exact ordered PHIL. A graph-only no-op creates no native job
-    and makes no whole-bundle usability claim. Known negative numerical records
+    and makes no whole-bundle usability claim unless qualify_no_repair is enabled.
+    That frozen mode independently checks and publishes the original without
+    inventing repair attribution. Malformed proof still raises. Known negative numerical records
     go through the existing selector; malformed evidence or adapter exceptions
     stop the call with every partial output preserved. A selected runtime is
     diagnostic only and remains independently readable after this job is gone.
@@ -49,6 +51,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     optional enclosing allowance additionally clamps every native phase and
     publication boundary without changing the configured local limits.
     """
+    _need(type(qualify_no_repair) is bool, 'Require a boolean no-repair qualification mode')
     limits = {'native': native_timeout_seconds, 'attribution': attribution_timeout_seconds,
               'derivatives': derivative_timeout_seconds}
     _need(all(type(v) is int and 1 <= v <= (300 if k == 'attribution' else 600)
@@ -108,6 +111,8 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         total_timeout_seconds=total_timeout_seconds,
         retry='NOT_AUTHORIZED; USE_FRESH_OUTPUT', refinement='NOT_RUN', model_optimization='NOT_RUN')
 
+    if qualify_no_repair: report['qualify_no_repair'] = True
+
     processes = PreparedRepairProcesses(output, attempt_identity=_attempt_identity)
     report['process_evidence'] = {'anchor':'repair_directory','path':'ownership/repair.json'}
 
@@ -165,7 +170,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         plan = prepare_linear_torsion_bundle(prepared['after_dictionaries'],
             prepared['report']['components'], output/'plan')
         report['plan'] = reference(output/'plan/linear_torsion_bundle.json')
-        if not plan['steps']:
+        if not plan['steps'] and not qualify_no_repair:
             return finish('NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED')
         phase = 'SOURCE_NATIVE'; event('STARTED')
         baseline = capture('baseline', prepared['before_dictionaries'], prepared['before_phils'])
@@ -180,29 +185,38 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         audit_captured_mixed_gradients(receipts[0], phenix, original_gradient,
                                       timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(original_gradient.name))
         unchanged()
-        phase = 'REPAIRED_NATIVE'; event('STARTED')
-        for i, refs in enumerate(stages[1:], 1):
-            receipts.append(capture(f'{i:03d}', [output/'plan'/r['path'] for r in refs], prepared['after_phils']))
-        phase = 'ATTRIBUTION'; event('STARTED')
-        audit_captured_linear_attribution(output/'plan', receipts, phenix, output/'attribution',
-                                         timeout_seconds=phase_limit('attribution'), _process_runner=processes.runner('attribution'))
-        unchanged()
-        phase = 'REPAIRED_DERIVATIVES'; event('STARTED')
-        repaired_gradient = output/'repaired-gradient'
-        audit_captured_mixed_gradients(receipts[-1], phenix, repaired_gradient,
-                                      timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(repaired_gradient.name))
-        unchanged()
-        phase = 'SELECTION'; event('STARTED')
-        options = dict(bundle=frozen, baseline_receipt=baseline, attribution_directory=output/'attribution',
-            original_gradient_directory=original_gradient, repaired_gradient_directory=repaired_gradient)
-        selection = inspect_dictionary_bundle_repair(**options)
+        if not plan['steps']:
+            phase = 'SELECTION'; event('STARTED')
+            options = dict(bundle=frozen, baseline_receipt=baseline, candidate_receipt=receipts[0],
+                original_gradient_directory=original_gradient)
+            selector = inspect_dictionary_bundle_original
+            publisher = prepare_original_component_runtime_bundle
+        else:
+            phase = 'REPAIRED_NATIVE'; event('STARTED')
+            for i, refs in enumerate(stages[1:], 1):
+                receipts.append(capture(f'{i:03d}', [output/'plan'/r['path'] for r in refs], prepared['after_phils']))
+            phase = 'ATTRIBUTION'; event('STARTED')
+            audit_captured_linear_attribution(output/'plan', receipts, phenix, output/'attribution',
+                                             timeout_seconds=phase_limit('attribution'), _process_runner=processes.runner('attribution'))
+            unchanged()
+            phase = 'REPAIRED_DERIVATIVES'; event('STARTED')
+            repaired_gradient = output/'repaired-gradient'
+            audit_captured_mixed_gradients(receipts[-1], phenix, repaired_gradient,
+                                          timeout_seconds=phase_limit('derivatives'), _process_runner=processes.runner(repaired_gradient.name))
+            unchanged()
+            phase = 'SELECTION'; event('STARTED')
+            options = dict(bundle=frozen, baseline_receipt=baseline, attribution_directory=output/'attribution',
+                original_gradient_directory=original_gradient, repaired_gradient_directory=repaired_gradient)
+            selector = inspect_dictionary_bundle_repair
+            publisher = prepare_repaired_component_runtime_bundle
+        selection = selector(**options)
         report['selection'] = selection
         if selection['decision']['selected'] is None:
             return finish('NO_USABLE_BUNDLE')
         phase = 'PUBLICATION'; event('STARTED')
         # Recheck before publication; changes cannot produce a successful output.
         unchanged()
-        prepare_repaired_component_runtime_bundle(output=output/'runtime', **options)
+        publisher(output=output/'runtime', **options)
         saved = resolve_runtime_bundle(output/'runtime')
         _need(saved['manifest']['decision']['selected'] == selection['decision']['selected'],
               'Published repair selection changed')

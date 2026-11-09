@@ -11,6 +11,76 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C172 validated: independent original and no-repair qualification
+
+Base `1ffb7970b855383e161c8a9ecc4d94ec2aaa757b`; existing Cedar only. Capsule
+`live_tests_directory/172_Cedar_original-qualification-9avnjs_b`. Q04 explicit ownership/recovery is complete;
+this closes its independent-original/no-graph sub-gate. Early optional-capture
+fallback, single-component composition and ordinary integration remain open.
+
+**Before → after:** no graph repair returned without whole-bundle usability;
+original selection also required repair attribution. New complete requests now
+freeze `qualify_no_repair=True`, check exact source/native context and original
+derivatives, and publish a qualified original or an honest negative result.
+Malformed proof still raises. Existing repair behavior and historical absent-mode
+requests remain intact. Standalone defaults remain false. No automatic adoption.
+
+**Redundancy review:** checked C139/C152/C153/C160/C164/C171 before implementation.
+Extracted shared native-input and component-choice checks, reused the bounded
+publisher and process/request owners. No second chemistry validator, publisher,
+process layer, formatter or test runner. Existing repair/runtime suites were added
+to the workflow profile; profile path deduplication remains unchanged. Historical
+scientific guards and source chemistry were not simplified.
+
+**Validation:** four expected failures before implementation; **42 new
+regression cases**. Affected: **357 passed in 103.39s (0:01:43)**. Workflow: **1456 passed, 45 subtests passed in 324.62s (0:05:24)**.
+All 619 source/test/script hashes stayed fixed across both runs, and native source
+hashes match. No full suite at Simon's request; last completed full baseline remains
+C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 tests + 276 subtests).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_original_component_runtime.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repaired_component_runtime.py tests/test_cif_component_runtime.py tests/test_cif_runtime_bundle.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_budget.py tests/test_cif_repair_attempt.py tests/test_cif_complete_request.py tests/test_cif_outer_context.py --junitxml <capsule>/affected-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c172_native_r2.py native-r2
+PYTHONDONTWRITEBYTECODE=1 python c172_cold.py cold-r1
+```
+
+**Native:** Phenix 2.2.1-6174 / dispatcher 2.2.1; actual execution, not dry-run.
+Exact C171 repaired PDU/5PC dictionaries are declared validation inputs with their
+own honest graph-projection provenance and fresh two-seed qualification. Their
+complete request has zero repair steps and three native phases. It selects
+`verified_prepared_bundle` with model/dictionary bytes identical to C171's qualified
+selection. A separate one-second derivative limit times out (return code -15),
+returns `NO_USABLE_BUNDLE`, keeps all evidence and publishes no runtime. Every
+owned child is stopped. Saved C171 original evidence independently publishes
+without attribution. Controls took 72.485s. No generation,
+ReadySet, Coot, model optimization or diffraction refinement. No new ligand-family,
+mixed-scaffold or ordinary-adoption claim. Python 3.12.14, pytest 9.1.1, NAR 1.1.3.
+The initial runner stopped before native work on an incorrect ledger key; corrected
+runner uses the exact recorded runtime reference and preserves that failure log.
+
+**Portability:** relocated checkout replays positive/negative complete requests,
+standalone original runtime and legacy repaired C171 request with the original
+copy absent, historical paths/SDK and execution denied. All 1804 files
+retain bytes/mtimes. Parent scientific evidence is unchanged.
+
+**Changed files/schemas:** six existing runtime modules; original-runtime tests
+plus execution/budget/request regressions; workflow profile; current README,
+contract/map/architecture/overview/caption/queue/handoff and evidence ledgers.
+New source-selection and runtime policy IDs are schema 1. Optional true-only
+`qualify_no_repair` is bound through complete/prepared requests and execution
+reports. New artifacts need C172 readers; old formats are not rewritten. No cache,
+source, phosphate/OP3, NAR, chemical-state or scientific-threshold changes.
+
+**Next:** classify trustworthy early optional-capture failure versus corrupted
+proof before any fallback; then single-component composition before Q05. Q06
+refinement, Q07 mixed/held-out builder controls and Q13 chemical-state authority
+remain separate. Generic exception catches are not a safe fallback implementation.
+Only source/tests/docs/hash references enter Git; science/logs/XML/runners/copied
+checkouts remain local. No active job at publication; no merge.
+Evidence key `independent_original_qualification_2026_11_09`.
+— Rowan · Codex desktop
+
 ## C171 published: complete frozen request and explicit outer attempts
 
 Base `3bdda09f5eba0769a1cbe09328bd7c866471ed33`; existing Cedar only.
