@@ -71148,7 +71148,7 @@
     "milestone": "C175",
     "status": "FOCUSED_NATIVE_COLD_VALIDATED; Q04_ORDINARY_ENTRY_OPEN",
     "base_revision": "ffee42caf482b3bc2dd85f0ddd620912a43aa66b",
-    "implementation_revision": null,
+    "implementation_revision": "b595c6fc5bf4cc64300056e248c57850ba8a956b",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Manual site context; no replay of ordinary model/terminal intent",
     "after": "Read-only model-context compiler and optional complete-request proof reconstructed on readback",

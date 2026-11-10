@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C175 validated: prepared-model context and frozen replay
+## C175 published: prepared-model context and frozen replay
 
 Base `ffee42caf482b3bc2dd85f0ddd620912a43aa66b`; existing Cedar. Capsule
-`live_tests_directory/175_Cedar_model-context-ch1yb3zg`. Implementation/validation complete; publication
-is next. Q04 stays open at NAR/PHIL and modifier ownership, then ordinary cache-entry
+`live_tests_directory/175_Cedar_model-context-ch1yb3zg`. Implementation/validation complete and published as
+`b595c6fc5bf4cc64300056e248c57850ba8a956b`. Q04 stays open at NAR/PHIL and modifier ownership, then ordinary cache-entry
 integration. Q05 owns adoption; Q06 actual refinement; Q07/Q13 scaffolds/states.
 
 **Before → after:** explicit requests needed hand-written site declarations.
