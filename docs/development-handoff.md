@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C193 validated: expose existing generation failure diagnosis
+## C193 published: expose existing generation failure diagnosis
 
-Base `22f01dd1acae9ef75c04ee95341f611f0606306f`; existing Cedar. Implementation complete; publication is next.
+Base `22f01dd1acae9ef75c04ee95341f611f0606306f`; existing Cedar. Implementation complete and published as
+`250b029ac0d00d416fe568d7b09b5f7df53dbe86`.
 Stop boundary **2026-11-10 23:12 UTC**. Capsule:
 `live_tests_directory/193_Cedar_generation-failure-diagnostic-bu3un16e`. All validation jobs are stopped.
 

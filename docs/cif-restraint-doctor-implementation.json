@@ -28325,7 +28325,8 @@
         "Q04 ordinary caller, construction producer and one modifier owner",
         "Q05 exact selected bundle/checkpoint lineage",
         "Q06 actual refinement and Q07 mixed/held-out acceptance; source-H/native mapper issue remains Q13"
-      ]
+      ],
+      "implementation_revision": "250b029ac0d00d416fe568d7b09b5f7df53dbe86"
     }
   },
   "audience": [

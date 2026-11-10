@@ -78349,7 +78349,7 @@
     "implementation_revision": "697dc0ecf963117aeadba16024562cf9d70f3ce4"
   },
   "generation_failure_diagnostics_2026_11_10": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "base_revision": "22f01dd1acae9ef75c04ee95341f611f0606306f",
     "branch": "cedar",
     "date": "2026-11-10",
@@ -78556,6 +78556,7 @@
         "sha256": "339714b26f43bd46e94f3f720d3601d0ca3435de6f1afa4dfaafc590bc265f49",
         "size": 40398
       }
-    }
+    },
+    "implementation_revision": "250b029ac0d00d416fe568d7b09b5f7df53dbe86"
   }
 }
