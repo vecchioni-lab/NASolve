@@ -32,6 +32,7 @@ class _ProcessScope:
     binding_field: str
     phases: str
     description: str
+    fixed_paths: tuple[tuple[str, str, str], ...] = ()
 
 
 _REPAIR_SCOPE = _ProcessScope(POLICY_ID, ANCHOR, 'bundle', 'repair.json',
@@ -79,7 +80,11 @@ def _paths(root, phase, cwd, log, scope=_REPAIR_SCOPE):
     _need(isinstance(log, dict) and set(log) == {'anchor','path'} and log['anchor'] == scope.anchor)
     work = path_in(root, cwd['path']); logfile = path_in(root, log['path'])
     _need(work.is_dir())
-    if phase.startswith('native-'):
+    fixed = {name:(cwd, log) for name,cwd,log in scope.fixed_paths}
+    if phase in fixed:
+        expected_work, expected_log = fixed[phase]
+        _need(work == path_in(root,expected_work) and logfile == path_in(root,expected_log))
+    elif phase.startswith('native-'):
         _need(work.parent == root/'native'/phase[7:] and logfile == work/'native.log')
     else:
         _need(work == root/phase/'job' and logfile == work/('execution.log' if phase == 'attribution' else 'gradient.log'))

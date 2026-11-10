@@ -215,9 +215,12 @@ def read_readyset_consumption(directory):
     return {'report':r,**inputs,'dictionary':resolve(r['effective_dictionary']) if r.get('effective_dictionary') else inputs['dictionary']}
 
 
-def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,output,*,timeout_seconds=180,_components=None,_component_dictionaries=None):
+def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,output,*,timeout_seconds=180,_components=None,_component_dictionaries=None,_process_runner=None):
     """One bounded ordinary helper call; retain verified inputs on failed evidence."""
     from .postmr import _run_readyset,PostMRPreparationError
+    from .cif_native_validation import _run_native_command
+    if _process_runner is not None and not callable(_process_runner):
+        raise ValueError('ReadySet process runner must be callable')
     if type(timeout_seconds) not in (int,float) or not math.isfinite(timeout_seconds) or not 0<timeout_seconds<=180:
         raise ValueError('ReadySet deadline must be in (0,180] seconds')
     output=Path(output).absolute()
@@ -268,14 +271,23 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
             env=dict(phenix.environment);env.pop('READY_SET_LIGAND_CACHE_DIRECTORY',None)
             env['PYTHONDONTWRITEBYTECODE']='1'
             clock=time.monotonic()
-            with (run/'observer.log').open('xb') as log:
-                process=subprocess.Popen([str(phenix.executables['phenix.python']),'consumption_worker.py','consumption_spec.json'],
-                    cwd=run,env=env,stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=os.name=='posix')
+            if _process_runner is not None:
                 try:
-                    rc=process.wait(timeout=timeout_seconds);report['execution'].update(status='COMPLETED' if rc==0 else 'FAILED',returncode=rc)
-                except subprocess.TimeoutExpired:
-                    _terminate_owned_group(process);rc=process.returncode;report['execution'].update(status='TIMED_OUT',returncode=rc)
-                except BaseException:_terminate_owned_group(process);raise
+                    rc=_run_native_command([str(phenix.executables['phenix.python']),'consumption_worker.py','consumption_spec.json'],
+                        cwd=run,log_path=run/'observer.log',environment=env,timeout_seconds=timeout_seconds,
+                        process_runner=_process_runner)
+                except subprocess.TimeoutExpired as exc:
+                    rc=exc.returncode;report['execution'].update(status='TIMED_OUT',returncode=rc)
+                else:report['execution'].update(status='COMPLETED' if rc==0 else 'FAILED',returncode=rc)
+            else:
+                with (run/'observer.log').open('xb') as log:
+                    process=subprocess.Popen([str(phenix.executables['phenix.python']),'consumption_worker.py','consumption_spec.json'],
+                        cwd=run,env=env,stdin=subprocess.DEVNULL,stdout=log,stderr=subprocess.STDOUT,start_new_session=os.name=='posix')
+                    try:
+                        rc=process.wait(timeout=timeout_seconds);report['execution'].update(status='COMPLETED' if rc==0 else 'FAILED',returncode=rc)
+                    except subprocess.TimeoutExpired:
+                        _terminate_owned_group(process);rc=process.returncode;report['execution'].update(status='TIMED_OUT',returncode=rc)
+                    except BaseException:_terminate_owned_group(process);raise
             report['execution'].update(elapsed_seconds=round(time.monotonic()-clock,6),timeout_seconds=timeout_seconds)
             if (_ref(heavy,output)!=report['heavy_control'] or any(_ref(p,output)!=report['inputs'][k] for k,p in frozen.items())
                     or any(_ref(p,output)!=report['component_inputs'][c] for c,p in component_inputs.items())):
@@ -325,7 +337,7 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
 
 
 def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,consumer,output,*,timeout_seconds=180,component_dictionaries=None,
-        component_list_policy=COMPONENT_LIST_POLICY):
+        component_list_policy=COMPONENT_LIST_POLICY,_process_runner=None):
     """Use the ordinary helper and strict checks for a declared component bundle.
 
     The bundle must cover one to sixteen explicit components present in both
@@ -360,4 +372,4 @@ def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,
                 component_list_policy=component_list_policy)
             if combined.read_bytes()!=Path(dictionary).read_bytes():raise ValueError('Per-component inputs change the combined numerical dictionary')
     return audit_readyset_consumption(source,dictionary,model,'ALL',phenix,consumer,output,
-        timeout_seconds=timeout_seconds,_components=tuple(sorted(codes)),_component_dictionaries=component_dictionaries)
+        timeout_seconds=timeout_seconds,_components=tuple(sorted(codes)),_component_dictionaries=component_dictionaries,_process_runner=_process_runner)

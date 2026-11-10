@@ -4113,3 +4113,11 @@ to that existing request API. It shares the maintained consumer/producer source
 scope and validators, keeps the environment live-only, and preserves frozen recipe
 and allowance semantics. Static installed-file identity does not replace native
 binding or chemical qualification. No default caller or new owner is introduced.
+
+C183 adds one [owned continuation execution](cif-doctor.md#owned-selected-runtime-continuation-c183)
+under the shared campaign process protocol. Baseline, ReadySet, raw and optional
+losslessly serialized native endpoints have exact stopped-worker proof. The existing
+scientific adapters decide the selected runtime; failed optional evidence retains the
+qualified parent. New execution records replay without execution or historical paths.
+This child grants no retry, persistent request or checkpoint authority; the existing
+complete request must own future whole-chain recovery and allowance accounting.

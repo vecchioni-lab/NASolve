@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C182.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C183.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -148,8 +148,12 @@ energy/gradient snapshots; old rejected evidence still remains a fallback. These
 prerequisites close no ordinary-adoption or refinement gate. C181 now binds the
 selected original/repaired runtime through that explicit continuation and public
 replay, including exact repaired fallback. C182 closes selected-installation
-configuration with fresh generation/repair/cache and cold controls. Whole-chain
-orchestration remains; do not add a second recovery owner.
+configuration with fresh generation/repair/cache and cold controls. C183 now owns
+one selected-runtime baseline/ReadySet/native/publication execution, including bounded
+lossless serialization and exact stopped-worker replay. Next attach that child to the
+existing complete request, with reciprocal ownership, frozen settings, persistent
+attempt history and the same enclosing allowance. Whole-chain orchestration remains;
+do not add a second recovery owner.
 
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
@@ -217,11 +221,13 @@ parent; a pre-repair baseline cannot authorize an endpoint. All historical choic
 remain unchanged after relocation.
 
 C182 derives current-installation settings without borrowing old test configuration.
-Next integrate durable continuation under the existing ownership model, then the
-ordinary caller and immutable checkpoint publication. Preserve pre-construction source/producer lineage and exact NAR intent.
-The C181 observer is a bounded explicit diagnostic call, not a persistent whole-chain
-owner or automatic C140 scheduler. No second recovery owner or unqualified pre-repair
-fallback should be introduced.
+C183 owns one immutable continuation execution and schedules at most one existing
+lossless C140 correction, qualified by a fresh native endpoint. All five live controls
+and complete cold replays pass. Next bind it to the existing complete-request owner,
+including interrupted/unknown child recovery, shared elapsed allowance and immutable
+previous outputs. Then integrate the ordinary caller and checkpoint publication.
+Preserve pre-construction source/producer lineage and exact NAR intent. No second
+recovery owner or unqualified pre-repair fallback should be introduced.
 
 Done when recipes/models containing modified components reach final ReadySet
 consumption and exact native qualification through ordinary entry points, then

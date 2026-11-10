@@ -118,7 +118,9 @@
 
 <a id="current-capability-boundary-c181"></a>
 
-## Current capability boundary (C182)
+<a id="current-capability-boundary-c182"></a>
+
+## Current capability boundary (C183)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -141,8 +143,8 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
 | Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
-| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; durable whole-continuation ownership, default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
-| Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; ordinary orchestration, continuation ownership and checkpoint adoption remain Q04/Q05. |
+| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. Existing-request recovery integration, default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
+| Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. Existing-request integration, ordinary orchestration and checkpoint adoption remain Q04/Q05. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -261,6 +263,51 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### Owned selected-runtime continuation (C183)
+
+`execute_runtime_continuation(manifest, phenix, output, ...)` executes one fresh
+C181 continuation with the shared campaign process protocol. It freezes the exact
+qualified original/repaired parent and bounded settings, owns each native/ReadySet
+worker, reuses the maintained observer and strict native comparator, and publishes
+the existing public runtime policy. A known-stopped optional failure preserves that
+same qualified parent. Unknown cleanup, interruption, damaged proof or changed
+consumer/input raises while retaining every partial output. An output directory is
+never reused, and this execution grants no retry or checkpoint adoption authority.
+
+The phase chain is baseline native capture, ReadySet, raw endpoint native capture
+and, only when indicated, one C140 lossless serialization followed by a separate
+native capture. C140 must preserve all scientific PDB columns; unchanged serialization
+does not trigger another capture. Unsupported explicit-H restoration retains the
+qualified parent. No chemical repair, target change, hydrogen removal or relaxed
+native comparison is introduced by this continuation.
+
+New local evidence policies are `cif-runtime-continuation-process-v1` and
+`cif-selected-runtime-continuation-execution-v1`. `read_runtime_continuation()`
+reconstructs the exact permitted phase chain, input/command/worker bindings, C140
+choice and public selection; it validates the stopped completion seal and complete
+artifact inventory without the SDK or historical paths. Relative references use
+`continuation_directory`; host commands are provenance only. Existing public
+runtime policies, ordinary observer calls and previous process scopes are unchanged.
+Older readers cannot consume this new execution record; older artifacts need no
+migration. Recursive continuation parents remain unsupported.
+
+One cooperative allowance includes preflight, worker calls, final replay, publication
+and inventory. A parent may supply its remaining allowance and attempt identity.
+Expiry during final inventory/result writing leaves a raised execution rather than
+a successful seal; unknown process cleanup cannot be converted to a safe fallback.
+Local CPU work, cleanup and atomic sealing are not a hard wall-clock deadline.
+This is a child execution, not another persistent recovery owner. Attaching it to
+the existing complete request remains the next Q04/Q05 boundary.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls qualify the original endpoint,
+select a losslessly restored repaired endpoint with all 28 native checks, and retain
+the exact repaired explicit-H parent when restoration is unsupported. Separate
+ReadySet and baseline timeouts stop their workers and preserve the parent. The
+ReadySet transport uses selected Phenix Python and the maintained observer; the
+literal shell dispatcher is not run. All five executions and public results replay
+cold after relocation. No generation, Coot or diffraction refinement is performed;
+ordinary invocation and immutable checkpoint adoption remain open.
 
 ### Current selected-Phenix configuration (C182)
 

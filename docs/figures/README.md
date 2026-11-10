@@ -441,3 +441,7 @@ refinement arrow is claimed.
 
 C182 supplies selected-installation configuration to the explicit engine; it does
 not add a scientific-approval, ordinary-adoption or refinement arrow.
+
+C183 owns the explicit selected-runtime continuation and its optional lossless
+serialization check. Existing-request recovery, ordinary adoption and refinement
+arrows remain open; no figure should label the automatic engine complete.

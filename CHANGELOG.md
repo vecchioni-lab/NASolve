@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Own selected-runtime ReadySet/native execution (C183)
+
+- Add one bounded, immutable continuation execution using the existing process
+  protocol, strict observer/native checks and public runtime publisher. Known-stopped
+  optional failure preserves the exact qualified parent; uncertain cleanup raises.
+- Schedule at most one existing lossless serialization correction with fresh native
+  proof. Preserve raw endpoints, explicit-H parents and all partial output.
+- Add execution/process records and read-only cold replay. Existing runtime policies,
+  ordinary observer calls and previous records need no migration. Existing-request
+  recovery integration and automatic PostMR/checkpoint adoption remain separate.
+
 ### Derive dictionary-engine settings from selected Phenix (C182)
 
 - Add a read-only configuration helper using existing source identities and recipe

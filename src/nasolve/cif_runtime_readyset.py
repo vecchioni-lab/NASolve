@@ -58,7 +58,7 @@ def _selected_view(manifest):
         _need(_tree(root) == frozen, 'Selected parent runtime changed during continuation')
 
 
-def audit_runtime_readyset_consumption(manifest, phenix, output, *, timeout_seconds=180):
+def audit_runtime_readyset_consumption(manifest, phenix, output, *, timeout_seconds=180, _process_runner=None):
     """Observe one bounded ReadySet call using the selected numerical dictionaries.
 
     Frozen inputs and failures use the existing ReadySet report. Publication later
@@ -73,7 +73,7 @@ def audit_runtime_readyset_consumption(manifest, phenix, output, *, timeout_seco
               'ReadySet output overlaps selected parent runtime')
         return audit_readyset_bundle_consumption(view['source'], view['dictionary'], view['model'],
             view['report']['components'], phenix, view['report']['consumer'], output,
-            timeout_seconds=timeout_seconds, component_dictionaries=view['component_dictionaries'])
+            timeout_seconds=timeout_seconds, component_dictionaries=view['component_dictionaries'],_process_runner=_process_runner)
 
 
 def runtime_readyset_endpoint_inputs(manifest, readyset_directory, *, atom_order_directory=None):

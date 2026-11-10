@@ -11,6 +11,63 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C183 validated: owned selected-runtime continuation
+
+Base `ef86cf5328827dee22a02667fe1655a9290321c1`; existing Cedar. Capsule
+`live_tests_directory/183_Cedar_owned-continuation-lv4h_8vf`. Implementation/validation complete; publication
+is next. The selected ReadySet/native bridge now has one bounded owned execution.
+
+**Before → after:** callers assembled C181's stages manually and the ReadySet
+observer did not share durable worker ownership. The new executor freezes the exact
+qualified parent, uses the existing process protocol and observer/native/publisher
+truth sources, and performs at most one C140 lossless correction with fresh native
+proof. Known-stopped optional failures preserve the selected parent; unknown cleanup
+and interruption raise with partial artifacts preserved. No in-place retry is added.
+
+**Validation:** three expected missing-module/API failures before implementation;
+two additional failing-before finalization controls exposed expiry during inventory
+and result writing. Final **41 new regressions pass**. Two early test fixtures were
+corrected to model real capture usability and live-coordinator state; no product gate
+was weakened. Affected **412 passed, 19 subtests passed in 296.08s (0:04:56)**. Workflow
+**1810 passed, 45 subtests passed in 636.51s (0:10:36)**. All 634 source/test/script hashes stayed
+fixed. No full suite; last completed full is C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c183_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c183_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c183_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** five controls; nine native calls and
+four ReadySet observations. Original and automatically C140-restored repaired
+endpoints pass all 28 checks. Explicit-H repair retains its exact qualified parent;
+separate known-stopped ReadySet/baseline timeouts retain the same parent. The observer
+uses selected Phenix Python; literal ReadySet shell dispatch is NOT_RUN. Generation,
+Coot and diffraction refinement are NOT_RUN. All parent bytes/mtimes stay unchanged.
+Five complete executions and public selections replay after relocation: 2105
+files retain bytes/mtimes with original copy absent and historical paths/SDK/execution
+denied. Source inputs are the hash-verified C181 qualified parent controls.
+
+**Files/schema/compatibility:** new continuation executor/process scope/test; shared
+process path support, private observer runner plumbing and workflow membership;
+current contracts/queue/ledgers. Additive execution policies
+`cif-selected-runtime-continuation-execution-v1` and
+`cif-runtime-continuation-process-v1` require the new reader. Existing runtime,
+observer and process policies need no migration. The enclosing allowance is
+cooperative, not a hard CPU/cleanup deadline. Recursive continuation parents refuse.
+Only source/tests/docs/hash references enter Git; generated science, snapshots,
+local runners, logs and XML stay excluded.
+
+**Next:** bind this child to the existing complete-request owner with frozen settings,
+reciprocal parent/coordinator identity, exact selected repair input, conservative
+unknown-publication recovery, preserved generation history and shared final allowance.
+Then ordinary caller/checkpoint adoption. Q04/Q05 remain open; Q06 actual refinement,
+Q07 representative/held-out scaffolds and Q13 chemical-state authority remain separate.
+Evidence key `owned_runtime_continuation_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C182 published: current selected-installation configuration
 
 Base `e720111407fcd470fa1fe2124bd34480634fa6c5`; existing Cedar. Capsule

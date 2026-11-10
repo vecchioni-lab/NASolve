@@ -74567,5 +74567,573 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "7efacdc2bef4f667e36252f135bb23b95c993d71"
+  },
+  "owned_runtime_continuation_2026_11_10": {
+    "status": "VALIDATED; PUBLICATION_PENDING",
+    "base_revision": "ef86cf5328827dee22a02667fe1655a9290321c1",
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_repair_process.py",
+      "src/nasolve/cif_postmr_readyset.py",
+      "src/nasolve/cif_runtime_readyset.py",
+      "src/nasolve/cif_runtime_continuation.py",
+      "src/nasolve/cif_runtime_continuation_process.py",
+      "tests/test_cif_runtime_continuation.py"
+    ],
+    "prior_work": "C140 lossless serialization; C163-C167 shared campaign process/parent ownership; C171 complete request; C173 stopped optional failures; C181 selected-runtime bridge; C182 current configuration. Reuse those owners and scientific validators.",
+    "scope": "ONE_OWNED_SELECTED_RUNTIME_CONTINUATION; EXISTING_OUTER_RECOVERY_AND_DEFAULT_ADOPTION_SEPARATE",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 77429,
+        "runner_pid": 77415,
+        "phase": "before",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_continuation.py",
+          "-k",
+          "owned_readyset_process or joins_real_worker",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/183_Cedar_owned-continuation-lv4h_8vf/before.xml"
+        ],
+        "started_utc": "2026-11-10T14:25:52.862096+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 0.52,
+        "sources_unchanged": true,
+        "source_files": 632
+      },
+      "finalization_before": {
+        "active": false,
+        "pid": 78884,
+        "runner_pid": 78870,
+        "phase": "finalization",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_continuation.py",
+          "-k",
+          "expiry_during_finalization",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/183_Cedar_owned-continuation-lv4h_8vf/finalization.xml"
+        ],
+        "started_utc": "2026-11-10T14:32:31.433501+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 11.005,
+        "sources_unchanged": true,
+        "source_files": 634
+      },
+      "new": {
+        "active": false,
+        "pid": 79031,
+        "runner_pid": 79017,
+        "phase": "new-r3",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_continuation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/183_Cedar_owned-continuation-lv4h_8vf/new-r3.xml"
+        ],
+        "started_utc": "2026-11-10T14:33:32.241644+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 129.582,
+        "sources_unchanged": true,
+        "source_files": 634
+      },
+      "affected": {
+        "active": false,
+        "pid": 80096,
+        "runner_pid": 80082,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_continuation.py",
+          "tests/test_cif_runtime_readyset.py",
+          "tests/test_cif_postmr_readyset.py",
+          "tests/test_cif_dictionary_bundle_readyset.py",
+          "tests/test_cif_repair_process.py",
+          "tests/test_cif_candidate_qualification.py",
+          "tests/test_campaign_process.py",
+          "tests/test_cif_native_validation.py",
+          "tests/test_cif_readyset_atom_order.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_test_suites.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/183_Cedar_owned-continuation-lv4h_8vf/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-10T14:36:57.401839+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 296.358,
+        "sources_unchanged": true,
+        "source_files": 634
+      },
+      "focused": {
+        "active": false,
+        "pid": 82691,
+        "runner_pid": 82676,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/183_Cedar_owned-continuation-lv4h_8vf/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-10T14:42:25.508471+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 636.726,
+        "sources_unchanged": true,
+        "source_files": 634
+      },
+      "affected_summary": "412 passed, 19 subtests passed in 296.08s (0:04:56)",
+      "focused_summary": "1810 passed, 45 subtests passed in 636.51s (0:10:36)",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "last_full_tests": "7740 + 276 subtests"
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 236.6962905410037,
+      "controls": {
+        "original-heavy": {
+          "directory": "native-r1/original-heavy",
+          "selected": "readyset_checked_model",
+          "serialization": {
+            "status": "NOT_NEEDED"
+          },
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "elapsed_seconds": 22.543804042012198,
+          "all_children_stopped": true,
+          "same_output_refused": true,
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN",
+          "comparison": {
+            "after:complete_native_interpretation": true,
+            "after:complete_proxy_inventory": true,
+            "after:energy_inventory": true,
+            "after:exact_native_model": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:fixed_secondary_structure_policy": true,
+            "all_backbone_links_exact": true,
+            "before:complete_native_interpretation": true,
+            "before:complete_proxy_inventory": true,
+            "before:energy_inventory": true,
+            "before:exact_native_model": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:fixed_secondary_structure_policy": true,
+            "exact_effective_site_definitions": true,
+            "exact_explicit_requests": true,
+            "exact_named_proxies:angle": true,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": true,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": true,
+            "exact_named_proxies:dihedral": true,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": true,
+            "same_installed_api_sources": true,
+            "same_native_policy": true,
+            "unchanged_named_heavy_coordinates": true
+          }
+        },
+        "repair-heavy": {
+          "directory": "native-r1/repair-heavy",
+          "selected": "readyset_ordered_checked_model",
+          "serialization": {
+            "status": "APPLIED"
+          },
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "native-ordered": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "elapsed_seconds": 59.64130029200169,
+          "all_children_stopped": true,
+          "same_output_refused": true,
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN",
+          "comparison": {
+            "after:complete_native_interpretation": true,
+            "after:complete_proxy_inventory": true,
+            "after:energy_inventory": true,
+            "after:exact_native_model": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:fixed_secondary_structure_policy": true,
+            "all_backbone_links_exact": true,
+            "before:complete_native_interpretation": true,
+            "before:complete_proxy_inventory": true,
+            "before:energy_inventory": true,
+            "before:exact_native_model": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:fixed_secondary_structure_policy": true,
+            "exact_effective_site_definitions": true,
+            "exact_explicit_requests": true,
+            "exact_named_proxies:angle": true,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": true,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": true,
+            "exact_named_proxies:dihedral": true,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": true,
+            "same_installed_api_sources": true,
+            "same_native_policy": true,
+            "unchanged_named_heavy_coordinates": true
+          }
+        },
+        "repair-explicit-h": {
+          "directory": "native-r1/repair-explicit-h",
+          "selected": "verified_parent_runtime",
+          "serialization": {
+            "status": "UNSUPPORTED",
+            "reason": "Require named heavy atom with explicit element"
+          },
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "elapsed_seconds": 54.0077326669998,
+          "all_children_stopped": true,
+          "same_output_refused": true,
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN",
+          "comparison": null
+        },
+        "readyset-timeout": {
+          "directory": "native-r1/readyset-timeout",
+          "selected": "verified_parent_runtime",
+          "serialization": {
+            "status": "NOT_NEEDED"
+          },
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "readyset": "TIMED_OUT"
+          },
+          "elapsed_seconds": 13.78990824999346,
+          "all_children_stopped": true,
+          "same_output_refused": true,
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN",
+          "comparison": null
+        },
+        "baseline-timeout": {
+          "directory": "native-r1/baseline-timeout",
+          "selected": "verified_parent_runtime",
+          "serialization": {
+            "status": "NOT_NEEDED"
+          },
+          "phases": {
+            "native-baseline": "TIMED_OUT"
+          },
+          "elapsed_seconds": 8.751558832998853,
+          "all_children_stopped": true,
+          "same_output_refused": true,
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN",
+          "comparison": null
+        }
+      },
+      "native_calls": 9,
+      "readyset_calls": 4,
+      "parent_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "generation": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "ONE_OWNED_SELECTED_RUNTIME_CONTINUATION; OUTER_RECOVERY_AND_DEFAULT_ADOPTION_SEPARATE"
+    },
+    "cold": {
+      "status": "PASS",
+      "controls": {
+        "original-heavy": {
+          "selected": "readyset_checked_model",
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          }
+        },
+        "repair-heavy": {
+          "selected": "readyset_ordered_checked_model",
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "native-ordered": "COMPLETED",
+            "readyset": "COMPLETED"
+          }
+        },
+        "repair-explicit-h": {
+          "selected": "verified_parent_runtime",
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          }
+        },
+        "readyset-timeout": {
+          "selected": "verified_parent_runtime",
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "readyset": "TIMED_OUT"
+          }
+        },
+        "baseline-timeout": {
+          "selected": "verified_parent_runtime",
+          "phases": {
+            "native-baseline": "TIMED_OUT"
+          }
+        }
+      },
+      "files": 2105,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/start.json",
+        "sha256": "92a653abba28b1ccb4d8866d9099bb962caca12c5c480969c28a2a5a8da7c67d",
+        "size": 118
+      },
+      "design.txt": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/design.txt",
+        "sha256": "e4fd10e681709e5824edb5f83ef4242cd178741436cb000f259b59f9b71b9c79",
+        "size": 3075
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/before-result.json",
+        "sha256": "5b1523e5427a933a25c127804c73fc3b1cf30397fea02c93c57705ea34b7eb88",
+        "size": 643
+      },
+      "finalization-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/finalization-result.json",
+        "sha256": "90623a2fbd7489cb9993d9b6ca19bf7b14c9c397dbf24b8545ee9af405f7be6f",
+        "size": 640
+      },
+      "new-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/new-r3-result.json",
+        "sha256": "527d49ceeae2fa5068b60d0f73bf037c668446715a64f76c161c1ba1b2dc58e3",
+        "size": 585
+      },
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/affected-r1-result.json",
+        "sha256": "f12601eefb3949d112a5cf76d9e109a574df933132251b87883a614644bf83ed",
+        "size": 1069
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/affected-r1-sources.json",
+        "sha256": "bf173ae224bc9722962c905115a3dfb347fdd3c340e609c1807a6f210fd038f6",
+        "size": 69252
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/focused-r1-result.json",
+        "sha256": "2f54e90cf970d815537c7b7a0ab6178ffa03e296abb22f8fa3ff3b3f7cbfc65a",
+        "size": 497
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/focused-r1-sources.json",
+        "sha256": "bf173ae224bc9722962c905115a3dfb347fdd3c340e609c1807a6f210fd038f6",
+        "size": 69252
+      },
+      "native-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-summary.json",
+        "sha256": "25c2aa37085b313b23a501ab7cd26d8f33ecee840c2aa2d5584eb2dcd738d8ae",
+        "size": 5878
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/runtime-sources.json",
+        "sha256": "3a580ecf4385592e11be2d107aed3a9f8282498e6c180a6480634da653a92983",
+        "size": 22990
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/cold-r1/summary.json",
+        "sha256": "2fe9b0fdf21c4f5d8c09f9534cb386d7f4a9d75ea03fa085bccacd5602142471",
+        "size": 1186
+      },
+      "native-r1/original-heavy-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/original-heavy-summary.json",
+        "sha256": "13232ad524d172753bebef6a36881521bb58959ef23fb64b80d03078dd693d16",
+        "size": 1691
+      },
+      "native-r1/original-heavy/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/original-heavy/continuation_execution.json",
+        "sha256": "44cf5a040d8fd21f18c5870abfd9802e98be3529166e9043cb895d5e73c9cdd9",
+        "size": 54513
+      },
+      "native-r1/original-heavy/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/original-heavy/ownership/finished.json",
+        "sha256": "0a37fd14cd58fba77aeaa55f107f4bd37a45a4e8e6ad1fe3eb12251bac63f4d4",
+        "size": 574
+      },
+      "native-r1/original-heavy/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/original-heavy/runtime/runtime_bundle.json",
+        "sha256": "067966af8df604588ead147ff34bb011871d751977593ac5830ac4042d92ed19",
+        "size": 38893
+      },
+      "native-r1/repair-heavy-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-heavy-summary.json",
+        "sha256": "e60ec0ee4152836b9fb39cfa7fa655e3fc1433fbf2c44fbc5315f161a1592d1a",
+        "size": 1728
+      },
+      "native-r1/repair-heavy/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-heavy/continuation_execution.json",
+        "sha256": "64d620be30e447598da6c3fad7f9ff8fb93f862a06bd1cfa59f0722b8f9c50c4",
+        "size": 109114
+      },
+      "native-r1/repair-heavy/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-heavy/ownership/finished.json",
+        "sha256": "7de5b598cdf67d0e268e3c583dbc62809d5e6dca7beecc1c76a43421ab710250",
+        "size": 664
+      },
+      "native-r1/repair-heavy/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-heavy/runtime/runtime_bundle.json",
+        "sha256": "ebb2ca3e881c324e8b877aff91dcf021be3ffee4bb4d0c14dff5af25a2310e06",
+        "size": 72981
+      },
+      "native-r1/repair-explicit-h-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-explicit-h-summary.json",
+        "sha256": "86017b7842046e238e012819701c493d1db5f40d6a38bd5c81c88c37db481083",
+        "size": 544
+      },
+      "native-r1/repair-explicit-h/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-explicit-h/continuation_execution.json",
+        "sha256": "72c919d1de811e0ad727dd8220be086a10b2dd970b3fd2e647e7c1ea3e8d885b",
+        "size": 105160
+      },
+      "native-r1/repair-explicit-h/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-explicit-h/ownership/finished.json",
+        "sha256": "269de7bb034937e38ed34cbd351e99deff859a86cfed357d84f659c077c37f2e",
+        "size": 574
+      },
+      "native-r1/repair-explicit-h/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/repair-explicit-h/runtime/runtime_bundle.json",
+        "sha256": "6c714004d337edbde755e9009a43c71d9273cc9812f35e1d7986ac6dff1004ba",
+        "size": 72427
+      },
+      "native-r1/readyset-timeout-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/readyset-timeout-summary.json",
+        "sha256": "931904d7e1edce271085dc0c07e3b51d02fd8afa1d44e1b1c96553a7914006c1",
+        "size": 443
+      },
+      "native-r1/readyset-timeout/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/readyset-timeout/continuation_execution.json",
+        "sha256": "b691929533d08c54b2f3e32aeea8b6477521d81082749115d5254c68df6511c1",
+        "size": 48581
+      },
+      "native-r1/readyset-timeout/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/readyset-timeout/ownership/finished.json",
+        "sha256": "f6f0714fd6e2ac3e41551718fb21a6e0141992f1f95d3eb634eac705e0cb16ae",
+        "size": 483
+      },
+      "native-r1/readyset-timeout/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/readyset-timeout/runtime/runtime_bundle.json",
+        "sha256": "7c2809880e42f0bd09eeeb52e9a5303951e5c6daa17054cb8e1966ff84c5dc2b",
+        "size": 33304
+      },
+      "native-r1/baseline-timeout-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/baseline-timeout-summary.json",
+        "sha256": "a8c7f7c221be10abe787086f7d817959a2415ace01f9b9c2f122c1b236dcc039",
+        "size": 414
+      },
+      "native-r1/baseline-timeout/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/baseline-timeout/continuation_execution.json",
+        "sha256": "90db07ce66e71c2c3338446e550206f2cd1b82914e9c1ddf49330e88cc77400e",
+        "size": 32449
+      },
+      "native-r1/baseline-timeout/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/baseline-timeout/ownership/finished.json",
+        "sha256": "3686f848ddda5976c961a400bb651e21cf7cb790f6e42023217ef5b6c8539ebf",
+        "size": 399
+      },
+      "native-r1/baseline-timeout/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "183_Cedar_owned-continuation-lv4h_8vf/native-r1/baseline-timeout/runtime/runtime_bundle.json",
+        "sha256": "7cb7ce9dd3d3a610ba4a59c1d5cf63e57beb938e3b2c4e7874fb323230f13471",
+        "size": 23202
+      }
+    },
+    "compatibility": "Additive owned execution/process policies require new reader; previous process scopes, observer calls and public runtime policies unchanged; no migration.",
+    "exclusions": "Generated scientific inputs/results, source snapshots, local runners, logs and XML are not committed.",
+    "remaining": [
+      "Bind continuation to existing complete-request recovery owner",
+      "Ordinary caller and immutable checkpoint adoption",
+      "Actual refinement consumer Q06",
+      "Mixed/held-out and chemical-state controls Q07/Q13"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

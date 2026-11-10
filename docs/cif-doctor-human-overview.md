@@ -3859,3 +3859,19 @@ and repair; a second request reuses the cache. Frozen requests omit the live
 environment, retain their attempt limits and replay without the SDK after relocation.
 This closes configuration assembly; ordinary orchestration, checkpoint adoption and
 refinement remain separate gates.
+
+
+### Carrying a selected result through owned native checks (C183)
+
+The explicit continuation now keeps a complete execution record for its Phenix
+workers. It checks the selected parent, observes ReadySet and independently checks
+the endpoint. When a supported lossless PDB formatting correction is needed, it
+preserves the raw endpoint and checks a fresh corrected copy. Uncertain cleanup
+stops the operation; a verified optional failure keeps the qualified parent.
+
+**Methods.** Five actual original/repaired/explicit-H/timeout controls use Phenix
+2.2.1-6174, nine native calls and four ReadySet observer calls. Both positive endpoints
+pass all 28 strict checks. Every worker is known stopped, all original inputs remain
+unchanged, and complete execution/public evidence replays after relocation without
+the SDK. This closes the child execution boundary; complete-request recovery,
+ordinary checkpoint adoption and diffraction refinement remain separate.

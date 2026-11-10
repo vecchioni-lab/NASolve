@@ -73,7 +73,10 @@ also preserves chosen repairs through explicit ReadySet/native checks and retain
 the qualified parent when the optional endpoint fails.
 [Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
 can now be derived directly from the selected installation for explicit engine
-requests. Ordinary adoption remains open.
+requests. An [owned continuation](docs/cif-doctor.md#owned-selected-runtime-continuation-c183)
+now executes the selected baseline, ReadySet and final native checks with bounded
+worker ownership and preserved failures. Integration with complete-request recovery
+and ordinary adoption remains open.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.
