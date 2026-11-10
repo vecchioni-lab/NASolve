@@ -78160,5 +78160,191 @@
         "size": 656
       }
     }
+  },
+  "native_qualification_diagnostics_2026_11_10": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "base_revision": "555f16470099ce7aea746be598b7c7b835da2732",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "DIAGNOSTIC_ONLY; NO_NATIVE_ACCEPTANCE_OR_RECOVERY_CHANGE",
+    "before": "Known failed native workers and invalid owner/deadline evidence shared the ownership/completion error.",
+    "after": "Owner/deadline mismatch is checked separately first; known worker failure identifies seed, status, return code and exact retained receipt.",
+    "prior_work": [
+      "C166 shared two-seed qualification derivation",
+      "C185 primary-failure note handling",
+      "C191 actual stopped native failures",
+      "C121 native mapper refusal history"
+    ],
+    "files": [
+      "src/nasolve/cif_candidate_qualification_execution.py",
+      "tests/test_cif_candidate_qualification_execution.py"
+    ],
+    "schemas": [
+      "UNCHANGED"
+    ],
+    "compatibility": "ValueError and accepted states remain unchanged; diagnostic text becomes specific. Both seeds, worker bytes, limits, historical reports and retry authority remain unchanged. No migration.",
+    "regression": {
+      "summaries": {
+        "before-r1": "2 failed, 2 passed, 42 deselected in 3.57s",
+        "new-r1": "104 passed in 26.46s",
+        "focused-r1": "1991 passed, 45 subtests passed in 816.66s (0:13:36)"
+      },
+      "commands": {
+        "before-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_candidate_qualification_execution.py",
+          "-k",
+          "misreported",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/192_Cedar_native-failure-diagnostic-us337hj1/before-r1.xml"
+        ],
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_candidate_qualification_execution.py",
+          "tests/test_cif_candidate_qualification.py",
+          "tests/test_failure_reporting.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/192_Cedar_native-failure-diagnostic-us337hj1/new-r1.xml"
+        ],
+        "focused-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/192_Cedar_native-failure-diagnostic-us337hj1/focused-r1.xml"
+        ]
+      },
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_suite": "NOT_RUN_USER_REQUEST"
+    },
+    "native_replay": {
+      "before": {
+        "status": "EXPECTED_REFUSAL",
+        "message": "Native ownership/completion differs",
+        "files": 34,
+        "bytes_mtimes_unchanged": true,
+        "execution": "DENIED",
+        "prior_native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "native_mode": "READ_ONLY_REPLAY_OF_COMPLETED_C191_FAILED_NATIVE_CAPTURE; NO_NEW_NATIVE_EXECUTION"
+      },
+      "after": {
+        "status": "EXPECTED_REFUSAL",
+        "message": "Native qualification failed for source seed (FAILED, return code 2); inspect /Users/svecchio/NASolve-live-tests/191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/000/cif-native-hszqzd9c/native_receipt.json",
+        "files": 34,
+        "bytes_mtimes_unchanged": true,
+        "execution": "DENIED",
+        "prior_native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "native_mode": "READ_ONLY_REPLAY_OF_COMPLETED_C191_FAILED_NATIVE_CAPTURE; NO_NEW_NATIVE_EXECUTION"
+      },
+      "mode": "READ_ONLY_REPLAY; NO_NEW_PHENIX_EXECUTION"
+    },
+    "cold": {
+      "status": "PASS",
+      "cases": {
+        "positive-5PC": {
+          "status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "same_covalent_proxies": true
+        },
+        "positive-PDU": {
+          "status": "ISOLATED_NATIVE_USABILITY_PASS",
+          "same_covalent_proxies": true
+        },
+        "native-r1": {
+          "availability": "EXHAUSTED",
+          "generation": "FAILED",
+          "isolated_native_errors": [],
+          "owned_runtime": "NOT_CREATED",
+          "requests": 193,
+          "diagnostic": null
+        },
+        "native-policy-r1": {
+          "availability": "EXHAUSTED",
+          "generation": "CANDIDATE_REVIEW",
+          "isolated_native_errors": [
+            "AssertionError: HOP2!=\"HOP3\"",
+            "AssertionError: HOP2!=\"HOP3\""
+          ],
+          "owned_runtime": "NOT_CREATED",
+          "requests": 193,
+          "diagnostic": "Native qualification failed for source seed (FAILED, return code 2); inspect /Users/svecchio/NASolve-live-tests/192_Cedar_native-failure-diagnostic-us337hj1/cold-r1/relocated/native-policy-r1/acquisitions/DA/attempts/attempt-0001/qualification/native/native/000/cif-native-hszqzd9c/native_receipt.json"
+        }
+      },
+      "files": 429,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "redundancy": "Separate the existing predicate in one shared derivation; retain C185 seal-note helper. No second validator, worker, result format or recovery loop.",
+    "remaining": [
+      "Surface existing C115 source-generation diagnostic at the no-retained-candidate boundary",
+      "Q04 ordinary caller, construction producer and one modifier owner",
+      "Q05 checkpoint lineage, Q06 refinement and Q07 mixed/held-out acceptance remain open"
+    ],
+    "artifacts": "Only code/tests/docs/hash references ship. All native files, candidates, logs, XML, runners and partial outputs remain local.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/start.json",
+        "sha256": "edb303ca8ba2802aaf32335030487f0a96c16091361c33860cfaccbe25a49b9a",
+        "size": 523
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/before-r1-result.json",
+        "sha256": "ff032961fffb2646ecf5e93ca3808c708416cd39f0881e0044578fdaf0d383f8",
+        "size": 638
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/new-r1-result.json",
+        "sha256": "e52bd8e2b53e2e455e1646a07ca1985f8e7f1ef50e3aa41b309645656df04db3",
+        "size": 691
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/focused-r1-result.json",
+        "sha256": "1ec88784dc5961b318fb78dd4adba2d891b8075942090485bfcc4aa124dfa9dd",
+        "size": 504
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/focused-r1-sources.json",
+        "sha256": "1805534cc3c16c66f98faa670a5c21bc510e106329a34d3830b86971b54effce",
+        "size": 69902
+      },
+      "before-native-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/before-native-r1.json",
+        "sha256": "872cc02391c356f53306c1a6b4b80f918e0252f19c8a7e9561844c03364d05eb",
+        "size": 329
+      },
+      "after-native-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/after-native-r1.json",
+        "sha256": "4d49e66c1e79ea16f4cac27a2cd818f8d41587a3ca590307276a96981e22a37b",
+        "size": 583
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "192_Cedar_native-failure-diagnostic-us337hj1/cold-r1/summary.json",
+        "sha256": "66fc154c2f7a111c5eada9db4e2b7d7b34da13de455e66181c2e9ff9cf9d429c",
+        "size": 1237
+      }
+    }
   }
 }

@@ -250,3 +250,44 @@ def test_outer_expiry_after_first_seed_withholds_second_and_receipt(case,monkeyp
     assert len(calls)==1 and not (args[-1]/m.REPORT).exists()
     from nasolve.cif_candidate_qualification import inspect_candidate_qualification_processes
     assert inspect_candidate_qualification_processes(args[-1])['state']=='STOPPED'
+
+
+@pytest.mark.parametrize('seed', [0, 1])
+@pytest.mark.parametrize('wrong_owner', [False, True])
+def test_failed_native_seed_is_not_misreported_as_lost_ownership(case, monkeypatch, seed, wrong_owner):
+    m, args, calls, native = case
+    from nasolve.cif_native_validation import inspect_native_bundle
+    from nasolve.cif_candidate_qualification import inspect_candidate_qualification_processes
+    inputs = [p.read_bytes() for p in args[:2]]
+    def capture(*a, **k):
+        failing = len(calls) == seed; calls.append(k['timeout_seconds'])
+        data = deepcopy(native)
+        if failing: data.update(status='FAILED', error='Synthetic native interpretation refusal')
+        runner = k['_process_runner']
+        def synthetic(command, **options):
+            script = "from pathlib import Path;Path('native_validation.json').write_text(" + repr(json.dumps(data)) + ");raise SystemExit(" + str(2 if failing else 0) + ")"
+            return runner([sys.executable, '-c', script], **options)
+        return inspect_native_bundle(*a, **dict(k, _process_runner=synthetic))
+    monkeypatch.setattr(m, 'inspect_native_bundle', capture)
+    if wrong_owner:
+        derive = m._derive
+        def other_owner(root, refs, state):
+            state = deepcopy(state)
+            state['phases']['native-000']['job']['cwd']['path'] = 'another-native-directory'
+            return derive(root, refs, state)
+        monkeypatch.setattr(m, '_derive', other_owner)
+    match = 'ownership' if wrong_owner else 'Native qualification failed for ' + ('source' if seed == 0 else 'candidate') + ' seed'
+    with pytest.raises(ValueError, match=match) as caught:
+        m.execute_candidate_qualification(*args)
+    if not wrong_owner:
+        assert 'FAILED, return code 2' in str(caught.value)
+        assert 'native_receipt.json' in str(caught.value) and str(args[-1]) in str(caught.value)
+        assert 'ownership' not in str(caught.value).lower()
+    assert len(calls) == 2 and [p.read_bytes() for p in args[:2]] == inputs
+    assert not (args[-1]/m.REPORT).exists()
+    state = inspect_candidate_qualification_processes(args[-1])
+    assert state['state'] == 'STOPPED' and state['finished']['outcome'] == 'RAISED'
+    assert state['retry_authorized'] is False
+    for row in state['phases'].values():
+        assert row['state'] == 'STOPPED'
+        assert (args[-1]/row['job']['cwd']['path']/'native_receipt.json').is_file()

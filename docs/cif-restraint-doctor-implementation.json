@@ -28305,6 +28305,16 @@
         "Q04 ordinary caller/source construction joins and full-model success remain open",
         "Q05 adoption, Q06 refinement, Q07 mixed/held-out and Q13 source/native states remain separate"
       ]
+    },
+    "native_qualification_diagnostics": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "cif_candidate_qualification_execution._derive",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#native_qualification_diagnostics_2026_11_10",
+      "limitations": [
+        "Surface existing C115 source-generation diagnostic at the no-retained-candidate boundary",
+        "Q04 ordinary caller, construction producer and one modifier owner",
+        "Q05 checkpoint lineage, Q06 refinement and Q07 mixed/held-out acceptance remain open"
+      ]
     }
   },
   "audience": [

@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish native qualification failure from lost ownership (C192)
+
+- Identify a failed source/candidate native seed by recorded status, return code
+  and exact receipt instead of reporting an ownership/completion mismatch.
+- Keep ownership/deadline validation first and preserve all acceptance criteria,
+  both-seed execution, exception type, immutable failures and successful reports.
+  No artifact migration, worker, timeout, chemistry or retry-policy change.
+
+
 ### Preserve atom scope in new explicit restraint requests (C190)
 
 - Require parenthesized atom-name alternatives when deriving new restraint contexts,

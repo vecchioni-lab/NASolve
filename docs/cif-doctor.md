@@ -615,6 +615,32 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Identify failed native qualification separately from ownership (C192)
+
+Isolated two-seed qualification now reports a known worker failure as a native
+qualification failure, naming the source/candidate seed, recorded worker status,
+return code and exact retained receipt. Wrong capture ownership or an excessive
+recorded deadline remains a separate ownership/deadline error, checked first.
+
+**Methods.** Factor the existing combined predicate into two checks in the same
+shared execution/readback derivation. Accepted states are identical: exact owner
+and deadline plus successful worker completion remain mandatory before native
+capture authentication and scientific usability checks. Both seeds still run;
+exceptions remain `ValueError`, failed work stays preserved, and C185's primary
+exception/seal-note behavior remains unchanged. No worker, timeout, schema,
+retry, chemistry or successful report changes. Error text changes for callers
+that compared the previous generic wording; stored artifacts need no migration.
+
+C191's actual stopped `HOP2!="HOP3"` failure previously produced "Native ownership/
+completion differs". Read-only replay now identifies the failed source-seed
+execution and its current receipt path. It grants no native usability or recovery
+permission. No Phenix is rerun for this diagnostic change; the evidence remains
+actual Phenix 2.2.1-6174 / dispatcher 2.2.1 from C191. Synthetic owned-process
+regressions cover failures at either seed and deliberately wrong ownership.
+Relocated C166 5PC/C172 PDU successes and both C191 negative requests retain their
+exact outcomes with old paths/SDK/execution denied and all bytes/mtimes fixed.
+Evidence: `native_qualification_diagnostics_2026_11_10`.
+
 ### Full-model request intake and isolated native refusal (C191)
 
 A public C80 fixture control binds eight canonical DA sites, 38 audited backbone
@@ -650,11 +676,11 @@ suite is rerun. Native generation is complete execution, not a dry-run; converge
 ReadySet/Coot, full-model optimization, diffraction refinement and adoption are not
 claimed. Evidence: `full_model_source_owner_2026_11_10`.
 
-The next bounded reporting fix must distinguish a failed native qualification from
-an ownership/deadline mismatch and identify its exact retained receipt, without
-changing either rejection predicate. C185's primary-failure note handling already
-exists and should be reused. Q04 caller/producer joins, Q05 checkpoint adoption,
-Q06 actual refinement and the Q07 modified/held-out control remain open.
+C192 closes the misleading qualification wording above without changing either
+rejection predicate; C185's primary-failure note handling remains shared. The
+upstream no-candidate boundary still needs to surface its existing C115 generation
+diagnostic and receipt. Q04 caller/producer joins, Q05 checkpoint adoption, Q06
+actual refinement and the Q07 modified/held-out control remain open.
 
 ### Scoped atom selections at new restraint intake (C190)
 

@@ -468,3 +468,5 @@ historical reads stay exact. The native proof and ordinary-adoption boundaries
 remain separate, with no new stage or chemistry claim. C191 binds the public
 full-model control but stops at isolated native qualification; the downstream
 full-model/adoption arrows therefore remain unqualified by that control.
+C192 labels a failed native seed separately from lost ownership and points to its
+receipt. Rejection, stage boundaries and scientific claims are unchanged.

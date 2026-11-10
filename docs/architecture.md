@@ -4131,5 +4131,8 @@ lineage. Stored schemas and fresh-discovery semantics are unchanged.
 [C190](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190) shares the
 existing strict atom selector across new context derivation, request creation and
 execution. Read-only historical derivation stays exact; ungrouped alternatives
-cannot create a new context-bound attempt. Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
+cannot create a new context-bound attempt. [C192](cif-doctor.md#identify-failed-native-qualification-separately-from-ownership-c192)
+also distinguishes a verified failed native seed from an ownership/deadline
+mismatch; it names the retained receipt without changing acceptance or recovery.
+Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
 explicit chain does not enable an ordinary default or authorize a merge.

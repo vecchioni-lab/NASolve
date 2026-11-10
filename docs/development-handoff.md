@@ -11,6 +11,55 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C192 validated: identify failed native qualification
+
+Base `555f16470099ce7aea746be598b7c7b835da2732`; existing Cedar. Implementation complete; publication is next.
+Stop boundary **2026-11-10 23:12 UTC**. Capsule:
+`live_tests_directory/192_Cedar_native-failure-diagnostic-us337hj1`. All validation jobs are stopped.
+
+**Before → after:** a known failed native seed was reported as ownership/completion
+mismatch. The shared derivation now checks owner/deadline separately first, then
+names source/candidate seed, recorded worker status/return code and exact receipt.
+The accepted predicate, `ValueError`, both-seed execution, failed output, owner
+seals and all scientific checks are unchanged. No schema, worker, deadline,
+chemical-state, successful report or retry change; no migration.
+
+**History/redundancy:** C166 already owns both seeds and shared replay; C185 already
+preserves primary failures during seal/reporting problems. C191 reproduced the
+native mapper failure previously recorded for DG in C121. Reuse those contracts;
+do not alter HOP2/HOP3, native acceptance or generation to make this control pass.
+
+**Validation:** before **2 failed, 2 passed, 42 deselected in 3.57s**; affected tests
+**104 passed in 26.46s**; workflow **1991 passed, 45 subtests passed in 816.66s (0:13:36)**.
+All 640 source/test/script hashes remain fixed. No full suite; last full remains
+C160 `d9e481661edcc3a04404df250360b9db63184ae1`.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c192_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c192_native_replay.py before-native-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c192_native_replay.py after-native-r1
+PYTHONDONTWRITEBYTECODE=1 python c192_cold.py cold-r1
+```
+
+Actual C191 Phenix **2.2.1-6174 / dispatcher 2.2.1** failure is replayed read-only
+before/after; no Phenix rerun. The new error names the failed source seed and its
+current receipt. Cold replay preserves C166 5PC/C172 PDU successful qualification
+and both C191 negatives with **429 files unchanged**, original copy absent,
+historical source/SDK paths and execution denied. The error points inside the
+relocated evidence. A failure still publishes no usable qualification/runtime.
+
+**Files/artifacts:** one source module, one test module and maintained docs/ledgers.
+Only code/tests/docs/hash references ship; scientific files, candidates, native
+receipts, logs, XML, local runners and partial work remain outside Git.
+
+**Next:** surface the existing C115 generation diagnostic and receipt when no
+candidate is retained (C191's first refusal), preserving source/attempt validation
+and negative outcome. Then return to Q04 ordinary caller/source-construction identity
+and exclusive modifier ownership. Q05 immutable checkpoint lineage, Q06 refinement
+and Q07 mixed/held-out acceptance remain open. No new chemistry workaround or owner.
+— Rowan · Codex desktop
+
 ## C191 complete: full-model input binding, stopped native refusal
 
 Validated on `ae21f355f50ca5c1ed1ea7482e5755c8a4bbfd47` (C190); existing Cedar. No product code/schema/default changes.

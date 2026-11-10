@@ -83,8 +83,9 @@ def _derive(root, refs, state):
         _need(receipt.name=='native_receipt.json' and receipt.parent.parent==root/'native'/f'{i:03d}', 'Native capture belongs to another phase')
         job=state['phases'][phase]['job'];finished=state['phases'][phase]['finished']
         _need(job['cwd']==dict(anchor=ANCHOR,path=receipt.parent.relative_to(root).as_posix())
-              and finished['status']=='COMPLETED' and finished['returncode']==0
-              and job['timeout_seconds']<=min(p['native_timeout_seconds'],p['total_timeout_seconds']), 'Native ownership/completion differs')
+              and job['timeout_seconds']<=min(p['native_timeout_seconds'],p['total_timeout_seconds']), 'Native ownership/deadline differs')
+        _need(finished['status']=='COMPLETED' and finished['returncode']==0,
+              f"Native qualification failed for {_SEEDS[i]} seed ({finished['status']}, return code {finished['returncode']}); inspect {receipt}")
         capture,native,_=_capture(receipt,_read(model))
         _bind_capture(capture,p['consumer'],model,[paths[1]],[phil])
         rows=capture['inputs'];spec=_json(_read(receipt.parent/'native_spec.json'))
