@@ -28157,7 +28157,8 @@
       "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
       "milestone": "C177",
       "evidence_key": "postmr_request_entry_2026_11_10",
-      "scope": "Ordinary-source prepared-model intake; caller profile and default adoption remain open"
+      "scope": "Ordinary-source prepared-model intake; caller profile and default adoption remain open",
+      "implementation_revision": "7599ad9289d52effd9518ec3e84ef90889de4c5e"
     }
   },
   "audience": [

@@ -71924,7 +71924,7 @@
     "milestone": "C177",
     "status": "FOCUSED_NATIVE_COLD_VALIDATED; ORDINARY_ORCHESTRATION_OPEN",
     "base_revision": "63d665edad9a53414feed745991de5615ede0c54",
-    "implementation_revision": null,
+    "implementation_revision": "7599ad9289d52effd9518ec3e84ef90889de4c5e",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Separate source freezing and manually joined model/PHIL request context",
     "after": "Prepared-PostMR entry derives proofs and freezes ordinary source precedence into the existing complete request",

@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C177 validated: ordinary sources into the prepared-model request
+## C177 published: ordinary sources into the prepared-model request
 
 Base `63d665edad9a53414feed745991de5615ede0c54`; existing Cedar. Capsule
-`live_tests_directory/177_Cedar_postmr-request-gpexkzed`. Implementation/validation complete; publication
-is next. Q04 source/request assembly is validated; ordinary orchestration and
+`live_tests_directory/177_Cedar_postmr-request-gpexkzed`. Implementation/validation complete and published as
+`7599ad9289d52effd9518ec3e84ef90889de4c5e`. Q04 source/request assembly is validated; ordinary orchestration and
 selected-runtime continuation remain Q04/Q05. Q06 owns actual refinement.
 
 **Before → after:** callers had to freeze sources and hand-assemble model/site/
