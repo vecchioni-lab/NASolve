@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C183 validated: owned selected-runtime continuation
+## C183 published: owned selected-runtime continuation
 
 Base `ef86cf5328827dee22a02667fe1655a9290321c1`; existing Cedar. Capsule
-`live_tests_directory/183_Cedar_owned-continuation-lv4h_8vf`. Implementation/validation complete; publication
-is next. The selected ReadySet/native bridge now has one bounded owned execution.
+`live_tests_directory/183_Cedar_owned-continuation-lv4h_8vf`. Implementation/validation complete and published as
+`3f7b1d7d7eb9be3a3a2d90872669d7224cc3fcf9`. The selected ReadySet/native bridge now has one bounded owned execution.
 
 **Before → after:** callers assembled C181's stages manually and the ReadySet
 observer did not share durable worker ownership. The new executor freezes the exact
