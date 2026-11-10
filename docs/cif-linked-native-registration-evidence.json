@@ -79112,5 +79112,315 @@
         "size": 7468
       }
     }
+  },
+  "frozen_construction_sources_2026_11_10": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "base_revision": "2f10f4cb3d6a3316d2e99eb492964ce6f6e0ecc4",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "ORDINARY_CONSTRUCTION_SOURCE_REPRODUCIBILITY; NO_CHEMISTRY_OR_REQUEST_INTEGRATION_CLAIM",
+    "before": "Pre-Coot verified snapshots were audit-only while Coot/context/restoration consumed original paths; a temporary external change could escape the later source hash check.",
+    "after": "The shared construction stage receives the existing verified snapshots. The existing post-construction guard checks both original and consumed frozen inputs before ReadySet, preserving partial output on failure.",
+    "prior_work": [
+      "C193 ordinary source/hash and redundancy review",
+      "C189 frozen prepared-request sources",
+      "Existing shared construction/context/restoration stage",
+      "Existing run-relative mutation input assessments"
+    ],
+    "files": [
+      "src/nasolve/postmr.py",
+      "tests/test_postmr_component_inputs.py"
+    ],
+    "schemas": [
+      "UNCHANGED"
+    ],
+    "compatibility": "Stable source selection, dictionary bytes, normalization validation, chemical rules, explicit paths and old run/report meaning remain. Old audit-only copies are not retroactively claimed as consumed. No migration. Historical generated scripts are not claimed portable executables.",
+    "regression": {
+      "summaries": {
+        "before-r4": "3 failed, 1 passed, 5 deselected in 0.53s",
+        "new-r1": "119 passed in 3.47s",
+        "focused-r1": "2003 passed, 45 subtests passed in 812.33s (0:13:32)"
+      },
+      "commands": {
+        "before-r4": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_postmr_component_inputs.py",
+          "-k",
+          "ordinary_construction",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/195_Cedar_frozen-construction-sources-y8sbbxd0/before-r4.xml"
+        ],
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_postmr.py",
+          "tests/test_postmr_cache_workflow.py",
+          "tests/test_postmr_component_inputs.py",
+          "tests/test_postmr_context.py",
+          "tests/test_postmr_context_mixed.py",
+          "tests/test_postmr_generation_failure.py",
+          "tests/test_postmr_phosphate.py",
+          "tests/test_postmr_restoration.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/195_Cedar_frozen-construction-sources-y8sbbxd0/new-r1.xml"
+        ],
+        "focused-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/195_Cedar_frozen-construction-sources-y8sbbxd0/focused-r1.xml"
+        ]
+      },
+      "early_fixture_corrections": "before-r1/r2 stopped at existing required parent-atom checks; before-r3 established intended failures; final workflow-selected module is before-r4. All logs retained.",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+    },
+    "portability": {
+      "status": "PASS",
+      "tests": 4,
+      "source_files": 593,
+      "checkout_bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_checkout_and_sdk_reads_denied": true,
+      "external_execution": "ONLY_OWNED_COPYING_READYSET_FIXTURE; COOT_IS_A_PYTHON_SUBSTITUTE",
+      "command": [
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_postmr_component_inputs.py",
+        "-k",
+        "ordinary_construction",
+        "--basetemp",
+        "/Users/svecchio/NASolve-live-tests/195_Cedar_frozen-construction-sources-y8sbbxd0/cold-r2/pytest tmp",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/195_Cedar_frozen-construction-sources-y8sbbxd0/cold-r2/tests.xml"
+      ]
+    },
+    "external_tools": {
+      "version_query": {
+        "command": [
+          "/opt/homebrew/bin/coot",
+          "--version"
+        ],
+        "returncode": 0,
+        "stdout": "1.3.3 (revision-count 0)\n[with python 3.14.6 embedded]\ngit commit: git-commit-unavailable\nBinary type: Darwin-MacOSX-26.5.2-arm64-gtk4\nEnabled: Enhanced-ligand-tools C++-11 Threads Boost-based-thread-pool MoleculesToTriangles GEMMI SQLite3 LibCurl\n",
+        "mode": "VERSION_ONLY; NO_NATIVE_COOT_CONSTRUCTION",
+        "workflow_validation": "CONTROLLED_PYTHON_COOT_SUBSTITUTE_AND_COPYING_READYSET_FIXTURE; NOT_SCIENTIFIC_OR_NATIVE_QUALIFICATION",
+        "recorded_from": "Observed command result in this C195 session"
+      },
+      "native_dictionary_loading": {
+        "status": "PASS",
+        "version": "Coot 1.3.3 (revision-count 0); embedded Python 3.14.6; Darwin arm64 GTK4",
+        "scope": "ACTUAL_DICTIONARY_LOAD_ONLY; NOT_CONSTRUCTION_REFINEMENT_OR_CHEMICAL_QUALIFICATION",
+        "rows": [
+          {
+            "label": "original",
+            "returncode": 0,
+            "stopped_verified": true,
+            "elapsed_seconds": 1.3716265830007615,
+            "load_result": {
+              "status": true,
+              "return_value": 41,
+              "sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+              "scope": "DICTIONARY_LOAD_ONLY; NO_MODEL_CONSTRUCTION_OR_CHEMICAL_QUALIFICATION"
+            }
+          },
+          {
+            "label": "frozen",
+            "returncode": 0,
+            "stopped_verified": true,
+            "elapsed_seconds": 0.4801061670004856,
+            "load_result": {
+              "status": true,
+              "return_value": 41,
+              "sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+              "scope": "DICTIONARY_LOAD_ONLY; NO_MODEL_CONSTRUCTION_OR_CHEMICAL_QUALIFICATION"
+            }
+          }
+        ],
+        "source_and_snapshots_unchanged": true,
+        "product_source_hashes_unchanged": true,
+        "all_workers_stopped": true
+      }
+    },
+    "redundancy": {
+      "status": "PASS",
+      "date": "2026-11-10T22:44:16.990685+00:00",
+      "scope": "STATIC AST/PROFILE CHECK; NOT PYTEST COLLECTION OR FULL REGRESSION",
+      "test_files": 353,
+      "top_level_test_functions": 2121,
+      "shadowed_definitions": [],
+      "collectable_test_imports": [],
+      "identical_top_level_groups": [
+        [
+          "test_cif_effective_source_recovery_probe.py:test_changed_or_unsafe_capsule_is_refused",
+          "test_cif_fragment_restoration_probe.py:test_changed_or_unsafe_capsule_is_refused"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_verified_initial_gradient_parent_is_accepted_as_data",
+          "test_mixed_gradient_probe.py:test_verified_saved_native_context_is_accepted_without_running_captured_programs"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_geometry_input_views_refuse_existing_user_directory",
+          "test_mixed_gradient_probe.py:test_gradient_input_views_refuse_existing_user_directory"
+        ]
+      ],
+      "interpretation": "Same three groups recorded by C134: each uses a different capsule/template reader and stays required; no new redundancy found.",
+      "workflow_files": 60,
+      "workflow_selection_has_duplicates": false,
+      "history": "C134 docs/collaboration.md testing cadence; inspected distinct template/capsule bindings in each current module",
+      "limitations": "Textual AST equality does not establish semantic redundancy; parametrization counts and dynamic collection are not measured."
+    },
+    "remaining": [
+      "Q04 bind consumed construction source/producer evidence to C189 complete request and one modifier owner",
+      "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls",
+      "C194/Q13 native atom mapping, source-component binding and terminal conflicts remain separate"
+    ],
+    "artifacts": "Only code/tests/docs/hash references ship. Owned test outputs, XML/logs, relocated checkout and runners remain local; no scientific runs or datasets changed or included.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/start.json",
+        "sha256": "78b36e8b5b631fcd34c2691ff77ca64c64f98d9c50316602d36ff2f43654e266",
+        "size": 454
+      },
+      "before-r4-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/before-r4-result.json",
+        "sha256": "5cfc75f6c065bcf4a99ed30f5444e5644234c39ca39c26b33c1a0a531e59c1ea",
+        "size": 636
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/new-r1-result.json",
+        "sha256": "03dcd979cb0c9d9c4905c3c38bd52416b63fd59c98b2d74af2558436a2b37f3a",
+        "size": 865
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/focused-r1-result.json",
+        "sha256": "9bd56542e61f489f7f85c8f40e8d6392b08d1e6bfbb886a7e51f88ce0febee88",
+        "size": 506
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/focused-r1-sources.json",
+        "sha256": "1f103efe0c6943e35677b1f54ad1ae1b4d407f10ede3f59f0d613e1528602232",
+        "size": 69902
+      },
+      "cold-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/cold-r2/summary.json",
+        "sha256": "c9ab91a81bf1ec20dc491e8a93b4cd1b137730095698728f5201803eb629f67a",
+        "size": 703
+      },
+      "cold-r2/execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/cold-r2/execution.json",
+        "sha256": "67b6a87aa21c15bfbd21ef8cfccd53616633d631e12bb90b4d580a143ba3e5dd",
+        "size": 97
+      },
+      "cold-r2/runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/cold-r2/runner.py.txt",
+        "sha256": "400afdb8813d82c1b14487bbe30b3017d5685d2ac2d3efd89f6858d60a06e060",
+        "size": 3486
+      },
+      "cold-r2/worker.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/cold-r2/worker.py.txt",
+        "sha256": "2f30f1fbc1ff3cd2f64980eb6432f0dc376b5dcf21da72fb6fb74bb46f6e1d00",
+        "size": 1560
+      },
+      "external-tool-validation.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/external-tool-validation.json",
+        "sha256": "300040d0fd593272a8c72267a00393568bf4ada92803887e445364628b3f9083",
+        "size": 610
+      },
+      "redundancy-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/redundancy-r1.json",
+        "sha256": "7ec7ca30b48d4c2fce4751a6ab398793144444d3b741f8620387445c0c19e96c",
+        "size": 40398
+      },
+      "coot-load-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/summary.json",
+        "sha256": "85e02e8c85437784e468146a84c32bcec6aab22501549259b872a8948eec1cd0",
+        "size": 1135
+      },
+      "coot-load-r1/runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/runner.py.txt",
+        "sha256": "578d98e06ae9ccc050a69c42be3e149e12fd82369b63b828091e9fd54bb3f20a",
+        "size": 3796
+      },
+      "coot-load-r1/original/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/original/job.json",
+        "sha256": "b70778622323900075549cc9a0b9496deb27a3e24ed8e92c7dc617768e3618c5",
+        "size": 873
+      },
+      "coot-load-r1/original/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/original/process.json",
+        "sha256": "6477c3014b6c79a51afbbf4988c5b8274b6888b47a8c4adadb3a2109ec53d419",
+        "size": 277
+      },
+      "coot-load-r1/original/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/original/finished.json",
+        "sha256": "12ee1627d47774b5322890ad5c8646b2b59dbb29f5500cf625cb5f89e99413e4",
+        "size": 91
+      },
+      "coot-load-r1/original/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/original/result.json",
+        "sha256": "d7b4d3c52c454ed2164af3ca42070b26e330f7cfd0783dbea3d6ab64dd851147",
+        "size": 207
+      },
+      "coot-load-r1/frozen/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/frozen/job.json",
+        "sha256": "edfd5b4e34e2e3dca85f035d923094acc4455c1c468f37af26c2df30d601f18c",
+        "size": 882
+      },
+      "coot-load-r1/frozen/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/frozen/process.json",
+        "sha256": "1b60f2c57295599acfeb3a5134c85713e5951bbbd60b48b932b697a9bb257e44",
+        "size": 277
+      },
+      "coot-load-r1/frozen/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/frozen/finished.json",
+        "sha256": "cbd36285400ba5a45610b1bbf88b02e45bc309df970e3a0b45723281b308b0f2",
+        "size": 91
+      },
+      "coot-load-r1/frozen/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "195_Cedar_frozen-construction-sources-y8sbbxd0/coot-load-r1/frozen/result.json",
+        "sha256": "d7b4d3c52c454ed2164af3ca42070b26e330f7cfd0783dbea3d6ab64dd851147",
+        "size": 207
+      }
+    }
   }
 }

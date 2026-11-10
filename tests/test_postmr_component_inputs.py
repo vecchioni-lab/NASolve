@@ -1,10 +1,11 @@
-"""Ordinary PostMR preserves per-file ReadySet component registration.
+"""Ordinary PostMR preserves construction and ReadySet dictionary inputs.
 
 Toy coordinates and a copying shell executable exercise orchestration only;
 actual installed ReadySet/native qualification is recorded separately.
 """
 from hashlib import sha256
 import json
+import shutil
 from pathlib import Path
 
 import pytest
@@ -118,3 +119,101 @@ def test_ordinary_handoff_keeps_selected_numerics_and_source_fallback_separate(t
     report = json.loads(result.report_path.read_bytes())
     assert report['readyset']['command'] == command
     assert report['cif_doctor']['dictionary_reuse']['solution_report']['requires_cif_review'] is False
+
+
+
+def _ordinary_construction_source_case(tmp_path, monkeypatch, change):
+    """Toy ordinary orchestration; Coot/ReadySet substitutes prove input transport only."""
+    import nasolve.postmr as postmr
+    from tests.test_postmr import postmr_model_text, make_data_root, PROTECTED_PARENT_ATOMS
+    from tests.helpers import make_postmr_report, make_ready_set, pdb_record
+    data = make_data_root(tmp_path)
+    selected = data / 'ligands/DE.cif'
+    original_bytes = selected.read_bytes()
+    model = tmp_path / 'input.pdb'
+    scaffold = ''.join(pdb_record('ATOM', i + 1, name, 'DT', 'A', 12,
+        x=i * .2, y=float(i % 3), z=float((i // 3) % 3), element=name[0])
+        for i, name in enumerate((*PROTECTED_PARENT_ATOMS, 'N1', 'C2', 'O2', 'N3', 'C4', 'O4', 'C5', 'C7', 'C6')))
+    model.write_text(scaffold + ''.join(postmr_model_text(first='DT').splitlines(keepends=True)[1:]))
+    run = tmp_path / 'run'
+    make_postmr_report(run, model)
+    observed = []
+    snapshot = run / 'PostMR/Coot/source_dictionaries/DE.cif'
+
+    def coot(input_model, output, actions, executable, directory, environment, dictionaries, parents, **kwargs):
+        assert len(actions) == 1 and actions[0].after == 'DE'
+        assert snapshot.read_bytes() == original_bytes
+        if change in {'temporary_original', 'persistent_original'}:
+            selected.write_bytes(original_bytes + b'# changed outside construction\n')
+        observed.append((dictionaries['DE'], dictionaries['DE'].read_bytes()))
+        if change == 'temporary_original':
+            selected.write_bytes(original_bytes)
+        elif change == 'changed_snapshot':
+            snapshot.write_bytes(original_bytes + b'# changed consumed snapshot\n')
+        elif change == 'missing_snapshot':
+            snapshot.unlink()
+        shutil.copyfile(input_model, parents['A:12'])
+        mutated = []
+        for line in input_model.read_text().splitlines(keepends=True):
+            if line.startswith(('ATOM', 'HETATM')) and line[21:22] == 'A' and line[22:26].strip() == '12':
+                line = line[:17] + ' DE' + line[20:]
+                if line[12:16].strip() == 'O4':
+                    line = line[:12] + ' S4 ' + line[16:76] + ' S' + line[78:]
+            mutated.append(line)
+        output.write_text(''.join(mutated))
+        log = directory / 'coot.log'
+        log.write_text('CONTROLLED_Coot_INPUT_TRANSPORT_ONLY\n')
+        return directory / 'mutate.py', log
+
+    monkeypatch.setattr(postmr, '_run_coot', coot)
+    ready_calls = []
+    ready = postmr._run_readyset
+    def readyset(*args, **kwargs):
+        ready_calls.append(True)
+        return ready(*args, **kwargs)
+    monkeypatch.setattr(postmr, '_run_readyset', readyset)
+    def builder(_model, _pairs, output):
+        output.write_text('geometry_restraints.edits {}\n')
+    def execute():
+        return postmr.prepare_postmr(run, make_ready_set(tmp_path), data_root=data,
+            coot_executable=tmp_path / 'controlled-coot', narestraints_builder=builder)
+    return execute, run, data, model, selected, original_bytes, snapshot, observed, ready_calls
+
+
+def test_ordinary_construction_consumes_frozen_source_during_original_change(tmp_path, monkeypatch):
+    import json
+    from nasolve.run_context import resolve_artifact_path
+    execute, run, data, model, selected, source_bytes, snapshot, seen, ready_calls = _ordinary_construction_source_case(tmp_path, monkeypatch, 'temporary_original')
+    result = execute()
+    assert result.status == 'POSTMR_READY' and ready_calls == [True]
+    assert seen == [(snapshot, source_bytes)]
+    assert selected.read_bytes() == snapshot.read_bytes() == source_bytes
+    assessment = json.loads((run / 'PostMR/Restraints/cif_doctor_mutation.json').read_bytes())
+    reference, = assessment['inputs']
+    assert reference['anchor'] == 'run'
+    assert resolve_artifact_path(reference, run) == snapshot
+    # Only owned fixture originals are removed. The consumed bytes remain bound.
+    shutil.rmtree(data)
+    model.unlink()
+    relocated = run.rename(tmp_path / 'relocated-run')
+    assert not run.exists()
+    resolved = resolve_artifact_path(reference, relocated)
+    assert resolved == relocated / 'PostMR/Coot/source_dictionaries/DE.cif'
+    assert resolved.read_bytes() == source_bytes
+
+
+@pytest.mark.parametrize('change', ['changed_snapshot', 'missing_snapshot', 'persistent_original'])
+def test_ordinary_construction_rejects_changed_input_before_readyset(tmp_path, monkeypatch, change):
+    from nasolve.postmr import PostMRPreparationError
+    execute, run, data, model, selected, source_bytes, snapshot, seen, ready_calls = _ordinary_construction_source_case(tmp_path, monkeypatch, change)
+    with pytest.raises(PostMRPreparationError, match='dictionary|Dictionary'):
+        execute()
+    assert len(seen) == 1 and ready_calls == []
+    assert (run / 'PostMR/Model/after_coot_raw.pdb').is_file()
+    assert (run / 'PostMR/Coot/coot.log').is_file()
+    assert not (run / 'PostMR/report.json').exists()
+    assert json.loads((run / 'report.json').read_bytes())['status'] == 'MR_SUCCESS'
+    if change != 'persistent_original':
+        assert selected.read_bytes() == source_bytes
+    if change == 'changed_snapshot':
+        assert snapshot.read_bytes().endswith(b'# changed consumed snapshot\n')

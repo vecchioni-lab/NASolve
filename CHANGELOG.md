@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Consume verified dictionary snapshots during ordinary construction (C195)
+
+- Coot and shared PostMR context/restoration now consume the already verified
+  mutation-source snapshots, so the recorded inputs are the files used.
+- Extend the existing post-construction identity check to those frozen copies.
+  Changed/missing snapshots and persistently changed original sources stop before
+  ReadySet, preserving partial output. Source choices, chemical rules, schemas,
+  explicit-path support and immutable runs remain unchanged; no migration.
+
+
 ### Explain no-candidate generation failures at acquisition (C193)
 
 - Reuse the existing generation-stage diagnostic to identify the component,

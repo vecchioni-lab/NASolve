@@ -615,6 +615,49 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Frozen dictionary inputs for ordinary construction (C195)
+
+Ordinary PostMR already copied and verified target dictionaries before Coot, but
+those copies were audit-only: Coot, context preparation and restoration read the
+original external paths. A source could change temporarily during construction
+and return to its initial bytes before the existing final hash check. The saved
+mutation assessment then described different bytes from those consumed.
+
+The ordinary caller now passes its existing verified
+`PostMR/Coot/source_dictionaries` copies to `construct_postmr_model`. The shared
+stage carries those same paths through Coot, context preparation and restoration.
+Source selection, normalization validation, stable-case bytes and all chemical
+rules remain unchanged. At the existing post-construction source boundary, verify
+both the original source and the consumed snapshot against the initial hash.
+An unreadable/changed snapshot or persistently changed original stops before
+ReadySet and preserves partial output. No new selector, cache, hash-check stage,
+retry owner or modifier producer is added.
+
+Four controlled ordinary-workflow regressions cover a temporary original change,
+changed and missing snapshots, and the existing persistent-original-change guard.
+The first test also resolves the saved mutation input by its run anchor/checksum
+after the original data is removed and the run moves. A separate relocated
+checkout executes all four cases with its original copy absent and original
+checkout/SDK reads denied; all 593 copied checkout files retain bytes/mtimes.
+The relocated checkout and generated run paths include spaces. Coot is a Python
+substitute and ReadySet a copying fixture in the orchestration tests. Separately,
+two actual headless Coot **1.3.3 (revision-count 0), embedded Python 3.14.6, Darwin
+arm64 GTK4** processes load identical public PDU bytes from original-style and
+frozen snapshot paths. Both return 41 with unchanged input hashes; each is bounded
+by 45 seconds and verified stopped. These are dictionary-load checks, not native
+construction, Phenix execution, refinement or chemical qualification.
+
+Only the ordinary caller's input paths and source-integrity check change. Existing
+run-relative mutation assessment fields and schemas remain; no migration is
+needed. Earlier audit-only copies do not become retroactive proof of consumption.
+Historical generated Coot scripts retain their original invocation paths and are
+not claimed to be executable after relocation. Explicit input paths remain
+supported. The final request must still bind this construction evidence to C189's
+frozen acquisition sources and preserve one modifier owner (Q04), then export exact
+selected artifacts and lineage into immutable checkpoints (Q05). Native chemistry
+qualification and C194's separate Q13 blockers remain unchanged. Evidence:
+`frozen_construction_sources_2026_11_10`.
+
 ### Native hydrogen mapping and component ownership diagnostic (C194)
 
 C121's DG and C191's DA failures share an installed RNA/DNA name-mapper assertion.
@@ -9744,8 +9787,10 @@ in an effective refinement dictionary they need review.
 
 New PostMR executions produce three JSON receipts under `PostMR/Restraints`:
 
-- `cif_doctor_mutation.json` when mutation dictionaries are required: exact target construction dictionaries before
-  coordinate normalization or Coot mutation, with audit-only source snapshots.
+- `cif_doctor_mutation.json` when mutation dictionaries are required: exact target
+  dictionaries before coordinate normalization or Coot mutation. From C195, the
+  verified snapshots also feed Coot, context preparation and restoration; earlier
+  snapshots were audit-only.
 - `cif_doctor_source.json`: frozen source definitions and a separate assessment
   of runtime inputs immediately before ReadySet.
 - `cif_doctor_effective.json`: the actual selected effective bundle and final

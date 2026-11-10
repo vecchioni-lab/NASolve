@@ -4131,6 +4131,11 @@ lets the prepared entry consume an already frozen source selection through the
 same reader/owner, with exact component coverage and no competing discovery
 settings. It preserves source evidence but does not establish Coot construction
 lineage. Stored schemas and fresh-discovery semantics are unchanged.
+[C195](cif-doctor.md#frozen-dictionary-inputs-for-ordinary-construction-c195) makes
+ordinary construction/context/restoration consume the existing verified mutation
+snapshots. The same post-construction boundary checks both those consumed copies
+and original source hashes; old provenance and chemical rules stay intact. Binding
+this producer evidence to the complete request is still a separate Q04 join.
 [C190](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190) shares the
 existing strict atom selector across new context derivation, request creation and
 execution. Read-only historical derivation stays exact; ungrouped alternatives

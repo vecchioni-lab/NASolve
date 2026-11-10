@@ -1931,9 +1931,10 @@ def prepare_postmr(
         ligand_sources[code] = dictionary
         initial_dictionary_hashes[code] = file_sha256(dictionary)
 
-    # These audit-only copies retain the exact target definitions inspected
-    # before mutation. Coot still uses the original verified inputs and the
-    # existing post-Coot source freeze/hash check remains authoritative.
+    # Construction and restoration consume the same verified bytes recorded by
+    # the mutation audit. Keep the original paths for source-change/provenance
+    # checks at the existing post-construction dictionary boundary.
+    construction_sources: dict[str, Path] = {}
     mutation_doctor: dict[str, object] | None = None
     if ligand_sources:
         mutation_snapshots = coot_dir / "source_dictionaries"
@@ -1947,6 +1948,7 @@ def prepare_postmr(
                 raise PostMRPreparationError(
                     f"Dictionary changed while screening mutation {code}"
                 )
+            construction_sources[code] = snapshot
             mutation_inputs.append(snapshot)
         mutation_assessment = _cif_doctor_assessment(
             mutation_inputs, run, stage="postmr-mutation-source",
@@ -1990,7 +1992,7 @@ def prepare_postmr(
 
     after_coot = model_dir / "after_coot.pdb"
     construction = construct_postmr_model(
-        coot_input, actions, ligand_sources, after_coot,
+        coot_input, actions, construction_sources, after_coot,
         coot_executable=coot_executable, environment=environment,
         coot_directory=coot_dir, reference_model=original,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
@@ -2255,10 +2257,18 @@ def prepare_postmr(
         source_directory.mkdir(exist_ok=True)
         source_snapshot = source_directory / f"{code}.cif"
         source_sha = file_sha256(source)
-        if code in initial_dictionary_hashes and source_sha != initial_dictionary_hashes[code]:
-            raise PostMRPreparationError(
-                f"Source dictionary for {code} changed since Coot mutation"
-            )
+        if code in initial_dictionary_hashes:
+            try:
+                preserved = (source_sha == initial_dictionary_hashes[code]
+                    and file_sha256(construction_sources[code]) == initial_dictionary_hashes[code])
+            except OSError as exc:
+                raise PostMRPreparationError(
+                    f"Frozen construction dictionary for {code} is unreadable: {exc}"
+                ) from exc
+            if not preserved:
+                raise PostMRPreparationError(
+                    f"Source dictionary for {code} changed since Coot mutation"
+                )
         dictionary_source_provenance[code] = {
             "origin": str(source),
             "sha256": source_sha,

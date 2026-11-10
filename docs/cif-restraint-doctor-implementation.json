@@ -28337,6 +28337,16 @@
         "Q04 ordinary caller, actual construction/source join and exclusive modifier owner",
         "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls"
       ]
+    },
+    "frozen_construction_sources": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "postmr.prepare_postmr -> construct_postmr_model",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#frozen_construction_sources_2026_11_10",
+      "limitations": [
+        "Q04 bind consumed construction source/producer evidence to C189 complete request and one modifier owner",
+        "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls",
+        "C194/Q13 native atom mapping, source-component binding and terminal conflicts remain separate"
+      ]
     }
   },
   "audience": [

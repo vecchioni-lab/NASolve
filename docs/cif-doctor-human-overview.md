@@ -49,6 +49,10 @@ A [native diagnostic](cif-doctor.md#native-hydrogen-mapping-and-component-owners
 now distinguishes a hydrogen-name mapping defect from supplied-component and
 terminal-restraint conflicts. Existing PDU/5PC controls retain their native proxies;
 DA remains blocked. This adds evidence, not an enabled chemical workaround.
+[Ordinary construction](cif-doctor.md#frozen-dictionary-inputs-for-ordinary-construction-c195)
+now consumes its verified dictionary snapshots, preserving the exact recorded
+inputs if an external source changes temporarily. The complete engine/request
+join and checkpoint adoption remain separate gates.
 Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods

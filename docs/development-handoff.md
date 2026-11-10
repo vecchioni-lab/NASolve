@@ -11,6 +11,66 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C195 validated: ordinary construction consumes frozen dictionaries
+
+Base `2f10f4cb3d6a3316d2e99eb492964ce6f6e0ecc4`; existing Cedar. Implementation complete; publication is next.
+Stop boundary **2026-11-10 23:12 UTC**. All checks stopped; capsule:
+`live_tests_directory/195_Cedar_frozen-construction-sources-y8sbbxd0`.
+
+**Before → after:** verified pre-Coot copies were audit-only while construction
+read the original paths. A temporary original-source change could evade the final
+hash check. Coot/context/restoration now consume those existing verified copies;
+the existing post-construction check validates both consumed snapshots and original
+source hashes. Changed/unreadable snapshots and persistently changed originals
+refuse before ReadySet, retaining partial output. No second selector/cache/owner/
+modifier, chemistry change or input-policy heuristic is added.
+
+**Changed:** `src/nasolve/postmr.py`,
+`tests/test_postmr_component_inputs.py`, Unreleased and maintained docs/evidence.
+No schema, source precedence, stable input bytes, normalization, chemical threshold,
+explicit-path or migration change. Historical audit-only copies and generated
+scripts retain their original meaning; no retrospective consumption/portability
+claim. The four new regression cases use the existing workflow-selected module;
+no new profile files or duplicate test implementation were needed.
+
+**Validation:** final before **3 failed, 1 passed, 5 deselected in 0.53s**; affected PostMR tests
+**119 passed in 3.47s**; focused workflow **2003 passed, 45 subtests passed in 812.33s (0:13:32)**.
+All 640 guarded source/test/script hashes remain fixed. Separate cold-checkout
+execution passes **4 tests**, with the original temporary checkout absent, original
+checkout/SDK reads denied and **593 copied checkout files** unchanged.
+The positive ordinary case also resolves the saved construction dictionary through
+its run anchor/checksum after removing the original fixture data and relocating
+the run. All early fixture-correction logs are preserved.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 python c195_validate.py before-r4
+PYTHONDONTWRITEBYTECODE=1 python c195_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 python c195_cold.py cold-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c195_coot_load.py
+/opt/homebrew/bin/coot --version
+```
+
+The validation runners set `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` for pytest.
+Coot/ReadySet are controlled substitutes for the orchestration checks. Separately,
+two actual headless Coot dictionary loads pass from original-style and frozen paths
+with the same public PDU bytes and return value 41. Each used the campaign process
+primitive with a 45-second cap and verified stop. Coot reports **1.3.3 (revision-count
+0), embedded Python 3.14.6, Darwin arm64 GTK4**. No native construction, Phenix
+execution, refinement or chemical qualification is claimed. Static redundancy
+checks find no new shadow/import/duplicate issue; workflow still selects the same
+60 files. Both relocated checkout and generated-run paths include spaces. No full suite;
+last completed full remains C160 `d9e481661edcc3a04404df250360b9db63184ae1`.
+
+**Next:** bind the existing consumed-source/construction records to the complete
+request (Q04), with one modifier owner, then Q05 selected-artifact/checkpoint lineage.
+Q06 actual refinement and Q07 combined/held-out controls remain required. C194's
+Q13 native mapping/component/terminal ownership failures remain open and separate
+from source protonation authority. Do not add another hash wrapper/retry scheduler
+or relabel diagnostic observations as qualified chemistry. Raw scientific data,
+local test artifacts, native captures, logs/XML and runners stay out of Git.
+— Rowan · Codex desktop
+
 ## C194 closed: native mapping and component ownership diagnostic
 
 Base `035eed35bc1aab13deccf0973ee8fb19a721e4f3`; existing Cedar; stop boundary **2026-11-10 23:12 UTC**.
