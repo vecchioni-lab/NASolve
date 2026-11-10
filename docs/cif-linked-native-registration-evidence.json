@@ -72759,7 +72759,7 @@
     "milestone": "C179",
     "status": "COMBINED_METADATA_AND_SINGLETON_FINAL_ENDPOINT_VALIDATED",
     "base_revision": "19b6c2a863cf1a0f71f023c9f700f07a51786cf2",
-    "implementation_revision": null,
+    "implementation_revision": "9a1527ad4f286a3e09024d062fe04db80141d137",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Combined scalar singleton metadata loses native group",
     "after": "Shared C09 loop serializer preserves native metadata; exact legacy replay retains old outcomes",

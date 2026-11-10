@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C179 validated: preserve native metadata in combined dictionaries
+## C179 published: preserve native metadata in combined dictionaries
 
 Base `19b6c2a863cf1a0f71f023c9f700f07a51786cf2`; existing Cedar. Capsule
-`live_tests_directory/179_Cedar_combined-metadata-7x86y8yc`. Implementation/validation complete; publication
-is next. C178's exact singleton endpoint blocker is resolved in fresh evidence.
+`live_tests_directory/179_Cedar_combined-metadata-7x86y8yc`. Implementation/validation complete and published as
+`9a1527ad4f286a3e09024d062fe04db80141d137`. C178's exact singleton endpoint blocker is resolved in fresh evidence.
 
 **Before → after:** combination collapsed a singleton metadata list to scalar
 fields, so Phenix lost group DNA although the CIF text retained it. Share C09's

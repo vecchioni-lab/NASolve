@@ -28171,7 +28171,8 @@
       "status": "COMBINED_METADATA_AND_SINGLETON_FINAL_ENDPOINT_VALIDATED",
       "milestone": "C179",
       "evidence_key": "combined_component_metadata_2026_11_10",
-      "scope": "Shared native list writer and explicit legacy replay; strict singleton endpoint qualifies"
+      "scope": "Shared native list writer and explicit legacy replay; strict singleton endpoint qualifies",
+      "implementation_revision": "9a1527ad4f286a3e09024d062fe04db80141d137"
     }
   },
   "audience": [
