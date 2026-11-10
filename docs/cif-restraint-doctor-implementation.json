@@ -28255,7 +28255,8 @@
         "Ordinary PostMR must preserve pre-construction source/producer lineage and a single site-modifier owner",
         "Whole-request provenance does not yet accompany standalone selected-runtime export/checkpoint adoption",
         "Q05 adoption, Q06 actual refinement, Q07 mixed/held-out, Q13 state and Q16 integration remain open"
-      ]
+      ],
+      "implementation_revision": "41a7f464c26ef5bd9083aebb243316433bed5889"
     }
   },
   "audience": [

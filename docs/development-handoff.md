@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C187 validated: original literal-input provenance
+## C187 published: original literal-input provenance
 
-Base `30abe934a9c10e87bd2ae29a2089c3961b9fd377`; existing Cedar. Implementation complete; publication is next.
+Base `30abe934a9c10e87bd2ae29a2089c3961b9fd377`; existing Cedar. Implementation complete and published as
+`41a7f464c26ef5bd9083aebb243316433bed5889`.
 Capsule `live_tests_directory/187_Cedar_literal-input-provenance-jwi1h4fc`. Q04 advances from explicit intake
 binding to ordinary orchestration/capture prerequisites; Q05/Q06/Q07 remain open.
 

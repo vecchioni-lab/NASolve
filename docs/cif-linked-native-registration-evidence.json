@@ -76405,7 +76405,7 @@
     ]
   },
   "literal_input_provenance_2026_11_10": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "base_revision": "30abe934a9c10e87bd2ae29a2089c3961b9fd377",
     "branch": "cedar",
     "date": "2026-11-10",
@@ -76812,6 +76812,7 @@
         "sha256": "b9426aff00d5db88616b0a382ecaa2a2471f109565bbe929d966afc81a7f7b7c",
         "size": 10213
       }
-    }
+    },
+    "implementation_revision": "41a7f464c26ef5bd9083aebb243316433bed5889"
   }
 }
