@@ -445,3 +445,7 @@ not add a scientific-approval, ordinary-adoption or refinement arrow.
 C183 owns the explicit selected-runtime continuation and its optional lossless
 serialization check. Existing-request recovery, ordinary adoption and refinement
 arrows remain open; no figure should label the automatic engine complete.
+
+C184 joins the owned continuation to the existing explicit complete request and
+fresh recovery. The ordinary caller/checkpoint and actual refinement arrows remain
+open; this does not complete automatic-engine or catalogue coverage.

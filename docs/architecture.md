@@ -4121,3 +4121,12 @@ scientific adapters decide the selected runtime; failed optional evidence retain
 qualified parent. New execution records replay without execution or historical paths.
 This child grants no retry, persistent request or checkpoint authority; the existing
 complete request must own future whole-chain recovery and allowance accounting.
+
+C184 [joins that child to the existing complete request](cif-doctor.md#complete-request-continuation-and-recovery-c184).
+Optional frozen settings preserve the original default and lineage; the same outer
+lock, finite attempts and shared allowance own execution and final readback. Exact
+selected input and coordinator bindings are reciprocal. Unknown publication blocks
+recovery; known-inactive work is followed only by a fresh immutable attempt. The
+original outer evidence and new continuation are independently bounded partitions,
+with the existing shared path/file validation and unchanged child/public caps.
+Ordinary PostMR callers and checkpoint adoption remain separate integration work.

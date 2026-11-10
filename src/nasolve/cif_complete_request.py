@@ -30,6 +30,8 @@ from .cif_repair_process import _uuid
 from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_model_context import validate_prepared_model_context
 from .cif_restraint_context import validate_restraint_context
+from . import cif_runtime_continuation as continuation
+from .cif_runtime_continuation_process import inspect_runtime_continuation_processes, POLICY_ID as CONTINUATION_PROCESS_POLICY
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
@@ -61,7 +63,27 @@ def _component_config(source, code, authority, consumer, declaration, retained, 
         total_timeout_seconds=limits['component_timeout_seconds']), maximum)
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None):
+def _continuation_fields(options, limits):
+    if options is None: return {}
+    fields = {'readyset_timeout_seconds','restore_serialization'}
+    policies = dict(execution_policy=continuation.POLICY_ID, process_policy=CONTINUATION_PROCESS_POLICY,
+                    artifact_policy='cif-complete-continuation-artifacts-v1')
+    _need(isinstance(options,dict) and set(options) in (fields,fields | policies.keys()),
+          'Invalid complete-request continuation settings')
+    _need(all(options.get(k,v) == v for k,v in policies.items()), 'Unsupported continuation policy')
+    continuation._configuration(dict(native=limits['native_timeout_seconds'],
+        readyset=options['readyset_timeout_seconds'],total=limits['total_timeout_seconds']),options['restore_serialization'])
+    return dict(continuation=dict(**policies,**{k:options[k] for k in sorted(fields)}))
+
+
+def _continuation_parameters(config):
+    settings = config['continuation']; limits = config['limits']
+    return dict(native_timeout_seconds=limits['native_timeout_seconds'],
+        readyset_timeout_seconds=settings['readyset_timeout_seconds'],
+        total_timeout_seconds=limits['total_timeout_seconds'],restore_serialization=settings['restore_serialization'])
+
+
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
@@ -120,7 +142,8 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         input_files=_inventory(files),input_directories=directories,
         **({'model_context':model_context} if model_context is not None else {}),
         **({'restraint_context':restraint_context} if restraint_context is not None else {}),
-        **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy))))
+        **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
+        **_continuation_fields(continuation_options,limits))))
 
 
 def _request(root):
@@ -129,7 +152,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'))
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -137,7 +160,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -149,6 +172,9 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     An optional prepared-model context is rederived from frozen model/intent;
     supplementary PHIL additionally requires a frozen explicit restraint context.
     Its bounded grammar keeps the composer as the only site-modifier owner.
+    Optional continuation_options freezes ReadySet timeout and lossless-serialization
+    intent; the same outer attempt owns that child and its remaining allowance.
+    Omission preserves historical requests and results exactly.
     """
     root = _root(output)
     if root.exists(): raise FileExistsError(root)
@@ -188,7 +214,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
               and all(_read(p) == b for p,b in originals.items()), 'Complete request source changed while freezing')
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -203,11 +229,39 @@ def _intent(attempt, number, request):
     return r
 
 
-def _owned(child, intent):
-    r = child['intent']
-    _need(r.get('parent_attempt') == _attempt_identity(intent)
-        and all(r['coordinator'].get(k) == intent['coordinator'].get(k) for k in ('pid','pgid','host','boot_id','start_marker')),
+def _owned_identity(parent, coordinator, intent):
+    _need(parent == _attempt_identity(intent)
+        and all(coordinator.get(k) == intent['coordinator'].get(k) for k in ('pid','pgid','host','boot_id','start_marker')),
         'Child belongs to another outer attempt or coordinator')
+
+
+def _owned(child, intent):
+    r = child['intent']; _owned_identity(r.get('parent_attempt'),r['coordinator'],intent)
+
+
+def _continuation_child(attempt, intent, config, repaired):
+    work = path_in(attempt,'continuation')
+    if not work.exists(): return dict(state='NOT_CREATED',activity=False),None
+    state = inspect_runtime_continuation_processes(work); header = state.get('header')
+    if header is None:
+        # A reserved directory without its header cannot prove no worker launched.
+        return dict(state='UNKNOWN',activity=None),None
+    _owned_identity(header.get('attempt_owner'),header['coordinator'],intent)
+    _need(repaired['state'] == 'STOPPED' and repaired['finished']['outcome'] == 'RETURNED',
+          'Continuation requires the completed selected repair child')
+    execution = attempt/'repair/attempts/attempt-0001/execution'
+    _need(_json(_read(execution/'repair_execution.json'))['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME'
+          and _tree(work/'inputs/runtime') == _tree(execution/'runtime'),
+          'Continuation did not freeze the exact selected repair result')
+    params = _continuation_parameters(config)
+    expected = continuation._configuration(dict(native=params['native_timeout_seconds'],
+        readyset=params['readyset_timeout_seconds'],total=params['total_timeout_seconds']),params['restore_serialization'])
+    _need(_same(_json(_read(work/'inputs/configuration.json')),expected), 'Continuation limits differ from frozen outer intent')
+    for phase,evidence in state['phases'].items():
+        if 'job' in evidence:
+            limit = params['readyset_timeout_seconds' if phase == 'readyset' else 'native_timeout_seconds']
+            _need(evidence['job']['timeout_seconds'] <= limit, 'Continuation worker exceeded frozen limit')
+    return state,dict(header=header['record_sha256'],finished=state.get('finished',{}).get('record_sha256'))
 
 
 def _binding(request, child):
@@ -247,6 +301,8 @@ def _children(root, attempt, intent, config, closed=None):
     else:
         states['repair'] = dict(state='NOT_CREATED' if state['state'] == 'NOT_RECORDED' else 'UNKNOWN',activity=False if state['state'] == 'NOT_RECORDED' else None)
         bindings['repair'] = None
+    if 'continuation' in config:
+        states['continuation'],bindings['continuation'] = _continuation_child(attempt,intent,config,states['repair'])
     return states,bindings
 
 
@@ -254,8 +310,18 @@ def _repair_limits(config):
     return {k:v for k,v in config['limits'].items() if k != 'component_timeout_seconds'}
 
 
-def _attempt_files(attempt):
-    files,dirs = _capture(attempt); files.pop('finished.json',None)
+def _attempt_files(attempt, *, with_continuation=False):
+    if with_continuation:
+        # Preserve both bounded evidence trees. Do not enlarge either child's
+        # artifact contract merely because the outer owner inventories them.
+        files = frozen_tree._bounded_tree(attempt,max_files=2*frozen_tree.MAX_FILES,max_bytes=2*frozen_tree.MAX_BYTES)
+        dirs = sorted(p.relative_to(attempt).as_posix() for p in attempt.rglob('*') if p.is_dir())
+        for nested in (False,True):
+            rows = [data for name,data in files.items() if name.startswith('continuation/') == nested]
+            _need(len(rows) <= frozen_tree.MAX_FILES and sum(map(len,rows)) <= frozen_tree.MAX_BYTES,
+                  'Complete-request evidence partition exceeds frozen bounds')
+    else: files,dirs = _capture(attempt)
+    files.pop('finished.json',None)
     return dict(files=_inventory(files),directories=dirs)
 
 
@@ -263,7 +329,7 @@ def _result(root, attempt, intent, config, children, bindings):
     report = read_record(attempt/'result.json'); elapsed = report.get('elapsed_seconds')
     _need(type(elapsed) in (int,float) and math.isfinite(elapsed) and 0 <= elapsed < config['limits']['total_timeout_seconds'],
           'Invalid complete request elapsed allowance')
-    _need(all(r['state'] == 'STOPPED' and r['finished']['outcome'] == 'RETURNED' for r in children.values()),
+    _need(all(r['state'] == 'STOPPED' and r['finished']['outcome'] == 'RETURNED' for name,r in children.items() if name != 'continuation'),
           'Complete request has an unsuccessful child')
     prepared = read_acquired_dictionary_bundle(attempt/'preparation'); controls = config['controls']
     selection = {code:bindings[code]['number'] for code in config['components']}
@@ -285,15 +351,28 @@ def _result(root, attempt, intent, config, children, bindings):
     runtime = None
     if execution['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME':
         runtime = resolve_runtime_bundle(attempt/'repair/attempts/attempt-0001/execution/runtime')
+    continued = None; continuation_fields = {}
+    if 'continuation' in config:
+        child = children['continuation']
+        if runtime is None:
+            _need(child['state'] == 'NOT_CREATED', 'Unusable repair must not start continuation')
+        else:
+            _need(child['state'] == 'STOPPED' and child['finished']['outcome'] == 'RETURNED',
+                  'Qualified repair lacks its completed continuation')
+            continued = continuation.read_runtime_continuation(attempt/'continuation')
+            runtime = continued['runtime']
+        continuation_fields = dict(continuation=None if continued is None else dict(anchor='attempt_directory',path='continuation'))
     expected = dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],selected_attempts=selection,
         preparation=dict(anchor='attempt_directory',path='preparation'),repair=dict(anchor='attempt_directory',path='repair'),
-        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed)
+        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields)
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
-    return dict(result=report,preparation=prepared,execution=execution,runtime=runtime)
+    return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
+        **({'continuation':continued} if 'continuation' in config else {}))
 
 
 def _attempt_state(root, attempt, number, request):
-    _members(attempt,{'attempt.json','result.json','finished.json'},{'preparation','repair'})
+    _members(attempt,{'attempt.json','result.json','finished.json'},
+             {'preparation','repair'} | ({'continuation'} if 'continuation' in request['configuration'] else set()))
     if not (attempt/'attempt.json').exists():
         _need(not any(attempt.iterdir()), 'Outer output has no intent')
         return dict(number=number,state='UNKNOWN',activity=None)
@@ -306,7 +385,7 @@ def _attempt_state(root, attempt, number, request):
         _need(set(finished) == {'attempt_sha256','outcome','error_type','stopped_verified','finished_utc','children','artifacts','record_sha256'}
             and finished['attempt_sha256'] == intent['record_sha256'] and finished['outcome'] in {'RETURNED','RAISED'}
             and finished['stopped_verified'] is True and _same(finished['children'],bindings)
-            and _same(finished['artifacts'],_attempt_files(attempt))
+            and _same(finished['artifacts'],_attempt_files(attempt,**({'with_continuation':True} if 'continuation' in request['configuration'] else {})))
             and all(r['state'] in {'STOPPED','NOT_CREATED'} for r in children.values()), 'Outer completion does not bind stopped children/files')
         if finished['outcome'] == 'RETURNED': _result(root,attempt,intent,request['configuration'],children,bindings)
         return dict(result,state='STOPPED',activity=False,finished=finished)
@@ -353,7 +432,8 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
     if any(r['state'] not in {'STOPPED','NOT_CREATED'} for r in children.values()):
         raise CampaignProcessError('Complete request has unresolved child ownership')
     if outcome == 'RETURNED': _result(root,attempt,intent,request['configuration'],children,bindings)
-    artifacts = _attempt_files(attempt)
+    composed = 'continuation' in request['configuration']
+    artifacts = _attempt_files(attempt,**({'with_continuation':True} if composed else {}))
     # Scientific readback and inventory can be expensive; include them in the
     # final cooperative deadline check, leaving only atomic publication after it.
     completion = dict(attempt_sha256=intent['record_sha256'],outcome=outcome,error_type=error,
@@ -362,9 +442,10 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
     # that complete record too, so successful publication stays readable.
     encoded = json.dumps(dict(completion,record_sha256='0'*64),indent=2,sort_keys=True,allow_nan=False).encode('utf-8')
     completion_size = len(encoded)+1
-    _need(len(artifacts['files'])+1 <= frozen_tree.MAX_FILES
+    partition = {n:r for n,r in artifacts['files'].items() if not composed or not n.startswith('continuation/')}
+    _need(len(partition)+1 <= frozen_tree.MAX_FILES
           and completion_size <= frozen_tree.MAX_FILE_BYTES
-          and sum(r['size'] for r in artifacts['files'].values())+completion_size <= frozen_tree.MAX_BYTES,
+          and sum(r['size'] for r in partition.values())+completion_size <= frozen_tree.MAX_BYTES,
           'Outer completion exceeds frozen artifact bounds')
     if remaining is not None: remaining()
     write_record(attempt/'finished.json',completion)
@@ -436,11 +517,21 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
                 **_repair_limits(config),max_attempts=1,_parent_attempt_identity=parent,_remaining_seconds=remaining,
                 **({'qualify_no_repair':True} if config.get('qualify_no_repair',False) else {}),
                 **repair.failure_policy_fields(config.get('optional_failure_policy')))
+            continuation_fields = {}
+            if 'continuation' in config:
+                qualified = child['execution']['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME'
+                if qualified:
+                    remaining()
+                    continuation.execute_runtime_continuation(attempt/'repair/attempts/attempt-0001/execution/runtime',
+                        phenix,attempt/'continuation',**_continuation_parameters(config),
+                        _attempt_identity=parent,_remaining_seconds=remaining)
+                continuation_fields = dict(continuation=dict(anchor='attempt_directory',path='continuation') if qualified else None)
             _need(_same(_request(root),request), 'Frozen complete intent changed during execution')
             remaining(); elapsed = monotonic()-started
             result = write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],
                 selected_attempts={c['code']:c['attempt_number'] for c in components},preparation=dict(anchor='attempt_directory',path='preparation'),
-                repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed))
+                repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed,
+                **continuation_fields))
             children,bindings = _children(root,attempt,intent,config); _result(root,attempt,intent,config,children,bindings)
             remaining(); _seal(root,attempt,intent,request,'RETURNED',remaining=remaining)
         except BaseException as exc:

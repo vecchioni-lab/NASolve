@@ -75136,5 +75136,452 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "3f7b1d7d7eb9be3a3a2d90872669d7224cc3fcf9"
+  },
+  "complete_runtime_continuation_2026_11_10": {
+    "status": "VALIDATED; PUBLICATION_PENDING",
+    "base_revision": "93f22ec3d1af38ed49e57e6d4b29a3f3991491a2",
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_component_runtime.py",
+      "src/nasolve/cif_postmr_request.py",
+      "tests/test_cif_complete_continuation.py"
+    ],
+    "prior_work": "C163-C171 process/attempt ownership and shared allowance; C173 stopped failures; C175-C177 prepared context/intake; C181-C183 exact selected continuation/configuration. Reuse maintained owners and scientific readers.",
+    "scope": "EXISTING_COMPLETE_REQUEST_OWNS_CONTINUATION_AND_RECOVERY; ORDINARY_CALLER_AND_CHECKPOINT_ADOPTION_SEPARATE",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 88903,
+        "runner_pid": 88889,
+        "phase": "before",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_complete_continuation.py",
+          "-k",
+          "freezes_continuation or postmr_entry_forwards or composed_inventory",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/184_Cedar_complete-continuation-0qr08aaz/before.xml"
+        ],
+        "started_utc": "2026-11-10T14:55:18.957648+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 3.448,
+        "sources_unchanged": true,
+        "source_files": 635
+      },
+      "new": {
+        "active": false,
+        "pid": 88939,
+        "runner_pid": 88925,
+        "phase": "new-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_complete_continuation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/184_Cedar_complete-continuation-0qr08aaz/new-r1.xml"
+        ],
+        "started_utc": "2026-11-10T14:55:43.916806+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 97.705,
+        "sources_unchanged": true,
+        "source_files": 635
+      },
+      "affected": {
+        "active": false,
+        "pid": 89537,
+        "runner_pid": 89509,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_complete_continuation.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_cif_runtime_continuation.py",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_runtime_bundle.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_outer_context.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_test_suites.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/184_Cedar_complete-continuation-0qr08aaz/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-10T14:58:42.681366+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 400.186,
+        "sources_unchanged": true,
+        "source_files": 635
+      },
+      "focused": {
+        "active": false,
+        "pid": 93249,
+        "runner_pid": 93235,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/184_Cedar_complete-continuation-0qr08aaz/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-10T15:05:39.622428+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 718.097,
+        "sources_unchanged": true,
+        "source_files": 635
+      },
+      "affected_summary": "385 passed in 400.02s (0:06:40)",
+      "focused_summary": "1845 passed, 45 subtests passed in 717.86s (0:11:57)",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "last_full_tests": "7740 + 276 subtests"
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 699.0955130840011,
+      "controls": {
+        "original": {
+          "request": "native-r1/original/request",
+          "attempt_number": 1,
+          "selected": "readyset_checked_model",
+          "components": [
+            "5PC"
+          ],
+          "ordered_phils": 0,
+          "continuation_phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "complete_attempt_files": 559,
+          "all_children_stopped": true,
+          "prior_outer_and_component_attempts_unchanged": null,
+          "exhausted_request_refused": true,
+          "runtime": "native-r1/original/request/attempts/attempt-0001/continuation/runtime",
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN"
+        },
+        "repair-recovery": {
+          "request": "native-r1/repair-recovery/request",
+          "attempt_number": 2,
+          "selected": "readyset_ordered_checked_model",
+          "components": [
+            "5PC",
+            "PDU"
+          ],
+          "ordered_phils": 2,
+          "continuation_phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "native-ordered": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "complete_attempt_files": 1257,
+          "all_children_stopped": true,
+          "prior_outer_and_component_attempts_unchanged": true,
+          "exhausted_request_refused": true,
+          "runtime": "native-r1/repair-recovery/request/attempts/attempt-0002/continuation/runtime",
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN"
+        },
+        "repair-timeout": {
+          "request": "native-r1/repair-timeout/request",
+          "attempt_number": 1,
+          "selected": "verified_parent_runtime",
+          "components": [
+            "5PC",
+            "PDU"
+          ],
+          "ordered_phils": 2,
+          "continuation_phases": {
+            "native-baseline": "COMPLETED",
+            "readyset": "TIMED_OUT"
+          },
+          "complete_attempt_files": 1170,
+          "all_children_stopped": true,
+          "prior_outer_and_component_attempts_unchanged": null,
+          "exhausted_request_refused": true,
+          "runtime": "native-r1/repair-timeout/request/attempts/attempt-0001/continuation/runtime",
+          "readyset_transport": "SELECTED_PHENIX_PYTHON_OBSERVER; LITERAL_SHELL_DISPATCHER_NOT_RUN"
+        }
+      },
+      "parent_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "generation": "NOT_RUN; RETAINED_EXACT_SOURCES",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "fault_injection": "One deliberate KeyboardInterrupt after completed actual continuation; fresh outer attempt preserves it. Separate actual 0.1-second ReadySet timeout.",
+      "scope": "EXISTING_COMPLETE_OWNER_TO_OWNED_CONTINUATION; NOT_DEFAULT_POSTMR_OR_CHECKPOINT_ADOPTION"
+    },
+    "cold": {
+      "status": "PASS",
+      "controls": {
+        "original": {
+          "selected": "readyset_checked_model",
+          "attempt_number": 1,
+          "all_children_stopped": true
+        },
+        "repair-recovery": {
+          "selected": "readyset_ordered_checked_model",
+          "attempt_number": 2,
+          "all_children_stopped": true
+        },
+        "repair-timeout": {
+          "selected": "verified_parent_runtime",
+          "attempt_number": 1,
+          "all_children_stopped": true
+        }
+      },
+      "legacy_preserved": true,
+      "files": 5297,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/start.json",
+        "sha256": "a8122410925ba334ed8d4322bfbeb8129bf035b6bfa8c32e27a509c19e4b0e76",
+        "size": 118
+      },
+      "design.txt": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/design.txt",
+        "sha256": "fd7eaefa43bb0c48c2bbe0d0128f7966adb38d2031e96df85b6034b6a9f9bf51",
+        "size": 4784
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/before-result.json",
+        "sha256": "3c08089210b90521c92f5e2d979b90124df52e2b005ee7b2f7cffc387b6267a1",
+        "size": 672
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/new-r1-result.json",
+        "sha256": "4ee1e5194a83e717c404bb91cb5229799df0ecabc9b00f2bbf10451fd8b1c78b",
+        "size": 588
+      },
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/affected-r1-result.json",
+        "sha256": "4c6b1b6fd40728f8543949c3f8227d95a690fddde2af038a1067a0f71fcc5e5a",
+        "size": 967
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/affected-r1-sources.json",
+        "sha256": "dd1b078ee8972687d236c7fff99b94b2f945c5e8c5b223990a8d703141025e17",
+        "size": 69365
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/focused-r1-result.json",
+        "sha256": "3956ef1ee3ddc8131c446288053c897d512c524ce8c3721b439dc84c3e74e664",
+        "size": 500
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/focused-r1-sources.json",
+        "sha256": "dd1b078ee8972687d236c7fff99b94b2f945c5e8c5b223990a8d703141025e17",
+        "size": 69365
+      },
+      "native-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-summary.json",
+        "sha256": "e3c48862a20dedf96aa96a48ec94fffc20608db90a9f6d71e96a75dac639e43a",
+        "size": 2803
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/runtime-sources.json",
+        "sha256": "386aa2b111cce0ab908ac077b227558ec96f30fa9e49b8365e9feb20c0d46b36",
+        "size": 22990
+      },
+      "native-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/installation.json",
+        "sha256": "5a3a22530adeec1de924f659a2a04627a51758655283c758e3fd32366afe4827",
+        "size": 123
+      },
+      "native-r1/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/parent-inputs.json",
+        "sha256": "ea3b5454b6f4cbec83fbaf8472ed65fd32b14afa6a00a9671b7b2a71296febe9",
+        "size": 383866
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/cold-r1/summary.json",
+        "sha256": "1d82a90de23197c469e518e07e462f27f3fd1099b3162ab699c611311405450d",
+        "size": 622
+      },
+      "native-r1/original/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/original/summary.json",
+        "sha256": "238ee316f6cfddf274527ed45254c1335eaa0859e37f4856941b1ec84c5e4440",
+        "size": 633
+      },
+      "native-r1/original/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/original/request/request.json",
+        "sha256": "002c162e47d2aa7f12498672e9516a4848d1a5001e2c1cd3584962fed4901181",
+        "size": 29780
+      },
+      "native-r1/original/request/attempts/attempt-0001/continuation/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/original/request/attempts/attempt-0001/continuation/runtime/runtime_bundle.json",
+        "sha256": "9159c254f1a648dd531c6542ae3ce420b2a2cd7022cfbaa1c180a004ab41abd5",
+        "size": 38895
+      },
+      "native-r1/original/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/original/request/attempts/attempt-0001/finished.json",
+        "sha256": "2c412d75bac9fb2e102201eeed26344389a3e080fc32df2b38dd3480722ff554",
+        "size": 131918
+      },
+      "native-r1/original/request/attempts/attempt-0001/continuation/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/original/request/attempts/attempt-0001/continuation/continuation_execution.json",
+        "sha256": "fa5ea7aa02988201966699c509467fed2b16ef6fecc00954911a6082748ba88d",
+        "size": 54516
+      },
+      "native-r1/original/request/attempts/attempt-0001/continuation/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/original/request/attempts/attempt-0001/continuation/ownership/finished.json",
+        "sha256": "a32d6a0a399b1f699a0e018773697f64f4f26d10623953835a4b2126de5c4875",
+        "size": 574
+      },
+      "native-r1/repair-recovery/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/summary.json",
+        "sha256": "4d1160d2754def7f508e13d02a8e0ecb007125f1d8b606366cf6298ce6f265a4",
+        "size": 702
+      },
+      "native-r1/repair-recovery/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/request.json",
+        "sha256": "530cc9365d175aa7c75a338e7178016b7e199f54367576277669c929731a9441",
+        "size": 56166
+      },
+      "native-r1/repair-recovery/request/attempts/attempt-0002/continuation/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/attempts/attempt-0002/continuation/runtime/runtime_bundle.json",
+        "sha256": "84492b41e44d30053c1da3b37bb5f9c9326eaea542c68942b6d6230cada32348",
+        "size": 72982
+      },
+      "native-r1/repair-recovery/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/attempts/attempt-0001/finished.json",
+        "sha256": "366f724b98ebc88f8d27969a70901f8b8119be3b06898c445225030135122abf",
+        "size": 288556
+      },
+      "native-r1/repair-recovery/request/attempts/attempt-0001/continuation/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/attempts/attempt-0001/continuation/continuation_execution.json",
+        "sha256": "c8929af2fbaf88a90e7610c1eb76c0715602a918d2dad2b652ae0459b45cdc3f",
+        "size": 109116
+      },
+      "native-r1/repair-recovery/request/attempts/attempt-0001/continuation/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/attempts/attempt-0001/continuation/ownership/finished.json",
+        "sha256": "823e254f3ec7da17c79f542f725e74d3aeef50ce33d8039466360b55e106ba94",
+        "size": 664
+      },
+      "native-r1/repair-recovery/request/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/attempts/attempt-0002/finished.json",
+        "sha256": "213f658d8c66bb4fddf866e0856f5526152ffa23a6ff3095993411f224c283b3",
+        "size": 292895
+      },
+      "native-r1/repair-recovery/request/attempts/attempt-0002/continuation/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/attempts/attempt-0002/continuation/continuation_execution.json",
+        "sha256": "65d9ae5e5353b131840addd029ce80175123d4ddb68f255342a1ff6d2cddb3cb",
+        "size": 109116
+      },
+      "native-r1/repair-recovery/request/attempts/attempt-0002/continuation/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-recovery/request/attempts/attempt-0002/continuation/ownership/finished.json",
+        "sha256": "7c1a9bdfe14be41840c24d254c612fafed2abe78ba826aa0bbd2f3d1e84d6c8c",
+        "size": 664
+      },
+      "native-r1/repair-timeout/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-timeout/summary.json",
+        "sha256": "c5978bde63cf3ca18b09e3bf3502ee735cb39e840f11c92d7a397b0565504aac",
+        "size": 622
+      },
+      "native-r1/repair-timeout/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-timeout/request/request.json",
+        "sha256": "6f3020cda8e0e3c37051a07d0a8b874e6aaf9d3fee8e7de6deb11bcee14bb53e",
+        "size": 56166
+      },
+      "native-r1/repair-timeout/request/attempts/attempt-0001/continuation/runtime/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-timeout/request/attempts/attempt-0001/continuation/runtime/runtime_bundle.json",
+        "sha256": "46727fe0513d1e425b5f2b05a46ce9d3c294f6c480ef2704fff28f234177e108",
+        "size": 65765
+      },
+      "native-r1/repair-timeout/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-timeout/request/attempts/attempt-0001/finished.json",
+        "sha256": "9c79533062ae4ba0874d5d382fab12e21ef98ad33befd27e03c92fe582c890d6",
+        "size": 275036
+      },
+      "native-r1/repair-timeout/request/attempts/attempt-0001/continuation/continuation_execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-timeout/request/attempts/attempt-0001/continuation/continuation_execution.json",
+        "sha256": "c7d174e3d6dd92d9455cb68234a5ca799d460fd150cbf110091c2595733fd197",
+        "size": 97502
+      },
+      "native-r1/repair-timeout/request/attempts/attempt-0001/continuation/ownership/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "184_Cedar_complete-continuation-0qr08aaz/native-r1/repair-timeout/request/attempts/attempt-0001/continuation/ownership/finished.json",
+        "sha256": "aa9f4b135343fc4b300373736e274349d34e8c17622d469a6f4cdd2a7a440d18",
+        "size": 483
+      }
+    },
+    "compatibility": "Optional schema-1 continuation config/result/binding and composed artifact policy require C184; absent mode, child/public policies and all prior artifacts unchanged; no migration.",
+    "exclusions": "Generated scientific inputs/results, source snapshots, local runners, logs and XML are not committed.",
+    "remaining": [
+      "Ordinary prepared/newly-mutated caller integration",
+      "Immutable checkpoint adoption",
+      "Actual refinement consumer Q06",
+      "Mixed/held-out and chemical-state controls Q07/Q13"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

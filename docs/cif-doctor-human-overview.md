@@ -3875,3 +3875,20 @@ pass all 28 strict checks. Every worker is known stopped, all original inputs re
 unchanged, and complete execution/public evidence replays after relocation without
 the SDK. This closes the child execution boundary; complete-request recovery,
 ordinary checkpoint adoption and diffraction refinement remain separate.
+
+
+### One request owns the complete explicit chain (C184)
+
+The explicit engine can now carry a qualified repair through ReadySet and final
+native validation under the same request. Settings and attempt identity remain
+fixed, previous work stays intact, and interruption can lead only to a fresh attempt
+once ownership is known inactive. Failed optional improvement retains the selected
+qualified model and restraints together; unusable repair starts no continuation.
+
+**Methods.** Actual 5PC-original and PDU/5PC-repaired controls use Phenix 2.2.1-6174
+and preserve the ordered NAR restraint intent. A deliberately interrupted completed
+continuation is retained while a fresh second attempt succeeds. A separate stopped
+ReadySet timeout retains the repaired parent. New and legacy complete requests
+replay after relocation without the SDK. Both nested evidence partitions retain
+their own resource limits. This is opt-in whole-request integration; ordinary
+checkpoint adoption and diffraction-refinement qualification remain open.

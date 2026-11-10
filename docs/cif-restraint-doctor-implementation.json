@@ -28211,6 +28211,17 @@
         "Mixed/held-out and chemical-state controls Q07/Q13"
       ],
       "implementation_revision": "3f7b1d7d7eb9be3a3a2d90872669d7224cc3fcf9"
+    },
+    "complete_runtime_continuation": {
+      "status": "IMPLEMENTED_OPT_IN_COMPLETE_CHAIN",
+      "evidence_key": "complete_runtime_continuation_2026_11_10",
+      "scope": "EXISTING_COMPLETE_REQUEST_OWNS_CONTINUATION_AND_RECOVERY; ORDINARY_CALLER_AND_CHECKPOINT_ADOPTION_SEPARATE",
+      "remaining": [
+        "Ordinary prepared/newly-mutated caller integration",
+        "Immutable checkpoint adoption",
+        "Actual refinement consumer Q06",
+        "Mixed/held-out and chemical-state controls Q07/Q13"
+      ]
     }
   },
   "audience": [

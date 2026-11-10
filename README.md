@@ -75,8 +75,10 @@ the qualified parent when the optional endpoint fails.
 can now be derived directly from the selected installation for explicit engine
 requests. An [owned continuation](docs/cif-doctor.md#owned-selected-runtime-continuation-c183)
 now executes the selected baseline, ReadySet and final native checks with bounded
-worker ownership and preserved failures. Integration with complete-request recovery
-and ordinary adoption remains open.
+worker ownership and preserved failures. The existing request now
+[owns that continuation and fresh recovery](docs/cif-doctor.md#complete-request-continuation-and-recovery-c184)
+when explicitly configured, retaining failed attempts and shared limits. Ordinary
+caller and checkpoint adoption remain open.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

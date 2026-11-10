@@ -30,6 +30,14 @@ _FIXED = dict(schema_version=1, policy_id=POLICY_ID, manifest_file=MANIFEST_FILE
 
 
 def _tree(root, *, manifest=False):
+    return _bounded_tree(root,manifest=manifest,max_files=MAX_FILES,max_bytes=MAX_BYTES)
+
+
+def _bounded_tree(root, *, max_files, max_bytes, manifest=False):
+    # The complete continuation owner can inventory two separately bounded
+    # children. Public/child artifacts continue through _tree's original caps.
+    _need(type(max_files) is int and 0 < max_files <= 2*MAX_FILES
+          and type(max_bytes) is int and 0 < max_bytes <= 2*MAX_BYTES, 'Invalid bounded tree envelope')
     root=Path(root).absolute()
     _need(root.is_dir() and not any(p.is_symlink() for p in (root,*root.parents)), 'Unsafe source tree')
     result={};total=0
@@ -40,7 +48,7 @@ def _tree(root, *, manifest=False):
         _need(p.is_file(), 'Nonregular frozen tree member')
         if manifest and name==MANIFEST_FILE:continue
         size=p.stat().st_size;total+=size
-        _need(size<=MAX_FILE_BYTES and total<=MAX_BYTES and len(result)<MAX_FILES, 'Frozen tree exceeds supported bounds')
+        _need(size<=MAX_FILE_BYTES and total<=max_bytes and len(result)<max_files, 'Frozen tree exceeds supported bounds')
         result[name]=_read(p)
     return result
 

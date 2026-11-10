@@ -11,6 +11,66 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C184 validated: complete-request continuation and recovery
+
+Base `93f22ec3d1af38ed49e57e6d4b29a3f3991491a2`; existing Cedar. Capsule
+`live_tests_directory/184_Cedar_complete-continuation-0qr08aaz`. Implementation/validation complete; publication
+is next. The explicit owned request now spans selected repair through final native output.
+
+**Before → after:** C183 was a separate owned execution. Optional frozen continuation
+settings now attach it to the same complete request, with exact selected input and
+coordinator bindings, persistent attempts and the existing shared allowance. No-usable
+repair skips the child; known optional failure retains the qualified parent. Unknown
+publication/cleanup blocks recovery. Known-inactive interruption permits a fresh
+numbered attempt without modifying prior repair, continuation or generation history.
+
+The capacity audit found 579 existing outer files plus a 586-file continuation. The
+new composition policy inventories two separately capped partitions through the same
+safe reader: 1,024 files/128 MiB each, 32 MiB per file. The completion stays in the
+original partition. Legacy/public/child bounds remain unchanged; proof is preserved.
+
+**Validation:** seven expected missing-API failures before implementation. New
+**35 passed in 97.57s (0:01:37)**. Affected **385 passed in 400.02s (0:06:40)**. Workflow
+**1845 passed, 45 subtests passed in 717.86s (0:11:57)**. All 635 source/test/script hashes stayed
+fixed. No full suite; last completed full remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c184_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c184_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c184_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** 5PC original and PDU/5PC repaired
+endpoints pass all 28 checks. One deliberate KeyboardInterrupt after a completed
+repaired continuation leaves a raised outer attempt; a fresh second attempt succeeds
+with every prior outer/component artifact unchanged. A separate actual 0.1-second
+ReadySet timeout preserves the qualified repaired parent. Generation is forbidden
+in these retained-source controls. Coot and diffraction refinement are NOT_RUN;
+ReadySet uses selected Phenix Python/observer, not literal shell dispatch. Inputs
+come from hash-verified C175/C177 context and C183 selected-model evidence.
+Three new requests (including interrupted history) and one C182 legacy request replay
+cold: 5297 files retain bytes/mtimes with original copy absent and historical
+paths/SDK/execution denied. The interrupted outer attempt remains unsuccessful.
+
+**Files/schema/compatibility:** complete request, PostMR initializer, shared bounded
+tree reader, new test/workflow membership and current contracts/queue/ledgers.
+Optional schema-1 `configuration.continuation`, result child reference and completion
+binding require C184; omission preserves old requests/results without migration.
+`cif-complete-continuation-artifacts-v1` pins the composed envelope; child/public
+policies remain unchanged. No new owner, automatic retry, ordinary default or altered
+chemical threshold. Only source/tests/docs/hash references enter Git; generated
+science, snapshots, runners, logs and XML stay local. Maximum-size throughput and
+hard CPU/cleanup deadlines are not demonstrated.
+
+**Next:** ordinary prepared/newly-mutated model caller integration, preserving source/
+producer lineage and single-owner NAR modifier intent, then immutable checkpoint
+adoption. Q04/Q05 remain open until those ordinary paths are demonstrated. Q06 actual
+refinement, Q07 mixed/held-out scaffolds and Q13 chemical-state authority remain separate.
+Evidence key `complete_runtime_continuation_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C183 published: owned selected-runtime continuation
 
 Base `ef86cf5328827dee22a02667fe1655a9290321c1`; existing Cedar. Capsule

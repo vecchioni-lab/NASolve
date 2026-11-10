@@ -8,7 +8,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from .cif_acquisition_sources import _codes, freeze_acquisition_sources
-from .cif_complete_request import _LIMITS, initialize_dictionary_request
+from .cif_complete_request import _LIMITS, _continuation_fields, initialize_dictionary_request
 from .cif_dictionary_sites import _consumer, _need
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_acquisition_attempt import _generation_binding
@@ -19,7 +19,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -34,7 +34,8 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     or reselecting sources. Current native qualification, including independent
     original qualification and the existing optional-failure policy, is mandatory.
     The caller still supplies the selected consumer and generation recipe/pins.
-    This opt-in entry point does not change ordinary PostMR defaults.
+    Optional continuation_options freezes one selected-runtime continuation under
+    the same owner; initialization never runs it. Ordinary PostMR defaults are unchanged.
     """
     _need(isinstance(components, (list, tuple)) and components,
           'Require explicit PostMR component generation settings')
@@ -52,6 +53,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     _need(set(execution_limits) <= set(bounds)
           and all(type(v) is int and 1 <= v <= bounds[k] for k, v in execution_limits.items()),
           'Unsupported or unbounded PostMR request limit')
+    _continuation_fields(continuation_options,_LIMITS)
     _need(isinstance(supplementary_phils, (list, tuple)), 'Require an explicit ordered PHIL sequence')
     phils = list(supplementary_phils)
     sources = _root(source_output); request = _root(output)
@@ -80,4 +82,5 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     return initialize_dictionary_request(sources, components, model, request,
         consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
+        continuation_options=continuation_options,
         **execution_limits)

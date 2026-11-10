@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Join continuation to existing request recovery (C184)
+
+- Freeze optional ReadySet/serialization settings in the existing complete request
+  and run the selected-runtime continuation under the same attempt and allowance.
+  Bind exact repaired inputs and reciprocal process ownership; keep previous outputs
+  immutable through interruption and fresh recovery. No-usable results skip the child.
+- Preserve both evidence trees with separately capped partitions. Existing child,
+  public-bundle and legacy-request limits are unchanged; no proof is discarded.
+- Add optional configuration/result/binding fields and a composition inventory
+  policy. Old requests need no migration; new-mode requests require the new reader.
+  Actual original/repaired/recovery/timeout and new/legacy cold controls pass.
+  Ordinary PostMR/checkpoint defaults and diffraction refinement remain separate.
+
 ### Own selected-runtime ReadySet/native execution (C183)
 
 - Add one bounded, immutable continuation execution using the existing process

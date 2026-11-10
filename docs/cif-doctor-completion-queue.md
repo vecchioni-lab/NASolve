@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C183.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C184.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -128,7 +128,7 @@ as competing next-step instructions here.
 | --- | --- |
 | Frozen source and numerical identity | C155/C158/C159/C168 validate destinations, preserve curated/local/configured-CCD precedence, freeze the complete source set, reuse current exact-source candidates, requalify stale evidence and retain original recipe/producer/representation permission. No live rediscovery during replay or arbitrary source fallback. |
 | Durable ownership and recovery | C156/C157/C163–C167 share campaign process cleanup, persistent locks, immutable numbered attempts and exact parent/child identities. Fresh attempts require known-inactive previous owners/workers; unknown publication/cleanup remains blocked. Prior partial outputs never change. |
-| Complete bounded request | C169–C171 join exact successful acquisitions, model/sites, ordered PHIL, preparation and repair. Reciprocal parent ownership is durable; persistent component/generation histories prevent resetting attempts. One shared allowance includes final scientific replay/inventory. Local work and cleanup remain cooperative, not a hard deadline. |
+| Complete bounded request | C169–C171 join exact successful acquisitions, model/sites, ordered PHIL, preparation and repair. Reciprocal parent ownership is durable; persistent component/generation histories prevent resetting attempts. One shared allowance includes final scientific replay/inventory. C184 extends that same owner to selected-runtime continuation, with exact input/owner joins and separately capped evidence partitions. Local work and cleanup remain cooperative, not a hard deadline. |
 | Scientific selection and immutable output | C160/C172 share source/site/full-native/derivative checks, selector and publisher. No-graph originals need independent proof. Only qualified selected model/CIF/PHIL bundles publish; negative results can truthfully return no usable bundle. |
 | Optional failure and original fallback | C173 binds optional native timeout or complete failed/unsupported worker evidence to the exact known-stopped job, declared inputs and maintained worker. Current consumer and independent original proof remain mandatory. Valid negative attribution/derivative results use the existing selector. Initial failures, malformed/contradictory reports, interruption and unknown cleanup remain blocking. No retry or renewed allowance. |
 | One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. C178–C179 subsequently validate the same singleton scope through the separate ReadySet/native adapter. |
@@ -150,10 +150,12 @@ selected original/repaired runtime through that explicit continuation and public
 replay, including exact repaired fallback. C182 closes selected-installation
 configuration with fresh generation/repair/cache and cold controls. C183 now owns
 one selected-runtime baseline/ReadySet/native/publication execution, including bounded
-lossless serialization and exact stopped-worker replay. Next attach that child to the
-existing complete request, with reciprocal ownership, frozen settings, persistent
-attempt history and the same enclosing allowance. Whole-chain orchestration remains;
-do not add a second recovery owner.
+lossless serialization and exact stopped-worker replay. C184 attaches that child to
+the existing complete request with reciprocal ownership, frozen settings, persistent
+attempt history and the same enclosing allowance. Actual PDU/5PC interruption/fresh
+recovery, repaired timeout fallback and new/legacy cold replay pass. Two independently
+capped evidence partitions preserve the complete nested history. Next connect the
+ordinary caller and immutable checkpoint publication; do not add a second owner.
 
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
@@ -223,9 +225,10 @@ remain unchanged after relocation.
 C182 derives current-installation settings without borrowing old test configuration.
 C183 owns one immutable continuation execution and schedules at most one existing
 lossless C140 correction, qualified by a fresh native endpoint. All five live controls
-and complete cold replays pass. Next bind it to the existing complete-request owner,
+and complete cold replays pass. C184 binds it to the existing complete-request owner,
 including interrupted/unknown child recovery, shared elapsed allowance and immutable
-previous outputs. Then integrate the ordinary caller and checkpoint publication.
+previous outputs; actual fresh recovery and optional repaired fallback pass. Next
+integrate the ordinary caller and checkpoint publication.
 Preserve pre-construction source/producer lineage and exact NAR intent. No second
 recovery owner or unqualified pre-repair fallback should be introduced.
 
