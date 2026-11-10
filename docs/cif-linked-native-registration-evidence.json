@@ -73454,7 +73454,7 @@
     "milestone": "C181",
     "status": "SELECTED_RUNTIME_READYSET_NATIVE_AND_COLD_VALIDATED",
     "base_revision": "739271fa9efe6322772aa3df7d3edb3f2447e7e9",
-    "implementation_revision": null,
+    "implementation_revision": "9591e4aa8f960683f119cca93a522afc9b551671",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "ReadySet adapter starts from earlier preparation, not independently selected repaired runtime",
     "after": "Shared observer/native/publication preserve selected parent and exact fallback",

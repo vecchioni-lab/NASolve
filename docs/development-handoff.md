@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C181 validated: selected-runtime ReadySet continuation
+## C181 published: selected-runtime ReadySet continuation
 
 Base `739271fa9efe6322772aa3df7d3edb3f2447e7e9`; existing Cedar. Capsule
-`live_tests_directory/181_Cedar_selected-readyset-y767gm03`. Implementation/validation complete; publication
-is next. Q05 now has an explicit source-bound bridge from C177's selected result.
+`live_tests_directory/181_Cedar_selected-readyset-y767gm03`. Implementation/validation complete and published as
+`9591e4aa8f960683f119cca93a522afc9b551671`. Q05 now has an explicit source-bound bridge from C177's selected result.
 
 **Before → after:** the existing preparation-based path could not consume the
 engine's selected repaired dictionary set. The new adapter preserves the exact

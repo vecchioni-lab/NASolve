@@ -28185,7 +28185,8 @@
       "status": "SELECTED_RUNTIME_READYSET_NATIVE_AND_COLD_VALIDATED",
       "milestone": "C181",
       "evidence_key": "selected_runtime_readyset_2026_11_10",
-      "scope": "Qualified selected original/repaired runtime through existing ReadySet/native checks and public publication; exact parent fallback"
+      "scope": "Qualified selected original/repaired runtime through existing ReadySet/native checks and public publication; exact parent fallback",
+      "implementation_revision": "9591e4aa8f960683f119cca93a522afc9b551671"
     }
   },
   "audience": [
