@@ -42,7 +42,10 @@ freezes the intended relationships but stops at an existing Phenix isolated
 atom-name failure; it adds no full-model or modified-ligand usability claim.
 [Native failure diagnostics](cif-doctor.md#identify-failed-native-qualification-separately-from-ownership-c192)
 now identify the failed seed and exact receipt while keeping ownership and
-scientific acceptance distinct. Use the
+scientific acceptance distinct. The earlier
+[generation refusal](cif-doctor.md#surface-existing-generation-diagnosis-at-acquisition-failure-c193)
+also exposes the existing stage/reason and exact receipt without implying a retry.
+Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods
 below preserve validation of specific contexts; they do not define another queue

@@ -14,6 +14,7 @@ import math
 from pathlib import Path
 
 from .campaign_records import path_in
+from .failure_reporting import add_failure_note
 from .cif_dictionary_store import (_identity, _regular, _snapshot_destination,
     make_dictionary_request, resolve_qualified_dictionary, lookup_dictionary,
     resolve_dictionary_snapshot, recipe_representation_policy)
@@ -143,8 +144,15 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
               and receipt.get('source_sha256') == request['source_sha256']
               and receipt.get('source_preserved') is True and _regular(source) == original,
               'Generation receipt source/identity differs')
-        _need(receipt.get('candidate_retained') is True and receipt.get('candidate') is not None,
-              'Generation has no retained candidate; retained attempt requires separate recovery')
+        if receipt.get('candidate_retained') is not True or receipt.get('candidate') is None:
+            failure = ValueError(f'Generation has no retained candidate for {code}; inspect {receipt_path}')
+            try:
+                from .cif_source_candidate import candidate_generation_diagnostic
+                diagnostic = candidate_generation_diagnostic(receipt)
+                failure = ValueError(f"{failure}; recorded diagnostic {diagnostic['blocking_stage']}: {diagnostic['summary']}")
+            except Exception as exc:
+                add_failure_note(failure, 'Generation diagnostic unavailable', exc)
+            raise failure
         candidate = path_in(work, 'candidate.cif'); data = _regular(candidate)
         _need(receipt.get('candidate') == {'anchor': 'candidate_directory', 'path': 'candidate.cif',
               'sha256': sha256(data).hexdigest(), 'size': len(data)}, 'Generated candidate binding differs')

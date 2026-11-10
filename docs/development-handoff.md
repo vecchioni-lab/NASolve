@@ -11,6 +11,58 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C193 validated: expose existing generation failure diagnosis
+
+Base `22f01dd1acae9ef75c04ee95341f611f0606306f`; existing Cedar. Implementation complete; publication is next.
+Stop boundary **2026-11-10 23:12 UTC**. Capsule:
+`live_tests_directory/193_Cedar_generation-failure-diagnostic-bu3un16e`. All validation jobs are stopped.
+
+**Before → after:** acquisition's generic no-candidate error hid the recorded
+failure stage and suggested separate recovery. The same rejection now names the
+component and receipt and reuses C115's stage/reason projection. Exact stopped
+attempt and source/receipt identity checks stay first. C185 preserves the primary
+failure if optional projection/formatting fails; new interruptions still propagate.
+No stored schema, worker, chemical state, acceptance, successful/retained-candidate
+path or retry change. Only diagnostic text changes; no migration.
+
+**Validation:** before **7 failed, 1 passed, 48 deselected in 0.68s**; affected tests
+**250 passed in 52.19s**; workflow **1999 passed, 45 subtests passed in 824.05s (0:13:44)**.
+All 640 source/test/script hashes remain fixed. No full suite; last full remains
+C160 `d9e481661edcc3a04404df250360b9db63184ae1`.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c193_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 python c193_replay.py before-native-r1
+PYTHONDONTWRITEBYTECODE=1 python c193_replay.py after-native-r1
+PYTHONDONTWRITEBYTECODE=1 python c193_replay.py cold-r1
+PYTHONDONTWRITEBYTECODE=1 python c193_redundancy.py
+```
+
+The actual stopped C191 Phenix **2.2.1-6174 / dispatcher 2.2.1** result is replayed
+through a read-only saved-result transport, with external execution denied. Its
+error now names `SOURCE_HANDOFF`, `bond_orders` and the exact receipt. No new
+attempt, generation, qualification or Phenix execution occurs. Cold replay keeps
+**44 request files unchanged**, original copy absent and historical
+paths/SDK/execution denied. All owners remain stopped, requests exhausted, and no
+cache/snapshot/qualification/runtime is created.
+
+**Redundancy/orientation:** the new check finds no shadowed definitions or imported
+collectable tests. C134's same three identical-text pairs use different readers/
+fixtures and are retained. This is a static AST/profile check, not full collection.
+Ordinary PostMR already snapshots target dictionaries and checks hashes around
+Coot; reuse those records rather than adding another hash-check layer. C71's narrow
+reuse path, C21/C80 compilers, C115 diagnostics, C185 notes and C184 owner remain.
+
+**Next:** implement the ordinary caller/source-construction producer join and
+exclusive modifier ownership under Q04, then carry exact selected artifacts and
+lineage into immutable checkpoints (Q05). Actual refinement (Q06), the combined
+modified/held-out controls (Q07) and source-H/native mapper qualification (Q13)
+remain open. Diagnostic fixes do not establish those scientific/integration gates.
+Only one source module, one test module, maintained docs and hash references ship.
+Scientific files, native captures, candidates, logs, XML and runners stay local.
+— Rowan · Codex desktop
+
 ## C192 published: identify failed native qualification
 
 Base `555f16470099ce7aea746be598b7c7b835da2732`; existing Cedar. Implementation complete and published as

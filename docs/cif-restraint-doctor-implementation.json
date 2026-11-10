@@ -28316,6 +28316,16 @@
         "Q05 checkpoint lineage, Q06 refinement and Q07 mixed/held-out acceptance remain open"
       ],
       "implementation_revision": "697dc0ecf963117aeadba16024562cf9d70f3ce4"
+    },
+    "generation_failure_diagnostics": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "cif_generation_acquisition.resolve_generated_dictionary",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#generation_failure_diagnostics_2026_11_10",
+      "limitations": [
+        "Q04 ordinary caller, construction producer and one modifier owner",
+        "Q05 exact selected bundle/checkpoint lineage",
+        "Q06 actual refinement and Q07 mixed/held-out acceptance; source-H/native mapper issue remains Q13"
+      ]
     }
   },
   "audience": [

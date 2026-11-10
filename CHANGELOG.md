@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explain no-candidate generation failures at acquisition (C193)
+
+- Reuse the existing generation-stage diagnostic to identify the component,
+  blocking reason and exact retained receipt when no candidate is available.
+  Remove generic wording that implied recovery was required or authorized.
+- Keep stopped-attempt/source validation first. Optional reporting failures cannot
+  mask the primary rejection; interruptions propagate. No chemistry, ownership,
+  retry, schema or successful-path change; no artifact migration.
+
+
 ### Distinguish native qualification failure from lost ownership (C192)
 
 - Identify a failed source/candidate native seed by recorded status, return code

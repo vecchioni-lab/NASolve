@@ -311,3 +311,110 @@ def test_unknown_convergence_is_not_reported_as_nonconvergence_and_diagnostics_s
     assert evidence['diagnostic']=={'stage':'ADAPTER','summary':'Retained post-write diagnostic'}
     assert evidence['error']=='Retained post-write diagnostic'
     assert any('Retained post-write diagnostic' in n for n in result['notes'])
+
+
+@pytest.mark.parametrize('details,stage,reason', [
+    ({'result': {'reader': {'execution': 'COMPLETED'},
+                 'charge_control': {'status': 'BLOCKED', 'preconditions': {'bond_orders': False}},
+                 'builder': {'status': 'NOT_RUN'}}}, 'SOURCE_HANDOFF', 'bond_orders'),
+    ({'result': {'reader': {'execution': 'COMPLETED'}, 'charge_control': {},
+                 'builder': {'status': 'EXCEPTION', 'before': {}, 'message': 'construction refused'}}},
+     'NATIVE_BUILDER', 'construction refused'),
+    ({'execution': {'status': 'TIMED_OUT', 'returncode': -15}}, 'EXECUTION', 'timed out'),
+])
+def test_missing_candidate_surfaces_existing_stage_and_receipt(case, monkeypatch, details, stage, reason):
+    module, args, kwargs, calls, candidate, _ = case
+    import nasolve.cif_generation_attempt as attempts
+    original = attempts.generate_source_candidate
+    frozen = {}
+    source_bytes, candidate_bytes = args[0].read_bytes(), candidate.read_bytes()
+
+    def generate(*a, **k):
+        report = original(*a, **k)
+        report.update(status='FAILED', candidate_retained=False, candidate=None,
+                      diagnostic={'summary': 'Do not trust a stored diagnostic as authority'}, **details)
+        (a[6] / 'source_candidate_receipt.json').write_text(json.dumps(report))
+        frozen.update(inventory(a[6]))
+        return report
+
+    monkeypatch.setattr(attempts, 'generate_source_candidate', generate)
+    with pytest.raises(ValueError) as caught:
+        module.resolve_generated_dictionary(*args, **kwargs)
+    receipt = args[4] / 'attempts/attempt-0001/generation/source_candidate_receipt.json'
+    message = str(caught.value)
+    assert 'no retained candidate for Q17' in message
+    assert stage in message and reason in message and str(receipt) in message
+    assert 'Do not trust' not in message and 'recovery' not in message.lower()
+    assert calls == ['generate'] and not any(args[i].exists() for i in (2, 3, 5))
+    state = attempts.inspect_source_generation_request(args[4])
+    assert len(state['attempts']) == 1 and state['attempts'][0]['state'] == 'STOPPED'
+    assert inventory(receipt.parent) == frozen
+    assert args[0].read_bytes() == source_bytes and candidate.read_bytes() == candidate_bytes
+
+
+@pytest.mark.parametrize('defect', ['projection', 'malformed', 'format'])
+def test_missing_candidate_diagnostic_failure_preserves_primary(case, monkeypatch, defect):
+    module, args, kwargs, calls, *_ = case
+    import nasolve.cif_generation_attempt as attempts
+    import nasolve.cif_source_candidate as diagnostics
+    original = attempts.generate_source_candidate
+
+    class Unprintable:
+        def __str__(self):
+            raise RuntimeError('diagnostic formatting failed')
+
+    def projection(report):
+        if defect == 'format':
+            return {'blocking_stage': 'EXECUTION', 'summary': Unprintable()}
+        raise RuntimeError('diagnostic projection failed')
+
+    def generate(*a, **k):
+        report = original(*a, **k)
+        report.update(status='FAILED', candidate_retained=False, candidate=None)
+        if defect == 'malformed':
+            report['result'] = None
+        (a[6] / 'source_candidate_receipt.json').write_text(json.dumps(report))
+        return report
+
+    monkeypatch.setattr(attempts, 'generate_source_candidate', generate)
+    if defect != 'malformed':
+        monkeypatch.setattr(diagnostics, 'candidate_generation_diagnostic', projection)
+    with pytest.raises(ValueError) as caught:
+        module.resolve_generated_dictionary(*args, **kwargs)
+    receipt = args[4] / 'attempts/attempt-0001/generation/source_candidate_receipt.json'
+    assert 'no retained candidate for Q17' in str(caught.value) and str(receipt) in str(caught.value)
+    assert calls == ['generate'] and not any(args[i].exists() for i in (2, 3, 5))
+    if hasattr(caught.value, 'add_note'):
+        assert any('Generation diagnostic unavailable' in note for note in caught.value.__notes__)
+    assert attempts.inspect_source_generation_request(args[4])['attempts'][0]['state'] == 'STOPPED'
+
+
+@pytest.mark.parametrize('wrong_identity', [False, True])
+def test_missing_candidate_diagnostic_respects_identity_and_interruptions(case, monkeypatch, wrong_identity):
+    module, args, kwargs, calls, *_ = case
+    import nasolve.cif_generation_attempt as attempts
+    import nasolve.cif_source_candidate as diagnostics
+    original = attempts.generate_source_candidate
+    projections = []
+
+    def projection(report):
+        projections.append(report)
+        raise KeyboardInterrupt('new diagnostic interruption')
+
+    def generate(*a, **k):
+        report = original(*a, **k)
+        report.update(status='FAILED', candidate_retained=False, candidate=None)
+        if wrong_identity:
+            report['source_sha256'] = '0' * 64
+        (a[6] / 'source_candidate_receipt.json').write_text(json.dumps(report))
+        return report
+
+    monkeypatch.setattr(attempts, 'generate_source_candidate', generate)
+    monkeypatch.setattr(diagnostics, 'candidate_generation_diagnostic', projection)
+    expected = ValueError if wrong_identity else KeyboardInterrupt
+    message = 'Generation receipt source/identity differs' if wrong_identity else 'new diagnostic interruption'
+    with pytest.raises(expected, match=message):
+        module.resolve_generated_dictionary(*args, **kwargs)
+    assert len(projections) == (0 if wrong_identity else 1)
+    assert calls == ['generate'] and not any(args[i].exists() for i in (2, 3, 5))
+    assert attempts.inspect_source_generation_request(args[4])['attempts'][0]['state'] == 'STOPPED'

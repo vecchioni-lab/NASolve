@@ -3608,8 +3608,11 @@ bond orders from actual atom/hydrogen changes. Native exceptions remain separate
 from retained candidate state, so completed output can still reach the existing
 usability gates. `generate_source_candidate` emits the optional schema-1 field;
 `read_mixed_recovery` recomputes it when present and accepts legacy omission.
-This projection is not a standalone receipt validator. Native workers and all
-chemical acceptance policies remain unchanged. See the
+This projection is not a standalone receipt validator. C193 reuses it after
+owned acquisition verifies stopped-attempt/source identity and finds no retained
+candidate: the error names the exact receipt and recorded stage/reason. Optional
+diagnostic failure preserves that primary rejection through C185; it grants no
+retry authority. Native workers and all chemical acceptance policies remain unchanged. See the
 [C115 contract and controls](cif-doctor.md#candidate-generation-diagnostics-and-pna-controls-c115).
 
 ## Explicit connected atom-order preparation (C116)

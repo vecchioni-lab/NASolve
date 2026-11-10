@@ -78347,5 +78347,215 @@
       }
     },
     "implementation_revision": "697dc0ecf963117aeadba16024562cf9d70f3ce4"
+  },
+  "generation_failure_diagnostics_2026_11_10": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "base_revision": "22f01dd1acae9ef75c04ee95341f611f0606306f",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "DIAGNOSTIC_ONLY; NO_ACQUISITION_ACCEPTANCE_OR_RECOVERY_CHANGE",
+    "before": "A generic no-retained-candidate error hid the existing recorded generation stage and suggested separate recovery.",
+    "after": "The same rejection names component/receipt and reuses the recorded C115 diagnosis; identity checks stay first and optional reporting errors retain the primary failure.",
+    "prior_work": [
+      "C115 candidate_generation_diagnostic pure projection",
+      "C185 primary-failure note helper",
+      "C191 actual SOURCE_HANDOFF/bond_orders refusal",
+      "C192 native seed diagnostics",
+      "C134 duplicate-test audit"
+    ],
+    "files": [
+      "src/nasolve/cif_generation_acquisition.py",
+      "tests/test_cif_generation_acquisition.py"
+    ],
+    "schemas": [
+      "UNCHANGED"
+    ],
+    "compatibility": "ValueError, accepted states and successful/retained-candidate paths remain unchanged; error text changes. No worker, limit, chemical state, recovery authority or artifact migration change.",
+    "regression": {
+      "summaries": {
+        "before-r1": "7 failed, 1 passed, 48 deselected in 0.68s",
+        "new-r1": "250 passed in 52.19s",
+        "focused-r1": "1999 passed, 45 subtests passed in 824.05s (0:13:44)"
+      },
+      "commands": {
+        "before-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_generation_acquisition.py",
+          "-k",
+          "missing_candidate",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/193_Cedar_generation-failure-diagnostic-bu3un16e/before-r1.xml"
+        ],
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_generation_acquisition.py",
+          "tests/test_cif_generation_attempt.py",
+          "tests/test_cif_source_candidate.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_failure_reporting.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/193_Cedar_generation-failure-diagnostic-bu3un16e/new-r1.xml"
+        ],
+        "focused-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/193_Cedar_generation-failure-diagnostic-bu3un16e/focused-r1.xml"
+        ]
+      },
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_suite": "NOT_RUN_USER_REQUEST"
+    },
+    "native_replay": {
+      "before": {
+        "status": "EXPECTED_REFUSAL",
+        "message": "Generation has no retained candidate; retained attempt requires separate recovery",
+        "files": 44,
+        "bytes_mtimes_unchanged": true,
+        "all_owners_stopped": true,
+        "requests_exhausted": true,
+        "execution": "DENIED",
+        "transport": "READ_ONLY_SAVED_RESULT_INJECTION; NO_ATTEMPT_STARTED",
+        "prior_native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "native_mode": "READ_ONLY_REPLAY_OF_COMPLETED_C191_SOURCE_HANDOFF; NO_NEW_NATIVE_EXECUTION",
+        "original_copy_absent": false,
+        "historical_paths_denied": false
+      },
+      "after": {
+        "status": "EXPECTED_REFUSAL",
+        "message": "Generation has no retained candidate for DA; inspect /Users/svecchio/NASolve-live-tests/191_Cedar_full-model-source-owner-678knt3e/native-r1/request/acquisitions/DA/generation/attempts/attempt-0001/generation/source_candidate_receipt.json; recorded diagnostic SOURCE_HANDOFF: Source handoff blocked before construction: bond_orders.",
+        "files": 44,
+        "bytes_mtimes_unchanged": true,
+        "all_owners_stopped": true,
+        "requests_exhausted": true,
+        "execution": "DENIED",
+        "transport": "READ_ONLY_SAVED_RESULT_INJECTION; NO_ATTEMPT_STARTED",
+        "prior_native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "native_mode": "READ_ONLY_REPLAY_OF_COMPLETED_C191_SOURCE_HANDOFF; NO_NEW_NATIVE_EXECUTION",
+        "original_copy_absent": false,
+        "historical_paths_denied": false
+      },
+      "mode": "READ_ONLY_SAVED_RESULT_TRANSPORT; NO_NEW_ATTEMPT_OR_PHENIX_EXECUTION"
+    },
+    "cold": {
+      "status": "EXPECTED_REFUSAL",
+      "message": "Generation has no retained candidate for DA; inspect /Users/svecchio/NASolve-live-tests/193_Cedar_generation-failure-diagnostic-bu3un16e/cold-r1/relocated/request/acquisitions/DA/generation/attempts/attempt-0001/generation/source_candidate_receipt.json; recorded diagnostic SOURCE_HANDOFF: Source handoff blocked before construction: bond_orders.",
+      "files": 44,
+      "bytes_mtimes_unchanged": true,
+      "all_owners_stopped": true,
+      "requests_exhausted": true,
+      "execution": "DENIED",
+      "transport": "READ_ONLY_SAVED_RESULT_INJECTION; NO_ATTEMPT_STARTED",
+      "prior_native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "native_mode": "READ_ONLY_REPLAY_OF_COMPLETED_C191_SOURCE_HANDOFF; NO_NEW_NATIVE_EXECUTION",
+      "original_copy_absent": true,
+      "historical_paths_denied": true
+    },
+    "redundancy": {
+      "status": "PASS",
+      "date": "2026-11-10T22:04:06.747080+00:00",
+      "scope": "STATIC AST/PROFILE CHECK; NOT PYTEST COLLECTION OR FULL REGRESSION",
+      "test_files": 353,
+      "top_level_test_functions": 2119,
+      "shadowed_definitions": [],
+      "collectable_test_imports": [],
+      "identical_top_level_groups": [
+        [
+          "test_cif_effective_source_recovery_probe.py:test_changed_or_unsafe_capsule_is_refused",
+          "test_cif_fragment_restoration_probe.py:test_changed_or_unsafe_capsule_is_refused"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_verified_initial_gradient_parent_is_accepted_as_data",
+          "test_mixed_gradient_probe.py:test_verified_saved_native_context_is_accepted_without_running_captured_programs"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_geometry_input_views_refuse_existing_user_directory",
+          "test_mixed_gradient_probe.py:test_gradient_input_views_refuse_existing_user_directory"
+        ]
+      ],
+      "interpretation": "Same three groups recorded by C134: each uses a different capsule/template reader and stays required; no new redundancy found.",
+      "workflow_files": 60,
+      "workflow_selection_has_duplicates": false,
+      "history": "C134 docs/collaboration.md testing cadence; inspected distinct template/capsule bindings in each current module",
+      "limitations": "Textual AST equality does not establish semantic redundancy; parametrization counts and dynamic collection are not measured."
+    },
+    "remaining": [
+      "Q04 ordinary caller, construction producer and one modifier owner",
+      "Q05 exact selected bundle/checkpoint lineage",
+      "Q06 actual refinement and Q07 mixed/held-out acceptance; source-H/native mapper issue remains Q13"
+    ],
+    "artifacts": "Only code/tests/docs/hash references ship. Native captures, sources, candidates, logs, XML, local runners and partial outputs remain local.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/start.json",
+        "sha256": "84e56c560c67eb9b23207a4d1fab21cf1ef6ba33d2130cb2203797a56f72d724",
+        "size": 647
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/before-r1-result.json",
+        "sha256": "c10c9e29c68a68173a1e0f6255eb5d5dc23d4a89173990e7796e61f7b206c77b",
+        "size": 637
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/new-r1-result.json",
+        "sha256": "cfa5e0bd08c1a550e44b2856d4ed26402da41e9dfa56040ee7cc13a5fe5a562d",
+        "size": 767
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/focused-r1-result.json",
+        "sha256": "277ac32bedd88d7cbc3d075ed26858fe0c5aa9ad055112e1a64baa600159af32",
+        "size": 508
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/focused-r1-sources.json",
+        "sha256": "77766382ab75bcf1bbcf86b2cc45f189b804f2fad8bb7001906a1ce56b41aa3c",
+        "size": 69902
+      },
+      "before-native-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/before-native-r1.json",
+        "sha256": "35b54781b00d9370afbfe0a4f970f863a7d9b2e6fa5b4db4f0ecfbe5aa71829b",
+        "size": 568
+      },
+      "after-native-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/after-native-r1.json",
+        "sha256": "71aae0fe02ee452ed79762b8c39eede09d55445a8721f270ecbf55ac6f2b81ac",
+        "size": 819
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/cold-r1/summary.json",
+        "sha256": "674255192bdb4915021b507245c7114f04aa343990d84decf47a62b2cee1e957",
+        "size": 831
+      },
+      "redundancy-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "193_Cedar_generation-failure-diagnostic-bu3un16e/redundancy-r1.json",
+        "sha256": "339714b26f43bd46e94f3f720d3601d0ca3435de6f1afa4dfaafc590bc265f49",
+        "size": 40398
+      }
+    }
   }
 }

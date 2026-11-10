@@ -615,6 +615,38 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Surface existing generation diagnosis at acquisition failure (C193)
+
+When owned generation returns no retained candidate, acquisition now names the
+component and exact receipt and exposes the existing C115 diagnostic's recorded
+stage and reason. The previous generic message obscured a known source-handoff
+failure and suggested recovery without checking the remaining attempt allowance.
+A diagnostic grants neither a candidate nor permission to retry.
+
+**Methods.** Keep the stopped-attempt, request, receipt and exact-source checks
+first. At the unchanged missing-candidate rejection, recompute
+`candidate_generation_diagnostic` from the bound receipt instead of trusting its
+optional stored summary or adding another classifier. If projection or formatting
+fails, C185's best-effort note helper preserves the primary `ValueError` and exact
+receipt; a new interruption still propagates. Candidate presence is decided by
+the original predicate. Successful/retained-candidate paths, stored schemas,
+native workers, chemistry, execution limits and recovery authority are unchanged.
+Only error text changes; historical artifacts need no migration.
+
+C191's actual default DA request now reports `SOURCE_HANDOFF` and `bond_orders`
+before construction. This is read-only transport replay of its exact stopped
+result, not another generation or qualification attempt. Both actual source and
+request evidence retain bytes/mtimes, remain exhausted, and produce no cache,
+snapshot, qualification or runtime. Relocation uses the same error path with the
+original copy absent and historical paths/SDK/execution denied. The underlying
+native evidence remains Phenix 2.2.1-6174 / dispatcher 2.2.1 from C191.
+
+The static redundancy audit found no shadowed definitions or imported collectable
+tests. C134's same three text-identical test pairs still use distinct readers and
+fixtures and are retained. This is an AST/profile audit, not full pytest collection
+or proof that all semantic duplication is absent. Evidence:
+`generation_failure_diagnostics_2026_11_10`.
+
 ### Identify failed native qualification separately from ownership (C192)
 
 Isolated two-seed qualification now reports a known worker failure as a native
@@ -678,8 +710,8 @@ claimed. Evidence: `full_model_source_owner_2026_11_10`.
 
 C192 closes the misleading qualification wording above without changing either
 rejection predicate; C185's primary-failure note handling remains shared. The
-upstream no-candidate boundary still needs to surface its existing C115 generation
-diagnostic and receipt. Q04 caller/producer joins, Q05 checkpoint adoption, Q06
+upstream no-candidate boundary now surfaces its existing C115 generation
+diagnostic and receipt through C193. Q04 caller/producer joins, Q05 checkpoint adoption, Q06
 actual refinement and the Q07 modified/held-out control remain open.
 
 ### Scoped atom selections at new restraint intake (C190)
