@@ -45,6 +45,10 @@ now identify the failed seed and exact receipt while keeping ownership and
 scientific acceptance distinct. The earlier
 [generation refusal](cif-doctor.md#surface-existing-generation-diagnosis-at-acquisition-failure-c193)
 also exposes the existing stage/reason and exact receipt without implying a retry.
+A [native diagnostic](cif-doctor.md#native-hydrogen-mapping-and-component-ownership-diagnostic-c194)
+now distinguishes a hydrogen-name mapping defect from supplied-component and
+terminal-restraint conflicts. Existing PDU/5PC controls retain their native proxies;
+DA remains blocked. This adds evidence, not an enabled chemical workaround.
 Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods

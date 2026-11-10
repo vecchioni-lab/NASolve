@@ -78558,5 +78558,559 @@
       }
     },
     "implementation_revision": "250b029ac0d00d416fe568d7b09b5f7df53dbe86"
+  },
+  "native_hydrogen_mapping_diagnostic_2026_11_10": {
+    "status": "DIAGNOSTIC_CLOSED_PRODUCTION_GATE_OPEN",
+    "base_revision": "035eed35bc1aab13deccf0973ee8fb19a721e4f3",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "EXPERIMENTAL_NATIVE_MECHANISM_ONLY; NO_QUALIFIED_WORKER_OR_CHEMISTRY_CHANGE",
+    "before": "C121/C191 preserved a native HOP2/HOP3 assertion without establishing whether atom-name mapping, selected component or source chemistry caused it.",
+    "after": "A process-local identity entry clears the assertion, then DA selects effective Ad without HOP2. Existing explicit per-residue CIF selection instead exposes a terminal O3prime/HO3prime bond conflict. Exact 5PC/PDU positive controls preserve proxies and both phosphate hydrogens.",
+    "prior_work": [
+      "C121 DG assertion",
+      "C191 exact DA candidate and failed native seeds",
+      "C166 5PC independent qualification",
+      "C172 PDU independent qualification",
+      "C111 installed-library source/effective-name differences",
+      "C112 observed atom-name mappings",
+      "C152 distinct source H/charge boundary",
+      "C193 focused regression and redundancy audit"
+    ],
+    "files": [
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md"
+    ],
+    "schemas": [
+      "UNCHANGED: product and stored artifacts; diagnostics stay outside qualification"
+    ],
+    "compatibility": "Documentation/evidence only. No product source/test/resource/default, native worker, input chemistry, installed file, scientific acceptance or migration change.",
+    "native": {
+      "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "mode": "ACTUAL_INTERPRETATIONS; NOT_DRY_RUN",
+      "selected_controls": {
+        "native-r3": {
+          "component": "DA",
+          "elapsed_seconds": 2.204915374997654,
+          "native_statuses": [
+            "FAILED",
+            "FAILED"
+          ],
+          "cold_phase": "cold-final-DA-r1",
+          "cold_files": 271,
+          "all_workers_stopped": true,
+          "qualification_published": false,
+          "cold_rows": [
+            {
+              "seed": "source",
+              "status": "FAILED",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": false,
+              "conditional_checks_pass": null,
+              "loaded_component": "DA",
+              "effective_component": "Ad",
+              "hydrogen_bindings": {
+                "expected": [
+                  {
+                    "dictionary_atom_id": "HOP3",
+                    "model_atom_id": "HOP3",
+                    "model_i_seq": 35
+                  }
+                ],
+                "unexpected": [
+                  {
+                    "dictionary_atom_id": "HOP2",
+                    "model_atom_id": "HOP2",
+                    "model_i_seq": 34
+                  }
+                ],
+                "duplicates": []
+              },
+              "applied_native_modifiers": {
+                "ids": [
+                  "3*END",
+                  "p5*END"
+                ],
+                "status": "RECORDED"
+              },
+              "conditional_check_count": 0
+            },
+            {
+              "seed": "candidate",
+              "status": "FAILED",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": false,
+              "conditional_checks_pass": null,
+              "loaded_component": "DA",
+              "effective_component": "Ad",
+              "hydrogen_bindings": {
+                "expected": [
+                  {
+                    "dictionary_atom_id": "HOP3",
+                    "model_atom_id": "HOP3",
+                    "model_i_seq": 35
+                  }
+                ],
+                "unexpected": [
+                  {
+                    "dictionary_atom_id": "HOP2",
+                    "model_atom_id": "HOP2",
+                    "model_i_seq": 34
+                  }
+                ],
+                "duplicates": []
+              },
+              "applied_native_modifiers": {
+                "ids": [
+                  "3*END",
+                  "p5*END"
+                ],
+                "status": "RECORDED"
+              },
+              "conditional_check_count": 0
+            }
+          ],
+          "ordinary_authenticator": "Require a maintained native inventory worker",
+          "same_conditional_covalent_proxies": false
+        },
+        "native-5PC-r2": {
+          "component": "5PC",
+          "elapsed_seconds": 2.207194624992553,
+          "native_statuses": [
+            "REVIEW",
+            "REVIEW"
+          ],
+          "cold_phase": "cold-final-5PC-r1",
+          "cold_files": 308,
+          "all_workers_stopped": true,
+          "qualification_published": false,
+          "cold_rows": [
+            {
+              "seed": "source",
+              "status": "REVIEW",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": true,
+              "conditional_checks_pass": true,
+              "loaded_component": "5PC",
+              "effective_component": "5PC",
+              "hydrogen_bindings": {
+                "expected": [
+                  {
+                    "dictionary_atom_id": "HOP2",
+                    "model_atom_id": "HOP2",
+                    "model_i_seq": 37
+                  },
+                  {
+                    "dictionary_atom_id": "HOP3",
+                    "model_atom_id": "HOP3",
+                    "model_i_seq": 38
+                  }
+                ],
+                "unexpected": [],
+                "duplicates": []
+              },
+              "applied_native_modifiers": {
+                "ids": [],
+                "status": "RECORDED"
+              },
+              "conditional_check_count": 21
+            },
+            {
+              "seed": "candidate",
+              "status": "REVIEW",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": true,
+              "conditional_checks_pass": true,
+              "loaded_component": "5PC",
+              "effective_component": "5PC",
+              "hydrogen_bindings": {
+                "expected": [
+                  {
+                    "dictionary_atom_id": "HOP2",
+                    "model_atom_id": "HOP2",
+                    "model_i_seq": 37
+                  },
+                  {
+                    "dictionary_atom_id": "HOP3",
+                    "model_atom_id": "HOP3",
+                    "model_i_seq": 38
+                  }
+                ],
+                "unexpected": [],
+                "duplicates": []
+              },
+              "applied_native_modifiers": {
+                "ids": [],
+                "status": "RECORDED"
+              },
+              "conditional_check_count": 21
+            }
+          ],
+          "ordinary_authenticator": "Require a maintained native inventory worker",
+          "same_conditional_covalent_proxies": true
+        },
+        "native-PDU-r1": {
+          "component": "PDU",
+          "elapsed_seconds": 1.842051084007835,
+          "native_statuses": [
+            "REVIEW",
+            "REVIEW"
+          ],
+          "cold_phase": "cold-final-PDU-r1",
+          "cold_files": 308,
+          "all_workers_stopped": true,
+          "qualification_published": false,
+          "cold_rows": [
+            {
+              "seed": "source",
+              "status": "REVIEW",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": true,
+              "conditional_checks_pass": true,
+              "loaded_component": "PDU",
+              "effective_component": "PDU",
+              "hydrogen_bindings": {
+                "expected": [
+                  {
+                    "dictionary_atom_id": "HOP2",
+                    "model_atom_id": "HOP2",
+                    "model_i_seq": 36
+                  },
+                  {
+                    "dictionary_atom_id": "HOP3",
+                    "model_atom_id": "HOP3",
+                    "model_i_seq": 37
+                  }
+                ],
+                "unexpected": [],
+                "duplicates": []
+              },
+              "applied_native_modifiers": {
+                "ids": [],
+                "status": "RECORDED"
+              },
+              "conditional_check_count": 21
+            },
+            {
+              "seed": "candidate",
+              "status": "REVIEW",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": true,
+              "conditional_checks_pass": true,
+              "loaded_component": "PDU",
+              "effective_component": "PDU",
+              "hydrogen_bindings": {
+                "expected": [
+                  {
+                    "dictionary_atom_id": "HOP2",
+                    "model_atom_id": "HOP2",
+                    "model_i_seq": 36
+                  },
+                  {
+                    "dictionary_atom_id": "HOP3",
+                    "model_atom_id": "HOP3",
+                    "model_i_seq": 37
+                  }
+                ],
+                "unexpected": [],
+                "duplicates": []
+              },
+              "applied_native_modifiers": {
+                "ids": [],
+                "status": "RECORDED"
+              },
+              "conditional_check_count": 21
+            }
+          ],
+          "ordinary_authenticator": "Require a maintained native inventory worker",
+          "same_conditional_covalent_proxies": true
+        },
+        "native-bound-r1": {
+          "component": "DA",
+          "elapsed_seconds": 2.1486547499953303,
+          "native_statuses": [
+            "FAILED",
+            "FAILED"
+          ],
+          "cold_phase": "cold-final-bound-r1",
+          "cold_files": 275,
+          "all_workers_stopped": true,
+          "qualification_published": false,
+          "cold_rows": [
+            {
+              "seed": "source",
+              "status": "FAILED",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": false,
+              "explicit_native_binding_reproduced": true,
+              "native_error": "Sorry: Conflicting bond_simple restraints:\n  1. definition from: residues:  DA%p5*END%3*END +  DA%p5*END%3*END\n  2. definition from: residues:  DA%p5*END%3*END +  DA%p5*END%3*END\n  atoms:\n    \"HETATM    9  O3'  DA A   1 .*.     O  \"\n    \"HETATM   27 HO3'  DA A   1 .*.     H  \"",
+              "effective_monomer_inventory": "NOT_REACHED"
+            },
+            {
+              "seed": "candidate",
+              "status": "FAILED",
+              "ordinary_authenticator_refused": true,
+              "conditional_checks_reproduced": false,
+              "explicit_native_binding_reproduced": true,
+              "native_error": "Sorry: Conflicting bond_simple restraints:\n  1. definition from: residues:  DA%p5*END%3*END +  DA%p5*END%3*END\n  2. definition from: residues:  DA%p5*END%3*END +  DA%p5*END%3*END\n  atoms:\n    \"HETATM    9  O3'  DA A   1 .*.     O  \"\n    \"HETATM   27 HO3'  DA A   1 .*.     H  \"",
+              "effective_monomer_inventory": "NOT_REACHED"
+            }
+          ],
+          "ordinary_authenticator": "Require a maintained native inventory worker",
+          "same_conditional_covalent_proxies": false
+        }
+      },
+      "limits": {
+        "per_native_seconds": 120,
+        "per_two_seed_owner_seconds": 300
+      },
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "qualification": "NOT_PUBLISHED; ALL_EXPERIMENTAL_WORKERS_REFUSED"
+    },
+    "preserved_harness_attempts": {
+      "native-r1": {
+        "owner": "STOPPED",
+        "outcome": "RAISED",
+        "native_jobs": 0
+      },
+      "native-r2": {
+        "owner": "STOPPED",
+        "outcome": "RAISED",
+        "native_jobs": 2
+      },
+      "native-5PC-r1": {
+        "native_jobs": 0,
+        "outcome": "HARNESS_METADATA_EQUALITY_ASSERTION_BEFORE_OWNER_CREATION"
+      }
+    },
+    "validation": {
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-r3 DA",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-5PC-r2 5PC",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-PDU-r1 PDU",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-bound-r1 DA bind-exact-cif",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-DA-r1 native-r3",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-5PC-r1 native-5PC-r2",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-PDU-r1 native-PDU-r1",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-bound-r1 native-bound-r1",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_parser.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_integrity.py"
+      ],
+      "cold": "FOUR_ARMS_PASS_WITH_ORIGINAL_COPY_ABSENT_AND_OLD_PATHS_SDK_EXECUTION_DENIED",
+      "latest_workflow": "C193: 1999 tests + 45 subtests",
+      "source_hashes_unchanged": 640,
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+    },
+    "remaining": [
+      "Q13 exact source-component binding and terminal-modifier ownership before any mapper policy",
+      "Versioned mapper/source/extension consumer and cache/replay identity if a production policy is justified",
+      "Q04 ordinary caller, actual construction/source join and exclusive modifier owner",
+      "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls"
+    ],
+    "artifacts": "Only maintained docs and anchored hash references ship. Native inputs, captures, logs, installed module snapshots, baseline copies, local runners and all partial outputs remain local.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/start.json",
+        "sha256": "0c29efc2e71dd15e7cc09f25c6c8b93d1eeec5f29ab971c8df9c99b7d2182317",
+        "size": 691
+      },
+      "completion-integrity-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/completion-integrity-r1.json",
+        "sha256": "2fd7ece933fc7d825ccc524fa1be3fdae84dfa49d6eafb7f6615f139b8da3bf1",
+        "size": 426877
+      },
+      "parser-r1/execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/parser-r1/execution.json",
+        "sha256": "1003f58c08636d09e4c75a5e56eac0092421227bd51a8ce3c21656ca35b803b3",
+        "size": 374
+      },
+      "parser-r1/stdout.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/parser-r1/stdout.txt",
+        "sha256": "d8d7f42b4da37a18122b981631d8bf7dcc3c477da534d1c84b67a559795d5154",
+        "size": 3457
+      },
+      "native-r3/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-r3/summary.json",
+        "sha256": "1dd933d5aa9eaf980c23a547c877a40670fe527b479aeadee2eb7e4678c75d04",
+        "size": 13614
+      },
+      "native-r3/diagnostic_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-r3/diagnostic_runner.py.txt",
+        "sha256": "8f0df3bfbcd380bb889954f004a1c9d3d3007fb6a3063ec68ea9f1c605b9ffb3",
+        "size": 14189
+      },
+      "native-r3/selected-installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-r3/selected-installation.json",
+        "sha256": "c6e659e79513343e811fcbc6a4208a85dd552f082121dbf62d98923a811e9032",
+        "size": 3097
+      },
+      "native-r3/ordinary-qualification-refusal.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-r3/ordinary-qualification-refusal.json",
+        "sha256": "f0ad32a6a9bd2b830bddc68a455ec46bd49f39b5ab8d38e37079babe00dde2b1",
+        "size": 337
+      },
+      "cold-final-DA-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-DA-r1/summary.json",
+        "sha256": "402c10489aff8b98b3207a44fb2e1405e2a4c6b41c14134f6a665f1eccef580c",
+        "size": 1944
+      },
+      "cold-final-DA-r1/replay_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-DA-r1/replay_runner.py.txt",
+        "sha256": "ec50d831ba5599e53be4447b1aabc4b696f2a219604b1ea60823dfe05470a4c8",
+        "size": 9070
+      },
+      "cold-final-DA-r1/replay_worker.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-DA-r1/replay_worker.py.txt",
+        "sha256": "0fe67f51e9aa3b56686ce424148bd44d0a4df4b0f15a4cbda1df4dd1d2881cb5",
+        "size": 7468
+      },
+      "native-5PC-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-5PC-r2/summary.json",
+        "sha256": "40c0292db42e3a3790cfbdc87b78add82855912be81da34dcb75a12c9d571b44",
+        "size": 13386
+      },
+      "native-5PC-r2/diagnostic_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-5PC-r2/diagnostic_runner.py.txt",
+        "sha256": "c55471cc053ec7d2f277f1fd49fc04511c43640be5b595c126b8f4b6345f80b4",
+        "size": 14427
+      },
+      "native-5PC-r2/selected-installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-5PC-r2/selected-installation.json",
+        "sha256": "9bf3f737ccbe608b17ea82833f9eb1a76d61d4138a0a03cc679493bfa3224e28",
+        "size": 3361
+      },
+      "native-5PC-r2/ordinary-qualification-refusal.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-5PC-r2/ordinary-qualification-refusal.json",
+        "sha256": "0590878847ed270239c6071fe71c8cb62a8a6de35d6e725859fadae37ac8b29e",
+        "size": 145
+      },
+      "cold-final-5PC-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-5PC-r1/summary.json",
+        "sha256": "3f41c36f5b75a6ba628742b8e6fd7ee92749e3a14ec730bc7256e56a5b9364cb",
+        "size": 1838
+      },
+      "cold-final-5PC-r1/replay_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-5PC-r1/replay_runner.py.txt",
+        "sha256": "ec50d831ba5599e53be4447b1aabc4b696f2a219604b1ea60823dfe05470a4c8",
+        "size": 9070
+      },
+      "cold-final-5PC-r1/replay_worker.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-5PC-r1/replay_worker.py.txt",
+        "sha256": "0fe67f51e9aa3b56686ce424148bd44d0a4df4b0f15a4cbda1df4dd1d2881cb5",
+        "size": 7468
+      },
+      "native-PDU-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-PDU-r1/summary.json",
+        "sha256": "a605df6b7d92d113ccb9a06c561ec1ac2742e8c19e40b17fba78bf2beb9d7eaa",
+        "size": 13351
+      },
+      "native-PDU-r1/diagnostic_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-PDU-r1/diagnostic_runner.py.txt",
+        "sha256": "c55471cc053ec7d2f277f1fd49fc04511c43640be5b595c126b8f4b6345f80b4",
+        "size": 14427
+      },
+      "native-PDU-r1/selected-installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-PDU-r1/selected-installation.json",
+        "sha256": "e06991329cc9cb2ebdfd5b9a3d31e537021c27282e0c6557e2d99424c6dd21cc",
+        "size": 3353
+      },
+      "native-PDU-r1/ordinary-qualification-refusal.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-PDU-r1/ordinary-qualification-refusal.json",
+        "sha256": "0590878847ed270239c6071fe71c8cb62a8a6de35d6e725859fadae37ac8b29e",
+        "size": 145
+      },
+      "cold-final-PDU-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-PDU-r1/summary.json",
+        "sha256": "e55e87ccfa5f7e624d9de1598bd5f3dfc2fa00ab2fa65e614c42d3b51c1bda71",
+        "size": 1838
+      },
+      "cold-final-PDU-r1/replay_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-PDU-r1/replay_runner.py.txt",
+        "sha256": "ec50d831ba5599e53be4447b1aabc4b696f2a219604b1ea60823dfe05470a4c8",
+        "size": 9070
+      },
+      "cold-final-PDU-r1/replay_worker.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-PDU-r1/replay_worker.py.txt",
+        "sha256": "0fe67f51e9aa3b56686ce424148bd44d0a4df4b0f15a4cbda1df4dd1d2881cb5",
+        "size": 7468
+      },
+      "native-bound-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-bound-r1/summary.json",
+        "sha256": "91932523d697156fb7afcb11992021ea26255b0992c3e2af002a796efd5172cb",
+        "size": 13952
+      },
+      "native-bound-r1/diagnostic_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-bound-r1/diagnostic_runner.py.txt",
+        "sha256": "f6fcc5634d184338d7e567a2497572512b4ab08fb8b6579afe0cdaf3867269fd",
+        "size": 15973
+      },
+      "native-bound-r1/selected-installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-bound-r1/selected-installation.json",
+        "sha256": "8f6c1b4c3b04f5a5838bb4f800bb6e896dd12cffab5c875a45f246159c01c49e",
+        "size": 3097
+      },
+      "native-bound-r1/ordinary-qualification-refusal.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/native-bound-r1/ordinary-qualification-refusal.json",
+        "sha256": "f60788985b38d435833e446bd77c7cca0add4f22e503110117371890cc2e4ba1",
+        "size": 343
+      },
+      "cold-final-bound-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-bound-r1/summary.json",
+        "sha256": "806873dfc9edd6f741ad8d6c249d72af6712f59cd95dc984e044ee7b993371b6",
+        "size": 1414
+      },
+      "cold-final-bound-r1/replay_runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-bound-r1/replay_runner.py.txt",
+        "sha256": "ec50d831ba5599e53be4447b1aabc4b696f2a219604b1ea60823dfe05470a4c8",
+        "size": 9070
+      },
+      "cold-final-bound-r1/replay_worker.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c/cold-final-bound-r1/replay_worker.py.txt",
+        "sha256": "0fe67f51e9aa3b56686ce424148bd44d0a4df4b0f15a4cbda1df4dd1d2881cb5",
+        "size": 7468
+      }
+    }
   }
 }

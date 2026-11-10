@@ -11,6 +11,67 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C194 closed: native mapping and component ownership diagnostic
+
+Base `035eed35bc1aab13deccf0973ee8fb19a721e4f3`; existing Cedar; stop boundary **2026-11-10 23:12 UTC**.
+C193 is published. All C194 jobs are stopped; only seven maintained documentation/
+evidence files change. No source, test, resource, schema, default, chemistry,
+installed file, native worker or migration change. Capsule:
+`live_tests_directory/194_Cedar_native-hydrogen-map-diagnostic-w8_59q4c`.
+
+**Before → after:** the preserved C121/C191 mapper assertion is now separated
+from the next effective-component and terminal-modifier failures. A process-local
+HOP2→HOP2 entry clears the assertion without atom renaming/deletion or charge edits.
+DA then loads its candidate but uses effective native Ad, leaving HOP2 unexpected
+and without an energy type. Selecting the exact candidate through existing Phenix
+`apply_cif_restraints` instead reaches a strict O3′–HO3′ terminal bond conflict.
+Keep both negative controls; neither is a production fix or usable fallback.
+
+**Validation:** four fresh two-seed controls completed in Phenix **2.2.1-6174 /
+dispatcher 2.2.1**, each bounded by 120 seconds/native and 300 seconds/owner.
+5PC/PDU retain both phosphate H atoms, all 21 conditional checks and exact saved
+baseline covalent proxies. Ordinary authentication rejects every experimental
+worker; no qualification/cache/runtime/checkpoint is published. Eight standard
+name-parser controls are not the Q07 modified-residue challenge. All source and
+prior request bytes/mtimes, installation pins and 640 product source/test/script
+hashes remain unchanged. No generation, ReadySet, Coot, optimization or refinement.
+
+Final cold replays pass for DA / explicit-DA / 5PC / PDU with **271 / 275 / 308 /
+308 files** unchanged respectively, original copies absent and old paths/SDK/
+execution denied. Genuine positive baseline qualifications remain distinct from
+experimental conditional checks. Final replay runner/worker texts are frozen.
+Earlier harness failures and all partial outputs remain local; fresh attempts
+started only after prior owners stopped. Exact commands, hashes and owner checks
+are in `native_hydrogen_mapping_diagnostic_2026_11_10` and the capsule's
+`completion-integrity-r1.json`.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-r3 DA
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-bound-r1 DA bind-exact-cif
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-5PC-r2 5PC
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_native.py native-PDU-r1 PDU
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-DA-r1 native-r3
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-bound-r1 native-bound-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-5PC-r1 native-5PC-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_cold.py cold-final-PDU-r1 native-PDU-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c194_integrity.py
+```
+
+C193's **1,999 tests + 45 subtests** remain the latest workflow pass. No unchanged
+suite rerun or full regression; last full remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1`. Native diagnostics add no capability
+matrix upgrade and do not close Q04/Q13. Q13 now has an explicit sequence: exact
+source-component binding, terminal ownership, complete effective chemistry and
+numerics, then any scoped/versioned native compatibility policy with mapper and
+extension pins. Keep C152's source-state transition distinct. Reuse existing
+source/projection validators, name observer and process owner.
+
+**Next ordinary integration:** Q04 caller/construction-source join and one
+modifier owner, then Q05 exact selected bundle/checkpoint lineage. Q06 actual
+refinement and Q07 mixed/held-out validation remain required. All raw scientific,
+installed-source and native artifacts are deliberately excluded from Git.
+— Rowan · Codex desktop
+
 ## C193 published: expose existing generation failure diagnosis
 
 Base `22f01dd1acae9ef75c04ee95341f611f0606306f`; existing Cedar. Implementation complete and published as

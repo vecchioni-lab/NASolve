@@ -4137,5 +4137,11 @@ execution. Read-only historical derivation stays exact; ungrouped alternatives
 cannot create a new context-bound attempt. [C192](cif-doctor.md#identify-failed-native-qualification-separately-from-ownership-c192)
 also distinguishes a verified failed native seed from an ownership/deadline
 mismatch; it names the retained receipt without changing acceptance or recovery.
-Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
-explicit chain does not enable an ordinary default or authorize a merge.
+Unsupported intent cannot be discarded. [C194](cif-doctor.md#native-hydrogen-mapping-and-component-ownership-diagnostic-c194)
+separates a native name-mapper defect from exact component selection and terminal
+modifier conflicts. Its experimental worker is rejected by the ordinary reader;
+conditional observations cannot enter the cache or runtime. A future compatibility
+policy must preserve source state and bind the extra mapper/extension identities,
+with complete native and historical validation. No production exception is enabled.
+Actual refinement remains Q06. The complete explicit chain does not enable an
+ordinary default or authorize a merge.

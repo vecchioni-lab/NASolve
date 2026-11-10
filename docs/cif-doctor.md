@@ -615,6 +615,66 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Native hydrogen mapping and component ownership diagnostic (C194)
+
+C121's DG and C191's DA failures share an installed RNA/DNA name-mapper assertion.
+C194 isolates that software boundary without treating it as evidence of incorrect
+source protonation. C111 already recorded DA source/effective-name differences;
+C194 connects the later isolated refusal to that boundary and reuses C112's
+observer. The selected Phenix 2.2.1-6174 / dispatcher 2.2.1 recognizes
+HOP2 but omits it from `iotbx.pdb`'s reference-to-monomer translation table. Its
+uncovered-name branch asserts HOP3. HOP3 itself already maps normally; the unknown
+name control remains unknown. Eight standard residue-name parser controls are
+parser checks only, not eight constructed or modified-residue qualifications.
+
+**Methods and results.** Four separate fresh two-seed experiments reuse exact
+saved source/candidate inputs. Each uses the existing process owner, a 300-second
+total allowance and 120-second native limits. A process-local HOP2→HOP2 entry
+leaves every other translation unchanged. The experimental worker composes the
+existing atom-binding observer with the existing energy observations; the public
+API continues to disallow that combination and the ordinary capture authenticator
+rejects every experimental worker. No qualified report, cache entry, selected
+runtime or checkpoint is published.
+
+| Exact control | Observed result at both seeds | Interpretation |
+| --- | --- | --- |
+| C191 DA, identity translation only | The assertion clears, then HOP2 is unexpected and lacks a nonbonded energy type. Loaded component DA retains HOP2; the effective component is Ad with `3*END`/`p5*END` and no HOP2. | A parser correction alone cannot establish exact supplied-component consumption. |
+| Same DA, plus Phenix's existing `apply_cif_restraints` for the exact frozen CIF at A:1 | Strict native interpretation refuses conflicting O3′–HO3′ bond restraints with terminal modifiers. Effective-monomer readback is not reached. | Explicit file selection also needs coherent terminal-modifier ownership; do not disable strict conflict handling. |
+| Independently qualified C166 5PC | Both phosphate H atoms are expected; all 21 conditional checks pass; both covalent proxy signatures match the exact saved baseline. | No observed regression in this isolated control; the experimental worker is still unqualified. |
+| Independently qualified C172 PDU | Same bounded result as 5PC, with exact PDU baseline proxies. | This does not close broken-PDU, mixed-scaffold, source-state or ordinary-workflow gates. |
+
+The DA follow-up changes only the experimental native parameter selection. It
+records the added PHIL and effective parameters, checks all other PHIL definitions
+unchanged and uses a native-relative input reference. No source/model/candidate
+atoms, names, charges, bonds or coordinates are edited. Installed files and
+maintained workers remain unchanged.
+No new generation, ReadySet, Coot, optimization or refinement occurs. The old C121/
+C191 failures remain intact. Earlier harness attempts also remain: the unsupported
+combined API request stopped before native launch; a mistaken HOP3 parser-control
+expectation stopped two workers; and exact consumer comparison was corrected to
+preserve historical descriptive fields after checking all implementation pins.
+Each resumed experiment uses a fresh directory after the previous owner stops.
+
+Cold replay verifies all four arms from separate relocated trees with the original
+copy absent, old paths/SDK/execution denied, and **271 / 275 / 308 / 308 files**
+unchanged for DA / explicit-DA / 5PC / PDU respectively. Genuine positive baseline
+qualifications replay separately from the refused experimental workers. The final
+replay runner and worker are frozen. C193's **1,999 tests + 45 subtests** remain the
+latest focused workflow pass; all 640 source/test/script hashes are unchanged.
+No unchanged-suite rerun or full regression is claimed.
+
+**Next gate, not an enabled exception.** Q13 must bind exact native component
+selection and terminal operations to the intended source state, prove full atom/
+charge/stereochemical and numerical agreement at both seeds and current sites,
+and include unaffected and held-out controls before any production exception.
+Any mapper compatibility policy must include the observed `iotbx.pdb` source and
+`iotbx_pdb_ext` binary identities in its versioned consumer/cache/replay contract;
+C194 records those additional pins but does not retrofit old qualification claims.
+Keep C152's distinct source-H/charge transition separate. Q04's ordinary caller,
+construction/source join and exclusive modifier owner remain open. Evidence:
+`native_hydrogen_mapping_diagnostic_2026_11_10`. Raw scientific and installed-source
+snapshots stay local; only methods and hash references ship.
+
 ### Surface existing generation diagnosis at acquisition failure (C193)
 
 When owned generation returns no retained candidate, acquisition now names the

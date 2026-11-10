@@ -28327,6 +28327,16 @@
         "Q06 actual refinement and Q07 mixed/held-out acceptance; source-H/native mapper issue remains Q13"
       ],
       "implementation_revision": "250b029ac0d00d416fe568d7b09b5f7df53dbe86"
+    },
+    "native_hydrogen_mapping_diagnostic": {
+      "status": "DIAGNOSTIC_CLOSED_PRODUCTION_GATE_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#native_hydrogen_mapping_diagnostic_2026_11_10",
+      "limitations": [
+        "Q13 exact source-component binding and terminal-modifier ownership before any mapper policy",
+        "Versioned mapper/source/extension consumer and cache/replay identity if a production policy is justified",
+        "Q04 ordinary caller, actual construction/source join and exclusive modifier owner",
+        "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls"
+      ]
     }
   },
   "audience": [

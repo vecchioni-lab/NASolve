@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C193.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C194.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -52,7 +52,7 @@ acceptance criteria.
 
 ## Pipeline position
 
-Current orientation after C193. This table summarizes the acceptance packages
+Current orientation after C194. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
@@ -289,7 +289,9 @@ Keep the scientific refusal. C192 fixes the misleading ownership/completion
 wording, names the failed seed and receipt, and preserves successful/failed
 historical outcomes through relocation. C193 also exposes C115's existing
 `SOURCE_HANDOFF`/`bond_orders` diagnosis at the earlier no-candidate boundary,
-without claiming recovery permission or changing any scientific refusal.
+without claiming recovery permission or changing any scientific refusal. C194
+separates the native mapper, effective-component and terminal-ownership boundaries
+with fresh unqualified diagnostics; its Q13 controls do not close this Q04 gate.
 Do not restart either request, invent another aromatic policy, or rename/remove
 source hydrogens to force acceptance. Cold replay preserves both outcomes.
 
@@ -512,8 +514,25 @@ candidate is retained, then both isolated seeds assert `HOP2!="HOP3"`. C121
 recorded the mapper assertion for DG. Preserve the exact C191 source, policy and
 consumer evidence under `full_model_source_owner_2026_11_10`; this is not proof
 that the source protonation is wrong, nor the same evidence as C152's source/
-candidate state difference. Diagnose the mapping before any scoped exception;
-do not delete or rename source hydrogens merely to bypass the native failure.
+candidate state difference. C194's fresh diagnostics isolate a missing HOP2
+translation entry, but adding that identity mapping alone exposes a second
+failure: loaded DA and effective native Ad differ, leaving HOP2 unexpected and
+without an energy type. Phenix's existing explicit per-residue CIF selection then
+refuses an O3′–HO3′ terminal bond conflict at both seeds. Preserve strict conflicts
+and both negative controls; neither is a qualified workaround. C166 5PC and C172
+PDU retain both phosphate H atoms, all 21 conditional checks and exact saved proxy
+signatures in the same experiment. Every experimental worker is rejected by
+ordinary authentication; no new qualification/runtime is published.
+
+The next native compatibility gate must join exact source-component consumption,
+terminal-modifier ownership and observed effective state before versioned worker/
+consumer/cache integration. Include mapper source and native-extension pins,
+legacy cold replay, both coordinate seeds, current linked sites, unaffected and
+held-out controls. Reuse the existing source-state/projection and process owner;
+do not create another hydrogen-name classifier or retry scheduler. Standard-name
+parser controls are not the Q07 modified-residue challenge. Do not delete or
+rename source hydrogens, force an energy type or relax conflict checks merely to
+bypass these failures. See the [C194 controls](cif-doctor.md#native-hydrogen-mapping-and-component-ownership-diagnostic-c194).
 
 Done per operation when exact allowed changes have source authority, independent
 native effective-state evidence, unaffected-site checks and a held-out graph.
@@ -585,7 +604,7 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. Subsequent checkpoints through C193 retain
+Cedar/pine/main merge candidate. Subsequent checkpoints through C194 retain
 focused validation, with native/cold evidence only where explicitly executed.
 The latest workflow profile is C193: 1,999 tests + 45 subtests; it is not a full
 suite. Preserve published evidence and archive owned
