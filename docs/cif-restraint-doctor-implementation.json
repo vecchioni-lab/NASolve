@@ -28197,7 +28197,8 @@
         "Ordinary caller and immutable checkpoint adoption",
         "Actual refinement consumer Q06",
         "Mixed/held-out and chemical-state controls Q07/Q13"
-      ]
+      ],
+      "implementation_revision": "7efacdc2bef4f667e36252f135bb23b95c993d71"
     }
   },
   "audience": [

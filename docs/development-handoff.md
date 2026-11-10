@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C182 validated: current selected-installation configuration
+## C182 published: current selected-installation configuration
 
 Base `e720111407fcd470fa1fe2124bd34480634fa6c5`; existing Cedar. Capsule
-`live_tests_directory/182_Cedar_current-configuration-e3h47ob5`. Implementation/validation complete; publication
-is next. The engine's explicit intake no longer needs settings borrowed from a test run.
+`live_tests_directory/182_Cedar_current-configuration-e3h47ob5`. Implementation/validation complete and published as
+`7efacdc2bef4f667e36252f135bb23b95c993d71`. The engine's explicit intake no longer needs settings borrowed from a test run.
 
 **Before → after:** callers manually assembled consumer fingerprints and generation
 settings. The new read-only factory derives them from the selected installation,

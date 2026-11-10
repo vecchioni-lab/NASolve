@@ -74243,7 +74243,7 @@
     "validated_utc": "2026-11-10T14:03:46.382614+00:00"
   },
   "current_phenix_configuration_2026_11_10": {
-    "status": "VALIDATED; PUBLICATION_PENDING",
+    "status": "PUBLISHED",
     "base_revision": "e720111407fcd470fa1fe2124bd34480634fa6c5",
     "changed_files": [
       "CHANGELOG.md",
@@ -74565,6 +74565,7 @@
       "Actual refinement consumer Q06",
       "Mixed/held-out and chemical-state controls Q07/Q13"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "7efacdc2bef4f667e36252f135bb23b95c993d71"
   }
 }
