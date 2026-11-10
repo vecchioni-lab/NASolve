@@ -108,7 +108,9 @@
 
 <a id="current-capability-boundary-c176"></a>
 
-## Current capability boundary (C177)
+<a id="current-capability-boundary-c177"></a>
+
+## Current capability boundary (C178)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -249,6 +251,30 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### Single-component ReadySet consumption (C178)
+
+The separate `audit_readyset_bundle_consumption` accepts one to sixteen selected
+components, matching the existing composition/request boundary. Every component
+still needs exact source and parameter coverage, model coverage, per-file argument
+ownership and the same eight observed consumption checks. One code can own several
+declared sites; singleton does not mean one residue. No receipt schema changes.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 consumes an independently requalified
+5PC heavy-coordinate diagnostic control. All eight consumption checks pass, but
+strict endpoint qualification retains the verified prepared model: the combined
+singleton dictionary serializes `_chem_comp` metadata as scalars and Phenix reads
+its DNA group as null. All chemical definition tables match; 27 of 28 endpoint
+checks pass. The exact effective-definition gate correctly refuses the endpoint.
+ReadySet also adds a trailing TER; the existing C140 serializer correctly refuses
+to remove a changed boundary. Neither gate is relaxed.
+
+The raw and missing-endpoint public runtimes preserve the original model and
+ordered dictionary/PHIL selection and replay cold with no historical path/SDK
+access. This proves consumption and safe fallback, **not a positive final endpoint
+or ordinary adoption**. C09 already solved the scalar metadata problem for linked
+preparation; reuse that loop policy at combination while preserving old receipts.
+Ordinary orchestration/checkpoints and actual refinement remain Q04/Q05/Q06.
 
 ### Prepared-PostMR request entry (C177)
 

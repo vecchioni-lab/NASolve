@@ -4082,3 +4082,8 @@ is a separate gate. The
 sources and invokes the existing initializer with both derived proofs. It adds
 no owner/schema and keeps qualification defaults mandatory. The selected native
 profile and ordinary PostMR continuation/adoption still need caller integration.
+
+C178 allows singleton component bundles through the existing ReadySet observer.
+Consumption success is separate from final native acceptance: exact group metadata
+loss and a changed TER boundary still refuse improvement, retaining the original
+verified runtime together. See the [contract](cif-doctor.md#single-component-readyset-consumption-c178).

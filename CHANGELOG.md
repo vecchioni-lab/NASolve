@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Single-component ReadySet consumption (C178)
+
+- Accept one selected component through the existing bundle ReadySet observer,
+  preserving exact coverage/argument/native checks and multiple sites per code.
+- Retain the complete verified starting runtime when an optional endpoint fails
+  or is unavailable. Actual singleton consumption passes, while a native metadata
+  mismatch remains a correctly rejected improvement pending the combination fix.
+- No new schema, migration, automatic adoption or changed scientific threshold.
+
 ### Prepared-PostMR request entry (C177)
 
 - Add an opt-in initializer joining ordinary source precedence, derived model/

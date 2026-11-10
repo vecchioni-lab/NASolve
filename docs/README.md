@@ -118,3 +118,7 @@ separate from combined-scaffold construction or ordinary refinement support.
 The [graph-bound native reaction adapter](cif-doctor.md#graph-bound-native-furanose-reaction-preparation-c144)
 now closes the selected ATL leaving-atom definition mismatch in explicit controls,
 while retaining the independent construction, geometry and ordinary-adoption gates.
+
+C178 [singleton ReadySet consumption](cif-doctor.md#single-component-readyset-consumption-c178)
+passes the existing observer boundary and retains a verified fallback when exact
+native metadata differs. The remaining combination fix must preserve old receipts.

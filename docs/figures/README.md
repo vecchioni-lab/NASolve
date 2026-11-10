@@ -421,3 +421,7 @@ C177 supplies ordinary source selection and derived context to the existing owne
 request box, with real fresh/hit/stale/repair/failure controls. It changes no owner
 or selection arrows. Ordinary invocation, ReadySet/checkpoint adoption and actual
 refinement remain open; the selected native profile is still explicit.
+
+C178 extends the same ReadySet box to singleton inputs. Actual consumption passes;
+failed exact native metadata readback takes the existing verified-fallback arrow.
+No new scientific acceptance, adoption or refinement arrow is implied.

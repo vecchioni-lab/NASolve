@@ -28159,6 +28159,12 @@
       "evidence_key": "postmr_request_entry_2026_11_10",
       "scope": "Ordinary-source prepared-model intake; caller profile and default adoption remain open",
       "implementation_revision": "7599ad9289d52effd9518ec3e84ef90889de4c5e"
+    },
+    "single_readyset_bundle": {
+      "status": "SINGLETON_CONSUMPTION_AND_FALLBACK_VALIDATED; FINAL_ENDPOINT_OPEN",
+      "milestone": "C178",
+      "evidence_key": "single_readyset_bundle_2026_11_10",
+      "scope": "Singleton consumption and exact fallback; combined metadata/ordinary adoption remain open"
     }
   },
   "audience": [

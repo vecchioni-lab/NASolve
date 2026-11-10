@@ -60,7 +60,10 @@ to one composer. Unsupported required inputs must never be discarded. The
 [prepared-PostMR entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
 now joins those proofs to ordinary source selection and the same recovery owner;
 its validated paths include fresh generation, reuse, stale qualification and
-truthful stopped failures. Enabling ordinary continuation remains integration work.
+truthful stopped failures. Enabling ordinary continuation remains integration work. The
+[single-component ReadySet boundary](docs/cif-doctor.md#single-component-readyset-consumption-c178)
+now uses the same observer/native checks; actual consumption and verified fallback
+pass, with a combined-metadata serialization issue still requiring repair.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

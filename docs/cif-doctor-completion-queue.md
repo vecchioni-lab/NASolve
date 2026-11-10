@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C177.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C178.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -141,9 +141,11 @@ selected runtime to ordinary PostMR orchestration, preserving the selected nativ
 profile, pre-construction source/producer lineage and exact NAR compiler intent.
 C177 closes source/request assembly and demonstrates the required acquisition
 outcomes through that API; it does not enable the ordinary default or checkpoint
-adoption. Coordinate the remaining caller integration with Q05. The separate
-ReadySet bundle adapter still needs its singleton boundary validated before it
-can consume every C174/C177 result. Do not add a second recovery owner.
+adoption. Coordinate the remaining caller integration with Q05. C178 validates singleton ReadySet consumption and cold verified fallback. The
+positive endpoint exposed the same scalar `_chem_comp` metadata loss solved by
+C09 in linked preparation: reuse its loop policy at the combined-dictionary
+boundary with explicit legacy replay. Preserve the exact native group gate and
+C140 TER-boundary refusal; no silently repaired historical evidence. Do not add a second recovery owner.
 
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary

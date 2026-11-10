@@ -3789,3 +3789,13 @@ generation. Relocated replay is independent of the original paths and SDK. The
 entry still requires a selected native profile; ordinary PostMR/ReadySet/checkpoint
 orchestration and actual diffraction refinement remain separate integration gates.
 See the [method and limits](cif-doctor.md#prepared-postmr-request-entry-c177).
+
+
+### One modified component still gets every check (C178)
+
+The diagnostic ReadySet path now handles a single modified component, including
+several sites sharing that code. An actual 5PC run passed consumption checks, but
+the final native reader lost a DNA metadata field in the combined CIF. The guard
+kept the independently verified starting inputs. This is a serialization issue
+already understood in C09, not grounds to weaken chemistry checks. The next repair
+must preserve both native metadata and the ability to replay old saved bundles.

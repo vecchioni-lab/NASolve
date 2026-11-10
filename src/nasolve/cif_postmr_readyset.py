@@ -326,7 +326,7 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
 def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,consumer,output,*,timeout_seconds=180,component_dictionaries=None):
     """Use the ordinary helper and strict checks for a declared component bundle.
 
-    The bundle must cover two to sixteen explicit components present in both
+    The bundle must cover one to sixteen explicit components present in both
     source and numerical inputs and at least one heavy model site per component.
     Optional per-component files must reproduce the exact combined bytes and
     are supplied as separate repeatable CIF arguments. It is a separate
@@ -334,10 +334,10 @@ def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,
     by the caller before choosing a result. No parameter, source or model is edited.
     """
     from .ligand_profiles import dictionary_component_codes,_parameterized_codes
-    if (not isinstance(components,(list,tuple)) or not 2<=len(components)<=16
+    if (not isinstance(components,(list,tuple)) or not 1<=len(components)<=16
             or any(not isinstance(c,str) or re.fullmatch('[A-Za-z0-9]{1,3}',c) is None for c in components)
             or len(set(components))!=len(components)):
-        raise ValueError('Require two to sixteen unique explicit bundle components')
+        raise ValueError('Require one to sixteen unique explicit bundle components')
     codes=set(components);observed={k[3] for k in _atoms(Path(model))}
     if (dictionary_component_codes(Path(source))!=codes or dictionary_component_codes(Path(dictionary))!=codes
             or _parameterized_codes(Path(dictionary))!=codes or not codes<=observed):

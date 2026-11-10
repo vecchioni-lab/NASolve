@@ -9,11 +9,14 @@ from nasolve.cif_dictionary_bundle import prepare_dictionary_bundle,read_diction
 from nasolve.cif_dictionary_bundle_readyset import readyset_endpoint_inputs,inspect_dictionary_bundle_readyset
 
 
-def control(tmp_path,monkeypatch,behavior='noop'):
+def control(tmp_path,monkeypatch,behavior='noop',*,single=False):
     from tests.test_cif_postmr_readyset import setup
     from nasolve.cif_postmr_readyset import audit_readyset_bundle_consumption
     fake=tmp_path/'fake';fake.mkdir();_,_,_,installation,consumer=setup(fake,monkeypatch,behavior)
     args=fixture(tmp_path,consumer=consumer)
+    if single:
+        from tests.test_cif_dictionary_bundle import select_single_component
+        args=select_single_component(args,tmp_path)
     # Put synthetic phosphate atoms at nondegenerate tetrahedra so the ordinary
     # helper's real geometry guards run. This does not qualify the fake numerics.
     lines=[];d=.924
@@ -101,3 +104,54 @@ def test_malformed_saved_argument_type_keeps_verified_start(tmp_path,monkeypatch
     review=inspect_dictionary_bundle_readyset(tmp_path/'bundle',tmp_path/'before',tmp_path/'after',tmp_path/'readyset')
     assert review['decision']['selected']=='verified_prepared_model'
     assert 'ReadySet model argument' in review['endpoint_error']
+
+
+def test_single_component_preserves_all_sites_and_replays_readyset_inputs_cold(tmp_path, monkeypatch):
+    from tests.test_cif_repair_attempt import inventory
+    b, installation = control(tmp_path, monkeypatch, single=True)
+    expected = readyset_endpoint_inputs(tmp_path/'bundle', tmp_path/'readyset')
+    r = json.loads((tmp_path/'readyset/readyset_consumption.json').read_bytes())
+    assert b['report']['components'] == ['ZZZ'] and b['report']['site_owners'] == {'A:1':'ZZZ', 'A:2':'ZZZ'}
+    assert r['components'] == ['ZZZ'] and set(r['component_inputs']) == {'ZZZ'}
+    assert len([a for a in r['ordinary_arguments'] if a.startswith('ready_set.input.cif_file_name=')]) == 1
+    assert r['status'] == 'READYSET_CACHED_INPUT_PASS' and not r['automatic_adoption']
+    assert len(expected['checks']) == 8 and all(expected['checks'].values())
+    assert len(expected['dictionaries']) == 2 and expected['native_options'] == {'full_monomer_inventory':True}
+    shutil.rmtree(installation.root)
+    for name in ('first', 'second'): shutil.rmtree(tmp_path/name)
+    (tmp_path/'model.pdb').unlink()
+    (tmp_path/'bundle').rename(tmp_path/'moved_bundle'); (tmp_path/'readyset').rename(tmp_path/'moved_readyset')
+    before = inventory(tmp_path)
+    with patch('subprocess.Popen', side_effect=AssertionError('Cold singleton reader must not execute')):
+        result = readyset_endpoint_inputs(tmp_path/'moved_bundle', tmp_path/'moved_readyset')
+    assert result['checks'] == expected['checks'] and inventory(tmp_path) == before
+
+
+@pytest.mark.parametrize('behavior', ['fail', 'builder', 'template', 'bad_actions', 'child'])
+def test_single_component_failed_improvement_keeps_independently_checked_start(tmp_path, monkeypatch, behavior):
+    control(tmp_path, monkeypatch, behavior, single=True)
+    # These synthetic transport tests do not manufacture native qualification.
+    # Actual singleton qualification is recorded separately in the live capsule.
+    monkeypatch.setattr('nasolve.cif_dictionary_bundle_readyset.inspect_dictionary_bundle_native', lambda *a:initial(True))
+    result = inspect_dictionary_bundle_readyset(tmp_path/'bundle', tmp_path/'before', tmp_path/'after', tmp_path/'readyset')
+    assert result['decision']['selected'] == 'verified_prepared_model' and result['endpoint_error']
+    assert not result['automatic_adoption'] and not result['decision']['requires_cif_review']
+
+
+@pytest.mark.parametrize('defect', ['empty', 'duplicate', 'too_many', 'wrong_owner', 'wrong_component'])
+def test_single_component_extension_keeps_scope_guards_before_execution(tmp_path, monkeypatch, defect):
+    from nasolve.cif_postmr_readyset import audit_readyset_bundle_consumption
+    from tests.test_cif_repair_attempt import inventory
+    b, installation = control(tmp_path, monkeypatch, single=True)
+    codes = ['ZZZ']; owners = b['component_dictionaries']
+    if defect == 'empty': codes = []
+    elif defect == 'duplicate': codes = ['ZZZ', 'ZZZ']
+    elif defect == 'too_many': codes = [f'{i:03d}' for i in range(17)]
+    elif defect == 'wrong_owner': owners = {'YYY': next(iter(owners.values()))}
+    elif defect == 'wrong_component': codes = ['YYY']
+    before = inventory(tmp_path)
+    with patch('subprocess.Popen', side_effect=AssertionError('Invalid scope must not execute')):
+        with pytest.raises(ValueError):
+            audit_readyset_bundle_consumption(b['source'], b['dictionary'], b['model'], codes,
+                installation, b['report']['consumer'], tmp_path/'bad', component_dictionaries=owners)
+    assert inventory(tmp_path) == before and not (tmp_path/'bad').exists()

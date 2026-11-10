@@ -11,6 +11,61 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C178 validated: singleton ReadySet boundary and truthful fallback
+
+Base `8924441c52d131b22124dfcd1abb987ba4f8094a`; existing Cedar. Capsule
+`live_tests_directory/178_Cedar_single-readyset-wig1us2n`. Implementation/validation complete; publication
+is next. Q05 prerequisite complete for consumption; positive native endpoint remains open.
+
+**Before → after:** the bundle observer rejected one selected component even
+though composition/request supported it. The minimum is now one, retaining all
+coverage, parameterization, per-component argument and observed execution checks.
+No source/native scientific gate changes and no new schema/migration.
+
+**History:** C139 separates observed consumption from endpoint qualification;
+C140 owns lossless serialization; C141 owns the public runtime. Actual native
+evidence exposed the C09 scalar component-list issue at combination, so reuse the
+existing one-row loop semantics with legacy compatibility in the next checkpoint.
+
+**Validation:** expected failing-before regression; 11 new cases.
+Affected **147 passed in 65.65s (0:01:05)**. Workflow **1690 passed, 45 subtests passed in 381.78s (0:06:21)**.
+All 627 source/test/script hashes stayed fixed. No full suite.
+Last completed full: C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c178_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c178_native.py native-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c178_native_summary.py
+PYTHONDONTWRITEBYTECODE=1 python c178_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** one observed ReadySet execution
+and three fresh full native captures. Independently checked starting 5PC passes;
+all eight consumption checks pass. Raw endpoint passes 27/28 checks but loses
+metadata group DNA→null, so it correctly selects `verified_prepared_model`.
+Chemical definition tables match exactly. Added TER also correctly prevents C140
+serialization. Public raw/missing-endpoint bundles retain the complete original
+selection. No positive final endpoint, automatic adoption, generation, Coot or
+diffraction refinement is claimed. First harness selected a stale snapshot and
+refused before native execution; its partial outputs remain intact.
+
+**Cold:** both public fallbacks and C177 fresh-generation/mixed-repair results
+replay from a relocated copied checkout with original copy absent and historical
+paths, SDK and execution denied. 1545 files retain bytes/mtimes. Original
+native and parent inputs are unchanged. No test/native job remains active.
+
+**Files/compatibility:** minimal observer range/docstring and regression module;
+current contract/queue/ledgers. Same receipt policies; no migration. Only source,
+tests, docs and evidence hashes enter Git; scientific data/logs/XML/runners remain
+local. Native formal charge remains unavailable under its existing contract.
+
+**Next:** repair combined singleton metadata using the proven C09 loop mechanism,
+version/replay old immutable serialization, then repeat fresh native endpoint
+controls. Keep TER boundaries exact, selected runtime ownership intact and
+ordinary adoption/refinement separate. Evidence key `single_readyset_bundle_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C177 published: ordinary sources into the prepared-model request
 
 Base `63d665edad9a53414feed745991de5615ede0c54`; existing Cedar. Capsule
