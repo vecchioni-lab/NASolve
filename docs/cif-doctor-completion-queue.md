@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C176.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C177.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -134,15 +134,17 @@ as competing next-step instructions here.
 | One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. The separate ReadySet round-trip adapter still requires 2–16. |
 | Prepared-model context | C175 derives all selected sites and audited whole-model links from canonical prepared coordinates and frozen terminal/backbone intent, then freezes/rederives the proof. Linked/free-OH synthetic and isolated 5PC/PDU native controls pass. C176 extends the canonical bridge with explicit PHIL ownership; nonstandard backbone adapters remain open. |
 | Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. Unsupported PHIL and unowned pre-existing modifiers refuse. |
+| Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. This API remains opt-in with explicit native profile/recipe settings. |
 
-**Next bounded checkpoint:** connect ordinary source/cache acquisition and a
-prepared model/explicit NAR policy to the existing complete request, reusing the
-C175/C176 context contracts. Do not loosen the legacy cache filter or create a
-second recovery owner.
-Keep source precedence, exact recipe/consumer checks, persistent attempt identity
-and independent usable-original proof. Exercise current hit, stale qualification,
-miss, classified repair failure and no-usable result through that entry point;
-do not implement a second acquisition loop or relax the old cache filter by itself.
+**Next bounded checkpoint:** connect the validated prepared-model intake and
+selected runtime to ordinary PostMR orchestration, preserving the selected native
+profile, pre-construction source/producer lineage and exact NAR compiler intent.
+C177 closes source/request assembly and demonstrates the required acquisition
+outcomes through that API; it does not enable the ordinary default or checkpoint
+adoption. Coordinate the remaining caller integration with Q05. The separate
+ReadySet bundle adapter still needs its singleton boundary validated before it
+can consume every C174/C177 result. Do not add a second recovery owner.
+
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
 ReadySet continuation and immutable checkpoint adoption remain **Q05**.
@@ -162,13 +164,13 @@ The C174 integration-seam audit narrows the next implementation boundary:
    both to the same site. Preserve NAR targets and keep its stacking/pair edges
    distinct from covalent backbone links. C84's frozen-fixture context helper is
    evidence to reuse carefully, not a generic topology oracle.
-3. Exercise that bridge through the owned request before enabling ordinary
-   continuation. The newly mutated-model route additionally crosses pre-Coot
+3. C177 exercises that bridge through the owned request. Before enabling ordinary
+   continuation, preserve the complete selected artifact contract. The newly mutated-model route additionally crosses pre-Coot
    source acquisition and post-construction qualification; retain its source,
    producer and generation-attempt lineage across that boundary under Q05.
 
-C175/C176 are explicit context APIs; the remaining ordinary integration is planned,
-not an enabled default.
+C177 is the explicit prepared-model intake using C175/C176 context APIs;
+ordinary orchestration and selected-runtime adoption are not enabled defaults.
 
 **Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not
 qualify zero-context geometry or optional nonbonded-inventory captures. A required

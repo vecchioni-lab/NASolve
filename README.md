@@ -56,7 +56,11 @@ derives canonical backbone/site declarations from frozen intent and audited
 connectivity, then rechecks them on replay. An
 [ordered-restraint extension](docs/cif-doctor.md#ordered-explicit-restraint-context-c176)
 preserves supported explicit NARestraints/PHIL inputs and leaves site modifications
-to one composer. Unsupported required inputs must never be discarded.
+to one composer. Unsupported required inputs must never be discarded. The
+[prepared-PostMR entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
+now joins those proofs to ordinary source selection and the same recovery owner;
+its validated paths include fresh generation, reuse, stale qualification and
+truthful stopped failures. Enabling ordinary continuation remains integration work.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

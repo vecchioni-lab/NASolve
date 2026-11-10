@@ -11,6 +11,76 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C177 validated: ordinary sources into the prepared-model request
+
+Base `63d665edad9a53414feed745991de5615ede0c54`; existing Cedar. Capsule
+`live_tests_directory/177_Cedar_postmr-request-gpexkzed`. Implementation/validation complete; publication
+is next. Q04 source/request assembly is validated; ordinary orchestration and
+selected-runtime continuation remain Q04/Q05. Q06 owns actual refinement.
+
+**Before → after:** callers had to freeze sources and hand-assemble model/site/
+PHIL context separately. The new prepared-PostMR initializer derives both proofs,
+freezes ordinary source precedence and uses the existing complete request. It
+exposes bounded limits while keeping full-model and independent original
+qualification plus classified optional-failure defaults mandatory. No second owner,
+legacy cache-filter relaxation, inferred phosphate state or adopted coordinates.
+
+**Prior work:** C168 source freezer, C158/C159 current/stale/miss/retained acquisition,
+C171 owner and C175/C176 proofs. The old PostMR cache remains reuse-only. There is
+no family dispatch or new repair algorithm in this change. Caller-selected native
+consumer/producer pins remain explicit; default profile/orchestration is not claimed.
+
+**Validation:** three expected missing-module failures before implementation;
+31 new cases. Affected: **366 passed in 183.54s (0:03:03)**.
+Workflow: **1679 passed, 45 subtests passed in 384.70s (0:06:24)**. Final 627 source/test/script
+hashes remained fixed. No full suite, as requested. Last completed full baseline:
+C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c177_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c177_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c177_native.py native-r2 optional-fallback no-usable generation-failure
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c177_native_summary.py
+PYTHONDONTWRITEBYTECODE=1 python c177_cold.py cold-r1
+```
+
+Exact interpreter/pytest commands are retained in capsule result JSON and ledger.
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution:** fresh 5PC generation
+then graph-selected repair qualifies; exact hit and stale requalification select
+the same repaired class. Retained PDU/5PC repair preserves both ordered PHIL files.
+Stopped optional-native failure retains an independently qualified original;
+without usable original proof, the result is `NO_USABLE_BUNDLE`. A one-second PDU
+generation failure preserves its exhausted single attempt and refuses retry without
+mutation. A 0.1-second optional-native cap and one-second generation/original-derivative
+caps use actual maintained workers/cleanup; stale descriptor
+control uses the same SDK and does not claim a real upgrade. All children stop,
+models/parents keep bytes, and no ReadySet, Coot or diffraction refinement runs.
+Summed owned-attempt duration 150.991s. Python 3.12.14, pytest 9.1.1,
+NARestraints 1.1.3, macOS arm64.
+
+**Cold:** all seven controls and C171–C176 replay from a relocated copied checkout,
+with original copy absent and historical paths/SDK/execution denied. All
+5986 files retain bytes/mtimes and parent bindings, including failed
+and no-usable outcomes. No test/native jobs remain active at this checkpoint.
+
+**Files/schema/compatibility:** new entry module/tests, workflow profile and current
+contracts/queue/ledgers. Existing C175/C176 request fields/readers suffice; no new
+schema or migration. Source/tests/docs/hash references enter Git; models, CIFs,
+native output, scripts and XML remain local. The first one-second optional-native
+control completed in 0.84s, so its failure assertion
+correctly refused. Its successful output remains intact; only the three pending
+failure controls ran fresh with the shorter optional-native cap.
+
+**Limits/next:** the entry is opt-in, with selected native profile and producer
+settings supplied by the caller. Preserve NAR compiler and pre-Coot source lineage
+when wiring ordinary continuation. Validate the ReadySet singleton boundary, then
+pass the selected effective runtime through final qualification and immutable
+checkpoint adoption. Existing canonical model/explicit PHIL limits remain; mixed
+and held-out chemistry/refinement are not established by isolated controls.
+Evidence key `postmr_request_entry_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C176 published: exact restraint inputs and one modifier owner
 
 Base `6f7aada2a17a997b54100bb303d88bc01d613733`; existing Cedar. Capsule

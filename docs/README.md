@@ -18,7 +18,8 @@ milestone statements preserve their original scope; they are not a second queue.
   optional-native failures to reach independent original qualification; C174 uses
   the same path for one selected component. C175 derives/replays prepared-model
   context; C176 binds exact ordered explicit PHIL with one composer modifier owner.
-  Ordinary source/cache entry-point integration remains open.
+  C177 joins ordinary source selection and those proofs to the existing request;
+  ordinary orchestration and selected-runtime adoption remain open.
   Native controls and cold replay are
   qualified in the [methods](cif-doctor.md#one-selected-component-through-the-complete-request-c174)
   and [evidence ledger](cif-linked-native-registration-evidence.json). Ordinary

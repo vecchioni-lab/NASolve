@@ -28152,6 +28152,12 @@
       "evidence_key": "ordered_restraint_context_2026_11_10",
       "scope": "Exact ordered explicit PHIL and one composer modifier owner; ordinary integration open",
       "implementation_revision": "3802599adc1b89a7b1da98cc95f72894161c5918"
+    },
+    "postmr_request_entry": {
+      "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
+      "milestone": "C177",
+      "evidence_key": "postmr_request_entry_2026_11_10",
+      "scope": "Ordinary-source prepared-model intake; caller profile and default adoption remain open"
     }
   },
   "audience": [

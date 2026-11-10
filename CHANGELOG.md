@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepared-PostMR request entry (C177)
+
+- Add an opt-in initializer joining ordinary source precedence, derived model/
+  ordered-PHIL proofs and the existing complete dictionary request. Preserve
+  partial outputs and share the same cache, acquisition, repair and attempt owner.
+- Keep independent original qualification, full-model native checks and classified
+  optional-failure policy mandatory. Reject manual context overrides, unsupported
+  gates/limits and overlapping destinations before native work.
+- Reuse existing request schemas; no migration, legacy cache-filter change,
+  automatic PostMR adoption or refinement-default change.
+
 ### Ordered explicit restraint context (C176)
 
 - Bind exact ordered explicit bond/angle/parallelity inputs to prepared-model

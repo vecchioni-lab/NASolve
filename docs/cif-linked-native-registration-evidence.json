@@ -71919,5 +71919,524 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-10T12:21:53.172181+00:00"
+  },
+  "postmr_request_entry_2026_11_10": {
+    "milestone": "C177",
+    "status": "FOCUSED_NATIVE_COLD_VALIDATED; ORDINARY_ORCHESTRATION_OPEN",
+    "base_revision": "63d665edad9a53414feed745991de5615ede0c54",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Separate source freezing and manually joined model/PHIL request context",
+    "after": "Prepared-PostMR entry derives proofs and freezes ordinary source precedence into the existing complete request",
+    "prior_work": [
+      "C168 ordinary source freezer",
+      "C158/C159 acquisition",
+      "C171 owner",
+      "C175/C176 proofs"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_postmr_request.py",
+      "tests/test_cif_postmr_request.py"
+    ],
+    "schemas": "No new schema; existing C175/C176 proof fields/readers",
+    "compatibility": "Opt-in API; existing cache/defaults/legacy readers unchanged; no migration",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 27017,
+        "runner_pid": 27003,
+        "phase": "before-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_postmr_request.py::test_entry_freezes_ordinary_sources_and_both_derived_contexts_without_execution",
+          "tests/test_cif_postmr_request.py::test_entry_uses_existing_cache_owner_and_keeps_fresh_attempts_cold",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/177_Cedar_postmr-request-gpexkzed/before-r1.xml"
+        ],
+        "started_utc": "2026-11-10T12:24:02.815301+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 1.357,
+        "sources_unchanged": true,
+        "source_files": 626
+      },
+      "new_cases": 31,
+      "affected": {
+        "active": false,
+        "pid": 27295,
+        "runner_pid": 27281,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_acquisition_sources.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_cif_postmr_cache.py",
+          "tests/test_cif_model_context.py",
+          "tests/test_cif_restraint_context.py",
+          "tests/test_cif_generation_acquisition.py",
+          "tests/test_cif_retained_acquisition.py",
+          "tests/test_postmr_cache_workflow.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/177_Cedar_postmr-request-gpexkzed/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-10T12:26:25.784160+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 183.738,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "affected_summary": "366 passed in 183.54s (0:03:03)",
+      "focused": {
+        "active": false,
+        "pid": 29509,
+        "runner_pid": 29494,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/177_Cedar_postmr-request-gpexkzed/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-10T12:30:05.193063+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 385.069,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "focused_summary": "1679 passed, 45 subtests passed in 384.70s (0:06:24)",
+      "source_files": 627,
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "status": "PASS",
+      "controls": {
+        "miss": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "acquisitions": {
+            "5PC": "PREPARED_AND_FROZEN"
+          },
+          "request": "native-r1/miss/request",
+          "all_children_stopped": true,
+          "ordered_phils": 0,
+          "model_bytes_unchanged": true,
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient",
+            "repaired-gradient"
+          ]
+        },
+        "hit": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "acquisitions": {
+            "5PC": "REUSED"
+          },
+          "request": "native-r1/hit/request",
+          "all_children_stopped": true,
+          "ordered_phils": 0,
+          "model_bytes_unchanged": true,
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient",
+            "repaired-gradient"
+          ]
+        },
+        "stale": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "acquisitions": {
+            "5PC": "REQUALIFIED_AND_FROZEN"
+          },
+          "request": "native-r1/stale/request",
+          "all_children_stopped": true,
+          "ordered_phils": 0,
+          "model_bytes_unchanged": true,
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient",
+            "repaired-gradient"
+          ]
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "acquisitions": {
+            "5PC": "PREPARED_AND_FROZEN",
+            "PDU": "PREPARED_AND_FROZEN"
+          },
+          "request": "native-r1/repair/request",
+          "all_children_stopped": true,
+          "ordered_phils": 2,
+          "model_bytes_unchanged": true,
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-002",
+            "native-baseline",
+            "original-gradient",
+            "repaired-gradient"
+          ]
+        },
+        "optional-fallback": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "acquisitions": {
+            "5PC": "PREPARED_AND_FROZEN",
+            "PDU": "PREPARED_AND_FROZEN"
+          },
+          "request": "native-r2/optional-fallback/request",
+          "all_children_stopped": true,
+          "ordered_phils": 2,
+          "model_bytes_unchanged": true,
+          "native_phases": [
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient"
+          ]
+        },
+        "no-usable": {
+          "status": "NO_USABLE_BUNDLE",
+          "selected": null,
+          "acquisitions": {
+            "5PC": "PREPARED_AND_FROZEN",
+            "PDU": "PREPARED_AND_FROZEN"
+          },
+          "request": "native-r2/no-usable/request",
+          "all_children_stopped": true,
+          "ordered_phils": 2,
+          "model_bytes_unchanged": true,
+          "native_phases": [
+            "native-000",
+            "native-001",
+            "native-baseline",
+            "original-gradient"
+          ]
+        },
+        "generation-failure": {
+          "status": "EXPECTED_STOPPED_FAILURE; NO_RUNTIME",
+          "exception": "ValueError",
+          "message": "Generation has no retained candidate; retained attempt requires separate recovery",
+          "outer_attempts": 1,
+          "generation_attempts": 1,
+          "partial_outputs_preserved": true,
+          "retry_refused_without_mutation": true,
+          "request": "native-r2/generation-failure/request"
+        }
+      },
+      "supplementary_completed_control": {
+        "request": "native-r1/optional-fallback/request",
+        "status": "SUCCESSFUL_CONTROL; ONE_SECOND_CAP_DID_NOT_TRIGGER_FAILURE",
+        "native_elapsed_seconds": 0.8385442089929711
+      },
+      "owned_attempt_seconds": 150.990762,
+      "generation_5PC": {
+        "status": "COMPLETED",
+        "timeout_seconds": 120,
+        "returncode": 0,
+        "elapsed_seconds": 10.895514
+      },
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "ORDINARY_SOURCE_ENTRY_TO_EXISTING_OWNER; NOT_DEFAULT_ADOPTION",
+      "fault_injection": "Fresh failure controls use 0.1-second optional-native cap and one-second generation/original-derivative caps; actual workers. Earlier one-second optional control completed and is retained. Stale descriptor uses same SDK, not an upgrade."
+    },
+    "relocation": {
+      "status": "PASS",
+      "cases": {
+        "miss": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle"
+        },
+        "hit": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle"
+        },
+        "stale": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle"
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle"
+        },
+        "optional-fallback": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle"
+        },
+        "no-usable": {
+          "status": "NO_USABLE_BUNDLE",
+          "selected": null
+        },
+        "generation-failure": {
+          "status": "EXPECTED_STOPPED_FAILURE; NO_RUNTIME"
+        },
+        "legacy176": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle"
+        },
+        "legacy175": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle"
+        },
+        "legacy174": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle"
+        },
+        "legacy173": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle"
+        },
+        "legacy172": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle"
+        },
+        "legacy171": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle"
+        }
+      },
+      "parent_binding_preserved": true,
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 5986
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/start.json",
+        "sha256": "60bc8926bde75bcdee37bd15313b656e8a163e0fbdcbfba8d038db1b13489336",
+        "size": 460
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/before-r1-result.json",
+        "sha256": "d8492664da306872ecbfa9034ee2a1eaa72a2a17eb56c1091cb3744fc1688dcb",
+        "size": 768
+      },
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/affected-r1-result.json",
+        "sha256": "d5d2cbf31da3ceca05b16d71f2d6856379b81976f0b644a7d5e7e752a2e88a7f",
+        "size": 974
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/affected-r1-sources.json",
+        "sha256": "c7af8410aa45e75b6b1207a6e2d15d6cc58edff045eec4400af5db3d55c95098",
+        "size": 68464
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/focused-r1-result.json",
+        "sha256": "1f1a8991074383cf8292a02a11c5eae8b4c8ea69c51b71fc4a625c1024037338",
+        "size": 493
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/focused-r1-sources.json",
+        "sha256": "c7af8410aa45e75b6b1207a6e2d15d6cc58edff045eec4400af5db3d55c95098",
+        "size": 68464
+      },
+      "native-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-summary.json",
+        "sha256": "aff39fc4e3b4839f02866a75c8c643d1f417d0b6764a7931f221e389da5f677e",
+        "size": 4461
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r1/runtime-sources.json",
+        "sha256": "a8a0b496b461036276ad0b931b09e8d5b659d3c0f62705bb7121fcba259157b2",
+        "size": 22534
+      },
+      "native-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r1/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r2/summary.json",
+        "sha256": "43aa5373ba3e646374f3f404ffb3fce0ad09096da19f7db6198c9d827cdaebf6",
+        "size": 1872
+      },
+      "native-r2/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r2/runtime-sources.json",
+        "sha256": "a8a0b496b461036276ad0b931b09e8d5b659d3c0f62705bb7121fcba259157b2",
+        "size": 22534
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/cold-r1/summary.json",
+        "sha256": "e5c0c6b2b6a52e7a9dc96d7422422cd7c4de833345f6002ce6fae6cc1c094752",
+        "size": 1682
+      },
+      "native-r1/miss/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r1/miss/request/request.json",
+        "sha256": "45fdea368982a75229f75d184d47a69976699024d91b8b3bdb4e5b7bef4366da",
+        "size": 27942
+      },
+      "native-r1/hit/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r1/hit/request/request.json",
+        "sha256": "5202caf3d542b87bd85afd21a6b56011aece0ec61f2c939e08702c7437168822",
+        "size": 27942
+      },
+      "native-r1/stale/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r1/stale/request/request.json",
+        "sha256": "3fb01ad5f7a2917514664e461f127738eabe4de179ef46473fbf3e21d444309a",
+        "size": 27970
+      },
+      "native-r1/repair/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r1/repair/request/request.json",
+        "sha256": "a94097471da150c7f64457a4a5802a24f3000e98f7fa5f15595098830bb1f2d2",
+        "size": 56681
+      },
+      "native-r2/optional-fallback/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r2/optional-fallback/request/request.json",
+        "sha256": "e90f651efe45021ea146917d42eb33bb2c7c7a5643a78759bbfe4e6c0d745dc4",
+        "size": 56681
+      },
+      "native-r2/no-usable/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r2/no-usable/request/request.json",
+        "sha256": "5a583b86f787217602d5f239a046c22da3684101d69979cd2f8ef286590e41da",
+        "size": 56679
+      },
+      "native-r2/generation-failure/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "177_Cedar_postmr-request-gpexkzed/native-r2/generation-failure/request/request.json",
+        "sha256": "350d7eb28032b72c1e6c3ab7d777eca2d9d000a9239beccc2a01a9c16d21f3cb",
+        "size": 27627
+      }
+    },
+    "commands": [
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_postmr_request.py",
+        "tests/test_cif_complete_request.py",
+        "tests/test_cif_acquisition_sources.py",
+        "tests/test_cif_acquisition_attempt.py",
+        "tests/test_cif_postmr_cache.py",
+        "tests/test_cif_model_context.py",
+        "tests/test_cif_restraint_context.py",
+        "tests/test_cif_generation_acquisition.py",
+        "tests/test_cif_retained_acquisition.py",
+        "tests/test_postmr_cache_workflow.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/177_Cedar_postmr-request-gpexkzed/affected-r1.xml"
+      ],
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/177_Cedar_postmr-request-gpexkzed/focused-r1.xml"
+      ],
+      [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONPATH=src",
+        "python",
+        "c177_native.py",
+        "native-r1"
+      ],
+      [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONPATH=src",
+        "python",
+        "c177_native.py",
+        "native-r2",
+        "optional-fallback",
+        "no-usable",
+        "generation-failure"
+      ],
+      [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONPATH=src",
+        "python",
+        "c177_native_summary.py"
+      ],
+      [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "python",
+        "c177_cold.py",
+        "cold-r1"
+      ]
+    ],
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "na_restraints": "1.1.3",
+      "phenix_build": "2.2.1-6174",
+      "phenix_dispatcher": "2.2.1",
+      "platform": "macOS arm64"
+    },
+    "redundancy_review": "No new owner, cache filter or repair algorithm; reuse ordinary source selection and complete request",
+    "artifacts": "Source/tests/docs/hash references only; science/logs/XML/runners/checkouts remain local",
+    "limitations": [
+      "Explicit native profile/producer settings; ordinary orchestration/adoption open",
+      "Existing canonical model and explicit PHIL limits",
+      "No ordinary ReadySet or diffraction refinement evidence",
+      "No full regression"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-10T12:38:26.404638+00:00"
   }
 }

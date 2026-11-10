@@ -415,3 +415,9 @@ C176 extends the same prepared-model input with exact ordered explicit PHIL and
 composer-only modifier ownership. It closes that input-binding boundary, while
 ordinary source/cache entry, adoption and actual refinement remain open arrows.
 Native request realization is still independently checked; no diagram flow changes.
+
+
+C177 supplies ordinary source selection and derived context to the existing owned
+request box, with real fresh/hit/stale/repair/failure controls. It changes no owner
+or selection arrows. Ordinary invocation, ReadySet/checkpoint adoption and actual
+refinement remain open; the selected native profile is still explicit.

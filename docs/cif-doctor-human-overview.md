@@ -3771,3 +3771,21 @@ maintained mixed-policy compiler fixture and actual original/repaired PDU/5PC
 controls pass, with unchanged NAR input bytes and cold legacy replay. This adds
 input ownership, not automatic PostMR adoption or new diffraction evidence.
 See the [method and limits](cif-doctor.md#ordered-explicit-restraint-context-c176).
+
+
+### Joining source selection to recovery (C177)
+
+An opt-in prepared-model entry now selects sources by the ordinary precedence,
+derives exact model/restraint intent and freezes one complete request. The same
+engine handles current cache hits, stale qualification, bounded generation and
+repair. Every attempt stays immutable; a failed optional improvement can retain
+an independently usable original, while unavailable proof yields no usable result.
+
+**Methods.** Reuse the maintained source freezer and C175/C176 proofs without
+loosening the old cache helper. Actual fresh 5PC generation requires and passes
+general numerical repair; current/stale and retained PDU/5PC controls pass. Actual
+worker timeout controls verify fallback, no-usable outcomes and preserved exhausted
+generation. Relocated replay is independent of the original paths and SDK. The
+entry still requires a selected native profile; ordinary PostMR/ReadySet/checkpoint
+orchestration and actual diffraction refinement remain separate integration gates.
+See the [method and limits](cif-doctor.md#prepared-postmr-request-entry-c177).

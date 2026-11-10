@@ -4077,4 +4077,8 @@ legacy explicit declarations. The
 ordered explicit PHIL as `configuration.restraint_context`; it binds exact targets
 and model identities while reserving site modifications for the composer. It
 refuses unsupported/competing inputs rather than omitting them. Native realization
-is a separate gate. Ordinary source/cache entry and adoption remain open.
+is a separate gate. The
+[C177 entry](cif-doctor.md#prepared-postmr-request-entry-c177) freezes ordinary
+sources and invokes the existing initializer with both derived proofs. It adds
+no owner/schema and keeps qualification defaults mandatory. The selected native
+profile and ordinary PostMR continuation/adoption still need caller integration.
