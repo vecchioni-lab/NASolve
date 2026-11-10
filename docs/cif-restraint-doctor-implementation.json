@@ -28346,7 +28346,8 @@
         "Q04 bind consumed construction source/producer evidence to C189 complete request and one modifier owner",
         "Q05 selected immutable checkpoint adoption; Q06 actual refinement; Q07 mixed and held-out controls",
         "C194/Q13 native atom mapping, source-component binding and terminal conflicts remain separate"
-      ]
+      ],
+      "implementation_revision": "2c4864069ff42a5589c7f589a8063ccecc9064b4"
     }
   },
   "audience": [

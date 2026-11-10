@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C195 validated: ordinary construction consumes frozen dictionaries
+## C195 published: ordinary construction consumes frozen dictionaries
 
-Base `2f10f4cb3d6a3316d2e99eb492964ce6f6e0ecc4`; existing Cedar. Implementation complete; publication is next.
+Base `2f10f4cb3d6a3316d2e99eb492964ce6f6e0ecc4`; existing Cedar. Implementation complete and published as
+`2c4864069ff42a5589c7f589a8063ccecc9064b4`.
 Stop boundary **2026-11-10 23:12 UTC**. All checks stopped; capsule:
 `live_tests_directory/195_Cedar_frozen-construction-sources-y8sbbxd0`.
 

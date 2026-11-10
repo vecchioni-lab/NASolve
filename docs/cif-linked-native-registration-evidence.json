@@ -79114,7 +79114,7 @@
     }
   },
   "frozen_construction_sources_2026_11_10": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "base_revision": "2f10f4cb3d6a3316d2e99eb492964ce6f6e0ecc4",
     "branch": "cedar",
     "date": "2026-11-10",
@@ -79421,6 +79421,7 @@
         "sha256": "d7b4d3c52c454ed2164af3ca42070b26e330f7cfd0783dbea3d6ab64dd851147",
         "size": 207
       }
-    }
+    },
+    "implementation_revision": "2c4864069ff42a5589c7f589a8063ccecc9064b4"
   }
 }
