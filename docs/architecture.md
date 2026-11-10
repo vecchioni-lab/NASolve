@@ -4064,3 +4064,13 @@ evidence keeps the qualified starting diagnostic; a damaged start is refused.
 Strict ordered proxies are unchanged: harmless-looking atom reorderings still
 need a separate equivalence proof. No automatic ordinary adoption or checkpoint
 migration follows. See the [contract](cif-doctor.md#qualified-component-bundles-and-final-readyset-readback-c139).
+
+
+### Prepared-model dictionary context
+
+The opt-in [C175 bridge](cif-doctor.md#prepared-model-context-bridge-c175) reuses
+ordinary phosphate/backbone intent and geometry checks to derive canonical site
+declarations. A complete request can freeze this in `configuration.model_context`
+and reconstruct it from copied inputs before work/readback. Absence preserves
+legacy explicit declarations. This initial bridge excludes supplementary PHIL;
+NAR membership, single modifier ownership and ordinary adoption remain open.

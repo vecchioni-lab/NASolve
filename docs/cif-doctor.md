@@ -102,7 +102,9 @@
 
 <a id="current-capability-boundary-c158"></a>
 
-## Current capability boundary (C174)
+<a id="current-capability-boundary-c174"></a>
+
+## Current capability boundary (C175)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -124,7 +126,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. | Ordinary cache-miss entry-point integration remains Q04; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175 derives and replays canonical prepared-model context without supplementary PHIL. | NAR/modifier ownership and ordinary cache-miss entry-point integration remain Q04; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -243,6 +245,57 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### Prepared-model context bridge (C175)
+
+`cif_model_context.derive_prepared_model_context(model, report, components)` is a
+read-only bridge from a prepared PDB and frozen ordinary `post_mr_plan` to the
+explicit complete request. It returns every occurrence of each selected component,
+all audited model backbone links, per-site end states, the model hash, minimal
+phosphate/backbone intent and the existing phosphate audit. Coordinates,
+dictionaries and the source report are unchanged. This is **not source-chemistry
+qualification** and does not approve an experimental phosphate state.
+
+The compiler reuses `requested_op3_sites`, `requested_backbone_policy`,
+`audit_phosphates` and the existing unbranched-link validator. An incoming O3′–P
+link must pass the established phosphate geometry audit. A free 5′-OH site's
+outgoing link comes from its partner's verified incoming link. Numbering,
+sequence adjacency and NAR pairing/stacking cannot create covalent links.
+Unexplained nearby O3′/P contacts across chain/TER boundaries or within a residue
+refuse using the existing phosphate distance bound. No threshold changes.
+
+Terminal OP3 still needs explicit frozen consent. Unrequested OP3, contradictory
+recipe/PostMR intent, incomplete endpoints, ambiguous contacts, cycles, aliases,
+alternate conformations, insertion codes and MODEL records refuse. This initial
+adapter requires canonical standard backbone names. Nonstandard/PNA/phosphorothioate
+contexts remain targets needing qualified adapters, not permanently excluded
+chemistry. All phosphorus sites are audited, including unselected components;
+an unrelated inorganic phosphate can therefore require a broader adapter.
+
+Supply the returned `contexts[code]` for each component, `expected_links` for the
+request, and the entire record as `initialize_dictionary_request(...,
+model_context=record)`. Every inspection/execution/result read reconstructs it
+from the copied model and frozen intent, checking exact source-code/site/link
+coverage before work. Schema-1 policy `cif-prepared-model-context-v1` is stored as
+optional `configuration.model_context`. Present-field requests require C175
+readers; absence retains legacy explicit-declaration semantics without rewriting.
+
+This bridge currently requires `custom_restraints='absent'` and no supplementary
+PHIL. **Never drop requested NAR restraints to fit this adapter.** Exact NAR/PHIL
+binding and one owner for legacy/composed site modifications remain the next Q04
+boundary. The existing explicit API retains its prior ordered PHIL contract.
+There is no ordinary PostMR default change, new acquisition/process owner,
+source classification, stereo approval or ReadySet/checkpoint adoption.
+
+Focused synthetic tests cover linked chains, free 5′-OH, all selected sites,
+whole-model links, consent, cross-boundary ambiguity, rehashed tampering,
+immutable attempt lineage and relocation. Actual Phenix 2.2.1-6174 / dispatcher
+2.2.1 controls derive new isolated 5PC/PDU contexts and select independently
+qualified original/repaired runtimes. Model/source bytes and prior evidence are
+unchanged. These are diagnostic executions, not generation, ReadySet, Coot,
+diffraction refinement or native linked-polymer proof. New and C171–C174 requests
+replay cold with the original copy absent and historical paths/SDK/execution
+denied. The full suite is deferred; the handoff/ledger records exact results.
 
 ### One selected component through the complete request (C174)
 

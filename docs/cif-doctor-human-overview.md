@@ -3738,3 +3738,20 @@ refinement-consumer qualification remain in the queue. See the
 [independent-original method](cif-doctor.md#independently-qualified-originals-and-no-repair-requests-c172).
 The [complete-request contract](cif-doctor.md#complete-frozen-dictionary-requests-c171)
 records the scope, limits and validation.
+
+
+### Deriving site context without changing the model (C175)
+
+The prepared-model bridge converts frozen terminal/backbone intent and checked
+coordinates into exact site declarations for the existing request. It retains
+every selected occurrence and reconstructs the result from copied inputs on
+replay. A numbering gap or NAR stacking relation never creates a covalent bond.
+
+**Methods.** Existing phosphate intent/geometry readers establish incoming O3′–P
+links; reciprocal links define outgoing endpoints. Unexplained contacts and missing
+OP3 consent refuse. Source chemistry and full native proof remain independent
+requirements. Focused linked/free-OH tests and actual isolated 5PC original/PDU
+repair executions pass, including new/legacy relocated replay. Exact NAR/PHIL
+membership and one modifier owner remain open; this first adapter accepts no
+supplementary PHIL and does not change ordinary PostMR, ReadySet or refinement.
+See the [method and limits](cif-doctor.md#prepared-model-context-bridge-c175).

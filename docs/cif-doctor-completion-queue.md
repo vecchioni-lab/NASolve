@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-09, after C174.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C175.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -132,9 +132,11 @@ as competing next-step instructions here.
 | Scientific selection and immutable output | C160/C172 share source/site/full-native/derivative checks, selector and publisher. No-graph originals need independent proof. Only qualified selected model/CIF/PHIL bundles publish; negative results can truthfully return no usable bundle. |
 | Optional failure and original fallback | C173 binds optional native timeout or complete failed/unsupported worker evidence to the exact known-stopped job, declared inputs and maintained worker. Current consumer and independent original proof remain mandatory. Valid negative attribution/derivative results use the existing selector. Initial failures, malformed/contradictory reports, interruption and unknown cleanup remain blocking. No retry or renewed allowance. |
 | One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. The separate ReadySet round-trip adapter still requires 2–16. |
+| Prepared-model context | C175 derives all selected sites and audited whole-model links from canonical prepared coordinates and frozen terminal/backbone intent, then freezes/rederives the proof. Linked/free-OH synthetic and isolated 5PC/PDU native controls pass. Supplementary PHIL, NAR/modifier ownership and nonstandard backbones remain outside this first adapter. |
 
-**Next bounded checkpoint:** connect ordinary source/cache acquisition to this
-existing complete request, using declared model/recipe site and chemical intent.
+**Next bounded checkpoint:** preserve exact NAR/PHIL inputs and establish one
+site-modifier owner around the C175 bridge, then connect ordinary source/cache
+acquisition to the existing complete request.
 Keep source precedence, exact recipe/consumer checks, persistent attempt identity
 and independent usable-original proof. Exercise current hit, stale qualification,
 miss, classified repair failure and no-usable result through that entry point;
@@ -145,9 +147,9 @@ ReadySet continuation and immutable checkpoint adoption remain **Q05**.
 
 The C174 integration-seam audit narrows the next implementation boundary:
 
-1. Bridge an already prepared ordinary model/recipe into the existing declared
-   request: exact sources, all selected sites, verified incoming/outgoing links,
-   explicit terminal/backbone policy and ordered NAR/PHIL membership. Ordinary
+1. C175 closes the canonical no-supplementary-PHIL model/context portion:
+   all selected sites, audited links and terminal/backbone intent are frozen and
+   rederived. Exact ordered NAR/PHIL membership remains open. Ordinary
    `declared_site_context` currently records only OP3/passthrough policy; it is
    not a complete source-qualified declaration. Reuse existing readers and fail
    on unavailable intent rather than inferring a supported chemistry.
@@ -161,7 +163,8 @@ The C174 integration-seam audit narrows the next implementation boundary:
    source acquisition and post-construction qualification; retain its source,
    producer and generation-attempt lineage across that boundary under Q05.
 
-This is planned integration, not a new user-facing API or an enabled default.
+C175 is an explicit context API; the remaining ordinary integration is planned,
+not an enabled default.
 
 **Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not
 qualify zero-context geometry or optional nonbonded-inventory captures. A required

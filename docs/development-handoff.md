@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-09** from software validation, native receipts and verified geometry/DF
+Updated **2026-11-10** from software validation, native receipts and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,69 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C175 validated: prepared-model context and frozen replay
+
+Base `ffee42caf482b3bc2dd85f0ddd620912a43aa66b`; existing Cedar. Capsule
+`live_tests_directory/175_Cedar_model-context-ch1yb3zg`. Implementation/validation complete; publication
+is next. Q04 stays open at NAR/PHIL and modifier ownership, then ordinary cache-entry
+integration. Q05 owns adoption; Q06 actual refinement; Q07/Q13 scaffolds/states.
+
+**Before → after:** explicit requests needed hand-written site declarations.
+The new read-only compiler derives all selected sites, end states and audited
+whole-model links from prepared coordinates plus frozen terminal/backbone intent.
+The existing request freezes/rederives that proof. No model/source mutation or
+new process owner; OP3 consent and source/native qualification remain mandatory.
+
+**History/redundancy:** reused ordinary phosphate/backbone readers and unbranched
+link validation after reviewing C174's seam audit, C84's fixture-only helper,
+C139 composer and C171 owner. NAR edges never become covalent topology. Review
+caught a nearby O3′ across TER that the initial compiler ignored; it now refuses
+unexplained contacts using the existing phosphate distance bound. No threshold
+or prior auditor semantics changed. First test draft also expected BLOCKED rather
+than the existing malformed-record exception; those assertions were corrected.
+
+**Validation:** two expected missing-API failures before implementation;
+37 new cases. Affected: **307 passed, 10 subtests passed in 178.33s (0:02:58)**.
+Workflow: **1603 passed, 45 subtests passed in 347.69s (0:05:47)**. All 623 source/test/script
+hashes stayed fixed. No full suite at Simon's request. Last completed full baseline:
+C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c175_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c175_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c175_cold.py cold-r2
+```
+
+Exact interpreter/pytest commands are in capsule result JSON and the ledger.
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution:** new isolated 5PC/PDU
+requests derive contexts from model/terminal intent and select independently
+qualified original/repaired runtimes. All owned phases stop; model/source bytes
+and parent capsule bytes/mtimes are preserved. Native time 79.458s.
+No generation, ReadySet, Coot, optimization or diffraction refinement. Python
+3.12.14, pytest 9.1.1, NARestraints 1.1.3, macOS arm64.
+
+**Cold:** new requests and C171–C174 controls replay from a relocated copied
+checkout with the original copy absent and historical paths/SDK/execution denied.
+All 3090 files keep bytes/mtimes and parent bindings. Cold-r1's harness
+mistakenly sought a legacy case under the new native directory; partial copy is
+preserved. Corrected r2 passes; no product change.
+
+**Files/schema/compatibility:** new context module/regressions, existing request
+and workflow-profile hooks, current docs/ledgers. Optional `configuration.model_context`
+uses schema-1 `cif-prepared-model-context-v1`; present-field requests require C175,
+absence preserves legacy declarations. No migration or PostMR default change.
+Only source/tests/docs/hash references enter Git; science/logs/XML/runners stay local.
+
+**Limits/next:** canonical standard-backbone PDB, all phosphorus sites audited;
+alternate/insertion/MODEL selectors, aliases, cyclic/symmetry/nonstandard backbone
+and native linked-polymer proof remain open. This bridge requires no supplementary
+PHIL and explicitly absent custom restraints; never drop required NAR to fit it.
+Next: exact NAR/PHIL binding plus one site-modifier owner, then ordinary entry-point
+hit/miss/stale/failure controls. No native/test jobs active at this checkpoint.
+Evidence key `prepared_model_context_2026_11_10`.
+— Rowan · Codex desktop
 
 ## C174 published: single-component composition and Q04 consolidation
 

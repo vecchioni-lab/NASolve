@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-09**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-10**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -16,7 +16,9 @@ milestone statements preserve their original scope; they are not a second queue.
   qualification, repair and immutable publication with shared ownership/budgets.
   C172 proves originals without requiring repair; C173 permits only exact stopped
   optional-native failures to reach independent original qualification; C174 uses
-  the same path for one selected component. Native controls and cold replay are
+  the same path for one selected component. C175 derives/replays prepared-model
+  context without supplementary PHIL; NAR/modifier ownership remains open.
+  Native controls and cold replay are
   qualified in the [methods](cif-doctor.md#one-selected-component-through-the-complete-request-c174)
   and [evidence ledger](cif-linked-native-registration-evidence.json). Ordinary
   recovery/adoption, final refinement and broader chemical-state/scaffold proof

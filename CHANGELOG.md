@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepared-model context bridge (C175)
+
+- Derive selected sites/end states and audited whole-model links from prepared
+  coordinates and frozen phosphate/backbone intent. Reuse existing geometry and
+  consent checks; reject unexplained contacts without editing model/source bytes.
+- Freeze optional `configuration.model_context` with schema-1 policy
+  `cif-prepared-model-context-v1` and rederive on readback. Present-field requests
+  need C175 readers; legacy requests retain their original semantics.
+- Initially require no supplementary PHIL and explicitly absent custom restraints.
+  NAR/modifier ownership and ordinary integration remain open. No new chemical
+  approval, adoption default or full-regression claim.
+
 ### Single-component complete requests (C174)
 
 - Accept one to sixteen selected component types in the existing composer,
