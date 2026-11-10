@@ -1,6 +1,5 @@
 """Literal input provenance is immutable evidence, never native qualification."""
 from copy import deepcopy
-from hashlib import sha256
 import json
 import shutil
 from unittest.mock import patch
@@ -148,10 +147,8 @@ from tests.test_cif_complete_request import case
 from tests.test_cif_model_context import bind
 
 
-def bound_request(case, tmp_path):
+def prepared_request(case, tmp_path):
     from nasolve.cif_model_context import derive_prepared_model_context
-    from nasolve.cif_native_context import FULL_MODEL_POLICY_ID
-    from nasolve.cif_literal_na_inputs import prepare_literal_na_inputs,resolve_literal_na_inputs
     m,args,root,sdk,store,generations,calls=case
     args=bind(args);folder=tmp_path/'canonical';folder.mkdir();model,_,_=policy_fixture(folder)
     combined=args['model'].read_text().replace('END\n','')+model.read_text()
@@ -162,6 +159,14 @@ def bound_request(case, tmp_path):
         lines.append(line)
     args['model'].write_text(''.join(lines))
     args['model_context']=derive_prepared_model_context(args['model'],args['model_context']['intent'],['YYY','ZZZ'])
+    args["output"]=root
+    return m,args,root
+
+
+def bound_request(case, tmp_path):
+    from nasolve.cif_native_context import FULL_MODEL_POLICY_ID
+    from nasolve.cif_literal_na_inputs import prepare_literal_na_inputs,resolve_literal_na_inputs
+    m,args,root=prepared_request(case,tmp_path)
     original,receipt=capture(tmp_path/'literal-source',model=args['model'])
     # capture(model=...) deliberately preserves the legacy modifier for refusal
     # tests; remove it in this independently declared owner fixture.
@@ -170,7 +175,6 @@ def bound_request(case, tmp_path):
     frozen=tmp_path/'literal';prepare_literal_na_inputs(original,receipt,frozen);resolved=resolve_literal_na_inputs(frozen)
     args.update(literal_na_inputs=frozen,supplementary_phils=resolved['phils'],restraint_context=resolved['report']['restraint_context'],
         native_context=dict(policy_id=FULL_MODEL_POLICY_ID,monomer_inventory='full_model',custom_restraints='required'))
-    args["output"]=root
     return m,args,root,receipt
 
 

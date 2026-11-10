@@ -76814,5 +76814,267 @@
       }
     },
     "implementation_revision": "41a7f464c26ef5bd9083aebb243316433bed5889"
+  },
+  "explicit_compiler_intake_2026_11_10": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "base_revision": "a1ff7999f85ea3e1279c70f1a7b24c6fbb5a42e6",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "EXISTING_C80_COMPILER_ARTIFACT_INTAKE; NOT_NEW_COMPILER_OR_ORDINARY_DEFAULT",
+    "before": "The existing source-bound compiler output could supply explicit PHIL but its source/relationship/pin evidence did not accompany the request owner.",
+    "after": "The same owner freezes one exact source-bound artifact, active PHIL and model, validates overlapping acquisition source bytes, and retains an anchored result reference.",
+    "prior_work": [
+      "C80 source-bound compiler and reader",
+      "C187 original-literal intake/result binding and actual W-frame/isolated controls",
+      "C175/C176 context reconstruction",
+      "C171/C184 request ownership and continuation"
+    ],
+    "files": [
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_postmr_request.py",
+      "tests/test_cif_compiler_intake.py",
+      "tests/test_cif_literal_na_inputs.py",
+      "scripts/run_tests.py"
+    ],
+    "schemas": [
+      "optional explicit_na_policy in complete configuration/result; existing schema/policy",
+      "unchanged C80 schema-1 artifact"
+    ],
+    "compatibility": "No migration for absent/literal modes. C188 readers required for new mode. Scientific validators, recipes, thresholds and defaults unchanged.",
+    "regression": {
+      "summaries": {
+        "before-r1": "12 failed in 5.48s",
+        "new-r1": "48 passed in 60.46s (0:01:00)",
+        "focused-r1": "1969 passed, 45 subtests passed in 774.56s (0:12:54)"
+      },
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "commands": {
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_compiler_intake.py",
+          "tests/test_cif_literal_na_inputs.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/188_Cedar_explicit-compiler-intake-8mdoxyqm/new-r1.xml"
+        ],
+        "focused-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/188_Cedar_explicit-compiler-intake-8mdoxyqm/focused-r1.xml"
+        ]
+      }
+    },
+    "public": {
+      "status": "PASS",
+      "elapsed_seconds": 3.0117983329982962,
+      "pairs": 19,
+      "stacks": 38,
+      "requests": {
+        "angle": 86,
+        "bond": 50,
+        "parallelity": 57
+      },
+      "native_requests": 193,
+      "exact_declared_selections_actions_targets": true,
+      "exact_native_proxy_realization": true,
+      "compiler_bytes_preserved": true,
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "prior_native_capture_required": false,
+      "ordinary_owner_execution": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false
+    },
+    "transport": {
+      "status": "PASS",
+      "transport": "SYNTHETIC_REPAIR_TRANSPORT; NOT_NATIVE_CHEMISTRY",
+      "elapsed_seconds": 14.874800124991452,
+      "attempts": 2,
+      "prior_attempt_bytes_mtimes_unchanged": true,
+      "stopped": true,
+      "automatic_adoption": false
+    },
+    "cold": {
+      "status": "PASS",
+      "cases": {
+        "explicit": {
+          "attempts": 2,
+          "transport": "SYNTHETIC_REPAIR_TRANSPORT",
+          "compiler": "PRESERVED",
+          "status": "NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED"
+        },
+        "original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy186": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy176": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v1"
+        },
+        "legacy184": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "readyset_checked_model",
+          "restraint_policy": null
+        }
+      },
+      "files": 3740,
+      "public_explicit_requests": 193,
+      "public_literal_requests": 201,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "public_model_intake": {
+      "status": "EXPECTED_REFUSAL",
+      "reason": "Phosphate B:1: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review",
+      "model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
+      "scope": "READ_ONLY_CONTEXT_PREFLIGHT; NO_NATIVE_OR_REQUEST_EXECUTION",
+      "authority": "No terminal-state inference or atom edit",
+      "source_model": {
+        "anchor": "repository_directory",
+        "path": "MR_frames/5W6W/C_G.pdb"
+      },
+      "remaining": "Q13 terminal phosphate state and Q04 ordinary input eligibility"
+    },
+    "redundancy": "Share compiler input/result binding and test context setup; reuse existing C80 reconstruction and ownership. No second compiler, relationship guess or retry scheduler.",
+    "remaining": [
+      "Ordinary caller must preserve pre-Coot source/producer identity and use only the composer for site modifications",
+      "Original literal mode still needs a completed native capture; source-bound mode must not silently replace its relationships/planes",
+      "New owner execution is synthetic transport, not a new complete native chemistry control",
+      "Standalone runtime/checkpoint lineage Q05, actual refinement Q06, mixed/held-out Q07 and release Q16 remain open"
+    ],
+    "artifacts": "Only code/tests/docs/hash references ship. Scientific artifacts, native receipts, logs, XML and runners remain outside Git.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/start.json",
+        "sha256": "1fb9a3316ad42e447905fc49bda34c675fffaeadfdbb61f14b2b66b6275fb3f6",
+        "size": 159
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/before-r1-result.json",
+        "sha256": "5d5125f9425f9fcb962ad5b4b931a578c6840707268bc49b8571c0b2f2a72c85",
+        "size": 590
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/new-r1-result.json",
+        "sha256": "e42bc0ab6c767690089e72dab2643bcd35c93a7da87f0d7bcb7988ad3153d10f",
+        "size": 628
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/focused-r1-result.json",
+        "sha256": "5714e67cb6c45b00c688b8634a62184de5e531f45fc05aa68ad5eb2752908f30",
+        "size": 503
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/focused-r1-sources.json",
+        "sha256": "a02298baa1a9b1c1839816a72d145ce361e038015a4cb0c9209256f8476f8adc",
+        "size": 69902
+      },
+      "public-native-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/public-native-r1/summary.json",
+        "sha256": "b2fa7438fe91c636777f1c818e7ca0d03bce502e3a20cc8b69f475ec82c55460",
+        "size": 545
+      },
+      "public-native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/public-native-r1/runtime-sources.json",
+        "sha256": "7bd95d8181afad83ed80f4709c15b4e899ef179dc44d5cc8fa63ac23337a111b",
+        "size": 23206
+      },
+      "public-native-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/public-native-r1/installation.json",
+        "sha256": "8850777c958ef3ec0d09eecd27210e0a050fdc87b0288b1a6e171b1f36cee200",
+        "size": 114
+      },
+      "public-native-r1/custom-check.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/public-native-r1/custom-check.json",
+        "sha256": "97b46eaa74d94a8806fb5c327e48efc168b0e4f1d32acb8c12c8e40496b93297",
+        "size": 161
+      },
+      "public-native-r1/compiler/explicit_na_policy.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/public-native-r1/compiler/explicit_na_policy.json",
+        "sha256": "d6db000adf715bd97eb444b2567dca22d1d81cc5b15c2ec175b56ae44dab5cd5",
+        "size": 501086
+      },
+      "transport-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/transport-r1/summary.json",
+        "sha256": "8ec72eff7f14bd086fd38b4560cd89e60c45fa4163c7e44f0325c52b768ca33e",
+        "size": 246
+      },
+      "public-model-context-preflight.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/public-model-context-preflight.json",
+        "sha256": "0d3df5d33135badd7c0587e7c57cd3c56d6b119d4a46ad74ec365764c8ef6d2a",
+        "size": 561
+      },
+      "transport-r1/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/transport-r1/request/request.json",
+        "sha256": "dd93a54ca45efa6e4894643ae034394fc55cd485ba0f3e081f0c8badf3b4889d",
+        "size": 43153
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/cold-r1/summary.json",
+        "sha256": "e2ac5999841cfef5052a3d397de9d4e91aab4631b1a14b1afc28d1040b4d0bc2",
+        "size": 1315
+      },
+      "transport-r1/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/transport-r1/request/attempts/attempt-0001/result.json",
+        "sha256": "d6b83f0fa91b46403b3d01cd2cbd8d2dec081528598d6f34ba4a8ed84063e47b",
+        "size": 782
+      },
+      "transport-r1/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/transport-r1/request/attempts/attempt-0001/finished.json",
+        "sha256": "102c2b43cd5049608081f258ff9e88eac79f129a5933ba75ea08709b78dbd1fb",
+        "size": 36407
+      },
+      "transport-r1/request/attempts/attempt-0002/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/transport-r1/request/attempts/attempt-0002/result.json",
+        "sha256": "3d965e8aa18c03ff571c8279adbcd36fd85c300a0a421ebea54789f1b552ceb0",
+        "size": 782
+      },
+      "transport-r1/request/attempts/attempt-0002/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "188_Cedar_explicit-compiler-intake-8mdoxyqm/transport-r1/request/attempts/attempt-0002/finished.json",
+        "sha256": "95fe1db141601d01cfe8923a2165d58d6acb9e76d61ab4e6ee5d8c1f1e6d0072",
+        "size": 40609
+      }
+    }
   }
 }

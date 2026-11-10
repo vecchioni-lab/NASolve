@@ -27,7 +27,11 @@ also preserves original pair/stack declarations and their native/compiler eviden
 through explicit owned requests. It reuses the NAR compiler and changes no recipe
 or chemical-state authority. Ordinary orchestration, checkpoint adoption and actual
 refinement remain open; the current literal bridge requires an interpretable native
-input capture before compilation. Use the
+input capture before compilation. The alternative
+[source-bound intake](cif-doctor.md#existing-source-bound-compiler-intake-c188)
+retains an existing C80 artifact, source graphs and pair choices without requiring
+that capture. The two modes share one owner and cannot silently substitute one
+set of relationships for the other. Native interpretation remains required. Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods
 below preserve validation of specific contexts; they do not define another queue

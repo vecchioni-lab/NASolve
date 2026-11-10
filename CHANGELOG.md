@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retain source-bound compiler evidence through owned requests (C188)
+
+- Accept the existing C80 compiler artifact as an explicit alternative to original
+  literal-input provenance. Reuse its reader and the existing request owner;
+  preserve source graphs, pair choices, pinned NAR authority and nonactive controls.
+- Require exact model/active PHIL and agreement with overlapping selected source
+  bytes. Refuse competing compiler modes or diagnostic controls as active inputs.
+- Retain one outer artifact and an optional anchored configuration/result reference.
+  C188 readers are required for this mode; old literal/absent requests need no migration.
+- Native public-frame membership, synthetic ownership/recovery and cold old/new
+  replay pass. No new chemistry, ordinary default, recipe or refinement change.
+
+
 ### Bind original literal restraints to owned requests (C187)
 
 - Freeze original ordered PHIL/native capture, model, compiled inputs and pinned

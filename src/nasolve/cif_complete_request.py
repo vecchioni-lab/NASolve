@@ -32,11 +32,14 @@ from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_model_context import validate_prepared_model_context
 from .cif_restraint_context import validate_restraint_context
 from .cif_literal_na_inputs import resolve_literal_na_inputs, POLICY_ID as LITERAL_NA_POLICY
+from .cif_explicit_na_policy import read_explicit_na_policy, POLICY_ID as EXPLICIT_NA_POLICY
 from . import cif_runtime_continuation as continuation
 from .cif_runtime_continuation_process import inspect_runtime_continuation_processes, POLICY_ID as CONTINUATION_PROCESS_POLICY
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
+_COMPILER_INPUTS = {'literal_na_inputs':('literal_na',LITERAL_NA_POLICY),
+                    'explicit_na_policy':('explicit_na',EXPLICIT_NA_POLICY)}
 _LIMITS = dict(native_timeout_seconds=600, component_timeout_seconds=3600,
                attribution_timeout_seconds=300, derivative_timeout_seconds=600,
                total_timeout_seconds=3600)
@@ -85,7 +88,28 @@ def _continuation_parameters(config):
         total_timeout_seconds=limits['total_timeout_seconds'],restore_serialization=settings['restore_serialization'])
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None):
+def _compiler_input(kind, directory, selected_sources=None):
+    """Resolve an existing compiler artifact; never compile or guess new intent."""
+    if kind == 'literal_na_inputs': return resolve_literal_na_inputs(directory)
+    _need(kind == 'explicit_na_policy', 'Unsupported compiler input kind')
+    root = Path(directory); report = read_explicit_na_policy(root)
+    if selected_sources is not None:
+        for code, ref in report['inputs']['sources'].items():
+            if code in selected_sources:
+                _need(_read(root/ref['path']) == _read(selected_sources[code]['source']),
+                      'Explicit compiler source differs from selected acquisition source: '+code)
+    return dict(report=report,model=root/report['inputs']['model']['path'],
+                phils=[root/report['compiled_phil']['path']])
+
+
+def _compiler_references(literal_na_inputs, explicit_na_policy):
+    chosen = {name:value for name,value in [('literal_na_inputs',literal_na_inputs),
+              ('explicit_na_policy',explicit_na_policy)] if value is not None}
+    _need(len(chosen) <= 1, 'Require at most one compiler provenance mode')
+    return chosen
+
+
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
@@ -136,16 +160,20 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         _need(model_context is not None and controls['native_context']['custom_restraints'] == 'required',
               'Explicit restraint ownership requires model context and required custom restraints')
         validate_restraint_context(inputs/'model.pdb', [inputs/n for n in names], restraint_context)
-    if literal_na_inputs is not None:
-        _need(literal_na_inputs == dict(anchor=ANCHOR,path='inputs/literal_na',policy_id=LITERAL_NA_POLICY)
+    compiler_refs = _compiler_references(literal_na_inputs,explicit_na_policy)
+    for kind,reference in compiler_refs.items():
+        folder,policy = _COMPILER_INPUTS[kind]
+        _need(reference == dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=policy)
               and model_context is not None and restraint_context is not None,
-              'Literal input provenance requires both owned contexts and its exact reference')
-        literal = resolve_literal_na_inputs(inputs/'literal_na')
-        _need(_read(literal['model']) == _read(inputs/'model.pdb')
-              and [_read(p) for p in literal['phils']] == [_read(inputs/n) for n in names]
-              and _same(literal['report']['restraint_context'],restraint_context),
-              'Literal input provenance differs from owned model or ordered restraints')
-        allowed.update('literal_na/'+n for n in _tree(inputs/'literal_na'))
+              'Compiler provenance requires both owned contexts and its exact reference')
+        compiled = _compiler_input(kind,inputs/folder,selected['sources'])
+        _need(_read(compiled['model']) == _read(inputs/'model.pdb')
+              and [_read(p) for p in compiled['phils']] == [_read(inputs/n) for n in names],
+              'Compiler provenance differs from owned model or ordered restraints')
+        if kind == 'literal_na_inputs':
+            _need(_same(compiled['report']['restraint_context'],restraint_context),
+                  'Literal compiler context differs from owned restraints')
+        allowed.update(folder+'/'+n for n in _tree(inputs/folder))
     files, directories = _capture(inputs)
     _need(set(files) == allowed, 'Unrequested complete-request input')
     expected_dirs = {str(p) for name in files for p in Path(name).parents if str(p) != '.'}
@@ -154,7 +182,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         input_files=_inventory(files),input_directories=directories,
         **({'model_context':model_context} if model_context is not None else {}),
         **({'restraint_context':restraint_context} if restraint_context is not None else {}),
-        **({'literal_na_inputs':literal_na_inputs} if literal_na_inputs is not None else {}),
+        **compiler_refs,
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
         **_continuation_fields(continuation_options,limits))))
 
@@ -165,7 +193,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'))
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -173,7 +201,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -187,6 +215,9 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     Its bounded grammar keeps the composer as the only site-modifier owner.
     Optional literal_na_inputs freezes original native/PHIL/compiler provenance
     and must reproduce the exact supplied model and ordered compiled PHIL.
+    Alternatively explicit_na_policy retains an existing source-bound C80 artifact;
+    overlapping source components must match the chosen acquisition bytes.
+    The two provenance modes are mutually exclusive and never reselect relationships.
     Optional continuation_options freezes ReadySet timeout and lossless-serialization
     intent; the same outer attempt owns that child and its remaining allowance.
     Omission preserves historical requests and results exactly.
@@ -197,10 +228,11 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     _need(isinstance(components,(list,tuple)) and len(components) == len(codes), 'Incomplete component declarations')
     trees = {'sources':_root(source_selection)}; originals = {Path(model):_read(model)}
     files = {'model.pdb':originals[Path(model)]}; sites = {}; directories = set()
-    literal_ref = None
-    if literal_na_inputs is not None:
-        trees['literal_na'] = _root(literal_na_inputs)
-        literal_ref = dict(anchor=ANCHOR,path='inputs/literal_na',policy_id=LITERAL_NA_POLICY)
+    compiler_refs = {}
+    for kind,value in _compiler_references(literal_na_inputs,explicit_na_policy).items():
+        folder,policy = _COMPILER_INPUTS[kind]
+        trees[folder] = _root(value)
+        compiler_refs[kind] = dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=policy)
     for item in components:
         _need(isinstance(item,dict) and {'code','contexts','generation'} <= item.keys()
             and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource','phosphate_atom_policy'},
@@ -233,7 +265,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
               and all(_read(p) == b for p,b in originals.items()), 'Complete request source changed while freezing')
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,literal_na_inputs=literal_ref); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -344,10 +376,10 @@ def _attempt_files(attempt, *, with_continuation=False):
     return dict(files=_inventory(files),directories=dirs)
 
 
-def _literal_result_fields(config):
+def _compiler_result_fields(config):
     # Original compiler evidence belongs to the outer request. Child preparation
     # consumes the exact compiled PHIL already joined to it by _configuration.
-    return ({'literal_na_inputs':config['literal_na_inputs']} if 'literal_na_inputs' in config else {})
+    return {name:config[name] for name in _COMPILER_INPUTS if name in config}
 
 
 def _result(root, attempt, intent, config, children, bindings):
@@ -364,7 +396,7 @@ def _result(root, attempt, intent, config, children, bindings):
     expected = dict(components=sorted(selection),sites=sites,consumer=controls['consumer'],expected_links=controls['expected_links'],
         native_context=controls['native_context'],supplementary_phils=['inputs/'+n for n in controls['supplementary_phils']])
     _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
-    outer_only = ('retained/',) + (('literal_na/',) if 'literal_na_inputs' in config else ())
+    outer_only = ('retained/',) + tuple(folder+'/' for name,(folder,_) in _COMPILER_INPUTS.items() if name in config)
     for name,data in _tree(root/'inputs').items():
         if not name.startswith(outer_only):
             _need(_read(attempt/'preparation/inputs'/name) == data, 'Prepared input differs from frozen outer intent')
@@ -390,10 +422,10 @@ def _result(root, attempt, intent, config, children, bindings):
         continuation_fields = dict(continuation=None if continued is None else dict(anchor='attempt_directory',path='continuation'))
     expected = dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],selected_attempts=selection,
         preparation=dict(anchor='attempt_directory',path='preparation'),repair=dict(anchor='attempt_directory',path='repair'),
-        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_literal_result_fields(config))
+        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_compiler_result_fields(config))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
-        **({'literal_na_inputs':resolve_literal_na_inputs(root/'inputs/literal_na')} if 'literal_na_inputs' in config else {}),
+        **{name:_compiler_input(name,root/'inputs'/folder) for name,(folder,_) in _COMPILER_INPUTS.items() if name in config},
         **({'continuation':continued} if 'continuation' in config else {}))
 
 
@@ -558,7 +590,7 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
             result = write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],
                 selected_attempts={c['code']:c['attempt_number'] for c in components},preparation=dict(anchor='attempt_directory',path='preparation'),
                 repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed,
-                **continuation_fields,**_literal_result_fields(config)))
+                **continuation_fields,**_compiler_result_fields(config)))
             children,bindings = _children(root,attempt,intent,config); _result(root,attempt,intent,config,children,bindings)
             remaining(); _seal(root,attempt,intent,request,'RETURNED',remaining=remaining)
         except BaseException as exc:

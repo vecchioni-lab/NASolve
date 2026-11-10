@@ -4118,6 +4118,10 @@ selectors and atom weights through the existing context/native validators, with
 v1 replay preserved. The [C187 literal-input bridge](cif-doctor.md#original-literal-input-provenance-c187)
 freezes original native/PHIL/compiler evidence at the outer owner and binds its
 compiled input bytes to preparation and result readback. It requires an existing
-valid native capture; ordinary orchestration/bootstrap and export of that original
-lineage with a selected checkpoint remain open. Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
+valid native capture. Alternatively [C188](cif-doctor.md#existing-source-bound-compiler-intake-c188)
+retains an already compiled source-bound C80 artifact through the same owner,
+including source-byte agreement and nonactive orientation evidence. This explicitly
+selected mode does not replace original literal intent or bootstrap a broken
+literal capture. Ordinary orchestration and export of original lineage with a
+selected checkpoint remain open. Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
 explicit chain does not enable an ordinary default or authorize a merge.

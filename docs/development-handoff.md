@@ -11,6 +11,68 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C188 validated: existing source-bound compiler intake
+
+Base `a1ff7999f85ea3e1279c70f1a7b24c6fbb5a42e6`; existing Cedar. Implementation complete; publication is next.
+Capsule `live_tests_directory/188_Cedar_explicit-compiler-intake-8mdoxyqm`. Q04 remains open at ordinary
+orchestration, pre-construction identity and exclusive modifier ownership.
+
+**Before → after:** source-bound C80 compiler evidence now accompanies the same
+owned request as an explicit alternative to the literal mode. Exact model/active
+PHIL, source graphs and NAR/workbook pins are reconstructed; overlapping acquisition
+sources must agree byte-for-byte. Nonactive orientation controls remain evidence.
+Result readback preserves one outer artifact. Both modes cannot be selected together.
+
+**Redundancy/history:** reused C80 rather than adding a compiler or pairing guess,
+and generalized C187 input/result binding rather than duplicating a request owner.
+Shared synthetic prepared-model fixture removes duplicated test setup. Original
+literal semantics, required planes, OP3/terminal protections and chemistry remain
+unchanged. The queue owns the remaining operational joins; historical next-step
+paragraphs do not reopen completed ownership or compiler work.
+
+**Validation:** before: 12 failed in 5.48s. Final focused new/literal:
+**48 passed in 60.46s (0:01:00)**; workflow: **1969 passed, 45 subtests passed in 774.56s (0:12:54)**.
+All 640 source/test/script hashes stayed fixed. No full suite; C160
+`d9e481661edcc3a04404df250360b9db63184ae1` remains the last complete baseline.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c188_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c188_public.py public-native-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c188_transport.py transport-r1
+PYTHONDONTWRITEBYTECODE=1 python c188_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** existing public full-model C80
+artifact realizes exactly 193 requests (19 selected pairs/38 stacks; 50 bonds,
+86 angles, 57 parallelities). This remains distinct from 20 frozen literal pair
+intents/201 requests/three planes. No new native identity capture is required to
+compile or initialize this mode; actual interpretation still qualifies consumption.
+A separate full-model context preflight refuses terminal B:1 (no OP3 or incoming
+O3-prime/P link). This guards the difference between native membership evidence
+and whole-engine chemistry; no model/terminal-intent edit or new native request.
+No ReadySet, Coot, optimization or diffraction refinement ran. Python 3.12.14,
+pytest 9.1.1, NARestraints 1.1.3. Owned request execution/recovery uses explicitly
+synthetic transport: two fresh attempts, previous bytes/mtimes fixed, both stopped.
+
+**Cold:** 3740 files unchanged. New source-bound requests/artifact,
+prior actual literal original/repaired, v1/v2 and absent/ReadySet controls replay
+from relocated checkout with original copy absent and historical source/SDK paths
+and execution denied. All validation jobs are stopped at this checkpoint.
+
+**Files/schema/compatibility:** two existing source modules, one new test module,
+one shared test helper, workflow selection and maintained docs/ledgers. Optional
+anchored configuration/result field; C80 artifact unchanged. Old literal/absent
+modes need no migration; new mode needs C188 readers. Only code/tests/docs/hash
+references ship; all scientific/run artifacts and runners remain outside Git.
+
+**Next:** connect ordinary prepared intake to this existing owner, retaining the
+pre-construction source/producer join and removing competing legacy modifier
+ownership from the selected route. Preserve literal capture/bootstrap as its own
+gap; never silently substitute coordinate-selected pairs. Q05 exact selected
+runtime/checkpoint lineage and Q06 actual refinement remain separate.
+— Rowan · Codex desktop
+
 ## C187 published: original literal-input provenance
 
 Base `30abe934a9c10e87bd2ae29a2089c3961b9fd377`; existing Cedar. Implementation complete and published as

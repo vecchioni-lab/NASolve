@@ -456,4 +456,7 @@ their exact atom weights. The diagram's native-validation stage remains separate
 C187 now binds literal pair/stack inputs and their original native/compiler evidence
 at the existing outer-request boundary. Ordinary adoption and actual refinement
 remain open. The methods distinguish PDB record indices from native manager ordering;
-no pipeline arrow or family-support claim changes.
+no pipeline arrow or family-support claim changes. C188 adds the existing
+source-bound C80 artifact as an explicit alternative at that same input boundary;
+it preserves source/relationship evidence without a prior native capture. It does
+not enable ordinary adoption or replace frozen literal intent with a new guess.

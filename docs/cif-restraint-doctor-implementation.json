@@ -28257,6 +28257,18 @@
         "Q05 adoption, Q06 actual refinement, Q07 mixed/held-out, Q13 state and Q16 integration remain open"
       ],
       "implementation_revision": "41a7f464c26ef5bd9083aebb243316433bed5889"
+    },
+    "explicit_compiler_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "initialize_postmr_dictionary_request(explicit_na_policy=...)",
+      "reader": "read_dictionary_request_result / read_explicit_na_policy",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#explicit_compiler_intake_2026_11_10",
+      "limitations": [
+        "Ordinary caller must preserve pre-Coot source/producer identity and use only the composer for site modifications",
+        "Original literal mode still needs a completed native capture; source-bound mode must not silently replace its relationships/planes",
+        "New owner execution is synthetic transport, not a new complete native chemistry control",
+        "Standalone runtime/checkpoint lineage Q05, actual refinement Q06, mixed/held-out Q07 and release Q16 remain open"
+      ]
     }
   },
   "audience": [
