@@ -78162,7 +78162,7 @@
     }
   },
   "native_qualification_diagnostics_2026_11_10": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "base_revision": "555f16470099ce7aea746be598b7c7b835da2732",
     "branch": "cedar",
     "date": "2026-11-10",
@@ -78345,6 +78345,7 @@
         "sha256": "66fc154c2f7a111c5eada9db4e2b7d7b34da13de455e66181c2e9ff9cf9d429c",
         "size": 1237
       }
-    }
+    },
+    "implementation_revision": "697dc0ecf963117aeadba16024562cf9d70f3ce4"
   }
 }

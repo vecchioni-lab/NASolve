@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C192 validated: identify failed native qualification
+## C192 published: identify failed native qualification
 
-Base `555f16470099ce7aea746be598b7c7b835da2732`; existing Cedar. Implementation complete; publication is next.
+Base `555f16470099ce7aea746be598b7c7b835da2732`; existing Cedar. Implementation complete and published as
+`697dc0ecf963117aeadba16024562cf9d70f3ce4`.
 Stop boundary **2026-11-10 23:12 UTC**. Capsule:
 `live_tests_directory/192_Cedar_native-failure-diagnostic-us337hj1`. All validation jobs are stopped.
 

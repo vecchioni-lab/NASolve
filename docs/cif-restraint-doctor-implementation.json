@@ -28314,7 +28314,8 @@
         "Surface existing C115 source-generation diagnostic at the no-retained-candidate boundary",
         "Q04 ordinary caller, construction producer and one modifier owner",
         "Q05 checkpoint lineage, Q06 refinement and Q07 mixed/held-out acceptance remain open"
-      ]
+      ],
+      "implementation_revision": "697dc0ecf963117aeadba16024562cf9d70f3ce4"
     }
   },
   "audience": [
