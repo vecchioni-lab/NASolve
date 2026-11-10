@@ -72443,7 +72443,7 @@
     "milestone": "C178",
     "status": "SINGLETON_CONSUMPTION_AND_FALLBACK_VALIDATED; FINAL_ENDPOINT_OPEN",
     "base_revision": "8924441c52d131b22124dfcd1abb987ba4f8094a",
-    "implementation_revision": null,
+    "implementation_revision": "e21c0a3ed817469280688a0e60b6a6bd462d0ec2",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Bundle observer rejects singleton supported by composition",
     "after": "One to sixteen components use identical consumption/native gates; actual rejected endpoint retains verified runtime",

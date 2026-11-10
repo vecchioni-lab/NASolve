@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C178 validated: singleton ReadySet boundary and truthful fallback
+## C178 published: singleton ReadySet boundary and truthful fallback
 
 Base `8924441c52d131b22124dfcd1abb987ba4f8094a`; existing Cedar. Capsule
-`live_tests_directory/178_Cedar_single-readyset-wig1us2n`. Implementation/validation complete; publication
-is next. Q05 prerequisite complete for consumption; positive native endpoint remains open.
+`live_tests_directory/178_Cedar_single-readyset-wig1us2n`. Implementation/validation complete and published as
+`e21c0a3ed817469280688a0e60b6a6bd462d0ec2`. Q05 prerequisite complete for consumption; positive native endpoint remains open.
 
 **Before → after:** the bundle observer rejected one selected component even
 though composition/request supported it. The minimum is now one, retaining all
