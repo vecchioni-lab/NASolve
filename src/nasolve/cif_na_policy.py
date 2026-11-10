@@ -54,6 +54,8 @@ def _site_selection(text):
 
 
 def _resolve(text,atoms):
+    if text.count('(') != text.count(')'):
+        raise ValueError('Unbalanced generated atom selection')
     m=re.fullmatch(r'(.*?)\s+and\s+(\(?name\s+[A-Za-z0-9_]+(?:\s+or\s+name\s+[A-Za-z0-9_]+)*\)?)',text)
     if not m:raise ValueError('Unsupported generated atom selection')
     site=_site_selection(m[1]);names=re.findall(r'name\s+([A-Za-z0-9_]+)',m[2])

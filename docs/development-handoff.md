@@ -11,6 +11,69 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C176 validated: exact restraint inputs and one modifier owner
+
+Base `6f7aada2a17a997b54100bb303d88bc01d613733`; existing Cedar. Capsule
+`live_tests_directory/176_Cedar_restraint-context-i6yeju8q`. Implementation/validation complete; publication
+is next. Q04 now advances to ordinary source/cache entry-point integration.
+Q05 owns adoption, Q06 actual refinement, Q07/Q13 mixed scaffolds/source states.
+
+**Before → after:** C175 could derive model context only without supplementary
+restraints. C176 binds supported ordered explicit bond/angle/parallelity PHIL to
+that model and reconstructs exact bytes, targets and endpoints before work/readback.
+The composer alone owns site modifiers. Unsupported/competing inputs refuse;
+no NAR target, source/model byte or phosphate/stereo guard is changed.
+
+**History/redundancy:** reviewed C80's explicit NAR compiler, separate orientation
+controls, existing captured modifier ownership, C139 composer and C171 owner.
+Reuse the bounded parser/resolver and native endpoint checks. Supplied PHIL is
+the target authority; the new record does not invent NAR authorship or native
+membership. Existing full-native checks remain the independent realization gate.
+Review reproduced two unmatched-parenthesis selections accepted by the shared
+resolver; the balance check now rejects them without changing valid syntax.
+
+**Validation:** two expected missing-module failures before implementation;
+two additional failing-before parenthesis regressions; 45 new cases total.
+Affected: **347 passed in 177.12s (0:02:57)**. Workflow: **1648 passed, 45 subtests passed in 349.71s (0:05:49)**.
+All 625 source/test/script hashes stayed fixed during final
+tests/native controls. No full suite at Simon's request. Last completed full
+baseline remains C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c176_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c176_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c176_cold.py cold-r1
+```
+
+Exact interpreter/pytest commands are retained in result JSON and the ledger.
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution:** complete PDU/5PC
+original and repair controls preserve C171's exact NAR parallelity plus a second
+ordered control PHIL. The original qualifies unchanged; the repair qualifies
+after two repair steps. All owned phases stop and parent bytes/mtimes survive.
+Native time 110.693s. No generation, ReadySet, Coot,
+coordinate optimization or diffraction refinement. Python 3.12.14, pytest 9.1.1,
+NARestraints 1.1.3, macOS arm64.
+
+**Cold:** new and C171–C175 requests replay from a relocated copied checkout,
+original copy absent, historical paths/SDK/execution denied. Exact input PHIL
+order survives preparation and selected runtime; all 3826 files retain
+bytes/mtimes and parent bindings. No native/test jobs remain active.
+
+**Files/schema/compatibility:** new restraint-context module/tests, shared resolver,
+complete-request and workflow hooks, current docs/ledgers. Optional
+`configuration.restraint_context` uses schema-1 `cif-owned-explicit-restraints-v1`;
+present-field requests require C176. Absent fields retain legacy explicit/C175
+semantics. No migration or ordinary PostMR default change. Source/tests/docs/hash
+references enter Git; models, CIFs, logs, XML, runners and native receipts stay local.
+
+**Limits/next:** bounded explicit grammar only, not a PHIL evaluator or proof of
+compiler authorship. Pre-existing modifiers need captured ownership for replacement.
+Canonical model-context limits remain. Ordinary source/cache hit, miss, stale and
+classified failure integration is next; no family-wide support or refinement claim.
+Evidence key `ordered_restraint_context_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C175 published: prepared-model context and frozen replay
 
 Base `ffee42caf482b3bc2dd85f0ddd620912a43aa66b`; existing Cedar. Capsule

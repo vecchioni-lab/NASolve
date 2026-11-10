@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Ordered explicit restraint context (C176)
+
+- Bind exact ordered explicit bond/angle/parallelity inputs to prepared-model
+  context, preserving every supplied byte and target. The composer owns site
+  modifications; competing modifiers and unsupported PHIL refuse before work.
+- Reconstruct optional schema-1 `configuration.restraint_context` on readback.
+  Present-field requests need C176; legacy explicit requests and the C175 absent
+  mode retain their semantics. Native realization remains independently required.
+- Reject unmatched parentheses in the shared generated-selection resolver.
+  No chemistry threshold, ordinary adoption or refinement default changes.
+
 ### Prepared-model context bridge (C175)
 
 - Derive selected sites/end states and audited whole-model links from prepared

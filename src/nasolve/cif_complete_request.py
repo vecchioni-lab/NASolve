@@ -29,6 +29,7 @@ from .cif_repair_attempt import _root, _members, _inventory
 from .cif_repair_process import _uuid
 from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_model_context import validate_prepared_model_context
+from .cif_restraint_context import validate_restraint_context
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
@@ -60,7 +61,7 @@ def _component_config(source, code, authority, consumer, declaration, retained, 
         total_timeout_seconds=limits['component_timeout_seconds']), maximum)
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
@@ -100,12 +101,17 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     _need(_same(_links(inputs/'model.pdb',all_contexts,controls['expected_links']), controls['expected_links']), 'Model links differ')
     if model_context is not None:
         derived = validate_prepared_model_context(inputs/'model.pdb', model_context)
-        _need(not names and controls['native_context']['custom_restraints'] == 'absent',
-              'Prepared-model bridge does not yet own supplementary PHIL/NAR inputs')
+        if restraint_context is None:
+            _need(not names and controls['native_context']['custom_restraints'] == 'absent',
+                  'Prepared-model bridge requires explicit ownership for supplementary PHIL')
         _need(derived['components'] == codes
               and _same(derived['contexts'], {code: controls['sites'][code]['contexts'] for code in codes})
               and _same(derived['expected_links'], controls['expected_links']),
               'Complete request differs from derived model context')
+    if restraint_context is not None:
+        _need(model_context is not None and controls['native_context']['custom_restraints'] == 'required',
+              'Explicit restraint ownership requires model context and required custom restraints')
+        validate_restraint_context(inputs/'model.pdb', [inputs/n for n in names], restraint_context)
     files, directories = _capture(inputs)
     _need(set(files) == allowed, 'Unrequested complete-request input')
     expected_dirs = {str(p) for name in files for p in Path(name).parents if str(p) != '.'}
@@ -113,6 +119,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     return _json(_bytes(dict(controls=controls,limits=limits,max_attempts=maximum,components=components,
         input_files=_inventory(files),input_directories=directories,
         **({'model_context':model_context} if model_context is not None else {}),
+        **({'restraint_context':restraint_context} if restraint_context is not None else {}),
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy))))
 
 
@@ -122,7 +129,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'))
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -130,7 +137,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -140,7 +147,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     requests independently qualify a no-repair original by default; historical
     requests without that frozen mode retain their original no-op behavior.
     An optional prepared-model context is rederived from frozen model/intent;
-    its initial policy supports explicitly absent supplementary restraints only.
+    supplementary PHIL additionally requires a frozen explicit restraint context.
+    Its bounded grammar keeps the composer as the only site-modifier owner.
     """
     root = _root(output)
     if root.exists(): raise FileExistsError(root)
@@ -180,7 +188,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
               and all(_read(p) == b for p,b in originals.items()), 'Complete request source changed while freezing')
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)

@@ -1,0 +1,100 @@
+"""Bind ordered explicit restraint inputs without becoming a PHIL evaluator.
+
+The supplied PHIL owns targets. This bounded reader accepts the explicit
+bond/angle/parallelity grammar emitted by the maintained NAR compiler; it does
+not infer authorship, generate restraints or qualify their native realization.
+Only the dictionary composer may add site-modification requests downstream.
+"""
+from collections import Counter
+from hashlib import sha256
+from math import isfinite
+from pathlib import Path
+
+from .cif_dictionary_sites import _need, _read
+from .cif_dictionary_store import _bytes
+from .cif_explicit_na_policy import _model
+from .cif_na_policy import SS, _parse, _path, _requests, _signature
+from .cif_native_context import _signature as _checked_signature
+
+POLICY_ID = 'cif-owned-explicit-restraints-v1'
+_TARGETS = {'bond': 'distance_ideal', 'angle': 'angle_ideal', 'parallelity': 'target_angle_deg'}
+_CONTAINERS = {'refinement', 'pdb_interpretation', 'geometry_restraints', 'geometry_restraints.edits'}
+
+
+def _checked_requests(text, atoms):
+    nodes, _ = _parse(text); declarations = 0; disabled = 0
+    for node in nodes:
+        path = _path(node); fields = node['fields']
+        if path in _CONTAINERS:
+            _need(not fields, 'Unsupported explicit restraint container fields')
+        elif path == SS:
+            _need(not node['children'] and fields == {'enabled': 'False'},
+                  'Require explicitly disabled native secondary structure')
+            disabled += 1
+        elif path.startswith('geometry_restraints.edits.'):
+            kind = path.removeprefix('geometry_restraints.edits.')
+            _need(kind in _TARGETS, 'Unsupported explicit restraint kind')
+            selections = {'atom_selection_'+str(i+1) for i in range(3 if kind == 'angle' else 2)}
+            _need(not node['children'] and set(fields) == selections | {'action', 'sigma', _TARGETS[kind]}
+                  and fields['action'] == 'add', 'Unsupported explicit restraint action or fields')
+            sigma = float(fields['sigma'])
+            _need(isfinite(sigma) and sigma > 0, 'Require a finite positive explicit restraint sigma')
+            declarations += 1
+        else:
+            # No silently stripped legacy modifier or ignored alternative PHIL
+            # spelling may bypass the composer's exclusive modifier ownership.
+            raise ValueError('Unsupported scope or competing site-modifier owner: '+path)
+    try:
+        requests = _requests(text, atoms)
+    except (KeyError, OverflowError, ZeroDivisionError) as exc:
+        raise ValueError('Incomplete or unrepresentable explicit restraint') from exc
+    _need(len(requests) == declarations, 'Explicit restraint declaration coverage differs')
+    for request in requests:
+        # Reuse endpoint identity, finite target/weight and plane disjointness
+        # checks. PDB record indices here are not asserted to be native indices.
+        _checked_signature({'atoms': atoms}, request['kind'], request)
+    return requests, disabled
+
+
+def derive_restraint_context(model, supplementary_phils):
+    """Return a byte/order/model-bound declaration without writing or executing.
+
+    One to 64 ordered inputs may contain up to 4096 unique explicit requests.
+    Includes, substitutions, native secondary-structure guessing, site modifiers,
+    unknown fields/actions and unsupported selection syntax refuse. Every accepted
+    input byte and request is retained; there is no target/coordinate rewriting.
+    """
+    _need(isinstance(supplementary_phils, (list, tuple)) and 1 <= len(supplementary_phils) <= 64,
+          'Require one to 64 ordered explicit PHIL inputs')
+    model = Path(model); original = _read(model)
+    raw, atoms, _, _, _, _ = _model(model)
+    _need(raw == original, 'Model changed while binding explicit restraints')
+    paths = [Path(p) for p in supplementary_phils]
+    originals = [_read(p) for p in paths]
+    requests = []; inputs = []; disabled = 0
+    for number, data in enumerate(originals):
+        rows, controls = _checked_requests(data.decode('utf-8'), atoms)
+        start = len(requests); requests.extend(rows); disabled += controls
+        inputs.append(dict(input_index=number, sha256=sha256(data).hexdigest(), size=len(data),
+                           request_indices=list(range(start, len(requests))), disabled_ss_controls=controls))
+    _need(disabled > 0, 'Require an explicit disabled secondary-structure control')
+    _need(1 <= len(requests) <= 4096, 'Require one to 4096 explicit restraint requests')
+    signatures = [_signature(r['kind'], r, values=False) for r in requests]
+    _need(len(signatures) == len(set(signatures)), 'Duplicate explicit restraint endpoints across ordered inputs')
+    _need(_read(model) == original and all(_read(p) == data for p, data in zip(paths, originals)),
+          'Model or PHIL changed while binding explicit restraints')
+    return dict(schema_version=1, policy_id=POLICY_ID, model_sha256=sha256(original).hexdigest(),
+                inputs=inputs, requests=requests, request_counts=dict(sorted(Counter(r['kind'] for r in requests).items())),
+                index_basis='PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES',
+                target_authority='SUPPLIED_EXPLICIT_PHIL', site_modifier_owner='DICTIONARY_COMPOSER',
+                secondary_structure_enabled=False, native_membership='NOT_ASSESSED')
+
+
+def validate_restraint_context(model, supplementary_phils, record):
+    """Reconstruct every input/request from the frozen ordered model and PHIL."""
+    _need(isinstance(record, dict) and type(record.get('schema_version')) is int
+          and record['schema_version'] == 1 and record.get('policy_id') == POLICY_ID,
+          'Unsupported explicit restraint context')
+    expected = derive_restraint_context(model, supplementary_phils)
+    _need(_bytes(record) == _bytes(expected), 'Explicit restraint context differs from frozen inputs')
+    return expected

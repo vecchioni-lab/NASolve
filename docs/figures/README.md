@@ -409,3 +409,9 @@ C175 supplies the prepared-model/site-context input to the existing request box
 using frozen intent and the ordinary phosphate audit. It does not change chemical/
 native qualification or close the NAR/modifier ownership and adoption arrows.
 Its initial bridge excludes supplementary PHIL; required NAR must not be omitted.
+
+
+C176 extends the same prepared-model input with exact ordered explicit PHIL and
+composer-only modifier ownership. It closes that input-binding boundary, while
+ordinary source/cache entry, adoption and actual refinement remain open arrows.
+Native request realization is still independently checked; no diagram flow changes.

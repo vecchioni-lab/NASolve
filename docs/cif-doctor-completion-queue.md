@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C175.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C176.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -132,11 +132,13 @@ as competing next-step instructions here.
 | Scientific selection and immutable output | C160/C172 share source/site/full-native/derivative checks, selector and publisher. No-graph originals need independent proof. Only qualified selected model/CIF/PHIL bundles publish; negative results can truthfully return no usable bundle. |
 | Optional failure and original fallback | C173 binds optional native timeout or complete failed/unsupported worker evidence to the exact known-stopped job, declared inputs and maintained worker. Current consumer and independent original proof remain mandatory. Valid negative attribution/derivative results use the existing selector. Initial failures, malformed/contradictory reports, interruption and unknown cleanup remain blocking. No retry or renewed allowance. |
 | One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. The separate ReadySet round-trip adapter still requires 2–16. |
-| Prepared-model context | C175 derives all selected sites and audited whole-model links from canonical prepared coordinates and frozen terminal/backbone intent, then freezes/rederives the proof. Linked/free-OH synthetic and isolated 5PC/PDU native controls pass. Supplementary PHIL, NAR/modifier ownership and nonstandard backbones remain outside this first adapter. |
+| Prepared-model context | C175 derives all selected sites and audited whole-model links from canonical prepared coordinates and frozen terminal/backbone intent, then freezes/rederives the proof. Linked/free-OH synthetic and isolated 5PC/PDU native controls pass. C176 extends the canonical bridge with explicit PHIL ownership; nonstandard backbone adapters remain open. |
+| Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. Unsupported PHIL and unowned pre-existing modifiers refuse. |
 
-**Next bounded checkpoint:** preserve exact NAR/PHIL inputs and establish one
-site-modifier owner around the C175 bridge, then connect ordinary source/cache
-acquisition to the existing complete request.
+**Next bounded checkpoint:** connect ordinary source/cache acquisition and a
+prepared model/explicit NAR policy to the existing complete request, reusing the
+C175/C176 context contracts. Do not loosen the legacy cache filter or create a
+second recovery owner.
 Keep source precedence, exact recipe/consumer checks, persistent attempt identity
 and independent usable-original proof. Exercise current hit, stale qualification,
 miss, classified repair failure and no-usable result through that entry point;
@@ -149,11 +151,13 @@ The C174 integration-seam audit narrows the next implementation boundary:
 
 1. C175 closes the canonical no-supplementary-PHIL model/context portion:
    all selected sites, audited links and terminal/backbone intent are frozen and
-   rederived. Exact ordered NAR/PHIL membership remains open. Ordinary
+   rederived. C176 closes exact ordered explicit PHIL membership and composer-only
+   modifier ownership. Unsupported legacy inputs still need a faithful adapter. Ordinary
    `declared_site_context` currently records only OP3/passthrough policy; it is
    not a complete source-qualified declaration. Reuse existing readers and fail
    on unavailable intent rather than inferring a supported chemistry.
-2. Keep one owner for site modifications. Ordinary `write_linked_profile` and the
+2. C176 establishes composer-only modifier ownership for explicit inputs.
+   Ordinary `write_linked_profile` and the
    qualified composer both emit modifier PHIL; integrating them must not apply
    both to the same site. Preserve NAR targets and keep its stacking/pair edges
    distinct from covalent backbone links. C84's frozen-fixture context helper is
@@ -163,7 +167,7 @@ The C174 integration-seam audit narrows the next implementation boundary:
    source acquisition and post-construction qualification; retain its source,
    producer and generation-attempt lineage across that boundary under Q05.
 
-C175 is an explicit context API; the remaining ordinary integration is planned,
+C175/C176 are explicit context APIs; the remaining ordinary integration is planned,
 not an enabled default.
 
 **Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not

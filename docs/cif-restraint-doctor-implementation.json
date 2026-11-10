@@ -28145,6 +28145,12 @@
       "evidence_key": "prepared_model_context_2026_11_10",
       "scope": "Canonical prepared-model context without supplementary PHIL; ordinary integration open",
       "implementation_revision": "b595c6fc5bf4cc64300056e248c57850ba8a956b"
+    },
+    "ordered_restraint_context": {
+      "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
+      "milestone": "C176",
+      "evidence_key": "ordered_restraint_context_2026_11_10",
+      "scope": "Exact ordered explicit PHIL and one composer modifier owner; ordinary integration open"
     }
   },
   "audience": [

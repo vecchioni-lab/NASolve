@@ -104,7 +104,9 @@
 
 <a id="current-capability-boundary-c174"></a>
 
-## Current capability boundary (C175)
+<a id="current-capability-boundary-c175"></a>
+
+## Current capability boundary (C176)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -126,7 +128,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175 derives and replays canonical prepared-model context without supplementary PHIL. | NAR/modifier ownership and ordinary cache-miss entry-point integration remain Q04; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive and replay canonical model context plus exact ordered explicit PHIL, with one composer modifier owner. | Ordinary source/cache entry-point integration remains Q04; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -246,6 +248,46 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Ordered explicit restraint context (C176)
+
+`cif_restraint_context.derive_restraint_context(model, supplementary_phils)` binds
+one to 64 ordered inputs to the exact prepared model. It reads the bounded
+line-oriented bond/angle/parallelity grammar emitted by the maintained explicit
+NARestraints compiler. Targets and sigmas come from the supplied PHIL; this API
+does not infer NAR authorship, recompile from a different workbook or adjust values.
+The proof records exact bytes/order, every resolved request and PDB-record atom
+identities. Those record indices are explicitly **not native capture indices**.
+
+The dictionary composer is the sole downstream site-modifier owner. Incoming
+`apply_cif_modification` commands, includes/substitution, unsupported scopes or
+fields/actions, native secondary-structure guessing, unresolved selectors,
+nonfinite/invalid targets or weights and duplicate geometric endpoints refuse.
+An explicit `enabled=False` native secondary-structure control is required.
+Separate orientation-control files stay separate; combining duplicate requests
+does not silently deduplicate them. No supplied byte is stripped or rewritten.
+Replacing an existing legacy modifier needs captured ownership evidence under
+the existing scaffold-candidate contract; recognizing its name is insufficient.
+
+Pass the record as `initialize_dictionary_request(..., model_context=model_proof,
+restraint_context=restraint_proof, supplementary_phils=ordered_inputs)` with
+`native_context.custom_restraints='required'`. Every inspection/execution/result
+read reconstructs it from the frozen model and ordered PHIL before work. Optional
+`configuration.restraint_context` has schema 1 and policy
+`cif-owned-explicit-restraints-v1`. Present-field requests need C176 readers;
+absence preserves legacy explicit requests and C175's no-supplementary mode.
+Full native realization remains an independent gate: a declaration alone never
+grants usability. The shared selector now also rejects unmatched parentheses.
+
+Focused regressions include the maintained compiler's complete mixed-policy
+output, exact order/targets, one modifier per site, pre-attempt tamper rejection,
+legacy semantics and relocation. Actual Phenix 2.2.1-6174 / dispatcher 2.2.1
+original and repaired PDU/5PC controls retain C171's exact NAR parallelity alongside
+a second ordered control input. Both qualify, preserve inputs and stop all child
+phases. New and C171–C175 requests replay cold without original paths or SDK.
+These are isolated diagnostic controls, not a physical base pair, new chemistry
+coverage, ordinary PostMR adoption, ReadySet or diffraction refinement. The
+ordinary source/cache entry point remains Q04; final adoption remains Q05/Q06.
+
 ### Prepared-model context bridge (C175)
 
 `cif_model_context.derive_prepared_model_context(model, report, components)` is a
@@ -280,10 +322,12 @@ coverage before work. Schema-1 policy `cif-prepared-model-context-v1` is stored 
 optional `configuration.model_context`. Present-field requests require C175
 readers; absence retains legacy explicit-declaration semantics without rewriting.
 
-This bridge currently requires `custom_restraints='absent'` and no supplementary
-PHIL. **Never drop requested NAR restraints to fit this adapter.** Exact NAR/PHIL
-binding and one owner for legacy/composed site modifications remain the next Q04
-boundary. The existing explicit API retains its prior ordered PHIL contract.
+Without the C176 restraint context, this bridge requires
+`custom_restraints='absent'` and no supplementary PHIL. The
+[C176 extension](#ordered-explicit-restraint-context-c176) binds supported explicit
+inputs and leaves the composer as the only site-modifier owner. **Never drop
+requested NAR restraints to fit either adapter.** Other legacy explicit requests
+retain their prior ordered PHIL contract.
 There is no ordinary PostMR default change, new acquisition/process owner,
 source classification, stereo approval or ReadySet/checkpoint adoption.
 

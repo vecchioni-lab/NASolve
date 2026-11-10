@@ -53,8 +53,10 @@ one to sixteen selected component types and keeps every declared site. Ordinary
 automatic PostMR recovery and adoption remain integration work. An opt-in
 [prepared-model context bridge](docs/cif-doctor.md#prepared-model-context-bridge-c175)
 derives canonical backbone/site declarations from frozen intent and audited
-connectivity, then rechecks them on replay. Its initial scope excludes supplementary
-PHIL; it must not discard requested NARestraints inputs.
+connectivity, then rechecks them on replay. An
+[ordered-restraint extension](docs/cif-doctor.md#ordered-explicit-restraint-context-c176)
+preserves supported explicit NARestraints/PHIL inputs and leaves site modifications
+to one composer. Unsupported required inputs must never be discarded.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

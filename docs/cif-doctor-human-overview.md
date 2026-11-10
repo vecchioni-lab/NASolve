@@ -3755,3 +3755,19 @@ repair executions pass, including new/legacy relocated replay. Exact NAR/PHIL
 membership and one modifier owner remain open; this first adapter accepts no
 supplementary PHIL and does not change ordinary PostMR, ReadySet or refinement.
 See the [method and limits](cif-doctor.md#prepared-model-context-bridge-c175).
+
+
+### Keeping the requested restraints intact (C176)
+
+The prepared-model bridge now accepts a bounded explicit restraint policy while
+preserving its exact files, order, targets and weights. One composer owns the
+site modifications. Existing competing modifiers and unsupported inputs stop
+preparation instead of being silently removed. Native interpretation separately
+proves that all accepted restraints were realized on the intended atoms.
+
+**Methods.** Reuse the maintained NAR parser/selector and native endpoint checks;
+freeze a reconstructible model/input proof in the existing owned request. The
+maintained mixed-policy compiler fixture and actual original/repaired PDU/5PC
+controls pass, with unchanged NAR input bytes and cold legacy replay. This adds
+input ownership, not automatic PostMR adoption or new diffraction evidence.
+See the [method and limits](cif-doctor.md#ordered-explicit-restraint-context-c176).

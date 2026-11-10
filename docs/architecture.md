@@ -4072,5 +4072,9 @@ The opt-in [C175 bridge](cif-doctor.md#prepared-model-context-bridge-c175) reuse
 ordinary phosphate/backbone intent and geometry checks to derive canonical site
 declarations. A complete request can freeze this in `configuration.model_context`
 and reconstruct it from copied inputs before work/readback. Absence preserves
-legacy explicit declarations. This initial bridge excludes supplementary PHIL;
-NAR membership, single modifier ownership and ordinary adoption remain open.
+legacy explicit declarations. The
+[C176 extension](cif-doctor.md#ordered-explicit-restraint-context-c176) freezes
+ordered explicit PHIL as `configuration.restraint_context`; it binds exact targets
+and model identities while reserving site modifications for the composer. It
+refuses unsupported/competing inputs rather than omitting them. Native realization
+is a separate gate. Ordinary source/cache entry and adoption remain open.
