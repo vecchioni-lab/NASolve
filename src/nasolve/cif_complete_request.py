@@ -10,6 +10,7 @@ from pathlib import Path
 from time import monotonic
 import uuid
 
+from .failure_reporting import add_failure_note
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
 from . import cif_acquisition_attempt as acquisition
@@ -537,7 +538,6 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
         except BaseException as exc:
             try: _seal(root,attempt,intent,request,'RAISED',type(exc).__name__)
             except Exception as error:
-                add_note = getattr(exc,'add_note',None)
-                if callable(add_note): add_note(f'Outer completion could not be sealed: {error}')
+                add_failure_note(exc, 'Outer completion could not be sealed', error)
             raise
         return dict(request_id=request['request_id'],attempt_id=intent['attempt_id'],attempt_number=number,result=result)

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C184.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C185.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -136,9 +136,12 @@ as competing next-step instructions here.
 | Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. Unsupported PHIL and unowned pre-existing modifiers refuse. |
 | Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. This API remains opt-in; C182 derives current consumer/generator settings from the selected installation while preserving explicit source-reader/representation intent. |
 
-**Next bounded checkpoint:** connect the validated prepared-model intake and
-selected runtime to ordinary PostMR orchestration, preserving the selected native
-profile, pre-construction source/producer lineage and exact NAR compiler intent.
+**Next bounded checkpoint:** qualify planarity intake without changing NAR
+targets or old artifact meaning. Preserve literal pair/stack declarations through
+the existing compiler routes described below. Then connect the validated prepared
+intake and selected runtime to ordinary PostMR orchestration, preserving the
+selected native profile, pre-construction source/producer lineage and exact NAR
+compiler intent.
 C177 closes source/request assembly and demonstrates the required acquisition
 outcomes through that API; it does not enable the ordinary default or checkpoint
 adoption. Coordinate the remaining caller integration with Q05. C178 validates singleton consumption/fallback; C179 reuses C09's loop writer at
@@ -183,6 +186,32 @@ The C174 integration-seam audit narrows the next implementation boundary:
 
 C177 is the explicit prepared-model intake using C175/C176 context APIs;
 ordinary orchestration and selected-runtime adoption are not enabled defaults.
+
+Prior compiler reuse checked during C185: C21's
+[`compile_na_policy`](../src/nasolve/cif_na_policy.py) already translates supported
+literal Saenger 19/20 and mapped stack declarations while retaining non-SS lines;
+its actual membership controls use captured native identities and existing custom
+requests. C80's [`compile_explicit_na_policy`](../src/nasolve/cif_explicit_na_policy.py)
+instead binds declared relationships and source roles to PDB record identities.
+C176 already accepts the latter's maintained explicit output. Audit/reuse these
+before introducing another compiler. Do not fabricate a native capture from PDB
+indices, rerun pairing guesses, or discard required frame secondary PHIL merely
+to fit the new context grammar. The ordinary bridge still needs its own faithful
+input/retained-edit coverage and fresh native membership proof.
+
+Concrete intake gate reproduced with the packaged W frame and NARestraints 1.1.3:
+the ordinary builder emits eight bonds, fourteen angles, three parallelities,
+three planarities and thirty-eight declared stacks. The complete ordinary input
+first refuses the context's disabled-secondary-structure requirement. A separate
+parser-only control retaining one exact generated plane also refuses unsupported
+planarity grammar. Neither control runs Phenix or judges the chemical state.
+Before ordinary adoption, support the required plane union selections and weights
+through the existing context/native-binding machinery, preserving old artifact
+meaning; then bind the supported literal pair/stack declarations faithfully.
+Do not set `planes=False` or discard secondary PHIL to bypass either boundary.
+The native signature reader already validates planarity; the bounded PHIL reader
+still needs its own qualified extension. Exact local hashes are in C185's ledger
+entry `primary_failure_reporting_2026_11_10` under `intake_readiness`.
 
 **Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not
 qualify zero-context geometry or optional nonbonded-inventory captures. A required
@@ -447,11 +476,13 @@ already noted after C133, not permission to delete historical evidence.
 
 ### Q16 — Final integration, portability and retained-artifact closure
 
-Compatibility follow-up found during C171: audit the pre-existing direct
-`BaseException.add_note` calls in C164/C167 against the declared Python >=3.10
-floor. C171 guards its own note path and tests an exception without note support;
-no Python 3.10 interpreter execution is claimed here. Preserve the original
-failure when recording cleanup diagnostics fails or notes are unavailable.
+The specific C171 diagnostic-masking follow-up is resolved in
+[C185](cif-doctor.md#preserve-primary-failures-during-diagnostic-reporting-c185):
+all existing exception-note paths share best-effort handling, and a failed
+prepared-repair progress write preserves the original error/timeout. Tests cover
+missing/disabled/broken note support and unchanged ownership refusal. These run
+on Python 3.12.14, including a relocated checkout; actual Python 3.10 execution
+and full platform qualification remain part of the release gate below.
 
 
 **Open; release gate.** State whether the proposed checkpoint ships bounded

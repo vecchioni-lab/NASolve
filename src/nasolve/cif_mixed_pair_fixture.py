@@ -13,6 +13,8 @@ import json
 from pathlib import Path
 import re
 
+from .failure_reporting import add_failure_note
+
 POLICY_ID = "cif-eight-pair-construction-fixture-v1"
 FRAME_SHA256 = "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817"
 SECONDARY_SHA256 = "442ec9ef669098283f336f6382a7b69e29f119854a476ed88c1758e25335b3e8"
@@ -454,8 +456,7 @@ def run_mixed_pair_fixture(template, secondary, padd, ready_set_executable, outp
         if original_failure is not None:
             detail = {"error_type": type(reporting_error).__name__, "error": str(reporting_error)}
             original_failure.fixture_reporting_error = detail
-            if hasattr(original_failure, "add_note"):
-                original_failure.add_note("Fixture reporting also failed: " + detail["error_type"] + ": " + detail["error"])
+            add_failure_note(original_failure, "Fixture reporting also failed: " + detail["error_type"], reporting_error)
             raise original_failure from None
         raise
     return report

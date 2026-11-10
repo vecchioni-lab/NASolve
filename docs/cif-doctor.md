@@ -266,6 +266,35 @@ reuses the relocated store with historical science/SDK reads and execution denie
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
 
+### Preserve primary failures during diagnostic reporting (C185)
+
+Acquisition, candidate qualification, prepared repair, complete requests and
+selected-runtime continuation preserve the original exception when ownership
+completion cannot be sealed. A shared best-effort note helper handles missing
+Python 3.10 note support, disabled or failing note hooks, and ordinary note lookup
+or formatting errors. Where supported, the secondary diagnostic remains attached
+to the primary exception. A new interruption during reporting still propagates.
+The mixed construction fixture uses the same helper and retains its existing
+`fixture_reporting_error` detail.
+
+Prepared repair also preserves the original failure if writing the diagnostic
+failure-progress event fails. Budget failures keep their timeout type and
+`BUDGET_EXHAUSTED` label; other failures keep the `EXCEPTION` label when the event
+can be written. Both use the same finalization path. Failure reporting does not
+grant a successful result, manufacture a completion seal, or authorize recovery;
+existing process/attempt readers continue to decide from actual retained evidence.
+No artifact schema, scientific gate, fallback, retry policy or successful output
+changes. Missing notes require no migration or raised Python version floor.
+
+Fault-injection regressions exercise the real request/ownership paths with
+synthetic scientific transports. They preserve exception identity, original input
+and partial-output bytes, budget classification and blocked ownership. The new
+tests also pass from a relocated checkout with its original copy and historical
+source/SDK paths unavailable. Host validation uses Python 3.12.14; absent-note
+simulation does not establish an actual Python 3.10 environment or full platform
+qualification. This closes the specific C171/Q16 diagnostic-masking follow-up;
+the release integration/full-suite/platform gate remains open.
+
 ### Complete-request continuation and recovery (C184)
 
 The existing complete-request and prepared-PostMR initializers accept an optional

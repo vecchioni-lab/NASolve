@@ -8,6 +8,7 @@ from hashlib import sha256
 from pathlib import Path
 from time import monotonic
 
+from .failure_reporting import add_failure_note
 from .cif_component_runtime import _tree, prepare_repaired_component_runtime_bundle, prepare_original_component_runtime_bundle
 from .cif_outer_context import OuterAllowance
 from .cif_dictionary_store import _bytes, _snapshot_destination
@@ -235,19 +236,16 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
               'Published repair selection changed')
         report['runtime'] = reference(output/'runtime/runtime_bundle.json')
         return finish('QUALIFIED_DIAGNOSTIC_RUNTIME')
-    except PreparedRepairBudgetExceeded as exc:
-        try:
-            processes.finish('RAISED')
-        except Exception as seal_error:
-            exc.add_note(f'Ownership completion could not be sealed: {seal_error}')
-        event('BUDGET_EXHAUSTED; PARTIAL_OUTPUT_PRESERVED; NO_RECOVERY_AUTHORITY')
-        raise
     except BaseException as exc:
         # Do not convert corrupt/contradictory evidence or interrupted jobs into
         # routine negative chemistry. Underlying adapters own their child cleanup.
         try:
             processes.finish('RAISED')
         except Exception as seal_error:
-            exc.add_note(f'Ownership completion could not be sealed: {seal_error}')
-        event('EXCEPTION; PARTIAL_OUTPUT_PRESERVED; NO_RECOVERY_AUTHORITY')
+            add_failure_note(exc, 'Ownership completion could not be sealed', seal_error)
+        state = 'BUDGET_EXHAUSTED' if isinstance(exc, PreparedRepairBudgetExceeded) else 'EXCEPTION'
+        try:
+            event(state + '; PARTIAL_OUTPUT_PRESERVED; NO_RECOVERY_AUTHORITY')
+        except Exception as reporting_error:
+            add_failure_note(exc, 'Failure progress could not be recorded', reporting_error)
         raise

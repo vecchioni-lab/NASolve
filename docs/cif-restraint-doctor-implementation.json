@@ -28223,6 +28223,18 @@
         "Mixed/held-out and chemical-state controls Q07/Q13"
       ],
       "implementation_revision": "b1d179d3147632211281ba4887839d6b64260960"
+    },
+    "primary_failure_reporting": {
+      "status": "IMPLEMENTED_DIAGNOSTIC_FAILURE_PRESERVATION",
+      "evidence_key": "primary_failure_reporting_2026_11_10",
+      "scope": "C171_NOTE_COMPATIBILITY_FOLLOWUP_ONLY",
+      "remaining": [
+        "Required planarity intake and faithful ordinary PHIL binding Q04",
+        "Ordinary caller and checkpoint adoption Q04/Q05",
+        "Actual refinement Q06",
+        "Mixed/held-out and chemical-state controls Q07/Q13",
+        "Full integration/platform/Python 3.10 qualification Q16"
+      ]
     }
   },
   "audience": [

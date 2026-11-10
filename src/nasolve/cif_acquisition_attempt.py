@@ -11,6 +11,7 @@ from pathlib import Path
 from time import monotonic
 import uuid
 
+from .failure_reporting import add_failure_note
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
 from .cif_component_runtime import _tree
@@ -301,7 +302,7 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
             _result(root,attempt,config);remaining();_seal(root,attempt,intent,request,'RETURNED')
         except BaseException as exc:
             try:_seal(root,attempt,intent,request,'RAISED',type(exc).__name__)
-            except Exception as seal_error:exc.add_note(f'Acquisition completion could not be sealed: {seal_error}')
+            except Exception as seal_error:add_failure_note(exc, 'Acquisition completion could not be sealed', seal_error)
             raise
         return dict(schema_version=1,policy_id=POLICY_ID,request_id=request['request_id'],attempt_id=intent['attempt_id'],attempt_number=number,
             dictionary_directory=dict(anchor=ANCHOR,path=f'attempts/attempt-{number:04d}/snapshot'),acquisition=result)

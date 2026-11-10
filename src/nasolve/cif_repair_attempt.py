@@ -10,6 +10,7 @@ from pathlib import Path
 import uuid
 from time import monotonic
 
+from .failure_reporting import add_failure_note
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
 from .cif_component_runtime import _tree
@@ -271,7 +272,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
             try:
                 _seal(attempt,intent,request,'RAISED',type(exc).__name__)
             except Exception as seal_error:
-                exc.add_note(f'Attempt completion could not be sealed: {seal_error}')
+                add_failure_note(exc, 'Attempt completion could not be sealed', seal_error)
             raise
         return dict(schema_version=1,policy_id=POLICY_ID,request_id=request['request_id'],attempt_id=intent['attempt_id'],
                     attempt_number=number,execution_directory={'anchor':ANCHOR,'path':f'attempts/attempt-{number:04d}/execution'},

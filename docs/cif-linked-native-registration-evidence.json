@@ -75584,5 +75584,281 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "b1d179d3147632211281ba4887839d6b64260960"
+  },
+  "primary_failure_reporting_2026_11_10": {
+    "status": "VALIDATED; PUBLICATION_PENDING",
+    "base_revision": "92ca2e095ca4b29dd574716c825c4920b38a7b05",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "scripts/run_tests.py",
+      "tests/test_failure_reporting.py",
+      "src/nasolve/failure_reporting.py",
+      "src/nasolve/cif_acquisition_attempt.py",
+      "src/nasolve/cif_repair_attempt.py",
+      "src/nasolve/cif_candidate_qualification_execution.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_runtime_continuation.py",
+      "src/nasolve/cif_mixed_pair_fixture.py"
+    ],
+    "history": "C164/C167 owner seals; C171 missing-note guard and explicit Q16 follow-up; C183 continuation; existing mixed-fixture diagnostics. Read-only C21/C80 compiler reuse audit updates the existing Q04 next-step pointers.",
+    "behavior": "Preserve exact primary exception through ordinary secondary note/seal/progress reporting errors; new BaseException interruption still propagates. No scientific or ownership authority added.",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 320,
+        "runner_pid": 306,
+        "phase": "before",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_failure_reporting.py",
+          "-k",
+          "seal_failure or progress_write_failure or complete_request_preserves or fixture_report_failure",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/185_Cedar_primary-failure-ioczqxvv/before.xml"
+        ],
+        "started_utc": "2026-11-10T15:19:20.198702+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 12.506,
+        "sources_unchanged": true,
+        "source_files": 636
+      },
+      "before_summary": "28 failed, 12 passed, 3 deselected in 12.30s",
+      "new": {
+        "active": false,
+        "pid": 572,
+        "runner_pid": 549,
+        "phase": "new-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_failure_reporting.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/185_Cedar_primary-failure-ioczqxvv/new-r1.xml"
+        ],
+        "started_utc": "2026-11-10T15:20:28.175046+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 17.754,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "affected": {
+        "active": false,
+        "pid": 911,
+        "runner_pid": 895,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_failure_reporting.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_complete_continuation.py",
+          "tests/test_cif_acquisition_attempt.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_candidate_qualification_execution.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_prepared_repair_budget.py",
+          "tests/test_cif_runtime_continuation.py",
+          "tests/test_cif_mixed_pair_fixture.py",
+          "tests/test_test_suites.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/185_Cedar_primary-failure-ioczqxvv/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-10T15:21:17.357813+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 395.385,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "focused": {
+        "active": false,
+        "pid": 5074,
+        "runner_pid": 5060,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/185_Cedar_primary-failure-ioczqxvv/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-10T15:28:56.253831+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 745.238,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "new_summary": "43 passed in 17.57s",
+      "affected_summary": "463 passed in 395.20s (0:06:35)",
+      "focused_summary": "1888 passed, 45 subtests passed in 745.02s (0:12:25)",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "last_full_tests": "7740 + 276 subtests"
+    },
+    "cold": {
+      "status": "PASS",
+      "files": 669,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_source_and_sdk_reads_denied": true,
+      "scope": "NEW_FAILURE_REPORTING_TESTS_ONLY",
+      "actual_python_310": "NOT_RUN",
+      "external_science": "NOT_RUN"
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/start.json",
+        "sha256": "caa931cba8c9a8a30ba713fc6d69a378d336283aca2e5dcc9b0f5095493a082b",
+        "size": 118
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/before-result.json",
+        "sha256": "c30181dd7919390f202455e8b51fc7fe17a6284ef196a320abffa6674d1d5fa9",
+        "size": 682
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/new-r1-result.json",
+        "sha256": "0e2b7d6374d8e2b95874f642493472aabc4cdd23227579ace45294803d9cd1d5",
+        "size": 570
+      },
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/affected-r1-result.json",
+        "sha256": "fcc7cc6b4a56ad564f6574584b4c512132731a94179f17c1b1d057b6b50a6e77",
+        "size": 1036
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/affected-r1-sources.json",
+        "sha256": "01f6cbb839f8700f32b58cfcf0f854ae71bb323767c351530e55fb8a2b0e54cf",
+        "size": 69576
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/focused-r1-result.json",
+        "sha256": "329eaabd6ca43532012e6a6a06720460cd5ab16398e3baad98cb77b88923ab28",
+        "size": 492
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/focused-r1-sources.json",
+        "sha256": "01f6cbb839f8700f32b58cfcf0f854ae71bb323767c351530e55fb8a2b0e54cf",
+        "size": 69576
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/cold-r1/summary.json",
+        "sha256": "4ad354560b142f649a7aeac8e83f3c94961c6a6f66c9a9f8b1c47587a1c88b2b",
+        "size": 269
+      },
+      "ordinary-restraint-audit/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/ordinary-restraint-audit/summary.json",
+        "sha256": "1f9b5c09698dc0724db7a4b870d6d276fcd2d4745567669696316cfbba41ab32",
+        "size": 2602
+      },
+      "ordinary-restraint-audit/ordinary_narestraints.phil": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/ordinary-restraint-audit/ordinary_narestraints.phil",
+        "sha256": "1f841fde9bf6f85638a31f70300aaaa71898e78742d70c6452ead4c8542de79b",
+        "size": 11770
+      },
+      "planarity-audit/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/planarity-audit/summary.json",
+        "sha256": "eced08d619116d6e38b603f1b032e6f9a16947330e9ef6a7de80c3f3ca0022fa",
+        "size": 907
+      },
+      "planarity-audit/isolated_plane_grammar_control.phil": {
+        "anchor": "live_tests_directory",
+        "path": "185_Cedar_primary-failure-ioczqxvv/planarity-audit/isolated_plane_grammar_control.phil",
+        "sha256": "9cb72f01bd92afbf11f120095978a924e3f8a6b35b214790de9e01f433495b30",
+        "size": 458
+      }
+    },
+    "intake_readiness": {
+      "status": "EXISTING_Q04_INPUT_GRAMMAR_GAPS_CONFIRMED",
+      "nar_version": "1.1.3",
+      "declared_scopes": {
+        "geometry_restraints.edits": 1,
+        "geometry_restraints.edits.angle": 14,
+        "geometry_restraints.edits.bond": 8,
+        "geometry_restraints.edits.parallelity": 3,
+        "geometry_restraints.edits.planarity": 3,
+        "pdb_interpretation": 1,
+        "pdb_interpretation.secondary_structure": 1,
+        "pdb_interpretation.secondary_structure.nucleic_acid": 1,
+        "pdb_interpretation.secondary_structure.nucleic_acid.stacking_pair": 38,
+        "refinement": 1
+      },
+      "ordinary_checks": {
+        "ordinary_generated": {
+          "status": "EXPECTED_CONTEXT_REFUSAL",
+          "error": "Require explicitly disabled native secondary structure"
+        },
+        "ordinary_frame_stack": {
+          "status": "EXPECTED_CONTEXT_REFUSAL",
+          "error": "Require explicitly disabled native secondary structure"
+        }
+      },
+      "isolated_plane_refusal": "Unsupported explicit restraint kind",
+      "source_bytes_mtimes_unchanged": true,
+      "native_execution": "NOT_RUN",
+      "scope": "ONE_EXACT_GENERATED_PLANE_ISOLATED_FOR_PARSER_DIAGNOSIS_ONLY; NOT_A_REPLACEMENT_RESTRAINT_BUNDLE",
+      "commands": [
+        [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "c185_intake_audit.py"
+        ],
+        [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "c185_planarity_audit.py"
+        ]
+      ],
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "cwd_historical": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners"
+    },
+    "compatibility": "Python >=3.10 remains declared; missing-note simulation on Python 3.12.14, actual Python 3.10 NOT_RUN. No schema/migration or scientific policy changes.",
+    "external_tools": "Phenix/Coot/refinement NOT_RUN. Fault-test science is synthetic; intake-readiness probes execute the actual NAR 1.1.3 PHIL builder without native consumption. Prior C184 actual Phenix 2.2.1-6174/dispatcher 2.2.1 is retained, not requalified by this patch.",
+    "exclusions": "Generated fixtures, runner scripts, logs, XML and source/relocation copies remain local.",
+    "remaining": [
+      "Required planarity intake and faithful ordinary PHIL binding Q04",
+      "Ordinary caller and checkpoint adoption Q04/Q05",
+      "Actual refinement Q06",
+      "Mixed/held-out and chemical-state controls Q07/Q13",
+      "Full integration/platform/Python 3.10 qualification Q16"
+    ],
+    "author": "Rowan · Codex desktop"
   }
 }

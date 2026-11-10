@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 from time import monotonic
 
+from .failure_reporting import add_failure_note
 from .campaign_records import path_in, read_record, write_record
 from .cif_outer_context import OuterAllowance
 from .cif_attachment_native import _capture
@@ -182,7 +183,7 @@ def execute_candidate_qualification(source,candidate,code,consumer,phenix,output
     except BaseException as exc:
         if not sealed:
             try:owner.finish('RAISED')
-            except Exception as seal_error:exc.add_note(f'Ownership completion could not be sealed: {seal_error}')
+            except Exception as seal_error:add_failure_note(exc, 'Ownership completion could not be sealed', seal_error)
         raise
 
 

@@ -11,6 +11,71 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C185 validated: preserve the original failure
+
+Base `92ca2e095ca4b29dd574716c825c4920b38a7b05`; existing Cedar. Implementation/validation complete; publication
+is next. Scope closes the narrow C171/Q16 exception-note compatibility follow-up,
+not the release/platform gate. Capsule: `live_tests_directory/185_Cedar_primary-failure-ioczqxvv`.
+
+**Before → after:** direct note calls could replace the original exception when
+notes were absent/disabled or failed. Guarded paths also allowed a failing hook
+to escape. The seven existing callers now share a best-effort helper. Prepared
+repair additionally guards failure-progress publication and consolidates its
+duplicated catches while retaining the budget versus generic labels. The exact
+primary exception survives ordinary secondary reporting failures; a fresh
+interruption during reporting still propagates. Failed/unsealed work remains
+failed/unsealed and prior process uncertainty continues to block recovery.
+
+**History/reuse:** C164/C167 ownership sealing, C171's partial fix and explicit Q16
+follow-up, C183 continuation and the existing mixed-fixture report path. No new
+owner, error policy framework or scientific fallback. No artifact/schema change;
+no migration, raised Python floor or altered chemistry/resources. The fixture's
+existing attached reporting detail is retained. Public scientific claims are
+unchanged, so no new figure or native science claim is needed.
+
+**Validation:** before **28 failed, 12 passed, 3 deselected in 12.30s**; new **43 passed in 17.57s**; affected
+**463 passed in 395.20s (0:06:35)**; workflow **1888 passed, 45 subtests passed in 745.02s (0:12:25)**. All
+637 source/test/script hashes remained fixed.
+New tests replay from a relocated checkout: 669 files unchanged in
+bytes/mtimes, original copy absent, old checkout/SDK reads denied. Actual host
+Python 3.12.14/pytest 9.1.1. Missing-note tests simulate Python 3.10; an actual
+3.10 interpreter was not run. Science/process transports are explicitly synthetic.
+Phenix/Coot/refinement are NOT_RUN for this diagnostic-only patch; C184 retains
+the actual Phenix 2.2.1-6174 / dispatcher 2.2.1 and native/cold baseline.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c185_validate.py before
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c185_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c185_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 python c185_cold.py cold-r1
+PYTHONDONTWRITEBYTECODE=1 python -B c185_intake_audit.py
+PYTHONDONTWRITEBYTECODE=1 python -B c185_planarity_audit.py
+```
+
+Exact expanded commands and results are retained in the evidence ledger. No full
+suite, as requested; last completed full remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276). Only the helper, seven
+call sites, focused tests/profile and maintained docs/hash references enter Git.
+Generated fixtures, local runners, logs, XML and relocated copies stay local.
+
+**Next:** Q04 planarity intake and faithful ordinary PHIL binding, then Q04/Q05
+ordinary caller and immutable checkpoint adoption, retaining source/producer
+lineage, exact selected runtime and one NAR modifier owner.
+Do not rerun an independent dictionary precedence/ReadySet chain after selection.
+The existing Q04 queue now points to the C21/C80 restraint compilers and their
+different identity prerequisites, following a source/history reuse audit.
+An ordinary NAR 1.1.3/public-W-frame probe preserves its inputs and records eight
+bonds, fourteen angles, three parallelities, three planarities and thirty-eight
+stack declarations. The complete PHIL currently refuses the disabled-SS contract;
+an isolated exact plane separately refuses the bounded grammar. Both are parser/
+intake evidence, with no Phenix/Coot execution or chemical rejection. These are
+concrete prerequisites for the ordinary bridge, not permission to disable planes.
+Q06 actual refinement, Q07 mixed/held-out scaffolds, Q13 chemical-state authority
+and Q16 full integration/platform qualification remain separate open gates.
+Evidence key `primary_failure_reporting_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C184 published: complete-request continuation and recovery
 
 Base `93f22ec3d1af38ed49e57e6d4b29a3f3991491a2`; existing Cedar. Capsule

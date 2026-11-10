@@ -7,6 +7,7 @@ import math
 from pathlib import Path
 from time import monotonic
 
+from .failure_reporting import add_failure_note
 from .campaign_records import read_record, write_record, path_in
 from .cif_attachment_native import _capture, _capture_timeout
 from .cif_component_runtime import _tree, prepare_runtime_readyset_bundle
@@ -264,5 +265,5 @@ def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_sec
         if not (output/'ownership/finished.json').exists():
             try: processes.finish('RAISED')
             except Exception as seal_error:
-                if hasattr(exc,'add_note'): exc.add_note('Continuation completion could not be sealed: '+str(seal_error))
+                add_failure_note(exc, 'Continuation completion could not be sealed', seal_error)
         raise

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve original errors when cleanup reporting fails (C185)
+
+- Keep the original acquisition/qualification/repair/request/continuation failure
+  when an exception note is unavailable, disabled or fails. Reuse one best-effort
+  note helper, including construction-fixture reporting.
+- Keep prepared-repair timeout/error identity if its failure-progress write fails.
+  Preserve partial output and existing ownership/recovery decisions; diagnostic
+  failures cannot manufacture success. No schema, chemistry or migration change.
+- Exercise the declared Python 3.10 missing-note boundary synthetically on Python
+  3.12.14. Actual Python 3.10 and full platform/release validation remain separate.
+
 ### Join continuation to existing request recovery (C184)
 
 - Freeze optional ReadySet/serialization settings in the existing complete request
