@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C190.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C191.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -52,7 +52,7 @@ acceptance criteria.
 
 ## Pipeline position
 
-Current orientation after C190. This table summarizes the acceptance packages
+Current orientation after C191. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
@@ -166,8 +166,10 @@ as competing next-step instructions here.
 | Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. C186 adds exact plane unions/weights with old v1 replay and actual three-plane W-frame membership. C187 preserves original literal PHIL/native capture and compiler/workbook pins through owned request/result replay. C188 alternatively retains the existing source-bound compiler artifact, exact source bytes and nonactive orientation evidence under the same owner. C190 requires grouped atom-name alternatives for new derivation/creation/execution, preserving exact historical readback. Actual native 3-versus-85 selection mismatch is reproduced and grouped controls agree. Unsupported PHIL and unowned pre-existing modifiers refuse. |
 | Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. C189 also consumes an already frozen source selection with exact component coverage and no rediscovery; actual original/repaired and cold controls pass. This API remains opt-in; C182 derives current consumer/generator settings from the selected installation while preserving explicit source-reader/representation intent. |
 
-**Next bounded checkpoint:** connect the validated prepared intake to ordinary
-PostMR orchestration without a second recovery loop or modifier owner. C189 closes
+**Next bounded checkpoint:** make isolated native failure diagnostics distinguish
+verified failed execution from ownership/deadline mismatch (C191 evidence below),
+without changing acceptance or adding a recovery path. Then connect the validated
+prepared intake to ordinary PostMR orchestration without a second recovery loop or modifier owner. C189 closes
 the prepared entry's previously frozen source inlet; the actual source-to-construction
 producer join and ordinary caller still need integration. Prefer exercising that
 caller over adding another standalone orchestration wrapper. C187 closes
@@ -269,6 +271,17 @@ a duplicate phosphate fix or interpret it as general permission to delete termin
 phosphates. A changed model needs its own compiler/native evidence; C188's 193-request
 capture remains exact to the raw frame. Q13 still owns genuinely unresolved source
 state transitions, including the previously recorded mixed-source H/charge issues.
+
+C191 then freezes the prepared full-model control (eight DA sites, 38 links,
+193 requests) but does not complete full-model execution. Exact-order generation
+refuses ten purine order changes. Reusing C117/C118/C135's existing graph-selected
+representation policy retains a candidate; both isolated native seeds then hit
+C121's known `HOP2!="HOP3"` mapper failure class. Both requests/workers are stopped
+and exhausted, with no runtime. This is a canonical negative workflow control,
+not modified-ligand coverage or proof that the full-model consumer succeeds.
+Keep the scientific refusal; fix the misleading ownership/completion wording.
+Do not restart either request, invent another aromatic policy, or rename/remove
+source hydrogens to force acceptance. Cold replay preserves both outcomes.
 
 **Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not
 qualify zero-context geometry or optional nonbonded-inventory captures. A required
@@ -554,7 +567,7 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. Subsequent checkpoints through C190 retain
+Cedar/pine/main merge candidate. Subsequent checkpoints through C191 retain
 focused validation, with native/cold evidence only where explicitly executed.
 The latest workflow profile is C190: 1,987 tests + 45 subtests; it is not a full
 suite. Preserve published evidence and archive owned

@@ -36,7 +36,10 @@ keeps a previously selected source set intact through prepared intake; it does n
 rediscover a newer source or claim construction evidence. Native interpretation
 remains required. [Grouped atom selections](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190)
 now keep new context-bound requests aligned with native boolean scope; old records
-stay inspectable, but ambiguous input cannot start new work. Use the
+stay inspectable, but ambiguous input cannot start new work. A separate
+[full-model request control](cif-doctor.md#full-model-request-intake-and-isolated-native-refusal-c191)
+freezes the intended relationships but stops at an existing Phenix isolated
+atom-name failure; it adds no full-model or modified-ligand usability claim. Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods
 below preserve validation of specific contexts; they do not define another queue

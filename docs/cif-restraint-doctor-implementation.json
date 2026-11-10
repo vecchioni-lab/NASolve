@@ -28295,6 +28295,16 @@
         "Actual refinement Q06, mixed/held-out Q07, state Q13 and full integration Q16 remain open"
       ],
       "implementation_revision": "9cb055e93c886654029adc217c49a7939bf954db"
+    },
+    "full_model_source_owner_control": {
+      "status": "INPUT_BINDING_VALIDATED; ISOLATED_NATIVE_QUALIFICATION_REFUSED",
+      "validation_revision": "ae21f355f50ca5c1ed1ea7482e5755c8a4bbfd47",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#full_model_source_owner_2026_11_10",
+      "limitations": [
+        "Distinguish verified failed native qualification from ownership/deadline mismatch in the exception and point to exact evidence",
+        "Q04 ordinary caller/source construction joins and full-model success remain open",
+        "Q05 adoption, Q06 refinement, Q07 mixed/held-out and Q13 source/native states remain separate"
+      ]
     }
   },
   "audience": [

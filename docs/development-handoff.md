@@ -11,6 +11,59 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C191 complete: full-model input binding, stopped native refusal
+
+Validated on `ae21f355f50ca5c1ed1ea7482e5755c8a4bbfd47` (C190); existing Cedar. No product code/schema/default changes.
+Simon extended the current push to **2026-11-10 23:12 UTC**. Capsule:
+`live_tests_directory/191_Cedar_full-model-source-owner-678knt3e`. All validation jobs and owned children are stopped.
+
+**Outcome:** the existing explicit full-model route freezes eight DA sites,
+38 backbone links and 193 NAR requests (19 pairs/38 stacks). The default exact-order
+request refuses source handoff at bond orders, before construction. Prior-work
+review found C117/C118/C135's existing neutral-purine representation contract; its
+graph classifier accepts the exact ten-edge source system. A separate fresh-policy
+request reuses the same frozen source, prepared model and compiler without new
+pair guessing. It generates a retained `CANDIDATE_REVIEW` dictionary, then both
+isolated native seeds fail with Phenix `HOP2!="HOP3"`. C121 already records that
+mapper failure for DG. Source H/charge state and every old output remain intact.
+
+Both requests are STOPPED/EXHAUSTED; no runtime, full-model native qualification,
+repair, ReadySet, Coot, refinement or adoption follows. This is a canonical workflow
+control, not the mixed/held-out modified-residue test. Do not delete/rename source
+hydrogens, retry either exhausted request, or introduce another aromatic policy.
+
+**Evidence:** actual Phenix 2.2.1-6174 / dispatcher 2.2.1 generation and isolated
+interpretation; each request has one attempt, 180 generation steps/240-second
+worker limit and 720-second outer allowance. First control 8.599s;
+explicit-policy control 25.198s. No convergence claim.
+Cold replay passes with **359 files unchanged**, original copy absent and
+historical source/SDK paths and execution denied. The first cold harness failure
+(wrong assumed compiler folder) is preserved; the fresh control uses its declared
+anchored reference. Source hashes still match C190's **1987 tests/45 subtests**;
+no unchanged suite rerun or full regression. Last full remains C160
+`d9e481661edcc3a04404df250360b9db63184ae1`.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_representation.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_policy_native.py native-policy-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_audit.py
+PYTHONDONTWRITEBYTECODE=1 python c191_cold.py cold-r2
+```
+
+**Next bounded patch:** `cif_candidate_qualification_execution._derive` currently
+combines owner/deadline and worker-success predicates into "Native ownership/
+completion differs". Separate the diagnostic for a known failed native seed from
+actual ownership mismatch and point to its retained receipt, preserving rejection,
+exception type, both-seed execution, all seals and old readers. Reuse C185's note
+helper; do not turn a native failure into a usable candidate. The recorded actual
+failed phases provide a regression/replay control. Q04 ordinary caller/construction
+producer and single modifier ownership remain open; Q05 adoption follows.
+
+Only maintained docs/ledgers and hash references ship. Scientific files, candidates,
+logs, native receipts, XML, runners and partial outputs remain local.
+— Rowan · Codex desktop
+
 ## C190 published: preserve atom scope in new restraint requests
 
 Base `c70790bdabd03eb743d275d6da8aa9540480d964`; existing Cedar. Implementation complete and published as

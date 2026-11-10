@@ -465,4 +465,6 @@ The construction/producer and ordinary-adoption arrows remain open; no second
 source selector or recovery stage is added. C190 uses the existing selector to
 require grouped atom-name alternatives at new context-bound intake/execution;
 historical reads stay exact. The native proof and ordinary-adoption boundaries
-remain separate, with no new stage or chemistry claim.
+remain separate, with no new stage or chemistry claim. C191 binds the public
+full-model control but stops at isolated native qualification; the downstream
+full-model/adoption arrows therefore remain unqualified by that control.

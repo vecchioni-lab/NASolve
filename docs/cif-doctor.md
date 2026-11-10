@@ -615,6 +615,47 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Full-model request intake and isolated native refusal (C191)
+
+A public C80 fixture control binds eight canonical DA sites, 38 audited backbone
+links and the existing 193 explicit requests (19 pairs/38 stacks) under one owned
+request. It reuses the declared free-5'-OH preparation, C80 source-bound compiler,
+C189 frozen-source intake and current Phenix configuration. This is a canonical
+workflow control, not the held-out modified-ligand challenge or an ordinary default.
+
+**Methods and outcomes.** The default exact-order generation contract stops before
+construction at `SOURCE_HANDOFF/bond_orders`; its receipt distinguishes that cause
+from the generic charge-handoff exception. The C117/C118 source classifier then
+confirms that the exact source qualifies for the already supported neutral purine
+policy: one complete ten-edge system, selected by graph and declarations. A
+separate explicit-policy request consumes the same frozen model/source/compiler,
+with no relationship re-guessing or change to the exhausted first request.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 generates a retained `CANDIDATE_REVIEW`
+DA dictionary under the existing policy. Both independent isolated interpretations
+then fail at the installed `HOP2!="HOP3"` atom-name mapper assertion. C121 already
+records this failure class for DG. This is not permission to delete or rename
+source hydrogens, alter protonation, or relax native acceptance. The full-model
+preparation/repair/native stages are never reached and no runtime is published.
+Both outer requests, generation and qualification workers are verified stopped;
+all original input and first-request bytes/mtimes are preserved.
+
+Cold replay retains both negative outcomes, the candidate/representation proof and
+the 193-request binding with original copy absent, historical source/SDK reads and
+execution denied. An initial local cold harness used an incorrect folder spelling;
+it is preserved, and the fresh successful control follows the declared compiler
+reference. Product sources, schemas and scientific validators are unchanged.
+The previous C190 focused baseline remains 1987 tests/45 subtests; no unchanged
+suite is rerun. Native generation is complete execution, not a dry-run; convergence,
+ReadySet/Coot, full-model optimization, diffraction refinement and adoption are not
+claimed. Evidence: `full_model_source_owner_2026_11_10`.
+
+The next bounded reporting fix must distinguish a failed native qualification from
+an ownership/deadline mismatch and identify its exact retained receipt, without
+changing either rejection predicate. C185's primary-failure note handling already
+exists and should be reused. Q04 caller/producer joins, Q05 checkpoint adoption,
+Q06 actual refinement and the Q07 modified/held-out control remain open.
+
 ### Scoped atom selections at new restraint intake (C190)
 
 New explicit restraint contexts and context-bound complete requests require

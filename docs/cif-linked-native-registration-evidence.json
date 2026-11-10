@@ -77814,5 +77814,351 @@
       }
     },
     "implementation_revision": "9cb055e93c886654029adc217c49a7939bf954db"
+  },
+  "full_model_source_owner_2026_11_10": {
+    "status": "VALIDATED_NEGATIVE_CONTROLS",
+    "base_revision": "ae21f355f50ca5c1ed1ea7482e5755c8a4bbfd47",
+    "validation_revision": "ae21f355f50ca5c1ed1ea7482e5755c8a4bbfd47",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "FULL_MODEL_INPUT_BINDING; GENERATION_AND_ISOLATED_NATIVE_FAILURE; NO_FULL_MODEL_EXECUTION_OR_CHEMISTRY_SUPPORT_EXPANSION",
+    "before": "Source-bound ownership had synthetic transport plus a separate raw-frame native membership control.",
+    "after": "Fresh prepared full-model requests freeze exact source/model/compiler inputs; generation handoff and isolated native refusals remain stopped, preserved and replayable.",
+    "product_changes": "NONE",
+    "schemas": "UNCHANGED",
+    "prior_work": [
+      "C80 declared free-five-prime fixture and compiler",
+      "C117/C118 neutral purine representation",
+      "C121 DG HOP2/HOP3 native mapper refusal",
+      "C135 representation permission in acquisition",
+      "C188/C189 compiler and frozen-source intake",
+      "C185 best-effort primary failure notes"
+    ],
+    "controls": {
+      "default": {
+        "status": "CONTROL_COMPLETE",
+        "elapsed_seconds": 8.59865516598802,
+        "outcome": "OWNED_REQUEST_REFUSED",
+        "selected": null,
+        "error": {
+          "type": "ValueError",
+          "message": "Generation has no retained candidate; retained attempt requires separate recovery"
+        },
+        "source_model_unchanged": true,
+        "compiler_source_model_bytes_mtimes_unchanged": true,
+        "source_hashes_unchanged": true,
+        "all_outer_attempts_stopped": true,
+        "selected_component": "DA",
+        "selected_sites": 8,
+        "links": 38,
+        "pairs": 19,
+        "stacks": 38,
+        "requests": {
+          "angle": 86,
+          "bond": 50,
+          "parallelity": 57
+        },
+        "source_authority": "NATIVE",
+        "readyset": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "diffraction_refinement": "NOT_RUN",
+        "automatic_adoption": false,
+        "scope": "FULL_MODEL_SOURCE_BOUND_OWNERSHIP_CONTROL; CANONICAL_DA_NOT_MODIFIED_CHEMISTRY_COVERAGE"
+      },
+      "existing_policy": {
+        "status": "CONTROL_COMPLETE",
+        "elapsed_seconds": 25.198321083007613,
+        "outcome": "OWNED_REQUEST_REFUSED",
+        "selected": null,
+        "error": {
+          "type": "ValueError",
+          "message": "Native ownership/completion differs"
+        },
+        "representation_policy": "cif-source-declared-neutral-purine-aromatic-v1",
+        "prior_attempt_and_all_inputs_bytes_mtimes_unchanged": true,
+        "source_hashes_unchanged": true,
+        "all_outer_attempts_stopped": true,
+        "selected_component": "DA",
+        "selected_sites": 8,
+        "links": 38,
+        "pairs": 19,
+        "stacks": 38,
+        "requests": {
+          "angle": 86,
+          "bond": 50,
+          "parallelity": 57
+        },
+        "readyset": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "diffraction_refinement": "NOT_RUN",
+        "automatic_adoption": false,
+        "scope": "FULL_MODEL_SOURCE_BOUND_OWNERSHIP_CONTROL; CANONICAL_DA_NOT_MODIFIED_CHEMISTRY_COVERAGE"
+      }
+    },
+    "diagnosis": {
+      "native-r1": {
+        "generation_status": "FAILED",
+        "candidate_retained": false,
+        "diagnostic": {
+          "policy_id": "cif-source-candidate-diagnostic-v1",
+          "generation_status": "FAILED",
+          "candidate_state": "ABSENT",
+          "blocking_stage": "SOURCE_HANDOFF",
+          "summary": "Source handoff blocked before construction: bond_orders.",
+          "builder_started": false,
+          "failed_handoff_checks": [
+            "bond_orders"
+          ],
+          "handoff_reason": null,
+          "native_exception": {
+            "exception_type": "ValueError",
+            "message": "Declared source charge handoff failed"
+          },
+          "execution_status": "COMPLETED",
+          "execution_returncode": 0,
+          "rejection_reasons": [],
+          "identity_change_fields": [],
+          "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+          "automatic_adoption": false
+        },
+        "qualification_state": "NOT_CREATED",
+        "native_failures": [],
+        "outer_status": "STOPPED_EXHAUSTED",
+        "candidate_receipt_sha256": "7a67fe4d1c90e39ac2a77089a0a0704ac7f50efeb26d067b944f96538143bb08"
+      },
+      "native-policy-r1": {
+        "generation_status": "CANDIDATE_REVIEW",
+        "candidate_retained": true,
+        "diagnostic": {
+          "policy_id": "cif-source-candidate-diagnostic-v1",
+          "generation_status": "CANDIDATE_REVIEW",
+          "candidate_state": "RETAINED_REVIEW",
+          "blocking_stage": null,
+          "summary": "Candidate retained for review; native usability requires separate qualification.",
+          "builder_started": true,
+          "failed_handoff_checks": [],
+          "handoff_reason": null,
+          "native_exception": null,
+          "execution_status": "COMPLETED",
+          "execution_returncode": 0,
+          "rejection_reasons": [],
+          "identity_change_fields": [],
+          "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+          "automatic_adoption": false
+        },
+        "qualification_state": "STOPPED",
+        "native_failures": [
+          {
+            "phase": "native-000",
+            "error": "AssertionError: HOP2!=\"HOP3\"",
+            "status": "FAILED",
+            "returncode": 2,
+            "receipt": "native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/000/cif-native-hszqzd9c/native_receipt.json"
+          },
+          {
+            "phase": "native-001",
+            "error": "AssertionError: HOP2!=\"HOP3\"",
+            "status": "FAILED",
+            "returncode": 2,
+            "receipt": "native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/001/cif-native-yx7oexm4/native_receipt.json"
+          }
+        ],
+        "outer_status": "STOPPED_EXHAUSTED",
+        "candidate_receipt_sha256": "91a514f74450482cb7c3cd8790c570127ff7fb80819fbd617fe7207d4559cdac"
+      }
+    },
+    "cold": {
+      "status": "PASS",
+      "cases": {
+        "native-r1": {
+          "availability": "EXHAUSTED",
+          "generation": "FAILED",
+          "isolated_native_errors": [],
+          "owned_runtime": "NOT_CREATED",
+          "requests": 193
+        },
+        "native-policy-r1": {
+          "availability": "EXHAUSTED",
+          "generation": "CANDIDATE_REVIEW",
+          "isolated_native_errors": [
+            "AssertionError: HOP2!=\"HOP3\"",
+            "AssertionError: HOP2!=\"HOP3\""
+          ],
+          "owned_runtime": "NOT_CREATED",
+          "requests": 193
+        }
+      },
+      "files": 359,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "validation": {
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_native.py native-r1",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_representation.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_policy_native.py native-policy-r1",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c191_audit.py",
+        "PYTHONDONTWRITEBYTECODE=1 python c191_cold.py cold-r2"
+      ],
+      "focused": "C190: 1987 tests + 45 subtests; identical product source hashes; not rerun",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+    },
+    "compatibility": "No production code, stored artifact or default-policy change. All historical requests and source hydrogen/charge declarations retained.",
+    "redundancy": "Reuse exact C80 fixture and frozen compiler; existing graph-selected C117/C118 policy covers the first refusal. The second reproduces C121 native mapper behavior. No new chemistry workaround or recovery owner.",
+    "remaining": [
+      "Distinguish verified failed native qualification from ownership/deadline mismatch in the exception and point to exact evidence",
+      "Q04 ordinary caller/source construction joins and full-model success remain open",
+      "Q05 adoption, Q06 refinement, Q07 mixed/held-out and Q13 source/native states remain separate"
+    ],
+    "artifacts": "Only documentation and hash references ship. All models, sources, candidates, native receipts, logs, partial outputs and runners remain local.",
+    "evidence_refs": {
+      "native-r1/request/acquisitions/DA/generation/attempts/attempt-0001/generation/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-r1/request/acquisitions/DA/generation/attempts/attempt-0001/generation/source_candidate_receipt.json",
+        "sha256": "7a67fe4d1c90e39ac2a77089a0a0704ac7f50efeb26d067b944f96538143bb08",
+        "size": 43601
+      },
+      "native-r1/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-r1/request/request.json",
+        "sha256": "baa26e6e546a873eeda2664f99de24110a4d64c8038f7f416087e319bc0df070",
+        "size": 231607
+      },
+      "native-r1/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-r1/request/attempts/attempt-0001/finished.json",
+        "sha256": "e24dad8501e6d85fca43ff90035bf0f801f110fdbb271b094d9ba04a01c2b33f",
+        "size": 931
+      },
+      "native-policy-r1/request/acquisitions/DA/generation/attempts/attempt-0001/generation/source_candidate_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/acquisitions/DA/generation/attempts/attempt-0001/generation/source_candidate_receipt.json",
+        "sha256": "91a514f74450482cb7c3cd8790c570127ff7fb80819fbd617fe7207d4559cdac",
+        "size": 629341
+      },
+      "native-policy-r1/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/request.json",
+        "sha256": "d02530dab7992896a6e980b67f6d37e2f301b1ed869fd0620934d0bbad4d7885",
+        "size": 231795
+      },
+      "native-policy-r1/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/attempts/attempt-0001/finished.json",
+        "sha256": "3d254f8a0ba634a3f499297970853af3527383126e49212a3bf11042471c716f",
+        "size": 931
+      },
+      "native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/000/cif-native-hszqzd9c/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/000/cif-native-hszqzd9c/native_receipt.json",
+        "sha256": "25a84a0e87607758bfe5ea4e989bdbe9609b6ed3d1bb8ea39b023bf565472eb5",
+        "size": 72536
+      },
+      "native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/000/cif-native-hszqzd9c/native.log": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/000/cif-native-hszqzd9c/native.log",
+        "sha256": "046579ed4c2ecfb00abb72dd2c75fba2be08dc6066aefa00de5ab46d7462bf42",
+        "size": 2019
+      },
+      "native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/001/cif-native-yx7oexm4/native_receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/001/cif-native-yx7oexm4/native_receipt.json",
+        "sha256": "0bf37c90489506c6c1229ab26d31924f0e6d9fdda7943ec8c9577e915422edaf",
+        "size": 72539
+      },
+      "native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/001/cif-native-yx7oexm4/native.log": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/request/acquisitions/DA/attempts/attempt-0001/qualification/native/native/001/cif-native-yx7oexm4/native.log",
+        "sha256": "a7deb3ba12043296b44ca60ce5fb605b3b8ad0e42bcf19a8d8a349e4a53261ea",
+        "size": 2019
+      },
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/start.json",
+        "sha256": "cb19f8429baa8d7cc14dd77478097c19ac417dc2d37a43d98612fb2d4096e61b",
+        "size": 425
+      },
+      "window-extension.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/window-extension.json",
+        "sha256": "9a3e5ef8ab1bb3b193899a24c2829b4ffcbe62699d8f42707e95243689e7b913",
+        "size": 278
+      },
+      "native-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-r1/summary.json",
+        "sha256": "3bde8a168470121d9a85ace83ddf869aca61d68cfcaad6873963206ac4972161",
+        "size": 863
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-r1/runtime-sources.json",
+        "sha256": "8a45571864a4eb5f7c3ec4745410209f3c571937780fed978ca4ef934cf3d7f6",
+        "size": 23206
+      },
+      "native-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-r1/installation.json",
+        "sha256": "e84ca7b111a99fd967e24641246b6c45f893c59a40cde0cda65715045af56c00",
+        "size": 123
+      },
+      "native-policy-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/summary.json",
+        "sha256": "14df1391d29883f4bcbf1dc4d9e3777ff024ed4174a7e55b4d2652f7170ddab8",
+        "size": 837
+      },
+      "native-policy-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/runtime-sources.json",
+        "sha256": "8a45571864a4eb5f7c3ec4745410209f3c571937780fed978ca4ef934cf3d7f6",
+        "size": 23206
+      },
+      "native-policy-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/installation.json",
+        "sha256": "1ea909ebda85a3d6538c99dfae3f3b935494a4f894369f9f266e1be7b97daee3",
+        "size": 147
+      },
+      "native-policy-r1/control-intent.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/native-policy-r1/control-intent.json",
+        "sha256": "701405855fcdce5ae198e7afd2ac8d26f7f1ea790eb2e59eee57412c57cda078",
+        "size": 609
+      },
+      "representation-preflight-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/representation-preflight-r1/summary.json",
+        "sha256": "b7a6f89373d05a99cfaab70758c34707390f1a6598f2f929099b001091685f5f",
+        "size": 503
+      },
+      "representation-preflight-r1/contract.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/representation-preflight-r1/contract.json",
+        "sha256": "a446d3f7c51191a543c8af252059af44ae935e6a1f06e937be2f16dc2f8f31e2",
+        "size": 3982
+      },
+      "diagnosis-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/diagnosis-r1.json",
+        "sha256": "31b182ef5ca66790c01361c0fcc25ad74272384071783d16a91368f4d555652b",
+        "size": 7375
+      },
+      "cold-r1/stderr.txt": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/cold-r1/stderr.txt",
+        "sha256": "8d423d967d586e1ed439d64671c303155f3ebd5c62dec59f7b0211f9285f7148",
+        "size": 1000
+      },
+      "cold-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "191_Cedar_full-model-source-owner-678knt3e/cold-r2/summary.json",
+        "sha256": "b9c4ff02d1f774bb05f283f253caa494d651c5ba36f9c58be01e23a55064ed32",
+        "size": 656
+      }
+    }
   }
 }
