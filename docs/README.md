@@ -7,29 +7,15 @@ milestone statements preserve their original scope; they are not a second queue.
 
 ## What's current?
 
-- **CIF Doctor:** the [current support matrix](cif-doctor.md#current-capability-boundary)
-  distinguishes ordinary runtime, qualified diagnostic tools and unresolved
-  families. The [completion queue](cif-doctor-completion-queue.md) owns remaining
-  acceptance work; the [handoff](development-handoff.md) owns the tested/pushed edge.
-  The [complete request](cif-doctor.md#complete-frozen-dictionary-requests-c171)
-  freezes source/model/site/restraint intent and coordinates existing acquisition,
-  qualification, repair and immutable publication with shared ownership/budgets.
-  C172 proves originals without requiring repair; C173 permits only exact stopped
-  optional-native failures to reach independent original qualification; C174 uses
-  the same path for one selected component. C175 derives/replays prepared-model
-  context; C176 binds exact ordered explicit PHIL with one composer modifier owner.
-  C177 joins ordinary source selection and those proofs to the existing request;
-  C182 derives current consumer/generator settings directly from the selected SDK;
-  C183 owns one complete selected-runtime continuation; C184 binds it to the
-  existing request owner with immutable recovery and separately bounded evidence.
-  Ordinary orchestration and checkpoint adoption remain open.
-  Native controls and cold replay are
-  qualified in the [methods](cif-doctor.md#one-selected-component-through-the-complete-request-c174)
-  and [evidence ledger](cif-linked-native-registration-evidence.json). Ordinary
-  recovery/adoption, final refinement and broader chemical-state/scaffold proof
-  remain open. Full regression is deferred; the last completed baseline is C160.
-  Historical milestone-time next steps below the current support matrix are
-  evidence, not a parallel backlog.
+- **CIF Doctor:** start with the [Q04-to-release map](cif-doctor-completion-queue.md#pipeline-position).
+  The explicit request now owns acquisition, qualification, repair and optional
+  ReadySet/native continuation, including immutable recovery and usable fallback.
+  Ordinary restraint intake, caller/checkpoint adoption, actual refinement and
+  broader chemistry coverage remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
+  owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
+  tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
+  owns exact validation. Full regression remains deferred to integration; C160
+  is the last completed full baseline. Milestone sections preserve original scope.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry
@@ -108,29 +94,9 @@ current Pine merge gate.
   [old Refine Doctor triage](refine-doctor-triage.md) are archived pointers,
   not duplicate sources of live status.
 
-**Status ownership:** handoff = current priorities; native ledger = exact
-pair-matrix progress; subsystem contract = actual behavior and safety;
-history/Git = how we arrived here. Updating documentation does **not**
-change scientific data, frozen inputs, user approvals or runtime capability.
-
-The current CIF Doctor boundary includes the
-[whole-furanose placement and ATL compatibility gate](cif-doctor.md#whole-furanose-placement-and-atl-compatibility-boundary-c143):
-rigid whole-sugar controls and actual source-hand/link-definition refusals are
-separate from combined-scaffold construction or ordinary refinement support.
-
-The [graph-bound native reaction adapter](cif-doctor.md#graph-bound-native-furanose-reaction-preparation-c144)
-now closes the selected ATL leaving-atom definition mismatch in explicit controls,
-while retaining the independent construction, geometry and ordinary-adoption gates.
-
-C178 [singleton ReadySet consumption](cif-doctor.md#single-component-readyset-consumption-c178)
-passes the existing observer boundary and retains a verified fallback when exact
-native metadata differs. [C179](cif-doctor.md#native-component-metadata-during-combination-c179)
-repairs combination with C09's loop writer; fresh final native qualification passes
-while legacy receipts preserve their original outcomes.
-
-C180 extends the shared metadata writer to [filtered supplements](cif-doctor.md#native-metadata-in-filtered-supplements-c180),
-with unchanged input/generated precedence and native before/after evidence.
-
-C181 connects a [qualified selected runtime to ReadySet](cif-doctor.md#readyset-continuation-of-the-selected-runtime-c181)
-through shared observer/native checks and portable publication, preserving repaired
-parents on optional failure. Default orchestration/checkpoint adoption remains open.
+**Status ownership:** completion queue = remaining priorities and acceptance;
+handoff = current implementation/validation/publication edge; subsystem contract
+and support matrix = actual behavior; evidence ledgers = exact results;
+history/Git = how we arrived here. Dated milestone methods and old `Next` paragraphs
+are evidence-time snapshots, not additional task queues. Documentation updates
+change no scientific data, frozen inputs, user approvals or runtime capability.

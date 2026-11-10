@@ -11,6 +11,36 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## Documentation orientation after C185
+
+Orientation audit based on `ab947c1d4d6878d69c21aebc9e115af6d18b8430`; runtime/test source remains at C185.
+The [pipeline map](cif-doctor-completion-queue.md#pipeline-position) owns remaining
+priorities and acceptance; the [support matrix](cif-doctor.md#current-capability-boundary)
+owns demonstrated capability. The newest published handoff below owns the tested
+implementation edge; methods/ledgers preserve exact context and original verdicts.
+Older `Next` paragraphs and the G1–G6 table are historical snapshots, not competing
+instructions. Read them to reuse prior work, then return to the current queue.
+
+This documentation-only pass condenses the README/index and current architecture,
+adds the Q04–Q16 orientation table in the existing queue, marks the old G table,
+and updates the overview and full-test boundary. No scientific verdict, source,
+schema, dependency, threshold or run changes. Original evidence and all heading
+anchors remain available. No new numbered chemistry milestone is consumed.
+**Validation:** `python3.12 -B cedar_doc_orientation_checks_20261110.py`
+checks all 347 local link occurrences (189 anchored), preserves 529 original
+heading/explicit anchors and verifies six unchanged JSON evidence ledgers.
+`git diff --check` passes; `git diff --name-only` restricts the patch to seven
+Markdown files: root README/CHANGELOG and docs README, architecture, handoff,
+completion queue and human overview. No scientific test rerun is required for
+this prose-only pass; C185 focused and C160 full results retain their exact scope.
+No compatibility or migration impact. Git delivery stays on existing Cedar.
+The checker, before-copies and validation/publication records stay local under
+the existing runner archive and `live_tests_directory/Cedar_docs-orientation-g1cc6jse`;
+no generated scientific artifacts enter Git.
+**Next implementation:** Q04 planarity/ordinary PHIL intake, then Q05 adoption;
+Q06 actual refinement and Q07 mixed/held-out controls retain their gates.
+— Rowan · Codex desktop
+
 ## C185 published: preserve the original failure
 
 Base `92ca2e095ca4b29dd574716c825c4920b38a7b05`; existing Cedar. Implementation/validation complete and published as
@@ -4686,7 +4716,10 @@ their hashes and timestamps are unchanged.
 
 ## Generalizer milestones and interruption boundary
 
-**Scope revised 2026-10-28; evidence updated through C150 on 2026-10-31.** Every ligand in the selected
+**Historical G1–G6 snapshot, evidence through C150 (2026-10-31).** This table
+retains the programme's earlier coverage assessment; its open/next statements are
+not today's status. Use the [current Q04–Q16 map](cif-doctor-completion-queue.md#pipeline-position)
+for remaining acceptance. The catalogue scope remains: every ligand in the selected
 NARestraints catalogue is a target for automatic source inspection, bounded
 repair/regeneration and qualified usable fallback. ATL, PNA and other backbone
 families are included in this programme. Catalogue membership is not evidence
@@ -4703,9 +4736,10 @@ not an estimate for complete catalogue support.
 | G6 — Catalogue coverage and release | Coverage matrix distinguishes qualified, recoverable and genuinely unresolved cases; all families attempted with actionable evidence. Full regression, scientific review, verified runner archive and integration review complete. | Planned; merges remain separate. |
 
 **Current ordering:** the [completion queue](cif-doctor-completion-queue.md) is
-the sole maintained job backlog. Q01/Q03 connect full native capture and repaired
-source-qualified selection; Q04/Q05 provide ordinary recovery/adoption; Q06/Q07
-qualify the actual refinement route and mixed-scaffold workflow. Q02 is closed at C161 by the layout-independent curated readers. Q08–Q14 retain geometry, family, source-state and catalogue
+the sole maintained job backlog. Q01 and diagnostic Q03 are closed at C151/C153;
+Q02 is closed at C161. The explicit Q04 engine is implemented through C184, with
+ordinary intake/adoption still open under Q04/Q05. Q06/Q07 qualify the actual
+refinement route and mixed-scaffold workflow. Q08–Q14 retain geometry, family, source-state and catalogue
 gaps; Q15/Q16 cover reports, documentation consolidation and final integration.
 The table above summarizes G1–G6 coverage and does not independently schedule work.
 

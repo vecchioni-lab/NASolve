@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Clarify Cedar completion and documentation ownership
+
+- Consolidate current pipeline status in the existing Q04–Q16 queue; distinguish
+  explicit engine completion, ordinary integration and catalogue/release gates.
+- Condense duplicate milestone summaries and identify historical next-step text.
+  Preserve evidence, anchors, scientific verdicts and all runtime behavior.
+
 ### Preserve original errors when cleanup reporting fails (C185)
 
 - Keep the original acquisition/qualification/repair/request/continuation failure

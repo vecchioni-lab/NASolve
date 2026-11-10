@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-11-09:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-11-10:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -18,9 +18,13 @@ The [command guide](cif-doctor.md) owns operational contracts; the
 implemented APIs from planned orchestration. This overview and its editable
 figure describe the current capabilities and their limits.
 
-Remaining integration, chemistry-transfer and release work is maintained in the
-[completion queue](cif-doctor-completion-queue.md), including the C00–C150 history
-audit. The queue does not expand the demonstrated scientific scope below.
+The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
+native chain and fresh recovery under one request. Ordinary NAR restraint intake,
+PostMR/checkpoint adoption and actual refinement remain open. Use the
+[pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
+remaining acceptance gates and catalogue work. The examples and numbered methods
+below preserve validation of specific contexts; they do not define another queue
+or expand the demonstrated support matrix.
 
 ## Catalogue scope and progression
 
@@ -38,7 +42,9 @@ separate from native atom typing and numerical qualification. The new preparatio
 guard counts every declared centre rather than assuming a three-centre DNA sugar;
 renamed D/L deoxy, arabino-fluoro and ribo-fluoro controls test transfer.
 
-## Current result and interpretation
+<a id="current-result-and-interpretation"></a>
+
+## Representative chemistry evidence
 
 The current L-FANA-C diagnostic has a complete placed modified residue, both
 backbone links, sampled native derivatives and a bounded geometry trial. The trial

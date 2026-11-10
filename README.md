@@ -32,71 +32,35 @@ cache acquisition and supported connected-base construction are ordinary runtime
 features. Automatic repair on a cache miss, general modified-sugar mutation and
 end-to-end candidate adoption remain separate integration work.
 
-An explicit [complete-request API](docs/cif-doctor.md#complete-frozen-dictionary-requests-c171)
-now freezes selected sources, model/site context, ordered restraints, recipes and
-limits before work. It coordinates cache-first component acquisition, independent
-qualification, site preparation and graph-selected repair through existing
-scientific validators. Exact-source retained candidates keep their original recipe
-and producer; stale consumer evidence requires fresh qualification.
+The opt-in [complete-request engine](docs/cif-doctor.md#complete-request-continuation-and-recovery-c184)
+freezes source, model/site context, ordered restraints and bounded execution intent.
+It joins cache-first acquisition, independent qualification, site preparation and
+graph-selected repair to optional ReadySet/native continuation under one durable
+request. Each call creates a fresh immutable attempt; component/generation history
+and the shared allowance persist. Unknown process ownership blocks recovery.
+Only independently qualified model/CIF/PHIL bundles can be selected; a result may
+truthfully contain no usable bundle. Failed optional improvement retains the exact
+qualified parent and all partial evidence. Historical artifacts keep their meaning.
 
-Each call creates one immutable numbered attempt. Component and generation
-histories persist across retries, a shared allowance bounds the work, and a new
-attempt requires prior ownership to be known stopped. Read-only inspection and
-exact-result replay preserve failures and lineage without the old source paths or
-SDK. A returned diagnostic can explicitly report no usable selection; only proven
-runtime bundles qualify. New requests also check an unchanged original when the
-graph needs no repair, using its own source/native and derivative proof. Historical
-requests preserve their recorded behavior. An exact, known-stopped optional native
-failure can now retain an independently qualified original, preserving the failed
-job. Corrupt or uncertain evidence still stops the request. The same engine accepts
-one to sixteen selected component types and keeps every declared site. Ordinary
-automatic PostMR recovery and adoption remain integration work. An opt-in
-[prepared-model context bridge](docs/cif-doctor.md#prepared-model-context-bridge-c175)
-derives canonical backbone/site declarations from frozen intent and audited
-connectivity, then rechecks them on replay. An
-[ordered-restraint extension](docs/cif-doctor.md#ordered-explicit-restraint-context-c176)
-preserves supported explicit NARestraints/PHIL inputs and leaves site modifications
-to one composer. Unsupported required inputs must never be discarded. The
-[prepared-PostMR entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
-now joins those proofs to ordinary source selection and the same recovery owner;
-its validated paths include fresh generation, reuse, stale qualification and
-truthful stopped failures. Enabling ordinary continuation remains integration work. The
-[single-component ReadySet boundary](docs/cif-doctor.md#single-component-readyset-consumption-c178)
-now uses the same observer/native checks. The
-[shared native metadata serializer](docs/cif-doctor.md#native-component-metadata-during-combination-c179)
-also preserves singleton metadata: actual final native qualification now passes,
-and old failed evidence still replays as a fallback.
-[Filtered supplements](docs/cif-doctor.md#native-metadata-in-filtered-supplements-c180)
-now preserve that metadata too, without changing which input definition wins.
-[Selected-runtime continuation](docs/cif-doctor.md#readyset-continuation-of-the-selected-runtime-c181)
-also preserves chosen repairs through explicit ReadySet/native checks and retains
-the qualified parent when the optional endpoint fails.
 [Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
-can now be derived directly from the selected installation for explicit engine
-requests. An [owned continuation](docs/cif-doctor.md#owned-selected-runtime-continuation-c183)
-now executes the selected baseline, ReadySet and final native checks with bounded
-worker ownership and preserved failures. The existing request now
-[owns that continuation and fresh recovery](docs/cif-doctor.md#complete-request-continuation-and-recovery-c184)
-when explicitly configured, retaining failed attempts and shared limits. Ordinary
-caller and checkpoint adoption remain open.
+and the [prepared-model entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
+provide supported inputs without borrowing settings from old test runs. Ordinary
+automatic PostMR/checkpoint adoption remains open: required NARestraints planarity
+and literal pair/stack inputs need faithful binding before that integration. Actual
+refinement qualification is a separate gate. No source chemical state, terminal
+phosphate or requested restraint may be changed merely to obtain a numerical pass.
 
-Explicit diagnostic APIs inspect source graphs, declared attachments, native
-restraint membership, derivatives and bounded coordinate candidates.
-Source-qualified graph repairs can also be frozen with their evidence and
-rechecked through the public bundle assessor after relocation. They preserve
-source chemistry and distinguish missing evidence from demonstrated corruption.
-The catalogue programme includes all selected NARestraints ligands, including
-FANA, L-FANA, PNA and ATL; it does not claim that every family is already usable.
-
-Read the [current chemistry/support matrix](docs/cif-doctor.md#current-capability-boundary)
-for working routes and remaining limits, the [command guide](docs/cif-doctor.md)
-for exact interfaces, and the [human/manuscript overview](docs/cif-doctor-human-overview.md)
-for algorithms, methods and the editable figure. [Generalizer milestones](docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
-track completion separately from a provisional integration checkpoint.
-Students are not asked to inspect CIF tables: the [continuation contract](docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions)
-retains a qualified usable result and reports unresolved scientific choices.
-Historical trials, failed candidates and exact software/evidence hashes remain
-in the [technical evidence ledger](docs/cif-linked-native-registration-evidence.json).
+The catalogue programme includes every selected NARestraints ligand, including
+FANA, L-FANA, PNA and ATL; coverage and isolated controls do not establish universal
+construction or refinement support. Start with the
+[current pipeline position](docs/cif-doctor-completion-queue.md#pipeline-position)
+for remaining work, the [support matrix](docs/cif-doctor.md#current-capability-boundary)
+for demonstrated chemistry, and the [command/methods guide](docs/cif-doctor.md)
+for exact interfaces. The [human overview](docs/cif-doctor-human-overview.md)
+explains the methods and editable figure. The
+[continuation contract](docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions)
+keeps routine users out of CIF editing; exact results and original verdicts live in
+the [evidence ledger](docs/cif-linked-native-registration-evidence.json).
 
 ## Quick start
 

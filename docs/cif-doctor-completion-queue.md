@@ -7,7 +7,7 @@ owns demonstrated support, and the
 fields are evidence-time proposals, not current instructions. Update these stable
 job IDs in place when work finishes or priorities change; do not start a second queue.
 
-Audited source: Cedar `a943386dd3a8e27dabeae316d37039d92e1cb9fc`, including
+Original C00–C150 audit source: Cedar `a943386dd3a8e27dabeae316d37039d92e1cb9fc`, including
 C150 implementation `9bec89f721f69333bbe2d963c7df077d5a0d1ed8`. The review covered
 the original blueprint, retained C00–C150 delivery/return documentation, current
 contracts, history, both implementation/evidence ledgers and relevant source
@@ -49,6 +49,36 @@ focused profiles, and record live versus dry-run evidence. Run full regression
 on the final integration state. Relocation claims require the original path to
 be unavailable. No package authorizes weakening chemical, NAR or diffraction
 acceptance criteria.
+
+## Pipeline position
+
+Current orientation after C185. This table summarizes the acceptance packages
+below; update it with those packages rather than creating another backlog.
+Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
+
+| Package | Position now | Remaining acceptance |
+| --- | --- | --- |
+| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | Qualify required planarity and literal pair/stack inputs, then exercise ordinary hit/miss/stale/failure entry paths. Reuse the existing owner and C21/C80 compilers. |
+| Q05 — ordinary adoption | Open | Carry one exact selected model/CIF/PHIL bundle through prepared and newly mutated routes into immutable checkpoints; retain source/producer lineage and selected-versus-latest behavior. |
+| Q06 — real refinement consumer | Open; can proceed alongside Q04/Q05 | Qualify actual refinement with complete NAR restraints and Free-R authority. The corrected diagnostic evaluator does not establish ordinary Phenix behavior. |
+| Q07 — combined acceptance | Open | Run the original eight pairs with ATL alongside, broken PDU and DF/A1AAZ, plus the separate eight-residue held-out builder challenge. Refinement claims depend on Q06. |
+| Q08 — residual geometry | Open diagnosis | Explain persistent CGY–DX strain through source/NAR/native evidence; more optimization alone does not close it. |
+| Q09 — L-DNA/fluorinated sugars | Partial evidence; package open | Transfer qualified flanks and stereochemical rules through linked L-FANA/additional bases and a real L-FDNA/ribo-fluoro control into ordinary use. |
+| Q10 — PNA | Source operations/networks exist; package open | Qualify connected native state, construction and linked numerics; charged reacting states remain Q13. |
+| Q11 — alpha-L-LNA transfer | Isolated 10C evidence; package open | Establish a held-out linked control using the ATL rules, retaining incompatible-host refusal. |
+| Q12 — catalogue coverage | Census complete; support map open | Account for every pinned row/code, resolve mappings and retain actionable native/workflow gaps. |
+| Q13 — chemical-state authority | Open, applied to affected cases | Resolve source H/charge, phosphate and attachment transitions explicitly; a numerical repair cannot authorize them. |
+| Q14 — challenges/calibration | Open, evidence dependent | Recover exact historical challenges where available and establish false-positive controls; unavailable inputs limit their claims. |
+| Q15 — user reports/docs | Orientation consolidated; product reporting open | Explain the selected result, remaining questions and exact inspection path in ordinary reports/PDF; complete the larger methods/history consolidation. |
+| Q16 — release/integration | Open; C171 note-reporting subtask closed at C185 | Review the combined branch and compatibility scope; run full regression, ordinary/native controls and relocation/platform checks before integration. |
+
+The immediate path is **Q04 intake → Q05 adoption**, with **Q06 consumer
+qualification** before Q07 can claim refinement support. Q08–Q14 supply the
+case-specific chemistry and coverage evidence, often exercising the same engine.
+Q15/Q16 close the chosen release scope. A provisional
+integration of honestly described explicit tools can precede all-catalogue
+completion, but still requires its integration/release checks. No percentage or
+fixed number of commits follows from these package labels.
 
 ## Integration packages
 
@@ -142,23 +172,12 @@ the existing compiler routes described below. Then connect the validated prepare
 intake and selected runtime to ordinary PostMR orchestration, preserving the
 selected native profile, pre-construction source/producer lineage and exact NAR
 compiler intent.
-C177 closes source/request assembly and demonstrates the required acquisition
-outcomes through that API; it does not enable the ordinary default or checkpoint
-adoption. Coordinate the remaining caller integration with Q05. C178 validates singleton consumption/fallback; C179 reuses C09's loop writer at
-combination and records its policy, with exact old scalar replay. Actual singleton
-ReadySet now passes all eight consumption and 28 endpoint checks, with identical
-energy/gradient snapshots; old rejected evidence still remains a fallback. These
-prerequisites close no ordinary-adoption or refinement gate. C181 now binds the
-selected original/repaired runtime through that explicit continuation and public
-replay, including exact repaired fallback. C182 closes selected-installation
-configuration with fresh generation/repair/cache and cold controls. C183 now owns
-one selected-runtime baseline/ReadySet/native/publication execution, including bounded
-lossless serialization and exact stopped-worker replay. C184 attaches that child to
-the existing complete request with reciprocal ownership, frozen settings, persistent
-attempt history and the same enclosing allowance. Actual PDU/5PC interruption/fresh
-recovery, repaired timeout fallback and new/legacy cold replay pass. Two independently
-capped evidence partitions preserve the complete nested history. Next connect the
-ordinary caller and immutable checkpoint publication; do not add a second owner.
+The existing explicit entry already covers source/request assembly, current
+installation configuration, original/repaired ReadySet/native selection and fresh
+recovery with preserved failures. C184 joins them under one request and bounded
+evidence inventory. Reuse that implementation; ordinary caller adoption needs
+faithful input/selected-artifact binding, not another retry scheduler. Detailed
+milestone evidence remains in the methods and ledger linked above.
 
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
@@ -492,14 +511,15 @@ full suite on the final combined source, relevant ordinary/native controls and
 relocation with original paths unavailable. Exercise macOS/Linux process/path
 assumptions for supported environments; record any untested platform explicitly.
 
-The C150 audit recorded 1,662 focused tests + 36 subtests and a C143 full baseline.
 The last completed full-tested implementation remains C160
 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276). C169 passes its
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. C170–C174 also have focused/native/cold validation only,
-with no full suite requested. Preserve published evidence and archive owned
+Cedar/pine/main merge candidate. Subsequent checkpoints through C185 retain
+focused validation, with native/cold evidence only where explicitly executed.
+The latest workflow profile is C185: 1,888 tests + 45 subtests; it is not a full
+suite. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,
 old environments or user material. Keep older readers/receipts and documented

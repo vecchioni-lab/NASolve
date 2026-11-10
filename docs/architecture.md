@@ -2,6 +2,11 @@
 
 NASolve orchestrates external crystallographic programs; it does not reimplement them.
 
+For current CIF Doctor work order, use the [completion map](cif-doctor-completion-queue.md#pipeline-position);
+for demonstrated support, use the [capability matrix](cif-doctor.md#current-capability-boundary).
+The numbered sections below retain implementation contracts and historical evidence.
+Their milestone-time next steps do not override the current queue.
+
 ## Runtime precedence
 
 Phenix is resolved in this order:
@@ -1817,14 +1822,13 @@ remain open. The
 Neither this diagnostic nor the four-member campaign closes the independent P2
 source-native conversion or P5 geometry-diverse prepared-nonstandard gates.
 
-After the combined geometry test, the proposed
-[SMILES/graph audit](modified-component-preparation.md#proposed-smiles-and-cif-audit)
-precedes the Topo/Scout work. Its initial assessor reports graph differences
-separately from numerical geometry; subsequent separately tested integration
-may regenerate and continue only under explicit bounded policy, preserving
-source/candidate/native evidence. It must not invent chemical intent. The handoff
-owns the complete ordering, including bounded Pine close-out and the blind
-AlphaFold baseline; future features must not become extra merge gates.
+The graph/source audit has progressed into CIF Doctor's owned explicit recovery
+engine. Its [completion queue](cif-doctor-completion-queue.md#pipeline-position)
+now owns remaining intake, ordinary adoption, refinement and chemistry acceptance.
+Source/candidate/native evidence and chemical authority remain mandatory. Topo/Scout,
+bounded Pine close-out and the blind AlphaFold baseline retain their separate scopes;
+future features must not become extra CIF Doctor merge gates. The handoff records
+the current tested/pushed edge rather than a second competing work order.
 
 Construct registration remains a later structural robustness layer: a cheap
 non-mutating Registration Scout before Phaser, authoritative ASU Registration
@@ -4083,50 +4087,32 @@ sources and invokes the existing initializer with both derived proofs. It adds
 no owner/schema and keeps qualification defaults mandatory. The selected native
 profile and ordinary PostMR continuation/adoption still need caller integration.
 
-C178 allows singleton component bundles through the existing ReadySet observer.
-Consumption success is separate from final native acceptance: exact group metadata
-loss and a changed TER boundary still refuse improvement, retaining the original
-verified runtime together. See the [contract](cif-doctor.md#single-component-readyset-consumption-c178).
+Current dictionary combination and filtered supplements share the native-readable
+metadata loop serializer. Component/block identity, source fields and precedence
+remain unchanged; older receipts replay their original scalar layout. See the
+[combination](cif-doctor.md#native-component-metadata-during-combination-c179) and
+[filter](cif-doctor.md#native-metadata-in-filtered-supplements-c180) contracts.
 
-C179 shares the C09 native metadata serializer with dictionary combination.
-New bundle receipts bind the loop layout; absent legacy policy replays the old
-scalar bytes exactly. The actual singleton final endpoint now qualifies, without
-changing chemistry/TER gates or promoting old evidence. See the
-[serialization contract](cif-doctor.md#native-component-metadata-during-combination-c179).
+The [selected-runtime adapter](cif-doctor.md#readyset-continuation-of-the-selected-runtime-c181)
+maps exact component positions to chosen numerical files while retaining modifiers
+and ordered PHIL. It shares the ReadySet validator, strict native comparison and
+public publisher. Optional improvement can retain only the exact qualified parent,
+including its selected repairs. Current [installation settings](cif-doctor.md#current-selected-phenix-configuration-c182)
+come from maintained consumer/producer identities; static file identity never
+substitutes for observed native binding or chemical qualification.
 
-C180 uses the same metadata loop writer when partial component filtering produces
-a retained singleton. Block identity, source fields and dictionary precedence are
-preserved; existing frozen supplements are not rewritten. See the
-[filter contract](cif-doctor.md#native-metadata-in-filtered-supplements-c180).
+The [complete request owns continuation](cif-doctor.md#complete-request-continuation-and-recovery-c184)
+through the shared campaign process protocol. Frozen settings, reciprocal child
+identity, exact selected inputs, a persistent lock, finite immutable attempts and
+one remaining allowance cover baseline/ReadySet/native execution and final readback.
+At most one existing lossless serialization correction receives a fresh native check.
+Unknown publication/cleanup blocks recovery; known-inactive failed work permits only
+a fresh attempt. Outer and continuation evidence remain separately bounded, with
+unchanged child/public limits. Existing requests without this mode retain their
+meaning. [Failure reporting](cif-doctor.md#preserve-primary-failures-during-diagnostic-reporting-c185)
+preserves primary errors and grants no success or recovery authority.
 
-C181 adds the [selected-runtime continuation](cif-doctor.md#readyset-continuation-of-the-selected-runtime-c181).
-Its prepared view maps exact component positions to selected numerical files while
-retaining modifiers and ordered PHIL. It shares the existing ReadySet validator,
-strict native comparison and atomic public freezer. A distinct policy freezes one
-qualified original/repaired parent and optional endpoint proof; unsupported recursive
-parents refuse. Failed improvement preserves that selected parent, never an older
-pre-repair bundle. No new owner, automatic serialization choice, default PostMR
-adoption or refinement authorization is introduced.
-
-C182 supplies [current selected-installation settings](cif-doctor.md#current-selected-phenix-configuration-c182)
-to that existing request API. It shares the maintained consumer/producer source
-scope and validators, keeps the environment live-only, and preserves frozen recipe
-and allowance semantics. Static installed-file identity does not replace native
-binding or chemical qualification. No default caller or new owner is introduced.
-
-C183 adds one [owned continuation execution](cif-doctor.md#owned-selected-runtime-continuation-c183)
-under the shared campaign process protocol. Baseline, ReadySet, raw and optional
-losslessly serialized native endpoints have exact stopped-worker proof. The existing
-scientific adapters decide the selected runtime; failed optional evidence retains the
-qualified parent. New execution records replay without execution or historical paths.
-This child grants no retry, persistent request or checkpoint authority; the existing
-complete request must own future whole-chain recovery and allowance accounting.
-
-C184 [joins that child to the existing complete request](cif-doctor.md#complete-request-continuation-and-recovery-c184).
-Optional frozen settings preserve the original default and lineage; the same outer
-lock, finite attempts and shared allowance own execution and final readback. Exact
-selected input and coordinator bindings are reciprocal. Unknown publication blocks
-recovery; known-inactive work is followed only by a fresh immutable attempt. The
-original outer evidence and new continuation are independently bounded partitions,
-with the existing shared path/file validation and unchanged child/public caps.
-Ordinary PostMR callers and checkpoint adoption remain separate integration work.
+Ordinary PostMR callers/checkpoint adoption remain Q04/Q05. Required NAR planarity
+and literal pair/stack declarations must first cross the intake boundary faithfully;
+unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
+explicit chain does not enable an ordinary default or authorize a merge.
