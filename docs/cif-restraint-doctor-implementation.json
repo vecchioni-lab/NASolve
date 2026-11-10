@@ -28293,7 +28293,8 @@
         "Connect ordinary caller and actual construction source/producer identity with one modifier owner (Q04)",
         "Preserve original compiler/source lineage in immutable selected checkpoints (Q05)",
         "Actual refinement Q06, mixed/held-out Q07, state Q13 and full integration Q16 remain open"
-      ]
+      ],
+      "implementation_revision": "9cb055e93c886654029adc217c49a7939bf954db"
     }
   },
   "audience": [

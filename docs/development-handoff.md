@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C190 validated: preserve atom scope in new restraint requests
+## C190 published: preserve atom scope in new restraint requests
 
-Base `c70790bdabd03eb743d275d6da8aa9540480d964`; existing Cedar. Implementation complete; publication is next.
+Base `c70790bdabd03eb743d275d6da8aa9540480d964`; existing Cedar. Implementation complete and published as
+`9cb055e93c886654029adc217c49a7939bf954db`.
 Capsule `live_tests_directory/190_Cedar_selector-precedence-rbvgbsii`. Four-hour window ends 22:12 UTC.
 Q04 remains open at ordinary caller/construction producer/exclusive modifier ownership.
 

@@ -77442,7 +77442,7 @@
     "implementation_revision": "d35b3c4fbac3697b70d27040d96aa3bf6b4ef36f"
   },
   "scoped_restraint_intake_2026_11_10": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "base_revision": "c70790bdabd03eb743d275d6da8aa9540480d964",
     "branch": "cedar",
     "date": "2026-11-10",
@@ -77812,6 +77812,7 @@
         "sha256": "d7d1f98b6fb0c60b810331a1aa01eead3e8965328de3e3e97c4aa9ea477026c9",
         "size": 157
       }
-    }
+    },
+    "implementation_revision": "9cb055e93c886654029adc217c49a7939bf954db"
   }
 }
