@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C184 validated: complete-request continuation and recovery
+## C184 published: complete-request continuation and recovery
 
 Base `93f22ec3d1af38ed49e57e6d4b29a3f3991491a2`; existing Cedar. Capsule
-`live_tests_directory/184_Cedar_complete-continuation-0qr08aaz`. Implementation/validation complete; publication
-is next. The explicit owned request now spans selected repair through final native output.
+`live_tests_directory/184_Cedar_complete-continuation-0qr08aaz`. Implementation/validation complete and published as
+`b1d179d3147632211281ba4887839d6b64260960`. The explicit owned request now spans selected repair through final native output.
 
 **Before → after:** C183 was a separate owned execution. Optional frozen continuation
 settings now attach it to the same complete request, with exact selected input and

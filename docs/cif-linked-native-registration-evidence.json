@@ -75138,7 +75138,7 @@
     "implementation_revision": "3f7b1d7d7eb9be3a3a2d90872669d7224cc3fcf9"
   },
   "complete_runtime_continuation_2026_11_10": {
-    "status": "VALIDATED; PUBLICATION_PENDING",
+    "status": "PUBLISHED",
     "base_revision": "93f22ec3d1af38ed49e57e6d4b29a3f3991491a2",
     "changed_files": [
       "CHANGELOG.md",
@@ -75582,6 +75582,7 @@
       "Actual refinement consumer Q06",
       "Mixed/held-out and chemical-state controls Q07/Q13"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "b1d179d3147632211281ba4887839d6b64260960"
   }
 }

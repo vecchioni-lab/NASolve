@@ -28221,7 +28221,8 @@
         "Immutable checkpoint adoption",
         "Actual refinement consumer Q06",
         "Mixed/held-out and chemical-state controls Q07/Q13"
-      ]
+      ],
+      "implementation_revision": "b1d179d3147632211281ba4887839d6b64260960"
     }
   },
   "audience": [
