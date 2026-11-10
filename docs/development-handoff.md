@@ -11,10 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C185 validated: preserve the original failure
+## C185 published: preserve the original failure
 
-Base `92ca2e095ca4b29dd574716c825c4920b38a7b05`; existing Cedar. Implementation/validation complete; publication
-is next. Scope closes the narrow C171/Q16 exception-note compatibility follow-up,
+Base `92ca2e095ca4b29dd574716c825c4920b38a7b05`; existing Cedar. Implementation/validation complete and published as
+`199797ce4018f2b07f2824b6d8361dc81a889a19`. Scope closes the narrow C171/Q16 exception-note compatibility follow-up,
 not the release/platform gate. Capsule: `live_tests_directory/185_Cedar_primary-failure-ioczqxvv`.
 
 **Before → after:** direct note calls could replace the original exception when

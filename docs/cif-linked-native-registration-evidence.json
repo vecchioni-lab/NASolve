@@ -75586,7 +75586,7 @@
     "implementation_revision": "b1d179d3147632211281ba4887839d6b64260960"
   },
   "primary_failure_reporting_2026_11_10": {
-    "status": "VALIDATED; PUBLICATION_PENDING",
+    "status": "PUBLISHED",
     "base_revision": "92ca2e095ca4b29dd574716c825c4920b38a7b05",
     "changed_files": [
       "CHANGELOG.md",
@@ -75859,6 +75859,7 @@
       "Mixed/held-out and chemical-state controls Q07/Q13",
       "Full integration/platform/Python 3.10 qualification Q16"
     ],
-    "author": "Rowan · Codex desktop"
+    "author": "Rowan · Codex desktop",
+    "implementation_revision": "199797ce4018f2b07f2824b6d8361dc81a889a19"
   }
 }

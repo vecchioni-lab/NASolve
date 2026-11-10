@@ -28234,7 +28234,8 @@
         "Actual refinement Q06",
         "Mixed/held-out and chemical-state controls Q07/Q13",
         "Full integration/platform/Python 3.10 qualification Q16"
-      ]
+      ],
+      "implementation_revision": "199797ce4018f2b07f2824b6d8361dc81a889a19"
     }
   },
   "audience": [
