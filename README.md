@@ -70,7 +70,10 @@ and old failed evidence still replays as a fallback.
 now preserve that metadata too, without changing which input definition wins.
 [Selected-runtime continuation](docs/cif-doctor.md#readyset-continuation-of-the-selected-runtime-c181)
 also preserves chosen repairs through explicit ReadySet/native checks and retains
-the qualified parent when the optional endpoint fails. Ordinary adoption remains open.
+the qualified parent when the optional endpoint fails.
+[Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
+can now be derived directly from the selected installation for explicit engine
+requests. Ordinary adoption remains open.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

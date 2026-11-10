@@ -438,3 +438,6 @@ C181 validates the explicit selected-runtime→ReadySet→native→public-bundle
 including exact repaired-parent fallback and the existing C140 serialization path.
 No whole-chain process owner, automatic adapter choice, ordinary checkpoint or
 refinement arrow is claimed.
+
+C182 supplies selected-installation configuration to the explicit engine; it does
+not add a scientific-approval, ordinary-adoption or refinement arrow.

@@ -11,6 +11,54 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C182 validated: current selected-installation configuration
+
+Base `e720111407fcd470fa1fe2124bd34480634fa6c5`; existing Cedar. Capsule
+`live_tests_directory/182_Cedar_current-configuration-e3h47ob5`. Implementation/validation complete; publication
+is next. The engine's explicit intake no longer needs settings borrowed from a test run.
+
+**Before → after:** callers manually assembled consumer fingerprints and generation
+settings. The new read-only factory derives them from the selected installation,
+shares the existing validators/source lists, rejects ambiguity or concurrent change,
+and copies the environment for live use. Frozen request identity/limits are unchanged.
+No native execution, installation discovery, chemical change or new owner occurs in
+the factory. Unsupported layouts retain the existing explicit-configuration route.
+
+**Validation:** three expected missing-API failures before implementation; all
+40 new regressions pass. Affected **367 passed in 164.00s (0:02:44)**. Workflow
+**1769 passed, 45 subtests passed in 502.47s (0:08:22)**. All 631 source/test/script hashes stayed
+fixed. No full suite; last completed full is C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c182_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c182_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c182_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** independently derived settings
+drive one fresh 5PC generation, native qualification and repair. A second complete
+request reuses the cache with generation forbidden. Both select repaired qualified
+runtimes, seal every child and refuse another attempt despite freshly derived settings.
+Only model/scientific intent comes from the hash-verified C177 control; historical
+consumer/generator configuration is not used. ReadySet/Coot/refinement are not run.
+Two requests/public runtimes replay cold after relocation; all 1095 files
+retain bytes/mtimes, with original copy absent and old paths/SDK/execution denied.
+
+**Files/schema/compatibility:** new configuration module/test and workflow membership;
+current documentation, queue and ledgers. No artifact schema or migration. Existing
+explicit/cache-only APIs remain. Differing old consumer descriptors still require
+requalification. Static fingerprints do not prove observed imports or scientific
+support. Live environment is not serialized. Only source/tests/docs/hash references
+enter Git; generated science, local runners, logs and validation XML remain excluded.
+
+**Next:** durable selected-runtime continuation under existing ownership, then ordinary
+caller/checkpoint adoption. No second recovery owner or relaxed chemistry gate.
+Q04/Q05 remain open; Q06 actual refinement and Q07/Q13 chemical controls remain separate.
+Evidence key `current_phenix_configuration_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C181 published: selected-runtime ReadySet continuation
 
 Base `739271fa9efe6322772aa3df7d3edb3f2447e7e9`; existing Cedar. Capsule

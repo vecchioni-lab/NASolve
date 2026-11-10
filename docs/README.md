@@ -19,6 +19,7 @@ milestone statements preserve their original scope; they are not a second queue.
   the same path for one selected component. C175 derives/replays prepared-model
   context; C176 binds exact ordered explicit PHIL with one composer modifier owner.
   C177 joins ordinary source selection and those proofs to the existing request;
+  C182 derives current consumer/generator settings directly from the selected SDK;
   ordinary orchestration and selected-runtime adoption remain open.
   Native controls and cold replay are
   qualified in the [methods](cif-doctor.md#one-selected-component-through-the-complete-request-c174)

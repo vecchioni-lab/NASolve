@@ -3845,3 +3845,17 @@ evidence remains preserved. Explicit-H inventory changes, missing evidence, time
 and a mismatched baseline all retain the repaired parent. Relocated public replay
 requires no installation or original machine paths. This remains a diagnostic API;
 ordinary orchestration, checkpoint adoption and refinement are still separate gates.
+
+
+### Getting settings from the selected installation (C182)
+
+The explicit engine can now obtain its current Phenix settings from the installation
+NASolve selected, without borrowing configuration from a developer's earlier test.
+It fingerprints the existing consumer and builder source scope and preserves explicit
+source-reader/representation intent. No chemistry is approved by configuration alone.
+
+**Methods.** Fresh settings drive one actual 5PC generation, native qualification
+and repair; a second request reuses the cache. Frozen requests omit the live
+environment, retain their attempt limits and replay without the SDK after relocation.
+This closes configuration assembly; ordinary orchestration, checkpoint adoption and
+refinement remain separate gates.

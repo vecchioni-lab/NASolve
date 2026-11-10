@@ -116,7 +116,9 @@
 
 <a id="current-capability-boundary-c180"></a>
 
-## Current capability boundary (C181)
+<a id="current-capability-boundary-c181"></a>
+
+## Current capability boundary (C182)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -139,7 +141,8 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
 | Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
-| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. Durable whole-continuation ownership, ordinary configuration/default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
+| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; durable whole-continuation ownership, default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
+| Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; ordinary orchestration, continuation ownership and checkpoint adoption remain Q04/Q05. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -258,6 +261,44 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### Current selected-Phenix configuration (C182)
+
+`configure_dictionary_engine(installation, expected_dialect=...)` derives the
+existing consumer and source-preserving generation arguments from an explicitly
+selected `PhenixInstallation`. It uses the maintained eight API, three energy and
+four producer source lists, hashes the three selected dispatchers, and rechecks
+the files/configuration before returning. Exactly one supported packaged
+`lib/python*/site-packages` or `lib64/python*/site-packages` scope is required;
+missing, ambiguous, escaping or changed files refuse. Internal library aliases
+are deduplicated. This is bounded software discovery within the selected SDK,
+not a search for crystallographic inputs or a different installation.
+
+The returned `PhenixDictionaryConfiguration` supplies `consumer`, `generation`
+and `ready_set_executable` directly to the C177 initializer and existing complete
+request executor. The dialect remains an explicit source-reader assertion;
+representation permission and bounded controls use the existing validators.
+The helper runs no subprocess, changes no files and qualifies no chemistry.
+Native execution must still bind the actual consumed implementation and inputs.
+Energy-library data files are not captured by these static source fingerprints.
+
+The execution environment is copied for live calls, omitted from the result's
+representation and never frozen by the request initializer. This value is not an
+artifact format; callers must not serialize it wholesale. Existing requests retain
+their frozen recipe, producer, consumer and attempt allowance. Old explicit
+configurations and cache-only readers remain supported. An older consumer
+descriptor that differs from this one still requires the existing requalification;
+matching selected files alone does not silently rewrite its identity.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 settings, derived without historical
+configuration, drive a fresh 5PC generation, independent native qualification and
+repair. A second request reuses the resulting cache without generation. Both select
+qualified repaired runtimes; fresh configuration cannot reset either exhausted
+request. Both requests and public runtimes replay after relocation with the original
+copy absent and SDK/historical paths/execution denied. Synthetic alternate Python
+minor/lib64 layouts are tested; this is not a Linux-native qualification claim.
+No ReadySet, Coot, diffraction refinement, new request policy or default PostMR
+switch is added. Whole-continuation ownership and ordinary adoption remain Q04/Q05.
 
 ### ReadySet continuation of the selected runtime (C181)
 

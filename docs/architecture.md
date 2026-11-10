@@ -4107,3 +4107,9 @@ qualified original/repaired parent and optional endpoint proof; unsupported recu
 parents refuse. Failed improvement preserves that selected parent, never an older
 pre-repair bundle. No new owner, automatic serialization choice, default PostMR
 adoption or refinement authorization is introduced.
+
+C182 supplies [current selected-installation settings](cif-doctor.md#current-selected-phenix-configuration-c182)
+to that existing request API. It shares the maintained consumer/producer source
+scope and validators, keeps the environment live-only, and preserves frozen recipe
+and allowance semantics. Static installed-file identity does not replace native
+binding or chemical qualification. No default caller or new owner is introduced.

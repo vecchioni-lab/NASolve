@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C181.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C182.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -134,7 +134,7 @@ as competing next-step instructions here.
 | One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. C178–C179 subsequently validate the same singleton scope through the separate ReadySet/native adapter. |
 | Prepared-model context | C175 derives all selected sites and audited whole-model links from canonical prepared coordinates and frozen terminal/backbone intent, then freezes/rederives the proof. Linked/free-OH synthetic and isolated 5PC/PDU native controls pass. C176 extends the canonical bridge with explicit PHIL ownership; nonstandard backbone adapters remain open. |
 | Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. Unsupported PHIL and unowned pre-existing modifiers refuse. |
-| Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. This API remains opt-in with explicit native profile/recipe settings. |
+| Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. This API remains opt-in; C182 derives current consumer/generator settings from the selected installation while preserving explicit source-reader/representation intent. |
 
 **Next bounded checkpoint:** connect the validated prepared-model intake and
 selected runtime to ordinary PostMR orchestration, preserving the selected native
@@ -147,8 +147,9 @@ ReadySet now passes all eight consumption and 28 endpoint checks, with identical
 energy/gradient snapshots; old rejected evidence still remains a fallback. These
 prerequisites close no ordinary-adoption or refinement gate. C181 now binds the
 selected original/repaired runtime through that explicit continuation and public
-replay, including exact repaired fallback. Ordinary configuration and whole-chain
-orchestration remain; do not add a second recovery owner.
+replay, including exact repaired fallback. C182 closes selected-installation
+configuration with fresh generation/repair/cache and cold controls. Whole-chain
+orchestration remains; do not add a second recovery owner.
 
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
@@ -215,9 +216,9 @@ mismatch, explicit-H change, missing evidence and timeout retain the exact selec
 parent; a pre-repair baseline cannot authorize an endpoint. All historical choices
 remain unchanged after relocation.
 
-Next integrate current-installation/profile configuration and durable continuation
-under the existing ownership model, then the ordinary caller and immutable checkpoint
-publication. Preserve pre-construction source/producer lineage and exact NAR intent.
+C182 derives current-installation settings without borrowing old test configuration.
+Next integrate durable continuation under the existing ownership model, then the
+ordinary caller and immutable checkpoint publication. Preserve pre-construction source/producer lineage and exact NAR intent.
 The C181 observer is a bounded explicit diagnostic call, not a persistent whole-chain
 owner or automatic C140 scheduler. No second recovery owner or unqualified pre-repair
 fallback should be introduced.

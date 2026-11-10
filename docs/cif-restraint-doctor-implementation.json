@@ -28187,6 +28187,17 @@
       "evidence_key": "selected_runtime_readyset_2026_11_10",
       "scope": "Qualified selected original/repaired runtime through existing ReadySet/native checks and public publication; exact parent fallback",
       "implementation_revision": "9591e4aa8f960683f119cca93a522afc9b551671"
+    },
+    "current_phenix_configuration": {
+      "status": "IMPLEMENTED_EXPLICIT_API",
+      "evidence_key": "current_phenix_configuration_2026_11_10",
+      "scope": "READ_ONLY_SELECTED_INSTALLATION_CONFIGURATION; NO_NEW_OWNER_OR_DEFAULT_ADOPTION",
+      "remaining": [
+        "Durable whole-continuation ownership",
+        "Ordinary caller and immutable checkpoint adoption",
+        "Actual refinement consumer Q06",
+        "Mixed/held-out and chemical-state controls Q07/Q13"
+      ]
     }
   },
   "audience": [

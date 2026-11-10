@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Derive dictionary-engine settings from selected Phenix (C182)
+
+- Add a read-only configuration helper using existing source identities and recipe
+  validators, so new requests need no consumer/generator settings from old test runs.
+- Reject ambiguous or changed installations; keep live execution environment out
+  of frozen requests. Existing explicit settings, attempt limits and artifact policies
+  are unchanged. Native scientific qualification remains mandatory.
+- Validate actual generation, repair, cache reuse and relocated replay. Ordinary
+  PostMR/checkpoint adoption remains separate.
+
 ### Preserve selected repairs through ReadySet (C181)
 
 - Add an explicit source-bound ReadySet continuation for qualified original and
