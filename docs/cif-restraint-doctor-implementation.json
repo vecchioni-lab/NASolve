@@ -28281,7 +28281,8 @@
         "Connect ordinary caller with one composer modifier owner",
         "Literal bootstrap and selected runtime/checkpoint lineage Q05 remain open",
         "Actual refinement Q06, mixed/held-out Q07, unresolved state Q13 and integration Q16 remain open"
-      ]
+      ],
+      "implementation_revision": "d35b3c4fbac3697b70d27040d96aa3bf6b4ef36f"
     }
   },
   "audience": [

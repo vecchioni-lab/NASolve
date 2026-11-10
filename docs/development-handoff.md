@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C189 validated: prepared intake of already frozen sources
+## C189 published: prepared intake of already frozen sources
 
-Base `b2f63341ab26093eb842d2f3e8e3225a58620945`; existing Cedar. Implementation complete; publication is next.
+Base `b2f63341ab26093eb842d2f3e8e3225a58620945`; existing Cedar. Implementation complete and published as
+`d35b3c4fbac3697b70d27040d96aa3bf6b4ef36f`.
 Capsule `live_tests_directory/189_Cedar_frozen-source-intake-xfkalky_`. Q04 remains at ordinary caller,
 construction/producer identity and exclusive modifier ownership; Q05 adoption follows.
 

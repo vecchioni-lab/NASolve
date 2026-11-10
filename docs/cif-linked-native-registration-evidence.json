@@ -77079,7 +77079,7 @@
     "implementation_revision": "4dbd4ae72cb5f742563036383647564133e6c597"
   },
   "frozen_source_intake_2026_11_10": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "base_revision": "b2f63341ab26093eb842d2f3e8e3225a58620945",
     "branch": "cedar",
     "date": "2026-11-10",
@@ -77438,6 +77438,7 @@
         "sha256": "8c8e1e55184011cb3887b63736dc10dde235d21cd7d8642743faaed9b57f2945",
         "size": 144220
       }
-    }
+    },
+    "implementation_revision": "d35b3c4fbac3697b70d27040d96aa3bf6b4ef36f"
   }
 }
