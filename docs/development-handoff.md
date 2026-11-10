@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C176 validated: exact restraint inputs and one modifier owner
+## C176 published: exact restraint inputs and one modifier owner
 
 Base `6f7aada2a17a997b54100bb303d88bc01d613733`; existing Cedar. Capsule
-`live_tests_directory/176_Cedar_restraint-context-i6yeju8q`. Implementation/validation complete; publication
-is next. Q04 now advances to ordinary source/cache entry-point integration.
+`live_tests_directory/176_Cedar_restraint-context-i6yeju8q`. Implementation/validation complete and published as
+`3802599adc1b89a7b1da98cc95f72894161c5918`. Q04 now advances to ordinary source/cache entry-point integration.
 Q05 owns adoption, Q06 actual refinement, Q07/Q13 mixed scaffolds/source states.
 
 **Before → after:** C175 could derive model context only without supplementary

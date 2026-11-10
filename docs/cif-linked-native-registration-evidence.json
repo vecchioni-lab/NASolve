@@ -71518,7 +71518,7 @@
     "milestone": "C176",
     "status": "FOCUSED_NATIVE_COLD_VALIDATED; Q04_ORDINARY_ENTRY_OPEN",
     "base_revision": "6f7aada2a17a997b54100bb303d88bc01d613733",
-    "implementation_revision": null,
+    "implementation_revision": "3802599adc1b89a7b1da98cc95f72894161c5918",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Prepared-model context excluded supplementary PHIL",
     "after": "Exact ordered explicit PHIL proof reconstructed with exclusive composer modifier ownership",

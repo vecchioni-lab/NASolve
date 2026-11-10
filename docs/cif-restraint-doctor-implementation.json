@@ -28150,7 +28150,8 @@
       "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
       "milestone": "C176",
       "evidence_key": "ordered_restraint_context_2026_11_10",
-      "scope": "Exact ordered explicit PHIL and one composer modifier owner; ordinary integration open"
+      "scope": "Exact ordered explicit PHIL and one composer modifier owner; ordinary integration open",
+      "implementation_revision": "3802599adc1b89a7b1da98cc95f72894161c5918"
     }
   },
   "audience": [
