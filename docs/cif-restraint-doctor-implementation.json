@@ -28268,7 +28268,8 @@
         "Original literal mode still needs a completed native capture; source-bound mode must not silently replace its relationships/planes",
         "New owner execution is synthetic transport, not a new complete native chemistry control",
         "Standalone runtime/checkpoint lineage Q05, actual refinement Q06, mixed/held-out Q07 and release Q16 remain open"
-      ]
+      ],
+      "implementation_revision": "4dbd4ae72cb5f742563036383647564133e6c597"
     }
   },
   "audience": [

@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C188 validated: existing source-bound compiler intake
+## C188 published: existing source-bound compiler intake
 
-Base `a1ff7999f85ea3e1279c70f1a7b24c6fbb5a42e6`; existing Cedar. Implementation complete; publication is next.
+Base `a1ff7999f85ea3e1279c70f1a7b24c6fbb5a42e6`; existing Cedar. Implementation complete and published as
+`4dbd4ae72cb5f742563036383647564133e6c597`.
 Capsule `live_tests_directory/188_Cedar_explicit-compiler-intake-8mdoxyqm`. Q04 remains open at ordinary
 orchestration, pre-construction identity and exclusive modifier ownership.
 

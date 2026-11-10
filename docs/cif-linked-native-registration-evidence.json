@@ -76816,7 +76816,7 @@
     "implementation_revision": "41a7f464c26ef5bd9083aebb243316433bed5889"
   },
   "explicit_compiler_intake_2026_11_10": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "base_revision": "a1ff7999f85ea3e1279c70f1a7b24c6fbb5a42e6",
     "branch": "cedar",
     "date": "2026-11-10",
@@ -77075,6 +77075,7 @@
         "sha256": "95fe1db141601d01cfe8923a2165d58d6acb9e76d61ab4e6ee5d8c1f1e6d0072",
         "size": 40609
       }
-    }
+    },
+    "implementation_revision": "4dbd4ae72cb5f742563036383647564133e6c597"
   }
 }
