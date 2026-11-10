@@ -3828,3 +3828,20 @@ the old group readback is null, while the corrected readback retains DNA and
 passes all 28 comparisons with unchanged energies/gradients. Relocated replay
 preserves old and new verdicts. This removes a representation fault; selected
 runtime integration and ordinary refinement remain separate work.
+
+
+### Keeping repairs through the ReadySet step (C181)
+
+The explicit continuation now uses the model and restraints the engine selected,
+including repaired dictionaries. If the optional ReadySet result does not qualify,
+NASolve keeps that complete qualified parent. It does not fall back to an earlier
+unrepaired dictionary or ask the user to choose CIF internals.
+
+**Methods.** Fresh heavy-only original and repaired requests qualify independently.
+The original passes ReadySet and all native comparisons. In the repaired control,
+ReadySet changes atom-name display spacing; the existing strict serialization
+adapter restores the reference before a fresh native capture passes. Raw negative
+evidence remains preserved. Explicit-H inventory changes, missing evidence, timeout
+and a mismatched baseline all retain the repaired parent. Relocated public replay
+requires no installation or original machine paths. This remains a diagnostic API;
+ordinary orchestration, checkpoint adoption and refinement are still separate gates.

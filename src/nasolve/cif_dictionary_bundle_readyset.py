@@ -26,6 +26,12 @@ def _artifact(root, ref):
 
 
 def readyset_endpoint_inputs(bundle, readyset_directory, *, atom_order_directory=None):
+    """Recheck ordinary consumption against the independently prepared bundle."""
+    return _readyset_endpoint_inputs(read_dictionary_bundle(bundle), readyset_directory,
+        atom_order_directory=atom_order_directory)
+
+
+def _readyset_endpoint_inputs(prepared, readyset_directory, *, atom_order_directory=None):
     """Recheck the ordinary consumption proof and return exact final native inputs.
 
     Does not run ReadySet or trust its saved PASS/check booleans. This accepts the
@@ -37,7 +43,7 @@ def readyset_endpoint_inputs(bundle, readyset_directory, *, atom_order_directory
     from .cif_postmr_readyset import (read_readyset_consumption, COMPONENT_POLICY_ID,
         EXPECTED_ACTIONS, WORKER, _atoms, heavy_control, effective_cached_input, OBSERVED_MODULES)
     from .cif_readyset_process_policy import classify_subprocesses
-    b = read_dictionary_bundle(bundle); root = Path(readyset_directory).absolute()
+    b = prepared; root = Path(readyset_directory).absolute()
     saved = read_readyset_consumption(root); r = saved['report']
     _need(r['policy_id'] == COMPONENT_POLICY_ID and r.get('components') == b['report']['components']
         and r.get('automatic_adoption') is False and r.get('verified_input_retained') is True,

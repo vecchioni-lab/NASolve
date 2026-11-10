@@ -433,3 +433,8 @@ legacy rejected evidence keeps its original fallback arrow. No adoption is added
 C180 extends the existing metadata-preservation contract to component filtering.
 Selection precedence and pipeline arrows are unchanged; this does not add an
 ordinary-adoption or refinement claim.
+
+C181 validates the explicit selected-runtime→ReadySet→native→public-bundle segment,
+including exact repaired-parent fallback and the existing C140 serialization path.
+No whole-chain process owner, automatic adapter choice, ordinary checkpoint or
+refinement arrow is claimed.

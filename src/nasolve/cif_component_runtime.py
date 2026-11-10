@@ -16,6 +16,7 @@ from .cif_runtime_bundle import MANIFEST_FILE, _json_bytes, _load_json, _referen
 POLICY_ID = 'cif-qualified-component-runtime-bundle-v1'
 REPAIRED_POLICY_ID = 'cif-qualified-repaired-component-runtime-bundle-v1'
 ORIGINAL_POLICY_ID = 'cif-qualified-prepared-component-runtime-bundle-v1'
+CONTINUATION_POLICY_ID = 'cif-qualified-selected-runtime-readyset-bundle-v1'
 MAX_FILES = 1024
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_BYTES = 128 * 1024 * 1024
@@ -65,6 +66,9 @@ def _controls(root, controls):
 
 
 def _selection(root, controls, *, policy_id=POLICY_ID):
+    if policy_id == CONTINUATION_POLICY_ID:
+        from .cif_runtime_readyset import selected_runtime_readyset_publication
+        return selected_runtime_readyset_publication(root, controls)
     if policy_id == ORIGINAL_POLICY_ID:
         return _original_selection(root, controls)
     if policy_id == REPAIRED_POLICY_ID:
@@ -234,13 +238,37 @@ def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidat
     return _publish(Path(output).absolute(),roots,controls,ORIGINAL_POLICY_ID)
 
 
+def prepare_runtime_readyset_bundle(manifest, baseline_receipt, readyset_directory, output,
+        *, endpoint_receipt=None, atom_order_directory=None):
+    """Freeze selected-parent proof and an optional exact ReadySet continuation.
+
+    Reuse the public source freezer; no recovery owner or checkpoint is created.
+    A failed optional improvement preserves the complete qualified parent runtime.
+    """
+    from .cif_runtime_readyset import _parent
+    parent = _parent(manifest); output = Path(output).absolute()
+    controls = dict(runtime='evidence/runtime', readyset_directory='evidence/readyset',
+        baseline_receipt=None, endpoint_receipt=None, atom_order_directory=None)
+    roots = {'runtime':parent['manifest_path'].parent,
+             'readyset':Path(readyset_directory) if readyset_directory is not None else None}
+    for field,folder,supplied in [('baseline_receipt','baseline',baseline_receipt),
+                                  ('endpoint_receipt','endpoint',endpoint_receipt)]:
+        if supplied is not None:
+            path = Path(supplied)
+            _need(path.name == 'native_receipt.json', 'Require an exact selected-runtime native receipt')
+            roots[folder] = path.parent; controls[field] = 'evidence/'+folder+'/'+path.name
+    if atom_order_directory is not None:
+        roots['atom-order'] = Path(atom_order_directory); controls['atom_order_directory'] = 'evidence/atom-order'
+    return _publish(output, roots, controls, CONTINUATION_POLICY_ID)
+
+
 def _publish(output, roots, controls, policy_id):
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
     _need(not any(p.is_symlink() for p in output.parents), 'Unsafe runtime destination')
     snapshots={}
     for name,source in roots.items():
         if source is not None:
-            source=source.absolute();_need(not output.is_relative_to(source), 'Cannot publish inside source evidence')
+            source=source.absolute();_need(not output.resolve().is_relative_to(source.resolve()), 'Cannot publish inside source evidence')
             snapshots[name]=_tree(source)
         else:snapshots[name]={}
     _need(sum(len(s) for s in snapshots.values())<=MAX_FILES
@@ -268,7 +296,7 @@ def verify_component_runtime_resources(path, value):
     path=Path(path);root=path.parent
     _need(path.name==MANIFEST_FILE and _json_bytes(_load_json(path))==_json_bytes(value), 'Runtime manifest changed')
     policy = value.get('policy_id')
-    _need(policy in (POLICY_ID, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID), 'Unsupported component runtime policy')
+    _need(policy in (POLICY_ID, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID), 'Unsupported component runtime policy')
     fixed = {**_FIXED, 'policy_id':policy}
     _need(all(type(value.get(k)) is type(v) and value.get(k)==v for k,v in fixed.items()), 'Unsupported component runtime policy')
     actual=[_reference(root/name,root) for name in _tree(root,manifest=True)]
@@ -297,7 +325,8 @@ def resolve_component_runtime_bundle(path, value=None):
 
 def component_runtime_summary(value):
     selected=value['decision']['selected']
-    label={'verified_prepared_model':'the verified starting model',
+    label={'verified_parent_runtime':'the qualified parent model and its selected dictionaries',
+        'verified_prepared_model':'the verified starting model',
         'readyset_checked_model':'the verified ReadySet model',
         'readyset_ordered_checked_model':'the verified order-restored ReadySet model',
         'repaired_prepared_bundle':'the source-verified model and repaired dictionaries',

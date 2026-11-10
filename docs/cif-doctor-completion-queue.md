@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C180.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C181.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -131,7 +131,7 @@ as competing next-step instructions here.
 | Complete bounded request | C169–C171 join exact successful acquisitions, model/sites, ordered PHIL, preparation and repair. Reciprocal parent ownership is durable; persistent component/generation histories prevent resetting attempts. One shared allowance includes final scientific replay/inventory. Local work and cleanup remain cooperative, not a hard deadline. |
 | Scientific selection and immutable output | C160/C172 share source/site/full-native/derivative checks, selector and publisher. No-graph originals need independent proof. Only qualified selected model/CIF/PHIL bundles publish; negative results can truthfully return no usable bundle. |
 | Optional failure and original fallback | C173 binds optional native timeout or complete failed/unsupported worker evidence to the exact known-stopped job, declared inputs and maintained worker. Current consumer and independent original proof remain mandatory. Valid negative attribution/derivative results use the existing selector. Initial failures, malformed/contradictory reports, interruption and unknown cleanup remain blocking. No retry or renewed allowance. |
-| One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. The separate ReadySet round-trip adapter still requires 2–16. |
+| One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. C178–C179 subsequently validate the same singleton scope through the separate ReadySet/native adapter. |
 | Prepared-model context | C175 derives all selected sites and audited whole-model links from canonical prepared coordinates and frozen terminal/backbone intent, then freezes/rederives the proof. Linked/free-OH synthetic and isolated 5PC/PDU native controls pass. C176 extends the canonical bridge with explicit PHIL ownership; nonstandard backbone adapters remain open. |
 | Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. Unsupported PHIL and unowned pre-existing modifiers refuse. |
 | Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. This API remains opt-in with explicit native profile/recipe settings. |
@@ -145,7 +145,10 @@ adoption. Coordinate the remaining caller integration with Q05. C178 validates s
 combination and records its policy, with exact old scalar replay. Actual singleton
 ReadySet now passes all eight consumption and 28 endpoint checks, with identical
 energy/gradient snapshots; old rejected evidence still remains a fallback. These
-prerequisites close no ordinary-adoption or refinement gate. Do not add a second recovery owner.
+prerequisites close no ordinary-adoption or refinement gate. C181 now binds the
+selected original/repaired runtime through that explicit continuation and public
+replay, including exact repaired fallback. Ordinary configuration and whole-chain
+orchestration remain; do not add a second recovery owner.
 
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
@@ -205,11 +208,19 @@ ordered effective restraint bundle through that chain and checkpoint lineage.
 The combined metadata writer now shares C09's native loop policy (C179), with
 strict fresh endpoint acceptance and preserved legacy outcomes. C180 extends the
 same writer to both partial-filter precedence directions, with actual native
-before/after isolation and cold replay. The next bridge must bind the **selected
-original or repaired runtime**, rather than rebuilding from an earlier prepared
-dictionary, through ReadySet and final native qualification. Preserve the parent
-selection on missing/failed optional improvement; do not substitute an unqualified
-pre-repair start or create another recovery owner.
+before/after isolation and cold replay. C181 closes the explicit **selected
+original/repaired runtime → ReadySet → exact native → public bundle** bridge.
+Actual original and C140-restored repaired controls pass. Raw display-padding
+mismatch, explicit-H change, missing evidence and timeout retain the exact selected
+parent; a pre-repair baseline cannot authorize an endpoint. All historical choices
+remain unchanged after relocation.
+
+Next integrate current-installation/profile configuration and durable continuation
+under the existing ownership model, then the ordinary caller and immutable checkpoint
+publication. Preserve pre-construction source/producer lineage and exact NAR intent.
+The C181 observer is a bounded explicit diagnostic call, not a persistent whole-chain
+owner or automatic C140 scheduler. No second recovery owner or unqualified pre-repair
+fallback should be introduced.
 
 Done when recipes/models containing modified components reach final ReadySet
 consumption and exact native qualification through ordinary entry points, then

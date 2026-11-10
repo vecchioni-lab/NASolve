@@ -4098,3 +4098,12 @@ C180 uses the same metadata loop writer when partial component filtering produce
 a retained singleton. Block identity, source fields and dictionary precedence are
 preserved; existing frozen supplements are not rewritten. See the
 [filter contract](cif-doctor.md#native-metadata-in-filtered-supplements-c180).
+
+C181 adds the [selected-runtime continuation](cif-doctor.md#readyset-continuation-of-the-selected-runtime-c181).
+Its prepared view maps exact component positions to selected numerical files while
+retaining modifiers and ordered PHIL. It shares the existing ReadySet validator,
+strict native comparison and atomic public freezer. A distinct policy freezes one
+qualified original/repaired parent and optional endpoint proof; unsupported recursive
+parents refuse. Failed improvement preserves that selected parent, never an older
+pre-repair bundle. No new owner, automatic serialization choice, default PostMR
+adoption or refinement authorization is introduced.

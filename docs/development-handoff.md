@@ -11,6 +11,78 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C181 validated: selected-runtime ReadySet continuation
+
+Base `739271fa9efe6322772aa3df7d3edb3f2447e7e9`; existing Cedar. Capsule
+`live_tests_directory/181_Cedar_selected-readyset-y767gm03`. Implementation/validation complete; publication
+is next. Q05 now has an explicit source-bound bridge from C177's selected result.
+
+**Before → after:** the existing preparation-based path could not consume the
+engine's selected repaired dictionary set. The new adapter preserves the exact
+selected model, ordered component/modifier CIFs and PHIL, reuses the observer and
+strict comparator, and freezes parent/endpoint proof through the public publisher.
+Optional failure retains that same parent; parent corruption raises. Unsupported
+recursive parent policies, canonical output overlap and changed evidence refuse.
+
+**Validation:** four expected missing-API failures before implementation. The first
+prototype exposed a macOS temporary-path normalization bug (corrected). Three more
+failing boundary controls established after-comparison input rechecks and canonical
+output overlap refusal. A fourth boundary regression catches the same canonical-overlap issue in the shared
+publisher, before any temporary output is created. All **32 new regressions** pass. Affected
+**338 passed in 274.56s (0:04:34)**. Workflow **1729 passed, 45 subtests passed in 532.61s (0:08:52)**.
+All 629 source/test/script hashes stayed fixed in the final
+runs. No full suite. Last completed full: C160
+`d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c181_validate.py affected-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r2.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c181_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c181_native.py native-r2 repair-explicit-h
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c181_repair_order.py native-review-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c181_native_final.py native-final
+PYTHONDONTWRITEBYTECODE=1 python c181_cold_final.py cold-r2
+```
+
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution:** two fresh heavy-only
+complete requests independently qualify their inputs (one original, one repaired).
+ReadySet uses the existing selected-Phenix-Python observer transport for the literal
+entrypoint/ordinary arguments; its shell dispatcher is not executed, and native
+internal operations are not exhaustively instrumented.
+The original singleton passes 8/8 ReadySet and 28/28 endpoint checks. The repaired
+PDU/5PC raw endpoint passes 27/28: exact explicit-request display labels differ.
+That first harness expected acceptance and stopped; all work is preserved.
+A separate control uses unchanged C140 serialization to restore exact model bytes;
+fresh native readback passes 28/28. No comparator, target, phosphate or chemical
+gate was relaxed. An explicit-H repaired parent stays selected when ReadySet's
+existing heavy-control path changes native inventory. Missing evidence, a 0.1s
+actual ReadySet timeout and a fresh pre-repair baseline likewise cannot replace it.
+Final code: four ReadySet calls and eight continuation native captures. The earlier
+controls retain another four/eight respectively (eight/sixteen total), in addition
+to the two complete requests' own qualification/repair jobs. No generation/Coot/refinement.
+
+**Cold:** eleven new public selections and two C178/C179 historical controls replay
+after relocation, original copy absent and historical paths/SDK/execution denied.
+All 2802 files retain bytes/mtimes. Old negative evidence remains negative;
+the qualified repaired parent and unavailable native-charge checks stay bound.
+No validation/native job remains active.
+
+**Files/schema/compatibility:** new continuation module/test; shared observer
+factoring, component/public runtime dispatch and workflow profile; current docs,
+queue and ledgers. Additive public policy
+`cif-qualified-selected-runtime-readyset-bundle-v1`; old policies unchanged, no
+migration. New bundles require a reader supporting that policy. Only original or
+repaired parents are accepted. Source/tests/docs/hash references enter Git;
+models/CIFs/native outputs/XML/runners remain local. Generated science is excluded.
+
+**Next:** ordinary current-installation/profile configuration and durable whole-chain
+continuation under existing ownership, then ordinary caller/checkpoint adoption.
+C140 selection remains explicit; no automatic scheduler was added. Preserve source/
+producer lineage and exact NAR intent. Q04/Q05 remain open; Q06 still requires the
+actual refinement consumer; Q07/Q13 chemistry evidence remains separate.
+Evidence key `selected_runtime_readyset_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C180 published: preserve native metadata in filtered supplements
 
 Base `43335f96cb152a3c24241a40e604bb967632a94c`; existing Cedar. Capsule

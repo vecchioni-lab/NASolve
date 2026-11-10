@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve selected repairs through ReadySet (C181)
+
+- Add an explicit source-bound ReadySet continuation for qualified original and
+  repaired runtimes. Reuse the existing observer, strict native checks and public
+  publisher; missing/failed optional endpoints preserve the exact selected parent.
+- Freeze complete parent and endpoint proof under an additive runtime policy,
+  with read-only replay after relocation. Older policies are unchanged.
+- Reject canonical output overlap before temporary publication, including paths
+  with dot segments, so source evidence remains untouched.
+- Validate actual original and losslessly restored repaired endpoints, explicit-H
+  fallback, timeout and wrong-baseline refusal. No default PostMR/checkpoint or
+  refinement adoption is enabled.
+
 ### Preserve native metadata in filtered CIFs (C180)
 
 - Use the same native-readable list serializer when resolving generated/input

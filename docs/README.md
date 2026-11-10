@@ -127,3 +127,7 @@ while legacy receipts preserve their original outcomes.
 
 C180 extends the shared metadata writer to [filtered supplements](cif-doctor.md#native-metadata-in-filtered-supplements-c180),
 with unchanged input/generated precedence and native before/after evidence.
+
+C181 connects a [qualified selected runtime to ReadySet](cif-doctor.md#readyset-continuation-of-the-selected-runtime-c181)
+through shared observer/native checks and portable publication, preserving repaired
+parents on optional failure. Default orchestration/checkpoint adoption remains open.

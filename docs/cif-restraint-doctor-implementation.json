@@ -28180,6 +28180,12 @@
       "evidence_key": "filtered_component_metadata_2026_11_10",
       "scope": "Both partial-filter directions retain native metadata and existing precedence",
       "implementation_revision": "d87a18f1b442325ddb0c4279cbb30c6cb5492f31"
+    },
+    "selected_runtime_readyset": {
+      "status": "SELECTED_RUNTIME_READYSET_NATIVE_AND_COLD_VALIDATED",
+      "milestone": "C181",
+      "evidence_key": "selected_runtime_readyset_2026_11_10",
+      "scope": "Qualified selected original/repaired runtime through existing ReadySet/native checks and public publication; exact parent fallback"
     }
   },
   "audience": [

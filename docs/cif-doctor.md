@@ -114,7 +114,9 @@
 
 <a id="current-capability-boundary-c179"></a>
 
-## Current capability boundary (C180)
+<a id="current-capability-boundary-c180"></a>
+
+## Current capability boundary (C181)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -137,6 +139,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
 | Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
+| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. Durable whole-continuation ownership, ordinary configuration/default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -255,6 +258,59 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### ReadySet continuation of the selected runtime (C181)
+
+The new `cif_runtime_readyset` adapter starts from an independently qualified
+original or repaired public runtime. It supplies the selected component dictionary
+bytes to the existing per-component ReadySet observer and preserves the selected
+model, modifier order and complete ordered PHIL inputs. It never reconstructs a
+repair from the earlier preparation. The existing observer checker is shared with
+the preparation-based path; its eight checks and the strict 28-check native
+comparator retain their meaning.
+
+`audit_runtime_readyset_consumption` performs one bounded diagnostic observation.
+`runtime_readyset_endpoint_inputs` rechecks the frozen observer evidence before
+returning exact final native inputs. `inspect_runtime_readyset` requires a fresh
+baseline bound to the selected parent and a full final native capture. It rechecks
+optional evidence after comparison. Missing/failed optional evidence selects
+`verified_parent_runtime`; a damaged/unqualified parent raises. Canonical output
+overlap is rejected before execution. No new recovery owner is introduced.
+
+`prepare_runtime_readyset_bundle` uses the existing bounded atomic publisher with
+policy `cif-qualified-selected-runtime-readyset-bundle-v1`. The parent proof and
+optional ReadySet/native/serialization evidence are frozen under fixed bundle
+anchors, then rederived by the public reader. Only original/repaired parent policies
+are accepted, before recursive resolution; arbitrary nested continuations refuse.
+The parent choice, unavailable native checks, and exact selected model/CIF/PHIL
+resources survive fallback. Older policies remain unchanged. New publications need
+a reader that understands this additive policy; there is no in-place migration.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls independently qualify fresh
+heavy-only 5PC and PDU/5PC requests before ReadySet. The original singleton passes
+all eight consumption and 28 endpoint checks. The repaired pair's raw endpoint
+preserves definitions, proxies and numerical request fields but changes atom-name
+display padding; the unchanged strict request comparison retains the parent.
+The existing C140 lossless serialization adapter restores the exact reference
+bytes, and a fresh native capture then passes all 28 checks. The raw negative
+evidence remains negative; no comparator or NAR target is relaxed.
+
+ReadySet runs its selected literal entrypoint and ordinary arguments through the
+maintained Phenix-Python observer. The literal ReadySet shell dispatcher is not
+executed, and native internal operations are not exhaustively instrumented.
+
+An already-qualified explicit-H repaired parent remains selected when the existing
+ReadySet heavy-control path changes its native inventory. Missing evidence, an
+actual 0.1-second ReadySet timeout and a fresh pre-repair baseline also retain the
+exact repaired parent; the latter fails exact baseline binding. These controls do
+not authorize stripping a user's model or changing source phosphate H/charge.
+Eleven new public selections and two historical accepted/rejected controls replay
+from a relocated checkout without original paths, SDK access or execution.
+
+This is an explicit diagnostic continuation API. Ordinary caller configuration,
+durable ownership across the whole continuation, default PostMR orchestration,
+checkpoint adoption and actual refinement remain Q04/Q05/Q06. The C140 adapter is
+explicit here; choosing and scheduling it automatically is not implemented.
 
 ### Native metadata in filtered supplements (C180)
 

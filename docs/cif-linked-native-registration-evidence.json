@@ -73449,5 +73449,797 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-10T13:19:00.156412+00:00"
+  },
+  "selected_runtime_readyset_2026_11_10": {
+    "milestone": "C181",
+    "status": "SELECTED_RUNTIME_READYSET_NATIVE_AND_COLD_VALIDATED",
+    "base_revision": "739271fa9efe6322772aa3df7d3edb3f2447e7e9",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "ReadySet adapter starts from earlier preparation, not independently selected repaired runtime",
+    "after": "Shared observer/native/publication preserve selected parent and exact fallback",
+    "prior_work": [
+      "C139 observer",
+      "C140 serialization",
+      "C141 public bundle",
+      "C152/C153 source-repaired selection",
+      "C172 original qualification",
+      "C177 ordinary source intake",
+      "C178-C180 native metadata"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "scripts/run_tests.py",
+      "src/nasolve/cif_component_runtime.py",
+      "src/nasolve/cif_dictionary_bundle_readyset.py",
+      "src/nasolve/cif_runtime_bundle.py",
+      "src/nasolve/cif_runtime_readyset.py",
+      "tests/test_cif_runtime_readyset.py"
+    ],
+    "schemas": "Additive cif-qualified-selected-runtime-readyset-bundle-v1; source review cif-selected-runtime-readyset-roundtrip-v1",
+    "compatibility": "Old policies unchanged; no migration; new policy requires supporting reader; recursive continuation parents refused",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 54271,
+        "runner_pid": 54257,
+        "phase": "before",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_readyset.py",
+          "-k",
+          "selected_repair_reaches",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/181_Cedar_selected-readyset-y767gm03/before.xml"
+        ],
+        "started_utc": "2026-11-10T13:26:46.883443+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 0.282,
+        "sources_unchanged": true,
+        "source_files": 628
+      },
+      "boundary_before": {
+        "active": false,
+        "pid": 55178,
+        "runner_pid": 55164,
+        "phase": "safety",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_readyset.py",
+          "-k",
+          "optional_inputs_changed or output_dot_segments",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/181_Cedar_selected-readyset-y767gm03/safety.xml"
+        ],
+        "started_utc": "2026-11-10T13:31:28.377316+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 7.758,
+        "sources_unchanged": true,
+        "source_files": 629
+      },
+      "publication_before": {
+        "active": false,
+        "pid": 61994,
+        "runner_pid": 61980,
+        "phase": "publication",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_readyset.py",
+          "-k",
+          "publication_dot_segments",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/181_Cedar_selected-readyset-y767gm03/publication.xml"
+        ],
+        "started_utc": "2026-11-10T13:48:32.317781+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 8.033,
+        "sources_unchanged": true,
+        "source_files": 629
+      },
+      "new_cases": 32,
+      "affected": {
+        "active": false,
+        "pid": 62090,
+        "runner_pid": 62076,
+        "phase": "affected-r2",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_readyset.py",
+          "tests/test_cif_dictionary_bundle_readyset.py",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_original_component_runtime.py",
+          "tests/test_cif_repaired_component_runtime.py",
+          "tests/test_cif_runtime_bundle.py",
+          "tests/test_cif_postmr_readyset.py",
+          "tests/test_cif_readyset_atom_order.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_test_suites.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/181_Cedar_selected-readyset-y767gm03/affected-r2.xml"
+        ],
+        "started_utc": "2026-11-10T13:49:21.763791+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 274.756,
+        "sources_unchanged": true,
+        "source_files": 629
+      },
+      "focused": {
+        "active": false,
+        "pid": 63265,
+        "runner_pid": 63251,
+        "phase": "focused-r2",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/181_Cedar_selected-readyset-y767gm03/focused-r2.xml"
+        ],
+        "started_utc": "2026-11-10T13:54:36.464260+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 532.874,
+        "sources_unchanged": true,
+        "source_files": 629
+      },
+      "affected_summary": "338 passed in 274.56s (0:04:34)",
+      "focused_summary": "1729 passed, 45 subtests passed in 532.61s (0:08:52)",
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 275.9026166669937,
+      "controls": {
+        "original-heavy": {
+          "directory": "native-final/original-heavy",
+          "parent_selected": "verified_prepared_bundle",
+          "selected": "readyset_checked_model",
+          "endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": true,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": true,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": true,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": true,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": true,
+            "exact_named_proxies:dihedral": true,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": true,
+            "same_installed_api_sources": true
+          },
+          "raw_endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": true,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": true,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": true,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": true,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": true,
+            "exact_named_proxies:dihedral": true,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": true,
+            "same_installed_api_sources": true
+          },
+          "raw_selected": "readyset_checked_model",
+          "endpoint_error": null,
+          "readyset_checks": {
+            "single_effective_dictionary": true,
+            "effective_numerics_exact": true,
+            "unchanged_heavy_sites": true,
+            "readyset_completed": true,
+            "observer_complete": true,
+            "effective_actions": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_unclassified_subprocess_calls": true
+          },
+          "public_selections": {
+            "endpoint": "readyset_checked_model",
+            "missing-endpoint": "verified_parent_runtime",
+            "no-readyset": "verified_parent_runtime"
+          },
+          "ordered_phils": 1,
+          "components": [
+            "5PC"
+          ],
+          "parent_bytes_mtimes_unchanged": true
+        },
+        "repair-heavy": {
+          "directory": "native-final/repair-heavy",
+          "parent_selected": "repaired_prepared_bundle",
+          "selected": "readyset_ordered_checked_model",
+          "endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": true,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": true,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": true,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": true,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": true,
+            "exact_named_proxies:dihedral": true,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": true,
+            "same_installed_api_sources": true
+          },
+          "raw_endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": true,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": false,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": true,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": true,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": true,
+            "exact_named_proxies:dihedral": true,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": true,
+            "same_installed_api_sources": true
+          },
+          "raw_selected": "verified_parent_runtime",
+          "endpoint_error": null,
+          "readyset_checks": {
+            "single_effective_dictionary": true,
+            "effective_numerics_exact": true,
+            "unchanged_heavy_sites": true,
+            "readyset_completed": true,
+            "observer_complete": true,
+            "effective_actions": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_unclassified_subprocess_calls": true
+          },
+          "public_selections": {
+            "endpoint": "readyset_ordered_checked_model",
+            "raw": "verified_parent_runtime",
+            "missing-endpoint": "verified_parent_runtime",
+            "no-readyset": "verified_parent_runtime"
+          },
+          "ordered_phils": 3,
+          "components": [
+            "5PC",
+            "PDU"
+          ],
+          "parent_bytes_mtimes_unchanged": true
+        },
+        "repair-explicit-h": {
+          "directory": "native-final/repair-explicit-h",
+          "parent_selected": "repaired_prepared_bundle",
+          "selected": "verified_parent_runtime",
+          "endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": false,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": false,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": false,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": false,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": false,
+            "exact_named_proxies:dihedral": false,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": false,
+            "same_installed_api_sources": true
+          },
+          "raw_endpoint_checks": {
+            "unchanged_named_heavy_coordinates": true,
+            "before:exact_native_model": true,
+            "before:complete_native_interpretation": true,
+            "before:fixed_secondary_structure_policy": true,
+            "before:energy_inventory": true,
+            "before:finite_energy_and_gradient": true,
+            "before:fixed_coordinate_repeats": true,
+            "before:complete_proxy_inventory": true,
+            "after:exact_native_model": true,
+            "after:complete_native_interpretation": true,
+            "after:fixed_secondary_structure_policy": true,
+            "after:energy_inventory": true,
+            "after:finite_energy_and_gradient": true,
+            "after:fixed_coordinate_repeats": true,
+            "after:complete_proxy_inventory": true,
+            "exact_effective_site_definitions": false,
+            "all_backbone_links_exact": true,
+            "exact_explicit_requests": false,
+            "same_native_policy": true,
+            "exact_named_proxies:angle": false,
+            "exact_named_proxies:bond_asu": true,
+            "exact_named_proxies:bond_simple": false,
+            "exact_named_proxies:chirality": true,
+            "exact_named_proxies:const_dihedral": false,
+            "exact_named_proxies:dihedral": false,
+            "exact_named_proxies:parallelity": true,
+            "exact_named_proxies:planarity": false,
+            "same_installed_api_sources": true
+          },
+          "raw_selected": "verified_parent_runtime",
+          "endpoint_error": null,
+          "readyset_checks": {
+            "single_effective_dictionary": true,
+            "effective_numerics_exact": true,
+            "unchanged_heavy_sites": true,
+            "readyset_completed": true,
+            "observer_complete": true,
+            "effective_actions": true,
+            "no_observed_builder_or_template_calls": true,
+            "no_unclassified_subprocess_calls": true
+          },
+          "public_selections": {
+            "endpoint": "verified_parent_runtime",
+            "missing-endpoint": "verified_parent_runtime",
+            "no-readyset": "verified_parent_runtime",
+            "timeout": "verified_parent_runtime"
+          },
+          "ordered_phils": 3,
+          "components": [
+            "5PC",
+            "PDU"
+          ],
+          "parent_bytes_mtimes_unchanged": true,
+          "pre_repair_baseline_rejected": true,
+          "timeout": {
+            "status": "TIMED_OUT",
+            "returncode": -9,
+            "elapsed_seconds": 0.116401,
+            "timeout_seconds": 0.1
+          }
+        }
+      },
+      "readyset_calls": 4,
+      "continuation_native_calls": 8,
+      "earlier_continuation_native_calls": 8,
+      "earlier_readyset_calls": 4,
+      "fresh_complete_requests": 2,
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "raw_repaired_endpoint": "27/28: exact explicit-request display labels differ; unchanged C140 restoration passes all 28",
+      "earlier_harness_failure": "Initial raw-repair acceptance assertion failed; all partial work and raw negative evidence preserved",
+      "repair_adapter": "EXISTING_C140_EXACT_SERIALIZATION; STRICT_NATIVE_COMPARATOR_UNCHANGED",
+      "fault_injection": "Fresh actual 0.1-second ReadySet timeout and separate pre-repair native baseline; neither replaces qualified repaired parent",
+      "generation": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "EXPLICIT_SELECTED_RUNTIME_CONTINUATION; NO_DEFAULT_POSTMR_OR_CHECKPOINT_ADOPTION",
+      "readyset_transport": {
+        "invocation": "SELECTED_LITERAL_READYSET_ENTRYPOINT_WITH_ORDINARY_ARGUMENTS",
+        "dispatcher_execution": "NOT_RUN; SELECTED_PHENIX_PYTHON_OBSERVER_TRANSPORT",
+        "native_internal_operations": "NOT_EXHAUSTIVELY_INSTRUMENTED"
+      }
+    },
+    "relocation": {
+      "status": "PASS",
+      "cases": {
+        "original-heavy-endpoint": "readyset_checked_model",
+        "original-heavy-missing-endpoint": "verified_parent_runtime",
+        "original-heavy-no-readyset": "verified_parent_runtime",
+        "repair-heavy-endpoint": "readyset_ordered_checked_model",
+        "repair-heavy-raw": "verified_parent_runtime",
+        "repair-heavy-missing-endpoint": "verified_parent_runtime",
+        "repair-heavy-no-readyset": "verified_parent_runtime",
+        "repair-explicit-h-endpoint": "verified_parent_runtime",
+        "repair-explicit-h-missing-endpoint": "verified_parent_runtime",
+        "repair-explicit-h-no-readyset": "verified_parent_runtime",
+        "repair-explicit-h-timeout": "verified_parent_runtime",
+        "legacy-rejected": "verified_prepared_model",
+        "legacy-accepted": "readyset_checked_model"
+      },
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 2802
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/start.json",
+        "sha256": "a92fb835e6647a8cc1c701c024b85b7c4827f2bcfc34491d04b2db99eb6eb2ea",
+        "size": 293
+      },
+      "design.txt": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/design.txt",
+        "sha256": "72e94e97058283d632a1ef62259603fcee20020e87c9a9260591ba3ffadfad31",
+        "size": 5083
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/before-result.json",
+        "sha256": "71784fe32ff679649ad6aa66160b646ba2a3bc1492bf1563f288402947e2d0ac",
+        "size": 619
+      },
+      "new-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/new-result.json",
+        "sha256": "94eb0a5ae9c85f29ffd05cb051854f817f06b2c4fd9cf78530e53bc723999d02",
+        "size": 573
+      },
+      "new-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/new-r2-result.json",
+        "sha256": "a3d98bd97a74bda3565467a476de746e25d6cb2126725de7f8d513d55c440a4f",
+        "size": 579
+      },
+      "safety-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/safety-result.json",
+        "sha256": "117e02782e222180af9c094f7dac36f11ec131bfcd9aa148f6757fbce05f92b4",
+        "size": 642
+      },
+      "new-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/new-r3-result.json",
+        "sha256": "05a97242491b60a1be68895f63680e356f44b93a8fe7aa95290b2130b5fb7e3b",
+        "size": 579
+      },
+      "affected-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/affected-r2-result.json",
+        "sha256": "4e5cd4287a0dfae2957ec20b607bb8f177e0fe8fcf1e003e5085c2f8b69b1bbc",
+        "size": 1030
+      },
+      "affected-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/affected-r2-sources.json",
+        "sha256": "5e3d227a16a6a62b7af7abc619df1e70eed8b80572f59de75e929af30ad6cc67",
+        "size": 68681
+      },
+      "focused-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/focused-r2-result.json",
+        "sha256": "34d4f03f18cadd209f9ca0cfafd7a627ab754ca86201b302248cd864c86e64d2",
+        "size": 496
+      },
+      "focused-r2-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/focused-r2-sources.json",
+        "sha256": "5e3d227a16a6a62b7af7abc619df1e70eed8b80572f59de75e929af30ad6cc67",
+        "size": 68681
+      },
+      "publication-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/publication-result.json",
+        "sha256": "d759bce4631d4bc61b290a21b63120d2f4b46fa281bfb20862f5587a06d724b3",
+        "size": 630
+      },
+      "native-final-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final-summary.json",
+        "sha256": "fe2bb31b06be22edaf6ea6c563f8237ad7617e08bb4a26ff31e77ce957eb3308",
+        "size": 12325
+      },
+      "native-final/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/runtime-sources.json",
+        "sha256": "2c53e8e44a595e4e689f0158993304add095de9f1cb5a3a8e055107567b38730",
+        "size": 22643
+      },
+      "native-final/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/installation.json",
+        "sha256": "584b0116a37d7affd183495853a934ff71a04ca3910e9a7917cd9924ca53e126",
+        "size": 106
+      },
+      "native-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-summary.json",
+        "sha256": "24d4162ba856ac7e8fae99ee14d0fd7b218c431544ec48fee39efb25979c6f6c",
+        "size": 9555
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-r1/runtime-sources.json",
+        "sha256": "1442a96b821a663675d0627e9cfefb513f0784771fef9fa2aa1ea3f94ff3884b",
+        "size": 22643
+      },
+      "native-r1/original-heavy/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-r1/original-heavy/summary.json",
+        "sha256": "7490177ccbd821b83ae411d26bdf21d2e016fa6113cc33b4cd2bd14a149d7633",
+        "size": 1955
+      },
+      "native-r1/repair-heavy/review.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-r1/repair-heavy/review.json",
+        "sha256": "b6c15ee70f4e3e4a6f68690a452f222952928d4c73462f18e7a3a159136d9448",
+        "size": 2882
+      },
+      "native-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-r2/summary.json",
+        "sha256": "4d9dc5489167ddb54f7bcd8e2ee5d522b7511e1538a633b2e1eca9c96a4e2694",
+        "size": 2876
+      },
+      "native-r2/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-r2/runtime-sources.json",
+        "sha256": "1442a96b821a663675d0627e9cfefb513f0784771fef9fa2aa1ea3f94ff3884b",
+        "size": 22643
+      },
+      "native-review-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-review-r1/summary.json",
+        "sha256": "5ec3f1858d514189a8cf34354d191b10a827803eabec5ec2fd9f8a7ca95021c8",
+        "size": 3590
+      },
+      "native-review-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-review-r1/runtime-sources.json",
+        "sha256": "1442a96b821a663675d0627e9cfefb513f0784771fef9fa2aa1ea3f94ff3884b",
+        "size": 22643
+      },
+      "native-review-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-review-r1/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-review-r1/raw-difference.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-review-r1/raw-difference.json",
+        "sha256": "605c59ec86216ea5c86c72acfed98c60f332f8794c08f775cd5aced76554e193",
+        "size": 2794
+      },
+      "native-review-r1/review.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-review-r1/review.json",
+        "sha256": "7ec2117aca7cc7db06a374379a4b47b5214bc988aa0889f31f7d6cc6f876d99c",
+        "size": 3014
+      },
+      "cold-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/cold-r2/summary.json",
+        "sha256": "43c3981ef81f2260e9f4b7ac08f2894c73ea6d3251a37f45a2051b31e0a835c6",
+        "size": 946
+      },
+      "native-final/original-heavy/readyset/readyset_consumption.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/original-heavy/readyset/readyset_consumption.json",
+        "sha256": "23017d3d23759fcb5d1c3d43887145d1cbc2652b277bce8a81e30628712b8b68",
+        "size": 52908
+      },
+      "native-final/original-heavy/public-endpoint/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/original-heavy/public-endpoint/runtime_bundle.json",
+        "sha256": "1f4497e5c4aa612ebb1ebb92f7f2825e95b8f2858cefde8e9b046a46fc99ebf3",
+        "size": 38893
+      },
+      "native-final/original-heavy/public-missing-endpoint/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/original-heavy/public-missing-endpoint/runtime_bundle.json",
+        "sha256": "96ac1e610136c87b2fa6f1c3da92d41e948cd3c885a0d867a5b81d7bf7caa34e",
+        "size": 34691
+      },
+      "native-final/original-heavy/public-no-readyset/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/original-heavy/public-no-readyset/runtime_bundle.json",
+        "sha256": "57ebbc91a7aed5e691e7e2586a5a7a8f00e70a55c42c73549c1a95f03e65d7e2",
+        "size": 21680
+      },
+      "native-final/repair-heavy/readyset/readyset_consumption.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-heavy/readyset/readyset_consumption.json",
+        "sha256": "da63d655b56f8c38656d19f8aec0e28e19d8cd8b423bfc3caad99a2ce03ff7e5",
+        "size": 55091
+      },
+      "native-final/repair-heavy/public-endpoint/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-heavy/public-endpoint/runtime_bundle.json",
+        "sha256": "602f7172ee9d27fb64ff057e338934b0f87aea77d84290476f790401e81369ef",
+        "size": 72981
+      },
+      "native-final/repair-heavy/public-raw/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-heavy/public-raw/runtime_bundle.json",
+        "sha256": "1741289ac6905d575767c355f922e2c977f74b9c0af83bc93fa560363888ef37",
+        "size": 72421
+      },
+      "native-final/repair-heavy/public-missing-endpoint/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-heavy/public-missing-endpoint/runtime_bundle.json",
+        "sha256": "cb727494a594b415a3d61f4699fe752706734d02de2fa292d44bd1ddb92391c2",
+        "size": 67366
+      },
+      "native-final/repair-heavy/public-no-readyset/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-heavy/public-no-readyset/runtime_bundle.json",
+        "sha256": "9448460c23a2212d0fdb9de58ec6337394f67ebba723a517413474764260e3a9",
+        "size": 52847
+      },
+      "native-final/repair-explicit-h/readyset/readyset_consumption.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-explicit-h/readyset/readyset_consumption.json",
+        "sha256": "fbc8eaacf00c2dde77ebe119729b85d71dacc050713880d7d6d61125828cf089",
+        "size": 55120
+      },
+      "native-final/repair-explicit-h/public-endpoint/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-explicit-h/public-endpoint/runtime_bundle.json",
+        "sha256": "1c413e9129edbefcdb2d6ef8ee16024908b2c50310dc5e930d99d0488aad943f",
+        "size": 72427
+      },
+      "native-final/repair-explicit-h/public-missing-endpoint/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-explicit-h/public-missing-endpoint/runtime_bundle.json",
+        "sha256": "757b7a22c29ba97b6bb2bbe38ca80f3d052263497b6b4a301ac1f9bbfefcc5d7",
+        "size": 67366
+      },
+      "native-final/repair-explicit-h/public-no-readyset/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-explicit-h/public-no-readyset/runtime_bundle.json",
+        "sha256": "d30ec320ed58abf1e1782797c8dd924fa2f3a4d4b1407be08a3744a07eddeabd",
+        "size": 52847
+      },
+      "native-final/repair-explicit-h/public-timeout/runtime_bundle.json": {
+        "anchor": "live_tests_directory",
+        "path": "181_Cedar_selected-readyset-y767gm03/native-final/repair-explicit-h/public-timeout/runtime_bundle.json",
+        "sha256": "ea8a9d043367918c112d48eba075f4b0571f2defe690217159644c021b380940",
+        "size": 65765
+      }
+    },
+    "commands": [
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_runtime_readyset.py",
+        "tests/test_cif_dictionary_bundle_readyset.py",
+        "tests/test_cif_component_runtime.py",
+        "tests/test_cif_original_component_runtime.py",
+        "tests/test_cif_repaired_component_runtime.py",
+        "tests/test_cif_runtime_bundle.py",
+        "tests/test_cif_postmr_readyset.py",
+        "tests/test_cif_readyset_atom_order.py",
+        "tests/test_cif_complete_request.py",
+        "tests/test_cif_postmr_request.py",
+        "tests/test_test_suites.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/181_Cedar_selected-readyset-y767gm03/affected-r2.xml"
+      ],
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/181_Cedar_selected-readyset-y767gm03/focused-r2.xml"
+      ]
+    ],
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "na_restraints": "1.1.3",
+      "phenix_build": "2.2.1-6174",
+      "phenix_dispatcher": "2.2.1",
+      "platform": "macOS arm64"
+    },
+    "artifacts": "Source/tests/docs/hash references only; generated science/logs/XML/runners remain local",
+    "limitations": [
+      "Explicit diagnostic API; no default ordinary orchestration or checkpoint adoption",
+      "No durable whole-continuation owner or automatic C140 choice",
+      "Actual refinement consumer and unavailable native charge evidence remain separate",
+      "No full suite"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-10T14:03:46.382614+00:00"
   }
 }
