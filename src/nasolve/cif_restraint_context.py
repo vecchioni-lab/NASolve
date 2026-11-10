@@ -1,8 +1,8 @@
 """Bind ordered explicit restraint inputs without becoming a PHIL evaluator.
 
 The supplied PHIL owns targets. This bounded reader accepts the explicit
-bond/angle/parallelity grammar emitted by the maintained NAR compiler; it does
-not infer authorship, generate restraints or qualify their native realization.
+bond/angle/planarity/parallelity grammar emitted by the maintained NAR compiler.
+It does not infer authorship, generate restraints or qualify native realization.
 Only the dictionary composer may add site-modification requests downstream.
 """
 from collections import Counter
@@ -17,6 +17,7 @@ from .cif_na_policy import SS, _parse, _path, _requests, _signature
 from .cif_native_context import _signature as _checked_signature
 
 POLICY_ID = 'cif-owned-explicit-restraints-v1'
+PLANARITY_POLICY_ID = 'cif-owned-explicit-restraints-v2'
 _TARGETS = {'bond': 'distance_ideal', 'angle': 'angle_ideal', 'parallelity': 'target_angle_deg'}
 _CONTAINERS = {'refinement', 'pdb_interpretation', 'geometry_restraints', 'geometry_restraints.edits'}
 
@@ -33,9 +34,13 @@ def _checked_requests(text, atoms):
             disabled += 1
         elif path.startswith('geometry_restraints.edits.'):
             kind = path.removeprefix('geometry_restraints.edits.')
-            _need(kind in _TARGETS, 'Unsupported explicit restraint kind')
-            selections = {'atom_selection_'+str(i+1) for i in range(3 if kind == 'angle' else 2)}
-            _need(not node['children'] and set(fields) == selections | {'action', 'sigma', _TARGETS[kind]}
+            _need(kind in {*_TARGETS, 'planarity'}, 'Unsupported explicit restraint kind')
+            if kind == 'planarity':
+                expected = {'atom_selection', 'action', 'sigma'}
+            else:
+                selections = {'atom_selection_'+str(i+1) for i in range(3 if kind == 'angle' else 2)}
+                expected = selections | {'action', 'sigma', _TARGETS[kind]}
+            _need(not node['children'] and set(fields) == expected
                   and fields['action'] == 'add', 'Unsupported explicit restraint action or fields')
             sigma = float(fields['sigma'])
             _need(isfinite(sigma) and sigma > 0, 'Require a finite positive explicit restraint sigma')
@@ -63,6 +68,7 @@ def derive_restraint_context(model, supplementary_phils):
     Includes, substitutions, native secondary-structure guessing, site modifiers,
     unknown fields/actions and unsupported selection syntax refuse. Every accepted
     input byte and request is retained; there is no target/coordinate rewriting.
+    Plane-bearing records use v2; plane-free records retain exact v1 semantics.
     """
     _need(isinstance(supplementary_phils, (list, tuple)) and 1 <= len(supplementary_phils) <= 64,
           'Require one to 64 ordered explicit PHIL inputs')
@@ -83,7 +89,8 @@ def derive_restraint_context(model, supplementary_phils):
     _need(len(signatures) == len(set(signatures)), 'Duplicate explicit restraint endpoints across ordered inputs')
     _need(_read(model) == original and all(_read(p) == data for p, data in zip(paths, originals)),
           'Model or PHIL changed while binding explicit restraints')
-    return dict(schema_version=1, policy_id=POLICY_ID, model_sha256=sha256(original).hexdigest(),
+    policy = PLANARITY_POLICY_ID if any(r['kind'] == 'planarity' for r in requests) else POLICY_ID
+    return dict(schema_version=1, policy_id=policy, model_sha256=sha256(original).hexdigest(),
                 inputs=inputs, requests=requests, request_counts=dict(sorted(Counter(r['kind'] for r in requests).items())),
                 index_basis='PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES',
                 target_authority='SUPPLIED_EXPLICIT_PHIL', site_modifier_owner='DICTIONARY_COMPOSER',
@@ -93,7 +100,7 @@ def derive_restraint_context(model, supplementary_phils):
 def validate_restraint_context(model, supplementary_phils, record):
     """Reconstruct every input/request from the frozen ordered model and PHIL."""
     _need(isinstance(record, dict) and type(record.get('schema_version')) is int
-          and record['schema_version'] == 1 and record.get('policy_id') == POLICY_ID,
+          and record['schema_version'] == 1 and record.get('policy_id') in (POLICY_ID, PLANARITY_POLICY_ID),
           'Unsupported explicit restraint context')
     expected = derive_restraint_context(model, supplementary_phils)
     _need(_bytes(record) == _bytes(expected), 'Explicit restraint context differs from frozen inputs')

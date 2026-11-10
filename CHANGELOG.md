@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve required planarity through dictionary-engine intake (C186)
+
+- Accept bounded explicit NAR plane selections with exact atom membership and
+  sigma-derived weights, using the existing parser and native validators.
+- Require grouped, disjoint selection terms; reject ambiguous alternatives and
+  duplicate planes. Retain supplied PHIL bytes and composer-only site modifiers.
+- Plane-bearing context records use schema-1 policy v2; plane-free v1 records
+  retain exact replay. Native realization remains an independent requirement;
+  ordinary pair/stack integration and refinement defaults are unchanged.
+
 ### Clarify Cedar completion and documentation ownership
 
 - Consolidate current pipeline status in the existing Q04–Q16 queue; distinguish

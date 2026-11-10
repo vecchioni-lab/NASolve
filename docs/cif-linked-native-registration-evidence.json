@@ -75861,5 +75861,547 @@
     ],
     "author": "Rowan · Codex desktop",
     "implementation_revision": "199797ce4018f2b07f2824b6d8361dc81a889a19"
+  },
+  "planarity_intake_2026_11_10": {
+    "milestone": "C186",
+    "status": "FOCUSED_NATIVE_COLD_VALIDATED; Q04_LITERAL_INTAKE_OPEN",
+    "base_revision": "e6c7169f5316b4c7d1fd3ced5a49a2d983633487",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Required NAR planarity unsupported at explicit intake",
+    "after": "Exact plane unions and atom-associated weights; independent native qualification",
+    "schemas": {
+      "restraint_context": "schema 1; plane-bearing cif-owned-explicit-restraints-v2, otherwise unchanged v1"
+    },
+    "compatibility": "New plane-bearing records require C186; v1 and absent modes unchanged; no migration/default change",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 18105,
+        "runner_pid": 18091,
+        "phase": "before",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_restraint_context.py",
+          "-k",
+          "planarity",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/before.xml"
+        ],
+        "started_utc": "2026-11-10T18:38:22.075828+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 11.663,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "precedence_before": {
+        "active": false,
+        "pid": 20249,
+        "runner_pid": 20234,
+        "phase": "new-r2-precedence-before",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_restraint_context.py",
+          "-k",
+          "planarity",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/new-r2-precedence-before.xml"
+        ],
+        "started_utc": "2026-11-10T19:01:58.532983+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 7.191,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "new": {
+        "active": false,
+        "pid": 20385,
+        "runner_pid": 20363,
+        "phase": "new-r3",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_restraint_context.py",
+          "-k",
+          "planarity",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/new-r3.xml"
+        ],
+        "started_utc": "2026-11-10T19:02:35.027619+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 8.632,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "compiler": {
+        "active": false,
+        "pid": 20485,
+        "runner_pid": 20484,
+        "phase": "compiler-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_na_policy.py",
+          "tests/test_cif_explicit_na_policy.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/compiler-r1.xml"
+        ],
+        "started_utc": "2026-11-10T19:03:01.229809+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 11.567,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "affected_before_final_guard": {
+        "active": false,
+        "pid": 18258,
+        "runner_pid": 18244,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_restraint_context.py",
+          "tests/test_cif_na_policy.py",
+          "tests/test_cif_explicit_na_policy.py",
+          "tests/test_cif_native_context.py",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_complete_continuation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-10T18:39:30.683038+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 256.299,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "focused": {
+        "active": false,
+        "pid": 20521,
+        "runner_pid": 20470,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-10T19:03:12.989840+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 729.231,
+        "sources_unchanged": true,
+        "source_files": 637
+      },
+      "summaries": {
+        "new": "33 passed, 45 deselected in 8.17s",
+        "compiler": "41 passed in 11.43s",
+        "focused": "1921 passed, 45 subtests passed in 729.01s (0:12:09)",
+        "affected": "293 passed in 256.15s (0:04:16)"
+      },
+      "full": "DEFERRED_TO_INTEGRATION"
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 112.37545533299271,
+      "controls": {
+        "original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "repair_steps": 0,
+          "native_phases": [
+            "native-000",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "all_children_stopped": true,
+          "model_bytes_unchanged": true,
+          "ordered_phil_count": 3,
+          "nar_bytes_unchanged": true,
+          "request_counts": {
+            "parallelity": 1,
+            "planarity": 1
+          }
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "repair_steps": 2,
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-002",
+            "native-baseline",
+            "original-gradient",
+            "repaired-gradient"
+          ],
+          "all_children_stopped": true,
+          "model_bytes_unchanged": true,
+          "ordered_phil_count": 3,
+          "nar_bytes_unchanged": true,
+          "request_counts": {
+            "parallelity": 1,
+            "planarity": 1
+          }
+        }
+      },
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "MODEL_DERIVED_TWO_COMPONENT_REQUEST; EXACT_ORDERED_NAR_PARALLELITY_AND_PLANARITY; ISOLATED_DIAGNOSTIC_NOT_PHYSICAL_BASE_PAIR_OR_ORDINARY_ADOPTION"
+    },
+    "public_planes": {
+      "status": "PASS",
+      "elapsed_seconds": 1.2679740410094382,
+      "request_counts": {
+        "planarity": 3
+      },
+      "plane_atom_counts": [
+        19,
+        19,
+        19
+      ],
+      "native_membership": {
+        "check": "declared-custom-restraint-realization",
+        "status": "PASS",
+        "custom_restraints": "required",
+        "before_requests": 3,
+        "after_requests": 3
+      },
+      "identity_comparison": "EXACT_NAMED_ATOM_WEIGHT_PAIRS; PLANE_ORDER_INVARIANT_AS_EXISTING_NATIVE_SIGNATURE",
+      "original_input_bytes_mtimes_unchanged": true,
+      "source_sha256": "1f841fde9bf6f85638a31f70300aaaa71898e78742d70c6452ead4c8542de79b",
+      "model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
+      "scope": "THREE_UNCHANGED_NAR_PLANES_FROM_PUBLIC_W_FRAME; PARSER_AND_NATIVE_MEMBERSHIP_ONLY",
+      "limits": "Planes isolated to qualify this grammar; full ordinary pair/stack input is not yet supported. No target rewriting, optimization, ReadySet, Coot or diffraction refinement."
+    },
+    "relocation": {
+      "status": "PASS",
+      "cases": {
+        "original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy176": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v1"
+        },
+        "legacy184": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "readyset_checked_model",
+          "restraint_policy": null
+        }
+      },
+      "files": 2677,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "intake_readiness": {
+      "status": "EXISTING_COMPILER_AND_CONTEXT_PASS",
+      "elapsed_seconds": 3.9835082500067074,
+      "literal_pairs": 17,
+      "literal_stacks": 38,
+      "compiled_counts": {
+        "angle": 74,
+        "bond": 44,
+        "parallelity": 55
+      },
+      "complete_counts": {
+        "angle": 88,
+        "bond": 52,
+        "parallelity": 58,
+        "planarity": 3
+      },
+      "native_custom_counts": {
+        "bond": 52,
+        "angle": 88,
+        "planarity": 3,
+        "parallelity": 58
+      },
+      "all_existing_compiler_checks_pass": true,
+      "custom_membership": {
+        "check": "declared-custom-restraint-realization",
+        "status": "PASS",
+        "custom_restraints": "required",
+        "before_requests": 201,
+        "after_requests": 201
+      },
+      "input_bytes_mtimes_unchanged": true,
+      "objective": "NEW_EXPLICIT_NARESTRAINTS_OBJECTIVE_NOT_A_CONTINUATION_OF_OLD_ENERGY",
+      "limitations": [
+        "Readiness audit uses actual captured native identities; not fabricated PDB indices.",
+        "No new bridge, ordinary default, immutable adoption or refinement support.",
+        "Source dictionary failures can prevent this prerequisite native capture; investigate before ordinary integration."
+      ]
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/start.json",
+        "sha256": "d1eca23711e9386c2ba4866183fce159d61817f46514b50e6242d2c31299bc10",
+        "size": 346
+      },
+      "before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/before-result.json",
+        "sha256": "ba33cfbe55a686496314804f37cdd44dbe76c192b63d95f6e66a958f655d0de1",
+        "size": 606
+      },
+      "new-r2-precedence-before-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/new-r2-precedence-before-result.json",
+        "sha256": "972122758004a401e74950bd37417e3fc6e538eeb23dfe798c940d4ba1feb7de",
+        "size": 641
+      },
+      "new-r3-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/new-r3-result.json",
+        "sha256": "6a4a915f329fead1ad1e76b452923b378ad9750e70727eede395badd4999649f",
+        "size": 605
+      },
+      "compiler-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/compiler-r1-result.json",
+        "sha256": "676ad349c977adfea3e61fd13625658375123109c8e182b93d67a80b17399a2a",
+        "size": 625
+      },
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/affected-r1-result.json",
+        "sha256": "4ec9ca29f968a35ff22b8377c466e101d7b4af84f184db04c1086f5dcec207af",
+        "size": 838
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/focused-r1-result.json",
+        "sha256": "6b7ce129613f6622732de5277a354f5193008a61b50cfbff248f560fbdeca9e5",
+        "size": 495
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/focused-r1-sources.json",
+        "sha256": "61de02f32944673f81456be7ea6c0a525995b563cd00ad7a08593e4285e17d4a",
+        "size": 69576
+      },
+      "native-r3/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/native-r3/summary.json",
+        "sha256": "d61c838825aeca8d71a2eb946149f5a4ebf10c2209768941935106e3d6c88e2c",
+        "size": 1480
+      },
+      "native-r3/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/native-r3/runtime-sources.json",
+        "sha256": "d571c76512046e853a30e3eedaec5358fd4f8d5d0c56047fb330b60877de6d0c",
+        "size": 23096
+      },
+      "native-r3/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/native-r3/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-r3/original/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/native-r3/original/request/request.json",
+        "sha256": "189999df809a44a5d6591c53f3ac8d224e89ec69bef28cccb779d1a115ccf2b7",
+        "size": 59081
+      },
+      "native-r3/repair/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/native-r3/repair/request/request.json",
+        "sha256": "f3e31004ed3357a6387f3e43a469f667065ad1a387817d0e25e2f4b01260068d",
+        "size": 59089
+      },
+      "public-planes-r1/receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/public-planes-r1/receipt.json",
+        "sha256": "936ad102a29433e757843e31ccea75ec5af343d66e3ed37a9c4ffe79fb658e66",
+        "size": 4063314
+      },
+      "public-planes-r2/context.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/public-planes-r2/context.json",
+        "sha256": "a9640cbb734ac533178ec6efa776aa5f8969c932d76261f0fdfac93960279401",
+        "size": 6474
+      },
+      "public-planes-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/public-planes-r2/summary.json",
+        "sha256": "f53e6c73a36be1c245e4ee74a6cd3258930c56a019eb06c9026d4381d2f54503",
+        "size": 970
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/cold-r1/summary.json",
+        "sha256": "547e3979ae2797f6afe380c28a9af0da2f41a1c1d38c964f9211c9c9405c6d71",
+        "size": 864
+      },
+      "ordinary-compiler-audit-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/ordinary-compiler-audit-r1/summary.json",
+        "sha256": "f75e004b99c6a8643ef750bbb1751d37bb04ce60fa2a2f55d3800aae836bd83b",
+        "size": 1121
+      },
+      "ordinary-compiler-audit-r1/compilation.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/ordinary-compiler-audit-r1/compilation.json",
+        "sha256": "83c9dee18c00c488c0ebecb7d852f8951aa3fcd5694b4eace00d80a01dc35f63",
+        "size": 158487
+      },
+      "ordinary-compiler-audit-r1/qualification.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/ordinary-compiler-audit-r1/qualification.json",
+        "sha256": "078c089b49ef2119688aa210364ffdc95f15fe5604932452bf945d1bf3892ff4",
+        "size": 2115
+      },
+      "ordinary-compiler-audit-r1/context.json": {
+        "anchor": "live_tests_directory",
+        "path": "186_Cedar_planarity-intake-8frq6_7h/ordinary-compiler-audit-r1/context.json",
+        "sha256": "0ce9d379a6cd817beaed40a6b4a740a1b4c7209aa7d984e77cce07fe7bf3d174",
+        "size": 157695
+      }
+    },
+    "preserved_diagnostics": [
+      "native-r1 setup refused before Phenix: single component had no pair",
+      "public-planes-r1 capture preserved; checker incorrectly required input/native plane order; exact named atom-weight membership was unchanged"
+    ],
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "narestraints": "1.1.3",
+      "phenix_build": "2.2.1-6174",
+      "phenix_dispatcher": "2.2.1",
+      "platform": "macOS arm64"
+    },
+    "commands": [
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_restraint_context.py",
+        "-k",
+        "planarity",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/new-r3.xml"
+      ],
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_cif_na_policy.py",
+        "tests/test_cif_explicit_na_policy.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/compiler-r1.xml"
+      ],
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/186_Cedar_planarity-intake-8frq6_7h/focused-r1.xml"
+      ],
+      [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONPATH=src",
+        "python",
+        "c186_native_r2.py",
+        "native-r3"
+      ],
+      [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "PYTHONPATH=src",
+        "python",
+        "c186_public_planes_r2.py",
+        "public-planes-r2"
+      ],
+      [
+        "PYTHONDONTWRITEBYTECODE=1",
+        "python",
+        "c186_cold.py",
+        "cold-r1"
+      ]
+    ],
+    "redundancy_review": "Existing C21 selector/request, C176 context, C137 native signature and C171/C184 owner; no new process/compiler/force field",
+    "artifacts": "Only source/tests/docs/hash references; scientific data/logs/XML/runners stay local",
+    "limitations": [
+      "Literal pair/stack intake still open",
+      "Canonical model-context limits unchanged",
+      "Isolated PDU/5PC controls are not physical base-pair evidence",
+      "No ReadySet/refinement execution or new-family claim",
+      "Full regression deferred"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-10T19:50:02.145424+00:00",
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "src/nasolve/cif_na_policy.py",
+      "src/nasolve/cif_restraint_context.py",
+      "tests/test_cif_restraint_context.py"
+    ]
   }
 }

@@ -45,8 +45,9 @@ qualified parent and all partial evidence. Historical artifacts keep their meani
 [Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
 and the [prepared-model entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
 provide supported inputs without borrowing settings from old test runs. Ordinary
-automatic PostMR/checkpoint adoption remains open: required NARestraints planarity
-and literal pair/stack inputs need faithful binding before that integration. Actual
+automatic PostMR/checkpoint adoption remains open. Explicit NAR planes now have
+[qualified intake](docs/cif-doctor.md#exact-planarity-intake-c186); literal pair/stack
+inputs still need faithful binding before that integration. Actual
 refinement qualification is a separate gate. No source chemical state, terminal
 phosphate or requested restraint may be changed merely to obtain a numerical pass.
 

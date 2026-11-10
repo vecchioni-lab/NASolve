@@ -4112,7 +4112,9 @@ unchanged child/public limits. Existing requests without this mode retain their
 meaning. [Failure reporting](cif-doctor.md#preserve-primary-failures-during-diagnostic-reporting-c185)
 preserves primary errors and grants no success or recovery authority.
 
-Ordinary PostMR callers/checkpoint adoption remain Q04/Q05. Required NAR planarity
-and literal pair/stack declarations must first cross the intake boundary faithfully;
+Ordinary PostMR callers/checkpoint adoption remain Q04/Q05. The
+[C186 plane extension](cif-doctor.md#exact-planarity-intake-c186) binds exact supplied
+selectors and atom weights through the existing context/native validators, with
+v1 replay preserved. Literal pair/stack declarations still need faithful intake;
 unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
 explicit chain does not enable an ordinary default or authorize a merge.

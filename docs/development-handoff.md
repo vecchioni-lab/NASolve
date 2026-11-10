@@ -11,6 +11,74 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C186 validated: required plane intake
+
+Base `e6c7169f5316b4c7d1fd3ced5a49a2d983633487`; existing Cedar. Capsule
+`live_tests_directory/186_Cedar_planarity-intake-8frq6_7h`. Implementation/validation complete; publication
+is next. Q04 advances to literal pair/stack input binding; Q05/Q06/Q07 remain open.
+
+**Before → after:** required NAR planes were refused by the bounded explicit input
+reader. It now retains exact literal site unions, atom membership, per-atom weights,
+input bytes/order and composer-only modification ownership. Ambiguous ungrouped
+atom-name alternatives refuse under the new plane policy. No target, chemistry,
+phosphate protection, numerical threshold or ordinary default changes.
+
+**History/redundancy:** reuse C21 request/selectors, C176 context, C137 native
+signatures, C171/C184 ownership and C185's concrete NAR plane audit. No new PHIL
+evaluator, scientific fallback or recovery scheduler. The named-atom/weight plane
+signature already handles native reordering; PDB indices never become native proof.
+
+**Validation:** initial **7 failed, 24 passed, 45 deselected**; two additional
+precedence regressions failed before the strict plane-term guard. Final new:
+**33 passed, 45 deselected in 8.17s**; C21/C80 compiler compatibility: **41 passed in 11.43s**.
+Affected before the final guard: **293 passed in 256.15s (0:04:16)**. Final workflow:
+**1921 passed, 45 subtests passed in 729.01s (0:12:09)**. All 637 source/test/script hashes
+stay fixed during the final workflow and native checks. No full suite; C160
+`d9e481661edcc3a04404df250360b9db63184ae1` remains the last completed full baseline.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c186_validate.py new-r3
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c186_validate.py compiler-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c186_native_r2.py native-r3
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c186_public_planes_r2.py public-planes-r2
+PYTHONDONTWRITEBYTECODE=1 python c186_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** both isolated PDU/5PC original and
+two-step repaired runtimes qualify with unchanged ordered parallelity/plane inputs.
+All owned child phases stop and prior inputs retain bytes/mtimes. The separate
+public W-frame control retains three exact 19-atom NAR planes and all weights.
+No generation, ReadySet, Coot, coordinate optimization or diffraction refinement.
+Python 3.12.14 / pytest 9.1.1 / NARestraints 1.1.3, macOS arm64.
+
+**Preserved diagnostics:** native-r1 used a one-component setup lacking a pair and
+stopped before Phenix. public-planes-r1 compared plane order too strictly; actual
+native capture reordered one residue but retained every named atom/weight. The
+fresh comparison uses the existing order-invariant plane contract. Both earlier
+attempts stay local and neither changes a product gate or prior scientific verdict.
+
+**Cold:** 2677 files retain bytes/mtimes across new v2, old v1 and absent
+context requests. Original copy absent; historical checkout/live-test/SDK paths and
+execution denied. All active job markers are false at this checkpoint.
+
+**Files/schema/compatibility:** two existing parser/context modules, their existing
+test module and maintained docs/ledgers. Schema-1 context policy v2 is required only
+when a plane is present; v1 and absent-context artifacts retain their meaning.
+No migration. Only code/tests/docs/hash references ship; scientific artifacts,
+receipts, logs, XML and local runners remain outside Git. The overview/caption are
+updated; no pipeline arrow or family-support claim changes.
+
+**Next:** faithful literal Saenger/stack compilation using the existing C21/C80
+routes, preserving original input and pinned compiler/source authority. The C21
+readiness audit already passes all 201 explicit native requests for 17 literal
+pairs/38 stacks on the public W frame, retaining its three planes. The remaining
+bridge must carry that original-input/compiler/native proof into owned requests.
+The full ordinary PHIL still refuses competing native SS; never discard it or planes to
+fit the bridge. Q05 adoption, Q06 refinement, Q07 mixed/held-out and Q13 state gates
+remain separate. Evidence key `planarity_intake_2026_11_10`.
+— Rowan · Codex desktop
+
 ## Documentation orientation after C185
 
 Orientation audit based on `ab947c1d4d6878d69c21aebc9e115af6d18b8430`; runtime/test source remains at C185.

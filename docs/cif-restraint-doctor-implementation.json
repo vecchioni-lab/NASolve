@@ -28236,6 +28236,12 @@
         "Full integration/platform/Python 3.10 qualification Q16"
       ],
       "implementation_revision": "199797ce4018f2b07f2824b6d8361dc81a889a19"
+    },
+    "planarity_intake": {
+      "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
+      "milestone": "C186",
+      "evidence_key": "planarity_intake_2026_11_10",
+      "scope": "Exact supplied NAR planes and atom weights; literal pair/stack intake and ordinary adoption open"
     }
   },
   "audience": [

@@ -19,7 +19,10 @@ implemented APIs from planned orchestration. This overview and its editable
 figure describe the current capabilities and their limits.
 
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
-native chain and fresh recovery under one request. Ordinary NAR restraint intake,
+native chain and fresh recovery under one request. Exact NAR plane intake now
+retains each selected atom and its supplied sigma-derived weight through the same
+context/native checks; see the [methods and limits](cif-doctor.md#exact-planarity-intake-c186).
+Ordinary literal pair/stack intake,
 PostMR/checkpoint adoption and actual refinement remain open. Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods

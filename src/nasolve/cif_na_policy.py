@@ -53,23 +53,63 @@ def _site_selection(text):
     return m[2],m[3]
 
 
-def _resolve(text,atoms):
+def _resolve(text,atoms,*,require_scoped_names=False):
     if text.count('(') != text.count(')'):
         raise ValueError('Unbalanced generated atom selection')
     m=re.fullmatch(r'(.*?)\s+and\s+(\(?name\s+[A-Za-z0-9_]+(?:\s+or\s+name\s+[A-Za-z0-9_]+)*\)?)',text)
     if not m:raise ValueError('Unsupported generated atom selection')
     site=_site_selection(m[1]);names=re.findall(r'name\s+([A-Za-z0-9_]+)',m[2])
+    if require_scoped_names and len(names)>1 and not (m[2].startswith('(') and m[2].endswith(')')):
+        raise ValueError('Require parenthesized plane atom-name alternatives')
     selected=[a for a in atoms if (a['identity']['chain_id'].strip(),a['identity']['resseq'].strip())==site and a['atom_id'] in names]
     if len(selected)!=len(set(names)):raise ValueError('Generated selection has missing or ambiguous atoms')
     return selected
+
+
+def _resolve_plane(text,atoms):
+    """Resolve a literal site selection or disjoint parenthesized site union.
+
+    NAR emits one union plane spanning both bases. Resolve each bounded term
+    through the existing selector, then retain atom-record order as the native
+    selection does. This is not a general boolean selection evaluator.
+    """
+    if not text.startswith('('):
+        return _resolve(text,atoms,require_scoped_names=True)
+    remaining=text;selected=[]
+    while remaining:
+        if not remaining.startswith('('):raise ValueError('Require parenthesized plane union terms')
+        depth=0;end=None
+        for i,char in enumerate(remaining):
+            if char=='(':depth+=1
+            elif char==')':depth-=1
+            if depth==0:
+                end=i;break
+        if end is None:raise ValueError('Unbalanced plane union selection')
+        selected.extend(_resolve(remaining[1:end].strip(),atoms,require_scoped_names=True))
+        remaining=remaining[end+1:].strip()
+        if remaining:
+            if not remaining.startswith('or '):raise ValueError('Unsupported plane union operator')
+            remaining=remaining[3:].strip()
+            if not remaining:raise ValueError('Incomplete plane union selection')
+    indices=[a['i_seq'] for a in selected]
+    if len(indices)!=len(set(indices)):raise ValueError('Overlapping plane union terms')
+    wanted=set(indices)
+    return [a for a in atoms if a['i_seq'] in wanted]
 
 
 def _requests(text,atoms):
     nodes,_=_parse(text);result=[]
     for n in nodes:
         kind=_path(n).removeprefix('geometry_restraints.edits.')
-        if kind not in {'bond','angle','parallelity'}:continue
-        f=n['fields'];size=3 if kind=='angle' else 2
+        if kind not in {'bond','angle','planarity','parallelity'}:continue
+        f=n['fields']
+        if kind=='planarity':
+            endpoints=_resolve_plane(f['atom_selection'],atoms)
+            result.append({'kind':kind,'action':'add','selections':[f['atom_selection']],
+                'i_seqs':[a['i_seq'] for a in endpoints],'atoms':[a['label'] for a in endpoints],
+                'weights':[1./float(f['sigma'])**2]*len(endpoints)})
+            continue
+        size=3 if kind=='angle' else 2
         expressions=[f['atom_selection_'+str(i+1)] for i in range(size)]
         selected=[_resolve(s,atoms) for s in expressions]
         if kind!='parallelity' and any(len(s)!=1 for s in selected):raise ValueError('Expected single atom endpoints')
@@ -91,6 +131,8 @@ def _signature(kind,row,*,values=True):
     elif kind=='angle':key=(kind,min(atoms,atoms[::-1]));fields=('angle_ideal','weight')
     elif kind=='parallelity':
         key=(kind,tuple(sorted((tuple(sorted(atoms)),tuple(sorted(row['j_atoms']))))));fields=('target_angle_deg','weight')
+    elif kind=='planarity':
+        return (kind,tuple(sorted(zip(atoms,row['weights'])))) if values else (kind,tuple(sorted(atoms)))
     else:raise ValueError('Unsupported generated request kind')
     return key+tuple(row[f] for f in fields) if values else key
 

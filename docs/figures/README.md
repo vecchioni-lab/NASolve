@@ -449,3 +449,9 @@ arrows remain open; no figure should label the automatic engine complete.
 C184 joins the owned continuation to the existing explicit complete request and
 fresh recovery. The ordinary caller/checkpoint and actual refinement arrows remain
 open; this does not complete automatic-engine or catalogue coverage.
+
+
+C186 extends the existing explicit-input boundary to NAR plane selections and
+their exact atom weights. The diagram's native-validation stage remains separate;
+literal pair/stack intake, ordinary adoption and actual refinement remain open.
+The methods distinguish PDB record indices from native manager ordering.
