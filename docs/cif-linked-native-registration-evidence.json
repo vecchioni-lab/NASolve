@@ -73077,7 +73077,7 @@
     "milestone": "C180",
     "status": "PARTIAL_FILTER_METADATA_NATIVE_AND_COLD_VALIDATED",
     "base_revision": "43335f96cb152a3c24241a40e604bb967632a94c",
-    "implementation_revision": null,
+    "implementation_revision": "d87a18f1b442325ddb0c4279cbb30c6cb5492f31",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Partial component filtering loses retained native metadata through scalar layout",
     "after": "Shared loop writer preserves retained list, block name and values without changing precedence",

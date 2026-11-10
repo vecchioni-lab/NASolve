@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C180 validated: preserve native metadata in filtered supplements
+## C180 published: preserve native metadata in filtered supplements
 
 Base `43335f96cb152a3c24241a40e604bb967632a94c`; existing Cedar. Capsule
-`live_tests_directory/180_Cedar_filtered-metadata-ew8144jz`. Implementation/validation complete; publication
-is next. The remaining partial-filter metadata writer now reuses C09/C179.
+`live_tests_directory/180_Cedar_filtered-metadata-ew8144jz`. Implementation/validation complete and published as
+`d87a18f1b442325ddb0c4279cbb30c6cb5492f31`. The remaining partial-filter metadata writer now reuses C09/C179.
 
 **Before → after:** removing overridden components could collapse the retained
 singleton list to scalars, losing native group metadata. The shared serializer now

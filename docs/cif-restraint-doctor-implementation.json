@@ -28178,7 +28178,8 @@
       "status": "PARTIAL_FILTER_METADATA_NATIVE_AND_COLD_VALIDATED",
       "milestone": "C180",
       "evidence_key": "filtered_component_metadata_2026_11_10",
-      "scope": "Both partial-filter directions retain native metadata and existing precedence"
+      "scope": "Both partial-filter directions retain native metadata and existing precedence",
+      "implementation_revision": "d87a18f1b442325ddb0c4279cbb30c6cb5492f31"
     }
   },
   "audience": [
