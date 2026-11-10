@@ -62,8 +62,10 @@ now joins those proofs to ordinary source selection and the same recovery owner;
 its validated paths include fresh generation, reuse, stale qualification and
 truthful stopped failures. Enabling ordinary continuation remains integration work. The
 [single-component ReadySet boundary](docs/cif-doctor.md#single-component-readyset-consumption-c178)
-now uses the same observer/native checks; actual consumption and verified fallback
-pass, with a combined-metadata serialization issue still requiring repair.
+now uses the same observer/native checks. The
+[shared native metadata serializer](docs/cif-doctor.md#native-component-metadata-during-combination-c179)
+also preserves singleton metadata: actual final native qualification now passes,
+and old failed evidence still replays as a fallback.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

@@ -72754,5 +72754,323 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-10T12:52:48.340624+00:00"
+  },
+  "combined_component_metadata_2026_11_10": {
+    "milestone": "C179",
+    "status": "COMBINED_METADATA_AND_SINGLETON_FINAL_ENDPOINT_VALIDATED",
+    "base_revision": "19b6c2a863cf1a0f71f023c9f700f07a51786cf2",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Combined scalar singleton metadata loses native group",
+    "after": "Shared C09 loop serializer preserves native metadata; exact legacy replay retains old outcomes",
+    "prior_work": [
+      "C09 metadata loop",
+      "C139 endpoint gate",
+      "C140 boundary refusal",
+      "C178 failure"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "src/nasolve/cif_dictionary_bundle.py",
+      "src/nasolve/cif_linked_preparation.py",
+      "src/nasolve/cif_postmr_readyset.py",
+      "src/nasolve/ligand_profiles.py",
+      "tests/test_cif_dictionary_bundle.py",
+      "tests/test_cif_dictionary_bundle_readyset.py",
+      "tests/test_linked_phosphate_profile.py"
+    ],
+    "schemas": "Schema-1 bundle adds component_list_policy; absence retains legacy scalar bytes",
+    "compatibility": "Old artifacts need no migration; new receipts require updated reader; explicit legacy writer available",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 41843,
+        "runner_pid": 41829,
+        "phase": "before-r2",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_linked_phosphate_profile.py::test_combined_metadata_preserves_native_loop_and_every_value",
+          "tests/test_cif_dictionary_bundle.py::test_singleton_bundle_declares_native_metadata_loop_policy",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/179_Cedar_combined-metadata-7x86y8yc/before-r2.xml"
+        ],
+        "started_utc": "2026-11-10T12:54:26.415832+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 2.322,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "new_cases": 20,
+      "affected": {
+        "active": false,
+        "pid": 41975,
+        "runner_pid": 41961,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_linked_phosphate_profile.py",
+          "tests/test_cif_linked_preparation.py",
+          "tests/test_cif_dictionary_bundle.py",
+          "tests/test_cif_dictionary_bundle_readyset.py",
+          "tests/test_cif_postmr_readyset.py",
+          "tests/test_cif_postmr_cached_model.py",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_acquisition_preparation.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_postmr_component_inputs.py",
+          "tests/test_cif_readyset_atom_order.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/179_Cedar_combined-metadata-7x86y8yc/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-10T12:55:13.978450+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 195.527,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "focused": {
+        "active": false,
+        "pid": 42981,
+        "runner_pid": 42967,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/179_Cedar_combined-metadata-7x86y8yc/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-10T12:58:53.145068+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 417.241,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "affected_summary": "342 passed in 195.35s (0:03:15)",
+      "focused_summary": "1697 passed, 45 subtests passed in 416.99s (0:06:56)",
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 20.823869665997336,
+      "component": "5PC",
+      "readyset_checks": {
+        "single_effective_dictionary": true,
+        "effective_numerics_exact": true,
+        "unchanged_heavy_sites": true,
+        "readyset_completed": true,
+        "observer_complete": true,
+        "effective_actions": true,
+        "no_observed_builder_or_template_calls": true,
+        "no_unclassified_subprocess_calls": true
+      },
+      "readyset_calls": 1,
+      "native_calls": 3,
+      "endpoint_checks": 28,
+      "raw_selected": "readyset_checked_model",
+      "native_group_before": "DNA",
+      "native_group_after": "DNA",
+      "exact_native_energy_gradients": true,
+      "public_selections": {
+        "raw": "readyset_checked_model",
+        "missing-endpoint": "verified_prepared_model"
+      },
+      "component_list_policy": "cif-native-component-list-loop-v1",
+      "serialization_refusal": "ReadySet residue boundaries or metadata differ",
+      "definition_checks": {
+        "PASS": 29,
+        "UNSUPPORTED": 1
+      },
+      "native_checks": {
+        "PASS": 36
+      },
+      "source_hashes_unchanged": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "heavy_coordinates_preserved": true,
+      "readyset_transport": "NOT_RUN; SELECTED_PHENIX_PYTHON_OBSERVER_TRANSPORT",
+      "readyset_execution": {
+        "status": "COMPLETED",
+        "returncode": 0,
+        "elapsed_seconds": 3.689141,
+        "timeout_seconds": 120
+      },
+      "generation": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "SINGLE_COMPONENT_READYSET_AND_STRICT_NATIVE_ENDPOINT; NO_ORDINARY_ADOPTION"
+    },
+    "relocation": {
+      "status": "PASS",
+      "cases": {
+        "raw": "readyset_checked_model",
+        "missing-endpoint": "verified_prepared_model",
+        "old-raw": "verified_prepared_model",
+        "old-missing-endpoint": "verified_prepared_model",
+        "legacy-miss": "repaired_prepared_bundle",
+        "legacy-repair": "repaired_prepared_bundle"
+      },
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 1731
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/start.json",
+        "sha256": "fb7750af589913544af453a913d4863ed75b7dd668a58b10aadb7c68b1fe32a8",
+        "size": 390
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/before-r1-result.json",
+        "sha256": "0c4a52f61941a6adccab0f64194549a7bd3b67b29dd8d8a7d3dd42c7bc04b99c",
+        "size": 753
+      },
+      "before-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/before-r2-result.json",
+        "sha256": "946a5545420475665b5b33098480f759feddefa78e642f9df67f7ab6ae919300",
+        "size": 753
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/new-r1-result.json",
+        "sha256": "158bef25f2df50c54741d4ae4b3f7569504f4b623dc23f103642bb4b0b169a4a",
+        "size": 827
+      },
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/affected-r1-result.json",
+        "sha256": "2b8048229f35c089f8687d4333984eea32853188c4666e14ca75b66471dddba7",
+        "size": 1043
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/affected-r1-sources.json",
+        "sha256": "92254817521ba1ac9fdb73ec01fbc81740bd181e878a9c0a7b56a03ded12362b",
+        "size": 68464
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/focused-r1-result.json",
+        "sha256": "5ce3a67ea674a3e452b2087dc00a4c5bc722ecca885faa668637fef8e84314be",
+        "size": 496
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/focused-r1-sources.json",
+        "sha256": "92254817521ba1ac9fdb73ec01fbc81740bd181e878a9c0a7b56a03ded12362b",
+        "size": 68464
+      },
+      "native-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/native-r1/summary.json",
+        "sha256": "8801b2d80a25028dd0bee06c5d04ba9ebe2ed2a476e61d3bc0fa632a71e17011",
+        "size": 1509
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/native-r1/runtime-sources.json",
+        "sha256": "81d45fe9bafd5e2b27371e6efb113d63d9e1f7079a668b37da735c7e264169ca",
+        "size": 22534
+      },
+      "native-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/native-r1/installation.json",
+        "sha256": "fe567db08ccedfb180739ba137c15a9508bf9e89cd748591090cb863460cef8f",
+        "size": 125
+      },
+      "native-r1/initial-review.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/native-r1/initial-review.json",
+        "sha256": "e9ab79a3ec5c9cd70d6736de3eaa84c83fcfe82983619bb4f9c2f0d452bce1a9",
+        "size": 15578
+      },
+      "native-r1/raw-review.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/native-r1/raw-review.json",
+        "sha256": "654c062cc7ad48e2d6307a1595847ae509839beaf6f0477a6b3eef2208c65500",
+        "size": 19294
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "179_Cedar_combined-metadata-7x86y8yc/cold-r1/summary.json",
+        "sha256": "eb0a30bef6d373aa76c08a78fc2181e222851f0dd80eb304c21e0499f5c843ea",
+        "size": 453
+      }
+    },
+    "commands": [
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_linked_phosphate_profile.py",
+        "tests/test_cif_linked_preparation.py",
+        "tests/test_cif_dictionary_bundle.py",
+        "tests/test_cif_dictionary_bundle_readyset.py",
+        "tests/test_cif_postmr_readyset.py",
+        "tests/test_cif_postmr_cached_model.py",
+        "tests/test_cif_component_runtime.py",
+        "tests/test_cif_acquisition_preparation.py",
+        "tests/test_cif_complete_request.py",
+        "tests/test_postmr_component_inputs.py",
+        "tests/test_cif_readyset_atom_order.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/179_Cedar_combined-metadata-7x86y8yc/affected-r1.xml"
+      ],
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/179_Cedar_combined-metadata-7x86y8yc/focused-r1.xml"
+      ]
+    ],
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "na_restraints": "1.1.3",
+      "phenix_build": "2.2.1-6174",
+      "phenix_dispatcher": "2.2.1",
+      "platform": "macOS arm64"
+    },
+    "artifacts": "Source/tests/docs/hash references only; generated science/logs/XML/runners remain local",
+    "limitations": [
+      "Supplement filtering writer audit queued",
+      "Selected repaired runtime continuation/ordinary adoption open",
+      "No actual refinement or full suite"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-10T13:06:01.332777+00:00"
   }
 }

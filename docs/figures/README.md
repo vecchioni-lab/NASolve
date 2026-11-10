@@ -425,3 +425,7 @@ refinement remain open; the selected native profile is still explicit.
 C178 extends the same ReadySet box to singleton inputs. Actual consumption passes;
 failed exact native metadata readback takes the existing verified-fallback arrow.
 No new scientific acceptance, adoption or refinement arrow is implied.
+
+C179 repairs metadata serialization on the existing combination→ReadySet→native
+path. Fresh singleton endpoint qualification now takes the checked-endpoint arrow;
+legacy rejected evidence keeps its original fallback arrow. No adoption is added.

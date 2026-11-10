@@ -155,3 +155,16 @@ def test_single_component_extension_keeps_scope_guards_before_execution(tmp_path
             audit_readyset_bundle_consumption(b['source'], b['dictionary'], b['model'], codes,
                 installation, b['report']['consumer'], tmp_path/'bad', component_dictionaries=owners)
     assert inventory(tmp_path) == before and not (tmp_path/'bad').exists()
+
+
+def test_legacy_singleton_can_be_observed_only_with_explicit_old_serialization(tmp_path,monkeypatch):
+    from nasolve.ligand_profiles import combine_dictionary_inputs
+    from nasolve.cif_postmr_readyset import audit_readyset_bundle_consumption
+    b,installation=control(tmp_path,monkeypatch,single=True)
+    old=tmp_path/'legacy.cif';combine_dictionary_inputs(list(b['component_dictionaries'].values()),old,component_list_policy=None)
+    kwargs=dict(component_dictionaries=b['component_dictionaries'])
+    with pytest.raises(ValueError,match='combined numerical dictionary'):
+        audit_readyset_bundle_consumption(b['source'],old,b['model'],b['report']['components'],installation,b['report']['consumer'],tmp_path/'wrong-policy',**kwargs)
+    assert not (tmp_path/'wrong-policy').exists()
+    r=audit_readyset_bundle_consumption(b['source'],old,b['model'],b['report']['components'],installation,b['report']['consumer'],tmp_path/'legacy-readyset',component_list_policy=None,**kwargs)
+    assert r['status']=='READYSET_CACHED_INPUT_PASS' and all(r['checks'].values())

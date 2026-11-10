@@ -121,4 +121,6 @@ while retaining the independent construction, geometry and ordinary-adoption gat
 
 C178 [singleton ReadySet consumption](cif-doctor.md#single-component-readyset-consumption-c178)
 passes the existing observer boundary and retains a verified fallback when exact
-native metadata differs. The remaining combination fix must preserve old receipts.
+native metadata differs. [C179](cif-doctor.md#native-component-metadata-during-combination-c179)
+repairs combination with C09's loop writer; fresh final native qualification passes
+while legacy receipts preserve their original outcomes.

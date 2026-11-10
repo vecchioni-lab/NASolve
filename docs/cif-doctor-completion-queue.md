@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C178.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C179.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -141,11 +141,11 @@ selected runtime to ordinary PostMR orchestration, preserving the selected nativ
 profile, pre-construction source/producer lineage and exact NAR compiler intent.
 C177 closes source/request assembly and demonstrates the required acquisition
 outcomes through that API; it does not enable the ordinary default or checkpoint
-adoption. Coordinate the remaining caller integration with Q05. C178 validates singleton ReadySet consumption and cold verified fallback. The
-positive endpoint exposed the same scalar `_chem_comp` metadata loss solved by
-C09 in linked preparation: reuse its loop policy at the combined-dictionary
-boundary with explicit legacy replay. Preserve the exact native group gate and
-C140 TER-boundary refusal; no silently repaired historical evidence. Do not add a second recovery owner.
+adoption. Coordinate the remaining caller integration with Q05. C178 validates singleton consumption/fallback; C179 reuses C09's loop writer at
+combination and records its policy, with exact old scalar replay. Actual singleton
+ReadySet now passes all eight consumption and 28 endpoint checks, with identical
+energy/gradient snapshots; old rejected evidence still remains a fallback. These
+prerequisites close no ordinary-adoption or refinement gate. Do not add a second recovery owner.
 
 The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
 reuse-only adapter and skips explicit representation-policy entries. Ordinary
@@ -201,6 +201,13 @@ per-component ReadySet inputs work (C71/C79/C134). Later component-runtime,
 whole-furanose, repaired-bundle and captured-geometry APIs remain explicit
 components rather than an ordinary PostMR chain. Wire the selected model and
 ordered effective restraint bundle through that chain and checkpoint lineage.
+
+The combined metadata writer now shares C09's native loop policy (C179), with
+strict fresh endpoint acceptance and preserved legacy outcomes. Audit the remaining
+supplement-filter writer before broad ordinary integration: reducing a metadata
+list to one row currently uses the generic scalar serializer. Then bind the
+**selected original or repaired runtime**, rather than rebuilding from an earlier
+prepared dictionary, through ReadySet and final native qualification.
 
 Done when recipes/models containing modified components reach final ReadySet
 consumption and exact native qualification through ordinary entry points, then

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve native metadata in combined CIFs (C179)
+
+- Share the existing native-readable component-list loop serializer between
+  linked preparation and combination; singleton group metadata survives native
+  consumption without changing chemical values or multi-component bytes.
+- New component bundles declare their serialization policy. Replay older bundles
+  with their original scalar layout; reject unknown policies and relabeled bytes.
+  Existing artifacts need no migration; new receipts require the updated reader.
+- Actual singleton ReadySet now passes all 28 endpoint checks. Keep missing/failed
+  improvements on their verified fallback and preserve TER/chemistry guards.
+
 ### Single-component ReadySet consumption (C178)
 
 - Accept one selected component through the existing bundle ReadySet observer,

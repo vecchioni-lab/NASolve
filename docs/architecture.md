@@ -4087,3 +4087,9 @@ C178 allows singleton component bundles through the existing ReadySet observer.
 Consumption success is separate from final native acceptance: exact group metadata
 loss and a changed TER boundary still refuse improvement, retaining the original
 verified runtime together. See the [contract](cif-doctor.md#single-component-readyset-consumption-c178).
+
+C179 shares the C09 native metadata serializer with dictionary combination.
+New bundle receipts bind the loop layout; absent legacy policy replays the old
+scalar bytes exactly. The actual singleton final endpoint now qualifies, without
+changing chemistry/TER gates or promoting old evidence. See the
+[serialization contract](cif-doctor.md#native-component-metadata-during-combination-c179).

@@ -15,7 +15,7 @@ from .cif_dictionary_sites import (
 )
 from .cif_native_context import validate_native_context
 from .cif_native_monomers import FULL_MODEL_PHIL
-from .ligand_profiles import combine_dictionary_inputs, dictionary_component_codes
+from .ligand_profiles import combine_dictionary_inputs, dictionary_component_codes, COMPONENT_LIST_POLICY
 
 POLICY_ID = 'cif-stored-dictionary-bundle-v1'
 ANCHOR = 'dictionary_bundle_directory'
@@ -68,10 +68,12 @@ def _children(root, controls):
     return children, owners
 
 
-def _derive(root, children, destination):
+def _derive(root, children, destination, *, component_list_policy=None):
     destination.mkdir()
-    combine_dictionary_inputs([c['snapshot']['source'] for c in children], destination/'sources.cif')
-    combine_dictionary_inputs([c['after_dictionaries'][0] for c in children], destination/'dictionaries.cif')
+    combine_dictionary_inputs([c['snapshot']['source'] for c in children], destination/'sources.cif',
+        component_list_policy=component_list_policy)
+    combine_dictionary_inputs([c['after_dictionaries'][0] for c in children], destination/'dictionaries.cif',
+        component_list_policy=component_list_policy)
     (destination/'native_interpretation.phil').write_text(FULL_MODEL_PHIL)
 
 
@@ -130,7 +132,7 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
         saved = resolve_dictionary_snapshot(snapshot); code = saved['manifest']['request']['component']
         _need(code not in selected, 'Duplicate component code')
         selected[code] = item
-    controls = _json(_bytes(dict(components=sorted(selected), consumer=consumer,
+    controls = _json(_bytes(dict(components=sorted(selected), component_list_policy=COMPONENT_LIST_POLICY, consumer=consumer,
         expected_links=expected_links, native_context=native_context,
         supplementary_phils=[f'inputs/phils/{i:03}.phil' for i in range(len(supplementary_phils))])))
     originals = {Path(p):_read(p) for p in [model, *supplementary_phils]}
@@ -146,7 +148,7 @@ def prepare_dictionary_bundle(components, model, output, *, consumer, expected_l
                 native_context=native_context, terminal_resource=item.get('terminal_resource'),
                 phosphate_atom_policy=item.get('phosphate_atom_policy'))
         children, owners = _children(root, controls)
-        _derive(root, children, root/'prepared')
+        _derive(root, children, root/'prepared', component_list_policy=controls['component_list_policy'])
         report = _report(root, controls, children, owners)
         (root/'bundle_receipt.json').write_bytes(_bytes(report))
         read_dictionary_bundle(root)
@@ -163,13 +165,17 @@ def read_dictionary_bundle(output):
     _need(report.get('files') == _files(root), 'Bundle artifact inventory or checksum differs')
     controls = {k:report[k] for k in ('components', 'consumer', 'expected_links',
         'native_context', 'supplementary_phils')}
+    if 'component_list_policy' in report:
+        _need(report['component_list_policy'] == COMPONENT_LIST_POLICY, 'Unknown component-list policy')
+        controls['component_list_policy'] = report['component_list_policy']
     children, owners = _children(root, controls); inputs = _inputs(root, controls, children)
     allowed = {'inputs/model.pdb', *controls['supplementary_phils']}
     for code, child in zip(controls['components'], children):
         allowed.add(f'components/{code}/site_receipt.json')
         allowed.update(f'components/{code}/'+r['path'] for r in child['report']['files'])
     with TemporaryDirectory(prefix='dictionary-bundle-read-') as temporary:
-        replay = Path(temporary)/'prepared'; _derive(root, children, replay)
+        replay = Path(temporary)/'prepared'; _derive(root, children, replay,
+            component_list_policy=controls.get('component_list_policy'))
         for path in replay.iterdir():
             allowed.add('prepared/'+path.name)
             _need(_read(root/'prepared'/path.name) == path.read_bytes(), 'Combined dictionary/policy does not replay')

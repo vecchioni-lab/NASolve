@@ -28166,6 +28166,12 @@
       "evidence_key": "single_readyset_bundle_2026_11_10",
       "scope": "Singleton consumption and exact fallback; combined metadata/ordinary adoption remain open",
       "implementation_revision": "e21c0a3ed817469280688a0e60b6a6bd462d0ec2"
+    },
+    "combined_component_metadata": {
+      "status": "COMBINED_METADATA_AND_SINGLETON_FINAL_ENDPOINT_VALIDATED",
+      "milestone": "C179",
+      "evidence_key": "combined_component_metadata_2026_11_10",
+      "scope": "Shared native list writer and explicit legacy replay; strict singleton endpoint qualifies"
     }
   },
   "audience": [

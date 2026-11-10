@@ -156,3 +156,55 @@ def test_composer_keeps_empty_and_oversized_requests_out(tmp_path,count):
     args=fixture(tmp_path);args['components']=[args['components'][0]]*count;out=tmp_path/'bundle'
     with pytest.raises(ValueError):prepare_dictionary_bundle(output=out,**args)
     assert not out.exists()
+
+
+def _legacy_combination_fixture(root):
+    """Build synthetic pre-C179 bytes; never alter a historical live artifact."""
+    from nasolve.cif_dictionary_bundle import read_dictionary_bundle, _files
+    from nasolve.ligand_profiles import combine_dictionary_inputs
+    b=read_dictionary_bundle(root)
+    from nasolve.cif_dictionary_sites import read_dictionary_sites
+    children=[read_dictionary_sites(root/'components'/c) for c in b['report']['components']]
+    for filename,inputs in [('sources.cif',[c['snapshot']['source'] for c in children]),
+                            ('dictionaries.cif',[c['after_dictionaries'][0] for c in children])]:
+        p=root/'prepared'/filename;p.unlink();combine_dictionary_inputs(inputs,p,component_list_policy=None)
+    r=b['report'];r.pop('component_list_policy');r['files']=_files(root)
+    (root/'bundle_receipt.json').write_text(json.dumps(r))
+    return r
+
+
+def test_singleton_bundle_declares_native_metadata_loop_policy(tmp_path):
+    from nasolve.cif_dictionary_bundle import prepare_dictionary_bundle,read_dictionary_bundle
+    from nasolve.ligand_profiles import _blocks,COMPONENT_LIST_POLICY
+    args=select_single_component(fixture(tmp_path),tmp_path);out=tmp_path/'bundle'
+    r=prepare_dictionary_bundle(output=out,**args);b=read_dictionary_bundle(out)
+    assert r['component_list_policy']==COMPONENT_LIST_POLICY
+    assert '\nloop_\n_chem_comp.' in _blocks(b['dictionary'])[0].text
+    assert _blocks(b['dictionary'])[0].values['_chem_comp.group']==['DNA']
+
+
+def test_legacy_scalar_bundle_replays_cold_without_rewriting(tmp_path):
+    from nasolve.cif_dictionary_bundle import prepare_dictionary_bundle,read_dictionary_bundle
+    from nasolve.ligand_profiles import _blocks
+    args=select_single_component(fixture(tmp_path),tmp_path);out=tmp_path/'bundle'
+    prepare_dictionary_bundle(output=out,**args);r=_legacy_combination_fixture(out)
+    before={p.relative_to(out):(p.read_bytes(),p.stat().st_mtime_ns) for p in out.rglob('*') if p.is_file()}
+    out=out.rename(tmp_path/'relocated');shutil.rmtree(tmp_path/'first');shutil.rmtree(tmp_path/'second');args['model'].unlink()
+    with patch('subprocess.Popen',side_effect=AssertionError('Replay executed')):
+        b=read_dictionary_bundle(out)
+    assert b['report']==r and 'component_list_policy' not in r
+    assert '\nloop_\n_chem_comp.' not in _blocks(b['dictionary'])[0].text
+    assert all(((out/p).read_bytes(),(out/p).stat().st_mtime_ns)==v for p,v in before.items())
+
+
+@pytest.mark.parametrize('defect', ['unknown','null','stripped','legacy_promoted'])
+def test_combination_policy_cannot_relabel_old_or_new_evidence(tmp_path,defect):
+    from nasolve.cif_dictionary_bundle import prepare_dictionary_bundle,read_dictionary_bundle
+    from nasolve.ligand_profiles import COMPONENT_LIST_POLICY
+    args=select_single_component(fixture(tmp_path),tmp_path);out=tmp_path/'bundle'
+    r=prepare_dictionary_bundle(output=out,**args)
+    if defect=='legacy_promoted':r=_legacy_combination_fixture(out);r['component_list_policy']=COMPONENT_LIST_POLICY
+    elif defect=='stripped':r.pop('component_list_policy')
+    else:r['component_list_policy']='unreviewed' if defect=='unknown' else None
+    (out/'bundle_receipt.json').write_text(json.dumps(r))
+    with pytest.raises(ValueError):read_dictionary_bundle(out)

@@ -12,15 +12,12 @@ from pathlib import Path
 import re
 from typing import Sequence
 
-from Bio.PDB.mmcifio import MMCIFIO
-
 from .cif_doctor import assess_dictionaries
 from .cif_generation import inspect_component_generation
-from .ligand_profiles import _blocks, _emit
+from .ligand_profiles import _blocks, _emit, _emit_component_list, COMPONENT_LIST_POLICY
 
 LINKED_PREPARATION_POLICY = 'cif-source-preserving-linked-sites-v1'
 MODIFICATION_BLOCK_POLICY = 'cif-native-modification-blocks-v1'
-COMPONENT_LIST_POLICY = 'cif-native-component-list-loop-v1'
 _ATOM = '_chem_comp_atom.'
 _BOND = '_chem_comp_bond.'
 _MISSING = {'', '.', '?'}
@@ -117,13 +114,7 @@ def _render(values: dict, code: str) -> str:
     metadata={key:column for key,column in values.items() if key.startswith('_chem_comp.')}
     if not metadata or any(len(column)!=1 for column in metadata.values()):
         raise ValueError('Require one exact component metadata row')
-    # MMCIFIO normally collapses a one-row loop to scalars. The native
-    # comp_list reader only visits category loops through iterrows, so retain
-    # the list layout and reuse its CIF quoting for every unchanged value.
-    writer=MMCIFIO()
-    list_block=('data_comp_list\n#\nloop_\n'+'\n'.join(metadata)+'\n'
-                +'\n'.join(writer._format_mmcif_col(column[0],0)
-                             for column in metadata.values())+'\n#\n')
+    list_block = _emit_component_list(metadata)
     definition={'data_':'comp_'+code,**{key:column for key,column in values.items()
                                       if key!='data_' and not key.startswith('_chem_comp.')}}
     return list_block+'\n'+_emit(definition)

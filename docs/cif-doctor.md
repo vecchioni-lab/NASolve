@@ -110,7 +110,9 @@
 
 <a id="current-capability-boundary-c177"></a>
 
-## Current capability boundary (C178)
+<a id="current-capability-boundary-c178"></a>
+
+## Current capability boundary (C179)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -251,6 +253,37 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### Native component metadata during combination (C179)
+
+`combine_dictionary_inputs` now reuses the C09 native component-list loop
+serializer. A single `_chem_comp` row stays a loop so Phenix's `convert_list_block`
+actually reads its declared group and other metadata. No group is inferred from
+the component code, atoms or interpreted classification. Metadata values, quoting,
+missing values and all chemical definition blocks are preserved; multi-component
+combined bytes and existing linked-preparation bytes remain unchanged.
+
+New schema-1 component bundles record `component_list_policy =
+cif-native-component-list-loop-v1`. Readback reconstructs that layout exactly.
+An absent field selects the historical scalar singleton writer; it never upgrades
+old evidence silently. Unknown/null policies and relabeling singleton bytes fail.
+New bundles require the updated reader; existing bundles need no migration.
+`component_list_policy=None` explicitly reproduces legacy combination and can be
+passed to the ReadySet bundle observer when deliberately consuming old inputs.
+
+The actual Phenix 2.2.1-6174 / dispatcher 2.2.1 single-5PC control now passes all
+eight consumption checks and all 28 strict native endpoint checks. Native group
+is DNA before and after, and the captured energy/gradient snapshots are exactly
+equal. The public runtime selects `readyset_checked_model`; a missing endpoint
+still retains `verified_prepared_model`. The independent atom-order serializer
+continues to reject a changed TER boundary; it is unnecessary for this directly
+qualified endpoint. Formal-charge readback remains unavailable, not fabricated.
+
+Cold new/old replay preserves the C178 negative endpoint as a fallback and the
+C177 generation/repair outcomes. New serialization cannot retroactively qualify
+an old result. This closes the combined singleton metadata defect, not ordinary
+PostMR adoption or the Q06 refinement consumer. Supplement filtering is another
+metadata writer and must be audited under Q05 without changing historical evidence.
 
 ### Single-component ReadySet consumption (C178)
 

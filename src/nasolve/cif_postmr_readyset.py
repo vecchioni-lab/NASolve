@@ -14,6 +14,7 @@ import re
 import subprocess
 import time
 
+from .ligand_profiles import COMPONENT_LIST_POLICY
 from .cif_generation import _terminate_owned_group
 from .cif_postmr_cache import verify_current_consumer
 from .cif_readyset_source_audit import capture_readyset_sources, verify_readyset_sources
@@ -323,17 +324,21 @@ def audit_readyset_consumption(source,dictionary,model,code,phenix,consumer,outp
     return report
 
 
-def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,consumer,output,*,timeout_seconds=180,component_dictionaries=None):
+def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,consumer,output,*,timeout_seconds=180,component_dictionaries=None,
+        component_list_policy=COMPONENT_LIST_POLICY):
     """Use the ordinary helper and strict checks for a declared component bundle.
 
     The bundle must cover one to sixteen explicit components present in both
     source and numerical inputs and at least one heavy model site per component.
+    Explicit component_list_policy=None preserves old scalar singleton inputs.
     Optional per-component files must reproduce the exact combined bytes and
     are supplied as separate repeatable CIF arguments. It is a separate
     diagnostic; current linked native qualification is required
     by the caller before choosing a result. No parameter, source or model is edited.
     """
     from .ligand_profiles import dictionary_component_codes,_parameterized_codes
+    if component_list_policy is not None and component_list_policy != COMPONENT_LIST_POLICY:
+        raise ValueError("Unknown component-list serialization policy")
     if (not isinstance(components,(list,tuple)) or not 1<=len(components)<=16
             or any(not isinstance(c,str) or re.fullmatch('[A-Za-z0-9]{1,3}',c) is None for c in components)
             or len(set(components))!=len(components)):
@@ -351,7 +356,8 @@ def audit_readyset_bundle_consumption(source,dictionary,model,components,phenix,
                 raise ValueError('Require one parameterized component per ReadySet file')
         with TemporaryDirectory(prefix='nasolve-readyset-components-') as temporary:
             combined=Path(temporary).resolve()/'combined.cif'
-            combine_dictionary_inputs([Path(component_dictionaries[c]) for c in sorted(codes)],combined)
+            combine_dictionary_inputs([Path(component_dictionaries[c]) for c in sorted(codes)],combined,
+                component_list_policy=component_list_policy)
             if combined.read_bytes()!=Path(dictionary).read_bytes():raise ValueError('Per-component inputs change the combined numerical dictionary')
     return audit_readyset_consumption(source,dictionary,model,'ALL',phenix,consumer,output,
         timeout_seconds=timeout_seconds,_components=tuple(sorted(codes)),_component_dictionaries=component_dictionaries)

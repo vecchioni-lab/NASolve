@@ -3799,3 +3799,18 @@ the final native reader lost a DNA metadata field in the combined CIF. The guard
 kept the independently verified starting inputs. This is a serialization issue
 already understood in C09, not grounds to weaken chemistry checks. The next repair
 must preserve both native metadata and the ability to replay old saved bundles.
+
+
+### Preserving metadata all the way to the native reader (C179)
+
+The dictionary combiner now shares the earlier C09 serializer: even one component
+retains the table form Phenix actually reads. This repairs metadata loss without
+inventing group assignments or changing atom/restraint values. A fresh 5PC ReadySet
+control passes all 28 final native comparisons and preserves exact captured
+energies/gradients. The public bundle selects that checked endpoint.
+
+**Methods.** New bundles record the serialization policy; old bundles replay their
+original bytes and verdicts. Cold controls confirm that yesterday's rejected
+endpoint is still rejected, while the fresh corrected one remains accepted without
+its original paths or SDK. This is diagnostic consumer integration; ordinary
+adoption and actual diffraction refinement remain separate open work.

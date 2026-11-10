@@ -11,6 +11,65 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C179 validated: preserve native metadata in combined dictionaries
+
+Base `19b6c2a863cf1a0f71f023c9f700f07a51786cf2`; existing Cedar. Capsule
+`live_tests_directory/179_Cedar_combined-metadata-7x86y8yc`. Implementation/validation complete; publication
+is next. C178's exact singleton endpoint blocker is resolved in fresh evidence.
+
+**Before → after:** combination collapsed a singleton metadata list to scalar
+fields, so Phenix lost group DNA although the CIF text retained it. Share C09's
+exact loop writer with linked preparation. New combined metadata is native-readable;
+source values, multi-component bytes and linked-preparation bytes stay unchanged.
+
+**Schema/compatibility:** new schema-1 bundles record `component_list_policy =
+cif-native-component-list-loop-v1`. An absent field replays the old scalar writer;
+unknown/null policies or singleton relabeling refuse. New receipts require updated
+readers; old artifacts need no migration. Explicit `None` supports legacy
+combination/observer input. No native group inference or changed scientific gate.
+
+**Validation:** corrected before-test isolates four expected singleton/policy
+failures with three multi-row controls already passing; 20 new regressions pass.
+Affected **342 passed in 195.35s (0:03:15)**. Workflow **1697 passed, 45 subtests passed in 416.99s (0:06:56)**.
+All 627 source/test/script hashes stayed fixed. No full suite.
+Last completed full: C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c179_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c179_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c179_cold.py cold-r1
+```
+
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution:** one observed ReadySet
+and three fresh full native captures. All eight consumption and all 28 final
+endpoint checks pass; group DNA and exact energy/gradient snapshots survive.
+The public raw endpoint selects `readyset_checked_model`; missing endpoint retains
+the verified original. The C140 TER rewrite still refuses; directly qualified
+raw output does not need that step. Definition checks: 29 pass/one unavailable
+formal charge; 36 site/native checks pass. No generation, Coot or diffraction
+refinement. Actual native-run total 20.824s; ordinary dispatcher
+was not separately launched: its pinned entrypoint ran through the maintained
+Phenix-Python observer transport. Models/parent evidence retain bytes/mtimes.
+
+**Cold:** new accepted/fallback runtimes, C178 old rejected/missing endpoints and
+C177 generation/repair results replay from a relocated copied checkout. Original
+copy is absent; historical paths, SDK and execution are denied. All 1731
+files retain bytes/mtimes. Old failed evidence is not retroactively upgraded.
+
+**Files/artifacts:** four source modules, three regression modules and maintained
+contracts/queue/ledgers. Source/tests/docs/hash references only enter Git; all
+science/native outputs/XML/runners stay local. The first test draft compared extra
+separator newlines between blocks; corrected before implementation, with both
+before receipts preserved. No test/native jobs remain active at this checkpoint.
+
+**Next:** audit the supplement-filter scalar writer using the same history and
+compatibility rules, then bridge the selected original/repaired runtime through
+ReadySet rather than reverting to its earlier dictionary. Ordinary orchestration,
+immutable checkpoint adoption and actual refinement remain Q04/Q05/Q06.
+Evidence key `combined_component_metadata_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C178 published: singleton ReadySet boundary and truthful fallback
 
 Base `8924441c52d131b22124dfcd1abb987ba4f8094a`; existing Cedar. Capsule
