@@ -84,7 +84,7 @@ def _emit(values: dict) -> str:
     return output.getvalue()
 
 
-def _emit_component_list(metadata: dict) -> str:
+def _emit_component_list(metadata: dict, *, block_name: str = "comp_list") -> str:
     """Retain the native reader's category loop, including a single row.
 
     Reuse C09 quoting and singleton bytes; multiple rows keep MMCIFIO output.
@@ -95,9 +95,9 @@ def _emit_component_list(metadata: dict) -> str:
             or not next(iter(metadata.values()))):
         raise ValueError("Require a rectangular nonempty component metadata list")
     if len(next(iter(metadata.values()))) != 1:
-        return _emit({"data_": "comp_list", **metadata})
+        return _emit({"data_": block_name, **metadata})
     writer = MMCIFIO()
-    return ('data_comp_list\n#\nloop_\n' + '\n'.join(metadata) + '\n'
+    return ('data_' + block_name + '\n#\nloop_\n' + '\n'.join(metadata) + '\n'
             + '\n'.join(writer._format_mmcif_col(column[0], 0)
                          for column in metadata.values()) + '\n#\n')
 
@@ -281,7 +281,9 @@ def _exclude_components(source: Path, codes: set[str], output: Path) -> tuple[Pa
                     raise PhosphateError("Mixed-category component list requires review")
                 values = {k: ([v[i] for i in keep] if k != "data_" else v)
                           for k, v in values.items()}
-                retained.append(_emit(values))
+                retained.append(_emit_component_list(
+                    {k: v for k, v in values.items() if k != "data_"},
+                    block_name=values["data_"]))
                 continue
         retained.append(block.text)
         present.update(ids)

@@ -73072,5 +73072,382 @@
     ],
     "author": "Rowan · Codex desktop",
     "validated_utc": "2026-11-10T13:06:01.332777+00:00"
+  },
+  "filtered_component_metadata_2026_11_10": {
+    "milestone": "C180",
+    "status": "PARTIAL_FILTER_METADATA_NATIVE_AND_COLD_VALIDATED",
+    "base_revision": "43335f96cb152a3c24241a40e604bb967632a94c",
+    "implementation_revision": null,
+    "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+    "before": "Partial component filtering loses retained native metadata through scalar layout",
+    "after": "Shared loop writer preserves retained list, block name and values without changing precedence",
+    "prior_work": [
+      "C09 native loop",
+      "C179 shared writer/legacy replay"
+    ],
+    "changed_files": [
+      "CHANGELOG.md",
+      "README.md",
+      "docs/README.md",
+      "docs/architecture.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md",
+      "docs/figures/README.md",
+      "src/nasolve/ligand_profiles.py",
+      "tests/test_dictionary_compatibility.py"
+    ],
+    "schemas": "No change",
+    "compatibility": "No migration; historical frozen supplements/readback unchanged",
+    "regression": {
+      "before": {
+        "active": false,
+        "pid": 48074,
+        "runner_pid": 48060,
+        "phase": "before-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_dictionary_compatibility.py",
+          "-k",
+          "partial_component_filter or partial_list_filter",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/180_Cedar_filtered-metadata-ew8144jz/before-r1.xml"
+        ],
+        "started_utc": "2026-11-10T13:06:53.142365+00:00",
+        "returncode": 1,
+        "elapsed_seconds": 0.717,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "new_cases": 10,
+      "affected": {
+        "active": false,
+        "pid": 48396,
+        "runner_pid": 48363,
+        "phase": "affected-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_dictionary_compatibility.py",
+          "tests/test_linked_phosphate_profile.py",
+          "tests/test_cif_linked_preparation.py",
+          "tests/test_cif_dictionary_bundle.py",
+          "tests/test_cif_dictionary_bundle_readyset.py",
+          "tests/test_cif_postmr_readyset.py",
+          "tests/test_cif_postmr_cached_model.py",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_mixed_native.py",
+          "tests/test_postmr_component_inputs.py",
+          "tests/test_postmr.py",
+          "tests/test_cif_readyset_atom_order.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/180_Cedar_filtered-metadata-ew8144jz/affected-r1.xml"
+        ],
+        "started_utc": "2026-11-10T13:08:56.294381+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 78.577,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "focused": {
+        "active": false,
+        "pid": 48657,
+        "runner_pid": 48643,
+        "phase": "focused-r1",
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/180_Cedar_filtered-metadata-ew8144jz/focused-r1.xml"
+        ],
+        "started_utc": "2026-11-10T13:11:13.599115+00:00",
+        "returncode": 0,
+        "elapsed_seconds": 426.274,
+        "sources_unchanged": true,
+        "source_files": 627
+      },
+      "affected_summary": "347 passed in 78.36s (0:01:18)",
+      "focused_summary": "1697 passed, 45 subtests passed in 426.01s (0:07:06)",
+      "full": "NOT_RUN_USER_REQUEST"
+    },
+    "native": {
+      "before": {
+        "status": "PASS",
+        "phase": "native-before-r2",
+        "expected_native_result": "EXACT_METADATA_REFUSAL",
+        "native_calls": 2,
+        "groups": [
+          "DNA",
+          null
+        ],
+        "checks": {
+          "unchanged_named_heavy_coordinates": true,
+          "before:exact_native_model": true,
+          "before:complete_native_interpretation": true,
+          "before:fixed_secondary_structure_policy": true,
+          "before:energy_inventory": true,
+          "before:finite_energy_and_gradient": true,
+          "before:fixed_coordinate_repeats": true,
+          "before:complete_proxy_inventory": true,
+          "after:exact_native_model": true,
+          "after:complete_native_interpretation": true,
+          "after:fixed_secondary_structure_policy": true,
+          "after:energy_inventory": true,
+          "after:finite_energy_and_gradient": true,
+          "after:fixed_coordinate_repeats": true,
+          "after:complete_proxy_inventory": true,
+          "exact_effective_site_definitions": false,
+          "all_backbone_links_exact": true,
+          "exact_explicit_requests": true,
+          "same_native_policy": true,
+          "exact_named_proxies:angle": true,
+          "exact_named_proxies:bond_asu": true,
+          "exact_named_proxies:bond_simple": true,
+          "exact_named_proxies:chirality": true,
+          "exact_named_proxies:const_dihedral": true,
+          "exact_named_proxies:dihedral": true,
+          "exact_named_proxies:parallelity": true,
+          "exact_named_proxies:planarity": true,
+          "same_installed_api_sources": true
+        },
+        "exact_energy_gradients": true,
+        "inputs_unchanged": true,
+        "parent_evidence_unchanged": true,
+        "source_hashes_unchanged": true,
+        "elapsed_seconds": 2.349250207989826,
+        "readyset": "NOT_RUN; DIRECT_FILTER_AND_ACTUAL_NATIVE_CONTROL",
+        "generation": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      },
+      "after": {
+        "status": "PASS",
+        "phase": "native-after",
+        "expected_native_result": "ALL_28_CHECKS_PASS",
+        "native_calls": 1,
+        "groups": [
+          "DNA",
+          "DNA"
+        ],
+        "checks": {
+          "unchanged_named_heavy_coordinates": true,
+          "before:exact_native_model": true,
+          "before:complete_native_interpretation": true,
+          "before:fixed_secondary_structure_policy": true,
+          "before:energy_inventory": true,
+          "before:finite_energy_and_gradient": true,
+          "before:fixed_coordinate_repeats": true,
+          "before:complete_proxy_inventory": true,
+          "after:exact_native_model": true,
+          "after:complete_native_interpretation": true,
+          "after:fixed_secondary_structure_policy": true,
+          "after:energy_inventory": true,
+          "after:finite_energy_and_gradient": true,
+          "after:fixed_coordinate_repeats": true,
+          "after:complete_proxy_inventory": true,
+          "exact_effective_site_definitions": true,
+          "all_backbone_links_exact": true,
+          "exact_explicit_requests": true,
+          "same_native_policy": true,
+          "exact_named_proxies:angle": true,
+          "exact_named_proxies:bond_asu": true,
+          "exact_named_proxies:bond_simple": true,
+          "exact_named_proxies:chirality": true,
+          "exact_named_proxies:const_dihedral": true,
+          "exact_named_proxies:dihedral": true,
+          "exact_named_proxies:parallelity": true,
+          "exact_named_proxies:planarity": true,
+          "same_installed_api_sources": true
+        },
+        "exact_energy_gradients": true,
+        "inputs_unchanged": true,
+        "parent_evidence_unchanged": true,
+        "source_hashes_unchanged": true,
+        "elapsed_seconds": 1.1348095839930465,
+        "readyset": "NOT_RUN; DIRECT_FILTER_AND_ACTUAL_NATIVE_CONTROL",
+        "generation": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "refinement": "NOT_RUN"
+      },
+      "actual_calls": 4,
+      "partial": "One initial baseline preserved; second capture refused unsafe input/output ancestry before launch"
+    },
+    "relocation": {
+      "status": "PASS",
+      "cases": {
+        "native-before-r2": false,
+        "native-after": true,
+        "old": "verified_prepared_model",
+        "new": "readyset_checked_model"
+      },
+      "original_copy_absent": true,
+      "historical_paths_and_execution_denied": true,
+      "bytes_mtimes_unchanged": true,
+      "files": 469
+    },
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/start.json",
+        "sha256": "5fcd07e632cfabe21f286973551e4c33e7434b062ee4177dad5e7e049130c73b",
+        "size": 236
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/before-r1-result.json",
+        "sha256": "26925877b0c5bba87a2e7be95c4257d1544f46e05d2cf87e4b3bbe1d38552ef6",
+        "size": 653
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/new-r1-result.json",
+        "sha256": "023a76c359d424170e5bb94e8035e632de1d1acc9bd3221eb4db34949af8aca4",
+        "size": 627
+      },
+      "affected-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/affected-r1-result.json",
+        "sha256": "bc288176af12dbb45a924fdadc1a99958ab8787a6476e26add1cc271c25191e4",
+        "size": 1063
+      },
+      "affected-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/affected-r1-sources.json",
+        "sha256": "3780d2fa3a223ac11667a60da6e99e07b91a6f91a37d7ed4f2783d6a54f892b5",
+        "size": 68464
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/focused-r1-result.json",
+        "sha256": "ac5f690c811272d1bbb026d793feecf351f0a99a0c9e1d7bdd1a4c4814de7244",
+        "size": 496
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/focused-r1-sources.json",
+        "sha256": "3780d2fa3a223ac11667a60da6e99e07b91a6f91a37d7ed4f2783d6a54f892b5",
+        "size": 68464
+      },
+      "native-before/baseline-execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-before/baseline-execution.json",
+        "sha256": "1879f129b6d3a89910b3eea35513a2c606e225f7a9fa20619e60fd576bbc6da2",
+        "size": 321
+      },
+      "native-before-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-before-r2/summary.json",
+        "sha256": "5b018a4e941f27abb8d5e492a20895e0e6fbf6ee537a7f7ac6b67b924ee2acc5",
+        "size": 1716
+      },
+      "native-before-r2/review.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-before-r2/review.json",
+        "sha256": "78e6d0784add0b4fc667be4b5a46d85c34fb99d422f59e64e9543aa0550ef622",
+        "size": 1632
+      },
+      "native-before-r2/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-before-r2/runtime-sources.json",
+        "sha256": "81d45fe9bafd5e2b27371e6efb113d63d9e1f7079a668b37da735c7e264169ca",
+        "size": 22534
+      },
+      "native-after/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-after/summary.json",
+        "sha256": "645217fe5c7d14d4190470424bb943314cab5d624d56272f8d35199179d45d55",
+        "size": 1709
+      },
+      "native-after/review.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-after/review.json",
+        "sha256": "e30e448ee88dbc71eaacb7407c8d6d5747cb3f7429a68ef289de82105d4b6b20",
+        "size": 1658
+      },
+      "native-after/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-after/runtime-sources.json",
+        "sha256": "bb3daf0efa327ba8034aa413d14899e024a9f65bad0fd3bef2015d3a308a6d94",
+        "size": 22534
+      },
+      "native-after/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/native-after/installation.json",
+        "sha256": "961e7248dc17d9995bbf0d2533b8e9f0c87ce08356ec515d069bf9cf6b488ab0",
+        "size": 120
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "180_Cedar_filtered-metadata-ew8144jz/cold-r1/summary.json",
+        "sha256": "f718eb298161cc600bbb8834fff5418fb9a6769423c8fc49340c8666c219901e",
+        "size": 303
+      }
+    },
+    "commands": [
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_dictionary_compatibility.py",
+        "tests/test_linked_phosphate_profile.py",
+        "tests/test_cif_linked_preparation.py",
+        "tests/test_cif_dictionary_bundle.py",
+        "tests/test_cif_dictionary_bundle_readyset.py",
+        "tests/test_cif_postmr_readyset.py",
+        "tests/test_cif_postmr_cached_model.py",
+        "tests/test_cif_component_runtime.py",
+        "tests/test_cif_mixed_native.py",
+        "tests/test_postmr_component_inputs.py",
+        "tests/test_postmr.py",
+        "tests/test_cif_readyset_atom_order.py",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/180_Cedar_filtered-metadata-ew8144jz/affected-r1.xml"
+      ],
+      [
+        "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+        "scripts/run_tests.py",
+        "workflow",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/180_Cedar_filtered-metadata-ew8144jz/focused-r1.xml"
+      ]
+    ],
+    "environment": {
+      "python": "3.12.14",
+      "pytest": "9.1.1",
+      "na_restraints": "1.1.3",
+      "phenix_build": "2.2.1-6174",
+      "phenix_dispatcher": "2.2.1",
+      "platform": "macOS arm64"
+    },
+    "artifacts": "Source/tests/docs/hash references only; generated science/logs/XML/runners remain local",
+    "limitations": [
+      "Selected runtime continuation and ordinary adoption open",
+      "No ReadySet or refinement execution in this checkpoint",
+      "No full suite"
+    ],
+    "author": "Rowan · Codex desktop",
+    "validated_utc": "2026-11-10T13:19:00.156412+00:00"
   }
 }

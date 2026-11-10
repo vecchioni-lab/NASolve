@@ -28173,6 +28173,12 @@
       "evidence_key": "combined_component_metadata_2026_11_10",
       "scope": "Shared native list writer and explicit legacy replay; strict singleton endpoint qualifies",
       "implementation_revision": "9a1527ad4f286a3e09024d062fe04db80141d137"
+    },
+    "filtered_component_metadata": {
+      "status": "PARTIAL_FILTER_METADATA_NATIVE_AND_COLD_VALIDATED",
+      "milestone": "C180",
+      "evidence_key": "filtered_component_metadata_2026_11_10",
+      "scope": "Both partial-filter directions retain native metadata and existing precedence"
     }
   },
   "audience": [

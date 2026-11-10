@@ -112,7 +112,9 @@
 
 <a id="current-capability-boundary-c178"></a>
 
-## Current capability boundary (C179)
+<a id="current-capability-boundary-c179"></a>
+
+## Current capability boundary (C180)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -253,6 +255,30 @@ snapshot. Cold replay reads three snapshots and both sealed requests, then
 reuses the relocated store with historical science/SDK reads and execution denied.
 Exact commands, scopes and hashes: `cache_first_generation_2026_11_02` in the
 [technical ledger](cif-linked-native-registration-evidence.json).
+
+### Native metadata in filtered supplements (C180)
+
+When `effective_restraints` excludes overridden components from generated output,
+or superseded components from a mixed input, a retained singleton `_chem_comp`
+list now uses the shared C09/C179 loop serializer. Declared block names, metadata
+values and missing fields are preserved. Explicit parameterized-input precedence,
+construction-only deferral to ReadySet, phosphate modifiers and numerical values
+are unchanged. Unfiltered blocks keep their original representation; this is not
+an inference or repair of missing source classification.
+
+An actual Phenix 2.2.1-6174 / dispatcher 2.2.1 control isolates the serialization:
+the old filtered list loses native group DNA, failing only exact effective-site
+definitions; the new list preserves DNA and passes all 28 checks with identical
+energy/gradient snapshots. The control uses one existing qualified 5PC dictionary
+and a renamed synthetic copy removed before native interpretation. It does not
+establish support for that synthetic code, new chemistry or ordinary refinement.
+
+No schema or migration changes. Frozen supplements remain checksum-bound artifacts;
+historical mixed-native readers resolve them rather than rewriting them. Successful
+cached ReadySet checks already require the exact single supplied effective CIF,
+not a newly filtered supplement. Cold old/new runtime and native-control replay
+retain their original verdicts without historical paths or SDK access. Selected
+original/repaired runtime continuation and immutable adoption remain Q04/Q05.
 
 ### Native component metadata during combination (C179)
 

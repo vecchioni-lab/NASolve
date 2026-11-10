@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C179.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C180.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -203,11 +203,13 @@ components rather than an ordinary PostMR chain. Wire the selected model and
 ordered effective restraint bundle through that chain and checkpoint lineage.
 
 The combined metadata writer now shares C09's native loop policy (C179), with
-strict fresh endpoint acceptance and preserved legacy outcomes. Audit the remaining
-supplement-filter writer before broad ordinary integration: reducing a metadata
-list to one row currently uses the generic scalar serializer. Then bind the
-**selected original or repaired runtime**, rather than rebuilding from an earlier
-prepared dictionary, through ReadySet and final native qualification.
+strict fresh endpoint acceptance and preserved legacy outcomes. C180 extends the
+same writer to both partial-filter precedence directions, with actual native
+before/after isolation and cold replay. The next bridge must bind the **selected
+original or repaired runtime**, rather than rebuilding from an earlier prepared
+dictionary, through ReadySet and final native qualification. Preserve the parent
+selection on missing/failed optional improvement; do not substitute an unqualified
+pre-repair start or create another recovery owner.
 
 Done when recipes/models containing modified components reach final ReadySet
 consumption and exact native qualification through ordinary entry points, then

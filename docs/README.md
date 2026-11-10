@@ -124,3 +124,6 @@ passes the existing observer boundary and retains a verified fallback when exact
 native metadata differs. [C179](cif-doctor.md#native-component-metadata-during-combination-c179)
 repairs combination with C09's loop writer; fresh final native qualification passes
 while legacy receipts preserve their original outcomes.
+
+C180 extends the shared metadata writer to [filtered supplements](cif-doctor.md#native-metadata-in-filtered-supplements-c180),
+with unchanged input/generated precedence and native before/after evidence.

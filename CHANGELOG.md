@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve native metadata in filtered CIFs (C180)
+
+- Use the same native-readable list serializer when resolving generated/input
+  component overrides down to one retained row. Preserve declared block names,
+  missing fields, chemical values and existing precedence.
+- Actual native before/after evidence isolates and fixes group metadata loss;
+  all 28 final comparisons pass without changed coordinates, proxies or gradients.
+- No schema/migration change, historical artifact rewrite or automatic adoption.
+
 ### Preserve native metadata in combined CIFs (C179)
 
 - Share the existing native-readable component-list loop serializer between

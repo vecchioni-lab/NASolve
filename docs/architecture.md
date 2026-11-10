@@ -4093,3 +4093,8 @@ New bundle receipts bind the loop layout; absent legacy policy replays the old
 scalar bytes exactly. The actual singleton final endpoint now qualifies, without
 changing chemistry/TER gates or promoting old evidence. See the
 [serialization contract](cif-doctor.md#native-component-metadata-during-combination-c179).
+
+C180 uses the same metadata loop writer when partial component filtering produces
+a retained singleton. Block identity, source fields and dictionary precedence are
+preserved; existing frozen supplements are not rewritten. See the
+[filter contract](cif-doctor.md#native-metadata-in-filtered-supplements-c180).

@@ -66,6 +66,8 @@ now uses the same observer/native checks. The
 [shared native metadata serializer](docs/cif-doctor.md#native-component-metadata-during-combination-c179)
 also preserves singleton metadata: actual final native qualification now passes,
 and old failed evidence still replays as a fallback.
+[Filtered supplements](docs/cif-doctor.md#native-metadata-in-filtered-supplements-c180)
+now preserve that metadata too, without changing which input definition wins.
 
 Explicit diagnostic APIs inspect source graphs, declared attachments, native
 restraint membership, derivatives and bounded coordinate candidates.

@@ -3814,3 +3814,17 @@ original bytes and verdicts. Cold controls confirm that yesterday's rejected
 endpoint is still rejected, while the fresh corrected one remains accepted without
 its original paths or SDK. This is diagnostic consumer integration; ordinary
 adoption and actual diffraction refinement remain separate open work.
+
+
+### Keeping the chosen dictionary intact during filtering (C180)
+
+Resolving an input/generated override can leave a single component in a CIF.
+That retained metadata now keeps the table layout required by Phenix, on both
+sides of the precedence rule. Missing metadata remains missing; definitions are
+neither renamed nor chosen by a residue-specific repair rule.
+
+**Methods.** A before/after native control changes only list serialization:
+the old group readback is null, while the corrected readback retains DNA and
+passes all 28 comparisons with unchanged energies/gradients. Relocated replay
+preserves old and new verdicts. This removes a representation fault; selected
+runtime integration and ordinary refinement remain separate work.

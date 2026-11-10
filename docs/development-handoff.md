@@ -11,6 +11,61 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C180 validated: preserve native metadata in filtered supplements
+
+Base `43335f96cb152a3c24241a40e604bb967632a94c`; existing Cedar. Capsule
+`live_tests_directory/180_Cedar_filtered-metadata-ew8144jz`. Implementation/validation complete; publication
+is next. The remaining partial-filter metadata writer now reuses C09/C179.
+
+**Before → after:** removing overridden components could collapse the retained
+singleton list to scalars, losing native group metadata. The shared serializer now
+keeps that list and its declared block name. Both generated-side and input-side
+filters preserve every retained field, source bytes, numerical definition and
+precedence rule. No inferred group or changed phosphate/source state.
+
+**Validation:** eight expected failures before the change; all ten new cases pass.
+Affected **347 passed in 78.36s (0:01:18)**. Workflow **1697 passed, 45 subtests passed in 426.01s (0:07:06)**.
+All 627 source/test/script hashes stayed fixed. No full suite.
+Last completed full: C160 `d9e481661edcc3a04404df250360b9db63184ae1` (7,740 + 276).
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c180_validate.py affected-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c180_native.py native-before-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c180_native.py native-after
+PYTHONDONTWRITEBYTECODE=1 python c180_cold.py cold-r1
+```
+
+**Phenix 2.2.1-6174 / dispatcher 2.2.1, actual execution:** old filter group
+DNA→null fails only exact effective-site definitions; new filter retains DNA
+and passes all 28 checks. Coordinates, named proxies and energy/gradient snapshots
+are identical. Three captures form the before/after comparison. One earlier
+baseline also completed, then the harness correctly hit the existing separation
+guard because its next output was under an input directory. That partial run is
+preserved; the fresh control uses separate directories. Total actual native calls:
+four. No ReadySet, generation, Coot or refinement was run in this checkpoint.
+The fixture's renamed ZZZ copy is removed before interpretation; it is not a new
+chemical-support claim. The actual retained component is the existing 5PC control.
+
+**Cold:** old/new native comparisons and C178/C179 public runtime selections
+replay after relocation, original copy absent, historical paths/SDK/execution
+denied. All 469 files retain bytes/mtimes. Parent/native evidence is
+unchanged; no older negative result is relabeled. No validation job remains active.
+
+**Files/schema/compatibility:** shared writer/filter and the dictionary-compatibility
+regressions; maintained current docs/queue/ledgers. No schema/migration change.
+Existing filtered artifacts remain frozen/checksummed; successful cached replay
+already requires the unchanged single supplied effective dictionary. Source/tests/
+docs/hash references enter Git; models/CIFs/native output/XML/runners stay local.
+
+**Next:** bind the selected original or repaired public runtime to the existing
+ReadySet observer and strict endpoint checks. Keep source proof, selected dictionary
+order, modifiers and PHIL ownership together; failed improvement must retain that
+same qualified parent, not its earlier unqualified dictionaries. Ordinary invocation,
+immutable checkpoint adoption and actual refinement remain Q04/Q05/Q06.
+Evidence key `filtered_component_metadata_2026_11_10`.
+— Rowan · Codex desktop
+
 ## C179 published: preserve native metadata in combined dictionaries
 
 Base `19b6c2a863cf1a0f71f023c9f700f07a51786cf2`; existing Cedar. Capsule

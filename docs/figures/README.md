@@ -429,3 +429,7 @@ No new scientific acceptance, adoption or refinement arrow is implied.
 C179 repairs metadata serialization on the existing combination→ReadySet→native
 path. Fresh singleton endpoint qualification now takes the checked-endpoint arrow;
 legacy rejected evidence keeps its original fallback arrow. No adoption is added.
+
+C180 extends the existing metadata-preservation contract to component filtering.
+Selection precedence and pipeline arrows are unchanged; this does not add an
+ordinary-adoption or refinement claim.
