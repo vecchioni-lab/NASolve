@@ -28270,6 +28270,18 @@
         "Standalone runtime/checkpoint lineage Q05, actual refinement Q06, mixed/held-out Q07 and release Q16 remain open"
       ],
       "implementation_revision": "4dbd4ae72cb5f742563036383647564133e6c597"
+    },
+    "frozen_source_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "initialize_postmr_dictionary_request(frozen_sources=...)",
+      "reader": "read_acquisition_sources / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#frozen_source_intake_2026_11_10",
+      "limitations": [
+        "Bind actual pre-Coot source/producer evidence at the ordinary construction boundary",
+        "Connect ordinary caller with one composer modifier owner",
+        "Literal bootstrap and selected runtime/checkpoint lineage Q05 remain open",
+        "Actual refinement Q06, mixed/held-out Q07, unresolved state Q13 and integration Q16 remain open"
+      ]
     }
   },
   "audience": [

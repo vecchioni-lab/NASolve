@@ -7,7 +7,7 @@ It does not run ReadySet, replace a checkpoint or infer missing chemical intent.
 from copy import deepcopy
 from pathlib import Path
 
-from .cif_acquisition_sources import _codes, freeze_acquisition_sources
+from .cif_acquisition_sources import _codes, freeze_acquisition_sources, read_acquisition_sources
 from .cif_complete_request import _LIMITS, _compiler_input, _compiler_references, _continuation_fields, initialize_dictionary_request
 from .cif_dictionary_sites import _consumer, _need, _read
 from .cif_generation_acquisition import generation_dictionary_options
@@ -19,7 +19,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -34,7 +34,13 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     supplied compiled PHIL and model, without re-guessing or compiling relationships.
     Its selected component source bytes must agree with ordinary acquisition.
 
-    Both destinations must be fresh, disjoint and outside input/SDK trees.
+    Optional frozen_sources consumes a previously frozen ordinary source selection
+    without rediscovery. Its complete component set must match. In this mode,
+    source_output, ready_set_executable and data_root must all be None; only output
+    is a fresh destination. This preserves source evidence, not proof that a model
+    was constructed from it. The construction caller must retain that producer join.
+
+    Destinations must be fresh, disjoint and outside input/SDK trees.
     Failure preserves all partial work. Resume a published request through
     execute_dictionary_request_attempt at the same output, without reinitializing
     or reselecting sources. Current native qualification, including independent
@@ -76,13 +82,21 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         _need(_read(model) == _read(compiled['model'])
               and [_read(p) for p in phils] == [_read(p) for p in compiled['phils']],
               'Explicit compiler differs from supplied model or compiled PHIL')
-    sources = _root(source_output); request = _root(output)
-    for destination in (sources, request):
+    if frozen_sources is not None:
+        _need(source_output is None and ready_set_executable is None and data_root is None,
+              'Frozen sources cannot be combined with source discovery settings')
+    else:
+        _need(source_output is not None, 'Require a fresh source selection destination')
+    sources = _root(frozen_sources if frozen_sources is not None else source_output)
+    request = _root(output)
+    destinations = (request,) if frozen_sources is not None else (sources, request)
+    for destination in destinations:
         if destination.exists(): raise FileExistsError(destination)
     _need(not sources.is_relative_to(request) and not request.is_relative_to(sources),
           'Source selection and complete request must be separate')
     protected = [_root(item['generation']['installation_root']) for item in components]
     if data_root is not None: protected.append(_root(data_root))
+    if frozen_sources is not None: protected.append(sources)
     for value in _compiler_references(literal_na_inputs,explicit_na_policy).values(): protected.append(_root(value))
     protected += [_root(item['retained_snapshot']) for item in components
                   if item.get('retained_snapshot') is not None]
@@ -90,16 +104,21 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     inputs += [Path(item['terminal_resource']) for item in components
                if item.get('terminal_resource') is not None]
     _need(all(not d.is_relative_to(p) and not p.is_relative_to(d)
-              for d in (sources, request) for p in protected)
-          and all(not p.absolute().is_relative_to(d) for d in (sources, request) for p in inputs),
+              for d in destinations for p in protected)
+          and all(not p.absolute().is_relative_to(d) for d in destinations for p in inputs),
           'PostMR request destinations overlap an input or installation')
     model_context = derive_prepared_model_context(model, report, codes)
     restraint_context = derive_restraint_context(model, phils) if phils else None
     native_context = dict(policy_id=FULL_MODEL_POLICY_ID, monomer_inventory='full_model',
                           custom_restraints='required' if phils else 'absent')
     for item in components: item['contexts'] = model_context['contexts'][item['code']]
-    freeze_acquisition_sources(codes, sources, data_root=data_root,
-                               ready_set_executable=ready_set_executable)
+    if frozen_sources is None:
+        freeze_acquisition_sources(codes, sources, data_root=data_root,
+                                   ready_set_executable=ready_set_executable)
+    else:
+        selected = read_acquisition_sources(sources)
+        _need(selected['report']['components'] == codes,
+              'Frozen source components differ from the complete prepared-model request')
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
     return initialize_dictionary_request(sources, components, model, request,

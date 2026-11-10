@@ -50,7 +50,9 @@ automatic PostMR/checkpoint adoption remains open. Explicit NAR planes now have
 [literal-input bridge](docs/cif-doctor.md#original-literal-input-provenance-c187)
 preserves pair/stack intent and compiler/native evidence through owned requests.
 The alternative [source-bound compiler intake](docs/cif-doctor.md#existing-source-bound-compiler-intake-c188)
-retains an existing C80 artifact without requiring a prior native capture or re-guessing pairs. Actual
+retains an existing C80 artifact without requiring a prior native capture or re-guessing pairs.
+Prepared intake can also [reuse an already frozen source selection](docs/cif-doctor.md#frozen-source-selection-at-prepared-intake-c189)
+without rediscovery. Actual
 refinement qualification is a separate gate. No source chemical state, terminal
 phosphate or requested restraint may be changed merely to obtain a numerical pass.
 

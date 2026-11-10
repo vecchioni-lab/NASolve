@@ -4123,5 +4123,9 @@ retains an already compiled source-bound C80 artifact through the same owner,
 including source-byte agreement and nonactive orientation evidence. This explicitly
 selected mode does not replace original literal intent or bootstrap a broken
 literal capture. Ordinary orchestration and export of original lineage with a
-selected checkpoint remain open. Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
+selected checkpoint remain open. [C189](cif-doctor.md#frozen-source-selection-at-prepared-intake-c189)
+lets the prepared entry consume an already frozen source selection through the
+same reader/owner, with exact component coverage and no competing discovery
+settings. It preserves source evidence but does not establish Coot construction
+lineage. Stored schemas and fresh-discovery semantics are unchanged. Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
 explicit chain does not enable an ordinary default or authorize a merge.

@@ -11,6 +11,61 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C189 validated: prepared intake of already frozen sources
+
+Base `b2f63341ab26093eb842d2f3e8e3225a58620945`; existing Cedar. Implementation complete; publication is next.
+Capsule `live_tests_directory/189_Cedar_frozen-source-intake-xfkalky_`. Q04 remains at ordinary caller,
+construction/producer identity and exclusive modifier ownership; Q05 adoption follows.
+
+**Before → after:** prepared intake can consume the existing frozen selection
+instead of rediscovering sources. Exact component coverage and mutually exclusive
+discovery settings are required. Source bytes/authority/provenance survive unchanged;
+the existing context/readers/owner perform validation and freezing. Equivalent fresh
+and frozen inputs produce identical configuration. No new stored schema or migration.
+
+**Validation:** before **3 failed, 9 passed, 31 deselected in 3.33s**; affected entry and both compiler
+modes **91 passed in 89.79s (0:01:29)**; workflow **1981 passed, 45 subtests passed in 817.98s (0:13:37)**.
+All 640 source/test/script hashes stay fixed. No full suite; C160
+`d9e481661edcc3a04404df250360b9db63184ae1` remains the last full baseline.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c189_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c189_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c189_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** original isolated PDU/5PC selects
+verified prepared runtime with zero repair steps; repaired control selects the
+existing two-step repaired runtime. Literal stack/plane evidence, exact source
+selection and model bytes survive. All children/phases stop. Source rediscovery,
+generation, ReadySet, Coot and diffraction refinement are not run. Python 3.12.14,
+pytest 9.1.1, NARestraints 1.1.3. No physical-pair or new chemistry claim.
+
+**Cold:** 5039 files retain bytes/mtimes. New actual frozen-source
+requests, old literal/explicit compiler modes and v1/v2/absent/ReadySet contexts
+replay with original copy absent, historical source/SDK paths and execution denied.
+All validation jobs are stopped at this checkpoint.
+
+**Prior-work/redundancy audit:** C80 already declared free-five-prime preparation
+for this exact public W fixture. Reusing it in a separate diagnostic copy removes
+ten declared terminal atoms and yields a valid context with 38 links. Raw C188
+refusal and input stay unchanged. This avoids inventing another phosphate fix;
+it gives no generic deletion permission or native proof for the changed model.
+The old compiler artifact must not be rebound to that prepared copy.
+
+**Files/compatibility:** one existing source and test module plus maintained docs/
+ledgers. Fresh-discovery behavior, compiler modes, model/PHIL proofs, OP3/terminal
+protection, NAR recipes and scientific validators are unchanged. Only code/tests/
+docs/hash references ship; scientific files, logs, XML and runners remain local.
+
+**Next:** exercise one ordinary prepared-model caller through the existing owner,
+preserving actual construction source/producer identity and selecting only the
+composer as modifier owner. Avoid another standalone orchestration wrapper.
+Q05 exact selected checkpoint lineage, Q06 refinement and Q07 mixed/held-out
+acceptance remain separate. Do not merge or advertise the automatic engine complete.
+— Rowan · Codex desktop
+
 ## C188 published: existing source-bound compiler intake
 
 Base `a1ff7999f85ea3e1279c70f1a7b24c6fbb5a42e6`; existing Cedar. Implementation complete and published as

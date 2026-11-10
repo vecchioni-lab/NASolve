@@ -174,3 +174,91 @@ def test_failed_source_selection_never_falls_back_to_an_unrequested_source(entry
     before = inventory(args['output'].parent)
     with pytest.raises((ValueError, FileNotFoundError)): initialize_postmr_dictionary_request(**args)
     assert inventory(args['output'].parent) == before and not calls
+
+
+@pytest.fixture
+def frozen_entry(entry_case, case):
+    m, args, sdk, store, generations, calls = entry_case
+    args.update(frozen_sources=case[1]['source_selection'], source_output=None,
+                ready_set_executable=None, data_root=None)
+    return entry_case
+
+
+def test_frozen_source_entry_preserves_exact_authority_without_discovery(frozen_entry, case, monkeypatch):
+    from nasolve import cif_postmr_request as entry
+    m, args, sdk, store, generations, calls = frozen_entry
+    original = inventory(args['frozen_sources'])
+    shutil.rmtree(case[2].parent/'data')
+    def forbidden(*a, **k): raise AssertionError('Frozen input must not rediscover sources')
+    monkeypatch.setattr(entry, 'freeze_acquisition_sources', forbidden)
+    with patch('subprocess.Popen', side_effect=AssertionError('Initialization must not execute')):
+        request = entry.initialize_postmr_dictionary_request(**args)
+    assert inventory(args['frozen_sources']) == original
+    assert (args['output']/'inputs/sources/source_selection.json').read_bytes() == (args['frozen_sources']/'source_selection.json').read_bytes()
+    assert request['configuration']['model_context']['components'] == ['YYY', 'ZZZ']
+    assert m.inspect_dictionary_request(args['output'])['attempts'] == [] and not calls
+
+
+def test_frozen_and_fresh_source_entry_produce_identical_owned_configuration(frozen_entry, case):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    m, args, sdk, *_ = frozen_entry
+    frozen = initialize_postmr_dictionary_request(**args)
+    fresh_args = deepcopy(args); fresh_args.pop('frozen_sources')
+    fresh_args.update(source_output=case[2].parent/'fresh-sources', output=case[2].parent/'fresh-request',
+                      data_root=case[2].parent/'data', ready_set_executable=sdk.executables['phenix.ready_set'])
+    fresh = initialize_postmr_dictionary_request(**fresh_args)
+    assert fresh['request_id'] != frozen['request_id']
+    assert fresh['configuration'] == frozen['configuration']
+
+
+def test_frozen_source_entry_owns_recovery_after_source_origin_disappears(frozen_entry, monkeypatch):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    m, args, sdk, store, generations, calls = frozen_entry
+    initialize_postmr_dictionary_request(**args); shutil.rmtree(args['frozen_sources'])
+    def forbidden(*a, **k): raise AssertionError('Frozen request must not reselect or generate')
+    monkeypatch.setattr(m.acquisition, 'generate_source_candidate_attempt', forbidden)
+    root = args['output']; first = m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    before = inventory(root/'attempts/attempt-0001')
+    second = m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    assert second['attempt_id'] != first['attempt_id'] and second['result']['status'] == 'NO_USABLE_BUNDLE'
+    assert inventory(root/'attempts/attempt-0001') == before
+    assert all(a['state'] == 'STOPPED' for a in m.inspect_dictionary_request(root)['attempts'])
+    moved = root.rename(root.with_name('relocated-request')); before = inventory(moved)
+    with patch('subprocess.Popen', side_effect=AssertionError('Cold replay must not execute')):
+        assert m.read_dictionary_request_result(moved, 2)['result'] == second['result']
+    assert inventory(moved) == before
+
+
+@pytest.mark.parametrize('defect', ['source_output', 'discovery_sdk', 'local_data', 'source_bytes',
+    'component_set', 'symlink', 'missing_manifest', 'nested_output'])
+def test_frozen_source_entry_refuses_conflicts_without_rediscovery(frozen_entry, case, monkeypatch, defect):
+    from nasolve import cif_postmr_request as entry
+    m, args, sdk, store, generations, calls = frozen_entry
+    source = args['frozen_sources']
+    if defect == 'source_output': args['source_output'] = case[2].parent/'competing-output'
+    elif defect == 'discovery_sdk': args['ready_set_executable'] = sdk.executables['phenix.ready_set']
+    elif defect == 'local_data': args['data_root'] = case[2].parent/'data'
+    elif defect == 'source_bytes':
+        p=source/'sources/ZZZ.cif'; p.write_bytes(p.read_bytes()+b'# changed source\n')
+    elif defect == 'component_set': args['components'].pop()
+    elif defect == 'symlink':
+        link=source.with_name('source-link');link.symlink_to(source,target_is_directory=True);args['frozen_sources']=link
+    elif defect == 'missing_manifest': (source/'source_selection.json').unlink()
+    elif defect == 'nested_output': args['output'] = source/'nested'
+    def forbidden(*a, **k): raise AssertionError('Invalid frozen input must never trigger source discovery')
+    monkeypatch.setattr(entry, 'freeze_acquisition_sources', forbidden)
+    before=inventory(case[2].parent)
+    with pytest.raises((ValueError, FileNotFoundError)):
+        entry.initialize_postmr_dictionary_request(**args)
+    assert inventory(case[2].parent) == before and not calls
+
+
+def test_frozen_source_changed_during_context_derivation_never_publishes_request(frozen_entry, monkeypatch):
+    from nasolve import cif_postmr_request as entry
+    m, args, *_ = frozen_entry; original = entry.derive_prepared_model_context
+    def change(*a, **k):
+        context=original(*a, **k);p=args['frozen_sources']/'sources/ZZZ.cif'
+        p.write_bytes(p.read_bytes()+b'# changed while preparing context\n');return context
+    monkeypatch.setattr(entry, 'derive_prepared_model_context', change)
+    with pytest.raises(ValueError):entry.initialize_postmr_dictionary_request(**args)
+    assert not args['output'].exists()

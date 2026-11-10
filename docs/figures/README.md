@@ -460,3 +460,6 @@ no pipeline arrow or family-support claim changes. C188 adds the existing
 source-bound C80 artifact as an explicit alternative at that same input boundary;
 it preserves source/relationship evidence without a prior native capture. It does
 not enable ordinary adoption or replace frozen literal intent with a new guess.
+C189 lets that same prepared entry retain an existing frozen source selection.
+The construction/producer and ordinary-adoption arrows remain open; no second
+source selector or recovery stage is added.

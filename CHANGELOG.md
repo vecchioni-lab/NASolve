@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Consume frozen sources at prepared-model intake (C189)
+
+- Let the existing prepared entry consume a previously frozen source selection
+  without rediscovery; require exact component coverage and reject competing
+  source discovery settings. Preserve source authority, bytes and provenance.
+- Reuse existing source readers, contexts and complete-request ownership. Equivalent
+  fresh/frozen inputs produce identical configurations; stored schemas need no migration.
+- Validate actual original/repaired native controls, immutable recovery and cold
+  old/new replay. Ordinary construction/producer lineage and adoption remain open.
+- Reconcile the raw W-frame phosphate refusal with C80's existing explicit 5'-OH
+  fixture preparation; retain the original refusal and avoid a duplicate chemistry task.
+
+
 ### Retain source-bound compiler evidence through owned requests (C188)
 
 - Accept the existing C80 compiler artifact as an explicit alternative to original

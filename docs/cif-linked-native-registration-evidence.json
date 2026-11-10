@@ -77077,5 +77077,367 @@
       }
     },
     "implementation_revision": "4dbd4ae72cb5f742563036383647564133e6c597"
+  },
+  "frozen_source_intake_2026_11_10": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "base_revision": "b2f63341ab26093eb842d2f3e8e3225a58620945",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "EXISTING_FROZEN_SOURCE_INTAKE; NOT_CONSTRUCTION_PRODUCER_PROOF_OR_ORDINARY_ADOPTION",
+    "before": "The prepared entry always rediscovered sources even if a caller already held the exact source-selection artifact.",
+    "after": "An explicit frozen source set is validated and handed unchanged to the same owner; conflicting discovery settings or component coverage refuse.",
+    "prior_work": [
+      "C167 source selection/reader",
+      "C171 complete source owner",
+      "C177 prepared entry",
+      "C187/C188 compiler provenance",
+      "C80 explicit free-five-prime fixture preparation"
+    ],
+    "files": [
+      "src/nasolve/cif_postmr_request.py",
+      "tests/test_cif_postmr_request.py"
+    ],
+    "schemas": [
+      "No stored schema change; optional frozen_sources initializer argument"
+    ],
+    "compatibility": "Existing fresh discovery unchanged; equivalent frozen inputs produce identical configuration. No migration or new reader requirement beyond existing compiler/context modes.",
+    "regression": {
+      "summaries": {
+        "before-r1": "3 failed, 9 passed, 31 deselected in 3.33s",
+        "new-r1": "91 passed in 89.79s (0:01:29)",
+        "focused-r1": "1981 passed, 45 subtests passed in 817.98s (0:13:37)"
+      },
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "commands": {
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_cif_literal_na_inputs.py",
+          "tests/test_cif_compiler_intake.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/189_Cedar_frozen-source-intake-xfkalky_/new-r1.xml"
+        ],
+        "focused-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/189_Cedar_frozen-source-intake-xfkalky_/focused-r1.xml"
+        ]
+      }
+    },
+    "native": {
+      "status": "PASS",
+      "elapsed_seconds": 124.31826704200648,
+      "controls": {
+        "original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "repair_steps": 0,
+          "all_children_stopped": true,
+          "native_phases": [
+            "native-000",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "model_bytes_unchanged": true,
+          "source_selection_bytes_unchanged": true,
+          "original_literal_evidence_preserved": true,
+          "request_counts": {
+            "parallelity": 1,
+            "planarity": 1
+          },
+          "native_context": {
+            "custom_restraints": "required",
+            "monomer_inventory": "full_model",
+            "policy_id": "cif-explicit-site-native-context-v2"
+          }
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "repair_steps": 2,
+          "all_children_stopped": true,
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-002",
+            "native-baseline",
+            "original-gradient",
+            "repaired-gradient"
+          ],
+          "model_bytes_unchanged": true,
+          "source_selection_bytes_unchanged": true,
+          "original_literal_evidence_preserved": true,
+          "request_counts": {
+            "parallelity": 1,
+            "planarity": 1
+          },
+          "native_context": {
+            "custom_restraints": "required",
+            "monomer_inventory": "full_model",
+            "policy_id": "cif-explicit-site-native-context-v2"
+          }
+        }
+      },
+      "parent_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "source_discovery": "NOT_RUN",
+      "generation": "NOT_RUN",
+      "readyset": "NOT_RUN",
+      "coot": "NOT_RUN",
+      "diffraction_refinement": "NOT_RUN",
+      "scope": "EXACT_FROZEN_SOURCE_HANDOFF_THROUGH_EXISTING_PREPARED_ENTRY; NOT_CONSTRUCTION_PRODUCER_PROOF_OR_ORDINARY_ADOPTION"
+    },
+    "cold": {
+      "status": "PASS",
+      "cases": {
+        "explicit": {
+          "attempts": 2,
+          "transport": "SYNTHETIC_REPAIR_TRANSPORT",
+          "compiler": "PRESERVED",
+          "status": "NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED"
+        },
+        "original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy187original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy187repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy186": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy176": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v1"
+        },
+        "legacy184": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "readyset_checked_model",
+          "restraint_policy": null
+        }
+      },
+      "files": 5039,
+      "public_explicit_requests": 193,
+      "public_literal_requests": 201,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "prior_terminal_preparation": {
+      "status": "EXISTING_DECLARED_FIXTURE_CONTEXT_PASS",
+      "source_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
+      "prepared_sha256": "29c30cfc355125180c2c1e8793eb5c67ef43ee213a26fdd1d575db0e94da4c9e",
+      "removed_atoms": [
+        {
+          "site": "B:1",
+          "atom": "P",
+          "serial": 429
+        },
+        {
+          "site": "B:1",
+          "atom": "OP1",
+          "serial": 430
+        },
+        {
+          "site": "B:1",
+          "atom": "OP2",
+          "serial": 431
+        },
+        {
+          "site": "C:8",
+          "atom": "P",
+          "serial": 573
+        },
+        {
+          "site": "C:8",
+          "atom": "OP1",
+          "serial": 574
+        },
+        {
+          "site": "C:8",
+          "atom": "OP2",
+          "serial": 575
+        },
+        {
+          "site": "D:1",
+          "atom": "OP3",
+          "serial": 718
+        },
+        {
+          "site": "D:1",
+          "atom": "P",
+          "serial": 719
+        },
+        {
+          "site": "D:1",
+          "atom": "OP1",
+          "serial": 720
+        },
+        {
+          "site": "D:1",
+          "atom": "OP2",
+          "serial": 721
+        }
+      ],
+      "selected_DA_sites": 8,
+      "verified_links": 38,
+      "source_bytes_mtime_unchanged": true,
+      "authority": "Existing C80 explicit free-five-prime fixture; NOT a general phosphate deletion permission",
+      "prior_work": [
+        "src/nasolve/cif_mixed_pair_fixture.py:prepare_free_five_prime_model",
+        "src/nasolve/synthetic_dna.py:prepare_free_five_prime_model",
+        "docs/architecture.md:C80 explicit eight-pair construction"
+      ],
+      "native": "NOT_RUN",
+      "owned_request": "NOT_RUN",
+      "ordinary_adoption": false,
+      "compiler_reuse": "NOT_AUTHORIZED_FOR_CHANGED_MODEL; old artifact remains exact to raw frame"
+    },
+    "redundancy": "Reuse the source reader and complete owner; no second source format/discovery/generation. Existing C80 declared free-five-prime preparation resolves the raw-frame context distinction; no duplicate chemical fix.",
+    "remaining": [
+      "Bind actual pre-Coot source/producer evidence at the ordinary construction boundary",
+      "Connect ordinary caller with one composer modifier owner",
+      "Literal bootstrap and selected runtime/checkpoint lineage Q05 remain open",
+      "Actual refinement Q06, mixed/held-out Q07, unresolved state Q13 and integration Q16 remain open"
+    ],
+    "artifacts": "Only code/tests/docs/hash references ship. Models, dictionaries, native evidence, logs, XML, partial outputs and runners remain outside Git.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/start.json",
+        "sha256": "7c01f979197e823e3e8aff72b54ceca1de64ff75aa82d59f39b78b6be276012e",
+        "size": 318
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/before-r1-result.json",
+        "sha256": "9aa0b3c25d7b48c158b938addb0c6ba76994fb82d97907c7b867ed850c58134f",
+        "size": 609
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/new-r1-result.json",
+        "sha256": "a62c1a3c333e6efe0a65bccc167c6f02846a502f804cafa1f63d30e8fc32d0c8",
+        "size": 663
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/focused-r1-result.json",
+        "sha256": "a4c443425e69e05f81f69dfd229ddfc2493e91a6a47ae385137ea448ae649b91",
+        "size": 499
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/focused-r1-sources.json",
+        "sha256": "4cbb76948de0714c6210779f2456d3f1d8f13454d3bb2a536b3f26cce3fea260",
+        "size": 69902
+      },
+      "native-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/summary.json",
+        "sha256": "7374a1b777f42d616f0a81771e8697e9ac6d1934c171f27bf54eb054a83e67cd",
+        "size": 1903
+      },
+      "native-r1/runtime-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/runtime-sources.json",
+        "sha256": "afa9d41f835b15412c5a70b05b48cc2439dc2b77e665a57e68e220be8a9e32a1",
+        "size": 23206
+      },
+      "native-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/installation.json",
+        "sha256": "f42bccf6e853eba5dab356a8427766473a93833f5853550ee78d852c9a64e630",
+        "size": 93
+      },
+      "native-r1/parent-inputs.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/parent-inputs.json",
+        "sha256": "713be4b6515ae166752bc4b4bf5548297eb9c8fc7a48e3d5a042e10fa571c17d",
+        "size": 290843
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/cold-r1/summary.json",
+        "sha256": "4ad4145682469e656caf7c0128faddd788a4c0fecd83dfdc30ec8753935285aa",
+        "size": 1691
+      },
+      "existing-five-prime-audit-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/existing-five-prime-audit-r1/summary.json",
+        "sha256": "ede91b9b518cb6b77c42422a3c538f9c27c1181b24504aa0ad999b0e60fa3d7a",
+        "size": 1609
+      },
+      "existing-five-prime-audit-r1/context.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/existing-five-prime-audit-r1/context.json",
+        "sha256": "793267cca6cec92e482cef641462c3ea4bee2ba47e8597c1c2bba196eb26c7e8",
+        "size": 25890
+      },
+      "native-r1/original/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/original/request/request.json",
+        "sha256": "26340d3aebca5a2e3841a179f4f98ecf26db542fb40170c98285079967bec846",
+        "size": 62310
+      },
+      "native-r1/original/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/original/request/attempts/attempt-0001/result.json",
+        "sha256": "50842d4d0fb40e811b542ff2a2fe20a7530e354766a89cd1149c35d4015cbf02",
+        "size": 740
+      },
+      "native-r1/original/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/original/request/attempts/attempt-0001/finished.json",
+        "sha256": "46f0031c04d2e429083a9cec9f659f218dbe87fff52f03bf1c9fecee459d62dd",
+        "size": 109371
+      },
+      "native-r1/repair/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/repair/request/request.json",
+        "sha256": "8c6eeca8e98c3184d8895dcf0a1793d2eebc940ef9af7580eb0081aac6fabb01",
+        "size": 62318
+      },
+      "native-r1/repair/request/attempts/attempt-0001/result.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/repair/request/attempts/attempt-0001/result.json",
+        "sha256": "ccc7c56d9dec4585281e025930990d77c7325ff00835e0add32918a99a9db9da",
+        "size": 739
+      },
+      "native-r1/repair/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "189_Cedar_frozen-source-intake-xfkalky_/native-r1/repair/request/attempts/attempt-0001/finished.json",
+        "sha256": "8c8e1e55184011cb3887b63736dc10dde235d21cd7d8642743faaed9b57f2945",
+        "size": 144220
+      }
+    }
   }
 }
