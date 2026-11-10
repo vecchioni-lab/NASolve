@@ -12,7 +12,7 @@ from .cif_component_runtime import _tree
 from .cif_dictionary_sites import _need, _read
 from .cif_dictionary_store import _bytes, _json
 from .cif_explicit_na_policy import _implementation
-from .cif_na_policy import _compile_na_policy_payload, _parse, _path, _resolve
+from .cif_na_policy import _compile_na_policy_payload
 from .cif_repair_attempt import _root
 from .cif_restraint_context import _derive_restraint_payload
 
@@ -51,14 +51,8 @@ def _payload(model, native_receipt):
     pins = _implementation()
     compilation, compiled = _compile_na_policy_payload(model, [native_receipt.parent/n for n in names], native)
     order = [*compilation['retained_phils'], compilation['compiled_phil']]
-    # Legacy context v1 remains byte-compatible. This new conversion contract
-    # rejects ambiguous boolean alternatives before introducing derived inputs.
-    for data in compiled.values():
-        for node in _parse(data.decode('utf-8'))[0]:
-            if _path(node) == 'geometry_restraints.edits.parallelity':
-                for key in ('atom_selection_1','atom_selection_2'):
-                    _resolve(node['fields'][key], native['atoms'], require_scoped_names=True)
-    context = _derive_restraint_payload(model, [compiled[n] for n in order])
+    # Use the same scoped selection grammar as new explicit input binding.
+    context = _derive_restraint_payload(model, [compiled[n] for n in order], require_scoped_names=True)
     files = {'model.pdb': original, **{'native/'+n:b for n,b in tree.items()},
              **{'compiled/'+n:b for n,b in compiled.items()}}
     report = dict(schema_version=1, policy_id=POLICY_ID, status='FROZEN_LITERAL_INPUTS',

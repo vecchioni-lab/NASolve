@@ -130,7 +130,9 @@
 
 <a id="current-capability-boundary-c188"></a>
 
-## Current capability boundary (C189)
+<a id="current-capability-boundary-c189"></a>
+
+## Current capability boundary (C190)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -612,6 +614,38 @@ an enabled `prepare_postmr` default. Ordinary orchestration must preserve pre-Co
 source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
+
+### Scoped atom selections at new restraint intake (C190)
+
+New explicit restraint contexts and context-bound complete requests require
+parentheses around atom-name alternatives. For example, use
+`chain A and resid 2 and (name N1 or name C2 or name N3)`.
+Without grouping, native boolean precedence can select C2/N3 atoms outside A:2,
+while the historical bounded context reader attributed every name to that site.
+
+**Methods.** Thread the existing C186 strict selector through the shared context
+derivation. Both new request initialization and fresh execution validate it before
+creating a destination, lock or attempt. C187 literal compilation uses the same
+guard, replacing its duplicate parallelity loop. No boolean evaluator, automatic
+PHIL rewrite or new scientific target is introduced. Existing context-free
+native-only APIs are outside this PDB-endpoint binding contract.
+
+Read-only validation reconstructs historical v1/v2 records exactly, including
+previously accepted ungrouped selections. Such a record remains evidence; it
+cannot launch a new context-bound attempt. Correct an input only after establishing
+its intended atom scope, then create a fresh request; never rewrite the original.
+Grouped records keep identical bytes/meaning and no schema or migration changes.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 on the packaged W frame reproduces the
+problem: context records three atoms per parallelity plane while native selection
+chooses 85 per plane. Grouped controls select three in both before and after the
+fix. Named identities also agree after validating the complete native atom and
+coordinate inventory; PDB and native indices are never equated. The native proxy
+realizes the actual native selection in both cases; that alone does not prove it matches the context reader's intended scope. This is a
+selection-semantics check, not chemical qualification, geometry optimization or
+refinement. Cold historical requests/results and both compiler modes replay with
+original copy absent and historical paths, SDK access and execution denied.
+Evidence: `scoped_restraint_intake_2026_11_10`.
 
 ### Frozen source selection at prepared intake (C189)
 

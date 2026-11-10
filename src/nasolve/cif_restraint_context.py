@@ -22,7 +22,7 @@ _TARGETS = {'bond': 'distance_ideal', 'angle': 'angle_ideal', 'parallelity': 'ta
 _CONTAINERS = {'refinement', 'pdb_interpretation', 'geometry_restraints', 'geometry_restraints.edits'}
 
 
-def _checked_requests(text, atoms):
+def _checked_requests(text, atoms, *, require_scoped_names=False):
     nodes, _ = _parse(text); declarations = 0; disabled = 0
     for node in nodes:
         path = _path(node); fields = node['fields']
@@ -50,7 +50,7 @@ def _checked_requests(text, atoms):
             # spelling may bypass the composer's exclusive modifier ownership.
             raise ValueError('Unsupported scope or competing site-modifier owner: '+path)
     try:
-        requests = _requests(text, atoms)
+        requests = _requests(text, atoms, require_scoped_names=require_scoped_names)
     except (KeyError, OverflowError, ZeroDivisionError) as exc:
         raise ValueError('Incomplete or unrepresentable explicit restraint') from exc
     _need(len(requests) == declarations, 'Explicit restraint declaration coverage differs')
@@ -68,19 +68,25 @@ def derive_restraint_context(model, supplementary_phils):
     Includes, substitutions, native secondary-structure guessing, site modifiers,
     unknown fields/actions and unsupported selection syntax refuse. Every accepted
     input byte and request is retained; there is no target/coordinate rewriting.
-    Plane-bearing records use v2; plane-free records retain exact v1 semantics.
+    Atom-name alternatives must be parenthesized to retain their site scope in
+    native boolean selection. Plane-bearing records use v2; grouped plane-free
+    records retain exact v1 semantics.
     """
+    return _derive_from_paths(model, supplementary_phils, require_scoped_names=True)
+
+
+def _derive_from_paths(model, supplementary_phils, *, require_scoped_names):
     _need(isinstance(supplementary_phils, (list, tuple)) and 1 <= len(supplementary_phils) <= 64,
           'Require one to 64 ordered explicit PHIL inputs')
     paths = [Path(p) for p in supplementary_phils]
     originals = [_read(p) for p in paths]
-    result = _derive_restraint_payload(model, originals)
+    result = _derive_restraint_payload(model, originals, require_scoped_names=require_scoped_names)
     _need(all(_read(p) == data for p, data in zip(paths, originals)),
           'PHIL changed while binding explicit restraints')
     return result
 
 
-def _derive_restraint_payload(model, originals):
+def _derive_restraint_payload(model, originals, *, require_scoped_names=False):
     """Shared byte-bound derivation for frozen and not-yet-written PHIL payloads."""
     _need(isinstance(originals, (list, tuple)) and 1 <= len(originals) <= 64
           and all(isinstance(data, bytes) for data in originals), 'Require ordered PHIL bytes')
@@ -89,7 +95,7 @@ def _derive_restraint_payload(model, originals):
     _need(raw == original, 'Model changed while binding explicit restraints')
     requests = []; inputs = []; disabled = 0
     for number, data in enumerate(originals):
-        rows, controls = _checked_requests(data.decode('utf-8'), atoms)
+        rows, controls = _checked_requests(data.decode('utf-8'), atoms, require_scoped_names=require_scoped_names)
         start = len(requests); requests.extend(rows); disabled += controls
         inputs.append(dict(input_index=number, sha256=sha256(data).hexdigest(), size=len(data),
                            request_indices=list(range(start, len(requests))), disabled_ss_controls=controls))
@@ -106,11 +112,15 @@ def _derive_restraint_payload(model, originals):
                 secondary_structure_enabled=False, native_membership='NOT_ASSESSED')
 
 
-def validate_restraint_context(model, supplementary_phils, record):
-    """Reconstruct every input/request from the frozen ordered model and PHIL."""
+def validate_restraint_context(model, supplementary_phils, record, *, require_scoped_names=False):
+    """Reconstruct frozen input meaning without changing historical records.
+
+    New creation/execution must require scoped names. Read-only replay retains
+    the legacy derivation; a readable historical record is not permission to run.
+    """
     _need(isinstance(record, dict) and type(record.get('schema_version')) is int
           and record['schema_version'] == 1 and record.get('policy_id') in (POLICY_ID, PLANARITY_POLICY_ID),
           'Unsupported explicit restraint context')
-    expected = derive_restraint_context(model, supplementary_phils)
+    expected = _derive_from_paths(model, supplementary_phils, require_scoped_names=require_scoped_names)
     _need(_bytes(record) == _bytes(expected), 'Explicit restraint context differs from frozen inputs')
     return expected

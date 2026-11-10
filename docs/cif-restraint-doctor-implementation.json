@@ -28283,6 +28283,17 @@
         "Actual refinement Q06, mixed/held-out Q07, unresolved state Q13 and integration Q16 remain open"
       ],
       "implementation_revision": "d35b3c4fbac3697b70d27040d96aa3bf6b4ef36f"
+    },
+    "scoped_restraint_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "entry": "derive_restraint_context / initialize_dictionary_request / execute_dictionary_request_attempt",
+      "reader": "validate_restraint_context (historical read-only default)",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#scoped_restraint_intake_2026_11_10",
+      "limitations": [
+        "Connect ordinary caller and actual construction source/producer identity with one modifier owner (Q04)",
+        "Preserve original compiler/source lineage in immutable selected checkpoints (Q05)",
+        "Actual refinement Q06, mixed/held-out Q07, state Q13 and full integration Q16 remain open"
+      ]
     }
   },
   "audience": [

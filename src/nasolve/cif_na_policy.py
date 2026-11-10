@@ -60,7 +60,7 @@ def _resolve(text,atoms,*,require_scoped_names=False):
     if not m:raise ValueError('Unsupported generated atom selection')
     site=_site_selection(m[1]);names=re.findall(r'name\s+([A-Za-z0-9_]+)',m[2])
     if require_scoped_names and len(names)>1 and not (m[2].startswith('(') and m[2].endswith(')')):
-        raise ValueError('Require parenthesized plane atom-name alternatives')
+        raise ValueError('Require parenthesized atom-name alternatives')
     selected=[a for a in atoms if (a['identity']['chain_id'].strip(),a['identity']['resseq'].strip())==site and a['atom_id'] in names]
     if len(selected)!=len(set(names)):raise ValueError('Generated selection has missing or ambiguous atoms')
     return selected
@@ -97,7 +97,7 @@ def _resolve_plane(text,atoms):
     return [a for a in atoms if a['i_seq'] in wanted]
 
 
-def _requests(text,atoms):
+def _requests(text,atoms,*,require_scoped_names=False):
     nodes,_=_parse(text);result=[]
     for n in nodes:
         kind=_path(n).removeprefix('geometry_restraints.edits.')
@@ -111,7 +111,7 @@ def _requests(text,atoms):
             continue
         size=3 if kind=='angle' else 2
         expressions=[f['atom_selection_'+str(i+1)] for i in range(size)]
-        selected=[_resolve(s,atoms) for s in expressions]
+        selected=[_resolve(s,atoms,require_scoped_names=require_scoped_names) for s in expressions]
         if kind!='parallelity' and any(len(s)!=1 for s in selected):raise ValueError('Expected single atom endpoints')
         if kind=='parallelity' and any(len(s)<3 for s in selected):raise ValueError('Insufficient mapped plane atoms')
         endpoints=selected[0] if kind=='parallelity' else [s[0] for s in selected]

@@ -213,6 +213,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     An optional prepared-model context is rederived from frozen model/intent;
     supplementary PHIL additionally requires a frozen explicit restraint context.
     Its bounded grammar keeps the composer as the only site-modifier owner.
+    New requests require parenthesized atom-name alternatives; historical reads
+    preserve their frozen meaning but ambiguous records cannot start new attempts.
     Optional literal_na_inputs freezes original native/PHIL/compiler provenance
     and must reproduce the exact supplied model and ordered compiled PHIL.
     Alternatively explicit_na_policy retains an existing source-bound C80 artifact;
@@ -263,6 +265,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     def unchanged():
         _need(all(_capture(p) == captured[name] for name,p in trees.items())
               and all(_read(p) == b for p,b in originals.items()), 'Complete request source changed while freezing')
+    if restraint_context is not None:
+        validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
     config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,**compiler_refs); unchanged()
@@ -532,6 +536,10 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
     _need(not store.is_relative_to(root) and not root.is_relative_to(store)
           and not root.is_relative_to(sdk) and not sdk.is_relative_to(root), 'Complete request overlaps cache or SDK')
     request = _request(root); config = request['configuration']; controls = config['controls']; limits = config['limits']
+    if 'restraint_context' in config:
+        validate_restraint_context(root/'inputs/model.pdb',
+            [root/'inputs'/name for name in controls['supplementary_phils']],
+            config['restraint_context'], require_scoped_names=True)
     generation = deepcopy(generation)
     _need(isinstance(generation,dict) and set(generation) == set(config['components']), 'Require every runtime generation binding')
     def remaining():

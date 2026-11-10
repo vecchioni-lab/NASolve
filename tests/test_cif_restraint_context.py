@@ -332,3 +332,65 @@ def test_complete_request_replays_planarity_after_original_inputs_disappear(case
     with patch('subprocess.Popen', side_effect=AssertionError('Cold read cannot execute')):
         assert m.read_dictionary_request_result(moved, 1)['result'] == result['result']
     assert inventory(moved) == before
+
+
+
+def legacy_ungrouped(args, tmp_path):
+    from nasolve.cif_restraint_context import _derive_restraint_payload
+    args = declared(args, tmp_path)
+    p = args['supplementary_phils'][1]
+    p.write_text(p.read_text().replace('(name', 'name').replace('OP2)', 'OP2'))
+    # Retain the historical v1 producer's record, without invoking a new-input API.
+    args['restraint_context'] = _derive_restraint_payload(args['model'], [p.read_bytes() for p in args['supplementary_phils']])
+    return args
+
+
+def test_new_context_refuses_ungrouped_name_alternatives(case, tmp_path):
+    from nasolve.cif_restraint_context import derive_restraint_context
+    args = legacy_ungrouped(case[1], tmp_path)
+    with pytest.raises(ValueError, match='parenthesized'):
+        derive_restraint_context(args['model'], args['supplementary_phils'])
+
+
+def test_new_request_refuses_a_supplied_legacy_ungrouped_context(case, tmp_path):
+    m, args, root, *_ = case; args = legacy_ungrouped(args, tmp_path)
+    with pytest.raises(ValueError, match='parenthesized'):
+        m.initialize_dictionary_request(output=root, **args)
+    assert not root.exists()
+
+
+def test_legacy_ungrouped_context_keeps_its_exact_read_only_meaning(case, tmp_path):
+    from nasolve.cif_restraint_context import validate_restraint_context
+    args = legacy_ungrouped(case[1], tmp_path);before=inventory(tmp_path)
+    with patch('subprocess.Popen', side_effect=AssertionError('Historical context read must not execute')):
+        assert validate_restraint_context(args['model'], args['supplementary_phils'], args['restraint_context']) == args['restraint_context']
+    assert inventory(tmp_path) == before
+    assert args['restraint_context']['policy_id'] == 'cif-owned-explicit-restraints-v1'
+
+
+def test_legacy_ungrouped_request_reads_but_cannot_start_a_new_attempt(case, tmp_path):
+    m, args, root, sdk, store, generations, calls = case;args=legacy_ungrouped(args,tmp_path)
+    previous = m.validate_restraint_context
+    def historical_writer(*a, **k):
+        k.pop('require_scoped_names',None)
+        return previous(*a, **k)
+    # Simulate only the historical producer. Current inspection/execution are unpatched.
+    with patch.object(m, 'validate_restraint_context', side_effect=historical_writer):
+        m.initialize_dictionary_request(output=root, **args)
+    before=inventory(root)
+    assert m.inspect_dictionary_request(root)['attempts'] == []
+    with pytest.raises(ValueError, match='parenthesized'):
+        m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    assert inventory(root)==before and not calls and not store.exists()
+
+
+@pytest.mark.parametrize('with_plane', [False, True])
+def test_current_grouped_binding_keeps_legacy_record_bytes(case, tmp_path, with_plane):
+    from nasolve.cif_restraint_context import _derive_restraint_payload, derive_restraint_context
+    args=declared(case[1],tmp_path)
+    if with_plane:
+        p=tmp_path/'extra-plane.phil'
+        p.write_text("geometry_restraints.edits.planarity {\n action = add\n atom_selection = chain A and resid 1 and (name P or name OP1 or name OP2)\n sigma = 0.02\n}\n")
+        args['supplementary_phils'].append(p)
+    old=_derive_restraint_payload(args['model'],[p.read_bytes() for p in args['supplementary_phils']])
+    assert derive_restraint_context(args['model'],args['supplementary_phils'])==old

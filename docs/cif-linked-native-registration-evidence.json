@@ -77440,5 +77440,378 @@
       }
     },
     "implementation_revision": "d35b3c4fbac3697b70d27040d96aa3bf6b4ef36f"
+  },
+  "scoped_restraint_intake_2026_11_10": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "base_revision": "c70790bdabd03eb743d275d6da8aa9540480d964",
+    "branch": "cedar",
+    "date": "2026-11-10",
+    "author": "Rowan · Codex desktop",
+    "scope": "CONTEXT_BOUND_ATOM_SELECTION_SEMANTICS; NOT_CHEMISTRY_OR_REFINEMENT_QUALIFICATION",
+    "before": "New plain explicit contexts accepted ungrouped atom alternatives whose recorded site scope differed from Phenix native boolean selection.",
+    "after": "New context derivation, request initialization and fresh execution require the existing grouped grammar; historical inspection retains exact legacy semantics.",
+    "prior_work": [
+      "C21 bounded selector/reader",
+      "C176 ordered explicit context",
+      "C186 strict plane selection",
+      "C187 literal converter guard"
+    ],
+    "files": [
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_literal_na_inputs.py",
+      "src/nasolve/cif_na_policy.py",
+      "src/nasolve/cif_restraint_context.py",
+      "tests/test_cif_restraint_context.py"
+    ],
+    "schemas": [
+      "No stored schema or policy-id change; grouped v1/v2 derivation identical"
+    ],
+    "compatibility": "Historical ambiguous records remain readable but cannot start a new context-bound attempt. Establish intended scope and use new grouped input in a fresh request; never rewrite history. Context-free native-only APIs unchanged.",
+    "regression": {
+      "summaries": {
+        "before-r1": "3 failed, 3 passed, 78 deselected in 6.02s",
+        "new-r1": "175 passed in 103.36s (0:01:43)",
+        "compiler-r1": "41 passed in 26.50s",
+        "focused-r1": "1987 passed, 45 subtests passed in 801.50s (0:13:21)"
+      },
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
+      "full_suite": "NOT_RUN_USER_REQUEST",
+      "commands": {
+        "before-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_restraint_context.py",
+          "-k",
+          "ungrouped or current_grouped",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/190_Cedar_selector-precedence-rbvgbsii/before-r1.xml"
+        ],
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_restraint_context.py",
+          "tests/test_cif_literal_na_inputs.py",
+          "tests/test_cif_compiler_intake.py",
+          "tests/test_cif_postmr_request.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/190_Cedar_selector-precedence-rbvgbsii/new-r1.xml"
+        ],
+        "compiler-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_na_policy.py",
+          "tests/test_cif_explicit_na_policy.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/190_Cedar_selector-precedence-rbvgbsii/compiler-r1.xml"
+        ],
+        "focused-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/190_Cedar_selector-precedence-rbvgbsii/focused-r1.xml"
+        ]
+      }
+    },
+    "native_before": {
+      "status": "PRECEDENCE_MISMATCH_REPRODUCED",
+      "elapsed_seconds": 5.549951207998674,
+      "controls": {
+        "grouped": {
+          "context_counts": [
+            3,
+            3
+          ],
+          "native_counts": [
+            3,
+            3
+          ],
+          "native_proxy_realization": "PASS",
+          "phil_sha256": "ea2ae74a8ddd216d2b9f75a7434317c2a0b07483df4d7b6e8a12069b9046fb7b"
+        },
+        "ungrouped": {
+          "context_counts": [
+            3,
+            3
+          ],
+          "native_counts": [
+            85,
+            85
+          ],
+          "native_proxy_realization": "PASS",
+          "phil_sha256": "1a47d7e834f67f978f4c7f242eddb8093155b6d67f3246926d53e7b93efae0a9"
+        }
+      },
+      "model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
+      "model_bytes_mtime_unchanged": true,
+      "owned_request": "NOT_RUN",
+      "scope": "NATIVE_SELECTION_SEMANTICS_ONLY; NO_CHEMISTRY_OR_REFINEMENT_CLAIM"
+    },
+    "native_after": {
+      "status": "PASS",
+      "elapsed_seconds": 2.084401040992816,
+      "controls": {
+        "grouped": {
+          "legacy_context_replay": "EXACT",
+          "context_counts": [
+            3,
+            3
+          ],
+          "native_counts": [
+            3,
+            3
+          ],
+          "native_proxy_realization": "PASS"
+        },
+        "ungrouped": {
+          "legacy_context_replay": "EXACT",
+          "new_context": "REFUSED_BEFORE_NATIVE",
+          "reason": "Require parenthesized atom-name alternatives"
+        }
+      },
+      "historical_request": {
+        "status": "REFUSED_BEFORE_LOCK_OR_ATTEMPT",
+        "reason": "Require parenthesized atom-name alternatives"
+      },
+      "model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
+      "model_bytes_mtime_unchanged": true,
+      "prior_evidence_bytes_mtimes_unchanged": true,
+      "legacy_request_bytes_mtimes_unchanged": true,
+      "scope": "NATIVE_SELECTION_SEMANTICS_ONLY; NO_CHEMISTRY_OR_REFINEMENT_CLAIM"
+    },
+    "cold": {
+      "status": "PASS",
+      "cases": {
+        "ambiguous-legacy": {
+          "status": "EXACT_READ_ONLY_REPLAY",
+          "attempts": 0,
+          "new_context": "REFUSED"
+        },
+        "explicit": {
+          "attempts": 2,
+          "transport": "SYNTHETIC_REPAIR_TRANSPORT",
+          "compiler": "PRESERVED",
+          "status": "NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED"
+        },
+        "original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy187original": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy187repair": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "repaired_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy186": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v2"
+        },
+        "legacy176": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "verified_prepared_bundle",
+          "restraint_policy": "cif-owned-explicit-restraints-v1"
+        },
+        "legacy184": {
+          "status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+          "selected": "readyset_checked_model",
+          "restraint_policy": null
+        }
+      },
+      "files": 5067,
+      "public_explicit_requests": 193,
+      "public_literal_requests": 201,
+      "bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_paths_sdk_and_execution_denied": true
+    },
+    "redundancy": "Thread existing strict selector through shared context derivation; remove C187 duplicate parse/resolve loop. Preserve one historical reader, one request owner and all existing scientific validators.",
+    "remaining": [
+      "Connect ordinary caller and actual construction source/producer identity with one modifier owner (Q04)",
+      "Preserve original compiler/source lineage in immutable selected checkpoints (Q05)",
+      "Actual refinement Q06, mixed/held-out Q07, state Q13 and full integration Q16 remain open"
+    ],
+    "artifacts": "Only code/tests/docs/hash references ship. Models, native receipts, dictionaries, logs, XML, partial evidence and runners remain local.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/start.json",
+        "sha256": "64a93a1c887cc677f26c132fffa749f196bdcf8b0bd9704811270aac4b5b1a50",
+        "size": 407
+      },
+      "legacy-before-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/legacy-before-summary.json",
+        "sha256": "9cfe0377b0bd04a1bd0e01bf0ee2dfea9891bb0c2fb181e718da463ff63f1c77",
+        "size": 3504
+      },
+      "legacy-before/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/legacy-before/request/request.json",
+        "sha256": "ff0227ad82d465630f005c0ab5b1c245afe3a9220e4085f9e9f9742efe8fd2a8",
+        "size": 38529
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/before-r1-result.json",
+        "sha256": "0a07a3e2a3ae74ff11bc32031f8ec4d19f22ec0a03d51a679a254306dbdb1092",
+        "size": 633
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/new-r1-result.json",
+        "sha256": "de8055b3e81b2afb6898a02d7dcd049dc771656b647c8dbdd8c820f63df7da8f",
+        "size": 707
+      },
+      "compiler-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/compiler-r1-result.json",
+        "sha256": "59eb0fd183ac30156538f8613208c470c16d5df5fadde2001213decb0082d5a9",
+        "size": 627
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/focused-r1-result.json",
+        "sha256": "d754878116216d2f21827dc202d5f0bccf8963067b16e36d8636553a817b8c77",
+        "size": 498
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/focused-r1-sources.json",
+        "sha256": "ab87211b833cb048e7f2e1cbb0fdd23774f33201c9cbcd64a047c232131aa764",
+        "size": 69902
+      },
+      "native-before-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/summary.json",
+        "sha256": "ca9b4f6de38ab9e2a2bbd3c0a465df8faa0b495168946c6ad0a401991361b292",
+        "size": 878
+      },
+      "native-before-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/installation.json",
+        "sha256": "50217551d12fe651291ac35a39c52de39b435acd0390ce477a766d6576a92974",
+        "size": 121
+      },
+      "native-after-r1/grouped-receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-after-r1/grouped-receipt.json",
+        "sha256": "3fd3595bd0ea760e144f75520aac6128e85801065700c32d74965da3ab967420",
+        "size": 4047872
+      },
+      "native-after-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-after-r1/summary.json",
+        "sha256": "0c3b26636339446b4f650e64c10cf0995eddc3a7043529f679a8791c3e756244",
+        "size": 917
+      },
+      "native-after-r1/installation.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-after-r1/installation.json",
+        "sha256": "8e7df5f11bdd7b9b48572be3d991bc0e41639243d93e12ba0e28a4f342ddd0ee",
+        "size": 129
+      },
+      "native-after-r1/grouped-context.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-after-r1/grouped-context.json",
+        "sha256": "d3fab84bf897fdccdf6c8255a885bf4e7c910bb20b9d6b92c9065b5909df777f",
+        "size": 1398
+      },
+      "native-after-r1/grouped-custom-check.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-after-r1/grouped-custom-check.json",
+        "sha256": "d7d1f98b6fb0c60b810331a1aa01eead3e8965328de3e3e97c4aa9ea477026c9",
+        "size": 157
+      },
+      "named-scope-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/named-scope-r1.json",
+        "sha256": "c1bd46b9cfdbe770e7c1f2a199cd22fffed4f49b42c818f23a883a6e37cc0de5",
+        "size": 3534
+      },
+      "cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/cold-r1/summary.json",
+        "sha256": "ef72a6e66d6b9603644dfd1e59717a7011fe9db4bea520f4d5fd3476d85325d8",
+        "size": 1818
+      },
+      "native-before-r1/grouped/context.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/grouped/context.json",
+        "sha256": "d3fab84bf897fdccdf6c8255a885bf4e7c910bb20b9d6b92c9065b5909df777f",
+        "size": 1398
+      },
+      "native-before-r1/grouped/input.phil": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/grouped/input.phil",
+        "sha256": "ea2ae74a8ddd216d2b9f75a7434317c2a0b07483df4d7b6e8a12069b9046fb7b",
+        "size": 325
+      },
+      "native-before-r1/grouped/receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/grouped/receipt.json",
+        "sha256": "314216282bb68f3b2925a68dfdfe4ea3a7995761f73b9da3775c5fdf29e034cf",
+        "size": 4047880
+      },
+      "native-before-r1/grouped/custom-check.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/grouped/custom-check.json",
+        "sha256": "d7d1f98b6fb0c60b810331a1aa01eead3e8965328de3e3e97c4aa9ea477026c9",
+        "size": 157
+      },
+      "native-before-r1/ungrouped/context.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/ungrouped/context.json",
+        "sha256": "ae5213b590449315072112a924987f820577edf491c9c19ac7e42ea463d6f6e8",
+        "size": 1394
+      },
+      "native-before-r1/ungrouped/input.phil": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/ungrouped/input.phil",
+        "sha256": "1a47d7e834f67f978f4c7f242eddb8093155b6d67f3246926d53e7b93efae0a9",
+        "size": 321
+      },
+      "native-before-r1/ungrouped/receipt.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/ungrouped/receipt.json",
+        "sha256": "228f0c0c762fc25370daf67795bd74e686b5b8f140a6d8d738d46ef95651346a",
+        "size": 4066867
+      },
+      "native-before-r1/ungrouped/custom-check.json": {
+        "anchor": "live_tests_directory",
+        "path": "190_Cedar_selector-precedence-rbvgbsii/native-before-r1/ungrouped/custom-check.json",
+        "sha256": "d7d1f98b6fb0c60b810331a1aa01eead3e8965328de3e3e97c4aa9ea477026c9",
+        "size": 157
+      }
+    }
   }
 }

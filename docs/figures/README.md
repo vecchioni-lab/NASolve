@@ -462,4 +462,7 @@ it preserves source/relationship evidence without a prior native capture. It doe
 not enable ordinary adoption or replace frozen literal intent with a new guess.
 C189 lets that same prepared entry retain an existing frozen source selection.
 The construction/producer and ordinary-adoption arrows remain open; no second
-source selector or recovery stage is added.
+source selector or recovery stage is added. C190 uses the existing selector to
+require grouped atom-name alternatives at new context-bound intake/execution;
+historical reads stay exact. The native proof and ordinary-adoption boundaries
+remain separate, with no new stage or chemistry claim.

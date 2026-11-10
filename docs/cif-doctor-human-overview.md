@@ -34,7 +34,9 @@ that capture. The two modes share one owner and cannot silently substitute one
 set of relationships for the other. The [frozen-source handoff](cif-doctor.md#frozen-source-selection-at-prepared-intake-c189)
 keeps a previously selected source set intact through prepared intake; it does not
 rediscover a newer source or claim construction evidence. Native interpretation
-remains required. Use the
+remains required. [Grouped atom selections](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190)
+now keep new context-bound requests aligned with native boolean scope; old records
+stay inspectable, but ambiguous input cannot start new work. Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods
 below preserve validation of specific contexts; they do not define another queue

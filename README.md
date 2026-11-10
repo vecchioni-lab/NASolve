@@ -41,6 +41,9 @@ and the shared allowance persist. Unknown process ownership blocks recovery.
 Only independently qualified model/CIF/PHIL bundles can be selected; a result may
 truthfully contain no usable bundle. Failed optional improvement retains the exact
 qualified parent and all partial evidence. Historical artifacts keep their meaning.
+[New context-bound inputs](docs/cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190)
+require grouped atom-name alternatives so their site scope agrees with Phenix;
+ambiguous historical inputs remain readable but cannot start fresh attempts.
 
 [Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
 and the [prepared-model entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve atom scope in new explicit restraint requests (C190)
+
+- Require parenthesized atom-name alternatives when deriving new restraint contexts,
+  initializing context-bound requests or starting fresh attempts. Reject before
+  destination/lock/attempt creation; do not silently change PHIL or native targets.
+- Reuse the existing selector and remove the literal compiler's duplicate check.
+  Historical v1/v2 records remain readable with their exact original meaning;
+  grouped records and stored schemas stay unchanged. Ambiguous historical requests
+  need corrected, intentionally scoped input in a new request before further work.
+- Reproduce the concrete context/native discrepancy (3 versus 85 atoms per plane)
+  with actual Phenix, and verify grouped agreement plus cold legacy replay.
+
+
 ### Consume frozen sources at prepared-model intake (C189)
 
 - Let the existing prepared entry consume a previously frozen source selection

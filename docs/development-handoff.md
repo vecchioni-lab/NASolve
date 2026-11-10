@@ -11,6 +11,66 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C190 validated: preserve atom scope in new restraint requests
+
+Base `c70790bdabd03eb743d275d6da8aa9540480d964`; existing Cedar. Implementation complete; publication is next.
+Capsule `live_tests_directory/190_Cedar_selector-precedence-rbvgbsii`. Four-hour window ends 22:12 UTC.
+Q04 remains open at ordinary caller/construction producer/exclusive modifier ownership.
+
+**Before → after:** new contexts accepted ungrouped atom-name alternatives that
+legacy binding scoped to one site while Phenix selected those names more broadly.
+New derivation, initialization and fresh execution now require grouped alternatives
+before destination/lock/attempt creation. Historical records retain exact read-only
+meaning; an ambiguous record cannot start another attempt. Grouped records are
+unchanged. No stored schema or policy-id change, PHIL rewrite, target change or
+chemistry threshold change. The user must establish intended scope for a new input.
+
+**History/redundancy:** C186 already supplied the strict selector; C187 duplicated
+its use in literal conversion. Threading that selector through the common context
+reader removes the duplicate loop. Preserve the legacy read path, existing source
+and compiler owners, terminal intent/OP3 protections, NAR recipes and native checks.
+
+**Validation:** before **3 failed, 3 passed, 78 deselected in 6.02s**; affected tests
+**175 passed in 103.36s (0:01:43)**; compiler **41 passed in 26.50s**; workflow
+**1987 passed, 45 subtests passed in 801.50s (0:13:21)**. All 640 source/test/script hashes remain fixed.
+No full regression; C160 `d9e481661edcc3a04404df250360b9db63184ae1` remains last full-tested.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c190_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c190_validate.py compiler-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c190_precedence.py native-before-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c190_after.py native-after-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c190_named_scope.py
+PYTHONDONTWRITEBYTECODE=1 python c190_cold.py cold-r1
+```
+
+**Actual native evidence:** Phenix 2.2.1-6174 / dispatcher 2.2.1 reproduces
+3 context atoms versus 85 native atoms per plane. Grouped controls select 3 in
+both before/after, with exact named-atom membership checked after complete
+native identity/coordinate validation. The native proxy realizes the native
+selection, so that check alone cannot establish agreement with the bounded context reader. After the fix,
+ungrouped new input refuses before native work. The genuine pre-fix request stays
+readable and refuses execution before lock/attempt/cache writes. Model, old request
+and earlier evidence bytes/mtimes stay unchanged. No optimization, chemistry
+qualification, ReadySet/Coot or diffraction refinement claim. Python 3.12.14,
+pytest 9.1.1, NARestraints 1.1.3.
+
+**Cold:** 5067 files retain bytes/mtimes. The genuine pre-fix request,
+actual C189/C187/C186/C176/C184 results, C188 synthetic source-bound owner and both
+public compiler modes replay with original copy absent and historical source/SDK
+paths and execution denied. All owned validation jobs are stopped.
+
+**Files/artifacts:** four existing source modules, one existing test module and
+maintained docs/ledgers. Only code/tests/docs/hash references ship. Scientific
+inputs/results, logs, XML and runners remain local; old evidence is preserved.
+
+**Next:** finish the ordinary prepared-model caller/source-producer join under
+one composer owner, then Q05 selected runtime/checkpoint lineage. Q06 actual
+refinement and Q07 mixed/held-out acceptance remain separate. Do not add another
+orchestration wrapper, infer missing intent or advertise general automatic support.
+— Rowan · Codex desktop
+
 ## C189 published: prepared intake of already frozen sources
 
 Base `b2f63341ab26093eb842d2f3e8e3225a58620945`; existing Cedar. Implementation complete and published as
