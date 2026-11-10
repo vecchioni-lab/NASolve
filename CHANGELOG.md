@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind original literal restraints to owned requests (C187)
+
+- Freeze original ordered PHIL/native capture, model, compiled inputs and pinned
+  NAR implementation/workbook authority; reconstruct them read-only after relocation.
+- Reuse the C21 compiler without changing its recipes or dropping explicit planes.
+  Reject unsupported/ambiguous intent and competing site modifiers.
+- Bind optional original-input provenance to existing complete/prepared request
+  APIs and result readback; catch concurrent original-PHIL changes while freezing.
+  Preserve evidence once at the outer owner and immutable child attempts.
+- Add schema-1 input policy and optional anchored request/result fields. Old modes
+  need no migration. This opt-in bridge requires a completed native capture;
+  ordinary orchestration, source-failure bootstrap and checkpoint adoption remain open.
+
+
 ### Preserve required planarity through dictionary-engine intake (C186)
 
 - Accept bounded explicit NAR plane selections with exact atom membership and

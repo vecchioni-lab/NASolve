@@ -137,8 +137,8 @@ def _signature(kind,row,*,values=True):
     return key+tuple(row[f] for f in fields) if values else key
 
 
-def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Path) -> dict:
-    """Write separate derived inputs, preserving every non-SS input line.
+def _compile_na_policy_payload(model: Path, phils: list[Path], captured: dict):
+    """Derive separate inputs without writing, preserving every non-SS input line.
 
     The source bundle's explicit edits are retained. Only previously declared
     generic pairs/stacks are compiled; the guesser is not rerun on moved sites.
@@ -150,8 +150,7 @@ def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Pa
     from restraints.recipe_library import recipe_for
     from restraints.residue_library import load_residue_records
     from restraints.stacking import _manual_parallelity
-    model,output=Path(model),Path(output)
-    if output.exists() or output.is_symlink():raise FileExistsError('Policy output already exists')
+    model=Path(model)
     atoms=captured['atoms']
     if [a['i_seq'] for a in atoms]!=list(range(len(atoms))):raise ValueError('Native atom indices are not a bijection')
     if any(a['identity'].get('altloc','').strip() or a['identity'].get('icode','').strip() for a in atoms):
@@ -227,9 +226,18 @@ def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Pa
         'limitations':['Frozen explicit edits are retained, not regenerated or chemically requalified.',
             'Saenger 19/20 declarations and unambiguous mapped stacks only; unsupported intent requires review.',
             'No new pairing guess, coordinate edit, minimization, refinement or adoption.']}
+    files={name:data.encode('utf-8') for name,data in zip(result['retained_phils'],retained)}
+    files[result['compiled_phil']]=text.encode('utf-8')
+    return result,files
+
+
+def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Path) -> dict:
+    """Write the existing deterministic compiler payload to a fresh directory."""
+    output=Path(output)
+    if output.exists() or output.is_symlink():raise FileExistsError('Policy output already exists')
+    result,files=_compile_na_policy_payload(model,phils,captured)
     output.mkdir(parents=True)
-    for name,data in zip(result['retained_phils'],retained): (output/name).write_text(data)
-    (output/result['compiled_phil']).write_text(text)
+    for name,data in files.items(): (output/name).write_bytes(data)
     return result
 
 

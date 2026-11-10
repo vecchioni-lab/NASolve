@@ -453,5 +453,7 @@ open; this does not complete automatic-engine or catalogue coverage.
 
 C186 extends the existing explicit-input boundary to NAR plane selections and
 their exact atom weights. The diagram's native-validation stage remains separate;
-literal pair/stack intake, ordinary adoption and actual refinement remain open.
-The methods distinguish PDB record indices from native manager ordering.
+C187 now binds literal pair/stack inputs and their original native/compiler evidence
+at the existing outer-request boundary. Ordinary adoption and actual refinement
+remain open. The methods distinguish PDB record indices from native manager ordering;
+no pipeline arrow or family-support claim changes.

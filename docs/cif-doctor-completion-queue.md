@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C185.** This queue owns unfinished
+**Current planning authority, 2026-11-10, after C187.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -52,13 +52,13 @@ acceptance criteria.
 
 ## Pipeline position
 
-Current orientation after C186. This table summarizes the acceptance packages
+Current orientation after C187. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
 | Package | Position now | Remaining acceptance |
 | --- | --- | --- |
-| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | C186 qualifies required plane intake. Bind literal pair/stack inputs, then exercise ordinary hit/miss/stale/failure entry paths. Reuse the existing owner and C21/C80 compilers. |
+| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | C186/C187 bind planes and original literal-input/compiler provenance. Connect ordinary orchestration and capture prerequisites, then exercise ordinary hit/miss/stale/failure paths. Reuse the existing owner and C21/C80 compilers. |
 | Q05 — ordinary adoption | Open | Carry one exact selected model/CIF/PHIL bundle through prepared and newly mutated routes into immutable checkpoints; retain source/producer lineage and selected-versus-latest behavior. |
 | Q06 — real refinement consumer | Open; can proceed alongside Q04/Q05 | Qualify actual refinement with complete NAR restraints and Free-R authority. The corrected diagnostic evaluator does not establish ordinary Phenix behavior. |
 | Q07 — combined acceptance | Open | Run the original eight pairs with ATL alongside, broken PDU and DF/A1AAZ, plus the separate eight-residue held-out builder challenge. Refinement claims depend on Q06. |
@@ -163,18 +163,28 @@ as competing next-step instructions here.
 | Optional failure and original fallback | C173 binds optional native timeout or complete failed/unsupported worker evidence to the exact known-stopped job, declared inputs and maintained worker. Current consumer and independent original proof remain mandatory. Valid negative attribution/derivative results use the existing selector. Initial failures, malformed/contradictory reports, interruption and unknown cleanup remain blocking. No retry or renewed allowance. |
 | One selected component | C174 reuses the same composer/preparer/request for 1–16 selected types. Linked-site synthetic regressions retain all occurrences and ownership. Actual isolated 5PC original/PDU repair controls and cold legacy/new replay pass. C178–C179 subsequently validate the same singleton scope through the separate ReadySet/native adapter. |
 | Prepared-model context | C175 derives all selected sites and audited whole-model links from canonical prepared coordinates and frozen terminal/backbone intent, then freezes/rederives the proof. Linked/free-OH synthetic and isolated 5PC/PDU native controls pass. C176 extends the canonical bridge with explicit PHIL ownership; nonstandard backbone adapters remain open. |
-| Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. C186 adds exact plane unions/weights with old v1 replay and actual three-plane W-frame membership. Unsupported PHIL and unowned pre-existing modifiers refuse. |
+| Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. C186 adds exact plane unions/weights with old v1 replay and actual three-plane W-frame membership. C187 preserves original literal PHIL/native capture and compiler/workbook pins through owned request/result replay. Unsupported PHIL and unowned pre-existing modifiers refuse. |
 | Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. This API remains opt-in; C182 derives current consumer/generator settings from the selected installation while preserving explicit source-reader/representation intent. |
 
-**Next bounded checkpoint:** bind original literal pair/stack inputs and the
-existing compilation/native proof durably into the owned request. C186 retains
-required planes and unchanged NAR targets; its ordinary W-input audit exercises
-C21 end to end: 17 pairs, 38 stacks and all 201 explicit native requests, including
-three retained planes. Reuse this compiler, with original input and compiler
-identity/provenance; no new relationship generator is needed. Then connect the validated prepared
-intake and selected runtime to ordinary PostMR orchestration, preserving the
-selected native profile, pre-construction source/producer lineage and exact NAR
-compiler intent.
+**Next bounded checkpoint:** connect the validated prepared intake to ordinary
+PostMR orchestration without a second recovery loop or modifier owner. C187 closes
+the explicit original literal-input/compiler provenance bridge; its first capture
+must already be interpretable. A broken source that prevents that capture is not
+covered by the bridge. Decide and qualify how existing acquisition/preparation or
+the source-bound C80 route supplies this prerequisite; never fabricate native indices.
+
+Keep three operational joins explicit: (1) preserve exact source/producer identity
+from before construction; (2) let the qualified composer exclusively own site
+modifications, instead of also calling legacy `write_linked_profile`; (3) carry the
+exact selected model/CIF/PHIL and original intent lineage through ReadySet and a
+new immutable checkpoint (Q05). Whole-request replay carries C187 provenance;
+standalone selected-runtime export still needs that lineage connection. Reuse the
+ordinary full-model C80 compiler for its established explicit route; do not add a
+third pairing/stacking compiler. The separate full-model readiness audit selects
+19 coordinate-guessed pairs/38 stacks; it must not replace the frozen 20-pair intent
+with a new guess. Carry the existing C80 compiler artifact for that explicitly
+selected mode, retaining source authority and normal native qualification. Native 201-request W-frame and isolated original/
+repaired controls qualify C187, not all ordinary source-failure or chemistry cases.
 The existing explicit entry already covers source/request assembly, current
 installation configuration, original/repaired ReadySet/native selection and fresh
 recovery with preserved failures. C184 joins them under one request and bounded
@@ -232,7 +242,9 @@ through the existing context/native-binding machinery, preserving old artifact
 meaning; then bind the supported literal pair/stack declarations faithfully.
 Do not set `planes=False` or discard secondary PHIL to bypass either boundary.
 C186 closes the plane-reader portion with native named-atom/weight checks and
-legacy/new cold replay. Literal secondary-structure intake remains open. The C185
+legacy/new cold replay. C187 adds the explicit original literal-input bridge,
+including strict grouped alternatives and actual native controls; ordinary orchestration
+and the prior-capture prerequisite remain open. The C185
 refusals above retain their original meaning; exact hashes remain under
 `primary_failure_reporting_2026_11_10` / `intake_readiness`. The new evidence is
 `planarity_intake_2026_11_10`. Legacy v1 selectors retain their recorded grammar;
@@ -523,9 +535,9 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. Subsequent checkpoints through C186 retain
+Cedar/pine/main merge candidate. Subsequent checkpoints through C187 retain
 focused validation, with native/cold evidence only where explicitly executed.
-The latest workflow profile is C186: 1,921 tests + 45 subtests; it is not a full
+The latest workflow profile is C187: 1,957 tests + 45 subtests; it is not a full
 suite. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,

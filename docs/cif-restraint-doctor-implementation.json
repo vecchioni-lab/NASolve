@@ -28243,6 +28243,19 @@
       "evidence_key": "planarity_intake_2026_11_10",
       "scope": "Exact supplied NAR planes and atom weights; literal pair/stack intake and ordinary adoption open",
       "implementation_revision": "f3d855922de6e742a7bd13650cece7f9fc5aca07"
+    },
+    "literal_input_provenance": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "cif-literal-na-inputs-v1",
+      "entry": "prepare_literal_na_inputs / initialize_postmr_dictionary_request(literal_na_inputs=...)",
+      "reader": "read_literal_na_inputs / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#literal_input_provenance_2026_11_10",
+      "limitations": [
+        "Completed native identity capture remains a prerequisite; source-interpretation failures need owned bootstrap or existing source-bound C80 route",
+        "Ordinary PostMR must preserve pre-construction source/producer lineage and a single site-modifier owner",
+        "Whole-request provenance does not yet accompany standalone selected-runtime export/checkpoint adoption",
+        "Q05 adoption, Q06 actual refinement, Q07 mixed/held-out, Q13 state and Q16 integration remain open"
+      ]
     }
   },
   "audience": [

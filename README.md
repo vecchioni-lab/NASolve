@@ -46,8 +46,9 @@ qualified parent and all partial evidence. Historical artifacts keep their meani
 and the [prepared-model entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
 provide supported inputs without borrowing settings from old test runs. Ordinary
 automatic PostMR/checkpoint adoption remains open. Explicit NAR planes now have
-[qualified intake](docs/cif-doctor.md#exact-planarity-intake-c186); literal pair/stack
-inputs still need faithful binding before that integration. Actual
+[qualified intake](docs/cif-doctor.md#exact-planarity-intake-c186), and the explicit
+[literal-input bridge](docs/cif-doctor.md#original-literal-input-provenance-c187)
+preserves pair/stack intent and compiler/native evidence through owned requests. Actual
 refinement qualification is a separate gate. No source chemical state, terminal
 phosphate or requested restraint may be changed merely to obtain a numerical pass.
 

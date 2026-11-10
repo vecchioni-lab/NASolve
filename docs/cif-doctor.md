@@ -124,7 +124,9 @@
 
 <a id="current-capability-boundary-c184"></a>
 
-## Current capability boundary (C186)
+<a id="current-capability-boundary-c186"></a>
+
+## Current capability boundary (C187)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -146,7 +148,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls. C184 includes selected ReadySet/native continuation under that same request and recovery owner. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls. C184 includes selected ReadySet/native continuation under that same request and recovery owner. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
@@ -606,6 +608,61 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Original literal-input provenance (C187)
+
+`prepare_literal_na_inputs(model, native_receipt, output)` freezes the original
+ordered PHIL, complete preserved native capture, exact model, compiled restraints
+and NARestraints implementation/workbook hashes in a fresh input artifact.
+`read_literal_na_inputs` reconstructs every compiled byte without writing,
+executing a worker or following historical paths. `resolve_literal_na_inputs`
+returns only the model and ordered compiled PHIL proven by that reconstruction.
+
+**Methods.** Separate C21's deterministic compiler payload from its writer and
+reuse C80 implementation pins, the maintained native-capture reader and C176/C186
+restraint context. Literal Saenger 19/20 pairs and mapped stacks retain their
+NARestraints recipes. Existing explicit edits and planes survive unchanged;
+unsupported settings, competing site modifiers and ambiguous ungrouped atom-name
+alternatives refuse. Native capture indices remain distinct from the context's
+PDB record positions. Compilation declares a new explicit NAR objective; it does
+not claim continuation of the old native secondary-structure energy.
+
+The optional `literal_na_inputs` keyword binds this artifact to the existing
+complete request. Its exact model, compiled input order/bytes and restraint proof
+must agree with the owned inputs. The prepared-PostMR entry instead receives the
+**original** ordered PHIL and verifies it before selecting the compiled inputs;
+a concurrent original-input edit during source selection refuses publication.
+Original compiler evidence is owned once by the outer request. Preparation
+consumes the compiled PHIL; result records explicitly reference the outer evidence
+and result readback resolves it. A complete request carries that provenance after
+relocation; exporting a standalone selected runtime does not yet export this
+original-intent lineage. Q05 owns that ordinary adoption/export connection.
+
+Schema 1 / `cif-literal-na-inputs-v1` is additive, with an optional anchored
+configuration/result reference. New-mode requests need C187 readers. Absent-mode
+requests and v1/v2 restraint contexts retain their exact semantics; no migration,
+new retry owner, chemistry rule, threshold or ordinary default is introduced.
+Bounds and composer-only modification ownership remain unchanged.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 reproduces the public W-frame's 17 literal pairs,
+38 stacks, retained central-pair edits and all 201 explicit requests, including three retained planes, with
+compiled bytes identical to C186. Separate isolated PDU/5PC original and repaired
+requests carry one literal stack and its retained plane through complete native
+and derivative qualification. These are not physical PDU:5PC pairing evidence.
+New requests/artifacts and old v1/v2/absent modes replay cold with old checkout,
+source runs, SDK paths and execution denied. No ReadySet, Coot, coordinate
+optimization or diffraction refinement ran for this checkpoint.
+
+This explicit bridge requires a completed native identity capture first. Source
+CIFs that cannot yet be interpreted need a separately owned acquisition/preparation
+route before that prerequisite; do not invent native indices from PDB positions.
+Ordinary orchestration, one modifier owner, pre-construction source/producer
+lineage and selected checkpoint adoption remain Q04/Q05. Existing full-model
+source-bound C80 compilation is another established route, not a reason to write
+a new relationship compiler. Its existing coordinate-guess mode selects 19 pairs/38
+stacks on this public frame, versus the 20 frozen declarations retained above.
+It must not silently replace declared intent. No native execution was needed for
+that separate readiness audit. Evidence: `literal_input_provenance_2026_11_10`.
+
 ### Exact planarity intake (C186)
 
 The existing `derive_restraint_context` also accepts explicit `planarity` edits
@@ -646,7 +703,8 @@ pairs and 38 stacks produce 201 exact native requests (52 bonds, 88 angles, 58
 parallelities and three retained planes). All existing membership checks pass.
 This audit uses actual captured native identities and the previously documented
 new explicit NAR objective; it establishes compiler reuse, not ordinary adoption.
-Original-input/compiler/native provenance still needs a durable request bridge.
+C187 subsequently supplies the explicit original-input/compiler/native provenance
+bridge above; ordinary orchestration remains open.
 
 ### Ordered explicit restraint context (C176)
 

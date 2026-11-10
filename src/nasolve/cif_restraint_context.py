@@ -72,11 +72,21 @@ def derive_restraint_context(model, supplementary_phils):
     """
     _need(isinstance(supplementary_phils, (list, tuple)) and 1 <= len(supplementary_phils) <= 64,
           'Require one to 64 ordered explicit PHIL inputs')
+    paths = [Path(p) for p in supplementary_phils]
+    originals = [_read(p) for p in paths]
+    result = _derive_restraint_payload(model, originals)
+    _need(all(_read(p) == data for p, data in zip(paths, originals)),
+          'PHIL changed while binding explicit restraints')
+    return result
+
+
+def _derive_restraint_payload(model, originals):
+    """Shared byte-bound derivation for frozen and not-yet-written PHIL payloads."""
+    _need(isinstance(originals, (list, tuple)) and 1 <= len(originals) <= 64
+          and all(isinstance(data, bytes) for data in originals), 'Require ordered PHIL bytes')
     model = Path(model); original = _read(model)
     raw, atoms, _, _, _, _ = _model(model)
     _need(raw == original, 'Model changed while binding explicit restraints')
-    paths = [Path(p) for p in supplementary_phils]
-    originals = [_read(p) for p in paths]
     requests = []; inputs = []; disabled = 0
     for number, data in enumerate(originals):
         rows, controls = _checked_requests(data.decode('utf-8'), atoms)
@@ -87,8 +97,7 @@ def derive_restraint_context(model, supplementary_phils):
     _need(1 <= len(requests) <= 4096, 'Require one to 4096 explicit restraint requests')
     signatures = [_signature(r['kind'], r, values=False) for r in requests]
     _need(len(signatures) == len(set(signatures)), 'Duplicate explicit restraint endpoints across ordered inputs')
-    _need(_read(model) == original and all(_read(p) == data for p, data in zip(paths, originals)),
-          'Model or PHIL changed while binding explicit restraints')
+    _need(_read(model) == original, 'Model changed while binding explicit restraints')
     policy = PLANARITY_POLICY_ID if any(r['kind'] == 'planarity' for r in requests) else POLICY_ID
     return dict(schema_version=1, policy_id=policy, model_sha256=sha256(original).hexdigest(),
                 inputs=inputs, requests=requests, request_counts=dict(sorted(Counter(r['kind'] for r in requests).items())),

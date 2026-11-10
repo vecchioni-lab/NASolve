@@ -11,6 +11,68 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C187 validated: original literal-input provenance
+
+Base `30abe934a9c10e87bd2ae29a2089c3961b9fd377`; existing Cedar. Implementation complete; publication is next.
+Capsule `live_tests_directory/187_Cedar_literal-input-provenance-jwi1h4fc`. Q04 advances from explicit intake
+binding to ordinary orchestration/capture prerequisites; Q05/Q06/Q07 remain open.
+
+**Before → after:** original literal pair/stack declarations and native/compiler
+provenance were separate from the owned request. The new immutable input artifact
+reuses C21 payload generation, C80 NAR/workbook pins and C176/C186 context replay.
+Exact model/ordered compiled PHIL are bound into the existing owner; results retain
+an explicit reference to original evidence owned once by the outer request.
+Concurrent original PHIL edits during source freezing refuse publication.
+
+**Redundancy/doc orientation:** no replacement compiler, validator or recovery
+scheduler. Queue Q04 now distinguishes prior-capture/bootstrap, ordinary caller,
+exclusive modifier ownership and selected-artifact/checkpoint lineage. Whole-request
+replay carries original evidence; standalone runtime export still needs Q05 lineage.
+C21's new explicit NAR objective is not old native-energy continuation. Source state,
+terminal phosphate/OP3, thresholds, recipes and ordinary defaults remain unchanged.
+
+**Validation:** initial 26 failed in 0.61s; owner-connection 7 failed, 26 passed in 25.37s;
+new result/concurrent-source edges 2 failed, 34 passed in 16.02s before their fixes.
+Final new: **36 passed in 24.40s**; compiler: **41 passed in 12.62s**;
+workflow: **1957 passed, 45 subtests passed in 742.94s (0:12:22)**. Earlier affected: 328 passed in 247.70s (0:04:07)
+before the final owner guards. Final source hashes stay fixed. No full regression;
+C160 `d9e481661edcc3a04404df250360b9db63184ae1` remains the last full baseline.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c187_validate.py new-r6
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c187_validate.py compiler-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c187_public.py public-native-r4
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c187_native.py native-r3
+PYTHONDONTWRITEBYTECODE=1 python c187_cold.py cold-r1
+```
+
+**Actual Phenix 2.2.1-6174 / dispatcher 2.2.1:** public W frame has 17 literal pairs,
+38 stacks, retained central-pair edits and all 201 requests (52 bonds, 88 angles, 58 parallelities, three planes),
+with bytes identical to C186. Isolated PDU/5PC original and repaired controls carry
+a literal stack and retained plane through native/derivative qualification and
+complete result readback. No physical base-pair, new chemistry, ReadySet, Coot,
+optimization or diffraction-refinement claim. Python 3.12.14 / pytest 9.1.1 / NAR 1.1.3.
+
+**Cold:** 3313 files retain bytes/mtimes. New request/artifact, old v1/v2
+and absent-context controls replay with original copy absent and historical
+checkout/source/SDK paths and execution denied. All owned native workers and
+validation jobs are stopped at this checkpoint. The prior native-r2 outer failure
+is sealed RAISED/stopped and preserved; the added regression caught its result
+propagation defect. Earlier harness setup/refusal attempts remain local too.
+
+**Files/schema/compatibility:** five source modules (one new), one new test module,
+workflow profile, maintained docs/ledgers. Schema-1 literal artifact plus optional
+anchored configuration/result fields. Old modes retain meaning; no migration.
+Only code/tests/docs/hash references ship; scientific files, receipts, XML, logs,
+failed attempts and runners remain outside Git. Evidence `literal_input_provenance_2026_11_10`.
+
+**Next:** ordinary Q04 caller/bootstrap integration using existing acquisition and
+C21/C80 routes, one composer modifier owner and pre-construction source identity;
+then Q05 exact selected runtime/checkpoint lineage. A completed native capture is
+still required by C187. Do not mistake input reconstruction for native qualification.
+— Rowan · Codex desktop
+
 ## C186 published: required plane intake
 
 Base `e6c7169f5316b4c7d1fd3ced5a49a2d983633487`; existing Cedar. Capsule

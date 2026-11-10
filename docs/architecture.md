@@ -4115,6 +4115,9 @@ preserves primary errors and grants no success or recovery authority.
 Ordinary PostMR callers/checkpoint adoption remain Q04/Q05. The
 [C186 plane extension](cif-doctor.md#exact-planarity-intake-c186) binds exact supplied
 selectors and atom weights through the existing context/native validators, with
-v1 replay preserved. Literal pair/stack declarations still need faithful intake;
-unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
+v1 replay preserved. The [C187 literal-input bridge](cif-doctor.md#original-literal-input-provenance-c187)
+freezes original native/PHIL/compiler evidence at the outer owner and binds its
+compiled input bytes to preparation and result readback. It requires an existing
+valid native capture; ordinary orchestration/bootstrap and export of that original
+lineage with a selected checkpoint remain open. Unsupported intent cannot be discarded. Actual refinement remains Q06. The complete
 explicit chain does not enable an ordinary default or authorize a merge.

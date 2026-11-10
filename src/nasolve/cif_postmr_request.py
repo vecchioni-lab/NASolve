@@ -9,17 +9,18 @@ from pathlib import Path
 
 from .cif_acquisition_sources import _codes, freeze_acquisition_sources
 from .cif_complete_request import _LIMITS, _continuation_fields, initialize_dictionary_request
-from .cif_dictionary_sites import _consumer, _need
+from .cif_dictionary_sites import _consumer, _need, _read
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_acquisition_attempt import _generation_binding
 from .cif_model_context import derive_prepared_model_context
 from .cif_native_context import FULL_MODEL_POLICY_ID
 from .cif_repair_attempt import _root
 from .cif_restraint_context import derive_restraint_context
+from .cif_literal_na_inputs import resolve_literal_na_inputs
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -27,6 +28,9 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     derived, never supplied as overrides. supplementary_phils is an explicit
     ordered sequence; an empty sequence declares absent custom restraints.
     Required but unsupported inputs must be converted faithfully, never omitted.
+    With literal_na_inputs, supplementary_phils names the original ordered inputs;
+    the frozen compiler artifact must match them and the exact model before its
+    compiled PHIL is selected. Original evidence accompanies the owned request.
 
     Both destinations must be fresh, disjoint and outside input/SDK trees.
     Failure preserves all partial work. Resume a published request through
@@ -55,7 +59,15 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
           'Unsupported or unbounded PostMR request limit')
     _continuation_fields(continuation_options,_LIMITS)
     _need(isinstance(supplementary_phils, (list, tuple)), 'Require an explicit ordered PHIL sequence')
-    phils = list(supplementary_phils)
+    phils = list(supplementary_phils); literal_originals = []
+    if literal_na_inputs is not None:
+        literal_root = _root(literal_na_inputs)
+        literal = resolve_literal_na_inputs(literal_root)
+        literal_originals = [(Path(p),_read(p)) for p in phils]
+        _need(_read(model) == _read(literal['model'])
+              and [data for _,data in literal_originals] == [_read(literal_root/r['path']) for r in literal['report']['original_phils']],
+              'Literal provenance differs from original model or ordered PHIL inputs')
+        phils = literal['phils']
     sources = _root(source_output); request = _root(output)
     for destination in (sources, request):
         if destination.exists(): raise FileExistsError(destination)
@@ -63,6 +75,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
           'Source selection and complete request must be separate')
     protected = [_root(item['generation']['installation_root']) for item in components]
     if data_root is not None: protected.append(_root(data_root))
+    if literal_na_inputs is not None: protected.append(_root(literal_na_inputs))
     protected += [_root(item['retained_snapshot']) for item in components
                   if item.get('retained_snapshot') is not None]
     inputs = [Path(model), *map(Path, phils)]
@@ -79,8 +92,10 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     for item in components: item['contexts'] = model_context['contexts'][item['code']]
     freeze_acquisition_sources(codes, sources, data_root=data_root,
                                ready_set_executable=ready_set_executable)
+    _need(all(_read(p) == data for p,data in literal_originals),
+          'Literal original PHIL changed during source freezing')
     return initialize_dictionary_request(sources, components, model, request,
         consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
-        continuation_options=continuation_options,
+        continuation_options=continuation_options, literal_na_inputs=literal_na_inputs,
         **execution_limits)
