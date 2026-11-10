@@ -11,11 +11,11 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C186 validated: required plane intake
+## C186 published: required plane intake
 
 Base `e6c7169f5316b4c7d1fd3ced5a49a2d983633487`; existing Cedar. Capsule
-`live_tests_directory/186_Cedar_planarity-intake-8frq6_7h`. Implementation/validation complete; publication
-is next. Q04 advances to literal pair/stack input binding; Q05/Q06/Q07 remain open.
+`live_tests_directory/186_Cedar_planarity-intake-8frq6_7h`. Implementation/validation complete and published as
+`f3d855922de6e742a7bd13650cece7f9fc5aca07`. Q04 advances to literal pair/stack input binding; Q05/Q06/Q07 remain open.
 
 **Before → after:** required NAR planes were refused by the bounded explicit input
 reader. It now retains exact literal site unions, atom membership, per-atom weights,

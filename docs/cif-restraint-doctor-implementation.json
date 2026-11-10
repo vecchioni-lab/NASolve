@@ -28241,7 +28241,8 @@
       "status": "IMPLEMENTED_FOCUSED_NATIVE_COLD_VALIDATED",
       "milestone": "C186",
       "evidence_key": "planarity_intake_2026_11_10",
-      "scope": "Exact supplied NAR planes and atom weights; literal pair/stack intake and ordinary adoption open"
+      "scope": "Exact supplied NAR planes and atom weights; literal pair/stack intake and ordinary adoption open",
+      "implementation_revision": "f3d855922de6e742a7bd13650cece7f9fc5aca07"
     }
   },
   "audience": [

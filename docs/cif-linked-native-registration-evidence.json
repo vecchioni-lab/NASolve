@@ -75864,9 +75864,9 @@
   },
   "planarity_intake_2026_11_10": {
     "milestone": "C186",
-    "status": "FOCUSED_NATIVE_COLD_VALIDATED; Q04_LITERAL_INTAKE_OPEN",
+    "status": "PUBLISHED",
     "base_revision": "e6c7169f5316b4c7d1fd3ced5a49a2d983633487",
-    "implementation_revision": null,
+    "implementation_revision": "f3d855922de6e742a7bd13650cece7f9fc5aca07",
     "last_full_tested_revision": "d9e481661edcc3a04404df250360b9db63184ae1",
     "before": "Required NAR planarity unsupported at explicit intake",
     "after": "Exact plane unions and atom-associated weights; independent native qualification",
