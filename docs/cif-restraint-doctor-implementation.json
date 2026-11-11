@@ -28480,7 +28480,13 @@
       "status": "IMPLEMENTED_SELECTED_OWNED_SUPPORT_ADAPTER",
       "contract": "docs/cif-doctor.md#owned-generation-support-for-plane-completion-c213",
       "evidence": "owned_plane_support_replay_2026_11_11",
-      "scope": "Shared complete-generation replay and exact selected immutable attempt binding into existing plane-only candidates. Native capture/mechanics, achieved geometry and ordinary adoption remain separate."
+      "scope": "Shared complete-generation replay and exact selected immutable attempt binding into existing plane-only candidates. C214 binds native captures; mechanics, achieved geometry and ordinary adoption remain separate."
+    },
+    "owned_plane_capture_binding": {
+      "status": "IMPLEMENTED_EXACT_NATIVE_CAPTURE_ADAPTER",
+      "contract": "docs/cif-doctor.md#owned-plane-native-capture-qualification-c214",
+      "evidence": "owned_plane_capture_binding_2026_11_11",
+      "scope": "Read-only exact ordered input/captured consumer binding using maintained capture readers and C213 owned support. Recorded energies are not attribution, derivatives or scientific qualification."
     }
   },
   "audience": [

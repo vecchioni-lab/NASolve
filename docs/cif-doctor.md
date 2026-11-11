@@ -620,6 +620,44 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Owned plane native capture qualification (C214)
+
+`qualify_owned_plane_captures` connects C213 owned support to C211's exact native
+plane delta using the existing maintained capture reader. Callers provide the
+source, component, request and explicit attempt, exact candidate/model, two native
+receipts, the complete ordered original dictionary list, a zero-based replacement
+slot and ordered PHIL inputs. Only that slot changes. The existing input binder
+checks consumed bytes/order; the native atom reader checks literal model identity,
+coordinates and occupancy. Captured geometry coordinates must agree too.
+
+Both captures must be completed, use linked policy inventories, and agree in
+captured producer, request options and namespace/authority. Worker/spec/output/
+embedded-report integrity is checked by the existing capture reader, not a new
+parser. C211 rebuilds the plane candidate and permits only its complete planned
+native changes. Owned support and all capture/input bytes are rechecked afterward.
+The read-only schema-1 `cif-owned-plane-capture-qualification-v1` report retains
+separate support, capture and inventory scopes. It runs no native program and
+does not establish current-installation usability, mechanics or scientific approval.
+
+151 focused tests pass, including altered workers/payloads/producers, wrong model,
+dictionary/PHIL order, wrong slot/attempt, bystanders, mid-read changes and relocation.
+The saved C211 PDU/5PC captures qualify through the new API. Four fresh complete
+**Phenix 2.2.1-6174 / dispatcher 2.2.1** interpretations then add fixed-coordinate
+energy inventories. Every earlier inventory field remains exact; repeated targets
+and gradients are finite. Coordinates are unchanged; adding a constraint can raise
+the target, and that difference is not evidence of worse or better chemistry.
+These captures provide input for later attribution/derivative checks, not those
+checks themselves. No optimization, Coot, diffraction refinement or full suite.
+
+The complete owned/native qualification also replays exactly from relocated
+checkout/evidence copies after both original copy paths are removed, with old
+capsule/SDK/process access forbidden. All 105 copied files and 600 original files
+retain bytes/mtimes. Existing workers, pure inventory API and previous artifacts
+are unchanged; no migration, new owner or automatic selection. Exact evidence:
+`owned_plane_capture_binding_2026_11_11`. Next: attribute the plane-only fixed-point
+energy/gradient difference, check derivatives, then achieved geometry; ordinary
+Q04/Q05 invocation/adoption and full NAR/held-out closure remain open.
+
 ### Owned generation support for plane completion (C213)
 
 `read_multiple_plane_candidate` reuses the existing versioned generation reader

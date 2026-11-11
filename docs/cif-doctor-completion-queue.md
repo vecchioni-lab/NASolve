@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C213.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C214.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -80,8 +80,10 @@ Next bounded order:
    through existing immutable generation/recipe/cache ownership and reproduces
    both exact candidates. C213 binds the explicit selected owned attempt through
    the shared cold generation reader into C209; native PDU/5PC replay passes from
-   relocated copies without SDK access. Next bind native capture identity and
-   qualify mechanics/achieved geometry before selection. Do not repeat completed
+   relocated copies without SDK access. C214 binds exact native capture/model/
+   dictionary/PHIL/producer identity and supplies fresh unchanged-coordinate energy
+   captures. Next qualify the plane-only energy/gradient delta, derivatives and
+   achieved geometry before selection. Do not repeat completed
    generation merely to reread its evidence. Retain stopping limits explicitly; membership is not strength or geometry. Retain
    renamed and non-PDU controls, tetrahedral/ambiguous
    negatives and collinear-plane hazards. Keep nonconvergence and remaining
@@ -98,7 +100,7 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C213. This table summarizes the acceptance packages
+Current orientation after C214. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 

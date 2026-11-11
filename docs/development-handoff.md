@@ -11,8 +11,41 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C213 validated: selected owned plane support
+## C214 validated: owned plane capture binding
 
+Base `2166369a60481f5c35dbe8e76175b8adfb1cf49f`; capsule
+`live_tests_directory/214_Cedar_owned-plane-captures-2uw1xqeu`. All 9 validation/native workers stopped.
+Pause/update remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** C211 left native capture authentication to the caller. The
+new read-only wrapper reuses the maintained capture and ordered-input readers,
+binds exact model/coordinates, original dictionary slot, PHIL order, producer
+and native options, then checks the C213-supported exact plane delta. Inputs and
+owned support are rechecked at return. No new owner or native execution in this API.
+
+**Files/schema:** `cif_plane_native.py`, `test_cif_plane_captures.py`, maintained
+docs/ledgers. New `cif-owned-plane-capture-qualification-v1`; old worker/pure gate
+and receipts unchanged. No migration, current-consumer approval or automatic
+invocation/adoption. Energy/derivative and scientific gates remain explicit.
+
+**Validation:** fail-before API regression; **151 focused tests pass**. Saved C211
+PDU/5PC captures bind; four complete Phenix **2.2.1-6174 / dispatcher 2.2.1** fixed-
+coordinate interpretations add finite repeated energy/gradient inventories with
+every older inventory field exact. No optimization/refinement. Cold complete
+qualification replays from relocated checkout/evidence with original copy paths
+gone and old capsule/SDK/process access forbidden; 105 copied files and all 600
+original files preserve bytes/mtimes. Exact commands/local evidence:
+`owned_plane_capture_binding_2026_11_11`. No Coot/full suite; last full C160. Raw
+native/candidate/model files and runners remain local and excluded from Git.
+
+**Next:** attribute plane-only energy/gradient deltas and check derivatives before
+achieved geometry/selection. Q04/Q05 ordinary invocation/resume/adoption and Q06/Q07
+complete-restraint/held-out acceptance remain open. DP correspondence and numerical
+calibration remain visible. No active worker remains. — Rowan · Codex desktop
+
+## C213 published: selected owned plane support
+
+Implementation published as `2166369a60481f5c35dbe8e76175b8adfb1cf49f`.
 Base `9b6134d497f801de113553c4b0bd89c5d8bb6a1a`; capsule
 `live_tests_directory/213_Cedar_owned-plane-evidence-kp9vryjd`. All 10 validation workers stopped.
 Pause/update remains **2026-11-11 23:00 UTC (London)**.

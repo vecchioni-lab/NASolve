@@ -1,8 +1,8 @@
 """Exact linked native inventory delta for source-supported plane completion.
 
-This read-only gate reconstructs the candidate; it neither runs a native tool
-nor authenticates a supplied capture. Execution, energetics, geometry and
-automatic adoption belong to their existing separate boundaries.
+The pure gate reconstructs the candidate and checks the supplied inventories.
+The owned wrapper additionally binds maintained native captures and selected
+generation evidence. Neither runs native tools or approves mechanics/adoption.
 """
 from copy import deepcopy
 from math import isfinite
@@ -140,3 +140,83 @@ def qualify_linked_plane_candidate(before, after, source, dictionary, support, c
     finally:
         if [p.read_bytes() for p in paths] != frozen:
             raise ValueError('Plane qualification input changed')
+
+
+def qualify_owned_plane_captures(source, component, request_directory, attempt_number,
+        candidate, model, before_receipt, after_receipt, *, dictionaries,
+        dictionary_index, phil_files=()):
+    """Bind owned support and exact ordered native inputs to the plane delta.
+
+    ``dictionaries`` is the complete ordered original bundle; exactly the explicit
+    zero-based slot is replaced by ``candidate``. Both captures must use the same
+    recorded consumer and options. No native process runs and no current installed
+    consumer, energy/derivative, achieved geometry or automatic adoption is approved.
+    """
+    try:
+        return _qualify_owned_captures(source, component, request_directory, attempt_number,
+            candidate, model, before_receipt, after_receipt, dictionaries, dictionary_index, phil_files)
+    except (KeyError, TypeError, IndexError, AttributeError, OverflowError) as exc:
+        raise ValueError('Incomplete owned plane capture evidence') from exc
+
+
+def _qualify_owned_captures(source, component, request_directory, attempt_number,
+        candidate, model, before_receipt, after_receipt, dictionaries, index, phils):
+    from hashlib import sha256
+    from .campaign_records import path_in
+    from .cif_attachment_native import _capture, _json, _native_atoms, _xyz_match
+    from .cif_dictionary_sites import _read, _bind_capture_inputs
+    from .cif_plane_generation import read_owned_plane_support
+    dictionaries = [Path(p).absolute() for p in dictionaries]
+    phils = [Path(p).absolute() for p in phils]
+    _need(type(index) is int and 0 <= index < len(dictionaries),
+          'Require an explicit original dictionary slot')
+    source, candidate, model = [Path(p).absolute() for p in (source, candidate, model)]
+    receipts = [Path(p).absolute() for p in (before_receipt, after_receipt)]
+    original = {p:_read(p) for p in [source,candidate,model,*dictionaries,*phils,*receipts]}
+    support = read_owned_plane_support(source, component, request_directory, attempt_number)
+    captures = [_capture(p, original[model]) for p in receipts]
+    records = [r[0] for r in captures]; inventories = [r[1] for r in captures]
+    after_dictionaries = list(dictionaries);after_dictionaries[index] = candidate
+    options = []
+    for receipt_path, record, native, snapshot, ordered in zip(receipts,records,inventories,
+            [r[2] for r in captures],(dictionaries,after_dictionaries)):
+        _need(record['status'] == 'REVIEW' and record['execution']['status'] == 'COMPLETED'
+              and type(record['execution']['returncode']) is int and record['execution']['returncode'] == 0,
+              'Require two completed native captures')
+        _bind_capture_inputs(record, model, ordered, phils)
+        _native_atoms(native, original[model])
+        sites = native['geometry']['sites_cart_exact']
+        _need(len(sites) == native['atom_count'] and all(_xyz_match(p,a['xyz']) for p,a in zip(sites,native['atoms'])),
+              'Captured geometry coordinates differ from selected model')
+        spec_path = receipt_path.resolve(strict=True).parent/'native_spec.json'
+        spec = _json(snapshot[spec_path])
+        _need(spec.get('policy_inventory') is True and spec.get('inventory_detail') == 'linked',
+              'Require explicit linked policy inventories')
+        options.append({k:v for k,v in spec.items() if k not in ('model','dictionaries','phil_files')})
+    _need(_exact(options[0], options[1]), 'Native capture options differ')
+    producer_fields = ('phenix_version','executable_sha256','api_sources',
+                       'dictionary_source_policy','phil_namespace_policy')
+    for field in producer_fields:
+        _need(field in records[0] and _exact(records[0][field], records[1].get(field)),
+              'Native capture producer/context differs: '+field)
+    digest = records[0]['executable_sha256']
+    _need(isinstance(digest,str) and len(digest)==64 and all(c in '0123456789abcdef' for c in digest)
+          and bool(records[0]['api_sources']), 'Incomplete captured native producer identity')
+    result = qualify_linked_plane_candidate(*inventories, source, dictionaries[index],
+        path_in(Path(request_directory).absolute(), support['support']['path']), component, candidate)
+    _need(result['inventory_checks_pass'], 'Native changes exceed the supported plane completion')
+    _need(read_owned_plane_support(source, component, request_directory, attempt_number) == support
+          and all(_read(p)==data for p,data in original.items())
+          and all(_read(p)==data for _,_,snapshot in captures for p,data in snapshot.items()),
+          'Owned plane qualification inputs changed during review')
+    return dict(schema_version=1, policy_id='cif-owned-plane-capture-qualification-v1', status='REVIEW',
+        component=component, support_generation=support, inventory_qualification=result,
+        capture_checks_pass=True, inventory_checks_pass=True, dictionary_index=index,
+        model_sha256=sha256(original[model]).hexdigest(), candidate_sha256=sha256(original[candidate]).hexdigest(),
+        captures={label:dict(anchor=label+'_native_directory',path=p.name,
+            sha256=sha256(original[p]).hexdigest(),size=len(original[p])) for label,p in zip(('before','after'),receipts)},
+        captured_consumer={k:records[0][k] for k in producer_fields}, native_options=options[0],
+        native_execution='PRESERVED_COMPLETED_CAPTURES; NOT_RERUN',
+        energy_delta_qualification='NOT_RUN', derivative_qualification='NOT_RUN', achieved_geometry='NOT_ASSESSED',
+        scientific_approval='NOT_RUN', automatic_adoption=False,
+        scope='OWNED_SOURCE_SUPPORT_AND_EXACT_CAPTURE_DELTA; NOT_CURRENT_CONSUMER_OR_SCIENTIFIC_APPROVAL')

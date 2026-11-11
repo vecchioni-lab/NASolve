@@ -84514,7 +84514,7 @@
     "published_revision": "9b6134d497f801de113553c4b0bd89c5d8bb6a1a"
   },
   "owned_plane_support_replay_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -84747,6 +84747,309 @@
         "size": 10421
       }
     ],
-    "excluded": "Raw scientific data, native sources, requests/captures, coordinates, dictionaries, logs and runners remain local; references only."
+    "excluded": "Raw scientific data, native sources, requests/captures, coordinates, dictionaries, logs and runners remain local; references only.",
+    "published_revision": "2166369a60481f5c35dbe8e76175b8adfb1cf49f"
+  },
+  "owned_plane_capture_binding_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "2166369a60481f5c35dbe8e76175b8adfb1cf49f",
+    "before": "Pure plane inventory gate required caller-side native capture authentication.",
+    "after": "Maintained owned-support and native readers bind exact ordered model/dictionary/PHIL, captured producer/options and the permitted inventory delta.",
+    "files": [
+      "src/nasolve/cif_plane_native.py",
+      "tests/test_cif_plane_captures.py"
+    ],
+    "schemas": [
+      "cif-owned-plane-capture-qualification-v1"
+    ],
+    "compatibility": "No migration; existing pure APIs, workers and receipt semantics unchanged.",
+    "validation": {
+      "status": "OWNED_PLANE_CAPTURE_BINDING_VALIDATED",
+      "focused_tests": 151,
+      "workers_stopped": 9,
+      "original_files_unchanged": 600,
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+      "native_execution": "FOUR_COMPLETE_FIXED_COORDINATE_INTERPRETATIONS_WITH_ENERGY; NO_OPTIMIZATION",
+      "cases": {
+        "PDU": {
+          "status": "OWNED_PLANE_NATIVE_CAPTURE_PASS",
+          "saved_C211_capture_binding": true,
+          "fresh_energy_capture_binding": true,
+          "C211_inventory_unchanged_except_added_energy": [
+            true,
+            true
+          ],
+          "energy_inventory_checks": [
+            {
+              "energy_inventory": true,
+              "finite_energy_and_gradient": true,
+              "fixed_coordinate_repeats": true
+            },
+            {
+              "energy_inventory": true,
+              "finite_energy_and_gradient": true,
+              "fixed_coordinate_repeats": true
+            }
+          ],
+          "model_sha256": "9c8d12db6c6625e4a03b3bea3cfb2d631781b517776523be53e6163fdc825a95",
+          "candidate_sha256": "c1aab2f507800f63820d8630f26bb3d7e37d2c901f3110b5637a21e1fad9f2d4",
+          "scope": "FIXED_COORDINATE_ENERGY_RECORDING_ONLY; DELTA_ATTRIBUTION_AND_DERIVATIVES_UNQUALIFIED"
+        },
+        "5PC": {
+          "status": "OWNED_PLANE_NATIVE_CAPTURE_PASS",
+          "saved_C211_capture_binding": true,
+          "fresh_energy_capture_binding": true,
+          "C211_inventory_unchanged_except_added_energy": [
+            true,
+            true
+          ],
+          "energy_inventory_checks": [
+            {
+              "energy_inventory": true,
+              "finite_energy_and_gradient": true,
+              "fixed_coordinate_repeats": true
+            },
+            {
+              "energy_inventory": true,
+              "finite_energy_and_gradient": true,
+              "fixed_coordinate_repeats": true
+            }
+          ],
+          "model_sha256": "d62d12129809c67f6c50a8f91a2e69ab9bd83d23dac96cf16cf01763a1e7bc19",
+          "candidate_sha256": "78ea8c03af88f54710ea322160615d5071c83b0c39aef4984817fe8e7e99216b",
+          "scope": "FIXED_COORDINATE_ENERGY_RECORDING_ONLY; DELTA_ATTRIBUTION_AND_DERIVATIVES_UNQUALIFIED"
+        }
+      },
+      "cold": {
+        "status": "RELOCATED_OWNED_PLANE_CAPTURE_QUALIFICATION_PASS",
+        "cases": {
+          "PDU": {
+            "capture_checks_pass": true,
+            "inventory_checks_pass": true,
+            "exact_replay": true
+          },
+          "5PC": {
+            "capture_checks_pass": true,
+            "inventory_checks_pass": true,
+            "exact_replay": true
+          }
+        },
+        "unchanged_files": 105,
+        "original_copy_absent": true,
+        "original_checkout_copy_absent": true,
+        "original_capsule_sdk_and_process_access_forbidden": true
+      },
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Captured consumer is bound, not automatically qualified as the current installation.",
+        "Finite repeated energies/gradients are recorded, not delta attribution or derivative correctness.",
+        "Achieved geometry, ordinary invocation/adoption, complete-restraint refinement and held-out closure remain separate."
+      ]
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_captures.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/214_Cedar_owned-plane-captures-2uw1xqeu/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_captures.py",
+          "tests/test_cif_plane_native.py",
+          "tests/test_cif_attachment_native.py",
+          "tests/test_cif_plane_generation.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/214_Cedar_owned-plane-captures-2uw1xqeu/focused-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "native-captures-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c214_native.py",
+          "--worker",
+          "/Users/svecchio/NASolve-live-tests/214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "cold-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/214_Cedar_owned-plane-captures-2uw1xqeu/cold-r1/worker.py",
+          "/Users/svecchio/NASolve-live-tests/214_Cedar_owned-plane-captures-2uw1xqeu/cold-r1"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/214_Cedar_owned-plane-captures-2uw1xqeu/cold-r1/checkout-relocated",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/214_Cedar_owned-plane-captures-2uw1xqeu/cold-r1/checkout-relocated/src"
+        }
+      }
+    },
+    "native_jobs": [
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      },
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      },
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      },
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      }
+    ],
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/start.json",
+        "sha256": "77e8efc137181c2369d74b0cb75c83c128abca5007128cbde1cbf47148eb062a",
+        "size": 183
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/final-audit.json",
+        "sha256": "1d8de3d6997831da53e1f01f80b9995291102cd497b9467a3011143d6d418fa3",
+        "size": 3003
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/focused-r1/tests.xml",
+        "sha256": "9f3bf81becb04e046eb34e04d13dfddb9a971b55c47edc39098a1f5514e7a342",
+        "size": 21404
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/summary.json",
+        "sha256": "d8156a6ec6a6881c56c23117254f4cc364ad31d9f4a4e2152ee1a1cde1886699",
+        "size": 2239
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/execution.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/cold-r1/results/summary.json",
+        "sha256": "52bd3c9e870cbea3885ecf9706b9f24c43bfba5a713acdfb0782268c24631186",
+        "size": 482
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/PDU/plan.json",
+        "sha256": "40ff783023c7d7a163265247d99c778a2d402f58c31e62960e95992eab62908e",
+        "size": 9373
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/PDU/saved-capture-qualification.json",
+        "sha256": "b2ebcf71b07547ea815ed2f319e1dd82c86f31ee48f9e6e1777c47bda41e8b1b",
+        "size": 13273
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/PDU/qualification.json",
+        "sha256": "94f93d9297f086742d79da72f2eccf0e87082f5d1bd70b7e3b261a145ec256b7",
+        "size": 13303
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/PDU/before.json",
+        "sha256": "6dd6a5798b926b0f290a18c245ded4fd1e74561a5878d27d8a677a65f1713090",
+        "size": 4320550
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/PDU/after.json",
+        "sha256": "9f761e639900bec018bc72ade390c9a29260278f6003170f0bffcfbe7a7ad6f8",
+        "size": 4321168
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/5PC/plan.json",
+        "sha256": "b159baccdba08bb2d5506c7b8b0621667f60152de006a88c1fe875e450269864",
+        "size": 9369
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/5PC/saved-capture-qualification.json",
+        "sha256": "1c87af2a277a42062f795ed2c61a9dc63ddf098c366ccbb37f2bfc9113305870",
+        "size": 13271
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/5PC/qualification.json",
+        "sha256": "0f44ea9173f7ecc75fe33bdc58b367cff3ba97aec7e84ee6bd3c7cf5c6e94251",
+        "size": 13301
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/5PC/before.json",
+        "sha256": "c4bb8ce8d8eb63dc88587d02579690a6fcc04626486154086e68bbf5dc8391d2",
+        "size": 4334473
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "214_Cedar_owned-plane-captures-2uw1xqeu/native-captures-r1/5PC/after.json",
+        "sha256": "8da38366f19a3eae11753e62a0bf29270f94101a85a51445d3be678651a5090b",
+        "size": 4335072
+      }
+    ],
+    "excluded": "Raw native outputs, source/requests, models, dictionaries, captures, logs and runners remain local; compact references only."
   }
 }

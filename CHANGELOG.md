@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind owned plane candidates to exact native captures (C214)
+
+- Reuse maintained capture and ordered-input readers to qualify the plane-only
+  change against the exact model, dictionary slot, PHIL order and captured producer.
+- Refuse changed or unrelated native evidence while preserving separate support,
+  inventory and scientific scopes. Saved and relocated PDU/5PC controls pass.
+- Record fresh fixed-coordinate native energy inventories for subsequent mechanics
+  checks; no optimizer, automatic adoption or current-consumer approval is implied.
+
 ### Bind plane-only candidates to selected owned native generation (C213)
 
 - Replay completed multiple-plane evidence through the existing source reader,
