@@ -82051,7 +82051,7 @@
     }
   },
   "ordinary_literal_source_assembly_2026_11_11": {
-    "status": "IMPLEMENTED_VALIDATED; PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "base_revision": "6b016f323d15aa9dfdfead7241e5a09215175d2b",
@@ -82240,6 +82240,34 @@
       "No new native, ReadySet, Coot, acquisition attempt, refinement or adoption.",
       "Q05/Q06/Q07 and unresolved Q13 chemical-state controls remain open."
     ],
-    "orientation": "Q04 summary/next checkpoint consolidated around current acceptance; detailed historical methods/evidence retained. C203 handoff wording typo corrected."
+    "orientation": "Q04 summary/next checkpoint consolidated around current acceptance; detailed historical methods/evidence retained. C203 handoff wording typo corrected.",
+    "implementation_revision": "430d3598782b8ce1a29d22ce0682adeeeb4b8099",
+    "auxiliary": {
+      "status": "PASS",
+      "source_test_files": 570,
+      "test_files": 353,
+      "top_level_tests": 2176,
+      "shadowed": [],
+      "collectable_imports": [],
+      "identical_groups": [
+        [
+          "test_cif_effective_source_recovery_probe.py:test_changed_or_unsafe_capsule_is_refused",
+          "test_cif_fragment_restoration_probe.py:test_changed_or_unsafe_capsule_is_refused"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_verified_initial_gradient_parent_is_accepted_as_data",
+          "test_mixed_gradient_probe.py:test_verified_saved_native_context_is_accepted_without_running_captured_programs"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_geometry_input_views_refuse_existing_user_directory",
+          "test_mixed_gradient_probe.py:test_gradient_input_views_refuse_existing_user_directory"
+        ]
+      ],
+      "workflow_files": 60,
+      "relative_doc_links": 407,
+      "compileall": "PASS external capsule cache",
+      "diff_check": "PASS",
+      "full_suite": "NOT_RUN"
+    }
   }
 }

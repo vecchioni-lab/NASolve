@@ -28426,7 +28426,8 @@
     "ordinary_literal_source_assembly": {
       "status": "IMPLEMENTED_VALIDATED; ORDINARY_INVOCATION_OPEN",
       "evidence": "docs/cif-linked-native-registration-evidence.json#ordinary_literal_source_assembly_2026_11_11",
-      "next": "Join existing ordinary PostMR caller to the complete request before legacy modification/ReadySet; preserve one owner and durable resume."
+      "next": "Join existing ordinary PostMR caller to the complete request before legacy modification/ReadySet; preserve one owner and durable resume.",
+      "implementation_revision": "430d3598782b8ce1a29d22ce0682adeeeb4b8099"
     }
   },
   "audience": [

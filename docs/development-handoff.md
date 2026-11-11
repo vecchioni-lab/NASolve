@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C204 validated: ordinary literal source assembly
+## C204 published: ordinary literal source assembly
 
 Base `6b016f323d15aa9dfdfead7241e5a09215175d2b`; pause/update **2026-11-11 15:00 UTC**.
 Capsule `live_tests_directory/204_Cedar_ordinary-literal-assembly-lcq9qzpr`. All workers stopped.
@@ -40,7 +40,8 @@ No full/profile rerun; last full C160. Source and prior input bytes/mtimes fixed
 **Artifacts:** raw models, source CIFs, PHIL, local logs/runners stay outside Git.
 **Next:** ordinary invocation, one modifier owner and durable resume, then Q05
 exact selected checkpoint publication. Q06/Q07 and C194/Q13 remain open. No merge.
-Publication next. — Rowan · Codex desktop
+Implementation published as `430d3598782b8ce1a29d22ce0682adeeeb4b8099`.
+— Rowan · Codex desktop
 
 ## C203 published: owned ASU continuation
 
