@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepare ordinary inputs for the owned dictionary engine (C218)
+
+- Add an explicit Python initializer sharing ordinary Coot/NAR preparation before
+  legacy dictionary modification or ReadySet, then freezing the existing request.
+- Preserve partial preparation and a durable request resume boundary. No default
+  CLI/campaign behavior, artifact schema, chemistry policy or checkpoint adoption
+  changes; preparation alone never claims refinement readiness.
+
 ### Preserve the selected Phenix installation through PostMR (C217)
 
 - CLI/campaign preparation now carries its selected installation into the existing

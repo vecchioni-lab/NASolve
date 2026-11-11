@@ -62,6 +62,12 @@ and explicit terminal intent remain protected; unsupported references retain raw
 This removes the manual serial step from the PDU control, without claiming complete
 refinement or automatic plane-candidate adoption.
 
+An [explicit ordinary initializer](cif-doctor.md#ordinary-preparation-into-the-existing-request-c218)
+now carries normal Coot construction and NAR restraint generation directly into
+the existing immutable request, replacing the earlier manual validation handoff.
+It preserves partial work and the original MR status; a prepared request does not
+mean execution or refinement readiness. Default invocation/adoption remain open.
+
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
 native chain and fresh recovery under one request. Exact NAR plane intake now
 retains each selected atom and its supplied sigma-derived weight through the same

@@ -28505,6 +28505,12 @@
       "contract": "docs/cif-doctor.md#selected-phenix-runtime-through-ordinary-postmr-c217",
       "evidence": "selected_postmr_runtime_2026_11_11",
       "scope": "Retain selected installation in CLI/campaign preparation and existing cache consumer binding; ordinary owned request invocation/adoption still open."
+    },
+    "ordinary_postmr_request_entry": {
+      "status": "IMPLEMENTED_EXPLICIT_ORDINARY_INPUT_INITIALIZER",
+      "contract": "docs/cif-doctor.md#ordinary-preparation-into-the-existing-request-c218",
+      "evidence": "ordinary_postmr_request_entry_2026_11_11",
+      "scope": "Shares Coot/NAR preparation into existing request before legacy work; no execution, default activation or adoption."
     }
   },
   "audience": [

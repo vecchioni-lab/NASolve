@@ -621,6 +621,34 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Ordinary preparation into the existing request (C218)
+
+`cif_ordinary_postmr.initialize_ordinary_postmr_request` accepts an ordinary run,
+selected Phenix installation and explicit source-reader dialect. It shares the
+existing Coot/construction/phosphate/NAR preparation path, then stops before the
+legacy dictionary cache, site modifiers and ReadySet. Existing source selection,
+literal-input compilation and complete-request initialization freeze the prepared
+model, construction lineage and exact ordered restraint intent. No second owner,
+compiler or artifact schema is introduced.
+
+The result exposes the request directory and live generation settings for the
+existing `execute_dictionary_request_attempt`; environment values are not serialized
+or included in the result representation. Resume a published request through that
+owner rather than rerunning preparation. An interrupted pre-request PostMR remains
+preserved and refuses in-place reinitialization. This API does not execute or adopt
+a result, create a checkpoint, or mark the run refinement-ready. Default CLI/campaign
+behavior remains unchanged. Q04 execution/reporting and Q05 exact adoption stay open.
+
+Four fail-before regressions and **231 focused tests + 14 subtests** cover entry,
+legacy exclusion, failure preservation and existing callers. An actual complete
+**Coot 1.3.3 (revision-count 0)** construction plus NAR generation produces a fresh
+PDU request with 38 links and 51 bond/84 angle/58 parallelity/4 plane declarations.
+**Phenix 2.2.1-6174 / dispatcher 2.2.1** is used for configuration only: no generation,
+interpretation, ReadySet or refinement. The request replays exactly from a relocated
+checkout with original copy paths removed and original run/catalogue/SDK/process
+access denied; 26 files preserve bytes/mtimes. No full suite or scientific usability
+claim. Exact commands and local evidence: `ordinary_postmr_request_entry_2026_11_11`.
+
 ### Selected Phenix runtime through ordinary PostMR (C217)
 
 CLI and campaign now pass their already selected `PhenixInstallation` into

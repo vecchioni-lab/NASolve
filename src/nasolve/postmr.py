@@ -12,7 +12,7 @@ from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from math import dist, isfinite, sqrt
 from pathlib import Path
-from typing import Callable, Mapping
+from typing import Callable, Mapping, TypeVar
 
 from .curated_ligands import (
     CURATED_LIGANDS,
@@ -1851,6 +1851,19 @@ def construct_postmr_model(
             "context_sanitized_shadow": context["sanitized_shadow"], "context_rechecked_model": rechecked}
 
 
+@dataclass(frozen=True)
+class _PreparedDictionaryInputs:
+    """Live ordinary-stage boundary, never a separate artifact or process owner."""
+    run_directory: Path
+    run_report: dict
+    model_path: Path
+    components: tuple[str, ...]
+    supplementary_phils: tuple[Path, ...]
+
+
+_PostMRReturn = TypeVar("_PostMRReturn")
+
+
 def prepare_postmr(
     run_directory: Path,
     ready_set_executable: Path,
@@ -1866,6 +1879,41 @@ def prepare_postmr(
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
 ) -> PostMRResult:
+    """Prepare a completed Phaser solution using the established runtime path.
+
+    Selected-installation validation and ordinary construction/NAR preparation
+    are shared with the explicit dictionary-request initializer.
+    """
+    return _prepare_postmr(run_directory, ready_set_executable,
+        phenix_installation=phenix_installation,
+        coot_executable=coot_executable,
+        environment=environment,
+        allow_mr_review=allow_mr_review,
+        modified_pairs_only=modified_pairs_only,
+        restraint_scope=restraint_scope,
+        allow_unreviewed_backbone=allow_unreviewed_backbone,
+        data_root=data_root,
+        narestraints_builder=narestraints_builder,
+        modified_pair_builder=modified_pair_builder,
+    )
+
+
+def _prepare_postmr(
+    run_directory: Path,
+    ready_set_executable: Path,
+    *,
+    phenix_installation: PhenixInstallation | None = None,
+    coot_executable: Path | None = None,
+    environment: Mapping[str, str] | None = None,
+    allow_mr_review: bool = False,
+    modified_pairs_only: bool = False,
+    restraint_scope: str | None = None,
+    allow_unreviewed_backbone: bool = False,
+    data_root: Path | None = None,
+    narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
+    modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
+    _dictionary_handler: Callable[[_PreparedDictionaryInputs], _PostMRReturn] | None = None,
+) -> PostMRResult | _PostMRReturn:
     """Prepare a completed Phaser solution without modifying the MR outputs.
 
     CLI/campaign callers retain their selected Phenix installation. Explicit-path
@@ -2283,6 +2331,10 @@ def prepare_postmr(
         (residue_codes & set(CURATED_LIGANDS))
         | (residue_codes & set(ligand_sources))
     )
+    if _dictionary_handler is not None:
+        return _dictionary_handler(_PreparedDictionaryInputs(
+            run, report, prepared, tuple(ligand_codes), tuple(restraint_paths)))
+
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []
     dictionary_source_provenance: dict[str, dict[str, object]] = {}

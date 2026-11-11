@@ -86627,7 +86627,7 @@
     "published_revision": "0712a2567fa20028c4cfd496fe18e48d6b8ae82d"
   },
   "selected_postmr_runtime_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -86819,6 +86819,212 @@
         "size": 50
       }
     ],
-    "excluded": "Test logs/runners and raw installation pins remain local; no scientific inputs or serialized execution environment."
+    "excluded": "Test logs/runners and raw installation pins remain local; no scientific inputs or serialized execution environment.",
+    "published_revision": "a515b2e2dda2c1a471aebb4735228bb84bf41e1f"
+  },
+  "ordinary_postmr_request_entry_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "a515b2e2dda2c1a471aebb4735228bb84bf41e1f",
+    "before": "Ordinary-to-owned validation required manual interruption and request assembly.",
+    "after": "One shared ordinary preparation path publishes the existing complete request before legacy work.",
+    "files": [
+      "src/nasolve/postmr.py",
+      "src/nasolve/cif_ordinary_postmr.py",
+      "tests/test_cif_ordinary_postmr.py"
+    ],
+    "schemas": "UNCHANGED; LIVE_PYTHON_RETURN_TYPE_ONLY",
+    "compatibility": "Existing public prepare_postmr signature and default CLI/campaign behavior preserved; new opt-in API refuses pre-existing PostMR.",
+    "validation": {
+      "status": "ORDINARY_REQUEST_ENTRY_VALIDATED",
+      "focused_tests": 231,
+      "subtests": 14,
+      "workers_stopped": 6,
+      "native": {
+        "status": "ACTUAL_ORDINARY_REQUEST_INITIALIZATION_PASS",
+        "components": [
+          "PDU"
+        ],
+        "expected_links": 38,
+        "restraint_counts": {
+          "angle": 84,
+          "bond": 51,
+          "parallelity": 58,
+          "planarity": 4
+        },
+        "coot": "1.3.3 revision-count 0; actual complete construction",
+        "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+        "native_phenix": "CONFIGURATION_ONLY; NO_GENERATION_INTERPRETATION_OR_REFINEMENT",
+        "readyset": "NOT_RUN",
+        "root_report_unchanged": true,
+        "automatic_adoption": false
+      },
+      "cold": {
+        "status": "RELOCATED_ORDINARY_REQUEST_REPLAY_PASS",
+        "exact_state_replay": true,
+        "request_id": "dd118cbc-9321-45f3-9906-7fe395ea9980",
+        "availability": "AVAILABLE",
+        "attempts": [],
+        "unchanged_files": 26,
+        "original_copy_absent": true,
+        "original_checkout_copy_absent": true,
+        "original_run_catalogue_sdk_and_process_access_forbidden": true,
+        "scope": "REQUEST_ONLY; NO_EXECUTION_OR_ADOPTION"
+      },
+      "original_scientific_files_unchanged": 600,
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Explicit Python initializer only; default CLI/campaign route unchanged.",
+        "Request preparation does not execute generation, repair, ReadySet, refinement or checkpoint publication.",
+        "Existing request executor owns recovery after publication; pre-request partial PostMR cannot be overwritten.",
+        "Plane repair APIs remain explicit and are not yet composed into owned linear-torsion repair."
+      ]
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_ordinary_postmr.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_ordinary_postmr.py",
+          "tests/test_postmr_runtime.py",
+          "tests/test_postmr.py",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_postmr_lineage.py",
+          "tests/test_cif_postmr_literal.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/focused-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_ordinary_postmr.py",
+          "tests/test_postmr_runtime.py",
+          "tests/test_postmr.py",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_postmr_component_inputs.py",
+          "tests/test_cif_literal_na_inputs.py",
+          "tests/test_cli.py",
+          "tests/test_campaign_stages.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/focused-r2/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "native-entry-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/native-entry-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/native-entry-r1"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/native-entry-r1",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "cold-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/cold-r1/worker.py",
+          "/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/cold-r1"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/cold-r1/checkout-relocated",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/218_Cedar_ordinary-request-entry-jclcm02q/cold-r1/checkout-relocated/src"
+        }
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "218_Cedar_ordinary-request-entry-jclcm02q/start.json",
+        "sha256": "01b02703cec28d36a772f83f5d484bd4dc6b713aa10e30275a58dd66be5276a7",
+        "size": 201
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "218_Cedar_ordinary-request-entry-jclcm02q/final-audit.json",
+        "sha256": "8c8f7c9329222f12825864a23962ead67ef03dd3f5fa8b0a8c47e3664ee154f4",
+        "size": 1679
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "218_Cedar_ordinary-request-entry-jclcm02q/focused-r2/tests.xml",
+        "sha256": "88e498b023c6fbd4dccef72b7934b1630c090e551398fb50f5cf8500073023b1",
+        "size": 33982
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "218_Cedar_ordinary-request-entry-jclcm02q/native-entry-r1/summary.json",
+        "sha256": "d5a0fdd45bc3caac45ff5472128870a29e3308e8c59e9a243f898de1b0b2d653",
+        "size": 17533
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "218_Cedar_ordinary-request-entry-jclcm02q/native-entry-r1/execution.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "218_Cedar_ordinary-request-entry-jclcm02q/cold-r1/summary.json",
+        "sha256": "f4e6de6240d72ea0ab5087e87e59cca77a99fc5bc21680c9f5754ec08eae01f8",
+        "size": 410
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "218_Cedar_ordinary-request-entry-jclcm02q/cold-r1/execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      }
+    ],
+    "excluded": "Raw Coot models, NAR output, source copies, request trees, logs and runners remain local; no serialized live environment.",
+    "failed_controls": [
+      "focused-r1 selected nonexistent test paths and collected no tests; evidence retained."
+    ]
   }
 }

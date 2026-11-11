@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C217.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C218.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -107,13 +107,13 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C217. This table summarizes the acceptance packages
+Current orientation after C218. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
 | Package | Position now | Remaining acceptance |
 | --- | --- | --- |
-| Q04 — recovery engine | Explicit owned chain and ordinary input assembly validated; invocation remains open | C175–C197 bind prepared-model context, ordered NAR intent, frozen sources and construction lineage through the existing owner. C198–C203 validate actual ordinary Coot/NAR inputs through connected repair, ASU-aware ReadySet, exact selection/publication and cold old/new replay. C204 replaces manual literal-source assembly with frozen-source/ordinary selection and the same compiler; its artifact and request configuration match C203 exactly. Connect ordinary invocation with one modifier owner and durable resume, then exercise ordinary hit/miss/stale/failure paths. |
+| Q04 — recovery engine | Explicit ordinary request initialization validated; execution/adoption integration remains open | C175–C197 bind prepared-model context, ordered NAR intent, frozen sources and construction lineage through the existing owner. C198–C203 validate actual ordinary Coot/NAR inputs through connected repair, ASU-aware ReadySet, exact selection/publication and cold old/new replay. C204 replaces manual literal-source assembly with frozen-source/ordinary selection and the same compiler; its artifact and request configuration match C203 exactly. C218 shares ordinary Coot/NAR preparation into the existing request before legacy work, with actual construction and cold request replay. Connect execution/reporting and default invocation with one modifier owner and durable resume, then exercise ordinary hit/miss/stale/failure paths. |
 | Q05 — ordinary adoption | Open | Carry one exact selected model/CIF/PHIL bundle through prepared and newly mutated routes into immutable checkpoints; retain source/producer lineage and selected-versus-latest behavior. |
 | Q06 — real refinement consumer | Open; can proceed alongside Q04/Q05 | Qualify actual refinement with complete NAR restraints and Free-R authority. The corrected diagnostic evaluator does not establish ordinary Phenix behavior. |
 | Q07 — combined acceptance | Open | Run the original eight pairs with ATL alongside, broken PDU and DF/A1AAZ, plus the separate eight-residue held-out builder challenge. Refinement claims depend on Q06. |
@@ -221,14 +221,16 @@ as competing next-step instructions here.
 | Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. C186 adds exact plane unions/weights with old v1 replay and actual three-plane W-frame membership. C187 preserves original literal PHIL/native capture and compiler/workbook pins through owned request/result replay. C197 alternatively compiles that literal intent from readable source graphs without a prior capture, explicitly labelling PDB identities and preserving source bytes under the same owner. C188 alternatively retains the existing source-bound compiler artifact, exact source bytes and nonactive orientation evidence under the same owner. C190 requires grouped atom-name alternatives for new derivation/creation/execution, preserving exact historical readback. Actual native 3-versus-85 selection mismatch is reproduced and grouped controls agree. Unsupported PHIL and unowned pre-existing modifiers refuse. |
 | Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. C189 also consumes an already frozen source selection with exact component coverage and no rediscovery; actual original/repaired and cold controls pass. This API remains opt-in; C182 derives current consumer/generator settings from the selected installation while preserving explicit source-reader/representation intent. |
 
-**Next bounded checkpoint:** connect the validated prepared intake to the existing
-ordinary PostMR caller before legacy dictionary modification and ReadySet. C203
+**Next bounded checkpoint:** execute the C218 ordinary-prepared request through
+the existing owner, then integrate truthful ordinary result/reporting and Q05 exact
+selection. C218 now exposes shared Coot/NAR preparation before legacy dictionary
+modification and ReadySet; actual construction and cold request replay pass. C203
 now qualifies the connected crystal through owned ASU-aware continuation and
 selects `readyset_checked_model`; old requests retain their old policies and
 outcomes. C204 assembles literal sources without the control runner's private
 site/code mapping, preserving byte-identical C203 inputs. Reuse the complete
 request's recovery owner, budget and publication instead of adding another
-scheduler. Ordinary invocation and modifier ownership remain open.
+scheduler. Default invocation, execution reporting and modifier ownership through adoption remain open.
 C205 removes duplicate selected-result reconstruction without caching verdicts or
 skipping historical validation. It does not close ordinary invocation.
 

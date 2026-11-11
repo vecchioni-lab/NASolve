@@ -11,7 +11,44 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C217 validated: selected runtime retained through ordinary PostMR
+## C218 validated: ordinary preparation publishes the existing request
+
+Base `a515b2e2dda2c1a471aebb4735228bb84bf41e1f`; capsule
+`live_tests_directory/218_Cedar_ordinary-request-entry-jclcm02q`. All 6 validation/native workers stopped.
+Pause/update **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** C198 controls manually interrupted ordinary preparation and
+assembled intake. A maintained explicit initializer now shares Coot/NAR preparation,
+then freezes the existing request before legacy cache/modifier/ReadySet work.
+Published requests resume through the existing owner; pre-request partial work is
+preserved and refuses in-place reinitialization. MR status stays unchanged.
+
+**Files/schema:** `postmr.py`, new `cif_ordinary_postmr.py`, focused tests and maintained
+docs/ledgers. New live Python return type only; no artifact migration, default CLI
+change, chemistry-policy change or checkpoint publication. Generation settings
+contain a live private environment and must not be serialized.
+
+**Validation:** four fail-before cases; **231 focused + 14 subtests pass**.
+Complete Coot **1.3.3 revision-count 0** construction/NAR input and actual Phenix
+**2.2.1-6174 / dispatcher 2.2.1** configuration-only control pass: 38 links and
+51 bonds/84 angles/58 parallelities/4 planes. Cold request replay passes with
+original paths absent/denied, SDK and process access forbidden; 26 files unchanged.
+All 600 original Linden files unchanged. First focused harness used nonexistent
+test filenames and collected no tests; retained, then corrected. Exact commands:
+`ordinary_postmr_request_entry_2026_11_11`. Raw models, requests, logs and runners
+stay local. No generation/ReadySet/refinement/full suite; last full C160.
+
+**Next:** execute this exact ordinary request through the existing owner, then
+truthful outcome reporting/default invocation and Q05 selection/checkpoint handoff.
+Do not rerun Coot/NAR to resume or add another owner/compiler. Plane completion
+remains explicit; the current owned repair composer still dispatches linear-torsion
+repair only. Q06 real refinement and broader scientific gates remain open.
+Single-author Cedar; self-continuity only.
+— Rowan · Codex desktop
+
+## C217 published: selected runtime retained through ordinary PostMR
+
+Implementation published as `a515b2e2dda2c1a471aebb4735228bb84bf41e1f`.
 
 Base `0712a2567fa20028c4cfd496fe18e48d6b8ae82d`; capsule
 `live_tests_directory/217_Cedar_selected-PostMR-runtime-0fw1c8db`. All 3 validation workers stopped.
