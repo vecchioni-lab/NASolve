@@ -82891,7 +82891,7 @@
     "published_revision": "67276269e3fd4a7eb119ff2d719eceec5b00dd65"
   },
   "native_parent_conformation_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "base_revision": "6ff68e8b21bf03c4d176c459be730b0e0098d17c",
@@ -83163,6 +83163,155 @@
         "sha256": "eeea4d62f2b8b8b38682720200cdc9bf810174e9b24762ef8d14b213cf14535f",
         "size": 93
       }
-    ]
+    ],
+    "published_revision": "08279945e8b05b2d519e2e642e423b9b7a021883"
+  },
+  "trigonal_plane_coverage_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "08279945e8b05b2d519e2e642e423b9b7a021883",
+    "before": "Existing plane-angle audit does not inventory missing plane membership.",
+    "after": "Read-only source-graph selected neutral trigonal-carbon coverage with explicit exclusions and retained alternative restraints.",
+    "files": [
+      "src/nasolve/cif_plane_coverage.py",
+      "tests/test_cif_plane_coverage.py"
+    ],
+    "schema": "NEW_EXPLICIT_cif-source-trigonal-plane-coverage-v1/schema-1; EXISTING_POLICIES_UNCHANGED",
+    "compatibility": "No existing caller/report/replay changes or migration.",
+    "validation": {
+      "before": "2 failed",
+      "focused": "198 passed; additional ATL control passes, 199 distinct logical cases",
+      "retained": {
+        "status": "RETAINED_C206_COVERAGE_PASS",
+        "before_missing": [
+          "C5"
+        ],
+        "after_missing": [],
+        "centres": 3,
+        "existing_torsions_retained": 3,
+        "source_inputs_unchanged": true,
+        "native": "NOT_RUN; REUSED_EXACT_C206_INPUTS",
+        "scientific_approval": "NOT_RUN"
+      },
+      "native": "NOT_RUN; EXACT_C206_DICTIONARIES_REUSED",
+      "full": "NOT_RUN; LAST_FULL_C160"
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_coverage.py",
+          "-k",
+          "missing_exocyclic",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/208_Cedar_trigonal-coverage-v2dvdivy/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_coverage.py",
+          "tests/test_cif_doctor.py",
+          "tests/test_cif_stereochemistry_audit.py",
+          "tests/test_cif_triple_bond_audit.py",
+          "tests/test_cif_linear_torsion_candidate.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/208_Cedar_trigonal-coverage-v2dvdivy/focused-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "bridged-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_coverage.py",
+          "-k",
+          "sugar_and_bridged",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/208_Cedar_trigonal-coverage-v2dvdivy/bridged-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "208_Cedar_trigonal-coverage-v2dvdivy/start.json",
+        "sha256": "eee21be07d3017f9c1d1bfcec2a46eb5689950d966b3f06da3e9d8128253f622",
+        "size": 201
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "208_Cedar_trigonal-coverage-v2dvdivy/focused-r1/summary.json",
+        "sha256": "c187c286398a7f24aaf08ece58285f06a6c94d4dc1f3c6b2c9916641847f2cd2",
+        "size": 150
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "208_Cedar_trigonal-coverage-v2dvdivy/focused-r1/tests.xml",
+        "sha256": "fbe29a2fee3bce936933c14394beb6fa5d0f38695ca08d1cb4539e93785d2f28",
+        "size": 30737
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "208_Cedar_trigonal-coverage-v2dvdivy/bridged-r1/tests.xml",
+        "sha256": "9bc20d856b257fff04ad910d5b596d380ac32a3989e7d1c57cc39d78f75b5ee3",
+        "size": 535
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "208_Cedar_trigonal-coverage-v2dvdivy/retained-r1/summary.json",
+        "sha256": "2d65c8f1e05972f52da3d07819c684b68a6686f71bf04bd016cab460f6f63000",
+        "size": 276
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "208_Cedar_trigonal-coverage-v2dvdivy/retained-r1/reports.json",
+        "sha256": "555cce0d29b6d5dff4f8346d9283f3d236127ed2a12af8159d7f212a13c7445b",
+        "size": 25509
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "208_Cedar_trigonal-coverage-v2dvdivy/retained-r1/runner.py.txt",
+        "sha256": "8d9324951bb474fdb13107aacceb72d6c170d2c45fda3103663af0523c9d1dfb",
+        "size": 2216
+      }
+    ],
+    "limitations": [
+      "Explicit coverage is not equivalent-restraint strength, source chemical approval, native membership or achieved geometry.",
+      "No general aromatic-only/heteroatom/implicit-H hybridization perception or strained-chemistry repair.",
+      "No automatic invocation, candidate, dictionary edit or adoption."
+    ],
+    "excluded": "Raw CIFs, logs and runners remain local."
   }
 }

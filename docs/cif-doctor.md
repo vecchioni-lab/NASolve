@@ -620,6 +620,37 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Source-selected trigonal plane coverage (C208)
+
+`audit_trigonal_plane_coverage(source, dictionary, code)` is a read-only API for
+explicit neutral carbon centres with three heavy neighbours and one double plus
+two single bonds. Exact source/dictionary atom, bond and charge graphs must agree.
+Declared chiral centres, unknown/charged states, tetrahedral centres and other
+bond representations remain explicitly unassessed. Component and atom names do
+not select the rule. This is a bounded connectivity screen, not a universal
+hybridization model: it does not establish that strained/pyramidal chemistry
+should be flattened, nor infer planarity for every ring or modified sugar.
+
+For each selected centre, the report records complete and partial explicit plane
+membership, supplied ESDs, relevant angle/torsion terms and descriptive coordinate
+volume. `EXPLICIT_PLANE_MISSING` means exactly that; alternative restraints can
+still constrain geometry. `SCOPED_EXPLICIT_COVERAGE_PASS` is only membership
+coverage, not calibrated strength, native interpretation, achieved geometry or
+chemical approval. Coordinates do not select centres or become target values.
+Malformed plane rows and changing inputs refuse assessment. Inputs are unchanged.
+
+The C206 PDU before/after controls have three eligible centres; only C5 lacks
+coverage before completion, and none afterward. All three existing weak C5 torsions
+remain visible. Renamed components/atoms, a carbonyl control and public PDU/ATL
+sugar exclusions pass. 199 distinct focused cases pass (198 affected plus the
+additional ATL case); no native tool or full suite was rerun. Exact evidence is
+`trigonal_plane_coverage_2026_11_11` in the existing ledger.
+
+This new explicit policy leaves historical graph-numerics-v2 and its replay
+unchanged. It does not rewrite dictionaries, generate candidates or alter ordinary
+selection. Source/native-supported completion, equivalent-restraint assessment,
+achieved geometry and ordinary engine integration remain Q06/Q07 work.
+
 ### Graph-supported native parent conformation (C207)
 
 Fresh ordinary modified-base construction now asks native Coot to match the

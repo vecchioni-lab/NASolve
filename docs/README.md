@@ -21,7 +21,9 @@ milestone statements preserve their original scope; they are not a second queue.
   its local geometry repair is not yet ordinary runtime support.
   [Source-graph parent-chi matching](cif-doctor.md#graph-supported-native-parent-conformation-c207)
   now runs ordinarily with measured failure detection; PDU/5PC pass and ambiguous
-  DP matching is refused. Serial/context and plane repair remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
+  DP matching is refused. The [trigonal coverage screen](cif-doctor.md#source-selected-trigonal-plane-coverage-c208)
+  now identifies missing explicit planes from source connectivity, retaining
+  alternative restraints. Serial/context and qualified plane repair remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
   owns exact validation. Full regression remains deferred to integration; C160

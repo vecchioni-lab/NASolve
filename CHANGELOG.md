@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Screen source-supported trigonal plane coverage (C208)
+
+- Add a read-only, connectivity-selected coverage API with exact source/dictionary
+  graph/state agreement, explicit exclusions and retained alternative restraints.
+- Detect the missing PDU exocyclic plane without component/atom-name switches;
+  preserve tetrahedral/bridged sugar boundaries and historical assessment meaning.
+  Coverage alone authorizes no chemical repair or ordinary adoption.
+
 ### Verify parent conformation during ordinary mutation (C207)
 
 - Select native parent-chi matching from the supported source DNA graph and shared

@@ -28445,6 +28445,12 @@
       "contract": "docs/cif-doctor.md#graph-supported-native-parent-conformation-c207",
       "evidence": "native_parent_conformation_2026_11_11",
       "scope": "Source-graph selected parent chi; native PDU/5PC positive, DP mismatch refusal. No plane repair, broader backbone or refinement claim."
+    },
+    "trigonal_plane_coverage": {
+      "status": "IMPLEMENTED_EXPLICIT_READ_ONLY_API",
+      "contract": "docs/cif-doctor.md#source-selected-trigonal-plane-coverage-c208",
+      "evidence": "trigonal_plane_coverage_2026_11_11",
+      "scope": "Neutral explicit three-heavy-neighbor carbon coverage; alternatives retained, unsupported chemistry unassessed. No repair/adoption."
     }
   },
   "audience": [

@@ -27,6 +27,10 @@ Plane completion remains diagnostic. [Graph-supported parent-chi matching](cif-d
 now runs in ordinary construction with measured refusal of wrong native matches;
 PDU and 5PC transfer, while ambiguous DP correspondence is explicitly refused.
 Other numerical targets and actual refinement remain unqualified.
+A [source-selected plane-coverage screen](cif-doctor.md#source-selected-trigonal-plane-coverage-c208)
+now detects missing explicit membership while retaining alternative restraints
+and excluding unsupported/chiral/tetrahedral centres. It reports evidence for
+later qualified repair; it does not flatten rings or modify dictionaries.
 
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
 native chain and fresh recovery under one request. Exact NAR plane intake now

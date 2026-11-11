@@ -11,8 +11,41 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C207 validated: graph-supported native mutation conformation
+## C208 validated: source-supported trigonal plane coverage
 
+Base `08279945e8b05b2d519e2e642e423b9b7a021883`; capsule
+`live_tests_directory/208_Cedar_trigonal-coverage-v2dvdivy`. All owned workers stopped.
+Pause/update deadline remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** PLANE-01 checked only existing planes; C206's missing C5
+membership escaped that coverage. A separate read-only policy now selects
+explicit neutral three-coordinate carbon from exact source/dictionary graphs,
+records complete/partial plane membership and retains alternative angle/torsion
+terms. Unknown/chiral/tetrahedral/unsupported centres are unassessed. No named
+PDU rule, coordinate-based chemical inference or universal planar-ring claim.
+
+**Files/schema:** new `cif_plane_coverage.py` and focused tests; Unreleased and
+existing methods/descriptor/map/queue/ledgers. New explicit report policy
+`cif-source-trigonal-plane-coverage-v1/schema-1`; old assessment/replay unchanged.
+No migration, automatic invocation, dictionary edit, candidate or adoption.
+
+**Validation:** fail-before 2 failed; affected 198 passed, additional public ATL
+case passed (199 distinct cases). Renamed component/atom and carbonyl controls,
+stereo/charge/graph/malformed-row/input-change guards, PDU/ATL sugar exclusions.
+Exact retained C206 dictionaries: three eligible centres, only C5 missing before,
+none after; all three weak torsions remain visible. Input bytes/mtimes unchanged.
+Commands/results in `trigonal_plane_coverage_2026_11_11`. No native/full rerun;
+last full C160. Raw CIFs/logs/runners remain local, excluded from Git.
+
+**Next:** native-corroborated completion retaining existing ring planes, bounded
+negative controls and exact category preservation. Equivalent-restraint strength,
+achieved geometry, ordinary integration, DP correspondence and serial/context
+remain visible in the existing Q04–Q16 queue. No new branch or merge.
+— Rowan · Codex desktop
+
+## C207 published: graph-supported native mutation conformation
+
+Implementation published as `08279945e8b05b2d519e2e642e423b9b7a021883`.
 Base `6ff68e8b21bf03c4d176c459be730b0e0098d17c`; capsule
 `live_tests_directory/207_Cedar_native-conformation-x6uhoxqf`.
 Deadline remains **2026-11-11 23:00 UTC (London)**; all owned workers stopped.

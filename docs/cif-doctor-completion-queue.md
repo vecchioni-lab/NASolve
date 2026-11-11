@@ -66,9 +66,10 @@ Next bounded order:
    the native explicit setter needs an unavailable internal tree and is not adopted.
    Retain source hands/whole fragments and unavailable-capability refusal. Resolve
    or truthfully refuse the serial/context case with immutable evidence.
-2. **Q06/Q07 geometry:** add generalized detection and a source/native-supported
-   repair path for missing trigonal/exocyclic plane coverage, retaining existing
-   ring constraints. Test renamed and non-PDU controls, tetrahedral/ambiguous
+2. **Q06/Q07 geometry:** C208 supplies read-only source-graph-selected explicit
+   coverage, retaining alternative restraints and unsupported chemistry. Add the
+   source/native-supported repair path for missing trigonal/exocyclic coverage,
+   retaining existing ring constraints; membership is not strength or geometry. Test renamed and non-PDU controls, tetrahedral/ambiguous
    negatives and collinear-plane hazards. Keep nonconvergence and remaining
    numerical-target questions visible; a candidate file is not a quality verdict.
 3. **Q04 → Q05:** complete ordinary invocation/single modifier ownership/durable
@@ -83,7 +84,7 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C207. This table summarizes the acceptance packages
+Current orientation after C208. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
