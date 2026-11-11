@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C200 validated: composed continuation publication
+## C200 published: composed continuation publication
 
-Base `fb46695f30c9fab0e26bb4c4c40caf36aa2ae64d`; existing Cedar; implementation complete, publication next.
+Base `fb46695f30c9fab0e26bb4c4c40caf36aa2ae64d`; existing Cedar; implementation complete and published as
+`afd61682ddc800f17d3134bcbb6536fdd8eda55d`.
 Pause/update **2026-11-11 14:00 UTC**. Capsule:
 `live_tests_directory/200_Cedar_connected-continuation-rzj3uxwv`. All C200 workers stopped.
 

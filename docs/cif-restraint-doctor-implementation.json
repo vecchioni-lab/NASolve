@@ -28403,7 +28403,8 @@
         "Q04 whole-crystal continuation needs symmetry-aware nonbonded evidence and bounded whole-model pair-call design; ReadySet did not run.",
         "Q04 ordinary invocation/single modifier owner and Q05 selected checkpoint export.",
         "Q06 refinement, Q07 combined/held-out controls, C194/Q13 source chemistry gaps."
-      ]
+      ],
+      "implementation_revision": "afd61682ddc800f17d3134bcbb6536fdd8eda55d"
     }
   },
   "audience": [
