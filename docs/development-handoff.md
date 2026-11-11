@@ -16,7 +16,7 @@ not general production support. Earlier wording remains in Git and the
 Base `7063b8af078e42cb1d58c9bffb8892b968037c6a`; resumed 18:53 UTC on 2026-11-11.
 Simon authorizes continued bounded work with interruptions; **pause/update by
 23:00 UTC (London)**. Capsule `live_tests_directory/206_Cedar_PDU-pair-geometry-5xnlqzfy`.
-All 17 owned workers are stopped. This checkpoint is validated; publication pending.
+All 17 owned workers are stopped. Diagnostic evidence published as `67276269e3fd4a7eb119ff2d719eceec5b00dd65`.
 
 **Before → after:** ordinary construction imports a +53-degree dictionary chi
 instead of the -150/-109-degree parent values. Native torsion matching preserves
@@ -45,7 +45,7 @@ match. Failed setup/direct-mutation controls remain preserved. No pytest/full su
 no product code change; last full baseline C160. No diffraction/NAR/Hg qualification.
 Raw scientific artifacts, logs and runners remain local and are excluded from Git.
 
-**Next:** publish C206, then bounded graph-supported conformation matching and
+**Next:** bounded graph-supported conformation matching and
 serial/context handling under Q04/Q05; missing-plane detection/repair and achieved
 geometry under Q06/Q07. Finish ordinary invocation, one modifier owner and durable
 resume, then exact selected checkpoint adoption. The existing Q01–Q16 queue is

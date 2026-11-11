@@ -82552,7 +82552,7 @@
     }
   },
   "pdu_construction_plane_geometry_2026_11_11": {
-    "status": "DIAGNOSTIC_VALIDATED; PUBLICATION_PENDING",
+    "status": "DIAGNOSTIC_VALIDATED_PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "base_revision": "7063b8af078e42cb1d58c9bffb8892b968037c6a",
@@ -82887,6 +82887,7 @@
       "Full-model structural correctness and universal ligand transfer are not established."
     ],
     "next": "Existing Q04/Q05 conformation and serial/context handling; Q06/Q07 missing-plane detection/repair and achieved geometry, then ordinary invocation/adoption and complete refinement qualification. Q08/Q13 remain open.",
-    "commands_role": "HISTORICAL_PROVENANCE_ONLY; not portable execution instructions"
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY; not portable execution instructions",
+    "published_revision": "67276269e3fd4a7eb119ff2d719eceec5b00dd65"
   }
 }
