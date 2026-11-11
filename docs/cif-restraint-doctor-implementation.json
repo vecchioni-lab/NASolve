@@ -28420,7 +28420,8 @@
     "owned_asu_continuation": {
       "status": "IMPLEMENTED_VALIDATED_CONNECTED_CONTROL; ORDINARY_INVOCATION_OPEN",
       "evidence": "docs/cif-linked-native-registration-evidence.json#owned_asu_continuation_2026_11_11",
-      "next": "Ordinary invocation with one composer/modifier owner, then exact selected checkpoint export; reuse existing complete request."
+      "next": "Ordinary invocation with one composer/modifier owner, then exact selected checkpoint export; reuse existing complete request.",
+      "implementation_revision": "8b012965b7bdc97dba22d4047b78d355d73a5d98"
     }
   },
   "audience": [

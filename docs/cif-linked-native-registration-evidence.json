@@ -81709,7 +81709,7 @@
     }
   },
   "owned_asu_continuation_2026_11_11": {
-    "status": "IMPLEMENTED_VALIDATED; PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "base_revision": "271d836381f4f62d5c104f7dbea95b6e6943e2ad",
@@ -82020,6 +82020,34 @@
       "Ordinary invocation and single modifier ownership remain Q04.",
       "No checkpoint adoption, actual diffraction refinement or general catalogue qualification.",
       "C194/Q13 unresolved chemical-state controls remain open."
-    ]
+    ],
+    "implementation_revision": "8b012965b7bdc97dba22d4047b78d355d73a5d98",
+    "auxiliary": {
+      "status": "PASS",
+      "source_test_files": 570,
+      "test_files": 353,
+      "top_level_tests": 2171,
+      "shadowed": [],
+      "collectable_imports": [],
+      "identical_groups": [
+        [
+          "test_cif_effective_source_recovery_probe.py:test_changed_or_unsafe_capsule_is_refused",
+          "test_cif_fragment_restoration_probe.py:test_changed_or_unsafe_capsule_is_refused"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_verified_initial_gradient_parent_is_accepted_as_data",
+          "test_mixed_gradient_probe.py:test_verified_saved_native_context_is_accepted_without_running_captured_programs"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_geometry_input_views_refuse_existing_user_directory",
+          "test_mixed_gradient_probe.py:test_gradient_input_views_refuse_existing_user_directory"
+        ]
+      ],
+      "workflow_files": 60,
+      "relative_doc_links": 405,
+      "compileall": "PASS external capsule cache",
+      "diff_check": "PASS",
+      "full_suite": "NOT_RUN"
+    }
   }
 }

@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C203 validated: owned ASU continuation
+## C203 published: owned ASU continuation
 
 Base `271d836381f4f62d5c104f7dbea95b6e6943e2ad`; pause/update **2026-11-11 15:00 UTC**.
 Capsule `live_tests_directory/203_Cedar_owned-asu-continuation-8cp7togx`. All workers stopped.
@@ -41,7 +41,8 @@ and references are in the evidence ledger. No full/profile rerun; last full C160
 **Artifacts:** raw models, CIFs, PHIL, native captures, logs and runners remain
 local. Current code hashes and previous construction/request bytes/mtimes fixed.
 **Next:** ordinary invocation/single modifier ownership, then Q05 exact selected
-checkpoint handoff; Q06/Q07 and C194/Q13 remain open. No merge. Publication next.
+follow; Q06/Q07 and C194/Q13 stay open. No merge. Implementation published as
+`8b012965b7bdc97dba22d4047b78d355d73a5d98`.
 — Rowan · Codex desktop
 
 ## C202 published: compact maintained ASU diagnostic
