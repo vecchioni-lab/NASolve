@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C202 validated: compact maintained ASU diagnostic
+## C202 published: compact maintained ASU diagnostic
 
 Base `6ae51f28ceaabf6fd01bfde95779fe1ad9f8a7ae`; pause/update **2026-11-11 15:00 UTC**, explicitly extended
 by Simon. Capsule `live_tests_directory/202_Cedar_compact-asu-i89yv0g6`. All workers stopped.
@@ -48,7 +48,8 @@ to 569 source/test files; its ledger already had 569. No historical evidence cha
 **Next:** version continuation/enclosing-request settings to explicitly request
 the new mode, keep old settings unchanged, then run fresh connected ReadySet.
 Q04 ordinary invocation/single modifier owner and Q05 selected checkpoint export
-follow; Q06/Q07 and C194/Q13 stay open. No merge. Publication next.
+follow; Q06/Q07 and C194/Q13 stay open. No merge. Implementation published as
+`fa23d9336eb8d86669336d649f497bd1d32e640c`.
 — Rowan · Codex desktop
 
 ## C201 research checkpoint: directed ASU proof

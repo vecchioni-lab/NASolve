@@ -28414,7 +28414,8 @@
     "compact_native_asu_capture": {
       "status": "IMPLEMENTED_VALIDATED_EXPLICIT_DIAGNOSTIC; CONTINUATION_INTEGRATION_OPEN",
       "evidence": "docs/cif-linked-native-registration-evidence.json#compact_native_asu_capture_2026_11_11",
-      "next": "Freeze ASU mode in continuation and enclosing request, preserving old configuration; fresh actual connected ReadySet control."
+      "next": "Freeze ASU mode in continuation and enclosing request, preserving old configuration; fresh actual connected ReadySet control.",
+      "implementation_revision": "fa23d9336eb8d86669336d649f497bd1d32e640c"
     }
   },
   "audience": [
