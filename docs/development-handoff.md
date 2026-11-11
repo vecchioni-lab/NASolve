@@ -11,8 +11,42 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C214 validated: owned plane capture binding
+## C215 validated: complete-plane fixed-coordinate mechanics
 
+Base `6186a0677ea4bb7e39d4604f03f4eab63125c0cf`; capsule
+`live_tests_directory/215_Cedar_plane-mechanics-zmbafu4t`. All 14 validation/native workers stopped.
+Pause/update remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** finite captured energies did not explain the plane repair's
+effect. The new pure gate requires the full energy/gradient change to equal
+complete new groups minus complete old groups, including forces on old atoms.
+Other terms/counts remain unchanged. Source/inventory gates and captured numerical
+pins are retained; nonidentity symmetry/unknown proxy fields refuse.
+
+**Files/schema:** new `cif_plane_energy.py`, `test_cif_plane_energy.py`, maintained
+docs/ledgers; `cif-linked-plane-completion-energy-v1`. No migration or changed old
+worker. Caller authenticates captures/kernel observations; local owned execution
+is not a new maintained artifact reader. No automatic invocation/adoption.
+
+**Validation:** 1 fail-before; **80 focused tests pass**. Four complete Phenix
+**2.2.1-6174 / dispatcher 2.2.1** native rebuilds/whole-plane kernel controls
+attribute PDU/5PC deltas, with gradient errors 2.46e-14 / 2.53e-13. Four separate
+existing full-manager derivative audits pass at unchanged coordinates. Zero
+parallelity is explicit; no symmetry/special-position extension. Cold relocated
+checkout/evidence replays exactly; 237 copied and 600 original
+files preserve bytes/mtimes. First cold harness compared wrong report layers;
+fresh corrected harness passes. Exact commands: ledger
+`fixed_coordinate_plane_mechanics_2026_11_11`. No Coot, optimization, refinement or
+full suite; last full C160. Raw science, kernels, native captures and runners local.
+
+**Next/limits:** achieved geometry using existing bounded machinery, then ordinary
+Q04/Q05 invocation/resume/selection. Complete NAR refinement, held-out controls,
+DP correspondence and numerical target calibration remain open. No active worker.
+— Rowan · Codex desktop
+
+## C214 published: owned plane capture binding
+
+Implementation published as `6186a0677ea4bb7e39d4604f03f4eab63125c0cf`.
 Base `2166369a60481f5c35dbe8e76175b8adfb1cf49f`; capsule
 `live_tests_directory/214_Cedar_owned-plane-captures-2uw1xqeu`. All 9 validation/native workers stopped.
 Pause/update remains **2026-11-11 23:00 UTC (London)**.

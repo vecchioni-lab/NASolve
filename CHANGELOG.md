@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Attribute source-supported complete-plane mechanics (C215)
+
+- Add a graph-selected plane candidate's fixed-point energy/force gate using
+  complete old/new groups, preserving all other native contributions and counts.
+- Refuse incomplete or symmetry-transformed evidence; retain separate execution,
+  derivative, geometry and adoption scopes. No PDU-specific dispatch is added.
+- Actual PDU/5PC native attribution and existing full-manager derivative controls
+  pass, including cold replay. Achieved geometry and ordinary adoption remain open.
+
 ### Bind owned plane candidates to exact native captures (C214)
 
 - Reuse maintained capture and ordered-input readers to qualify the plane-only

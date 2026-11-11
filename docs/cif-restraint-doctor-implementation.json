@@ -28486,7 +28486,13 @@
       "status": "IMPLEMENTED_EXACT_NATIVE_CAPTURE_ADAPTER",
       "contract": "docs/cif-doctor.md#owned-plane-native-capture-qualification-c214",
       "evidence": "owned_plane_capture_binding_2026_11_11",
-      "scope": "Read-only exact ordered input/captured consumer binding using maintained capture readers and C213 owned support. Recorded energies are not attribution, derivatives or scientific qualification."
+      "scope": "Read-only exact input/captured-consumer binding. C215 adds fixed-point attribution and separate derivative controls; achieved geometry and ordinary adoption remain open."
+    },
+    "fixed_coordinate_plane_mechanics": {
+      "status": "IMPLEMENTED_PURE_ATTRIBUTION_WITH_NATIVE_CONTROLS",
+      "contract": "docs/cif-doctor.md#complete-plane-energy-and-derivative-controls-c215",
+      "evidence": "fixed_coordinate_plane_mechanics_2026_11_11",
+      "scope": "Whole old/new plane energy/gradient attribution, with caller-authenticated references. PDU/5PC native and separate derivative controls pass; no achieved-geometry/adoption claim."
     }
   },
   "audience": [

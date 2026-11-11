@@ -620,6 +620,48 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Complete-plane energy and derivative controls (C215)
+
+`qualify_linked_plane_energy` adds a pure fixed-coordinate numerical gate after
+C211's exact source-supported inventory check. It compares each complete old/new
+plane, preserving indices, labels, weights, origin and exact captured coordinates.
+Repeated individual and accumulated native kernel targets/gradients must agree.
+The full native target and gradient difference must equal the sum of new groups
+minus old groups, with every other residual contribution and proxy count unchanged.
+Adding an atom changes the fitted plane and forces on old members; evaluating
+only the added atom is insufficient. No component-code or atom-name switch is used.
+
+The schema-1 `cif-linked-plane-completion-energy-v1` report separates numerical
+checks from derivative, achieved-geometry and adoption claims. Supplied captures
+and kernel observations require caller authentication, as in C104; this pure API
+is not a new owned execution reader. Unknown proxy fields or nonidentity symmetry
+refuse. `native_plane_evaluator` uses the installed whole-plane individual and
+container interfaces, without replacing native mechanics.
+
+80 focused tests pass after an API fail-before regression. Four fresh complete
+**Phenix 2.2.1-6174 / dispatcher 2.2.1** native rebuilds reproduce C214's inventories
+exactly. Actual plane symmetry and absence of special positions are checked before
+whole-group evaluation, and installed module/header/binary identities are recorded.
+Both PDU and 5PC pass all attribution checks; full-gradient delta error norms are
+2.46e-14 and 2.53e-13 respectively. These are fixed-point accounting checks, not
+chemical quality scores. Separately, the existing maintained captured-gradient
+audit passes all four original/candidate controls at unchanged coordinates. These
+controls have zero parallelity and reuse C154's absence adapter; they do not extend
+parallelity or symmetry-image qualification.
+
+Cold replay from relocated source/evidence copies reproduces capture binding,
+numeric reports and maintained derivative receipts with original copy paths gone
+and old capsules/SDK/process access forbidden. A first cold harness compared the
+outer receipt to its nested qualification and failed; the fresh corrected harness
+passes without chemistry/code relaxation. All copied files and the 600 original
+experiment files preserve bytes/mtimes. No Coot, optimization, refinement, SDK edits
+or full suite. No old schema migration or automatic invocation/adoption. Exact
+commands and local references: `fixed_coordinate_plane_mechanics_2026_11_11`.
+
+Next qualify achieved geometry with existing bounded native machinery, then connect
+ordinary Q04/Q05 invocation/adoption. Complete NAR refinement, held-out controls,
+DP correspondence, PDU numeric-target calibration and broader chemistry remain open.
+
 ### Owned plane native capture qualification (C214)
 
 `qualify_owned_plane_captures` connects C213 owned support to C211's exact native

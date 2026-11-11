@@ -84751,7 +84751,7 @@
     "published_revision": "2166369a60481f5c35dbe8e76175b8adfb1cf49f"
   },
   "owned_plane_capture_binding_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -85050,6 +85050,443 @@
         "size": 4335072
       }
     ],
-    "excluded": "Raw native outputs, source/requests, models, dictionaries, captures, logs and runners remain local; compact references only."
+    "excluded": "Raw native outputs, source/requests, models, dictionaries, captures, logs and runners remain local; compact references only.",
+    "published_revision": "6186a0677ea4bb7e39d4604f03f4eab63125c0cf"
+  },
+  "fixed_coordinate_plane_mechanics_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "6186a0677ea4bb7e39d4604f03f4eab63125c0cf",
+    "before": "Finite exact captures did not attribute plane-only mechanics or qualify derivatives.",
+    "after": "Pure complete-group energy/gradient accounting passes actual native PDU/5PC controls; existing independent derivative audits pass separately.",
+    "files": [
+      "src/nasolve/cif_plane_energy.py",
+      "tests/test_cif_plane_energy.py"
+    ],
+    "schemas": [
+      "cif-linked-plane-completion-energy-v1"
+    ],
+    "compatibility": "No migration; old APIs/workers preserved. Caller authenticates supplied observations; no adoption.",
+    "validation": {
+      "status": "FIXED_COORDINATE_PLANE_MECHANICS_VALIDATED",
+      "focused_tests": 80,
+      "workers_stopped": 14,
+      "original_files_unchanged": 600,
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+      "native_execution": "Four complete full-manager derivative audits and four complete fixed native rebuilds plus whole-plane kernel evaluations; no optimization.",
+      "attribution": {
+        "PDU": {
+          "schema_version": 1,
+          "policy_id": "cif-linked-plane-completion-energy-v1",
+          "status": "REVIEW",
+          "component": "PDU",
+          "inventory_checks_pass": true,
+          "checks": {
+            "whole_plane_repeats_and_container": true,
+            "before_term_repeats": true,
+            "before_count_repeats": true,
+            "before_term_sum": true,
+            "after_term_repeats": true,
+            "after_count_repeats": true,
+            "after_term_sum": true,
+            "unaffected_terms": true,
+            "proxy_counts_unchanged": true,
+            "plane_delta_matches_complete_groups": true,
+            "total_delta_matches_complete_groups": true,
+            "full_gradient_delta_matches_complete_groups": true
+          },
+          "numerical_checks_pass": true,
+          "changed_plane_count": 2,
+          "whole_plane_target_delta": 0.004338049538358979,
+          "target_delta": 0.004338049538091582,
+          "gradient_delta_error_norm": 2.4552124717210764e-14,
+          "tolerance": {
+            "absolute": 1e-08,
+            "relative": 1e-10
+          },
+          "derivative_qualification": "NOT_RUN",
+          "achieved_geometry": "NOT_ASSESSED",
+          "scientific_approval": "NOT_RUN",
+          "model_editing": "NOT_RUN",
+          "optimization": "NOT_RUN",
+          "automatic_adoption": false,
+          "scope": "FIXED_POINT_WHOLE_PLANE_ATTRIBUTION; CALLER_AUTHENTICATES_CAPTURES_AND_KERNEL_REFERENCES"
+        },
+        "5PC": {
+          "schema_version": 1,
+          "policy_id": "cif-linked-plane-completion-energy-v1",
+          "status": "REVIEW",
+          "component": "5PC",
+          "inventory_checks_pass": true,
+          "checks": {
+            "whole_plane_repeats_and_container": true,
+            "before_term_repeats": true,
+            "before_count_repeats": true,
+            "before_term_sum": true,
+            "after_term_repeats": true,
+            "after_count_repeats": true,
+            "after_term_sum": true,
+            "unaffected_terms": true,
+            "proxy_counts_unchanged": true,
+            "plane_delta_matches_complete_groups": true,
+            "total_delta_matches_complete_groups": true,
+            "full_gradient_delta_matches_complete_groups": true
+          },
+          "numerical_checks_pass": true,
+          "changed_plane_count": 2,
+          "whole_plane_target_delta": 51.38433611344511,
+          "target_delta": 51.38433611344408,
+          "gradient_delta_error_norm": 2.532165365381255e-13,
+          "tolerance": {
+            "absolute": 1e-08,
+            "relative": 1e-10
+          },
+          "derivative_qualification": "NOT_RUN",
+          "achieved_geometry": "NOT_ASSESSED",
+          "scientific_approval": "NOT_RUN",
+          "model_editing": "NOT_RUN",
+          "optimization": "NOT_RUN",
+          "automatic_adoption": false,
+          "scope": "FIXED_POINT_WHOLE_PLANE_ATTRIBUTION; CALLER_AUTHENTICATES_CAPTURES_AND_KERNEL_REFERENCES"
+        }
+      },
+      "cold": {
+        "status": "RELOCATED_PLANE_MECHANICS_REPLAY_PASS",
+        "cases": {
+          "PDU": {
+            "capture_checks_pass": true,
+            "numerical_checks_pass": true,
+            "derivative_checks_pass": true,
+            "exact_replay": true
+          },
+          "5PC": {
+            "capture_checks_pass": true,
+            "numerical_checks_pass": true,
+            "derivative_checks_pass": true,
+            "exact_replay": true
+          }
+        },
+        "unchanged_files": 237,
+        "original_copy_absent": true,
+        "original_checkout_copy_absent": true,
+        "original_capsule_sdk_and_process_access_forbidden": true,
+        "attribution_reference_authentication": "LOCAL_EXECUTION_EVIDENCE_NOT_A_NEW_MAINTAINED_READER"
+      },
+      "derivative_controls": [
+        "PDU-before",
+        "PDU-after",
+        "5PC-before",
+        "5PC-after"
+      ],
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Pure numerical qualifier requires caller authentication of captures/kernel observations; fresh controls are owned local execution evidence, not a new maintained artifact reader.",
+        "Only identity-symmetry planes without special positions were exercised; no symmetry/sticky-end claim.",
+        "Derivative controls have zero parallelity and use the existing absence adapter; no new parallelity qualification.",
+        "Fixed-point mechanics does not qualify achieved geometry, automatic adoption, full refinement or chemical numerical targets."
+      ]
+    },
+    "commands": {
+      "before-energy": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_energy.py",
+          "-k",
+          "whole_groups",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/before-energy/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "energy-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_energy.py",
+          "tests/test_cif_linked_torsion_energy.py",
+          "tests/test_cif_plane_native.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/energy-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "gradients-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c215_gradients.py",
+          "--worker",
+          "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/gradients-r1"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "plane-attribution-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c215_planes.py",
+          "--worker",
+          "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "cold-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r1/worker.py",
+          "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r1"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r1/checkout-relocated",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r1/checkout-relocated/src"
+        }
+      },
+      "cold-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r2/worker.py",
+          "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r2"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r2/checkout-relocated",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/cold-r2/checkout-relocated/src"
+        }
+      }
+    },
+    "native_jobs": {
+      "gradients-r1": [
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "gradient_worker.py"
+          ],
+          "timeout_seconds": 180
+        },
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "gradient_worker.py"
+          ],
+          "timeout_seconds": 180
+        },
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "gradient_worker.py"
+          ],
+          "timeout_seconds": 180
+        },
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "gradient_worker.py"
+          ],
+          "timeout_seconds": 180
+        }
+      ],
+      "plane-attribution-r1": [
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "worker.py"
+          ],
+          "cwd": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/PDU/before",
+          "timeout_seconds": 45
+        },
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "worker.py"
+          ],
+          "cwd": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/PDU/after",
+          "timeout_seconds": 45
+        },
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "worker.py"
+          ],
+          "cwd": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/5PC/before",
+          "timeout_seconds": 45
+        },
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "-B",
+            "worker.py"
+          ],
+          "cwd": "/Users/svecchio/NASolve-live-tests/215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/5PC/after",
+          "timeout_seconds": 45
+        }
+      ]
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/start.json",
+        "sha256": "aa23ef74ad881a552c4581c282a48c7270f662b8333a5883953befbffbdd1d99",
+        "size": 174
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/final-audit.json",
+        "sha256": "ed8c86012b7abcc5db6b8cec0b22dfe99650e4996fc6781ac6ff903ea7b41737",
+        "size": 4572
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/energy-r1/tests.xml",
+        "sha256": "4f467b9f628b9d2d5285eca331c1c39bbeb846ea648bcd6da3523fbee8a5016f",
+        "size": 11046
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/gradients-r1/summary.json",
+        "sha256": "c71d49019ea62f1374ec0d0b9826355815e78879aa206589f30ee0be984a5e3a",
+        "size": 4220
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/summary.json",
+        "sha256": "60d62f45bb1cdc87908a89115b6425079c33b61e2e63be2a52cb6fe09bd59c74",
+        "size": 3142
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/cold-r1/execution.json",
+        "sha256": "38df15dce8dee4ffdfde7e3c86a3803ab7f1fd74e0513ef9c1181e871a24fc9c",
+        "size": 50
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/cold-r2/results/summary.json",
+        "sha256": "bd21454ea5fd4e520aea73d93d98690217e52854376b5793f5fdd1e76d03760f",
+        "size": 645
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/PDU/capture-binding.json",
+        "sha256": "94f93d9297f086742d79da72f2eccf0e87082f5d1bd70b7e3b261a145ec256b7",
+        "size": 13303
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/PDU/references.json",
+        "sha256": "7e24a12a858db56af298e991b08f6980fcc8a8fa2d7530b3e071ed4abede080f",
+        "size": 23411
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/PDU/qualification.json",
+        "sha256": "61e822a80f3b4461f229cb8dc335f0e23c9670d471cb104614577993a3ad7cdf",
+        "size": 1218
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/PDU/before/plane_result.json",
+        "sha256": "73f48d8d54cea1dfb9dd04538d0b71c5a2f6f9e30a508daf9c6cf1ea28a2403e",
+        "size": 15256
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/PDU/after/plane_result.json",
+        "sha256": "8890ffa1ed764ad04e95598b2b240d05399e0b81cbca04509b98d4a27027e06e",
+        "size": 16352
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/gradients-r1/PDU-before/captured_mixed_gradients.json",
+        "sha256": "b96ef9a06ecad4a489aeeff7573187dacdbafabd75c5a84a3f62af8720f32928",
+        "size": 9504
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/gradients-r1/PDU-after/captured_mixed_gradients.json",
+        "sha256": "98b27a4c4915f5344247953dc60b54e14fa7c0d85312d139c281870e1585a403",
+        "size": 9504
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/5PC/capture-binding.json",
+        "sha256": "0f44ea9173f7ecc75fe33bdc58b367cff3ba97aec7e84ee6bd3c7cf5c6e94251",
+        "size": 13301
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/5PC/references.json",
+        "sha256": "c38b57f9cdaf1c9fc8b48b96b15af6b8a0f33c77b1055afb400bdd3956909b94",
+        "size": 23426
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/5PC/qualification.json",
+        "sha256": "1f970fd171fd563c6bdd24338cda80db5b31283a7cd68b44e0dc3ff28dd3f84b",
+        "size": 1211
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/5PC/before/plane_result.json",
+        "sha256": "783908c696dcee19edad9c20f5bc1dac47ec06a1782692a37a84b23a2bdf0a4a",
+        "size": 15240
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/plane-attribution-r1/5PC/after/plane_result.json",
+        "sha256": "d5f52695773e5c4b1dcdfd5bd5f4c6311c341c1423a195352a5fd3b1390e6984",
+        "size": 16383
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/gradients-r1/5PC-before/captured_mixed_gradients.json",
+        "sha256": "e565b38f9c90c6b49e5da34a592d08f000bc65adbdee6590db02fc7e07cbb797",
+        "size": 9504
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "215_Cedar_plane-mechanics-zmbafu4t/gradients-r1/5PC-after/captured_mixed_gradients.json",
+        "sha256": "c345508542c0dc42fd24db2748fdfd316aa3a9bbbda27c4100ce0618ff00f895",
+        "size": 9504
+      }
+    ],
+    "excluded": "Raw native outputs, source/requests, models, dictionaries, kernel references, captures, logs and runners remain local; compact references only."
   }
 }

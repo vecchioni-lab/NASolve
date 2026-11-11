@@ -47,8 +47,9 @@ now binds an explicitly selected completed attempt to the plane-only operation,
 including cold replay without the old installation. The
 [native capture adapter](cif-doctor.md#owned-plane-native-capture-qualification-c214)
 now binds those candidates to exact model/dictionary/PHIL inputs and the recorded
-consumer. Fresh PDU/5PC energy inventories are finite and repeatable; attribution,
-derivatives, achieved geometry and ordinary automatic selection remain separate.
+consumer. [Complete-plane controls](cif-doctor.md#complete-plane-energy-and-derivative-controls-c215)
+now account for the full PDU/5PC energy/force change and pass separate derivative
+audits. Achieved geometry and ordinary automatic selection remain separate.
 [Identity-proven serial repair](cif-doctor.md#identity-authorized-construction-serials-c210)
 now lets ordinary Coot construction reach its existing phosphate and whole-base
 restoration proofs when only atom serials changed. Exact unselected atom fields
