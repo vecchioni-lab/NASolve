@@ -136,3 +136,61 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
         continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy, construction_inputs=construction_inputs,
         **execution_limits)
+
+def prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources, output, *,
+                                 data_root=None, ready_set_executable=None):
+    """Assemble source-bound literal intake using ordinary source precedence.
+
+    Previously frozen component sources are authoritative and never rediscovered.
+    Only additional codes named by explicit pair/stack declarations are selected
+    from the ordinary catalogue/selected SDK. The existing C21/C80 compiler owns
+    parsing, role checks and emitted bytes; no pairing guesses, native identities,
+    numerical qualification, process ownership or new artifact schema are added.
+    Inputs and live selection must remain unchanged through publication. A failed
+    call preserves partial output and requires a fresh destination.
+    """
+    from .cif_acquisition_sources import _authority
+    from .cif_explicit_na_policy import _model
+    from .cif_literal_na_inputs import prepare_source_literal_na_inputs
+    from .cif_na_policy import _literal_declarations
+    from .curated_ligands import ligand_source
+
+    root = _root(output)
+    if root.exists(): raise FileExistsError(root)
+    _need(isinstance(supplementary_phils, (list, tuple))
+          and 1 <= len(supplementary_phils) <= 63, 'Require ordered original PHIL inputs')
+    frozen_root = _root(frozen_sources)
+    protected = [frozen_root] + ([_root(data_root)] if data_root is not None else [])
+    _need(all(not root.is_relative_to(p) and not p.is_relative_to(root) for p in protected),
+          'Literal output overlaps frozen sources or source catalogue')
+    inputs = [Path(model), *map(Path, supplementary_phils)]
+    _need(all(not p.absolute().is_relative_to(root) for p in inputs), 'Literal output overlaps original inputs')
+    originals = {p: _read(p) for p in inputs}
+    frozen = read_acquisition_sources(frozen_root)
+    site_codes = _model(model)[3]
+    declarations = _literal_declarations(supplementary_phils)[0]
+    sites = {':'.join(site) for row in declarations for site in row['sites']}
+    _need(sites <= site_codes.keys(), 'Literal declaration names an absent model site')
+    _need(frozen['sources'].keys() <= set(site_codes.values()), 'Frozen source component is absent from model')
+    codes = sorted({site_codes[site] for site in sites})
+    choices = {}; sources = {}; selected_bytes = {}
+    for code in codes:
+        if code in frozen['sources']:
+            sources[code] = frozen['sources'][code]['source']
+        else:
+            choice = ligand_source(code, data_root, ready_set_executable=ready_set_executable)
+            _need(choice.code == code, 'Ordinary literal source component differs')
+            _authority(code, choice.authority, choice.kind)
+            choices[code] = choice; sources[code] = choice.path
+        selected_bytes[code] = _read(sources[code])
+    def unchanged():
+        _need(all(_read(p) == data for p, data in originals.items()), 'Original literal input changed during source selection')
+        _need(read_acquisition_sources(frozen_root)['report'] == frozen['report'], 'Frozen literal sources changed')
+        _need(all(ligand_source(code, data_root, ready_set_executable=ready_set_executable) == choice
+                  for code, choice in choices.items())
+              and all(_read(sources[c]) == data for c, data in selected_bytes.items()),
+              'Ordinary literal source selection changed')
+    unchanged()
+    result = prepare_source_literal_na_inputs(model, list(supplementary_phils), sources, root)
+    unchanged()
+    return result

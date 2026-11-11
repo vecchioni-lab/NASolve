@@ -3950,6 +3950,14 @@ cold historical/current requests pass. Ordinary invocation and checkpoint adopti
 remain separate. See the [ASU capture](cif-doctor.md#compact-maintained-asu-pair-capture-c202)
 and [owned continuation contract](cif-doctor.md#frozen-asu-policy-in-owned-continuation-c203).
 
+C204 moves ordinary literal source assembly into the existing PostMR intake module.
+Frozen sources take precedence; only additional codes referenced by declared
+relationships use normal source discovery. Compilation and artifacts remain C197,
+with before/after input and selection checks. The actual connected artifact and
+request configuration match C203 exactly. This input helper neither owns execution
+nor enables ordinary adoption; see the [intake contract](cif-doctor.md#ordinary-source-assembly-for-literal-intake-c204).
+
+
 
 
 ## Exact FANA construction topology (C128)

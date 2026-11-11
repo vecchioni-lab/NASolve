@@ -358,3 +358,104 @@ def test_construction_source_change_during_request_freezing_refuses(construction
     with pytest.raises(ValueError,match='source changed'):
         initialize_postmr_dictionary_request(**args)
     assert not (args['output']/'request.json').exists() and not calls
+
+
+@pytest.fixture
+def literal_assembly(tmp_path):
+    from tests.test_cif_literal_na_inputs import source_literal_case
+    from nasolve.cif_acquisition_sources import freeze_acquisition_sources
+    model, phil, _, sources = source_literal_case(tmp_path)
+    data = tmp_path/'catalogue'; (data/'ligands').mkdir(parents=True)
+    for code, path in sources.items(): shutil.copyfile(path, data/'ligands'/path.name)
+    frozen = tmp_path/'frozen-sources'
+    freeze_acquisition_sources(['DA'], frozen, data_root=data)
+    return model, [phil], frozen, data, tmp_path/'literal'
+
+
+def test_postmr_literal_assembly_reuses_frozen_sources_and_existing_compiler(literal_assembly, monkeypatch):
+    from nasolve.cif_postmr_request import prepare_postmr_literal_inputs
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs, read_literal_na_inputs
+    from nasolve import curated_ligands as ligands
+    model, phils, frozen, data, output = literal_assembly
+    expected = prepare_source_literal_na_inputs(model, phils,
+        {'DA': frozen/'sources/DA.cif', 'DT': data/'ligands/DT.cif'}, output.with_name('explicit'))
+    (data/'ligands/DA.cif').unlink()
+    original = inventory(frozen); calls = []; select = ligands.ligand_source
+    def observe(code, *a, **k):
+        calls.append(code); assert code == 'DT', 'Frozen component must not be rediscovered'
+        return select(code, *a, **k)
+    monkeypatch.setattr(ligands, 'ligand_source', observe)
+    with patch('subprocess.Popen', side_effect=AssertionError('Intake must not execute')):
+        result = prepare_postmr_literal_inputs(model, phils, frozen, output, data_root=data)
+    assert result == expected and set(calls) == {'DT'}
+    assert inventory(frozen) == original and read_literal_na_inputs(output) == result
+    assert result['automatic_adoption'] is False and result['native_membership'] == 'NOT_ASSESSED_FOR_COMPILED_INPUTS'
+
+
+def test_postmr_literal_assembly_relocates_without_original_catalogue(literal_assembly, monkeypatch):
+    from nasolve.cif_postmr_request import prepare_postmr_literal_inputs
+    from nasolve.cif_literal_na_inputs import read_literal_na_inputs
+    from nasolve import curated_ligands as ligands
+    model, phils, frozen, data, output = literal_assembly
+    result = prepare_postmr_literal_inputs(model, phils, frozen, output, data_root=data)
+    moved = output.rename(output.with_name('relocated literal inputs'))
+    shutil.rmtree(data); shutil.rmtree(frozen); model.unlink()
+    for p in phils: p.unlink()
+    before = inventory(moved)
+    def forbidden(*a, **k): raise AssertionError('Cold read must not select or execute')
+    monkeypatch.setattr(ligands, 'ligand_source', forbidden)
+    with patch('subprocess.Popen', side_effect=forbidden): assert read_literal_na_inputs(moved) == result
+    assert inventory(moved) == before and not output.exists()
+
+
+@pytest.mark.parametrize('defect', ['no_relationships','absent_site','missing_source','bad_source','extra_frozen','unscoped','existing','overlap'])
+def test_postmr_literal_assembly_refuses_invalid_intake(literal_assembly, defect):
+    from nasolve.cif_postmr_request import prepare_postmr_literal_inputs
+    model, phils, frozen, data, output = literal_assembly
+    if defect == 'no_relationships': phils[0].write_text('refinement.geometry_restraints.edits {}\n')
+    elif defect == 'absent_site': phils[0].write_text(phils[0].read_text().replace('resid 3', 'resid 99'))
+    elif defect == 'missing_source': (data/'ligands/DT.cif').unlink()
+    elif defect == 'bad_source': (data/'ligands/DT.cif').write_text('data_BAD\n_chem_comp.id BAD\n')
+    elif defect == 'extra_frozen':
+        model.write_text(model.read_text().replace(' DA ', ' DG '))
+    elif defect == 'unscoped': phils[0].write_text(phils[0].read_text().replace('base1 = chain Z and resid 1','base1 = all'))
+    elif defect == 'existing': output.mkdir(); (output/'keep').write_text('prior partial work')
+    elif defect == 'overlap': output = frozen/'nested'
+    before = inventory(frozen)
+    with pytest.raises((ValueError, FileNotFoundError, FileExistsError)):
+        prepare_postmr_literal_inputs(model, phils, frozen, output, data_root=data)
+    assert inventory(frozen) == before
+    if defect == 'existing': assert (output/'keep').read_text() == 'prior partial work'
+    else: assert not output.exists()
+
+
+@pytest.mark.parametrize('changed', ['model','phil','frozen','live'])
+def test_postmr_literal_assembly_rejects_change_during_selection(literal_assembly, monkeypatch, changed):
+    from nasolve.cif_postmr_request import prepare_postmr_literal_inputs
+    from nasolve import curated_ligands as ligands
+    model, phils, frozen, data, output = literal_assembly
+    select = ligands.ligand_source; calls = []
+    def mutate(code, *a, **k):
+        value = select(code, *a, **k)
+        if (changed == 'live' and len(calls) == 1) or (changed != 'live' and not calls):
+            path = {'model':model, 'phil':phils[0], 'frozen':frozen/'sources/DA.cif', 'live':data/'ligands/DT.cif'}[changed]
+            path.write_bytes(path.read_bytes() + b'\n')
+        calls.append(code); return value
+    monkeypatch.setattr(ligands, 'ligand_source', mutate)
+    with pytest.raises(ValueError): prepare_postmr_literal_inputs(model, phils, frozen, output, data_root=data)
+    assert not output.exists()
+
+
+def test_postmr_literal_assembly_preserves_partial_output_after_late_change(literal_assembly, monkeypatch):
+    from nasolve.cif_postmr_request import prepare_postmr_literal_inputs
+    from nasolve import cif_literal_na_inputs as literal
+    model, phils, frozen, data, output = literal_assembly
+    prepare = literal.prepare_source_literal_na_inputs
+    def mutate(*a, **k):
+        result = prepare(*a, **k); p = data/'ligands/DT.cif'; p.write_bytes(p.read_bytes()+b'\n'); return result
+    monkeypatch.setattr(literal, 'prepare_source_literal_na_inputs', mutate)
+    with pytest.raises(ValueError, match='selection changed'):
+        prepare_postmr_literal_inputs(model, phils, frozen, output, data_root=data)
+    before = inventory(output); assert before
+    with pytest.raises(FileExistsError): prepare_postmr_literal_inputs(model, phils, frozen, output, data_root=data)
+    assert inventory(output) == before

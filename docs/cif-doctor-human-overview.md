@@ -63,6 +63,12 @@ connected-model and cold controls pass. C203 freezes the mode in fresh owned
 continuations and enclosing requests and validates the connected ReadySet round
 trip; old requests preserve their original policy and selection. No new chemical support or
 refinement approval follows from numerical consistency.
+The [ordinary literal-source assembler](cif-doctor.md#ordinary-source-assembly-for-literal-intake-c204)
+now supplies the same compiler from frozen component sources and ordinary source
+precedence for the other declared sites. It preserves the validated artifact bytes,
+with no new pairing guess, chemistry rule or native-qualification claim. The
+figure's existing source-to-compiler flow is unchanged; ordinary invocation and
+checkpoint publication remain separate integration work.
 Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods

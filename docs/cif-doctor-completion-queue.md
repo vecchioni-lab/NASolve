@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C203.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C204.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -52,13 +52,13 @@ acceptance criteria.
 
 ## Pipeline position
 
-Current orientation after C203. This table summarizes the acceptance packages
+Current orientation after C204. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
 | Package | Position now | Remaining acceptance |
 | --- | --- | --- |
-| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | C186–C189 bind required planes, original literal provenance or an existing source-bound C80 artifact, and an already frozen source selection. C190 rejects ungrouped atom alternatives at new context-bound intake/execution while retaining old readback. C195 makes ordinary construction consume verified snapshots; C196 records and binds consumed-source/model/intent evidence through the existing request and recovery. C197 supplies faithful source-bound literal intake without prior native capture. C198 validates actual ordinary Coot/NAR intake and connected repair after correcting complete-model scope; C199 closes the outer repair publication limit with versioned, independently bounded evidence. The fresh connected request completes and old/new requests replay cold. C200 closes composed continuation publication and confirms qualified-parent retention after the unchanged ASU-proof refusal; ReadySet did not run. C201 proves the directed ASU arithmetic on exact frozen inputs, including numerical and cold controls, without enabling production support. C202 implements and validates that compact maintained proof as an explicit API, with old/new cold replay. C203 freezes that mode in fresh continuation/enclosing settings, preserves old requests and completes the connected ReadySet control with `readyset_checked_model` selected; cold old/new request replay passes. Connect ordinary invocation with one modifier owner, then exercise ordinary hit/miss/stale/failure paths. Reuse the existing owner and C21/C80 compilers. |
+| Q04 — recovery engine | Explicit owned chain and ordinary input assembly validated; invocation remains open | C175–C197 bind prepared-model context, ordered NAR intent, frozen sources and construction lineage through the existing owner. C198–C203 validate actual ordinary Coot/NAR inputs through connected repair, ASU-aware ReadySet, exact selection/publication and cold old/new replay. C204 replaces manual literal-source assembly with frozen-source/ordinary selection and the same compiler; its artifact and request configuration match C203 exactly. Connect ordinary invocation with one modifier owner and durable resume, then exercise ordinary hit/miss/stale/failure paths. |
 | Q05 — ordinary adoption | Open | Carry one exact selected model/CIF/PHIL bundle through prepared and newly mutated routes into immutable checkpoints; retain source/producer lineage and selected-versus-latest behavior. |
 | Q06 — real refinement consumer | Open; can proceed alongside Q04/Q05 | Qualify actual refinement with complete NAR restraints and Free-R authority. The corrected diagnostic evaluator does not establish ordinary Phenix behavior. |
 | Q07 — combined acceptance | Open | Run the original eight pairs with ATL alongside, broken PDU and DF/A1AAZ, plus the separate eight-residue held-out builder challenge. Refinement claims depend on Q06. |
@@ -166,21 +166,22 @@ as competing next-step instructions here.
 | Ordered restraint ownership | C176 binds exact ordered explicit bond/angle/parallelity PHIL to the prepared model and reconstructs it before work. Supplied targets survive; the composer alone emits site modifiers. Maintained mixed-policy compiler output, actual original/repaired PDU/5PC controls and cold legacy replay pass. C186 adds exact plane unions/weights with old v1 replay and actual three-plane W-frame membership. C187 preserves original literal PHIL/native capture and compiler/workbook pins through owned request/result replay. C197 alternatively compiles that literal intent from readable source graphs without a prior capture, explicitly labelling PDB identities and preserving source bytes under the same owner. C188 alternatively retains the existing source-bound compiler artifact, exact source bytes and nonactive orientation evidence under the same owner. C190 requires grouped atom-name alternatives for new derivation/creation/execution, preserving exact historical readback. Actual native 3-versus-85 selection mismatch is reproduced and grouped controls agree. Unsupported PHIL and unowned pre-existing modifiers refuse. |
 | Prepared-PostMR source entry | C177 derives both proofs, freezes ordinary source precedence and initializes the same complete request with mandatory qualification defaults. Actual fresh generation, current hit, stale requalification, retained repair, optional-failure fallback, no-usable and exhausted-generation controls pass; cold legacy/new replay passes. C189 also consumes an already frozen source selection with exact component coverage and no rediscovery; actual original/repaired and cold controls pass. This API remains opt-in; C182 derives current consumer/generator settings from the selected installation while preserving explicit source-reader/representation intent. |
 
-**Next bounded checkpoint:** C198–C200 validate ordinary Coot/NAR input, connected repair, outer publication and preserved-parent continuation fallback. The actual crystal stops before ReadySet at C127 identity-only nonbonded proof. C201 establishes local directed ASU arithmetic, active-image and synthetic self-image derivatives, bulk API agreement and cold replay. C202 closes the explicit compact maintained capture/reviewer and worker/spec/receipt binding; its 7.9 MB receipt fits the unchanged cap. C127 remains unchanged. C203 closes that frozen-mode integration and actual connected control (`readyset_checked_model`), retaining old absent settings and cold outcomes. Next integrate ordinary invocation and single-modifier ownership; do not add another recovery scheduler or change exclusions. Then connect the validated prepared intake to ordinary
-PostMR orchestration without a second recovery loop or modifier owner. C189 closes
-the prepared entry's previously frozen source inlet. C196 now seals ordinary
-construction before ReadySet and carries its exact declared producer/model/source
-closure through that request. Ordinary invocation and modifier ownership still
-need integration. Prefer exercising that
-caller over adding another standalone orchestration wrapper. C197 closes supported
-literal intake before native capture by sharing the C21 emitter and C80 actual/source
-role checks. It preserves original intent and retained planes/edits under a distinct
-source-bound policy, with no fabricated native indices. Invalid numerical rows may
-remain preserved, but unreadable or inconsistent source graphs refuse. Actual W-frame
-output is byte-identical to C187 and realizes all 201 native requests; isolated
-original/repaired requests and cold historical/new replay pass. C187's native mode
-and C188's existing explicit-source artifact remain exact alternatives; neither
-permits re-guessing frozen intent or claiming numerical qualification at intake.
+**Next bounded checkpoint:** connect the validated prepared intake to the existing
+ordinary PostMR caller before legacy dictionary modification and ReadySet. C203
+now qualifies the connected crystal through owned ASU-aware continuation and
+selects `readyset_checked_model`; old requests retain their old policies and
+outcomes. C204 assembles literal sources without the control runner's private
+site/code mapping, preserving byte-identical C203 inputs. Reuse the complete
+request's recovery owner, budget and publication instead of adding another
+scheduler. Ordinary invocation and modifier ownership remain open.
+
+C196 already preserves exact construction/source/model lineage. C197/C204 retain
+literal declarations, planes/edits and source roles without a prior capture;
+C187's native-input mode and C188's existing explicit-source artifact remain
+supported alternatives. None permits guessed relationships, fabricated native
+indices or qualification claims at intake. The detailed milestone controls and
+historical ASU refusals remain in the methods/evidence ledger, rather than a
+second chronological queue here.
 
 Keep three operational joins explicit: (1) preserve exact source/producer identity
 from before construction; (2) let the qualified composer exclusively own site

@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Ordinary literal-input source assembly (C204)
+
+- Add a PostMR intake helper that preserves frozen component sources and selects
+  additional graphs only for explicitly declared pair/stack sites.
+- Reuse the maintained literal compiler and artifact format, with source-change,
+  precedence and immutable partial-output checks. Existing explicit APIs remain.
+- Exact connected artifacts and request settings match C203; no new native run or
+  ordinary automatic invocation is claimed.
+
 ### Frozen symmetry-aware owned continuation (C203)
 
 - Fresh diagnostic continuations freeze the maintained ASU capture policy across

@@ -82049,5 +82049,197 @@
       "diff_check": "PASS",
       "full_suite": "NOT_RUN"
     }
+  },
+  "ordinary_literal_source_assembly_2026_11_11": {
+    "status": "IMPLEMENTED_VALIDATED; PUBLICATION_PENDING",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "6b016f323d15aa9dfdfead7241e5a09215175d2b",
+    "branch": "cedar",
+    "before": "Connected control runner manually mapped literal sites to source graphs.",
+    "after": "Existing PostMR inlet assembles frozen/ordinary sources and delegates to the same source-bound compiler.",
+    "files": [
+      "src/nasolve/cif_postmr_request.py",
+      "tests/test_cif_postmr_request.py"
+    ],
+    "schemas": "NONE_ADDED; existing cif-source-literal-na-inputs-v1 unchanged",
+    "compatibility": "Additive API; existing explicit source maps and old artifacts unchanged. No migration, default invocation or chemistry change.",
+    "validation": {
+      "before": {
+        "returncode": 1,
+        "elapsed_seconds": 1.3083928330015624,
+        "source_files": 570,
+        "source_unchanged": true,
+        "tail": "F                                                                        [100%]\n=================================== FAILURES ===================================\n___ test_postmr_literal_assembly_reuses_frozen_sources_and_existing_compiler ___\n\nliteral_assembly = (PosixPath('/private/var/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/pytest-of-svecchio/pytest-217/test_postmr_literal...ar/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/pytest-of-svecchio/pytest-217/test_postmr_literal_assembly_r0/literal'))\nmonkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x108af8140>\n\n    def test_postmr_literal_assembly_reuses_frozen_sources_and_existing_compiler(literal_assembly, monkeypatch):\n>       from nasolve.cif_postmr_request import prepare_postmr_literal_inputs\nE       ImportError: cannot import name 'prepare_postmr_literal_inputs' from 'nasolve.cif_postmr_request' (/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src/nasolve/cif_postmr_request.py)\n\ntests/test_cif_postmr_request.py:376: ImportError\n=========================== short test summary info ============================\nFAILED tests/test_cif_postmr_request.py::test_postmr_literal_assembly_reuses_frozen_sources_and_existing_compiler\n1 failed, 64 deselected in 0.91s\n"
+      },
+      "phases": {
+        "focused-r1": {
+          "result": "65 passed in 63.80s (0:01:03)",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_postmr_request.py",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/204_Cedar_ordinary-literal-assembly-lcq9qzpr/focused-r1/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        },
+        "literal-r1": {
+          "result": "23 passed, 36 deselected in 27.52s",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_literal_na_inputs.py",
+              "-k",
+              "source_literal",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/204_Cedar_ordinary-literal-assembly-lcq9qzpr/literal-r1/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        }
+      },
+      "distinct_affected_cases": 88,
+      "intake": {
+        "status": "PASS",
+        "elapsed_seconds": 5.226886917007505,
+        "model_sha256": "22d060dd937b295f83963038f4a5d1c9e40be20455440a9c10b8962079b6d013",
+        "literal_bytes_equal_to_c203": true,
+        "literal_files": 11,
+        "request_configuration_equal_to_c203": true,
+        "attempts_reserved": 0,
+        "components": [
+          "DA",
+          "DC",
+          "DG",
+          "DT"
+        ],
+        "pairs": 16,
+        "stacks": 36,
+        "request_counts": {
+          "angle": 84,
+          "bond": 51,
+          "parallelity": 58,
+          "planarity": 4
+        },
+        "source_and_parent_bytes_mtimes_unchanged": true,
+        "source_unchanged": true,
+        "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+        "execution": "SDK_SETUP_AND_VERSION_DISCOVERY_ONLY; INTAKE_BLOCKS_PROCESS_LAUNCH",
+        "new_native_calls": 0,
+        "new_readyset_calls": 0,
+        "new_coot_calls": 0,
+        "refinement": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "cold": {
+        "status": "PASS",
+        "files": 637,
+        "tests_args": [
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_postmr_request.py",
+          "-k",
+          "postmr_literal_assembly",
+          "--basetemp",
+          "/Users/svecchio/NASolve-live-tests/204_Cedar_ordinary-literal-assembly-lcq9qzpr/cold-r1/pytest-temp",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/204_Cedar_ordinary-literal-assembly-lcq9qzpr/cold-r1/tests.xml"
+        ],
+        "elapsed_seconds": 4.2325603749923175,
+        "literal_and_unexecuted_request_replay": true,
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_paths_sdk_and_execution_denied": true
+      },
+      "full_suite": "NOT_RUN_USER_REQUEST; LAST_COMPLETE_C160"
+    },
+    "commands": {
+      "intake": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<cedar>/src <project-venv>/bin/python c204_intake.py intake-r1",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 <project-venv>/bin/python c204_cold.py cold-r1"
+    },
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/start.json",
+        "sha256": "92deb25145081e8654ae1bae5256b40802c6c30775f321b2c19f8a22e036cfdc",
+        "size": 269
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/source-hashes.json",
+        "sha256": "7a7051660f1e45b594a62f33ec1bc8e72ff6fb49762b00c855e246d5c42b29d6",
+        "size": 61832
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/before-r1/summary.json",
+        "sha256": "a6aafe419d318ea7463a23c1e48f2da16901c67ca3ce8797152b5a898087d431",
+        "size": 1389
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/focused-r1/summary.json",
+        "sha256": "661affe94fd51ada73e294d5ac849e32a4f6921e7a99fe4f70a4284f70715ef8",
+        "size": 239
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/literal-r1/summary.json",
+        "sha256": "70054c95b5ff51d6e34676b793cc659af4bfef65fbaae0817c670188bcc5f2c7",
+        "size": 245
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/intake-r1/summary.json",
+        "sha256": "2ccab74a55259640d3a69065a09cae44033c0b2ba2caeff35665d65f7249fcee",
+        "size": 822
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/intake-r1/source-hashes.json",
+        "sha256": "aa673a3afa58ee066267480517f58f64edd91b7d326e3f008cb76c70be7a08a6",
+        "size": 23412
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "204_Cedar_ordinary-literal-assembly-lcq9qzpr/cold-r1/summary.json",
+        "sha256": "f48241a379de9d788de338902981f4b16e3e08be229c16e50feba98cc1e224da",
+        "size": 669
+      }
+    ],
+    "excluded": "Raw science, source CIFs/PHIL, native parent captures, logs and local runners stay local.",
+    "limits": [
+      "Input assembly only; ordinary invocation/single modifier ownership and durable resume remain Q04.",
+      "No new native, ReadySet, Coot, acquisition attempt, refinement or adoption.",
+      "Q05/Q06/Q07 and unresolved Q13 chemical-state controls remain open."
+    ],
+    "orientation": "Q04 summary/next checkpoint consolidated around current acceptance; detailed historical methods/evidence retained. C203 handoff wording typo corrected."
   }
 }

@@ -11,6 +11,37 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C204 validated: ordinary literal source assembly
+
+Base `6b016f323d15aa9dfdfead7241e5a09215175d2b`; pause/update **2026-11-11 15:00 UTC**.
+Capsule `live_tests_directory/204_Cedar_ordinary-literal-assembly-lcq9qzpr`. All workers stopped.
+
+**Before → after:** the actual-control runner manually selected source graphs for
+literal NAR declarations. The existing PostMR intake module now assembles them
+using frozen component bytes first and ordinary precedence for additional declared
+codes, then delegates to C197. No new compiler/schema/owner or chemical rule.
+Explicit source maps remain supported; no migration or ordinary default change.
+
+**Files:** `src/nasolve/cif_postmr_request.py`, its existing test module, Unreleased,
+methods, architecture, human overview, map/queue/handoff and two evidence ledgers.
+The overview's existing source/compiler diagram still describes this flow.
+
+**Validation:** missing API fails before (1 failed / 64 deselected). PostMR intake
+**65 passed**; source-literal **23 passed** (88 distinct). Actual connected
+intake reproduces all 11 C203 literal files and its entire request configuration:
+16 pairs/36 stacks, 197 requests/four planes. Selected Phenix 2.2.1-6174 / dispatcher
+2.2.1 setup/version discovery only; assembly blocks process creation. No native,
+ReadySet, Coot, acquisition attempt, refinement or adoption was rerun.
+Cold 15 passed / 50 deselected; actual literal and unexecuted request replay from
+relocated source, originals absent, historical paths/SDK/execution denied and
+637 files unchanged. Exact commands/references are in the evidence ledger.
+No full/profile rerun; last full C160. Source and prior input bytes/mtimes fixed.
+
+**Artifacts:** raw models, source CIFs, PHIL, local logs/runners stay outside Git.
+**Next:** ordinary invocation, one modifier owner and durable resume, then Q05
+exact selected checkpoint publication. Q06/Q07 and C194/Q13 remain open. No merge.
+Publication next. — Rowan · Codex desktop
+
 ## C203 published: owned ASU continuation
 
 Base `271d836381f4f62d5c104f7dbea95b6e6943e2ad`; pause/update **2026-11-11 15:00 UTC**.
@@ -41,7 +72,7 @@ and references are in the evidence ledger. No full/profile rerun; last full C160
 **Artifacts:** raw models, CIFs, PHIL, native captures, logs and runners remain
 local. Current code hashes and previous construction/request bytes/mtimes fixed.
 **Next:** ordinary invocation/single modifier ownership, then Q05 exact selected
-follow; Q06/Q07 and C194/Q13 stay open. No merge. Implementation published as
+checkpoint handoff; Q06/Q07 and C194/Q13 stay open. No merge. Implementation published as
 `8b012965b7bdc97dba22d4047b78d355d73a5d98`.
 — Rowan · Codex desktop
 
