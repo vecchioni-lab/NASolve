@@ -80179,5 +80179,245 @@
       }
     },
     "implementation_revision": "9257f4e87e82045cd36322b843052c3d6c30fd92"
+  },
+  "complete_model_repair_scope_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "403e16a406c4bf5f933d87b660dcabb715463fd3",
+    "branch": "cedar",
+    "files": [
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "tests/test_cif_prepared_repair_execution.py"
+    ],
+    "schemas": [],
+    "before": "Repair planner received selected dictionary owners rather than all modeled components; exact attribution rejected a connected ordinary PDU control.",
+    "after": "Existing model inventory supplies complete planner scope; installed-only components remain NO_EXPLICIT_DICTIONARY. Native attribution and derivative checks pass with identical repair steps and dictionary bytes.",
+    "compatibility": "No schema migration or changed native/chemical acceptance; preserved failed attempts are not rewritten or retroactively successful.",
+    "validation": {
+      "summaries": {
+        "before-r2": "2 failed, 53 deselected in 1.17s",
+        "new-r1": "122 passed in 30.53s",
+        "attribution-r1": "131 passed in 12.65s",
+        "owners-r1": "178 passed in 195.47s (0:03:15)"
+      },
+      "commands": {
+        "before-r2": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_prepared_repair_execution.py",
+          "-k",
+          "covers_model_components",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/198_Cedar_ordinary-request-handoff-6ij0qvvh/before-r2.xml"
+        ],
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_prepared_repair_execution.py",
+          "tests/test_cif_prepared_repair_budget.py",
+          "tests/test_cif_repair_process.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/198_Cedar_ordinary-request-handoff-6ij0qvvh/new-r1.xml"
+        ],
+        "attribution-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_linear_torsion_bundle.py",
+          "tests/test_cif_captured_linear_attribution.py",
+          "tests/test_cif_dictionary_bundle_repair.py",
+          "tests/test_cif_repaired_component_runtime.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/198_Cedar_ordinary-request-handoff-6ij0qvvh/attribution-r1.xml"
+        ],
+        "owners-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_complete_continuation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/198_Cedar_ordinary-request-handoff-6ij0qvvh/owners-r1.xml"
+        ]
+      },
+      "focused_tests": 431,
+      "full_suite": "NOT_RUN_USER_REQUEST; LAST_COMPLETE_C160",
+      "cold_checkout": {
+        "status": "PASS",
+        "tests": 2,
+        "source_files": 594,
+        "checkout_bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_checkout_and_sdk_reads_denied": true,
+        "external_execution": "EXACT_READ_ONLY_OS_PROCESS_IDENTITY_QUERIES_ONLY",
+        "command": [
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_prepared_repair_execution.py",
+          "-k",
+          "covers_model_components",
+          "--basetemp",
+          "/Users/svecchio/NASolve-live-tests/198_Cedar_ordinary-request-handoff-6ij0qvvh/cold-r2/pytest tmp",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/198_Cedar_ordinary-request-handoff-6ij0qvvh/cold-r2/tests.xml"
+        ]
+      },
+      "cold_artifacts": {
+        "status": "PASS",
+        "files": 760,
+        "selected": {
+          "connected": "repaired_prepared_bundle",
+          "original": "verified_prepared_bundle",
+          "repair": "repaired_prepared_bundle"
+        },
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_paths_sdk_and_execution_denied": true,
+        "outer_request_completion": "NOT_CLAIMED"
+      }
+    },
+    "native": {
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+      "coot": "1.3.3 revision-count 0; embedded Python 3.14.6; Darwin-MacOSX-26.5.2-arm64-gtk4",
+      "mode": "ACTUAL_COOT_NAR_GENERATION_NATIVE; NO_DIFFRACTION_REFINEMENT",
+      "control": {
+        "status": "FIX_VALIDATED; OUTER_PUBLICATION_LIMIT_REMAINS",
+        "selected": "repaired_prepared_bundle",
+        "attribution": "CAPTURED_LINEAR_ATTRIBUTION_PASS",
+        "derivatives": {
+          "original-gradient": "MIXED_INITIAL_DERIVATIVES_PASS",
+          "repaired-gradient": "MIXED_INITIAL_DERIVATIVES_PASS"
+        },
+        "modeled_components": [
+          "DA",
+          "DC",
+          "DG",
+          "DT",
+          "PDU"
+        ],
+        "repair_steps_inputs_final_dictionaries_identical": true,
+        "outer_state": "STOPPED_UNFINISHED",
+        "outer_files": 517,
+        "outer_bytes": 152960714,
+        "limit": "Frozen tree exceeds supported bounds",
+        "result_refusal": "Outer attempt did not return successfully",
+        "automatic_adoption": false,
+        "refinement": "NOT_RUN"
+      },
+      "all_workers_stopped": true
+    },
+    "remaining": [
+      "Outer request evidence 152960714 bytes exceeds old 128 MiB envelope: STOPPED_UNFINISHED, no completed outer result; fix composed publication under versioned bounded partitions.",
+      "Q04 ordinary invocation and single modifier ownership; Q05 selected checkpoint adoption; Q06 refinement and Q07 combined/held-out controls.",
+      "C194/Q13 native source chemistry failures remain separate."
+    ],
+    "artifacts": "Only code/tests/docs/hash references committed. Scientific artifacts, logs, local runners and relocated copies excluded.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/start.json",
+        "sha256": "b06535dda030636270e10e3d41ce549a2c2e4f3d822be67e6abd25c3788ea388",
+        "size": 275
+      },
+      "construction-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/construction-r1/summary.json",
+        "sha256": "4c2227aac70c4d8b2f622a477b453c8f7ba7feabc15e200489986f6555b74666",
+        "size": 1441
+      },
+      "request-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/request-r1/summary.json",
+        "sha256": "97bc2d7e2b172193c30e9437d9ace36558f8d45717f40246932ffdc59a3f3307",
+        "size": 660
+      },
+      "request-r1/intake.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/request-r1/intake.json",
+        "sha256": "0e5ddce226e7f1641572b5b7b1baa8254f54bca4baaa638a1835bca64d4becdf",
+        "size": 1212
+      },
+      "request-r2/intake.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/request-r2/intake.json",
+        "sha256": "0e5ddce226e7f1641572b5b7b1baa8254f54bca4baaa638a1835bca64d4becdf",
+        "size": 1212
+      },
+      "postcheck-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/postcheck-r2/summary.json",
+        "sha256": "fdb8df73079a1e5d5abd05c79ab1237d799b4c70e5355ebec76f00c51520414a",
+        "size": 705
+      },
+      "cold-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/cold-r2/summary.json",
+        "sha256": "1ad519a3d1fa7d28dc9d525b41b086521eb3888064de592023bfc3797cb06474",
+        "size": 689
+      },
+      "artifact-cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/artifact-cold-r1/summary.json",
+        "sha256": "80f81be16a69925059ac43cd680f890fb27b19c9e12d9f16c5b5257f45104ecc",
+        "size": 354
+      },
+      "redundancy-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/redundancy-r1.json",
+        "sha256": "f13fb08092f07a62ac23f92691fe81f6f45e3183390562010410cf6041a4b280",
+        "size": 179
+      },
+      "before-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/before-r2-result.json",
+        "sha256": "d55047f1e6f3505ec65872cc3d01d9126a819eab513e7ab0f3d0b0c213b158b3",
+        "size": 640
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/new-r1-result.json",
+        "sha256": "a936cad2c0088589615fa89bb0a63ba6b5787ee598e468fdc6f9e463e8d34b07",
+        "size": 683
+      },
+      "attribution-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/attribution-r1-result.json",
+        "sha256": "e10205637a69de2a807044c2f1a7c85abbdf939226adf86fe7e4824bcdc02710",
+        "size": 761
+      },
+      "owners-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "198_Cedar_ordinary-request-handoff-6ij0qvvh/owners-r1-result.json",
+        "sha256": "4b2445cba8fdf12add5133faf9391c4bb455060c9bb0bf9069fcd4ffc9b0e6fb",
+        "size": 680
+      }
+    }
   }
 }

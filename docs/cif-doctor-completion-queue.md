@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C197.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C198.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -52,13 +52,13 @@ acceptance criteria.
 
 ## Pipeline position
 
-Current orientation after C197. This table summarizes the acceptance packages
+Current orientation after C198. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
 | Package | Position now | Remaining acceptance |
 | --- | --- | --- |
-| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | C186–C189 bind required planes, original literal provenance or an existing source-bound C80 artifact, and an already frozen source selection. C190 rejects ungrouped atom alternatives at new context-bound intake/execution while retaining old readback. C195 makes ordinary construction consume verified snapshots; C196 records and binds consumed-source/model/intent evidence through the existing request and recovery. C197 supplies faithful source-bound literal intake without prior native capture. Connect ordinary invocation with one modifier owner, then exercise ordinary hit/miss/stale/failure paths. Reuse the existing owner and C21/C80 compilers. |
+| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | C186–C189 bind required planes, original literal provenance or an existing source-bound C80 artifact, and an already frozen source selection. C190 rejects ungrouped atom alternatives at new context-bound intake/execution while retaining old readback. C195 makes ordinary construction consume verified snapshots; C196 records and binds consumed-source/model/intent evidence through the existing request and recovery. C197 supplies faithful source-bound literal intake without prior native capture. C198 validates actual ordinary Coot/NAR intake and connected repair after correcting complete-model scope; outer publication remains stopped at the 128 MiB evidence limit. Resolve versioned composed-evidence bounds first. Connect ordinary invocation with one modifier owner, then exercise ordinary hit/miss/stale/failure paths. Reuse the existing owner and C21/C80 compilers. |
 | Q05 — ordinary adoption | Open | Carry one exact selected model/CIF/PHIL bundle through prepared and newly mutated routes into immutable checkpoints; retain source/producer lineage and selected-versus-latest behavior. |
 | Q06 — real refinement consumer | Open; can proceed alongside Q04/Q05 | Qualify actual refinement with complete NAR restraints and Free-R authority. The corrected diagnostic evaluator does not establish ordinary Phenix behavior. |
 | Q07 — combined acceptance | Open | Run the original eight pairs with ATL alongside, broken PDU and DF/A1AAZ, plus the separate eight-residue held-out builder challenge. Refinement claims depend on Q06. |

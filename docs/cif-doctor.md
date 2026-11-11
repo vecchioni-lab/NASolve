@@ -615,6 +615,29 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Complete modeled inventory in repair planning (C198)
+
+The prepared-repair coordinator now supplies the existing planner with every
+modeled component, rather than only acquired dictionary owners. This matches
+C149/C150 attribution's complete native inventory. Components supplied only by
+the installed library remain `NO_EXPLICIT_DICTIONARY`; no new repair authority,
+chemistry whitelist, numerical threshold or source-state change is introduced.
+
+Actual ordinary Coot construction and NARestraints output on the public W-frame
+(PDU at A:9, 38 backbone links, 197 explicit requests including four planes) pass
+the existing source-bound inlet. Phenix 2.2.1-6174 qualifies the repaired child
+runtime, with exact attribution and original/repaired derivative checks. The
+repair steps and dictionary bytes match those from the earlier refused attempt.
+This fixes a model-scope mismatch, not a chemical or attribution exception.
+
+The outer request remains **STOPPED_UNFINISHED**: its 517 files total 152,960,714
+bytes, exceeding the original 128 MiB inventory envelope. Its result reader
+correctly refuses completion. Both failed attempts and all partial evidence are
+preserved; the separately qualified child runtime replays after relocation.
+Versioned composed-evidence bounds are the next Q04 task. No default invocation,
+ReadySet/checkpoint adoption or refinement support is claimed. No schema change
+or migration. Evidence: `complete_model_repair_scope_2026_11_11`.
+
 ### Source-bound literal intake without prior native capture (C197)
 
 `prepare_source_literal_na_inputs(model, phils, sources, output)` freezes explicit

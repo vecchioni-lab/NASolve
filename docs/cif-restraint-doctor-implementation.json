@@ -28374,6 +28374,15 @@
         "Q06 refinement; Q07 combined and held-out controls; C194/Q13 native chemistry failures"
       ],
       "implementation_revision": "9257f4e87e82045cd36322b843052c3d6c30fd92"
+    },
+    "complete_model_repair_scope": {
+      "status": "IMPLEMENTED_VALIDATED; OUTER_PUBLICATION_LIMIT_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#complete_model_repair_scope_2026_11_11",
+      "limitations": [
+        "Outer request evidence 152960714 bytes exceeds old 128 MiB envelope: STOPPED_UNFINISHED, no completed outer result; fix composed publication under versioned bounded partitions.",
+        "Q04 ordinary invocation and single modifier ownership; Q05 selected checkpoint adoption; Q06 refinement and Q07 combined/held-out controls.",
+        "C194/Q13 native source chemistry failures remain separate."
+      ]
     }
   },
   "audience": [

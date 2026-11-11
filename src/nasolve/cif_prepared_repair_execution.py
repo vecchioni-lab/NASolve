@@ -14,7 +14,7 @@ from .cif_outer_context import OuterAllowance
 from .cif_dictionary_store import _bytes, _snapshot_destination
 from .cif_dictionary_bundle import read_dictionary_bundle, inspect_dictionary_bundle_native
 from .cif_dictionary_bundle_repair import inspect_dictionary_bundle_repair, inspect_dictionary_bundle_original
-from .cif_dictionary_sites import _need, _read
+from .cif_dictionary_sites import _model_inventory, _need, _read
 from .cif_linear_torsion_bundle import prepare_linear_torsion_bundle
 from .cif_native_validation import inspect_native_bundle
 from .cif_captured_linear_attribution import audit_captured_linear_attribution
@@ -179,8 +179,11 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     try:
         event('STARTED'); unchanged()
         prepared = read_dictionary_bundle(frozen)
-        plan = prepare_linear_torsion_bundle(prepared['after_dictionaries'],
-            prepared['report']['components'], output/'plan')
+        # Attribution binds the complete native model, including components
+        # supplied by the installed library rather than acquired dictionaries.
+        # The existing planner marks those without an explicit provider unassessed.
+        modeled = sorted({site['code'] for site in _model_inventory(prepared['model']).values()})
+        plan = prepare_linear_torsion_bundle(prepared['after_dictionaries'], modeled, output/'plan')
         report['plan'] = reference(output/'plan/linear_torsion_bundle.json')
         if not plan['steps'] and not qualify_no_repair:
             return finish('NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED')

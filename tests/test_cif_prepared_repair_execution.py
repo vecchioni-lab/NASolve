@@ -12,6 +12,9 @@ def case(tmp_path,monkeypatch):
     bundle=tmp_path/'source';bundle.mkdir()
     for name in ('model.pdb','a.cif','b.cif','policy.phil','bundle_receipt.json'):
         (bundle/name).write_text('SYNTHETIC '+name)
+    from tests.helpers import pdb_record
+    (bundle/'model.pdb').write_text(''.join(pdb_record('HETATM', i+1, 'C1', c, 'A', i+1, element='C')
+        for i,c in enumerate(['Q17','Q18'])) + 'END\n')
     sdk=tmp_path/'sdk';sdk.mkdir()
     phenix=SimpleNamespace(root=sdk,version='TEST',environment={},
         executables={'phenix.python':sdk/'python','phenix.ready_set':sdk/'ready'})
@@ -266,3 +269,38 @@ def test_unknown_failure_policy_refuses_before_side_effects(case,policy):
     m,b,sdk,out,state,calls,o=case
     with pytest.raises(ValueError):m.execute_prepared_dictionary_repair(b,sdk,out,optional_failure_policy=policy,**o)
     assert not out.exists() and not calls
+
+
+@pytest.mark.parametrize('bystander', ['DG', 'Z81'])
+def test_repair_plan_covers_model_components_outside_selected_dictionary_owners(case, monkeypatch, tmp_path, bystander):
+    from tests.helpers import pdb_record
+    from tests.test_cif_linear_torsion_candidate import dictionary
+    from nasolve.cif_linear_torsion_bundle import prepare_linear_torsion_bundle, read_linear_torsion_bundle
+    m, source, sdk, output, state, calls, options = case
+    graph = tmp_path / 'graph'; graph.mkdir()
+    dictionary_path, _ = dictionary(graph, 'Q17')
+    (source / 'a.cif').write_bytes(dictionary_path.read_bytes())
+    (source / 'b.cif').write_text('data_mod_control\n_chem_mod.id control\n')
+    (source / 'model.pdb').write_text(''.join(
+        pdb_record('HETATM', i + 1, 'C1', code, 'A', i + 1, element='C')
+        for i, code in enumerate(['Q17', 'Q18', bystander])) + 'END\n')
+    before = m._tree(source)
+
+    class Planned(Exception):
+        pass
+
+    def stop_after_real_plan(dictionaries, codes, destination):
+        prepare_linear_torsion_bundle(dictionaries, codes, destination)
+        raise Planned
+
+    monkeypatch.setattr(m, 'prepare_linear_torsion_bundle', stop_after_real_plan)
+    with pytest.raises(Planned):
+        m.execute_prepared_dictionary_repair(source, sdk, output, **options)
+    plan = read_linear_torsion_bundle(output / 'plan')
+    assert plan['modeled_components'] == sorted(['Q17', 'Q18', bystander])
+    assert next(row for row in plan['scan'] if row['component'] == bystander) == {
+        'component': bystander, 'status': 'NO_EXPLICIT_DICTIONARY'}
+    assert [step['component'] for step in plan['steps']] == ['Q17']
+    assert plan['steps'][0]['plan']['removed_torsion_count'] == 1
+    assert m._tree(source) == before and calls == ['consumer']
+    assert not (output / 'runtime').exists() and not plan['automatic_adoption']

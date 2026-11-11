@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve complete model scope during dictionary repair (C198)
+
+- Supply all modeled component codes to the existing repair planner, fixing a
+  connected-model attribution refusal when only some types have acquired CIFs.
+  Installed-only types remain unassessed and all native/chemical guards remain.
+- No schema migration or retroactive success for old attempts. A real connected
+  PDU child runtime passes; its outer publication limit remains separately open.
+
+
 ### Compile source-bound literal restraint intent before native capture (C197)
 
 - Reuse the existing literal compiler and source-role checks to preserve explicit

@@ -11,6 +11,64 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C198 validated: complete-model repair scope
+
+Base `403e16a406c4bf5f933d87b660dcabb715463fd3`; existing Cedar; implementation complete, publication next.
+Session pause/update **2026-11-11 14:00 UTC**. Capsule:
+`live_tests_directory/198_Cedar_ordinary-request-handoff-6ij0qvvh`. All scientific and validation workers stopped.
+
+**Before → after:** selected dictionary codes `[PDU]` were passed to C149/C150
+planning where complete modeled codes `[DA,DC,DG,DT,PDU]` are required. Reuse the
+existing `_model_inventory`; installed-only types remain unassessed. Identical
+repair steps/input/final CIFs now pass exact attribution and derivative checks.
+No new owner, compiler, modifier, chemistry permission or threshold.
+
+**Changed:** `src/nasolve/cif_prepared_repair_execution.py`, `tests/test_cif_prepared_repair_execution.py`, Unreleased, methods, queue and these
+handoff/evidence/runtime ledgers. No schemas or migration. Old failures preserved.
+Two bystander-code cases fail before the fix; existing test bodies unchanged.
+
+**Validation:** coordinator/process/budget **122 passed**; attribution/repair
+**131 passed**; enclosing owners/continuation **178 passed**. Total **431** affected
+tests, no full/profile rerun. All 641 source hashes fixed. Relocated checkout:
+**2 passed**, 594 files unchanged; original copy absent, historical checkout/SDK
+reads denied, exact read-only OS ownership queries allowed. Artifact cold replay:
+**760 files unchanged**, original copies absent and all historical
+data/checkout/SDK reads and external execution denied; C198 child and old C197
+original/repaired runtimes resolve. Outer completion is explicitly not claimed.
+Exact commands/results are in `complete_model_repair_scope_2026_11_11` and the local phase records:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 python c198_validate.py before-r2
+PYTHONDONTWRITEBYTECODE=1 python c198_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 python c198_validate.py attribution-r1
+PYTHONDONTWRITEBYTECODE=1 python c198_validate.py owners-r1
+PYTHONDONTWRITEBYTECODE=1 python c198_cold.py cold-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c198_construct.py construction-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c198_request.py request-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c198_request.py request-r2 retained-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c198_postcheck.py postcheck-r2
+PYTHONDONTWRITEBYTECODE=1 python c198_artifact_cold.py artifact-cold-r1
+```
+
+Actual Coot **1.3.3 / embedded Python 3.14.6 / Darwin arm64 gtk4**, Phenix
+**2.2.1-6174 / dispatcher 2.2.1**: public A:9 PDU construction, NAR/frame overlay,
+38 backbone links and 197 explicit restraints including four planes. C196 producer
+and C197 literal lineage join the existing owner. The first request stops on the
+old attribution mismatch. A fresh retained-candidate request qualifies its repaired
+child, but its **outer** attempt cannot seal: **517 files / 152,960,714 bytes**
+exceed 128 MiB. Read-only postcheck confirms `STOPPED_UNFINISHED`, known-dead
+workers and refusal of completed outer readback. Preserve both attempts unchanged.
+The initial postcheck-r1 directory is empty; no result claimed. Earlier invalid
+test fixture and overstrict OS-query cold harness failures remain recorded.
+
+**Next:** versioned bounded composed-evidence inventory, reusing C184 principles
+without increasing child/public artifact bounds; use a fresh request for validation.
+Then Q04 ordinary invocation/single modifier ownership and Q05 checkpoint adoption.
+ReadySet, diffraction refinement, automatic adoption and merge are NOT_RUN.
+C194/Q13 and Q06/Q07 remain open. Raw artifacts/logs/runners remain local; only
+code/tests/docs/hash references ship. Full baseline remains C160.
+— Rowan · Codex desktop
+
 ## C197 published: source-bound literal intake
 
 Base `8ca17ff5aed8b1ca47572c828088d46f7d4528aa`; existing Cedar, implementation complete and published as
