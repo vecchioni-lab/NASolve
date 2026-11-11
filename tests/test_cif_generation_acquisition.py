@@ -418,3 +418,26 @@ def test_missing_candidate_diagnostic_respects_identity_and_interruptions(case, 
     assert len(projections) == (0 if wrong_identity else 1)
     assert calls == ['generate'] and not any(args[i].exists() for i in (2, 3, 5))
     assert attempts.inspect_source_generation_request(args[4])['attempts'][0]['state'] == 'STOPPED'
+
+
+def test_multiple_plane_recipe_cannot_reuse_a_default_generation_cache_key(case):
+    module,args,kwargs,calls,c,q=case
+    options=module.generation_dictionary_options(kwargs['generation'])
+    default=module.generation_dictionary_options(dict(kwargs['generation'],multiple_planes=False))
+    selected=module.generation_dictionary_options(dict(kwargs['generation'],multiple_planes=True))
+    assert options==default
+    assert selected['recipe']==dict(options['recipe'],multiple_planes=True)
+    assert selected['generator']==options['generator']
+    first=module.resolve_generated_dictionary(*args,**kwargs)
+    modified=dict(kwargs,generation=dict(kwargs['generation'],multiple_planes=True))
+    second=module.resolve_generated_dictionary(*args[:3],args[3].with_name('planes-output'),
+        args[4].with_name('planes-request'),args[5].with_name('planes-qualification'),**modified)
+    assert first['entry_id']!=second['entry_id']
+    assert calls==['generate','qualify','generate','qualify']
+
+
+@pytest.mark.parametrize('value',[None,0,1,'true'])
+def test_multiple_plane_cache_recipe_rejects_nonboolean_values(case,value):
+    module,args,kwargs,*_=case
+    with pytest.raises(ValueError):
+        module.generation_dictionary_options(dict(kwargs['generation'],multiple_planes=value))

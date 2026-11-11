@@ -42,7 +42,7 @@ def generation_dictionary_options(generation):
     """
     required = {'installation_root', 'python_executable', 'elbow_executable', 'api_sources',
                 'environment', 'expected_dialect', 'prior_sources', 'phenix_version'}
-    optional = {'single_block_steps', 'timeout_seconds', 'max_attempts', 'bond_representation_policy'}
+    optional = {'single_block_steps', 'timeout_seconds', 'max_attempts', 'bond_representation_policy', 'multiple_planes'}
     _need(isinstance(generation, dict) and required <= generation.keys()
           and generation.keys() <= required | optional, 'Require explicit supported generation configuration')
     steps = generation.get('single_block_steps', 180)
@@ -54,6 +54,10 @@ def generation_dictionary_options(generation):
     dialect = generation['expected_dialect']
     _need(isinstance(dialect, str) and bool(dialect), 'Require source reader dialect')
     recipe = {'policy_id': RECIPE_POLICY_ID, 'expected_dialect': dialect, 'single_block_steps': steps}
+    multiple_planes = generation.get('multiple_planes', False)
+    _need(type(multiple_planes) is bool, 'multiple_planes must be a boolean')
+    if multiple_planes:
+        recipe['multiple_planes'] = True
     policy = generation.get('bond_representation_policy')
     from .cif_purine_representation import validate_policy
     validate_policy(policy)

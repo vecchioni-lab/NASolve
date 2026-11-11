@@ -620,6 +620,47 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Owned native multiple-plane generation (C212)
+
+The existing `generate_source_candidate` and `generate_source_candidate_attempt`
+APIs now accept explicit `multiple_planes=True`. The installed help must define
+a no-value multiple-plane flag; unsupported capability refuses before candidate
+launch. The unchanged prepared-object native builder, source/charge handoff,
+bounded optimization and immutable process owner execute the request. This is
+complete native generation, not a dry-run writer or replacement chemistry engine.
+
+The selected flag appears in native arguments; the new
+`cif-source-native-multiple-plane-candidate-v1` receipt and phase context identify
+the choice. The existing request binds it in its frozen recipe and refuses phase
+records that omit that authority. The acquisition recipe/cache key includes the
+choice. Default/explicit false preserves old serialized identities and behavior;
+nonboolean values refuse before reservation. An existing request cannot change
+its plane choice in place. No additional owner, retry loop or installed SDK patch
+is introduced, and no old candidate is promoted by this option alone.
+
+208 affected tests and three targeted ownership/relocation checks pass (210 distinct
+logical cases). Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** completes PDU and
+5PC source-object generation under the existing durable owner, with 120 optimization
+steps and 180 seconds allowed per attempt. PDU reports nonconvergence; 5PC does not
+report convergence. Both retain source state/formal charges and finished named
+source stereochemistry. Completion is recorded separately from convergence.
+
+Their generated plane membership supports byte-identical C209 plane-only candidates:
+PDU C5A and 5PC C7 are added to the existing merged plane, with every other original
+restraint term retained. The full generated dictionaries are not adopted. Exact
+C211 model/dictionary/PHIL native inventories are requalified against these newly
+rebuilt candidates, so native interpretation need not be repeated. This is reuse
+of identical candidate/context evidence, not transfer to a new model or consumer.
+
+Both sealed request copies also read after their old copy anchors are removed,
+with original capsule/SDK access and process probing/launch disabled; 55 files
+retain bytes/mtimes. That establishes request ownership/recipe readback, not a
+new chemical qualification. C209/C211 remain explicit candidate/inventory APIs;
+the adapter binding owned generation into them, energy/derivative/achieved geometry
+and ordinary automatic selection remain open. Exact local evidence and commands:
+`owned_multiple_plane_generation_2026_11_11`. No Coot, refinement or full suite;
+last full C160.
+
 ### Exact linked native plane additions (C211)
 
 `qualify_linked_plane_candidate(before, after, source, dictionary, support,

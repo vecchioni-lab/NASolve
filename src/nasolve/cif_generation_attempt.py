@@ -81,6 +81,8 @@ def _validate_configuration(config):
             or not math.isfinite(recipe['timeout_seconds']) or not 0 < recipe['timeout_seconds'] <= 600
             or not isinstance(generator.get('phenix_version'), str) or not generator['phenix_version']):
         raise ValueError('Invalid generation request recipe')
+    if 'multiple_planes' in recipe and recipe['multiple_planes'] is not True:
+        raise ValueError('Noncanonical generation multiple-plane choice')
     from .cif_purine_representation import validate_policy
     validate_policy(recipe.get('bond_representation_policy'))
     for field in ('api_sources', 'prior_sources'):
@@ -122,6 +124,11 @@ def _phase_evidence(attempt, intent, config):
                     or any(job['coordinator'].get(k) != owner.get(k)
                            for k in ('pid', 'pgid', 'host', 'boot_id', 'start_marker'))):
                 raise ValueError('Generation phase belongs to another request/coordinator')
+            if config['recipe'].get('multiple_planes') is True:
+                from .cif_source_candidate import MULTIPLE_PLANE_POLICY_ID
+                if (context.get('multiple_planes') is not True
+                        or context.get('candidate_policy_id') != MULTIPLE_PLANE_POLICY_ID):
+                    raise ValueError('Generation phase lacks frozen multiple-plane authority')
         bindings[phase] = {}
         for name in ('job', 'process', 'finished'):
             path = path_in(work, f'execution/{phase}/{name}.json')
@@ -231,6 +238,8 @@ def _configuration(root, python, elbow, api, source_bytes, code, options, max_at
               'generator': {'phenix_version': options['phenix_version'], 'api_sources': _pins(api),
                             'prior_sources': _pins(options['prior_sources']),
                             'dispatchers': {'python': dispatcher(python), 'elbow': dispatcher(elbow)}}}
+    if options.get('multiple_planes') is True:
+        config['recipe']['multiple_planes']=True
     _validate_configuration(config)
     for row in config['generator']['api_sources'] + config['generator']['prior_sources']:
         path = _inside(root, row['path'])
@@ -252,7 +261,8 @@ def _seal(attempt, intent, request, outcome, error=None):
 def generate_source_candidate_attempt(installation_root, python_executable, elbow_executable,
         api_sources, source, code, request_directory, *, environment, expected_dialect,
         prior_sources, phenix_version, single_block_steps=180, timeout_seconds=600,
-        bond_representation_policy=None, max_attempts=2, _parent_attempt_identity=None, _remaining_seconds=None):
+        bond_representation_policy=None, max_attempts=2, _parent_attempt_identity=None, _remaining_seconds=None,
+        multiple_planes=False):
     """Run one fresh generation attempt under a frozen request (at most five).
 
     Repeated calls are explicit retries, not cache hits. Each gets a fresh UUID
@@ -260,6 +270,8 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
     The unchanged low-level generator remains available for legacy one-shot
     callers. A different request directory is a different coordination scope.
     """
+    if type(multiple_planes) is not bool:
+        raise ValueError('multiple_planes must be a boolean')
     if _parent_attempt_identity is not None and not _valid_attempt_identity(_parent_attempt_identity):
         raise ValueError('Invalid acquisition parent attempt identity')
     if _remaining_seconds is not None and not callable(_remaining_seconds):
@@ -281,6 +293,8 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
     options = dict(expected_dialect=expected_dialect, prior_sources=prior_sources, phenix_version=phenix_version,
                    single_block_steps=single_block_steps, timeout_seconds=timeout_seconds,
                    bond_representation_policy=bond_representation_policy)
+    if multiple_planes:
+        options['multiple_planes']=True
     config = _configuration(installation, python, elbow, api_sources, original, code, options, max_attempts)
     coordinator = current_process_identity()
     root.mkdir(parents=True, exist_ok=True)

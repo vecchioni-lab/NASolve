@@ -11,8 +11,45 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C211 validated: exact linked native plane delta
+## C212 validated: owned native multiple-plane choice
 
+Base `0dbed8d5d6d5bcd502dbc9c152fb8cf6a9aeebf7`; capsule
+`live_tests_directory/212_Cedar_owned-plane-generation-sonq2dyo`. All 8 owned workers stopped;
+both native requests sealed. Pause/update **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** native support was a local supplied writer output. The existing
+source-object generator now accepts explicit `multiple_planes=True`, checks its
+installed flag, records a distinct receipt/phase policy, freezes the choice in
+the existing request and includes it in acquisition/cache recipe identity.
+Missing capability/phase authority or nonboolean choice refuses. False/default
+retains historical bytes/identities; requests cannot change choice in place.
+
+**Files/schema:** `cif_source_candidate.py`, `cif_generation_attempt.py`,
+`cif_generation_acquisition.py`, their existing tests and maintained docs/ledgers.
+New `cif-source-native-multiple-plane-candidate-v1` receipt; optional true-only
+request/cache recipe field. No migration, alternate owner, scheduler or SDK edit.
+
+**Validation:** two fail-before cases; 208 affected + three targeted checks pass
+(210 distinct logical cases). Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1**
+complete source-object builds: 120 steps / 180 seconds each. PDU reports nonconvergence;
+5PC convergence is unreported. Both preserve source bytes/charges/named sugar hands.
+Both yield support for byte-identical C209 plane-only candidates, requalified
+against exact saved C211 native contexts. Whole generated dictionaries not adopted.
+Cold sealed request copies read with old copy anchors removed and original/SDK/
+process access disabled (55 files unchanged). All 600 original files preserve
+bytes/mtimes. Exact commands/references: `owned_multiple_plane_generation_2026_11_11`.
+No Coot, diffraction/refinement or full suite; last full C160. Raw science, native
+outputs/captures/pins/logs/runners stay local and excluded from Git.
+
+**Next/limits:** bind owned generation evidence into the C209/C211 candidate APIs;
+do not infer generator authenticity from a supplied CIF or native execution from
+an inventory. Energy/derivatives/achieved geometry, ordinary Q04/Q05 invocation/
+selection and complete NAR/held-out closure remain open. All active jobs stopped.
+— Rowan · Codex desktop
+
+## C211 published: exact linked native plane delta
+
+Implementation published as `0dbed8d5d6d5bcd502dbc9c152fb8cf6a9aeebf7`.
 Base `b3bc4c7704bebb3e6fec8c65015af9fa44052c1f`; capsule
 `live_tests_directory/211_Cedar_native-plane-delta-064enav6`. All 6 owned workers stopped.
 Pause/update remains **2026-11-11 23:00 UTC (London)**.

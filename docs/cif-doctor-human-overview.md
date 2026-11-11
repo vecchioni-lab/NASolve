@@ -38,8 +38,12 @@ PDU has fresh native geometry/readback evidence. The
 [exact native inventory gate](cif-doctor.md#exact-linked-native-plane-additions-c211)
 now passes linked PDU and 5PC controls, allowing only their reconstructed plane
 additions while retaining other terms. 5PC achieved geometry remains unqualified.
-Supplied support, native execution provenance and ordinary automatic selection
-remain distinct.
+[Owned multiple-plane generation](cif-doctor.md#owned-native-multiple-plane-generation-c212)
+now records the option, immutable attempt and source-preserving native execution,
+and reproduces both exact plane-only candidates. Full generated dictionaries are
+not adopted on that evidence; PDU's bounded run is not converged and 5PC convergence
+is unreported. Connecting those owned receipts to the candidate APIs and ordinary
+automatic selection remains separate.
 [Identity-proven serial repair](cif-doctor.md#identity-authorized-construction-serials-c210)
 now lets ordinary Coot construction reach its existing phosphate and whole-base
 restoration proofs when only atom serials changed. Exact unselected atom fields

@@ -29,7 +29,10 @@ milestone statements preserve their original scope; they are not a second queue.
   now validates PDU and 5PC linked plane deltas while retaining all other terms.
   [Identity-proven construction serials](cif-doctor.md#identity-authorized-construction-serials-c210)
   now resolve the bounded native Coot context failure while preserving terminal
-  intent. Authenticated plane support, ordinary engine adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
+  intent. [Owned native multiple-plane generation](cif-doctor.md#owned-native-multiple-plane-generation-c212)
+  now binds that explicit option through the existing request and cache recipe;
+  PDU/5PC reproduce their plane-only candidates. The evidence-binding adapter,
+  ordinary engine adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
   owns exact validation. Full regression remains deferred to integration; C160

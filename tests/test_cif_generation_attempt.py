@@ -43,7 +43,9 @@ def setup(tmp_path, monkeypatch):
         calls.append(output)
         run_generation_command([sys.executable, '-c', "from pathlib import Path; Path('partial.cif').write_text('kept')"],
             output, phase='candidate', environment=dict(os.environ), timeout_seconds=4,
-            context={'component': code, 'source_sha256': sha256(frozen.read_bytes()).hexdigest(), 'attempt_owner': options['attempt_identity']})
+            context={'component': code, 'source_sha256': sha256(frozen.read_bytes()).hexdigest(), 'attempt_owner': options['attempt_identity'],
+                     **({'multiple_planes':True,'candidate_policy_id':'cif-source-native-multiple-plane-candidate-v1'}
+                        if options.get('multiple_planes') else {})})
         result = {'status': 'FAILED', 'automatic_adoption': False}
         (output/'source_candidate_receipt.json').write_text(json.dumps(result))
         return result
@@ -217,9 +219,10 @@ def test_inspection_never_creates_a_request_or_lock(setup):
     assert list(root.iterdir()) == []
 
 
-def test_sealed_readback_is_relocatable_and_needs_no_process_probe(setup, monkeypatch, tmp_path):
+@pytest.mark.parametrize('multiple_planes',[False,True])
+def test_sealed_readback_is_relocatable_and_needs_no_process_probe(setup, monkeypatch, tmp_path,multiple_planes):
     module, args, kwargs, calls = setup
-    module.generate_source_candidate_attempt(*args, **kwargs)
+    module.generate_source_candidate_attempt(*args, **kwargs,multiple_planes=multiple_planes)
     relocated = tmp_path/'relocated'; args[-1].rename(relocated)
     def forbidden(*a, **k): raise AssertionError('sealed inspection must not query process state')
     monkeypatch.setattr(module, 'coordinator_alive', forbidden)
@@ -465,3 +468,39 @@ def test_dot_segment_request_cannot_write_into_selected_installation(setup):
         module.generate_source_candidate_attempt(*args, **kwargs)
     assert inventory(args[0]) == before and not calls
     assert not (args[0]/'request').exists()
+
+
+def test_multiple_plane_choice_binds_the_existing_immutable_request(setup):
+    module,args,kwargs,calls=setup
+    result=module.generate_source_candidate_attempt(*args,**kwargs,multiple_planes=True)
+    state=module.inspect_source_generation_request(args[-1])
+    assert state['request']['configuration']['recipe']['multiple_planes'] is True
+    assert result['attempt_number']==1
+    old=inventory(args[-1])
+    with pytest.raises(ValueError,match='identity differs'):
+        module.generate_source_candidate_attempt(*args,**kwargs)
+    assert inventory(args[-1])==old and len(calls)==1
+
+
+@pytest.mark.parametrize('value',[None,0,1,'true'])
+def test_invalid_multiple_plane_choice_refuses_before_request_reservation(setup,value):
+    module,args,kwargs,calls=setup
+    with pytest.raises(ValueError):module.generate_source_candidate_attempt(*args,**kwargs,multiple_planes=value)
+    assert not args[-1].exists() and not calls
+
+
+def test_multiple_plane_attempt_cannot_seal_a_phase_that_drops_its_choice(setup,monkeypatch):
+    module,args,kwargs,calls=setup
+    original=module.generate_source_candidate
+    def dropped(*args,**options):
+        options.pop('multiple_planes')
+        return original(*args,**options)
+    monkeypatch.setattr(module,'generate_source_candidate',dropped)
+    with pytest.raises(ValueError,match='multiple-plane authority'):
+        module.generate_source_candidate_attempt(*args,**kwargs,multiple_planes=True)
+    attempt=args[-1]/'attempts/attempt-0001'
+    assert not (attempt/'finished.json').exists()
+    from nasolve.cif_generation_process import inspect_generation_process
+    assert inspect_generation_process(attempt/'generation','candidate')['state']=='STOPPED'
+    with pytest.raises(ValueError,match='multiple-plane authority'):
+        module.inspect_source_generation_request(args[-1])

@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind native multiple-plane generation to existing ownership (C212)
+
+- Add an explicit installed-capability-checked multiple-plane choice to source-
+  preserving generation, frozen attempts and acquisition/cache recipe identity.
+- Preserve default behavior and immutable retry rules; refuse invalid choices,
+  missing capabilities and phase evidence that drops the declared option.
+- Actual owned PDU/5PC outputs support the exact plane-only candidates already
+  qualified in native interpretation. Retain stopping limits; do not substitute
+  full generated dictionaries or infer convergence/automatic adoption.
+
 ### Qualify exact native plane additions (C211)
 
 - Rebuild source-supported candidates before allowing only their exact linked

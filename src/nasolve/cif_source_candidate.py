@@ -19,6 +19,7 @@ from .cif_generation import _generator_capabilities,_ideal_seed,inspect_componen
 from .cif_stereochemistry_audit import _values,_graph,_coordinates,_volume,reader_stereo_inventory,VOLUME_EPSILON,audit_optimizer_log
 
 POLICY_ID='cif-source-native-complete-candidate-v1'
+MULTIPLE_PLANE_POLICY_ID='cif-source-native-multiple-plane-candidate-v1'
 SOURCE_PATHS=('elbow/chemistry/any_chemical_format_reader.py','elbow/chemistry/MoleculeClass.py',
               'elbow/chemistry/SimpleMoleculeClass.py','elbow/command_line/builder.py')
 
@@ -191,8 +192,14 @@ def candidate_generation_diagnostic(report):
 
 
 def generate_source_candidate(installation_root,python_executable,elbow_executable,api_sources,source,code,output,*,
-        environment,expected_dialect,prior_sources,phenix_version,single_block_steps=180,timeout_seconds=600,bond_representation_policy=None,attempt_identity=None):
-    """Request one bounded full native builder and retain its exact written CIF."""
+        environment,expected_dialect,prior_sources,phenix_version,single_block_steps=180,timeout_seconds=600,bond_representation_policy=None,attempt_identity=None,multiple_planes=False):
+    """Request one bounded full native builder and retain its exact written CIF.
+
+    An explicit multiple-plane request uses a verified installed flag and a
+    distinct receipt policy. It remains a complete native candidate, not an
+    automatically approved plane repair; defaults preserve historical behavior.
+    """
+    if type(multiple_planes) is not bool:raise ValueError("multiple_planes must be a boolean")
     if attempt_identity is not None:
         if not _valid_attempt_identity(attempt_identity):raise ValueError('Invalid generation attempt identity')
         attempt_identity=dict(attempt_identity)
@@ -239,10 +246,13 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
     if representation_contract is not None:
         report.update(policy_id='cif-source-native-complete-candidate-v2',bond_representation_policy=bond_representation_policy,
             source_representation_contract=representation_contract)
+    if multiple_planes:
+        report.update(policy_id=MULTIPLE_PLANE_POLICY_ID,multiple_planes=True)
     started=time.monotonic()
     process_context={'component':code,'source_sha256':sha256(original).hexdigest(),
         'candidate_policy_id':report['policy_id'],'phenix_version':phenix_version,
         'single_block_steps':single_block_steps,'total_timeout_seconds':timeout_seconds}
+    if multiple_planes:process_context['multiple_planes']=True
     if attempt_identity is not None:process_context['attempt_owner']=attempt_identity
     def help_command(command,timeout):
         return run_generation_command(command,output,phase='capabilities',environment=environment,
@@ -257,6 +267,10 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
         args=[f"{flags['id']}={code}",f"{flags['output']}=candidate",f"{flags['template']}=source_ideal.pdb",
               f"{flags['initial_geometry']}=source_ideal.pdb",f"{flags['add_hydrogens']}=False",
               f"{flags['source_state_preservation']}=low",f"{flags['chiral']}=retain",flags['opt'],f'{step}={single_block_steps}']
+        if multiple_planes:
+            flag=next((s for s in ('--multiple_planes','--multiple-planes') if definitions.get(s) is False),None)
+            if flag is None:raise ValueError('Installed generator lacks a supported multiple-plane flag')
+            args.append(flag);report['multiple_planes_option']=flag
         spec={'component':code,'library':str(root/site),'installation_root':str(root),'arguments':args,
               'sources':[{'installed':str(root/r['path']),'sha256':r['sha256'],'module':name[:-3].replace('/','.')} for name,r in zip(SOURCE_PATHS,rows)],
               'declared_charge_control':{'component':code,'dialect':expected_dialect,'elements':elements,'coordinates':xyz,

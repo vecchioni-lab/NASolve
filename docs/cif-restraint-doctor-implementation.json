@@ -28469,6 +28469,12 @@
       "contract": "docs/cif-doctor.md#exact-linked-native-plane-additions-c211",
       "evidence": "native_plane_completion_inventory_2026_11_11",
       "scope": "Source-rebuilt exact native plane additions; linked PDU/5PC controls. Native authentication, energy/derivatives, geometry and adoption separate."
+    },
+    "owned_multiple_plane_generation": {
+      "status": "IMPLEMENTED_EXISTING_GENERATOR_OWNER_OPTION",
+      "contract": "docs/cif-doctor.md#owned-native-multiple-plane-generation-c212",
+      "evidence": "owned_multiple_plane_generation_2026_11_11",
+      "scope": "Explicit installed multiple-plane choice with existing native source, request and cache ownership. Adapter to plane candidate evidence and automatic adoption remain separate."
     }
   },
   "audience": [
