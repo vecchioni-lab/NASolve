@@ -18,6 +18,14 @@ The [command guide](cif-doctor.md) owns operational contracts; the
 implemented APIs from planned orchestration. This overview and its editable
 figure describe the current capabilities and their limits.
 
+A [PDU construction checkpoint](cif-doctor.md#mutation-orientation-and-exocyclic-plane-coverage-c206)
+now demonstrates why these gates remain separate: rigid monomer overlap can
+import an unwanted chi conformation, while a straight triple-bond chain can
+still tilt out of its ring. Native torsion matching and a source-supported plane
+completion produce a successful local geometry control with the backbone fixed.
+They are diagnostic demonstrations awaiting generalization and ordinary
+integration; other numerical targets and actual refinement remain unqualified.
+
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
 native chain and fresh recovery under one request. Exact NAR plane intake now
 retains each selected atom and its supplied sigma-derived weight through the same

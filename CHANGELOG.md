@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record PDU construction and plane-coverage evidence (C206)
+
+- Trace imported mutation chi and missing exocyclic plane coverage separately.
+  Record native diagnostic controls and a successful fixed-backbone geometry
+  candidate, without changing production chemistry or claiming refinement support.
+- Recalibrate the existing construction, recovery, adoption and refinement queue;
+  source-state authority and previous scientific evidence retain their scope.
+
 ### Exact dictionary-result readback (C205)
 
 - Reuse the selected result already validated during shared request inspection,

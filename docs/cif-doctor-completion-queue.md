@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C205.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C206.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -50,9 +50,38 @@ on the final integration state. Relocation claims require the original path to
 be unavailable. No package authorizes weakening chemical, NAR or diffraction
 acceptance criteria.
 
+### C206 recalibration: finish the construction/geometry gap within existing jobs
+
+The PDU:PDU checkpoint does not invalidate Q04 ownership, source binding or
+numerical replay. It exposes a different missing qualification: valid chemistry
+and executable restraints can still produce the wrong mutation conformation or
+poor achieved geometry. Do not restart completed infrastructure or equate the
+diagnostic fix with ordinary automatic support.
+
+Next bounded order:
+
+1. **Q04/Q05 construction:** qualify native conformation matching for graph-supported
+   parent/target pairs; retain source hands and whole-fragment integrity. Cover
+   nonmatching torsions and unavailable native capability. Resolve or truthfully
+   refuse the existing serial/context case with immutable evidence.
+2. **Q06/Q07 geometry:** add generalized detection and a source/native-supported
+   repair path for missing trigonal/exocyclic plane coverage, retaining existing
+   ring constraints. Test renamed and non-PDU controls, tetrahedral/ambiguous
+   negatives and collinear-plane hazards. Keep nonconvergence and remaining
+   numerical-target questions visible; a candidate file is not a quality verdict.
+3. **Q04 → Q05:** complete ordinary invocation/single modifier ownership/durable
+   resume and exact selected checkpoint handoff using these explicit boundaries.
+4. **Q06 → Q07 → Q15/Q16:** qualify actual complete-restraint refinement, combined
+   and held-out controls, user reporting and final integration regression.
+
+Q08–Q14 remain the existing chemistry/coverage work, not newly added release
+requirements. Q08 includes the PDU numerical/packing follow-up; Q13 source-state
+authority is unchanged. The C206 local pair control supplements the original
+eight-pair-plus-ATL acceptance and the separate held-out challenge.
+
 ## Pipeline position
 
-Current orientation after C205. This table summarizes the acceptance packages
+Current orientation after C206. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
@@ -321,6 +350,11 @@ report-only findings into unreviewed universal gates.
 ### Q06 — Qualify the actual refinement consumer
 
 **Open; can start independently, required before ordinary-refinement claims.**
+C206 adds an explicit achieved-geometry requirement: check parent-to-mutant
+orientation, local trigonal geometry, retained ring planes and exocyclic coverage,
+alongside triple-axis terms. Keep native membership, numerical consistency,
+chemical target plausibility and achieved geometry distinct. Its successful
+fixed-backbone diagnostic does not close this package.
 C23–C26 identified and bounded a parallelity-gradient accumulation defect.
 C147–C150 reuse a NASolve-local corrected evaluator. That proves those diagnostic
 jobs; it does not qualify an unmodified ordinary Phenix refinement process.

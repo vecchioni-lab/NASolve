@@ -28434,6 +28434,11 @@
       "evidence": "docs/cif-linked-native-registration-evidence.json#single_exact_result_replay_2026_11_11",
       "next": "Join ordinary PostMR to existing complete request; truthful fallback reporting and exact selected checkpoint lineage remain Q04/Q05.",
       "implementation_revision": "fa1f942c291ec2967bed549ca41cc60e71c8f9ef"
+    },
+    "mutation_plane_geometry": {
+      "status": "DIAGNOSTIC_VALIDATED; PRODUCTION_INTEGRATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#pdu_construction_plane_geometry_2026_11_11",
+      "next": "Use existing Q04/Q05 and Q06/Q07 boundaries; do not equate source/native numerical qualification with appropriate conformation or achieved geometry."
     }
   },
   "audience": [

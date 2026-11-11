@@ -620,6 +620,81 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Mutation orientation and exocyclic plane coverage (C206)
+
+A source-preserving dictionary and repeatable native derivatives do not by
+themselves establish appropriate mutation conformation or achieved geometry.
+The PDU:PDU construction checkpoint separates three observations:
+
+1. Ordinary Coot parent mutation retains the parent anti chi. Building a target
+   monomer and rigidly overlapping it then imports the target dictionary's syn
+   conformation. Whole-base restoration intentionally preserves that raw
+   conformation; it is not a chi repair or geometry optimizer.
+2. The retained source-faithful PDU dictionary declares a triple bond, linear-axis
+   angles and approximately 120-degree angles at C5, but omits C5A from the ring
+   plane. The actual native manager retains that omission and weak 30-degree
+   nondegenerate torsions. A linear propynyl chain can therefore tilt out of the
+   ring plane. An audit of triple-axis lengths/angles alone misses this defect.
+3. Correcting chi alone does not fix those restraints. Native geometry
+   minimization still tilts one attachment by 21.66 degrees under local packing
+   forces, with the ring and backbone fixed.
+
+**Methods and controls.** Current unchanged construction reproduces the historical
+raw output exactly. A diagnostic call to Coot's native `match_ligand_torsions`
+before rigid overlap retains the two parent chi values (-150.12/-108.95 degrees);
+direct nonstandard `mutate_base` refuses. The known serial/context refusal remains.
+A separate serial-only derivative followed by existing context, whole-base and
+phosphate guards succeeds without modifying the original experiment. This is not
+a new ordinary serialization policy.
+
+Fresh eLBOW generation preserves source declarations but does not supply the
+missing plane membership. The 180-step attempt reports nonconvergence; the fresh
+600-step allowance stops at 205 iterations with reported gradient RMS/max
+0.0218/0.1000. Neither normal termination nor CANDIDATE_REVIEW establishes
+chemical accuracy. Native `--multiple_planes --dry_run` supplies a local plane
+containing the substituent but also changes other numerical targets. An isolated
+plane-category transfer keeps every other original category exact; replacing the
+merged ring plane with local planes, however, permits ring bending.
+
+The final diagnostic **retains the original merged ring plane and adds only its
+missing C5A row**, with the native-generated 0.02 Å ESD. The explicit source graph
+has a carbon centre bonded to three carbon neighbours by one double and two
+single bonds; its neighbours and native local plane support this particular
+completion. All original rows, targets, chemical declarations and source state
+remain. Overlap of plane atom sets alone is not a general production repair rule:
+other chemistry, ambiguous hybridization or collinear shared atoms need separate
+proof. No component-specific production rule or coordinate hand-edit is added.
+
+Actual Phenix geometry minimization moves only the two complete base fragments.
+The **840 other atoms stay exactly fixed**; all six source-relative sugar
+configurations and four native polymer links survive, with no cross-residue
+base bonds. Native readback confirms the completed planes and triple terms.
+Final chi is -129.65/-108.32 degrees, C5 attachment tilt 0.008/0.057 degrees,
+three-angle sums essentially 360 degrees and triple-axis angles above 179.95
+degrees. Every measured substituent atom lies within 0.003 Å of its ring plane.
+The covalent-only positive control is separately labelled and unadopted.
+
+**Boundary.** This is a local construction/geometry proof, not ordinary automatic
+repair, NAR pair/stack qualification, density fitting, Hg construction, Free-R
+validation or refinement acceptance. The other numerical targets remain
+unqualified by this experiment, including the retained 1.607 Å C5B–C5M target.
+Coot's installed alternate dictionary encodes a saturated substituent and is not
+a source-faithful fallback simply because its component ID matches.
+
+Phenix 2.2.1-6174 / dispatcher 2.2.1 and Coot 1.3.3 revision-count 0 actually run;
+the multiple-plane writer alone uses explicit dry-run mode. All 600 original
+experiment files and 570 source/test files retain their initial hashes; original
+experiment mtimes also match. No source/test/API/schema changes or migration;
+no pytest or full suite is needed for this diagnostic-only checkpoint.
+Raw models, CIFs, PHIL, data, logs and runners remain local. Exact commands and
+references are under `pdu_construction_plane_geometry_2026_11_11`.
+
+The existing Q04/Q05 newly-mutated path now explicitly needs conformation-aware
+construction and truthful serial/context handling before adoption. Q06/Q07 must
+measure achieved trigonal/exocyclic geometry as well as native membership and
+linear axes. Q08 retains the remaining numerical/packing question. Existing
+ownership/recovery proof remains valid; no second engine or queue is required.
+
 ### One selected-result replay per read (C205)
 
 `read_dictionary_request_result` previously reconstructed every returned attempt

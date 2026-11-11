@@ -15,7 +15,10 @@ milestone statements preserve their original scope; they are not a second queue.
   reproduces those exact inputs through the existing compiler. Exact result
   readback avoids a duplicate replay while retaining integrity/history checks. Ordinary caller/checkpoint
   adoption, actual refinement and
-  broader chemistry coverage remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
+  broader chemistry coverage remain open. The
+  [PDU checkpoint](cif-doctor.md#mutation-orientation-and-exocyclic-plane-coverage-c206)
+  separates mutation chi and missing plane coverage from valid native mechanics;
+  its local geometry repair is not yet ordinary runtime support. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
   owns exact validation. Full regression remains deferred to integration; C160

@@ -82550,5 +82550,343 @@
       "tests": "NOT_RERUN_DOCUMENTATION_ONLY",
       "limits": "All scientific refusals, historical identities and Q04/Q05 separation retained; detailed evidence stays in methods/ledger/Git."
     }
+  },
+  "pdu_construction_plane_geometry_2026_11_11": {
+    "status": "DIAGNOSTIC_VALIDATED; PUBLICATION_PENDING",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "7063b8af078e42cb1d58c9bffb8892b968037c6a",
+    "branch": "cedar",
+    "before": "Rigid monomer overlap imports syn chi; retained dictionary omits exocyclic C5A plane membership. Triple-axis audit does not cover either defect.",
+    "after": "Local native torsion matching plus native-supported completion of the existing ring plane yields a fixed-backbone geometry control. Production unchanged.",
+    "files": [
+      "CHANGELOG.md",
+      "docs/cif-doctor.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/README.md",
+      "docs/development-handoff.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json"
+    ],
+    "schemas": "UNCHANGED",
+    "compatibility": "No migration, runtime default, source-state or acceptance-policy change.",
+    "validation": {
+      "status": "DIAGNOSTIC_GEOMETRY_CHECKPOINT_PASS",
+      "native": "Phenix 2.2.1-6174 / dispatcher 2.2.1; Coot 1.3.3 revision-count 0; actual construction, eLBOW, geometry minimization and native interpretation. Multiple-plane generator explicitly dry-run.",
+      "unchanged_atoms": 840,
+      "selected_base_atoms": 22,
+      "original_files_unchanged": 600,
+      "source_test_hashes_unchanged": 570,
+      "owned_jobs_stopped": 17,
+      "failed_controls_preserved": [
+        "direct-r1 nonstandard mutation refused",
+        "plane-completion-r1 local serialization failed before native execution",
+        "native-completed-r1 output-under-input guard refused"
+      ],
+      "tests": "NOT_RUN_NO_PRODUCT_CODE_CHANGE",
+      "full_suite": "NOT_RUN; LAST_COMPLETE_C160",
+      "diffraction": "NOT_RUN"
+    },
+    "commands": {
+      "direct-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/direct-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/direct-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "direct-r1"
+        ],
+        "timeout_seconds": 90,
+        "scope": "DIAGNOSTIC_NO_PRODUCT_CODE_CHANGE"
+      },
+      "generation-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/generation-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/generation-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "generation-r1"
+        ],
+        "timeout_seconds": 300,
+        "scope": "DIAGNOSTIC_NO_PRODUCT_CODE_CHANGE"
+      },
+      "generation-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/generation-r2/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/generation-r2",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "generation-r2"
+        ],
+        "timeout_seconds": 720,
+        "scope": "DIAGNOSTIC_NO_PRODUCT_CODE_CHANGE"
+      },
+      "matched-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/matched-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/matched-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "matched-r1"
+        ],
+        "timeout_seconds": 90,
+        "scope": "DIAGNOSTIC_NO_PRODUCT_CODE_CHANGE"
+      },
+      "minimize-base-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-base-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-base-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "minimize-base-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "minimize-completed-base-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-completed-base-r2/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-completed-base-r2",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "minimize-completed-base-r2"
+        ],
+        "timeout_seconds": 180
+      },
+      "minimize-covalent-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-covalent-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-covalent-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "minimize-covalent-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "minimize-original-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-original-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-original-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "minimize-original-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "minimize-planes-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-planes-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-planes-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "minimize-planes-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "native-completed-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/native-completed-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/native-completed-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "native-completed-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "native-completed-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/native-completed-r2/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/native-completed-r2",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "native-completed-r2"
+        ],
+        "timeout_seconds": 180
+      },
+      "ordinary-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/ordinary-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/ordinary-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "ordinary-r1"
+        ],
+        "timeout_seconds": 90,
+        "scope": "DIAGNOSTIC_NO_PRODUCT_CODE_CHANGE"
+      },
+      "plane-completion-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-completion-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-completion-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "plane-completion-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "plane-completion-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-completion-r2/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-completion-r2",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "plane-completion-r2"
+        ],
+        "timeout_seconds": 180
+      },
+      "plane-transfer-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-transfer-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-transfer-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "plane-transfer-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "planes-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/planes-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/planes-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "planes-r1"
+        ],
+        "timeout_seconds": 180
+      },
+      "recover-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/recover-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy/recover-r1",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+          "recover-r1"
+        ],
+        "timeout_seconds": 180
+      }
+    },
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/start.json",
+        "sha256": "2167c5fd9a73ffae99479d1af9fec87e2a8820dc8b3663a7a19bda1b4000f5b2",
+        "size": 509
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/source-hashes.json",
+        "sha256": "f2f8361af5691e5d607f3f6e5cb3c1fbf9ce9309d01a41d3fbbae1bb0e2f4a65",
+        "size": 61832
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/stage-geometry.json",
+        "sha256": "d6cc62fdb7dcb705e5d263cc43546cb6f0082e62d8e000222466711542cd582a",
+        "size": 23457
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/control-geometry-at-pause.json",
+        "sha256": "da0bd14b8f5737f67c554ee5111b139675598d9a5670c899d547457e65ab85ff",
+        "size": 15587
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/final-audit.json",
+        "sha256": "dd815d6a2c91469c9c567e0bfc294a4c19cb4837e6a5c7c70f824bfdde798b49",
+        "size": 8857
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/finish_audit.py.txt",
+        "sha256": "cb80111ef0480851f89e25d709b65f097ef44a06bc9ad84d042ae1e9691401d4",
+        "size": 7059
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-completion-r2/result.json",
+        "sha256": "9a2745cc56481c12b62ff3df11bf2c5c59d8f89832bd79a52123f76a1c2dc44e",
+        "size": 907
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/native-completed-r2/result.json",
+        "sha256": "aab95b77068d5f02e6fe0b909c5adfe64c021bb1dc36ef6cca6a9fc1ffe0b545",
+        "size": 4152177
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/native-completed-r2/coot-version.txt",
+        "sha256": "aee9ac415c06ae8069994a8542f45b9eb5edeb5dca3990480286a1510b5958c7",
+        "size": 249
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/minimize-completed-base-r2/minimized.pdb",
+        "sha256": "eb63c95faa5603c788940c7e3415179e8bb946803fc490f397549cbc36410628",
+        "size": 68345
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "206_Cedar_PDU-pair-geometry-5xnlqzfy/plane-completion-r2/PDU.cif",
+        "sha256": "62bc8823f5d669c60f0d48da5cb5990bf41813532b801524a7159a03439d280d",
+        "size": 10266
+      }
+    ],
+    "excluded": "All raw science, coordinates, dictionaries, PHIL, logs, native captures and runners remain local; committed entries are compact evidence references only.",
+    "limitations": [
+      "Native-supported local plane completion and torsion matching are diagnostic prototypes, not ordinary runtime integration.",
+      "All original numerical targets remain; no independent bond-length parameterization approval, including retained 1.607 A C5B-C5M target.",
+      "No density, Free-R, NAR pair/stack, Hg or final refinement qualification.",
+      "Full-model structural correctness and universal ligand transfer are not established."
+    ],
+    "next": "Existing Q04/Q05 conformation and serial/context handling; Q06/Q07 missing-plane detection/repair and achieved geometry, then ordinary invocation/adoption and complete refinement qualification. Q08/Q13 remain open.",
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY; not portable execution instructions"
   }
 }

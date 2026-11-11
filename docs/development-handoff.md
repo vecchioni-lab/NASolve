@@ -11,6 +11,49 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C206 complete diagnostic: PDU chi and plane coverage
+
+Base `7063b8af078e42cb1d58c9bffb8892b968037c6a`; resumed 18:53 UTC on 2026-11-11.
+Simon authorizes continued bounded work with interruptions; **pause/update by
+23:00 UTC (London)**. Capsule `live_tests_directory/206_Cedar_PDU-pair-geometry-5xnlqzfy`.
+All 17 owned workers are stopped. This checkpoint is validated; publication pending.
+
+**Before → after:** ordinary construction imports a +53-degree dictionary chi
+instead of the -150/-109-degree parent values. Native torsion matching preserves
+the parent orientation. The old dictionary omits the exocyclic attachment from
+its ring plane; even corrected-chi native minimization tilts one attachment by
+21.66 degrees. Native-supported completion of that existing plane, followed by
+native whole-base minimization, gives anti chi -129.65/-108.32, attachment tilt
+0.008/0.057 degrees, essentially 360-degree C5 angle sums and >179.95-degree
+triple-axis angles. Every substituent atom is within 0.003 Å of the ring plane.
+840 other atoms, all six source-relative sugar configurations and four native
+polymer links survive; no cross-residue base bond is present.
+
+**Changes:** documentation/evidence only. No production source/test/API/schema
+change, migration, dictionary installation or coordinate adoption. Local diagnostic
+scripts preserve the original plane and add only a native-supported C5A row.
+Other targets remain unchanged and unqualified by this test, including 1.607 Å
+C5B–C5M. Native local-plane replacement alone permits ring bending; do not adopt it.
+The known serial/context refusal needs an explicit derivative for this diagnostic.
+Coot's installed same-code saturated dictionary is not a valid chemical fallback.
+
+**Validation:** actual Phenix 2.2.1-6174 / dispatcher 2.2.1, Coot 1.3.3 revision 0;
+explicit native multiple-plane dry-run writer plus completed geometry/native checks.
+Exact commands/results and limitations are in the C206 evidence-ledger entry and
+`final-audit.json`. 600 original files retain bytes/mtimes; 570 source/test hashes
+match. Failed setup/direct-mutation controls remain preserved. No pytest/full suite:
+no product code change; last full baseline C160. No diffraction/NAR/Hg qualification.
+Raw scientific artifacts, logs and runners remain local and are excluded from Git.
+
+**Next:** publish C206, then bounded graph-supported conformation matching and
+serial/context handling under Q04/Q05; missing-plane detection/repair and achieved
+geometry under Q06/Q07. Finish ordinary invocation, one modifier owner and durable
+resume, then exact selected checkpoint adoption. The existing Q01–Q16 queue is
+recalibrated in place; no new owner/queue or merge. Q08 numeric/packing and Q13
+chemical-state work stay open. Prior C16/C17, C29, C31/C38–46, C54/C55, C98/C103,
+C145, C153 and C198–C203 evidence was checked before these controls.
+— Rowan · Codex desktop
+
 ## C205 published: one selected-result replay per read
 
 Base `fc6f7d31997a50580cc4440384e28e0fc8719a81`; pause/update **2026-11-11 15:00 UTC**.
