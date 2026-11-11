@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify exact native plane additions (C211)
+
+- Rebuild source-supported candidates before allowing only their exact linked
+  native plane-definition/proxy additions at every modeled occurrence.
+- Preserve all other terms, atom metadata, links and NAR scope; reject incomplete
+  or ambiguous membership. PDU and 5PC pass actual linked interpretation controls.
+- Keep execution/generation provenance, energy/derivatives, achieved geometry and
+  ordinary adoption separate from this read-only inventory gate.
+
 ### Recover identity-proven construction serials (C210)
 
 - Handle Coot-wide serial collisions using exact immutable atom identity and

@@ -25,7 +25,9 @@ milestone statements preserve their original scope; they are not a second queue.
   now identifies missing explicit planes from source connectivity, retaining
   alternative restraints. [Conservative plane candidates](cif-doctor.md#source-supported-plane-completion-candidates-c209)
   now preserve existing groups and have PDU native geometry plus 5PC transfer
-  evidence. [Identity-proven construction serials](cif-doctor.md#identity-authorized-construction-serials-c210)
+  evidence. [Exact native plane qualification](cif-doctor.md#exact-linked-native-plane-additions-c211)
+  now validates PDU and 5PC linked plane deltas while retaining all other terms.
+  [Identity-proven construction serials](cif-doctor.md#identity-authorized-construction-serials-c210)
   now resolve the bounded native Coot context failure while preserving terminal
   intent. Authenticated plane support, ordinary engine adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest

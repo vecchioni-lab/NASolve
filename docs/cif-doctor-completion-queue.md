@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C210.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C211.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -73,8 +73,11 @@ Next bounded order:
    coverage, retaining alternative restraints and unsupported chemistry. Add the
    remaining qualified repair integration: C209 already prepares source/supplied-
    plane candidates without replacing ring groups, with PDU native geometry and
-   5PC candidate transfer. Bind native generator provenance and exact consumer
-   qualification before ordinary selection; membership is not strength or geometry. Test renamed and non-PDU controls, tetrahedral/ambiguous
+   5PC transfer. C211 now independently rebuilds the candidate and qualifies only
+   its exact linked native plane delta; actual PDU/5PC controls pass. Bind native
+   generator/capture provenance and energy/derivative/achieved-geometry evidence
+   before ordinary selection; membership is not strength or geometry. Retain
+   renamed and non-PDU controls, tetrahedral/ambiguous
    negatives and collinear-plane hazards. Keep nonconvergence and remaining
    numerical-target questions visible; a candidate file is not a quality verdict.
 3. **Q04 → Q05:** complete ordinary invocation/single modifier ownership/durable
@@ -89,7 +92,7 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C210. This table summarizes the acceptance packages
+Current orientation after C211. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 

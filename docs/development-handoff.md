@@ -11,8 +11,42 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C210 validated: identity-authorized ordinary construction
+## C211 validated: exact linked native plane delta
 
+Base `b3bc4c7704bebb3e6fec8c65015af9fa44052c1f`; capsule
+`live_tests_directory/211_Cedar_native-plane-delta-064enav6`. All 6 owned workers stopped.
+Pause/update remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** C209 produced a candidate but had no maintained exact native
+delta gate. C211 reconstructs its bytes from source/original/support and permits
+only the planned effective-plane rows and modeled proxy members/weights. Every
+occurrence must be covered; other native fields, links, NAR and bystanders remain
+exact. Symmetric arrays retain index/label/weight association. No model edits.
+
+**Files/schema:** new `cif_plane_native.py`, focused tests and existing methods,
+descriptor, map, queue, Unreleased and ledgers. New explicit inventory report
+`cif-linked-plane-completion-inventory-v1`; old callers/policies unchanged. No
+migration, execution owner, scheduler, automatic invocation or adoption.
+
+**Validation:** before three failed; focused **103 passed**. Actual Phenix
+**2.2.1-6174 / dispatcher 2.2.1** completes four linked interpretations: original
+and candidate against identical model/PHIL for PDU and 5PC. Each adds exactly
+one member at two modeled planes; all other native fields match. PDU uses C210's
+ordinary model, 5PC C207's preserved ordinary model. All 600 original files retain
+bytes/mtimes. Exact commands/references: `native_plane_completion_inventory_2026_11_11`.
+No Coot, optimization, diffraction/refinement or full suite; last full C160.
+Generated CIFs/models/native captures/logs/runners stay local and out of Git.
+
+**Next/limits:** native capture/support-generation authentication remains caller
+responsibility; inventory is not energy/derivative, achieved geometry or chemistry
+approval. 5PC now has native inventory evidence, not achieved-geometry approval;
+its source amino-H issue stays visible. Continue under existing Q04/Q05/Q06/Q07,
+retaining DP correspondence, numerical-target calibration and held-out closure.
+— Rowan · Codex desktop
+
+## C210 published: identity-authorized ordinary construction
+
+Implementation published as `b3bc4c7704bebb3e6fec8c65015af9fa44052c1f`.
 Base `369c5122e5e1e16b707c8edc637cc626bed1dd08`; capsule
 `live_tests_directory/210_Cedar_identity-serial-4b2d9inm`. All 7 owned workers stopped.
 Pause/update remains **2026-11-11 23:00 UTC (London)**.

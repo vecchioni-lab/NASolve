@@ -620,6 +620,46 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Exact linked native plane additions (C211)
+
+`qualify_linked_plane_candidate(before, after, source, dictionary, support,
+component, candidate)` reconstructs the complete C209 candidate and requires
+byte-exact agreement before checking native inventories. It follows C104's
+existing inventory-delta boundary, without introducing another execution owner.
+
+Exactly one component provider, unique modeled residue/atom identities and the
+original effective plane definitions are required. Every modeled occurrence must
+contain each added atom and at least three existing active plane members. The
+original native proxy must uniquely match those members, labels, weights and
+component origin. Only planned definition rows and proxy members/weights may be
+added. Symmetric plane arrays are canonicalized by their index/label/weight
+association for comparison; other ordering and all other inventory fields,
+including unknown future categories, remain exact. Inputs are not modified.
+
+The result is an inventory gate, not an execution receipt. Callers must separately
+authenticate both captures against the same ordered model/PHIL/consumer and exact
+dictionary replacement, and bind support-generation provenance. Energy, derivative,
+achieved geometry and scientific approval remain unassessed; no adoption follows.
+Unchanged existing H rows and unmodeled original H members are not new hydrogen
+geometry evidence. Missing added atoms or altered effective linked planes refuse.
+
+103 focused tests pass after three initial failures, with renamed/long synthetic
+codes, a same-named bystander, every modeled occurrence, plane permutations,
+source/candidate rebuilding, removed-original-path relocation and adversarial
+weight/link/NAR/metadata/API changes. Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1**
+interprets original and candidate dictionaries against identical PDU and 5PC
+linked models/PHIL. All four complete native executions finish. For each component,
+two modeled planes acquire exactly one member each; every other native field
+matches. PDU uses C210's ordinary constructed model; 5PC uses the preserved C207
+ordinary model. Neither model moves and no optimization/refinement is run.
+
+This extends 5PC from candidate-only evidence to exact linked native inventory
+evidence; achieved geometry and its source ideal amino-hydrogen issue remain open.
+No Coot or full suite rerun; last full C160. Exact commands and local artifacts:
+`native_plane_completion_inventory_2026_11_11`. Q04/Q05 invocation and Q06/Q07
+geometry/refinement gates remain the same queue, with no new scheduler or policy
+that silently promotes this pass into automatic selection.
+
 ### Identity-authorized construction serials (C210)
 
 Fresh ordinary construction can now recover Coot-wide serial renumbering when

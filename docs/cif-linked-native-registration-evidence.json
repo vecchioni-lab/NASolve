@@ -83575,7 +83575,7 @@
     "published_revision": "369c5122e5e1e16b707c8edc637cc626bed1dd08"
   },
   "construction_identity_serials_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -83897,6 +83897,250 @@
         "size": 3591
       }
     ],
-    "excluded": "Raw crystallographic data, dictionaries, coordinates, logs and runners stay local; only compact evidence references committed."
+    "excluded": "Raw crystallographic data, dictionaries, coordinates, logs and runners stay local; only compact evidence references committed.",
+    "published_revision": "b3bc4c7704bebb3e6fec8c65015af9fa44052c1f"
+  },
+  "native_plane_completion_inventory_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "b3bc4c7704bebb3e6fec8c65015af9fa44052c1f",
+    "before": "Source-supported candidates lacked a maintained exact native plane-delta gate.",
+    "after": "Reconstruct candidate and allow only planned native plane rows/proxy members at every occurrence.",
+    "files": [
+      "src/nasolve/cif_plane_native.py",
+      "tests/test_cif_plane_native.py"
+    ],
+    "schemas": "NEW_EXPLICIT_cif-linked-plane-completion-inventory-v1; OLD_POLICIES_UNCHANGED",
+    "compatibility": "No migration or existing caller changes.",
+    "validation": {
+      "status": "SOURCE_REBUILT_NATIVE_PLANE_INVENTORY_VALIDATED",
+      "focused_tests": 103,
+      "original_files_unchanged": 600,
+      "owned_workers_stopped": 6,
+      "native": {
+        "status": "GENERALIZED_NATIVE_PLANE_DELTAS_PASS",
+        "cases": {
+          "PDU": {
+            "status": "NATIVE_EXACT_PLANE_DELTA_PASS",
+            "model_sha256": "9c8d12db6c6625e4a03b3bea3cfb2d631781b517776523be53e6163fdc825a95",
+            "candidate_sha256": "c1aab2f507800f63820d8630f26bb3d7e37d2c901f3110b5637a21e1fad9f2d4",
+            "occurrences": 2,
+            "extended_planes": 2,
+            "added_members": 2,
+            "checks": {
+              "atom_count": true,
+              "atoms": true,
+              "automatic_adoption": true,
+              "dictionary_loading": true,
+              "fatal_problems": true,
+              "geometry": true,
+              "installed_api_sources": true,
+              "inventory_detail": true,
+              "model_editing": true,
+              "monomer_mappings": true,
+              "optimization": true,
+              "parameter_consumers": true,
+              "phil_adaptations": true,
+              "policy_id": true,
+              "readyset_retry": true,
+              "restraint_policy": true,
+              "schema_version": true,
+              "scientific_approval": true,
+              "status": true,
+              "unsupported_fields": true,
+              "unused_definitions": true
+            },
+            "source_inputs_unchanged": true,
+            "scope": "ACTUAL_LINKED_INTERPRETATION_SAME_MODEL_PHIL_CONSUMER; NO_OPTIMIZATION_DIFFRACTION_OR_AUTOMATIC_ADOPTION"
+          },
+          "5PC": {
+            "status": "NATIVE_EXACT_PLANE_DELTA_PASS",
+            "model_sha256": "d62d12129809c67f6c50a8f91a2e69ab9bd83d23dac96cf16cf01763a1e7bc19",
+            "candidate_sha256": "78ea8c03af88f54710ea322160615d5071c83b0c39aef4984817fe8e7e99216b",
+            "occurrences": 2,
+            "extended_planes": 2,
+            "added_members": 2,
+            "checks": {
+              "atom_count": true,
+              "atoms": true,
+              "automatic_adoption": true,
+              "dictionary_loading": true,
+              "fatal_problems": true,
+              "geometry": true,
+              "installed_api_sources": true,
+              "inventory_detail": true,
+              "model_editing": true,
+              "monomer_mappings": true,
+              "optimization": true,
+              "parameter_consumers": true,
+              "phil_adaptations": true,
+              "policy_id": true,
+              "readyset_retry": true,
+              "restraint_policy": true,
+              "schema_version": true,
+              "scientific_approval": true,
+              "status": true,
+              "unsupported_fields": true,
+              "unused_definitions": true
+            },
+            "source_inputs_unchanged": true,
+            "scope": "ACTUAL_LINKED_INTERPRETATION_SAME_MODEL_PHIL_CONSUMER; NO_OPTIMIZATION_DIFFRACTION_OR_AUTOMATIC_ADOPTION"
+          }
+        },
+        "elapsed_seconds": 8.323835082992446,
+        "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+        "workers_stopped": 4,
+        "full_suite": "NOT_RUN",
+        "native_execution": "COMPLETE_INTERPRETATION; NO_REFINEMENT",
+        "generator_provenance": "PRIOR_LOCAL_C209_SUPPORT; NOT_AUTHENTICATED_BY_NEW_QUALIFIER"
+      },
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Inventory-only qualifier does not authenticate native captures or support generation.",
+        "No energy/derivative/achieved-geometry or complete refinement qualification; no ordinary adoption.",
+        "Require unchanged effective original planes and all added members modeled; unsupported linked transformations refuse."
+      ]
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_native.py::test_exact_completed_plane_preserves_same_named_bystander_and_inputs",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/211_Cedar_native-plane-delta-064enav6/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_native.py",
+          "tests/test_cif_plane_candidate.py",
+          "tests/test_cif_plane_coverage.py",
+          "tests/test_cif_linked_linear_torsion.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/211_Cedar_native-plane-delta-064enav6/focused-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      }
+    },
+    "native_commands": [
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      },
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      },
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      },
+      {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+          "native_worker.py",
+          "native_spec.json"
+        ],
+        "timeout_seconds": 90
+      }
+    ],
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/start.json",
+        "sha256": "edeacfd37070dc1145b0ca5c83c96931381ebf0b8ec2ede560dc531f75098d1b",
+        "size": 192
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/final-audit.json",
+        "sha256": "e6f7d76c5a0a2c069eafe141166946d314c379d89383da91bb3393b0ac43edc1",
+        "size": 3507
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/focused-r1/tests.xml",
+        "sha256": "0028c47200e37b5106b5cc299cc81c644de37444aa64987bff0429708c37554e",
+        "size": 14539
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/native-deltas-r1/summary.json",
+        "sha256": "d2cacbf45edb48f9ecdd56828a010836bb7c5487f7cdc498c397c5018bc179fb",
+        "size": 2754
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/native-deltas-r1/PDU/before.json",
+        "sha256": "34086db10605f6ebed1c3ff7367531f231d1173838c0883f0225db6841402291",
+        "size": 4151462
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/native-deltas-r1/PDU/after.json",
+        "sha256": "219dd135ae4eea882fece88e0d8c5b27ece01907e4444d704f95ae307dcdc32a",
+        "size": 4152071
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/native-deltas-r1/PDU/qualification.json",
+        "sha256": "ccecfbf43a2442e4808396d0c84577541063dac874b42134c5ffb7af2d79b85e",
+        "size": 4171
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/native-deltas-r1/5PC/before.json",
+        "sha256": "95f2e70148dbedab27e80aecb31dc2a52d26b41e806007a83aac95f389661ac0",
+        "size": 4165387
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/native-deltas-r1/5PC/after.json",
+        "sha256": "a3abb84611aa12f13a99b59fb8322929faf5ee5d33e8f656df94802730a59315",
+        "size": 4165994
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "211_Cedar_native-plane-delta-064enav6/native-deltas-r1/5PC/qualification.json",
+        "sha256": "952601abc57bfea06181942e9816d8ace8d81f70b8bdf4e1d14487d458990788",
+        "size": 4195
+      }
+    ],
+    "excluded": "Raw science, coordinates, dictionaries, native captures, logs and runners remain local; compact references only."
   }
 }

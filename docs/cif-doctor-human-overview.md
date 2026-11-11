@@ -34,8 +34,12 @@ later qualified repair; it does not flatten rings or modify dictionaries.
 The [candidate completion API](cif-doctor.md#source-supported-plane-completion-candidates-c209)
 now adds only a supported missing row to an existing plane, preserving its ring
 constraints and every other term. It chooses PDU C5A and 5PC C7 by connectivity.
-PDU has fresh native geometry/readback evidence; 5PC remains a candidate. Supplied
-support, native qualification and ordinary automatic selection remain distinct.
+PDU has fresh native geometry/readback evidence. The
+[exact native inventory gate](cif-doctor.md#exact-linked-native-plane-additions-c211)
+now passes linked PDU and 5PC controls, allowing only their reconstructed plane
+additions while retaining other terms. 5PC achieved geometry remains unqualified.
+Supplied support, native execution provenance and ordinary automatic selection
+remain distinct.
 [Identity-proven serial repair](cif-doctor.md#identity-authorized-construction-serials-c210)
 now lets ordinary Coot construction reach its existing phosphate and whole-base
 restoration proofs when only atom serials changed. Exact unselected atom fields
