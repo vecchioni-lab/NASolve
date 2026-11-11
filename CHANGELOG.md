@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bound composed request evidence independently (C199)
+
+- New requests record a versioned inventory policy separating retained working
+  evidence from the exact published repair runtime and optional continuation.
+  Each retains the existing file/byte limits; completion must fit before sealing.
+- A real connected PDU request now completes and replays cold. Old requests keep
+  their frozen policy and failures; older readers refuse new-mode records.
+  Public/child artifact limits and all scientific/ownership gates are unchanged.
+
+
 ### Preserve complete model scope during dictionary repair (C198)
 
 - Supply all modeled component codes to the existing repair planner, fixing a

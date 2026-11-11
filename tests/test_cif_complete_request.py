@@ -295,8 +295,8 @@ def test_expiry_during_final_seal_withholds_outer_success(case,monkeypatch):
     m,args,root,sdk,store,generations,calls=case;m.initialize_dictionary_request(output=root,**args)
     tick=[0.];capture=m._attempt_files
     monkeypatch.setattr(m,'monotonic',lambda:tick[0])
-    def late(attempt):
-        result=capture(attempt);tick[0]=61.;return result
+    def late(attempt, **options):
+        result=capture(attempt, **options);tick[0]=61.;return result
     monkeypatch.setattr(m,'_attempt_files',late)
     with pytest.raises(TimeoutError):m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
     state=m.inspect_dictionary_request(root)
@@ -356,8 +356,8 @@ def test_completion_must_fit_frozen_artifact_bounds_before_success(case,monkeypa
     from nasolve import cif_component_runtime as frozen_tree
     m,args,root,sdk,store,generations,calls=case;m.initialize_dictionary_request(output=root,**args)
     capture=m._attempt_files
-    def no_headroom(attempt):
-        result=capture(attempt)
+    def no_headroom(attempt, **options):
+        result=capture(attempt, **options)
         if bound=='files':monkeypatch.setattr(frozen_tree,'MAX_FILES',len(result['files']))
         else:monkeypatch.setattr(frozen_tree,'MAX_BYTES',sum(r['size'] for r in result['files'].values()))
         return result
@@ -443,3 +443,85 @@ def test_single_complete_request_keeps_owned_children_and_replays_cold(case,tmp_
     with patch('subprocess.Popen',side_effect=AssertionError('Cold replay must not execute')):
         assert m.read_dictionary_request_result(root,1)['result']==result['result']
     assert inventory(root)==before
+
+
+@pytest.mark.parametrize('with_continuation', [False, True])
+def test_new_request_inventories_independently_bounded_runtime(case, tmp_path, monkeypatch, with_continuation):
+    from nasolve import cif_component_runtime as frozen
+    m, args, root, sdk, store, generations, calls = case
+    m.initialize_dictionary_request(output=root, **args)
+    config = read_record(root / 'request.json')['configuration']
+    sample = tmp_path / 'composed'; sample.mkdir()
+    names = ['evidence', 'repair/attempts/attempt-0001/execution/runtime']
+    if with_continuation: names.append('continuation')
+    for name in names:
+        folder = sample / name; folder.mkdir(parents=True)
+        for i in range(6): (folder / str(i)).write_bytes(b'x' * 10)
+    monkeypatch.setattr(frozen, 'MAX_FILES', 10)
+    monkeypatch.setattr(frozen, 'MAX_BYTES', 100)
+    options = dict(with_continuation=with_continuation)
+    if 'artifact_policy' in config: options['artifact_policy'] = config['artifact_policy']
+    result = m._attempt_files(sample, **options)
+    assert len(result['files']) == 6 * len(names)
+    assert config['artifact_policy'] == 'cif-complete-request-partitioned-artifacts-v1'
+    with pytest.raises(ValueError): m._attempt_files(sample, with_continuation=with_continuation)
+    assert not calls
+
+
+@pytest.mark.parametrize('partition', ['', 'repair/attempts/attempt-0001/execution/runtime', 'continuation'])
+@pytest.mark.parametrize('excess', ['files', 'bytes', 'member'])
+def test_partitioned_request_keeps_each_existing_bound(tmp_path, monkeypatch, partition, excess):
+    from nasolve import cif_complete_request as m
+    from nasolve import cif_component_runtime as frozen
+    monkeypatch.setattr(frozen, 'MAX_FILES', 10)
+    monkeypatch.setattr(frozen, 'MAX_BYTES', 100)
+    monkeypatch.setattr(frozen, 'MAX_FILE_BYTES', 30)
+    folder = tmp_path / partition; folder.mkdir(parents=True, exist_ok=True)
+    count = 11 if excess == 'files' else 6 if excess == 'bytes' else 1
+    data = b'x' * (20 if excess == 'bytes' else 31 if excess == 'member' else 1)
+    for i in range(count): (folder / str(i)).write_bytes(data)
+    with pytest.raises(ValueError, match='bounds'):
+        m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.ARTIFACT_POLICY)
+
+
+@pytest.mark.parametrize('alias', ['runtime-extra', 'runtime/../elsewhere', 'runtime-link'])
+def test_partitioned_request_cannot_alias_the_runtime_partition(tmp_path, monkeypatch, alias):
+    from nasolve import cif_complete_request as m
+    from nasolve import cif_component_runtime as frozen
+    monkeypatch.setattr(frozen, 'MAX_BYTES', 100)
+    base = tmp_path / 'repair/attempts/attempt-0001/execution'; base.mkdir(parents=True)
+    (base / 'runtime').mkdir(); (base / 'runtime/published').write_bytes(b'x' * 60)
+    (tmp_path / 'working').write_bytes(b'x' * 60)
+    if alias == 'runtime-link': (base / alias).symlink_to(base / 'runtime', target_is_directory=True)
+    else:
+        target = base / alias; target.mkdir(parents=True); (target / 'unrelated').write_bytes(b'x' * 60)
+    with pytest.raises(ValueError): m._attempt_files(tmp_path, artifact_policy=m.ARTIFACT_POLICY)
+
+
+@pytest.mark.parametrize('policy', ['unknown', '', True, {}, ['cif-complete-request-partitioned-artifacts-v1']])
+def test_unknown_outer_artifact_policy_refuses_before_freezing(case, policy):
+    m, args, root, sdk, store, generations, calls = case
+    with pytest.raises(ValueError, match='artifact policy'):
+        m.initialize_dictionary_request(output=root, artifact_policy=policy, **args)
+    assert not root.exists() and not calls
+
+
+def test_legacy_artifact_policy_stays_absent_through_execution(case):
+    m, args, root, sdk, store, generations, calls = case
+    m.initialize_dictionary_request(output=root, artifact_policy=None, **args)
+    assert 'artifact_policy' not in read_record(root / 'request.json')['configuration']
+    result = m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    assert m.read_dictionary_request_result(root, 1)['result'] == result['result']
+
+
+def test_changed_artifact_policy_refuses_read_and_execution(case):
+    m, args, root, sdk, store, generations, calls = case
+    m.initialize_dictionary_request(output=root, **args)
+    request = read_record(root / 'request.json'); request.pop('record_sha256')
+    request['configuration']['artifact_policy'] = 'unknown'
+    (root / 'request.json').unlink(); write_record(root / 'request.json', request)
+    before = inventory(root)
+    with pytest.raises(ValueError, match='artifact policy'): m.inspect_dictionary_request(root)
+    with pytest.raises(ValueError, match='artifact policy'):
+        m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    assert inventory(root) == before and not calls

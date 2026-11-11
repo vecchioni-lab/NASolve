@@ -11,6 +11,62 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C199 validated: bounded composed publication
+
+Base `a37e651d1b9358461264ce3fba41a4d15b6df097`; existing Cedar; implementation complete, publication next.
+Pause/update **2026-11-11 14:00 UTC**. Capsule:
+`live_tests_directory/199_Cedar_composed-publication-n8pah5ky`. All C199 workers stopped.
+
+**Before → after:** C198's qualified repair child could not fit its retained working
+evidence and published runtime in the old flat outer cap. New requests explicitly
+freeze `cif-complete-request-partitioned-artifacts-v1`: working evidence, exact
+repair runtime, optional continuation, each 1,024 files/128 MiB with 32 MiB members.
+One existing safe-tree reader enforces every partition and exact directory boundary;
+completion reserves its own space. No cap borrowing, new owner or scientific change.
+
+**Changed:** `src/nasolve/cif_complete_request.py`, `src/nasolve/cif_component_runtime.py`, `tests/test_cif_complete_request.py`, Unreleased, methods, queue,
+handoff/evidence/runtime ledgers. Additive schema-1 configuration field; old readers
+refuse new records. Absent field (or explicit initializer `artifact_policy=None`)
+retains legacy flat/C184 bounds. No migration, old-attempt repair or resealing.
+Public runtimes and standalone continuation children retain their original limits.
+
+**Validation:** before **2 failed, 80 deselected in 3.81s** at the intended envelope;
+request/continuation **117 passed in 195.33s (0:03:15)**; runtime readers **113 passed in 11.41s**;
+ordinary inlet/model/literal **146 passed in 115.62s (0:01:55)**. **376 focused tests**;
+no full/profile rerun. All 641 source hashes fixed. Moved checkout: **23 passed**,
+594 files unchanged, original absent, historical checkout/SDK reads denied and
+only exact read-only OS process queries allowed. Whole-request cold replay:
+**2081 files unchanged**, original absent, no historical
+data/checkout/SDK reads or external execution; C199 and old C197 original/repaired
+requests return their exact selections and preserve original literal/producer joins.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 python c199_validate.py before-r1
+PYTHONDONTWRITEBYTECODE=1 python c199_validate.py new-r1
+PYTHONDONTWRITEBYTECODE=1 python c199_validate.py readers-r1
+PYTHONDONTWRITEBYTECODE=1 python c199_validate.py callers-r1
+PYTHONDONTWRITEBYTECODE=1 python c199_cold.py cold-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c199_request.py request-r1
+PYTHONDONTWRITEBYTECODE=1 python c199_artifact_cold.py artifact-cold-r1
+PYTHONDONTWRITEBYTECODE=1 python c199_redundancy.py
+```
+
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1**, fresh request with verified retained
+C198 candidate: **QUALIFIED_DIAGNOSTIC_RUNTIME / repaired_prepared_bundle** in
+**207.51 s**. C198 Coot/NAR construction reused unchanged; 38 links, 197 restraints,
+four planes and original compiler/producer lineage retained. Working evidence
+**88,447,656 bytes**, runtime **64,512,659**, completion **119,566**. No chemical
+plan or repaired CIF change. C198 stopped-unfinished request remains unchanged.
+Static audit: 353 test files, 2,145 top-level tests, no shadows/imported test
+collection, same three intentional identical-text reader pairs; workflow still 60 files.
+
+**Next:** actual connected ReadySet continuation and its existing child whole-tree
+limit, then Q04 ordinary invocation/single-modifier ownership and Q05 selected
+checkpoint export. C199 does not establish that a larger continuation fits its
+unchanged child bound. Q06/Q07 and C194/Q13 remain open. ReadySet/refinement/
+adoption/merge NOT_RUN here. Raw artifacts/logs/runners remain local. Full baseline C160.
+— Rowan · Codex desktop
+
 ## C198 published: complete-model repair scope
 
 Base `403e16a406c4bf5f933d87b660dcabb715463fd3`; existing Cedar; implementation complete and published as

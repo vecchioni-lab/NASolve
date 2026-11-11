@@ -615,6 +615,33 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Bounded composed request publication (C199)
+
+New complete requests freeze `configuration.artifact_policy` as
+`cif-complete-request-partitioned-artifacts-v1` in schema 1. Their outer inventory
+separates the exact `repair/attempts/attempt-0001/execution/runtime/` subtree from
+working evidence, plus C184's existing `continuation/` partition when declared.
+Each partition retains 1,024 files and 128 MiB, and every member retains 32 MiB.
+The existing safe-tree reader rejects unsafe or alias paths and independently
+enforces each partition; unused capacity cannot compensate for another excess.
+Completion is reserved within working evidence before atomic publication.
+
+The initializer defaults to the new policy; explicit `artifact_policy=None`
+retains legacy inventory semantics. Old absent-field records replay unchanged,
+and old readers reject the new field. No prior stopped attempt is resealed.
+Public runtime and standalone continuation limits are unchanged. Thus actual
+connected ReadySet continuation capacity remains a separate validation target.
+
+A fresh Phenix 2.2.1-6174 request using C198's verified retained candidate now
+returns `QUALIFIED_DIAGNOSTIC_RUNTIME` with `repaired_prepared_bundle`. Working
+evidence is 88,447,656 bytes, published runtime 64,512,659 bytes, and completion
+119,566 bytes; each applicable limit holds. Repair steps, inputs and final CIF
+identities match C198. Earlier failure evidence and construction/literal inputs
+stay unchanged. Completed old/new requests replay after relocation with original
+copies absent, historical paths/SDK reads denied and no external execution.
+No ReadySet, refinement, checkpoint adoption or default PostMR invocation ran.
+Evidence: `composed_request_publication_2026_11_11`.
+
 ### Complete modeled inventory in repair planning (C198)
 
 The prepared-repair coordinator now supplies the existing planner with every

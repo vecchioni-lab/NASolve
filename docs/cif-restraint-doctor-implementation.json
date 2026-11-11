@@ -28384,6 +28384,16 @@
         "C194/Q13 native source chemistry failures remain separate."
       ],
       "implementation_revision": "b45bd6457ce5e0a090e417706b4ea760ee50df91"
+    },
+    "composed_request_publication": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "cif-complete-request-partitioned-artifacts-v1",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#composed_request_publication_2026_11_11",
+      "limitations": [
+        "Actual connected ReadySet continuation capacity/selection is not established by this repair-only request; C183 child keeps its existing whole-tree cap.",
+        "Q04 ordinary invocation and single modifier ownership; Q05 exact selected checkpoint export.",
+        "Q06 actual refinement; Q07 combined/held-out controls; C194/Q13 chemistry failures."
+      ]
     }
   },
   "audience": [

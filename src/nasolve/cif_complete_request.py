@@ -39,6 +39,8 @@ from .cif_runtime_continuation_process import inspect_runtime_continuation_proce
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
+ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
+_RUNTIME_PREFIX = 'repair/attempts/attempt-0001/execution/runtime/'
 _COMPILER_INPUTS = {'literal_na_inputs':'literal_na', 'explicit_na_policy':'explicit_na'}
 _LIMITS = dict(native_timeout_seconds=600, component_timeout_seconds=3600,
                attribution_timeout_seconds=300, derivative_timeout_seconds=600,
@@ -131,7 +133,18 @@ def _construction_input(directory, model, sources, model_context):
     return value
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None):
+def _artifact_fields(policy):
+    _need(policy is None or (type(policy) is str and policy == ARTIFACT_POLICY),
+          'Unsupported complete-request artifact policy')
+    return {} if policy is None else dict(artifact_policy=policy)
+
+
+def _artifact_options(config):
+    return dict(**({'with_continuation':True} if 'continuation' in config else {}),
+                **_artifact_fields(config.get('artifact_policy')))
+
+
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
@@ -211,7 +224,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         input_files=_inventory(files),input_directories=directories,
         **({'model_context':model_context} if model_context is not None else {}),
         **({'restraint_context':restraint_context} if restraint_context is not None else {}),
-        **compiler_refs, **construction_ref,
+        **compiler_refs, **construction_ref, **_artifact_fields(artifact_policy),
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
         **_continuation_fields(continuation_options,limits))))
 
@@ -222,7 +235,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'))
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -230,7 +243,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -255,8 +268,13 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     record. Freeze only its explicitly declared artifacts, never the whole run.
     Exact model, overlapping source bytes and site policy must match the request;
     this lineage is not scientific qualification and does not select a checkpoint.
-    Omission preserves historical requests and results exactly.
+    Omission preserves historical construction provenance exactly. New requests
+    freeze a partitioned evidence policy: working evidence, the exact published
+    repair runtime, and optional continuation each keep their original bounds.
+    artifact_policy=None explicitly retains the legacy flat/C184 inventory mode.
+    Readers never upgrade historical requests without the field.
     """
+    _artifact_fields(artifact_policy)
     root = _root(output)
     if root.exists(): raise FileExistsError(root)
     selected = read_acquisition_sources(source_selection); codes = selected['report']['components']
@@ -311,7 +329,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -407,8 +425,14 @@ def _repair_limits(config):
     return {k:v for k,v in config['limits'].items() if k != 'component_timeout_seconds'}
 
 
-def _attempt_files(attempt, *, with_continuation=False):
-    if with_continuation:
+def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
+    _artifact_fields(artifact_policy)
+    if artifact_policy is not None:
+        prefixes=(_RUNTIME_PREFIX,) + (('continuation/',) if with_continuation else ())
+        files=frozen_tree._bounded_tree(attempt,max_files=frozen_tree.MAX_FILES,
+            max_bytes=frozen_tree.MAX_BYTES,partition_prefixes=prefixes)
+        dirs=sorted(p.relative_to(attempt).as_posix() for p in attempt.rglob('*') if p.is_dir())
+    elif with_continuation:
         # Preserve both bounded evidence trees. Do not enlarge either child's
         # artifact contract merely because the outer owner inventories them.
         files = frozen_tree._bounded_tree(attempt,max_files=2*frozen_tree.MAX_FILES,max_bytes=2*frozen_tree.MAX_BYTES)
@@ -491,7 +515,7 @@ def _attempt_state(root, attempt, number, request):
         _need(set(finished) == {'attempt_sha256','outcome','error_type','stopped_verified','finished_utc','children','artifacts','record_sha256'}
             and finished['attempt_sha256'] == intent['record_sha256'] and finished['outcome'] in {'RETURNED','RAISED'}
             and finished['stopped_verified'] is True and _same(finished['children'],bindings)
-            and _same(finished['artifacts'],_attempt_files(attempt,**({'with_continuation':True} if 'continuation' in request['configuration'] else {})))
+            and _same(finished['artifacts'],_attempt_files(attempt,**_artifact_options(request['configuration'])))
             and all(r['state'] in {'STOPPED','NOT_CREATED'} for r in children.values()), 'Outer completion does not bind stopped children/files')
         if finished['outcome'] == 'RETURNED': _result(root,attempt,intent,request['configuration'],children,bindings)
         return dict(result,state='STOPPED',activity=False,finished=finished)
@@ -539,7 +563,7 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
         raise CampaignProcessError('Complete request has unresolved child ownership')
     if outcome == 'RETURNED': _result(root,attempt,intent,request['configuration'],children,bindings)
     composed = 'continuation' in request['configuration']
-    artifacts = _attempt_files(attempt,**({'with_continuation':True} if composed else {}))
+    artifacts = _attempt_files(attempt,**_artifact_options(request['configuration']))
     # Scientific readback and inventory can be expensive; include them in the
     # final cooperative deadline check, leaving only atomic publication after it.
     completion = dict(attempt_sha256=intent['record_sha256'],outcome=outcome,error_type=error,
@@ -548,7 +572,8 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
     # that complete record too, so successful publication stays readable.
     encoded = json.dumps(dict(completion,record_sha256='0'*64),indent=2,sort_keys=True,allow_nan=False).encode('utf-8')
     completion_size = len(encoded)+1
-    partition = {n:r for n,r in artifacts['files'].items() if not composed or not n.startswith('continuation/')}
+    prefixes=(('continuation/',) if composed else ()) + ((_RUNTIME_PREFIX,) if 'artifact_policy' in request['configuration'] else ())
+    partition = {n:r for n,r in artifacts['files'].items() if not n.startswith(prefixes)}
     _need(len(partition)+1 <= frozen_tree.MAX_FILES
           and completion_size <= frozen_tree.MAX_FILE_BYTES
           and sum(r['size'] for r in partition.values())+completion_size <= frozen_tree.MAX_BYTES,
