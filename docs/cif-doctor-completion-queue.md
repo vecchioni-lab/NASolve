@@ -187,139 +187,71 @@ CLI/campaign callers currently require a ReadySet log. A proven parent fallback
 needs an explicit, verified outcome and truthful reporting, not a fabricated log
 or an unqualified optional value. Test ordinary hit/miss/stale/failure paths.
 
+**Reuse these completed contracts:**
 
-C196 already preserves exact construction/source/model lineage. C197/C204 retain
-literal declarations, planes/edits and source roles without a prior capture;
-C187's native-input mode and C188's existing explicit-source artifact remain
-supported alternatives. None permits guessed relationships, fabricated native
-indices or qualification claims at intake. The detailed milestone controls and
-historical ASU refusals remain in the methods/evidence ledger, rather than a
-second chronological queue here.
+- Construction: C195 consumes verified mutation snapshots in ordinary Coot/context/
+  restoration; C196 seals the exact prepared model, source bytes and site policy
+  with a run-relative reference. Reuse that proof through the request. It is not
+  chemical qualification or a record of every intermediate transformation; do not
+  add another source/hash wrapper. See [construction lineage](cif-doctor.md#ordinary-construction-lineage-and-request-binding-c196).
+- Input compilation: C21 handles supported literal Saenger 19/20 and mapped stacks
+  while retaining non-SS edits; C80 handles declared relationships/source roles in
+  PDB record identity. C187 retains original literal/native evidence; C197/C204
+  compile source-bound literal intent without a prior native capture; C188 retains
+  an existing explicit compiler artifact. These are alternatives under the same
+  owner, not permission to invent a third compiler, guessed relationships or native
+  indices. Native membership must still qualify independently. See
+  [source-bound literal intake](cif-doctor.md#source-bound-literal-intake-without-prior-native-capture-c197).
+- Context and ownership: C175/C176 derive canonical sites, audited whole-model
+  links, frozen terminal/backbone intent and exact ordered restraints. Ordinary
+  `declared_site_context` (OP3/passthrough only) is not the complete declaration.
+  Unsupported PHIL/nonstandard backbone adapters must refuse honestly. Preserve
+  NAR targets and keep pairing/stacking distinct from covalent links. C84's fixture
+  helper is not a generic topology oracle. Composer-only modifiers replace, rather
+  than accompany, legacy `write_linked_profile` for the same sites.
+- Execution/reporting: C184 already owns acquisitions, repair, ReadySet/native
+  continuation, fresh recovery and bounded evidence. C203 now demonstrates the
+  actual connected crystal through its ASU mode; C204 supplies identical ordinary
+  inputs and C205 avoids duplicate result reconstruction. Reuse C71's bounded cache
+  where applicable, C115 diagnostics and C185 primary-failure notes. The existing
+  reuse-only adapter skips explicit representation-policy entries; it does not
+  implement this automatic route. Q04 connects execution and returns its exact
+  selection; Q05 publishes that selection and full producer/compiler lineage into
+  ordinary reports and immutable checkpoints.
 
-Keep three operational joins explicit: (1) preserve exact source/producer identity
-from before construction; (2) let the qualified composer exclusively own site
-modifications, instead of also calling legacy `write_linked_profile`; (3) carry the
-exact selected model/CIF/PHIL and original intent lineage through ReadySet and a
-new immutable checkpoint (Q05). Whole-request replay carries C187 provenance;
-standalone selected-runtime export still needs that lineage connection. Reuse the
-ordinary full-model C80 compiler for its established explicit route; do not add a
-third pairing/stacking compiler. The separate full-model readiness audit selects
-19 coordinate-guessed pairs/38 stacks; it must not replace the frozen 20-pair intent
-with a new guess. C188 now carries that existing artifact for its explicitly
-selected mode and qualifies all 193 requests in actual Phenix. Source authority and
-normal native qualification stay mandatory. Native 201-request W-frame and isolated original/
-repaired controls qualify C187, not all ordinary source-failure or chemistry cases.
-The existing explicit entry already covers source/request assembly, current
-installation configuration, original/repaired ReadySet/native selection and fresh
-recovery with preserved failures. C184 joins them under one request and bounded
-evidence inventory. Reuse that implementation; ordinary caller adoption needs
-faithful input/selected-artifact binding, not another retry scheduler. Detailed
-milestone evidence remains in the methods and ledger linked above.
+**Historical controls are evidence, not reopened implementation tasks:**
 
-The C193 redundancy/orientation check confirmed existing pre/post-Coot source
-checks. C195 now makes ordinary Coot/context/restoration consume those verified
-mutation snapshots and extends the same final guard to their bytes. Temporary
-external-source changes no longer change construction input; changed/missing
-snapshots and persistently changed originals refuse before ReadySet. C196 seals
-that producer boundary, exposes a run-relative report reference and binds the exact
-prepared model, overlapping source bytes and site policy through the existing
-complete request. Only declared files are frozen; immutable recovery and cold
-readback retain the lineage. This is not chemical qualification or a reconstruction
-of every intermediate transformation. Do not add another record/hash wrapper;
-the remaining joins are ordinary invocation/single-modifier ownership and Q05 export. The C71 reuse-only cache path, C21/C80 compilers,
-C115 diagnostics, C185 failure notes and complete-request process owner remain
-shared. Static tests have no shadowed definitions/imported collectable tests;
-C134's three identical-text pairs still exercise different readers and remain.
+The C185 plane/literal-intake refusals are resolved by C186/C187/C197, with scoped
+alternatives enforced for new work by C190. Old v1/v2 records retain their recorded
+grammar. Never disable planes, drop required frame PHIL or use PDB positions as
+native evidence to bypass a refusal. The original control hashes remain in
+`primary_failure_reporting_2026_11_10` / `intake_readiness`; the implementation is
+documented under [planarity intake](cif-doctor.md#exact-planarity-intake-c186) and
+[scoped selections](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190).
 
-The current [`cif_postmr_cache`](../src/nasolve/cif_postmr_cache.py) remains a narrow
-reuse-only adapter and skips explicit representation-policy entries. Ordinary
-ReadySet continuation and immutable checkpoint adoption remain **Q05**.
+Keep the full-model controls distinct: C188's 19 coordinate-selected pairs/38
+stacks and 193 requests cannot replace C187's 20 frozen pair intents/201 requests
+with three planes. Its native capture is bound to its exact raw model. C189 reused
+the existing explicitly free-five-prime fixture preparation in a separate copy
+and passed context with 38 links; this is not a new phosphate fix or permission
+to delete terminal phosphates generally. Changed coordinates require their own
+compiler/native proof. See [explicit compiler intake](cif-doctor.md#existing-source-bound-compiler-intake-c188).
 
-The C174 integration-seam audit narrows the next implementation boundary:
+C191's canonical eight-DA-site/38-link control has no published runtime: generation
+first refuses at `SOURCE_HANDOFF/bond_orders`; a fresh request under the existing
+C117/C118/C135 graph-selected representation policy retains a candidate but both
+isolated seeds fail at the known C121 `HOP2!="HOP3"` mapper assertion. Both requests
+remain stopped/exhausted. C192/C193 improve truthful diagnostics; C194 separates
+mapper, effective-component and terminal-ownership boundaries under Q13. None
+authorizes restarting those attempts, another aromatic policy or renaming/removing
+source hydrogens. The later PDU connected success does not erase this distinct
+canonical failure. See [full-model refusal](cif-doctor.md#full-model-request-intake-and-isolated-native-refusal-c191)
+and [chemical-state diagnostic](cif-doctor.md#native-hydrogen-mapping-and-component-ownership-diagnostic-c194).
 
-1. C175 closes the canonical no-supplementary-PHIL model/context portion:
-   all selected sites, audited links and terminal/backbone intent are frozen and
-   rederived. C176 closes exact ordered explicit PHIL membership and composer-only
-   modifier ownership. Unsupported legacy inputs still need a faithful adapter. Ordinary
-   `declared_site_context` currently records only OP3/passthrough policy; it is
-   not a complete source-qualified declaration. Reuse existing readers and fail
-   on unavailable intent rather than inferring a supported chemistry.
-2. C176 establishes composer-only modifier ownership for explicit inputs.
-   Ordinary `write_linked_profile` and the
-   qualified composer both emit modifier PHIL; integrating them must not apply
-   both to the same site. Preserve NAR targets and keep its stacking/pair edges
-   distinct from covalent backbone links. C84's frozen-fixture context helper is
-   evidence to reuse carefully, not a generic topology oracle.
-3. C177 exercises that bridge through the owned request. Before enabling ordinary
-   continuation, preserve the complete selected artifact contract. The newly mutated-model route additionally crosses pre-Coot
-   source acquisition and post-construction qualification; retain its source,
-   producer and generation-attempt lineage across that boundary under Q05.
-
-C177 is the explicit prepared-model intake using C175/C176 context APIs;
-ordinary orchestration and selected-runtime adoption are not enabled defaults.
-
-Prior compiler reuse checked during C185: C21's
-[`compile_na_policy`](../src/nasolve/cif_na_policy.py) already translates supported
-literal Saenger 19/20 and mapped stack declarations while retaining non-SS lines;
-its actual membership controls use captured native identities and existing custom
-requests. C80's [`compile_explicit_na_policy`](../src/nasolve/cif_explicit_na_policy.py)
-instead binds declared relationships and source roles to PDB record identities.
-C176 already accepts the latter's maintained explicit output. Audit/reuse these
-before introducing another compiler. Do not fabricate a native capture from PDB
-indices, rerun pairing guesses, or discard required frame secondary PHIL merely
-to fit the new context grammar. The ordinary bridge still needs its own faithful
-input/retained-edit coverage and fresh native membership proof.
-
-Concrete intake gate reproduced with the packaged W frame and NARestraints 1.1.3:
-the ordinary builder emits eight bonds, fourteen angles, three parallelities,
-three planarities and thirty-eight declared stacks. The complete ordinary input
-first refuses the context's disabled-secondary-structure requirement. A separate
-parser-only control retaining one exact generated plane also refuses unsupported
-planarity grammar. Neither control runs Phenix or judges the chemical state.
-Before ordinary adoption, support the required plane union selections and weights
-through the existing context/native-binding machinery, preserving old artifact
-meaning; then bind the supported literal pair/stack declarations faithfully.
-Do not set `planes=False` or discard secondary PHIL to bypass either boundary.
-C186 closes the plane-reader portion with native named-atom/weight checks and
-legacy/new cold replay. C187 adds the explicit original literal-input bridge,
-including strict grouped alternatives and actual native controls. C197 removes the
-prior-capture prerequisite for readable source-bound literal graphs through the same
-compiler; ordinary orchestration remains open. The C185
-refusals above retain their original meaning; exact hashes remain under
-`primary_failure_reporting_2026_11_10` / `intake_readiness`. The new evidence is
-`planarity_intake_2026_11_10`. Historical v1/v2 selectors retain their recorded grammar for readback. C190
-closes the ambiguous-selection intake gap using the existing strict selector: new
-context derivation, request creation and fresh execution refuse ungrouped alternatives.
-Actual Phenix demonstrates why (3 context atoms versus 85 native atoms per plane);
-grouped controls agree. The ordinary bridge still needs independent native
-membership and must never borrow PDB record indices as native capture evidence.
-
-The C188 raw public-frame preflight refuses terminal phosphate B:1 without OP3
-or a verified incoming O3-prime/P link. C189's prior-work review found the existing
-C80 explicitly declared free-five-prime fixture preparation: a fresh diagnostic
-copy removes its ten declared terminal atoms and passes context with 38 links.
-The raw frame stays unchanged. Reuse this declared fixture operation; do not queue
-a duplicate phosphate fix or interpret it as general permission to delete terminal
-phosphates. A changed model needs its own compiler/native evidence; C188's 193-request
-capture remains exact to the raw frame. Q13 still owns genuinely unresolved source
-state transitions, including the previously recorded mixed-source H/charge issues.
-
-C191 then freezes the prepared full-model control (eight DA sites, 38 links,
-193 requests) but does not complete full-model execution. Exact-order generation
-refuses ten purine order changes. Reusing C117/C118/C135's existing graph-selected
-representation policy retains a candidate; both isolated native seeds then hit
-C121's known `HOP2!="HOP3"` mapper failure class. Both requests/workers are stopped
-and exhausted, with no runtime. This is a canonical negative workflow control,
-not modified-ligand coverage or proof that the full-model consumer succeeds.
-Keep the scientific refusal. C192 fixes the misleading ownership/completion
-wording, names the failed seed and receipt, and preserves successful/failed
-historical outcomes through relocation. C193 also exposes C115's existing
-`SOURCE_HANDOFF`/`bond_orders` diagnosis at the earlier no-candidate boundary,
-without claiming recovery permission or changing any scientific refusal. C194
-separates the native mapper, effective-component and terminal-ownership boundaries
-with fresh unqualified diagnostics; its Q13 controls do not close this Q04 gate.
-Do not restart either request, invent another aromatic policy, or rename/remove
-source hydrogens to force acceptance. Cold replay preserves both outcomes.
+Static redundancy checks still find no shadowed definitions or imported collectable
+tests; C134's three identical-text pairs exercise different readers and remain.
+Detailed original control counts and superseded next-step proposals remain in the
+methods/evidence ledger and Git history, not a second active task list here.
 
 **Retained limits:** C154 proves genuine zero-parallelity derivatives; it does not
 qualify zero-context geometry or optional nonbonded-inventory captures. A required
@@ -357,7 +289,6 @@ or deduplication. Validate that proof when reading an existing registry too, not
 only when initializing one. Interrupted report/checkpoint publication must recover
 the exact recorded selection without another native attempt or a `latest` guess.
 Keep these as acceptance under this package, not a second recovery wrapper.
-
 
 The combined metadata writer now shares C09's native loop policy (C179), with
 strict fresh endpoint acceptance and preserved legacy outcomes. C180 extends the

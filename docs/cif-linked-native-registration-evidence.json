@@ -82271,7 +82271,7 @@
     }
   },
   "single_exact_result_replay_2026_11_11": {
-    "status": "IMPLEMENTED_VALIDATED; PUBLICATION_PENDING",
+    "status": "PUBLISHED_VALIDATED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "base_revision": "fc6f7d31997a50580cc4440384e28e0fc8719a81",
@@ -82468,6 +82468,12 @@
         "path": "205_Cedar_single-result-replay-adqv4qtr/cold-r1/worker.py.txt",
         "sha256": "6341a226ff44b829a3fef49b570ee4d7fa9d4d302666a7163d32d9b9988899b5",
         "size": 1759
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "205_Cedar_single-result-replay-adqv4qtr/queue-orientation.json",
+        "sha256": "a8b666db45e967fee726004c1400f3c44e324ed4c6f3f2351fdc20d90c7b942a",
+        "size": 1323
       }
     ],
     "excluded": "Raw models/CIF/PHIL, native captures, logs and runners remain local.",
@@ -82476,6 +82482,73 @@
       "Advisory rechecks are not an atomic filesystem snapshot against arbitrary concurrent writes after final check.",
       "Q04 ordinary invocation and Q05 checkpoint integration remain open; no refinement/adoption or broader chemical qualification."
     ],
-    "orientation": "Current queue updated in place with observed ordinary caller and checkpoint integration seams; no new queue or compiler."
+    "orientation": "Current queue updated in place with observed ordinary caller and checkpoint integration seams; no new queue or compiler.",
+    "implementation_revision": "fa1f942c291ec2967bed549ca41cc60e71c8f9ef",
+    "auxiliary": {
+      "status": "PASS",
+      "source_test_files": 570,
+      "test_files": 353,
+      "top_level_tests": 2179,
+      "shadowed": [],
+      "collectable_imports": [],
+      "identical_groups": [
+        [
+          "test_cif_effective_source_recovery_probe.py:test_changed_or_unsafe_capsule_is_refused",
+          "test_cif_fragment_restoration_probe.py:test_changed_or_unsafe_capsule_is_refused"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_verified_initial_gradient_parent_is_accepted_as_data",
+          "test_mixed_gradient_probe.py:test_verified_saved_native_context_is_accepted_without_running_captured_programs"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_geometry_input_views_refuse_existing_user_directory",
+          "test_mixed_gradient_probe.py:test_gradient_input_views_refuse_existing_user_directory"
+        ]
+      ],
+      "workflow_files": 60,
+      "relative_doc_links": 408,
+      "compileall": "PASS external capsule cache",
+      "diff_check": "PASS",
+      "full_suite": "NOT_RUN"
+    },
+    "final_queue_orientation": {
+      "status": "PASS",
+      "base_revision": "fa1f942c291ec2967bed549ca41cc60e71c8f9ef",
+      "file": "docs/cif-doctor-completion-queue.md",
+      "before_sha256": "1aa0e344670ef1042c15a214ec13e06ed2975abf9885e757fc18c6367b46541f",
+      "after_sha256": "b0290611295b25050db5418a2a427217838d21b4686ad7046d864d0e2aad09e8",
+      "old_section_lines": 133,
+      "new_section_lines": 66,
+      "retained_job_ids": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "Q05",
+        "Q06",
+        "Q07",
+        "Q08",
+        "Q09",
+        "Q10",
+        "Q11",
+        "Q12",
+        "Q13",
+        "Q14",
+        "Q15",
+        "Q16"
+      ],
+      "verified_method_links": [
+        "cif-doctor.md#ordinary-construction-lineage-and-request-binding-c196",
+        "cif-doctor.md#source-bound-literal-intake-without-prior-native-capture-c197",
+        "cif-doctor.md#exact-planarity-intake-c186",
+        "cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190",
+        "cif-doctor.md#existing-source-bound-compiler-intake-c188",
+        "cif-doctor.md#full-model-request-intake-and-isolated-native-refusal-c191",
+        "cif-doctor.md#native-hydrogen-mapping-and-component-ownership-diagnostic-c194"
+      ],
+      "source_changes": "NONE",
+      "tests": "NOT_RERUN_DOCUMENTATION_ONLY",
+      "limits": "All scientific refusals, historical identities and Q04/Q05 separation retained; detailed evidence stays in methods/ledger/Git."
+    }
   }
 }

@@ -28432,7 +28432,8 @@
     "single_exact_result_replay": {
       "status": "IMPLEMENTED_VALIDATED; ORDINARY_INVOCATION_OPEN",
       "evidence": "docs/cif-linked-native-registration-evidence.json#single_exact_result_replay_2026_11_11",
-      "next": "Join ordinary PostMR to existing complete request; truthful fallback reporting and exact selected checkpoint lineage remain Q04/Q05."
+      "next": "Join ordinary PostMR to existing complete request; truthful fallback reporting and exact selected checkpoint lineage remain Q04/Q05.",
+      "implementation_revision": "fa1f942c291ec2967bed549ca41cc60e71c8f9ef"
     }
   },
   "audience": [

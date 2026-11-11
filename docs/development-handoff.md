@@ -11,7 +11,7 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C205 validated: one selected-result replay per read
+## C205 published: one selected-result replay per read
 
 Base `fc6f7d31997a50580cc4440384e28e0fc8719a81`; pause/update **2026-11-11 15:00 UTC**.
 Capsule `live_tests_directory/205_Cedar_single-result-replay-adqv4qtr`. All workers stopped.
@@ -40,7 +40,11 @@ checkpoint seams, including truthful parent-fallback reporting and exact selecte
 restraint order. No duplicate compiler, owner, queue or expanded chemistry claim.
 **Next:** Q04 ordinary invocation/single modifier owner/durable resume, Q05 exact
 selected checkpoint publication, then Q06/Q07 qualification. C194/Q13 stays open.
-Publication next. — Rowan · Codex desktop
+Implementation published as `fa1f942c291ec2967bed549ca41cc60e71c8f9ef`.
+Q04 queue consolidated: resolved intake blockers now point to completed contracts;
+all Q01–Q16 IDs, negative controls and remaining gates are retained. No code change
+or test rerun for this final documentation pass.
+— Rowan · Codex desktop
 
 ## C204 published: ordinary literal source assembly
 
