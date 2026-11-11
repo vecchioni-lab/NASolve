@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C204.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C205.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -52,7 +52,7 @@ acceptance criteria.
 
 ## Pipeline position
 
-Current orientation after C204. This table summarizes the acceptance packages
+Current orientation after C205. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
@@ -174,6 +174,19 @@ outcomes. C204 assembles literal sources without the control runner's private
 site/code mapping, preserving byte-identical C203 inputs. Reuse the complete
 request's recovery owner, budget and publication instead of adding another
 scheduler. Ordinary invocation and modifier ownership remain open.
+C205 removes duplicate selected-result reconstruction without caching verdicts or
+skipping historical validation. It does not close ordinary invocation.
+
+Current caller acceptance seams (C205 audit): enter before the legacy reuse/
+`write_linked_profile`/ReadySet path, with the existing complete request owning
+modification and continuation exactly once. Resume a published request without
+repeating Coot/NAR; preserve an interrupted pre-request PostMR directory rather
+than overwriting it. CLI has the selected Phenix installation but currently passes
+only its ReadySet path/environment; carry the existing installation contract.
+CLI/campaign callers currently require a ReadySet log. A proven parent fallback
+needs an explicit, verified outcome and truthful reporting, not a fabricated log
+or an unqualified optional value. Test ordinary hit/miss/stale/failure paths.
+
 
 C196 already preserves exact construction/source/model lineage. C197/C204 retain
 literal declarations, planes/edits and source roles without a prior capture;
@@ -335,6 +348,16 @@ per-component ReadySet inputs work (C71/C79/C134). Later component-runtime,
 whole-furanose, repaired-bundle and captured-geometry APIs remain explicit
 components rather than an ordinary PostMR chain. Wire the selected model and
 ordered effective restraint bundle through that chain and checkpoint lineage.
+
+C205 caller audit: preserve the selected request/attempt/runtime and producer/
+compiler join through report and checkpoint publication. Existing root checkpoint
+labels assume a ReadySet model; a verified parent fallback needs an accurate label.
+Consume the frozen ordered `refinement_restraints` rather than legacy recomposition
+or deduplication. Validate that proof when reading an existing registry too, not
+only when initializing one. Interrupted report/checkpoint publication must recover
+the exact recorded selection without another native attempt or a `latest` guess.
+Keep these as acceptance under this package, not a second recovery wrapper.
+
 
 The combined metadata writer now shares C09's native loop policy (C179), with
 strict fresh endpoint acceptance and preserved legacy outcomes. C180 extends the
@@ -617,7 +640,7 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. Subsequent checkpoints through C197 retain
+Cedar/pine/main merge candidate. Subsequent checkpoints through C205 retain
 focused validation, with native/cold evidence only where explicitly executed.
 The latest workflow profile is C197: 2,048 tests + 45 subtests; it is not a full
 suite. Preserve published evidence and archive owned

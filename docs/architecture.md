@@ -3957,6 +3957,13 @@ with before/after input and selection checks. The actual connected artifact and
 request configuration match C203 exactly. This input helper neither owns execution
 nor enables ordinary adoption; see the [intake contract](cif-doctor.md#ordinary-source-assembly-for-literal-intake-c204).
 
+Exact request-result reads share advisory inspection's scientific validation and
+retain only the requested result within that call. They recheck owned children,
+artifact inventory and request/completion records before return; no persistent
+verdict cache or retry authority is introduced. Every completed historical attempt
+still validates. See the [readback contract](cif-doctor.md#one-selected-result-replay-per-read-c205).
+
+
 
 
 

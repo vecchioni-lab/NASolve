@@ -11,6 +11,37 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C205 validated: one selected-result replay per read
+
+Base `fc6f7d31997a50580cc4440384e28e0fc8719a81`; pause/update **2026-11-11 15:00 UTC**.
+Capsule `live_tests_directory/205_Cedar_single-result-replay-adqv4qtr`. All workers stopped.
+
+**Before → after:** exact result reading reconstructed its selected result twice.
+It now retains that result within shared inspection, still validates all completed
+history, then freshly checks children, artifact inventory and request/seal bytes.
+No persistent cache, schema, migration, scientific/owner policy or execution change.
+Nested readers and execution/sealing are unchanged; no universal one-replay claim.
+
+**Files:** `src/nasolve/cif_complete_request.py`, its existing test module,
+Unreleased and existing methods/architecture/overview/map/queue/handoff/ledgers.
+**Validation:** before 1 failed / 89 deselected; affected request/continuation
+**142 passed**. Six after-replay mutation controls, repeated reads and invalid
+unselected history are covered. Cold exact old/new connected results have the
+same full fingerprint; selected outer replay count two → one. Timing 257.91 s → 123.53 s
+is observational (overlapping tests and cache effects), not a controlled benchmark.
+C200/C184 fallback/original/recovery outcomes remain unchanged. 5884 copied files
+retain bytes/mtimes, original copies absent, historical paths/SDK/execution denied.
+Exact commands/references are in the evidence ledger. No native tool runs or
+full/profile suite; last full C160. Current source hashes remain fixed.
+
+**Artifacts:** raw science, source/PHIL, native parent captures, logs and runners
+remain local. The existing queue now records concrete ordinary caller/report/
+checkpoint seams, including truthful parent-fallback reporting and exact selected
+restraint order. No duplicate compiler, owner, queue or expanded chemistry claim.
+**Next:** Q04 ordinary invocation/single modifier owner/durable resume, Q05 exact
+selected checkpoint publication, then Q06/Q07 qualification. C194/Q13 stays open.
+Publication next. — Rowan · Codex desktop
+
 ## C204 published: ordinary literal source assembly
 
 Base `6b016f323d15aa9dfdfead7241e5a09215175d2b`; pause/update **2026-11-11 15:00 UTC**.

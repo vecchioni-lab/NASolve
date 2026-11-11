@@ -525,3 +525,52 @@ def test_changed_artifact_policy_refuses_read_and_execution(case):
     with pytest.raises(ValueError, match='artifact policy'):
         m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
     assert inventory(root) == before and not calls
+
+
+def test_exact_result_replays_each_completed_attempt_once_without_persistent_cache(case, monkeypatch):
+    m,args,root,sdk,store,generations,calls=case
+    m.initialize_dictionary_request(output=root,**args)
+    first=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    replay=m._result; seen=[]
+    def observe(*a,**k):
+        seen.append(a[2]['number']);return replay(*a,**k)
+    monkeypatch.setattr(m,'_result',observe)
+    before=inventory(root)
+    value=m.read_dictionary_request_result(root,1)
+    assert value['result']==first['result'] and seen==[1,2]
+    seen.clear();again=m.read_dictionary_request_result(root,1)
+    assert again==value and again is not value and seen==[1,2]
+    assert inventory(root)==before
+
+
+@pytest.mark.parametrize('changed',['result','seal','request','model','child','extra'])
+def test_exact_result_refuses_changes_after_scientific_replay(case,monkeypatch,changed):
+    m,args,root,sdk,store,generations,calls=case
+    m.initialize_dictionary_request(output=root,**args)
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    replay=m._result; altered=[]
+    def mutate(*a,**k):
+        value=replay(*a,**k)
+        if not altered:
+            attempt=a[1]
+            path={'result':attempt/'result.json','seal':attempt/'finished.json','request':root/'request.json',
+                  'model':root/'inputs/model.pdb','child':attempt/'repair/attempts/attempt-0001/finished.json',
+                  'extra':attempt/'unexpected.txt'}[changed]
+            path.write_bytes((path.read_bytes() if path.exists() else b'')+b'\n')
+            altered.append(inventory(root))
+        return value
+    monkeypatch.setattr(m,'_result',mutate)
+    with pytest.raises((ValueError,OSError)):m.read_dictionary_request_result(root,1)
+    assert len(altered)==1 and inventory(root)==altered[0]
+
+
+def test_exact_result_still_validates_unselected_history(case,monkeypatch):
+    m,args,root,sdk,store,generations,calls=case
+    m.initialize_dictionary_request(output=root,**args)
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    path=root/'attempts/attempt-0002/result.json';path.write_bytes(path.read_bytes()+b'\n')
+    before=inventory(root)
+    with pytest.raises(ValueError):m.read_dictionary_request_result(root,1)
+    assert inventory(root)==before

@@ -620,6 +620,44 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### One selected-result replay per read (C205)
+
+`read_dictionary_request_result` previously reconstructed every returned attempt
+through inspection, then reconstructed the selected attempt again. It now retains
+that one selected result within the shared inspection call. Every other completed
+historical attempt still validates; public advisory inspection is unchanged.
+There is no cross-call cache. Execution/sealing and nested readers are unchanged;
+this removes one redundant outer `_result` call, not all repeated work everywhere.
+
+Before returning, the reader freshly checks child ownership/bindings, the complete
+selected artifact inventory, reconstructed root request, and the original raw
+request/completion bytes. It refuses changes observed after scientific replay.
+This follows C95's separation of numerical replay from final integrity checks;
+it adds no lock, retry authority, chemical permission, schema or migration. A new
+read always validates again. These advisory checks do not claim an atomic filesystem
+snapshot against arbitrary concurrent writes after the final check.
+
+The duplicate-call regression fails before the change: reading attempt 1 from two
+completed attempts reconstructs `[1, 2, 1]`; afterward it reconstructs `[1, 2]`.
+The affected request/continuation modules pass **142 cases**, including repeated
+reads, invalid unselected history, and six changes injected after replay (result,
+completion seal, root request, input model, child seal and unexpected artifact).
+
+Cold old/new reads use the exact same relocated C203 connected request and produce
+the **same complete result fingerprint**, selecting `readyset_checked_model`.
+Selected outer reconstruction falls from two calls to one. Observed time is
+**257.91 s → 123.53 s**; the old phase overlaps focused tests and the filesystem cache warms,
+so this is a local observation, not a controlled speed benchmark. C200 still
+selects its verified parent; C184 original/recovery still select their checked and
+ordered-checked ReadySet models. **5884 copied files** retain bytes/mtimes,
+original copies are absent, and historical checkout/live-test/SDK access and
+external execution are denied. No Phenix, Coot or ReadySet process runs.
+
+Exact commands, results and references are recorded under
+`single_exact_result_replay_2026_11_11`. No full/profile suite rerun. Q04 ordinary
+invocation and Q05 exact checkpoint publication remain open; the scientific
+qualification boundary and legacy artifact meaning are unchanged.
+
 ### Ordinary source assembly for literal intake (C204)
 
 `prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources,

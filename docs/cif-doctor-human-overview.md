@@ -69,6 +69,9 @@ precedence for the other declared sites. It preserves the validated artifact byt
 with no new pairing guess, chemistry rule or native-qualification claim. The
 figure's existing source-to-compiler flow is unchanged; ordinary invocation and
 checkpoint publication remain separate integration work.
+Exact result inspection now avoids repeating the selected result's reconstruction,
+while still checking completed history and rechecking the files before return.
+It does not reuse a saved verdict across reads or change scientific acceptance.
 Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods

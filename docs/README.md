@@ -12,7 +12,8 @@ milestone statements preserve their original scope; they are not a second queue.
   ReadySet/native continuation, including immutable recovery and usable fallback.
   Connected construction/restraint intake, compact native ASU proof and its owned
   ReadySet continuation now have live controls. The ordinary literal-source assembler
-  reproduces those exact inputs through the existing compiler. Ordinary caller/checkpoint
+  reproduces those exact inputs through the existing compiler. Exact result
+  readback avoids a duplicate replay while retaining integrity/history checks. Ordinary caller/checkpoint
   adoption, actual refinement and
   broader chemistry coverage remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest

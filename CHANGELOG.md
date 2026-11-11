@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Exact dictionary-result readback (C205)
+
+- Reuse the selected result already validated during shared request inspection,
+  removing its duplicate reconstruction while still validating completed history.
+- Recheck child ownership, artifact inventory and request/completion bytes before
+  return. Repeated reads do not share cached verdicts; old artifacts and outcomes
+  need no migration. No execution, chemical or adoption policy changes.
+
 ### Ordinary literal-input source assembly (C204)
 
 - Add a PostMR intake helper that preserves frozen component sources and selects
