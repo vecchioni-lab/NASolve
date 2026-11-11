@@ -63,6 +63,13 @@ def _sync_directory(path: Path) -> None:
         os.close(descriptor)
 
 
+def serialized_record_size(value: dict[str, Any]) -> int:
+    """Exact UTF-8 publication size including the digest and trailing newline."""
+    unsigned = {key: item for key, item in value.items() if key != "record_sha256"}
+    return len(json.dumps(dict(unsigned, record_sha256="0" * 64),
+                          indent=2, sort_keys=True, allow_nan=False).encode("utf-8")) + 1
+
+
 def write_record(path: Path, value: dict[str, Any], *, replace: bool = False) -> dict[str, Any]:
     unsigned = {key: item for key, item in value.items() if key != "record_sha256"}
     record = dict(unsigned, record_sha256=hashlib.sha256(_canonical(unsigned)).hexdigest())

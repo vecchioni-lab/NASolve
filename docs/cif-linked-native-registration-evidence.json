@@ -80710,5 +80710,374 @@
       }
     },
     "implementation_revision": "b516738aa59f5beffe2f41c631a9c427bfe94189"
+  },
+  "composed_continuation_publication_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "fb46695f30c9fab0e26bb4c4c40caf36aa2ae64d",
+    "branch": "cedar",
+    "files": [
+      "src/nasolve/campaign_records.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_component_runtime.py",
+      "src/nasolve/cif_repair_process.py",
+      "src/nasolve/cif_runtime_continuation.py",
+      "tests/test_cif_complete_continuation.py",
+      "tests/test_cif_complete_request.py",
+      "tests/test_cif_runtime_continuation.py"
+    ],
+    "schemas": [
+      "cif-continuation-partitioned-artifacts-v1 in continuation configuration",
+      "configuration.continuation.child_artifact_policy",
+      "cif-complete-request-partitioned-artifacts-v2 in outer configuration"
+    ],
+    "before": "Connected continuation retained a qualified parent after a known failed baseline, but its working evidence and public runtime exceeded the flat child inventory: 149529394 bytes.",
+    "after": "Version child working/publication split and enclosing four-partition policy. Reserve exact checksummed completion metadata before success. Reuse existing tree reader and owner; retain the same parent after unchanged ASU refusal.",
+    "compatibility": "Old absent and C199 v1 policies retain exact bounds; no retroactive resealing. New records require C200 readers. Each artifact/partition retains 1024 files / 128 MiB and 32 MiB members; aggregate capacity is explicit. Public-runtime caps and scientific gates unchanged.",
+    "validation": {
+      "summaries": {
+        "before-r1": "1 failed, 56 deselected in 3.82s",
+        "new-r1": "187 passed in 392.77s (0:06:32)",
+        "owners-r1": "176 passed in 21.47s",
+        "readers-r1": "108 passed in 184.79s (0:03:04)"
+      },
+      "commands": {
+        "before-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_continuation.py",
+          "-k",
+          "separate_bounded_continuation",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/200_Cedar_connected-continuation-rzj3uxwv/before-r1.xml"
+        ],
+        "new-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_continuation.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_complete_continuation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/200_Cedar_connected-continuation-rzj3uxwv/new-r1.xml"
+        ],
+        "owners-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_repair_process.py",
+          "tests/test_cif_repair_attempt.py",
+          "tests/test_cif_prepared_repair_execution.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/200_Cedar_connected-continuation-rzj3uxwv/owners-r1.xml"
+        ],
+        "readers-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_component_runtime.py",
+          "tests/test_cif_runtime_readyset.py",
+          "tests/test_cif_postmr_request.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/200_Cedar_connected-continuation-rzj3uxwv/readers-r1.xml"
+        ]
+      },
+      "focused_tests": 471,
+      "cold_checkout": {
+        "status": "PASS",
+        "tests": 21,
+        "source_files": 594,
+        "checkout_bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_checkout_and_sdk_reads_denied": true,
+        "external_execution": "EXACT_READ_ONLY_OS_PROCESS_IDENTITY_QUERIES_ONLY",
+        "command": [
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_runtime_continuation.py",
+          "tests/test_cif_complete_continuation.py",
+          "-k",
+          "separate_bounded_continuation or continuation_partition or completion_size or v2_nested or old_continuation_settings or invalid_frozen_child or owned_completion",
+          "--basetemp",
+          "/Users/svecchio/NASolve-live-tests/200_Cedar_connected-continuation-rzj3uxwv/cold-r2/pytest tmp",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/200_Cedar_connected-continuation-rzj3uxwv/cold-r2/tests.xml"
+        ]
+      },
+      "cold_artifacts": {
+        "status": "PASS",
+        "files": 5516,
+        "selected": {
+          "connected": {
+            "selected": "verified_parent_runtime",
+            "attempt": 1,
+            "artifact_policy": "cif-complete-request-partitioned-artifacts-v2"
+          },
+          "v1-repair": {
+            "selected": "repaired_prepared_bundle",
+            "attempt": 1,
+            "artifact_policy": "cif-complete-request-partitioned-artifacts-v1"
+          },
+          "original": {
+            "selected": "readyset_checked_model",
+            "attempt": 1,
+            "artifact_policy": "LEGACY_ABSENT"
+          },
+          "recovery": {
+            "selected": "readyset_ordered_checked_model",
+            "attempt": 2,
+            "artifact_policy": "LEGACY_ABSENT"
+          }
+        },
+        "old_negative_preserved": true,
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_paths_sdk_and_execution_denied": true
+      },
+      "formatting_only": {
+        "file": "tests/test_cif_complete_continuation.py",
+        "before": "0672656b79cb0ba427decd2c378f4522dc299f5fcf8f92618c5a0cad129e0806",
+        "after": "2e46ee36b9f48cb7499635fdceec8283a0d909830863d1cdbc2aeeba75810039",
+        "change": "Remove one extra final newline only; AST identical",
+        "tests_repeated": false
+      },
+      "full_suite": "NOT_RUN_USER_REQUEST; LAST_COMPLETE_C160"
+    },
+    "native": {
+      "status": "CONTROL_COMPLETE",
+      "elapsed_seconds": 607.9258296250046,
+      "outcome": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+      "selected": "verified_parent_runtime",
+      "error": null,
+      "input_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "all_outer_attempts_stopped": true,
+      "ordinary_caller": "REAL_COOT_AND_NAR_THEN_DIAGNOSTIC_SEAM",
+      "legacy_modifiers": "NOT_RUN",
+      "readyset": "NOT_RUN_BASELINE_REFUSED",
+      "continuation": {
+        "status": "QUALIFIED_DIAGNOSTIC_CONTINUATION",
+        "selected": "verified_parent_runtime",
+        "phases": {
+          "native-baseline": "FAILED"
+        },
+        "configuration": {
+          "artifact_policy": "cif-continuation-partitioned-artifacts-v1",
+          "limits": {
+            "native": 120,
+            "readyset": 120,
+            "total": 900
+          },
+          "policy_id": "cif-selected-runtime-continuation-execution-v1",
+          "restore_serialization": true,
+          "schema_version": 1
+        }
+      },
+      "diffraction_refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "candidate_input": "VERIFIED_RETAINED_C198_REQUEST_R1_CANDIDATE",
+      "artifact_policy": "cif-complete-request-partitioned-artifacts-v2",
+      "previous_failed_request_unchanged": true,
+      "scope": "ORDINARY_PUBLIC_PDU_BUILD_TO_EXISTING_REQUEST; NOT_DEFAULT_INVOCATION_OR_REFINEMENT_SUPPORT",
+      "previous_request_note": "Legacy runner field previous_failed_request_unchanged refers here to the successfully completed C199 request; its bytes/mtimes remained fixed."
+    },
+    "native_boundary": {
+      "readyset": "NOT_RUN",
+      "baseline_error": "RuntimeError: Unsupported nonbonded function or ASU pair proof",
+      "fallback": "QUALIFIED_PARENT_RETAINED",
+      "native_receipt": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/request-r1/request/attempts/attempt-0001/continuation/native/baseline/cif-native-v8epbvyb/native_receipt.json",
+        "sha256": "db37dc6b5bebd05df81c0c514768719078986fac7db75dfcb9b6c220681fa2c9",
+        "size": 5028248
+      },
+      "scientific_gate": "C127_IDENTITY_ONLY_PAIR_PROOF_UNCHANGED",
+      "pair_budget": "Existing 5000-kernel cap requires explicit scale design for whole-frame use; not independently reached in this failure."
+    },
+    "partitions": {
+      "working": {
+        "files": 324,
+        "bytes": 88447859
+      },
+      "repair/attempts/attempt-0001/execution/runtime/": {
+        "files": 193,
+        "bytes": 64512739
+      },
+      "continuation/runtime/": {
+        "files": 221,
+        "bytes": 74861984
+      },
+      "continuation/": {
+        "files": 219,
+        "bytes": 74751254
+      },
+      "completion": {
+        "files": 1,
+        "bytes": 217167
+      }
+    },
+    "redundancy": {
+      "status": "PASS",
+      "date": "2026-11-11T12:38:20.547362+00:00",
+      "scope": "STATIC AST/PROFILE CHECK; NOT PYTEST COLLECTION OR FULL REGRESSION",
+      "test_files": 353,
+      "top_level_test_functions": 2155,
+      "shadowed_definitions": [],
+      "collectable_test_imports": [],
+      "identical_top_level_groups": [
+        [
+          "test_cif_effective_source_recovery_probe.py:test_changed_or_unsafe_capsule_is_refused",
+          "test_cif_fragment_restoration_probe.py:test_changed_or_unsafe_capsule_is_refused"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_verified_initial_gradient_parent_is_accepted_as_data",
+          "test_mixed_gradient_probe.py:test_verified_saved_native_context_is_accepted_without_running_captured_programs"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_geometry_input_views_refuse_existing_user_directory",
+          "test_mixed_gradient_probe.py:test_gradient_input_views_refuse_existing_user_directory"
+        ]
+      ],
+      "interpretation": "Same three groups recorded by C134: each uses a different capsule/template reader and stays required; no new redundancy found.",
+      "workflow_files": 60,
+      "workflow_selection_has_duplicates": false,
+      "history": "C134 docs/collaboration.md testing cadence; inspected distinct template/capsule bindings in each current module",
+      "limitations": "Textual AST equality does not establish semantic redundancy; parametrization counts and dynamic collection are not measured."
+    },
+    "remaining": [
+      "Q04 whole-crystal continuation needs symmetry-aware nonbonded evidence and bounded whole-model pair-call design; ReadySet did not run.",
+      "Q04 ordinary invocation/single modifier owner and Q05 selected checkpoint export.",
+      "Q06 refinement, Q07 combined/held-out controls, C194/Q13 source chemistry gaps."
+    ],
+    "artifacts": "Code/tests/docs/hash references only. Native artifacts, logs, local runners and relocated copies excluded.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/start.json",
+        "sha256": "83957e7fdd66bad24451262e5a61c442f5e67582ff9dc897c3f09f54d599c102",
+        "size": 346
+      },
+      "before-native-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/before-native-r1/summary.json",
+        "sha256": "1f5637e0a98040804f29af2efa733ed86995532b9bf51876427b943e06c83272",
+        "size": 598
+      },
+      "before-native-interpretation.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/before-native-interpretation.json",
+        "sha256": "e92bcbe92500d5979a1b45c7c469b1809443c332791cb3ba14610cdbcb975821",
+        "size": 569
+      },
+      "request-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/request-r1/summary.json",
+        "sha256": "1fbcb9d05f57a236f967bba90a26f6e477fc8fbe2b5f7d9f613c17707698232b",
+        "size": 1291
+      },
+      "request-r1/intake.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/request-r1/intake.json",
+        "sha256": "0e5ddce226e7f1641572b5b7b1baa8254f54bca4baaa638a1835bca64d4becdf",
+        "size": 1212
+      },
+      "request-r1/request/request.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/request-r1/request/request.json",
+        "sha256": "55db15d5b9f0f842d54eaed86f0f1f69ad59646e303bb0b702c22363abc51448",
+        "size": 244612
+      },
+      "request-r1/request/attempts/attempt-0001/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/request-r1/request/attempts/attempt-0001/finished.json",
+        "sha256": "3c389670f9b86b3e8fbd1ef17944239c3db17198afad24f3fa658b43899d63d8",
+        "size": 217167
+      },
+      "publication-partitions.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/publication-partitions.json",
+        "sha256": "570b59c78edeef84664eed0b9433a1c4b601ac6e6c8d7655c2af06f69de0f4d0",
+        "size": 362
+      },
+      "native-boundary.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/native-boundary.json",
+        "sha256": "dec0efecd589eb2d41da5521f4c246c077cc6be904d078721d592fc2d852223f",
+        "size": 695
+      },
+      "cold-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/cold-r2/summary.json",
+        "sha256": "039bbec986b7a70d37fe9d12bac0f802e10965a08d9094cb1d31ffdf78726d63",
+        "size": 865
+      },
+      "artifact-cold-r1/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/artifact-cold-r1/summary.json",
+        "sha256": "022c75b2837c2582f3fb7e49fbecf68d96fc1118cdb5f169a3ecfcf45338ab69",
+        "size": 810
+      },
+      "redundancy-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/redundancy-r1.json",
+        "sha256": "f68857ffab5139fa85102d3e92efded2dbbdfcb05a8674d392a176d6372a3337",
+        "size": 40398
+      },
+      "formatting-only.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/formatting-only.json",
+        "sha256": "7efc2ff331b2aea881639ac495403de31c40486e16d1888e70dc44e9a3b9daac",
+        "size": 308
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/before-r1-result.json",
+        "sha256": "2502cd6d5042427868a98343e57455e4428dd7aa24da7512c5db460d7935e228",
+        "size": 640
+      },
+      "new-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/new-r1-result.json",
+        "sha256": "7d5b38dd6910f2687fe169650deaf9d9c0654976f46a70d0720668c127fe3d04",
+        "size": 678
+      },
+      "owners-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/owners-r1-result.json",
+        "sha256": "1521622ed0cbbf1a0970fbc0e217c2cb25464284a32b3cf7e43f4d2956d97256",
+        "size": 679
+      },
+      "readers-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "200_Cedar_connected-continuation-rzj3uxwv/readers-r1-result.json",
+        "sha256": "d71bde7b9a4da0fb452cb1aa8275807b1af94372476b086cd6fea563cf0e0246",
+        "size": 676
+      }
+    }
   }
 }

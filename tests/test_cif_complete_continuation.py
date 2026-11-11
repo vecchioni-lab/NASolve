@@ -48,7 +48,7 @@ def joined(case,monkeypatch):
         assert 0<k['_remaining_seconds']()<=args['total_timeout_seconds']
         state['calls'].append(dict(output=out,identity=deepcopy(k['_attempt_identity']),settings={n:v for n,v in k.items() if not n.startswith('_')}))
         out.mkdir();shutil.copytree(parent,out/'inputs/runtime')
-        config=continuation._configuration(dict(native=k['native_timeout_seconds'],readyset=k['readyset_timeout_seconds'],total=k['total_timeout_seconds']),k['restore_serialization'])
+        config=continuation._configuration(dict(native=k['native_timeout_seconds'],readyset=k['readyset_timeout_seconds'],total=k['total_timeout_seconds']),k['restore_serialization'],artifact_policy=k.get('artifact_policy'))
         (out/'inputs/configuration.json').write_text(json.dumps(config))
         if state['fault']=='pre-header':raise KeyboardInterrupt('partial continuation header publication')
         owner=RuntimeContinuationProcesses(out,attempt_identity=k['_attempt_identity'])
@@ -108,7 +108,7 @@ def test_final_selection_is_owned_by_same_request_and_cold_reader(joined,selecte
     assert result['result']['continuation']==dict(anchor='attempt_directory',path='continuation')
     assert not result['result']['automatic_adoption'] and state['reads']>0
     assert state['calls'][0]['identity']==m._attempt_identity(owner['intent'])
-    assert state['calls'][0]['settings']==dict(native_timeout_seconds=90,readyset_timeout_seconds=12.5,total_timeout_seconds=60,restore_serialization=True)
+    assert state['calls'][0]['settings']==dict(native_timeout_seconds=90,readyset_timeout_seconds=12.5,total_timeout_seconds=60,restore_serialization=True,artifact_policy=m.continuation.ARTIFACT_POLICY)
     before=inventory(root);moved=root.rename(root.with_name('relocated'))
     shutil.rmtree(store);shutil.rmtree(sdk.root);shutil.rmtree(args['source_selection']);Path(args['model']).unlink()
     for item in args['components']:shutil.rmtree(item['retained_snapshot'])
@@ -242,3 +242,47 @@ def test_composed_inventory_keeps_both_original_partition_bounds(tmp_path,monkey
         with pytest.raises(ValueError):m._attempt_files(tmp_path)
     else:
         with pytest.raises(ValueError,match='partition exceeds'):m._attempt_files(tmp_path,with_continuation=True)
+
+
+@pytest.mark.parametrize('excess', [None, 'working', 'repair', 'continuation', 'published'])
+def test_v2_nested_continuation_partitions_keep_independent_bounds(tmp_path, monkeypatch, excess):
+    from nasolve import cif_complete_request as m
+    from nasolve import cif_component_runtime as frozen
+    monkeypatch.setattr(frozen, 'MAX_FILES', 10); monkeypatch.setattr(frozen, 'MAX_BYTES', 100)
+    folders = dict(working='preparation', repair='repair/attempts/attempt-0001/execution/runtime',
+                   continuation='continuation/inputs', published='continuation/runtime')
+    for label, name in folders.items():
+        folder = tmp_path / name; folder.mkdir(parents=True)
+        for i in range(11 if label == excess else 6): (folder / str(i)).write_bytes(b'x' * 10)
+    if excess is None:
+        result = m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.ARTIFACT_POLICY)
+        assert len(result['files']) == 24
+        with pytest.raises(ValueError):
+            m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.LEGACY_ARTIFACT_POLICY)
+    else:
+        with pytest.raises(ValueError):
+            m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.ARTIFACT_POLICY)
+
+
+def test_old_continuation_settings_retain_flat_child_policy(case):
+    m, args, root, sdk, store, generations, calls = case
+    old = dict(OPTIONS, execution_policy=m.continuation.POLICY_ID,
+               process_policy=m.CONTINUATION_PROCESS_POLICY,
+               artifact_policy='cif-complete-continuation-artifacts-v1')
+    request = m.initialize_dictionary_request(output=root, **dict(args, continuation_options=old,
+        artifact_policy=m.LEGACY_ARTIFACT_POLICY))
+    settings = request['configuration']['continuation']
+    assert settings == old and m._continuation_parameters(request['configuration'])['artifact_policy'] is None
+    assert m.inspect_dictionary_request(root)['request'] == request and not calls
+
+
+@pytest.mark.parametrize('value', [None, 'unknown', True, {}])
+def test_invalid_frozen_child_artifact_policy_refuses(case, value):
+    m, args, root, sdk, store, generations, calls = case
+    options = dict(OPTIONS, execution_policy=m.continuation.POLICY_ID,
+                   process_policy=m.CONTINUATION_PROCESS_POLICY,
+                   artifact_policy='cif-complete-continuation-artifacts-v1',
+                   child_artifact_policy=value)
+    with pytest.raises(ValueError, match='artifact policy'):
+        m.initialize_dictionary_request(output=root, **dict(args, continuation_options=options))
+    assert not (root / 'request.json').exists() and not calls

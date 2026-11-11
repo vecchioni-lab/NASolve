@@ -463,7 +463,7 @@ def test_new_request_inventories_independently_bounded_runtime(case, tmp_path, m
     if 'artifact_policy' in config: options['artifact_policy'] = config['artifact_policy']
     result = m._attempt_files(sample, **options)
     assert len(result['files']) == 6 * len(names)
-    assert config['artifact_policy'] == 'cif-complete-request-partitioned-artifacts-v1'
+    assert config['artifact_policy'] == m.ARTIFACT_POLICY
     with pytest.raises(ValueError): m._attempt_files(sample, with_continuation=with_continuation)
     assert not calls
 

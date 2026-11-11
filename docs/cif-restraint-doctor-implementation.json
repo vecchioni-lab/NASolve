@@ -28395,6 +28395,15 @@
         "Q06 actual refinement; Q07 combined/held-out controls; C194/Q13 chemistry failures."
       ],
       "implementation_revision": "b516738aa59f5beffe2f41c631a9c427bfe94189"
+    },
+    "composed_continuation_publication": {
+      "status": "IMPLEMENTED_VALIDATED; ASU_CONTINUATION_GATE_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#composed_continuation_publication_2026_11_11",
+      "limitations": [
+        "Q04 whole-crystal continuation needs symmetry-aware nonbonded evidence and bounded whole-model pair-call design; ReadySet did not run.",
+        "Q04 ordinary invocation/single modifier owner and Q05 selected checkpoint export.",
+        "Q06 refinement, Q07 combined/held-out controls, C194/Q13 source chemistry gaps."
+      ]
     }
   },
   "audience": [

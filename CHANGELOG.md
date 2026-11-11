@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve bounded selected-runtime fallback publication (C200)
+
+- Version the continuation working/runtime split and enclosing nested inventory,
+  preserving independent artifact limits and historical configurations.
+- Reserve exact completion-record space before sealing success; other process
+  owners keep their existing behavior.
+- A connected PDU request now returns its qualified parent after the unchanged
+  unsupported symmetry-proof baseline. ReadySet and refinement did not run.
+  New records require C200 readers; old failed attempts remain unchanged.
+
+
 ### Bound composed request evidence independently (C199)
 
 - New requests record a versioned inventory policy separating retained working

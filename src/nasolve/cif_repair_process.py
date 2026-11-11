@@ -256,16 +256,18 @@ class _OwnedProcesses:
             return code
         return run
 
-    def finish(self, outcome):
+    def finish(self, outcome, *, before_publish=None):
         scope = self._scope
         _need(outcome in {'RETURNED','RAISED'})
         state = _inspect_owned_processes(self.root, scope)
         _need(state.get('header') == self.header and 'finished' not in state)
         if not all(v['state'] == 'STOPPED' for v in state['phases'].values()):
             return False
-        write_record(self.root/'ownership/finished.json',dict(**{scope.binding_field:self.header['record_sha256']},
+        completion=dict(**{scope.binding_field:self.header['record_sha256']},
             outcome=outcome, stopped_verified=True, finished_utc=now(),
-            phases={n:v['finished']['record_sha256'] for n,v in state['phases'].items()}))
+            phases={n:v['finished']['record_sha256'] for n,v in state['phases'].items()})
+        if before_publish is not None: before_publish(completion)
+        write_record(self.root/'ownership/finished.json',completion)
         return True
 
 

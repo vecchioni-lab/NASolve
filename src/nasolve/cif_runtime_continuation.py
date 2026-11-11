@@ -8,8 +8,9 @@ from pathlib import Path
 from time import monotonic
 
 from .failure_reporting import add_failure_note
-from .campaign_records import read_record, write_record, path_in
+from .campaign_records import read_record, write_record, path_in, serialized_record_size
 from .cif_attachment_native import _capture, _capture_timeout
+from . import cif_component_runtime as frozen_tree
 from .cif_component_runtime import _tree, prepare_runtime_readyset_bundle
 from .cif_dictionary_sites import _need, _read, _bind_capture_inputs
 from .cif_dictionary_bundle import read_dictionary_bundle
@@ -27,20 +28,27 @@ from .cif_runtime_continuation_process import RuntimeContinuationProcesses, insp
 
 POLICY_ID = 'cif-selected-runtime-continuation-execution-v1'
 ANCHOR = 'continuation_directory'
+ARTIFACT_POLICY = 'cif-continuation-partitioned-artifacts-v1'
 
 
 class RuntimeContinuationBudgetExceeded(TimeoutError):
     """No allowance remains; preserve the complete or partial fresh execution."""
 
 
-def _configuration(limits, restore_serialization):
+def _artifact_fields(policy):
+    _need(policy is None or (type(policy) is str and policy == ARTIFACT_POLICY),
+          'Unsupported continuation artifact policy')
+    return {} if policy is None else dict(artifact_policy=policy)
+
+
+def _configuration(limits, restore_serialization, *, artifact_policy=None):
     _need(isinstance(limits, dict) and set(limits) == {'native', 'readyset', 'total'}
           and all(type(limits[k]) in (int, float) and math.isfinite(limits[k])
                   and 0 < limits[k] <= cap for k,cap in [('native',600),('readyset',180)])
           and type(limits['total']) is int and 1 <= limits['total'] <= 3600
           and type(restore_serialization) is bool, 'Invalid bounded continuation settings')
     return dict(schema_version=1, policy_id=POLICY_ID, limits=dict(limits),
-                restore_serialization=restore_serialization)
+                restore_serialization=restore_serialization, **_artifact_fields(artifact_policy))
 
 
 def _selected_consumer(parent):
@@ -144,13 +152,32 @@ def _replay(root, config, state):
     return parent, review, serialization, roots
 
 
+def _continuation_files(root, config):
+    _artifact_fields(config.get('artifact_policy'))
+    if 'artifact_policy' not in config: return _tree(root)
+    return frozen_tree._bounded_tree(root,max_files=frozen_tree.MAX_FILES,
+        max_bytes=frozen_tree.MAX_BYTES,partition_prefixes=('runtime/',))
+
+
+def _completion_space(root, config, completion):
+    files=_continuation_files(root,config)
+    working={n:data for n,data in files.items()
+             if 'artifact_policy' not in config or not n.startswith('runtime/')}
+    size=serialized_record_size(completion)
+    _need(len(working)+1 <= frozen_tree.MAX_FILES and size <= frozen_tree.MAX_FILE_BYTES
+          and sum(map(len,working.values()))+size <= frozen_tree.MAX_BYTES,
+          'Continuation completion exceeds frozen artifact bounds')
+
+
 def read_runtime_continuation(directory):
     """Replay a completed owned continuation without the SDK or historical paths."""
-    root = _root(directory); before = _tree(root)
+    root = _root(directory)
     _members(root, {'continuation_execution.json'}, {'inputs','ownership','native','readyset','atom-order','runtime'})
     _members(root/'inputs', {'configuration.json'}, {'runtime'})
     config = _json(_read(root/'inputs/configuration.json'))
-    _need(config == _configuration(config.get('limits'),config.get('restore_serialization')), 'Continuation configuration differs')
+    _need(config == _configuration(config.get('limits'),config.get('restore_serialization'),
+          artifact_policy=config.get('artifact_policy')), 'Continuation configuration differs')
+    before = _continuation_files(root,config)
     state = inspect_runtime_continuation_processes(root)
     _need(state['state'] == 'STOPPED' and state['finished']['outcome'] == 'RETURNED', 'Continuation execution did not finish')
     parent, review, serialization, roots = _replay(root,config,state)
@@ -165,12 +192,12 @@ def read_runtime_continuation(directory):
     _need(type(elapsed) in (int,float) and math.isfinite(elapsed) and 0 <= elapsed < config['limits']['total'], 'Continuation exceeded its recorded allowance')
     expected = _report(root, config, state, runtime, serialization, elapsed)
     _need({k:v for k,v in report.items() if k != 'record_sha256'} == expected, 'Continuation result or frozen artifacts differ')
-    _need(_tree(root) == before, 'Continuation changed during read-only replay')
+    _need(_continuation_files(root,config) == before, 'Continuation changed during read-only replay')
     return dict(report=report, runtime=runtime, process_evidence=state, parent=parent)
 
 
 def _report(root, config, state, runtime, serialization, elapsed):
-    files = _tree(root); files.pop('continuation_execution.json',None)
+    files = _continuation_files(root,config); files.pop('continuation_execution.json',None)
     # Completion is published last and independently binds every stopped phase.
     # Excluding that seal avoids a circular result/seal publication dependency.
     files.pop('ownership/finished.json',None)
@@ -186,7 +213,7 @@ def _report(root, config, state, runtime, serialization, elapsed):
 
 def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_seconds=120,
         readyset_timeout_seconds=120, total_timeout_seconds=900, restore_serialization=True,
-        _attempt_identity=None, _remaining_seconds=None):
+        artifact_policy=ARTIFACT_POLICY, _attempt_identity=None, _remaining_seconds=None):
     """Run one fresh selected baseline/ReadySet/native/publication chain.
 
     A known stopped optional failure retains the exact qualified parent. Unknown
@@ -195,10 +222,13 @@ def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_sec
     native capture follow a valid but rejected raw comparison; chemistry is never
     changed to make that comparison pass. The shared allowance is cooperative,
     including preflight, native jobs and final replay/publication/inventory.
-    No old execution is resumed, no retry granted, and no checkpoint is replaced.
+    New executions freeze separately bounded working and published-runtime trees;
+    artifact_policy=None retains the historical flat bound. Completion must fit
+    before success is sealed. No old execution is resumed, no retry granted, and
+    no checkpoint is replaced.
     """
     started = monotonic(); identity = parent_identity(_attempt_identity)
-    config = _configuration(dict(native=native_timeout_seconds,readyset=readyset_timeout_seconds,total=total_timeout_seconds),restore_serialization)
+    config = _configuration(dict(native=native_timeout_seconds,readyset=readyset_timeout_seconds,total=total_timeout_seconds),restore_serialization,artifact_policy=artifact_policy)
     outer = OuterAllowance(_remaining_seconds,monotonic,RuntimeContinuationBudgetExceeded)
     def remaining():
         left = total_timeout_seconds-(monotonic()-started); cap = outer.remaining()
@@ -259,7 +289,10 @@ def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_sec
         unchanged();report['elapsed_seconds']=monotonic()-started
         saved=write_record(output/'continuation_execution.json',report)
         remaining()
-        _need(processes.finish('RETURNED'), 'Continuation workers have unknown cleanup')
+        def reserve(completion):
+            _completion_space(output,config,completion)
+            remaining()
+        _need(processes.finish('RETURNED',before_publish=reserve), 'Continuation workers have unknown cleanup')
         return saved
     except BaseException as exc:
         if not (output/'ownership/finished.json').exists():

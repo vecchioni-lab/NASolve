@@ -615,6 +615,49 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Composed continuation publication and exact completion bounds (C200)
+
+New continuation executions freeze cif-continuation-partitioned-artifacts-v1.
+The existing safe-tree reader separately bounds working evidence (including frozen
+parent input) and runtime/. The complete request freezes that child policy and
+defaults to cif-complete-request-partitioned-artifacts-v2, distinguishing its own
+working evidence, repair runtime, continuation working evidence and continuation
+runtime. Exact directory prefixes use the longest match; unrelated names and
+aliases cannot borrow another partition's capacity. Each retains 1,024 files/
+128 MiB, with 32 MiB members. Public runtime bounds are unchanged.
+
+The shared atomic-record size calculation includes its digest and newline. The
+existing process owner permits a prepublication reservation check, used here to
+ensure the final seal fits the working partition and shared time allowance.
+Insufficient completion space records failure, never unreadable success.
+Default behavior of other owners is unchanged.
+
+Absent child policy retains C183's flat tree; absent outer policy retains legacy
+C184 behavior, and C199 outer v1 retains its original flat continuation partition.
+Explicit legacy settings remain available. Readers do not upgrade old
+configurations or reseal prior attempts. New records require C200 readers;
+no migration or new retry authority is introduced.
+
+Actual Phenix 2.2.1-6174 on C199's connected PDU frame refuses the baseline's
+nonbonded proof: C127 supports identity-only simple pairs, while this crystal has
+ASU contacts. **ReadySet does not run.** The existing selector retains the qualified
+parent. Before this change its 149,529,394-byte continuation could not publish;
+a fresh complete request now finishes with verified_parent_runtime, retaining
+literal restraints, producer lineage and exact parent qualification.
+The baseline refusal remains explicit and unchanged. This is successful fallback
+publication, not successful whole-crystal ReadySet or diffraction refinement.
+
+Old C184 original/recovery requests, C199 v1 repair and the new whole request
+replay after relocation with original copies absent, no historical/SDK reads and
+no external execution. The old oversized failed child still refuses; all copied
+bytes/mtimes remain fixed. Evidence: composed_continuation_publication_2026_11_11.
+
+Next Q04 science gate: explicit symmetry-aware nonbonded evidence and a bounded
+whole-model pair-call design. The existing 5,000-kernel budget also needs review
+at frame scale; it was not independently reached after the ASU refusal.
+Do not omit ASU contacts, change native exclusions or loosen chemistry/acceptance
+to pass this test. Ordinary invocation, selected checkpoints and Q06/Q07 remain open.
+
 ### Bounded composed request publication (C199)
 
 New complete requests freeze `configuration.artifact_policy` as
@@ -626,7 +669,8 @@ The existing safe-tree reader rejects unsafe or alias paths and independently
 enforces each partition; unused capacity cannot compensate for another excess.
 Completion is reserved within working evidence before atomic publication.
 
-The initializer defaults to the new policy; explicit `artifact_policy=None`
+C199 introduced this default; C200 now defaults to v2 while retaining v1 readback.
+Explicit `artifact_policy=None`
 retains legacy inventory semantics. Old absent-field records replay unchanged,
 and old readers reject the new field. No prior stopped attempt is resealed.
 Public runtime and standalone continuation limits are unchanged. Thus actual

@@ -11,6 +11,62 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C200 validated: composed continuation publication
+
+Base `fb46695f30c9fab0e26bb4c4c40caf36aa2ae64d`; existing Cedar; implementation complete, publication next.
+Pause/update **2026-11-11 14:00 UTC**. Capsule:
+`live_tests_directory/200_Cedar_connected-continuation-rzj3uxwv`. All C200 workers stopped.
+
+**Before → after:** the connected baseline refuses ASU nonbonded proof and correctly
+retains the qualified parent, but working/publication copies exceed the old child
+cap (149,529,394 bytes). New child policy splits working/runtime evidence; outer v2
+binds four partitions. Each retains 1,024 files/128 MiB and 32 MiB members. Shared
+atomic-record sizing and an optional existing-owner callback reserve completion
+space/time before success. No scientific or ownership gate changes.
+
+**Changed:** `src/nasolve/campaign_records.py`, `src/nasolve/cif_complete_request.py`, `src/nasolve/cif_component_runtime.py`, `src/nasolve/cif_repair_process.py`, `src/nasolve/cif_runtime_continuation.py`, `tests/test_cif_complete_continuation.py`, `tests/test_cif_complete_request.py`, `tests/test_cif_runtime_continuation.py`, Unreleased, methods,
+queue and handoff/evidence/runtime ledgers. New child artifact policy and frozen
+outer child-policy reference; outer artifact policy v2. Absent modes and C199 v1
+retain exact meaning, no migration/resealing; new modes require C200 readers.
+
+**Validation:** before **1 failed, 56 deselected in 3.82s**; continuation/complete request
+**187 passed in 392.77s (0:06:32)**; other owners **176 passed in 21.47s**; readers/inlet
+**108 passed in 184.79s (0:03:04)**. **471 focused tests**, no full/profile rerun.
+641 guarded Python files stayed fixed during tests; afterward one extra EOF
+newline was removed with identical AST and recorded hashes. Moved checkout:
+**21 passed**, 594 files unchanged. Cold-r1 also selected five fixture cases needing
+a synthetic worker and the no-execution harness refused them; cold-r2 narrows to
+no-worker cases, while normal tests cover all five. Whole artifact cold replay:
+**5516 files unchanged**, original copies absent, historical
+data/checkout/SDK reads and external execution denied. C184 original/recovery,
+C199 v1 and new requests retain exact selections. Old oversized negative remains
+failed; no historical upgrades. Exact commands/results are in the evidence ledger.
+
+Local validation runners: c200_validate.py before-r1 / new-r1 / owners-r1 / readers-r1;
+c200_cold.py cold-r2; c200_continuation.py before-native-r1; c200_request.py request-r1;
+c200_artifact_cold.py artifact-cold-r1; c200_redundancy.py. All use
+PYTHONDONTWRITEBYTECODE=1; pytest/native work uses PYTHONPATH=src.
+
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1**: fresh request finishes
+**QUALIFIED_DIAGNOSTIC_RUNTIME / verified_parent_runtime** in
+**607.93 s**. Repair succeeds; continuation native-baseline
+is FAILED with the existing ASU-proof refusal. **ReadySet NOT_RUN**, diffraction
+refinement NOT_RUN, automatic/checkpoint adoption false. The before-native runner's
+broad execution label is corrected in before-native-interpretation.json; raw output
+is preserved. No Coot rerun: exact C198 source/model/NAR output reused. Source and
+previous C199 request bytes/mtimes stay fixed. Four partition sizes/completion are
+recorded in publication-partitions.json; all fit. Static audit: 353 test files,
+2,155 top-level functions, no shadows/imported tests, same three intentional
+identical-text reader pairs; workflow remains 60 files.
+
+**Next:** Q04 symmetry-aware nonbonded proof and bounded frame-scale kernel budget,
+then ordinary invocation/single modifier owner and Q05 selected checkpoint export.
+C127's 5,000-call cap is a separate scale consideration, not a second observed
+failure. Do not omit symmetry contacts or weaken source chemistry to proceed.
+Q06/Q07 and C194/Q13 remain open. Raw science/logs/runners remain local;
+code/tests/docs/hash references only. Last complete full suite C160. No merge.
+— Rowan · Codex desktop
+
 ## C199 published: bounded composed publication
 
 Base `a37e651d1b9358461264ce3fba41a4d15b6df097`; existing Cedar; implementation complete and published as

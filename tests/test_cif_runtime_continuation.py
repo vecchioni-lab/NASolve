@@ -261,3 +261,86 @@ def test_expiry_during_finalization_never_seals_success(continuation,monkeypatch
     with pytest.raises(m.RuntimeContinuationBudgetExceeded):m.execute_runtime_continuation(parent,sdk,out,total_timeout_seconds=60)
     assert m.inspect_runtime_continuation_processes(out)['finished']['outcome']=='RAISED'
     with pytest.raises((ValueError,OSError)):m.read_runtime_continuation(out)
+
+
+def test_separate_bounded_continuation_working_and_published_evidence(tmp_path, monkeypatch):
+    from nasolve import cif_runtime_continuation as m
+    from nasolve import cif_component_runtime as frozen
+    for label in ['inputs', 'runtime']:
+        folder = tmp_path / label; folder.mkdir()
+        for i in range(6): (folder / str(i)).write_bytes(b'x' * 10)
+    monkeypatch.setattr(frozen, 'MAX_FILES', 10); monkeypatch.setattr(frozen, 'MAX_BYTES', 100)
+    config = dict(artifact_policy='cif-continuation-partitioned-artifacts-v1')
+    reader = getattr(m, '_continuation_files', lambda root, config: m._tree(root))
+    assert len(reader(tmp_path, config)) == 12
+    with pytest.raises(ValueError): reader(tmp_path, {})
+
+
+@pytest.mark.parametrize('partition', ['inputs', 'runtime'])
+@pytest.mark.parametrize('excess', ['files', 'bytes', 'member'])
+def test_continuation_partition_keeps_original_bounds(tmp_path, monkeypatch, partition, excess):
+    from nasolve import cif_runtime_continuation as m
+    from nasolve import cif_component_runtime as frozen
+    monkeypatch.setattr(frozen, 'MAX_FILES', 10); monkeypatch.setattr(frozen, 'MAX_BYTES', 100)
+    monkeypatch.setattr(frozen, 'MAX_FILE_BYTES', 30)
+    folder = tmp_path / partition; folder.mkdir()
+    for i in range(11 if excess == 'files' else 6 if excess == 'bytes' else 1):
+        (folder / str(i)).write_bytes(b'x' * (20 if excess == 'bytes' else 31 if excess == 'member' else 1))
+    with pytest.raises(ValueError, match='bounds'):
+        m._continuation_files(tmp_path, dict(artifact_policy=m.ARTIFACT_POLICY))
+
+
+@pytest.mark.parametrize('policy', ['unknown', True, '', {}, []])
+def test_unknown_continuation_artifact_policy_refuses_before_execution(continuation, policy):
+    m, parent, sdk, out, state = continuation
+    with pytest.raises(ValueError, match='artifact policy'):
+        m.execute_runtime_continuation(parent, sdk, out, artifact_policy=policy)
+    assert not out.exists() and not state['calls']
+
+
+def test_legacy_continuation_artifact_policy_is_not_upgraded(continuation):
+    m, parent, sdk, out, state = continuation
+    result = m.execute_runtime_continuation(parent, sdk, out, artifact_policy=None)
+    assert 'artifact_policy' not in result['configuration']
+    assert m.read_runtime_continuation(out)['report'] == result
+
+
+@pytest.mark.parametrize('bound', ['files', 'bytes'])
+def test_continuation_reserves_process_seal_before_reporting_success(continuation, monkeypatch, bound):
+    from nasolve import cif_component_runtime as frozen
+    m, parent, sdk, out, state = continuation
+    original = m.write_record
+    def write(path, *args, **kwargs):
+        result = original(path, *args, **kwargs)
+        if path.name == 'continuation_execution.json':
+            rows = m._continuation_files(out, result['configuration'])
+            working = {n: data for n, data in rows.items() if not n.startswith('runtime/')}
+            if bound == 'files': monkeypatch.setattr(frozen, 'MAX_FILES', len(working))
+            else: monkeypatch.setattr(frozen, 'MAX_BYTES', sum(map(len, working.values())))
+        return result
+    monkeypatch.setattr(m, 'write_record', write)
+    with pytest.raises(ValueError): m.execute_runtime_continuation(parent, sdk, out)
+    assert m.inspect_runtime_continuation_processes(out)['finished']['outcome'] == 'RAISED'
+    with pytest.raises(ValueError): m.read_runtime_continuation(out)
+
+
+def test_owned_completion_reservation_can_prevent_atomic_success(tmp_path):
+    from nasolve.cif_runtime_continuation_process import RuntimeContinuationProcesses
+    (tmp_path / 'inputs').mkdir(); (tmp_path / 'inputs/source').write_text('frozen')
+    owner = RuntimeContinuationProcesses(tmp_path)
+    before = inventory(tmp_path); seen = []
+    def reserve(record):
+        seen.append(record)
+        raise ValueError('No publication headroom')
+    with pytest.raises(ValueError, match='headroom'): owner.finish('RETURNED', before_publish=reserve)
+    assert len(seen) == 1 and seen[0]['outcome'] == 'RETURNED' and inventory(tmp_path) == before
+    assert owner.finish('RAISED')
+
+
+@pytest.mark.parametrize('value', [{}, {'name': 'phosphate λ', 'values': [1, 1.25, True, None]}, {'record_sha256': 'ignored', 'result': 'RETURNED'}])
+def test_completion_size_matches_atomic_record_bytes(tmp_path, value):
+    from nasolve.campaign_records import serialized_record_size, write_record
+    path = tmp_path / 'record.json'
+    expected = serialized_record_size(value)
+    write_record(path, value)
+    assert expected == len(path.read_bytes())

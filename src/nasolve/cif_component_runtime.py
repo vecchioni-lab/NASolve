@@ -39,13 +39,14 @@ def _bounded_tree(root, *, max_files, max_bytes, manifest=False, partition_prefi
     _need(type(max_files) is int and 0 < max_files <= 2*MAX_FILES
           and type(max_bytes) is int and 0 < max_bytes <= 2*MAX_BYTES, 'Invalid bounded tree envelope')
     # Composed owners may retain separately bounded published children. Prefixes
-    # are exact directory boundaries; no partition may borrow another's allowance.
-    _need(isinstance(partition_prefixes,tuple) and len(partition_prefixes) <= 2
+    # are exact directory boundaries. Nested publications use the longest match;
+    # no partition may borrow another's allowance.
+    _need(isinstance(partition_prefixes,tuple) and len(partition_prefixes) <= 3
           and all(isinstance(p,str) and p.endswith('/') and _safe(p[:-1]) for p in partition_prefixes)
-          and all(not a.startswith(b) for i,a in enumerate(partition_prefixes)
-                  for j,b in enumerate(partition_prefixes) if i != j), 'Invalid frozen tree partitions')
+          and len(set(partition_prefixes)) == len(partition_prefixes), 'Invalid frozen tree partitions')
     _need(not partition_prefixes or (max_files == MAX_FILES and max_bytes == MAX_BYTES),
           'Partitioned tree must retain original bounds')
+    partition_prefixes=tuple(sorted(partition_prefixes,key=len,reverse=True))
     counts = [0] * (len(partition_prefixes)+1); sizes = counts.copy()
     root=Path(root).absolute()
     _need(root.is_dir() and not any(p.is_symlink() for p in (root,*root.parents)), 'Unsafe source tree')

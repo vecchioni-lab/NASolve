@@ -4,7 +4,6 @@ No source rediscovery, automatic retry, ordinary adoption or chemistry policy is
 implemented here. Existing child owners and scientific readers remain authoritative.
 """
 from copy import deepcopy
-import json
 import math
 from pathlib import Path
 from time import monotonic
@@ -12,7 +11,7 @@ import uuid
 
 from .failure_reporting import add_failure_note
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
-from .campaign_records import _sync_directory, now, path_in, read_record, write_record
+from .campaign_records import _sync_directory, now, path_in, read_record, write_record, serialized_record_size
 from . import cif_acquisition_attempt as acquisition
 from . import cif_component_runtime as frozen_tree
 from . import cif_repair_attempt as repair
@@ -39,7 +38,8 @@ from .cif_runtime_continuation_process import inspect_runtime_continuation_proce
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
-ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
+LEGACY_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
+ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
 _RUNTIME_PREFIX = 'repair/attempts/attempt-0001/execution/runtime/'
 _COMPILER_INPUTS = {'literal_na_inputs':'literal_na', 'explicit_na_policy':'explicit_na'}
 _LIMITS = dict(native_timeout_seconds=600, component_timeout_seconds=3600,
@@ -75,8 +75,14 @@ def _continuation_fields(options, limits):
     fields = {'readyset_timeout_seconds','restore_serialization'}
     policies = dict(execution_policy=continuation.POLICY_ID, process_policy=CONTINUATION_PROCESS_POLICY,
                     artifact_policy='cif-complete-continuation-artifacts-v1')
-    _need(isinstance(options,dict) and set(options) in (fields,fields | policies.keys()),
-          'Invalid complete-request continuation settings')
+    _need(isinstance(options,dict) and set(options) in (fields,fields | policies.keys(),
+          fields | policies.keys() | {'child_artifact_policy'}), 'Invalid complete-request continuation settings')
+    child_policy=(continuation.ARTIFACT_POLICY if set(options)==fields
+                  else options.get('child_artifact_policy'))
+    _need('child_artifact_policy' not in options or child_policy == continuation.ARTIFACT_POLICY,
+          'Unsupported continuation child artifact policy')
+    continuation._artifact_fields(child_policy)
+    if child_policy is not None: policies['child_artifact_policy']=child_policy
     _need(all(options.get(k,v) == v for k,v in policies.items()), 'Unsupported continuation policy')
     continuation._configuration(dict(native=limits['native_timeout_seconds'],
         readyset=options['readyset_timeout_seconds'],total=limits['total_timeout_seconds']),options['restore_serialization'])
@@ -87,7 +93,8 @@ def _continuation_parameters(config):
     settings = config['continuation']; limits = config['limits']
     return dict(native_timeout_seconds=limits['native_timeout_seconds'],
         readyset_timeout_seconds=settings['readyset_timeout_seconds'],
-        total_timeout_seconds=limits['total_timeout_seconds'],restore_serialization=settings['restore_serialization'])
+        total_timeout_seconds=limits['total_timeout_seconds'],restore_serialization=settings['restore_serialization'],
+        artifact_policy=settings.get('child_artifact_policy'))
 
 
 def _compiler_input(kind, directory, selected_sources=None):
@@ -134,7 +141,7 @@ def _construction_input(directory, model, sources, model_context):
 
 
 def _artifact_fields(policy):
-    _need(policy is None or (type(policy) is str and policy == ARTIFACT_POLICY),
+    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, ARTIFACT_POLICY}),
           'Unsupported complete-request artifact policy')
     return {} if policy is None else dict(artifact_policy=policy)
 
@@ -270,7 +277,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     this lineage is not scientific qualification and does not select a checkpoint.
     Omission preserves historical construction provenance exactly. New requests
     freeze a partitioned evidence policy: working evidence, the exact published
-    repair runtime, and optional continuation each keep their original bounds.
+    repair runtime, and optional continuation working/published trees each keep
+    their original bounds. C199 v1 keeps its flat continuation partition.
     artifact_policy=None explicitly retains the legacy flat/C184 inventory mode.
     Readers never upgrade historical requests without the field.
     """
@@ -370,7 +378,8 @@ def _continuation_child(attempt, intent, config, repaired):
           'Continuation did not freeze the exact selected repair result')
     params = _continuation_parameters(config)
     expected = continuation._configuration(dict(native=params['native_timeout_seconds'],
-        readyset=params['readyset_timeout_seconds'],total=params['total_timeout_seconds']),params['restore_serialization'])
+        readyset=params['readyset_timeout_seconds'],total=params['total_timeout_seconds']),params['restore_serialization'],
+        artifact_policy=params['artifact_policy'])
     _need(_same(_json(_read(work/'inputs/configuration.json')),expected), 'Continuation limits differ from frozen outer intent')
     for phase,evidence in state['phases'].items():
         if 'job' in evidence:
@@ -429,6 +438,7 @@ def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
     _artifact_fields(artifact_policy)
     if artifact_policy is not None:
         prefixes=(_RUNTIME_PREFIX,) + (('continuation/',) if with_continuation else ())
+        if with_continuation and artifact_policy == ARTIFACT_POLICY: prefixes+=('continuation/runtime/',)
         files=frozen_tree._bounded_tree(attempt,max_files=frozen_tree.MAX_FILES,
             max_bytes=frozen_tree.MAX_BYTES,partition_prefixes=prefixes)
         dirs=sorted(p.relative_to(attempt).as_posix() for p in attempt.rglob('*') if p.is_dir())
@@ -570,8 +580,7 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
         stopped_verified=True,finished_utc=now(),children=bindings,artifacts=artifacts)
     # write_record adds one 64-character digest and a final newline. Reserve
     # that complete record too, so successful publication stays readable.
-    encoded = json.dumps(dict(completion,record_sha256='0'*64),indent=2,sort_keys=True,allow_nan=False).encode('utf-8')
-    completion_size = len(encoded)+1
+    completion_size = serialized_record_size(completion)
     prefixes=(('continuation/',) if composed else ()) + ((_RUNTIME_PREFIX,) if 'artifact_policy' in request['configuration'] else ())
     partition = {n:r for n,r in artifacts['files'].items() if not n.startswith(prefixes)}
     _need(len(partition)+1 <= frozen_tree.MAX_FILES
