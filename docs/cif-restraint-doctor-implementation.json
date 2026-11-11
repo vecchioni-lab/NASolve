@@ -28382,7 +28382,8 @@
         "Outer request evidence 152960714 bytes exceeds old 128 MiB envelope: STOPPED_UNFINISHED, no completed outer result; fix composed publication under versioned bounded partitions.",
         "Q04 ordinary invocation and single modifier ownership; Q05 selected checkpoint adoption; Q06 refinement and Q07 combined/held-out controls.",
         "C194/Q13 native source chemistry failures remain separate."
-      ]
+      ],
+      "implementation_revision": "b45bd6457ce5e0a090e417706b4ea760ee50df91"
     }
   },
   "audience": [

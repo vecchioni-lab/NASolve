@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C198 validated: complete-model repair scope
+## C198 published: complete-model repair scope
 
-Base `403e16a406c4bf5f933d87b660dcabb715463fd3`; existing Cedar; implementation complete, publication next.
+Base `403e16a406c4bf5f933d87b660dcabb715463fd3`; existing Cedar; implementation complete and published as
+`b45bd6457ce5e0a090e417706b4ea760ee50df91`.
 Session pause/update **2026-11-11 14:00 UTC**. Capsule:
 `live_tests_directory/198_Cedar_ordinary-request-handoff-6ij0qvvh`. All scientific and validation workers stopped.
 
