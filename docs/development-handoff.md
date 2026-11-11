@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-10** from software validation, native receipts and verified geometry/DF
+Updated **2026-11-11** from software validation, native receipts and verified geometry/DF
 bundles. **Active candidate: `cedar`; integration target: `pine` (draft PR #26),
 then `main` (draft PR #23).** The preserved historical laptop Cedar checkout remains at
 **`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`**, with only the explicitly
@@ -10,6 +10,63 @@ are preserved. Preserve this local unpublished diagnostic head; do not pull or
 replace it with a remote head to continue the run. Diagnostic scripts/derivatives are
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
+
+## C196 validated: ordinary construction lineage and request binding
+
+Base `72e7a3128a570ee916bb49deea39475204fae27e`; existing Cedar, implementation complete; publication next.
+Three-hour session stop boundary **2026-11-11 13:33 UTC**. Capsule:
+`live_tests_directory/196_Cedar_ordinary-construction-lineage-1ui966re`. All C196 validation jobs stopped.
+
+**Before → after:** ordinary construction had verified source snapshots but no
+durable producer join through the request. It now seals consumed input/reference
+models, dictionaries, returned/prepared models, actions and OP3/backbone intent
+before restraint generation/ReadySet. Optional raw/script/log evidence remains
+honestly absent when unavailable. The ordinary report exposes a run-relative
+record reference. Downstream failure retains it. The existing prepared/complete
+request freezes only declared files and checks exact prepared model, overlapping
+sources and site policy. Immutable recovery/result readback retains this evidence.
+
+**Changed:** `src/nasolve/postmr_lineage.py`, `src/nasolve/postmr.py`, `src/nasolve/cif_complete_request.py`, `src/nasolve/cif_postmr_request.py`, `tests/test_postmr_component_inputs.py`, `tests/test_cif_postmr_request.py`, Unreleased, methods,
+architecture, human overview, queue and evidence/runtime ledgers. Additive schema-1
+`postmr-construction-lineage-v1`, optional request/result `construction_inputs`
+and PostMR `construction_lineage`. Absent-mode meaning stays exact; no migration.
+Old runs cannot acquire producer claims retrospectively. The prepared record is
+pre-ReadySet. No geometry/chemical qualification, default repair or selection.
+
+**Validation:** before **9 failed, 9 deselected in 1.08s**; affected PostMR
+**134 passed in 5.32s**; request/recovery **146 passed in 241.59s (0:04:01)**;
+final focused workflow **2025 passed, 45 subtests passed in 832.85s (0:13:52)**. All 641 guarded source hashes
+fixed for final validation. Cold checkout: **26 passed**, original copy absent,
+historical checkout/SDK reads denied, **594 files** retain bytes/mtimes. Only owned
+copying ReadySet fixtures and exact read-only OS identity queries are allowed;
+scientific execution remains blocked. Initial fixture/harness failures preserved.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 python c196_validate.py before-r1
+PYTHONDONTWRITEBYTECODE=1 python c196_validate.py new-r2
+PYTHONDONTWRITEBYTECODE=1 python c196_validate.py join-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 python c196_cold.py cold-r2
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c196_coot.py coot-construction-r2
+PYTHONDONTWRITEBYTECODE=1 python c196_redundancy.py
+```
+
+Actual Coot **1.3.3 (revision-count 0), embedded Python 3.14.6, Darwin arm64
+GTK4** constructs public 5W6W A:9 -> PDU through ordinary PostMR and seals the
+record; independent saved-script declarations match recorded input/dictionary.
+The established explicitly free-5'-OH fixture preparation is retained. Original
+inputs remain unchanged; moved-run readback passes. Stopped before downstream
+preparation; no Phenix/refinement/scientific qualification. Native worker stopped.
+No new test shadow/import/duplicate issue; workflow still selects 60 files.
+No full suite; last complete C160 `d9e481661edcc3a04404df250360b9db63184ae1`.
+
+**Next:** Q04 ordinary invocation and faithful literal-input intake with one
+modifier owner; Q05 selected artifact/producer/compiler export into immutable
+checkpoints. Reuse C21/C80 compilers; no invented native indices or pair re-guessing.
+Q06 refinement, Q07 combined/held-out controls and C194/Q13 native blockers remain.
+Only code/tests/docs/hash references ship. Native outputs, XML/logs, runners,
+relocated copies and scientific data remain local. No merge.
+— Rowan · Codex desktop
 
 ## C195 published: ordinary construction consumes frozen dictionaries
 

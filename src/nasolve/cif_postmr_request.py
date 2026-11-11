@@ -8,7 +8,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from .cif_acquisition_sources import _codes, freeze_acquisition_sources, read_acquisition_sources
-from .cif_complete_request import _LIMITS, _compiler_input, _compiler_references, _continuation_fields, initialize_dictionary_request
+from .cif_complete_request import _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
 from .cif_dictionary_sites import _consumer, _need, _read
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_acquisition_attempt import _generation_binding
@@ -19,7 +19,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -38,7 +38,10 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     without rediscovery. Its complete component set must match. In this mode,
     source_output, ready_set_executable and data_root must all be None; only output
     is a fresh destination. This preserves source evidence, not proof that a model
-    was constructed from it. The construction caller must retain that producer join.
+    was constructed from it. Optional construction_inputs supplies the ordinary
+    run's C196 record and binds that producer join through the complete request.
+    Only its declared files are frozen; old runs without a record cannot acquire
+    construction claims retroactively. This does not enable ordinary adoption.
 
     Destinations must be fresh, disjoint and outside input/SDK trees.
     Failure preserves all partial work. Resume a published request through
@@ -109,6 +112,10 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
           'PostMR request destinations overlap an input or installation')
     model_context = derive_prepared_model_context(model, report, codes)
     restraint_context = derive_restraint_context(model, phils) if phils else None
+    if construction_inputs is not None:
+        # Read only the declared construction closure. Ordinary runs may contain
+        # unrelated or unpublished artifacts; none are discovered or captured.
+        _construction_input(construction_inputs, model, {}, model_context)
     native_context = dict(policy_id=FULL_MODEL_POLICY_ID, monomer_inventory='full_model',
                           custom_restraints='required' if phils else 'absent')
     for item in components: item['contexts'] = model_context['contexts'][item['code']]
@@ -124,5 +131,5 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     return initialize_dictionary_request(sources, components, model, request,
         consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
-        continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy,
+        continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy, construction_inputs=construction_inputs,
         **execution_limits)

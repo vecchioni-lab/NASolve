@@ -217,3 +217,63 @@ def test_ordinary_construction_rejects_changed_input_before_readyset(tmp_path, m
         assert selected.read_bytes() == source_bytes
     if change == 'changed_snapshot':
         assert snapshot.read_bytes().endswith(b'# changed consumed snapshot\n')
+
+
+def test_ordinary_construction_records_consumed_inputs_before_readyset(tmp_path, monkeypatch):
+    execute, run, data, model, source, source_bytes, snapshot, seen, calls = _ordinary_construction_source_case(tmp_path, monkeypatch, 'none')
+    result=execute()
+    record=run/'PostMR/Coot/construction.json'
+    assert record.is_file()
+    from nasolve.run_context import resolve_artifact_path
+    report=json.loads(result.report_path.read_bytes())
+    assert resolve_artifact_path(report['construction_lineage'],run)==record
+    from nasolve.postmr_lineage import read_postmr_construction
+    bound=read_postmr_construction(run)
+    assert bound['report']['scientific_qualification']=='NOT_ASSESSED'
+    assert bound['model'].read_bytes()==(run/'PostMR/Model/prepared_model.pdb').read_bytes()
+    assert bound['dictionaries']=={'DE':snapshot}
+    assert bound['dictionaries']['DE'].read_bytes()==source_bytes
+    assert bound['report']['inputs']['dictionaries']['DE']['anchor']=='run'
+    before={n:p for n,p in bound['files'].items()}
+    shutil.rmtree(data); model.unlink()
+    moved=run.rename(tmp_path/'moved run with spaces')
+    assert read_postmr_construction(moved)['files']==before
+
+
+def test_ordinary_construction_record_survives_readyset_failure(tmp_path, monkeypatch):
+    import nasolve.postmr as postmr
+    execute, run, *_ = _ordinary_construction_source_case(tmp_path, monkeypatch, 'none')
+    def fail(*a, **k):raise postmr.PostMRPreparationError('Controlled ReadySet failure')
+    monkeypatch.setattr(postmr,'_run_readyset',fail)
+    with pytest.raises(postmr.PostMRPreparationError,match='Controlled ReadySet failure'):execute()
+    assert (run/'PostMR/Coot/construction.json').is_file()
+    assert not (run/'PostMR/report.json').exists()
+
+
+@pytest.mark.parametrize('changed',['input','source','output','status','role','escape','symlink','before','after','method','action_type','absent_site','bad_reference'])
+def test_ordinary_construction_lineage_rejects_changed_or_relabelled_evidence(tmp_path, monkeypatch, changed):
+    execute, run, *_ = _ordinary_construction_source_case(tmp_path, monkeypatch, 'none')
+    execute()
+    record=run/'PostMR/Coot/construction.json'
+    assert record.is_file()
+    from nasolve.postmr_lineage import read_postmr_construction
+    from nasolve.campaign_records import write_record
+    r=json.loads(record.read_bytes())
+    if changed in {'input','source','output'}:
+        path={'input':'PostMR/Model/mr_solution.pdb','source':'PostMR/Coot/source_dictionaries/DE.cif','output':'PostMR/Model/prepared_model.pdb'}[changed]
+        p=run/path;p.write_bytes(p.read_bytes()+b'\n')
+    elif changed=='symlink':
+        p=run/'PostMR/Model/prepared_model.pdb';copied=tmp_path/'other.pdb';copied.write_bytes(p.read_bytes());p.unlink();p.symlink_to(copied)
+    else:
+        r.pop('record_sha256')
+        if changed=='status':r['scientific_qualification']='QUALIFIED'
+        if changed=='role':r['outputs']['prepared']=r['outputs']['after_coot']
+        if changed=='escape':r['inputs']['dictionaries']['DE']['path']='../outside.cif'
+        if changed in {'before','after'}:r['controls']['actions'][0][changed]='XXX'
+        if changed=='method':r['controls']['actions'][0]['method']='unknown'
+        if changed=='action_type':r['controls']['actions'][0]['site']=[]
+        if changed=='absent_site':r['controls']['actions'][0]['site']='Z:999'
+        if changed=='bad_reference':r['outputs']['prepared']=None
+        record.unlink();write_record(record,r)
+    with pytest.raises((ValueError,OSError)):
+        read_postmr_construction(run)

@@ -615,6 +615,57 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Ordinary construction lineage and request binding (C196)
+
+Ordinary `prepare_postmr` now seals `PostMR/Coot/construction.json` before
+restraint generation or ReadySet. The checksummed schema-1 record binds the
+consumed input/reference models and C195 dictionary snapshots to the returned
+and prepared models, mutation actions and explicit OP3/backbone controls.
+Raw Coot output, script and log are referenced when present; absent evidence stays
+absent. The completed PostMR report exposes a run-anchored `construction_lineage`
+reference. Failed downstream preparation retains the construction record.
+
+`read_postmr_construction` validates declared roles, bytes, controls and before/after
+residue identities through the existing ordinary model parser. It reads only the
+declared files, rejects symlink/traversal or changed evidence, and never executes
+a saved script or searches for missing inputs. The record is producer provenance,
+not a replay of every intermediate transformation, authentication against hostile
+rewriting, geometric qualification or proof of successful Phenix interpretation.
+Its prepared model is the **pre-ReadySet** model, not the final ReadySet model.
+
+Both existing request initializers accept optional `construction_inputs=<run>`.
+The exact prepared model and terminal/backbone intent must agree; each consumed
+dictionary also selected for acquisition must have identical bytes. Unselected
+construction dictionaries remain provenance, not qualified acquisition choices.
+Only the declared closure is frozen under `inputs/construction`; unrelated run
+material is never copied. The existing owner, source-change check, recovery and
+result reader carry the optional reference. Children consume the already-bound
+model/PHIL; construction evidence is owned once at the outer request.
+
+The additive record uses `postmr-construction-lineage-v1`. Requests carrying its
+optional reference require a C196 reader; absent-mode requests/results preserve
+their exact meaning. Old runs without this producer record cannot acquire the
+claim retrospectively. No migration, chemistry/threshold change, new retry loop,
+default automatic repair or checkpoint selection is introduced. Historical
+absolute paths inside the saved script remain historical text, never operational
+relocation references.
+
+Validation includes ordinary preparation and downstream failure, changed/relabelled
+evidence, model/source/intent mismatch, concurrent input change, immutable recovery
+and cold relocation. A real headless Coot **1.3.3 (revision-count 0), Python 3.14.6,
+Darwin arm64 GTK4** run constructs public 5W6W A:9 -> PDU through ordinary PostMR
+and seals the record. The saved script independently declares the exact recorded
+input model/dictionary. This uses the established explicit free-5'-OH fixture
+preparation, preserves original inputs, and stops before downstream preparation.
+No Phenix, refinement or scientific qualification is claimed. Both the run and
+test checkout replay after relocation; the latter denies original checkout/SDK
+reads. Evidence: `ordinary_construction_lineage_2026_11_11`.
+
+Q04 still needs ordinary request invocation and faithful literal-input intake,
+with the qualified composer as the single site-modifier owner. Q05 must export
+the exact selected artifacts and original compiler/producer lineage into immutable
+checkpoints. Q06/Q07 and the C194/Q13 native chemistry blockers remain separate.
+
 ### Frozen dictionary inputs for ordinary construction (C195)
 
 Ordinary PostMR already copied and verified target dictionaries before Coot, but

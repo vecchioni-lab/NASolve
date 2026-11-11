@@ -4135,7 +4135,12 @@ lineage. Stored schemas and fresh-discovery semantics are unchanged.
 ordinary construction/context/restoration consume the existing verified mutation
 snapshots. The same post-construction boundary checks both those consumed copies
 and original source hashes; old provenance and chemical rules stay intact. Binding
-this producer evidence to the complete request is still a separate Q04 join.
+this producer evidence to the complete request is supplied by
+[C196](cif-doctor.md#ordinary-construction-lineage-and-request-binding-c196): the
+ordinary caller seals a non-qualifying run record before ReadySet, and the existing
+request can freeze its declared closure with exact model/source/intent checks.
+Ordinary request invocation, literal intake and selected checkpoint adoption remain
+Q04/Q05; old absent-field requests retain their meaning.
 [C190](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190) shares the
 existing strict atom selector across new context derivation, request creation and
 execution. Read-only historical derivation stays exact; ungrouped alternatives

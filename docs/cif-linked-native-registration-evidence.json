@@ -79423,5 +79423,325 @@
       }
     },
     "implementation_revision": "2c4864069ff42a5589c7f589a8063ccecc9064b4"
+  },
+  "ordinary_construction_lineage_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "72e7a3128a570ee916bb49deea39475204fae27e",
+    "branch": "cedar",
+    "scope": "ORDINARY_PRODUCER_AND_REQUEST_PROVENANCE; NOT_CHEMICAL_QUALIFICATION_OR_ADOPTION",
+    "before": "Ordinary construction consumed verified dictionaries but had no durable producer record bound through the complete request.",
+    "after": "Seal ordinary pre-ReadySet construction, validate declared roles and identities, freeze only that closure through existing requests/recovery with exact model/source/site-policy joins.",
+    "files": [
+      "src/nasolve/postmr_lineage.py",
+      "src/nasolve/postmr.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_postmr_request.py",
+      "tests/test_postmr_component_inputs.py",
+      "tests/test_cif_postmr_request.py"
+    ],
+    "schemas": [
+      "postmr-construction-lineage-v1/schema-1",
+      "optional construction_inputs in complete configuration/result",
+      "PostMR construction_lineage run reference"
+    ],
+    "compatibility": "Absent-mode requests/results remain exact; no retrospective producer claims or migration. Saved script paths are historical text. New-mode requests need C196 readers.",
+    "validation": {
+      "summaries": {
+        "before-r1": "9 failed, 9 deselected in 1.08s",
+        "new-r2": "134 passed in 5.32s",
+        "join-r2": "146 passed in 241.59s (0:04:01)",
+        "focused-r1": "2025 passed, 45 subtests passed in 832.85s (0:13:52)"
+      },
+      "commands": {
+        "before-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_postmr_component_inputs.py",
+          "-k",
+          "records_consumed or record_survives or lineage_rejects",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/196_Cedar_ordinary-construction-lineage-1ui966re/before-r1.xml"
+        ],
+        "new-r2": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_postmr.py",
+          "tests/test_postmr_cache_workflow.py",
+          "tests/test_postmr_component_inputs.py",
+          "tests/test_postmr_context.py",
+          "tests/test_postmr_context_mixed.py",
+          "tests/test_postmr_generation_failure.py",
+          "tests/test_postmr_phosphate.py",
+          "tests/test_postmr_restoration.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/196_Cedar_ordinary-construction-lineage-1ui966re/new-r2.xml"
+        ],
+        "join-r2": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_postmr_request.py",
+          "tests/test_cif_complete_request.py",
+          "tests/test_cif_complete_continuation.py",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/196_Cedar_ordinary-construction-lineage-1ui966re/join-r2.xml"
+        ],
+        "focused-r1": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "workflow",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/196_Cedar_ordinary-construction-lineage-1ui966re/focused-r1.xml"
+        ]
+      },
+      "initial_corrections": "join-r1: synthetic fixture omitted terminal consent; cold-r1: harness blocked existing macOS identity queries. Production guards retained; all earlier output preserved.",
+      "full_suite": "NOT_RUN; LAST_COMPLETED_C160",
+      "last_full_revision": "d9e481661edcc3a04404df250360b9db63184ae1"
+    },
+    "portability": {
+      "status": "PASS",
+      "tests": 26,
+      "source_files": 594,
+      "checkout_bytes_mtimes_unchanged": true,
+      "original_copy_absent": true,
+      "historical_checkout_and_sdk_reads_denied": true,
+      "external_execution": "OWNED_COPYING_READYSET_FIXTURE_AND_EXACT_OS_PROCESS_IDENTITY_QUERIES; COOT_IS_A_PYTHON_SUBSTITUTE",
+      "command": [
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-o",
+        "addopts=",
+        "tests/test_postmr_component_inputs.py",
+        "tests/test_cif_postmr_request.py",
+        "-k",
+        "ordinary_construction or construction_lineage or construction_closure or unbound_construction or construction_source_change",
+        "--basetemp",
+        "/Users/svecchio/NASolve-live-tests/196_Cedar_ordinary-construction-lineage-1ui966re/cold-r2/pytest tmp",
+        "--junitxml",
+        "/Users/svecchio/NASolve-live-tests/196_Cedar_ordinary-construction-lineage-1ui966re/cold-r2/tests.xml"
+      ]
+    },
+    "native_construction": {
+      "status": "PASS",
+      "scope": "ACTUAL_ORDINARY_COOT_CONSTRUCTION_AND_RECORD_ONLY",
+      "native_phenix": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "scientific_qualification": "NOT_ASSESSED",
+      "source_model": "61dfb0f46571eda7fa5b5c5375a4602f04ffb6721e60ed188efa2dc1b3b3a637",
+      "source_dictionary": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+      "fixture_terminal_preparation": [
+        {
+          "site": "B:1",
+          "atom": "P",
+          "serial": 431
+        },
+        {
+          "site": "B:1",
+          "atom": "OP1",
+          "serial": 432
+        },
+        {
+          "site": "B:1",
+          "atom": "OP2",
+          "serial": 433
+        },
+        {
+          "site": "C:8",
+          "atom": "P",
+          "serial": 573
+        },
+        {
+          "site": "C:8",
+          "atom": "OP1",
+          "serial": 574
+        },
+        {
+          "site": "C:8",
+          "atom": "OP2",
+          "serial": 575
+        }
+      ],
+      "script_declarations": {
+        "inputs": [
+          "PostMR/Model/mr_solution.pdb"
+        ],
+        "dictionaries": [
+          "PostMR/Coot/source_dictionaries/PDU.cif"
+        ],
+        "parents": {
+          "A:9": "PostMR/Coot/parent_A_9_DT.pdb"
+        },
+        "uncollected_external_paths": [],
+        "unsupported_declarations": []
+      },
+      "declared_files": 8,
+      "original_inputs_unchanged": true,
+      "run_relocation_readback": true
+    },
+    "coot_version": "1.3.3 (revision-count 0)\n[with python 3.14.6 embedded]\ngit commit: git-commit-unavailable\nBinary type: Darwin-MacOSX-26.5.2-arm64-gtk4\nEnabled: Enhanced-ligand-tools C++-11 Threads Boost-based-thread-pool MoleculesToTriangles GEMMI SQLite3 LibCurl \n",
+    "redundancy": {
+      "status": "PASS",
+      "date": "2026-11-11T10:59:07.312919+00:00",
+      "scope": "STATIC AST/PROFILE CHECK; NOT PYTEST COLLECTION OR FULL REGRESSION",
+      "test_files": 353,
+      "top_level_test_functions": 2128,
+      "shadowed_definitions": [],
+      "collectable_test_imports": [],
+      "identical_top_level_groups": [
+        [
+          "test_cif_effective_source_recovery_probe.py:test_changed_or_unsafe_capsule_is_refused",
+          "test_cif_fragment_restoration_probe.py:test_changed_or_unsafe_capsule_is_refused"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_verified_initial_gradient_parent_is_accepted_as_data",
+          "test_mixed_gradient_probe.py:test_verified_saved_native_context_is_accepted_without_running_captured_programs"
+        ],
+        [
+          "test_mixed_geometry_probe.py:test_geometry_input_views_refuse_existing_user_directory",
+          "test_mixed_gradient_probe.py:test_gradient_input_views_refuse_existing_user_directory"
+        ]
+      ],
+      "interpretation": "Same three groups recorded by C134: each uses a different capsule/template reader and stays required; no new redundancy found.",
+      "workflow_files": 60,
+      "workflow_selection_has_duplicates": false,
+      "history": "C134 docs/collaboration.md testing cadence; inspected distinct template/capsule bindings in each current module",
+      "limitations": "Textual AST equality does not establish semantic redundancy; parametrization counts and dynamic collection are not measured."
+    },
+    "remaining": [
+      "Q04 ordinary invocation, faithful literal intake and one modifier owner",
+      "Q05 exact selected artifact/lineage export into immutable checkpoints",
+      "Q06 actual refinement; Q07 combined and held-out controls; C194/Q13 native chemical-state blockers"
+    ],
+    "artifacts": "Code/tests/docs/hash references only. Native fixture outputs, test XML/logs, relocated copies and runners remain local; no unpublished datasets touched.",
+    "evidence_refs": {
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/start.json",
+        "sha256": "585b67842515be4abbc21ba1fd837fbb681bcae1de87684ab1af05d2c71d2341",
+        "size": 456
+      },
+      "before-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/before-r1-result.json",
+        "sha256": "4b12e13d8ef5330eb22781cc996cad77e48bff4c6a76e59c5e8950c3d7d81589",
+        "size": 671
+      },
+      "new-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/new-r2-result.json",
+        "sha256": "067ee41ef9562850f8b327f5d6bad845d69d393ec947c47ef10a1616f1b7a779",
+        "size": 867
+      },
+      "join-r2-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/join-r2-result.json",
+        "sha256": "4dcb2b92644fc79b63675524daaf0febcb628c7267ade73d3b917beba78118ff",
+        "size": 681
+      },
+      "focused-r1-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/focused-r1-result.json",
+        "sha256": "e4b66c89e90961a226bcc24010e856699771953c041f361be595cb421ec170af",
+        "size": 508
+      },
+      "focused-r1-sources.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/focused-r1-sources.json",
+        "sha256": "3ea5e4c8e4314bf1170502b11cee2a6ff3f0011b14ceefd9c69d21f380dd934f",
+        "size": 70005
+      },
+      "cold-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/cold-r2/summary.json",
+        "sha256": "c95f4c12060606d07c4c9e3feb2d61b7aee7a7b949b1a07d57d8cecf506a57ba",
+        "size": 883
+      },
+      "cold-r2/execution.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/cold-r2/execution.json",
+        "sha256": "d799492d58f13fbea5a93bcc76226a205c5a035ef4f64c9138c2364a7856ddea",
+        "size": 97
+      },
+      "cold-r2/runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/cold-r2/runner.py.txt",
+        "sha256": "83f51405cf5cd883370d9cb63b0eadcae002fdbd023c96f04edfcc24a1bbb7e0",
+        "size": 4037
+      },
+      "cold-r2/worker.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/cold-r2/worker.py.txt",
+        "sha256": "1be385ba8e6c3e1fbd6f076d60dfee597bba20a7c36788ecf379d455bf9f5e2e",
+        "size": 2077
+      },
+      "redundancy-r1.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/redundancy-r1.json",
+        "sha256": "f5561abc9db62351fe31c719e4edf6dbf87427019da9bda9e60203da22d01aba",
+        "size": 40398
+      },
+      "coot-construction-r2/summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/coot-construction-r2/summary.json",
+        "sha256": "117104b83178a2489fa146b07a96be591e7e7d90f84b89d2ccbc252ff6372f4e",
+        "size": 1259
+      },
+      "coot-construction-r2/job.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/coot-construction-r2/job.json",
+        "sha256": "8c9e81cef2b0a3800a6166b038e8e00de0dad127576b1f53184a254217276da1",
+        "size": 485
+      },
+      "coot-construction-r2/process.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/coot-construction-r2/process.json",
+        "sha256": "7cf5aaaa9d4e75f9d6c7ff08b4f080ef8cffe4085fe0d6aa717ed2785f31c035",
+        "size": 277
+      },
+      "coot-construction-r2/finished.json": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/coot-construction-r2/finished.json",
+        "sha256": "0188eaa59866406b5c68f657d9690a822c99e98d95ff9a3a4de443de12dda412",
+        "size": 126
+      },
+      "coot-construction-r2/coot-version.txt": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/coot-construction-r2/coot-version.txt",
+        "sha256": "aee9ac415c06ae8069994a8542f45b9eb5edeb5dca3990480286a1510b5958c7",
+        "size": 249
+      },
+      "coot-construction-r2/runner.py.txt": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/coot-construction-r2/runner.py.txt",
+        "sha256": "2af069e4f7189f00f40504206ec2a89677b253204bcbf7610f61aebaa568eaa9",
+        "size": 5453
+      },
+      "coot-construction-r2/worker.py": {
+        "anchor": "live_tests_directory",
+        "path": "196_Cedar_ordinary-construction-lineage-1ui966re/coot-construction-r2/worker.py",
+        "sha256": "a3d85ab824f2a1fbac6fd0cbcb7755790da555391e9dd40996170d77f9302990",
+        "size": 3241
+      }
+    }
   }
 }

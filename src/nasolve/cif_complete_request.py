@@ -30,6 +30,7 @@ from .cif_repair_attempt import _root, _members, _inventory
 from .cif_repair_process import _uuid
 from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_model_context import validate_prepared_model_context
+from .postmr_lineage import read_postmr_construction, POLICY_ID as CONSTRUCTION_POLICY
 from .cif_restraint_context import validate_restraint_context
 from .cif_literal_na_inputs import resolve_literal_na_inputs, POLICY_ID as LITERAL_NA_POLICY
 from .cif_explicit_na_policy import read_explicit_na_policy, POLICY_ID as EXPLICIT_NA_POLICY
@@ -109,7 +110,22 @@ def _compiler_references(literal_na_inputs, explicit_na_policy):
     return chosen
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None):
+def _construction_input(directory, model, sources, model_context):
+    value = read_postmr_construction(directory)
+    _need(model_context is not None and _read(value['model']) == _read(model),
+          'Construction lineage differs from the exact prepared model')
+    controls = value['report']['controls']; plan = model_context['intent']['post_mr_plan']
+    _need(controls['allow_op3_sites'] == sorted(plan['allow_op3_sites'])
+          and controls['passthrough_sites'] == sorted(plan['backbone_policy']['experimental_passthrough_sites']),
+          'Construction lineage differs from prepared phosphate/backbone intent')
+    for code,path in value['dictionaries'].items():
+        if code in sources:
+            _need(_read(path) == _read(sources[code]['source']),
+                  'Construction dictionary differs from selected acquisition source: '+code)
+    return value
+
+
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
@@ -174,6 +190,13 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
             _need(_same(compiled['report']['restraint_context'],restraint_context),
                   'Literal compiler context differs from owned restraints')
         allowed.update(folder+'/'+n for n in _tree(inputs/folder))
+    construction_ref = {}
+    if construction_inputs is not None:
+        reference = dict(anchor=ANCHOR,path='inputs/construction',policy_id=CONSTRUCTION_POLICY)
+        _need(construction_inputs == reference, 'Invalid construction lineage reference')
+        bound = _construction_input(inputs/'construction',inputs/'model.pdb',selected['sources'],model_context)
+        allowed.update('construction/'+name for name in bound['files'])
+        construction_ref['construction_inputs'] = reference
     files, directories = _capture(inputs)
     _need(set(files) == allowed, 'Unrequested complete-request input')
     expected_dirs = {str(p) for name in files for p in Path(name).parents if str(p) != '.'}
@@ -182,7 +205,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         input_files=_inventory(files),input_directories=directories,
         **({'model_context':model_context} if model_context is not None else {}),
         **({'restraint_context':restraint_context} if restraint_context is not None else {}),
-        **compiler_refs,
+        **compiler_refs, **construction_ref,
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
         **_continuation_fields(continuation_options,limits))))
 
@@ -193,7 +216,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'))
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -201,7 +224,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -222,6 +245,10 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     The two provenance modes are mutually exclusive and never reselect relationships.
     Optional continuation_options freezes ReadySet timeout and lossless-serialization
     intent; the same outer attempt owns that child and its remaining allowance.
+    Optional construction_inputs names an ordinary run carrying a C196 construction
+    record. Freeze only its explicitly declared artifacts, never the whole run.
+    Exact model, overlapping source bytes and site policy must match the request;
+    this lineage is not scientific qualification and does not select a checkpoint.
     Omission preserves historical requests and results exactly.
     """
     root = _root(output)
@@ -256,6 +283,14 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         attribution_timeout_seconds=attribution_timeout_seconds,derivative_timeout_seconds=derivative_timeout_seconds,
         total_timeout_seconds=total_timeout_seconds)
     for i,p in enumerate(supplementary_phils): originals[Path(p)] = _read(p); files[f'phils/{i:03}.phil'] = originals[Path(p)]
+    construction_ref = None
+    if construction_inputs is not None:
+        source_root = _root(construction_inputs)
+        bound = _construction_input(source_root,model,selected['sources'],model_context)
+        files.update({'construction/'+n:b for n,b in bound['files'].items()})
+        originals.update({source_root/n:b for n,b in bound['files'].items()})
+        directories.update(str(p) for n in bound['files'] for p in (Path('construction')/n).parents if str(p) != '.')
+        construction_ref = dict(anchor=ANCHOR,path='inputs/construction',policy_id=CONSTRUCTION_POLICY)
     captured = {}
     for name,p in trees.items():
         _need(not p.is_relative_to(root) and not root.is_relative_to(p), 'Complete request overlaps input tree')
@@ -269,7 +304,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -380,10 +415,10 @@ def _attempt_files(attempt, *, with_continuation=False):
     return dict(files=_inventory(files),directories=dirs)
 
 
-def _compiler_result_fields(config):
-    # Original compiler evidence belongs to the outer request. Child preparation
-    # consumes the exact compiled PHIL already joined to it by _configuration.
-    return {name:config[name] for name in _COMPILER_INPUTS if name in config}
+def _outer_provenance_fields(config):
+    # Compiler and construction evidence belong to the outer request. Child
+    # preparation consumes the exact model/PHIL already joined by _configuration.
+    return {name:config[name] for name in (*_COMPILER_INPUTS,'construction_inputs') if name in config}
 
 
 def _result(root, attempt, intent, config, children, bindings):
@@ -400,7 +435,7 @@ def _result(root, attempt, intent, config, children, bindings):
     expected = dict(components=sorted(selection),sites=sites,consumer=controls['consumer'],expected_links=controls['expected_links'],
         native_context=controls['native_context'],supplementary_phils=['inputs/'+n for n in controls['supplementary_phils']])
     _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
-    outer_only = ('retained/',) + tuple(folder+'/' for name,(folder,_) in _COMPILER_INPUTS.items() if name in config)
+    outer_only = ('retained/',) + (('construction/',) if 'construction_inputs' in config else ()) + tuple(folder+'/' for name,(folder,_) in _COMPILER_INPUTS.items() if name in config)
     for name,data in _tree(root/'inputs').items():
         if not name.startswith(outer_only):
             _need(_read(attempt/'preparation/inputs'/name) == data, 'Prepared input differs from frozen outer intent')
@@ -426,10 +461,11 @@ def _result(root, attempt, intent, config, children, bindings):
         continuation_fields = dict(continuation=None if continued is None else dict(anchor='attempt_directory',path='continuation'))
     expected = dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],selected_attempts=selection,
         preparation=dict(anchor='attempt_directory',path='preparation'),repair=dict(anchor='attempt_directory',path='repair'),
-        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_compiler_result_fields(config))
+        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_outer_provenance_fields(config))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
         **{name:_compiler_input(name,root/'inputs'/folder) for name,(folder,_) in _COMPILER_INPUTS.items() if name in config},
+        **({'construction_inputs':read_postmr_construction(root/'inputs/construction')} if 'construction_inputs' in config else {}),
         **({'continuation':continued} if 'continuation' in config else {}))
 
 
@@ -598,7 +634,7 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
             result = write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],
                 selected_attempts={c['code']:c['attempt_number'] for c in components},preparation=dict(anchor='attempt_directory',path='preparation'),
                 repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed,
-                **continuation_fields,**_compiler_result_fields(config)))
+                **continuation_fields,**_outer_provenance_fields(config)))
             children,bindings = _children(root,attempt,intent,config); _result(root,attempt,intent,config,children,bindings)
             remaining(); _seal(root,attempt,intent,request,'RETURNED',remaining=remaining)
         except BaseException as exc:

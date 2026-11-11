@@ -28348,6 +28348,18 @@
         "C194/Q13 native atom mapping, source-component binding and terminal conflicts remain separate"
       ],
       "implementation_revision": "2c4864069ff42a5589c7f589a8063ccecc9064b4"
+    },
+    "ordinary_construction_lineage": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "postmr-construction-lineage-v1",
+      "entry": "postmr.prepare_postmr / initialize_postmr_dictionary_request(construction_inputs=run)",
+      "reader": "read_postmr_construction / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#ordinary_construction_lineage_2026_11_11",
+      "limitations": [
+        "Q04 ordinary invocation, faithful literal intake and one modifier owner",
+        "Q05 exact selected artifact/lineage export into immutable checkpoints",
+        "Q06 actual refinement; Q07 combined and held-out controls; C194/Q13 native chemical-state blockers"
+      ]
     }
   },
   "audience": [

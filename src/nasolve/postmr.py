@@ -1990,6 +1990,14 @@ def prepare_postmr(
             "output": frozen_reference(coot_input, run),
         }
 
+    from .postmr_lineage import begin_postmr_construction, finish_postmr_construction, RECORD_PATH
+    from .campaigns import CampaignError
+    try:
+        construction_start = begin_postmr_construction(run, coot_input, original,
+            construction_sources, actions, allow_op3_sites=allowed_op3,
+            passthrough_sites=passthrough_sites)
+    except (OSError, ValueError, CampaignError) as exc:
+        raise PostMRPreparationError(f"Construction dictionary/model lineage failed: {exc}") from exc
     after_coot = model_dir / "after_coot.pdb"
     construction = construct_postmr_model(
         coot_input, actions, construction_sources, after_coot,
@@ -2023,6 +2031,11 @@ def prepare_postmr(
             raise PostMRPreparationError(
                 f"Prepared model does not contain {action.after} at {action.site}"
             )
+
+    try:
+        finish_postmr_construction(run, construction_start, prepared, construction)
+    except (OSError, ValueError, CampaignError) as exc:
+        raise PostMRPreparationError(f"Construction dictionary/model lineage failed: {exc}") from exc
 
     restraint_paths: list[Path] = []
     narestraints_report: dict[str, object] = {
@@ -2436,6 +2449,7 @@ def prepare_postmr(
         "input_model": str(source_model),
         "input_sha256": file_sha256(source_model),
         "mutation_actions": [asdict(action) for action in actions],
+        "construction_lineage": frozen_reference(run / RECORD_PATH, run),
         "coot": {
             "ran": construction["raw_model"] is not None,
             "executable": str(coot_executable) if coot_executable else None,

@@ -262,3 +262,99 @@ def test_frozen_source_changed_during_context_derivation_never_publishes_request
     monkeypatch.setattr(entry, 'derive_prepared_model_context', change)
     with pytest.raises(ValueError):entry.initialize_postmr_dictionary_request(**args)
     assert not args['output'].exists()
+
+
+@pytest.fixture
+def construction_entry(entry_case, tmp_path):
+    """Synthetic producer transport; no Coot/native qualification is claimed."""
+    from nasolve.postmr import MutationAction
+    from nasolve.postmr_lineage import begin_postmr_construction, finish_postmr_construction
+    m,args,sdk,store,generations,calls=entry_case
+    run=tmp_path/'ordinary run'; models=run/'PostMR/Model'; models.mkdir(parents=True)
+    sources=run/'PostMR/Coot/source_dictionaries'; sources.mkdir(parents=True)
+    prepared=models/'prepared_model.pdb';prepared.write_bytes(args['model'].read_bytes())
+    after=models/'after_coot.pdb';after.write_bytes(prepared.read_bytes())
+    original=models/'mr_solution.pdb'
+    lines=[]
+    for line in prepared.read_text().splitlines(keepends=True):
+        if line.startswith(('ATOM','HETATM')) and line[21:22]=='A' and line[22:26].strip()=='1':
+            line=line[:17]+' DA'+line[20:]
+        lines.append(line)
+    original.write_text(''.join(lines))
+    source=sources/'ZZZ.cif';source.write_bytes((args['data_root']/'ligands/ZZZ.cif').read_bytes())
+    start=begin_postmr_construction(run,original,original,{'ZZZ':source},
+        [MutationAction('A:1','DA','ZZZ','coot-parent-overlap',parent_code='DA')],
+        allow_op3_sites=args['report']['post_mr_plan']['allow_op3_sites'])
+    finish_postmr_construction(run,start,prepared,dict(model=after,raw_model=None,coot_log=None))
+    (run/'unrelated-private-material').write_text('MUST NOT BE COPIED')
+    args['construction_inputs']=run
+    return entry_case
+
+
+def test_prepared_request_freezes_only_declared_construction_closure(construction_entry):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    from nasolve.postmr_lineage import read_postmr_construction
+    m,args,sdk,store,generations,calls=construction_entry
+    original=inventory(args['construction_inputs'])
+    declared=read_postmr_construction(args['construction_inputs'])['files']
+    with patch('subprocess.Popen',side_effect=AssertionError('Initialization must not execute')):
+        request=initialize_postmr_dictionary_request(**args)
+    assert request['configuration']['construction_inputs']['path']=='inputs/construction'
+    assert read_postmr_construction(args['output']/'inputs/construction')['files']==declared
+    assert not (args['output']/'inputs/construction/unrelated-private-material').exists()
+    assert inventory(args['construction_inputs'])==original and not calls
+    assert m.inspect_dictionary_request(args['output'])['attempts']==[]
+
+
+def test_construction_lineage_survives_owned_attempt_recovery_and_cold_move(construction_entry):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    m,args,sdk,store,generations,calls=construction_entry
+    initialize_postmr_dictionary_request(**args)
+    first=m.execute_dictionary_request_attempt(args['output'],sdk,store,generation=generations)
+    previous=inventory(args['output']/'attempts/attempt-0001')
+    second=m.execute_dictionary_request_attempt(args['output'],sdk,store,generation=generations)
+    assert first['attempt_id']!=second['attempt_id']
+    assert inventory(args['output']/'attempts/attempt-0001')==previous
+    assert second['result']['construction_inputs']['path']=='inputs/construction'
+    assert not (args['output']/'attempts/attempt-0001/preparation/inputs/construction').exists()
+    before=inventory(args['output']);moved=args['output'].rename(args['output'].with_name('relocated request'))
+    shutil.rmtree(args['construction_inputs']);shutil.rmtree(args['data_root']);shutil.rmtree(args['source_output'])
+    args['model'].unlink()
+    with patch('subprocess.Popen',side_effect=AssertionError('Cold replay cannot execute')):
+        state=m.inspect_dictionary_request(moved)
+        result=m.read_dictionary_request_result(moved,2)
+    assert all(a['state']=='STOPPED' for a in state['attempts'])
+    assert result['construction_inputs']['model'].is_file()
+    assert inventory(moved)==before
+
+
+@pytest.mark.parametrize('problem',['model','source','policy','missing-record'])
+def test_prepared_request_rejects_unbound_construction_before_attempt(construction_entry, problem):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    from nasolve.campaign_records import write_record
+    m,args,sdk,store,generations,calls=construction_entry
+    run=args['construction_inputs'];record=run/'PostMR/Coot/construction.json'
+    if problem=='model':args['model'].write_bytes(args['model'].read_bytes()+b'\n')
+    elif problem=='source':
+        p=args['data_root']/'ligands/ZZZ.cif';p.write_bytes(p.read_bytes()+b'\n')
+    elif problem=='policy':
+        r=json.loads(record.read_bytes());r.pop('record_sha256');r['controls']['allow_op3_sites']=['A:1']
+        record.unlink();write_record(record,r)
+    else:record.unlink()
+    with pytest.raises((ValueError,OSError)):
+        initialize_postmr_dictionary_request(**args)
+    assert not (args['output']/'attempts').exists() and not calls
+
+
+def test_construction_source_change_during_request_freezing_refuses(construction_entry, monkeypatch):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    m,args,sdk,store,generations,calls=construction_entry
+    original=m._freeze
+    def changed(*a,**k):
+        original(*a,**k)
+        p=args['construction_inputs']/'PostMR/Model/prepared_model.pdb'
+        p.write_bytes(p.read_bytes()+b'\n')
+    monkeypatch.setattr(m,'_freeze',changed)
+    with pytest.raises(ValueError,match='source changed'):
+        initialize_postmr_dictionary_request(**args)
+    assert not (args['output']/'request.json').exists() and not calls

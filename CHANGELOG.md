@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind ordinary construction evidence to dictionary requests (C196)
+
+- Record consumed model/dictionary identities and returned construction before
+  ReadySet, retaining the record if later preparation fails. Completed PostMR
+  reports expose its run-relative checksummed reference.
+- Existing prepared/complete requests can freeze that declared evidence and
+  verify exact model, overlapping source bytes and phosphate/backbone intent.
+  Recovery and cold readback preserve it without copying unrelated run files.
+- This additive provenance record is not chemical qualification or automatic
+  adoption. Old absent-field requests/reports retain their meaning; no migration.
+
+
 ### Consume verified dictionary snapshots during ordinary construction (C195)
 
 - Coot and shared PostMR context/restoration now consume the already verified

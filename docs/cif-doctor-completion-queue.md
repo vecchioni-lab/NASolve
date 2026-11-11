@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-10, after C195.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C196.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -52,13 +52,13 @@ acceptance criteria.
 
 ## Pipeline position
 
-Current orientation after C195. This table summarizes the acceptance packages
+Current orientation after C196. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
 | Package | Position now | Remaining acceptance |
 | --- | --- | --- |
-| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | C186–C189 bind required planes, original literal provenance or an existing source-bound C80 artifact, and an already frozen source selection. C190 rejects ungrouped atom alternatives at new context-bound intake/execution while retaining old readback. C195 makes ordinary construction consume verified source snapshots. Bind those producer records into the complete request and connect the literal capture prerequisite, then exercise ordinary hit/miss/stale/failure paths. Reuse the existing owner and C21/C80 compilers. |
+| Q04 — recovery engine | Explicit owned chain implemented; package open at ordinary intake | C186–C189 bind required planes, original literal provenance or an existing source-bound C80 artifact, and an already frozen source selection. C190 rejects ungrouped atom alternatives at new context-bound intake/execution while retaining old readback. C195 makes ordinary construction consume verified snapshots; C196 records and binds consumed-source/model/intent evidence through the existing request and recovery. Connect ordinary invocation and faithful literal intake, then exercise ordinary hit/miss/stale/failure paths. Reuse the existing owner and C21/C80 compilers. |
 | Q05 — ordinary adoption | Open | Carry one exact selected model/CIF/PHIL bundle through prepared and newly mutated routes into immutable checkpoints; retain source/producer lineage and selected-versus-latest behavior. |
 | Q06 — real refinement consumer | Open; can proceed alongside Q04/Q05 | Qualify actual refinement with complete NAR restraints and Free-R authority. The corrected diagnostic evaluator does not establish ordinary Phenix behavior. |
 | Q07 — combined acceptance | Open | Run the original eight pairs with ATL alongside, broken PDU and DF/A1AAZ, plus the separate eight-residue held-out builder challenge. Refinement claims depend on Q06. |
@@ -168,8 +168,10 @@ as competing next-step instructions here.
 
 **Next bounded checkpoint:** connect the validated prepared intake to ordinary
 PostMR orchestration without a second recovery loop or modifier owner. C189 closes
-the prepared entry's previously frozen source inlet; the actual source-to-construction
-producer join and ordinary caller still need integration. Prefer exercising that
+the prepared entry's previously frozen source inlet. C196 now seals ordinary
+construction before ReadySet and carries its exact declared producer/model/source
+closure through that request. Ordinary invocation and modifier ownership still
+need integration. Prefer exercising that
 caller over adding another standalone orchestration wrapper. C187 closes
 the explicit original literal-input/compiler provenance bridge; its first capture
 must already be interpretable. A broken source that prevents that capture is not
@@ -202,9 +204,13 @@ The C193 redundancy/orientation check confirmed existing pre/post-Coot source
 checks. C195 now makes ordinary Coot/context/restoration consume those verified
 mutation snapshots and extends the same final guard to their bytes. Temporary
 external-source changes no longer change construction input; changed/missing
-snapshots and persistently changed originals refuse before ReadySet. The next join
-must bind these consumed-source/construction records to the complete request,
-not add another hash-check layer. The C71 reuse-only cache path, C21/C80 compilers,
+snapshots and persistently changed originals refuse before ReadySet. C196 seals
+that producer boundary, exposes a run-relative report reference and binds the exact
+prepared model, overlapping source bytes and site policy through the existing
+complete request. Only declared files are frozen; immutable recovery and cold
+readback retain the lineage. This is not chemical qualification or a reconstruction
+of every intermediate transformation. Do not add another record/hash wrapper;
+the remaining joins are ordinary invocation/literal intake and Q05 export. The C71 reuse-only cache path, C21/C80 compilers,
 C115 diagnostics, C185 failure notes and complete-request process owner remain
 shared. Static tests have no shadowed definitions/imported collectable tests;
 C134's three identical-text pairs still exercise different readers and remain.
@@ -607,9 +613,9 @@ The last completed full-tested implementation remains C160
 focused/native/cold checks; its full run was interrupted at 68%, then explicitly
 deferred by Simon. No fresh retry started and no complete full-suite pass is
 claimed. Complete regression remains required for the eventual combined
-Cedar/pine/main merge candidate. Subsequent checkpoints through C195 retain
+Cedar/pine/main merge candidate. Subsequent checkpoints through C196 retain
 focused validation, with native/cold evidence only where explicitly executed.
-The latest workflow profile is C195: 2,003 tests + 45 subtests; it is not a full
+The latest workflow profile is C196: 2,025 tests + 45 subtests; it is not a full
 suite. Preserve published evidence and archive owned
 runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,
