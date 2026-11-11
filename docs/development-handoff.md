@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C196 validated: ordinary construction lineage and request binding
+## C196 published: ordinary construction lineage and request binding
 
-Base `72e7a3128a570ee916bb49deea39475204fae27e`; existing Cedar, implementation complete; publication next.
+Base `72e7a3128a570ee916bb49deea39475204fae27e`; existing Cedar, implementation complete and published as
+`96abd9a0848a74fb39ec68a689c74ee20155851e`.
 Three-hour session stop boundary **2026-11-11 13:33 UTC**. Capsule:
 `live_tests_directory/196_Cedar_ordinary-construction-lineage-1ui966re`. All C196 validation jobs stopped.
 

@@ -28359,7 +28359,8 @@
         "Q04 ordinary invocation, faithful literal intake and one modifier owner",
         "Q05 exact selected artifact/lineage export into immutable checkpoints",
         "Q06 actual refinement; Q07 combined and held-out controls; C194/Q13 native chemical-state blockers"
-      ]
+      ],
+      "implementation_revision": "96abd9a0848a74fb39ec68a689c74ee20155851e"
     }
   },
   "audience": [

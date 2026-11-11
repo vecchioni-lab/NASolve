@@ -79425,7 +79425,7 @@
     "implementation_revision": "2c4864069ff42a5589c7f589a8063ccecc9064b4"
   },
   "ordinary_construction_lineage_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "base_revision": "72e7a3128a570ee916bb49deea39475204fae27e",
@@ -79742,6 +79742,7 @@
         "sha256": "a3d85ab824f2a1fbac6fd0cbcb7755790da555391e9dd40996170d77f9302990",
         "size": 3241
       }
-    }
+    },
+    "implementation_revision": "96abd9a0848a74fb39ec68a689c74ee20155851e"
   }
 }
