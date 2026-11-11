@@ -36,6 +36,12 @@ now adds only a supported missing row to an existing plane, preserving its ring
 constraints and every other term. It chooses PDU C5A and 5PC C7 by connectivity.
 PDU has fresh native geometry/readback evidence; 5PC remains a candidate. Supplied
 support, native qualification and ordinary automatic selection remain distinct.
+[Identity-proven serial repair](cif-doctor.md#identity-authorized-construction-serials-c210)
+now lets ordinary Coot construction reach its existing phosphate and whole-base
+restoration proofs when only atom serials changed. Exact unselected atom fields
+and explicit terminal intent remain protected; unsupported references retain raw.
+This removes the manual serial step from the PDU control, without claiming complete
+refinement or automatic plane-candidate adoption.
 
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
 native chain and fresh recovery under one request. Exact NAR plane intake now

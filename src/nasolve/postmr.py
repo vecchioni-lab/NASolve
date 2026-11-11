@@ -1773,10 +1773,11 @@ def construct_postmr_model(
     _, coot_log = _run_coot(input_model, raw_model, coot_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
         **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
-    from .postmr_context import prepare_construction_context
+    from .postmr_context import IDENTITY_SERIAL_POLICY_ID, prepare_construction_context
     context = prepare_construction_context(raw_model, reference_model, overlap_actions,
         dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
-        allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites)
+        allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
+        serial_identity_policy=IDENTITY_SERIAL_POLICY_ID)
     restoration_input = context["model"]
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C206.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C210.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -64,8 +64,11 @@ Next bounded order:
    measured before/after-overlap checks. PDU/5PC pass; DP's ambiguous ring mapping
    is refused. Resolve general correspondence without residue-code switches;
    the native explicit setter needs an unavailable internal tree and is not adopted.
-   Retain source hands/whole fragments and unavailable-capability refusal. Resolve
-   or truthfully refuse the serial/context case with immutable evidence.
+   Retain source hands/whole fragments and unavailable-capability refusal. Keep
+   unsupported correspondence explicit. C210 closes the observed global-serial
+   context case using immutable identity, no serial references and unchanged
+   phosphate proofs; native PDU reaches the exact manual-recovery model. Broader
+   unsupported contexts retain raw. Do not reopen this as a generic PDB cleaner.
 2. **Q06/Q07 geometry:** C208 supplies read-only source-graph-selected explicit
    coverage, retaining alternative restraints and unsupported chemistry. Add the
    remaining qualified repair integration: C209 already prepares source/supplied-
@@ -86,7 +89,7 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C209. This table summarizes the acceptance packages
+Current orientation after C210. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 

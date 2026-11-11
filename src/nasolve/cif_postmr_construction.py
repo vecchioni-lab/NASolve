@@ -125,6 +125,54 @@ def _delta_identity(key: tuple, row: dict) -> dict:
             "icode": key[2], "altloc": key[3], "component": row["code"], "element": row["element"]}
 
 
+def _audit_identity_serial_context(initial_model, raw_model, raw_lines, shadow_lines,
+                                   selected, authority):
+    """Reconstruct the new authority independently of the production normalizer."""
+    initial, _ = _records(initial_model)
+    _pdb_inventory(initial_model)  # Reject ambiguous identity and malformed coordinates.
+    original_serials = [_serial(line) for line in initial.values()]
+    if len(original_serials) != len(set(original_serials)):
+        raise ValueError("Identity context input has duplicate serials")
+    raw_serials = [_serial(line) for line in raw_lines.values()]
+    if len(raw_serials) == len(set(raw_serials)):
+        raise ValueError("Identity context authority lacks raw serial collisions")
+    raw_other = {key: line for key, line in raw_lines.items() if _site(key) not in selected}
+    original_other = {key: line for key, line in initial.items() if _site(key) not in selected}
+    if raw_other.keys() != original_other.keys():
+        raise ValueError("Identity context changed unselected atom identities")
+    if not any(line[6:11] != raw_other[key][6:11] for key, line in original_other.items()):
+        raise ValueError("Identity context authority lacks unselected renumbering")
+    for key, line in original_other.items():
+        other = raw_other[key]
+        if (line[:6]+line[11:]).rstrip() != (other[:6]+other[11:]).rstrip():
+            raise ValueError("Identity context changed unselected nonserial input fields")
+    reserved = []
+    for path in (initial_model, raw_model):
+        lines = Path(path).read_text().splitlines()
+        if any(line[:6].strip() in {"CONECT", "ANISOU", "SIGATM", "SIGUIJ", "MODEL", "ENDMDL"}
+               for line in lines):
+            raise ValueError("Identity context includes unsupported serial references or explicit models")
+        ters = [_serial(line) for line in lines if line[:6].strip() == "TER"]
+        if len(ters) != len(set(ters)):
+            raise ValueError("Identity context has ambiguous TER serials")
+        if path == raw_model:
+            reserved = sorted(ters)
+    expected = {"status": "INPUT_IDENTITY_AUTHORITY_PASS",
+        "policy_id": "postmr-input-identity-serial-context-v1",
+        "order": "RAW_COORDINATE_RECORD_ORDER_SKIP_TER", "reserved_ter_serials": reserved,
+        "unselected_atom_count": len(raw_other), "unselected_nonserial_fields_preserved": True,
+        "serial_reference_records": "ABSENT"}
+    if authority != expected:
+        raise ValueError("Identity serial authority differs from independently reconstructed inputs")
+    fresh = 0
+    for key in raw_lines:
+        fresh += 1
+        while fresh in reserved:
+            fresh += 1
+        if fresh > 99999 or shadow_lines[key][6:11] != f"{fresh:5d}":
+            raise ValueError("Identity context serials differ from declared deterministic record order")
+
+
 def audit_construction_context(initial_model: Path, raw_model: Path, context_model: Path,
                                actions: tuple[MutationAction, ...],
                                dictionary_paths: Mapping[str, Path], context_receipt: Mapping, *,
@@ -132,8 +180,10 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
                                parent_models: Mapping[str, Path] | None = None) -> dict:
     """Verify the exact delta before graph restoration, without trusting a receipt.
 
-    Only selected atom serial fields and declared internal OP3 deletion may
-    change. Every retained XYZ and all unselected records remain raw Coot data.
+    Selected serials and declared internal OP3 deletion may change. An explicit
+    identity serial policy additionally permits global serial-only changes with
+    immutable input authority and no serial references. Retained XYZ and all
+    other atom fields remain raw Coot data.
     Inherited CONECT records bind to their unique, unselected source identities;
     duplicate serials in a raw fallback are recorded, never called usable.
     """
@@ -145,6 +195,13 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
     status = context_receipt.get("status")
     if status not in {"CONTEXT_PREPARED", "RAW_CONTEXT_RETAINED", "NO_CONTEXT_CHANGE"}:
         raise ValueError("Unsupported ordinary construction context outcome")
+    authority = context_receipt.get("serial_authority", {})
+    if not isinstance(authority, Mapping):
+        raise ValueError("Invalid construction serial authority")
+    identity_serials = (status == "CONTEXT_PREPARED"
+                        and authority.get("policy_id") == "postmr-input-identity-serial-context-v1")
+    if status == "CONTEXT_PREPARED" and "policy_id" in authority and not identity_serials:
+        raise ValueError("Unsupported construction serial authority policy")
     raw, context = _pdb_inventory(raw_model), _pdb_inventory(context_model)
     raw_lines, raw_other = _records(raw_model)
     context_lines, context_other = _records(context_model)
@@ -218,7 +275,7 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
         if raw[key] != context[key] or before[:6] + before[11:] != after[:6] + after[11:]:
             raise ValueError("Construction context changed raw coordinates, identity or atom metadata")
         if before[6:11] != after[6:11]:
-            if _site(key) not in selected:
+            if _site(key) not in selected and not identity_serials:
                 raise ValueError("Construction context changed an unselected atom serial")
             retained_repairs.append({**_delta_identity(key, raw[key]), "old_serial": _serial(before),
                                      "new_serial": _serial(after)})
@@ -247,6 +304,9 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
     shadow_lines, shadow_other = _records(context_shadow)
     if raw.keys() != shadow.keys() or raw_other != shadow_other:
         raise ValueError("Construction proof shadow changed raw composition or non-coordinate records")
+    if identity_serials:
+        _audit_identity_serial_context(initial_model, raw_model, raw_lines, shadow_lines,
+                                       selected, authority)
     graphs = {a.site: source_graph_fragment(dictionary_paths[a.after], a.after) for a in actions}
     parents = {site: _atoms(_pdb_inventory(path), site) for site, path in parent_models.items()}
     parent_shadow_sites = set()
@@ -274,7 +334,7 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
                 and (curated_binding is None or site not in curated_binding["sites"])):
             raise ValueError("Curated proof shadow lacks its source-bound context scope")
         if before[6:11] != after[6:11]:
-            if site not in selected:
+            if site not in selected and not identity_serials:
                 raise ValueError("Construction proof shadow changed an unselected serial")
             repairs.append({**_delta_identity(key, raw[key]), "old_serial": _serial(before), "new_serial": _serial(after)})
         if key in context and _serial(context_lines[key]) != _serial(after):
@@ -283,7 +343,7 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
         row.update(new_serial=_serial(shadow_lines[key]), serial=_serial(shadow_lines[key]))
     # This independent binding uses the staged source identity table, not raw
     # ambiguous serials or a guessed correspondence to a generated ligand.
-    if repairs:
+    if repairs and not identity_serials:
         initial_lines, _ = _records(initial_model)
         initial_serials = {}
         for key, line in initial_lines.items():
@@ -300,7 +360,7 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
                     raise ValueError("Inherited CONECT endpoint lacks an unchanged unselected source identity")
                 if _serial(context_lines[key]) != serial:
                     raise ValueError("Inherited CONECT endpoint serial changed")
-    elif len({_serial(line) for line in raw_lines.values()}) != len(raw_lines):
+    elif not repairs and len({_serial(line) for line in raw_lines.values()}) != len(raw_lines):
         raise ValueError("Duplicate raw atom serials lack an explicit normalization proof")
     # Compare the public receipt to actual full-identity deltas as well. Keeping
     # receipt rows complete makes a wrong-site deletion impossible to conceal.
@@ -320,6 +380,11 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
             "retained_atom_serial_repairs": retained_repairs, "raw_coordinates_preserved": True,
             "raw_composition_preserved": not removals, "unselected_records_preserved": True,
             "unique_context_serials": True, "inherited_connections_rebound": bool(repairs)}
+    if identity_serials:
+        report.update(serial_identity_policy=authority["policy_id"],
+                      unselected_records_preserved=not any(r["site"] not in selected for r in repairs),
+                      unselected_nonserial_fields_preserved=True,
+                      inherited_connections_rebound=False)
     if curated_binding is not None:
         report["curated_context"] = curated_binding
     return report
@@ -332,7 +397,9 @@ def audit_postmr_construction(initial_model: Path, raw_model: Path, final_model:
                               coordinate_restoration: Mapping[str, dict], *,
                               restoration_input: Path | None = None,
                               context_receipt: Mapping | None = None,
-                              context_shadow: Path | None = None) -> dict:
+                              context_shadow: Path | None = None,
+                              allow_op3_sites: tuple[str, ...] = (),
+                              passthrough_sites: tuple[str, ...] = ()) -> dict:
     """Independently test composition, frozen scaffold and raw fragment geometry.
 
     Unsupported graph contexts may keep the entire raw site. That fallback is
@@ -347,6 +414,15 @@ def audit_postmr_construction(initial_model: Path, raw_model: Path, final_model:
 
     context_audit = None
     if restoration_input is not None:
+        from .phosphate import validate_op3_sites
+        allow_op3_sites = validate_op3_sites(allow_op3_sites)
+        passthrough_sites = validate_op3_sites(passthrough_sites)
+        if set(allow_op3_sites) & set(passthrough_sites):
+            raise ValueError("Construction phosphate and passthrough intent overlap")
+        receipt = context_receipt or {}
+        if (receipt.get("allow_op3_sites") != list(allow_op3_sites)
+                or receipt.get("passthrough_sites") != list(passthrough_sites)):
+            raise ValueError("Construction context receipt differs from explicit phosphate intent")
         context_audit = audit_construction_context(initial_model, raw_model, restoration_input,
             actions, dictionary_paths, context_receipt or {},
             context_shadow=context_shadow, parent_models=parent_models)
@@ -454,12 +530,16 @@ def audit_postmr_construction(initial_model: Path, raw_model: Path, final_model:
         if removed_sites:
             from .phosphate import audit_phosphates
             context_audit["final_phosphate_audit"] = audit_phosphates(
-                final_model, check_sites=removed_sites, reference_model=initial_model)
+                final_model, check_sites=removed_sites, reference_model=initial_model,
+                allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites)
         result.update(context_audit=context_audit,
                       raw_composition_preserved=context_audit["raw_composition_preserved"],
                       contextual_composition_preserved=True,
                       atom_metadata_scope="restoration_input_to_final",
                       restoration_input_metadata_preserved=True)
+        if "serial_identity_policy" in context_audit:
+            result.update(unselected_raw_records_preserved=context_audit["unselected_records_preserved"],
+                          unselected_nonserial_fields_preserved=True)
     return result
 
 

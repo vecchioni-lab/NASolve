@@ -28457,6 +28457,12 @@
       "contract": "docs/cif-doctor.md#source-supported-plane-completion-candidates-c209",
       "evidence": "trigonal_plane_candidates_2026_11_11",
       "scope": "Exact existing-plane additions; PDU native geometry/membership, 5PC candidate transfer. Native support provenance, complete qualification and ordinary adoption remain separate."
+    },
+    "construction_identity_serials": {
+      "status": "IMPLEMENTED_ORDINARY_CONTEXT",
+      "contract": "docs/cif-doctor.md#identity-authorized-construction-serials-c210",
+      "evidence": "construction_identity_serials_2026_11_11",
+      "scope": "Identity-only serial context; existing phosphate and transport proofs, explicit terminal-intent audit. No general PDB cleaning or refinement claim."
     }
   },
   "audience": [

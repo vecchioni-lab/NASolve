@@ -620,6 +620,53 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Identity-authorized construction serials (C210)
+
+Fresh ordinary construction can now recover Coot-wide serial renumbering when
+raw atom collisions coexist with changed unselected serials. The explicit
+`postmr-input-identity-serial-context-v1` policy requires unique immutable input
+atom identities/serials and exact unselected nonserial fields, including XYZ,
+occupancy, B factor, element and charge. Only trailing line padding is ignored
+when comparing Coot to the input; every output nonserial byte remains raw.
+
+No CONECT, ANISOU, SIGATM, SIGUIJ or explicit MODEL/ENDMDL records are accepted by
+this rule. Valid TER serials are reserved and their records remain exact. New atom
+serials follow raw record order, skipping those reserved numbers. All deltas are
+recorded by full atom identity. The independent audit reconstructs this authority
+and order from actual files instead of trusting the receipt. A different numbering,
+forged receipt, changed unselected field or ambiguous reference is refused.
+
+This is part of the existing transactional phosphate context, not a general PDB
+cleaner: graph/transport preflight, discarded parent-scaffold proof, exact internal
+OP3 deletion and final sanitizer remain required. Failure retains the complete raw
+context and preserves attempted evidence. Existing selected-only CONECT authority
+and default historical C62/C63 replay are unchanged; fresh ordinary construction
+explicitly requests the new policy. The audit reports serial changes honestly,
+separating preserved nonserial fields from preserved complete records.
+
+The complete construction audit now also accepts caller-declared terminal and
+passthrough intent, binds it to the context receipt and forwards it to the final
+phosphate audit. Receipt contents alone cannot authorize a terminal exception.
+Defaults retain the no-exception contract. Native validation exposed that omission
+at protected D:1; the correction changes no phosphate chemistry or threshold.
+
+Actual Coot **1.3.3 revision-count 0, embedded Python 3.14.6** constructs PDU at
+A:12/B:4 through the ordinary function. Its raw result exactly equals C206's
+matched control; its final model exactly equals C206's manually recovered model.
+818 unselected atom identities are bound, 617 serial fields repaired, and only
+the two proved internal OP3 atoms removed. Whole-base transport and the final
+phosphate check pass; D:1 OP3 is preserved. The first native attempt's construction
+succeeded but the audit exposed missing terminal intent; readback uses that saved
+attempt without repeating Coot. All failed evidence remains local.
+
+Fail-before controls and **257 focused tests plus 10 subtests** cover generalized
+ZZZ chemistry, metadata/serial-reference/TER negatives, forged independent proof,
+final rollback, terminal-intent binding, original-path removal, ordinary callers
+and historical replay. No full suite; last full C160. No Phenix, ReadySet, NAR or
+diffraction/refinement execution is claimed. C209 plane candidates still require
+authenticated generation and native qualification before automatic selection.
+See evidence `construction_identity_serials_2026_11_11`.
+
 ### Source-supported plane-completion candidates (C209)
 
 `prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionary,

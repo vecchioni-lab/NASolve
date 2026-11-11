@@ -2,7 +2,9 @@
 
 A discarded parent-scaffold shadow lets the existing phosphate sanitizer prove
 an internal OP3 deletion. Only that exact deletion and independently authorized
-selected-atom serial repairs are transferred to original raw Coot records. Base
+selected-atom serial repairs are transferred to original raw Coot records. A new
+explicit policy also handles global renumbering with exact nonserial input identity
+and no serial references; historical default behavior stays unchanged. Base
 coordinates, dictionaries, charge states and native target mechanics stay fixed.
 """
 from __future__ import annotations
@@ -17,6 +19,7 @@ from .postmr_restoration import canonical_name, restore_graph_site, source_graph
 
 POLICY_ID = 'postmr-source-graph-internal-phosphate-context-v1'
 CURATED_CONTEXT_POLICY_ID = 'postmr-source-graph-curated-phosphate-context-v1'
+IDENTITY_SERIAL_POLICY_ID = 'postmr-input-identity-serial-context-v1'
 _COORDINATE = {'ATOM  ', 'HETATM'}
 _ASSOCIATED = {'ANISOU', 'SIGATM', 'SIGUIJ'}
 
@@ -55,7 +58,67 @@ def _conect(lines):
     return result
 
 
-def _serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected):
+def _identity_serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected):
+    """Repair serials only when immutable nonserial input identity is sufficient.
+
+    No serial-referencing or explicit-model records are supported by this rule.
+    Raw coordinates/metadata and TER records remain exact. Atom serials follow
+    raw record order, skipping TER numbers, including atoms later proved removable.
+    """
+    forbidden = {'CONECT', 'ANISOU', 'SIGATM', 'SIGUIJ', 'MODEL', 'ENDMDL'}
+    if any(line[:6].strip() in forbidden for line in raw_lines + reference_lines):
+        raise ValueError('Identity serial repair cannot reinterpret serial references or explicit models')
+    def serial(line):
+        value = int(line[6:11])
+        if not 1 <= value <= 99999:
+            raise ValueError('Identity serial repair requires decimal PDB serials in range')
+        return value
+    reserved = []
+    for lines in (reference_lines, raw_lines):
+        atoms = [line for line in lines if line[:6] in _COORDINATE]
+        numbers = [serial(line) for line in atoms]
+        ters = [serial(line) for line in lines if line[:6].strip() == 'TER']
+        if len(ters) != len(set(ters)):
+            raise ValueError('Identity serial repair requires unique TER serials')
+        if lines is reference_lines and len(numbers) != len(set(numbers)):
+            raise ValueError('Identity serial repair requires unique immutable input serials')
+        if len({_key(line) for line in atoms}) != len(atoms):
+            raise ValueError('Identity serial repair requires unique atom identities')
+        if lines is raw_lines:
+            reserved = sorted(ters)
+    unselected = {key: row for key, row in raw_inventory.items()
+                  if key[0]+':'+key[1]+key[2] not in selected}
+    original = {key: row for key, row in reference_inventory.items()
+                if key[0]+':'+key[1]+key[2] not in selected}
+    if unselected != original:
+        raise ValueError('Identity serial repair requires unchanged unselected atoms and coordinates')
+    raw_records = {_key(line): line for line in raw_lines if line[:6] in _COORDINATE}
+    for line in reference_lines:
+        if line[:6] in _COORDINATE and _key(line) in original:
+            other = raw_records[_key(line)]
+            if (line[:6]+line[11:]).rstrip() != (other[:6]+other[11:]).rstrip():
+                raise ValueError('Identity serial repair requires exact unselected nonserial fields')
+    rendered = []; repairs = []; fresh = 0; reserved_set = set(reserved)
+    for line in raw_lines:
+        if line[:6] in _COORDINATE:
+            fresh += 1
+            while fresh in reserved_set:
+                fresh += 1
+            if fresh > 99999:
+                raise ValueError('Identity serial repair exceeds PDB field width')
+            replacement = f'{fresh:5d}'
+            if line[6:11] != replacement:
+                repairs.append({**_identity(line), 'old_serial': serial(line), 'new_serial': fresh})
+                line = line[:6]+replacement+line[11:]
+        rendered.append(line)
+    return rendered, repairs, {'status': 'INPUT_IDENTITY_AUTHORITY_PASS',
+        'policy_id': IDENTITY_SERIAL_POLICY_ID,
+        'order': 'RAW_COORDINATE_RECORD_ORDER_SKIP_TER', 'reserved_ter_serials': reserved,
+        'unselected_atom_count': len(unselected), 'unselected_nonserial_fields_preserved': True,
+        'serial_reference_records': 'ABSENT'}
+
+
+def _serial_context(raw_lines, reference_lines, raw_inventory, reference_inventory, selected, identity_policy=None):
     """Normalize selected serial collisions only through immutable input authority."""
     atoms = [l for l in raw_lines if l[:6] in _COORDINATE]
     serials = [int(l[6:11]) for l in atoms]
@@ -65,6 +128,12 @@ def _serial_context(raw_lines, reference_lines, raw_inventory, reference_invento
     original = {int(l[6:11]): l for l in reference_atoms}
     if len(original) != len(reference_atoms):
         raise ValueError('Serial repair requires unique immutable input atom serials')
+    raw_records = {_key(line): line for line in atoms}
+    renumbered = any(_site(line) not in selected and _key(line) in raw_records
+                     and raw_records[_key(line)][6:11] != line[6:11] for line in reference_atoms)
+    if identity_policy == IDENTITY_SERIAL_POLICY_ID and renumbered:
+        return _identity_serial_context(raw_lines, reference_lines, raw_inventory,
+                                        reference_inventory, selected)
     raw_rows, input_rows = _conect(raw_lines),_conect(reference_lines)
     if raw_rows != input_rows:
         raise ValueError('Serial repair requires exactly inherited original CONECT rows')
@@ -103,7 +172,7 @@ def _serial_context(raw_lines, reference_lines, raw_inventory, reference_invento
 
 def prepare_construction_context(raw_model, reference_model, actions, dictionary_paths,
                                  parent_models, output_model, *, allow_op3_sites=(),
-                                 passthrough_sites=()):
+                                 passthrough_sites=(), serial_identity_policy=None):
     """Prepare a separate context input or retain the entire immutable raw model.
 
     Source-graph and proper-transport preflight must succeed before any proposed
@@ -114,6 +183,8 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
     as other sites. Frozen passthrough sites remain excluded. The ordinary final
     model must still pass the same sanitizer.
     """
+    if serial_identity_policy not in (None, IDENTITY_SERIAL_POLICY_ID):
+        raise ValueError('Unknown construction serial identity policy')
     raw_model,reference_model,output_model = map(Path,(raw_model,reference_model,output_model))
     allow_op3_sites = validate_op3_sites(allow_op3_sites)
     passthrough_sites = validate_op3_sites(passthrough_sites)
@@ -194,7 +265,7 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
                        and (ligand := CURATED_LIGANDS.get(action.after)) is not None
                        and (ligand.atom_substitutions or ligand.ring_substituents)}
             selected = set(graphs) | curated
-            normalized,repairs,authority = _serial_context(raw_lines,_rows(reference_model),raw_inventory,reference_inventory,selected)
+            normalized,repairs,authority = _serial_context(raw_lines,_rows(reference_model),raw_inventory,reference_inventory,selected,serial_identity_policy)
             # The shadow receives only exact eligible scaffold parent coordinates.
             # Its base geometry is intentionally ignored and never propagated.
             targets = {}

@@ -11,8 +11,47 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C209 validated: generalized existing-plane completion
+## C210 validated: identity-authorized ordinary construction
 
+Base `369c5122e5e1e16b707c8edc637cc626bed1dd08`; capsule
+`live_tests_directory/210_Cedar_identity-serial-4b2d9inm`. All 7 owned workers stopped.
+Pause/update remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** global Coot serial changes blocked the existing context proof.
+Fresh ordinary construction now explicitly enables identity-only repair when raw
+collisions coexist with unselected renumbering, exact unselected nonserial input
+fields match, and no serial references/explicit models exist. TER stays exact.
+Independent audit reconstructs the numbering, records every delta, and binds
+caller-declared terminal/passthrough intent before final phosphate validation.
+The existing chemistry/transport proofs and complete-context rollback remain.
+
+**Files/schema:** `postmr_context.py`, `postmr.py`, `cif_postmr_construction.py`,
+`test_postmr_identity_serials.py`; existing methods, descriptor, queue, map,
+Unreleased and ledgers. New optional authority
+`postmr-input-identity-serial-context-v1`; historical default receipts/replay stay
+unchanged. Older auditors refuse unselected serial deltas. No artifact migration.
+
+**Validation:** two initial regressions fail before implementation; one terminal-
+intent regression fails before correction. Affected 128 + caller 129 tests pass
+(**257 + 10 subtests**), including removed-original-path input relocation. Actual
+Coot **1.3.3/revision 0/Python 3.14.6** finishes: 818 unselected identities,
+617 serial edits, two proved internal OP3 deletions, D:1 protected. Raw bytes
+equal C206 matched output and final bytes equal its manual recovery. Native
+construction completed before an audit intent omission was exposed; later saved
+readback passes without rerunning Coot. Original 600 files preserve bytes/mtimes.
+Exact commands/artifact hashes: `construction_identity_serials_2026_11_11`.
+No full suite, Phenix, ReadySet, NAR or refinement; last full C160. Raw science,
+native logs and runners excluded from Git. No active process remains.
+
+**Next:** authenticated plane-generation support/native candidate qualification
+and the existing Q04/Q05 invocation, single ownership, durable resume and selected
+checkpoint seams. Keep DP mapping, numerical-target calibration, complete NAR
+refinement and combined/held-out controls open. No new owner, branch or merge.
+— Rowan · Codex desktop
+
+## C209 published: generalized existing-plane completion
+
+Implementation published as `369c5122e5e1e16b707c8edc637cc626bed1dd08`.
 Base `b01d88343c289e618453d75a16542d6bfc2fabc4`; capsule
 `live_tests_directory/209_Cedar_plane-completion-h3484_tb`. All 11 owned workers stopped;
 pause/update remains **2026-11-11 23:00 UTC (London)**.

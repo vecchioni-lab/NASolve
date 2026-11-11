@@ -83316,7 +83316,7 @@
     "published_revision": "b01d88343c289e618453d75a16542d6bfc2fabc4"
   },
   "trigonal_plane_candidates_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -83571,6 +83571,332 @@
         "size": 2810
       }
     ],
-    "excluded": "Raw science, dictionaries, coordinates, PHIL, logs and runners remain local; only compact references committed."
+    "excluded": "Raw science, dictionaries, coordinates, PHIL, logs and runners remain local; only compact references committed.",
+    "published_revision": "369c5122e5e1e16b707c8edc637cc626bed1dd08"
+  },
+  "construction_identity_serials_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "369c5122e5e1e16b707c8edc637cc626bed1dd08",
+    "before": "Coot-wide unselected serial changes refused the context proof; final independent audit omitted declared terminal intent.",
+    "after": "Ordinary construction requests bounded identity-only authority; independent audit validates deterministic deltas and caller intent.",
+    "files": [
+      "src/nasolve/postmr_context.py",
+      "src/nasolve/postmr.py",
+      "src/nasolve/cif_postmr_construction.py",
+      "tests/test_postmr_identity_serials.py"
+    ],
+    "schemas": "NEW_OPTIONAL_postmr-input-identity-serial-context-v1; OLD_DEFAULT_REPLAY_UNCHANGED",
+    "compatibility": "No migration; historical default preparation retains its behavior. Older auditors refuse unselected serial deltas.",
+    "validation": {
+      "status": "IDENTITY_SERIAL_CONTEXT_VALIDATED",
+      "focused_tests": 257,
+      "additional_subtests": 10,
+      "original_files_unchanged": 600,
+      "owned_workers_stopped": 7,
+      "native": {
+        "status": "ORDINARY_NATIVE_CONTEXT_AND_TRANSPORT_PASS",
+        "native_coot": "1.3.3 revision-count 0; Python 3.14.6",
+        "complete_native_execution": true,
+        "native_execution_phase": "native-construction-r1",
+        "readback_only": true,
+        "raw_exact_C206_matched": true,
+        "final_exact_C206_manual_recovery": true,
+        "raw_sha256": "a3cbb3802b782f1ecd3844a79bb83bdd2f5b476ec32fe296485a206af8c88afb",
+        "final_sha256": "9c8d12db6c6625e4a03b3bea3cfb2d631781b517776523be53e6163fdc825a95",
+        "serial_repairs": 617,
+        "removed_atoms": [
+          {
+            "site": "A:12",
+            "chain_id": "A",
+            "resseq": "12",
+            "icode": "",
+            "altloc": "",
+            "component": "PDU",
+            "atom": "OP3",
+            "canonical_atom": "OP3",
+            "element": "O",
+            "serial": 247,
+            "old_serial": 247,
+            "new_serial": 247,
+            "reason": "verified-incoming-O3-prime-P-link"
+          },
+          {
+            "site": "B:4",
+            "chain_id": "B",
+            "resseq": "4",
+            "icode": "",
+            "altloc": "",
+            "component": "PDU",
+            "atom": "OP3",
+            "canonical_atom": "OP3",
+            "element": "O",
+            "serial": 514,
+            "old_serial": 23,
+            "new_serial": 514,
+            "reason": "verified-incoming-O3-prime-P-link"
+          }
+        ],
+        "serial_authority": {
+          "status": "INPUT_IDENTITY_AUTHORITY_PASS",
+          "policy_id": "postmr-input-identity-serial-context-v1",
+          "order": "RAW_COORDINATE_RECORD_ORDER_SKIP_TER",
+          "reserved_ter_serials": [],
+          "unselected_atom_count": 818,
+          "unselected_nonserial_fields_preserved": true,
+          "serial_reference_records": "ABSENT"
+        },
+        "measured_sites": {
+          "A:12": {
+            "code": "PDU",
+            "chi_degrees": -150.12204081794746,
+            "chi_atoms": [
+              "O4'",
+              "C1'",
+              "N1",
+              "C2"
+            ],
+            "ring_rms_plane_distance": 0.0019142232077939104,
+            "ring_plane_distances": {
+              "C5": 0.0016926456090345376,
+              "C5A": 0.00036531897415081893,
+              "C5B": 0.06868361539770129,
+              "C5M": 0.22314454977402987
+            },
+            "c5_angles": {
+              "C4:C5:C6": 118.45184010325919,
+              "C4:C5:C5A": 120.60163289120742,
+              "C6:C5:C5A": 120.9455915549756
+            },
+            "linear_angles": {
+              "C5:C5A:C5B": 174.83981071319133,
+              "C5A:C5B:C5M": 170.96187560531138
+            },
+            "bonds": {
+              "C5:C5A": 1.4304806884400758,
+              "C5A:C5B": 1.173824518401283,
+              "C5B:C5M": 1.6072887108419562
+            },
+            "c5_bond_out_of_ring_plane_degrees": 0.05316410472482116,
+            "c5_angle_sum": 359.9990645494422
+          },
+          "B:4": {
+            "code": "PDU",
+            "chi_degrees": -108.94561888518307,
+            "chi_atoms": [
+              "O4'",
+              "C1'",
+              "N1",
+              "C2"
+            ],
+            "ring_rms_plane_distance": 0.0020049167837700036,
+            "ring_plane_distances": {
+              "C5": 0.0014172654398775242,
+              "C5A": 0.00013710986770409939,
+              "C5B": 0.06747341160618359,
+              "C5M": 0.22243413964578584
+            },
+            "c5_angles": {
+              "C4:C5:C6": 118.49400362469306,
+              "C4:C5:C5A": 120.54893692007747,
+              "C6:C5:C5A": 120.95628968230011
+            },
+            "linear_angles": {
+              "C5:C5A:C5B": 174.94720495797284,
+              "C5A:C5B:C5M": 170.85554643502905
+            },
+            "bonds": {
+              "C5:C5A": 1.4310628916997323,
+              "C5A:C5B": 1.173938243690867,
+              "C5B:C5M": 1.6079735694345223
+            },
+            "c5_bond_out_of_ring_plane_degrees": 0.06223287804593249,
+            "c5_angle_sum": 359.99923022707065
+          }
+        },
+        "inputs_unchanged": true,
+        "scope": "ORDINARY_CONSTRUCTION_ONLY; NO_READYSET_OR_DIFFRACTION_REFINEMENT; ORIGINAL_DICTIONARY_NOT_PLANE_CANDIDATE"
+      },
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Global repair requires no CONECT/ANISOU/SIGATM/SIGUIJ or explicit models; unsupported authority retains raw.",
+        "Only context transactions requiring proven internal OP3 removal enter this normalization; it is not a generic PDB cleaner.",
+        "No ReadySet, Phenix, NAR, diffraction/refinement or plane-candidate adoption execution in C210."
+      ]
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_identity_serials.py::test_global_serial_repair_proves_only_identity_fields_and_internal_op3",
+          "tests/test_postmr_identity_serials.py::test_ordinary_path_uses_new_authority_and_rolls_back_failed_final_proof",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "before-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_identity_serials.py::test_final_audit_binds_explicit_terminal_intent_without_inferring_consent",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/before-r2/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_identity_serials.py",
+          "tests/test_postmr_context.py",
+          "tests/test_postmr_context_mixed.py",
+          "tests/test_cif_postmr_construction.py",
+          "tests/test_cif_curated_context_audit.py",
+          "tests/test_cif_construction_return.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/focused-r2/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "callers-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr.py",
+          "tests/test_postmr_component_inputs.py",
+          "tests/test_cif_mixed_pair_fixture.py",
+          "tests/test_postmr_conformation.py",
+          "tests/test_phosphate.py",
+          "tests/test_postmr_phosphate.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/callers-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      }
+    },
+    "native_commands": {
+      "native-construction-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/native-construction-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/native-construction-r1",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners"
+        ],
+        "timeout_seconds": 180
+      },
+      "native-readback-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/native-readback-r2/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/210_Cedar_identity-serial-4b2d9inm/native-readback-r2",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners"
+        ],
+        "timeout_seconds": 180
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "failed_attempts": [
+      "Native construction succeeded; first independent audit omitted explicit protected D:1 intent. Preserved outputs re-audited after regression/correction; Coot not rerun."
+    ],
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/start.json",
+        "sha256": "83464a0998d39bf555a731e35850478243dfa4fa86598747eb9683d7c58617ab",
+        "size": 206
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/final-audit.json",
+        "sha256": "43c4f1ef856a1539afbda00b1ade4360dbaa431fe6441fc3d5ace2a30acec881",
+        "size": 4476
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/focused-r2/tests.xml",
+        "sha256": "b69188589f1d8b39beb66eb524ae430e197b18eba3c902f27b57c145f0a80521",
+        "size": 19924
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/callers-r1/tests.xml",
+        "sha256": "7412fa761f811f86f67c15d1cdd6cd20a2ad01ad0ebee0dbfd5c0c5b4808353b",
+        "size": 18912
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/native-construction-r1/result.json",
+        "sha256": "c503218892d883a2cb1b66fb77e3e8b400c66ac9c930be87dfa1d610e5bfa8fa",
+        "size": 193514
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/native-construction-r1/model.pdb",
+        "sha256": "9c8d12db6c6625e4a03b3bea3cfb2d631781b517776523be53e6163fdc825a95",
+        "size": 70474
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/native-construction-r1/model_raw.pdb",
+        "sha256": "a3cbb3802b782f1ecd3844a79bb83bdd2f5b476ec32fe296485a206af8c88afb",
+        "size": 70636
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/native-readback-r2/audit.json",
+        "sha256": "78cf902a9ad9b5703bb23d3cc424fea7aeafb8081bda5c587f74f89b2dd936fc",
+        "size": 324992
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "210_Cedar_identity-serial-4b2d9inm/native-readback-r2/summary.json",
+        "sha256": "76009e1e79f5888a21986ca9df16f886af0fc1ebafd9361fa5012f77c38f30c2",
+        "size": 3591
+      }
+    ],
+    "excluded": "Raw crystallographic data, dictionaries, coordinates, logs and runners stay local; only compact evidence references committed."
   }
 }

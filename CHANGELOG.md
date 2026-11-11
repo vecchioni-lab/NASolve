@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recover identity-proven construction serials (C210)
+
+- Handle Coot-wide serial collisions using exact immutable atom identity and
+  unselected nonserial fields, refusing unsupported references and preserving TER.
+- Keep historical default replay, phosphate chemistry and whole-base transport
+  unchanged; independently audit every delta and retain raw context on failed proof.
+- Carry explicit terminal/passthrough intent through the final construction audit;
+  do not infer exceptions from a receipt. Fresh native PDU construction now reaches
+  the same model as the earlier manual serial recovery.
+
 ### Prepare conservative source-supported plane additions (C209)
 
 - Extend an unambiguous existing plane from source graph/state and a supplied
