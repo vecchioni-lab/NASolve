@@ -621,6 +621,38 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Execute the ordinary-prepared request through the existing owner (C219)
+
+C219 executes the exact original request produced by C218. It does not copy a
+request for execution, reconstruct Coot/NAR, use a retained candidate, or add an
+owner. A fresh local store exercises source-preserving generation and native
+component qualification, connected preparation, linear-torsion repair, full native
+attribution/derivative checks, then owned ASU-aware ReadySet continuation.
+Live settings are reconstructed from the same selected SDK configuration and must
+match frozen intent before the existing executor can reserve attempt 1.
+
+Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** completes this bounded execution and
+selects `readyset_checked_model`; baseline, ReadySet and endpoint phases complete.
+The outer request and child work are sealed stopped. All 76 pre-existing preparation
+files retain bytes/mtimes, including the original MR report. No checkpoint or
+ordinary status is promoted. Coot is not repeated; C218's complete 1.3.3 construction
+is the frozen input. Exact selected readback succeeds from a relocated checkout
+after original copy removal with historical paths, SDK and execution denied;
+1495 copied source/evidence files are unchanged.
+
+The selected-model source-graph audit still reports missing explicit plane coverage
+at PDU/A:9/C5. This is not a claim that alternative restraints are absent or that a
+universal geometry threshold failed.
+The owned repair composer still dispatches linear-torsion repair only. C208–C216
+plane construction, provenance, mechanics and geometry checks are available but
+still need composition into that owner before automatic plane-repair claims.
+No numerical target calibration, diffraction refinement, default CLI activation
+or Q05 adoption is established by this control.
+
+No source code changed and C218's **231 tests + 14 subtests** remain the focused
+baseline; no redundant rerun or full suite. Exact commands and local evidence:
+`ordinary_postmr_request_execution_2026_11_11`.
+
 ### Ordinary preparation into the existing request (C218)
 
 `cif_ordinary_postmr.initialize_ordinary_postmr_request` accepts an ordinary run,

@@ -11,7 +11,48 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C218 validated: ordinary preparation publishes the existing request
+## C219 validated: ordinary request executes and replays cold
+
+Base `fa27ed1bfe3d49e4495102bbaa8ac49981f58027`; capsule
+`live_tests_directory/219_Cedar_ordinary-request-execution-_6y5y09h`. All 2 validation workers and the
+outer/native child attempts are stopped. End-of-session update before **23:00 UTC**.
+
+**Before → after:** C218 published inputs but had not executed them. The original
+request now completes fresh source-preserving generation, acquisition, connected
+repair and owned ReadySet/native continuation, selecting `readyset_checked_model`.
+No manual intake, repeated Coot/NAR, retained-candidate shortcut or copied request
+execution. The original MR report/status and 76 existing preparation files are unchanged.
+
+**Files/schema:** maintained docs/ledger only; source code stays at C218. No schema,
+compatibility, default invocation or checkpoint change. No native retry.
+
+**Validation:** actual Phenix **2.2.1-6174 / dispatcher 2.2.1** complete owned request;
+Coot **1.3.3 revision-count 0** input reused from C218, not rerun. Cold exact selected
+readback passes without original copy paths/SDK/execution; 1495 copied files
+and all 600 original Linden files unchanged. No source change, so no repeated
+pytest; C218's **231 + 14 subtests** remain current. No diffraction/full suite;
+last full C160. Exact commands: `ordinary_postmr_request_execution_2026_11_11`.
+Raw models, dictionaries, requests, logs and runners remain local.
+
+**Geometry boundary:** The selected-model source-graph audit still reports missing
+explicit plane coverage at PDU/A:9/C5. This is not a claim that alternative
+restraints are absent or that a universal geometry threshold failed.
+Current owned repair is linear-torsion-only. Keep C208–C216's general plane
+candidate/provenance/native/energy/geometry work and compose it into the same
+owner; do not replace preserved ring groups with wholesale generator output.
+
+**Next:** truthful ordinary outcome reporting and default/resume integration,
+then exact Q05 selection/checkpoint publication with interruption recovery. Reuse
+the original request and explicit successful attempt; do not repeat native work
+to reconstruct already verified inputs or infer selection from latest files.
+Keep plane composition, Q06 real complete-restraint refinement, Q07 mixed-plus-ATL
+and held-out controls, numerical targets/DP/source-H limits and Q08–Q16 visible.
+No new owner/compiler/queue. Single-author Cedar; self-continuity only.
+— Rowan · Codex desktop
+
+## C218 published: ordinary preparation publishes the existing request
+
+Implementation published as `fa27ed1bfe3d49e4495102bbaa8ac49981f58027`.
 
 Base `a515b2e2dda2c1a471aebb4735228bb84bf41e1f`; capsule
 `live_tests_directory/218_Cedar_ordinary-request-entry-jclcm02q`. All 6 validation/native workers stopped.

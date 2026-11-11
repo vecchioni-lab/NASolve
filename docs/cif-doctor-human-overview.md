@@ -66,7 +66,10 @@ An [explicit ordinary initializer](cif-doctor.md#ordinary-preparation-into-the-e
 now carries normal Coot construction and NAR restraint generation directly into
 the existing immutable request, replacing the earlier manual validation handoff.
 It preserves partial work and the original MR status; a prepared request does not
-mean execution or refinement readiness. Default invocation/adoption remain open.
+mean execution or refinement readiness. A subsequent [fresh owned execution](cif-doctor.md#execute-the-ordinary-prepared-request-through-the-existing-owner-c219)
+passes acquisition, linked repair and ReadySet/native continuation, with cold
+selected-result replay. Default invocation/adoption remain open. The owned composer
+still handles linear-torsion repairs; automatic plane completion is not yet enabled.
 
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
 native chain and fresh recovery under one request. Exact NAR plane intake now

@@ -86823,7 +86823,7 @@
     "published_revision": "a515b2e2dda2c1a471aebb4735228bb84bf41e1f"
   },
   "ordinary_postmr_request_entry_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -87025,6 +87025,165 @@
     "excluded": "Raw Coot models, NAR output, source copies, request trees, logs and runners remain local; no serialized live environment.",
     "failed_controls": [
       "focused-r1 selected nonexistent test paths and collected no tests; evidence retained."
-    ]
+    ],
+    "published_revision": "fa27ed1bfe3d49e4495102bbaa8ac49981f58027"
+  },
+  "ordinary_postmr_request_execution_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "fa27ed1bfe3d49e4495102bbaa8ac49981f58027",
+    "before": "Maintained ordinary initializer had only request-intake validation.",
+    "after": "Its exact original request completes fresh owned acquisition/repair/ReadySet with selected-result cold replay.",
+    "files": [
+      "docs/README.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-restraint-doctor-implementation.json",
+      "docs/development-handoff.md"
+    ],
+    "schemas": "UNCHANGED",
+    "compatibility": "No default CLI/campaign or checkpoint activation.",
+    "validation": {
+      "status": "ORDINARY_ENTRY_TO_EXISTING_OWNER_VALIDATED",
+      "native_outcome": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+      "selected": "readyset_checked_model",
+      "native_elapsed_seconds": 988.9240509170049,
+      "native_phases": {
+        "native-baseline": "COMPLETED",
+        "native-endpoint": "COMPLETED",
+        "readyset": "COMPLETED"
+      },
+      "existing_preparation_files_unchanged": 76,
+      "original_scientific_files_unchanged": 600,
+      "validation_workers_stopped": 2,
+      "outer_and_children_stopped_verified": true,
+      "cold_files": 1495,
+      "cold_elapsed_seconds": 162.89288233299158,
+      "cold_original_copy_absent": true,
+      "cold_original_paths_sdk_and_execution_denied": true,
+      "selected_model_geometry": {
+        "PDU": {
+          "status": "REVIEW",
+          "sites": [
+            "A:9"
+          ],
+          "centres": [
+            {
+              "site": "A:9",
+              "centre": "C2",
+              "coverage": "EXPLICIT_PLANE_PRESENT",
+              "angle_sum_degrees": 359.99960554564905,
+              "max_absolute_bond_elevation_degrees": 0.20313939763892214
+            },
+            {
+              "site": "A:9",
+              "centre": "C4",
+              "coverage": "EXPLICIT_PLANE_PRESENT",
+              "angle_sum_degrees": 359.9996848442913,
+              "max_absolute_bond_elevation_degrees": 0.1856317765459084
+            },
+            {
+              "site": "A:9",
+              "centre": "C5",
+              "coverage": "EXPLICIT_PLANE_MISSING",
+              "angle_sum_degrees": 359.9887400753135,
+              "max_absolute_bond_elevation_degrees": 1.0784134900535005
+            }
+          ],
+          "reason": null
+        }
+      },
+      "missing_explicit_planes": [
+        "PDU/A:9/C5"
+      ],
+      "scientific_qualification": "NOT_ASSESSED",
+      "automatic_adoption": false,
+      "tests": "NOT_RERUN; NO_SOURCE_CHANGE; C218 231 FOCUSED + 14 SUBTESTS",
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1"
+    },
+    "commands": {
+      "execution-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/219_Cedar_ordinary-request-execution-_6y5y09h/execution-r1/worker.py",
+          "/Users/svecchio/NASolve-live-tests/219_Cedar_ordinary-request-execution-_6y5y09h"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/219_Cedar_ordinary-request-execution-_6y5y09h/execution-r1",
+        "timeout_seconds": 1500,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "cold-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/219_Cedar_ordinary-request-execution-_6y5y09h/cold-r1/worker.py",
+          "/Users/svecchio/NASolve-live-tests/219_Cedar_ordinary-request-execution-_6y5y09h/cold-r1"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/219_Cedar_ordinary-request-execution-_6y5y09h/cold-r1/relocated/checkout",
+        "timeout_seconds": 480,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/219_Cedar_ordinary-request-execution-_6y5y09h/cold-r1/relocated/checkout/src"
+        }
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "request": {
+      "anchor": "live_tests_directory",
+      "path": "218_Cedar_ordinary-request-entry-jclcm02q/native-entry-r1/ordinary run/PostMR/DictionaryEngine/request"
+    },
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "219_Cedar_ordinary-request-execution-_6y5y09h/start.json",
+        "sha256": "f42346991d4382bb42db7374a20c9724f5401d1c6568753810694931e4f15e78",
+        "size": 411
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "219_Cedar_ordinary-request-execution-_6y5y09h/final-audit.json",
+        "sha256": "cc737b6b50562c31ddb3f2ceda76af9bd71e70ed68001b88206dd532f053fa8e",
+        "size": 1836
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "219_Cedar_ordinary-request-execution-_6y5y09h/execution-r1/summary.json",
+        "sha256": "2d0aed3d9be7f2a5d1f2330a1374be71e91a66e1a7fc404d82ea57f4578d11e8",
+        "size": 1557
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "219_Cedar_ordinary-request-execution-_6y5y09h/execution-r1/execution.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "219_Cedar_ordinary-request-execution-_6y5y09h/execution-r1/public-assessment.json",
+        "sha256": "c479d348c940da4f5e76aab1244c24ed44af4806a35afda70e4e452d2fc10c2b",
+        "size": 104164
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "219_Cedar_ordinary-request-execution-_6y5y09h/cold-r1/summary.json",
+        "sha256": "53c1a19bc460fb795fe8e393aa9eb01e18d4db69f2fcff7dc12adbed27e991f5",
+        "size": 6200
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "219_Cedar_ordinary-request-execution-_6y5y09h/cold-r1/execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      }
+    ],
+    "excluded": "Generated models/CIFs/PHIL, original request tree, native captures, store, logs and runners remain local. No live environment persisted."
   }
 }

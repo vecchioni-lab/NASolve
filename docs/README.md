@@ -44,8 +44,9 @@ milestone statements preserve their original scope; they are not a second queue.
   owns exact validation. [Selected runtime forwarding](cif-doctor.md#selected-phenix-runtime-through-ordinary-postmr-c217)
   now preserves the CLI/campaign installation through ordinary cache checks;
   the [ordinary request initializer](cif-doctor.md#ordinary-preparation-into-the-existing-request-c218)
-  now shares Coot/NAR preparation into that owner before legacy work. Execution
-  reporting/default invocation and adoption remain open. Full regression remains deferred to integration; C160
+  now shares Coot/NAR preparation into that owner before legacy work. Its [fresh owned execution and cold selection](cif-doctor.md#execute-the-ordinary-prepared-request-through-the-existing-owner-c219)
+  now pass from that exact request. Reporting/default invocation, owned plane-repair
+  composition and adoption remain open. Full regression remains deferred to integration; C160
   is the last completed full baseline. Milestone sections preserve original scope.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
