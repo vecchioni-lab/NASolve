@@ -32,15 +32,14 @@ from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_model_context import validate_prepared_model_context
 from .postmr_lineage import read_postmr_construction, POLICY_ID as CONSTRUCTION_POLICY
 from .cif_restraint_context import validate_restraint_context
-from .cif_literal_na_inputs import resolve_literal_na_inputs, POLICY_ID as LITERAL_NA_POLICY
-from .cif_explicit_na_policy import read_explicit_na_policy, POLICY_ID as EXPLICIT_NA_POLICY
+from .cif_literal_na_inputs import resolve_literal_na_inputs
+from .cif_explicit_na_policy import read_explicit_na_policy
 from . import cif_runtime_continuation as continuation
 from .cif_runtime_continuation_process import inspect_runtime_continuation_processes, POLICY_ID as CONTINUATION_PROCESS_POLICY
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
-_COMPILER_INPUTS = {'literal_na_inputs':('literal_na',LITERAL_NA_POLICY),
-                    'explicit_na_policy':('explicit_na',EXPLICIT_NA_POLICY)}
+_COMPILER_INPUTS = {'literal_na_inputs':'literal_na', 'explicit_na_policy':'explicit_na'}
 _LIMITS = dict(native_timeout_seconds=600, component_timeout_seconds=3600,
                attribution_timeout_seconds=300, derivative_timeout_seconds=600,
                total_timeout_seconds=3600)
@@ -91,7 +90,14 @@ def _continuation_parameters(config):
 
 def _compiler_input(kind, directory, selected_sources=None):
     """Resolve an existing compiler artifact; never compile or guess new intent."""
-    if kind == 'literal_na_inputs': return resolve_literal_na_inputs(directory)
+    if kind == 'literal_na_inputs':
+        result=resolve_literal_na_inputs(directory)
+        if selected_sources is not None:
+            for code,ref in result['report'].get('source_components',{}).items():
+                if code in selected_sources:
+                    _need(_read(Path(directory)/ref['path'])==_read(selected_sources[code]['source']),
+                          'Literal compiler source differs from selected acquisition source: '+code)
+        return result
     _need(kind == 'explicit_na_policy', 'Unsupported compiler input kind')
     root = Path(directory); report = read_explicit_na_policy(root)
     if selected_sources is not None:
@@ -178,11 +184,11 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         validate_restraint_context(inputs/'model.pdb', [inputs/n for n in names], restraint_context)
     compiler_refs = _compiler_references(literal_na_inputs,explicit_na_policy)
     for kind,reference in compiler_refs.items():
-        folder,policy = _COMPILER_INPUTS[kind]
-        _need(reference == dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=policy)
+        folder = _COMPILER_INPUTS[kind]
+        compiled = _compiler_input(kind,inputs/folder,selected['sources'])
+        _need(reference == dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
               and model_context is not None and restraint_context is not None,
               'Compiler provenance requires both owned contexts and its exact reference')
-        compiled = _compiler_input(kind,inputs/folder,selected['sources'])
         _need(_read(compiled['model']) == _read(inputs/'model.pdb')
               and [_read(p) for p in compiled['phils']] == [_read(inputs/n) for n in names],
               'Compiler provenance differs from owned model or ordered restraints')
@@ -259,9 +265,10 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     files = {'model.pdb':originals[Path(model)]}; sites = {}; directories = set()
     compiler_refs = {}
     for kind,value in _compiler_references(literal_na_inputs,explicit_na_policy).items():
-        folder,policy = _COMPILER_INPUTS[kind]
+        folder = _COMPILER_INPUTS[kind]
         trees[folder] = _root(value)
-        compiler_refs[kind] = dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=policy)
+        compiled = _compiler_input(kind,trees[folder],selected['sources'])
+        compiler_refs[kind] = dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
     for item in components:
         _need(isinstance(item,dict) and {'code','contexts','generation'} <= item.keys()
             and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource','phosphate_atom_policy'},
@@ -435,7 +442,7 @@ def _result(root, attempt, intent, config, children, bindings):
     expected = dict(components=sorted(selection),sites=sites,consumer=controls['consumer'],expected_links=controls['expected_links'],
         native_context=controls['native_context'],supplementary_phils=['inputs/'+n for n in controls['supplementary_phils']])
     _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
-    outer_only = ('retained/',) + (('construction/',) if 'construction_inputs' in config else ()) + tuple(folder+'/' for name,(folder,_) in _COMPILER_INPUTS.items() if name in config)
+    outer_only = ('retained/',) + (('construction/',) if 'construction_inputs' in config else ()) + tuple(folder+'/' for name,folder in _COMPILER_INPUTS.items() if name in config)
     for name,data in _tree(root/'inputs').items():
         if not name.startswith(outer_only):
             _need(_read(attempt/'preparation/inputs'/name) == data, 'Prepared input differs from frozen outer intent')
@@ -464,7 +471,7 @@ def _result(root, attempt, intent, config, children, bindings):
         status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_outer_provenance_fields(config))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
-        **{name:_compiler_input(name,root/'inputs'/folder) for name,(folder,_) in _COMPILER_INPUTS.items() if name in config},
+        **{name:_compiler_input(name,root/'inputs'/folder) for name,folder in _COMPILER_INPUTS.items() if name in config},
         **({'construction_inputs':read_postmr_construction(root/'inputs/construction')} if 'construction_inputs' in config else {}),
         **({'continuation':continued} if 'continuation' in config else {}))
 

@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-11-10:** CIF Doctor assesses component graphs
+**Implemented scope, updated 2026-11-11:** CIF Doctor assesses component graphs
 and numerical restraints, records source-preserving PostMR audits, and provides
 explicit preparation, native interpretation and bounded geometry diagnostics.
 Supported ordinary construction preserves whole connected modified bases;
@@ -26,8 +26,10 @@ The [literal-input bridge](cif-doctor.md#original-literal-input-provenance-c187)
 also preserves original pair/stack declarations and their native/compiler evidence
 through explicit owned requests. It reuses the NAR compiler and changes no recipe
 or chemical-state authority. Ordinary orchestration, checkpoint adoption and actual
-refinement remain open; the current literal bridge requires an interpretable native
-input capture before compilation. The alternative
+refinement remain open. The original literal mode requires an interpretable native
+input capture. [C197 source-bound literal intake](cif-doctor.md#source-bound-literal-intake-without-prior-native-capture-c197)
+now preserves the same explicit intent using readable source graphs before that
+capture, while withholding numerical and native qualification. The alternative
 [source-bound intake](cif-doctor.md#existing-source-bound-compiler-intake-c188)
 retains an existing C80 artifact, source graphs and pair choices without requiring
 that capture. The two modes share one owner and cannot silently substitute one

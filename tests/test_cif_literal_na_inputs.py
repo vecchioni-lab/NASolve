@@ -266,3 +266,190 @@ def test_literal_native_indices_are_not_replaced_with_pdb_record_positions(tmp_p
     assert all(a.startswith('native-') for row in requests for a in row['atoms'])
     assert all(a.startswith('pdb-record-') for row in result['restraint_context']['requests'] for a in row['atoms'])
     assert requests[0]['i_seqs']!=result['restraint_context']['requests'][0]['i_seqs']
+
+
+def source_literal_case(tmp_path):
+    """Toy role graphs exercise identity/transport, not source chemistry."""
+    model,phil,native=policy_fixture(tmp_path)
+    text=phil.read_text();a=text.index(' apply_cif_modification {');b=text.index(' }',a)
+    text=text[:a]+text[b+3:]
+    text+='refinement {\n geometry_restraints.edits {\n planarity {\n action = add\n atom_selection = (chain Z and resid 1 and (name C4 or name C5 or name C6)) or (chain Z and resid 3 and (name C4 or name C5 or name C6))\n sigma = 0.025\n }\n }\n}\n'
+    phil.write_text(text)
+    by_code={}
+    for line in model.read_text().splitlines():
+        if line.startswith('ATOM'):
+            by_code.setdefault(line[17:20].strip(),{})[line[12:16].strip()]=line[76:78].strip()
+    sources={}
+    for code,atoms in by_code.items():
+        path=tmp_path/(code+'.cif');names=list(atoms)
+        path.write_text(f'data_{code}\n_chem_comp.id {code}\nloop_\n_chem_comp_atom.comp_id\n_chem_comp_atom.atom_id\n_chem_comp_atom.type_symbol\n'
+            +''.join(f'{code} {name} {element}\n' for name,element in atoms.items())
+            +'loop_\n_chem_comp_bond.comp_id\n_chem_comp_bond.atom_id_1\n_chem_comp_bond.atom_id_2\n_chem_comp_bond.value_order\n'
+            +''.join(f'{code} {a} {b} SING\n' for a,b in zip(names,names[1:])))
+        sources[code]=path
+    return model,phil,native,sources
+
+
+def test_source_literal_compilation_preserves_exact_declared_bytes_without_capture(tmp_path,monkeypatch):
+    from nasolve import cif_literal_na_inputs as literal
+    from nasolve.cif_na_policy import _compile_na_policy_payload
+    model,phil,native,sources=source_literal_case(tmp_path)
+    _,expected=_compile_na_policy_payload(model,[phil],native)
+    before=inventory(tmp_path)
+    def forbidden(*a,**k):raise AssertionError('Source-bound compilation must not acquire or fabricate a native capture')
+    monkeypatch.setattr(literal,'_capture',forbidden)
+    with patch('subprocess.Popen',side_effect=forbidden):
+        result=literal.prepare_source_literal_na_inputs(model,[phil],sources,tmp_path/'frozen')
+    assert result['policy_id']=='cif-source-literal-na-inputs-v1'
+    assert result['index_basis']=='PDB_RECORD_ORDER; NOT_NATIVE_CAPTURE_INDICES'
+    assert result['native_membership']=='NOT_ASSESSED_FOR_COMPILED_INPUTS'
+    assert result['compilation']['pair_count']==result['compilation']['stack_count']==1
+    assert result['restraint_context']['request_counts']=={'angle':2,'bond':2,'parallelity':2,'planarity':1}
+    assert 'native_receipt' not in result and not (tmp_path/'frozen/native').exists()
+    assert {n:(tmp_path/'frozen/compiled'/n).read_bytes() for n in expected}==expected
+    assert all(inventory(tmp_path)[n]==v for n,v in before.items())
+    selected=literal.resolve_literal_na_inputs(tmp_path/'frozen')
+    assert selected['report']==result and len(selected['phils'])==2
+
+
+def test_source_literal_mode_does_not_claim_numeric_source_qualification(tmp_path):
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs
+    model,phil,native,sources=source_literal_case(tmp_path)
+    p=sources['DA'];p.write_text(p.read_text()+'loop_\n_chem_comp_angle.comp_id\n_chem_comp_angle.atom_id_1\n_chem_comp_angle.atom_id_2\n_chem_comp_angle.atom_id_3\n_chem_comp_angle.value_angle\nDA N1 C2 N3 INVALID_NUMERICAL_TARGET\n')
+    result=prepare_source_literal_na_inputs(model,[phil],sources,tmp_path/'frozen')
+    assert result['scientific_approval']=='NOT_RUN' and result['automatic_adoption'] is False
+    assert result['native_membership']=='NOT_ASSESSED_FOR_COMPILED_INPUTS'
+    assert (tmp_path/'frozen/sources/DA.cif').read_bytes()==p.read_bytes()
+
+
+def test_source_literal_mode_replays_after_originals_disappear(tmp_path):
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs,read_literal_na_inputs
+    source=tmp_path/'source';source.mkdir();model,phil,native,sources=source_literal_case(source)
+    result=prepare_source_literal_na_inputs(model,[phil],sources,tmp_path/'frozen')
+    moved=(tmp_path/'frozen').rename(tmp_path/'moved with spaces');shutil.rmtree(source)
+    before=inventory(moved)
+    with patch('subprocess.Popen',side_effect=AssertionError('Cold read cannot execute')):
+        assert read_literal_na_inputs(moved)==result
+    assert inventory(moved)==before
+
+
+@pytest.mark.parametrize('defect',['missing_source','extra_source','element','role','modifier','recipe','scope'])
+def test_source_literal_mode_refuses_unbound_roles_and_intent_before_writing(tmp_path,defect):
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs
+    model,phil,native,sources=source_literal_case(tmp_path)
+    if defect=='missing_source':sources.pop('DT')
+    elif defect=='extra_source':sources['ZZZ']=sources['DT']
+    elif defect=='element':sources['DA'].write_text(sources['DA'].read_text().replace('DA N6 N','DA N6 O'))
+    elif defect=='role':sources['DA'].write_text(sources['DA'].read_text().replace('N6','XX'))
+    elif defect=='modifier':phil.write_text(phil.read_text()+'refinement {\n pdb_interpretation.apply_cif_modification {\n data_mod = BAD\n residue_selection = chain Z and resid 1\n }\n}\n')
+    elif defect=='recipe':phil.write_text(phil.read_text().replace('saenger_class = 20','saenger_class = 19'))
+    else:phil.write_text(phil.read_text().replace('(name C4 or name C5 or name C6)','name C4 or name C5 or name C6'))
+    with pytest.raises(ValueError):prepare_source_literal_na_inputs(model,[phil],sources,tmp_path/'refused')
+    assert not (tmp_path/'refused').exists()
+
+
+@pytest.mark.parametrize('defect',['original','source','model','compiled','basis','role','native_claim','extra'])
+def test_source_literal_mode_rejects_changed_or_relabelled_evidence(tmp_path,defect):
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs,read_literal_na_inputs
+    model,phil,native,sources=source_literal_case(tmp_path);root=tmp_path/'frozen'
+    result=prepare_source_literal_na_inputs(model,[phil],sources,root)
+    path=root/'literal_na_inputs.json'
+    files={'original':'original/000.phil','source':'sources/DA.cif','model':'model.pdb','compiled':'compiled/explicit_na_policy.phil'}
+    if defect in files:
+        p=root/files[defect];p.write_bytes(p.read_bytes()+b'\n')
+    elif defect=='extra':(root/'native_capture.json').write_text('{}\n')
+    else:
+        if defect=='basis':result['index_basis']='NATIVE'
+        elif defect=='role':result['compilation']['site_roles']['Z:1']['base_class']='T'
+        else:result['native_membership']='PASS'
+        save(path,result)
+    with pytest.raises(ValueError):read_literal_na_inputs(root)
+
+
+def source_literal_request(case,tmp_path):
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs,resolve_literal_na_inputs
+    from nasolve.cif_native_context import FULL_MODEL_POLICY_ID
+    m,args,root=prepared_request(case,tmp_path)
+    folder=tmp_path/'source-literal';folder.mkdir()
+    model,phil,native,sources=source_literal_case(folder);model.write_bytes(args['model'].read_bytes())
+    output=tmp_path/'source-literal-artifact';prepare_source_literal_na_inputs(model,[phil],sources,output)
+    selected=resolve_literal_na_inputs(output)
+    args.update(literal_na_inputs=output,supplementary_phils=selected['phils'],restraint_context=selected['report']['restraint_context'],
+        native_context=dict(policy_id=FULL_MODEL_POLICY_ID,monomer_inventory='full_model',custom_restraints='required'))
+    return m,args,root,phil,sources
+
+
+def test_source_literal_existing_entry_freezes_original_intent_and_policy(case,tmp_path):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    m,args,root,phil,sources=source_literal_request(case,tmp_path)
+    components=[{k:v for k,v in row.items() if k!='contexts'} for row in args['components']]
+    with patch('subprocess.Popen',side_effect=AssertionError('Initializer cannot execute')):
+        result=initialize_postmr_dictionary_request(args['model'],args['model_context']['intent'],components,
+            tmp_path/'selected',root,consumer=args['consumer'],ready_set_executable=case[3].executables['phenix.ready_set'],
+            supplementary_phils=[phil],data_root=tmp_path/'data',literal_na_inputs=args['literal_na_inputs'])
+    assert result['configuration']['literal_na_inputs']['policy_id']=='cif-source-literal-na-inputs-v1'
+    assert (root/'inputs/literal_na/original/000.phil').read_bytes()==phil.read_bytes()
+    assert m.inspect_dictionary_request(root)['attempts']==[]
+
+
+def test_source_literal_and_construction_evidence_share_existing_recovery_owner(case,tmp_path):
+    from nasolve.postmr_lineage import begin_postmr_construction,finish_postmr_construction
+    m,args,root,phil,sources=source_literal_request(case,tmp_path)
+    run=tmp_path/'ordinary';models=run/'PostMR/Model';models.mkdir(parents=True)
+    for name in ('mr_solution.pdb','after_coot.pdb','prepared_model.pdb'):
+        (models/name).write_bytes(args['model'].read_bytes())
+    start=begin_postmr_construction(run,models/'mr_solution.pdb',models/'mr_solution.pdb',{},[],
+        allow_op3_sites=args['model_context']['intent']['post_mr_plan']['allow_op3_sites'])
+    finish_postmr_construction(run,start,models/'prepared_model.pdb',dict(model=models/'after_coot.pdb',raw_model=None,coot_log=None))
+    args['construction_inputs']=run
+    m.initialize_dictionary_request(**args)
+    first=m.execute_dictionary_request_attempt(root,case[3],case[4],generation=case[5]);old=inventory(root/'attempts/attempt-0001')
+    second=m.execute_dictionary_request_attempt(root,case[3],case[4],generation=case[5])
+    assert first['attempt_id']!=second['attempt_id'] and inventory(root/'attempts/attempt-0001')==old
+    assert second['result']['literal_na_inputs']['policy_id']=='cif-source-literal-na-inputs-v1'
+    assert second['result']['construction_inputs']['policy_id']=='postmr-construction-lineage-v1'
+    assert not (root/'attempts/attempt-0001/preparation/inputs/literal_na').exists()
+    moved=root.rename(tmp_path/'relocated source request');shutil.rmtree(args['literal_na_inputs']);shutil.rmtree(run)
+    shutil.rmtree(phil.parent);args['model'].unlink();before=inventory(moved)
+    with patch('subprocess.Popen',side_effect=AssertionError('Cold read cannot execute')):
+        result=m.read_dictionary_request_result(moved,2)
+        assert all(a['state']=='STOPPED' for a in m.inspect_dictionary_request(moved)['attempts'])
+    assert result['literal_na_inputs']['report']['index_basis'].startswith('PDB_RECORD_ORDER')
+    assert result['construction_inputs']['model'].is_file() and inventory(moved)==before
+
+
+def test_source_literal_compiler_source_join_rejects_selected_byte_disagreement(tmp_path):
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs
+    from nasolve.cif_complete_request import _compiler_input
+    model,phil,native,sources=source_literal_case(tmp_path);root=tmp_path/'frozen'
+    prepare_source_literal_na_inputs(model,[phil],sources,root)
+    _compiler_input('literal_na_inputs',root,{'DA':{'source':sources['DA']}})
+    sources['DA'].write_bytes(sources['DA'].read_bytes()+b'\n')
+    with pytest.raises(ValueError,match='source differs'):
+        _compiler_input('literal_na_inputs',root,{'DA':{'source':sources['DA']}})
+
+
+def test_source_literal_input_change_during_freezing_preserves_partial_evidence(tmp_path,monkeypatch):
+    from nasolve import cif_literal_na_inputs as literal
+    model,phil,native,sources=source_literal_case(tmp_path);write=literal._write_payload
+    def changed(*a,**k):
+        write(*a,**k);sources['DA'].write_bytes(sources['DA'].read_bytes()+b'\n')
+    monkeypatch.setattr(literal,'_write_payload',changed)
+    with pytest.raises(ValueError,match='changed while freezing'):
+        literal.prepare_source_literal_na_inputs(model,[phil],sources,tmp_path/'partial')
+    assert (tmp_path/'partial/sources/DA.cif').is_file()
+
+
+def test_source_literal_coordinate_changes_cannot_reselect_relationships(tmp_path,monkeypatch):
+    from nasolve.cif_literal_na_inputs import prepare_source_literal_na_inputs
+    from restraints import guesser
+    def forbidden(*a,**k):raise AssertionError('Frozen literal relationships cannot be guessed again')
+    monkeypatch.setattr(guesser,'guess_pairs',forbidden)
+    model,phil,native,sources=source_literal_case(tmp_path)
+    first=prepare_source_literal_na_inputs(model,[phil],sources,tmp_path/'first')
+    model.write_text(''.join(line[:30]+f'{float(line[30:38])+200.:8.3f}'+line[38:] if line.startswith('ATOM') else line
+        for line in model.read_text().splitlines(keepends=True)))
+    second=prepare_source_literal_na_inputs(model,[phil],sources,tmp_path/'second')
+    assert first['compilation']['relationships']==second['compilation']['relationships']
+    assert (tmp_path/'first/compiled/explicit_na_policy.phil').read_bytes()==(tmp_path/'second/compiled/explicit_na_policy.phil').read_bytes()
+    assert first['model']['sha256']!=second['model']['sha256']

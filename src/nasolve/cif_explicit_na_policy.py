@@ -134,16 +134,59 @@ def _implementation():
     return rows
 
 
-def _payload(model, pairs, stacks, sources, orientation_controls):
-    from .cif_na_policy import _requests, _signature
+def _source_roles(residues, site_codes, by_key, sites, sources):
+    """Bind existing NAR roles to actual atoms and declared source graphs.
+
+    Shared by explicit-site and literal-declaration compilation. This establishes
+    mapped atom identity/element agreement, not numerical or chemical usability.
+    """
     from .cif_stereochemistry_audit import _values, _graph
     from .curated_ligands import validate_ligand_dictionary
     from .component_records import resolve_component_record
     from .postmr import _patch_narestraints_records
     from restraints.builder import pair_residue_from_pdb
+    from restraints.residue_library import load_residue_records
+    if not isinstance(sources,dict) or not sites or not set(sites) <= site_codes.keys():
+        raise ValueError('Require declared source/model sites')
+    codes = {site_codes[s] for s in sites}
+    if set(sources) != codes:
+        raise ValueError('Source component coverage differs from declared pair/stack sites')
+    source_data = {}; source_elements = {}
+    for code, path in sorted(sources.items()):
+        if not isinstance(code, str) or not _CODE.fullmatch(code):
+            raise ValueError('Unsupported source component id')
+        path = _regular(path); before = path.read_bytes()
+        validate_ligand_dictionary(code, path)
+        elements = _graph(_values(path, code))[0]
+        if path.read_bytes() != before:
+            raise ValueError('Source changed while compiling policy')
+        source_data[code] = before; source_elements[code] = elements
+    records, corrections = _patch_narestraints_records(load_residue_records(), codes)
+    mappings = {}; role_evidence = {}
+    for site in sorted(sites):
+        code = site_codes[site]; record, proof = resolve_component_record(records, code)
+        mapping = pair_residue_from_pdb([record], residues[site])
+        graph_identity = SimpleNamespace(get_resname=lambda c=code: c,
+            has_id=lambda name, e=source_elements[code]: name in e,
+            id=('', int(site.split(':')[1]), ''),
+            get_parent=lambda c=site.split(':')[0]: SimpleNamespace(get_id=lambda: c))
+        expected = pair_residue_from_pdb([record], graph_identity)
+        if mapping.base_class != expected.base_class or mapping.atoms != expected.atoms:
+            raise ValueError('Missing or inconsistent actual/source NARestraints atom roles at ' + site)
+        for name in mapping.atoms.values():
+            if (site, name) not in by_key or by_key[site, name]['element'] != source_elements[code].get(name):
+                raise ValueError('Mapped atom element differs from its selected source at ' + site)
+        mappings[site] = mapping
+        role_evidence[site] = {'component': code, 'base_class': mapping.base_class,
+            'mapped_atoms': dict(sorted(mapping.atoms.items())), 'role_resolution': proof,
+            'source_graph_and_actual_atoms_match': True}
+    return mappings, role_evidence, source_data, corrections
+
+
+def _payload(model, pairs, stacks, sources, orientation_controls):
+    from .cif_na_policy import _requests, _signature
     from restraints.phenix import generate_pair_restraints
     from restraints.recipe_library import recipe_for
-    from restraints.residue_library import load_residue_records
     from restraints.stacking import _manual_parallelity
 
     if (not isinstance(pairs, (list, tuple)) or not 1 <= len(pairs) <= 64
@@ -166,39 +209,11 @@ def _payload(model, pairs, stacks, sources, orientation_controls):
     if len({frozenset(e) for e in edges}) != len(edges):
         raise ValueError('Duplicate or reversed duplicate stack')
     sites = set(used_pairs) | {s for edge in edges for s in edge}
-    codes = {site_codes[s] for s in sites}
-    if set(sources) != codes:
-        raise ValueError('Source component coverage differs from declared pair/stack sites')
-    source_data = {}; source_elements = {}; files = {'inputs/model.pdb': raw}
-    for code, path in sorted(sources.items()):
-        if not isinstance(code, str) or not _CODE.fullmatch(code):
-            raise ValueError('Unsupported source component id')
-        path = _regular(path); before = path.read_bytes()
-        validate_ligand_dictionary(code, path)
-        elements = _graph(_values(path, code))[0]
-        if path.read_bytes() != before:
-            raise ValueError('Source changed while compiling policy')
-        source_data[code] = before; source_elements[code] = elements
-        files[f'inputs/sources/{code}.cif'] = before
-    records, corrections = _patch_narestraints_records(load_residue_records(), codes)
-    mappings = {}; role_evidence = {}
-    for site in sorted(sites):
-        code = site_codes[site]; record, proof = resolve_component_record(records, code)
-        mapping = pair_residue_from_pdb([record], residues[site])
-        graph_identity = SimpleNamespace(get_resname=lambda c=code: c,
-            has_id=lambda name, e=source_elements[code]: name in e,
-            id=('', int(site.split(':')[1]), ''),
-            get_parent=lambda c=site.split(':')[0]: SimpleNamespace(get_id=lambda: c))
-        expected = pair_residue_from_pdb([record], graph_identity)
-        if mapping.base_class != expected.base_class or mapping.atoms != expected.atoms:
-            raise ValueError('Missing or inconsistent actual/source NARestraints atom roles at ' + site)
-        for name in mapping.atoms.values():
-            if (site, name) not in by_key or by_key[site, name]['element'] != source_elements[code].get(name):
-                raise ValueError('Mapped atom element differs from its selected source at ' + site)
-        mappings[site] = mapping
-        role_evidence[site] = {'component': code, 'base_class': mapping.base_class,
-            'mapped_atoms': dict(sorted(mapping.atoms.items())), 'role_resolution': proof,
-            'source_graph_and_actual_atoms_match': True}
+    mappings, role_evidence, source_data, corrections = _source_roles(
+        residues, site_codes, by_key, sites, sources)
+    codes = set(source_data)
+    files = {'inputs/model.pdb': raw,
+             **{f'inputs/sources/{code}.cif': data for code,data in source_data.items()}}
     blocks = []; relationships = []; compiled = []; requested = []
     def append(kind, row, block, **extra):
         requests = _requests(_wrap([block]), atoms)

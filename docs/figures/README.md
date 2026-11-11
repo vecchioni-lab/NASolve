@@ -470,3 +470,10 @@ full-model control but stops at isolated native qualification; the downstream
 full-model/adoption arrows therefore remain unqualified by that control.
 C192 labels a failed native seed separately from lost ownership and points to its
 receipt. Rejection, stage boundaries and scientific claims are unchanged.
+
+C195/C196 freeze consumed ordinary construction dictionaries and bind their
+non-qualifying producer record through the existing request boundary. C197 adds
+source-bound literal translation at that same boundary, preserving declared intent
+without inventing a native capture. Final native proof stays downstream. No new
+owner, automatic-adoption arrow, refinement or chemistry-family claim is implied;
+the editable overview's stage structure remains unchanged.

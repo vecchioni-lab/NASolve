@@ -4124,8 +4124,11 @@ compiled input bytes to preparation and result readback. It requires an existing
 valid native capture. Alternatively [C188](cif-doctor.md#existing-source-bound-compiler-intake-c188)
 retains an already compiled source-bound C80 artifact through the same owner,
 including source-byte agreement and nonactive orientation evidence. This explicitly
-selected mode does not replace original literal intent or bootstrap a broken
-literal capture. Ordinary orchestration and export of original lineage with a
+selected mode does not replace original literal intent. [C197](cif-doctor.md#source-bound-literal-intake-without-prior-native-capture-c197)
+now translates supported original literal intent using the same C21 emitter and
+C80 source-role checks, without a prior capture. Its separate policy labels PDB
+record identities and never fabricates native observations; numerical usability
+and final native membership remain unqualified. Ordinary orchestration and export of original lineage with a
 selected checkpoint remain open. [C189](cif-doctor.md#frozen-source-selection-at-prepared-intake-c189)
 lets the prepared entry consume an already frozen source selection through the
 same reader/owner, with exact component coverage and no competing discovery
@@ -4139,7 +4142,7 @@ this producer evidence to the complete request is supplied by
 [C196](cif-doctor.md#ordinary-construction-lineage-and-request-binding-c196): the
 ordinary caller seals a non-qualifying run record before ReadySet, and the existing
 request can freeze its declared closure with exact model/source/intent checks.
-Ordinary request invocation, literal intake and selected checkpoint adoption remain
+Ordinary request invocation and selected checkpoint adoption remain
 Q04/Q05; old absent-field requests retain their meaning.
 [C190](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190) shares the
 existing strict atom selector across new context derivation, request creation and

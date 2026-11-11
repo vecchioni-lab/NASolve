@@ -28361,6 +28361,18 @@
         "Q06 actual refinement; Q07 combined and held-out controls; C194/Q13 native chemical-state blockers"
       ],
       "implementation_revision": "96abd9a0848a74fb39ec68a689c74ee20155851e"
+    },
+    "source_literal_intake": {
+      "status": "IMPLEMENTED_VALIDATED",
+      "policy": "cif-source-literal-na-inputs-v1",
+      "entry": "prepare_source_literal_na_inputs / initialize_postmr_dictionary_request(literal_na_inputs=...)",
+      "reader": "read_literal_na_inputs / read_dictionary_request_result",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#source_literal_intake_2026_11_11",
+      "limitations": [
+        "Q04 ordinary invocation and single site-modifier ownership",
+        "Q05 exact selected artifact/producer/compiler export into immutable checkpoints",
+        "Q06 refinement; Q07 combined and held-out controls; C194/Q13 native chemistry failures"
+      ]
     }
   },
   "audience": [

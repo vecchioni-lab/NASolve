@@ -30,6 +30,9 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     With literal_na_inputs, supplementary_phils names the original ordered inputs;
     the frozen compiler artifact must match them and the exact model before its
     compiled PHIL is selected. Original evidence accompanies the owned request.
+    The literal artifact may use native-capture or source-bound PDB identities;
+    the latter also binds overlapping source bytes at complete intake. Neither
+    mode replaces final native qualification or invents native capture indices.
     Alternatively explicit_na_policy binds an existing C80 artifact to the exact
     supplied compiled PHIL and model, without re-guessing or compiling relationships.
     Its selected component source bytes must agree with ordinary acquisition.

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compile source-bound literal restraint intent before native capture (C197)
+
+- Reuse the existing literal compiler and source-role checks to preserve explicit
+  pair/stack intent, retained edits and planes even when source numerics prevent
+  an initial native capture. The translation remains unqualified input evidence.
+- Freeze original PHIL/source bytes and distinct PDB identity provenance through
+  the existing request/recovery reader. Historical native-capture mode is unchanged.
+- No default invocation, chemical-rule change, checkpoint adoption or migration;
+  new source-mode artifacts require a C197 reader and later native qualification.
+
+
 ### Bind ordinary construction evidence to dictionary requests (C196)
 
 - Record consumed model/dictionary identities and returned construction before

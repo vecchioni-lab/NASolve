@@ -11,6 +11,65 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C197 validated: source-bound literal intake
+
+Base `8ca17ff5aed8b1ca47572c828088d46f7d4528aa`; existing Cedar, implementation complete; publication next.
+Session stop boundary **2026-11-11 13:33 UTC**. Capsule:
+`live_tests_directory/197_Cedar_source-bound-literal-intake-o9mrrhcq`. All C197 validation jobs stopped.
+
+**Before → after:** literal input needed a successful native capture. The existing
+C21 declaration/emission and C80 source-role checks now share a source-bound mode
+that preserves explicit relationships, ordered original PHIL, edits and planes
+without re-guessing or fabricated native indices. Readable graphs are mandatory;
+bad numerics may be retained but remain unqualified. Existing requests bind exact
+source/model/PHIL with C196 construction evidence and immutable recovery.
+
+**Changed:** `src/nasolve/cif_na_policy.py`, `src/nasolve/cif_explicit_na_policy.py`, `src/nasolve/cif_literal_na_inputs.py`, `src/nasolve/cif_complete_request.py`, `src/nasolve/cif_postmr_request.py`, `tests/test_cif_literal_na_inputs.py`, Unreleased, methods,
+architecture, overview/figure caption, queue and evidence/runtime ledgers. Additive
+schema-1 `cif-source-literal-na-inputs-v1` with distinct nested compilation policy
+and PDB record identity label. C187 native mode and old requests remain exact;
+no migration, new owner/modifier, default invocation, chemical-rule or adoption change.
+
+**Validation:** before **18 failed, 36 deselected in 4.89s**; new/legacy literal tests
+**59 passed in 54.03s**; compiler/role tests **147 passed in 50.26s**;
+other direct callers **97 passed in 14.37s**; focused workflow
+**2048 passed, 45 subtests passed in 835.41s (0:13:55)**. All 641 guarded source hashes fixed.
+Relocated checkout: **59 passed**, original copy absent, historical checkout/SDK
+reads denied, **594 files** retain bytes/mtimes. Exact OS identity queries and an
+owned copying ReadySet test fixture are allowed; Coot is substituted. Separate
+actual-artifact cold replay preserves **3307 files** with historical
+checkout/data/SDK reads and all subprocesses denied. Earlier fixture failures remain.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 python c197_validate.py before-r1
+PYTHONDONTWRITEBYTECODE=1 python c197_validate.py new-r2
+PYTHONDONTWRITEBYTECODE=1 python c197_validate.py compiler-r1
+PYTHONDONTWRITEBYTECODE=1 python c197_validate.py callers-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow --junitxml <capsule>/focused-r1.xml
+PYTHONDONTWRITEBYTECODE=1 python c197_cold.py cold-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c197_public.py public-native-r1
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python c197_native.py native-r1
+PYTHONDONTWRITEBYTECODE=1 python c197_artifact_cold.py artifact-cold-r1
+PYTHONDONTWRITEBYTECODE=1 python c197_redundancy.py
+```
+
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** realizes all **201** W-frame
+requests from byte-identical C187 compiled inputs (17 literal pairs, 38 stacks,
+three retained planes). Separate isolated PDU/5PC original/repaired requests pass
+the existing selector with zero/two repair steps; no prior native capture was
+used to compile either. These are diagnostic controls, not a physical pair, mixed
+scaffold, ordinary adoption or refinement. Original inputs stay fixed; all workers
+are stopped. No new duplicate/shadow/import issue; workflow remains 60 files.
+Full suite deferred; last complete C160 `d9e481661edcc3a04404df250360b9db63184ae1`.
+
+**Next:** Q04 ordinary invocation with one modifier owner, then Q05 selected
+artifact/compiler/producer export. Q06 refinement, Q07 mixed/held-out validation
+and C194/Q13 native chemistry blockers remain. Reuse existing inlet/owner;
+do not add a scheduler or reinterpret unqualified source graphs as usability.
+Only code/tests/docs/hash references ship; generated native data/logs/XML/runners
+and relocated copies remain local. No merge.
+— Rowan · Codex desktop
+
 ## C196 published: ordinary construction lineage and request binding
 
 Base `72e7a3128a570ee916bb49deea39475204fae27e`; existing Cedar, implementation complete and published as
