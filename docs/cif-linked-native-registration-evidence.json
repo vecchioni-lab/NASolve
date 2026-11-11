@@ -85491,7 +85491,7 @@
     "published_revision": "a3eca39fc2f958249095d49510d06d1e17faa99c"
   },
   "source_selected_model_geometry_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -86623,6 +86623,202 @@
         "size": 822
       }
     ],
-    "excluded": "Raw models, source/requests, dictionaries, PHIL, native captures, logs and runners remain local; compact references only."
+    "excluded": "Raw models, source/requests, dictionaries, PHIL, native captures, logs and runners remain local; compact references only.",
+    "published_revision": "0712a2567fa20028c4cfd496fe18e48d6b8ae82d"
+  },
+  "selected_postmr_runtime_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "0712a2567fa20028c4cfd496fe18e48d6b8ae82d",
+    "before": "Ordinary callers discarded selected SDK object, allowing cache-only rediscovery.",
+    "after": "Selected installation and consistent dispatcher/environment reach existing ordinary cache verification.",
+    "files": [
+      "src/nasolve/postmr.py",
+      "src/nasolve/cli.py",
+      "src/nasolve/campaign_stages.py",
+      "tests/test_postmr_runtime.py",
+      "tests/test_campaign_stages.py"
+    ],
+    "schemas": "UNCHANGED; OPTIONAL_API_KEYWORD_ONLY",
+    "compatibility": "Explicit-path callers preserved; contradictory optional selected-runtime arguments refuse before writes.",
+    "validation": {
+      "status": "SELECTED_POSTMR_RUNTIME_VALIDATED",
+      "focused_tests": 149,
+      "subtests": 14,
+      "workers_stopped": 3,
+      "installed": {
+        "status": "SELECTED_INSTALLED_RUNTIME_PREFLIGHT_PASS",
+        "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+        "scope": "DRY_RUN_CONFIGURATION_AND_PRE_IO_HANDOFF; NO_COOT_READYSET_OR_REFINEMENT",
+        "consumer": {
+          "name": "Phenix/CCTBX",
+          "version": "2.2.1",
+          "executable_sha256": "2f1874272601895081929731389425aa5194213e015d3723feb04ec0f01935a6",
+          "api_sources": [
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/iotbx/phil.py",
+              "sha256": "3b0ddf62dc86e37e55fcad8c03f19b5795ba2279baf34afa6a1969cf403b8c08"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/command_line/pdb_interpretation.py",
+              "sha256": "4ade4662dd24d9aec4694e4f928e885b2700befc7885c9fdbcf6ea2418ad03f7"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/monomer_library/server.py",
+              "sha256": "ee7c6d95d5d8ebf7fa055274935424914b53f18d92843045dd7a13ac0d029aaa"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/monomer_library/pdb_interpretation.py",
+              "sha256": "6b9c8ad96e521b933d4bf02c626598378efe731542d4e34b8433b1af1e3c3235"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/linking_class.py",
+              "sha256": "f34ff6db5f0399cac717cb86a9dd8196d9eb96c7061f3aed5bbe601ebea31c87"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/auto_linking_types.py",
+              "sha256": "528e0bfed5121d467e0ba2b0f0a2923b296bfe51f85212b3536590316c307c78"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/secondary_structure/__init__.py",
+              "sha256": "6af48032e86deacbc3783057942511adcfdbbb09ca729e32ee5c117a42909411"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/mmtbx/secondary_structure/nucleic_acids.py",
+              "sha256": "5ef8f133db67a8f2bea446cd046e1341e31a0a912aa9f39746c4aad7db027bdd"
+            }
+          ],
+          "energy_sources": [
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/flags.py",
+              "sha256": "81038310190507529bef66a3073db6f347a794a7f01a66ac047e8bd613d8603e"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/energies.py",
+              "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f"
+            },
+            {
+              "anchor": "phenix_installation",
+              "path": "lib/python3.11/site-packages/cctbx/geometry_restraints/manager.py",
+              "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39"
+            }
+          ]
+        },
+        "legacy_optional_capabilities": "UNCHANGED",
+        "environment_serialized": false,
+        "original_input": "NO_SCIENTIFIC_INPUT_NEEDED"
+      },
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Preserves selected SDK through ordinary preparation/cache consumer verification; does not invoke the complete owned repair engine.",
+        "No new generation prerequisite, source chemistry policy, artifact schema, checkpoint selection or automatic adoption."
+      ]
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_runtime.py",
+          "-k",
+          "existing_installation or cli_passes",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/217_Cedar_selected-PostMR-runtime-0fw1c8db/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_runtime.py",
+          "tests/test_postmr.py",
+          "tests/test_cli.py",
+          "tests/test_campaign_stages.py",
+          "tests/test_cif_postmr_cache.py",
+          "tests/test_cif_phenix_configuration.py",
+          "tests/test_phenix_runtime.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/217_Cedar_selected-PostMR-runtime-0fw1c8db/focused-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "installed-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c217_installed.py",
+          "--worker",
+          "/Users/svecchio/NASolve-live-tests/217_Cedar_selected-PostMR-runtime-0fw1c8db/installed-r1"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "217_Cedar_selected-PostMR-runtime-0fw1c8db/start.json",
+        "sha256": "aeb01fa5c9c94863b3d3bee7dff32758bfac9a6ed9f174db934a762a30a7f68f",
+        "size": 221
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "217_Cedar_selected-PostMR-runtime-0fw1c8db/final-audit.json",
+        "sha256": "e346c364030f2ef0354561ab49daab92c220d738ad5b76cc57385dcc61f6f033",
+        "size": 3708
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "217_Cedar_selected-PostMR-runtime-0fw1c8db/focused-r1/tests.xml",
+        "sha256": "33e8fc0c10bdab516f9ea56fdc02145c8c91c1cf2e2dcf3f0b85ba2e4f889ca6",
+        "size": 21843
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "217_Cedar_selected-PostMR-runtime-0fw1c8db/installed-r1/summary.json",
+        "sha256": "de90e18ad59650927d77c99b33ad801865242fe88cf4e359705d387e52070cb3",
+        "size": 3060
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "217_Cedar_selected-PostMR-runtime-0fw1c8db/installed-r1/execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      }
+    ],
+    "excluded": "Test logs/runners and raw installation pins remain local; no scientific inputs or serialized execution environment."
   }
 }

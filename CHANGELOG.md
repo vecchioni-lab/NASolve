@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve the selected Phenix installation through PostMR (C217)
+
+- CLI/campaign preparation now carries its selected installation into the existing
+  dictionary-cache consumer checks, avoiding redundant SDK discovery.
+- Reject conflicting ReadySet paths/environments before preparation writes while
+  keeping explicit-path API callers supported. No new artifact schema or automatic
+  repair/adoption behavior is introduced.
+
 ### Measure modeled planarity from source chemistry (C216)
 
 - Reuse the source graph/state rule to measure every supported modeled trigonal

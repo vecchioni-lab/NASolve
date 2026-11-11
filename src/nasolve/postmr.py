@@ -44,6 +44,7 @@ from .ligand_profiles import (
     frozen_reference, validate_model_phosphate_policy, write_linked_profile,
 )
 from .run_context import artifact_reference, resolve_artifact_path
+from .phenix_runtime import PhenixInstallation
 from .sequence_reference import SequenceReferenceError
 from .sequence_syntax import SequenceSyntaxError, sequence_residue_codes
 from .sequence_family import (
@@ -1854,6 +1855,7 @@ def prepare_postmr(
     run_directory: Path,
     ready_set_executable: Path,
     *,
+    phenix_installation: PhenixInstallation | None = None,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
@@ -1864,7 +1866,25 @@ def prepare_postmr(
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
 ) -> PostMRResult:
-    """Prepare a completed Phaser solution without modifying the MR outputs."""
+    """Prepare a completed Phaser solution without modifying the MR outputs.
+
+    CLI/campaign callers retain their selected Phenix installation. Explicit-path
+    callers remain supported without one. When supplied, its ReadySet dispatcher
+    and environment must agree before any preparation output is created; the
+    existing cache adapter consumes that same installation without rediscovery.
+    This does not enable the separate owned repair/adoption engine.
+    """
+    if phenix_installation is not None:
+        try:
+            selected_ready = Path(phenix_installation.executables["phenix.ready_set"]).expanduser().resolve(strict=True)
+            if selected_ready != Path(ready_set_executable).expanduser().resolve(strict=True):
+                raise ValueError("ReadySet dispatcher differs")
+            selected_environment = dict(phenix_installation.environment)
+            if environment is not None and dict(environment) != selected_environment:
+                raise ValueError("Execution environment differs")
+        except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+            raise PostMRPreparationError(f"PostMR selected Phenix configuration is inconsistent: {exc}") from exc
+        environment = selected_environment
     run, report = _read_report(run_directory)
     from .automr_input import validate_restraint_scope, AutoMRInputError
     plan = report.get("post_mr_plan", {})
@@ -2272,6 +2292,7 @@ def prepare_postmr(
         reuse_report = prepare_postmr_dictionaries(
             ligand_codes, ready_set_executable, reuse_directory,
             data_root=data_root, environment=environment,
+            installation=phenix_installation,
         )
         reused_dictionaries = read_postmr_dictionaries(reuse_directory)
     except (OSError, ValueError, KeyError) as exc:

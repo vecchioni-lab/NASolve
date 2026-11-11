@@ -28499,6 +28499,12 @@
       "contract": "docs/cif-doctor.md#source-selected-model-trigonal-geometry-c216",
       "evidence": "source_selected_model_geometry_2026_11_11",
       "scope": "Shared graph/state selector, all supported modeled centers, explicit degeneracy/missing scope. PDU/5PC replay and bounded native 5PC transfer; no universal geometry pass or adoption."
+    },
+    "selected_postmr_runtime": {
+      "status": "IMPLEMENTED_ORDINARY_CALLER_FORWARDING",
+      "contract": "docs/cif-doctor.md#selected-phenix-runtime-through-ordinary-postmr-c217",
+      "evidence": "selected_postmr_runtime_2026_11_11",
+      "scope": "Retain selected installation in CLI/campaign preparation and existing cache consumer binding; ordinary owned request invocation/adoption still open."
     }
   },
   "audience": [

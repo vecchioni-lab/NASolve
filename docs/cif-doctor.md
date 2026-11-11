@@ -621,6 +621,35 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Selected Phenix runtime through ordinary PostMR (C217)
+
+CLI and campaign now pass their already selected `PhenixInstallation` into
+`prepare_postmr(..., phenix_installation=...)`. Before preparation writes, the
+explicit ReadySet path must resolve to the selected dispatcher, and a separately
+supplied environment must match. A private environment copy is used. The existing
+ordinary cache adapter receives the same installation, so it can verify cached
+consumer evidence without rediscovering an SDK from ReadySet's path.
+
+Explicit-path callers may omit the new keyword and retain historical behavior.
+No generation capability, known-version requirement or new discovery mechanism
+is imposed on that ordinary route; the existing cache qualification still owns
+its consumer checks and honest fallback. Environment contents are not persisted.
+No artifact schema/migration, chemistry change, owned-request invocation or
+automatic selection is introduced. C178/C182's existing configuration factory
+remains the source of future owned-request consumer/generation arguments.
+
+Three fail-before controls establish the missing API/caller forwarding. The
+affected PostMR, CLI, campaign, cache and configuration tests pass: **149 tests +
+14 subtests**. They include complete synthetic ordinary preparation, legacy direct
+paths, early dispatcher/environment conflicts, cache forwarding and both callers.
+Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** passes a read-only configuration/
+consumer check and pre-I/O PostMR handoff. This is a **dry-run**, not Coot, ReadySet,
+generation or refinement execution. No full suite. Exact commands/references:
+`selected_postmr_runtime_2026_11_11`.
+
+Q04 still needs ordinary one-owner invocation and durable resume; Q05 still owns
+the exact selected bundle/checkpoint handoff and truthful parent-fallback reporting.
+
 ### Source-selected model trigonal geometry (C216)
 
 `review_trigonal_model_geometry(source, dictionary, component, model)` measures

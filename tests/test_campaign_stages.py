@@ -601,9 +601,10 @@ class CampaignStageTests(unittest.TestCase):
 
         stage_engine = partial(prepare_postmr, data_root=make_data_root(self.base),
                                narestraints_builder=builder)
-        with patch("nasolve.campaign_stages.prepare_postmr", side_effect=stage_engine), \
+        with patch("nasolve.campaign_stages.prepare_postmr", side_effect=stage_engine) as postmr, \
                 patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")):
             result = self.stage("postmr", run)
+        self.assertIs(postmr.call_args.kwargs["phenix_installation"], self.phenix)
         self.assertEqual(result["status"], "POSTMR_READY")
         for suffix in ("Model/readyset_model.pdb", "Restraints/DE.cif",
                        "Restraints/curated_ligands.cif", "ReadySet/prepared_model.ligands.cif"):

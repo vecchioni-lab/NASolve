@@ -11,7 +11,36 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C216 validated: source-selected modeled trigonal geometry
+## C217 validated: selected runtime retained through ordinary PostMR
+
+Base `0712a2567fa20028c4cfd496fe18e48d6b8ae82d`; capsule
+`live_tests_directory/217_Cedar_selected-PostMR-runtime-0fw1c8db`. All 3 validation workers stopped.
+Pause/update **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** CLI/campaign discarded the selected installation object and
+ordinary cache lookup could rediscover it. PostMR now carries it through, checks
+ReadySet/environment agreement before writes, and uses a private environment copy.
+Direct-path calls still work. Existing cache consumer verification remains owner.
+
+**Files/schema:** `postmr.py`, `cli.py`, `campaign_stages.py`, runtime/campaign tests,
+maintained docs/ledgers. New optional `phenix_installation` keyword only; no artifact
+schema, migration, generation requirement, new discovery layer or chemistry change.
+
+**Validation:** three fail-before controls; **149 focused + 14 subtests pass**.
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** configuration/consumer/pre-I/O dry-run
+passes. No actual Coot/ReadySet/generation/refinement or full suite; last full C160.
+Exact commands/results: `selected_postmr_runtime_2026_11_11`. Local test logs and
+installed pins excluded; no scientific input used or environment values persisted.
+
+**Next:** connect the existing request owner before legacy reuse/modifier/ReadySet
+work, preserve a durable post-request resume boundary, then Q05 exact selected
+bundle/checkpoint and truthful fallback. Do not add a second owner/compiler or
+reopen completed chemistry. Single-author Cedar; self-continuity only.
+— Rowan · Codex desktop
+
+## C216 published: source-selected modeled trigonal geometry
+
+Implementation published as `0712a2567fa20028c4cfd496fe18e48d6b8ae82d`.
 
 Base `a3eca39fc2f958249095d49510d06d1e17faa99c`; capsule
 `live_tests_directory/216_Cedar_trigonal-model-geometry-6wpyqd02`. All 9 validation/native workers stopped.

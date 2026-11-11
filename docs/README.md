@@ -41,7 +41,9 @@ milestone statements preserve their original scope; they are not a second queue.
   fixed environment. Scientific geometry approval, ordinary adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
-  owns exact validation. Full regression remains deferred to integration; C160
+  owns exact validation. [Selected runtime forwarding](cif-doctor.md#selected-phenix-runtime-through-ordinary-postmr-c217)
+  now preserves the CLI/campaign installation through ordinary cache checks;
+  owned execution/adoption remain separate. Full regression remains deferred to integration; C160
   is the last completed full baseline. Milestone sections preserve original scope.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,

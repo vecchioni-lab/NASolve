@@ -849,6 +849,7 @@ def _postmr(args: argparse.Namespace) -> int:
         result = prepare_postmr(
             run,
             phenix.executables["phenix.ready_set"],
+            phenix_installation=phenix,
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
             allow_mr_review=args.allow_mr_review,

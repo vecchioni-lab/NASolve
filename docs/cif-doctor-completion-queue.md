@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current planning authority, 2026-11-11, after C216.** This queue owns unfinished
+**Current planning authority, 2026-11-11, after C217.** This queue owns unfinished
 CIF Doctor work; the [capability matrix](cif-doctor.md#current-capability-boundary)
 owns demonstrated support, and the
 [handoff](development-handoff.md) owns the active checkpoint. Historical `next`
@@ -107,7 +107,7 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C216. This table summarizes the acceptance packages
+Current orientation after C217. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 
@@ -236,8 +236,10 @@ Current caller acceptance seams (C205 audit): enter before the legacy reuse/
 `write_linked_profile`/ReadySet path, with the existing complete request owning
 modification and continuation exactly once. Resume a published request without
 repeating Coot/NAR; preserve an interrupted pre-request PostMR directory rather
-than overwriting it. CLI has the selected Phenix installation but currently passes
-only its ReadySet path/environment; carry the existing installation contract.
+than overwriting it. C217 now carries the already selected Phenix installation through CLI/campaign
+PostMR into the existing cache adapter, rejecting conflicting dispatcher/environment
+before writes. Reuse C178/C182 configuration for owned execution; do not rediscover
+or add another runtime wrapper.
 CLI/campaign callers currently require a ReadySet log. A proven parent fallback
 needs an explicit, verified outcome and truthful reporting, not a fabricated log
 or an unqualified optional value. Test ordinary hit/miss/stale/failure paths.

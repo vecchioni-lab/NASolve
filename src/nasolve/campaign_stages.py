@@ -459,6 +459,7 @@ def execute_stage(
             raise CampaignStageError("Unsupported campaign PostMR policy")
         result = prepare_postmr(
             run, _program(phenix, "phenix.ready_set"),
+            phenix_installation=phenix,
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
             modified_pairs_only=postmr_policy["modified_pairs_only"],
