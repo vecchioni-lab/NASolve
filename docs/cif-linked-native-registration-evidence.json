@@ -85054,7 +85054,7 @@
     "published_revision": "6186a0677ea4bb7e39d4604f03f4eab63125c0cf"
   },
   "fixed_coordinate_plane_mechanics_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -85487,6 +85487,1142 @@
         "size": 9504
       }
     ],
-    "excluded": "Raw native outputs, source/requests, models, dictionaries, kernel references, captures, logs and runners remain local; compact references only."
+    "excluded": "Raw native outputs, source/requests, models, dictionaries, kernel references, captures, logs and runners remain local; compact references only.",
+    "published_revision": "a3eca39fc2f958249095d49510d06d1e17faa99c"
+  },
+  "source_selected_model_geometry_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "a3eca39fc2f958249095d49510d06d1e17faa99c",
+    "before": "PDU-specific local geometry diagnostics did not provide generalized modeled-center audit.",
+    "after": "C208 source selector drives every supported modeled occurrence; native 5PC transfer and relocated PDU/5PC replay retain stated boundaries.",
+    "files": [
+      "src/nasolve/cif_plane_geometry.py",
+      "tests/test_cif_plane_geometry.py"
+    ],
+    "schemas": [
+      "cif-source-trigonal-model-geometry-v1"
+    ],
+    "compatibility": "No migration; explicit read-only API, existing source/parser contracts and old artifacts unchanged.",
+    "validation": {
+      "status": "SOURCE_SELECTED_MODEL_GEOMETRY_VALIDATED",
+      "focused_test_runs": {
+        "focused-r1": 112,
+        "focused-r2": 16,
+        "analytic-r1": 1
+      },
+      "distinct_tests": 114,
+      "workers_stopped": 9,
+      "original_files_unchanged": 600,
+      "cold": {
+        "status": "RELOCATED_MODEL_GEOMETRY_REPLAY_PASS",
+        "cases": {
+          "PDU-before": {
+            "exact_replay": true,
+            "sites": [
+              "A:12",
+              "B:4"
+            ],
+            "measured_centres": 6
+          },
+          "PDU-after": {
+            "exact_replay": true,
+            "sites": [
+              "A:12",
+              "B:4"
+            ],
+            "measured_centres": 6
+          },
+          "5PC-before": {
+            "exact_replay": true,
+            "sites": [
+              "A:12",
+              "B:4"
+            ],
+            "measured_centres": 6
+          },
+          "5PC-after": {
+            "exact_replay": true,
+            "sites": [
+              "A:12",
+              "B:4"
+            ],
+            "measured_centres": 6
+          }
+        },
+        "unchanged_files": 24,
+        "original_copy_absent": true,
+        "original_checkout_copy_absent": true,
+        "original_capsule_sdk_and_process_access_forbidden": true,
+        "native_5PC_readback_exact": true
+      },
+      "metrics": {
+        "PDU-before": [
+          {
+            "site": "A:12",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.001081147413864364,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.07087724342535727,
+                "reference_normal_length": 0.8739786799125641
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.07096467476828973,
+                "reference_normal_length": 0.8729019034610277
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.07282443630467361,
+                "reference_normal_length": 0.8506100928206466
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C4",
+            "absolute_normalized_volume": 0.00019687395518425133,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.013099834521229085,
+                "reference_normal_length": 0.8610831539971727
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.013158497555915184,
+                "reference_normal_length": 0.8572442848684936
+              },
+              {
+                "atom": "O4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.01282904822273874,
+                "reference_normal_length": 0.8792582759463989
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.004603611781126074,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C5A",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.307546140779673,
+                "reference_normal_length": 0.8576559976593144
+              },
+              {
+                "atom": "C5A",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.300003830247042,
+                "reference_normal_length": 0.8792178773697501
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C5A"
+                ],
+                "absolute_out_of_plane_degrees": 0.3064486463524574,
+                "reference_normal_length": 0.860727519316173
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.000533043398498757,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.03498530910232699,
+                "reference_normal_length": 0.8729703899371813
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.03498303475927599,
+                "reference_normal_length": 0.8730271441298321
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.035864834630094405,
+                "reference_normal_length": 0.8515622430927835
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C4",
+            "absolute_normalized_volume": 0.0024332021921666287,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.16196000711302203,
+                "reference_normal_length": 0.860782883744094
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.16260901307529152,
+                "reference_normal_length": 0.8573473316657739
+              },
+              {
+                "atom": "O4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.15852293959949426,
+                "reference_normal_length": 0.8794461831815118
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.004176160194963774,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C5A",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.2790210695461939,
+                "reference_normal_length": 0.8575599680903334
+              },
+              {
+                "atom": "C5A",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.2722564867911487,
+                "reference_normal_length": 0.8788670456111555
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C5A"
+                ],
+                "absolute_out_of_plane_degrees": 0.27784322204473366,
+                "reference_normal_length": 0.8611953524284273
+              }
+            ]
+          }
+        ],
+        "PDU-after": [
+          {
+            "site": "A:12",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.00016258450111117373,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.010662796694729313,
+                "reference_normal_length": 0.8736362558882781
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.010674586411154235,
+                "reference_normal_length": 0.8726713544675977
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.010943495262645354,
+                "reference_normal_length": 0.8512276526816446
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C4",
+            "absolute_normalized_volume": 0.000492128308407766,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.03278079348880654,
+                "reference_normal_length": 0.8601645533264511
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.03287253287645709,
+                "reference_normal_length": 0.8577640397707704
+              },
+              {
+                "atom": "O4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.032055160545183224,
+                "reference_normal_length": 0.8796361035811371
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.0003536380199920669,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C5A",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.023621217657409956,
+                "reference_normal_length": 0.857786710606889
+              },
+              {
+                "atom": "C5A",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.023053954794671483,
+                "reference_normal_length": 0.8788933069446592
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C5A"
+                ],
+                "absolute_out_of_plane_degrees": 0.02353480210356964,
+                "reference_normal_length": 0.8609363487111664
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.00374685790147806,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.24578254701434693,
+                "reference_normal_length": 0.8734542188111809
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.2456772162924294,
+                "reference_normal_length": 0.873828697977844
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.25251061890834287,
+                "reference_normal_length": 0.8501814302627638
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C4",
+            "absolute_normalized_volume": 0.003338845805393561,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.22230146403005369,
+                "reference_normal_length": 0.8605532756693381
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "O4"
+                ],
+                "absolute_out_of_plane_degrees": 0.22303576645571063,
+                "reference_normal_length": 0.8577200835239052
+              },
+              {
+                "atom": "O4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.21755755425930126,
+                "reference_normal_length": 0.8793178128987299
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.0005153772952540738,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C5A",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.034414385893073385,
+                "reference_normal_length": 0.858040754881335
+              },
+              {
+                "atom": "C5A",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.033586881796411866,
+                "reference_normal_length": 0.8791809178685048
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C5A"
+                ],
+                "absolute_out_of_plane_degrees": 0.03432091952283171,
+                "reference_normal_length": 0.8603774622411832
+              }
+            ]
+          }
+        ],
+        "5PC-before": [
+          {
+            "site": "A:12",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.03345381982641049,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 2.1729638216530254,
+                "reference_normal_length": 0.8823074887205032
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 2.233660491120433,
+                "reference_normal_length": 0.8583436459053784
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 2.2368134407514577,
+                "reference_normal_length": 0.8571343621547004
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C4",
+            "absolute_normalized_volume": 0.0851061924514037,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 5.630541435167383,
+                "reference_normal_length": 0.8674268829745829
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 5.35812926926919,
+                "reference_normal_length": 0.9113890498489459
+              },
+              {
+                "atom": "N4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 6.003179516215806,
+                "reference_normal_length": 0.8137619093679744
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.08058629871455153,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C6",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 5.590518857220253,
+                "reference_normal_length": 0.827220063572363
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 5.5796467493131185,
+                "reference_normal_length": 0.8288268130207164
+              },
+              {
+                "atom": "C7",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 4.968776693816519,
+                "reference_normal_length": 0.9304196197325516
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.03343948932884385,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 2.172421846853129,
+                "reference_normal_length": 0.8821494555888097
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 2.2316182354820797,
+                "reference_normal_length": 0.8587607355011683
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 2.236498576409968,
+                "reference_normal_length": 0.8568877527236511
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C4",
+            "absolute_normalized_volume": 0.08461986336725565,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 5.59979339274976,
+                "reference_normal_length": 0.8671906217345462
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 5.3259823737964735,
+                "reference_normal_length": 0.9116347048182054
+              },
+              {
+                "atom": "N4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 5.9695489947858285,
+                "reference_normal_length": 0.8136533954889534
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.08119071666020031,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C6",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 5.6358762272933145,
+                "reference_normal_length": 0.8267384368634522
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 5.622524592493395,
+                "reference_normal_length": 0.8286953386380225
+              },
+              {
+                "atom": "C7",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 5.003829257609281,
+                "reference_normal_length": 0.9308479225295607
+              }
+            ]
+          }
+        ],
+        "5PC-after": [
+          {
+            "site": "A:12",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.00047082911457828336,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.03095495104389488,
+                "reference_normal_length": 0.8714768248644217
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.031214058433700644,
+                "reference_normal_length": 0.8642427106660217
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.03128530005714933,
+                "reference_normal_length": 0.8622746922180187
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C4",
+            "absolute_normalized_volume": 2.7319301504347138e-05,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 0.0018042676900687624,
+                "reference_normal_length": 0.8675434827764045
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 0.0018153341338046044,
+                "reference_normal_length": 0.8622548579657078
+              },
+              {
+                "atom": "N4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.0018028181849222417,
+                "reference_normal_length": 0.8682410066605192
+              }
+            ]
+          },
+          {
+            "site": "A:12",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.006611334097237451,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C6",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 0.43824976144880834,
+                "reference_normal_length": 0.8643592484109212
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 0.43514229604368854,
+                "reference_normal_length": 0.8705317448345561
+              },
+              {
+                "atom": "C7",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.43886513236360913,
+                "reference_normal_length": 0.8631472788973384
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C2",
+            "absolute_normalized_volume": 0.0015145045982559876,
+            "bond_elevations": [
+              {
+                "atom": "N1",
+                "reference_neighbors": [
+                  "N3",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.10065287423958255,
+                "reference_normal_length": 0.862119108084008
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "N1",
+                  "O2"
+                ],
+                "absolute_out_of_plane_degrees": 0.0995432700799653,
+                "reference_normal_length": 0.8717290994878891
+              },
+              {
+                "atom": "O2",
+                "reference_neighbors": [
+                  "N1",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.10041758889798036,
+                "reference_normal_length": 0.8641391105821057
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C4",
+            "absolute_normalized_volume": 0.0019102905519403014,
+            "bond_elevations": [
+              {
+                "atom": "C5",
+                "reference_neighbors": [
+                  "N3",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 0.1268991021411433,
+                "reference_normal_length": 0.86250945756609
+              },
+              {
+                "atom": "N3",
+                "reference_neighbors": [
+                  "C5",
+                  "N4"
+                ],
+                "absolute_out_of_plane_degrees": 0.12717790139733268,
+                "reference_normal_length": 0.8606186683726939
+              },
+              {
+                "atom": "N4",
+                "reference_neighbors": [
+                  "C5",
+                  "N3"
+                ],
+                "absolute_out_of_plane_degrees": 0.12512444339153225,
+                "reference_normal_length": 0.8747425387186223
+              }
+            ]
+          },
+          {
+            "site": "B:4",
+            "centre": "C5",
+            "absolute_normalized_volume": 0.005006513036964255,
+            "bond_elevations": [
+              {
+                "atom": "C4",
+                "reference_neighbors": [
+                  "C6",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 0.32578262824619414,
+                "reference_normal_length": 0.8805061654676042
+              },
+              {
+                "atom": "C6",
+                "reference_neighbors": [
+                  "C4",
+                  "C7"
+                ],
+                "absolute_out_of_plane_degrees": 0.33495275059870744,
+                "reference_normal_length": 0.8564004938030575
+              },
+              {
+                "atom": "C7",
+                "reference_neighbors": [
+                  "C4",
+                  "C6"
+                ],
+                "absolute_out_of_plane_degrees": 0.3333223627318904,
+                "reference_normal_length": 0.8605893789867364
+              }
+            ]
+          }
+        ]
+      },
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+      "native_execution": "COMPLETE_NATIVE_MINIMIZATION_AND_READBACK",
+      "native_checks": {
+        "complete_native_proxy_details_unchanged": true,
+        "monomer_mappings_unchanged": true,
+        "model_atom_identity_unchanged": true,
+        "native_counts_unchanged": true
+      },
+      "selected_atoms": 22,
+      "fixed_atoms": 840,
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Descriptive supported Cartesian chemistry only, with no new acceptance threshold or coordinate modification.",
+        "5PC bounded native geometry preserves all proxy details/mappings/identities; fixed-backbone control is not complete NAR/diffraction refinement.",
+        "Nonidentity symmetry, broader source chemistry, target calibration, ordinary repair invocation and adoption remain separate."
+      ]
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_geometry.py",
+          "-k",
+          "every_occurrence",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_geometry.py",
+          "tests/test_cif_plane_coverage.py",
+          "tests/test_cif_plane_candidate.py",
+          "tests/test_cif_attachment_sites.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/focused-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "before-residue": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_geometry.py",
+          "-k",
+          "zero_padded",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/before-residue/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_geometry.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/focused-r2/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "analytic-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_geometry.py",
+          "-k",
+          "analytic",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/analytic-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "native-5PC-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c216_native.py",
+          "--worker",
+          "/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/native-5PC-r1"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "cold-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/cold-r1/worker.py",
+          "/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/cold-r1"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/cold-r1/checkout-relocated",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/cold-r1/checkout-relocated/src"
+        }
+      }
+    },
+    "native_jobs": {
+      "native-5PC-r1": [
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.geometry_minimization",
+            "inputs/model.pdb",
+            "inputs/dictionary.cif",
+            "inputs/minimize.phil"
+          ],
+          "cwd": "/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/native-5PC-r1",
+          "timeout_seconds": 180
+        }
+      ],
+      "native-readback-r1": [
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "native_worker.py",
+            "native_spec.json"
+          ],
+          "cwd": "/Users/svecchio/NASolve-live-tests/216_Cedar_trigonal-model-geometry-6wpyqd02/native-readback-r1/capture/cif-native-4s_tdp0i",
+          "timeout_seconds": 90
+        }
+      ]
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/start.json",
+        "sha256": "fae25ad4ef889d847f6e5bc1d8bdbd4a02c069f0cdc53a5099272af72f497fca",
+        "size": 195
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/final-audit.json",
+        "sha256": "f4b2cc0b5e93b03c23e884fe534f71fae343911f71bcfadc3765fabf8fbb1af0",
+        "size": 25175
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/focused-r1/tests.xml",
+        "sha256": "e2719f4813503b0139a089861db7be982cb39f92ceb9c0f6efedf9012ebeb3ff",
+        "size": 16313
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/focused-r2/tests.xml",
+        "sha256": "e5bb0ba3c3baed638bd65e769a6e034f9f58de4eba9d0a09ebb0a199c6c5cd49",
+        "size": 2499
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/analytic-r1/tests.xml",
+        "sha256": "ddaabb88e083e47fb43c4839ed44266775f9dc0b4ababd91a97efcbdca4fe7c7",
+        "size": 374
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/native-5PC-r1/execution.json",
+        "sha256": "3bac5b642abd24e11a25dc6198b24dabe0e1266a569d24823c20e9b003f3556d",
+        "size": 78
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/native-5PC-r1/geometry-before.json",
+        "sha256": "a76ffb69c3b3859f4aba77e6da565f7e16525f2cf5de72db1ebb185e17c4f4db",
+        "size": 15918
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/native-5PC-r1/geometry-after.json",
+        "sha256": "e6a9a7a0b38eed4a438da30d2d2caf1015376643231e792cd8e6b06b93d1a39d",
+        "size": 15965
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/native-readback-r1/summary.json",
+        "sha256": "db98ef5a5b1065ed39bdaf03824e047b50b0842e64c1705cae1b777038695a7b",
+        "size": 37016
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/native-readback-r1/result.json",
+        "sha256": "5da361b41c767fb977ab3dcec07904ca65ef9ea19cb474cf55961c8744191b00",
+        "size": 4334779
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "216_Cedar_trigonal-model-geometry-6wpyqd02/cold-r1/results/summary.json",
+        "sha256": "d90f7090d3164b5046598b28352f5ae2fd08175d3975db9152b90111611d3ece",
+        "size": 822
+      }
+    ],
+    "excluded": "Raw models, source/requests, dictionaries, PHIL, native captures, logs and runners remain local; compact references only."
   }
 }

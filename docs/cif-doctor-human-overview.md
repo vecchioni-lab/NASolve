@@ -37,7 +37,8 @@ constraints and every other term. It chooses PDU C5A and 5PC C7 by connectivity.
 PDU has fresh native geometry/readback evidence. The
 [exact native inventory gate](cif-doctor.md#exact-linked-native-plane-additions-c211)
 now passes linked PDU and 5PC controls, allowing only their reconstructed plane
-additions while retaining other terms. 5PC achieved geometry remains unqualified.
+additions while retaining other terms. Bounded model geometry is now measured
+through the same source-selected audit; scientific approval remains separate.
 [Owned multiple-plane generation](cif-doctor.md#owned-native-multiple-plane-generation-c212)
 now records the option, immutable attempt and source-preserving native execution,
 and reproduces both exact plane-only candidates. Full generated dictionaries are
@@ -49,7 +50,11 @@ including cold replay without the old installation. The
 now binds those candidates to exact model/dictionary/PHIL inputs and the recorded
 consumer. [Complete-plane controls](cif-doctor.md#complete-plane-energy-and-derivative-controls-c215)
 now account for the full PDU/5PC energy/force change and pass separate derivative
-audits. Achieved geometry and ordinary automatic selection remain separate.
+audits. The [model geometry audit](cif-doctor.md#source-selected-model-trigonal-geometry-c216)
+reuses source connectivity to measure every supported occurrence, including missing
+or degenerate cases. A bounded 5PC native control improves local planarity while
+keeping 840 unselected atoms fixed and native restraints unchanged. Scientific
+geometry approval and ordinary automatic selection remain separate.
 [Identity-proven serial repair](cif-doctor.md#identity-authorized-construction-serials-c210)
 now lets ordinary Coot construction reach its existing phosphate and whole-base
 restoration proofs when only atom serials changed. Exact unselected atom fields

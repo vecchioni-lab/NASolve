@@ -36,7 +36,9 @@ milestone statements preserve their original scope; they are not a second queue.
   [Owned native capture qualification](cif-doctor.md#owned-plane-native-capture-qualification-c214)
   now binds exact ordered inputs and the recorded consumer. [Complete-plane mechanics](cif-doctor.md#complete-plane-energy-and-derivative-controls-c215)
   pass native fixed-point attribution and derivative controls for PDU/5PC.
-  Achieved geometry, ordinary engine adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
+  [Source-selected model geometry](cif-doctor.md#source-selected-model-trigonal-geometry-c216)
+  now measures PDU/5PC local shape, with bounded 5PC native transfer preserving its
+  fixed environment. Scientific geometry approval, ordinary adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
   owns exact validation. Full regression remains deferred to integration; C160

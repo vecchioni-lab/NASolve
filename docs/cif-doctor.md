@@ -154,6 +154,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
+| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. | Explicit candidate/diagnostic APIs; no universal flattening rule or automatic plane adoption. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
@@ -619,6 +620,50 @@ an enabled `prepare_postmr` default. Ordinary orchestration must preserve pre-Co
 source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
+
+### Source-selected model trigonal geometry (C216)
+
+`review_trigonal_model_geometry(source, dictionary, component, model)` measures
+every modeled occurrence of C208's source-selected neutral three-heavy-neighbor
+carbon rule. It reuses that chemical selector and the strict supported PDB reader;
+there is no component/atom-name dispatch or second hybridization classifier.
+Source/dictionary graph, charge and stereo scope stay unchanged. Accepted residue
+number spellings are normalized consistently. Input bytes are rechecked at return.
+
+The schema-1 `cif-source-trigonal-model-geometry-v1` report keeps local coverage
+beside actual normalized volume, all three neighbor angles and bond elevations
+relative to the other two neighbors. Missing local atoms remain unavailable;
+coincident or near-collinear vectors are degenerate. The dimensionless 1e-6 rank
+guard is the existing numerical guard, not a chemical tolerance. A flat-looking
+collapsed group is never promoted by its zero volume. Unsupported source centers
+remain listed, and even a complete plane definition can accompany bent coordinates.
+These are literal same-residue Cartesian measurements, not a symmetry-image fit,
+native residual, global ring-plane fit or scientific acceptance threshold.
+
+114 distinct focused cases pass (112 shared/focused, 16 final affected-module,
+one added analytic control). Fail-before cases establish the missing API and an
+accepted zero-padded-residue lookup discrepancy, now corrected. Renamed/non-PDU,
+missing/degenerate/charged/chiral/saturated, identity/element, input-change,
+relocation and analytical rotation/reflection controls are covered.
+
+Actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** bounded 5PC minimization reuses the
+C209 command/settings and source-selected whole-base partition: 22 atoms variable,
+840 fixed. No dictionary generation or new optimizer. C5–C7 elevation falls from
+4.97/5.00 degrees to 0.44/0.33 degrees; other assessed carbonyl/amino centers also
+flatten. Finite-weight restraints do not promise exactly zero displacement.
+Fresh native readback preserves every proxy detail/count, monomer mapping and atom
+identity. A first readback layout was refused before launch by the existing input/
+output separation guard; the completed minimization was retained and only readback
+ran in a fresh valid folder. The original PDU geometry is measured through the same
+audit without rerunning its completed minimization.
+
+Cold relocated checkout/evidence replay reproduces all four PDU/5PC before/after
+reports and 5PC native readback with old paths/SDK/execution forbidden; 24 copied
+and all 600 original files preserve bytes/mtimes. No Coot, diffraction refinement,
+full suite, automatic adoption or old schema migration. Exact commands and evidence:
+`source_selected_model_geometry_2026_11_11`. Native completion and better local
+shape do not qualify source numerical targets, full NAR refinement, packing or
+ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
 
 ### Complete-plane energy and derivative controls (C215)
 

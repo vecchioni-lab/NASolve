@@ -11,8 +11,42 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C215 validated: complete-plane fixed-coordinate mechanics
+## C216 validated: source-selected modeled trigonal geometry
 
+Base `a3eca39fc2f958249095d49510d06d1e17faa99c`; capsule
+`live_tests_directory/216_Cedar_trigonal-model-geometry-6wpyqd02`. All 9 validation/native workers stopped.
+Pause/update remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** local PDU-only geometry measurements become a maintained
+source-graph-selected model audit for all supported occurrences. Coverage and
+actual volume/angles/elevations remain distinct; missing/degenerate/unsupported
+cases stay visible. No new chemical cutoff or coordinate edit.
+
+**Files/schema:** new `cif_plane_geometry.py`, `test_cif_plane_geometry.py`, maintained
+docs/ledgers; `cif-source-trigonal-model-geometry-v1`. Existing chemical selector,
+PDB identity parser and numerical rank guard reused. No migration or old API change.
+
+**Validation:** initial API fail-before and zero-padded-residue lookup regression;
+**114 distinct focused tests** pass (112 + 16 affected-module + 1 analytic control).
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** bounded 5PC minimization/readback:
+22 selected, 840 fixed atoms; C5–C7 tilt ~5 degrees → 0.44/0.33 degrees. Complete
+native proxy details/counts, mappings and atom identities retained. First native
+readback layout refused before launch; completed geometry preserved, readback only
+retried separately. Existing PDU geometry reused. All four reports and 5PC native
+readback replay cold after relocation, original copy paths removed and SDK/execution
+denied; 24 copied and 600 original files unchanged. Exact commands: ledger
+`source_selected_model_geometry_2026_11_11`. No Coot, diffraction or full suite;
+last full C160. Raw model/native/PHIL outputs and runners remain local.
+
+**Next/limits:** return to ordinary Q04/Q05 invocation, one modifier owner, durable
+resume and exact selection. Plane APIs remain explicit; finite-weight geometry is
+described, not universally approved. Complete NAR refinement, held-out controls,
+DP correspondence, source-H and numerical target calibration remain open.
+— Rowan · Codex desktop
+
+## C215 published: complete-plane fixed-coordinate mechanics
+
+Implementation published as `a3eca39fc2f958249095d49510d06d1e17faa99c`.
 Base `6186a0677ea4bb7e39d4604f03f4eab63125c0cf`; capsule
 `live_tests_directory/215_Cedar_plane-mechanics-zmbafu4t`. All 14 validation/native workers stopped.
 Pause/update remains **2026-11-11 23:00 UTC (London)**.

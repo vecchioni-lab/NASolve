@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Measure modeled planarity from source chemistry (C216)
+
+- Reuse the source graph/state rule to measure every supported modeled trigonal
+  center, independent of residue and atom names. Retain missing/unsupported cases.
+- Report actual angles/elevations alongside plane coverage; distinguish degenerate
+  geometry from a planar group without introducing chemical acceptance cutoffs.
+- Validate bounded native 5PC transfer and PDU/5PC cold replay. No automatic model
+  editing, candidate adoption or complete-refinement claim is introduced.
+
 ### Attribute source-supported complete-plane mechanics (C215)
 
 - Add a graph-selected plane candidate's fixed-point energy/force gate using
