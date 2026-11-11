@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind plane-only candidates to selected owned native generation (C213)
+
+- Replay completed multiple-plane evidence through the existing source reader,
+  and bind an explicit stopped attempt, exact source, recipe, producer and phases.
+- Reuse the graph-selected plane-only operation, preserving other terms and all
+  partial output; refuse changed evidence and retain nonconvergence explicitly.
+- Verify PDU/5PC replay from relocated checkout/evidence without the old SDK.
+  No automatic adoption, native mechanics or achieved-geometry claim is added.
+
 ### Bind native multiple-plane generation to existing ownership (C212)
 
 - Add an explicit installed-capability-checked multiple-plane choice to source-

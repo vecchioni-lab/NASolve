@@ -84145,7 +84145,7 @@
     "published_revision": "0dbed8d5d6d5bcd502dbc9c152fb8cf6a9aeebf7"
   },
   "owned_multiple_plane_generation_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -84510,6 +84510,243 @@
         "size": 1111
       }
     ],
-    "excluded": "Raw scientific data, native output/source snapshots, models, dictionaries, captures, logs and runners remain local; compact references only."
+    "excluded": "Raw scientific data, native output/source snapshots, models, dictionaries, captures, logs and runners remain local; compact references only.",
+    "published_revision": "9b6134d497f801de113553c4b0bd89c5d8bb6a1a"
+  },
+  "owned_plane_support_replay_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "9b6134d497f801de113553c4b0bd89c5d8bb6a1a",
+    "before": "Supplied plane support was not bound through a maintained owned-generation reader.",
+    "after": "Shared generation replay plus explicit selected sealed request/attempt proof wraps the unchanged graph-selected plane completion.",
+    "files": [
+      "src/nasolve/cif_source_representation.py",
+      "src/nasolve/cif_source_candidate.py",
+      "src/nasolve/cif_plane_generation.py",
+      "tests/test_cif_source_representation.py",
+      "tests/test_cif_plane_generation.py"
+    ],
+    "schemas": [
+      "cif-owned-multiple-plane-support-v1",
+      "cif-owned-trigonal-plane-completion-v1"
+    ],
+    "compatibility": "No migration; historical representation reader/worker and original plane reports unchanged. New multiple-plane assessments use frozen source identity.",
+    "validation": {
+      "status": "OWNED_PLANE_SUPPORT_REPLAY_AND_BINDING_VALIDATED",
+      "focused_tests": 243,
+      "final_replay_tests": 127,
+      "distinct_logical_cases": 246,
+      "original_files_unchanged": 600,
+      "validation_workers_stopped": 10,
+      "native_cases": {
+        "PDU": {
+          "candidate_sha256": "c1aab2f507800f63820d8630f26bb3d7e37d2c901f3110b5637a21e1fad9f2d4",
+          "same_C209_candidate": true,
+          "owned_support": "OWNED_SUPPORT_REPLAY_PASS",
+          "stopping": "NOT_CONVERGED_REPORTED",
+          "inventory_pass": true,
+          "modeled_occurrences": 2
+        },
+        "5PC": {
+          "candidate_sha256": "78ea8c03af88f54710ea322160615d5071c83b0c39aef4984817fe8e7e99216b",
+          "same_C209_candidate": true,
+          "owned_support": "OWNED_SUPPORT_REPLAY_PASS",
+          "stopping": "NOT_REPORTED",
+          "inventory_pass": true,
+          "modeled_occurrences": 2
+        }
+      },
+      "cold_scope": {
+        "status": "RELOCATED_OWNED_PLANE_SUPPORT_AND_CANDIDATE_PASS",
+        "unchanged_input_files": 63,
+        "original_copy_absent": true,
+        "original_checkout_copy_absent": true,
+        "original_sdk_and_capsule_access_forbidden": true,
+        "native_execution_and_process_probe_forbidden": true,
+        "scope": "SAVED_C212_COMPLETE_BUILD_REPLAY_AND_EXACT_C211_INVENTORY_REUSE; NO_NEW_NATIVE_EXECUTION"
+      },
+      "native_execution": "NOT_RUN; EXACT_C212_COMPLETE_PHENIX_2.2.1-6174_BUILDS_REPLAYED",
+      "full_suite": "NOT_RUN; LAST_FULL_C160 / d9e481661edcc3a04404df250360b9db63184ae1",
+      "limitations": [
+        "Owned generation is not convergence, calibrated chemistry, linked mechanics or achieved geometry.",
+        "C211 inventory captures remain supplied evidence whose native producer/context authentication is the caller responsibility.",
+        "No automatic invocation, whole generated dictionary adoption, model change or installed SDK change."
+      ]
+    },
+    "commands": {
+      "before-reader": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_generation.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/before-reader/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_generation.py",
+          "tests/test_cif_source_candidate.py",
+          "tests/test_cif_source_representation.py",
+          "tests/test_cif_oxo_purine_representation.py",
+          "tests/test_cif_plane_candidate.py",
+          "tests/test_cif_plane_native.py",
+          "tests/test_cif_plane_coverage.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/focused-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "before-stability": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_generation.py",
+          "-k",
+          "changed_during_assessment",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/before-stability/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "replay-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_generation.py",
+          "tests/test_cif_source_representation.py",
+          "tests/test_cif_oxo_purine_representation.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/replay-r2/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "native-replay-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/worker.py",
+          "/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/checkout-relocated",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/checkout-relocated/src"
+        }
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/start.json",
+        "sha256": "08c1131a06432ab4db8e0c5ca76b4da624a6ad8fecef30c91f5afe2146858b6a",
+        "size": 179
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/final-audit.json",
+        "sha256": "b7e9af74e9e31cc90d24521c83368249984f96273af720aaa4eaa38c0f1d489e",
+        "size": 1806
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/focused-r1/tests.xml",
+        "sha256": "e358edeafa404526d1b99a60ffdac9ed6baf045c0336f24c16230fe91106b2d5",
+        "size": 36821
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/replay-r2/tests.xml",
+        "sha256": "b72958f1a7676a55bb2ed5bfa64cb1c1e588b2532b434115c3b1a0e095e9d8e3",
+        "size": 19022
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/results/summary.json",
+        "sha256": "4078393bfd1f5f9770b61aa927ce9005c095e86460a61a4026562e858e05c82f",
+        "size": 10834
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/execution.json",
+        "sha256": "3949cecd1abba9f35b60688e5b1bea5f2eabfbadf07d7115fc0ca516b7b16fa3",
+        "size": 119
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/results/PDU-report.json",
+        "sha256": "40ff783023c7d7a163265247d99c778a2d402f58c31e62960e95992eab62908e",
+        "size": 9373
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/results/PDU-qualification.json",
+        "sha256": "a9d8d4b74ee7c74f27630fc9adb6c185bb7b55dcc92c6cc51528fdbf9b19c6b3",
+        "size": 4171
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/results/PDU.cif",
+        "sha256": "c1aab2f507800f63820d8630f26bb3d7e37d2c901f3110b5637a21e1fad9f2d4",
+        "size": 10211
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/results/5PC-report.json",
+        "sha256": "b159baccdba08bb2d5506c7b8b0621667f60152de006a88c1fe875e450269864",
+        "size": 9369
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/results/5PC-qualification.json",
+        "sha256": "696c22ec23e6f260faff39ba1fbfae19806e5e9117d60d9ef0839cc00a5e7f56",
+        "size": 4195
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "213_Cedar_owned-plane-evidence-kp9vryjd/native-replay-r2/results/5PC.cif",
+        "sha256": "78ea8c03af88f54710ea322160615d5071c83b0c39aef4984817fe8e7e99216b",
+        "size": 10421
+      }
+    ],
+    "excluded": "Raw scientific data, native sources, requests/captures, coordinates, dictionaries, logs and runners remain local; references only."
   }
 }

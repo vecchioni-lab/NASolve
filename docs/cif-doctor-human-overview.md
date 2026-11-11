@@ -42,8 +42,10 @@ additions while retaining other terms. 5PC achieved geometry remains unqualified
 now records the option, immutable attempt and source-preserving native execution,
 and reproduces both exact plane-only candidates. Full generated dictionaries are
 not adopted on that evidence; PDU's bounded run is not converged and 5PC convergence
-is unreported. Connecting those owned receipts to the candidate APIs and ordinary
-automatic selection remains separate.
+is unreported. [Owned support replay](cif-doctor.md#owned-generation-support-for-plane-completion-c213)
+now binds an explicitly selected completed attempt to the plane-only operation,
+including cold replay without the old installation. Native capture/mechanics and
+ordinary automatic selection remain separate.
 [Identity-proven serial repair](cif-doctor.md#identity-authorized-construction-serials-c210)
 now lets ordinary Coot construction reach its existing phosphate and whole-base
 restoration proofs when only atom serials changed. Exact unselected atom fields

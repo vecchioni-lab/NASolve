@@ -620,6 +620,53 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Owned generation support for plane completion (C213)
+
+`read_multiple_plane_candidate` reuses the existing versioned generation reader
+to replay a completed multiple-plane receipt without the old SDK. It verifies
+source/seed, maintained worker, pinned API snapshots, native help/arguments and
+specification; recomputes charge/native handoff, candidate graph/charges/named
+stereochemistry and stopping evidence; and checks the complete file inventory
+again before returning. Baseline source orders remain exact; explicitly declared
+representation policies retain their own existing stage checks. Missing, changed,
+failed or rejected evidence refuses. Historical representation-only replay keeps
+its broader failure-reading scope; no old worker or receipt is rewritten.
+
+`read_owned_plane_support(source, code, request_directory, attempt_number)` adds
+the existing immutable request/attempt authority. The attempt number is required:
+an earlier sealed attempt remains selectable after a later one exists. Source
+bytes, component, recipe, source pins, version, command provenance and completed
+phase ownership must agree. Saved commands and native source snapshots are never
+executed. Absolute installation strings are compared only as historical provenance;
+operational artifacts resolve through declared relative request anchors. Checksums
+detect corruption and contradiction, not hostile forgery.
+
+`prepare_owned_trigonal_plane_candidate` then calls the unchanged C209 operation,
+adding only its graph-selected source-supported missing plane rows. It rechecks
+the selected evidence after preparation and preserves any failed partial output.
+The new wrapper reports `cif-owned-trigonal-plane-completion-v1`; the support proof
+uses `cif-owned-multiple-plane-support-v1`. Underlying C209/C211 report scopes stay
+unchanged. This is completed generator support, not convergence, native mechanics,
+achieved geometry, wholesale dictionary adoption or an automatic PostMR route.
+Fresh multiple-plane generation assesses the frozen `source.cif` identity, so an
+original source filename cannot become an operational replay dependency.
+
+246 distinct focused cases pass, including historical representation controls,
+changed/rehashed evidence, mid-read changes, explicit earlier-attempt selection,
+partial-output retention and cold readback. From a relocated temporary checkout
+and relocated saved requests, with both original copy paths removed and original
+capsule/SDK access and process probing/launch denied, actual C212 PDU/5PC builds
+replay and rebuild byte-identical C209 candidates. C211 exact native inventory
+checks pass again against their saved identical contexts; all 63 copied evidence
+files retain bytes/mtimes. PDU retains reported nonconvergence; 5PC convergence
+remains unreported. No native build/interpretation or geometry run was repeated.
+Source evidence came from complete **Phenix 2.2.1-6174 / dispatcher 2.2.1** builds.
+
+Native capture authentication, plane energy/derivatives, 5PC achieved geometry,
+ordinary invocation/selection and complete-restraint refinement remain open in
+the existing queue. Exact commands/local references:
+`owned_plane_support_replay_2026_11_11`. No Coot/full suite; last full C160.
+
 ### Owned native multiple-plane generation (C212)
 
 The existing `generate_source_candidate` and `generate_source_candidate_attempt`

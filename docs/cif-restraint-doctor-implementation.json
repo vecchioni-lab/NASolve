@@ -28474,7 +28474,13 @@
       "status": "IMPLEMENTED_EXISTING_GENERATOR_OWNER_OPTION",
       "contract": "docs/cif-doctor.md#owned-native-multiple-plane-generation-c212",
       "evidence": "owned_multiple_plane_generation_2026_11_11",
-      "scope": "Explicit installed multiple-plane choice with existing native source, request and cache ownership. Adapter to plane candidate evidence and automatic adoption remain separate."
+      "scope": "Explicit installed multiple-plane choice with existing native source, request and cache ownership. C213 now binds selected owned support into plane candidates; automatic adoption remains separate."
+    },
+    "owned_plane_support_replay": {
+      "status": "IMPLEMENTED_SELECTED_OWNED_SUPPORT_ADAPTER",
+      "contract": "docs/cif-doctor.md#owned-generation-support-for-plane-completion-c213",
+      "evidence": "owned_plane_support_replay_2026_11_11",
+      "scope": "Shared complete-generation replay and exact selected immutable attempt binding into existing plane-only candidates. Native capture/mechanics, achieved geometry and ordinary adoption remain separate."
     }
   },
   "audience": [

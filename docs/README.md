@@ -31,8 +31,9 @@ milestone statements preserve their original scope; they are not a second queue.
   now resolve the bounded native Coot context failure while preserving terminal
   intent. [Owned native multiple-plane generation](cif-doctor.md#owned-native-multiple-plane-generation-c212)
   now binds that explicit option through the existing request and cache recipe;
-  PDU/5PC reproduce their plane-only candidates. The evidence-binding adapter,
-  ordinary engine adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
+  PDU/5PC reproduce their plane-only candidates. [Selected owned support replay](cif-doctor.md#owned-generation-support-for-plane-completion-c213)
+  now binds the completed attempt to that narrow operation and passes cold replay.
+  Native capture/mechanics, ordinary engine adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
   owns exact validation. Full regression remains deferred to integration; C160

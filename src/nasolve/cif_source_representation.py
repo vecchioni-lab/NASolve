@@ -187,7 +187,50 @@ def read_representation_candidate(directory):
         raise ValueError("Incomplete source representation evidence: "+str(exc)) from exc
 
 
-def _read_representation_candidate(root):
+def read_multiple_plane_candidate(directory):
+    """Replay completed multiple-plane support without SDK or saved-code execution.
+
+    Completion is not convergence, native usability or scientific approval. This
+    checks the receipt; an owned caller must also bind the selected request/attempt.
+    Historical representation-only replay retains its broader failure scope.
+    """
+    try:
+        report = _read_representation_candidate(Path(directory), multiple_planes=True)
+        result = report.get("result", {})
+        reader = result.get("reader", {})
+        spec = json.loads((Path(directory)/"candidate_spec.json").read_text())
+        if (report["status"] != "CANDIDATE_REVIEW"
+                or report["execution"]["status"] != "COMPLETED"
+                or type(report["execution"].get("returncode")) is not int
+                or report["execution"]["returncode"] != 0
+                or result.get("builder", {}).get("status") != "COMPLETED"
+                or reader.get("execution") != "COMPLETED"
+                or reader.get("dispatch_is_chemical_components") is not
+                    (spec["declared_charge_control"]["dialect"] == "CHEMICAL_COMPONENTS_CIF")
+                or any(result.get(k) != "NOT_RUN" for k in ("captured_code_execution", "pickle_loading"))):
+            raise ValueError("Require a completed source-preserving multiple-plane build")
+        return report
+    except (OSError, KeyError, TypeError, AttributeError, IndexError, OverflowError) as exc:
+        raise ValueError("Incomplete multiple-plane generation evidence: " + str(exc)) from exc
+
+
+def _replay_exact_handoff(result, expected):
+    """Verify baseline worker scalar evidence, without aromatic-order permission."""
+    contract = {"allowed_systems": []}
+    reader = result.get("reader", {})
+    charge = result.get("charge_control", {})
+    builder = result.get("builder", {})
+    if (native_representation_check(reader, expected, contract, coordinates=True)["status"] != "SOURCE_REPRESENTATION_PASS"
+            or charge != _replay_charge_control(reader, expected)
+            or charge.get("status") != "DECLARED_CHARGE_CONTROL_PASS"
+            or builder.get("before") != charge.get("after")
+            or builder.get("before_format") != reader.get("format")
+            or builder.get("after_format") != reader.get("format")
+            or native_representation_check(builder.get("after", {}), expected, contract, charges=True)["status"] != "SOURCE_REPRESENTATION_PASS"):
+        raise ValueError("Completed native source/charge handoff differs")
+
+
+def _read_representation_candidate(root, *, multiple_planes=False):
     from .cif_source_candidate import WORKER,SOURCE_PATHS,native_object_reference,complete_candidate_stereo,candidate_generation_diagnostic
     from .cif_constructor_setup import native_setup_reference
     from .cif_generation import _ideal_seed,inspect_component_generation,_explicit_formal_charges,_help_option_definitions,_OPTION_ALIASES
@@ -196,11 +239,16 @@ def _read_representation_candidate(root):
     from .cif_mixed_recovery import _safe
     if any(p.is_symlink() for p in [root,*root.parents,*root.rglob("*")]):raise ValueError("Unsafe candidate directory")
     load=lambda p:json.loads(p.read_text())
-    report=load(root/"source_candidate_receipt.json")
+    original_receipt=(root/"source_candidate_receipt.json").read_bytes() if multiple_planes else None
+    report=json.loads(original_receipt) if multiple_planes else load(root/"source_candidate_receipt.json")
+    from .cif_source_candidate import MULTIPLE_PLANE_POLICY_ID
     policy = report.get("bond_representation_policy")
+    expected_policy = MULTIPLE_PLANE_POLICY_ID if multiple_planes else POLICY_ID
+    if multiple_planes and report.get("multiple_planes") is not True:
+        raise ValueError("Multiple-plane choice is not explicit")
     validate_policy(policy)
     if (type(report.get("schema_version")) is not int or report["schema_version"]!=1
-            or report.get("policy_id")!=POLICY_ID or policy is None
+            or report.get("policy_id")!=expected_policy or (not multiple_planes and policy is None)
             or report.get("automatic_adoption") is not False or report.get("requires_cif_review") is not False
             or report.get("native_backend")!="EXPLICIT_NATIVE_CCTBX_PREPARATION; INSTALLED_OPT_DEFAULTS"
             or report.get("selection")!="PENDING_NATIVE_USABILITY; OUTPUTS_PRESERVED_FOR_AUTOMATIC_FALLBACK"
@@ -214,17 +262,23 @@ def _read_representation_candidate(root):
         return p
     refs=report["outputs"];names=[r["path"] for r in refs]
     if len(names)!=len(set(names)) or "source_candidate_receipt.json" in names:raise ValueError("Ambiguous output inventory")
-    for ref in refs:verify(ref)
     omitted=report.get("excluded_serialized_outputs",[])
-    for ref in omitted:
-        if not _safe(ref.get("path")) or Path(ref["path"]).suffix not in {".pkl",".pickle"}:raise ValueError("Invalid serialized exclusion")
-        if (root/ref["path"]).exists():verify(ref)
-    actual={p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file() and p!=root/"source_candidate_receipt.json"}
-    if actual-set(r["path"] for r in omitted)!=set(names):raise ValueError("Candidate file inventory differs")
+    def verify_inventory():
+        for ref in refs:verify(ref)
+        for ref in omitted:
+            if not _safe(ref.get("path")) or Path(ref["path"]).suffix not in {".pkl",".pickle"}:raise ValueError("Invalid serialized exclusion")
+            if (root/ref["path"]).exists():verify(ref)
+        actual={p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file() and p!=root/"source_candidate_receipt.json"}
+        if actual-set(r["path"] for r in omitted)!=set(names):raise ValueError("Candidate file inventory differs")
+    verify_inventory()
     source=root/"source.cif";code=report["component"]
-    contract=generation_representation_contract(source,code,policy)
-    if contract!=report["source_representation_contract"] or contract["source_sha256"]!=report["source_sha256"]:raise ValueError("Source representation contract differs")
-    if (root/"candidate_worker.py").read_text()!=source_representation_worker(WORKER):raise ValueError("Candidate worker differs")
+    contract = generation_representation_contract(source,code,policy) if policy is not None else None
+    if (sha256(source.read_bytes()).hexdigest()!=report["source_sha256"]
+            or (contract is not None and contract!=report.get("source_representation_contract"))
+            or (contract is None and any(k in report for k in ("source_representation_contract", "representation_validation")))):
+        raise ValueError("Source representation contract differs")
+    worker = source_representation_worker(WORKER) if contract is not None else WORKER
+    if (root/"candidate_worker.py").read_text()!=worker:raise ValueError("Candidate worker differs")
     if (root/"source_ideal.pdb").read_text()!=_ideal_seed(source,code)[0]:raise ValueError("Candidate source seed differs")
     rows=report["sources"]
     if len(rows)!=len(SOURCE_PATHS):raise ValueError("Incomplete native source pins")
@@ -243,7 +297,7 @@ def _read_representation_candidate(root):
         return report
     spec=load(spec_path);expected=_expected(source,code,spec["declared_charge_control"]["dialect"])
     if expected["dialect"] not in {"CHEMICAL_COMPONENTS_CIF","MONOMER_LIBRARY_CIF"}:raise ValueError("Unknown source reader dialect")
-    if spec["declared_charge_control"]!=json.loads(json.dumps(expected)) or spec["source_representation_contract"]!=contract:raise ValueError("Native handoff specification differs")
+    if spec["declared_charge_control"]!=json.loads(json.dumps(expected)) or spec.get("source_representation_contract")!=contract:raise ValueError("Native handoff specification differs")
     definitions=_help_option_definitions((root/"elbow_help.log").read_text(errors="replace"));caps=report["generator_capabilities"]
     flags={k:next((v for v in aliases if definitions.get(v) is (k!="opt")),None) for k,aliases in _OPTION_ALIASES.items()}
     if None in flags.values() or caps["selected_aliases"]!=flags or caps["supported_option_definitions"]!=definitions or caps["status"]!="SUPPORTED":raise ValueError("Generator capability evidence differs")
@@ -255,12 +309,18 @@ def _read_representation_candidate(root):
     if type(count) is not int or not 1<=count<=600 or type(timeout) not in (int,float) or not 0<timeout<=600 or step is None:raise ValueError("Invalid generation bounds")
     args=[f"{flags['id']}={code}",f"{flags['output']}=candidate",f"{flags['template']}=source_ideal.pdb",f"{flags['initial_geometry']}=source_ideal.pdb",
           f"{flags['add_hydrogens']}=False",f"{flags['source_state_preservation']}=low",f"{flags['chiral']}=retain",flags['opt'],f"{step}={count}"]
+    if multiple_planes:
+        flag=next((v for v in ("--multiple_planes", "--multiple-planes") if definitions.get(v) is False),None)
+        if flag is None or report.get("multiple_planes_option")!=flag:
+            raise ValueError("Multiple-plane capability/choice differs")
+        args.append(flag)
     prefix=rows[0]["path"][:-len(SOURCE_PATHS[0])].rstrip("/")
     # Absolute strings here are compared as historical provenance only.
     historical=Path(spec["installation_root"])
     wanted={"component":code,"library":str(historical/prefix),"installation_root":str(historical),"arguments":args,
             "sources":[{"installed":str(historical/r["path"]),"sha256":r["sha256"],"module":name[:-3].replace("/",".")} for name,r in zip(SOURCE_PATHS,rows)],
-            "declared_charge_control":json.loads(json.dumps(expected)),"source_representation_contract":contract}
+            "declared_charge_control":json.loads(json.dumps(expected))}
+    if contract is not None:wanted["source_representation_contract"]=contract
     if len(caps.get("command",[]))!=2 or caps["command"][1]!="--help" or not Path(caps["command"][0]).is_relative_to(historical):raise ValueError("Unselected historical help dispatcher")
     if spec!=wanted or report["arguments"]!=args:raise ValueError("Complete native specification differs")
     result=load(root/"candidate_result.json") if (root/"candidate_result.json").exists() else {}
@@ -269,13 +329,18 @@ def _read_representation_candidate(root):
             ("representation_conversion",result.get("representation_conversion_inventory"),{"coordinates":True,"charges":True}),
             ("representation_finished",result.get("representation_finished_inventory"),{"charges":True})]:
         if name in result:
+            if contract is None:raise ValueError("Unexpected representation stage authority")
             actual=native_representation_check(snapshot,expected,contract,**options)
             if name=="representation_conversion":
                 actual["checks"]["exact_native_conversion"]=snapshot==result.get("charge_control",{}).get("after")
                 if not all(actual["checks"].values()):actual["status"]="BLOCKED"
             if actual!=result[name]:raise ValueError("Recorded representation stage differs")
-    validation=generation_representation_validation(result,expected,contract)
-    if validation!=report["representation_validation"]:raise ValueError("Generation representation validation differs")
+    if contract is not None:
+        validation=generation_representation_validation(result,expected,contract)
+        if validation!=report["representation_validation"]:raise ValueError("Generation representation validation differs")
+    else:
+        _replay_exact_handoff(result,expected)
+        validation={"status":"SOURCE_REPRESENTATION_PASS"}
     status="FAILED"
     if report["candidate"] is not None:
         candidate=verify(report["candidate"])
@@ -290,4 +355,8 @@ def _read_representation_candidate(root):
     trajectory=audit_optimizer_log((root/"candidate_worker.log").read_text(errors="replace"))
     stopping={"status":trajectory["stopping"],"convergence_claimed":False,"trajectory":trajectory}
     if report.get("error") or report["status"]!=status or report["stopping"]!=stopping or report["diagnostic"]!=candidate_generation_diagnostic(report):raise ValueError("Generation outcome differs")
+    if multiple_planes:
+        if any(p.is_symlink() for p in [root,*root.parents,*root.rglob("*")]):raise ValueError("Candidate directory changed")
+        verify_inventory()
+        if (root/"source_candidate_receipt.json").read_bytes()!=original_receipt:raise ValueError("Candidate receipt changed during replay")
     return report

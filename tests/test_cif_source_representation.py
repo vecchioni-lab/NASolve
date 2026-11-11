@@ -55,7 +55,8 @@ def test_native_representation_requires_whole_authorized_system_and_exact_state(
 
 
 def fake_generation(tmp_path,mode="none",opt_in=True,source_name="source.cif", *,
-                    pair_factory=source_pair, policy=POLICY, ring_atoms=None, aromatic_count=10, edge_value=1):
+                    pair_factory=source_pair, policy=POLICY, ring_atoms=None, aromatic_count=10, edge_value=1,
+                    multiple_planes=False, request_owned=False):
     from tests.test_cif_constructor_backend import installation
     from tests.test_cif_source_candidate import REFERENCE
     from tests.test_cif_generation import program,HELP
@@ -102,10 +103,18 @@ def post_process(molecule,options):
  AFTER
  return molecule
 """.replace("==10", "=="+str(aromatic_count)).replace("BEFORE","import time;time.sleep(4)" if mode=="timeout" else "pass").replace("AFTER",{"finished_charge":"molecule[0].charge=1","finished_edge":"molecule.bonds[0].order="+str(edge_value),"exception_after":"raise RuntimeError('FAKE AFTER OUTPUT')"}.get(mode,"pass")))
-    elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n');selected=root/'bin/phenix.elbow';selected.write_bytes(elbow.read_bytes());selected.chmod(0o755)
+    elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n'+('  --multiple_planes  Local planes\n' if multiple_planes else ''));selected=root/'bin/phenix.elbow';selected.write_bytes(elbow.read_bytes());selected.chmod(0o755)
     pins=[{'anchor':'phenix_installation','path':(p:=site/name).relative_to(root).as_posix(),'sha256':sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size} for name in SOURCE_PATHS]
     out=tmp_path/'generation';options={'bond_representation_policy':policy} if opt_in else {}
+    if multiple_planes:options['multiple_planes']=True
+    if request_owned:
+        from nasolve.cif_generation_attempt import generate_source_candidate_attempt
+        for row in api:
+            p=root/row['path'];p.parent.mkdir(parents=True,exist_ok=True);p.write_text('# SYNTHETIC API LOCATOR\n')
+            row.update(sha256=sha256(p.read_bytes()).hexdigest(),size=p.stat().st_size)
+        generate_source_candidate=generate_source_candidate_attempt
     r=generate_source_candidate(root,python,selected,api,source,'Q17',out,environment={**os.environ,'CANDIDATE_FIXTURE':str(fixture)},expected_dialect='CHEMICAL_COMPONENTS_CIF',prior_sources=pins,phenix_version='FAKE',single_block_steps=12,timeout_seconds=0.5 if mode=='timeout' else 10,**options)
+    if request_owned:out=out/"attempts/attempt-0001/generation";r=r["generation"]
     return out,r
 
 

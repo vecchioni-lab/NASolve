@@ -296,7 +296,7 @@ def generate_source_candidate(installation_root,python_executable,elbow_executab
         if candidate.is_file() and not candidate.is_symlink():
             data=candidate.read_bytes();report.update(candidate={'anchor':'candidate_directory','path':'candidate.cif','sha256':sha256(data).hexdigest(),'size':len(data)},candidate_retained=True)
             options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
-            assessment_source=output/'source.cif' if representation_contract is not None else source
+            assessment_source=output/'source.cif' if representation_contract is not None or multiple_planes else source
             inspection=inspect_component_generation(assessment_source,candidate,code,**options);report['inspection']=inspection
             stereo=complete_candidate_stereo(assessment_source,candidate,code);report['finished_stereo']=stereo
             left=inspection['source_assessment']['components'];right=inspection['generated_assessment']['components']

@@ -11,8 +11,45 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C212 validated: owned native multiple-plane choice
+## C213 validated: selected owned plane support
 
+Base `9b6134d497f801de113553c4b0bd89c5d8bb6a1a`; capsule
+`live_tests_directory/213_Cedar_owned-plane-evidence-kp9vryjd`. All 10 validation workers stopped.
+Pause/update remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** plane candidates accepted supplied support without a maintained
+owned-generation adapter. Completed multiple-plane evidence now reuses the source
+reader and binds exact selected request/attempt/source/recipe/pins/phase records
+before the unchanged plane-only operation. The reader recomputes scalar evidence,
+retains stopping limits and refuses changes during replay. An earlier sealed
+attempt remains selectable. Partial output survives a later refusal.
+
+**Files/schema:** `cif_source_representation.py`, `cif_source_candidate.py`, new
+`cif_plane_generation.py`, source-representation/plane-generation tests and
+maintained docs/ledgers. New owned-support/wrapper reports; old reader/worker and
+C209/C211 semantics preserved. Fresh multiple-plane assessments use frozen source
+identity. No migration, new owner, scheduler, native execution or automatic adoption.
+
+**Validation:** two initial fail-before tests and three mid-read-change regressions;
+243 focused + 127 final replay checks pass (**246 distinct cases**). Synthetic
+fixture incompleteness and overly broad cold-test guard were corrected, not chemistry
+relaxed. Relocated temporary checkout and saved C212 native requests replay with
+original copy paths removed and old capsule/SDK/process access denied. Both exact
+C209 candidates and C211 saved native inventory controls pass; 63 copied files and
+600 original files preserve bytes/mtimes. Source builds were complete Phenix
+**2.2.1-6174 / dispatcher 2.2.1**; none rerun. Exact commands/references:
+`owned_plane_support_replay_2026_11_11`. No Coot, refinement or full suite; last full
+C160. Generated files, code snapshots, native captures and runners remain local.
+
+**Next/limits:** native capture authentication and plane mechanics/achieved geometry
+before selection. PDU remains nonconverged; 5PC convergence unreported. Existing
+Q04/Q05 ordinary invocation/resume/adoption and Q06/Q07 complete-restraint/held-out
+closure remain open; DP correspondence and numerical calibration remain visible.
+No active process remains. — Rowan · Codex desktop
+
+## C212 published: owned native multiple-plane choice
+
+Implementation published as `9b6134d497f801de113553c4b0bd89c5d8bb6a1a`.
 Base `0dbed8d5d6d5bcd502dbc9c152fb8cf6a9aeebf7`; capsule
 `live_tests_directory/212_Cedar_owned-plane-generation-sonq2dyo`. All 8 owned workers stopped;
 both native requests sealed. Pause/update **2026-11-11 23:00 UTC (London)**.
