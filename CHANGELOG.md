@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record native symmetry proof evidence (C201)
+
+- Document directed ASU nonbonded energy/gradient accounting, numerical controls
+  and cold replay on the connected PDU input. This is research evidence only;
+  production capture, limits, chemistry and continuation behavior are unchanged.
+
 ### Preserve bounded selected-runtime fallback publication (C200)
 
 - Version the continuation working/runtime split and enclosing nested inventory,

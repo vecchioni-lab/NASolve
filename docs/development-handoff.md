@@ -11,6 +11,42 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C201 research checkpoint: directed ASU proof
+
+Base `3b59dc3dd9285bb3f34a06369e8156d6a3c72491`; pause/update **2026-11-11 14:00 UTC**. Capsule:
+`live_tests_directory/201_Cedar_asu-proof-vu6zu1cn`. All workers stopped. Production remains C200.
+
+**Before → after:** C200 exposes the identity-only ASU refusal; C201 proves the
+native directed-image energy/gradient convention on the exact connected input.
+851 atoms, 7,696 pairs including 369 ASU rows; 42 numerical derivative checks,
+six additional synthetic self-image checks and ten negative controls pass.
+The native total is 2210.4860565044264; maximum gradient replay difference
+1.49e-12. Cached/uncached and bulk APIs agree. Incorrect full ASU energy and
+half-gradient shortcuts demonstrably fail. Pure cold replay passes, 26 copied
+files unchanged, originals/SDK/checkout and external execution denied.
+
+**Changed:** methods, queue, handoff, evidence/runtime ledgers and Unreleased
+documentation only. No code/test/API/schema/default/chemistry change or migration.
+All 641 source/test files retain hashes. Native Phenix 2.2.1-6174 / dispatcher
+2.2.1 actually executed twice with fresh current workers plus an explicitly local
+prototype, each bounded to 180 s (3.56s/2.04s actual process durations). A preceding
+setup failure launched nothing and is preserved. No Coot/ReadySet/refine/adoption.
+
+**Validation commands:** PYTHONDONTWRITEBYTECODE=1; project venv and PYTHONPATH=src
+for c201_probe.py probe-r2 / probe-r3; helper Python for c201_replay.py replay-r2
+probe-r3 and c201_cold.py cold-r1. Exact commands and source/input/binary/worker
+hashes are in the evidence ledger. No redundant pytest/full/profile run.
+
+**Next bounded acceptance:** compact versioned maintained ASU capture/reviewer,
+exact worker/spec/receipt binding and legacy/tamper/cold controls. The redundant
+research report is 17,079,362 bytes, beyond the 16 MiB receipt cap; preserve the cap
+and reduce duplication losslessly. Preserve directed multiplicity and all
+self-images. Then freeze the mode in owned continuation and run fresh connected
+ReadySet. Q04 ordinary invocation, Q05 adoption, Q06 refinement, Q07 combined
+controls and C194/Q13 remain open. Do not execute or adopt the local prototype
+as production evidence. Raw data/logs/runners stay local; no merge.
+— Rowan · Codex desktop
+
 ## C200 published: composed continuation publication
 
 Base `fb46695f30c9fab0e26bb4c4c40caf36aa2ae64d`; existing Cedar; implementation complete and published as

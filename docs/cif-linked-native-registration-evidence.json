@@ -81080,5 +81080,274 @@
       }
     },
     "implementation_revision": "afd61682ddc800f17d3134bcbb6536fdd8eda55d"
+  },
+  "native_asu_proof_investigation_2026_11_11": {
+    "status": "VALIDATED_RESEARCH_ONLY; PRODUCTION_UNCHANGED",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "3b59dc3dd9285bb3f34a06369e8156d6a3c72491",
+    "branch": "cedar",
+    "before": "Connected continuation refuses unsupported ASU proof before ReadySet.",
+    "after": "Bounded local research proves exact directed ASU arithmetic; production support still requires maintained versioned implementation.",
+    "schemas": [],
+    "compatibility": "No code/API/schema/default changes or migration; C127 and C200 remain unchanged.",
+    "validation": {
+      "status": "LOCAL_ASU_ARITHMETIC_REPLAY_PASS",
+      "production_qualification": false,
+      "counts": {
+        "simple": 7327,
+        "asu": 369,
+        "nonzero_asu": 190,
+        "self_asu": 4,
+        "positive_simple": 509,
+        "positive_asu": 30,
+        "wrong_full_energy_error": 1.6330960738532667,
+        "wrong_half_gradient_error": 10.39818894532434
+      },
+      "atom_count": 851,
+      "target": 2210.4860565044264,
+      "mapping_max_error": 2.6726875530620303e-14,
+      "gradient_vector_max_error": 1.488137671724229e-12,
+      "finite_difference_max_error": 4.377908339847636e-06,
+      "finite_difference_checks": 42,
+      "pair_and_container_calls": 15505,
+      "synthetic_self": {
+        "positive_self_rows": 4,
+        "target": 200.00000000000034,
+        "finite_difference_checks": 6,
+        "finite_difference_max_error": 2.1734649635618553e-07
+      },
+      "bulk_apis_match_all_rows": true,
+      "manager_evaluations": 2,
+      "space_group": "R 3 :H",
+      "native_execution": "NOT_RUN_BY_REPLAY",
+      "scope": "EXACT_CAPTURED_PAIR_LIST; NOT_NEIGHBOUR_OR_CHEMISTRY_AUTHORITY",
+      "negative_controls": 10,
+      "refusals": {
+        "alter_pair_energy": "Native pair energy differs from pure prolsq arithmetic",
+        "drop_asu_row": "",
+        "change_operator_translation": "Symmetry map differs from source coordinates",
+        "change_inverse_rotation": "Native gradient map differs from symmetry rotation",
+        "halve_container_gradient": "Directed gradients do not reproduce native container",
+        "change_pair_function": "Native pair energy differs from pure prolsq arithmetic",
+        "change_call_accounting": "",
+        "change_fd_observation": "",
+        "self_image_wrong_energy": "",
+        "wrong_bulk_order": ""
+      },
+      "source": {
+        "path": "probe-r3/native_validation.json",
+        "sha256": "e5e4c68918364bbd008a5d6e4304c5c2c439cff3e55451e38a361fbbe25ed3d9"
+      },
+      "replay_sha256": "49147012166c304a20723c469f55fd720ca6871bee4e5ee595cbcaae867ebff2"
+    },
+    "cold": {
+      "status": "COLD_LOCAL_RESEARCH_REPLAY_PASS",
+      "files_unchanged": 26,
+      "source_files_unchanged": 25,
+      "original_copy_absent": true,
+      "historical_sdk_checkout_and_source_reads_denied": true,
+      "external_execution_denied": true,
+      "driver_sha256": "5c244a4b580bbe1151690fcaa9d5984026a5d7403162fbff05a79152cbda000e",
+      "replay_sha256": "49147012166c304a20723c469f55fd720ca6871bee4e5ee595cbcaae867ebff2",
+      "report": {
+        "status": "LOCAL_ASU_ARITHMETIC_REPLAY_PASS",
+        "production_qualification": false,
+        "counts": {
+          "simple": 7327,
+          "asu": 369,
+          "nonzero_asu": 190,
+          "self_asu": 4,
+          "positive_simple": 509,
+          "positive_asu": 30,
+          "wrong_full_energy_error": 1.6330960738532667,
+          "wrong_half_gradient_error": 10.39818894532434
+        },
+        "atom_count": 851,
+        "target": 2210.4860565044264,
+        "mapping_max_error": 2.6726875530620303e-14,
+        "gradient_vector_max_error": 1.488137671724229e-12,
+        "finite_difference_max_error": 4.377908339847636e-06,
+        "finite_difference_checks": 42,
+        "pair_and_container_calls": 15505,
+        "synthetic_self": {
+          "positive_self_rows": 4,
+          "target": 200.00000000000034,
+          "finite_difference_checks": 6,
+          "finite_difference_max_error": 2.1734649635618553e-07
+        },
+        "bulk_apis_match_all_rows": true,
+        "manager_evaluations": 2,
+        "space_group": "R 3 :H",
+        "native_execution": "NOT_RUN_BY_REPLAY",
+        "scope": "EXACT_CAPTURED_PAIR_LIST; NOT_NEIGHBOUR_OR_CHEMISTRY_AUTHORITY"
+      },
+      "production_qualification": false
+    },
+    "native": {
+      "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "execution": "TWO_ACTUAL_FIXED_COORDINATE_PROTOTYPE_INTERPRETATIONS",
+      "attempts": {
+        "probe-r2": {
+          "returncode": 0,
+          "error": null,
+          "stopped_verified": true,
+          "elapsed_seconds": 3.5573915419954574,
+          "input_bytes_mtimes_unchanged": true,
+          "source_hashes_unchanged": true
+        },
+        "probe-r3": {
+          "returncode": 0,
+          "error": null,
+          "stopped_verified": true,
+          "elapsed_seconds": 2.0369614999945043,
+          "input_bytes_mtimes_unchanged": true,
+          "source_hashes_unchanged": true
+        }
+      },
+      "setup_failure": {
+        "status": "SETUP_FAILED",
+        "error": "ModuleNotFoundError: Bio",
+        "reason": "Helper Python lacks project dependency; fresh attempt uses existing project venv",
+        "native_execution": "NOT_LAUNCHED",
+        "all_workers_stopped": true
+      },
+      "report_bytes": 17079362,
+      "production_receipt_limit": 16777216,
+      "installed_source_pins": [
+        {
+          "path": "cctbx/geometry_restraints/nonbonded.h",
+          "sha256": "3c8d39e25f072a25bbae359e83bfe8ee9c304e2149659ed0caf0985286a7d061",
+          "size": 29326
+        },
+        {
+          "path": "cctbx/geometry_restraints/nonbonded_bpl.cpp",
+          "sha256": "b4c3f4d0da6d5211dce0340bcade4d41e36dcce7722f186a3f4a6aa47aaa8949",
+          "size": 13194
+        },
+        {
+          "path": "cctbx/geometry_restraints/nonbonded_sorted.h",
+          "sha256": "111312ed7b3300f1c64defcb075644962424b064d5d8de1e1bdf2d2e65771675",
+          "size": 7478
+        },
+        {
+          "path": "cctbx/geometry_restraints/sorted_asu_proxies.h",
+          "sha256": "faa6e1361dc949c326d068129046be05e7d96f866f2644344e3bea45e2513003",
+          "size": 4309
+        },
+        {
+          "path": "cctbx/geometry_restraints/asu_cache.h",
+          "sha256": "d92c6bb4230cb140e8b5e2086f12701e194f2359c5a121068b8e421bc5a7c9cb",
+          "size": 3045
+        },
+        {
+          "path": "cctbx/crystal/direct_space_asu_bpl.cpp",
+          "sha256": "56e12b3f50b26970e6aa1608b8e2e1fea9d3f2778431f9e6d73689dc1928763d",
+          "size": 12918
+        },
+        {
+          "path": "cctbx/crystal/direct_space_asu.h",
+          "sha256": "c4cdd9f906dcda6df6d709f2ceff957234147552d578e98cc870ed84b7088a00",
+          "size": 35515
+        }
+      ],
+      "binary_pins": [
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/cctbx_geometry_restraints_ext.so",
+          "module": "cctbx_geometry_restraints_ext",
+          "sha256": "496677a82712ef7e8488ef675b98d0bb4f06741c12489f8a3d5fc15058b7612c",
+          "size": 5853552
+        },
+        {
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/lib-dynload/cctbx_crystal_ext.so",
+          "module": "cctbx_crystal_ext",
+          "sha256": "42bb2f9ad0a7d7cb201d4b63dca33897727e5c89ee38f8e17a689799d779d529",
+          "size": 2321232
+        }
+      ]
+    },
+    "commands": [
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <project-venv>/bin/python c201_probe.py probe-r2",
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <project-venv>/bin/python c201_probe.py probe-r3",
+      "PYTHONDONTWRITEBYTECODE=1 python3.12 c201_replay.py replay-r2 probe-r3",
+      "PYTHONDONTWRITEBYTECODE=1 python3.12 c201_cold.py cold-r1"
+    ],
+    "unchanged_source_test_files": 569,
+    "full_suite": "NOT_RUN_USER_REQUEST; SOURCE_TEST_FILES_UNCHANGED",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/start.json",
+        "sha256": "85d035cabc4e2e600f2f44027abcf8df5482a36b31c6abdef1cac3ac656b4f66",
+        "size": 347
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/source-hashes.json",
+        "sha256": "5b90376b7694e27584050188ae26b99dce78e165c8c235545c6a77119117628e",
+        "size": 61729
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/probe-r2/start.json",
+        "sha256": "6dd68974839c202a7fc3c9ca68909c5ba87c992d3f85f6f70794cfbc5cfe1bb4",
+        "size": 666
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/probe-r2/finished.json",
+        "sha256": "23313e70b790f3ef33b8f74172f6e14c8dc0a401e5f5e9013dd271acdd428c19",
+        "size": 183
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/probe-r3/start.json",
+        "sha256": "15edda8445597e47051f86775d83a0b59a55562bdc32216414578f7844bfb1eb",
+        "size": 666
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/probe-r3/finished.json",
+        "sha256": "dd25260d92a93d70e97fec71b218ad6b8f94b353ff1e742f5a7eb144f9b9cbd0",
+        "size": 183
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/probe-r3/input-evidence.json",
+        "sha256": "0a8790d52120ef18ed97a484f4483542ab1be63393b6b2c3cd69d5068554289f",
+        "size": 3822
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/probe-r3/native_validation.json",
+        "sha256": "e5e4c68918364bbd008a5d6e4304c5c2c439cff3e55451e38a361fbbe25ed3d9",
+        "size": 17079362
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/probe-r3/installed-source-pins.json",
+        "sha256": "c16b9ae48050a9f8d72689c679ad7d29ed0bd484a32a22b81a4c8336428f29fe",
+        "size": 1152
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/replay-r2/summary.json",
+        "sha256": "a8dbc7f55aaf6d7157b84af6d978e3ced46b16bf28d60752d5a1c865940aa3f6",
+        "size": 1875
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "201_Cedar_asu-proof-vu6zu1cn/cold-r1/summary.json",
+        "sha256": "0fe2fde525c4a6de27aeccad3aa8efef9e3a18b99eb73484503cd59acea85d61",
+        "size": 1536
+      }
+    ],
+    "excluded": "Raw model/dictionaries/PHIL, native captures/logs, local research runners and derivative science are not committed.",
+    "limitations": [
+      "One exact R3:H model plus separate synthetic active self-images; not general chemistry or refinement qualification.",
+      "Production ASU capture/reviewer and request/receipt binding absent; original identity-only guard retained.",
+      "Research JSON exceeds existing 16 MiB receipt cap; compact lossless versioned proof required.",
+      "Q04 ordinary invocation, Q05 selected checkpoint, Q06 real refinement and Q07 controls remain open."
+    ]
   }
 }

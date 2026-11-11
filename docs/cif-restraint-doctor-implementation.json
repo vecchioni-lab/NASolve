@@ -28405,6 +28405,11 @@
         "Q06 refinement, Q07 combined/held-out controls, C194/Q13 source chemistry gaps."
       ],
       "implementation_revision": "afd61682ddc800f17d3134bcbb6536fdd8eda55d"
+    },
+    "native_asu_proof_investigation": {
+      "status": "VALIDATED_LOCAL_RESEARCH_ONLY; PRODUCTION_ASU_GATE_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#native_asu_proof_investigation_2026_11_11",
+      "next": "Compact versioned maintained capture/reviewer with exact worker/spec/receipt binding, explicit resource bounds and legacy/cold controls; then owned continuation."
     }
   },
   "audience": [

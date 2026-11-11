@@ -615,6 +615,71 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Symmetry-aware nonbonded proof investigation (C201)
+
+The C200 connected continuation reaches C127's deliberately identity-only pair
+guard before ReadySet. A bounded local research probe now explains the native
+ASU convention on the exact frozen connected PDU inputs. **Production capture,
+continuation and acceptance policies remain unchanged.** This is complete
+diagnostic evidence, not an installed ASU implementation or a refinement result.
+
+Installed Phenix **2.2.1-6174 / dispatcher 2.2.1** CCTBX `nonbonded.h`, its Python
+bindings and ASU cache/mapping sources were checked and hashed, together with the
+loaded geometry/crystal extension binaries. Native simple pairs use both endpoint
+gradients. An ASU row maps `(i,0)` and `(j,j_sym)` into the ASU frame. Its energy
+has weight one when `j_sym=0`, otherwise one half. Its gradient always adds the
+full first-endpoint derivative transformed by `r_inv_cart(i,0)`; it adds the
+second endpoint only for `j_sym=0`. Complete directed-image multiplicity supplies
+the other contributions. Do not collapse these rows into unordered atom pairs,
+drop self-images or half-weight both endpoint gradients.
+
+Two fresh native executions used current energy/full-monomer worker factories
+plus an explicitly local research extension; no captured old worker was executed.
+The stronger control has **851 atoms, 7,327 simple rows and 369 ASU rows** in
+`R 3 :H`, including 190 nonzero-image rows and four self-image rows. All raw
+pair energies/gradients, symmetry coordinate transforms, cached/uncached native
+container sums and full-manager repeats agree. Pure replay reconstructs the
+nonbonded residual **2210.4860565044264**; Cartesian mapping error is at most
+2.68e-14 Å and gradient-vector difference at most 1.49e-12.
+
+The model has six positive nonzero-image rows; 42 central-difference checks cover
+seven atoms at steps 1e-4 and 1e-5 Å, with maximum discrepancy 4.38e-6. Its four
+self-image rows have zero contribution. A **separate synthetic kernel container**
+activates those four rows by changing only its own radii: six derivative checks
+pass (maximum discrepancy 2.18e-7). The real manager, model, dictionaries and
+coordinates remain unchanged. These numerical tolerances validate arithmetic;
+they are not crystallographic acceptance thresholds.
+
+The incorrect all-full energy convention differs by **1.6330960738532667**;
+incorrectly halving directed gradients differs by **10.39818894532434** in vector
+norm. Ten altered-evidence controls are refused. CCTBX's existing bulk residual
+and distance APIs agree with every captured row in native order, providing a
+possible future efficiency route; this does not silently replace the per-pair
+proof. The stronger probe used **15,505 pair/container/bulk calls** under its
+explicit local 20,000 bound, plus two manager evaluations. C127's production
+5,000-call bound is untouched.
+
+Cold replay passes from a relocated tree with the original copy absent, original
+data/checkout/SDK reads and external execution denied: **26 copied files** and
+25 source files retain bytes and timestamps. No pytest/profile/full-suite rerun
+was needed: all 641 guarded source/test files are unchanged. The first setup
+attempt lacked Biopython and launched no native worker; it is preserved. All
+native workers are stopped. No Coot, ReadySet, optimization, diffraction
+refinement or checkpoint adoption ran. Raw inputs, logs, runners and captured
+science remain local; exact commands, hashes and controls are in the evidence
+ledger under `native_asu_proof_investigation_2026_11_11`.
+
+**Remaining engineering gate:** introduce a versioned maintained capture/reviewer
+and exact spec/worker/receipt binding, preserving v1. Retain complete ordered
+simple/ASU/self-image membership and independently replay mapped coordinates,
+raw kernels and directed accumulation. Explicitly bound rows/calls and serialized
+evidence. The deliberately redundant research report is **17,079,362 bytes**,
+already beyond the existing 16 MiB receipt limit before wrapping; do not raise
+that limit merely to copy the prototype. A compact lossless proof and reader
+tamper/legacy/cold controls are needed, then an explicitly frozen continuation
+policy and fresh actual ReadySet control. Keep Q04 ordinary invocation, Q05
+selected checkpoint export and Q06 real refinement as separate acceptance gates.
+
 ### Composed continuation publication and exact completion bounds (C200)
 
 New continuation executions freeze cif-continuation-partitioned-artifacts-v1.
