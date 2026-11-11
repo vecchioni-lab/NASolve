@@ -57,6 +57,11 @@ inputs if an external source changes temporarily. A durable construction record
 now follows those exact inputs into an explicitly initialized engine request and
 survives later preparation failure. It is provenance, not chemical qualification.
 Ordinary invocation and checkpoint adoption remain separate gates.
+An [explicit symmetry-pair diagnostic](cif-doctor.md#compact-maintained-asu-pair-capture-c202)
+now explains native crystal contacts without dropping image contributions. Its
+connected-model and cold controls pass; ordinary continuation still needs a
+versioned switch before it can use that proof. No new chemical support or
+refinement approval follows from numerical consistency.
 Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
 remaining acceptance gates and catalogue work. The examples and numbered methods
@@ -833,7 +838,8 @@ explain export and maintenance.
 Solid arrows indicate the existing model-preparation path; dashed arrows
 indicate read-only audits of exact construction sources, frozen source/runtime
 inputs and the selected effective restraint bundle. ReadySet remains the
-external preparation program. The explicit stored-site route binds the saved
+external preparation program. Explicit native pair diagnostics also retain
+directed symmetry images; they add no automatic adoption arrow. The explicit stored-site route binds the saved
 policy to current site preparation and captured native inputs, with no automatic
 adoption arrow. Separate catalogue/core inspection binds source ports; explicit site contracts propose bounded source-table deletions and
 require reciprocal source ports across the declared link set. Exact projections
@@ -3461,8 +3467,10 @@ from covalent links.
 Methods: two fixed native pair snapshots, exact atom/coordinate binding,
 per-pair native residual/gradient sums, offline replay of the captured repulsion
 function, repeat checks and per-residue attribution. Zero-contribution pairs
-are retained. The current version handles identity-only prolsq pairs and fails
-explicitly on unsupported symmetry/functions. No coordinates, chemistry or
+are retained. C127 retains its identity-only prolsq policy. C202 adds a separate
+explicit mode for complete directed symmetry images and self-images, with compact
+receipts and independently replayed native arithmetic. Unsupported functions still
+refuse; ordinary continuation has not yet switched to this mode. No coordinates, chemistry or
 acceptance thresholds change; no physical clashscore or automatic adoption is
 claimed. Focused tests, real native captures and cold replay pass; the complete
 suite status is in the [technical contract](cif-doctor.md#native-nonbonded-pair-attribution-c127).

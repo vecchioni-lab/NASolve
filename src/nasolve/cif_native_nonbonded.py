@@ -22,8 +22,12 @@ def _capture_pairs(geo, points):
             'max_pair_kernel_calls': 5000, 'snapshots': snapshots}
 
 
-def native_nonbonded_worker(base):
+def native_nonbonded_worker(base, *, policy=None):
     """Augment only the explicit energy worker; preserve all legacy bytes."""
+    if policy is not None:
+        from .cif_native_asu import validate_policy, native_asu_worker
+        validate_policy(policy, enabled=True)
+        return native_asu_worker(base)
     header = 'try:\n    from iotbx import phil\n'
     token = '    report["energy_inventory"]["status"]="RECORDED"\n'
     if base.count(header) != 1 or base.count(token) != 1 or 'nonbonded_inventory' in base:
@@ -53,6 +57,11 @@ def review_native_nonbonded(native):
     Capture receipts, frozen input/worker hashes and source chemistry must be
     verified separately. Saved evidence proves this manager, not physical truth.
     """
+    inventory = native.get('nonbonded_inventory') if isinstance(native, dict) else None
+    if isinstance(inventory, dict) and inventory.get('policy_id') != POLICY_ID:
+        from .cif_native_asu import POLICY_ID as asu_policy, review_native_asu
+        if inventory.get('policy_id') == asu_policy:
+            return review_native_asu(native)
     try:
         review_captured_geometry(native)
         if not all(energy_inventory_checks(native).values()):

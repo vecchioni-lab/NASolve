@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-10**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-11**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -10,7 +10,9 @@ milestone statements preserve their original scope; they are not a second queue.
 - **CIF Doctor:** start with the [Q04-to-release map](cif-doctor-completion-queue.md#pipeline-position).
   The explicit request now owns acquisition, qualification, repair and optional
   ReadySet/native continuation, including immutable recovery and usable fallback.
-  Ordinary restraint intake, caller/checkpoint adoption, actual refinement and
+  Connected construction/restraint intake and explicit compact native ASU proof
+  now have live controls; switching owned continuation to that proof, ordinary
+  caller/checkpoint adoption, actual refinement and
   broader chemistry coverage remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)

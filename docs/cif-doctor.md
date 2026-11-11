@@ -155,6 +155,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
 | Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C184 includes selected ReadySet/native continuation under that same request and recovery owner. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
+| Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. Ordinary continuation keeps C127 until its configuration is versioned; no chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
@@ -615,6 +616,71 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Compact maintained ASU pair capture (C202)
+
+`inspect_native_bundle(..., inventory_detail="linked", energy_inventory=True,
+nonbonded_inventory=True,
+nonbonded_policy="cif-native-nonbonded-asu-attribution-v1")` requests the maintained
+symmetry-aware diagnostic established by C201. Omitting `nonbonded_policy` retains
+the exact C127 worker and identity-only 5,000-call contract. Invalid/incompatible
+policies refuse before allocating output. Basic default interpretation does not
+import the optional ASU dependency chain.
+
+The new schema-1 inventory records one complete ordered pair table with explicit
+columns, native cell and exact image mappings. Simple and directed ASU rows retain
+their native order, multiplicity and self-images. Each of two fresh fixed native
+evaluations independently observes that table and its mappings; their canonical
+digests bind both snapshots to the shared table. Both complete native kernel
+arrays remain recorded. Opposite raw endpoint gradients are checked before only
+the first is stored, avoiding redundant signs and mapped coordinates. No rows,
+zero contributions or second observations are discarded. The mode permits at
+most **9,999 pairs and 20,000 pair/container calls**; it refuses an oversized
+complete snapshot before evaluating pair kernels. Existing receipt and public
+artifact size limits are unchanged.
+
+The read-only reviewer derives Cartesian mappings from the captured cell and
+fractional operations, checks isometries and inverse/adjoint rotations, and
+recomputes every prolsq residual and raw derivative. It then applies C201's native
+directed convention: nonzero-image ASU energies carry half weight, while first-
+endpoint gradients are full and second-endpoint accumulation occurs only for
+zero images. Pair sums must reproduce both native containers and the complete
+fixed-manager energy/gradient evidence. Reports retain raw and weighted residuals,
+image indices and source-site buckets; these buckets are not counts of unique
+physical contacts. Coordinates and chemical definitions stay fixed.
+
+The existing receipt reader reconstructs the exact maintained worker from the
+requested policy, verifies the frozen input/output hashes and report/spec joins,
+and runs the new arithmetic review before returning a successful ASU capture.
+Unknown/null/downgraded policies, altered workers and unrequested ASU evidence
+refuse. Legacy captured code is never executed. New records need C202 readers;
+old C127 records keep their meaning and require no migration.
+
+Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** interpretation of the exact frozen
+C200 connected control passes with **851 atoms, 7,696 pairs, 369 ASU rows and four
+self-image rows**. It uses **15,394 pair/container calls** and returns the same
+native residual, **2210.486056504427**. Report/receipt sizes are **7,190,358 /
+7,886,148 bytes**, below the unchanged 16 MiB receipt cap. Exact legacy worker
+bytes remain identical to the C200 invocation. No Coot, ReadySet, coordinate
+optimization, diffraction refinement or checkpoint adoption ran.
+
+Fail-before controls cover the missing ASU implementation and an eager optional
+import discovered during review. Focused numerical, receipt-binding, malformed
+input, budget and caller tests pass. Cold replay preserves both C127 FANA captures
+and the new connected capture, with original copies absent and historical source,
+checkout/SDK reads and external execution denied: **647 files unchanged**.
+The final import-only adjustment is checked by nine targeted cold cases and all
+three real receipts, without repeating the larger caller suite. Exact test
+commands/results and artifact hashes are in the evidence ledger under
+`compact_native_asu_capture_2026_11_11`. No full/profile regression was run.
+
+**Boundary:** this is an explicit diagnostic API. Ordinary owned continuation
+still requests C127 and therefore still refuses this crystal before ReadySet.
+The next Q04 step must freeze the new mode in continuation and enclosing request
+configuration, preserve historical settings and run a fresh actual connected
+ReadySet control. Native exclusions and mappings are observations, not independent
+chemical authority; no symmetry-aware covalent optimizer or refinement acceptance
+is established. Q05/Q06 and the broader chemistry gates remain separate.
+
 ### Symmetry-aware nonbonded proof investigation (C201)
 
 The C200 connected continuation reaches C127's deliberately identity-only pair
@@ -662,7 +728,7 @@ explicit local 20,000 bound, plus two manager evaluations. C127's production
 Cold replay passes from a relocated tree with the original copy absent, original
 data/checkout/SDK reads and external execution denied: **26 copied files** and
 25 source files retain bytes and timestamps. No pytest/profile/full-suite rerun
-was needed: all 641 guarded source/test files are unchanged. The first setup
+was needed: all 569 guarded source/test files are unchanged. The first setup
 attempt lacked Biopython and launched no native worker; it is preserved. All
 native workers are stopped. No Coot, ReadySet, optimization, diffraction
 refinement or checkpoint adoption ran. Raw inputs, logs, runners and captured

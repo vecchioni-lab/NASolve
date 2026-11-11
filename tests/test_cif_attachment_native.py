@@ -274,3 +274,38 @@ def test_successful_capture_must_record_the_exact_consumed_input_order(tmp_path,
     def alter(r):r['native_validation']['dictionary_loading' if kind=='dictionary' else 'phil_adaptations'][0]['input']='inputs/unselected.file'
     rebind(receipt,alter)
     with pytest.raises(ValueError,match='consumed'):audit(paths)
+
+
+@pytest.mark.parametrize('defect',[None,'absent','null','unknown','wrong_report','legacy_worker'])
+def test_explicit_asu_receipt_binds_request_worker_and_reviewer(tmp_path,monkeypatch,defect):
+    """Only binding is mocked here; numerical/native ASU proof has separate controls."""
+    from nasolve.cif_attachment_native import _capture
+    from nasolve.cif_candidate_usability import native_energy_worker
+    from nasolve.cif_native_nonbonded import native_nonbonded_worker
+    from nasolve.cif_native_asu import POLICY_ID
+    _,path=fixture(tmp_path);root=path.parent
+    spec=json.loads((root/'native_spec.json').read_bytes())
+    spec.update(energy_inventory=True,nonbonded_inventory=True,nonbonded_policy=POLICY_ID)
+    worker=native_nonbonded_worker(native_energy_worker(_NATIVE_WORKER),policy=POLICY_ID)
+    if defect=='absent':spec.pop('nonbonded_policy')
+    if defect=='null':spec['nonbonded_policy']=None
+    if defect=='unknown':spec['nonbonded_policy']='unknown'
+    if defect=='legacy_worker':worker=native_nonbonded_worker(native_energy_worker(_NATIVE_WORKER))
+    save(root/'native_spec.json',spec);(root/'native_worker.py').write_text(worker)
+    calls=[];monkeypatch.setattr('nasolve.cif_native_asu.review_native_asu',lambda n:calls.append(n))
+    rebind(path,lambda r:r['native_validation'].update(nonbonded_inventory={'policy_id':'wrong' if defect=='wrong_report' else POLICY_ID}))
+    model=(root/'inputs/model.pdb').read_bytes()
+    if defect is None:
+        record,native,_=_capture(path,model)
+        assert record['status']=='REVIEW' and calls==[native]
+    else:
+        with pytest.raises(ValueError):_capture(path,model)
+        assert calls==[]
+
+
+def test_legacy_receipt_cannot_claim_unrequested_asu_proof(tmp_path):
+    from nasolve.cif_attachment_native import _capture
+    from nasolve.cif_native_asu import POLICY_ID
+    _,path=fixture(tmp_path)
+    rebind(path,lambda r:r['native_validation'].update(nonbonded_inventory={'policy_id':POLICY_ID}))
+    with pytest.raises(ValueError,match='Unrequested native ASU'):_capture(path,(path.parent/'inputs/model.pdb').read_bytes())

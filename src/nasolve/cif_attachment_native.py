@@ -106,11 +106,16 @@ def _capture_evidence(path, model, *, timed_out=False):
         if spec.get('atom_name_mapping'):
             raise ValueError('Unsupported combined energy/mapping worker')
         worker = native_energy_worker(worker)
+    from .cif_native_asu import validate_policy as validate_nonbonded_policy, POLICY_ID as asu_policy
+    nonbonded_policy=spec.get('nonbonded_policy')
+    validate_nonbonded_policy(nonbonded_policy, enabled=spec.get('nonbonded_inventory'))
+    if 'nonbonded_policy' in spec and nonbonded_policy is None:
+        raise ValueError('Native nonbonded policy must be explicit when recorded')
     if spec.get('nonbonded_inventory'):
         from .cif_native_nonbonded import native_nonbonded_worker
         if not spec.get('energy_inventory'):
             raise ValueError('Nonbonded inventory requires native energy evidence')
-        worker = native_nonbonded_worker(worker)
+        worker = native_nonbonded_worker(worker, policy=nonbonded_policy)
     if 'atom_name_mapping' in spec:
         from .cif_native_atom_mapping import native_mapping_worker, POLICY_ID as mapping_policy
         if spec['atom_name_mapping'] is not True or receipt.get('atom_name_mapping_policy') != mapping_policy:
@@ -166,6 +171,15 @@ def _capture_evidence(path, model, *, timed_out=False):
         review_full_monomers(native)
     elif not spec.get('full_monomer_inventory') and 'full_monomer_inventory' in native:
         raise ValueError('Unrequested full native monomer inventory evidence')
+    pair_inventory=native.get('nonbonded_inventory')
+    pair_policy=pair_inventory.get('policy_id') if isinstance(pair_inventory,dict) else None
+    if nonbonded_policy is not None and native.get('status')=='REVIEW':
+        from .cif_native_asu import review_native_asu
+        if pair_policy != nonbonded_policy:
+            raise ValueError('Native ASU inventory differs from explicit request')
+        review_native_asu(native)
+    elif nonbonded_policy is None and pair_policy==asu_policy:
+        raise ValueError('Unrequested native ASU inventory')
     if native != receipt.get('native_validation'):
         raise ValueError('Native report differs from embedded receipt')
     if type(native.get('schema_version')) is not int or native.get('automatic_adoption') is not False:

@@ -81349,5 +81349,335 @@
       "Research JSON exceeds existing 16 MiB receipt cap; compact lossless versioned proof required.",
       "Q04 ordinary invocation, Q05 selected checkpoint, Q06 real refinement and Q07 controls remain open."
     ]
+  },
+  "compact_native_asu_capture_2026_11_11": {
+    "status": "IMPLEMENTED_VALIDATED; PUBLICATION_PENDING",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "6ae51f28ceaabf6fd01bfde95779fe1ad9f8a7ae",
+    "branch": "cedar",
+    "before": "Identity-only C127 refused the connected native crystal; verbose C201 research capture exceeded the receipt cap.",
+    "after": "Explicit compact maintained ASU capture, complete directed arithmetic review and exact existing receipt binding. Default continuation remains unchanged.",
+    "files": [
+      "src/nasolve/cif_native_asu.py",
+      "src/nasolve/cif_native_nonbonded.py",
+      "src/nasolve/cif_native_validation.py",
+      "src/nasolve/cif_attachment_native.py",
+      "tests/test_cif_native_nonbonded.py",
+      "tests/test_cif_attachment_native.py"
+    ],
+    "schemas": [
+      "Optional native_spec.nonbonded_policy",
+      "schema1 cif-native-nonbonded-asu-attribution-v1"
+    ],
+    "compatibility": "Default C127 worker byte-identical, 5000-call legacy policy retained. No migration; new policy requires C202 readers. Existing16MiB receipt/public artifact bounds unchanged.",
+    "validation": {
+      "phases": {
+        "new-r1": {
+          "tests": 182,
+          "result": "182 passed in 17.90s",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_native_nonbonded.py",
+              "tests/test_cif_native_validation.py",
+              "tests/test_cif_attachment_native.py",
+              "tests/test_cif_candidate_usability.py",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/new-r1/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        },
+        "new-r2": {
+          "tests": 117,
+          "result": "117 passed in 5.96s",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_native_nonbonded.py",
+              "tests/test_cif_attachment_native.py",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/new-r2/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        },
+        "readers-r1": {
+          "tests": 150,
+          "result": "150 passed in 257.64s (0:04:17)",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_native_monomers.py",
+              "tests/test_cif_selected_environment.py",
+              "tests/test_cif_runtime_continuation.py",
+              "tests/test_cif_runtime_readyset.py",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/readers-r1/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        },
+        "final-r1": {
+          "tests": 63,
+          "result": "63 passed in 0.67s",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_native_nonbonded.py",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/final-r1/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        }
+      },
+      "distinct_affected_cases": 342,
+      "before": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <project-venv>/bin/python -m pytest -q -p no:cacheprovider -o addopts= tests/test_cif_native_nonbonded.py -k explicit_asu_mode",
+        "result": "1 failed,59 deselected in0.30s",
+        "reason": "ModuleNotFoundError: nasolve.cif_native_asu; expected fail before implementation"
+      },
+      "lazy_before": {
+        "returncode": 1,
+        "elapsed_seconds": 1.0711622919916408,
+        "source_files": 570,
+        "source_unchanged": true,
+        "tail": "F                                                                        [100%]\n=================================== FAILURES ===================================\n_______ test_basic_native_reader_does_not_import_optional_asu_extension ________\n\ntmp_path = PosixPath('/private/var/folders/48/tyw5h90d2qgct97z37rncmsr0000gp/T/pytest-of-svecchio/pytest-212/test_basic_native_reader_does_0')\n\n    def test_basic_native_reader_does_not_import_optional_asu_extension(tmp_path):\n        import builtins\n        from nasolve.cif_native_validation import inspect_native_bundle\n        original=builtins.__import__\n        def guarded(name,*args,**kwargs):\n            if name=='cif_native_asu':raise AssertionError('Legacy basic capture imported optional ASU dependencies')\n            return original(name,*args,**kwargs)\n        with patch('builtins.__import__',side_effect=guarded),pytest.raises(FileNotFoundError):\n>           inspect_native_bundle(tmp_path/'absent_model',[],tmp_path/'out',tmp_path/'python',\n                environment={},phenix_version='FAKE',installed_library_only=True)\n\ntests/test_cif_native_nonbonded.py:224: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nsrc/nasolve/cif_native_validation.py:490: in inspect_native_bundle\n    from .cif_native_asu import validate_policy as validate_nonbonded_policy\n/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1139: in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1143: in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n/opt/homebrew/Cellar/python@3.12/3.12.14/Frameworks/Python.framework/Versions/3.12/lib/python3.12/unittest/mock.py:1204: in _execute_mock_call\n    result = effect(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nname = 'cif_native_asu'\nargs = ({'__name__': 'nasolve.cif_native_validation', '__doc__': 'Bounded native interpretation of an explicitly selected res...'__loader__': <_frozen_importlib_external.SourceFileLoader object at 0x1070f2600>, ...}, None, ('validate_policy',), 1)\nkwargs = {}\n\n    def guarded(name,*args,**kwargs):\n>       if name=='cif_native_asu':raise AssertionError('Legacy basic capture imported optional ASU dependencies')\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       AssertionError: Legacy basic capture imported optional ASU dependencies\n\ntests/test_cif_native_nonbonded.py:221: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_cif_native_nonbonded.py::test_basic_native_reader_does_not_import_optional_asu_extension\n1 failed, 62 deselected in 0.59s\n"
+      },
+      "cold_first": {
+        "returncode": 0,
+        "elapsed_seconds": 6.107712582990644,
+        "files": 647,
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "status": "PASS",
+        "reports": {
+          "new": {
+            "policy": "cif-native-nonbonded-asu-attribution-v1",
+            "pairs": 7696,
+            "target": 2210.486056504427
+          },
+          "translated": {
+            "policy": "cif-native-nonbonded-attribution-v1",
+            "pairs": 326,
+            "target": 973.948149885052
+          },
+          "bridge": {
+            "policy": "cif-native-nonbonded-attribution-v1",
+            "pairs": 411,
+            "target": 6127.599344909726
+          }
+        },
+        "external_execution": "DENIED",
+        "historical_reads": "DENIED",
+        "command": [
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_native_nonbonded.py",
+          "tests/test_cif_attachment_native.py",
+          "--basetemp",
+          "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/cold-r1/pytest temp",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/cold-r1/tests.xml"
+        ]
+      },
+      "cold_final": {
+        "returncode": 0,
+        "elapsed_seconds": 1.8602572090021567,
+        "files": 647,
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "status": "PASS",
+        "reports": {
+          "new": {
+            "policy": "cif-native-nonbonded-asu-attribution-v1",
+            "pairs": 7696,
+            "target": 2210.486056504427
+          },
+          "translated": {
+            "policy": "cif-native-nonbonded-attribution-v1",
+            "pairs": 326,
+            "target": 973.948149885052
+          },
+          "bridge": {
+            "policy": "cif-native-nonbonded-attribution-v1",
+            "pairs": 411,
+            "target": 6127.599344909726
+          }
+        },
+        "external_execution": "DENIED",
+        "historical_reads": "DENIED",
+        "command": [
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_cif_native_nonbonded.py",
+          "tests/test_cif_attachment_native.py",
+          "--basetemp",
+          "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/cold-final/pytest temp",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/202_Cedar_compact-asu-i89yv0g6/cold-final/tests.xml",
+          "-k",
+          "basic_native_reader or asu_worker or explicit_asu_receipt or legacy_receipt_cannot_claim"
+        ]
+      },
+      "default_minimal_python": "PASS without Bio or optional ASU import",
+      "full_suite": "NOT_RUN_USER_REQUEST; LAST_COMPLETE_C160"
+    },
+    "native": {
+      "status": "PASS",
+      "error": null,
+      "elapsed_seconds": 2.46241233299952,
+      "all_workers_stopped": true,
+      "parent_bytes_mtimes_unchanged": true,
+      "source_hashes_unchanged": true,
+      "legacy_worker_bytes_identical": true,
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+      "readyset": "NOT_RUN",
+      "refinement": "NOT_RUN",
+      "automatic_adoption": false,
+      "pair_count": 7696,
+      "asu_pair_count": 369,
+      "self_image_pair_count": 4,
+      "total_residual": 2210.486056504427,
+      "receipt_bytes": 7886148,
+      "report_bytes": 7190358,
+      "kernel_calls": 15394
+    },
+    "resource_bounds": {
+      "max_pairs": 9999,
+      "max_pair_container_calls": 20000,
+      "receipt_bytes": 16777216
+    },
+    "commands": {
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <project-venv>/bin/python c202_native.py native-r1",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 <project-venv>/bin/python c202_cold.py cold-final"
+    },
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/start.json",
+        "sha256": "c87bfb4689e7d249dc4d94b1744edf71c1a24512457f1a71926b9bd69601eb68",
+        "size": 256
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/clock-extension.json",
+        "sha256": "0c8eae09e47a5c1e051ec47fdb306fd78f6f3279bf3b90a0c6b3e9110330d973",
+        "size": 144
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/native-r1/start.json",
+        "sha256": "de3c044e4fdfa0da067466188029a5ee67ce6384ea9631d4d692ae182e1c2207",
+        "size": 748
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/native-r1/capture-reference.json",
+        "sha256": "89ebcdbe7eb204bca484616e719c5c82924dc6da07cca56cc948604c5180418d",
+        "size": 172
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/native-r1/summary.json",
+        "sha256": "30a83aa75468091953a4780ffdb6f7a8c745d18ce0d9e00a06e4473609353f4d",
+        "size": 551
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/native-r1/pair-review.json",
+        "sha256": "b108b6df7843964159a3f74915643e942e9b199771ed3cb316b07d1ef494ef82",
+        "size": 4512496
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/new-r1/summary.json",
+        "sha256": "b471255ca9db07cf3838e8ae8a66170cbba550439d23a9e7c5b487c910c0f218",
+        "size": 393
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/new-r2/summary.json",
+        "sha256": "f6b6b0a564f3e55818fee7f8e1af6483f09b22e3f5b71be5166a37ca3cbead91",
+        "size": 310
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/readers-r1/summary.json",
+        "sha256": "e20d8da3fa3f2654c5d0fa231b6c55d1dd1f7e21c0fd5330bd2902669dc7f944",
+        "size": 403
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/final-r1/summary.json",
+        "sha256": "2c2acefa666923eac8413c9672d3a80fe877dee5be041c73afa51e688552cbe8",
+        "size": 229
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "202_Cedar_compact-asu-i89yv0g6/cold-final/summary.json",
+        "sha256": "a5621f5da823eb5e733173706fbc746da9e62c7917fb84a1f13219b580a469fc",
+        "size": 1157
+      }
+    ],
+    "excluded": "Raw science/native captures, logs, local runners and model/dictionary/PHIL snapshots remain local.",
+    "limitations": [
+      "Explicit diagnostic only; continuation still uses C127 pending frozen policy integration.",
+      "Observed native exclusions/parameters do not establish chemical authority or general refinement support.",
+      "No new optimizer, ReadySet, diffraction refinement or checkpoint adoption."
+    ],
+    "clarification": "C201 prose641 was corrected to569 source/test files, matching its already-correct evidence count; no captured evidence changed."
   }
 }

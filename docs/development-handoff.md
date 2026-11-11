@@ -11,6 +11,46 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C202 validated: compact maintained ASU diagnostic
+
+Base `6ae51f28ceaabf6fd01bfde95779fe1ad9f8a7ae`; pause/update **2026-11-11 15:00 UTC**, explicitly extended
+by Simon. Capsule `live_tests_directory/202_Cedar_compact-asu-i89yv0g6`. All workers stopped.
+
+**Before → after:** C127 explicitly refuses ASU pairs and its fixed budget cannot
+capture this whole crystal. A new requested policy preserves all directed rows,
+images and two observed kernels in a compact proof, replayed by the existing
+native reviewer and exact receipt reader. C127 default/worker bytes are unchanged.
+New bounds: 9,999 pairs / 20,000 calls; existing 16 MiB receipt cap unchanged. No chemistry,
+default continuation or optimizer change. No migration; new records need C202.
+
+**Files/schema:** new `src/nasolve/cif_native_asu.py`; native nonbonded, validation
+and attachment reader seams; two existing test modules; methods/architecture,
+human overview/figure metadata, map/queue/handoff/ledgers and Unreleased.
+New explicit `native_spec.nonbonded_policy` and schema-1
+`cif-native-nonbonded-asu-attribution-v1`. Legacy absent settings remain exact.
+
+**Validation:** before 1 failed / 59 deselected; initial 182 passed, binding 117 passed,
+callers 150 passed, final 63 passed. These overlap: **342 distinct affected cases**.
+The eager optional-import regression also failed before its fix; default native
+inspection still works with the helper Python lacking Biopython. Cold 118 passed;
+after the import-only correction, targeted cold 9 passed plus all three real
+new/C127 receipt replays. 647 files retain bytes/mtimes with originals absent,
+historical source/checkout/SDK reads and external execution denied. Final source
+tests are fixed. Exact commands/results are in the evidence ledger. No full suite.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1: 851 atoms, 7,696 pairs, 369 ASU rows,
+four self-images; 15,394 kernel calls. Total 2210.486056504427 agrees with C201.
+Report 7,190,358 bytes; receipt 7,886,148 bytes. Exact maintained receipt replay passes;
+input bytes/mtimes unchanged. No Coot/ReadySet/refine/adoption. Raw captures,
+models, CIFs, PHIL, logs and runners stay local. C201 prose guard count corrected
+to 569 source/test files; its ledger already had 569. No historical evidence changed.
+
+**Next:** version continuation/enclosing-request settings to explicitly request
+the new mode, keep old settings unchanged, then run fresh connected ReadySet.
+Q04 ordinary invocation/single modifier owner and Q05 selected checkpoint export
+follow; Q06/Q07 and C194/Q13 stay open. No merge. Publication next.
+— Rowan · Codex desktop
+
 ## C201 research checkpoint: directed ASU proof
 
 Base `3b59dc3dd9285bb3f34a06369e8156d6a3c72491`; pause/update **2026-11-11 14:00 UTC**. Capsule:
@@ -27,7 +67,7 @@ files unchanged, originals/SDK/checkout and external execution denied.
 
 **Changed:** methods, queue, handoff, evidence/runtime ledgers and Unreleased
 documentation only. No code/test/API/schema/default/chemistry change or migration.
-All 641 source/test files retain hashes. Native Phenix 2.2.1-6174 / dispatcher
+All 569 source/test files retain hashes. Native Phenix 2.2.1-6174 / dispatcher
 2.2.1 actually executed twice with fresh current workers plus an explicitly local
 prototype, each bounded to 180 s (3.56s/2.04s actual process durations). A preceding
 setup failure launched nothing and is preserved. No Coot/ReadySet/refine/adoption.

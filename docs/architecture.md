@@ -3939,6 +3939,15 @@ control lacks its outgoing backbone bond and has a native inferred base–base
 bond; the connected bridge has significant next-residue crowding. See the
 [pair contract](cif-doctor.md#native-nonbonded-pair-attribution-c127).
 
+C202 adds an explicitly requested compact ASU mode to that same reader/reviewer.
+One ordered table and exact mappings bind two complete native kernel arrays;
+directed half-energy/full-first-gradient accounting reproduces the native
+container. Existing receipt limits and C127 worker/default semantics stay fixed.
+Exact spec/worker/output binding and offline arithmetic are both required. This
+diagnostic is not yet the owned continuation's requested mode. See the
+[ASU contract](cif-doctor.md#compact-maintained-asu-pair-capture-c202).
+
+
 
 ## Exact FANA construction topology (C128)
 

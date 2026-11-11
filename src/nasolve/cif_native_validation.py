@@ -456,6 +456,7 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
                           energy_inventory: bool = False,
                           atom_name_mapping: bool = False,
                           nonbonded_inventory: bool = False,
+                          nonbonded_policy: str | None = None,
                           full_monomer_inventory: bool = False,
                           gradient_indices: Sequence[int] | None = None,
                           _process_runner=None) -> dict:
@@ -486,6 +487,9 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         raise ValueError("Native nonbonded inventory must be an explicit boolean")
     if nonbonded_inventory and (inventory_detail != "linked" or not energy_inventory or atom_name_mapping):
         raise ValueError("Nonbonded inventory requires linked energy evidence without atom mapping")
+    if nonbonded_policy is not None:
+        from .cif_native_asu import validate_policy as validate_nonbonded_policy
+        validate_nonbonded_policy(nonbonded_policy, enabled=nonbonded_inventory)
     if type(atom_name_mapping) is not bool:
         raise ValueError("Native atom name mapping must be an explicit boolean")
     if atom_name_mapping and (inventory_detail != "linked" or energy_inventory):
@@ -545,7 +549,10 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         from .cif_native_nonbonded import native_nonbonded_worker
         spec["nonbonded_inventory"] = True
         (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
-        worker = native_nonbonded_worker(worker)
+        if nonbonded_policy is not None:
+            spec["nonbonded_policy"] = nonbonded_policy
+            (work / "native_spec.json").write_text(json.dumps(spec, indent=2) + "\n")
+        worker = native_nonbonded_worker(worker, policy=nonbonded_policy)
     if atom_name_mapping:
         from .cif_native_atom_mapping import native_mapping_worker
         spec["atom_name_mapping"] = True

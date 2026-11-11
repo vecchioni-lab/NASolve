@@ -28410,6 +28410,11 @@
       "status": "VALIDATED_LOCAL_RESEARCH_ONLY; PRODUCTION_ASU_GATE_OPEN",
       "evidence": "docs/cif-linked-native-registration-evidence.json#native_asu_proof_investigation_2026_11_11",
       "next": "Compact versioned maintained capture/reviewer with exact worker/spec/receipt binding, explicit resource bounds and legacy/cold controls; then owned continuation."
+    },
+    "compact_native_asu_capture": {
+      "status": "IMPLEMENTED_VALIDATED_EXPLICIT_DIAGNOSTIC; CONTINUATION_INTEGRATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#compact_native_asu_capture_2026_11_11",
+      "next": "Freeze ASU mode in continuation and enclosing request, preserving old configuration; fresh actual connected ReadySet control."
     }
   },
   "audience": [

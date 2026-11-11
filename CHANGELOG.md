@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit compact native symmetry-pair attribution (C202)
+
+- Add an opt-in ASU pair capture/reviewer that preserves directed image and
+  self-image contributions, exact input/worker binding and two native observations.
+- Compact lossless evidence fits existing receipt limits; pair/call work has an
+  explicit separate bound. C127 default and old captures retain their meaning.
+- Actual connected and cold legacy/new controls pass. Ordinary continuation,
+  chemistry, optimization and refinement acceptance are unchanged.
+
 ### Record native symmetry proof evidence (C201)
 
 - Document directed ASU nonbonded energy/gradient accounting, numerical controls
