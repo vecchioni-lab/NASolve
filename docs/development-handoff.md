@@ -11,6 +11,40 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C207 validated: graph-supported native mutation conformation
+
+Base `6ff68e8b21bf03c4d176c459be730b0e0098d17c`; capsule
+`live_tests_directory/207_Cedar_native-conformation-x6uhoxqf`.
+Deadline remains **2026-11-11 23:00 UTC (London)**; all owned workers stopped.
+
+**Before → after:** ordinary overlap imports dictionary chi. Graph-selected native
+matching now measures the parent and checks the result before/after overlap.
+Failures refuse output; unknown frames remain explicitly unassessed. Component
+labels do not select the rule. Direct canonical and historical-script paths stay
+unchanged. No source chemical state, phosphate or acceptance-policy changes.
+
+**Files/schema:** `postmr.py`, new `postmr_conformation.py` and its focused tests;
+Unreleased/current methods/descriptor/queue/map/ledgers. No artifact-schema migration.
+New eligible constructions require native matching/readback capabilities; a wrong
+native match now refuses instead of publishing a wrongly oriented model.
+
+**Validation:** fail-before 2 failed; affected suite 173 passed, plus native-observed
+purine refusal regression 1 passed (174 distinct). Exact commands and receipts are
+in evidence key `native_parent_conformation_2026_11_11`. Actual Coot **1.3.3 revision 0**
+passes PDU/5PC at both sites (max chi difference 0.034 degrees after serialization).
+PDU raw bytes equal C206's matched control. DP native graph matching swaps ring
+roles and is correctly refused. An unadopted explicit setter probe aborts for a
+missing internal atom tree; its failed evidence is preserved. No Phenix/full suite;
+last full C160. All 600 original experiment files retain bytes/mtimes.
+
+**Limits/next:** general missing trigonal/exocyclic plane coverage and qualified
+repair, with existing ring planes retained and nonplanar/ambiguous negatives.
+DP correspondence and PDU serial/context refusal remain Q04/Q05 work. Ordinary
+invocation/single modifier owner/resume, selected checkpoint adoption and actual
+refinement remain open. Raw models/CIFs/logs/runners are local, excluded from Git.
+No new branch, queue, SDK patch, chemical adoption or merge.
+— Rowan · Codex desktop
+
 ## C206 complete diagnostic: PDU chi and plane coverage
 
 Base `7063b8af078e42cb1d58c9bffb8892b968037c6a`; resumed 18:53 UTC on 2026-11-11.

@@ -60,10 +60,12 @@ diagnostic fix with ordinary automatic support.
 
 Next bounded order:
 
-1. **Q04/Q05 construction:** qualify native conformation matching for graph-supported
-   parent/target pairs; retain source hands and whole-fragment integrity. Cover
-   nonmatching torsions and unavailable native capability. Resolve or truthfully
-   refuse the existing serial/context case with immutable evidence.
+1. **Q04/Q05 construction:** C207 implements graph-supported native matching with
+   measured before/after-overlap checks. PDU/5PC pass; DP's ambiguous ring mapping
+   is refused. Resolve general correspondence without residue-code switches;
+   the native explicit setter needs an unavailable internal tree and is not adopted.
+   Retain source hands/whole fragments and unavailable-capability refusal. Resolve
+   or truthfully refuse the serial/context case with immutable evidence.
 2. **Q06/Q07 geometry:** add generalized detection and a source/native-supported
    repair path for missing trigonal/exocyclic plane coverage, retaining existing
    ring constraints. Test renamed and non-PDU controls, tetrahedral/ambiguous
@@ -81,7 +83,7 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C206. This table summarizes the acceptance packages
+Current orientation after C207. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 

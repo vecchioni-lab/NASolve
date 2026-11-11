@@ -415,10 +415,16 @@ def _coot_script(
     actions: tuple[MutationAction, ...],
     dictionary_paths: Mapping[str, Path],
     parent_models: Mapping[str, Path],
+    *,
+    conformation_plans: Mapping[str, dict] | None = None,
 ) -> str:
+    # Absent plans preserve exact historical script generation for replay.
+    from .postmr_conformation import native_helpers, native_match_lines, native_overlap_check_lines
     lines = [
         "import coot",
     ]
+    if conformation_plans and any(p["status"] == "MATCH_PARENT_CHI" for p in conformation_plans.values()):
+        lines.extend(native_helpers())
     for code, dictionary in dictionary_paths.items():
         lines.extend([
             f"dictionary_status = coot.read_cif_dictionary({json.dumps(str(dictionary))})",
@@ -470,6 +476,11 @@ def _coot_script(
             f"print('NASOLVE_MONOMER', {action.after!r}, ligand_imol)",
             "if ligand_imol < 0:",
             f"    raise RuntimeError('Coot could not build {action.after} from its dictionary')",
+        ])
+        plan = conformation_plans.get(action.site) if conformation_plans is not None else None
+        if plan is not None:
+            lines.extend(native_match_lines(plan, action.site, chain, residue_number))
+        lines.extend([
             (
                 "overlap_status = coot.overlap_ligands_py("
                 f"ligand_imol, imol, {chain!r}, {residue_number})"
@@ -477,6 +488,10 @@ def _coot_script(
             f"print('NASOLVE_OVERLAP', {action.site!r}, overlap_status)",
             "if not overlap_status:",
             f"    raise RuntimeError('Coot overlap failed at {action.site}')",
+        ])
+        if plan is not None:
+            lines.extend(native_overlap_check_lines(plan, action.site))
+        lines.extend([
             (
                 "replacement_imol = coot.add_ligand_delete_residue_copy_molecule("
                 f"ligand_imol, 'A', 1, imol, {chain!r}, {residue_number})"
@@ -516,6 +531,10 @@ def _run_coot(
         raise PostMRPreparationError("Coot timeout must be finite and positive")
     script = coot_directory / "mutate.py"
     log = coot_directory / "coot.log"
+    from .postmr_conformation import parent_conformation_plan
+    plans = {action.site: parent_conformation_plan(dictionary_paths[action.after],
+        action.after, action.parent_code) for action in actions
+        if action.method == "coot-parent-overlap"}
     backups = coot_directory / "backups"
     backups.mkdir()
     script.write_text(
@@ -525,6 +544,7 @@ def _run_coot(
             actions,
             dictionary_paths,
             parent_models,
+            conformation_plans=plans,
         ),
         encoding="utf-8",
     )

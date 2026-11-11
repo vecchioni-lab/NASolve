@@ -18,7 +18,10 @@ milestone statements preserve their original scope; they are not a second queue.
   broader chemistry coverage remain open. The
   [PDU checkpoint](cif-doctor.md#mutation-orientation-and-exocyclic-plane-coverage-c206)
   separates mutation chi and missing plane coverage from valid native mechanics;
-  its local geometry repair is not yet ordinary runtime support. The [support matrix](cif-doctor.md#current-capability-boundary)
+  its local geometry repair is not yet ordinary runtime support.
+  [Source-graph parent-chi matching](cif-doctor.md#graph-supported-native-parent-conformation-c207)
+  now runs ordinarily with measured failure detection; PDU/5PC pass and ambiguous
+  DP matching is refused. Serial/context and plane repair remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
   owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
   tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
   owns exact validation. Full regression remains deferred to integration; C160

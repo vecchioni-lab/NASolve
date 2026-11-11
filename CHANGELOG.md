@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Verify parent conformation during ordinary mutation (C207)
+
+- Select native parent-chi matching from the supported source DNA graph and shared
+  attachment frame; measure the result before and after overlap, refusing failures.
+- Preserve direct canonical mutation, explicitly unassessed unsupported graphs
+  and exact historical script replay. PDU and 5PC native controls pass; ambiguous
+  DP matching is refused. Plane coverage and full geometry remain separate gates.
+
 ### Record PDU construction and plane-coverage evidence (C206)
 
 - Trace imported mutation chi and missing exocyclic plane coverage separately.

@@ -23,8 +23,10 @@ now demonstrates why these gates remain separate: rigid monomer overlap can
 import an unwanted chi conformation, while a straight triple-bond chain can
 still tilt out of its ring. Native torsion matching and a source-supported plane
 completion produce a successful local geometry control with the backbone fixed.
-They are diagnostic demonstrations awaiting generalization and ordinary
-integration; other numerical targets and actual refinement remain unqualified.
+Plane completion remains diagnostic. [Graph-supported parent-chi matching](cif-doctor.md#graph-supported-native-parent-conformation-c207)
+now runs in ordinary construction with measured refusal of wrong native matches;
+PDU and 5PC transfer, while ambiguous DP correspondence is explicitly refused.
+Other numerical targets and actual refinement remain unqualified.
 
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
 native chain and fresh recovery under one request. Exact NAR plane intake now

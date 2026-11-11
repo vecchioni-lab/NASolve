@@ -28439,6 +28439,12 @@
       "status": "DIAGNOSTIC_VALIDATED; PRODUCTION_INTEGRATION_OPEN",
       "evidence": "docs/cif-linked-native-registration-evidence.json#pdu_construction_plane_geometry_2026_11_11",
       "next": "Use existing Q04/Q05 and Q06/Q07 boundaries; do not equate source/native numerical qualification with appropriate conformation or achieved geometry."
+    },
+    "native_parent_conformation": {
+      "status": "IMPLEMENTED_BOUNDED_ORDINARY_CONSTRUCTION",
+      "contract": "docs/cif-doctor.md#graph-supported-native-parent-conformation-c207",
+      "evidence": "native_parent_conformation_2026_11_11",
+      "scope": "Source-graph selected parent chi; native PDU/5PC positive, DP mismatch refusal. No plane repair, broader backbone or refinement claim."
     }
   },
   "audience": [

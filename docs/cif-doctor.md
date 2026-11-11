@@ -620,6 +620,39 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Graph-supported native parent conformation (C207)
+
+Fresh ordinary modified-base construction now asks native Coot to match the
+parent conformation before monomer overlap, then measures the named glycosidic
+torsion both before and after overlap. A failed, missing or nonfinite measurement
+refuses construction. Native boolean failure is not an angle of zero. Circular
+angle comparison accepts equivalent values across the -180/180 boundary; the
+0.1-degree tolerance checks matching accuracy, not crystallographic acceptance.
+
+The existing explicit, unbridged DNA source-graph partition selects eligible
+sites. The attachment must share the canonical parent N-glycosidic atom frame;
+component names do not select the rule. Source bytes are checked through planning.
+Unknown backbones/frames retain explicit UNASSESSED legacy behavior. Direct
+canonical mutation and exact historical script generation are unchanged.
+
+Actual Coot 1.3.3 revision 0 passes PDU and 5PC at both selected sites, within
+0.034 degrees after PDB serialization; PDU raw output exactly matches C206's
+diagnostic control. A DP control exposes ambiguous native graph correspondence:
+the matcher exchanges purine ring roles and the measured chi differs by about
+179 degrees. The new guard refuses it before overlap/replacement. This is a
+documented native limitation, not a successful DP repair. A separate explicit
+torsion-setter probe aborts because the dictionary lacks Coot's internal atom
+tree; that operation is not in production and its failed output is preserved.
+
+The 174 affected tests include renamed-component transfer, wrapped/zero values,
+invalid readbacks, unsuccessful matching, overlap damage, unsupported graphs,
+source change and historical replay. No full regression or Phenix run was made.
+No dictionary, phosphate, source-state, checkpoint or acceptance schema changes.
+Existing PDU serial/context refusal, missing plane coverage, broader construction
+and diffraction refinement remain open. Native matching alone does not certify
+source-relative stereochemistry or achieved chemical geometry. See evidence key
+`native_parent_conformation_2026_11_11` and the maintained Q04/Q06/Q07 queue.
+
 ### Mutation orientation and exocyclic plane coverage (C206)
 
 A source-preserving dictionary and repeatable native derivatives do not by

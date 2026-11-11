@@ -82889,5 +82889,280 @@
     "next": "Existing Q04/Q05 conformation and serial/context handling; Q06/Q07 missing-plane detection/repair and achieved geometry, then ordinary invocation/adoption and complete refinement qualification. Q08/Q13 remain open.",
     "commands_role": "HISTORICAL_PROVENANCE_ONLY; not portable execution instructions",
     "published_revision": "67276269e3fd4a7eb119ff2d719eceec5b00dd65"
+  },
+  "native_parent_conformation_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "6ff68e8b21bf03c4d176c459be730b0e0098d17c",
+    "branch": "cedar",
+    "before": "Ordinary overlap imports source monomer chi.",
+    "after": "Graph-supported native matching and exact chi readback before/after overlap; failures refuse.",
+    "files": [
+      "src/nasolve/postmr.py",
+      "src/nasolve/postmr_conformation.py",
+      "tests/test_postmr_conformation.py"
+    ],
+    "schemas": "UNCHANGED",
+    "compatibility": "Historical script bytes/direct canonical mutation unchanged; eligible native matching failures now refuse. Unsupported graphs explicitly unassessed; no migration.",
+    "validation": {
+      "status": "BOUNDED_CONFORMATION_PASS_WITH_EXPLICIT_PURINE_REFUSAL",
+      "original_files_unchanged": 600,
+      "owned_workers_stopped": 7,
+      "tests_passed": 174,
+      "jobs": {
+        "native-set-api-r1": {
+          "returncode": 134,
+          "elapsed_seconds": 0.8912347079894971,
+          "stopped_verified": true
+        },
+        "focused-r1": {
+          "returncode": 1,
+          "elapsed_seconds": 6.819499125005677,
+          "stopped_verified": true,
+          "cases": 173,
+          "failed": 2,
+          "source_unchanged": true
+        },
+        "before-r1": {
+          "returncode": 1,
+          "elapsed_seconds": 1.183043583005201,
+          "stopped_verified": true,
+          "cases": 2,
+          "failed": 2,
+          "source_unchanged": true
+        },
+        "native-api-r1": {
+          "returncode": 0,
+          "elapsed_seconds": 1.9317667920258828,
+          "stopped_verified": true
+        },
+        "focused-r2": {
+          "returncode": 0,
+          "elapsed_seconds": 10.283927915996173,
+          "stopped_verified": true,
+          "cases": 173,
+          "failed": 0,
+          "source_unchanged": true
+        },
+        "native-construction-r1": {
+          "returncode": 0,
+          "elapsed_seconds": 2.1741758749994915,
+          "stopped_verified": true,
+          "source_unchanged": true
+        },
+        "purine-r1": {
+          "returncode": 0,
+          "elapsed_seconds": 0.4401248329959344,
+          "stopped_verified": true,
+          "cases": 1,
+          "failed": 0,
+          "source_unchanged": true
+        }
+      },
+      "native_scope": "ACTUAL_COOT_CONSTRUCTION; PDU_AND_5PC_POSITIVE, DP_MISMATCH_REFUSED",
+      "full_suite": "NOT_RUN; LAST_FULL_C160",
+      "phenix": "NOT_RUN",
+      "remaining": "DP correspondence, serial/context recovery, plane coverage and full refinement remain open."
+    },
+    "commands": {
+      "before-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_conformation.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/207_Cedar_native-conformation-x6uhoxqf/before-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_conformation.py",
+          "tests/test_postmr.py",
+          "tests/test_postmr_restoration.py",
+          "tests/test_postmr_context.py",
+          "tests/test_postmr_context_mixed.py",
+          "tests/test_cif_construction_provenance.py",
+          "tests/test_cif_construction_return.py",
+          "tests/test_postmr_component_inputs.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/207_Cedar_native-conformation-x6uhoxqf/focused-r2/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "purine-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_postmr_conformation.py",
+          "-k",
+          "purine_graph_match",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/207_Cedar_native-conformation-x6uhoxqf/purine-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "native-api-r1": {
+        "command": [
+          "/opt/homebrew/bin/coot",
+          "--no-graphics",
+          "--no-state-script",
+          "--no-startup-scripts",
+          "--no-guano",
+          "--script",
+          "/Users/svecchio/NASolve-live-tests/207_Cedar_native-conformation-x6uhoxqf/native-api-r1/probe.py"
+        ],
+        "timeout_seconds": 60
+      },
+      "native-construction-r1": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/207_Cedar_native-conformation-x6uhoxqf/native-construction-r1/worker.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+          "/Users/svecchio/NASolve-live-tests/207_Cedar_native-conformation-x6uhoxqf/native-construction-r1",
+          "/Users/svecchio/NASolve-live-tests/206_Cedar_PDU-pair-geometry-5xnlqzfy",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners"
+        ],
+        "timeout_seconds": 240
+      },
+      "native-set-api-r1": {
+        "command": [
+          "/opt/homebrew/bin/coot",
+          "--no-graphics",
+          "--no-state-script",
+          "--no-startup-scripts",
+          "--no-guano",
+          "--script",
+          "/Users/svecchio/NASolve-live-tests/207_Cedar_native-conformation-x6uhoxqf/native-set-api-r1/probe.py"
+        ],
+        "timeout_seconds": 60
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "coot_version": "1.3.3 revision-count 0; Python 3.14.6 embedded; actual execution",
+    "native": {
+      "PDU": {
+        "status": "NATIVE_CHI_MATCH_PASS",
+        "comparisons": {
+          "A:12": {
+            "parent_chi": -150.1258952939991,
+            "raw_chi": -150.11995601587574,
+            "difference_degrees": 0.005939278123349823
+          },
+          "B:4": {
+            "parent_chi": -108.9529790413613,
+            "raw_chi": -108.94964144796656,
+            "difference_degrees": 0.0033375933947468184
+          }
+        },
+        "context_status": "RAW_CONTEXT_RETAINED"
+      },
+      "5PC": {
+        "status": "NATIVE_CHI_MATCH_PASS",
+        "comparisons": {
+          "A:12": {
+            "parent_chi": -149.47464067807633,
+            "raw_chi": -149.4871353357576,
+            "difference_degrees": 0.012494657681287435
+          },
+          "B:4": {
+            "parent_chi": -108.3639005674578,
+            "raw_chi": -108.39784503189676,
+            "difference_degrees": 0.03394446443894594
+          }
+        },
+        "context_status": "NO_CONTEXT_CHANGE"
+      },
+      "DP": {
+        "status": "REFUSED",
+        "comparisons": null,
+        "context_status": null
+      }
+    },
+    "limitations": [
+      "DP native correspondence is refused, not repaired.",
+      "Explicit native torsion setter aborts for missing tree; not adopted.",
+      "PDU serial/context and missing plane coverage remain open.",
+      "No source-relative stereochemistry, whole-model geometry, NAR, diffraction or refinement qualification."
+    ],
+    "excluded": "Raw coordinates, dictionaries, logs, native output and runners remain local.",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/start.json",
+        "sha256": "a9fba06528371ed1a2f7c1717b45050bf9a4e63a39c2ed3520f5dfbe90874761",
+        "size": 329
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/final-audit.json",
+        "sha256": "bd6ff59cdcf2e5288ce5b67a13e00cd1743cdea955753f5f482b7456c3c012a5",
+        "size": 1656
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/finish.py.txt",
+        "sha256": "2e10797dd002b03ea49fad6c677c9899b9e6d2bb9bce3ce678305d29776063f9",
+        "size": 11833
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/focused-r2/tests.xml",
+        "sha256": "5bcd2cc51f02022ae283bf7d0c0ff0431e1ad9dca9d96a9fc7c7fa090c5ca653",
+        "size": 26301
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/purine-r1/tests.xml",
+        "sha256": "d13c896b0d26b907b343848dfea64ee520032a1f6c4b8a679e7004a0205fd412",
+        "size": 381
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/native-construction-r1/summary.json",
+        "sha256": "aea058cfda017849a048baef3f923167bf7c745113495acc24f91f817e77d785",
+        "size": 9767
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/native-set-api-r1/coot.log",
+        "sha256": "953eff3e9bbe35b68c86d43487e4e7a7fb0d8883b95c4081821bf67ddaab9e5c",
+        "size": 12019
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "207_Cedar_native-conformation-x6uhoxqf/native-set-api-r1/finished.json",
+        "sha256": "eeea4d62f2b8b8b38682720200cdc9bf810174e9b24762ef8d14b213cf14535f",
+        "size": 93
+      }
+    ]
   }
 }
