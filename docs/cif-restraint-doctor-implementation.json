@@ -28451,6 +28451,12 @@
       "contract": "docs/cif-doctor.md#source-selected-trigonal-plane-coverage-c208",
       "evidence": "trigonal_plane_coverage_2026_11_11",
       "scope": "Neutral explicit three-heavy-neighbor carbon coverage; alternatives retained, unsupported chemistry unassessed. No repair/adoption."
+    },
+    "trigonal_plane_candidates": {
+      "status": "IMPLEMENTED_EXPLICIT_CANDIDATE_API",
+      "contract": "docs/cif-doctor.md#source-supported-plane-completion-candidates-c209",
+      "evidence": "trigonal_plane_candidates_2026_11_11",
+      "scope": "Exact existing-plane additions; PDU native geometry/membership, 5PC candidate transfer. Native support provenance, complete qualification and ordinary adoption remain separate."
     }
   },
   "audience": [

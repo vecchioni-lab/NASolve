@@ -620,6 +620,49 @@ source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
 
+### Source-supported plane-completion candidates (C209)
+
+`prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionary,
+code, output)` extends existing plane groups in a fresh separate CIF. It reuses
+C208's source/state graph selection. One unambiguous partial original plane and
+a supplied covering plane with agreeing ESDs are required. The shared source ideal
+anchors must be noncollinear; the original heavy plane members and added atom
+must be compatible with the supplied ESDs. This is a conservative template gate,
+not a new chemical threshold or target derived from coordinates.
+
+Only the missing atom row is appended, copying the supplied ESD text. Every old
+plane row and all other parsed categories remain exact; unmodified blocks retain
+their bytes. No ring plane is replaced, dictionary installed or model moved.
+Ambiguous, unsupported and unresolved centres remain explicit. Source/input
+changes refuse completion and preserve any already-written partial output.
+Unknown extra plane columns are not invented. The report remains CANDIDATE_REVIEW;
+a supplied dictionary alone does not authenticate a native generator or approve
+chemistry. Existing H/D plane rows remain exact and their source ideal coordinates
+are explicitly unassessed by this heavy-atom rule.
+
+The generalized operation independently chooses PDU C5A and 5PC C7; no component
+or atom-name switches occur. PDU's resulting component values exactly match
+C206's successful control while preserving the original multi-block layout.
+Fresh Phenix 2.2.1-6174 / dispatcher 2.2.1 geometry minimization and native readback
+reproduce the prior atoms/geometry exactly: 22 base atoms are selected, 840 others
+fixed, completed planes and four polymer links retained, protected D:1 OP3 intact.
+Both C5 angle sums are essentially 360 degrees and attachment tilts below 0.057
+degrees. This is fixed-backbone geometry, not diffraction/refinement qualification.
+
+For 5PC, actual native default/multiple-plane writer **dry-runs** expose the same
+missing coverage. Initial template checking incorrectly included two already
+restrained source amino hydrogens, each about 0.72 Å out of the heavy-atom plane.
+Scoping that gate to heavy atoms permits the C7 candidate; all existing H rows
+remain exact and their coordinates remain unassessed. No 5PC candidate-native or
+geometry approval is claimed. 156 focused tests pass, including renamed/long
+codes, carbonyl chemistry, collinear/nonplanar/chiral/ambiguous refusals, exact
+preservation, partial completion and changing inputs. No full suite; last full C160.
+
+See evidence `trigonal_plane_candidates_2026_11_11`. Native-provenance binding,
+equivalent-restraint strength, broader source/consumer qualification and ordinary
+engine selection remain open under the existing Q04–Q16 queue. No third owner
+or competing repair pipeline is introduced by this explicit candidate operation.
+
 ### Source-selected trigonal plane coverage (C208)
 
 `audit_trigonal_plane_coverage(source, dictionary, code)` is a read-only API for

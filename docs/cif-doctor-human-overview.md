@@ -31,6 +31,11 @@ A [source-selected plane-coverage screen](cif-doctor.md#source-selected-trigonal
 now detects missing explicit membership while retaining alternative restraints
 and excluding unsupported/chiral/tetrahedral centres. It reports evidence for
 later qualified repair; it does not flatten rings or modify dictionaries.
+The [candidate completion API](cif-doctor.md#source-supported-plane-completion-candidates-c209)
+now adds only a supported missing row to an existing plane, preserving its ring
+constraints and every other term. It chooses PDU C5A and 5PC C7 by connectivity.
+PDU has fresh native geometry/readback evidence; 5PC remains a candidate. Supplied
+support, native qualification and ordinary automatic selection remain distinct.
 
 The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
 native chain and fresh recovery under one request. Exact NAR plane intake now

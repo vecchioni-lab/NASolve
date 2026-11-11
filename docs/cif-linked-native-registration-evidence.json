@@ -83167,7 +83167,7 @@
     "published_revision": "08279945e8b05b2d519e2e642e423b9b7a021883"
   },
   "trigonal_plane_coverage_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -83312,6 +83312,265 @@
       "No general aromatic-only/heteroatom/implicit-H hybridization perception or strained-chemistry repair.",
       "No automatic invocation, candidate, dictionary edit or adoption."
     ],
-    "excluded": "Raw CIFs, logs and runners remain local."
+    "excluded": "Raw CIFs, logs and runners remain local.",
+    "published_revision": "b01d88343c289e618453d75a16542d6bfc2fabc4"
+  },
+  "trigonal_plane_candidates_2026_11_11": {
+    "status": "VALIDATED_PENDING_PUBLICATION",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "b01d88343c289e618453d75a16542d6bfc2fabc4",
+    "before": "One-off C206 plane addition only.",
+    "after": "Generalized separate candidate preserving exact original terms and recording unsupported scope.",
+    "files": [
+      "src/nasolve/cif_plane_candidate.py",
+      "tests/test_cif_plane_candidate.py"
+    ],
+    "schemas": "NEW_EXPLICIT_cif-source-trigonal-plane-completion-v1/schema-1; OLD_POLICIES_UNCHANGED",
+    "compatibility": "No historical caller/replay change or migration; explicit candidate API only.",
+    "validation": {
+      "status": "GENERALIZED_PLANE_CANDIDATE_VALIDATED",
+      "focused_tests": 156,
+      "original_files_unchanged": 600,
+      "owned_workers_stopped": 11,
+      "pdu_candidate_sha256": "c1aab2f507800f63820d8630f26bb3d7e37d2c901f3110b5637a21e1fad9f2d4",
+      "pdu_native": "GEOMETRY_AND_MEMBERSHIP_PASS; EXACT_C206_ATOMS_AND_GEOMETRY",
+      "unchanged_atoms": 840,
+      "selected_atoms": 22,
+      "non_pdu": "5PC_C7_CANDIDATE; NATIVE_SUPPORT_WRITER_DRY_RUN_ONLY",
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+      "coot": "NOT_RUN",
+      "full_suite": "NOT_RUN; LAST_FULL_C160",
+      "limitations": [
+        "Candidate only; supplied corroboration is not automatically authenticated native provenance.",
+        "5PC ideal amino H41/H42 are nonplanar; unchanged H rows and their unassessed coordinates are explicit.",
+        "No complete restraint/refinement, diffraction, NAR, source-state approval or ordinary adoption."
+      ]
+    },
+    "commands": {
+      "before-r2": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_candidate.py",
+          "-k",
+          "adds_only_one",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/before-r2/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "before-r3": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_candidate.py",
+          "-k",
+          "unmodified_ideal_hydrogens",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/before-r3/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "focused-r4": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "-m",
+          "pytest",
+          "tests/test_cif_plane_candidate.py",
+          "tests/test_cif_plane_coverage.py",
+          "tests/test_cif_linear_torsion_candidate.py",
+          "tests/test_cif_stereochemistry_audit.py",
+          "tests/test_cif_doctor.py",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/focused-r4/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      }
+    },
+    "native_commands": {
+      "geometry": {
+        "command": [
+          "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.geometry_minimization",
+          "inputs/model.pdb",
+          "inputs/dictionary.cif",
+          "inputs/policy.phil"
+        ],
+        "timeout_seconds": 180,
+        "selection_from_source_graph": [
+          "C2",
+          "C4",
+          "C5",
+          "C5A",
+          "C5B",
+          "C5M",
+          "C6",
+          "N1",
+          "N3",
+          "O2",
+          "O4"
+        ],
+        "scope": "NATIVE_GEOMETRY_ONLY; NO_DIFFRACTION_OR_NAR_REFINEMENT"
+      },
+      "inventory": [
+        {
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.python",
+            "native_worker.py",
+            "native_spec.json"
+          ],
+          "timeout_seconds": 90
+        }
+      ],
+      "5PC": [
+        {
+          "mode": "default",
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.elbow",
+            "/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/transfer-5PC-r1/inputs/source.cif",
+            "--id=5PC",
+            "--output=candidate",
+            "--template=/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/transfer-5PC-r1/inputs/source_ideal.pdb",
+            "--initial_geometry=/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/transfer-5PC-r1/inputs/source_ideal.pdb",
+            "--add_hydrogens=False",
+            "--pH=low",
+            "--chiral=retain",
+            "--dry_run"
+          ],
+          "timeout_seconds": 60,
+          "scope": "NATIVE_WRITER_DRY_RUN_NO_OPTIMIZATION"
+        },
+        {
+          "mode": "multiple",
+          "command": [
+            "/Users/svecchio/Applications/phenix-2.2.1-6174/bin/phenix.elbow",
+            "/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/transfer-5PC-r1/inputs/source.cif",
+            "--id=5PC",
+            "--output=candidate",
+            "--template=/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/transfer-5PC-r1/inputs/source_ideal.pdb",
+            "--initial_geometry=/Users/svecchio/NASolve-live-tests/209_Cedar_plane-completion-h3484_tb/transfer-5PC-r1/inputs/source_ideal.pdb",
+            "--add_hydrogens=False",
+            "--pH=low",
+            "--chiral=retain",
+            "--dry_run",
+            "--multiple_planes"
+          ],
+          "timeout_seconds": 60,
+          "scope": "NATIVE_WRITER_DRY_RUN_NO_OPTIMIZATION"
+        }
+      ]
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "failed_attempts": [
+      "before-r1 test helper import; corrected to repository tests package",
+      "focused-r1 nonexistent test module; corrected selection",
+      "retained-r1 ESD spelling differed; copied exact supplied spelling thereafter",
+      "transfer-5PC-r1 source ideal H coordinates incorrectly widened heavy-atom compatibility scope; regression and bounded correction retained"
+    ],
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/start.json",
+        "sha256": "a419a3e7b33499feb321758f8c05696fa8f7bf0675362df95a477db1cadd0eeb",
+        "size": 206
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/final-audit.json",
+        "sha256": "e7212323e0548290564b46b5a40347c76f4feae5ae5ceb12b36dcf07b879eca0",
+        "size": 883
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/focused-r4/tests.xml",
+        "sha256": "34b2ecb6db48b84cfd77f5ffadb597408ed9d5da1ea83cf0e5dcf59d8b1cf09a",
+        "size": 23173
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/retained-r3/plan.json",
+        "sha256": "2696005350dee2c26d2ab3ed2b36319df98134f593bac9dfc88610f8528526bb",
+        "size": 2788
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/retained-r3/summary.json",
+        "sha256": "8088d1cddd28d03fc7e6371f34935018444223b2f93b91189eb8878db972ebf8",
+        "size": 1385
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/retained-r3/candidate.cif",
+        "sha256": "c1aab2f507800f63820d8630f26bb3d7e37d2c901f3110b5637a21e1fad9f2d4",
+        "size": 10211
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/native-geometry-r1/summary.json",
+        "sha256": "b12d60d84aa7276f4fdbb02f87171620445996cbb8fc27a2058c9fcc21dd7303",
+        "size": 2602
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/native-geometry-r1/minimized.pdb",
+        "sha256": "eb63c95faa5603c788940c7e3415179e8bb946803fc490f397549cbc36410628",
+        "size": 68345
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/native-inventory-r1/summary.json",
+        "sha256": "f9fb9fae32618c28816a9637b564fbca194b392bdb677e3ca175758c449d0937",
+        "size": 1795
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/native-inventory-r1/result.json",
+        "sha256": "0132a520a4f13f52b7f9b4c1fdfbf588dc92a60a4710bd57b409ece7dae1e636",
+        "size": 4152186
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/transfer-5PC-r1/summary.json",
+        "sha256": "889fec20e02066b36a194eae35784eb2663215fd6c87372d388a2b12d8182678",
+        "size": 384
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/transfer-5PC-candidate-r2/summary.json",
+        "sha256": "5b0328e231c00cc2af09d76ed9fb5acd3b1280d2d3704d5f925d4fb5dc6e8fa6",
+        "size": 570
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "209_Cedar_plane-completion-h3484_tb/transfer-5PC-candidate-r2/plan.json",
+        "sha256": "d3a995cbb3389133b35fbe38776a70c65363acf9ac099728e48cb2b78e6ed446",
+        "size": 2810
+      }
+    ],
+    "excluded": "Raw science, dictionaries, coordinates, PHIL, logs and runners remain local; only compact references committed."
   }
 }

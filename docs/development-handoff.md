@@ -11,8 +11,46 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C208 validated: source-supported trigonal plane coverage
+## C209 validated: generalized existing-plane completion
 
+Base `b01d88343c289e618453d75a16542d6bfc2fabc4`; capsule
+`live_tests_directory/209_Cedar_plane-completion-h3484_tb`. All 11 owned workers stopped;
+pause/update remains **2026-11-11 23:00 UTC (London)**.
+
+**Before → after:** C206's one-off plane addition had no maintained generalized
+candidate operation. C209 reuses C208 graph/state selection, one unambiguous
+existing plane, supplied corroborating membership/ESD and noncollinear source
+ideal heavy-atom compatibility. Append only supported rows; retain all old rows,
+other parsed categories and unmodified blocks. No component/atom-name switches,
+model edit, installed-dictionary change or automatic adoption.
+
+**Files/schema:** new `cif_plane_candidate.py`, focused tests and existing
+Unreleased/methods/descriptor/map/queue/ledgers. New explicit candidate report
+`cif-source-trigonal-plane-completion-v1/schema-1`; old policies/callers unchanged.
+No migration. Supplied support is explicitly not authenticated native provenance.
+
+**Validation:** before 3 failed; additional hydrogen-scope regression fails before
+its correction. Final affected **156 passed**. Exact commands/failed setup attempts
+are retained in `trigonal_plane_candidates_2026_11_11`. PDU component values equal
+C206; the original multi-block layout is retained. Actual Phenix **2.2.1-6174 /
+dispatcher 2.2.1** geometry/native readback reproduces C206 exactly: 22 selected
+base atoms, 840 fixed others, completed planes, four links, D:1 OP3 protected.
+5PC default/multiple-plane native writer dry-runs support the same C7 addition.
+Its two source ideal amino hydrogens are out of plane; the heavy-atom gate now
+records them as unassessed while preserving their existing rows. 5PC remains a
+candidate, without native/geometry qualification. Coot/full suite not rerun;
+last full C160. All 600 original files retain bytes/mtimes. Raw science stays local.
+
+**Next:** finish the Q04/Q05 serial/context and ordinary owner/resume/adoption
+seams; bind generated plane support and native qualification before automatic
+repair selection. DP correspondence, broader geometry/numerical calibration,
+complete-restraint refinement and combined/held-out acceptance remain open.
+No new owner, branch, SDK patch or merge. Initial failed attempts remain preserved.
+— Rowan · Codex desktop
+
+## C208 published: source-supported trigonal plane coverage
+
+Implementation published as `b01d88343c289e618453d75a16542d6bfc2fabc4`.
 Base `08279945e8b05b2d519e2e642e423b9b7a021883`; capsule
 `live_tests_directory/208_Cedar_trigonal-coverage-v2dvdivy`. All owned workers stopped.
 Pause/update deadline remains **2026-11-11 23:00 UTC (London)**.

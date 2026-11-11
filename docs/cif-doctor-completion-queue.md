@@ -68,8 +68,10 @@ Next bounded order:
    or truthfully refuse the serial/context case with immutable evidence.
 2. **Q06/Q07 geometry:** C208 supplies read-only source-graph-selected explicit
    coverage, retaining alternative restraints and unsupported chemistry. Add the
-   source/native-supported repair path for missing trigonal/exocyclic coverage,
-   retaining existing ring constraints; membership is not strength or geometry. Test renamed and non-PDU controls, tetrahedral/ambiguous
+   remaining qualified repair integration: C209 already prepares source/supplied-
+   plane candidates without replacing ring groups, with PDU native geometry and
+   5PC candidate transfer. Bind native generator provenance and exact consumer
+   qualification before ordinary selection; membership is not strength or geometry. Test renamed and non-PDU controls, tetrahedral/ambiguous
    negatives and collinear-plane hazards. Keep nonconvergence and remaining
    numerical-target questions visible; a candidate file is not a quality verdict.
 3. **Q04 → Q05:** complete ordinary invocation/single modifier ownership/durable
@@ -84,7 +86,7 @@ eight-pair-plus-ATL acceptance and the separate held-out challenge.
 
 ## Pipeline position
 
-Current orientation after C208. This table summarizes the acceptance packages
+Current orientation after C209. This table summarizes the acceptance packages
 below; update it with those packages rather than creating another backlog.
 Q01/Q02 are complete; Q03 is complete within its declared diagnostic scope.
 

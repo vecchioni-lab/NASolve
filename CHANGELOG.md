@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Prepare conservative source-supported plane additions (C209)
+
+- Extend an unambiguous existing plane from source graph/state and a supplied
+  covering plane, preserving old rows, ESD text and every other parsed category.
+- Keep source ideal heavy-atom compatibility and unresolved cases explicit;
+  preserve H/D rows without using their coordinates as authority for this rule.
+- Generalized PDU native geometry/readback and 5PC candidate transfer pass at
+  their stated scopes. Native provenance, full refinement and adoption stay separate.
+
 ### Screen source-supported trigonal plane coverage (C208)
 
 - Add a read-only, connectivity-selected coverage API with exact source/dictionary
