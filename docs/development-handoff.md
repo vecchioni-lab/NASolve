@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C199 validated: bounded composed publication
+## C199 published: bounded composed publication
 
-Base `a37e651d1b9358461264ce3fba41a4d15b6df097`; existing Cedar; implementation complete, publication next.
+Base `a37e651d1b9358461264ce3fba41a4d15b6df097`; existing Cedar; implementation complete and published as
+`b516738aa59f5beffe2f41c631a9c427bfe94189`.
 Pause/update **2026-11-11 14:00 UTC**. Capsule:
 `live_tests_directory/199_Cedar_composed-publication-n8pah5ky`. All C199 workers stopped.
 

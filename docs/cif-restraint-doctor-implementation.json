@@ -28393,7 +28393,8 @@
         "Actual connected ReadySet continuation capacity/selection is not established by this repair-only request; C183 child keeps its existing whole-tree cap.",
         "Q04 ordinary invocation and single modifier ownership; Q05 exact selected checkpoint export.",
         "Q06 actual refinement; Q07 combined/held-out controls; C194/Q13 chemistry failures."
-      ]
+      ],
+      "implementation_revision": "b516738aa59f5beffe2f41c631a9c427bfe94189"
     }
   },
   "audience": [
