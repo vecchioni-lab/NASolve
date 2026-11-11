@@ -48,7 +48,7 @@ def joined(case,monkeypatch):
         assert 0<k['_remaining_seconds']()<=args['total_timeout_seconds']
         state['calls'].append(dict(output=out,identity=deepcopy(k['_attempt_identity']),settings={n:v for n,v in k.items() if not n.startswith('_')}))
         out.mkdir();shutil.copytree(parent,out/'inputs/runtime')
-        config=continuation._configuration(dict(native=k['native_timeout_seconds'],readyset=k['readyset_timeout_seconds'],total=k['total_timeout_seconds']),k['restore_serialization'],artifact_policy=k.get('artifact_policy'))
+        config=continuation._configuration(dict(native=k['native_timeout_seconds'],readyset=k['readyset_timeout_seconds'],total=k['total_timeout_seconds']),k['restore_serialization'],artifact_policy=k.get('artifact_policy'),nonbonded_policy=k.get('nonbonded_policy'))
         (out/'inputs/configuration.json').write_text(json.dumps(config))
         if state['fault']=='pre-header':raise KeyboardInterrupt('partial continuation header publication')
         owner=RuntimeContinuationProcesses(out,attempt_identity=k['_attempt_identity'])
@@ -108,7 +108,7 @@ def test_final_selection_is_owned_by_same_request_and_cold_reader(joined,selecte
     assert result['result']['continuation']==dict(anchor='attempt_directory',path='continuation')
     assert not result['result']['automatic_adoption'] and state['reads']>0
     assert state['calls'][0]['identity']==m._attempt_identity(owner['intent'])
-    assert state['calls'][0]['settings']==dict(native_timeout_seconds=90,readyset_timeout_seconds=12.5,total_timeout_seconds=60,restore_serialization=True,artifact_policy=m.continuation.ARTIFACT_POLICY)
+    assert state['calls'][0]['settings']==dict(native_timeout_seconds=90,readyset_timeout_seconds=12.5,total_timeout_seconds=60,restore_serialization=True,artifact_policy=m.continuation.ARTIFACT_POLICY,nonbonded_policy=m.continuation.NATIVE_NONBONDED_POLICY)
     before=inventory(root);moved=root.rename(root.with_name('relocated'))
     shutil.rmtree(store);shutil.rmtree(sdk.root);shutil.rmtree(args['source_selection']);Path(args['model']).unlink()
     for item in args['components']:shutil.rmtree(item['retained_snapshot'])
@@ -286,3 +286,33 @@ def test_invalid_frozen_child_artifact_policy_refuses(case, value):
     with pytest.raises(ValueError, match='artifact policy'):
         m.initialize_dictionary_request(output=root, **dict(args, continuation_options=options))
     assert not (root / 'request.json').exists() and not calls
+
+
+def test_new_minimal_continuation_options_freeze_native_asu_policy(case):
+    m,args,root,sdk,store,generations,calls=case
+    request=m.initialize_dictionary_request(output=root,**dict(args,continuation_options=OPTIONS))
+    settings=request['configuration']['continuation']
+    assert settings['native_nonbonded_policy']=='cif-native-nonbonded-asu-attribution-v1'
+    assert m._continuation_parameters(request['configuration'])['nonbonded_policy']==settings['native_nonbonded_policy']
+    assert m.inspect_dictionary_request(root)['request']==request
+
+
+def test_c200_frozen_continuation_settings_keep_legacy_native_mode(case):
+    m,args,root,sdk,store,generations,calls=case
+    old=dict(OPTIONS,execution_policy=m.continuation.POLICY_ID,process_policy=m.CONTINUATION_PROCESS_POLICY,
+        artifact_policy='cif-complete-continuation-artifacts-v1',child_artifact_policy=m.continuation.ARTIFACT_POLICY)
+    request=m.initialize_dictionary_request(output=root,**dict(args,continuation_options=old))
+    assert request['configuration']['continuation']==old
+    assert m._continuation_parameters(request['configuration'])['nonbonded_policy'] is None
+    assert m.inspect_dictionary_request(root)['request']==request and not calls
+
+
+@pytest.mark.parametrize('policy',[None,'unknown',True,{},''])
+def test_invalid_frozen_native_policy_refuses_before_request(case,policy):
+    m,args,root,sdk,store,generations,calls=case
+    options=dict(OPTIONS,execution_policy=m.continuation.POLICY_ID,process_policy=m.CONTINUATION_PROCESS_POLICY,
+        artifact_policy='cif-complete-continuation-artifacts-v1',child_artifact_policy=m.continuation.ARTIFACT_POLICY,
+        native_nonbonded_policy=policy)
+    with pytest.raises(ValueError,match='nonbonded'):
+        m.initialize_dictionary_request(output=root,**dict(args,continuation_options=options))
+    assert not (root/'request.json').exists() and not calls

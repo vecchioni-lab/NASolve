@@ -28416,6 +28416,11 @@
       "evidence": "docs/cif-linked-native-registration-evidence.json#compact_native_asu_capture_2026_11_11",
       "next": "Freeze ASU mode in continuation and enclosing request, preserving old configuration; fresh actual connected ReadySet control.",
       "implementation_revision": "fa23d9336eb8d86669336d649f497bd1d32e640c"
+    },
+    "owned_asu_continuation": {
+      "status": "IMPLEMENTED_VALIDATED_CONNECTED_CONTROL; ORDINARY_INVOCATION_OPEN",
+      "evidence": "docs/cif-linked-native-registration-evidence.json#owned_asu_continuation_2026_11_11",
+      "next": "Ordinary invocation with one composer/modifier owner, then exact selected checkpoint export; reuse existing complete request."
     }
   },
   "audience": [

@@ -81707,5 +81707,319 @@
       "diff_check": "PASS",
       "full_suite": "NOT_RUN"
     }
+  },
+  "owned_asu_continuation_2026_11_11": {
+    "status": "IMPLEMENTED_VALIDATED; PUBLICATION_PENDING",
+    "date": "2026-11-11",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "271d836381f4f62d5c104f7dbea95b6e6943e2ad",
+    "branch": "cedar",
+    "before": "Connected request retained qualified parent after legacy ASU refusal; ReadySet did not run.",
+    "after": "Fresh continuation and enclosing intent freeze maintained ASU mode; actual connected ReadySet executes; exact old requests retain legacy mode.",
+    "files": [
+      "src/nasolve/cif_runtime_continuation.py",
+      "src/nasolve/cif_complete_request.py",
+      "tests/test_cif_runtime_continuation.py",
+      "tests/test_cif_complete_continuation.py"
+    ],
+    "schemas": [
+      "Optional continuation configuration.nonbonded_policy",
+      "Optional complete request continuation.native_nonbonded_policy"
+    ],
+    "compatibility": "Fresh minimal settings default to C202 ASU; fully frozen legacy absence passes None explicitly. No migration, artifact cap or chemistry change; new records require C203.",
+    "validation": {
+      "before": {
+        "returncode": 1,
+        "elapsed_seconds": 5.35473037500924,
+        "source_files": 570,
+        "source_unchanged": true,
+        "tail": "F                                                                        [100%]\n=================================== FAILURES ===================================\n________ test_new_minimal_continuation_options_freeze_native_asu_policy ________\n\ncase = (<module 'nasolve.cif_complete_request' from '/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src/nasolve...path': 'api.py', 'sha256': '1111111111111111111111111111111111111111111111111111111111111111', 'size': 6}], ...}}, ...)\n\n    def test_new_minimal_continuation_options_freeze_native_asu_policy(case):\n        m,args,root,sdk,store,generations,calls=case\n        request=m.initialize_dictionary_request(output=root,**dict(args,continuation_options=OPTIONS))\n        settings=request['configuration']['continuation']\n>       assert settings['native_nonbonded_policy']=='cif-native-nonbonded-asu-attribution-v1'\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       KeyError: 'native_nonbonded_policy'\n\ntests/test_cif_complete_continuation.py:295: KeyError\n=========================== short test summary info ============================\nFAILED tests/test_cif_complete_continuation.py::test_new_minimal_continuation_options_freeze_native_asu_policy\n1 failed, 51 deselected in 5.10s\n"
+      },
+      "phases": {
+        "focused-r1": {
+          "result": "120 passed in 274.88s (0:04:34)",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_runtime_continuation.py",
+              "tests/test_cif_complete_continuation.py",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/203_Cedar_owned-asu-continuation-8cp7togx/focused-r1/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        },
+        "callers-r1": {
+          "result": "132 passed in 156.63s (0:02:36)",
+          "command": {
+            "command": [
+              "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "-p",
+              "no:cacheprovider",
+              "-o",
+              "addopts=",
+              "tests/test_cif_complete_request.py",
+              "tests/test_cif_postmr_request.py",
+              "--junitxml",
+              "/Users/svecchio/NASolve-live-tests/203_Cedar_owned-asu-continuation-8cp7togx/callers-r1/tests.xml"
+            ],
+            "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+            "environment": {
+              "PYTHONDONTWRITEBYTECODE": "1",
+              "PYTHONPATH": "src"
+            }
+          }
+        }
+      },
+      "distinct_affected_cases": 252,
+      "native": {
+        "status": "CONTROL_COMPLETE",
+        "elapsed_seconds": 933.2924813340069,
+        "outcome": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+        "selected": "readyset_checked_model",
+        "error": null,
+        "input_bytes_mtimes_unchanged": true,
+        "source_hashes_unchanged": true,
+        "all_outer_attempts_stopped": true,
+        "ordinary_caller": "REUSED_REAL_COOT_AND_NAR_THEN_DIAGNOSTIC_SEAM",
+        "legacy_modifiers": "NOT_RUN",
+        "readyset": "RAN",
+        "continuation": {
+          "status": "QUALIFIED_DIAGNOSTIC_CONTINUATION",
+          "selected": "readyset_checked_model",
+          "phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "configuration": {
+            "artifact_policy": "cif-continuation-partitioned-artifacts-v1",
+            "limits": {
+              "native": 120,
+              "readyset": 120,
+              "total": 1200
+            },
+            "nonbonded_policy": "cif-native-nonbonded-asu-attribution-v1",
+            "policy_id": "cif-selected-runtime-continuation-execution-v1",
+            "restore_serialization": true,
+            "schema_version": 1
+          }
+        },
+        "diffraction_refinement": "NOT_RUN",
+        "automatic_adoption": false,
+        "candidate_input": "VERIFIED_RETAINED_C198_REQUEST_R1_CANDIDATE",
+        "artifact_policy": "cif-complete-request-partitioned-artifacts-v2",
+        "previous_request_unchanged": true,
+        "scope": "ORDINARY_PUBLIC_PDU_BUILD_TO_EXISTING_REQUEST; NOT_DEFAULT_INVOCATION_OR_REFINEMENT_SUPPORT"
+      },
+      "compat": {
+        "status": "PASS",
+        "elapsed_seconds": 2.9403155420004623,
+        "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+        "all_workers_stopped": true,
+        "results": {
+          "translated": {
+            "pairs": 326,
+            "asu_pairs": 0,
+            "target": 973.948149885052,
+            "receipt": {
+              "path": "compat-r1/translated/cif-native-ma5183rj/native_receipt.json",
+              "sha256": "999b9f3249e7d9e6de8972f196d4a603dc640f0d6728eaee53d31d7a1f4c3c53"
+            },
+            "original_bytes_mtimes_unchanged": true
+          },
+          "bridge": {
+            "pairs": 411,
+            "asu_pairs": 0,
+            "target": 6127.599344909726,
+            "receipt": {
+              "path": "compat-r1/bridge/cif-native-j2geqx7q/native_receipt.json",
+              "sha256": "8b09ad79f79433098161040a58da198d808ab228bd346fc5858a88de9a2bbbe4"
+            },
+            "original_bytes_mtimes_unchanged": true
+          }
+        },
+        "source_unchanged": true,
+        "scope": "FRESH_ASU_MODE_ON_OLD_SIMPLE_PAIR_INPUTS; NO_OPTIMIZATION_OR_ADOPTION"
+      },
+      "cold": {
+        "status": "PASS",
+        "files": 5652,
+        "selected": {
+          "connected": {
+            "selected": "readyset_checked_model",
+            "attempt": 1,
+            "read_seconds": 246.9977944590064,
+            "artifact_policy": "cif-complete-request-partitioned-artifacts-v2",
+            "native_policy": "cif-native-nonbonded-asu-attribution-v1",
+            "phases": {
+              "native-baseline": "COMPLETED",
+              "native-endpoint": "COMPLETED",
+              "readyset": "COMPLETED"
+            }
+          },
+          "c200": {
+            "selected": "verified_parent_runtime",
+            "attempt": 1,
+            "read_seconds": 136.78571391600417,
+            "artifact_policy": "cif-complete-request-partitioned-artifacts-v2",
+            "native_policy": "LEGACY_ABSENT",
+            "phases": {
+              "native-baseline": "FAILED"
+            }
+          },
+          "original": {
+            "selected": "readyset_checked_model",
+            "attempt": 1,
+            "read_seconds": 18.802272250002716,
+            "artifact_policy": "LEGACY_ABSENT",
+            "native_policy": "LEGACY_ABSENT",
+            "phases": {
+              "native-baseline": "COMPLETED",
+              "native-endpoint": "COMPLETED",
+              "readyset": "COMPLETED"
+            }
+          },
+          "recovery": {
+            "selected": "readyset_ordered_checked_model",
+            "attempt": 2,
+            "read_seconds": 57.42055337500642,
+            "artifact_policy": "LEGACY_ABSENT",
+            "native_policy": "LEGACY_ABSENT",
+            "phases": {
+              "native-baseline": "COMPLETED",
+              "native-endpoint": "COMPLETED",
+              "native-ordered": "COMPLETED",
+              "readyset": "COMPLETED"
+            }
+          }
+        },
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_paths_sdk_and_execution_denied": true,
+        "elapsed_seconds": 559.2630998329987
+      },
+      "contact_observation": {
+        "status": "PASS",
+        "scope": "SUPPLEMENTARY_READ_ONLY_OBSERVATION; NOT_A_NEW_ENGINE_COMPARISON_GATE",
+        "records": {
+          "baseline": {
+            "path": "request-r1/request/attempts/attempt-0001/continuation/runtime/evidence/baseline/native_receipt.json",
+            "sha256": "abae29bf04d1d2931feaa75e5de639a692bc835ec018fd53cb37d0bdc5bd19b0",
+            "pairs": 7696,
+            "asu_rows": 369,
+            "target": 2210.486056504427
+          },
+          "endpoint": {
+            "path": "request-r1/request/attempts/attempt-0001/continuation/runtime/evidence/endpoint/native_receipt.json",
+            "sha256": "79b2cd1ddebd05ff642791c61ab6ba89a13cedcb6fc2e97ce444582016ab4e5a",
+            "pairs": 7696,
+            "asu_rows": 369,
+            "target": 2210.486056504427
+          }
+        },
+        "exact_fields": {
+          "pairs": true,
+          "mappings": true,
+          "unit_cell": true,
+          "function_parameters": true
+        },
+        "source_definitions_include": "Existing comparator includes atom type_energy, element, H, charge readback and numerical definition fields; native pair membership is separately observed here."
+      },
+      "full_suite": "NOT_RUN_USER_REQUEST; LAST_COMPLETE_C160"
+    },
+    "commands": {
+      "native": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<cedar>/src <project-venv>/bin/python c203_request.py request-r1",
+      "compat": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<cedar>/src <project-venv>/bin/python c203_native_compat.py compat-r1",
+      "cold": "PYTHONDONTWRITEBYTECODE=1 <project-venv>/bin/python c203_artifact_cold.py artifact-cold-r1"
+    },
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/start.json",
+        "sha256": "ce1b4e242adbcc12ea4358b31f87c439842a566a43754c10773d84edc3d96d9d",
+        "size": 358
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/source-hashes.json",
+        "sha256": "23a2d2cc661889b3ed863f0308aeb418b852bff2b5808322c0eb17be4ad7c199",
+        "size": 61832
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/before-r1/summary.json",
+        "sha256": "31419aa8561a96ceead324021a699886aaf53cdb6432c09dde0e60ba30397fd1",
+        "size": 1397
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/focused-r1/summary.json",
+        "sha256": "65d220e80989dba32735fb681e0fed5f348211a9efbb0d89dd8574d18479cbcf",
+        "size": 322
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/callers-r1/summary.json",
+        "sha256": "bb2d0ee632eda5349505e24bdb3980711e7b0bccb26f57ca3f7455390504d3fd",
+        "size": 323
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/compat-r1/summary.json",
+        "sha256": "1479ef35632e1e05f2e777908f8bb2eda5f73d2af25c514411da806c4054f5f0",
+        "size": 948
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/request-r1/intake.json",
+        "sha256": "0e5ddce226e7f1641572b5b7b1baa8254f54bca4baaa638a1835bca64d4becdf",
+        "size": 1212
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/request-r1/summary.json",
+        "sha256": "99153959efaa5c73fa4db5f42ce12b69c835ce4fd9447601b1e430dd9d461c6c",
+        "size": 1410
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/request-r1/runtime-sources.json",
+        "sha256": "07d434b433df50a00a970a5191b6981829676dd12f180c930572bf87663f0000",
+        "size": 23412
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/native-contact-comparison.json",
+        "sha256": "39eb7dc63d5677f955e0820cce2ad50c1296310cd71497417d3602f71a089512",
+        "size": 1050
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "203_Cedar_owned-asu-continuation-8cp7togx/artifact-cold-r1/summary.json",
+        "sha256": "802ea18143ce19fb4d10113b94d5cbf0834cc91ea535cd6443b6dcd5c17d585a",
+        "size": 1680
+      }
+    ],
+    "excluded": "Raw science/native captures, logs, local runners and model/dictionary/PHIL snapshots stay local.",
+    "limitations": [
+      "Ordinary invocation and single modifier ownership remain Q04.",
+      "No checkpoint adoption, actual diffraction refinement or general catalogue qualification.",
+      "C194/Q13 unresolved chemical-state controls remain open."
+    ]
   }
 }

@@ -75,17 +75,26 @@ def _continuation_fields(options, limits):
     fields = {'readyset_timeout_seconds','restore_serialization'}
     policies = dict(execution_policy=continuation.POLICY_ID, process_policy=CONTINUATION_PROCESS_POLICY,
                     artifact_policy='cif-complete-continuation-artifacts-v1')
-    _need(isinstance(options,dict) and set(options) in (fields,fields | policies.keys(),
-          fields | policies.keys() | {'child_artifact_policy'}), 'Invalid complete-request continuation settings')
+    optional={'child_artifact_policy','native_nonbonded_policy'}
+    _need(isinstance(options,dict) and (set(options)==fields or
+          fields | policies.keys() <= set(options) <= fields | policies.keys() | optional),
+          'Invalid complete-request continuation settings')
     child_policy=(continuation.ARTIFACT_POLICY if set(options)==fields
                   else options.get('child_artifact_policy'))
     _need('child_artifact_policy' not in options or child_policy == continuation.ARTIFACT_POLICY,
           'Unsupported continuation child artifact policy')
     continuation._artifact_fields(child_policy)
     if child_policy is not None: policies['child_artifact_policy']=child_policy
+    native_policy=(continuation.NATIVE_NONBONDED_POLICY if set(options)==fields
+                   else options.get('native_nonbonded_policy'))
+    _need('native_nonbonded_policy' not in options or native_policy==continuation.NATIVE_NONBONDED_POLICY,
+          'Unsupported continuation nonbonded policy')
+    continuation._native_fields(native_policy)
+    if native_policy is not None: policies['native_nonbonded_policy']=native_policy
     _need(all(options.get(k,v) == v for k,v in policies.items()), 'Unsupported continuation policy')
     continuation._configuration(dict(native=limits['native_timeout_seconds'],
-        readyset=options['readyset_timeout_seconds'],total=limits['total_timeout_seconds']),options['restore_serialization'])
+        readyset=options['readyset_timeout_seconds'],total=limits['total_timeout_seconds']),options['restore_serialization'],
+        artifact_policy=child_policy,nonbonded_policy=native_policy)
     return dict(continuation=dict(**policies,**{k:options[k] for k in sorted(fields)}))
 
 
@@ -94,7 +103,8 @@ def _continuation_parameters(config):
     return dict(native_timeout_seconds=limits['native_timeout_seconds'],
         readyset_timeout_seconds=settings['readyset_timeout_seconds'],
         total_timeout_seconds=limits['total_timeout_seconds'],restore_serialization=settings['restore_serialization'],
-        artifact_policy=settings.get('child_artifact_policy'))
+        artifact_policy=settings.get('child_artifact_policy'),
+        nonbonded_policy=settings.get('native_nonbonded_policy'))
 
 
 def _compiler_input(kind, directory, selected_sources=None):
@@ -379,7 +389,7 @@ def _continuation_child(attempt, intent, config, repaired):
     params = _continuation_parameters(config)
     expected = continuation._configuration(dict(native=params['native_timeout_seconds'],
         readyset=params['readyset_timeout_seconds'],total=params['total_timeout_seconds']),params['restore_serialization'],
-        artifact_policy=params['artifact_policy'])
+        artifact_policy=params['artifact_policy'],nonbonded_policy=params['nonbonded_policy'])
     _need(_same(_json(_read(work/'inputs/configuration.json')),expected), 'Continuation limits differ from frozen outer intent')
     for phase,evidence in state['phases'].items():
         if 'job' in evidence:

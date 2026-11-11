@@ -3943,9 +3943,12 @@ C202 adds an explicitly requested compact ASU mode to that same reader/reviewer.
 One ordered table and exact mappings bind two complete native kernel arrays;
 directed half-energy/full-first-gradient accounting reproduces the native
 container. Existing receipt limits and C127 worker/default semantics stay fixed.
-Exact spec/worker/output binding and offline arithmetic are both required. This
-diagnostic is not yet the owned continuation's requested mode. See the
-[ASU contract](cif-doctor.md#compact-maintained-asu-pair-capture-c202).
+Exact spec/worker/output binding and offline arithmetic are both required.
+C203 freezes this mode in fresh owned continuations and enclosing requests;
+old absent settings explicitly retain C127. The connected ReadySet control and
+cold historical/current requests pass. Ordinary invocation and checkpoint adoption
+remain separate. See the [ASU capture](cif-doctor.md#compact-maintained-asu-pair-capture-c202)
+and [owned continuation contract](cif-doctor.md#frozen-asu-policy-in-owned-continuation-c203).
 
 
 

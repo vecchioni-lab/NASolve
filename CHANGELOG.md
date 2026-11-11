@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Frozen symmetry-aware owned continuation (C203)
+
+- Fresh diagnostic continuations freeze the maintained ASU capture policy across
+  baseline, ReadySet endpoint and optional serialization-restored native phases.
+- Enclosing requests bind that policy explicitly; historical absent settings
+  preserve the original C127 behavior, including when new code executes them.
+- The connected actual ReadySet control and cold old/new requests pass. Ordinary
+  PostMR invocation, checkpoint adoption and refinement remain separate gates.
+
 ### Explicit compact native symmetry-pair attribution (C202)
 
 - Add an opt-in ASU pair capture/reviewer that preserves directed image and

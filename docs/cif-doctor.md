@@ -132,7 +132,9 @@
 
 <a id="current-capability-boundary-c189"></a>
 
-## Current capability boundary (C190)
+<a id="current-capability-boundary-c190"></a>
+
+## Current capability boundary (C203)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -155,8 +157,8 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
 | Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C184 includes selected ReadySet/native continuation under that same request and recovery owner. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
-| Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. Ordinary continuation keeps C127 until its configuration is versioned; no chemical, covalent-symmetry optimizer or refinement approval. |
-| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
+| Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
+| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
@@ -615,6 +617,59 @@ an enabled `prepare_postmr` default. Ordinary orchestration must preserve pre-Co
 source/producer lineage and NAR compiler provenance, pass the selected runtime
 through ReadySet and publish immutable checkpoint lineage (Q04/Q05). Actual
 refinement remains Q06; mixed/held-out chemical coverage remains Q07/Q13.
+
+### Frozen ASU policy in owned continuation (C203)
+
+Fresh `execute_runtime_continuation` calls now freeze C202's maintained
+`cif-native-nonbonded-asu-attribution-v1` in `configuration.nonbonded_policy`.
+Every baseline, endpoint and optional serialization-restored native phase must
+request exactly that policy. The existing stopped-job/input/worker/spec join
+checks the field before accepting either a successful or failed observation.
+No new process owner, retry loop, compiler or scientific selector is introduced.
+
+New minimal enclosing `continuation_options` freeze the same value as
+`native_nonbonded_policy`. Fully frozen historical options lacking that field
+retain the C127 mode, even when executed by new code: the enclosing caller passes
+`None` explicitly rather than inheriting the new Python default. Direct callers
+can likewise request `nonbonded_policy=None`. Absent legacy fields stay absent;
+explicit null/unknown recorded policies refuse. Child artifact policy remains
+independent. C200 partition limits, original/fallback qualification, frozen
+allowances and unknown-owner blocking are unchanged. New records require C203
+readers; old records need no migration or resealing.
+
+The fresh actual **Phenix 2.2.1-6174 / dispatcher 2.2.1** connected control reuses
+C198's exact ordinary Coot/NAR construction and retained PDU candidate. It freezes
+38 backbone links, 16 literal pairs, 36 stacks and 197 explicit requests, including
+four planes. No earlier native capture supplies the new literal intake. Baseline
+and ReadySet execute successfully; the complete owned request selects
+**`readyset_checked_model`**, retaining the exactly checked ReadySet model.
+All outer/child processes are stopped. The request has a 1,200 s shared allowance
+and 120 s native/ReadySet phase limits; source code, construction inputs and the
+C200 request retain their bytes/timestamps. Coot was not rerun. This is diagnostic
+continuation, not ordinary automatic invocation, checkpoint adoption or diffraction
+refinement; no chemical threshold or Free-R behavior changes.
+
+Fresh new-policy interpretation of both old C127 simple-pair inputs preserves
+326/411 pairs and residuals 973.948149885052 / 6127.599344909726. The new default is
+therefore exercised with both crystal-image and identity-only controls.
+A fail-before default-policy regression, invalid-policy and exact-spec downgrade
+controls, continuation ownership/recovery and enclosing callers pass:
+**252 distinct focused cases**. No full/profile suite was run.
+
+Cold whole-request replay checks the new connected request, C200's old
+ASU-refused parent fallback, and C184's original/ordered-recovery selections from
+a relocated checkout with original copies absent. Historical checkout/input/SDK
+reads and external execution are denied; **5652 files retain bytes and
+timestamps**. Old requests keep their exact native policy and outcome. Commands,
+source hashes, exact phases and local evidence references are recorded under
+`owned_asu_continuation_2026_11_11` in the evidence ledger. Raw science, native logs and local runners remain
+outside Git.
+
+**Next:** integrate ordinary invocation at the existing prepared-model boundary,
+with the qualified composer as sole modifier owner. Then carry the exact selected
+model/CIF/PHIL and producer/compiler lineage into a new immutable checkpoint (Q05).
+Q06 real refinement, Q07 combined/held-out chemistry and C194/Q13 chemical-state
+questions remain open. This result does not qualify the whole catalogue.
 
 ### Compact maintained ASU pair capture (C202)
 

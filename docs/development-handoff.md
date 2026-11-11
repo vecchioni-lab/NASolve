@@ -11,6 +11,39 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
+## C203 validated: owned ASU continuation
+
+Base `271d836381f4f62d5c104f7dbea95b6e6943e2ad`; pause/update **2026-11-11 15:00 UTC**.
+Capsule `live_tests_directory/203_Cedar_owned-asu-continuation-8cp7togx`. All workers stopped.
+
+**Before → after:** the connected request retained its qualified parent because
+C127 refused ASU pairs before ReadySet. Fresh continuation now freezes C202's
+policy in the child and enclosing request, checks it against every exact native
+phase, and reaches ReadySet. Fully frozen old requests explicitly pass the absent
+legacy mode; no implicit upgrade, migration or resealing. Existing owners,
+scientific gates, artifact bounds and immutable recovery remain unchanged.
+
+**Files/schema:** `cif_runtime_continuation.py`, `cif_complete_request.py`, their two
+existing continuation test modules, Unreleased and existing public docs/ledgers.
+New optional child `nonbonded_policy` / enclosing `native_nonbonded_policy`;
+new records require C203 readers. No ordinary PostMR default or checkpoint change.
+
+**Validation:** fail-before 1 failed / 51 deselected; focused ownership **120 passed**,
+enclosing/PostMR callers **132 passed** (252 distinct). Actual Phenix
+2.2.1-6174 / dispatcher 2.2.1 completes the connected request and selects
+**`readyset_checked_model`**. Exact C198 construction/retained candidate; 38 links,
+16 pairs/36 stacks, 197 requests/four planes. New ASU mode also preserves both
+C127 simple-pair controls. Coot not rerun; no diffraction refinement or adoption.
+Cold current/C200/C184 whole requests replay with 5652 files unchanged,
+original copies absent and historical reads/SDK/execution denied. Exact commands
+and references are in the evidence ledger. No full/profile rerun; last full C160.
+
+**Artifacts:** raw models, CIFs, PHIL, native captures, logs and runners remain
+local. Current code hashes and previous construction/request bytes/mtimes fixed.
+**Next:** ordinary invocation/single modifier ownership, then Q05 exact selected
+checkpoint handoff; Q06/Q07 and C194/Q13 remain open. No merge. Publication next.
+— Rowan · Codex desktop
+
 ## C202 published: compact maintained ASU diagnostic
 
 Base `6ae51f28ceaabf6fd01bfde95779fe1ad9f8a7ae`; pause/update **2026-11-11 15:00 UTC**, explicitly extended

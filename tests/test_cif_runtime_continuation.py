@@ -30,6 +30,7 @@ def continuation(tmp_path, monkeypatch, request):
         spec=dict(policy_id=m.NATIVE_POLICY_ID,model=rows[0]['path'],
             dictionaries=[r['path'] for r in rows if r['role']=='dictionary'],phil_files=[r['path'] for r in rows if r['role']=='phil'],
             **{key:k[key] for key in ('phil_namespace_policy','inventory_detail','policy_inventory','energy_inventory','nonbonded_inventory','full_monomer_inventory')})
+        if k.get('nonbonded_policy') is not None: spec['nonbonded_policy']=k['nonbonded_policy']
         (work/'native_spec.json').write_text(json.dumps(spec))
         (work/'native_worker.py').write_text('import sys\nprint("synthetic native transport")\nsys.exit('+('1' if state['fail']==phase else '0')+')\n')
         command=[str(executable),'native_worker.py','native_spec.json']
@@ -344,3 +345,40 @@ def test_completion_size_matches_atomic_record_bytes(tmp_path, value):
     expected = serialized_record_size(value)
     write_record(path, value)
     assert expected == len(path.read_bytes())
+
+
+def test_fresh_continuation_freezes_asu_policy_for_every_native_phase(continuation):
+    m,parent,sdk,out,state=continuation;padding_change(sdk);state['reject_raw']=True
+    result=m.execute_runtime_continuation(parent,sdk,out)
+    assert result['configuration']['nonbonded_policy']=='cif-native-nonbonded-asu-attribution-v1'
+    assert state['calls']==['baseline','endpoint','ordered']
+    for phase in state['calls']:
+        spec=json.loads((out/'native'/phase/'capture/native_spec.json').read_bytes())
+        assert spec['nonbonded_policy']==result['configuration']['nonbonded_policy']
+    assert m.read_runtime_continuation(out)['report']==result
+
+
+def test_explicit_legacy_native_mode_is_not_upgraded(continuation):
+    m,parent,sdk,out,state=continuation
+    result=m.execute_runtime_continuation(parent,sdk,out,nonbonded_policy=None)
+    assert 'nonbonded_policy' not in result['configuration']
+    for phase in state['calls']:
+        assert 'nonbonded_policy' not in json.loads((out/'native'/phase/'capture/native_spec.json').read_bytes())
+    assert m.read_runtime_continuation(out)['report']==result
+
+
+@pytest.mark.parametrize('policy',['unknown',True,{},'',[]])
+def test_unknown_continuation_native_policy_refuses_before_output(continuation,policy):
+    m,parent,sdk,out,state=continuation
+    with pytest.raises(ValueError,match='nonbonded'):
+        m.execute_runtime_continuation(parent,sdk,out,nonbonded_policy=policy)
+    assert not out.exists() and not state['calls']
+
+
+def test_native_phase_cannot_downgrade_the_frozen_asu_mode(continuation):
+    m,parent,sdk,out,state=continuation
+    m.execute_runtime_continuation(parent,sdk,out)
+    spec=out/'native/baseline/capture/native_spec.json';value=json.loads(spec.read_bytes());value.pop('nonbonded_policy');spec.write_text(json.dumps(value))
+    phases=m.inspect_runtime_continuation_processes(out)['phases'];selected=m._parent(out/'inputs/runtime')
+    with pytest.raises(ValueError,match='maintained context'):
+        m._native(out,phases['native-baseline'],selected,m._selected_consumer(selected),nonbonded_policy=m.NATIVE_NONBONDED_POLICY)

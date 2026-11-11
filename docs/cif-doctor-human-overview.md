@@ -59,8 +59,9 @@ survives later preparation failure. It is provenance, not chemical qualification
 Ordinary invocation and checkpoint adoption remain separate gates.
 An [explicit symmetry-pair diagnostic](cif-doctor.md#compact-maintained-asu-pair-capture-c202)
 now explains native crystal contacts without dropping image contributions. Its
-connected-model and cold controls pass; ordinary continuation still needs a
-versioned switch before it can use that proof. No new chemical support or
+connected-model and cold controls pass. C203 freezes the mode in fresh owned
+continuations and enclosing requests and validates the connected ReadySet round
+trip; old requests preserve their original policy and selection. No new chemical support or
 refinement approval follows from numerical consistency.
 Use the
 [pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
@@ -3470,7 +3471,8 @@ function, repeat checks and per-residue attribution. Zero-contribution pairs
 are retained. C127 retains its identity-only prolsq policy. C202 adds a separate
 explicit mode for complete directed symmetry images and self-images, with compact
 receipts and independently replayed native arithmetic. Unsupported functions still
-refuse; ordinary continuation has not yet switched to this mode. No coordinates, chemistry or
+refuse. C203 subsequently freezes this mode in fresh owned continuation, with
+legacy requests retaining C127 explicitly. No coordinates, chemistry or
 acceptance thresholds change; no physical clashscore or automatic adoption is
 claimed. Focused tests, real native captures and cold replay pass; the complete
 suite status is in the [technical contract](cif-doctor.md#native-nonbonded-pair-attribution-c127).
