@@ -11,7 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C219 validated: ordinary request executes and replays cold
+## C219 published: ordinary request executes and replays cold
+
+Validation checkpoint published as `30f6ac7555652558f1feeb9bd41a48436500b94f`. No active worker or unfinished
+implementation remains in this bounded checkpoint; Q04/Q05 integration stays open.
 
 Base `fa27ed1bfe3d49e4495102bbaa8ac49981f58027`; capsule
 `live_tests_directory/219_Cedar_ordinary-request-execution-_6y5y09h`. All 2 validation workers and the

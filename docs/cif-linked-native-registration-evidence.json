@@ -87029,7 +87029,7 @@
     "published_revision": "fa27ed1bfe3d49e4495102bbaa8ac49981f58027"
   },
   "ordinary_postmr_request_execution_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "branch": "cedar",
@@ -87184,6 +87184,7 @@
         "size": 50
       }
     ],
-    "excluded": "Generated models/CIFs/PHIL, original request tree, native captures, store, logs and runners remain local. No live environment persisted."
+    "excluded": "Generated models/CIFs/PHIL, original request tree, native captures, store, logs and runners remain local. No live environment persisted.",
+    "published_revision": "30f6ac7555652558f1feeb9bd41a48436500b94f"
   }
 }
