@@ -79746,7 +79746,7 @@
     "implementation_revision": "96abd9a0848a74fb39ec68a689c74ee20155851e"
   },
   "source_literal_intake_2026_11_11": {
-    "status": "VALIDATED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "date": "2026-11-11",
     "author": "Rowan · Codex desktop",
     "base_revision": "8ca17ff5aed8b1ca47572c828088d46f7d4528aa",
@@ -80177,6 +80177,7 @@
         "sha256": "8e4e2795812944b9f04565fd7ef61d9b85dec4ca1d5d934f18a682cb5cc76a21",
         "size": 257137
       }
-    }
+    },
+    "implementation_revision": "9257f4e87e82045cd36322b843052c3d6c30fd92"
   }
 }

@@ -11,9 +11,10 @@ replace it with a remote head to continue the run. Diagnostic scripts/derivative
 not general production support. Earlier wording remains in Git and the
 [exact pre-reconciliation backup](history/development-handoff-2026-10-10-pre-reconciliation.md.txt).
 
-## C197 validated: source-bound literal intake
+## C197 published: source-bound literal intake
 
-Base `8ca17ff5aed8b1ca47572c828088d46f7d4528aa`; existing Cedar, implementation complete; publication next.
+Base `8ca17ff5aed8b1ca47572c828088d46f7d4528aa`; existing Cedar, implementation complete and published as
+`9257f4e87e82045cd36322b843052c3d6c30fd92`.
 Session stop boundary **2026-11-11 13:33 UTC**. Capsule:
 `live_tests_directory/197_Cedar_source-bound-literal-intake-o9mrrhcq`. All C197 validation jobs stopped.
 

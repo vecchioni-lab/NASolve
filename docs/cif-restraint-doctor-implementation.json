@@ -28372,7 +28372,8 @@
         "Q04 ordinary invocation and single site-modifier ownership",
         "Q05 exact selected artifact/producer/compiler export into immutable checkpoints",
         "Q06 refinement; Q07 combined and held-out controls; C194/Q13 native chemistry failures"
-      ]
+      ],
+      "implementation_revision": "9257f4e87e82045cd36322b843052c3d6c30fd92"
     }
   },
   "audience": [
