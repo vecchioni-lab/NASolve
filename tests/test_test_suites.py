@@ -34,6 +34,9 @@ def test_profiles_are_explicit_unique_and_include_current_workflow_contracts():
     chemistry = runner.select_paths(['chemistry'], ROOT)
     workflow = runner.select_paths(['workflow'], ROOT)
     assert 'tests/test_cif_preparation_qualification.py' in chemistry
+    assert {'tests/test_cif_captured_plane_attribution.py', 'tests/test_cif_repair_chain.py',
+            'tests/test_cif_plane_generation.py'} <= set(chemistry)
+    assert {'tests/test_cif_runtime_evidence.py', 'tests/test_cif_compact_workflow.py'} <= set(workflow)
     assert 'tests/test_cif_postmr_cache.py' in workflow
     assert 'tests/test_postmr_cache_workflow.py' in workflow
     assert 'tests/test_test_suites.py' in runner.select_paths(['smoke'], ROOT)

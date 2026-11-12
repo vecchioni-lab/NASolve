@@ -6,6 +6,7 @@ programs or promote separate diagnostic readiness into production adoption.
 """
 from contextlib import contextmanager
 from copy import deepcopy
+from hashlib import sha256
 import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -37,6 +38,18 @@ def _tree(root, *, manifest=False):
 
 
 def _bounded_tree(root, *, max_files, max_bytes, manifest=False, partition_prefixes=()):
+    return dict(_bounded_members(root, max_files=max_files, max_bytes=max_bytes,
+        manifest=manifest, partition_prefixes=partition_prefixes))
+
+
+def _bounded_inventory(root, *, max_files, max_bytes, partition_prefixes=()):
+    # Retain only the existing exact size/hash records, not the entire payload.
+    return {name:dict(sha256=sha256(data).hexdigest(), size=len(data))
+        for name,data in _bounded_members(root, max_files=max_files,
+            max_bytes=max_bytes, partition_prefixes=partition_prefixes)}
+
+
+def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_prefixes=()):
     # The complete continuation owner can inventory two separately bounded
     # children. Public/child artifacts continue through _tree's original caps.
     _need(type(max_files) is int and 0 < max_files <= 2*MAX_FILES
@@ -53,7 +66,6 @@ def _bounded_tree(root, *, max_files, max_bytes, manifest=False, partition_prefi
     counts = [0] * (len(partition_prefixes)+1); sizes = counts.copy()
     root=Path(root).absolute()
     _need(root.is_dir() and not any(p.is_symlink() for p in (root,*root.parents)), 'Unsafe source tree')
-    result={}
     for p in sorted(root.rglob('*')):
         name=p.relative_to(root).as_posix()
         _need(_safe(name) and not p.is_symlink(), 'Unsafe frozen tree member')
@@ -66,8 +78,8 @@ def _bounded_tree(root, *, max_files, max_bytes, manifest=False, partition_prefi
               'Frozen tree exceeds supported bounds')
         data=_read(p)
         _need(len(data)==size, 'Frozen tree member changed while reading')
-        counts[bucket]+=1; sizes[bucket]+=size; result[name]=data
-    return result
+        counts[bucket]+=1; sizes[bucket]+=size
+        yield name,data
 
 
 def _controls(root, controls):

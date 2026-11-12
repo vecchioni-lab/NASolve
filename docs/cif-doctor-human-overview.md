@@ -39,14 +39,28 @@ those checks and separate derivatives; automatic invocation and real refinement
 remain work. Compact evidence now stores identical records once and compresses
 those bytes without weakening checks. One actual repaired PDU/NAR publication
 falls from 101 MB to 4.9 MB; its subsequent ReadySet result is 6.2 MB, while the
-complete retained continuation is 43.1 MB. Verification uses bounded temporary
+complete retained continuation is 43.1 MB. A fresh complete ordinary-source request
+retains 134.5 MB including its 5.1 MB final result; that larger figure matters for
+campaign planning. Its compact result passes the initial checkpoint handoff, with
+synthetic map-path fixtures and no new refinement claim. Verification uses bounded temporary
 files and removes them afterward. Exact, reproducible evidence need not retain
 every duplicate forever. Safe retirement of working copies and whole-campaign
 storage qualification remain release work. Newly created checked preparations
 choose compact evidence automatically; saved requests keep their recorded layout.
 Repeated parent checks within a single ReadySet result read are now shared, with
 the same scientific decision and final checks for changed files. Memory and
-concurrent-job limits still need campaign-scale validation.
+concurrent-job limits still need campaign-scale validation. Inventories now hash
+one file at a time; reading the same complete request peaks at about 562 MB memory
+instead of 599 MB, with the identical scientific result.
+
+Here, **frozen proof** means a fixed, identifiable set of inputs and check results
+that can be verified again: the chosen model and restraints, exact chemical/source
+inputs, tool and policy identities, and necessary receipts. It does not mean saving
+every scratch copy forever. Identical evidence can be stored once and compressed.
+A reproduction trail must retain the needed input bytes or a verifiable available
+source; a checksum alone cannot recreate missing data. Working-file retirement
+needs an explicit, interruption-safe policy after every process is known stopped.
+Old or failed scientific runs are not silently cleaned up.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and

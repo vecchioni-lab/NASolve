@@ -43,12 +43,15 @@ def read_owned_plane_support(source, code, request_directory, attempt_number):
     work = path_in(root, name)
     report = read_multiple_plane_candidate(work)
     spec = json.loads(_regular(path_in(work, 'candidate_spec.json')))
+    # C170 keeps the request ceiling frozen while a parent may grant less time.
+    # The completed receipt and both owned phases must bind that same grant.
+    effective_timeout = report['execution']['timeout_seconds']
     _need(_regular(path_in(work, 'source.cif')) == original and report['component'] == code
           and report['source_sha256'] == config['source']['sha256'], "Native generation source binding differs")
     _need(report.get('bond_representation_policy') == recipe.get('bond_representation_policy')
           and spec['declared_charge_control']['dialect'] == recipe['expected_dialect']
           and report['single_block_steps'] == recipe['single_block_steps']
-          and report['execution']['timeout_seconds'] == recipe['timeout_seconds']
+          and 0 < effective_timeout <= recipe['timeout_seconds']
           and report['phenix_version'] == generator['phenix_version']
           and _pins(report['sources']) == generator['prior_sources'], "Native generation recipe/producer differs")
     owner = {k: selected['intent'][k] for k in ('attempt_id', 'request_sha256')}
@@ -56,7 +59,7 @@ def read_owned_plane_support(source, code, request_directory, attempt_number):
     context = dict(component=code, source_sha256=config['source']['sha256'],
         candidate_policy_id=report['policy_id'], multiple_planes=True,
         phenix_version=generator['phenix_version'], single_block_steps=recipe['single_block_steps'],
-        total_timeout_seconds=recipe['timeout_seconds'], attempt_owner=owner)
+        total_timeout_seconds=effective_timeout, attempt_owner=owner)
     historical = Path(spec['installation_root'])  # Compare strings only; never open SDK.
     commands = {
         'capabilities': [str(historical/generator['dispatchers']['elbow']['path']), '--help'],
@@ -70,7 +73,7 @@ def read_owned_plane_support(source, code, request_directory, attempt_number):
         _need(evidence['state'] == 'STOPPED', "Generation phase is not sealed")
         job, finished = evidence['job'], evidence['finished']
         _need(job['context'] == context and job['argv_provenance'] == commands[phase]
-              and job['timeout_seconds'] <= recipe['timeout_seconds']
+              and job['timeout_seconds'] <= effective_timeout
               and finished['status'] == 'COMPLETED' and type(finished['returncode']) is int
               and finished['returncode'] == 0, "Generation phase command/recipe/completion differs")
     candidate = report['candidate']

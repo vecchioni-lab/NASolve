@@ -20,6 +20,9 @@ PROFILES = {
         'test_cif_postmr_cache', 'test_postmr_cache_workflow', 'test_checkpoints', 'test_run_context',
     ),
     'chemistry': (
+        'test_cif_plane_coverage', 'test_cif_plane_candidate', 'test_cif_plane_generation',
+        'test_cif_plane_captures', 'test_cif_plane_native', 'test_cif_plane_energy',
+        'test_cif_plane_geometry', 'test_cif_captured_plane_attribution', 'test_cif_repair_chain',
         'test_curated_cif_loops',
         'test_cif_preparation_qualification', 'test_cif_linked_preparation',
         'test_cif_linked_usability_bridge', 'test_cif_terminal_preparation',
@@ -32,6 +35,7 @@ PROFILES = {
         'test_cif_topology_gate', 'test_phosphate', 'test_recipe_phosphates',
     ),
     'workflow': (
+        'test_cif_runtime_evidence', 'test_cif_compact_workflow',
         'test_cif_postmr_publication', 'test_cif_ordinary_cli', 'test_cif_ordinary_outcome', 'test_cif_ordinary_postmr', 'test_postmr_runtime',
         'test_curated_cif_loops',
         'test_test_suites', 'test_cif_doctor_selection', 'test_cif_dictionary_store',

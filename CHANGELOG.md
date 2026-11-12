@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inventory saved preparation without loading every file at once (C233)
+
+- Hash bounded evidence members one at a time in complete-request and ReadySet
+  continuation inventories. Preserve the same saved hashes/sizes, path checks,
+  independent partition limits and before/after mutation checks.
+- Saved results require no migration. A relocated real request returns the exact
+  previous result with lower measured peak memory; no scientific files are copied,
+  removed or rewritten. Whole-campaign resource qualification remains open.
+
+### Respect the time actually granted to plane generation (C232)
+
+- Accept a completed owned generation when its parent granted less time than the
+  frozen request maximum. Bind both native phases to that exact smaller allowance;
+  reject changed ownership, contradictory context or jobs exceeding the grant.
+- Keep old request/report formats and limits unchanged. This corrects evidence
+  reading; it does not certify optimizer convergence or adopt a generated CIF.
+- Include current plane-repair and compact-storage modules in the existing focused
+  chemistry/workflow test profiles, retaining deduplication across profiles.
+
 ### Avoid repeating the same ReadySet parent checks (C230)
 
 - Share one qualified parent view within a ReadySet publication read. Preserve

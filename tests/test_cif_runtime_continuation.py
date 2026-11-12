@@ -317,7 +317,7 @@ def test_continuation_reserves_process_seal_before_reporting_success(continuatio
             rows = m._continuation_files(out, result['configuration'])
             working = {n: data for n, data in rows.items() if not n.startswith('runtime/')}
             if bound == 'files': monkeypatch.setattr(frozen, 'MAX_FILES', len(working))
-            else: monkeypatch.setattr(frozen, 'MAX_BYTES', sum(map(len, working.values())))
+            else: monkeypatch.setattr(frozen, 'MAX_BYTES', sum(r['size'] for r in working.values()))
         return result
     monkeypatch.setattr(m, 'write_record', write)
     with pytest.raises(ValueError): m.execute_runtime_continuation(parent, sdk, out)

@@ -1,6 +1,5 @@
 """Fresh ordinary requests freeze compact storage; saved requests keep their choice."""
 import json
-from pathlib import Path
 import pytest
 from nasolve.campaign_records import read_record
 from tests.test_cif_complete_request import case

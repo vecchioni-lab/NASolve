@@ -136,7 +136,7 @@ def test_owned_binding_checks_recipe_and_producer_beyond_seal_identity(tmp_path,
     def changed(path):
         state=original(path);config=state['request']['configuration']
         if field=='single_block_steps':config['recipe'][field]+=1
-        elif field=='timeout_seconds':config['recipe'][field]+=1
+        elif field=='timeout_seconds':config['recipe'][field]-=1  # Actual work must fit the cap; shorter work is permitted.
         elif field=='expected_dialect':config['recipe'][field]='MONOMER_LIBRARY_CIF'
         elif field=='phenix_version':config['generator'][field]='different'
         else:config['generator'][field][0]['sha256']='0'*64
@@ -183,7 +183,8 @@ def test_support_changed_after_candidate_is_preserved_and_refused(tmp_path,monke
     assert output.exists()
 
 
-def test_explicit_earlier_attempt_is_not_replaced_by_latest(tmp_path):
+@pytest.mark.parametrize('remaining',[None,5.5])
+def test_explicit_earlier_attempt_is_not_replaced_by_latest(tmp_path,remaining):
     import os
     from nasolve.cif_generation_attempt import generate_source_candidate_attempt,inspect_source_generation_request
     from nasolve.cif_plane_generation import read_owned_plane_support
@@ -195,15 +196,17 @@ def test_explicit_earlier_attempt_is_not_replaced_by_latest(tmp_path):
     result=generate_source_candidate_attempt(installation,installation/gen['dispatchers']['python']['path'],
         installation/gen['dispatchers']['elbow']['path'],gen['api_sources'],source,'Q17',request,
         environment={**os.environ,'CANDIDATE_FIXTURE':str(tmp_path/'inputs/support.cif')},
-        prior_sources=gen['prior_sources'],phenix_version=gen['phenix_version'],max_attempts=config['max_attempts'],**recipe)
+        prior_sources=gen['prior_sources'],phenix_version=gen['phenix_version'],max_attempts=config['max_attempts'],
+        **({'_remaining_seconds':lambda:remaining} if remaining is not None else {}),**recipe)
     assert result['attempt_number']==2
+    assert result['generation']['execution']['timeout_seconds']==(recipe['timeout_seconds'] if remaining is None else remaining)
     assert read_owned_plane_support(source,'Q17',request,1)==first
     second=read_owned_plane_support(source,'Q17',request,2)
     assert second['attempt_number']==2 and second['attempt_sha256']!=first['attempt_sha256']
     assert second['support']['sha256']==first['support']['sha256']
 
 
-@pytest.mark.parametrize('defect',['command','context','completion','bool_returncode'])
+@pytest.mark.parametrize('defect',['command','context','allowance','job_timeout','completion','bool_returncode'])
 def test_selected_phase_must_match_completed_recipe(tmp_path,monkeypatch,defect):
     import nasolve.cif_plane_generation as module
     source,_,request,_=plane_generation(tmp_path)
@@ -213,6 +216,8 @@ def test_selected_phase_must_match_completed_recipe(tmp_path,monkeypatch,defect)
         if phase=='candidate':
             if defect=='command':state['job']['argv_provenance'][-1]='different.json'
             elif defect=='context':state['job']['context']['single_block_steps']+=1
+            elif defect=='allowance':state['job']['context']['total_timeout_seconds']+=1
+            elif defect=='job_timeout':state['job']['timeout_seconds']=state['job']['context']['total_timeout_seconds']+1
             elif defect=='completion':state['finished']['status']='FAILED'
             else:state['finished']['returncode']=False
         return state
@@ -239,3 +244,14 @@ def test_completed_replay_refuses_evidence_changed_during_assessment(tmp_path,mo
         return result
     monkeypatch.setattr(module,'_replay_exact_handoff',mutate)
     with pytest.raises(ValueError):module.read_multiple_plane_candidate(directory)
+
+
+def test_changed_request_ceiling_cannot_borrow_a_completed_attempt(tmp_path):
+    from nasolve.campaign_records import read_record,write_record
+    from nasolve.cif_plane_generation import read_owned_plane_support
+    source,_,request,_=plane_generation(tmp_path)
+    header=read_record(request/'request.json')
+    header['configuration']['recipe']['timeout_seconds']+=1
+    write_record(request/'request.json',header,replace=True)
+    with pytest.raises(ValueError,match='generation attempt intent'):
+        read_owned_plane_support(source,'Q17',request,1)

@@ -85,6 +85,13 @@ prefer content deduplication and compression without weakening checks. Record
 whole-request persistent and peak temporary size in representative integration
 validation. A generous artifact ceiling is not a storage target. Preserve exact
 policy/tool/input identities so optional expensive diagnostics can be reproduced.
+A checksum identifies bytes; it cannot recreate them. Retain authoritative inputs
+or an explicit verifiable available source, plus the recipe and necessary outcomes.
+"Frozen proof" means fixed, recheckable evidence, not indefinite duplicate storage.
+Measure process memory separately from temporary disk; archive size alone does not
+bound either. The current campaign runner is sequential; future concurrency must
+respect those budgets. Reuse completed control data for read-only checks, and
+prefer relocating a newly owned validation result to duplicating large trees.
 Changes to retention must preserve immutable run lineage and known-stopped recovery.
 Do not delete old scientific outputs or partial work as an incidental code cleanup.
 

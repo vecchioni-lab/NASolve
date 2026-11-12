@@ -199,7 +199,9 @@ Remaining acceptance:
    a complete native ReadySet continuation is 43.1 MB including its 6.2 MB result.
    Cold read peaks at 86.5 MB temporary evidence. C229 freezes compact storage in
    new checked requests and forwards it through existing owners; old requests keep
-   their layout. Next define interruption-safe
+   their layout. C231 executes a fresh complete ordinary-source request: its final
+   result is 5.1 MB but the whole request is 134.5 MB. Cold replay and exact initial
+   checkpoint handoff pass without scientific duplicates. Next define interruption-safe
    retirement of redundant successful working files only after all owners stop
    and the sealed result verifies. A small publication does not bound a campaign.
    Measure the entire request/continuation/publication footprint; retain exact
@@ -208,6 +210,9 @@ Remaining acceptance:
    Bound temporary expansion, process memory and concurrency as well as persistent
    storage. C230 removes repeat parent qualification; the real read still peaks
    near 684 MB resident memory despite an 86.5 MB temporary evidence footprint.
+   C233 changes complete/continuation inventories to hash one file at a time;
+   the same C231 whole read falls from 599 to 562 MB resident memory with identical
+   results and 69.7 MB temporary evidence. This does not retire working files.
    Do not extrapolate a small archive into permission for 100 concurrent readers.
    Preserve active/failed
    recovery evidence until known-stopped retention rules explicitly cover it; never
@@ -216,7 +221,10 @@ Remaining acceptance:
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical
 execution and C227 source-bound composition; ordinary automatic invocation remains. C223–C224's publication and caller work do not close that gap. Use the
-existing repair owner, then demonstrate the resulting restraints in Q06; a flat
+existing repair owner. C232 corrects the owned support reader to accept an actual
+parent grant below the frozen generation maximum, retaining exact phase/owner
+binding. This removes one integration blocker; it does not invoke plane repair.
+Then demonstrate the resulting restraints in Q06; a flat
 starting PDU substituent does not prove that refinement will keep it flat.
 
 **NARestraints stacking and Cedar chemical planes have different jobs.** The
@@ -284,6 +292,11 @@ read at publication. Default preparation and campaigns remain unchanged.
 The stage reuses ordinary checked preparation and records its actual ReadySet
 outcome and genuine evidence. Campaign retry still starts a fresh run; standalone
 recovery does not manufacture an interrupted campaign stage receipt.
+
+C231 verifies that a real new compact request can use the same initial checkpoint
+publisher and ordinary inspection/refinement-input readers after relocation.
+Synthetic observation/map path fixtures test this handoff, not native MTZ reading
+or diffraction refinement. Reuse that result rather than repeating construction.
 
 **Remaining acceptance:** define later preparation-child adoption without changing
 an immutable earlier root. Reuse the existing request owner and publication path;

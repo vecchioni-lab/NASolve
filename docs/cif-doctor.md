@@ -163,12 +163,12 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner. | The prepared-model entry is opt-in; ordinary orchestration and selected-runtime adoption remain Q04/Q05; ReadySet/checkpoint adoption remains Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner. | The checked route remains opt-in. C223–C225 connect initial checkpoint publication, ordinary PostMR and explicit campaigns; C231 validates compact request publication. General plane invocation and later preparation children remain Q04/Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
-| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
-| Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
+| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. Default activation and later preparation children remain open; no actual refinement claim. |
+| Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); default activation and later preparation children remain open. |
 | Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. Default activation, later preparation children, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
-| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
+| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. General plane invocation, later preparation children, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
 “add OP3”; a retained true terminal phosphate is protected. Lower scores under
@@ -763,6 +763,84 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 `source_selected_model_geometry_2026_11_11`. Native completion and better local
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
+
+### Bounded-memory evidence inventories (C233)
+
+Complete-request and ReadySet continuation owners formerly materialized every
+file's bytes to calculate the existing size/SHA-256 inventory. They now share
+the unchanged bounded member traversal and retain only those metadata records.
+Public payload-copy readers still receive complete bytes. Path/symlink checks,
+per-file limits, independently bounded partitions, completion reservations and
+before/after mutation checks remain. No cache, saved schema, chemical gate or
+retention permission changes.
+
+Four regressions covering legacy/current complete and continuation inventories
+fail before the change: a 16 MiB payload was retained at once. All four now produce
+the exact inventory below an 8 MiB traced-allocation ceiling. The 193 focused
+continuation, component-runtime and compact-storage cases pass; additional outer
+request boundary/mutation checks are recorded in the ledger. The same real C231
+request is read from separate relocated before/after source copies, with original
+inputs/cache/SDK/processes forbidden and no scientific output copies. Both reads
+return the identical complete-result hash; all 484 files preserve bytes/mtimes and
+all 15 temporary views disappear. Maximum resident memory falls from 598,654,976
+to 562,069,504 bytes. Physical temporary evidence remains 69,727,392 bytes. Observed
+read times are 86.86 and 88.34 s, not a controlled speed benchmark. These whole-read
+measurements are distinct from the small synthetic allocation test.
+
+This reduces one source of waste, not every source of memory use. The 134.5 MB
+working request remains intact; safe retirement and 100-dataset resource validation
+are still open. No new native work or full suite. Ledger:
+bounded_request_inventory_memory_2026_11_12.
+
+### Complete compact preparation and checkpoint handoff (C231)
+
+A fresh complete request at C230/0eb6f1a reuses the exact C218 ordinary construction,
+source selection and NAR inputs through the public initializer. Its configuration
+matches the old request except for compact evidence. The exact C219 dictionary
+cache hits; no Coot reconstruction or candidate generation is repeated. Actual
+Phenix 2.2.1-6174 / dispatcher 2.2.1 repair, baseline, ReadySet and endpoint checks
+complete, selecting the repaired dictionary bundle and checked ReadySet model.
+Every native owner is stopped. This exercises existing automatic linear repair;
+it does not yet invoke general plane repair automatically.
+
+The entire request retains 134,538,521 bytes in 484 files; its repair publication
+is 3,736,513 bytes and final ReadySet publication 5,114,426 bytes. Final-publication
+size alone therefore understates campaign storage. The qualified cache adds
+224,702 bytes. The complete execution/read peaks at 637,452,288 resident bytes.
+A source-relocated cold read with old inputs/cache/SDK/processes forbidden preserves
+all 484 files and removes all 15 temporary views (69,727,392 peak physical bytes).
+The new control is moved for relocation rather than making a scientific duplicate.
+
+The same real compact request then passes initial checkpoint publication and the
+ordinary registry, inspection resolver and refinement-input validation after another
+move. All 489 files in the relocated run retain bytes/mtimes. Both consumers receive
+the exact checked model, two dictionaries and five ordered PHIL inputs. Observation
+and map files in this plumbing control are explicitly synthetic path fixtures:
+no native MTZ interpretation, Coot launch or diffraction refinement is claimed.
+The local artifact-location record names the final anchored request location.
+No schema migration, full suite or old-run cleanup. Ledger:
+complete_compact_request_2026_11_12.
+
+### Owned plane generation with a shorter remaining allowance (C232)
+
+C170 keeps a request maximum immutable while an enclosing owner can grant less
+remaining time. C213's plane-support reader incorrectly required equality between
+that maximum and the actual native receipt. It now accepts a positive actual grant
+at or below the maximum, binds both phase contexts to that exact grant and refuses
+jobs exceeding it. Request digests, source/recipe/producer identities, stopped
+ownership and commands remain checked. There is no new allowance or generation
+owner, and old saved formats remain unchanged.
+
+The shorter-grant regression fails before the change. All 110 focused generation,
+owned-attribution and native-plane cases pass, including rehashed request and phase
+context tampering. Existing focused profiles now include current plane/storage
+modules; six selector tests pass. A complete Phenix 2.2.1-6174 / 2.2.1 generation
+uses a 300 s frozen maximum and 180 s grant, with 120 optimization steps. The owned
+support read and cold relocated read pass; 27 files remain unchanged with original
+source, SDK and execution forbidden. The native optimizer reports no convergence;
+its candidate remains CANDIDATE_REVIEW. This verifies ownership/budget binding, not
+chemical adoption, force qualification or refinement. No full suite. Ledger:
+clamped_plane_generation_2026_11_12.
 
 ### One qualified parent view during ReadySet publication (C230)
 

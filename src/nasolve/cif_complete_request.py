@@ -456,21 +456,23 @@ def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
     if artifact_policy is not None:
         prefixes=(_RUNTIME_PREFIX,) + (('continuation/',) if with_continuation else ())
         if with_continuation and artifact_policy == ARTIFACT_POLICY: prefixes+=('continuation/runtime/',)
-        files=frozen_tree._bounded_tree(attempt,max_files=frozen_tree.MAX_FILES,
+        files=frozen_tree._bounded_inventory(attempt,max_files=frozen_tree.MAX_FILES,
             max_bytes=frozen_tree.MAX_BYTES,partition_prefixes=prefixes)
         dirs=sorted(p.relative_to(attempt).as_posix() for p in attempt.rglob('*') if p.is_dir())
     elif with_continuation:
         # Preserve both bounded evidence trees. Do not enlarge either child's
         # artifact contract merely because the outer owner inventories them.
-        files = frozen_tree._bounded_tree(attempt,max_files=2*frozen_tree.MAX_FILES,max_bytes=2*frozen_tree.MAX_BYTES)
+        files = frozen_tree._bounded_inventory(attempt,max_files=2*frozen_tree.MAX_FILES,max_bytes=2*frozen_tree.MAX_BYTES)
         dirs = sorted(p.relative_to(attempt).as_posix() for p in attempt.rglob('*') if p.is_dir())
         for nested in (False,True):
             rows = [data for name,data in files.items() if name.startswith('continuation/') == nested]
-            _need(len(rows) <= frozen_tree.MAX_FILES and sum(map(len,rows)) <= frozen_tree.MAX_BYTES,
+            _need(len(rows) <= frozen_tree.MAX_FILES and sum(r['size'] for r in rows) <= frozen_tree.MAX_BYTES,
                   'Complete-request evidence partition exceeds frozen bounds')
-    else: files,dirs = _capture(attempt)
+    else:
+        files = frozen_tree._bounded_inventory(attempt,max_files=frozen_tree.MAX_FILES,max_bytes=frozen_tree.MAX_BYTES)
+        dirs = sorted(p.relative_to(attempt).as_posix() for p in attempt.rglob('*') if p.is_dir())
     files.pop('finished.json',None)
-    return dict(files=_inventory(files),directories=dirs)
+    return dict(files=files,directories=dirs)
 
 
 def _outer_provenance_fields(config):

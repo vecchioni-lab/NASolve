@@ -1,7 +1,6 @@
 """Compact storage preserves scientific evidence; it does not qualify it."""
 from hashlib import sha256
-import io,json,shutil,stat,zipfile
-from pathlib import Path
+import json,shutil,zipfile
 from unittest.mock import patch
 import pytest
 

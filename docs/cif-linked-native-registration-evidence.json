@@ -89285,5 +89285,293 @@
       "No full suite",
       "100-dataset memory/concurrency/working-file retention still unqualified"
     ]
+  },
+  "complete_compact_request_2026_11_12": {
+    "milestone": "C231",
+    "base_commit": "0eb6f1a",
+    "behavior": "Fresh public request with compact storage; existing automatic linear repair and actual ReadySet, then exact initial checkpoint handoff",
+    "native": {
+      "status": "COMPLETE_COMPACT_ORDINARY_SOURCE_REQUEST_PASS",
+      "phenix": "2.2.1",
+      "attempt_number": 1,
+      "selected": "readyset_checked_model",
+      "repair_selected": "repaired_prepared_bundle",
+      "continuation_phases": {
+        "native-baseline": "COMPLETED",
+        "native-endpoint": "COMPLETED",
+        "readyset": "COMPLETED"
+      },
+      "whole_request": {
+        "files": 484,
+        "bytes": 134538521
+      },
+      "portions": {
+        "continuation": {
+          "files": 116,
+          "bytes": 40898310
+        },
+        "preparation": {
+          "files": 42,
+          "bytes": 2040800
+        },
+        "repair": {
+          "files": 284,
+          "bytes": 89912532
+        }
+      },
+      "repair_publication": {
+        "files": 10,
+        "bytes": 3736513
+      },
+      "readyset_publication": {
+        "files": 10,
+        "bytes": 5114426
+      },
+      "cache": {
+        "files": 5,
+        "bytes": 224702
+      },
+      "old_input_files_unchanged": 25,
+      "outer_stopped_verified": true,
+      "source_generation": "NOT_REPEATED; EXACT_CACHE_HIT",
+      "elapsed_seconds": 565.562444375013,
+      "maximum_resident_set_bytes": 637452288,
+      "chemistry": "EXISTING_AUTOMATIC_LINEAR_REPAIR; GENERAL_PLANE_INVOCATION_STILL_OPEN",
+      "coot": "NOT_REPEATED; EXACT_C218_CONSTRUCTION",
+      "refinement": "NOT_RUN",
+      "full_suite": "NOT_RUN"
+    },
+    "cold": {
+      "status": "RELOCATED_COMPLETE_COMPACT_REQUEST_PASS",
+      "unchanged_files": 484,
+      "selected": "readyset_checked_model",
+      "original_path_absent": true,
+      "original_sources_sdk_cache_and_processes_forbidden": true,
+      "temporary_views_removed": 15,
+      "peak_temporary_evidence_bytes": 69727392,
+      "maximum_resident_set_bytes": 598343680,
+      "elapsed_seconds": 86.28503070899751,
+      "request": {
+        "anchor": "validation_capsule",
+        "path": "relocated/request"
+      },
+      "source_module_sha256": "7b1dc26aaccc432179f6e1cd9b412f6c318a9a6e09efc22c385c8824e30ceecb"
+    },
+    "checkpoint_publish": {
+      "status": "CHECKED_PUBLICATION_PUBLISH_PASS",
+      "elapsed_seconds": 96.55318279200583,
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "selected": "readyset_checked_model",
+      "qualified_dictionaries": 2,
+      "phils": 5,
+      "files": 487,
+      "exact_reader_calls": 1,
+      "new_native_calls": 0,
+      "historical_paths_sdk_execution_denied": true,
+      "original_copy_absent": false,
+      "read_bytes_mtimes_unchanged": false,
+      "scope": "Saved real compact C231 PDU producer proof; synthetic observation/map path fixtures. No native MTZ interpretation or diffraction refinement claim."
+    },
+    "checkpoint_read": {
+      "status": "CHECKED_PUBLICATION_READ_PASS",
+      "elapsed_seconds": 189.74690916700638,
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "selected": "readyset_checked_model",
+      "qualified_dictionaries": 2,
+      "phils": 5,
+      "files": 489,
+      "exact_reader_calls": 2,
+      "new_native_calls": 0,
+      "historical_paths_sdk_execution_denied": true,
+      "original_copy_absent": true,
+      "read_bytes_mtimes_unchanged": true,
+      "scope": "Saved real compact C231 PDU producer proof; synthetic observation/map path fixtures. No native MTZ interpretation or diffraction refinement claim."
+    },
+    "evidence": {
+      "anchor": "live_tests_directory",
+      "path": "231_Cedar_complete-compact-request-eugpienj/checkpoint-check/relocated/ordinary run/PostMR/DictionaryEngine/request",
+      "reason": "Same new completed request moved for checkpoint/relocation validation; no scientific copy"
+    },
+    "source_pins": {
+      "anchor": "live_tests_directory",
+      "path": "231_Cedar_complete-compact-request-eugpienj/start.json",
+      "sha256": "2cf76e4fa5ed3aed94546c2e9bdd8d0980497c5ceba0338a068994228dbacdf0"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 <python3.12> <local-runners>/c231_start.py",
+        "result": "Complete actual native execution, not dry-run; stopped verified; source unchanged"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 <python3.12> <local-runners>/c231_cold.py",
+        "result": "Relocated source/request; original inputs/cache/SDK/processes forbidden"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 <python3.12> <local-runners>/c231_checkpoint.py",
+        "result": "Initial publication and relocated readers pass; synthetic observation/map path fixtures"
+      }
+    ],
+    "compatibility": "No new production/schema change beyond C229/C230; no old request migration",
+    "excluded": "Scientific models/CIFs/native logs, cache and runners stay local; only compact evidence metadata committed",
+    "limitations": [
+      "No automatic plane invocation",
+      "No full suite or diffraction refinement",
+      "Working-output retirement and 100-dataset memory/disk qualification remain open"
+    ]
+  },
+  "clamped_plane_generation_2026_11_12": {
+    "milestone": "C232",
+    "base_commit": "0eb6f1a",
+    "before": "C213 refuses a completed C170 generation if the actual parent grant is below the immutable maximum",
+    "after": "Actual grant must be positive and <= frozen maximum; both phase contexts and job limits bind that grant; all owner/source/recipe/producer checks retained",
+    "files": [
+      "src/nasolve/cif_plane_generation.py",
+      "tests/test_cif_plane_generation.py",
+      "scripts/run_tests.py",
+      "tests/test_test_suites.py"
+    ],
+    "schemas": "Unchanged",
+    "native": {
+      "status": "CLAMPED_NATIVE_PLANE_SUPPORT_PASS",
+      "phenix": "2.2.1",
+      "component": "PDU",
+      "configured_ceiling_seconds": 300,
+      "actual_grant_seconds": 180,
+      "attempt_state": "STOPPED",
+      "support_status": "OWNED_SUPPORT_REPLAY_PASS",
+      "candidate_status": "CANDIDATE_REVIEW",
+      "command": [
+        "--id=PDU",
+        "--output=candidate",
+        "--template=source_ideal.pdb",
+        "--initial_geometry=source_ideal.pdb",
+        "--add_hydrogens=False",
+        "--pH=low",
+        "--chiral=retain",
+        "--opt",
+        "--opt_steps=120",
+        "--multiple_planes"
+      ],
+      "unchanged_original": true,
+      "elapsed_seconds": 113.54046533399378,
+      "persistent_bytes": 1033876,
+      "limits": "No new plane adoption, native energy/derivative qualification or refinement; this checks owned support budget binding"
+    },
+    "optimizer": "NOT_CONVERGED_REPORTED; CANDIDATE_REVIEW; no adoption or force qualification",
+    "cold": {
+      "status": "RELOCATED_CLAMPED_NATIVE_SUPPORT_PASS",
+      "unchanged_files": 27,
+      "source_sdk_processes_forbidden": true,
+      "original_path_absent": true,
+      "actual_grant_seconds": 180,
+      "configured_ceiling_seconds": 300,
+      "request": {
+        "anchor": "validation_capsule",
+        "path": "relocated-request"
+      }
+    },
+    "evidence": {
+      "anchor": "live_tests_directory",
+      "path": "232_Cedar_plane-budget-i0pmzyyh"
+    },
+    "source_pins": {
+      "path": "start.json",
+      "sha256": "d0441b3c1d9d4b3de25086825d16dd09e23eaf06740ae1dd596f75f3f0e11c68"
+    },
+    "versions": {
+      "python": "3.12.14",
+      "phenix_installation": "2.2.1-6174",
+      "phenix_dispatcher": "2.2.1",
+      "coot": "NOT_RUN"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py -k explicit_earlier_attempt",
+        "result": "Shorter-grant variant fails before: 1 failed, 1 passed, 46 deselected in 2.31s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py tests/test_cif_captured_plane_attribution.py tests/test_cif_plane_native.py",
+        "result": "110 passed in 41.45s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_test_suites.py",
+        "result": "Current selector assertion fails before profile update; 6 passed in 2.72s after; isolated full-profile canary is not the NASolve full suite"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> <local-runners>/c232_native.py",
+        "result": "Complete generation, not dry-run; STOPPED and owned support replay pass"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> <local-runners>/c232_cold.py",
+        "result": "27 files unchanged after moving new request; source/SDK/processes forbidden"
+      }
+    ],
+    "compatibility": "No migration; same saved reports, attempt identity and maximum; historical requests unchanged",
+    "excluded": "All generated science and native logs/runners remain outside Git",
+    "limitations": [
+      "No full suite",
+      "Automatic plane invocation remains open",
+      "Native nonconvergence is preserved; no chemical/refinement approval"
+    ]
+  },
+  "bounded_request_inventory_memory_2026_11_12": {
+    "milestone": "C233",
+    "base_commit": "0eb6f1a",
+    "before": "Complete and continuation inventory readers hold every file payload while computing the existing hash/size records",
+    "after": "Shared bounded member iterator; metadata retained one file at a time; identical inventory, partitions and mutation checks",
+    "files": [
+      "src/nasolve/cif_component_runtime.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_runtime_continuation.py",
+      "tests/test_cif_complete_continuation.py",
+      "tests/test_cif_runtime_continuation.py"
+    ],
+    "schemas": "Unchanged",
+    "cold": {
+      "status": "IDENTICAL_COMPLETE_COLD_RESULT_PASS",
+      "result_sha256": "a5fa9783a72062eac9d3f1b20b6a6bdcfae362555e245af2133960753259f981",
+      "before_maximum_resident_set_bytes": 598654976,
+      "after_maximum_resident_set_bytes": 562069504,
+      "before_seconds": 86.85934458399424,
+      "after_seconds": 88.34218245800002,
+      "unchanged_files": 484,
+      "temporary_views_removed": 15,
+      "peak_temporary_evidence_bytes": 69727392,
+      "scientific_copy": "NONE",
+      "native_execution": "NOT_RUN"
+    },
+    "evidence": {
+      "anchor": "live_tests_directory",
+      "path": "233_Cedar_inventory-memory-7iiwphbs"
+    },
+    "source_pins": {
+      "path": "start.json",
+      "sha256": "0081c12e3c1c4a5c485e57522e15f54c50dc3e1c45339e65f24700f3ded7f304"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_complete_continuation.py -k owner_inventory_does_not_retain",
+        "result": "4 failed, 52 deselected in 0.96s before; all pass in final focused set"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_complete_continuation.py tests/test_cif_runtime_continuation.py tests/test_cif_component_runtime.py tests/test_cif_compact_workflow.py tests/test_cif_runtime_evidence.py",
+        "result": "193 passed in 279.53s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py -k 'inventory or inventories or partition or artifact or completion_must_fit or exact_result or single_complete_request or success_readback'",
+        "result": "33 passed, 58 deselected in 74.24s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 <python3.12> <local-runners>/c233_read.py",
+        "result": "Before/after complete cold result identical; no scientific copy or native execution; temporary source copies removed"
+      }
+    ],
+    "compatibility": "No artifact migration or changed chemistry; hashes/sizes identical. Private continuation inventory now returns metadata instead of bytes.",
+    "excluded": "All scientific inputs/results, local comparison logs and runners excluded from Git; no scientific data copy added",
+    "limitations": [
+      "Observed resource measurements are one control, not a campaign benchmark",
+      "No full suite",
+      "Working request still 134.5 MB; safe retirement and memory/concurrency qualification remain open"
+    ]
   }
 }

@@ -316,3 +316,31 @@ def test_invalid_frozen_native_policy_refuses_before_request(case,policy):
     with pytest.raises(ValueError,match='nonbonded'):
         m.initialize_dictionary_request(output=root,**dict(args,continuation_options=options))
     assert not (root/'request.json').exists() and not calls
+
+
+@pytest.mark.parametrize('kind', ['complete-legacy', 'complete-partitioned', 'continuation-legacy', 'continuation-partitioned'])
+def test_owner_inventory_does_not_retain_the_whole_payload(tmp_path, kind):
+    from hashlib import sha256
+    import tracemalloc
+    from nasolve import cif_complete_request as complete
+    from nasolve import cif_runtime_continuation as continuation
+    payload = b'x' * (2 * 1024 * 1024)
+    expected = {}
+    for i in range(8):
+        name = f'{i}.dat'
+        (tmp_path / name).write_bytes(payload)
+        expected[name] = dict(sha256=sha256(payload).hexdigest(), size=len(payload))
+    tracemalloc.start()
+    try:
+        if kind.startswith('complete'):
+            result = complete._attempt_files(tmp_path, with_continuation=True,
+                artifact_policy=complete.ARTIFACT_POLICY if kind.endswith('partitioned') else None)['files']
+        else:
+            config = dict(artifact_policy=continuation.ARTIFACT_POLICY) if kind.endswith('partitioned') else {}
+            result = continuation._continuation_files(tmp_path, config)
+        _, peak = tracemalloc.get_traced_memory()
+    finally:
+        tracemalloc.stop()
+    # An inventory needs hashes/sizes, not all sixteen MiB of source payload.
+    assert peak < 8 * 1024 * 1024
+    assert result == expected

@@ -21,7 +21,7 @@ from .cif_outer_context import OuterAllowance, parent_identity
 from .cif_postmr_cache import verify_current_consumer
 from .cif_postmr_readyset import read_readyset_consumption, WORKER
 from .cif_readyset_atom_order import _derive, prepare_readyset_atom_order, read_readyset_atom_order
-from .cif_repair_attempt import _inventory, _members, _root
+from .cif_repair_attempt import _members, _root
 from .cif_runtime_bundle import resolve_runtime_bundle
 from .cif_runtime_readyset import (_parent, _selected_view, audit_runtime_readyset_consumption,
                                   runtime_readyset_endpoint_inputs, inspect_runtime_readyset)
@@ -165,9 +165,9 @@ def _replay(root, config, state):
 
 def _continuation_files(root, config):
     _artifact_fields(config.get('artifact_policy'))
-    if 'artifact_policy' not in config: return _tree(root)
-    return frozen_tree._bounded_tree(root,max_files=frozen_tree.MAX_FILES,
-        max_bytes=frozen_tree.MAX_BYTES,partition_prefixes=('runtime/',))
+    return frozen_tree._bounded_inventory(root,max_files=frozen_tree.MAX_FILES,
+        max_bytes=frozen_tree.MAX_BYTES,
+        partition_prefixes=('runtime/',) if 'artifact_policy' in config else ())
 
 
 def _completion_space(root, config, completion):
@@ -176,7 +176,7 @@ def _completion_space(root, config, completion):
              if 'artifact_policy' not in config or not n.startswith('runtime/')}
     size=serialized_record_size(completion)
     _need(len(working)+1 <= frozen_tree.MAX_FILES and size <= frozen_tree.MAX_FILE_BYTES
-          and sum(map(len,working.values()))+size <= frozen_tree.MAX_BYTES,
+          and sum(r['size'] for r in working.values())+size <= frozen_tree.MAX_BYTES,
           'Continuation completion exceeds frozen artifact bounds')
 
 
@@ -222,7 +222,7 @@ def _report(root, config, state, runtime, serialization, elapsed):
         process_evidence=dict(anchor=ANCHOR,path='ownership/continuation.json'),
         configuration=config, selected=runtime['manifest']['decision']['selected'], serialization=serialization,
         phases={k:p['finished']['status'] for k,p in state['phases'].items()},
-        artifacts=_inventory(files),elapsed_seconds=elapsed,automatic_adoption=False,
+        artifacts=files,elapsed_seconds=elapsed,automatic_adoption=False,
         retry_authorized=False,refinement='NOT_RUN',
         scope='ONE_OWNED_EXECUTION; ENCLOSING_REQUEST_OWNS_RECOVERY')
 
