@@ -34,6 +34,7 @@ class ViewProfile:
     map_source: str
     checkpoint_id: str | None = None
     anomalous_map_paths: tuple[Path, ...] = ()
+    preparation_attempt: int | None = None
 
 
 @dataclass(frozen=True)
@@ -51,6 +52,7 @@ class CootViewResult:
     source: str
     map_source: str
     checkpoint_id: str | None
+    preparation_attempt: int | None = None
 
 
 def _required_file(path: Path, description: str) -> Path:
@@ -531,16 +533,60 @@ def _autorefine_profile(
     )
 
 
+def _preparation_profile(run: Path, report: Mapping[str, object], attempt: int) -> ViewProfile:
+    """Display one checked preparation, including a verified retained parent.
+
+    The exact request reader validates the complete model/CIF/PHIL evidence.
+    Display does not approve refinement or publish/select a checkpoint. Reuse the
+    original MR map; it has not been recalculated for the prepared model.
+    """
+    import shlex
+    from .cif_ordinary_postmr import read_ordinary_postmr_result
+    from .campaigns import CampaignError
+
+    command = shlex.join([
+        "nasolve", "cif-doctor", "prepared-result", str(run), "--attempt", str(attempt),
+    ])
+    try:
+        result = read_ordinary_postmr_result(run, attempt_number=attempt)
+    except (OSError, ValueError, CampaignError) as exc:
+        raise CootViewError(
+            f"Cannot verify preparation attempt {attempt}: {exc}. Read saved result: {command}"
+        ) from exc
+    if result.model_path is None:
+        raise CootViewError(
+            f"Preparation attempt {attempt} has no checked model/restraint combination. "
+            f"Read saved result: {command}"
+        )
+    return ViewProfile(
+        stage="preparation", model_path=result.model_path,
+        map_path=_phaser_map(run, report), extra_model_paths=(),
+        dictionary_paths=tuple(path for path in result.dictionary_paths if not is_modification_only(path)),
+        source=(f"Preparation attempt {attempt}: {result.message} ReadySet: {result.readyset_status}. "
+                "Diagnostic inspection; no refinement or checkpoint adoption."),
+        map_source="Phaser MR map (not recalculated for this preparation)",
+        preparation_attempt=attempt,
+    )
+
+
 def resolve_view_profile(
     run_directory: Path,
     *,
     stage: str | None = None,
     checkpoint: str | None = None,
+    preparation_attempt: int | None = None,
 ) -> ViewProfile:
+    if preparation_attempt is not None:
+        if type(preparation_attempt) is not int or preparation_attempt < 1:
+            raise CootViewError("Preparation attempt must be an exact positive integer")
+        if stage is not None or checkpoint is not None:
+            raise CootViewError("--preparation-attempt cannot be combined with --stage or --checkpoint")
     run = run_directory.expanduser().resolve()
     if checkpoint is not None:
         checkpoint = _checkpoint_component(checkpoint)
     report = _read_json(_required_file(run / "report.json", "AutoMR report"), "run report")
+    if preparation_attempt is not None:
+        return _preparation_profile(run, report, preparation_attempt)
     resolvers = {
         "automr": _phaser_profile,
         "postmr": _postmr_profile,
@@ -642,6 +688,7 @@ def launch_coot_view(
     *,
     stage: str | None = None,
     checkpoint: str | None = None,
+    preparation_attempt: int | None = None,
     environment: Mapping[str, str] | None = None,
     launcher: Callable[..., object] = subprocess.Popen,
 ) -> CootViewResult:
@@ -649,11 +696,15 @@ def launch_coot_view(
     run = run_directory.expanduser().resolve()
     if checkpoint is not None:
         checkpoint = _checkpoint_component(checkpoint)
-    profile = resolve_view_profile(run, stage=stage, checkpoint=checkpoint)
+    profile = resolve_view_profile(
+        run, stage=stage, checkpoint=checkpoint, preparation_attempt=preparation_attempt,
+    )
     scratch_root = run / "CootGUI"
     working = scratch_root / profile.stage
     if profile.checkpoint_id is not None:
         working = working / profile.checkpoint_id
+    if profile.preparation_attempt is not None:
+        working = working / f"attempt-{profile.preparation_attempt:04d}"
     backups = working / "backups"
     _reject_symlink_components(run, backups)
     try:
@@ -710,6 +761,8 @@ def launch_coot_view(
                 "stage": profile.stage,
                 "run_directory": str(run),
                 "checkpoint_id": profile.checkpoint_id,
+                **({"preparation_attempt": profile.preparation_attempt}
+                   if profile.preparation_attempt is not None else {}),
                 "source": profile.source,
                 "map_source": profile.map_source,
                 "model_path": str(profile.model_path),
@@ -742,6 +795,7 @@ def launch_coot_view(
         source=profile.source,
         map_source=profile.map_source,
         checkpoint_id=profile.checkpoint_id,
+        preparation_attempt=profile.preparation_attempt,
     )
 
 

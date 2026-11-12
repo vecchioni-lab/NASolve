@@ -13,8 +13,11 @@ model with its matching restraints. Interrupted work preserves its evidence.
 
 A model that passes those checks has **not yet been shown to refine correctly**.
 [Explicit commands](cif-doctor.md#checked-preparation-and-honest-recovery-c220) now
-report and resume preparation honestly. The next work is to carry that exact result
-into normal inspection/refinement checkpoints, integrate general plane repair,
+report and resume preparation honestly. A named checked preparation, including a
+retained fallback, can now be inspected in Coot with its matching dictionaries
+against the original MR map. That map is not recalculated for the prepared model.
+The next work is to save the exact choice in normal refinement checkpoints,
+integrate general plane repair,
 and run complete-restraint refinement and mixed/held-out chemical controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.

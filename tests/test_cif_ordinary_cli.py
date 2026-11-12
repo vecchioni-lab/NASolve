@@ -24,6 +24,7 @@ def test_read_result_is_exact_read_only_and_does_not_claim_readyset_success(tmp_
     text=capsys.readouterr().out
     assert 'ReadySet: FAILED' in text and 'refinement has not' in text
     assert 'ReadySet log:' not in text and 'attempt-0002/result.json' in text
+    assert ('--preparation-attempt 2' in text) is usable
 
 
 def test_continue_has_no_coot_or_constructor_and_binds_previous_attempt(tmp_path,capsys):
@@ -57,3 +58,15 @@ def test_preparation_status_reads_owner_without_sdk_or_selecting_latest(tmp_path
         assert main(['cif-doctor','preparation-status',str(tmp_path)])==0
     read.assert_called_once_with(tmp_path/'PostMR/DictionaryEngine/request')
     text=capsys.readouterr().out;assert 'BLOCKED' in text and 'UNKNOWN' in text and 'Checked model:' not in text
+
+
+def test_inspection_hint_quotes_run_path_without_replaying_science(tmp_path, capsys):
+    import shlex
+    result = outcome(tmp_path / "run with 'quote'")
+    with patch('nasolve.cif_ordinary_postmr.read_ordinary_postmr_result', return_value=result) as read, \
+         patch('nasolve.cli.resolve_view_profile', side_effect=AssertionError('No second full evidence replay')):
+        assert main(['cif-doctor', 'prepared-result', str(result.run_directory), '--attempt', '2']) == 0
+    read.assert_called_once()
+    text = capsys.readouterr().out
+    line = next(line for line in text.splitlines() if line.startswith('Inspect this preparation'))
+    assert shlex.split(line.split(': ', 1)[1]) == ['nasolve', 'show', str(result.run_directory), '--preparation-attempt', '2']

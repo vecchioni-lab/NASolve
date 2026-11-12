@@ -1582,6 +1582,17 @@ state is tracked in `development-handoff.md`.
 
 ## Stage-aware Coot views
 
+Explicit `show RUN --preparation-attempt N` resolves the named ordinary checked
+preparation through `read_ordinary_postmr_result`, which reuses the complete
+request reader once. No new result validator, selection record or execution owner
+is introduced. That reader verifies model, ordered CIFs and PHIL together before
+Coot-only display filtering. A verified pre-ReadySet fallback is a valid view,
+with its actual ReadySet status. Inspection neither selects a checkpoint nor
+approves refinement. The original Phaser map is explicitly unrecalculated for
+this preparation; a missing/corrupt map prevents this view without changing the
+preparation. Coot scratch lives under `CootGUI/preparation/attempt-NNNN`; its local
+launch receipt records `preparation_attempt`. No saved scientific schema changes.
+
 `nasolve show` resolves the active workspace; an explicit run remains supported.
 When a checkpoint registry exists, the selected current model takes precedence
 over newer unselected attempts, including when current is manual or PostMR.

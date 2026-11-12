@@ -363,6 +363,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--checkpoint",
         help="open a specific checkpoint without changing the current selection",
     )
+    show.add_argument(
+        "--preparation-attempt", type=int,
+        help="inspect an exact checked CIF Doctor preparation, including a retained fallback; "
+             "uses the original MR map and does not select a refinement checkpoint",
+    )
     show.add_argument("--coot", help="one-run Coot executable override")
     return parser
 
@@ -1436,6 +1441,7 @@ def _show(args: argparse.Namespace) -> int:
             coot.executable,
             stage=args.stage,
             checkpoint=args.checkpoint,
+            preparation_attempt=getattr(args, "preparation_attempt", None),
         )
     except (ConfigError, CootDiscoveryError, CootViewError) as exc:
         print(f"Coot view error: {exc}", file=sys.stderr)
@@ -1695,6 +1701,10 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
     for path in result.restraint_paths:
         print(f"Base-pair/geometry restraints: {path}")
     print(f"Preparation report: {result.report_path}")
+    if result.model_path is not None:
+        print("Inspect this preparation (requires its MR map): " + shlex.join([
+            "nasolve", "show", str(result.run_directory),
+            "--preparation-attempt", str(result.attempt_number)]))
     for limitation in result.limitations:
         print(limitation)
     print("Read this result again: " + shlex.join([

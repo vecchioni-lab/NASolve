@@ -290,6 +290,15 @@ density map, completed PostMR, or Phaser. Explicit `--stage` and `--checkpoint`
 options leave the selection unchanged. The console identifies the run, model,
 checkpoint, and map source.
 
+For the explicit CIF Doctor preparation route, inspect one completed attempt with
+`./nasolve show "$RUN" --preparation-attempt 1`. This can open an independently
+checked retained model after an optional ReadySet failure. It uses that attempt's
+matching dictionaries and the original MR map, labelled as not recalculated for
+this model. It does not select a refinement checkpoint. The recorded MR map must
+be available; otherwise use `cif-doctor prepared-result "$RUN" --attempt 1` to
+read the checked result and its report. Do not combine this option with `--stage`
+or `--checkpoint`.
+
 After `./nasolve campaign run ROOT --dataset DATASET` reaches a viewable stage,
 that **single-dataset** run becomes the machine-local active workspace view.
 A following `./nasolve show` therefore opens its current checkpoint without

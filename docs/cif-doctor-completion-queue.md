@@ -207,8 +207,15 @@ C221 closes an inspection-integrity prerequisite: every recorded restraint must
 resolve and satisfy any recorded checksum before Coot opens the checkpoint,
 including pair/stack PHIL and modification-only CIFs. Display filtering is separate
 from integrity checking. Exact selected-versus-latest relocation controls pass.
-The next implementation remains publishing the exact checked preparation into
-ordinary reports/checkpoints, with recovery of an interrupted publication.
+C222 adds direct inspection of one exact checked preparation, including an
+independently verified fallback after optional ReadySet failure. It reuses the
+same result reader and Coot launcher, with the original MR map explicitly labelled
+as not recalculated; it does not adopt a checkpoint. The next implementation remains
+publishing that choice into ordinary reports/checkpoints, with recovery of an
+interrupted publication. Optional Doctor/ReadySet failure should preserve a
+trustworthy model/restraint set and allow useful work to continue. A missing safe
+set blocks only the dependent scientific step, not the entire run/campaign;
+retained evidence, reporting and recovery remain available.
 
 
 **Open. Depends on Q03/Q04.** Existing ordinary source/cache acquisition and
@@ -225,6 +232,15 @@ or deduplication. Validate that proof when reading an existing registry too, not
 only when initializing one. Interrupted report/checkpoint publication must recover
 the exact recorded selection without another native attempt or a `latest` guess.
 Keep these as acceptance under this package, not a second recovery wrapper.
+
+C222 consumer audit: the legacy PostMR report assembler assumes a ReadySet log/model
+and also carries normalization/anomalous metadata; do not invent those fields for
+a retained result. Before adoption, tighten `checkpoints._inherited_paths`, which
+currently skips malformed restraint entries while C221 inspection rejects them.
+Retain intentionally empty legacy lists. Validate preparation ancestry for later
+refined/manual children without requiring their new coordinates to equal the
+starting model. These are existing Q05 acceptance details, not new queue items.
+
 
 The combined metadata writer now shares C09's native loop policy (C179), with
 strict fresh endpoint acceptance and preserved legacy outcomes. C180 extends the
@@ -510,6 +526,11 @@ assumptions for supported environments; record any untested platform explicitly.
 C220 now passes the full suite: **9,178 tests + 276 subtests**. The exact
 source/test/script hashes and command are retained in the C220 evidence record;
 no source changed during that run. This replaces C160 as the current full baseline.
+C222's full run passed 9,210 tests + 273 subtests and exposed one new optional-view
+argument omission in Refine Doctor (three tests + three subtests). That one-line
+compatibility fix passes 124 affected tests + 40 subtests; no full rerun, so C220
+remains the last completely green full baseline. Subsequent bounded Cedar passes
+use focused tests until a meaningful integration checkpoint.
 C169's interrupted run remains historical non-pass evidence. Final combined
 Cedar/pine/main source still needs its own integration regression and native checks.
 C220 also retires 89 audited old source-build copies and archives 1,353 older

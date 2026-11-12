@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect an exact checked preparation, including a retained fallback (C222)
+
+- `show RUN --preparation-attempt N` opens the named checked model and its matching
+  ordered dictionaries through the existing evidence reader. An independently
+  verified retained model remains inspectable after optional ReadySet failure.
+- Identify the actual ReadySet outcome and original, unrecalculated MR map. Never
+  switch to a newer checkpoint or silently use an unqualified model on failure.
+- Keep Coot scratch output separate for each preparation attempt. Existing run,
+  request and checkpoint records remain unchanged; default refinement is unchanged.
+
 ### Check the whole recorded restraint set before opening a checkpoint (C221)
 
 - Coot inspection now refuses missing or changed base-pair/stacking PHIL files,

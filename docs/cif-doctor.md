@@ -138,7 +138,9 @@
 
 <a id="current-capability-boundary-c204"></a>
 
-## Current capability boundary (C220)
+<a id="current-capability-boundary-c220"></a>
+
+## Current capability boundary (C222)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -165,7 +167,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
-| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. | Explicit commands only. Default PostMR/campaign checkpoint adoption, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
+| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. | Explicit commands only. Default PostMR/campaign checkpoint adoption, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -197,8 +199,13 @@ establish the same product boundary as the current engine:
 - Source identity, connectivity/H/charge/stereo, numerical definitions, native
   consumption, geometry and diffraction are separate evidence layers. Missing
   evidence is not chemical damage; successful execution is not scientific approval.
-- Keep a usable result when a later improvement fails. Preserve failed attempts
-  and make a fresh one; never repair history or lower a gate to obtain a pass.
+- Keep a usable result when a later improvement fails. A failed Doctor repair or
+  optional ReadySet improvement must not halt unrelated NASolve work. Continue the
+  affected step with an independently checked model and its matching restraints
+  where available, recording the limitation. If none is trustworthy, preserve the
+  evidence, reports and recovery options and stop only the dependent scientific
+  step. Preserve failed attempts and make a fresh one; never repair history,
+  silently discard required restraints or lower a gate to obtain a pass.
 - Targets come from declared chemistry and qualified dictionaries, not distorted
   experimental coordinates. Native temporary stereo conventions are not proof
   that the final molecule inverted. Compare source-relative centres explicitly.
@@ -10844,6 +10851,44 @@ execution separately; no fictitious success/log is supplied. Missing or changed
 qualification evidence is an error, not permission to use a fallback. Unqualified
 preparation returns no model/dictionaries/restraints. Read commands require no
 installed SDK and do not alter attempts, run reports or checkpoint selection.
+
+### Inspect one checked preparation (C222)
+
+```sh
+nasolve show /path/to/AutoMR/run_001 --preparation-attempt 1
+```
+
+This uses the existing exact result reader once, including its complete chemical,
+construction, compiler and ordered model/CIF/PHIL checks. A retained checked model
+is a normal outcome: the view states that it was retained and reports the actual
+ReadySet status. It never follows a newer attempt or the current refinement
+checkpoint instead. The original Phaser map is labelled **not recalculated** for
+this preparation; an available map is required. Read-only profile resolution
+leaves all files unchanged. Launch writes only its ordinary Coot scratch outputs,
+separately for each preparation attempt.
+
+Coot receives the selected model and ordered full-component dictionaries;
+modification-only CIFs and pair/stack PHIL are checked but are not loaded as Coot
+restraints. This is diagnostic inspection, not a new refinement checkpoint or a
+claim that Coot applies all NARestraints terms. Invalid evidence returns an explicit
+error and the exact saved-result command; it never substitutes unchecked files.
+`prepared-result` prints a shell-quoted inspection hint conditional on its MR map
+being available, without repeating the expensive evidence replay.
+
+Validation uses all retained-result choices, newer selected checkpoint controls,
+unchanged-file checks, damaged evidence/maps and an intercepted Coot launcher.
+The real C219 PDU preparation is also replayed from a relocated checkout with
+historical paths, SDK access and execution denied. That chemistry control has no
+diffraction map: its map-path fixture is synthetic, so it does not establish map
+interpretation in Coot. No fresh Phenix/Coot scientific execution is claimed.
+The full run exposed an older Refine Doctor caller that lacked the newly optional
+view argument (three tests and three subtests). Its absent-option default is now
+restored; 124 affected tests + 40 subtests pass. The other 9,210 tests and 273
+subtests passed in that full run. No second full run was performed; C220 remains
+the last entirely green full baseline. Exact validation is in
+`exact_preparation_view_2026_11_12` in the evidence ledger.
+
+### Preparation implementation and limits
 
 Implementation: `prepare_checked_postmr`, `continue_checked_postmr` and
 `read_ordinary_postmr_result` in `cif_ordinary_postmr.py` share the existing exact

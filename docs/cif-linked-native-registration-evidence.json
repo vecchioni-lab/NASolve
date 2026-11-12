@@ -87580,5 +87580,233 @@
     ],
     "excluded": "Synthetic outputs/logs remain local; no scientific data included.",
     "next": "Q05 exact checked-preparation publication and read validation, including interrupted publication; no default adoption enabled."
+  },
+  "exact_preparation_view_2026_11_12": {
+    "status": "VALIDATED_WITH_TARGETED_FIX",
+    "date": "2026-11-12",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "6c87f6b7f272b34effd97bfeaa9329f5508bb0fb",
+    "before": "Exact checked preparations could be reported but not opened directly through nasolve show before checkpoint adoption.",
+    "after": "An explicit preparation attempt opens its verified model and matching ordered component dictionaries, including independently verified retained fallbacks, against the original unrecalculated MR map.",
+    "files": [
+      "src/nasolve/coot_view.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_preparation_view.py",
+      "tests/test_cif_ordinary_cli.py"
+    ],
+    "schemas": "No saved scientific schema changes; optional preparation_attempt added to the local Coot launch receipt and live view values.",
+    "compatibility": "Additive option; existing views, ordinary refinement, checkpoint selection and old records unchanged. Refine Doctor internal callers retain the absent-option default. No migration.",
+    "validation": {
+      "fail_before": 18,
+      "initial_focused_tests": 118,
+      "initial_focused_subtests": 37,
+      "post_fix_tests": 124,
+      "post_fix_subtests": 40,
+      "smoke_tests": 139,
+      "smoke_subtests": 6,
+      "full_tests_passed": 9210,
+      "full_test_failures": 3,
+      "full_subtests_passed": 273,
+      "full_subtest_failures": 3,
+      "full_seconds": 2191.9,
+      "full_execution": {
+        "returncode": 1,
+        "stopped_verified": true,
+        "source_tests_scripts_unchanged": true,
+        "elapsed_seconds": 2192.7715588750143
+      },
+      "full_status": "Completed with six failures from the same newly optional CLI field missing in the Refine Doctor handoff. One-line default fix passes all affected tests; no full rerun or fully-green C222 claim.",
+      "last_fully_green_revision": "583d30df9c2bb8fd76e802e0eaa51d749c2b6eeb",
+      "post_full_fix": {
+        "changed_sources": [
+          "src/nasolve/cli.py"
+        ],
+        "before_sha256": "21279b2808a8202ae6b3f168c6843383d221e577dc6262df968778a0879fafb6",
+        "after_sha256": "8e9977c34a86944185d9f461a714b3021c98c87f5fc8918d0f0d0b3fbe207e1d",
+        "change": "Default the newly optional preparation_attempt to None for older internal Refine Doctor Namespace callers.",
+        "validation": "124 passed + 40 subtests; includes every failed Refine Doctor inspection case and all affected views/CLI tests.",
+        "full_rerun": false,
+        "last_fully_green_revision": "583d30df9c2bb8fd76e802e0eaa51d749c2b6eeb"
+      },
+      "power_context": "Battery power reported during this run; no power settings changed.",
+      "cold_replay": {
+        "status": "EXACT_PREPARATION_VIEW_COLD_REPLAY_PASS",
+        "elapsed_seconds": 132.97830583300674,
+        "selected": "readyset_checked_model",
+        "source": "Preparation attempt 1: ReadySet supplied the checked model and matching restraints. ReadySet: COMPLETED. Diagnostic inspection; no refinement or checkpoint adoption.",
+        "map_source": "Phaser MR map (not recalculated for this preparation)",
+        "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+        "qualified_dictionaries": 2,
+        "displayed_dictionaries": 1,
+        "phils": 5,
+        "files": 1497,
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_paths_sdk_execution_denied": true,
+        "exact_reader_calls": 1,
+        "new_native_calls": 0,
+        "refinement_ready": false,
+        "map_scope": "Synthetic declared map-path fixture: C219 is a chemistry control without diffraction maps; no Coot/MTZ interpretation claimed."
+      },
+      "syntax": {
+        "files": 666,
+        "warnings": [],
+        "bytecode_written": false
+      },
+      "native": "NOT_RUN: Coot launch intercepted; source Phenix 2.2.1-6174 / dispatcher 2.2.1 and Coot 1.3.3 revision-count 0 evidence reused from C218/C219."
+    },
+    "commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "python_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "cwd_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+      "before": "python -m pytest -q -p no:cacheprovider tests/test_cif_preparation_view.py",
+      "post_fix": "python -m pytest -q -p no:cacheprovider tests/test_doctor_inspection.py tests/test_cif_preparation_view.py tests/test_cif_ordinary_cli.py tests/test_cif_ordinary_outcome.py tests/test_coot_view.py tests/test_coot_anomalous.py tests/test_cli.py tests/test_checkpoint_view_integrity.py",
+      "smoke": "python scripts/run_tests.py smoke",
+      "full": "python -B scripts/run_tests.py full --junitxml <capsule>/full-r1/tests.xml",
+      "exact_full_command_reference": "222_Cedar_exact-preparation-view-y4dee6dg/full-r1/command.json",
+      "exact_cold_command_reference": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r2/command.json"
+    },
+    "harness_notes": [
+      "Initial real cold replay wrongly expected modification-only phosphate CIFs to be displayed. Corrected to the existing filtering contract; first log and stopped-owner record retained."
+    ],
+    "limitations": [
+      "No ordinary checkpoint publication or default PostMR/campaign integration yet (Q05).",
+      "No new chemical support, automatic complete-plane integration or actual diffraction refinement claim (Q04/Q06).",
+      "Real C219 preparation contains no diffraction map: relocated resolver uses a clearly synthetic declared map-path fixture, not a native MTZ or graphical Coot test.",
+      "Retained-fallback dispatch covered at the existing result-reader seam; live cold replay is the recorded ReadySet-positive PDU result.",
+      "Full run preceded the one-line CLI compatibility correction. The corrected final source has focused validation, not a new completely green full suite."
+    ],
+    "generated_artifacts": "Models, restraints, map fixtures, logs and receipts remain local; only code, tests and maintained documentation/metadata committed.",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/before.log",
+        "sha256": "abcc119304c281a779b8832bf84251deeda04214b506fb6b2e4650a2a870eb75",
+        "size": 21276
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/focused.log",
+        "sha256": "14a78ea8b34fef34faeae5b352019a90fcd6dc8a236c2f742f54892c528d3172",
+        "size": 243
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/focused-final.log",
+        "sha256": "bc6ff90f110d5dd17a9ad814a333154d8ae9b1011546d2fdac2cc9c0a10799bb",
+        "size": 243
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/focused-post-full.log",
+        "sha256": "f8e66cd7eed8165dca520a8127bdee1430d7ec6ca3894252281c77f70ce13211",
+        "size": 232
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/smoke.log",
+        "sha256": "7324178cdffd3cddd3611f1a9fa0123cf2640aea2738469cd67911733a78dc1f",
+        "size": 3151
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/syntax-final.json",
+        "sha256": "66194f58bce54fc916cb3e8c14bdd74118a6db067daf3743cca8db608a9f1814",
+        "size": 66
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/post-full-fix.json",
+        "sha256": "e4a0b4b0ba844da88d5e35ea0b5fcb509f39bdb739845c08ba55b90b4c93f7d6",
+        "size": 580
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/final-source-hashes.json",
+        "sha256": "ccafbd8409e34915273aad3270544af83b931b1f7748f9f5228e1e49779e9449",
+        "size": 75246
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r1/worker.log",
+        "sha256": "df8bdf7419b642641e7f20e6c33991da58b06293ce86a71f040620aa6f885571",
+        "size": 382
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r1/execution.json",
+        "sha256": "38df15dce8dee4ffdfde7e3c86a3803ab7f1fd74e0513ef9c1181e871a24fc9c",
+        "size": 50
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r2/summary.json",
+        "sha256": "e41ec1c29547eb9fda3e030ac5b9a0d3cb5e2c16efe5bb9af3668267f045b0d1",
+        "size": 913
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r2/command.json",
+        "sha256": "6fea34efcefac22e933593db6a803c5fe9808379e92287ab3b1a9166df24f266",
+        "size": 637
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r2/execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r2/worker.py",
+        "sha256": "eac55c5b9786f793fa2029bf90ff1dfb1e019069d894f5830fe6b2674259269d",
+        "size": 3181
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/cold-r2/runner.py.txt",
+        "sha256": "09005b1cc3149ed23af3e4087fc5292efb049e7e9325ee3b7aa15a6bba33bb62",
+        "size": 2507
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/full-r1/command.json",
+        "sha256": "b8cfe1d457b7b83ce4b8d71d3ea3d06a773bbfae546c2348ba3dc8a97c0ae041",
+        "size": 580
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/full-r1/execution.json",
+        "sha256": "214859998c03988e835110fd80f980c2ef261e782c73717f94228120e3e910bd",
+        "size": 133
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/full-r1/source-hashes.json",
+        "sha256": "e7cecf95981867fb1828aa15f1216595f31e9c8c49d963f59d6af29550ec55c9",
+        "size": 75246
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/full-r1/tests.log",
+        "sha256": "6abdcf1496927e6b7310ccdbe6b79e8edf6d4ba7716ae652fe1ba6ee3e98bfa3",
+        "size": 30299
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/full-r1/tests.xml",
+        "sha256": "a719fd8e7f69650870fbb0d9853763691a980eae50b9bf724f251a69345a1d15",
+        "size": 1412160
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "222_Cedar_exact-preparation-view-y4dee6dg/full-r1/runner.py.txt",
+        "sha256": "c71afb7faac85c634a1cfa32eb4bf4281b27ef00e60b7af362dae280f822bcf8",
+        "size": 1817
+      }
+    ]
   }
 }
