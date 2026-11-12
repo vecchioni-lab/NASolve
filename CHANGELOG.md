@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry exact completed plane support through the complete dictionary request (C242)
+
+- The existing complete-request API can freeze explicit completed source-owned
+  plane support and pass the same choice into repair and ReadySet. Reuse the
+  existing source/attempt validation, repair owner and chemical gates; no second
+  executor, automatic support generation or latest-attempt lookup.
+- Verify support bytes and exact child intent on initialization and readback,
+  including relocation. Old requests without this optional field keep their
+  meaning; the new mode requires a current reader. No migration or changed bounds.
+- Actual Phenix linear/plane repair and ReadySet select the checked result with
+  explicit C5 coverage and all five ordered NARestraints files. The complete result
+  rereads without the old source/support/cache paths or SDK. This is preparation,
+  not diffraction refinement or universal chemical support.
+
 ### Distinguish stopped plane-generation failure and preserve its requested recipe (C240–C241)
 
 - Add read-only proof of an exact launched, stopped failed/timed-out plane

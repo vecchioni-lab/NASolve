@@ -41,12 +41,20 @@ def compact_evidence_fields(value):
 
 def _plane_support_snapshot(bundle, declarations):
     """Validate explicit stopped generation and capture it under declared paths."""
+    if declarations is None: return None, {}
+    prepared = read_dictionary_bundle(bundle)
+    sources = {code:resolve_dictionary_snapshot(Path(bundle)/'components'/code/'snapshot')['source']
+               for code in prepared['report']['components']}
+    return _source_plane_support_snapshot(sources,declarations)
+
+
+def _source_plane_support_snapshot(sources, declarations):
+    """Use the same stopped-support contract before or after site preparation."""
     from .cif_component_runtime import MAX_FILES, MAX_BYTES
     from .cif_generation_attempt import inspect_source_generation_request
     if declarations is None: return None, {}
-    prepared = read_dictionary_bundle(bundle)
     _need(isinstance(declarations,dict) and 1 <= len(declarations) <= 16
-          and declarations.keys() <= set(prepared['report']['components'])
+          and declarations.keys() <= sources.keys()
           and all(isinstance(code,str) and _safe(code) and '/' not in code for code in declarations),
           'Plane support requires one to sixteen source-owned components')
     files = {}; directories = []; choices = {}; total_bytes = 0
@@ -55,7 +63,7 @@ def _plane_support_snapshot(bundle, declarations):
         _need(isinstance(row,dict) and set(row)=={'request_directory','attempt_number'},
               'Require an exact owned plane request and attempt')
         request = Path(row['request_directory']).absolute()
-        source = resolve_dictionary_snapshot(Path(bundle)/'components'/code/'snapshot')['source']
+        source = sources[code]
         before = _tree(request)
         total_bytes += sum(map(len,before.values()))
         _need(len(files)+len(before) <= MAX_FILES and total_bytes <= MAX_BYTES,

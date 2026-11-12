@@ -587,3 +587,86 @@ def test_explicit_resume_checks_previous_attempt_inside_existing_owner(case):
     assert inventory(root)==before and len(calls)==1
     second=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations,after_attempt=1)
     assert first['attempt_number']==1 and second['attempt_number']==2
+
+
+@pytest.fixture
+def plane_reuse(case,tmp_path,monkeypatch):
+    """Synthetic support transport; real owned-support checks have their own suite."""
+    from hashlib import sha256
+    from nasolve import cif_prepared_repair_execution as executor
+    from nasolve import cif_repair_attempt as repair
+    from nasolve.cif_acquisition_sources import read_acquisition_sources
+    m,args,root,sdk,store,generations,calls=case
+    sources=read_acquisition_sources(args['source_selection'])['sources'];code=sorted(sources)[0]
+    support=tmp_path/'owned-support';support.mkdir();(support/'empty').mkdir()
+    (support/'source.sha').write_text(sha256(sources[code]['source'].read_bytes()).hexdigest())
+    def snapshot(selected,declarations):
+        if declarations is None:return None,{}
+        assert set(declarations)=={code} and code in selected
+        row=declarations[code];assert type(row['attempt_number']) is int and row['attempt_number']==1
+        directory=Path(row['request_directory']);raw=(directory/'source.sha').read_bytes()
+        assert raw.decode()==sha256(Path(selected[code]).read_bytes()).hexdigest()
+        files={code+'/source.sha':raw}
+        return dict(policy_id=executor.PLANE_SUPPORT_POLICY,choices={code:1},
+            files={n:dict(size=len(b),sha256=sha256(b).hexdigest()) for n,b in files.items()},directories=[code,code+'/empty']),files
+    monkeypatch.setattr(executor,'_source_plane_support_snapshot',snapshot,raising=False)
+    monkeypatch.setattr(m,'_source_plane_support_snapshot',snapshot,raising=False)
+    original=repair.execute_prepared_dictionary_repair
+    def execute(*a,**kw):
+        report=original(*a,**kw)
+        cfg,_=executor._plane_support_snapshot(a[0],kw['plane_support'])
+        report['plane_support']=cfg;(a[2]/'repair_execution.json').write_text(json.dumps(report))
+        return report
+    monkeypatch.setattr(repair,'execute_prepared_dictionary_repair',execute)
+    args['plane_support']={code:dict(request_directory=support,attempt_number=1)}
+    return case,support,code
+
+
+def test_complete_request_reuses_frozen_plane_support_across_attempts_and_relocation(plane_reuse,tmp_path,monkeypatch):
+    (m,args,root,sdk,store,generations,calls),support,code=plane_reuse
+    initial=m.initialize_dictionary_request(output=root,**args)
+    assert initial['configuration']['plane_support']['choices']=={code:1}
+    shutil.rmtree(support)
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    old=inventory(root/'attempts/attempt-0001')
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    assert inventory(root/'attempts/attempt-0001')==old
+    for n in (1,2):
+        child=read_record(root/f'attempts/attempt-{n:04d}/repair/request.json')
+        assert child['configuration']['plane_support']==initial['configuration']['plane_support']
+    moved=root.rename(tmp_path/'relocated')
+    def forbidden(*a,**k):raise AssertionError('Cold read must not execute/write')
+    monkeypatch.setattr('subprocess.Popen',forbidden);monkeypatch.setattr(m,'write_record',forbidden)
+    before=inventory(moved)
+    value=m.read_dictionary_request_result(moved,1)
+    assert value['execution']['plane_support']==initial['configuration']['plane_support']
+    assert inventory(moved)==before
+
+
+@pytest.mark.parametrize('defect',['source','attempt','overlap','mutation-during-freeze'])
+def test_complete_plane_intake_refuses_wrong_or_changing_support(plane_reuse,monkeypatch,defect):
+    (m,args,root,sdk,store,generations,calls),support,code=plane_reuse
+    if defect=='source':(support/'source.sha').write_text('different source')
+    elif defect=='attempt':args['plane_support'][code]['attempt_number']=True
+    elif defect=='overlap':root=support/'nested'
+    else:
+        original=m._freeze
+        def freeze(*a,**k):
+            result=original(*a,**k);(support/'source.sha').write_text('changed');return result
+        monkeypatch.setattr(m,'_freeze',freeze)
+    with pytest.raises((AssertionError,ValueError)):m.initialize_dictionary_request(output=root,**args)
+    assert not (root/'request.json').exists() and not calls
+
+
+@pytest.mark.parametrize('defect',['frozen','intent','child'])
+def test_complete_plane_choice_cannot_be_dropped_or_changed(plane_reuse,defect):
+    (m,args,root,sdk,store,generations,calls),support,code=plane_reuse
+    m.initialize_dictionary_request(output=root,**args)
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    if defect=='frozen':(root/'inputs/plane-support'/code/'source.sha').write_text('changed')
+    else:
+        path=root/('request.json' if defect=='intent' else 'attempts/attempt-0001/repair/request.json')
+        r=read_record(path);r['configuration'].pop('plane_support');write_record(path,r,replace=True)
+    before=inventory(root)
+    with pytest.raises((AssertionError,ValueError)):m.inspect_dictionary_request(root)
+    assert inventory(root)==before and len(calls)==1

@@ -28,37 +28,31 @@ order; the [short handoff](development-handoff.md) records the current evidence.
 
 The PDU investigation illustrates the distinction: correct connectivity and a
 straight propyne do not guarantee the desired glycosidic orientation or coplanarity
-with the base. The implemented graph/geometry checks and PDU/5PC controls identify
-and test those faults without relying on the residue name. Automatic complete-plane
-repair now runs inside the existing repair request when completed source support is supplied;
-automatically obtaining that support remains work. Near-planar coordinates alone are insufficient.
-The [maintained plane calculation](cif-doctor.md#maintained-whole-plane-numerical-evidence-c226)
-now records and rereads the complete change in forces, including forces on the
-original ring atoms. Linear and plane repairs can now be checked and saved together
-without losing the base-pair/stacking restraints. An ordinary-model control passes
-those checks and separate derivatives. A fresh owned request now executes the
-combined repair; a deliberate stopped plane check safely retains the checked
-original. Both results read correctly after relocation with no Phenix available.
-The successful request now retains about 134 MB, including a 4.5 MB final result,
-instead of 196 MB: the combined proof is assembled temporarily and native checks
-reference retained inventories instead of embedding duplicates. Original worker
-output is preserved, and the selected model/CIF/restraint bytes are identical. Automatic outer-request support acquisition and real
-refinement remain work. Compact evidence now stores identical records once and compresses
-those bytes without weakening checks. One actual repaired PDU/NAR publication
-falls from 101 MB to 4.9 MB; its subsequent ReadySet result is 6.2 MB, while the
-complete retained continuation is 43.1 MB. A fresh complete ordinary-source request
-retains 134.5 MB including its 5.1 MB final result; that larger figure matters for
-campaign planning. Its compact result passes the initial checkpoint handoff, with
-synthetic map-path fixtures and no new refinement claim. Verification uses bounded temporary
-files and removes them afterward. Exact, reproducible evidence need not retain
-every duplicate forever. Safe retirement of working copies and whole-campaign
-storage qualification remain release work. Newly created checked preparations
-choose compact evidence automatically; saved requests keep their recorded layout.
-Repeated parent checks within a single ReadySet result read are now shared, with
-the same scientific decision and final checks for changed files. Memory and
-concurrent-job limits still need campaign-scale validation. Inventories now hash
-one file at a time; reading the same complete request peaks at about 562 MB memory
-instead of 599 MB, with the identical scientific result.
+with the base. Source connectivity and native geometry guide the repairs, rather
+than a residue-name switch. The complete request can now reuse explicitly supplied,
+completed plane-generation evidence, check linear and plane repairs together,
+and carry the chosen model and restraints through ReadySet. An actual ordinary
+PDU/NAR control retains explicit C5 plane coverage and all five ordered restraint
+files in the final ReadySet result. Automatically obtaining missing plane support
+is still the next connection; the user should eventually not need to supply it.
+
+A deliberately stopped plane check can retain the independently checked original,
+with its missing plane coverage reported honestly. Malformed evidence or unknown
+process ownership cannot authorize that fallback. The complete repaired result
+also reads correctly after relocation without Phenix or the original inputs.
+These are preparation checks, not a claim that diffraction refinement preserves
+the geometry. NARestraints' reviewed base atoms still define stacking; Cedar's
+chemical substituent planes do not automatically enlarge those stacking planes.
+
+Storage is measured for the whole workflow, not just its small final result.
+The new complete plane-repair/ReadySet request retains 181.6 MB, including a
+5.8 MB final publication. Its readback temporarily expands 81.4 MB of evidence
+and peaks at 645.1 MB resident memory. Those temporary files are removed. Earlier
+compact storage and shared validation removed repeated evidence without changing
+the selected scientific result; original worker output remains. Safe retirement
+of redundant successful working files, memory/concurrency limits and campaign-scale
+storage validation remain release work. These figures do not justify running
+100 readers at once. Saved requests retain their recorded evidence layout.
 
 Here, **frozen proof** means a fixed, identifiable set of inputs and check results
 that can be verified again: the chosen model and restraints, exact chemical/source
@@ -388,7 +382,12 @@ the same omission requires review in an effective refinement dictionary.
 
 ## Where it sits in NASolve
 
-![CIF Doctor's report-only placement around PostMR and ReadySet](figures/cif-doctor-overview.svg)
+![CIF Doctor's read-only audit positions around PostMR and ReadySet](figures/cif-doctor-overview.svg)
+
+The figure shows the read-only audit positions. The explicit checked-preparation
+route additionally owns dictionary generation/repair and ReadySet verification;
+C242 carries supplied completed plane support through that route. Automatic
+acquisition of missing plane support and real refinement remain separate gates.
 
 | Audit point | What is inspected | Why it matters |
 | --- | --- | --- |

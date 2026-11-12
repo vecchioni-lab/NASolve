@@ -89971,5 +89971,128 @@
       "Automatic outer support acquisition remains Q04; later preparation children Q05",
       "No full suite or diffraction refinement"
     ]
+  },
+  "complete_request_plane_support_2026_11_12": {
+    "milestone": "C242",
+    "base_commit": "8981f9d1ca248bb05aa06cc8c93c3fc5406d27ac",
+    "behavior_before": "Explicit completed plane support accepted only by prepared repair",
+    "behavior_after": "Complete request freezes exact source-owned support and carries the same choice through repair and ReadySet; no automatic support acquisition",
+    "prior_work": [
+      "C234–C239 support validation/repair/compact proof",
+      "C184/C229 complete request and continuation",
+      "C240–C241 narrow negative generation proof and acquisition recipe identity"
+    ],
+    "changed_source": [
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "tests/test_cif_complete_request.py"
+    ],
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_prepared_plane_support.py tests/test_cif_repair_attempt.py",
+        "cwd": "cedar_checkout",
+        "result": "210 passed in 221.76s"
+      },
+      {
+        "command": "new complete_request_reuses_frozen_plane_support regression before implementation",
+        "result": "1 failed, 98 deselected: missing plane_support keyword"
+      },
+      {
+        "command": "initial eight new transport cases",
+        "result": "4 failed, 4 passed: found misplaced preparation evidence check; fixed before final 210-test pass"
+      }
+    ],
+    "native": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c242_start.py",
+      "mode": "ACTUAL Phenix 2.2.1-6174 / dispatcher 2.2.1; no diffraction refinement",
+      "capsule": {
+        "anchor": "live_tests_directory",
+        "path": "242_Cedar_complete-plane-request-2r0jv29f"
+      },
+      "location": "artifact-location.json",
+      "source_pins": "start.json",
+      "summary": {
+        "status": "COMPLETE_COMPACT_ORDINARY_SOURCE_REQUEST_PASS",
+        "phenix": "2.2.1",
+        "attempt_number": 1,
+        "selected": "readyset_checked_model",
+        "repair_selected": "repaired_prepared_bundle",
+        "continuation_phases": {
+          "native-baseline": "COMPLETED",
+          "native-endpoint": "COMPLETED",
+          "readyset": "COMPLETED"
+        },
+        "whole_request": {
+          "files": 698,
+          "bytes": 181567701
+        },
+        "portions": {
+          "continuation": {
+            "files": 116,
+            "bytes": 42360413
+          },
+          "preparation": {
+            "files": 42,
+            "bytes": 2040801
+          },
+          "repair": {
+            "files": 471,
+            "bytes": 134384605
+          }
+        },
+        "repair_publication": {
+          "files": 10,
+          "bytes": 4497788
+        },
+        "readyset_publication": {
+          "files": 10,
+          "bytes": 5813643
+        },
+        "cache": {
+          "files": 5,
+          "bytes": 224702
+        },
+        "old_input_files_unchanged": 25,
+        "outer_stopped_verified": true,
+        "source_generation": "NOT_REPEATED; EXACT_CACHE_HIT",
+        "elapsed_seconds": 659.7790694159921,
+        "maximum_resident_set_bytes": 694321152,
+        "chemistry": "SOURCE_SELECTED_LINEAR_AND_PLANE_REPAIR_WITH_FROZEN_OWNED_SUPPORT; AUTOMATIC_ACQUISITION_STILL_OPEN",
+        "coot": "NOT_REPEATED; EXACT_C218_CONSTRUCTION",
+        "refinement": "NOT_RUN",
+        "full_suite": "NOT_RUN"
+      },
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "cold_command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c242_cold.py",
+      "cold": {
+        "status": "RELOCATED_COMPLETE_PLANE_REQUEST_PASS",
+        "unchanged_files": 698,
+        "selected": "readyset_checked_model",
+        "original_path_absent": true,
+        "original_sources_sdk_cache_and_processes_forbidden": true,
+        "temporary_views_removed": 15,
+        "peak_temporary_evidence_bytes": 81447422,
+        "maximum_resident_set_bytes": 645087232,
+        "elapsed_seconds": 102.93934245800483,
+        "request": {
+          "anchor": "validation_capsule",
+          "path": "relocated/request"
+        },
+        "source_module_sha256": "7b1dc26aaccc432179f6e1cd9b412f6c318a9a6e09efc22c385c8824e30ceecb"
+      }
+    },
+    "static_review": "Changed Python files parse; no shadowed top-level definitions or imported collectable test functions; git diff --check passes. No repository-wide semantic redundancy claim.",
+    "compatibility": "Optional configuration.plane_support reuses cif-prepared-owned-plane-support-v1; absent field unchanged; new mode requires current reader; no migration or changed bounds/chemistry",
+    "exclusions": "Scientific inputs, native outputs, logs, ignored runners and source-pin lists remain outside Git",
+    "limitations": [
+      "Automatic acquisition of missing support remains Q04",
+      "Later preparation children remain Q05; no new checkpoint adoption control here",
+      "No full suite, Coot, new generation or diffraction refinement",
+      "Whole-request retention and memory/concurrency still need campaign-scale qualification"
+    ]
   }
 }

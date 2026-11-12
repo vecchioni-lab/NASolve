@@ -22,7 +22,7 @@ learned along the way; they are not a reason to keep rebuilding Q04.
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
-| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside the same repair machinery; complete automatic source-support acquisition in the outer request. |
+| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet. Complete automatic acquisition of missing support. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. Define later preparation children without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
@@ -48,7 +48,8 @@ learned along the way; they are not a reason to keep rebuilding Q04.
    Finish Q04/Q05 before Q06. Keep latest and selected distinct.
 3. **Finish general plane repair:** C234–C237 run explicitly supplied owned support
    through the existing repair request, including real success and stopped-native
-   fallback. Now obtain/freeze the necessary support through the outer owner, with
+   fallback. C242 carries supplied support through the complete request/ReadySet.
+   Now obtain missing support through the existing outer owner, with
    shared deadlines and unchanged storage bounds. Preserve existing ring planes;
    PDU and 5PC are controls, not name-based switches.
 4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
@@ -63,7 +64,8 @@ SDK unavailable. Reuse that evidence. Its PDU C5 still lacks an explicit complet
 plane: near-planar coordinates alone do not prove the restraint is adequate.
 C207–C216 supply the general mutation/plane checks and PDU/5PC controls; combining
 the plane checks into ordinary repair now works for explicitly supplied owned
-support. Automatic outer-request acquisition and whole-request storage remain work. DP's ambiguous correspondence,
+support, including the complete request/ReadySet at C242. Automatic acquisition
+and safe working-file retirement remain work. DP's ambiguous correspondence,
 source-H questions and PDU numerical targets remain visible limits.
 
 These are work packages, not a prediction of session or commit count. Preserve
@@ -146,7 +148,7 @@ ordinary adoption is Q05 and the actual refinement consumer is Q06.
 
 **Open overall. C220 supplies the explicit preparation handoff; C223–C224 carry
 it into an initial checkpoint and opt-in ordinary PostMR; C225 adds frozen campaign
-entry. Default-route enablement and automatic chemical-plane repair remain unfinished.**
+entry. Default-route enablement and automatic acquisition of plane support remain unfinished.**
 In lab terms: preserve the intended molecule, get a checked model/restraint set,
 and resume interrupted preparation without rebuilding or damaging earlier work.
 
@@ -185,7 +187,9 @@ Remaining acceptance:
    children through Q05. Default-route enablement remains an explicit decision.
 2. C234–C239 join C226/C227 to the existing prepared repair request, with explicit
    owned support, real success/stopped-native fallback and compact exact proof.
-   Next obtain/freeze that support through the complete request's generation owner,
+   C242 freezes supplied completed support in the complete request and carries its
+   repaired result through actual ReadySet and cold readback. Next obtain missing
+   support through the complete request's existing generation owner,
    with durable child identity, shared deadlines and bounded storage. C240 now
    verifies a launched stopped negative generation without admitting partial output;
    C241 preserves its optional recipe flag through existing acquisition identity.
@@ -227,16 +231,19 @@ Remaining acceptance:
    frozen native inventory rather than embedding it again. A real owned plane
    repair now retains 134.4 MB including its 4.5 MB publication, versus 195.9 MB
    before those changes, with identical chosen model/restraints. This is a prepared
-   repair request, not a new complete outer-request/ReadySet measurement. C239
-   refuses oversized combined support before reading more component trees.
+   repair request. C242 measures the complete outer-request/ReadySet boundary:
+   181.6 MB retained, including 5.8 MB final publication; cold read uses 81.4 MB
+   peak temporary evidence and 645.1 MB resident memory. C239 refuses oversized
+   combined support before reading more component trees.
    Preserve active/failed recovery evidence until known-stopped retention rules explicitly cover it; never
    silently clean existing scientific runs.
 
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical
 execution and C227 source-bound composition. C234–C239 now invoke these through
-explicit owned support in the same immutable repair request. Automatic acquisition
-by the complete outer request remains: persist exact source/recipe/child identity,
+explicit owned support in the same immutable repair request. C242 freezes supplied
+completed support in the outer request and passes actual ReadySet/cold readback.
+Automatic acquisition of missing support by the outer request remains: persist exact source/recipe/child identity,
 select a numbered stopped attempt, account for shared time and attempt allowances,
 and preserve a checked fallback when an optional native attempt is demonstrably
 unsuccessful. Unknown/malformed ownership cannot be treated as that fallback.
