@@ -256,3 +256,47 @@ def test_publication_dot_segments_cannot_create_inside_source_evidence(tmp_path,
     with pytest.raises(ValueError,match='Cannot publish inside source evidence'):
         prepare_runtime_readyset_bundle(parent,None,None,output)
     assert inventory(parent)==before and not (parent/'new-work').exists()
+
+
+@pytest.mark.parametrize('accepted',[False,True])
+@pytest.mark.parametrize('compact',[False,True])
+def test_publication_qualifies_parent_once_within_one_unchanged_view(tmp_path,monkeypatch,accepted,compact):
+    from nasolve import cif_runtime_readyset as m, cif_component_runtime as runtime
+    if compact:
+        publish=runtime.prepare_repaired_component_runtime_bundle
+        monkeypatch.setattr(runtime,'prepare_repaired_component_runtime_bundle',
+            lambda *a,**k:publish(*a,**k,compact_evidence=True))
+    parent,_,control,_,inputs=observed(tmp_path,monkeypatch)
+    baseline,endpoint=native_wiring(tmp_path,monkeypatch,parent,inputs,accepted=accepted)
+    out=tmp_path/'public'
+    value=runtime.prepare_runtime_readyset_bundle(parent,baseline,control,out,
+        endpoint_receipt=endpoint,compact_evidence=compact)
+    expected=value['source_review'];calls=[];original=m._parent
+    def counted(*a,**k):
+        calls.append(a[0]);return original(*a,**k)
+    monkeypatch.setattr(m,'_parent',counted)
+    before=inventory(out)
+    with runtime.component_runtime_evidence(out,value) as evidence:
+        review,decision,selected,_=m.selected_runtime_readyset_publication(evidence,value['source_selection'])
+        assert review==expected and decision==value['decision']
+        assert selected['model'].is_file() and all(p.is_file() for p in selected['dictionaries'])
+    assert len(calls)==1
+    assert inventory(out)==before
+
+
+@pytest.mark.parametrize('accepted',[False,True])
+def test_shared_publication_scope_rechecks_parent_after_comparison(tmp_path,monkeypatch,accepted):
+    from nasolve import cif_runtime_readyset as m
+    from nasolve.cif_component_runtime import prepare_runtime_readyset_bundle
+    parent,_,control,_,inputs=observed(tmp_path,monkeypatch)
+    baseline,endpoint=native_wiring(tmp_path,monkeypatch,parent,inputs,accepted=accepted)
+    out=tmp_path/'public'
+    value=prepare_runtime_readyset_bundle(parent,baseline,control,out,endpoint_receipt=endpoint)
+    original=m._inspect_selected_readyset
+    def changed(parent,*a,**k):
+        result=original(parent,*a,**k)
+        parent['model'].write_bytes(parent['model'].read_bytes()+b'\nREMARK changed after comparison\n')
+        return result
+    monkeypatch.setattr(m,'_inspect_selected_readyset',changed)
+    with pytest.raises(ValueError,match='parent runtime changed'):
+        m.selected_runtime_readyset_publication(out,value['source_selection'])

@@ -89209,5 +89209,81 @@
       "Later preparation children",
       "Real refinement and mixed/held-out chemistry"
     ]
+  },
+  "single_readyset_parent_view_2026_11_12": {
+    "milestone": "C230",
+    "base_commit": "badc3a6",
+    "before": {
+      "status": "RELOCATED_COMPACT_PARENT_AND_READYSET_PASS",
+      "unchanged_files": 126,
+      "original_copy_and_checkout_absent": true,
+      "original_capsules_sdk_and_processes_forbidden": true,
+      "temporary_views_removed": 18,
+      "peak_temporary_physical_bytes": 86509423,
+      "per_read_shared_physical_limit_bytes": 134217728,
+      "maximum_nested_views": 2,
+      "parent_read_seconds": 13.537900875002379,
+      "continuation_read_seconds": 118.6618638340151,
+      "new_native_calls": 0,
+      "parent_qualifications": 7,
+      "result_sha256": "3782ead732a4ffae75f1712496b70e7d6e59ea2a33a1d2c1d8086b375bfe334f",
+      "source_sha256": "251184927b02c3a720e62f56ff34de9b72bb2075cb9b58a3ce497a2bd627488e"
+    },
+    "after": {
+      "status": "RELOCATED_COMPACT_PARENT_AND_READYSET_PASS",
+      "unchanged_files": 126,
+      "original_copy_and_checkout_absent": true,
+      "original_capsules_sdk_and_processes_forbidden": true,
+      "temporary_views_removed": 15,
+      "peak_temporary_physical_bytes": 86509423,
+      "per_read_shared_physical_limit_bytes": 134217728,
+      "maximum_nested_views": 2,
+      "parent_read_seconds": 13.405222250003135,
+      "continuation_read_seconds": 86.8522155410028,
+      "new_native_calls": 0,
+      "parent_qualifications": 5,
+      "result_sha256": "3782ead732a4ffae75f1712496b70e7d6e59ea2a33a1d2c1d8086b375bfe334f",
+      "source_sha256": "209a0d7d90983361f8ddc872468ec190396745df64821d69041318897d983a83"
+    },
+    "maximum_resident_set_bytes": 683999232,
+    "peak_memory_footprint_bytes": 671368320,
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_runtime_readyset.py -k qualifies_parent_once",
+        "result": "4 failed, 32 deselected in 24.16s before implementation"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_runtime_readyset.py",
+        "result": "36 passed in 102.31s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_runtime_readyset.py -k shared_publication_scope tests/test_cif_runtime_evidence.py -k 'shared_publication_scope or owned_continuation'",
+        "result": "4 passed, 68 deselected in 19.44s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<C228-relocated-package-root> <python3.12> <local-runners>/c230_replay.py <C228-cold-r1> before",
+        "result": "Pass; first launch used nonexistent src suffix and failed import before evidence read"
+      },
+      {
+        "command": "<python3.12> /private/tmp/c230_after.py",
+        "result": "Pass; temporary relocated current source, time -l, same unchanged evidence; source copy cleaned"
+      }
+    ],
+    "compatibility": "No artifact/schema migration; same decisions and checks; read-local reuse only",
+    "source_sha256": "209a0d7d90983361f8ddc872468ec190396745df64821d69041318897d983a83",
+    "evidence": {
+      "anchor": "live_tests_directory",
+      "path": "228_Cedar_compact-evidence-luvqjjet/cold-r1",
+      "summaries": [
+        "c230-before.json",
+        "c230-after.json"
+      ]
+    },
+    "excluded": "Scientific data and local runners remain outside Git; no scientific copies or native calls added",
+    "limitations": [
+      "Observed timings not a controlled benchmark",
+      "No full suite",
+      "100-dataset memory/concurrency/working-file retention still unqualified"
+    ]
   }
 }

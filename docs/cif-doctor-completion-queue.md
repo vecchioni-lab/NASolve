@@ -205,7 +205,11 @@ Remaining acceptance:
    Measure the entire request/continuation/publication footprint; retain exact
    inputs, tool/policy identity, necessary check results and a reproducible trail.
    Prefer deduplication/compression over weaker checking or larger disk allowances.
-   Bound temporary expansion as well as persistent storage. Preserve active/failed
+   Bound temporary expansion, process memory and concurrency as well as persistent
+   storage. C230 removes repeat parent qualification; the real read still peaks
+   near 684 MB resident memory despite an 86.5 MB temporary evidence footprint.
+   Do not extrapolate a small archive into permission for 100 concurrent readers.
+   Preserve active/failed
    recovery evidence until known-stopped retention rules explicitly cover it; never
    silently clean existing scientific runs.
 

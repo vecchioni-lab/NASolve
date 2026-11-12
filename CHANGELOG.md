@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Avoid repeating the same ReadySet parent checks (C230)
+
+- Share one qualified parent view within a ReadySet publication read. Preserve
+  exact native/observer checks and recheck the parent after comparison and input
+  extraction. Every new read validates again; no stored verdict cache is added.
+- Success and qualified-fallback decisions remain identical, including compact
+  evidence. Real relocated readback matches the previous result byte-for-byte.
+
 ### Use compact evidence in new checked preparations (C229)
 
 - New complete dictionary requests, including ordinary checked PostMR/campaign

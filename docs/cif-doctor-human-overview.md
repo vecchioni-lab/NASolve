@@ -44,6 +44,9 @@ files and removes them afterward. Exact, reproducible evidence need not retain
 every duplicate forever. Safe retirement of working copies and whole-campaign
 storage qualification remain release work. Newly created checked preparations
 choose compact evidence automatically; saved requests keep their recorded layout.
+Repeated parent checks within a single ReadySet result read are now shared, with
+the same scientific decision and final checks for changed files. Memory and
+concurrent-job limits still need campaign-scale validation.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and

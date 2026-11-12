@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-12**, C229. Active branch **cedar**, checkout NASolve-c96.
-Base C228/0cf2bba. The [queue](cif-doctor-completion-queue.md) owns work order;
+Updated **2026-11-12**, C230. Active branch **cedar**, checkout NASolve-c96.
+Base C229/badc3a6. The [queue](cif-doctor-completion-queue.md) owns work order;
 [capability limits](cif-doctor.md#current-capability-boundary) remain in force.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
@@ -30,20 +30,28 @@ live_tests_directory/228_Cedar_compact-evidence-luvqjjet. All native owners STOP
 Last entirely green full remains C220/583d30df; C222's full-run issue and focused
 correction remain recorded. Generated science/logs/runners are excluded from Git.
 
-## Current request integration and next step
+## Current request integration and repeated-read removal
 
-C229 freezes compact storage in new complete/ordinary checked requests and forwards
-it through existing repair/ReadySet owners. Saved requests keep their recorded choice
-and recovery meaning. Nine new tests pass; 326 affected cases passed with four
-synthetic ordinary-entry fixture failures, then all 117 ordinary-entry/complete-
-continuation cases passed after correcting those fixtures. Commands/limits are in
-ledger compact_request_storage_2026_11_12. No new native job or full suite.
+C229 freezes compact storage in new complete/ordinary checked requests through
+existing repair/ReadySet owners; saved requests retain their choice. Nine new tests,
+326 passing affected cases, then 117 corrected ordinary-entry/continuation cases
+are recorded in compact_request_storage_2026_11_12.
 
-Next remove demonstrated repeated parent qualification within one ReadySet
-publication read, preserving its enclosing mutation check. C202/C223 exact-result
-work already avoids duplicate proof reads; this remaining function qualifies the
-same parent three times on success (twice on fallback). Share one scoped view,
-without a persistent cache or weaker scientific checks.
+C230 reuses one qualified parent view within ReadySet publication, following C205/
+C223. Four regressions fail before, then 36 ReadySet cases plus four mutation/
+owned-continuation controls pass. The exact real relocated result hash is unchanged;
+126 files retain bytes/mtimes. Full-read parent checks fall 7 to 5, temporary views
+18 to 15, observed continuation read 118.66 to 86.85 s. No benchmark claim or
+persistent cache. Peak disk evidence 86.5 MB; max resident memory 684 MB. Exact
+commands/limitations: single_readyset_parent_view_2026_11_12. No active native job.
+
+Next measure a fresh complete ordinary-source request using the new compact default,
+not just its final publication. Reuse C218's frozen construction/model/source/NAR
+inputs through the public initializer with a fresh request identity. C219's exact
+qualified dictionary cache may be reused read-only; do not rerun Coot or generation
+merely to measure storage. Pin code during execution, preserve failures and inspect
+all owners before reporting success. Keep the same chemical scope: this checks the
+existing automatic linear route, not yet automatic whole-plane repair.
 
 Safe retirement of redundant successful working outputs remains Q04 work: first
 seal/verify the result and prove every process stopped, then use an interruption-safe

@@ -764,6 +764,32 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
 
+### One qualified parent view during ReadySet publication (C230)
+
+Following C205/C223's scoped-reuse approach, one ReadySet publication read now
+qualifies its parent once instead of three times on success or twice on fallback.
+A shared private comparator consumes that qualified view; the enclosing context
+rechecks the whole parent after comparison and final input extraction. Observer,
+native capture and optional input checks remain. The public inspection API uses
+the same comparator. No cross-call cache, saved schema, chemistry change or new
+owner is introduced.
+
+Four counted-read regressions fail before this change and pass afterward, covering
+legacy/compact evidence and success/fallback. The 36-case ReadySet module passes;
+two post-comparison parent-mutation controls and two owned compact-continuation
+controls also pass. The same actual C228 parent/continuation read from relocated
+source produces an identical complete result hash. All 126 files remain unchanged;
+original paths/SDK/process execution are forbidden. Across the full read, parent
+qualification calls fall from seven to five and temporary views from 18 to 15.
+Observed continuation read time is 118.66 s before and 86.85 s after; filesystem
+cache and other activity were not controlled, so this is not a general benchmark.
+
+Peak temporary physical evidence remains 86,509,423 bytes. The updated Python
+process reports 683,999,232 bytes maximum resident memory (macOS time -l), a
+separate budget from disk expansion. Campaign qualification must bound memory
+and concurrent readers/jobs as well as retained disk. No new Phenix/Coot/ReadySet
+execution or full suite. Ledger: single_readyset_parent_view_2026_11_12.
+
 ### Compact evidence in ordinary preparation (C229)
 
 New complete dictionary requests default to compact_evidence=True. Ordinary

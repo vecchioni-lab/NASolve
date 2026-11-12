@@ -90,49 +90,56 @@ def inspect_runtime_readyset(manifest, baseline_receipt, readyset_directory,
     Parent integrity/qualification is mandatory. Missing or failed optional evidence
     cannot substitute a pre-repair bundle for the independently qualified parent.
     """
+    with _selected_view(manifest) as (parent, view):
+        return _inspect_selected_readyset(parent, view, baseline_receipt,
+            readyset_directory, endpoint_receipt, atom_order_directory=atom_order_directory)
+
+
+def _inspect_selected_readyset(parent, view, baseline_receipt, readyset_directory,
+                              endpoint_receipt=None, *, atom_order_directory=None):
+    """Compare within an already qualified, mutation-checked selected-parent scope."""
     from .cif_attachment_native import _capture
     from .cif_postmr_cached_model import qualify_cached_model_roundtrip
     from .cif_native_monomers import POLICY_ID as monomer_policy, review_full_monomers
-    with _selected_view(manifest) as (parent, view):
-        endpoint = None; error = None; accepted = False; pins = {}
-        try:
-            inputs = _readyset_endpoint_inputs(view, readyset_directory, atom_order_directory=atom_order_directory)
-            _need(baseline_receipt is not None, 'Fresh selected-runtime native baseline is missing')
-            _need(endpoint_receipt is not None, 'Final effective ReadySet native readback is missing')
-            before_record, before, before_files = _capture(Path(baseline_receipt), _read(parent['model']))
-            record, after, after_files = _capture(Path(endpoint_receipt), _read(inputs['model']))
-            _bind_capture(before_record, view['report']['consumer'], parent['model'], parent['dictionaries'], parent['phils'])
-            _bind_capture(record, view['report']['consumer'], inputs['model'], inputs['dictionaries'], inputs['phils'])
-            for r,native in ((before_record,before),(record,after)):
-                _need(r.get('full_monomer_inventory_policy') == monomer_policy, 'Full native identities are required')
-                review_full_monomers(native)
-            endpoint = qualify_cached_model_roundtrip(before, after, parent['model'], inputs['model'])
-            accepted = endpoint['mechanics_checks_pass'] is True
-            # The comparator can be expensive. Recheck the observer and exact
-            # final inputs afterward, including any serialization-only adapter.
-            repeated = _readyset_endpoint_inputs(view, readyset_directory,
-                atom_order_directory=atom_order_directory)
-            _bind_capture(record, view['report']['consumer'], repeated['model'],
-                repeated['dictionaries'], repeated['phils'])
-            _need(all(_read(p) == data for p,data in {**before_files,**after_files}.items()),
-                  'Native evidence changed during selected-runtime inspection')
-            pins = dict(baseline_receipt_sha256=sha256(_read(Path(baseline_receipt))).hexdigest(),
-                        endpoint_receipt_sha256=sha256(_read(Path(endpoint_receipt))).hexdigest(),
-                        readyset_receipt_sha256=sha256(_read(Path(readyset_directory)/'readyset_consumption.json')).hexdigest())
-            if atom_order_directory is not None:
-                pins['atom_order_receipt_sha256'] = sha256(_read(Path(atom_order_directory)/'atom_order.json')).hexdigest()
-        except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
-            error = type(exc).__name__+': '+str(exc); accepted = False
-        return dict(schema_version=1, policy_id=POLICY_ID,
-            parent_manifest_sha256=sha256(_read(parent['manifest_path'])).hexdigest(),
-            parent_selected=parent['manifest']['decision']['selected'], endpoint=endpoint, endpoint_error=error, **pins,
-            decision=dict(status='CONTINUE_WITH_NOTES',
-                selected=('readyset_ordered_checked_model' if atom_order_directory is not None else 'readyset_checked_model')
-                    if accepted else 'verified_parent_runtime',
-                parent_selected=parent['manifest']['decision']['selected'], scope='SEPARATE_DIAGNOSTIC_PHASE_ONLY',
-                requires_cif_review=False, automatic_adoption=False),
-            unavailable_native_checks=deepcopy(parent['manifest']['unavailable_native_checks']),
-            scientific_qualification='NOT_ASSESSED', native_execution='NOT_RUN', automatic_adoption=False)
+    endpoint = None; error = None; accepted = False; pins = {}
+    try:
+        inputs = _readyset_endpoint_inputs(view, readyset_directory, atom_order_directory=atom_order_directory)
+        _need(baseline_receipt is not None, 'Fresh selected-runtime native baseline is missing')
+        _need(endpoint_receipt is not None, 'Final effective ReadySet native readback is missing')
+        before_record, before, before_files = _capture(Path(baseline_receipt), _read(parent['model']))
+        record, after, after_files = _capture(Path(endpoint_receipt), _read(inputs['model']))
+        _bind_capture(before_record, view['report']['consumer'], parent['model'], parent['dictionaries'], parent['phils'])
+        _bind_capture(record, view['report']['consumer'], inputs['model'], inputs['dictionaries'], inputs['phils'])
+        for r,native in ((before_record,before),(record,after)):
+            _need(r.get('full_monomer_inventory_policy') == monomer_policy, 'Full native identities are required')
+            review_full_monomers(native)
+        endpoint = qualify_cached_model_roundtrip(before, after, parent['model'], inputs['model'])
+        accepted = endpoint['mechanics_checks_pass'] is True
+        # The comparator can be expensive. Recheck the observer and exact
+        # final inputs afterward, including any serialization-only adapter.
+        repeated = _readyset_endpoint_inputs(view, readyset_directory,
+            atom_order_directory=atom_order_directory)
+        _bind_capture(record, view['report']['consumer'], repeated['model'],
+            repeated['dictionaries'], repeated['phils'])
+        _need(all(_read(p) == data for p,data in {**before_files,**after_files}.items()),
+              'Native evidence changed during selected-runtime inspection')
+        pins = dict(baseline_receipt_sha256=sha256(_read(Path(baseline_receipt))).hexdigest(),
+                    endpoint_receipt_sha256=sha256(_read(Path(endpoint_receipt))).hexdigest(),
+                    readyset_receipt_sha256=sha256(_read(Path(readyset_directory)/'readyset_consumption.json')).hexdigest())
+        if atom_order_directory is not None:
+            pins['atom_order_receipt_sha256'] = sha256(_read(Path(atom_order_directory)/'atom_order.json')).hexdigest()
+    except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
+        error = type(exc).__name__+': '+str(exc); accepted = False
+    return dict(schema_version=1, policy_id=POLICY_ID,
+        parent_manifest_sha256=sha256(_read(parent['manifest_path'])).hexdigest(),
+        parent_selected=parent['manifest']['decision']['selected'], endpoint=endpoint, endpoint_error=error, **pins,
+        decision=dict(status='CONTINUE_WITH_NOTES',
+            selected=('readyset_ordered_checked_model' if atom_order_directory is not None else 'readyset_checked_model')
+                if accepted else 'verified_parent_runtime',
+            parent_selected=parent['manifest']['decision']['selected'], scope='SEPARATE_DIAGNOSTIC_PHASE_ONLY',
+            requires_cif_review=False, automatic_adoption=False),
+        unavailable_native_checks=deepcopy(parent['manifest']['unavailable_native_checks']),
+        scientific_qualification='NOT_ASSESSED', native_execution='NOT_RUN', automatic_adoption=False)
 
 
 def selected_runtime_readyset_publication(root, controls):
@@ -153,16 +160,19 @@ def selected_runtime_readyset_publication(root, controls):
     _need({p.name for p in evidence.iterdir()} == names and all(p.is_dir() and not p.is_symlink() for p in evidence.iterdir()),
           'Unexpected selected-runtime evidence roots')
     args = {k:root/v if v is not None else None for k,v in controls.items()}
-    runtime = args.pop('runtime'); parent = _parent(runtime)
-    review = inspect_runtime_readyset(runtime, **args)
-    if isinstance(review['endpoint_error'], str):
-        review['endpoint_error'] = review['endpoint_error'].replace(str(root.absolute())+'/', 'runtime_bundle/')
-    decision = deepcopy(review['decision'])
-    if decision['selected'] == 'verified_parent_runtime':
-        inputs = {k:parent[k] for k in ('model','dictionaries','phils')}
-        note = 'Optional ReadySet improvement was not selected; the qualified parent model and its selected restraints were retained together.'
-    else:
-        inputs = runtime_readyset_endpoint_inputs(runtime, args['readyset_directory'], atom_order_directory=args['atom_order_directory'])
-        note = 'The ReadySet endpoint preserves the selected parent definitions, native policy and named restraints.'
-    decision['notes'] = [note, 'Source qualification and numerical repair proof remain bound to the parent; ordinary refinement and checkpoint adoption are unassessed.']
-    return review, decision, inputs, review['unavailable_native_checks']
+    runtime = args.pop('runtime')
+    # Qualify once for this read; the enclosing view rechecks every parent byte
+    # after comparison and final input extraction. Nothing is cached across reads.
+    with _selected_view(runtime) as (parent, view):
+        review = _inspect_selected_readyset(parent, view, **args)
+        if isinstance(review['endpoint_error'], str):
+            review['endpoint_error'] = review['endpoint_error'].replace(str(root.absolute())+'/', 'runtime_bundle/')
+        decision = deepcopy(review['decision'])
+        if decision['selected'] == 'verified_parent_runtime':
+            inputs = {k:parent[k] for k in ('model','dictionaries','phils')}
+            note = 'Optional ReadySet improvement was not selected; the qualified parent model and its selected restraints were retained together.'
+        else:
+            inputs = _readyset_endpoint_inputs(view, args['readyset_directory'], atom_order_directory=args['atom_order_directory'])
+            note = 'The ReadySet endpoint preserves the selected parent definitions, native policy and named restraints.'
+        decision['notes'] = [note, 'Source qualification and numerical repair proof remain bound to the parent; ordinary refinement and checkpoint adoption are unassessed.']
+        return review, decision, inputs, review['unavailable_native_checks']
