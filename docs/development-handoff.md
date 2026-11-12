@@ -1,12 +1,12 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-12**, C225. Active branch **cedar**, checkout `NASolve-c96`.
-Base: `b69bc3170af5dc7fdcbde36baf581d0506eb0f23`. The
+Updated **2026-11-12**, C226. Active branch **cedar**, checkout `NASolve-c96`.
+Base: `7edc95b2a0703c6c16ff5cbf55804102ef4858ca`. The
 [scientific queue](cif-doctor-completion-queue.md) owns work order;
 [capability limits](cif-doctor.md#current-capability-boundary) remain in force.
 Finish Q04/Q05 before Q06. Use laboratory language first. No merge authorized.
 
-## Current checkpoint — campaigns retain the checked preparation
+## Q05 checkpoint published — campaigns retain the checked preparation
 
 **Before → after:** schema-2 presets can explicitly set
 `postmr.checked_preparation = true`. Planning freezes and validates the choice;
@@ -38,21 +38,39 @@ Last entirely green full revision remains C220/`583d30df`; C222's later full-run
 CLI failure and focused correction remain recorded. Generated logs/science are
 excluded from Git. Tests completed; no native/GUI worker is active.
 
-## Active push — Q04 chemical-plane repair, then remaining Q05
+## Current Q04 checkpoint — replayable chemical-plane calculations (C226)
 
-Started 19:46 UTC, bounded to about 22:46 UTC, no full suite. C225 is ready for
-publication. Prior-work review: C208–C214 already provide graph-selected candidate,
-owned support and exact native-capture gates. C215's whole-plane energy check is
-pure; its kernel execution authentication is local experimental evidence, not a
-maintained replayable execution reader. C216 measures geometry separately.
+Base C225/`7edc95b`. The new `cif_captured_plane_attribution.py` and focused test
+module join C213/C214 owned source/capture proof to C215's whole-plane numerics.
+One bounded process rebuilds both fixed managers using maintained code, checks
+exact native/effective-PHIL output, and evaluates complete old/new groups.
+The caller uses the existing repair runner; no new owner or chemistry thresholds.
+A read-only relocated replay rederives every claim without the original SDK/code.
+Schema: `cif-captured-owned-plane-attribution-v1`; old artifacts are unchanged.
 
-Next close that numerical-evidence handoff using the existing process runner,
-then compose it with the existing repair owner/selection. Do not replace the
-whole multiple-plane generated CIF. Preserve ring planes and NAR's stacking
-selections; only supported intramolecular members may be added. No automatic
-plane-repair claim until selection/publication and ordinary invocation are joined.
-Q05 still needs later preparation children without replacing earlier choices.
-Q06 real refinement and Q07 mixed/held-out chemistry stay queued.
+**Validation:** missing-API fail-before; **114 focused tests pass**, including 30
+adapter cases. Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** passes PDU/5PC with
+four full fixed-manager rebuilds in two owned jobs, both STOPPED. Cold source/evidence
+relocation passes with 141 files unchanged and original paths/SDK/processes denied.
+First native attempt exposed omitted regenerated PHIL outputs; exact captured-byte
+checks fixed accounting and a fresh attempt passed. Earlier partial evidence stays.
+No new derivatives, geometry optimization, Coot, ReadySet, refinement or full suite.
+Controls have zero parallelity and no special positions; no broader support claim.
+
+Exact commands/results: ledger `maintained_plane_attribution_2026_11_12`;
+local capsule `live_tests_directory/226_Cedar_owned-plane-numerics-mceapmbq`.
+Generated models/CIFs/logs/runners remain local. No native/GUI job is active.
+
+## Continue the bounded push — finish Q04/Q05 before Q06
+
+Work window began 19:46 UTC and ends about 22:46 UTC; no full suite. C225 is
+published (`7edc95b`); C226 is ready for publication. Next compose the maintained
+plane evidence into existing source-bound selection/publication and automatic
+repair. Prior review confirms the current owner/selector still supports only
+linear-torsion repair; do not call C226 automatic plane adoption.
+Preserve separate ring planes, NAR stacking selections, source authority and
+independently checked fallback. Q05 still needs later preparation children without
+replacing earlier choices. Q06/Q07 stay queued until Q04/Q05 are finished.
 
 ## Preserve local evidence
 

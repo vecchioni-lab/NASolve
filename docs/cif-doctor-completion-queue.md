@@ -180,6 +180,8 @@ Remaining acceptance:
    without a fictitious ReadySet-success label or log. Complete later preparation
    children through Q05. Default-route enablement remains an explicit decision.
 2. Integrate C208–C216's general plane operation into the existing repair owner.
+   C226 closes the maintained whole-plane numerical execution/readback seam;
+   reuse it when joining source-bound selection/publication and automatic invocation.
    Preserve existing ring-plane groups; add only source-supported missing members
    with owned generator/native/energy evidence. Do not substitute an entire
    multiple-plane generated CIF. Keep non-PDU controls and ambiguous/tetrahedral

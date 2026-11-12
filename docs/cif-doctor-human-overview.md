@@ -31,6 +31,9 @@ straight propyne do not guarantee the desired glycosidic orientation or coplanar
 with the base. The implemented graph/geometry checks and PDU/5PC controls identify
 and test those faults without relying on the residue name. Automatic complete-plane
 repair still needs integration; near-planar coordinates alone are insufficient.
+The [maintained plane calculation](cif-doctor.md#maintained-whole-plane-numerical-evidence-c226)
+now records and rereads the complete change in forces, including forces on the
+original ring atoms. Source-bound selection and ordinary invocation remain work.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and

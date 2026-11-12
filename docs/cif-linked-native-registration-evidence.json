@@ -88331,5 +88331,156 @@
       }
     },
     "generated_artifacts": "Only code/tests/docs and bounded technical evidence committed; local logs and all science excluded"
+  },
+  "maintained_plane_attribution_2026_11_12": {
+    "date": "2026-11-12",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "7edc95b2a0703c6c16ff5cbf55804102ef4858ca",
+    "status": "FOCUSED_AND_NATIVE_VALIDATED",
+    "before": "C215 whole-plane numerical attribution required caller-authenticated local kernel evidence; no maintained execution/replay artifact joined it to owned support/captures.",
+    "after": "One bounded job rebuilds both captured managers and evaluates full old/new planes; maintained readback rederives owned source support, capture identity and numerical claims offline.",
+    "files": [
+      "src/nasolve/cif_captured_plane_attribution.py",
+      "tests/test_cif_captured_plane_attribution.py"
+    ],
+    "source_sha256": {
+      "src/nasolve/cif_captured_plane_attribution.py": "4f20f487cf03b854ce5e5d6f30adc0309cdc9aab6a320b2eeadc80dadc00e80d",
+      "tests/test_cif_captured_plane_attribution.py": "2d420185f7de2e1b558515d0933750fcce632b9d9ce23cb8146a9d5ce67e51fc"
+    },
+    "schemas": [
+      "cif-captured-owned-plane-attribution-v1"
+    ],
+    "compatibility": "Additive explicit adapter; old policies/worker meanings unchanged. Existing process runner used, no new recovery owner or default adoption.",
+    "commands": {
+      "focused": {
+        "cwd": "cedar_checkout",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "tests/test_cif_captured_plane_attribution.py",
+          "tests/test_cif_plane_energy.py",
+          "tests/test_cif_plane_captures.py",
+          "tests/test_cif_captured_linear_attribution.py"
+        ]
+      },
+      "native": {
+        "runner": {
+          "anchor": "everyday_checkout",
+          "path": "branch-artifacts/cedar/runners/c226_native.py"
+        },
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "cedar_checkout/src"
+        },
+        "arguments": []
+      },
+      "cold": {
+        "runner": {
+          "anchor": "everyday_checkout",
+          "path": "branch-artifacts/cedar/runners/c226_cold.py"
+        },
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "validation_directory/cold/checkout-relocated/src"
+        },
+        "arguments": [
+          "validation_directory/cold"
+        ]
+      }
+    },
+    "validation": {
+      "before": "1 missing-API failure; replaced with behavior regressions after implementation",
+      "initial": "28 passed",
+      "focused": "114 passed in 43.75s, including 30 new adapter cases",
+      "native": {
+        "phenix": "2.2.1",
+        "cases": {
+          "PDU": {
+            "status": "CAPTURED_PLANE_ATTRIBUTION_PASS",
+            "planes": 2,
+            "gradient_delta_error_norm": 2.4552124717210764e-14,
+            "new_native_calls": 1,
+            "owned_process_state": "STOPPED",
+            "source_files_unchanged": 47
+          },
+          "5PC": {
+            "status": "CAPTURED_PLANE_ATTRIBUTION_PASS",
+            "planes": 2,
+            "gradient_delta_error_norm": 2.532165365381255e-13,
+            "new_native_calls": 1,
+            "owned_process_state": "STOPPED",
+            "source_files_unchanged": 48
+          }
+        }
+      },
+      "phenix_installation": "2.2.1-6174 / dispatcher 2.2.1",
+      "native_scope": "Two owned calls, four complete fixed-manager rebuilds plus whole-plane kernel evaluations; no optimization, Coot, ReadySet or refinement",
+      "cold": {
+        "status": "RELOCATED_MAINTAINED_PLANE_ATTRIBUTION_PASS",
+        "cases": {
+          "PDU": {
+            "exact_replay": true,
+            "gradient_delta_error_norm": 2.4552124717210764e-14
+          },
+          "5PC": {
+            "exact_replay": true,
+            "gradient_delta_error_norm": 2.532165365381255e-13
+          }
+        },
+        "unchanged_files": 141,
+        "original_copy_and_checkout_absent": true,
+        "original_capsules_sdk_and_processes_forbidden": true
+      },
+      "initial_native_limitation": "First PDU calculation passed numerics but strict artifact readback refused regenerated canonical/effective PHIL files. Preserve capsule 226_Cedar_owned-plane-numerics-hihq4asg. Added exact captured-byte checks for those outputs, then ran a fresh attempt; no acceptance threshold change.",
+      "full_suite": "NOT_RUN per Simon; last entirely green full revision C220/583d30df9c2bb8fd76e802e0eaa51d749c2b6eeb"
+    },
+    "limitations": [
+      "No automatic invocation/adoption; compose with existing source-bound repair selector/publication next.",
+      "Derivatives and achieved geometry remain separate gates; C215/C216 evidence is not relabelled.",
+      "PDU/5PC controls have zero parallelity and no special positions; no broader NAR refinement or symmetry/sticky-end qualification.",
+      "Native generation source evidence is reused, not regenerated."
+    ],
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "226_Cedar_owned-plane-numerics-mceapmbq/start.json",
+        "sha256": "92c745a28833378f75b8ecee88ea22038b4f1049832adeeafed278c0e8d060a7",
+        "size": 733
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "226_Cedar_owned-plane-numerics-mceapmbq/summary.json",
+        "sha256": "e4f1fa95e6f4b5537948fb74a40b549c6420b3721d8ed38c8719a6f98cd9110e",
+        "size": 546
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "226_Cedar_owned-plane-numerics-mceapmbq/cold/result.json",
+        "sha256": "2170fe43c39a30c414725bc89faab36b360fa003d86c74b968e437d0e5a81380",
+        "size": 418
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "226_Cedar_owned-plane-numerics-mceapmbq/PDU/attribution/captured_plane_attribution.json",
+        "sha256": "28d1982d262f95193afa143a18618ca3a308f2b572d9f48ce00a7afe0968d74d",
+        "size": 26438
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "226_Cedar_owned-plane-numerics-mceapmbq/5PC/attribution/captured_plane_attribution.json",
+        "sha256": "8bbc7064c5c93b09fcfcab5ddf1fb358bb85637ec6fdfe144129952d9d4dbbf7",
+        "size": 26637
+      }
+    ],
+    "generated_artifacts": "Native outputs, requests, dictionaries, models, logs, copied source and runners remain local; only bounded evidence references committed."
   }
 }

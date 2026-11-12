@@ -158,7 +158,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
-| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. | Explicit candidate/diagnostic APIs; no universal flattening rule or automatic plane adoption. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
+| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. C226 adds maintained owned-capture/whole-plane numerical execution and cold replay. | Explicit candidate/diagnostic APIs; no universal flattening rule or automatic plane adoption. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
@@ -763,6 +763,36 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 `source_selected_model_geometry_2026_11_11`. Native completion and better local
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
+
+### Maintained whole-plane numerical evidence (C226)
+
+`audit_captured_plane_attribution` freezes an explicit owned generation attempt and
+exact before/after native captures. One bounded job uses maintained interpreter
+code to rebuild both unchanged models, verifies their complete inventories and
+regenerated canonical/effective PHIL bytes, observes plane symmetry/special-position
+scope, and evaluates every complete old/new plane twice. The existing C215 gate
+must account for the full energy/force change; evaluating only new members cannot
+pass. The caller supplies the existing repair process runner, retaining its owner
+and interruption rules. `phenix=None` prepares without execution.
+
+`read_captured_plane_attribution` rederives owned support, exact input/capture
+binding, maintained job bytes, installed source identities and numerical results
+without opening the original SDK or running saved code. A fresh output is required;
+failed/interrupted work is preserved. The new
+`cif-captured-owned-plane-attribution-v1` receipt is additive. Old readers/workers
+retain their meanings. This supplies an evidence adapter, not a new repair owner.
+
+114 focused tests pass. Fresh **Phenix 2.2.1-6174 / dispatcher 2.2.1** PDU/5PC
+controls run two owned jobs/four full fixed-manager rebuilds. Each changes two
+component planes; force-delta errors are 2.46e-14 and 2.53e-13. Cold replay from a
+relocated checkout reproduces both receipts with 141 files unchanged and original
+paths/SDK/processes denied. The first native check exposed undeclared regenerated
+PHIL outputs; exact captured-byte checks fix the accounting, with a fresh attempt.
+No chemical thresholds changed. These controls have no parallelity or special
+positions; broader NAR refinement is not established. Derivative/geometry gates
+remain separate. Compose this evidence into existing source-bound selection and
+ordinary repair before claiming Q04 closure. Exact commands and retained failures:
+ledger key `maintained_plane_attribution_2026_11_12`.
 
 ### Complete-plane energy and derivative controls (C215)
 

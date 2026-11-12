@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve replayable whole-plane numerical evidence (C226)
+
+- Join owned plane-generation support and exact before/after captures to one
+  bounded native calculation using the existing process runner. Rebuild both
+  managers, verify regenerated PHIL files and evaluate complete old/new planes.
+- Recompute source, capture and numerical claims offline after relocation. Reject
+  altered evidence, unsupported symmetry and uncertain process cleanup.
+- Actual PDU/5PC checks pass with separate immutable outputs. No automatic repair
+  adoption, new recovery owner, derivative or diffraction-refinement claim.
+
 ### Carry checked preparation through campaigns (C225)
 
 - Schema-2 campaign presets may explicitly set `postmr.checked_preparation = true`.
