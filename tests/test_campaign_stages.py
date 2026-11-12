@@ -2,6 +2,8 @@ import json
 import shutil
 import tempfile
 import unittest
+
+import pytest
 from functools import partial
 from pathlib import Path
 from types import SimpleNamespace
@@ -792,3 +794,98 @@ class CampaignStageTests(unittest.TestCase):
             with self.assertRaisesRegex(CampaignStageError, "AUTOSOL_READY"):
                 self.stage("autorefine", run)
             refine.assert_not_called()
+
+
+# Reuse the ordinary-publication fixture: actual caller, publisher and artifact
+# collector, with controlled construction/execution and native-proof seams.
+
+
+@pytest.mark.parametrize("choice", ["verified_parent_runtime", "readyset_checked_model"])
+@pytest.mark.parametrize("mode", ["guarded", "full-auto"])
+def test_campaign_checked_postmr_keeps_exact_review_and_real_receipt(tmp_path, monkeypatch, choice, mode):
+    from tests.test_postmr_runtime import checked_case
+    from nasolve.checkpoints import read_registry, inherited_paths
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch, choice)
+    policy = load_preset().to_dict()
+    policy.update(schema_version=2, workflow={"mode": mode})
+    policy["postmr"]["checked_preparation"] = True
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"
+    attempt.mkdir(parents=True)
+    with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
+            patch("nasolve.campaign_stages.discover_phenix", return_value=sdk), \
+            patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")), \
+            patch("nasolve.postmr._prepare_postmr", side_effect=AssertionError("No legacy second preparation")):
+        result = execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+    assert result["status"] == "POSTMR_READY"
+    assert result["readyset_status"] == ("FAILED" if choice == "verified_parent_runtime" else "COMPLETED")
+    assert result["preparation_mode"] == "checked"
+    assert calls[0][0] == "construct" and calls[1][0] == "execute" and len(calls) == 2
+    assert reads == [1]  # Publication replays the proof once, no collector replay.
+    assert (run / "PostMR/report.json").relative_to(tmp_path).as_posix() in result["artifacts"]
+    assert (run / "PostMR/DictionaryEngine/request/attempts/attempt-0001/result.json").relative_to(tmp_path).as_posix() in result["artifacts"]
+    _, registry = read_registry(run)
+    root = registry["checkpoints"][0]
+    assert root["status"] == "REVIEW" and registry["current"] == "postmr"
+    assert inherited_paths(root, run)["restraints"] == exact["runtime"]["phils"] + exact["runtime"]["dictionaries"]
+
+
+def test_campaign_unqualified_checked_postmr_preserves_attempt_without_legacy_retry(tmp_path, monkeypatch):
+    from tests.test_postmr_runtime import checked_case
+    from nasolve.postmr import PostMRPreparationError
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    exact["runtime"] = None
+    before = (run / "report.json").read_bytes()
+    policy = load_preset().to_dict(); policy["schema_version"] = 2
+    policy["postmr"]["checked_preparation"] = True
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
+    with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
+            patch("nasolve.campaign_stages.discover_phenix", return_value=sdk), \
+            patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")), \
+            patch("nasolve.postmr._prepare_postmr", side_effect=AssertionError("No unchecked retry")):
+        with pytest.raises(PostMRPreparationError, match="no independently checked"):
+            execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+    assert (run / "report.json").read_bytes() == before
+    assert (run / "PostMR/DictionaryEngine/request/attempts/attempt-0001/result.json").is_file()
+    assert not (run / "PostMR/report.json").exists()
+    assert len(calls) == 2 and reads == [1]
+
+
+@pytest.mark.parametrize("defect", ["schema", "type", "unknown"])
+def test_campaign_rejects_invalid_preparation_choice_before_discovery(tmp_path, monkeypatch, defect):
+    from tests.test_cif_postmr_publication import setup
+    run, _, _ = setup(tmp_path, monkeypatch)
+    policy = load_preset().to_dict(); policy["schema_version"] = 2
+    policy["postmr"]["checked_preparation"] = True
+    if defect == "schema": policy["schema_version"] = 1
+    if defect == "type": policy["postmr"]["checked_preparation"] = "true"
+    if defect == "unknown": policy["postmr"]["retry_in_place"] = True
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
+    with patch("nasolve.campaign_stages.discover_phenix", side_effect=AssertionError("Invalid intent must not reach tools")):
+        with pytest.raises(CampaignStageError):
+            execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+
+
+def test_campaign_checked_publication_interrupt_keeps_exact_attempt_for_existing_recovery(tmp_path, monkeypatch):
+    from tests.test_postmr_runtime import checked_case
+    from tests.test_cif_postmr_publication import snapshot
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    from nasolve.postmr import PostMRPreparationError
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    policy = load_preset().to_dict(); policy["schema_version"] = 2
+    policy["postmr"]["checked_preparation"] = True
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
+    before = (run / "report.json").read_bytes()
+    with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
+            patch("nasolve.campaign_stages.discover_phenix", return_value=sdk), \
+            patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")), \
+            patch("nasolve.cif_postmr_publication._publish_run_report", side_effect=OSError("interrupted save")):
+        with pytest.raises(PostMRPreparationError, match="interrupted save"):
+            execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+    assert (run / "report.json").read_bytes() == before
+    sealed = snapshot(run / "PostMR")
+    assert "report.json" in sealed
+    with patch("subprocess.Popen", side_effect=AssertionError("Recovery cannot rerun preparation")):
+        publish_checked_preparation(run, attempt_number=1)
+    assert snapshot(run / "PostMR") == sealed
+    assert len(calls) == 2
+    assert not (attempt / "run-report.json").exists()  # No completed campaign receipt.

@@ -88246,5 +88246,90 @@
         "size": 1858
       }
     ]
+  },
+  "checked_campaign_preparation_2026_11_12": {
+    "date": "2026-11-12",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "b69bc3170af5dc7fdcbde36baf581d0506eb0f23",
+    "status": "FOCUSED_VALIDATED",
+    "before": "Campaign recipes could not select checked preparation and required a ReadySet log from every result.",
+    "after": "Explicit schema-2 checked preparation uses existing construction/execution/publication and real preparation evidence, including independently verified fallback.",
+    "files": [
+      "src/nasolve/campaign_policy.py",
+      "src/nasolve/campaign_stages.py",
+      "src/nasolve/campaigns.py",
+      "src/nasolve/presets.py",
+      "tests/test_presets.py",
+      "tests/test_campaign_stages.py",
+      "tests/test_campaigns.py"
+    ],
+    "source_sha256": {
+      "src/nasolve/campaign_policy.py": "bf4eaa96f0cd5221d281717e0e25e0fe261a563717c7dbe49656c788dc7aaace",
+      "src/nasolve/campaign_stages.py": "622c078db9b32361c9f0f8625050681d591a852491988010df6bdef94880e04d",
+      "src/nasolve/campaigns.py": "fe4dd74a9c051d973e9386a11d4cd15d2e23036ff11268e97ee0c58f06bae866",
+      "src/nasolve/presets.py": "30404c545122e56bc7d9f7488e1c4cbae69aee7242b5cc93f429eeb95892a786",
+      "tests/test_presets.py": "2e0cd510b85192e18fe597b46b322ea5e423b91c98e8f5d6e66a94d567b69dd0",
+      "tests/test_campaign_stages.py": "5c7e3ab3fd9373fd70d572d624000885cace76c633e08f0f0d8b2dc66c1c327a",
+      "tests/test_campaigns.py": "fdc19841825a65d328b4fc93cb4f4258ab900c8c8e6338ff29becd5b62f492d5"
+    },
+    "schemas": "Optional bool postmr.checked_preparation in preset schema 2; existing campaign/checkpoint schemas reused.",
+    "compatibility": "Omission preserves old policy bytes/fingerprints and legacy route. Schema 1 and older stage readers refuse the new field. No migration.",
+    "commands": {
+      "focused_final": {
+        "cwd": "cedar_checkout",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        },
+        "argv": [
+          "python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "tests/test_presets.py",
+          "tests/test_campaigns.py",
+          "tests/test_campaign_stages.py",
+          "tests/test_campaign_execution.py",
+          "tests/test_campaign_pipeline.py",
+          "tests/test_campaign_full_auto_pipeline.py",
+          "tests/test_campaign_full_auto_policy.py",
+          "tests/test_campaign_cli.py",
+          "tests/test_campaign_executor_cli.py",
+          "tests/test_campaign_native_environment.py",
+          "tests/test_postmr_runtime.py",
+          "tests/test_cif_postmr_publication.py"
+        ]
+      }
+    },
+    "validation": {
+      "before": "7 failed, 4 passed (new field/caller regressions)",
+      "initial": "100 passed",
+      "broader_initial": "230 passed + 55 subtests; one test incorrectly expected raw OSError rather than documented PostMRPreparationError",
+      "correction": "9 passed",
+      "final": "295 passed + 59 subtests in 26.80s",
+      "relocation": "Frozen checked recipe remains valid after original campaign path and preset are gone. Existing checked-publication relocation tests included.",
+      "full_suite": "NOT_RUN per Simon; last entirely green full revision C220/583d30df9c2bb8fd76e802e0eaa51d749c2b6eeb",
+      "native_execution": "NOT_RUN; controlled construction/execution/proof seams and existing fixture executables; no fresh Phenix/Coot or chemical qualification"
+    },
+    "limitations": [
+      "Later preparation-child adoption remains Q05.",
+      "Interrupted campaign jobs do not acquire a synthetic receipt after standalone recovery; ordinary campaign retry starts a fresh run.",
+      "General chemical-plane repair remains Q04; real refinement Q06."
+    ],
+    "local_evidence": {
+      "anchor": "live_tests_directory",
+      "path": "225_Cedar_checked-campaign-tjtzjeg9",
+      "files": {
+        "correction.log": "882b26d25d9d9020a6f39d714d836cfa664656f53d4fc0d2674f0ea64da6a57e",
+        "initial.log": "fd706d99fd8a6a54c9404704b1cadd1c3a4af14717f931a3306b3c77efc7323e",
+        "final.log": "58dd0dad18ad9ba51c59f3d3ac2f99fff36b8b6f48a38e21d2f4052d60089cd4",
+        "before.log": "2f29a3daa44752a05cde6fd8a5ded3d8490763315a92170cd73dec6d609ab6d5",
+        "focused.log": "a905a06519916ac26a477b8e7b15d45c01eb4cb690e1965222bf03f375472a69"
+      }
+    },
+    "generated_artifacts": "Only code/tests/docs and bounded technical evidence committed; local logs and all science excluded"
   }
 }

@@ -47,6 +47,26 @@ def default_endpoint(policy: Mapping[str, Any]) -> str:
     return "refine-doctor" if workflow_policy(policy)["run_doctor"] else "autorefine"
 
 
+def postmr_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate the frozen preparation choice without upgrading older recipes.
+
+    Absence preserves the legacy path and serialized policy identity. An explicit
+    checked choice belongs to schema 2; it does not authorize unchecked fallback
+    or rebuilding partial preparation in place.
+    """
+    supplied = policy.get("postmr")
+    if (not isinstance(supplied, dict)
+            or set(supplied) - {"modified_pairs_only", "checked_preparation"}
+            or type(supplied.get("modified_pairs_only")) is not bool):
+        raise ValueError("Unsupported campaign PostMR policy")
+    if "checked_preparation" in supplied:
+        if type(policy.get("schema_version")) is not int or policy["schema_version"] != 2:
+            raise ValueError("postmr.checked_preparation requires preset schema_version = 2")
+        if type(supplied["checked_preparation"]) is not bool:
+            raise ValueError("postmr.checked_preparation must be bool")
+    return dict(supplied)
+
+
 def autosol_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
     """Validate the frozen phase policy without changing anomalous evidence."""
     supplied = policy.get("autosol")

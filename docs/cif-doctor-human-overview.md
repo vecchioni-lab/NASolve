@@ -18,10 +18,11 @@ retained fallback, can now be inspected in Coot with its matching dictionaries
 against the original MR map. That map is not recalculated for the prepared model.
 The ordinary PostMR command can explicitly run the checked route and save that
 exact choice as a review checkpoint for inspection and trial refinement, including
-a checked fallback. An
-interrupted save can finish without rebuilding the model. The next work is
-connecting this handoff to campaign preparation, integrating general
-plane repair, and running complete-restraint refinement and mixed/held-out controls.
+a checked fallback. Schema-2 campaign recipes can explicitly choose the same
+route and preserve its genuine receipt. An interrupted save can finish without
+rebuilding the model; campaign retry preserves the old run and starts fresh.
+Q04/Q05 still need general chemical-plane repair and later preparation children
+before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 

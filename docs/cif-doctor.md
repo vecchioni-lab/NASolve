@@ -167,7 +167,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
-| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`. | Explicit commands only. Automatic PostMR/campaign adoption, later preparation children, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
+| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. Default activation, later preparation children, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -10985,8 +10985,16 @@ remain supported. Checked `PostMRResult` values have `readyset_log=None` and the
 actual `readyset_status`; the report points to the immutable preparation receipt,
 which binds the original request and its native logs. An absent legacy log does
 not mean ReadySet was never attempted. No saved schema changes beyond C223.
-Campaign mode/receipt integration and later preparation children remain Q05;
-general plane repair and real complete-restraint refinement remain Q04/Q06.
+C225 adds explicit campaign mode/receipt integration: a schema-2 preset may set
+`postmr.checked_preparation = true`. The frozen choice uses this same caller and
+publisher; actual ReadySet status and the genuine receipt enter ordinary campaign
+artifact checks. Omitted fields preserve old recipe fingerprints and behavior.
+Interruption retains campaign inspection/fresh-run retry; standalone recovery does
+not synthesize a missing campaign stage receipt. Focused caller, relocation and
+failure tests use controlled scientific seams, not new Phenix/Coot execution.
+See [the recipe](campaign-planning.md#opt-in-checked-model-preparation-cedar-c225).
+Later preparation children remain Q05; general plane repair and real complete-restraint
+refinement remain Q04/Q06.
 
 ### Preparation implementation and limits
 
@@ -11001,7 +11009,7 @@ their behavior. Source/consumer checks and immutable ownership remain unchanged.
 checks, not successful diffraction refinement. General complete-plane repair is
 still awaiting composition into this route. C223 carries the exact chosen model/CIF/PHIL set into an explicitly requested
 initial review checkpoint; C224 composes this through explicit ordinary PostMR.
-Q05 still owns automatic campaign entry and later preparation children; Q06 must
+C225 adds explicit frozen campaign entry. Q05 still owns later preparation children; Q06 must
 validate actual refinement with all NARestraints terms and Free-R handling intact.
 C219's native PDU result is reused for C220's read-only/relocation check; no new
 chemical-support or native-generation claim follows from interface tests.

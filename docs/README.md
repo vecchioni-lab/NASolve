@@ -11,8 +11,9 @@ milestone statements preserve their original scope; they are not a second queue.
   The checked preparation can use ordinary Coot/NARestraints inputs and complete
   dictionary repair plus ReadySet. [Truthful preparation reporting/recovery](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
   is now available through `postmr --checked-preparation`; it saves the checked
-  result as the initial review checkpoint. Automatic campaign adoption, general plane-repair integration, real
-  refinement and broader chemical controls remain open. Read the
+  result as the initial review checkpoint. Schema-2 campaigns can explicitly choose
+  the same route. General plane-repair integration, later preparation children,
+  real refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,
   the [human overview](cif-doctor-human-overview.md) for the explanation, and the
   [capability table](cif-doctor.md#current-capability-boundary) for support limits.

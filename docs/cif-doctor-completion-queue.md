@@ -23,7 +23,7 @@ learned along the way; they are not a reason to keep rebuilding Q04.
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. Complete the existing general plane repair inside the same repair machinery. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects explicit ordinary PostMR; connect campaign entry and define later preparation children without replacing earlier choices. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. Define later preparation children without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
@@ -44,7 +44,8 @@ learned along the way; they are not a reason to keep rebuilding Q04.
    request only through the existing owner and a fresh numbered attempt.
 2. **Use that exact result throughout normal preparation:** C223 closes explicit
    initial checkpoint publication and normal reads; C224 connects explicit ordinary
-   PostMR. Connect campaign entry and later preparation children. Keep latest and selected distinct.
+   PostMR; C225 freezes explicit campaign entry. Define later preparation children.
+   Finish Q04/Q05 before Q06. Keep latest and selected distinct.
 3. **Finish general plane repair:** reuse the existing source-graph rule and
    preserve existing ring planes. PDU and 5PC are controls, not name-based switches.
 4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
@@ -174,11 +175,10 @@ Already implemented and to be reused:
 
 Remaining acceptance:
 
-1. Carry that exact result through Q05 into campaigns; reuse C223–C224's
-   initial checkpoint and `postmr --checked-preparation` integration. Campaigns
-   still need the verified result/receipt distinction when no ReadySet log exists;
-   a retained model must not get a fictitious ReadySet-success label or log.
-   Ordinary default-route enablement remains a separate, explicit decision.
+1. Reuse C223–C225's initial checkpoint, explicit ordinary PostMR and frozen
+   campaign entry. A checked fallback uses its genuine preparation receipt,
+   without a fictitious ReadySet-success label or log. Complete later preparation
+   children through Q05. Default-route enablement remains an explicit decision.
 2. Integrate C208–C216's general plane operation into the existing repair owner.
    Preserve existing ring-plane groups; add only source-supported missing members
    with owned generator/native/energy evidence. Do not substitute an entire
@@ -258,17 +258,20 @@ or a claim of real refinement success. Legacy registries are not converted.
 owned attempt and exact publication, with honest fallback reporting and one proof
 read at publication. Default preparation and campaigns remain unchanged.
 
-**Remaining acceptance:** connect campaign callers to this handoff, and define
-later preparation-child adoption without changing an
-immutable earlier root. Reuse the existing request owner and publication path;
+**C225:** schema-2 campaigns can freeze `postmr.checked_preparation = true`.
+The stage reuses ordinary checked preparation and records its actual ReadySet
+outcome and genuine evidence. Campaign retry still starts a fresh run; standalone
+recovery does not manufacture an interrupted campaign stage receipt.
+
+**Remaining acceptance:** define later preparation-child adoption without changing
+an immutable earlier root. Reuse the existing request owner and publication path;
 do not build another recovery or chemistry framework. Preserve normalization and
 anomalous metadata where actually available, without inventing ReadySet success.
 Exercise cache reuse, missing/stale entries, repair, usable fallback, unqualified
-failure and interruption through the real callers. The immediate caller seam is
-`campaign_stages.py`: it still requires a ReadySet log from every PostMR result.
-Use the actual checked-preparation receipt for a fallback, not a fictitious log;
-freeze the chosen preparation mode in campaign intent and reuse the existing
-constructor/continuation/publisher without rerunning Coot on partial work.
+failure and interruption through the real callers. C225 tests establish campaign
+handoff/frozen intent, not fresh native execution of every chemistry outcome.
+Reuse the existing constructor/continuation/publisher without rerunning Coot on
+partial work. No default activation or broader chemical eligibility follows.
 
 Optional failure should preserve a trustworthy model/restraint set and allow
 useful work to continue. If no safe set remains, block only its dependent scientific

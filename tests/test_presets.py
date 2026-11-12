@@ -274,3 +274,23 @@ def test_rejects_resource_symlink_replacement_before_open(tmp_path, monkeypatch,
     monkeypatch.setattr(presets, "_open_snapshot", replace_then_open)
     with pytest.raises(PresetError, match="Cannot read Resource"):
         load_preset(path)
+
+
+@pytest.mark.parametrize("value", [True, False])
+def test_checked_preparation_is_explicit_frozen_schema_two_policy(tmp_path, value):
+    text = MINIMAL.replace("schema_version = 1", "schema_version = 2")
+    path = write_preset(tmp_path, text + "[postmr]\nchecked_preparation = " + str(value).lower() + "\n")
+    preset = load_preset(path)
+    assert preset.to_dict()["postmr"] == {"modified_pairs_only": False, "checked_preparation": value}
+    frozen = preset.config_sha256
+    path.write_text(text)
+    assert preset.config_sha256 == frozen
+    assert load_preset(path).config_sha256 != frozen
+    assert load_preset(path).to_dict()["postmr"] == {"modified_pairs_only": False}
+
+
+@pytest.mark.parametrize("schema,value", [(1, "true"), (1, "false"), (2, "1"), (2, '\"true\"')])
+def test_checked_preparation_refuses_unversioned_or_nonboolean_policy(tmp_path, schema, value):
+    text = MINIMAL.replace("schema_version = 1", f"schema_version = {schema}")
+    with pytest.raises(PresetError):
+        load_preset(write_preset(tmp_path, text + f"[postmr]\nchecked_preparation = {value}\n"))

@@ -28,7 +28,7 @@ from .phaser import execute_phaser
 from .postmr import prepare_postmr
 from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
-from .campaign_policy import (autosol_policy, workflow_policy, continuation_warning,
+from .campaign_policy import (autosol_policy, workflow_policy, postmr_policy, continuation_warning,
     select_provisional_recommendation, record_runtime_policy)
 from .anomalous_expectations import iodine_refinement_audit
 
@@ -344,6 +344,12 @@ def execute_stage(
         if run.parent != root / name / "AutoMR" or not re.fullmatch(r"run_\d{3,}", run.name):
             raise CampaignStageError("Campaign run must be one numbered AutoMR directory")
     workflow = workflow_policy(policy)
+    preparation_policy = None
+    if stage == "postmr":
+        try:
+            preparation_policy = postmr_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
     phase_policy = None
     if stage in {"autosol", "autorefine"}:
         try:
@@ -454,19 +460,29 @@ def execute_stage(
             pass  # The engine requires Coot only if its mutation plan needs it.
         if coot is not None:
             versions["coot"] = coot.version
-        postmr_policy = _object(policy.get("postmr"), "PostMR policy")
-        if set(postmr_policy) != {"modified_pairs_only"} or type(postmr_policy["modified_pairs_only"]) is not bool:
-            raise CampaignStageError("Unsupported campaign PostMR policy")
         result = prepare_postmr(
             run, _program(phenix, "phenix.ready_set"),
             phenix_installation=phenix,
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
-            modified_pairs_only=postmr_policy["modified_pairs_only"],
+            modified_pairs_only=preparation_policy["modified_pairs_only"],
+            **({"checked_preparation": preparation_policy["checked_preparation"]}
+               if "checked_preparation" in preparation_policy else {}),
             allow_mr_review=mr_trial,
         )
         stage_directory = result.postmr_directory
-        required = [result.model_path, result.readyset_log, *result.restraint_paths]
+        required = [result.model_path, *result.restraint_paths]
+        if preparation_policy.get("checked_preparation", False):
+            # The publisher has verified the exact bundle. Its real immutable
+            # report and request closure are collected below; no invented log or
+            # second expensive proof replay is needed here.
+            extra.update(preparation_mode="checked", readyset_status=result.readyset_status)
+            if result.readyset_log is not None:
+                required.append(result.readyset_log)
+        else:
+            if result.readyset_log is None:
+                raise CampaignStageError("Legacy campaign PostMR requires its ReadySet log")
+            required.append(result.readyset_log)
     elif stage == "autosol":
         result = execute_autosol(
             run, _program(phenix, "phenix.autosol"), _program(phenix, "phenix.mtz.dump"),

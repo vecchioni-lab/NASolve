@@ -1729,6 +1729,14 @@ consuming it and stores execution progress separately. See
 
 ## Campaign execution contract
 
+Schema-2 recipes may explicitly freeze `postmr.checked_preparation = true`.
+The stage uses ordinary checked PostMR, retains its REVIEW root and records the
+real preparation receipt/ReadySet outcome. Omitted choices preserve legacy policy
+identity and behavior. This adds no recovery owner: completed campaign receipts
+resume normally; interrupted jobs retain the existing inspection/fresh-run retry
+rule. Standalone recovery does not synthesize a campaign receipt. See the
+[checked recipe](campaign-planning.md#opt-in-checked-model-preparation-cedar-c225).
+
 `campaign_execution` composes one frozen candidate per dataset through the
 existing scientific engines. New campaign plans use **schema 2** and may contain
 standard W/5W6W members, prepared nonstandard PDB+sequence members, or a mixture

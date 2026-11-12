@@ -1,79 +1,64 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-12**, C224. Active branch **cedar**, checkout `NASolve-c96`.
-Base: `0366d7f9ac246c8e4d2d22a05c67a7a1210d2e43` (C223).
-The [scientific queue](cif-doctor-completion-queue.md) owns work order;
+Updated **2026-11-12**, C225. Active branch **cedar**, checkout `NASolve-c96`.
+Base: `b69bc3170af5dc7fdcbde36baf581d0506eb0f23`. The
+[scientific queue](cif-doctor-completion-queue.md) owns work order;
 [capability limits](cif-doctor.md#current-capability-boundary) remain in force.
-Use laboratory language first. No merge is authorized.
+Finish Q04/Q05 before Q06. Use laboratory language first. No merge authorized.
 
-## Current checkpoint — checked preparation through ordinary PostMR
+## Current checkpoint — campaigns retain the checked preparation
 
-**Before → after:** `postmr RUN --checked-preparation` now constructs once,
-executes one attempt through the existing owner and saves the exact checked model
-and restraints as the initial REVIEW checkpoint. A verified fallback after optional
-ReadySet failure remains usable. The CLI reports the actual outcome and real
-preparation receipt, without inventing a legacy ReadySet log.
+**Before → after:** schema-2 presets can explicitly set
+`postmr.checked_preparation = true`. Planning freezes and validates the choice;
+the campaign uses C224's ordinary checked caller and C223's exact publisher.
+The stage collects the genuine preparation receipt/evidence and actual ReadySet
+outcome, including an independently checked retained model without a fictional
+log. The checkpoint remains REVIEW; this is not diffraction-refinement success.
 
-The default PostMR and campaign routes are unchanged. Shared installation checks
-reject conflicting dispatchers/environments before preparation writes. Missing
-qualification stops the dependent step while preserving its evidence; no unchecked
-second preparation is attempted. An interrupted save finishes through the existing
-exact publication command. An existing partial PostMR directory cannot be rebuilt
-in place. No chemical thresholds, OP3 intent, Free-R or NARestraints rules changed.
+Omitted fields retain old policy fingerprints and legacy preparation. Schema 1
+refuses the field; older stage implementations reject the expanded policy. No
+new owner, unchecked fallback, chemical threshold or artifact schema. Completed
+campaign receipts resume normally. Interrupted stages preserve all evidence;
+explicit campaign retry starts a new run after prior processes are known stopped.
+Standalone recovery does not retrospectively manufacture a campaign receipt.
 
-**Files/schema:** `postmr.py`, `cif_ordinary_postmr.py`, `cli.py`, the existing
-PostMR runtime test module and maintained docs. No new saved schema: C223's
-checksummed preparation receipt/checkpoint schema 3 is reused. The live
-`PostMRResult.readyset_log` is optional on the checked route; its additive
-`readyset_status` reports the actual outcome. Legacy explicit-path callers work
-as before; the checked API requires a selected Phenix installation.
+**Files:** four existing campaign/preset modules and three existing test modules;
+existing guides, queue, descriptor and changelog. **Validation:** 7 fail-before
+cases; final affected campaign/preset/publication checks pass **295 tests + 59
+subtests in 26.80s**. One initial test expected a raw interruption error instead
+of PostMR's documented wrapped error; corrected, with preserved-receipt recovery
+passing. Frozen recipe relocation is checked after the original path/preset are
+gone. No full suite or fresh scientific Phenix/Coot execution. Test doubles and
+fixture executables establish caller behavior, not new chemical support.
 
-**Validation:** nine fail-before cases; 196 affected tests + 34 subtests pass.
-Final ordinary-PostMR controls pass **20 tests**, including the last added
-no-rebuild control; smoke passes **139 tests + 6 subtests**. Source hashes stayed
-unchanged during the final checks. All 668 Python files compile without warnings
-or bytecode. No full suite and no fresh scientific Phenix/Coot execution.
-Tests use controlled constructor/executor seams and test executables; this is
-caller/recovery evidence, not new chemical or diffraction-refinement qualification.
+Exact command/results/hashes: ledger key `checked_campaign_preparation_2026_11_12`.
+Local logs: `live_tests_directory/225_Cedar_checked-campaign-tjtzjeg9`.
+Use Python 3.12.14, `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`.
+Last entirely green full revision remains C220/`583d30df`; C222's later full-run
+CLI failure and focused correction remain recorded. Generated logs/science are
+excluded from Git. Tests completed; no native/GUI worker is active.
 
-Exact commands, results and hashes: ledger key `ordinary_checked_postmr_2026_11_12`.
-Local capsule: `live_tests_directory/224_Cedar_ordinary-checked-postmr-lx_vcv3s`.
-Use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, Python 3.12.14.
-C223's saved PDU/native-source relocation evidence is reused; its synthetic
-observation/map fixtures do not prove MTZ interpretation. C223's workflow profile
-passed 2,230 tests + 45 subtests. C220/`583d30df` remains the last entirely green
-full revision; C222's full-run CLI failure and focused correction remain recorded.
-See the [C223 handoff](https://github.com/vecchioni-lab/NASolve/blob/0366d7f9ac246c8e4d2d22a05c67a7a1210d2e43/docs/development-handoff.md).
-No native/GUI job is active; validation commands completed. Generated outputs,
-logs and local receipts are deliberately excluded from Git.
+## Active push — Q04 chemical-plane repair, then remaining Q05
 
-## Next — use the same result in campaigns
+Started 19:46 UTC, bounded to about 22:46 UTC, no full suite. C225 is ready for
+publication. Prior-work review: C208–C214 already provide graph-selected candidate,
+owned support and exact native-capture gates. C215's whole-plane energy check is
+pure; its kernel execution authentication is local experimental evidence, not a
+maintained replayable execution reader. C216 measures geometry separately.
 
-Q05 remains open for campaign mode/receipt integration and later preparation
-children. Freeze the preparation choice in campaign intent; use the genuine
-preparation receipt when no legacy ReadySet log exists. Reuse the shared
-constructor/executor/publisher and existing recovery owner. Keep default behavior
-compatible, never reconstruct partial work or replace an immutable earlier choice.
+Next close that numerical-evidence handoff using the existing process runner,
+then compose it with the existing repair owner/selection. Do not replace the
+whole multiple-plane generated CIF. Preserve ring planes and NAR's stacking
+selections; only supported intramolecular members may be added. No automatic
+plane-repair claim until selection/publication and ordinary invocation are joined.
+Q05 still needs later preparation children without replacing earlier choices.
+Q06 real refinement and Q07 mixed/held-out chemistry stay queued.
 
-**Q04 holdover: general chemical-plane repair is still unfinished.** Compose
-C208–C216 into the existing repair owner; the C223–C224 handoff does not close it.
-Preserve NAR's reviewed stacking-plane selections. Cedar extends only chemically
-supported intramolecular CIF planes, without changing NAR parallelity or flattening
-arbitrary appendages. The [queue's Q04 acceptance](cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts)
-records the inspected NAR version, ownership boundary and unfamiliar-base caveats.
-This follow-up changes documentation only; no new runtime/native validation is
-claimed. Q06 is real complete-restraint refinement. Q07 combines the mixed scaffold
-with ATL alongside and the separate unfamiliar-ligand challenge. Q08–Q16 retain chemistry/coverage/
-reporting/release work. PDU plane completeness, DP ambiguity, source-H/charge and
-nonstandard-backbone qualification remain explicit limits. The new option does
-not broaden checked-route chemical eligibility or make catalogue-wide promises.
+## Preserve local evidence
 
-## Preserve local evidence and continuity
-
-Keep C220's archived runner/build evidence. Preserve `NASolve-cedar` at
-`e7451eedbc03c3accc93bc3138dfa9d1d031a7a9`, its local `phaser.py` change and
-unpublished data. Everyday pine and metal work remain separate. Never clean raw
-runs, partial outputs, environments or unrelated files. The current queue and
-handoff are edited in place; older decisions remain in Git and the evidence ledger.
+Keep earlier runners/build evidence and protected `NASolve-cedar` at `e7451eed`
+with its local `phaser.py` change and unpublished data. Everyday pine and metal
+work remain separate. Never clean partial runs, environments or unrelated files.
+The current queue and handoff are edited in place; history/evidence remain in Git.
 
 — Rowan · Codex desktop

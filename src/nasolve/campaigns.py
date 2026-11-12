@@ -25,7 +25,7 @@ from .automr_input import (
     normalize_frame, read_intent, resolve_automr_input,
 )
 from .presets import PresetError, ProjectPreset, load_preset
-from .campaign_policy import autosol_policy, workflow_policy
+from .campaign_policy import autosol_policy, workflow_policy, postmr_policy
 from .campaign_threads import (
     SequenceThreadError, membership_by_dataset, parse_sequence_threads,
 )
@@ -674,6 +674,7 @@ def _validate_plan(payload: Any) -> None:
     try:
         workflow_policy(policy)
         autosol_policy(policy)
+        postmr_policy(policy)
     except ValueError as exc:
         raise CampaignError(f"Malformed campaign workflow: {exc}") from exc
     _require(policy["description"], str, "preset.policy.description")

@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry checked preparation through campaigns (C225)
+
+- Schema-2 campaign presets may explicitly set `postmr.checked_preparation = true`.
+  Freeze and validate that choice; omitted options retain legacy preparation and
+  policy fingerprints. Reuse ordinary checked PostMR and its review checkpoint.
+- Collect the genuine preparation receipt and evidence, reporting ReadySet's
+  actual outcome even when a verified starting model is retained without a log.
+- Preserve campaign interruption/retry rules and all partial outputs. No unchecked
+  fallback, automatic in-place retry, new owner or broader chemical eligibility.
+
 ### Run checked preparation through ordinary PostMR (C224)
 
 - `postmr RUN --checked-preparation` constructs once, executes the existing

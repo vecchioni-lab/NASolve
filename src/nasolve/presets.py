@@ -19,7 +19,7 @@ from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any
 
 from .phosphate import PhosphateError, validate_op3_sites
-from .campaign_policy import autosol_policy, workflow_policy
+from .campaign_policy import autosol_policy, workflow_policy, postmr_policy
 
 try:
     import tomllib
@@ -255,6 +255,8 @@ def load_preset(source: str | Path = "5w6w") -> ProjectPreset:
                 raise PresetError(str(exc)) from exc
             continue
         allowed = set(defaults) | ({"pair"} if name == "automr" else set())
+        if name == "postmr":
+            allowed.add("checked_preparation")
         _unknown_keys(supplied, allowed, name)
         resolved = {**defaults, **supplied}
         if (name == "autosol" and workflow["mode"] == "full-auto"
@@ -276,6 +278,11 @@ def load_preset(source: str | Path = "5w6w") -> ProjectPreset:
             if len(parts) != 2 or not all(re.fullmatch(r"[A-Za-z0-9]+", part) for part in parts):
                 raise PresetError("automr.pair must contain two residue tokens: FIRST:SECOND")
             resolved["pair"] = ":".join(parts)
+        if name == "postmr":
+            try:
+                resolved = postmr_policy({**policy, "postmr": resolved})
+            except ValueError as exc:
+                raise PresetError(str(exc)) from exc
         policy[name] = resolved
 
     chemistry = _table(data, "chemistry")
