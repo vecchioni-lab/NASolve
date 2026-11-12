@@ -214,6 +214,18 @@ def read_multiple_plane_candidate(directory):
         raise ValueError("Incomplete multiple-plane generation evidence: " + str(exc)) from exc
 
 
+def read_multiple_plane_execution_failure(directory):
+    """Validate frozen inputs to a failed job; partial output is not chemistry proof.
+
+    The owned caller must separately prove a launched, stopped process and match
+    its status/return code. This never authorizes support, fallback or retry.
+    """
+    try:
+        return _read_representation_candidate(Path(directory),multiple_planes=True,execution_failure=True)
+    except (OSError,KeyError,TypeError,AttributeError,IndexError,OverflowError) as exc:
+        raise ValueError("Incomplete failed multiple-plane generation evidence: "+str(exc)) from exc
+
+
 def _replay_exact_handoff(result, expected):
     """Verify baseline worker scalar evidence, without aromatic-order permission."""
     contract = {"allowed_systems": []}
@@ -230,7 +242,7 @@ def _replay_exact_handoff(result, expected):
         raise ValueError("Completed native source/charge handoff differs")
 
 
-def _read_representation_candidate(root, *, multiple_planes=False):
+def _read_representation_candidate(root, *, multiple_planes=False, execution_failure=False):
     from .cif_source_candidate import WORKER,SOURCE_PATHS,native_object_reference,complete_candidate_stereo,candidate_generation_diagnostic
     from .cif_constructor_setup import native_setup_reference
     from .cif_generation import _ideal_seed,inspect_component_generation,_explicit_formal_charges,_help_option_definitions,_OPTION_ALIASES
@@ -292,6 +304,7 @@ def _read_representation_candidate(root, *, multiple_planes=False):
     if report["native_object_reference"]!=native_object_reference(builder) or report["native_setup_reference"]!=native_setup_reference(builder):raise ValueError("Native API reference differs")
     spec_path=root/"candidate_spec.json"
     if not spec_path.exists():
+        if execution_failure:raise ValueError("Failed candidate execution lacks a native specification")
         if report["execution"]["status"]!="NOT_RUN" or report["candidate"] is not None or report["status"]!="FAILED" or not report.get("error"):raise ValueError("Unexplained missing native specification")
         if report["diagnostic"]!=candidate_generation_diagnostic(report):raise ValueError("Candidate diagnostic differs")
         return report
@@ -323,6 +336,23 @@ def _read_representation_candidate(root, *, multiple_planes=False):
     if contract is not None:wanted["source_representation_contract"]=contract
     if len(caps.get("command",[]))!=2 or caps["command"][1]!="--help" or not Path(caps["command"][0]).is_relative_to(historical):raise ValueError("Unselected historical help dispatcher")
     if spec!=wanted or report["arguments"]!=args:raise ValueError("Complete native specification differs")
+    if execution_failure:
+        execution=report["execution"]
+        if (not multiple_planes or execution.get("status") not in {"FAILED","TIMED_OUT"}
+                or type(execution.get("returncode")) is not int or execution["returncode"]==0
+                or report.get("status") not in {"FAILED","REJECTED","CANDIDATE_REVIEW"}):
+            raise ValueError("Require a negative native candidate execution")
+        # A killed process can leave incomplete/malformed numerical output. Retain
+        # and hash it, but do not parse it as chemical support or a completed build.
+        if report["candidate"] is None:
+            if report.get("candidate_retained") is not False or (root/"candidate.cif").exists():
+                raise ValueError("Unexplained partial candidate output")
+        elif verify(report["candidate"])!=root/"candidate.cif" or report.get("candidate_retained") is not True:
+            raise ValueError("Partial candidate identity differs")
+        verify_inventory()
+        if (root/"source_candidate_receipt.json").read_bytes()!=original_receipt:
+            raise ValueError("Negative generation receipt changed during replay")
+        return report
     result=load(root/"candidate_result.json") if (root/"candidate_result.json").exists() else {}
     if result!=report.get("result",{}):raise ValueError("Native result differs")
     for name,snapshot,options in [("representation_handoff",result.get("reader"),{"coordinates":True}),

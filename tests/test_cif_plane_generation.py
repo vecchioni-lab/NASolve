@@ -76,7 +76,7 @@ def test_combined_representation_and_multiple_planes_replays_without_weakening_e
     with pytest.raises(ValueError):read_multiple_plane_candidate(directory)
 
 
-def plane_generation(tmp_path):
+def plane_generation(tmp_path,mode="none"):
     from tests.test_cif_source_representation import fake_generation
     from tests.test_cif_plane_candidate import inputs
     from tests.test_cif_stereochemistry_audit import write
@@ -90,9 +90,9 @@ def plane_generation(tmp_path):
             a+'atom_id_3':['N','R','R'],a+'value_angle':['120']*3,a+'value_angle_esd':['2']*3})
         write(folder/'dictionary.cif',d)
         return write(folder/'source.cif',s),write(folder/'support.cif',p)
-    directory,report=fake_generation(tmp_path,opt_in=False,multiple_planes=True,request_owned=True,
+    directory,report=fake_generation(tmp_path,mode=mode,opt_in=False,multiple_planes=True,request_owned=True,
         ring_atoms=(),aromatic_count=0,pair_factory=pair_factory,source_name='original source CCD.cif')
-    assert report['status']=='CANDIDATE_REVIEW'
+    assert report['status']==('FAILED' if mode in {'timeout','process_failure','partial_candidate_failure','partial_result_failure'} else 'CANDIDATE_REVIEW')
     return tmp_path/'inputs/original source CCD.cif',tmp_path/'inputs/dictionary.cif',directory.parents[2],directory
 
 
@@ -255,3 +255,76 @@ def test_changed_request_ceiling_cannot_borrow_a_completed_attempt(tmp_path):
     write_record(request/'request.json',header,replace=True)
     with pytest.raises(ValueError,match='generation attempt intent'):
         read_owned_plane_support(source,'Q17',request,1)
+
+
+@pytest.mark.parametrize('mode',['timeout','process_failure','partial_candidate_failure','partial_result_failure'])
+def test_known_failed_plane_generation_replays_cold_without_becoming_support(tmp_path,monkeypatch,mode):
+    import nasolve.cif_plane_generation as m
+    source,_,request,directory=plane_generation(tmp_path,mode)
+    value=m.inspect_owned_plane_generation_failure(source,'Q17',request,1)
+    assert value['status']=='KNOWN_STOPPED_GENERATION_FAILURE'
+    assert value['failure_kind']==('TIMED_OUT' if mode=='timeout' else 'FAILED')
+    assert value['new_native_calls']==0 and not value['fallback_authorized'] and not value['retry_authorized']
+    assert value['candidate_qualification']=='NOT_ASSESSED' and 'support' not in value
+    with pytest.raises(ValueError):m.read_owned_plane_support(source,'Q17',request,1)
+    moved=request.rename(tmp_path/'relocated');source.unlink()
+    before={p:(p.read_bytes(),p.stat().st_mtime_ns) for p in moved.rglob('*') if p.is_file()}
+    def forbidden(*a,**k):raise AssertionError('Cold failure read must not execute or probe')
+    with monkeypatch.context() as guard:
+        guard.setattr('subprocess.Popen',forbidden)
+        guard.setattr('nasolve.cif_generation_process.process_alive',forbidden)
+        guard.setattr('nasolve.cif_generation_attempt.coordinator_alive',forbidden)
+        assert m.inspect_owned_plane_generation_failure(moved/'inputs/source.cif','Q17',moved,1)==value
+    assert all((p.read_bytes(),p.stat().st_mtime_ns)==v for p,v in before.items())
+
+
+@pytest.mark.parametrize('defect',['source','code','attempt','unsealed','worker','spec','claim','returncode','retained','extra'])
+def test_negative_plane_generation_still_requires_bound_inputs_and_stopped_execution(tmp_path,defect):
+    from nasolve.cif_plane_generation import inspect_owned_plane_generation_failure
+    from nasolve.campaign_records import read_record,write_record
+    source,_,request,directory=plane_generation(tmp_path,'process_failure');code='Q17';number=1
+    if defect=='source':source.write_bytes(source.read_bytes()+b'changed')
+    elif defect=='code':code='OTHER'
+    elif defect=='attempt':number=True
+    elif defect=='unsealed':(directory.parent/'finished.json').unlink()
+    else:
+        report=json.loads((directory/'source_candidate_receipt.json').read_text())
+        if defect=='worker':(directory/'candidate_worker.py').write_text('different')
+        elif defect=='spec':
+            p=directory/'candidate_spec.json';v=json.loads(p.read_text());v['arguments'].remove('--multiple_planes');p.write_text(json.dumps(v))
+        elif defect=='claim':report['execution']['status']='COMPLETED'
+        elif defect=='returncode':report['execution']['returncode']=True
+        elif defect=='retained':report['candidate_retained']=True
+        elif defect=='extra':(directory/'unexpected.txt').write_text('extra')
+        for ref in report['outputs']:
+            p=directory/ref['path'];ref.update(size=p.stat().st_size,sha256=sha256(p.read_bytes()).hexdigest())
+        p=directory/'source_candidate_receipt.json';p.write_text(json.dumps(report))
+        finished=read_record(directory.parent/'finished.json')
+        finished['candidate_receipt'].update(size=p.stat().st_size,sha256=sha256(p.read_bytes()).hexdigest())
+        write_record(directory.parent/'finished.json',finished,replace=True)
+    with pytest.raises(ValueError):inspect_owned_plane_generation_failure(source,code,request,number)
+
+
+@pytest.mark.parametrize('defect',['context','command','completion','job_timeout','missing_identity','bool_returncode'])
+def test_negative_generation_requires_exact_candidate_process_receipt(tmp_path,monkeypatch,defect):
+    import nasolve.cif_plane_generation as m
+    source,_,request,_=plane_generation(tmp_path,'process_failure')
+    original=m.inspect_generation_process
+    def changed(*a,**k):
+        v=original(*a,**k)
+        if a[1]=='candidate':
+            if defect=='context':v['job']['context']['total_timeout_seconds']+=1
+            elif defect=='command':v['job']['argv_provenance'][-1]='another.json'
+            elif defect=='completion':v['finished']['status']='INTERRUPTED'
+            elif defect=='job_timeout':v['job']['timeout_seconds']=100
+            elif defect=='missing_identity':v.pop('identity')
+            else:v['finished']['returncode']=True
+        return v
+    monkeypatch.setattr(m,'inspect_generation_process',changed)
+    with pytest.raises(ValueError):m.inspect_owned_plane_generation_failure(source,'Q17',request,1)
+
+
+def test_completed_support_is_not_classified_as_failed_generation(tmp_path):
+    from nasolve.cif_plane_generation import inspect_owned_plane_generation_failure
+    source,_,request,_=plane_generation(tmp_path)
+    with pytest.raises(ValueError):inspect_owned_plane_generation_failure(source,'Q17',request,1)

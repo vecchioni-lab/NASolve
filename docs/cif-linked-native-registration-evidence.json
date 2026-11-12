@@ -89894,5 +89894,82 @@
       "No full suite, new generation, Coot or diffraction refinement",
       "Automatic outer support acquisition remains Q04; later preparation children Q05"
     ]
+  },
+  "owned_plane_generation_failure_2026_11_12": {
+    "milestones": "C240–C241",
+    "base_commit": "9f05d60",
+    "behavior": "Read exact stopped failed plane-generation inputs/ownership without admitting partial output; preserve existing multiple-plane recipe through acquisition child identity.",
+    "prior_work": [
+      "C193 candidate_generation_diagnostic is explanatory, not fallback/retry authority",
+      "C213/C232 completed owned support binds exact source/recipe/producer/actual grant",
+      "C157 acquisition owns shared generation and finite attempts"
+    ],
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py tests/test_cif_source_representation.py",
+        "result": "108 passed in 32.61s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py -k known_failed",
+        "result": "4 passed, 68 deselected in 3.03s; includes incomplete CIF and malformed partial JSON"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_acquisition_attempt.py tests/test_cif_generation_attempt.py tests/test_cif_generation_acquisition.py",
+        "result": "182 passed in 38.01s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_acquisition_attempt.py -k 'multiple_plane_generation or add_or_drop_multiple_plane_choice'",
+        "result": "3 passed, 51 deselected in 3.16s"
+      },
+      {
+        "command": "fail-before new known_failed and multiple_plane_generation cases",
+        "result": "2 missing-reader failures and 1 shared generation identity/sealing failure"
+      }
+    ],
+    "native": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> <ignored runner>/c240_native.py",
+      "mode": "ACTUAL Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "capsule": {
+        "anchor": "live_tests_directory",
+        "path": "240_Cedar_plane-generation-timeout-2lrkujav"
+      },
+      "source_pins": "start.json",
+      "location": "artifact-location.json",
+      "proof": "failure-proof.json",
+      "summary": {
+        "status": "KNOWN_STOPPED_PLANE_GENERATION_TIMEOUT_PASS",
+        "request_state": "STOPPED",
+        "failure_kind": "TIMED_OUT",
+        "returncode": -15,
+        "support_admission": "REFUSED",
+        "fallback_authorized": false,
+        "retry_authorized": false,
+        "request_bytes": 282027,
+        "request_files": 22,
+        "phenix": "2.2.1",
+        "elapsed_seconds": 2.3295382500218693,
+        "refinement": "NOT_RUN",
+        "coot": "NOT_RUN",
+        "full_suite": "NOT_RUN"
+      },
+      "cold_command": "<python3.12> <ignored runner>/c240_cold.py",
+      "cold": {
+        "status": "RELOCATED_NEGATIVE_GENERATION_REPLAY_PASS",
+        "unchanged_files": 22,
+        "old_request_absent": true,
+        "old_paths_sdk_processes_forbidden": true,
+        "support_refused": true,
+        "fallback_authorized": false,
+        "retry_authorized": false
+      }
+    },
+    "static_review": "AST scan of 18 Python modules changed since b8c9251: no shadowed top-level definitions or imported collectable test functions; changed-file syntax and git diff --check pass. No repository-wide semantic redundancy claim.",
+    "compatibility": "No saved format change or migration; completed support remains strict; no old run rewrites/resealing. Derived negative proof policy cif-owned-plane-generation-failure-v1 grants no fallback/retry authority.",
+    "exclusions": "Scientific inputs, partial outputs, logs, local runners and source pin listings remain outside Git",
+    "limitations": [
+      "Only launched failed/timed-out candidate job with completed capability phase; earlier capability/prelaunch and zero-exit unqualified builds not covered",
+      "Automatic outer support acquisition remains Q04; later preparation children Q05",
+      "No full suite or diffraction refinement"
+    ]
   }
 }

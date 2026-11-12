@@ -186,8 +186,12 @@ Remaining acceptance:
 2. C234–C239 join C226/C227 to the existing prepared repair request, with explicit
    owned support, real success/stopped-native fallback and compact exact proof.
    Next obtain/freeze that support through the complete request's generation owner,
-   with durable child identity, shared deadlines and bounded storage. Reuse the
-   existing graph screen and narrow candidate; do not add another executor.
+   with durable child identity, shared deadlines and bounded storage. C240 now
+   verifies a launched stopped negative generation without admitting partial output;
+   C241 preserves its optional recipe flag through existing acquisition identity.
+   Reuse these and the existing graph screen/narrow candidate. Do not add another
+   executor. Earlier capability failures and zero-exit unqualified builds still
+   need an explicit, equally strict fallback classification before broad coverage.
    Preserve existing ring-plane groups; add only source-supported missing members
    with owned generator/native/energy evidence. Do not substitute an entire
    multiple-plane generated CIF. Keep non-PDU controls and ambiguous/tetrahedral
@@ -237,6 +241,8 @@ select a numbered stopped attempt, account for shared time and attempt allowance
 and preserve a checked fallback when an optional native attempt is demonstrably
 unsuccessful. Unknown/malformed ownership cannot be treated as that fallback.
 C232 already permits an actual parent grant below the frozen generation maximum.
+C240 proves exact launched negative generation; C241 removes the acquisition
+recipe-identity mismatch. Neither invokes automatic outer-request plane generation.
 Use that existing owner; do not raise bounds or alter historical requests.
 Then demonstrate the resulting restraints in Q06; a flat
 starting PDU substituent does not prove that refinement will keep it flat.

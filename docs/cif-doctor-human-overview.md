@@ -69,6 +69,12 @@ source; a checksum alone cannot recreate missing data. Working-file retirement
 needs an explicit, interruption-safe policy after every process is known stopped.
 Old or failed scientific runs are not silently cleaned up.
 
+Doctor can now distinguish a demonstrably stopped failed plane-generation job
+from lost ownership of a process. It retains incomplete output without mistaking
+it for chemical support. This is evidence the enclosing workflow can use; it does
+not itself choose a fallback or start another job. A related bookkeeping fix keeps
+the requested plane-generation recipe intact during dictionary reuse.
+
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and
 [evidence ledger](cif-linked-native-registration-evidence.json) provide exact

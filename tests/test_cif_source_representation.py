@@ -102,7 +102,9 @@ def post_process(molecule,options):
  shutil.copyfile(os.environ['CANDIDATE_FIXTURE'],'candidate.cif')
  AFTER
  return molecule
-""".replace("==10", "=="+str(aromatic_count)).replace("BEFORE","import time;time.sleep(4)" if mode=="timeout" else "pass").replace("AFTER",{"finished_charge":"molecule[0].charge=1","finished_edge":"molecule.bonds[0].order="+str(edge_value),"exception_after":"raise RuntimeError('FAKE AFTER OUTPUT')"}.get(mode,"pass")))
+""".replace("==10", "=="+str(aromatic_count)).replace("BEFORE",{"timeout":"import time;time.sleep(4)","process_failure":"raise SystemExit(7)",
+        "partial_candidate_failure":"from pathlib import Path;Path('candidate.cif').write_text('incomplete CIF');raise SystemExit(7)",
+        "partial_result_failure":"from pathlib import Path;Path('candidate_result.json').write_text('{');raise SystemExit(7)"}.get(mode,"pass")).replace("AFTER",{"finished_charge":"molecule[0].charge=1","finished_edge":"molecule.bonds[0].order="+str(edge_value),"exception_after":"raise RuntimeError('FAKE AFTER OUTPUT')"}.get(mode,"pass")))
     elbow=program(tmp_path,help_text=HELP+'  --opt_steps=COUNT  Step count\n'+('  --multiple_planes  Local planes\n' if multiple_planes else ''));selected=root/'bin/phenix.elbow';selected.write_bytes(elbow.read_bytes());selected.chmod(0o755)
     pins=[{'anchor':'phenix_installation','path':(p:=site/name).relative_to(root).as_posix(),'sha256':sha256(p.read_bytes()).hexdigest(),'size':p.stat().st_size} for name in SOURCE_PATHS]
     out=tmp_path/'generation';options={'bond_representation_policy':policy} if opt_in else {}

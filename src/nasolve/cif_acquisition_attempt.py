@@ -87,7 +87,8 @@ def _generation_child(root, attempt, intent, config, *, closed_no_child=False):
     request=state['request'];g=request['configuration'];r=config['dictionary_request'];b=config['generation_binding']
     _need(link.get('request_sha256') in (None,request['record_sha256']) and g['source']=={'sha256':r['source_sha256'],'size':r['source_size']}
           and g['component']==r['component'] and g['max_attempts']==b['max_attempts']
-          and g['recipe']==dict(expected_dialect=r['recipe']['expected_dialect'],single_block_steps=r['recipe']['single_block_steps'],timeout_seconds=b['timeout_seconds'],bond_representation_policy=r['recipe'].get('bond_representation_policy'))
+          and g['recipe']==dict(expected_dialect=r['recipe']['expected_dialect'],single_block_steps=r['recipe']['single_block_steps'],timeout_seconds=b['timeout_seconds'],bond_representation_policy=r['recipe'].get('bond_representation_policy'),
+              **({'multiple_planes':True} if r['recipe'].get('multiple_planes') is True else {}))
           and all(g['generator'][k]==r['generator'][k] for k in ('api_sources','prior_sources'))
           and g['generator']['phenix_version']==r['generator']['version'], 'Shared generation request identity differs')
     # A next-slot observation is not a reservation. A failed preflight may leave

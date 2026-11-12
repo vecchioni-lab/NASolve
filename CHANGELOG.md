@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish stopped plane-generation failure and preserve its requested recipe (C240–C241)
+
+- Add read-only proof of an exact launched, stopped failed/timed-out plane
+  generation. Reuse source/spec/worker and request/process validation. Keep partial
+  CIF/JSON output unqualified; successful support still requires its complete
+  chemical handoff. This proof alone authorizes neither fallback nor retry.
+- Preserve the existing optional multiple-plane recipe flag when acquisition
+  checks its generation child. Previously a correctly requested flag made the
+  identities disagree and could prevent sealing. Added/dropped flags still fail.
+- Historical request/receipt meanings and immutable attempts remain; no artifact
+  migration or in-place recovery. Actual Phenix timeout and cold relocation pass.
+  Complete-request automatic plane acquisition remains separate integration work.
+
 ### Reference retained native inventories and enforce aggregate support bounds (C238–C239)
 
 - Compact plane jobs reference the exact already frozen native inventory by

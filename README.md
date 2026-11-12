@@ -49,9 +49,9 @@ ambiguous historical inputs remain readable but cannot start fresh attempts.
 
 [Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
 and the [prepared-model entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
-provide supported inputs without borrowing settings from old test runs. Ordinary
-default activation remains open. Explicit checked PostMR/campaign preparation can
-publish its exact selected result as an initial review checkpoint. Explicit NAR planes now have
+provide supported inputs without borrowing settings from old test runs. The checked
+route remains opt-in. Explicit checked PostMR/campaign preparation can publish its
+exact selected result as an initial review checkpoint. Explicit NAR planes now have
 [qualified intake](docs/cif-doctor.md#exact-planarity-intake-c186), and the explicit
 [literal-input bridge](docs/cif-doctor.md#original-literal-input-provenance-c187)
 preserves pair/stack intent and compiler/native evidence through owned requests.

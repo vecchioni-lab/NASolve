@@ -26,6 +26,9 @@ def setup(case,tmp_path,monkeypatch):
     def generate(root,python,elbow,api,source,code,output,**kwargs):
         output.mkdir();generated.append(output)
         context=dict(component=code,source_sha256=sha256(source.read_bytes()).hexdigest(),attempt_owner=kwargs['attempt_identity'])
+        if kwargs.get('multiple_planes') is True:
+            from nasolve.cif_source_candidate import MULTIPLE_PLANE_POLICY_ID
+            context.update(multiple_planes=True,candidate_policy_id=MULTIPLE_PLANE_POLICY_ID)
         run_generation_command([sys.executable,'-c','print("synthetic generation")'],output,phase='candidate',environment=dict(os.environ),timeout_seconds=kwargs['timeout_seconds'],context=context)
         target=output/'candidate.cif';target.write_bytes(c.read_bytes())
         report=dict(schema_version=1,status='CANDIDATE_REVIEW',component=code,source_sha256=sha256(source.read_bytes()).hexdigest(),source_preserved=True,candidate_retained=True,candidate=dict(anchor='candidate_directory',path='candidate.cif',sha256=sha256(c.read_bytes()).hexdigest(),size=c.stat().st_size),execution={'status':'COMPLETED'},stopping={'status':'NOT_REPORTED'})
@@ -265,3 +268,44 @@ def test_late_cache_result_is_retained_but_not_returned_as_success(setup,monkeyp
     r=m.acquire_dictionary_attempt(*args,**options,_remaining_seconds=lambda:cap[0])
     assert r['attempt_number']==2 and r['acquisition']['status']=='REUSED' and len(generated)==1
     assert inventory(args[-1]/'attempts/attempt-0001')==old
+
+
+
+def test_multiple_plane_generation_keeps_its_frozen_recipe_through_acquisition_and_cold_read(setup,tmp_path,monkeypatch):
+    import shutil
+    m,args,options,calls,generated=setup
+    options['generation']['multiple_planes']=True
+    first=m.acquire_dictionary_attempt(*args,**options)
+    before=inventory(args[-1]/'attempts/attempt-0001')
+    second=m.acquire_dictionary_attempt(*args,**options)
+    assert len(generated)==1 and second['acquisition']['status']=='REUSED'
+    assert inventory(args[-1]/'attempts/attempt-0001')==before
+    state=m.inspect_acquisition_request(args[-1]);assert all(row['state']=='STOPPED' for row in state['attempts'])
+    assert state['request']['configuration']['dictionary_request']['recipe']['multiple_planes'] is True
+    moved=args[-1].rename(tmp_path/'relocated-request');shutil.rmtree(options['phenix'].root)
+    args[0].unlink();shutil.rmtree(args[2])
+    def forbidden(*a,**k):raise AssertionError('Cold acquisition read must not execute or write')
+    monkeypatch.setattr('subprocess.Popen',forbidden);monkeypatch.setattr(m,'write_record',forbidden)
+    before=inventory(moved)
+    assert m.read_acquisition_result(moved,2)['report']['entry_id']==first['acquisition']['entry_id']
+    assert inventory(moved)==before
+
+
+@pytest.mark.parametrize('requested',[False,True])
+def test_generation_child_cannot_add_or_drop_multiple_plane_choice(setup,monkeypatch,requested):
+    m,args,options,calls,generated=setup
+    if requested:options['generation']['multiple_planes']=True
+    m.acquire_dictionary_attempt(*args,**options)
+    original=m.inspect_source_generation_request
+    def changed(path):
+        state=original(path)
+        if state['state']=='RECORDED':
+            recipe=state['request']['configuration']['recipe']
+            if requested:recipe.pop('multiple_planes')
+            else:recipe['multiple_planes']=True
+        return state
+    monkeypatch.setattr(m,'inspect_source_generation_request',changed)
+    before=inventory(args[-1])
+    with pytest.raises(ValueError,match='Shared generation request identity differs'):
+        m.inspect_acquisition_request(args[-1])
+    assert inventory(args[-1])==before

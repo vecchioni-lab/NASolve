@@ -140,7 +140,7 @@
 
 <a id="current-capability-boundary-c220"></a>
 
-## Current capability boundary (C239)
+## Current capability boundary (C241)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -763,6 +763,43 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 `source_selected_model_geometry_2026_11_11`. Native completion and better local
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
+
+### Recognize failed owned plane generation without using its output (C240–C241)
+
+`inspect_owned_plane_generation_failure(source, code, request_directory,
+attempt_number)` derives a read-only `cif-owned-plane-generation-failure-v1` proof.
+It shares the existing owned source/request/attempt binding and the source
+representation reader's exact source, ideal seed, worker, native pins, capability
+and complete specification checks. The selected candidate process must have
+launched, stopped, and recorded matching FAILED/TIMED_OUT status and nonzero integer
+return code. Its command, producer, recipe, actual grant and owner must agree;
+the capability phase must have completed normally. No historical command runs.
+
+A failed worker may leave an incomplete CIF or malformed partial JSON. These
+bytes remain inventoried but are not parsed as successful chemistry or admitted
+as support. The successful-support reader keeps all earlier completed-build,
+source-handoff and plane checks. The negative proof authorizes neither fallback
+nor retry; an independently qualified parent and the enclosing owner remain
+required. Missing/unsealed/unknown ownership and changed inputs still fail.
+This currently covers a launched failed candidate job, not a capability-stage
+failure, prelaunch error or zero-exit unqualified build.
+
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 generation receives a deliberately
+0.25-second candidate-phase allowance within its 180-second request ceiling.
+The process stops with -15; failure classification passes and support admission
+refuses. The 282,027-byte / 22-file request is moved and reread from relocated
+source with old paths, SDK and process calls blocked. Bytes/mtimes remain exact.
+No fallback publication, Coot or diffraction refinement is claimed. Exact commands
+and pins: `owned_plane_generation_failure_2026_11_12` in the evidence ledger.
+
+C241 corrects acquisition's existing child identity check to retain the already
+supported `multiple_planes=True` recipe field. Previously it omitted that field,
+so a valid generated child could prevent the acquisition call from sealing.
+Synthetic transport regression covers generation, subsequent cache reuse and cold
+read after the original source/store/SDK disappear; adding or dropping the flag
+still refuses. No new recipe option, native chemistry permission, stored format or
+in-place resealing. Automatic support acquisition through the complete request
+is still the next Q04 seam, not a completed feature.
 
 ### Compact plane-job inventories and early aggregate bounds (C238–C239)
 

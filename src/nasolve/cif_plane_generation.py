@@ -11,7 +11,7 @@ from .campaign_records import path_in
 from .cif_dictionary_store import _regular
 from .cif_generation_attempt import _root, _pins, inspect_source_generation_request
 from .cif_generation_process import inspect_generation_process
-from .cif_source_representation import read_multiple_plane_candidate
+from .cif_source_representation import read_multiple_plane_candidate, read_multiple_plane_execution_failure
 from .cif_plane_candidate import prepare_trigonal_plane_candidate
 
 POLICY_ID = "cif-owned-trigonal-plane-completion-v1"
@@ -25,6 +25,15 @@ def _need(value, message):
 
 def read_owned_plane_support(source, code, request_directory, attempt_number):
     """Bind one explicit sealed attempt; never select latest or authorize retry."""
+    return _read_owned_plane_generation(source,code,request_directory,attempt_number)
+
+
+def inspect_owned_plane_generation_failure(source, code, request_directory, attempt_number):
+    """Bind one known stopped negative native execution, never a usable candidate."""
+    return _read_owned_plane_generation(source,code,request_directory,attempt_number,failure=True)
+
+
+def _read_owned_plane_generation(source, code, request_directory, attempt_number, *, failure=False):
     _need(type(attempt_number) is int and attempt_number > 0, "Require an explicit positive attempt number")
     root = _root(request_directory)
     original = _regular(Path(source))
@@ -41,7 +50,7 @@ def read_owned_plane_support(source, code, request_directory, attempt_number):
     _need(recipe.get('multiple_planes') is True, "Selected request lacks multiple-plane choice")
     name = f'attempts/attempt-{attempt_number:04d}/generation'
     work = path_in(root, name)
-    report = read_multiple_plane_candidate(work)
+    report = (read_multiple_plane_execution_failure if failure else read_multiple_plane_candidate)(work)
     spec = json.loads(_regular(path_in(work, 'candidate_spec.json')))
     # C170 keeps the request ceiling frozen while a parent may grant less time.
     # The completed receipt and both owned phases must bind that same grant.
@@ -72,14 +81,31 @@ def read_owned_plane_support(source, code, request_directory, attempt_number):
         evidence = inspect_generation_process(work, phase)
         _need(evidence['state'] == 'STOPPED', "Generation phase is not sealed")
         job, finished = evidence['job'], evidence['finished']
+        completed = (finished['status'] == 'COMPLETED' and type(finished['returncode']) is int
+                     and finished['returncode'] == 0)
+        if failure and phase == 'candidate':
+            completed = ('identity' in evidence and finished['status'] in {'FAILED','TIMED_OUT'}
+                         and type(finished['returncode']) is int and finished['returncode'] != 0
+                         and finished['status'] == report['execution']['status']
+                         and finished['returncode'] == report['execution']['returncode'])
         _need(job['context'] == context and job['argv_provenance'] == commands[phase]
-              and job['timeout_seconds'] <= effective_timeout
-              and finished['status'] == 'COMPLETED' and type(finished['returncode']) is int
-              and finished['returncode'] == 0, "Generation phase command/recipe/completion differs")
+              and job['timeout_seconds'] <= effective_timeout and completed,
+              "Generation phase command/recipe/completion differs")
     candidate = report['candidate']
     after = inspect_source_generation_request(root)
     _need(after['request'] == request and after['attempts'][attempt_number-1] == selected
           and _regular(Path(source)) == original, "Selected generation evidence changed during replay")
+    if failure:
+        return dict(schema_version=1,policy_id='cif-owned-plane-generation-failure-v1',
+            status='KNOWN_STOPPED_GENERATION_FAILURE',component=code,source_sha256=report['source_sha256'],
+            attempt_number=attempt_number,request_sha256=request['record_sha256'],
+            attempt_sha256=selected['intent']['record_sha256'],finished_sha256=selected['finished']['record_sha256'],
+            receipt={**selected['finished']['candidate_receipt'],'anchor':'request_directory',
+                     'path':name+'/source_candidate_receipt.json'},
+            failure_kind=report['execution']['status'],returncode=report['execution']['returncode'],
+            recipe=recipe,generator=generator,stopped_verified=True,exact_inputs=True,
+            partial_outputs='PRESERVED; NOT_QUALIFIED',candidate_qualification='NOT_ASSESSED',
+            new_native_calls=0,fallback_authorized=False,retry_authorized=False)
     return dict(schema_version=1, policy_id=SUPPORT_POLICY_ID, status='OWNED_SUPPORT_REPLAY_PASS',
         component=code, source_sha256=report['source_sha256'], attempt_number=attempt_number,
         request_sha256=request['record_sha256'], attempt_sha256=selected['intent']['record_sha256'],
