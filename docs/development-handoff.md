@@ -1,82 +1,66 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-12**, C226. Active branch **cedar**, checkout `NASolve-c96`.
-Base: `7edc95b2a0703c6c16ff5cbf55804102ef4858ca`. The
-[scientific queue](cif-doctor-completion-queue.md) owns work order;
+Updated **2026-11-12**, C227. Active branch **cedar**, checkout `NASolve-c96`.
+Base C226/`8080a41`. The [queue](cif-doctor-completion-queue.md) owns work order;
 [capability limits](cif-doctor.md#current-capability-boundary) remain in force.
-Finish Q04/Q05 before Q06. Use laboratory language first. No merge authorized.
+Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
-## Q05 checkpoint published — campaigns retain the checked preparation
+## Current result — keep both chemical repairs and the ordinary restraints
 
-**Before → after:** schema-2 presets can explicitly set
-`postmr.checked_preparation = true`. Planning freezes and validates the choice;
-the campaign uses C224's ordinary checked caller and C223's exact publisher.
-The stage collects the genuine preparation receipt/evidence and actual ReadySet
-outcome, including an independently checked retained model without a fictional
-log. The checkpoint remains REVIEW; this is not diffraction-refinement success.
+C225 (`7edc95b`) freezes explicit checked preparation in schema-2 campaigns using
+the ordinary constructor/owner/checkpoint publisher. Omission preserves legacy
+fingerprints. C226 (`8080a41`) supplies maintained owned whole-plane calculations.
+C227 composes an optional linear proof followed by ordered plane proofs through
+the existing source-bound selector and public runtime publisher. Same model,
+ordered dictionary/PHIL context, consumer, full monomer identities and exact source
+owners are mandatory. Separate original/final derivatives still control eligibility.
+No new recovery system, broader chemistry or automatic plane invocation.
 
-Omitted fields retain old policy fingerprints and legacy preparation. Schema 1
-refuses the field; older stage implementations reject the expanded policy. No
-new owner, unchecked fallback, chemical threshold or artifact schema. Completed
-campaign receipts resume normally. Interrupted stages preserve all evidence;
-explicit campaign retry starts a new run after prior processes are known stopped.
-Standalone recovery does not retrospectively manufacture a campaign receipt.
+New additive chain/selection/runtime policies preserve old linear artifacts.
+Changed code: new `cif_repair_chain.py`, existing selection/runtime/public-reader/
+ReadySet-parent modules; one focused test module. Current docs updated in place.
+Native Phenix **2.2.1-6174 / 2.2.1**: ordinary 851-atom PDU control retains all
+58 NAR parallelity restraints while adding the supported C5A plane membership
+after linear repair. Whole-plane attribution and complete derivatives pass.
+Published selection contains both repairs. Cold relocated checkout/result reads
+300 files unchanged with original inputs/SDK/processes forbidden. No Coot,
+ReadySet rerun, optimization, diffraction refinement or full suite.
 
-**Files:** four existing campaign/preset modules and three existing test modules;
-existing guides, queue, descriptor and changelog. **Validation:** 7 fail-before
-cases; final affected campaign/preset/publication checks pass **295 tests + 59
-subtests in 26.80s**. One initial test expected a raw interruption error instead
-of PostMR's documented wrapped error; corrected, with preserved-receipt recovery
-passing. Frozen recipe relocation is checked after the original path/preset are
-gone. No full suite or fresh scientific Phenix/Coot execution. Test doubles and
-fixture executables establish caller behavior, not new chemical support.
+Focused validation covers 253 distinct affected cases across passing/corrective
+checks (33 new cases). Initial mock-call incompatibility was corrected; two process
+checks then passed with scoped permissions after sandbox inspection/stop denial.
+`git diff --check` and changed-file syntax checks pass.
 
-Exact command/results/hashes: ledger key `checked_campaign_preparation_2026_11_12`.
-Local logs: `live_tests_directory/225_Cedar_checked-campaign-tjtzjeg9`.
-Use Python 3.12.14, `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`.
-Last entirely green full revision remains C220/`583d30df`; C222's later full-run
-CLI failure and focused correction remain recorded. Generated logs/science are
-excluded from Git. Tests completed; no native/GUI worker is active.
+Exact commands, counts and limitations: ledger `composed_source_repair_2026_11_12`;
+local capsule `live_tests_directory/227_Cedar_composed-plane-repair-wd23fvr7`.
+First native attempt refused output/input directory overlap before launch; preserved.
+The later selection initially lacked sandbox write access; no output existed, so
+it ran with scoped authorization. Native owner is STOPPED. Generated science/logs
+and runners stay outside Git. Last entirely green full remains C220/`583d30df`;
+C222's full-run CLI issue/focused correction remains recorded. No full suite this push.
 
-## Current Q04 checkpoint — replayable chemical-plane calculations (C226)
+## Immediate work — compact evidence before expanding automatic execution
 
-Base C225/`7edc95b`. The new `cif_captured_plane_attribution.py` and focused test
-module join C213/C214 owned source/capture proof to C215's whole-plane numerics.
-One bounded process rebuilds both fixed managers using maintained code, checks
-exact native/effective-PHIL output, and evaluates complete old/new groups.
-The caller uses the existing repair runner; no new owner or chemistry thresholds.
-A read-only relocated replay rederives every claim without the original SDK/code.
-Schema: `cif-captured-owned-plane-attribution-v1`; old artifacts are unchanged.
+Simon's current requirement: robust 100-dataset laptop campaigns, essential evidence
+and a reproducible trail, without duplicated giant reports. C227's uncompressed
+runtime is 100,729,871 bytes/300 files, but 100 distinct file contents total
+58,131,899 bytes and individually compress to 4,645,288 bytes. Existing prior
+artifact policies bound/partition storage; they do not eliminate duplication.
+Investigate a bounded content-deduplicated representation with temporary readback,
+keeping public model/CIF/PHIL resources directly usable. Do not weaken source/native
+checks or silently rewrite existing runs. Measure complete attempts as well as
+final publications. New retention must preserve interruption/recovery evidence.
 
-**Validation:** missing-API fail-before; **114 focused tests pass**, including 30
-adapter cases. Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** passes PDU/5PC with
-four full fixed-manager rebuilds in two owned jobs, both STOPPED. Cold source/evidence
-relocation passes with 141 files unchanged and original paths/SDK/processes denied.
-First native attempt exposed omitted regenerated PHIL outputs; exact captured-byte
-checks fixed accounting and a fresh attempt passed. Earlier partial evidence stays.
-No new derivatives, geometry optimization, Coot, ReadySet, refinement or full suite.
-Controls have zero parallelity and no special positions; no broader support claim.
-
-Exact commands/results: ledger `maintained_plane_attribution_2026_11_12`;
-local capsule `live_tests_directory/226_Cedar_owned-plane-numerics-mceapmbq`.
-Generated models/CIFs/logs/runners remain local. No native/GUI job is active.
-
-## Continue the bounded push — finish Q04/Q05 before Q06
-
-Work window began 19:46 UTC and ends about 22:46 UTC; no full suite. C225 is
-published (`7edc95b`); C226 is ready for publication. Next compose the maintained
-plane evidence into existing source-bound selection/publication and automatic
-repair. Prior review confirms the current owner/selector still supports only
-linear-torsion repair; do not call C226 automatic plane adoption.
-Preserve separate ring planes, NAR stacking selections, source authority and
-independently checked fallback. Q05 still needs later preparation children without
-replacing earlier choices. Q06/Q07 stay queued until Q04/Q05 are finished.
+Then join C226/C227 into the existing automatic repair owner. Source support must
+be explicitly owned/frozen; optional failures need the same qualified fallback
+and known-stopped rules. Q05 still needs later preparation children without replacing
+earlier roots or falsely claiming a fresh MR construction descended from a refined
+model. Q06/Q07 remain queued. Work window began 19:46 UTC, ends about 22:46 UTC.
 
 ## Preserve local evidence
 
-Keep earlier runners/build evidence and protected `NASolve-cedar` at `e7451eed`
-with its local `phaser.py` change and unpublished data. Everyday pine and metal
-work remain separate. Never clean partial runs, environments or unrelated files.
-The current queue and handoff are edited in place; history/evidence remain in Git.
+Keep protected `NASolve-cedar` at `e7451eed` with local `phaser.py` and unpublished
+data. Everyday pine/metal work and all earlier runs are untouched. No incidental
+cleanup, new branch or merge. Continue on cedar; check docs/history before new work.
 
 — Rowan · Codex desktop

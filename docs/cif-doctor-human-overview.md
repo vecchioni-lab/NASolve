@@ -33,7 +33,11 @@ and test those faults without relying on the residue name. Automatic complete-pl
 repair still needs integration; near-planar coordinates alone are insufficient.
 The [maintained plane calculation](cif-doctor.md#maintained-whole-plane-numerical-evidence-c226)
 now records and rereads the complete change in forces, including forces on the
-original ring atoms. Source-bound selection and ordinary invocation remain work.
+original ring atoms. Linear and plane repairs can now be checked and saved together
+without losing the base-pair/stacking restraints. An ordinary-model control passes
+those checks and separate derivatives; automatic invocation and real refinement
+remain work. Evidence storage is also a release requirement: retain a compact,
+reproducible record rather than repeating bulky native reports across a campaign.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and

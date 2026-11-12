@@ -207,8 +207,8 @@ def resolve_runtime_bundle(manifest):
     try:
         value = _load_json(path); before = path.read_bytes()
         from .cif_mixed_runtime_bundle import POLICY_ID as MIXED_POLICY, resolve_mixed_runtime_bundle
-        from .cif_component_runtime import POLICY_ID as COMPONENT_POLICY, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID, resolve_component_runtime_bundle
-        if value.get('policy_id') in (COMPONENT_POLICY, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID):
+        from .cif_component_runtime import POLICY_ID as COMPONENT_POLICY, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID, resolve_component_runtime_bundle
+        if value.get('policy_id') in (COMPONENT_POLICY, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID):
             return resolve_component_runtime_bundle(path, value)
         if value.get('policy_id') == MIXED_POLICY:
             return resolve_mixed_runtime_bundle(path, value)
@@ -261,8 +261,8 @@ def assess_runtime_bundle(manifest):
     for descriptor, reference in zip(assessment['inputs'], references): descriptor['frozen_reference'] = deepcopy(reference)
     assessment['model']['frozen_reference'] = deepcopy(value['resources']['model'])
     from .cif_mixed_runtime_bundle import POLICY_ID as MIXED_POLICY, verify_mixed_runtime_resources
-    from .cif_component_runtime import POLICY_ID as COMPONENT_POLICY, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID, verify_component_runtime_resources, component_runtime_summary
-    if value['policy_id'] in (COMPONENT_POLICY, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID):
+    from .cif_component_runtime import POLICY_ID as COMPONENT_POLICY, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID, verify_component_runtime_resources, component_runtime_summary
+    if value['policy_id'] in (COMPONENT_POLICY, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID):
         verify_component_runtime_resources(resolved['manifest_path'], value)
     elif value['policy_id'] == MIXED_POLICY:
         verify_mixed_runtime_resources(resolved['manifest_path'], value)
@@ -314,7 +314,7 @@ def assess_runtime_bundle(manifest):
                 'ordinary_refinement': 'NOT_QUALIFIED',
             })
     assessment['requires_cif_review'] = False
-    if value['policy_id'] in (COMPONENT_POLICY, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID):
+    if value['policy_id'] in (COMPONENT_POLICY, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID):
         summary.update(component_runtime_summary(value))
     assessment['solution_report'] = summary
     return assessment

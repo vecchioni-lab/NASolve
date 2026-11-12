@@ -141,8 +141,8 @@ ordinary adoption is Q05 and the actual refinement consumer is Q06.
 ### Q04 — Bounded automatic recovery and durable attempts
 
 **Open overall. C220 supplies the explicit preparation handoff; C223–C224 carry
-it into an initial checkpoint and opt-in ordinary PostMR. Campaign/default-route
-integration and general chemical-plane repair remain unfinished.**
+it into an initial checkpoint and opt-in ordinary PostMR; C225 adds frozen campaign
+entry. Default-route enablement and automatic chemical-plane repair remain unfinished.**
 In lab terms: preserve the intended molecule, get a checked model/restraint set,
 and resume interrupted preparation without rebuilding or damaging earlier work.
 
@@ -181,7 +181,8 @@ Remaining acceptance:
    children through Q05. Default-route enablement remains an explicit decision.
 2. Integrate C208–C216's general plane operation into the existing repair owner.
    C226 closes the maintained whole-plane numerical execution/readback seam;
-   reuse it when joining source-bound selection/publication and automatic invocation.
+   C227 joins ordered repairs to existing source-bound selection/publication with
+   ordinary NAR/derivative evidence. Reuse both for automatic invocation.
    Preserve existing ring-plane groups; add only source-supported missing members
    with owned generator/native/energy evidence. Do not substitute an entire
    multiple-plane generated CIF. Keep non-PDU controls and ambiguous/tetrahedral
@@ -193,9 +194,18 @@ Remaining acceptance:
    an earlier limitation. No in-place retries, automatic source rediscovery,
    renewed attempt allowance or latest-file selection.
 
+5. Keep completed evidence compact enough for 100-dataset campaigns. C227's
+   uncompressed proof repeats native reports and is not a production storage target.
+   Measure the entire request/continuation/publication footprint; retain exact
+   inputs, tool/policy identity, necessary check results and a reproducible trail.
+   Prefer deduplication/compression over weaker checking or larger disk allowances.
+   Bound temporary expansion as well as persistent storage. Preserve active/failed
+   recovery evidence until known-stopped retention rules explicitly cover it; never
+   silently clean existing scientific runs.
+
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
-C208–C216's checked plane-completion machinery is not yet composed into ordinary
-repair. C223–C224's publication and caller work do not close that gap. Use the
+C208–C216's checked plane-completion machinery now has C226 maintained numerical
+execution and C227 source-bound composition; ordinary automatic invocation remains. C223–C224's publication and caller work do not close that gap. Use the
 existing repair owner, then demonstrate the resulting restraints in Q06; a flat
 starting PDU substituent does not prove that refinement will keep it flat.
 

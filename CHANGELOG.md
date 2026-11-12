@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep source-qualified linear and plane repairs together (C227)
+
+- Compose exact ordered linear-torsion and source-supported plane checks through
+  the existing whole-bundle selector and runtime publisher. Preserve the same
+  model, ordered dictionaries/PHIL, native identities and independently qualified
+  starting fallback; reject broken joins or borrowed chemical sources.
+- Introduce distinct composed-proof/selection/runtime policies. Existing linear
+  proofs retain their old meaning. Public reads and ReadySet parent validation
+  accept the new result without executing saved code.
+- An ordinary 851-atom PDU/NAR control passes both repairs, complete derivative
+  checks and relocated publication; all 58 parallelity restraints are retained.
+  Automatic repair invocation and actual diffraction refinement remain separate.
+
 ### Preserve replayable whole-plane numerical evidence (C226)
 
 - Join owned plane-generation support and exact before/after captures to one

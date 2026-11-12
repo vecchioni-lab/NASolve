@@ -19,6 +19,7 @@ from .cif_doctor_selection import ComponentCandidate, select_component_candidate
 from .cif_mixed_geometry import _ref
 
 POLICY_ID = 'cif-source-bound-repaired-bundle-selection-v1'
+COMPOSED_POLICY_ID = 'cif-source-bound-composed-repaired-bundle-selection-v1'
 ORIGINAL_POLICY_ID = 'cif-source-bound-prepared-bundle-selection-v1'
 
 
@@ -81,7 +82,8 @@ def _repair_dictionaries(prepared, plan, root):
     return original,final
 
 
-def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_directory, original_gradient_directory):
+def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_directory, original_gradient_directory, repair_chain=False):
+    _need(type(repair_chain) is bool, 'Repair chain choice must be boolean')
     root=Path(bundle).absolute();attribution=Path(attribution_directory).absolute();baseline=Path(baseline_receipt).absolute()
     _need(baseline.name=='native_receipt.json','Require an exact preparation baseline receipt')
     roots={'prepared_bundle_directory':root,'preparation_baseline_directory':baseline.parent,
@@ -92,15 +94,38 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
     _need(sum(len(v) for v in snapshots.values())<=MAX_FILES
         and sum(len(b) for v in snapshots.values() for b in v.values())<=MAX_BYTES,'Combined repair evidence exceeds supported bounds')
     prepared=read_dictionary_bundle(root)
-    job=read_captured_linear_attribution(attribution);plan=read_linear_torsion_bundle(attribution/'bundle')
-    steps=plan['steps'];_need(bool(steps),'No declared repair candidate')
-    _need({p.name for p in (attribution/'captures').iterdir()}=={f'{i:03d}' for i in range(len(steps)+1)},'Unexpected repair stage')
-    original,final=_repair_dictionaries(prepared,plan,attribution/'bundle')
+    if repair_chain:
+        from .cif_repair_chain import repair_chain_inputs, REPORT
+        chain=repair_chain_inputs(attribution);steps=chain['report']['steps']
+        original=prepared['after_dictionaries'];final=chain['after_dictionaries']
+        _need([_read(p) for p in original]==[_read(p) for p in chain['before_dictionaries']],
+              'Repair does not start from the exact ordered source-qualified dictionaries')
+        stages=[]
+        for step,stage in zip(steps,chain['stages']):
+            code=step['component'];index=step['dictionary_index']
+            _need(code in prepared['report']['components'] and type(index) is int and 0<=index<len(original)
+                  and original[index]==prepared['component_dictionaries'][code],
+                  'Repair component lacks its exact source-qualified owner')
+            if stage['source'] is not None:
+                source=resolve_dictionary_snapshot(root/'components'/code/'snapshot')['source']
+                _need(_read(source)==_read(stage['source']), 'Plane repair borrows a different chemical source')
+            stages.extend([(stage['before_receipt'],stage['before_dictionaries']),
+                           (stage['after_receipt'],stage['after_dictionaries'])])
+        attributed=chain['report']['all_steps_attributed'];attribution_file=REPORT
+    else:
+        job=read_captured_linear_attribution(attribution);plan=read_linear_torsion_bundle(attribution/'bundle')
+        steps=plan['steps'];_need(bool(steps),'No declared repair candidate')
+        _need({p.name for p in (attribution/'captures').iterdir()}=={f'{i:03d}' for i in range(len(steps)+1)},'Unexpected repair stage')
+        original,final=_repair_dictionaries(prepared,plan,attribution/'bundle')
+        stages=[(attribution/'captures'/f'{i:03d}'/'native_receipt.json',
+                 [attribution/'bundle'/r['path'] for r in stage])
+                for i,stage in enumerate([plan['inputs']]+[s['dictionaries_after'] for s in steps])]
+        attributed=(job['status']=='CAPTURED_LINEAR_ATTRIBUTION_PASS'
+            and job['kernel_execution_authentication']=='MAINTAINED_FRESH_NATIVE_JOB')
+        attribution_file='captured_linear_attribution.json'
     receipts=[];identity=None
-    stages=[plan['inputs']]+[s['dictionaries_after'] for s in steps]
-    for i,stage in enumerate(stages):
-        parent=attribution/'captures'/f'{i:03d}';receipt=parent/'native_receipt.json'
-        proof=_prepared_capture(prepared,receipt,[attribution/'bundle'/r['path'] for r in stage])
+    for receipt,dictionaries in stages:
+        proof=_prepared_capture(prepared,receipt,dictionaries)
         if identity is None:identity=proof
         else:_need(_bytes(proof)==_bytes(identity),'Repair changed full native identities')
         receipts.append(receipt)
@@ -108,8 +133,6 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
     source_usable=initial['diagnostic_continuation']['allowed'] is True
     repaired=_gradient(repaired_gradient_directory,receipts[-1],'repaired_gradient_directory')
     starting=_gradient(original_gradient_directory,receipts[0],'original_gradient_directory')
-    attributed=(job['status']=='CAPTURED_LINEAR_ATTRIBUTION_PASS'
-        and job['kernel_execution_authentication']=='MAINTAINED_FRESH_NATIVE_JOB')
     eligible={'repaired_prepared_bundle':source_usable and attributed and repaired['qualified'],
         'verified_prepared_bundle':source_usable and starting['qualified']}
     decisions,sources,selected=_choose(prepared,root,
@@ -122,14 +145,14 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
             dictionaries=[_ref(p,attribution,'repair_attribution_directory') if selected=='repaired_prepared_bundle'
                 else _ref(p,root,'prepared_bundle_directory') for p in ds],
             phils=[_ref(p,root,'prepared_bundle_directory') for p in inputs['phils']])
-    report=dict(schema_version=1,policy_id=POLICY_ID,
+    report=dict(schema_version=1,policy_id=COMPOSED_POLICY_ID if repair_chain else POLICY_ID,
         status='REPAIRED_BUNDLE_DIAGNOSTIC_PASS' if selected=='repaired_prepared_bundle' else 'VERIFIED_PREPARED_FALLBACK' if selected else 'NO_USABLE_BUNDLE',
         decision=dict(status='CONTINUE_WITH_NOTES' if selected else 'NO_USABLE_BUNDLE',selected=selected,
             scope='SEPARATE_DIAGNOSTIC_PHASE_ONLY',requires_cif_review=False,automatic_adoption=False),
         component_decisions=decisions,source_qualification=initial,source_references=sources,
         preparation=_ref(root/'bundle_receipt.json',root,'prepared_bundle_directory'),
         baseline=_ref(baseline,baseline.parent,'preparation_baseline_directory'),
-        attribution=_ref(attribution/'captured_linear_attribution.json',attribution,'repair_attribution_directory'),
+        attribution=_ref(attribution/attribution_file,attribution,'repair_attribution_directory'),
         derivatives=dict(repaired=repaired,original=starting),resources=resources,
         full_monomer_inventory=identity,coordinate_selection='UNCHANGED_PREPARED_MODEL',
         source_protonation='NOT_ASSESSED',scientific_qualification='NOT_ASSESSED',automatic_adoption=False,
@@ -140,25 +163,25 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
 
 
 def inspect_dictionary_bundle_repair(bundle, baseline_receipt, attribution_directory, *,
-        repaired_gradient_directory=None, original_gradient_directory=None):
+        repaired_gradient_directory=None, original_gradient_directory=None, repair_chain=False):
     """Recompute the whole-bundle choice; absent proof grants no fallback.
 
     Valid failed/prepared numerical attempts remain unqualified alternatives.
     Contradictory or malformed evidence raises instead of being hidden as a
     routine failure. No geometry endpoint or different objective is ranked.
     """
-    try:return _inspect(bundle,baseline_receipt,attribution_directory,repaired_gradient_directory,original_gradient_directory)[0]
+    try:return _inspect(bundle,baseline_receipt,attribution_directory,repaired_gradient_directory,original_gradient_directory,repair_chain)[0]
     except (KeyError,TypeError,IndexError) as exc:raise ValueError('Incomplete source-bound repair evidence') from exc
 
 
 def repaired_dictionary_bundle_inputs(bundle, baseline_receipt, attribution_directory, *,
-        repaired_gradient_directory=None, original_gradient_directory=None):
+        repaired_gradient_directory=None, original_gradient_directory=None, repair_chain=False):
     """Resolve one freshly verified model/ordered-CIF/PHIL selection together.
 
     Paths are valid for this read. A downstream owner must freeze/revalidate
     them before execution; this is not an immutable runtime publication.
     """
-    try:report,inputs=_inspect(bundle,baseline_receipt,attribution_directory,repaired_gradient_directory,original_gradient_directory)
+    try:report,inputs=_inspect(bundle,baseline_receipt,attribution_directory,repaired_gradient_directory,original_gradient_directory,repair_chain)
     except (KeyError,TypeError,IndexError) as exc:raise ValueError('Incomplete source-bound repair evidence') from exc
     _need(inputs is not None,'No usable source-bound dictionary bundle')
     return dict(**inputs,review=report)

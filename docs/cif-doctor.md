@@ -140,7 +140,7 @@
 
 <a id="current-capability-boundary-c220"></a>
 
-## Current capability boundary (C224)
+## Current capability boundary (C227)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -158,7 +158,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
-| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. C226 adds maintained owned-capture/whole-plane numerical execution and cold replay. | Explicit candidate/diagnostic APIs; no universal flattening rule or automatic plane adoption. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
+| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. C226 adds maintained owned-capture/whole-plane numerical execution and cold replay. C227 selects and publishes an ordered source-bound linear/plane result with full ordinary NAR context and derivatives. | Explicit candidate/diagnostic APIs; no universal flattening rule or automatic plane adoption. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
@@ -763,6 +763,40 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 `source_selected_model_geometry_2026_11_11`. Native completion and better local
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
+
+### Ordered source-qualified repairs (C227)
+
+`prepare_repair_chain` freezes an optional existing linear attribution followed by
+one or more owned plane attributions. Each transition must preserve the exact
+model, ordered PHIL and consumer, start from the preceding ordered dictionaries,
+and change only its declared dictionary slot. Each component has at most one
+plane operation. This is evidence composition, not another executor or selector.
+The existing source-bound selector binds every component to its prepared owner,
+every plane source to that owner's source bytes, and both sides of every step to
+complete native identities. Source qualification, final derivatives, independently
+qualified original fallback and whole-bundle selection retain their existing gates.
+
+Distinct additive policies identify the chain, composed selection and composed
+runtime. Old linear-only artifacts retain their meaning. The public runtime API
+and ReadySet parent reader accept the result. Readback replays maintained checks,
+never saved code, and requires neither original paths nor a live SDK.
+
+The actual Phenix **2.2.1-6174 / 2.2.1** control reuses C219's ordinary construction
+and exact C215 owned generation support. The PDU source bytes agree. After the
+existing linear repair, the graph rule adds C5A to plan-1 at the supported 0.02 Å
+ESD. The 851-atom model, two dictionaries/five PHIL inputs and all 58 NAR parallelity
+restraints remain bound. Whole-plane force-delta error is 1.05e-13 and complete
+mixed derivatives pass. The selected dictionary contains both repairs. A relocated
+checkout reads all 300 published files unchanged, with original inputs, SDK and
+process access forbidden. No Coot, new ReadySet, geometry optimization, diffraction
+refinement, full suite or automatic owner integration is claimed.
+
+The uncompressed diagnostic publication is 100,729,871 bytes; only 100 of its 300
+files have distinct content. This is not an acceptable campaign storage target.
+Keep existing evidence intact while replacing future redundant storage with
+bounded, compact reproducible evidence; measure the whole ordinary attempt, not
+just its final bundle. Exact validation and known limits are in ledger key
+`composed_source_repair_2026_11_12`.
 
 ### Maintained whole-plane numerical evidence (C226)
 

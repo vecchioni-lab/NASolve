@@ -15,6 +15,7 @@ from .cif_runtime_bundle import MANIFEST_FILE, _json_bytes, _load_json, _referen
 
 POLICY_ID = 'cif-qualified-component-runtime-bundle-v1'
 REPAIRED_POLICY_ID = 'cif-qualified-repaired-component-runtime-bundle-v1'
+COMPOSED_REPAIRED_POLICY_ID = 'cif-qualified-composed-repaired-component-runtime-bundle-v1'
 ORIGINAL_POLICY_ID = 'cif-qualified-prepared-component-runtime-bundle-v1'
 CONTINUATION_POLICY_ID = 'cif-qualified-selected-runtime-readyset-bundle-v1'
 MAX_FILES = 1024
@@ -93,8 +94,8 @@ def _selection(root, controls, *, policy_id=POLICY_ID):
         return selected_runtime_readyset_publication(root, controls)
     if policy_id == ORIGINAL_POLICY_ID:
         return _original_selection(root, controls)
-    if policy_id == REPAIRED_POLICY_ID:
-        return _repaired_selection(root, controls)
+    if policy_id in (REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID):
+        return _repaired_selection(root, controls, **(dict(repair_chain=True) if policy_id == COMPOSED_REPAIRED_POLICY_ID else {}))
     args=_controls(root,controls)
     review=deepcopy(inspect_dictionary_bundle_readyset(**args))
     # Exception text can contain the current evidence root. Keep its declared
@@ -119,7 +120,7 @@ def _selection(root, controls, *, policy_id=POLICY_ID):
     return review,decision,inputs,unavailable
 
 
-def _repaired_selection(root, controls):
+def _repaired_selection(root, controls, *, repair_chain=False):
     # Import lazily: the decision adapter shares this module's bounded tree reader.
     from .cif_dictionary_bundle_repair import repaired_dictionary_bundle_inputs
     fixed = {'bundle':'evidence/bundle',
@@ -138,7 +139,7 @@ def _repaired_selection(root, controls):
         and all(p.is_dir() and not p.is_symlink() for p in evidence.iterdir()),
         'Unexpected repaired source evidence roots')
     args = {k:root/v if v is not None else None for k,v in controls.items()}
-    result = repaired_dictionary_bundle_inputs(**args)
+    result = repaired_dictionary_bundle_inputs(**args, **(dict(repair_chain=True) if repair_chain else {}))
     review = deepcopy(result['review']); decision = deepcopy(review['decision'])
     _need(decision.get('status') == 'CONTINUE_WITH_NOTES'
         and decision.get('scope') == 'SEPARATE_DIAGNOSTIC_PHASE_ONLY'
@@ -224,13 +225,14 @@ def prepare_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt
 
 
 def prepare_repaired_component_runtime_bundle(bundle, baseline_receipt, attribution_directory, output,
-        *, repaired_gradient_directory=None, original_gradient_directory=None):
+        *, repaired_gradient_directory=None, original_gradient_directory=None, repair_chain=False):
     """Freeze the source-bound whole-bundle repair decision and every proof.
 
     All scientific checks are replayed by the existing decision adapter. A
     preserved original is eligible only with its own passing derivative proof.
     This explicit publication does not run tools or adopt experimental coordinates.
     """
+    _need(type(repair_chain) is bool, 'Repair chain choice must be boolean')
     baseline = Path(baseline_receipt)
     _need(baseline.name == 'native_receipt.json', 'Require exact native baseline receipt')
     roots = {'bundle':Path(bundle), 'baseline':baseline.parent,
@@ -242,7 +244,7 @@ def prepare_repaired_component_runtime_bundle(bundle, baseline_receipt, attribut
             ('original_gradient_directory','original-gradient',original_gradient_directory)]:
         if path is not None:
             roots[folder] = Path(path); controls[key] = 'evidence/'+folder
-    return _publish(Path(output).absolute(), roots, controls, REPAIRED_POLICY_ID)
+    return _publish(Path(output).absolute(), roots, controls, COMPOSED_REPAIRED_POLICY_ID if repair_chain else REPAIRED_POLICY_ID)
 
 
 def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt, output, *, original_gradient_directory):
@@ -318,7 +320,7 @@ def verify_component_runtime_resources(path, value):
     path=Path(path);root=path.parent
     _need(path.name==MANIFEST_FILE and _json_bytes(_load_json(path))==_json_bytes(value), 'Runtime manifest changed')
     policy = value.get('policy_id')
-    _need(policy in (POLICY_ID, REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID), 'Unsupported component runtime policy')
+    _need(policy in (POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID), 'Unsupported component runtime policy')
     fixed = {**_FIXED, 'policy_id':policy}
     _need(all(type(value.get(k)) is type(v) and value.get(k)==v for k,v in fixed.items()), 'Unsupported component runtime policy')
     actual=[_reference(root/name,root) for name in _tree(root,manifest=True)]

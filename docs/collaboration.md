@@ -76,6 +76,18 @@ missing evidence require a fresh attempt. Historical proposals are not current
 instructions, and an old pass does not qualify a different context. Do not make
 Simon reconstruct prior technical work that the repository already records.
 
+## Scientific evidence storage
+
+Design for campaigns containing at least 100 datasets on a laptop. Save the model,
+restraints, authoritative inputs and compact evidence needed to justify/reproduce
+an accepted result. Avoid repeated bulky native inventories and worker outputs;
+prefer content deduplication and compression without weakening checks. Record
+whole-request persistent and peak temporary size in representative integration
+validation. A generous artifact ceiling is not a storage target. Preserve exact
+policy/tool/input identities so optional expensive diagnostics can be reproduced.
+Changes to retention must preserve immutable run lineage and known-stopped recovery.
+Do not delete old scientific outputs or partial work as an incidental code cleanup.
+
 ## Continual handoff during active work
 
 At the start of a substantive push, record the current scope, ordered acceptance

@@ -88482,5 +88482,584 @@
       }
     ],
     "generated_artifacts": "Native outputs, requests, dictionaries, models, logs, copied source and runners remain local; only bounded evidence references committed."
+  },
+  "composed_source_repair_2026_11_12": {
+    "date": "2026-11-12",
+    "milestone": "C227",
+    "base_commit": "8080a41",
+    "behavior": "Existing linear and owned plane proof compose into exact source-bound whole-bundle selection/publication; ordinary automatic execution remains open.",
+    "policies": [
+      "cif-ordered-source-repair-chain-v1",
+      "cif-source-bound-composed-repaired-bundle-selection-v1",
+      "cif-qualified-composed-repaired-component-runtime-bundle-v1"
+    ],
+    "compatibility": "Additive explicit repair_chain=True; old linear policy and omitted-argument behavior retained. No migration or default activation.",
+    "source_sha256": {
+      "src/nasolve/cif_repair_chain.py": "c02cc2e9cd6758769c10aacb889d5ba563cb577167852fbc572d70c53edc38ef",
+      "src/nasolve/cif_dictionary_bundle_repair.py": "eeb16c836515f1c177be707281ede0398d1fb2c53182864bc13785d2a250ed6a",
+      "src/nasolve/cif_component_runtime.py": "35698b8f4813ac3845f9f6b682d2ee09c031ddf07fc330f5647dbc05faccd2cc",
+      "src/nasolve/cif_runtime_bundle.py": "b1def3570ce8ba92d4b5c107cf364414889484a819b7391e2c2a6052b22601bc",
+      "src/nasolve/cif_runtime_readyset.py": "971252c10070868fd31536790f3dc164bfea13f549762d189d86b84ecd30fe26",
+      "tests/test_cif_repair_chain.py": "c04c6774c89e653ae628c6d66fdbbeacb2f7978647af93dcd8f91ab0b7003621"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_repair_chain.py",
+        "result": "26 failed: API missing",
+        "log": {
+          "path": "validation/c227-before.log",
+          "sha256": "ab33ae71459274a076bc0821d216e73495ec5f9a2299a50d934e556b5bc16afe"
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_repair_chain.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repaired_component_runtime.py",
+        "result": "81 passed in 8.38s",
+        "log": {
+          "path": "validation/c227-initial.log",
+          "sha256": "d9fedfbdd645f673c0454c29c4d7da534f15995abed0d7479b1cf642c2b7a48c"
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_repair_chain.py tests/test_cif_dictionary_bundle_repair.py tests/test_cif_repaired_component_runtime.py tests/test_cif_original_component_runtime.py tests/test_cif_runtime_bundle.py tests/test_cif_runtime_readyset.py tests/test_cif_runtime_continuation.py",
+        "result": "176 passed, 26 failed, 51 errors: legacy synthetic selector did not accept needless false keyword",
+        "log": {
+          "path": "validation/c227-focused.log",
+          "sha256": "a4cd5b51a770f36ba2a33f6878760482e1c2e48a8161651599f48416e84d0ec8"
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_repair_chain.py tests/test_cif_runtime_readyset.py tests/test_cif_runtime_continuation.py",
+        "result": "131 passed, 2 failed in 288.96s: process-group inspection/stop denied by sandbox",
+        "log": {
+          "path": "validation/c227-correction.log",
+          "sha256": "42ca517bb58bb7e5e2fe5ec20d16ae5e0a273b415611031b15e51927297d3c8e"
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider 'tests/test_cif_runtime_continuation.py::test_known_stopped_optional_failure_preserves_complete_repaired_parent[readyset-timeout]' 'tests/test_cif_runtime_continuation.py::test_unknown_cleanup_or_interruption_never_becomes_a_published_fallback[unknown]'",
+        "result": "2 passed in 8.44s with scoped process permissions",
+        "log": {
+          "path": "validation/c227-process-check.log",
+          "sha256": "833b37a6eba93602fb0be24c134168fe816eafbeaeba04d065dcbedaf0b298b5"
+        }
+      }
+    ],
+    "focused_summary": "All 253 distinct affected cases covered successfully across final focused/corrective checks; no full suite. 33 new chain cases.",
+    "native": {
+      "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "mode": "Complete fixed native/plane/derivative execution, no refinement",
+      "summary": {
+        "status": "FULL_ORDINARY_PLANE_NUMERICS_PASS",
+        "phenix": "2.2.1",
+        "prior_linear_steps": 1,
+        "atom_count": 851,
+        "native_counts": {
+          "angle": 1545,
+          "bond_asu": 0,
+          "bond_simple": 1003,
+          "chirality": 163,
+          "const_dihedral": 348,
+          "dihedral": 457,
+          "parallelity": 58,
+          "planarity": 46
+        },
+        "plane_attribution": {
+          "achieved_geometry": "NOT_ASSESSED",
+          "automatic_adoption": false,
+          "changed_plane_count": 1,
+          "checks": {
+            "after_count_repeats": true,
+            "after_term_repeats": true,
+            "after_term_sum": true,
+            "before_count_repeats": true,
+            "before_term_repeats": true,
+            "before_term_sum": true,
+            "full_gradient_delta_matches_complete_groups": true,
+            "plane_delta_matches_complete_groups": true,
+            "proxy_counts_unchanged": true,
+            "total_delta_matches_complete_groups": true,
+            "unaffected_terms": true,
+            "whole_plane_repeats_and_container": true
+          },
+          "component": "PDU",
+          "derivative_qualification": "NOT_RUN",
+          "gradient_delta_error_norm": 1.0547178627379469e-13,
+          "inventory_checks_pass": true,
+          "model_editing": "NOT_RUN",
+          "numerical_checks_pass": true,
+          "optimization": "NOT_RUN",
+          "policy_id": "cif-linked-plane-completion-energy-v1",
+          "schema_version": 1,
+          "scientific_approval": "NOT_RUN",
+          "scope": "FIXED_POINT_WHOLE_PLANE_ATTRIBUTION; CALLER_AUTHENTICATES_CAPTURES_AND_KERNEL_REFERENCES",
+          "status": "REVIEW",
+          "target_delta": 0.14364324284542818,
+          "tolerance": {
+            "absolute": 1e-08,
+            "relative": 1e-10
+          },
+          "whole_plane_target_delta": 0.14364324284655328
+        },
+        "derivatives": "CAPTURED_MIXED_DERIVATIVES_PASS",
+        "owned_process_state": "STOPPED",
+        "original_files_unchanged": 162
+      },
+      "selection": {
+        "status": "COMPOSED_SOURCE_QUALIFIED_RUNTIME_PASS",
+        "steps": [
+          {
+            "kind": "declared_linear_torsion",
+            "component": "PDU",
+            "dictionary_index": 0,
+            "before_receipt": {
+              "anchor": "repair_chain_directory",
+              "path": "linear/captures/000/native_receipt.json",
+              "sha256": "125d9641af9d6660f3a4d5f5c222c8e32bf4f3facaaf4c7f78b0366c3fbb75d4",
+              "size": 5034711
+            },
+            "after_receipt": {
+              "anchor": "repair_chain_directory",
+              "path": "linear/captures/001/native_receipt.json",
+              "sha256": "a5b4cf246ba5516a17cad3ab0f58ad083ac8a2815780a8c136af5d0c377504e9",
+              "size": 5028630
+            },
+            "source": null
+          },
+          {
+            "kind": "source_trigonal_plane",
+            "component": "PDU",
+            "dictionary_index": 0,
+            "before_receipt": {
+              "anchor": "repair_chain_directory",
+              "path": "planes/000/inputs/before/native_receipt.json",
+              "sha256": "a5b4cf246ba5516a17cad3ab0f58ad083ac8a2815780a8c136af5d0c377504e9",
+              "size": 5028630
+            },
+            "after_receipt": {
+              "anchor": "repair_chain_directory",
+              "path": "planes/000/inputs/after/native_receipt.json",
+              "sha256": "8ba361c9da0f9d420f792b79fb6e15bc436b124c51723b90ba3cd800bf68880d",
+              "size": 5028028
+            },
+            "source": {
+              "anchor": "repair_chain_directory",
+              "path": "planes/000/inputs/source.cif",
+              "sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+              "size": 9033
+            }
+          }
+        ],
+        "policy_id": "cif-qualified-composed-repaired-component-runtime-bundle-v1",
+        "selected": "repaired_prepared_bundle",
+        "full_monomer_inventory": {
+          "atom_count": 851,
+          "identities": [
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "1"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "10"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "11"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "12"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "13"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "14"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "15"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "16"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "17"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "18"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "19"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "2"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "20"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "21"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "3"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "4"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "5"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "6"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "7"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "8"
+            },
+            {
+              "altloc": "",
+              "chain_id": "A",
+              "icode": "",
+              "model_id": "",
+              "resname": "PDU",
+              "resseq": "9"
+            },
+            {
+              "altloc": "",
+              "chain_id": "B",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "1"
+            },
+            {
+              "altloc": "",
+              "chain_id": "B",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "2"
+            },
+            {
+              "altloc": "",
+              "chain_id": "B",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "3"
+            },
+            {
+              "altloc": "",
+              "chain_id": "B",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "4"
+            },
+            {
+              "altloc": "",
+              "chain_id": "B",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "5"
+            },
+            {
+              "altloc": "",
+              "chain_id": "B",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "6"
+            },
+            {
+              "altloc": "",
+              "chain_id": "B",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "7"
+            },
+            {
+              "altloc": "",
+              "chain_id": "C",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "10"
+            },
+            {
+              "altloc": "",
+              "chain_id": "C",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "11"
+            },
+            {
+              "altloc": "",
+              "chain_id": "C",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "12"
+            },
+            {
+              "altloc": "",
+              "chain_id": "C",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "13"
+            },
+            {
+              "altloc": "",
+              "chain_id": "C",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "14"
+            },
+            {
+              "altloc": "",
+              "chain_id": "C",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "8"
+            },
+            {
+              "altloc": "",
+              "chain_id": "C",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "9"
+            },
+            {
+              "altloc": "",
+              "chain_id": "D",
+              "icode": "",
+              "model_id": "",
+              "resname": "DC",
+              "resseq": "1"
+            },
+            {
+              "altloc": "",
+              "chain_id": "D",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "2"
+            },
+            {
+              "altloc": "",
+              "chain_id": "D",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "3"
+            },
+            {
+              "altloc": "",
+              "chain_id": "D",
+              "icode": "",
+              "model_id": "",
+              "resname": "DA",
+              "resseq": "4"
+            },
+            {
+              "altloc": "",
+              "chain_id": "D",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "5"
+            },
+            {
+              "altloc": "",
+              "chain_id": "D",
+              "icode": "",
+              "model_id": "",
+              "resname": "DG",
+              "resseq": "6"
+            },
+            {
+              "altloc": "",
+              "chain_id": "D",
+              "icode": "",
+              "model_id": "",
+              "resname": "DT",
+              "resseq": "7"
+            }
+          ],
+          "mapping_count": 42,
+          "policy_id": "cif-native-full-monomer-inventory-v1",
+          "residue_count": 42,
+          "schema_version": 1,
+          "status": "RECORDED",
+          "use_ncs_to_build_restraints": false
+        },
+        "files": 300,
+        "bytes": 100729871,
+        "model_sha256": "457f00691c3a275309eae16465d0c1eb1a004336fe37c747256918e8b4593c9e",
+        "dictionary_sha256": [
+          "1f7be9dbcaa38b8c3e4fb83b1081f45e0b2ab6a8b1708de6bc801cdd2fca1892",
+          "0484b7f8558b8852896e2284c3fa68e3c31bca1ad1f34d992f000c69b92d6438"
+        ],
+        "phil_sha256": [
+          "d99d0f6ddd377408cac9b00150e3710f4010e06ecdfa43b0594bdcdb2007ffdb",
+          "25705dc3c631b9050233a292e6a5438864b652bb58bb73e85525fa2832a353f6",
+          "dc5ba9803dc7b0cbb3af4bc8ee03a4de619ab57277b36ba695ef6f2430c58dfe",
+          "530ae45a1e0aec7c28467e7837a54edf4a2e62a46ea76a022d8978b878fb0d2b",
+          "2b8d27f764f34a34b9b70b99affa6137e24d84129f2add139dc17bb82b939bee"
+        ],
+        "new_native_calls": 0
+      },
+      "cold": {
+        "status": "RELOCATED_COMPOSED_SOURCE_REPAIR_PASS",
+        "unchanged_files": 300,
+        "original_copy_and_checkout_absent": true,
+        "original_capsules_sdk_and_processes_forbidden": true,
+        "policy_id": "cif-qualified-composed-repaired-component-runtime-bundle-v1"
+      }
+    },
+    "local_evidence": {
+      "anchor": "live_tests_directory",
+      "path": "227_Cedar_composed-plane-repair-wd23fvr7"
+    },
+    "runners": {
+      "c227_native_r2.py": {
+        "sha256": "b1a804a7b0c8b8391c166b92182d00d47cd9997bbcd0ea4c360c9602347f8b09",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<current-or-relocated-src> <python3.12> c227_native_r2.py"
+      },
+      "c227_select.py": {
+        "sha256": "613ac11765f78063f4c686768dadbc0696a9575ddfe8a64ec19ce4a54bdda8a2",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<current-or-relocated-src> <python3.12> c227_select.py"
+      },
+      "c227_cold.py": {
+        "sha256": "480d91e84859a5ad7ef0fa9cee8836672e2fb99d6fd41087c84e74d91b78383a",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<current-or-relocated-src> <python3.12> c227_cold.py <capsule>/cold-r1"
+      }
+    },
+    "retained_failures": [
+      "227_Cedar_composed-plane-repair-3kbetk3q: source/output overlap refused before native launch",
+      "Selection initially denied sandbox write outside workspace; no output created; scoped retry succeeded"
+    ],
+    "storage": {
+      "uncompressed_bytes": 100729871,
+      "files": 300,
+      "distinct_files": 100,
+      "distinct_bytes": 58131899,
+      "individual_gzip_distinct_bytes": 4645288,
+      "decision": "Not a production storage target. Reuse bounded archive machinery for compact evidence; measure complete 100-dataset campaign footprint."
+    },
+    "artifacts": "Generated models, CIFs, logs, workers and native evidence deliberately excluded from Git; local only.",
+    "limitations": [
+      "No automatic plane invocation",
+      "No actual ReadySet rerun or refinement",
+      "No physical geometry/convergence claim",
+      "No full suite",
+      "Larger composition must retain existing evidence bounds",
+      "Whole-request storage/retention still needs integration"
+    ]
   }
 }

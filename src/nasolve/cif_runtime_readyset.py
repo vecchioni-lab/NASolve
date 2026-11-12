@@ -13,7 +13,7 @@ from tempfile import TemporaryDirectory
 from .cif_dictionary_sites import _need, _read, _bind_capture
 from .cif_dictionary_bundle import read_dictionary_bundle
 from .cif_dictionary_bundle_readyset import _readyset_endpoint_inputs
-from .cif_component_runtime import _tree, ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID
+from .cif_component_runtime import _tree, ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID
 from .cif_runtime_bundle import MANIFEST_FILE, _load_json, resolve_runtime_bundle
 from .ligand_profiles import combine_dictionary_inputs
 
@@ -26,7 +26,7 @@ def _parent(manifest):
     _need(not any(p.is_symlink() for p in (path, *path.parents)), 'Unsafe parent runtime')
     # Check before recursive resolution. This continuation accepts one qualified
     # request result, not an arbitrarily nested chain of ReadySet publications.
-    _need(_load_json(path).get('policy_id') in (ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID),
+    _need(_load_json(path).get('policy_id') in (ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID),
           'Require a qualified original or repaired parent runtime')
     return resolve_runtime_bundle(path)
 
