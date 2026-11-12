@@ -194,8 +194,12 @@ Remaining acceptance:
    an earlier limitation. No in-place retries, automatic source rediscovery,
    renewed attempt allowance or latest-file selection.
 
-5. Keep completed evidence compact enough for 100-dataset campaigns. C227's
-   uncompressed proof repeats native reports and is not a production storage target.
+5. Keep completed evidence compact enough for 100-dataset campaigns. C228
+   deduplicates/compresses publications: the C227 parent falls from 101 MB to 4.9 MB;
+   a complete native ReadySet continuation is 43.1 MB including its 6.2 MB result.
+   Cold read peaks at 86.5 MB temporary evidence. Next define interruption-safe
+   retirement of redundant successful working files only after all owners stop
+   and the sealed result verifies. A small publication does not bound a campaign.
    Measure the entire request/continuation/publication footprint; retain exact
    inputs, tool/policy identity, necessary check results and a reproducible trail.
    Prefer deduplication/compression over weaker checking or larger disk allowances.

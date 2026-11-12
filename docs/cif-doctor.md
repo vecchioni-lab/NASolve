@@ -764,6 +764,49 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
 
+### Compact exact runtime evidence (C228)
+
+The four component-runtime publishers accept explicit compact_evidence=True.
+This changes storage, not scientific policy: schema 2 carries an evidence_storage
+reference to a deterministic ZIP. Exact logical paths map to SHA-256-addressed
+objects, storing identical bytes once. The C95 bounded archive verifier checks
+member inventory, CRCs, sizes and checksums; additional checks reject logical path
+aliases, extra objects and invalid directory structure. Schema-1 layouts remain
+readable and low-level API defaults retain their previous representation. Older
+readers refuse schema 2 rather than applying a weaker legacy interpretation.
+
+Public model/CIF/PHIL files remain direct files. The same source/native/numerical
+checks reconstruct evidence only in temporary read scopes. Each view is limited
+to 128 MiB logical data, with a shared 128 MiB physical temporary allowance and at
+most two nested views (continuation and prepared parent). Identical temporary
+objects share hard links; when unavailable, each physical copy consumes the same
+allowance. Cleanup runs on normal and exceptional exits. Stored code is never run.
+Only the publisher's own unpublished staging copy is discarded after compression;
+original attempts and previous publications are not changed.
+
+The exact C227 PDU/NAR parent shrinks from **100,729,871 bytes / 300 files** to
+**4,888,989 bytes / 10 files**, preserving public inputs and all scientific checks.
+Actual Phenix **2.2.1-6174 / 2.2.1** executes the selected baseline, ReadySet and
+endpoint: the checked ReadySet result is selected, serialization repair is
+unnecessary, and all owners stop. The complete continuation occupies **43,127,812
+bytes / 116 files**; its public result is **6,191,165 bytes**. This is complete
+execution, not a dry run; no diffraction refinement or new Coot run is claimed.
+
+A first continuation completed its workers but refused publication because nested
+logical copies were overcounted as physical temporary bytes. Those outputs remain.
+A fresh attempt passes after sharing identical temporary objects, without raising
+the limit. Cold relocated source/result readback passes with old paths, SDK and
+process probes forbidden: 126 files unchanged, 18 temporary views removed and
+**86,509,423 bytes** peak temporary physical evidence. The final depth guard is
+covered by focused regression and this cold check.
+
+"Frozen proof" means exact inputs, tool/policy identities and check evidence needed
+to verify or reproduce the decision; it does not mean keeping every copy forever.
+Successful working-output retirement still needs an interruption-safe, known-stopped
+policy; 100-dataset total disk/peak-memory readiness is not yet demonstrated. Exact
+commands, pins and outcomes: ledger compact_runtime_evidence_2026_11_12.
+No full suite was run.
+
 ### Ordered source-qualified repairs (C227)
 
 `prepare_repair_chain` freezes an optional existing linear attribution followed by

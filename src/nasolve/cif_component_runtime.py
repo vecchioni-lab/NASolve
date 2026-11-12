@@ -4,7 +4,9 @@ The model and ordered CIF/PHIL inputs are one selection. Frozen source trees are
 data only: readers recheck the maintained qualification, never execute captured
 programs or promote separate diagnostic readiness into production adoption.
 """
+from contextlib import contextmanager
 from copy import deepcopy
+import shutil
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -195,14 +197,38 @@ def _resources(root, inputs, *, write=False):
     return refs
 
 
-def _manifest(root, controls, review, decision, resources, unavailable, *, policy_id=POLICY_ID):
+def _storage(root):
+    from .cif_runtime_evidence import POLICY_ID as STORAGE_POLICY, ARCHIVE
+    _need(not (root/'evidence').exists(), 'Compact runtime also contains an unpacked evidence tree')
+    return dict(policy_id=STORAGE_POLICY,archive=_reference(root/ARCHIVE,root))
+
+
+@contextmanager
+def component_runtime_evidence(root, value):
+    """Keep temporary scientific paths inside this read scope; public paths stay put."""
+    root=Path(root)
+    if 'evidence_storage' not in value:
+        _need(value.get('schema_version')==1, 'Missing runtime storage policy')
+        yield root
+        return
+    from .cif_runtime_evidence import expanded_runtime_evidence, ARCHIVE
+    _need(type(value.get('schema_version')) is int and value['schema_version']==2
+          and _json_bytes(value['evidence_storage'])==_json_bytes(_storage(root)),
+          'Unsupported or changed compact runtime storage')
+    with expanded_runtime_evidence(root/ARCHIVE,value['evidence_storage']['archive']['sha256']) as temporary:
+        yield temporary
+
+
+def _manifest(root, controls, review, decision, resources, unavailable, *, policy_id=POLICY_ID, compact_evidence=False):
     files=[_reference(root/name,root) for name in _tree(root,manifest=True)]
-    return dict(**{**deepcopy(_FIXED), 'policy_id':policy_id},source_selection=controls,source_review=review,decision=decision,
-        resources=resources,unavailable_native_checks=unavailable,files=files)
+    return dict(**{**deepcopy(_FIXED), 'policy_id':policy_id, 'schema_version':2 if compact_evidence else 1},
+        source_selection=controls,source_review=review,decision=decision,resources=resources,
+        unavailable_native_checks=unavailable,files=files,
+        **(dict(evidence_storage=_storage(root)) if compact_evidence else {}))
 
 
 def prepare_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt, readyset_directory, output,
-        *, endpoint_receipt=None, atom_order_directory=None):
+        *, endpoint_receipt=None, atom_order_directory=None, compact_evidence=False):
     """Freeze a fresh complete selection; failed improvements retain starting inputs.
 
     ReadySet may be absent (None). An existing failed attempt is frozen intact.
@@ -221,11 +247,11 @@ def prepare_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt
         controls[field]='evidence/'+folder+'/'+p.name
     if atom_order_directory is not None:
         roots['atom-order']=Path(atom_order_directory);controls['atom_order_directory']='evidence/atom-order'
-    return _publish(output, roots, controls, POLICY_ID)
+    return _publish(output, roots, controls, POLICY_ID, compact_evidence=compact_evidence)
 
 
 def prepare_repaired_component_runtime_bundle(bundle, baseline_receipt, attribution_directory, output,
-        *, repaired_gradient_directory=None, original_gradient_directory=None, repair_chain=False):
+        *, repaired_gradient_directory=None, original_gradient_directory=None, repair_chain=False, compact_evidence=False):
     """Freeze the source-bound whole-bundle repair decision and every proof.
 
     All scientific checks are replayed by the existing decision adapter. A
@@ -244,10 +270,10 @@ def prepare_repaired_component_runtime_bundle(bundle, baseline_receipt, attribut
             ('original_gradient_directory','original-gradient',original_gradient_directory)]:
         if path is not None:
             roots[folder] = Path(path); controls[key] = 'evidence/'+folder
-    return _publish(Path(output).absolute(), roots, controls, COMPOSED_REPAIRED_POLICY_ID if repair_chain else REPAIRED_POLICY_ID)
+    return _publish(Path(output).absolute(), roots, controls, COMPOSED_REPAIRED_POLICY_ID if repair_chain else REPAIRED_POLICY_ID, compact_evidence=compact_evidence)
 
 
-def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt, output, *, original_gradient_directory):
+def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidate_receipt, output, *, original_gradient_directory, compact_evidence=False):
     """Freeze an independently qualified original through the shared publisher.
 
     No repair history is required or invented. Existing original evidence is
@@ -259,11 +285,11 @@ def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidat
         'original-gradient':Path(original_gradient_directory)}
     controls=dict(bundle='evidence/bundle',baseline_receipt='evidence/baseline/native_receipt.json',
         candidate_receipt='evidence/candidate/native_receipt.json',original_gradient_directory='evidence/original-gradient')
-    return _publish(Path(output).absolute(),roots,controls,ORIGINAL_POLICY_ID)
+    return _publish(Path(output).absolute(),roots,controls,ORIGINAL_POLICY_ID,compact_evidence=compact_evidence)
 
 
 def prepare_runtime_readyset_bundle(manifest, baseline_receipt, readyset_directory, output,
-        *, endpoint_receipt=None, atom_order_directory=None):
+        *, endpoint_receipt=None, atom_order_directory=None, compact_evidence=False):
     """Freeze selected-parent proof and an optional exact ReadySet continuation.
 
     Reuse the public source freezer; no recovery owner or checkpoint is created.
@@ -283,10 +309,11 @@ def prepare_runtime_readyset_bundle(manifest, baseline_receipt, readyset_directo
             roots[folder] = path.parent; controls[field] = 'evidence/'+folder+'/'+path.name
     if atom_order_directory is not None:
         roots['atom-order'] = Path(atom_order_directory); controls['atom_order_directory'] = 'evidence/atom-order'
-    return _publish(output, roots, controls, CONTINUATION_POLICY_ID)
+    return _publish(output, roots, controls, CONTINUATION_POLICY_ID, compact_evidence=compact_evidence)
 
 
-def _publish(output, roots, controls, policy_id):
+def _publish(output, roots, controls, policy_id, *, compact_evidence=False):
+    _need(type(compact_evidence) is bool, 'Require an explicit boolean compact-evidence choice')
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
     _need(not any(p.is_symlink() for p in output.parents), 'Unsafe runtime destination')
     snapshots={}
@@ -306,7 +333,13 @@ def _publish(output, roots, controls, policy_id):
                 target=dest/relative;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(data)
         review,decision,inputs,unavailable=_selection(root,controls,policy_id=policy_id)
         resources=_resources(root,inputs,write=True)
-        value=_manifest(root,controls,review,decision,resources,unavailable,policy_id=policy_id)
+        if compact_evidence:
+            from .cif_runtime_evidence import pack_runtime_evidence, ARCHIVE
+            pack_runtime_evidence(root/'evidence',root/ARCHIVE)
+            # Only this publisher's unpublished temporary copy is removed.
+            # The caller's evidence and every prior immutable result stay intact.
+            shutil.rmtree(root/'evidence')
+        value=_manifest(root,controls,review,decision,resources,unavailable,policy_id=policy_id,compact_evidence=compact_evidence)
         (root/MANIFEST_FILE).write_bytes(_json_bytes(value))
         resolve_component_runtime_bundle(root/MANIFEST_FILE)
         _need(all(_tree(source)==snapshots[name] for name,source in roots.items() if source is not None), 'Source evidence changed during publication')
@@ -321,7 +354,9 @@ def verify_component_runtime_resources(path, value):
     _need(path.name==MANIFEST_FILE and _json_bytes(_load_json(path))==_json_bytes(value), 'Runtime manifest changed')
     policy = value.get('policy_id')
     _need(policy in (POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, ORIGINAL_POLICY_ID, CONTINUATION_POLICY_ID), 'Unsupported component runtime policy')
-    fixed = {**_FIXED, 'policy_id':policy}
+    compact='evidence_storage' in value
+    fixed = {**_FIXED, 'policy_id':policy, 'schema_version':2 if compact else 1}
+    if compact:_need(_json_bytes(value['evidence_storage'])==_json_bytes(_storage(root)), 'Compact evidence binding changed')
     _need(all(type(value.get(k)) is type(v) and value.get(k)==v for k,v in fixed.items()), 'Unsupported component runtime policy')
     actual=[_reference(root/name,root) for name in _tree(root,manifest=True)]
     _need(_json_bytes(actual)==_json_bytes(value['files']), 'Frozen runtime inventory changed')
@@ -335,9 +370,11 @@ def resolve_component_runtime_bundle(path, value=None):
     path=Path(path);value=_load_json(path) if value is None else value;root=path.parent
     try:
         verify_component_runtime_resources(path,value)
-        review,decision,inputs,unavailable=_selection(root,value['source_selection'],policy_id=value['policy_id'])
-        resources=_resources(root,inputs)
-        expected=_manifest(root,value['source_selection'],review,decision,resources,unavailable,policy_id=value['policy_id'])
+        with component_runtime_evidence(root,value) as evidence:
+            review,decision,inputs,unavailable=_selection(evidence,value['source_selection'],policy_id=value['policy_id'])
+            resources=_resources(root,inputs)
+        expected=_manifest(root,value['source_selection'],review,decision,resources,unavailable,policy_id=value['policy_id'],
+                           compact_evidence='evidence_storage' in value)
         _need(_json_bytes(value)==_json_bytes(expected), 'Runtime selection or evidence does not replay')
         verify_component_runtime_resources(path,value)
         return dict(model=_resolve_reference(root,resources['model']),

@@ -13,7 +13,7 @@ from tempfile import TemporaryDirectory
 from .cif_dictionary_sites import _need, _read, _bind_capture
 from .cif_dictionary_bundle import read_dictionary_bundle
 from .cif_dictionary_bundle_readyset import _readyset_endpoint_inputs
-from .cif_component_runtime import _tree, ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID
+from .cif_component_runtime import _tree, ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, component_runtime_evidence
 from .cif_runtime_bundle import MANIFEST_FILE, _load_json, resolve_runtime_bundle
 from .ligand_profiles import combine_dictionary_inputs
 
@@ -35,27 +35,28 @@ def _parent(manifest):
 def _selected_view(manifest):
     parent = _parent(manifest); root = parent['manifest_path'].parent
     frozen = _tree(root)
-    prepared = read_dictionary_bundle(root/'evidence/bundle')
-    original = prepared['after_dictionaries']; selected = parent['dictionaries']
-    _need(len(original) == len(selected)
-          and _read(parent['model']) == _read(prepared['model'])
-          and [_read(p) for p in parent['phils']] == [_read(p) for p in prepared['after_phils']],
-          'Selected runtime model, dictionary membership or PHIL order differs')
-    indices = {c:original.index(p) for c,p in prepared['component_dictionaries'].items()}
-    _need(len(set(indices.values())) == len(indices), 'Selected component owners alias')
-    _need(all(_read(selected[i]) == _read(p) for i,p in enumerate(original) if i not in indices.values()),
-          'Selected runtime changed a site modifier')
-    components = {c:selected[i] for c,i in indices.items()}
-    try:
-        with TemporaryDirectory(prefix='runtime-readyset-inputs-') as temporary:
-            combined = Path(temporary).resolve()/'selected.cif'
-            combine_dictionary_inputs([components[c] for c in sorted(components)], combined)
-            view = {**prepared, 'model':parent['model'], 'dictionary':combined,
-                    'component_dictionaries':components, 'after_dictionaries':selected,
-                    'after_phils':parent['phils']}
-            yield parent, view
-    finally:
-        _need(_tree(root) == frozen, 'Selected parent runtime changed during continuation')
+    with component_runtime_evidence(root,parent['manifest']) as evidence:
+        prepared = read_dictionary_bundle(evidence/'evidence/bundle')
+        original = prepared['after_dictionaries']; selected = parent['dictionaries']
+        _need(len(original) == len(selected)
+              and _read(parent['model']) == _read(prepared['model'])
+              and [_read(p) for p in parent['phils']] == [_read(p) for p in prepared['after_phils']],
+              'Selected runtime model, dictionary membership or PHIL order differs')
+        indices = {c:original.index(p) for c,p in prepared['component_dictionaries'].items()}
+        _need(len(set(indices.values())) == len(indices), 'Selected component owners alias')
+        _need(all(_read(selected[i]) == _read(p) for i,p in enumerate(original) if i not in indices.values()),
+              'Selected runtime changed a site modifier')
+        components = {c:selected[i] for c,i in indices.items()}
+        try:
+            with TemporaryDirectory(prefix='runtime-readyset-inputs-') as temporary:
+                combined = Path(temporary).resolve()/'selected.cif'
+                combine_dictionary_inputs([components[c] for c in sorted(components)], combined)
+                view = {**prepared, 'model':parent['model'], 'dictionary':combined,
+                        'component_dictionaries':components, 'after_dictionaries':selected,
+                        'after_phils':parent['phils']}
+                yield parent, view
+        finally:
+            _need(_tree(root) == frozen, 'Selected parent runtime changed during continuation')
 
 
 def audit_runtime_readyset_consumption(manifest, phenix, output, *, timeout_seconds=180, _process_runner=None):

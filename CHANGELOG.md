@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Save exact scientific evidence compactly (C228)
+
+- Add optional schema-2 runtime evidence with deduplication and compression.
+  Keep selected model/CIF/PHIL files directly usable; retain every scientific check.
+  Existing schema-1 results remain readable; old readers refuse the new schema.
+- Reconstruct evidence only for a scoped read, sharing identical temporary objects
+  under an unchanged 128 MiB allowance and a two-view nesting limit. Refuse damaged,
+  oversized or altered evidence; never execute saved programs.
+- A complete Phenix 2.2.1 ReadySet continuation and relocated read pass. Its public
+  result is 6.2 MB; the complete retained continuation is 43.1 MB. Existing runs are
+  untouched. Safe retirement of redundant working outputs remains separate work.
+
 ### Keep source-qualified linear and plane repairs together (C227)
 
 - Compose exact ordered linear-torsion and source-supported plane checks through

@@ -36,8 +36,13 @@ now records and rereads the complete change in forces, including forces on the
 original ring atoms. Linear and plane repairs can now be checked and saved together
 without losing the base-pair/stacking restraints. An ordinary-model control passes
 those checks and separate derivatives; automatic invocation and real refinement
-remain work. Evidence storage is also a release requirement: retain a compact,
-reproducible record rather than repeating bulky native reports across a campaign.
+remain work. Compact evidence now stores identical records once and compresses
+those bytes without weakening checks. One actual repaired PDU/NAR publication
+falls from 101 MB to 4.9 MB; its subsequent ReadySet result is 6.2 MB, while the
+complete retained continuation is 43.1 MB. Verification uses bounded temporary
+files and removes them afterward. Exact, reproducible evidence need not retain
+every duplicate forever. Safe retirement of working copies and whole-campaign
+storage qualification remain release work.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and

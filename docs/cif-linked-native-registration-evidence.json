@@ -89061,5 +89061,119 @@
       "Larger composition must retain existing evidence bounds",
       "Whole-request storage/retention still needs integration"
     ]
+  },
+  "compact_runtime_evidence_2026_11_12": {
+    "milestone": "C228",
+    "base_commit": "2a585ab",
+    "policy": "cif-content-addressed-runtime-evidence-v1",
+    "scope": "Optional compact schema-2 publication; same scientific checks",
+    "source_sha256": {
+      "cif_runtime_evidence.py": "7b1dc26aaccc432179f6e1cd9b412f6c318a9a6e09efc22c385c8824e30ceecb",
+      "cif_component_runtime.py": "80a41369e8332229bca7618c7e06aaf36298a8a11e62e6630edb6f74ef598c01",
+      "cif_runtime_readyset.py": "251184927b02c3a720e62f56ff34de9b72bb2075cb9b58a3ce497a2bd627488e",
+      "cif_runtime_continuation.py": "66529069cc58bea07c0a6ce929ad2224e283754deb4dab4ef784d18bf4346496"
+    },
+    "native_start": {
+      "phenix": "2.2.1",
+      "source_sha256": {
+        "cif_runtime_evidence.py": "913b2611d1ecb4aa8e99779c3e4f9b2099c1a0c9b71e6d3c2a3f2bdf4210350a",
+        "cif_component_runtime.py": "80a41369e8332229bca7618c7e06aaf36298a8a11e62e6630edb6f74ef598c01",
+        "cif_runtime_readyset.py": "251184927b02c3a720e62f56ff34de9b72bb2075cb9b58a3ce497a2bd627488e",
+        "cif_runtime_continuation.py": "66529069cc58bea07c0a6ce929ad2224e283754deb4dab4ef784d18bf4346496"
+      },
+      "mode": "COMPLETE_READYSET_CONTINUATION; NO_DIFFRACTION_REFINEMENT",
+      "total_seconds": 900
+    },
+    "publication": {
+      "status": "COMPACT_COMPOSED_RUNTIME_PASS",
+      "schema_version": 2,
+      "policy_id": "cif-qualified-composed-repaired-component-runtime-bundle-v1",
+      "evidence_storage": "cif-content-addressed-runtime-evidence-v1",
+      "selected": "repaired_prepared_bundle",
+      "files": 10,
+      "persistent_bytes": 4888989,
+      "prior_persistent_bytes": 100729871,
+      "archive_bytes": 4665697,
+      "logical_evidence_bytes": 100438147,
+      "distinct_evidence_bytes": 58014650,
+      "distinct_objects": 99,
+      "logical_files": 291,
+      "public_resources_unchanged": true,
+      "peak_temporary_logical_limit_bytes": 134217728,
+      "new_native_calls": 0,
+      "elapsed_seconds": 39.01886070801993
+    },
+    "native": {
+      "status": "COMPACT_READYSET_CONTINUATION_PASS",
+      "phenix": "2.2.1",
+      "selected": "readyset_checked_model",
+      "phases": {
+        "native-baseline": "COMPLETED",
+        "native-endpoint": "COMPLETED",
+        "readyset": "COMPLETED"
+      },
+      "serialization": {
+        "status": "NOT_NEEDED"
+      },
+      "persistent_bytes": 43127812,
+      "public_bytes": 6191165,
+      "files": 116,
+      "source_files_unchanged": 10,
+      "owner_state": "STOPPED",
+      "schema_version": 2,
+      "elapsed_seconds": 287.7509230829892,
+      "refinement": "NOT_RUN"
+    },
+    "relocation": {
+      "status": "RELOCATED_COMPACT_PARENT_AND_READYSET_PASS",
+      "unchanged_files": 126,
+      "original_copy_and_checkout_absent": true,
+      "original_capsules_sdk_and_processes_forbidden": true,
+      "temporary_views_removed": 18,
+      "peak_temporary_physical_bytes": 86509423,
+      "per_read_shared_physical_limit_bytes": 134217728,
+      "maximum_nested_views": 2,
+      "parent_read_seconds": 13.814338458003476,
+      "continuation_read_seconds": 114.92769104099716,
+      "new_native_calls": 0
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_runtime_evidence.py tests/test_cif_component_runtime.py tests/test_cif_runtime_readyset.py tests/test_cif_runtime_continuation.py::test_continuation_joins_real_worker_ownership_and_exact_selected_parent tests/test_cif_runtime_continuation.py::test_known_stopped_optional_failure_preserves_complete_repaired_parent tests/test_cif_runtime_continuation.py::test_legacy_continuation_artifact_policy_is_not_upgraded tests/test_cif_runtime_continuation.py::test_invalid_limits_refuse_before_writing",
+        "result": "104 passed in 155.96s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_runtime_evidence.py",
+        "result": "33 passed in 18.52s after physical sharing correction"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_runtime_evidence.py::test_two_layer_storage_does_not_allow_unbounded_nested_views",
+        "result": "1 passed in 0.51s; prior -k depth selected no tests, exact node then used"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<cedar>/src <python3.12> <local-runners>/c228_publish.py",
+        "result": "Exact compact parent publication/read passed"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<cedar>/src <python3.12> <local-runners>/c228_continue_r2.py",
+        "result": "Complete baseline/ReadySet/endpoint/publication/read passed; all STOPPED"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<relocated-checkout>/src <python3.12> <local-runners>/c228_cold.py <capsule>/cold-r1",
+        "result": "Cold read passed; no SDK/process/original access"
+      }
+    ],
+    "fail_before": "16 archive, 11 integration and 2 owned-continuation failures before corresponding implementation; native first attempt refused nested temporary overcount after workers completed",
+    "compatibility": "Legacy schemas and low-level defaults unchanged; schema 2 requires updated reader; no old artifact migration",
+    "local_evidence": {
+      "anchor": "live_tests_directory",
+      "relative_path": "228_Cedar_compact-evidence-luvqjjet"
+    },
+    "excluded": "Generated science, logs, workers and runners; no old outputs deleted",
+    "limits": [
+      "No full suite, diffraction refinement or new Coot",
+      "Automatic request forwarding separate C229",
+      "Working-output retirement and 100-dataset disk/peak-memory qualification open"
+    ]
   }
 }
