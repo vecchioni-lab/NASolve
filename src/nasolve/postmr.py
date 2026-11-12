@@ -68,14 +68,20 @@ class MutationAction:
 
 @dataclass(frozen=True)
 class PostMRResult:
+    """A usable preparation; checked results expose their receipt and actual status.
+
+    readyset_log is optional because the checked route retains the native logs
+    through its immutable request, not a synthetic legacy log at the run root.
+    """
     status: str
     message: str
     run_directory: Path
     postmr_directory: Path
     report_path: Path
     model_path: Path
-    readyset_log: Path
+    readyset_log: Path | None
     restraint_paths: tuple[Path, ...]
+    readyset_status: str | None = None
 
 
 _COOT_BASES = frozenset({"DA", "DC", "DG", "DT", "A", "C", "G", "U"})
@@ -1864,11 +1870,28 @@ class _PreparedDictionaryInputs:
 _PostMRReturn = TypeVar("_PostMRReturn")
 
 
+def _selected_postmr_environment(ready_set_executable, phenix_installation, environment):
+    """Validate the supplied installation without rediscovery or filesystem writes."""
+    if phenix_installation is not None:
+        try:
+            selected_ready = Path(phenix_installation.executables["phenix.ready_set"]).expanduser().resolve(strict=True)
+            if selected_ready != Path(ready_set_executable).expanduser().resolve(strict=True):
+                raise ValueError("ReadySet dispatcher differs")
+            selected_environment = dict(phenix_installation.environment)
+            if environment is not None and dict(environment) != selected_environment:
+                raise ValueError("Execution environment differs")
+        except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+            raise PostMRPreparationError(f"PostMR selected Phenix configuration is inconsistent: {exc}") from exc
+        environment = selected_environment
+    return environment
+
+
 def prepare_postmr(
     run_directory: Path,
     ready_set_executable: Path,
     *,
     phenix_installation: PhenixInstallation | None = None,
+    checked_preparation: bool = False,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
@@ -1879,23 +1902,31 @@ def prepare_postmr(
     narestraints_builder: Callable[[Path, Path, Path], object] | None = None,
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
 ) -> PostMRResult:
-    """Prepare a completed Phaser solution using the established runtime path.
+    """Prepare a Phaser solution through the established or explicit checked route.
 
-    Selected-installation validation and ordinary construction/NAR preparation
-    are shared with the explicit dictionary-request initializer.
+    Checked preparation uses the existing immutable request and publishes one
+    review checkpoint. Partial work must continue through its saved owner, never
+    by repeating this constructor. The default and explicit-path API stay intact.
     """
+    if type(checked_preparation) is not bool:
+        raise PostMRPreparationError('checked_preparation must be a boolean')
+    options = dict(coot_executable=coot_executable, allow_mr_review=allow_mr_review,
+        modified_pairs_only=modified_pairs_only, restraint_scope=restraint_scope,
+        allow_unreviewed_backbone=allow_unreviewed_backbone, data_root=data_root,
+        narestraints_builder=narestraints_builder, modified_pair_builder=modified_pair_builder)
+    if checked_preparation:
+        if phenix_installation is None:
+            raise PostMRPreparationError('Checked preparation requires a selected Phenix installation')
+        _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
+        from .cif_ordinary_postmr import prepare_published_postmr
+        from .campaigns import CampaignError
+        from .checkpoints import CheckpointError
+        try:
+            return prepare_published_postmr(run_directory, phenix_installation, **options)
+        except (OSError, ValueError, CampaignError, CheckpointError) as exc:
+            raise PostMRPreparationError(f'Checked preparation could not complete: {exc}') from exc
     return _prepare_postmr(run_directory, ready_set_executable,
-        phenix_installation=phenix_installation,
-        coot_executable=coot_executable,
-        environment=environment,
-        allow_mr_review=allow_mr_review,
-        modified_pairs_only=modified_pairs_only,
-        restraint_scope=restraint_scope,
-        allow_unreviewed_backbone=allow_unreviewed_backbone,
-        data_root=data_root,
-        narestraints_builder=narestraints_builder,
-        modified_pair_builder=modified_pair_builder,
-    )
+        phenix_installation=phenix_installation, environment=environment, **options)
 
 
 def _prepare_postmr(
@@ -1922,17 +1953,7 @@ def _prepare_postmr(
     existing cache adapter consumes that same installation without rediscovery.
     This does not enable the separate owned repair/adoption engine.
     """
-    if phenix_installation is not None:
-        try:
-            selected_ready = Path(phenix_installation.executables["phenix.ready_set"]).expanduser().resolve(strict=True)
-            if selected_ready != Path(ready_set_executable).expanduser().resolve(strict=True):
-                raise ValueError("ReadySet dispatcher differs")
-            selected_environment = dict(phenix_installation.environment)
-            if environment is not None and dict(environment) != selected_environment:
-                raise ValueError("Execution environment differs")
-        except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
-            raise PostMRPreparationError(f"PostMR selected Phenix configuration is inconsistent: {exc}") from exc
-        environment = selected_environment
+    environment = _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
     run, report = _read_report(run_directory)
     from .automr_input import validate_restraint_scope, AutoMRInputError
     plan = report.get("post_mr_plan", {})

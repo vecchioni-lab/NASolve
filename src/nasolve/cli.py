@@ -156,6 +156,8 @@ def build_parser() -> argparse.ArgumentParser:
         help="completed AutoMR run directory (default: active workspace run)",
     )
     postmr.add_argument("--coot", help="one-run Coot executable override")
+    postmr.add_argument("--checked-preparation", action="store_true",
+                        help="check/repair dictionaries and save the exact model/restraints as a review checkpoint; retain independently checked fallbacks")
     postmr.add_argument("--restraint-scope", choices=("all",),
                         help="use NARestraints for model-derived pairs and all chain-order stacks")
     postmr.add_argument(
@@ -881,6 +883,7 @@ def _postmr(args: argparse.Namespace) -> int:
             modified_pairs_only=args.modified_pairs_only,
             restraint_scope=args.restraint_scope,
             allow_unreviewed_backbone=args.allow_unreviewed_backbone,
+            checked_preparation=getattr(args, "checked_preparation", False),
         )
     except (
         ConfigError,
@@ -889,11 +892,18 @@ def _postmr(args: argparse.Namespace) -> int:
         PostMRPreparationError,
     ) as exc:
         print(f"PostMR preparation error: {exc}", file=sys.stderr)
+        if getattr(args, "checked_preparation", False) and 'run' in locals():
+            print("Check saved preparation before continuing: " + shlex.join([
+                "nasolve", "cif-doctor", "preparation-status", str(run)]), file=sys.stderr)
+            print("Preserve partial work; use its exact continuation or publication command instead of rerunning PostMR.", file=sys.stderr)
         return 2
     print(f"{result.status}: {result.message}")
     print(f"Run directory: {result.run_directory}")
     print(f"Prepared model: {result.model_path}")
-    print(f"ReadySet log: {result.readyset_log}")
+    if getattr(result, "readyset_status", None) is not None:
+        print(f"ReadySet: {result.readyset_status}")
+    if result.readyset_log is not None:
+        print(f"ReadySet log: {result.readyset_log}")
     for restraint in result.restraint_paths:
         print(f"Restraint: {restraint}")
     print(f"Report: {result.report_path}")

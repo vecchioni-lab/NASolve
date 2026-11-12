@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Run checked preparation through ordinary PostMR (C224)
+
+- `postmr RUN --checked-preparation` constructs once, executes the existing
+  dictionary/ReadySet checks and saves the exact review checkpoint in one call.
+  An independently verified retained model remains a usable result after an
+  optional failure; unqualified results cannot trigger an unchecked retry.
+- Report the actual ReadySet outcome and preparation receipt without fabricating
+  a legacy log. Partial work continues through the existing exact attempt commands.
+- Keep default PostMR, explicit executable paths and campaign behavior unchanged.
+  No new saved schema or chemical acceptance thresholds.
+
 ### Keep a checked preparation together in normal use (C223)
 
 - `cif-doctor publish-preparation RUN --attempt N` saves that exact model and

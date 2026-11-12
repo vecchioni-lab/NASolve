@@ -16,10 +16,11 @@ A model that passes those checks has **not yet been shown to refine correctly**.
 report and resume preparation honestly. A named checked preparation, including a
 retained fallback, can now be inspected in Coot with its matching dictionaries
 against the original MR map. That map is not recalculated for the prepared model.
-An explicit handoff now saves that exact choice as a review checkpoint for
-ordinary inspection and trial refinement, including a checked fallback. An
+The ordinary PostMR command can explicitly run the checked route and save that
+exact choice as a review checkpoint for inspection and trial refinement, including
+a checked fallback. An
 interrupted save can finish without rebuilding the model. The next work is
-connecting this handoff to normal PostMR/campaign preparation, integrating general
+connecting this handoff to campaign preparation, integrating general
 plane repair, and running complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.

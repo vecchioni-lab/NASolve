@@ -177,6 +177,14 @@ RUN=/absolute/path/to/dataset/AutoMR/run_001
 ./nasolve postmr "$RUN"
 ```
 
+For the explicit checked dictionary/ReadySet route, use
+`./nasolve postmr "$RUN" --checked-preparation` instead. It constructs once and
+saves the checked model and matching restraints as a review checkpoint, including
+a verified fallback after an optional improvement fails. This does not establish
+successful refinement. Preserve interrupted work and use the saved attempt's
+[continuation/publication commands](docs/cif-doctor.md#ordinary-postmr-with-checked-preparation-c224);
+do not rerun construction over a partial PostMR directory.
+
 If PostMR reports an anomalous heavy-atom candidate, run the conditional
 MR-SAD layer:
 

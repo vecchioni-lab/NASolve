@@ -88102,5 +88102,149 @@
         "size": 2886
       }
     ]
+  },
+  "ordinary_checked_postmr_2026_11_12": {
+    "status": "VALIDATED_FOCUSED",
+    "date": "2026-11-12",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "0366d7f9ac246c8e4d2d22a05c67a7a1210d2e43",
+    "before": "Ordinary PostMR had no checked-route option; users had to run separate preparation and publication commands. Its return contract and CLI always expected a legacy ReadySet log.",
+    "after": "postmr --checked-preparation shares construction/execution with the existing owned route and publishes its exact result once. Independently checked fallbacks remain usable, actual ReadySet status is reported, and incomplete/unqualified work stays preserved without an unchecked retry.",
+    "files": [
+      "src/nasolve/postmr.py",
+      "src/nasolve/cif_ordinary_postmr.py",
+      "src/nasolve/cli.py",
+      "tests/test_postmr_runtime.py"
+    ],
+    "schemas": "No new saved schema. Reuses C223 publication/checkpoint schema 3. PostMRResult.readyset_log is optional for checked results; readyset_status is an additive optional live field.",
+    "compatibility": "Flag defaults off. Legacy explicit executable-path API, default CLI, diagnostic preparation commands and campaign route retain their behavior. Checked API requires the selected Phenix installation. Campaign frozen-mode/receipt integration remains open.",
+    "validation": {
+      "fail_before": 9,
+      "legacy_controls_passed_before": 8,
+      "initial_focused_tests": 81,
+      "initial_focused_subtests": 14,
+      "broader_focused_tests": 196,
+      "broader_focused_subtests": 34,
+      "final_postmr_tests": 20,
+      "smoke_tests": 139,
+      "smoke_subtests": 6,
+      "final_summary": {
+        "postmr": {
+          "returncode": 0,
+          "elapsed_seconds": 1.6080201669828966
+        },
+        "smoke": {
+          "returncode": 0,
+          "elapsed_seconds": 8.340054042026168
+        },
+        "syntax": {
+          "files": 668,
+          "warnings": [],
+          "bytecode_written": false
+        },
+        "source_unchanged": true
+      },
+      "full_suite": "NOT_RUN per Simon. Prior C223 workflow profile passed 2230 tests +45 subtests; last entirely green full revision remains C220/583d30df9c2bb8fd76e802e0eaa51d749c2b6eeb.",
+      "native": "No fresh scientific execution. Constructor/executor boundary uses test doubles and legacy integration uses test executables. C219 native proof and C223 cold relocation remain the underlying saved evidence (Phenix 2.2.1-6174 / dispatcher 2.2.1; Coot 1.3.3 revision-count 0). No new MTZ interpretation or diffraction-refinement claim.",
+      "relocation": "No path/schema change; existing C223 relocation regression rerun among affected tests. No new native cold replay required for this caller composition."
+    },
+    "commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "python_version": "3.12.14",
+      "before": "python -m pytest -q -p no:cacheprovider tests/test_postmr_runtime.py",
+      "broader_focused": "python -m pytest -q -p no:cacheprovider tests/test_postmr_runtime.py tests/test_postmr.py tests/test_postmr_phosphate.py tests/test_postmr_context.py tests/test_cif_ordinary_postmr.py tests/test_cif_ordinary_outcome.py tests/test_cif_ordinary_cli.py tests/test_cif_postmr_publication.py tests/test_cli.py tests/test_campaign_pipeline.py tests/test_campaign_full_auto_pipeline.py tests/test_sequence_family_integration.py",
+      "final_postmr": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "tests/test_postmr_runtime.py"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "smoke": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "scripts/run_tests.py",
+          "smoke"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "syntax": "compile(source_bytes, relative_path, \"exec\") over src/tests/scripts, without bytecode",
+      "whitespace": "git diff --check"
+    },
+    "redundancy": "Shared the existing constructor/executor and selected-installation validator. Publication performs one complete proof read. Added cases to the existing PostMR runtime test module; no new engine, owner, test module or saved schema.",
+    "limitations": [
+      "Explicit standalone option only; automatic campaign mode/receipt handling and later preparation children remain Q05.",
+      "Existing checked-route eligibility and chemical coverage limits still apply; this interface does not broaden support.",
+      "General complete-plane repair and real complete-restraint refinement remain Q04/Q06."
+    ],
+    "excluded": "All generated test outputs, local logs and receipts remain outside Git; no generated scientific data or environments included.",
+    "local_evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/before.log",
+        "sha256": "36777f50c3981d207f630289fe6678ccff9169ea32c5cf9b37c01401226fccd9",
+        "size": 13154
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/focused-r1.log",
+        "sha256": "3c9268d750b8e449c62a7103a14ad0c79998c2030a8903a496c26ff48b210d16",
+        "size": 177
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/focused-r2.log",
+        "sha256": "77129800ddedc20534fba267a4930fef94df5342479b6ce4ac1875cfd6e1caa2",
+        "size": 311
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/final-checks/postmr.log",
+        "sha256": "53ed93d64949133d402f3ce74416ad113fef0da04c7bb93e409bc9ceca4bf5c0",
+        "size": 99
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/final-checks/smoke.log",
+        "sha256": "83ce3cd9a71c9cfeb479b08007e1564942527d09bc8f2d650aa5f393b6568664",
+        "size": 3167
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/final-checks/summary.json",
+        "sha256": "7a7bd7210b6adffada44ef2d6d2a17aeab884017bb8088e9dfedce43b925ae1f",
+        "size": 280
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/final-checks/source-hashes.json",
+        "sha256": "f28217ea42d3467c448cf8a4a9288671ea02af902e1e6134c134fe42cf37a62a",
+        "size": 72901
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "224_Cedar_ordinary-checked-postmr-lx_vcv3s/final-checks/runner.py.txt",
+        "sha256": "2569db1c5c912e02120288e2fce68f9c79798736da20f9fe5da78e11fb4de098",
+        "size": 1858
+      }
+    ]
   }
 }

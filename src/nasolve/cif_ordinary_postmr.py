@@ -1,7 +1,8 @@
 """Ordinary construction/NAR input entry into the existing immutable request.
 
-Construction, continuation and read-only result helpers share the existing
-complete-request owner. Checked preparation is not refinement/checkpoint adoption.
+Construction, continuation and result helpers share the existing complete-request
+owner. Optional publication uses the ordinary review-checkpoint contract;
+preparation does not establish successful diffraction refinement.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -149,8 +150,8 @@ def read_ordinary_postmr_result(run_directory, *, attempt_number) -> CheckedPost
     return _read_ordinary_postmr_result(run_directory, attempt_number=attempt_number)[0]
 
 
-def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparation_options) -> CheckedPostMRResult:
-    """Construct once, execute one owned attempt, and return its exact checked result.
+def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **preparation_options):
+    """Construct once, execute one owned attempt, and return its run and attempt ID.
 
     This explicit route does not replace the default PostMR/campaign path yet.
     After interruption use continue_checked_postmr with the recorded attempt
@@ -165,7 +166,34 @@ def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparat
     result = execute_dictionary_request_attempt(prepared.request_directory, phenix,
         default_dictionary_store() if store_root is None else store_root,
         generation=prepared.generation, after_attempt=0)
-    return read_ordinary_postmr_result(prepared.run_directory, attempt_number=result['attempt_number'])
+    return prepared.run_directory, result['attempt_number']
+
+
+def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparation_options) -> CheckedPostMRResult:
+    """Construct/execute once and read the diagnostic result without adoption."""
+    run, attempt = _execute_ordinary_postmr(run_directory, phenix,
+        store_root=store_root, **preparation_options)
+    return read_ordinary_postmr_result(run, attempt_number=attempt)
+
+
+def prepare_published_postmr(run_directory, phenix, **preparation_options):
+    """Use the same owner, then publish its exact result as an ordinary review root.
+
+    Publication performs the complete proof read once. Do not first call the
+    diagnostic reader and repeat its expensive replay just to obtain an attempt ID.
+    An optional native failure may retain a qualified result; absence of one never
+    triggers a second, unchecked preparation route.
+    """
+    from .cif_postmr_publication import publish_checked_preparation
+    from .checkpoints import _required_file, _ref_path
+    from .postmr import PostMRResult
+    run, attempt = _execute_ordinary_postmr(run_directory, phenix, **preparation_options)
+    record = publish_checked_preparation(run, attempt_number=attempt)
+    return PostMRResult(status=record['status'], message=record['message'],
+        run_directory=run, postmr_directory=run/'PostMR', report_path=run/'PostMR/report.json',
+        model_path=_required_file(record['prepared_model'], 'published model', run),
+        readyset_log=None, readyset_status=record['readyset']['status'],
+        restraint_paths=tuple(_ref_path(ref, 'published restraint', run) for ref in record['refinement_restraints']))
 
 
 def continue_checked_postmr(run_directory, phenix, *, after_attempt, store_root=None) -> CheckedPostMRResult:

@@ -23,7 +23,7 @@ learned along the way; they are not a reason to keep rebuilding Q04.
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. Complete the existing general plane repair inside the same repair machinery. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. Connect ordinary PostMR/campaign entry; define later preparation children without replacing earlier choices. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects explicit ordinary PostMR; connect campaign entry and define later preparation children without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
@@ -43,8 +43,8 @@ learned along the way; they are not a reason to keep rebuilding Q04.
    exact completed attempt without launching anything; continue an interrupted
    request only through the existing owner and a fresh numbered attempt.
 2. **Use that exact result throughout normal preparation:** C223 closes explicit
-   initial checkpoint publication and normal reads. Connect ordinary PostMR/campaign
-   entry and later preparation children. Keep latest and selected distinct.
+   initial checkpoint publication and normal reads; C224 connects explicit ordinary
+   PostMR. Connect campaign entry and later preparation children. Keep latest and selected distinct.
 3. **Finish general plane repair:** reuse the existing source-graph rule and
    preserve existing ring planes. PDU and 5PC are controls, not name-based switches.
 4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
@@ -217,8 +217,12 @@ sealed receipt and exact attempt; no native rerun, newer-file guess or reselecti
 occurs. Initial schema-3 adoption is explicit, not an automatic campaign behavior
 or a claim of real refinement success. Legacy registries are not converted.
 
-**Remaining acceptance:** connect the existing ordinary PostMR/campaign callers
-to this handoff, and define later preparation-child adoption without changing an
+**C224:** `postmr --checked-preparation` now composes construction, one existing
+owned attempt and exact publication, with honest fallback reporting and one proof
+read at publication. Default preparation and campaigns remain unchanged.
+
+**Remaining acceptance:** connect campaign callers to this handoff, and define
+later preparation-child adoption without changing an
 immutable earlier root. Reuse the existing request owner and publication path;
 do not build another recovery or chemistry framework. Preserve normalization and
 anomalous metadata where actually available, without inventing ReadySet success.

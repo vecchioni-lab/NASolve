@@ -1468,6 +1468,13 @@ identities and phosphate connections into ordinary manual/refined model checks;
 coordinates may move without changing those links.
 Preparation checks and a REVIEW checkpoint do not establish diffraction-refinement
 success. [Methods and limits](cif-doctor.md#save-a-checked-preparation-for-normal-use-c223).
+The ordinary `postmr --checked-preparation` option composes construction, one owned
+attempt and this publication path. The same selected-installation check protects
+both ordinary routes. The checked result reports its actual ReadySet status and
+preparation receipt; `PostMRResult.readyset_log` is optional on that route.
+No diagnostic proof is replayed merely to obtain the finished attempt number.
+Default PostMR and campaign preparation keep their existing route.
+
 
 ### Future graphical checkpoint-tree view
 
