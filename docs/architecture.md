@@ -1450,6 +1450,25 @@ Checkpoint listing is read-only: it validates an existing
 registry without rewriting it, or derives a validated PostMR root in memory
 without creating files. Modifying operations still initialize the registry.
 
+The explicit `cif-doctor publish-preparation RUN --attempt N` route saves one
+checked preparation as a REVIEW root for trial refinement. It retains the exact
+ordered model/CIF/PHIL selection and truthful fallback outcome. This route uses
+checkpoint schema 3 and an immutable checksummed `PostMR/report.json` that binds
+the original request/result, construction/compiler proof, observations and intent.
+Normal checkpoint, Coot and AutoSol reads reuse the same complete evidence reader.
+Legacy schema 1/2 runs remain unchanged; older readers reject schema 3.
+
+Publication uses the existing request lock, writes the preparation receipt and
+initial registry first, then commits the run report last. Repeating the exact
+command completes that same interrupted save; it cannot replace a prior choice
+or reset a later selected checkpoint. New manual/refined coordinates are allowed,
+while every selected descendant keeps its parent's ordered restraint prefix.
+The saved `checked_model_topology` also carries the prepared-model context's
+identities and phosphate connections into ordinary manual/refined model checks;
+coordinates may move without changing those links.
+Preparation checks and a REVIEW checkpoint do not establish diffraction-refinement
+success. [Methods and limits](cif-doctor.md#save-a-checked-preparation-for-normal-use-c223).
+
 ### Future graphical checkpoint-tree view
 
 The immutable checkpoint registry is also the natural data model for a future

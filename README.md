@@ -299,6 +299,13 @@ be available; otherwise use `cif-doctor prepared-result "$RUN" --attempt 1` to
 read the checked result and its report. Do not combine this option with `--stage`
 or `--checkpoint`.
 
+To use the checked preparation in normal inspection and trial refinement, run
+`./nasolve cif-doctor publish-preparation "$RUN" --attempt 1`. This saves the exact
+model and matching restraints as the initial `postmr` **REVIEW** checkpoint. It
+can retain a checked fallback; it does not claim refinement success. Repeat the
+same command to finish an interrupted save. It cannot replace an existing
+preparation/checkpoint choice. [Scope and recovery details](docs/cif-doctor.md#save-a-checked-preparation-for-normal-use-c223).
+
 After `./nasolve campaign run ROOT --dataset DATASET` reaches a viewable stage,
 that **single-dataset** run becomes the machine-local active workspace view.
 A following `./nasolve show` therefore opens its current checkpoint without

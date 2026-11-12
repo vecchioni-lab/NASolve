@@ -249,10 +249,19 @@ def _phaser_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
     )
 
 
+def _validate_preparation_view(run, report, registry=None):
+    from .checkpoints import _validate_preparation, CheckpointError
+    try:
+        _validate_preparation(run, report, registry)
+    except CheckpointError as exc:
+        raise CootViewError(str(exc)) from exc
+
+
 def _prepared_model(run: Path, report: Mapping[str, object]) -> Path:
     postmr = report.get("postmr")
     if not isinstance(postmr, Mapping) or postmr.get("status") != "POSTMR_READY":
         raise CootViewError("This run has no completed PostMR result")
+    _validate_preparation_view(run, report)
     model = _reported_file(postmr.get("prepared_model"), "ReadySet model", run)
     _verify_report_checksum(model, postmr.get("prepared_sha256"), "ReadySet model")
     return model
@@ -289,7 +298,7 @@ def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         map_path,
         (),
         _postmr_dictionaries(run, report),
-        "PostMR ReadySet prepared model",
+        str(report["postmr"]["message"]) if "checked_preparation" in report["postmr"] else "PostMR ReadySet prepared model",
         map_source,
     )
 
@@ -370,7 +379,7 @@ def _refinement_map(
 ) -> Path:
     outputs = checkpoint.get("outputs")
     map_value = outputs.get("map_coefficients") if isinstance(outputs, Mapping) else None
-    if schema_version == 2 and map_value is not None:
+    if schema_version in {2, 3} and map_value is not None:
         _require_checkpoint_checksum(map_value, "map coefficients")
     reported_map = resolve_artifact_path(map_value, run)
     if reported_map is not None:
@@ -379,7 +388,7 @@ def _refinement_map(
         raise CootViewError(
             "Checkpoint map coefficients are missing or failed checksum validation"
         )
-    if schema_version == 2:
+    if schema_version in {2, 3}:
         reflection_value = (
             outputs.get("refinement_reflections")
             if isinstance(outputs, Mapping)
@@ -401,7 +410,7 @@ def _checkpoint_dictionaries(
         raise CootViewError("Malformed checkpoint restraint list")
     dictionaries: list[Path] = []
     for value in restraints or []:
-        if schema_version == 2:
+        if schema_version in {2, 3}:
             _require_checkpoint_checksum(value, "restraint")
         # PHIL and modification-only CIFs belong to the same frozen selection,
         # even though Coot displays only component dictionaries. Validate every
@@ -427,7 +436,7 @@ def _refinement_anomalous_maps(
     value = outputs.get("refinement_reflections") if isinstance(outputs, Mapping) else None
     if value is None:
         return (map_path,)
-    if schema_version == 2:
+    if schema_version in {2, 3}:
         _require_checkpoint_checksum(value, "refinement reflections")
     reflections = _reported_file(value, "checkpoint refinement reflections", run)
     return tuple(dict.fromkeys((map_path, reflections)))
@@ -439,7 +448,7 @@ def _same_observations(
     paths = []
     for item in (child, parent):
         value = item.get("observations")
-        if schema_version == 2:
+        if schema_version in {2, 3}:
             _require_checkpoint_checksum(value, "observations")
         paths.append(_reported_file(value, "checkpoint observations", run))
     if paths[0] != paths[1] and file_sha256(paths[0]) != file_sha256(paths[1]):
@@ -494,6 +503,7 @@ def _autorefine_profile(
     schema_version = registry.get("schema_version")
     if type(schema_version) is not int or schema_version not in READABLE_SCHEMA_VERSIONS:
         raise CootViewError(f"Unsupported checkpoint schema: {schema_version}")
+    _validate_preparation_view(run, report, registry)
     current = checkpoint_id or registry.get("current")
     items = registry.get("checkpoints")
     if not isinstance(current, str) or not isinstance(items, list):
@@ -511,8 +521,13 @@ def _autorefine_profile(
     if checkpoint is None:
         requested = "requested checkpoint" if checkpoint_id else "current pointer"
         raise CootViewError(f"Checkpoint registry {requested} is unknown: {current}")
+    from .cif_postmr_publication import validate_preparation_lineage
+    try:
+        validate_preparation_lineage(registry, checkpoint)
+    except ValueError as exc:
+        raise CootViewError(str(exc)) from exc
     model_ref = checkpoint.get("model")
-    if schema_version == 2:
+    if schema_version in {2, 3}:
         _require_checkpoint_checksum(model_ref, "model")
     model = _reported_file(model_ref, "checkpoint model", run)
     map_path, map_source, anomalous_paths = _checkpoint_map(
@@ -526,7 +541,8 @@ def _autorefine_profile(
         map_path,
         (),
         _checkpoint_dictionaries(run, checkpoint, schema_version),
-        f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})",
+        f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})"
+        + (f": {checkpoint.get('label')}" if schema_version == 3 else ""),
         map_source,
         current,
         anomalous_paths,

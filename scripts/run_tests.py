@@ -32,7 +32,7 @@ PROFILES = {
         'test_cif_topology_gate', 'test_phosphate', 'test_recipe_phosphates',
     ),
     'workflow': (
-        'test_cif_ordinary_cli', 'test_cif_ordinary_outcome', 'test_cif_ordinary_postmr', 'test_postmr_runtime',
+        'test_cif_postmr_publication', 'test_cif_ordinary_cli', 'test_cif_ordinary_outcome', 'test_cif_ordinary_postmr', 'test_postmr_runtime',
         'test_curated_cif_loops',
         'test_test_suites', 'test_cif_doctor_selection', 'test_cif_dictionary_store',
         'test_cif_prepared_repair_failure', 'test_cif_attachment_native', 'test_cif_original_component_runtime', 'test_cif_dictionary_bundle_repair', 'test_cif_repaired_component_runtime', 'test_cif_phenix_configuration', 'test_cif_postmr_request', 'test_cif_compiler_intake', 'test_cif_literal_na_inputs', 'test_cif_restraint_context', 'test_cif_model_context', 'test_cif_complete_request', 'test_cif_complete_continuation', 'test_failure_reporting', 'test_cif_outer_context', 'test_cif_generation_acquisition', 'test_cif_acquisition_attempt', 'test_cif_acquisition_sources', 'test_cif_acquisition_preparation', 'test_cif_repair_attempt', 'test_cif_repair_process', 'test_cif_candidate_qualification', 'test_cif_candidate_qualification_execution', 'test_cif_prepared_repair_execution', 'test_cif_prepared_repair_budget', 'test_cif_retained_acquisition', 'test_cif_generation_attempt', 'test_cif_generation_process', 'test_cif_source_candidate', 'test_campaign_process',

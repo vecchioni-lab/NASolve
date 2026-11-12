@@ -69,6 +69,13 @@ def _read_run_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
         )
     if report.get("stage") != "postmr" or report.get("status") != "POSTMR_READY":
         raise AutoSolPreparationError("AutoSol requires a completed POSTMR_READY run")
+    # A checked preparation retains its complete producer proof for every normal
+    # scientific consumer, including anomalous phasing.
+    from .checkpoints import _validate_preparation, CheckpointError
+    try:
+        _validate_preparation(run, report)
+    except CheckpointError as exc:
+        raise AutoSolPreparationError(str(exc)) from exc
     return run, report
 
 

@@ -119,3 +119,21 @@ def validate_prepared_model_context(model, record):
     expected = derive_prepared_model_context(model, record['intent'], record['components'])
     _need(_bytes(record) == _bytes(expected), 'Prepared-model context differs from its frozen derivation')
     return expected
+
+
+def prepared_model_topology(record):
+    """Retain identities/link roles without freezing a model's coordinates."""
+    fields = ('schema_version', 'policy_id', 'components', 'intent', 'contexts', 'expected_links')
+    _need(isinstance(record, dict) and all(k in record for k in fields)
+          and type(record['schema_version']) is int and record['schema_version'] == 1
+          and record['policy_id'] == POLICY_ID, 'Unsupported prepared-model topology')
+    return deepcopy({k: record[k] for k in fields})
+
+
+def validate_prepared_model_topology(model, record):
+    """Apply the existing connectivity audit to a later manual/refined model."""
+    frozen = prepared_model_topology(record)
+    _need(record == frozen, 'Unexpected prepared-model topology fields')
+    actual = derive_prepared_model_context(model, frozen['intent'], frozen['components'])
+    _need(prepared_model_topology(actual) == frozen,
+          'Model identities or phosphate links differ from checked preparation')

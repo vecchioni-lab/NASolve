@@ -23,7 +23,7 @@ learned along the way; they are not a reason to keep rebuilding Q04.
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. Complete the existing general plane repair inside the same repair machinery. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | Save that exact choice as a checkpoint, including a usable fallback when ReadySet fails. Never substitute whichever files happen to be newest. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. Connect ordinary PostMR/campaign entry; define later preparation children without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
@@ -42,8 +42,9 @@ learned along the way; they are not a reason to keep rebuilding Q04.
    independently checked starting model, with an honest explanation. Read an
    exact completed attempt without launching anything; continue an interrupted
    request only through the existing owner and a fresh numbered attempt.
-2. **Save and inspect that exact result:** connect the handoff to immutable run
-   checkpoints and ordinary commands/campaigns. Keep latest and selected distinct.
+2. **Use that exact result throughout normal preparation:** C223 closes explicit
+   initial checkpoint publication and normal reads. Connect ordinary PostMR/campaign
+   entry and later preparation children. Keep latest and selected distinct.
 3. **Finish general plane repair:** reuse the existing source-graph rule and
    preserve existing ring planes. PDU and 5PC are controls, not name-based switches.
 4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
@@ -203,43 +204,35 @@ called it the next step.
 
 ### Q05 — Ordinary PostMR continuation and immutable adoption
 
-C221 closes an inspection-integrity prerequisite: every recorded restraint must
-resolve and satisfy any recorded checksum before Coot opens the checkpoint,
-including pair/stack PHIL and modification-only CIFs. Display filtering is separate
-from integrity checking. Exact selected-versus-latest relocation controls pass.
-C222 adds direct inspection of one exact checked preparation, including an
-independently verified fallback after optional ReadySet failure. It reuses the
-same result reader and Coot launcher, with the original MR map explicitly labelled
-as not recalculated; it does not adopt a checkpoint. The next implementation remains
-publishing that choice into ordinary reports/checkpoints, with recovery of an
-interrupted publication. Optional Doctor/ReadySet failure should preserve a
-trustworthy model/restraint set and allow useful work to continue. A missing safe
-set blocks only the dependent scientific step, not the entire run/campaign;
-retained evidence, reporting and recovery remain available.
+**Open. Depends on Q03/Q04.** C221 checks the complete restraint set before
+inspection; C222 opens an exact checked preparation without adoption. C223 now
+publishes that exact choice as the initial REVIEW checkpoint, including a verified
+fallback. Ordinary inspection, refinement and AutoSol readers validate the saved
+producer/compiler/result binding. New manual/refined models preserve its ordered
+restraints and checked phosphate connectivity. Malformed entries cannot silently
+disappear; movement cannot silently sever a recorded phosphate connection.
 
+Interrupted publication resumes under the existing request lock using the same
+sealed receipt and exact attempt; no native rerun, newer-file guess or reselection
+occurs. Initial schema-3 adoption is explicit, not an automatic campaign behavior
+or a claim of real refinement success. Legacy registries are not converted.
 
-**Open. Depends on Q03/Q04.** Existing ordinary source/cache acquisition and
-per-component ReadySet inputs work (C71/C79/C134). Later component-runtime,
-whole-furanose, repaired-bundle and captured-geometry APIs remain explicit
-components rather than an ordinary PostMR chain. Wire the selected model and
-ordered effective restraint bundle through that chain and checkpoint lineage.
+**Remaining acceptance:** connect the existing ordinary PostMR/campaign callers
+to this handoff, and define later preparation-child adoption without changing an
+immutable earlier root. Reuse the existing request owner and publication path;
+do not build another recovery or chemistry framework. Preserve normalization and
+anomalous metadata where actually available, without inventing ReadySet success.
+Exercise cache reuse, missing/stale entries, repair, usable fallback, unqualified
+failure and interruption through the real callers. The immediate caller seam is
+`campaign_stages.py`: it still requires a ReadySet log from every PostMR result.
+Use the actual checked-preparation receipt for a fallback, not a fictitious log;
+freeze the chosen preparation mode in campaign intent and reuse the existing
+constructor/continuation/publisher without rerunning Coot on partial work.
 
-C205 caller audit: preserve the selected request/attempt/runtime and producer/
-compiler join through report and checkpoint publication. Existing root checkpoint
-labels assume a ReadySet model; a verified parent fallback needs an accurate label.
-Consume the frozen ordered `refinement_restraints` rather than legacy recomposition
-or deduplication. Validate that proof when reading an existing registry too, not
-only when initializing one. Interrupted report/checkpoint publication must recover
-the exact recorded selection without another native attempt or a `latest` guess.
-Keep these as acceptance under this package, not a second recovery wrapper.
-
-C222 consumer audit: the legacy PostMR report assembler assumes a ReadySet log/model
-and also carries normalization/anomalous metadata; do not invent those fields for
-a retained result. Before adoption, tighten `checkpoints._inherited_paths`, which
-currently skips malformed restraint entries while C221 inspection rejects them.
-Retain intentionally empty legacy lists. Validate preparation ancestry for later
-refined/manual children without requiring their new coordinates to equal the
-starting model. These are existing Q05 acceptance details, not new queue items.
+Optional failure should preserve a trustworthy model/restraint set and allow
+useful work to continue. If no safe set remains, block only its dependent scientific
+step while retaining reporting and recovery. Actual complete-restraint refinement
+remains Q06; initial publication does not close that job.
 
 
 The combined metadata writer now shares C09's native loop policy (C179), with

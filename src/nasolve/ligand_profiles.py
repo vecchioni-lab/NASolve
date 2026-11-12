@@ -376,6 +376,13 @@ def validate_model_phosphate_policy(model: Path, report: Mapping[str, object]) -
     if any(actual.get(item["site"]) != (item["incoming_site"], item.get("outgoing_site"))
            for item in modifications):
         raise PhosphateError("Phosphate backbone link differs from the frozen site modification")
+    topology = postmr.get("checked_model_topology") if isinstance(postmr, Mapping) else None
+    if topology is not None:
+        from .cif_model_context import validate_prepared_model_topology
+        try:
+            validate_prepared_model_topology(model, topology)
+        except (ValueError, OSError) as exc:
+            raise PhosphateError(f"Checked preparation topology: {exc}") from exc
     return result
 
 

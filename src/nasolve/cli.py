@@ -247,6 +247,9 @@ def build_parser() -> argparse.ArgumentParser:
     prepared = cif_sub.add_parser("prepared-result", help="read one exact checked preparation without running Coot or Phenix")
     prepared.add_argument("run", type=Path)
     prepared.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt number")
+    publish = cif_sub.add_parser("publish-preparation", help="save one exact checked preparation as the run's review checkpoint; no refinement is run")
+    publish.add_argument("run", type=Path)
+    publish.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt; also resumes an interrupted save of that same choice")
     preparation_status = cif_sub.add_parser("preparation-status", help="read saved preparation attempts and whether work is still running")
     preparation_status.add_argument("run", type=Path)
     cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
@@ -1713,8 +1716,26 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
     return 0 if result.model_path is not None else 2
 
 
+def _cif_publish_preparation(args: argparse.Namespace) -> int:
+    from .cif_postmr_publication import publish_checked_preparation
+    from .campaigns import CampaignError
+    try:
+        result = publish_checked_preparation(args.run, attempt_number=args.attempt)
+    except (OSError, ValueError, CampaignError, CheckpointError, PostMRPreparationError) as exc:
+        print(f"Preparation handoff could not complete: {exc}", file=sys.stderr)
+        print("Preserve saved work; retry the same attempt to finish an interrupted publication.", file=sys.stderr)
+        return 2
+    print(result["message"])
+    print(f"ReadySet: {result['readyset']['status']}")
+    print("Checkpoint: postmr (REVIEW; refinement has not been run)")
+    print("Inspect (requires its saved map): " + shlex.join(["nasolve", "show", str(args.run), "--checkpoint", "postmr"]))
+    return 0
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "publish-preparation":
+        return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
         return _cif_checked_preparation(args)
     if args.cif_action == "link-native":

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep a checked preparation together in normal use (C223)
+
+- `cif-doctor publish-preparation RUN --attempt N` saves that exact model and
+  ordered restraints as the initial review checkpoint, including a checked
+  fallback after optional ReadySet failure. It does not run refinement.
+- Resume an interrupted save of the same choice without rerunning preparation
+  or replacing an existing choice. Ordinary inspection, refinement and AutoSol
+  reads verify the original preparation evidence; child models retain its restraints
+  and the originally checked phosphate connections.
+- Use checkpoint schema 3 only for this explicit route, so older readers refuse
+  an unfamiliar proof contract. Existing schema 1/2 runs retain their behavior.
+- Reject malformed inherited restraint lists instead of silently omitting entries.
+
 ### Inspect an exact checked preparation, including a retained fallback (C222)
 
 - `show RUN --preparation-attempt N` opens the named checked model and its matching

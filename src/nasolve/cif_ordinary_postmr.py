@@ -100,7 +100,7 @@ def _ordinary_request_directory(run_directory):
     return _root(run_directory)/'PostMR'/'DictionaryEngine'/'request'
 
 
-def read_ordinary_postmr_result(run_directory, *, attempt_number) -> CheckedPostMRResult:
+def _read_ordinary_postmr_result(run_directory, *, attempt_number):
     """Read an exact completed preparation, without discovering or running tools.
 
     A failed/unqualified attempt cannot supply a model. A retained starting model
@@ -126,7 +126,7 @@ def read_ordinary_postmr_result(run_directory, *, attempt_number) -> CheckedPost
     _need(selected is None or selected in messages, 'Unsupported checked preparation selection')
     readyset_status = ('NOT_RUN' if continued is None else
                        continued['report']['phases'].get('readyset', 'NOT_RUN'))
-    return CheckedPostMRResult(
+    result = CheckedPostMRResult(
         run_directory=request.parents[2], request_directory=request, attempt_number=attempt_number,
         status=exact['result']['status'],
         message=messages.get(selected, 'Preparation did not establish a usable model/restraint combination.'),
@@ -136,10 +136,17 @@ def read_ordinary_postmr_result(run_directory, *, attempt_number) -> CheckedPost
         readyset_status=readyset_status,
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
         limitations=(
-            'These are preparation checks; diffraction refinement and checkpoint adoption have not been performed.',
+            'These preparation checks do not establish diffraction-refinement success; checkpoint adoption is a separate explicit action.',
             'General complete-plane repair still needs integration into this preparation route.',
         ),
     )
+
+    return result, exact
+
+
+def read_ordinary_postmr_result(run_directory, *, attempt_number) -> CheckedPostMRResult:
+    """Read an exact preparation through the existing evidence reader once."""
+    return _read_ordinary_postmr_result(run_directory, attempt_number=attempt_number)[0]
 
 
 def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparation_options) -> CheckedPostMRResult:

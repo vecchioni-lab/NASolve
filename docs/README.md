@@ -10,8 +10,9 @@ milestone statements preserve their original scope; they are not a second queue.
 - **CIF Doctor:** start with the [scientific work map](cif-doctor-completion-queue.md#pipeline-position).
   The checked preparation can use ordinary Coot/NARestraints inputs and complete
   dictionary repair plus ReadySet. [Truthful preparation reporting/recovery](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
-  is now explicit; exact checkpoint selection, general plane-repair integration,
-  real refinement and broader chemical controls remain open. Read the
+  is now explicit; a checked result can become the initial review checkpoint.
+  Default PostMR/campaign adoption, general plane-repair integration, real
+  refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,
   the [human overview](cif-doctor-human-overview.md) for the explanation, and the
   [capability table](cif-doctor.md#current-capability-boundary) for support limits.

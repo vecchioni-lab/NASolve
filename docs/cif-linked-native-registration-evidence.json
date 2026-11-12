@@ -87808,5 +87808,299 @@
         "size": 1817
       }
     ]
+  },
+  "checked_preparation_publication_2026_11_12": {
+    "status": "VALIDATED_FOCUSED",
+    "date": "2026-11-12",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "d66dc4a6c785f030204260ef697646ecbe09fc80",
+    "before": "Checked preparation could be read/viewed explicitly but had no ordinary checkpoint publication path. Malformed inherited restraint entries could disappear, and checked backbone connections did not travel into later model validation.",
+    "after": "Explicit initial REVIEW checkpoint publication preserves the exact model and ordered restraints, including independently checked fallbacks. Interrupted publication resumes without native reruns; normal consumers validate producer proof and later models retain checked phosphate connections.",
+    "files": [
+      "src/nasolve/cif_postmr_publication.py",
+      "src/nasolve/cif_ordinary_postmr.py",
+      "src/nasolve/checkpoints.py",
+      "src/nasolve/coot_view.py",
+      "src/nasolve/autosol.py",
+      "src/nasolve/cli.py",
+      "src/nasolve/cif_model_context.py",
+      "src/nasolve/ligand_profiles.py",
+      "tests/test_cif_postmr_publication.py",
+      "scripts/run_tests.py"
+    ],
+    "schemas": "Checkpoint schema 3 only for explicitly published preparations; checksummed registry and immutable PostMR/report.json with checked_preparation producer binding and compact checked_model_topology. Legacy schema 1/2 behavior retained.",
+    "compatibility": "No migration or overwrite of existing preparation/registry. Older checkpoint readers reject schema 3. Absent/null/empty legacy restraint lists remain supported; malformed nonempty lists now refuse rather than omit entries.",
+    "validation": {
+      "initial_fail_before": 9,
+      "initial_already_rejected": 2,
+      "backbone_fail_before": 1,
+      "final_affected_tests": 294,
+      "final_affected_subtests": 48,
+      "wording_followup_tests": 57,
+      "workflow": {
+        "tests": 2230,
+        "subtests": 45,
+        "seconds": 1003.82,
+        "scope": "Existing focused workflow profile, started before the final connectivity guard. Final affected checks cover that guard; no full regression."
+      },
+      "focused_execution": {
+        "returncode": 0,
+        "elapsed_seconds": 29.759176375024254,
+        "source_unchanged": true,
+        "full_suite": false,
+        "syntax": {
+          "files": 668,
+          "warnings": [],
+          "bytecode_written": false
+        }
+      },
+      "cold_publish": {
+        "status": "CHECKED_PUBLICATION_PUBLISH_PASS",
+        "elapsed_seconds": 145.78460645800806,
+        "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+        "selected": "readyset_checked_model",
+        "qualified_dictionaries": 2,
+        "phils": 5,
+        "files": 1499,
+        "exact_reader_calls": 1,
+        "new_native_calls": 0,
+        "historical_paths_sdk_execution_denied": true,
+        "original_copy_absent": false,
+        "read_bytes_mtimes_unchanged": false,
+        "scope": "Saved real C219 PDU producer proof; synthetic observation/map path fixtures. No native MTZ interpretation or diffraction refinement claim."
+      },
+      "cold_read": {
+        "status": "CHECKED_PUBLICATION_READ_PASS",
+        "elapsed_seconds": 284.9505847909895,
+        "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+        "selected": "readyset_checked_model",
+        "qualified_dictionaries": 2,
+        "phils": 5,
+        "files": 1501,
+        "exact_reader_calls": 2,
+        "new_native_calls": 0,
+        "historical_paths_sdk_execution_denied": true,
+        "original_copy_absent": true,
+        "read_bytes_mtimes_unchanged": true,
+        "scope": "Saved real C219 PDU producer proof; synthetic observation/map path fixtures. No native MTZ interpretation or diffraction refinement claim."
+      },
+      "post_cold_changes": {
+        "changes_after_cold_copy": [
+          {
+            "path": "src/nasolve/cif_postmr_publication.py",
+            "before": "91c70d30d0ac288d3ae6d4eea65de5bb22bd71a62f792d1abc274bc81d7237c6",
+            "after": "5255c3a76da2273f71a79f0b7e245829de96e762fa55ccbd51a3455e70651208",
+            "change": "Accept original checksum case"
+          },
+          {
+            "path": "src/nasolve/cif_ordinary_postmr.py",
+            "before": "e8ee2c91e2a5d4899de73f39283f4a5990995361012d49f641c3a948dcbb20bd",
+            "after": "c910d86830214c76cc1206ef56f992ad35db5fa6e8d653acc8d2af1dfc7500e4",
+            "change": "Clarify raw preparation scope after later adoption"
+          }
+        ],
+        "validation": "294 affected tests +48 subtests cover checksum case; 57 command/result/publication cases pass after wording change.",
+        "owned_workers_stopped": {
+          "cold-r1/publish": true,
+          "cold-r1/read": true,
+          "cold-r2/publish": true,
+          "cold-r2/read": true
+        }
+      },
+      "syntax": {
+        "files": 668,
+        "warnings": [],
+        "bytecode_written": false
+      },
+      "full_suite": "NOT_RUN per Simon; last entirely green full revision remains C220/583d30df9c2bb8fd76e802e0eaa51d749c2b6eeb. C222 full-run CLI failure/focused correction remains recorded separately.",
+      "native": "No fresh Phenix/Coot scientific execution. Ordinary-refinement integration uses test executables. Reused source evidence: Phenix 2.2.1-6174 / dispatcher 2.2.1 and Coot 1.3.3 revision-count 0. Synthetic observations/maps test paths only; no diffraction-refinement claim."
+    },
+    "commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "python_version": "3.12.14",
+      "python_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "cwd_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+      "before": "python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py",
+      "backbone_before": "python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py::test_checked_backbone_links_survive_later_model_edits",
+      "workflow": "python scripts/run_tests.py workflow",
+      "final_affected": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "--junitxml=/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/focused-final/tests.xml",
+          "tests/test_cif_postmr_publication.py",
+          "tests/test_cif_ordinary_cli.py",
+          "tests/test_cif_ordinary_outcome.py",
+          "tests/test_checkpoints.py",
+          "tests/test_coot_view.py",
+          "tests/test_cli.py",
+          "tests/test_doctor_inspection.py",
+          "tests/test_autorefine.py",
+          "tests/test_autosol.py",
+          "tests/test_checkpoint_view_integrity.py",
+          "tests/test_test_suites.py",
+          "tests/test_cif_model_context.py",
+          "tests/test_linked_phosphate_profile.py"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "src"
+        }
+      },
+      "wording_followup": "python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py tests/test_cif_ordinary_outcome.py tests/test_cif_ordinary_cli.py",
+      "cold_publish": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/worker.py",
+          "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2",
+          "publish"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/original/checkout",
+        "timeout_seconds": 700,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/original/checkout/src"
+        }
+      },
+      "cold_read": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/worker.py",
+          "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2",
+          "read"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/relocated/checkout",
+        "timeout_seconds": 700,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/relocated/checkout/src"
+        }
+      },
+      "syntax": "compile(source_bytes, relative_path, \"exec\") over src/tests/scripts; no bytecode",
+      "whitespace": "git diff --check"
+    },
+    "limitations": [
+      "Explicit initial adoption only; automatic ordinary PostMR/campaign entry and later preparation children remain Q05.",
+      "General complete-plane repair remains Q04; real complete-restraint refinement Q06 and mixed/held-out chemistry Q07 remain open.",
+      "Full proof replay is still costly on the saved PDU example; one replay per ordinary read, no new cache/owner/chemical validator."
+    ],
+    "redundancy": "Reused exact reader, request lock, record writer, model-context/phosphate audit and existing checkpoint graph. Replaced superseded queue/handoff prose in place; removed one unused test import. No unrelated files or datasets cleaned.",
+    "excluded": "All generated models, dictionaries, PHIL, maps, observation fixtures, run reports, native logs and local process receipts remain outside Git.",
+    "local_evidence": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/before.log",
+        "sha256": "0193dcc9ecf90613203f2b4eb8c15deb43a81d2eca3c841209815e644039fac3",
+        "size": 9871
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/backbone-before.log",
+        "sha256": "702174d2b778243e5d3e5fdfc081952ec28aadeabac8883b85a7dffb1eec979c",
+        "size": 2343
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/focused-final/command.json",
+        "sha256": "45e8465b6c7115f0f6e1fc2473d536600973345704cebd6028ccd29d0be421ff",
+        "size": 956
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/focused-final/execution.json",
+        "sha256": "f36f4a650da66be2eef630b71dbd03fae76072fca43037d6fc683d6c47e59619",
+        "size": 201
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/focused-final/tests.log",
+        "sha256": "bc9c1d77f0122030eac0735c897c982941a42521b05f7fe87b601187fee76bc4",
+        "size": 377
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/focused-final/source-hashes.json",
+        "sha256": "a8a85fd77f8e1086b639cf3a60bc6fc222a69bdb11e8a22abf8aacc89f3504c7",
+        "size": 72901
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/result-wording.log",
+        "sha256": "2fc46dd2816e2eb8ba097182b13ffed5c734d67b95926e796d9af575f1b56f2d",
+        "size": 99
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/workflow-r1.log",
+        "sha256": "d148cbcc1d2c90fae470baa2930b1a48d3e48ea80f18066783e444e0e3020c69",
+        "size": 7732
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/final-checks.json",
+        "sha256": "b45de7e22bf116a2dec086515c9a2a96381f5c26a7e7ba38a58c13346e1c7014",
+        "size": 74822
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/final-source-delta.json",
+        "sha256": "dfcb7e6d72ea21abd431d8d79545165366db42689025c0450bb2d458ed39bbcd",
+        "size": 900
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/publish-summary.json",
+        "sha256": "74c38c07dc5adefba9b9d920da6fe310a75712027efa63460535f035181b8fb6",
+        "size": 607
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/read-summary.json",
+        "sha256": "1b76e078fa6893cf0a061cea502fb3588d1f1671cf05e884372bebffce4e582f",
+        "size": 601
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/publish-execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/read-execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/setup.json",
+        "sha256": "b153a38fddfdc49ce650192ff0ac258a2a2fa2af30a0beafaf089351947c2ba7",
+        "size": 1980
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/worker.py",
+        "sha256": "8c654067e94834f12549f67d97ad80816c3ca4f21548576bc2e6440bb0a9d995",
+        "size": 3798
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "223_Cedar_checked-preparation-handoff-zszq2aif/cold-r2/runner.py.txt",
+        "sha256": "e9ef923478724aeccd3781f1f45cf54f36fc5ccc0de31dbe48f4f521a7d44a98",
+        "size": 2886
+      }
+    ]
   }
 }

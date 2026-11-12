@@ -140,7 +140,7 @@
 
 <a id="current-capability-boundary-c220"></a>
 
-## Current capability boundary (C222)
+## Current capability boundary (C223)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -167,7 +167,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
-| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. | Explicit commands only. Default PostMR/campaign checkpoint adoption, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
+| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. | Explicit commands only. Automatic PostMR/campaign adoption, later preparation children, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -10888,6 +10888,64 @@ subtests passed in that full run. No second full run was performed; C220 remains
 the last entirely green full baseline. Exact validation is in
 `exact_preparation_view_2026_11_12` in the evidence ledger.
 
+### Save a checked preparation for normal use (C223)
+
+```sh
+nasolve cif-doctor publish-preparation /path/to/AutoMR/run_001 --attempt 1
+nasolve show /path/to/AutoMR/run_001 --checkpoint postmr
+```
+
+**Purpose and behavior:** carry the checked model and its exact matching restraints
+into ordinary NASolve commands, including an independently checked fallback after
+an optional ReadySet failure. The initial checkpoint is **REVIEW**, available for
+trial refinement. `POSTMR_READY` means those preparation inputs are available;
+it does not mean diffraction refinement succeeded. The actual ReadySet outcome
+remains visible. Missing trustworthy evidence prevents this handoff while leaving
+all saved work available for diagnosis and recovery.
+
+**Method:** reuse the existing complete-request reader once, rather than introduce
+a second chemical validator. Bind the chosen attempt, construction/compiler proof,
+model, ordered PHIL/CIF files, original observations and chemical intent to a sealed
+PostMR receipt and initial registry. New adoption verifies the current mutation
+request against recorded construction; later reads preserve that recorded intent
+instead of rebuilding an old mutation plan through newer planning policy.
+Record anomalous-site metadata through existing scanners without inventing a
+ReadySet log or normalization history. Ordinary checkpoint/refinement, Coot and
+AutoSol readers verify that same proof. New manual/refined coordinates may differ,
+but descendants retain the inherited ordered restraint prefix. A compact
+`checked_model_topology` carries the already-recorded identities and phosphate
+connections. The existing prepared-model context audit checks later manual/refined
+models against those same links, allowing coordinate movement without losing
+connectivity. No residue-name switch or altered angle/distance threshold is used.
+Display filtering
+still omits modification-only CIFs from Coot, after checking the complete bundle.
+
+**Recovery:** the existing request lock owns publication. Save the immutable
+`PostMR/report.json` and initial registry before atomically updating the run report.
+Repeat the same command and exact attempt after interruption. It finishes that
+choice without running Coot/Phenix, never selects a newer attempt, and never
+reselects the root after later work. Conflicting partial files or changed input
+intent are preserved and refused. Only initial adoption is supported; an existing
+preparation or legacy registry is not converted or replaced.
+
+**Compatibility:** these runs use checkpoint schema 3 and a checksummed registry;
+older NASolve readers refuse it. Legacy schema 1/2 reads/writes retain their meaning.
+Later ordinary checkpoint writes preserve schema 3 and its preparation binding.
+Malformed inherited restraint entries are now rejected for all schemas; absent,
+null or intentionally empty legacy lists retain their old meaning.
+
+**Evidence and limits:** focused tests exercise fallbacks, interrupted publication,
+changed evidence, later selection, ordinary refinement with test executables and
+relocation. Saved real C219 PDU proof is replayed separately without native tools.
+That chemistry control uses explicitly synthetic observation/map path fixtures;
+it does not validate MTZ interpretation or diffraction refinement. Q05 still owns
+automatic ordinary/campaign entry and later preparation-child adoption. Q04 owns
+general plane-repair composition; Q06 owns real complete-restraint refinement.
+The exact proof replay is intentionally reused, but is still costly on the large
+saved PDU example. No new cache, owner or parallel chemistry engine was added.
+Exact commands, results and local evidence hashes are recorded under
+`checked_preparation_publication_2026_11_12` in the evidence ledger.
+
 ### Preparation implementation and limits
 
 Implementation: `prepare_checked_postmr`, `continue_checked_postmr` and
@@ -10899,8 +10957,9 @@ their behavior. Source/consumer checks and immutable ownership remain unchanged.
 
 **Limits:** these are source-preservation and diagnostic restraint-mechanics
 checks, not successful diffraction refinement. General complete-plane repair is
-still awaiting composition into this route. Q05 must carry the exact chosen
-model/CIF/PHIL set into ordinary inspection/refinement checkpoints; Q06 must
+still awaiting composition into this route. C223 carries the exact chosen model/CIF/PHIL set into an explicitly requested
+initial review checkpoint. Q05 still owns automatic PostMR/campaign entry and later
+preparation children; Q06 must
 validate actual refinement with all NARestraints terms and Free-R handling intact.
 C219's native PDU result is reused for C220's read-only/relocation check; no new
 chemical-support or native-generation claim follows from interface tests.
