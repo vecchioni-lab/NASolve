@@ -37,7 +37,7 @@ class _ProcessScope:
 
 _REPAIR_SCOPE = _ProcessScope(POLICY_ID, ANCHOR, 'bundle', 'repair.json',
     'bundle', 'bundle_files', 'repair_sha256',
-    r'original-gradient|repaired-gradient|attribution|native-(baseline|[0-9]{3,})',
+    r'original-gradient|repaired-gradient|attribution|plane-attribution-[0-9]{3}|native-(baseline|[0-9]{3,})',
     'PREPARED_EXECUTION_ONLY; NOT_ACQUISITION_OR_CHEMISTRY')
 
 
@@ -87,7 +87,7 @@ def _paths(root, phase, cwd, log, scope=_REPAIR_SCOPE):
     elif phase.startswith('native-'):
         _need(work.parent == root/'native'/phase[7:] and logfile == work/'native.log')
     else:
-        _need(work == root/phase/'job' and logfile == work/('execution.log' if phase == 'attribution' else 'gradient.log'))
+        _need(work == root/phase/'job' and logfile == work/('execution.log' if phase == 'attribution' or phase.startswith('plane-attribution-') else 'gradient.log'))
     return work, logfile
 
 

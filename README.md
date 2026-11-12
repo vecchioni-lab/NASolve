@@ -29,8 +29,10 @@ CIF Doctor adds read-only dictionary assessment and report-only PostMR audits.
 To inspect an existing run, use `./nasolve cif-doctor assess --run RUN --json`.
 Qualified component numerics can be stored locally and reused before ReadySet;
 cache acquisition and supported connected-base construction are ordinary runtime
-features. Automatic repair on a cache miss, general modified-sugar mutation and
-end-to-end candidate adoption remain separate integration work.
+features. The opt-in engine below also attempts supported graph repairs and
+selects independently qualified preparation. General modified-sugar mutation,
+automatic acquisition of plane support and full refinement qualification remain
+separate work.
 
 The opt-in [complete-request engine](docs/cif-doctor.md#complete-request-continuation-and-recovery-c184)
 freezes source, model/site context, ordered restraints and bounded execution intent.
@@ -48,7 +50,8 @@ ambiguous historical inputs remain readable but cannot start fresh attempts.
 [Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
 and the [prepared-model entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
 provide supported inputs without borrowing settings from old test runs. Ordinary
-automatic PostMR/checkpoint adoption remains open. Explicit NAR planes now have
+default activation remains open. Explicit checked PostMR/campaign preparation can
+publish its exact selected result as an initial review checkpoint. Explicit NAR planes now have
 [qualified intake](docs/cif-doctor.md#exact-planarity-intake-c186), and the explicit
 [literal-input bridge](docs/cif-doctor.md#original-literal-input-provenance-c187)
 preserves pair/stack intent and compiler/native evidence through owned requests.
@@ -73,8 +76,8 @@ the [evidence ledger](docs/cif-linked-native-registration-evidence.json).
 
 For the explicit Cedar checked-preparation workflow, see
 [prepare a model, read its checked result, or continue interrupted work](docs/cif-doctor.md#checked-preparation-and-honest-recovery-c220).
-This route reports a checked preparation; ordinary checkpoint/refinement adoption
-is still being integrated. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
+This route can save an initial review checkpoint with matching model/restraints;
+later preparation children and complete-restraint refinement remain unfinished. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
 explains the remaining work.
 
 ## Quick start

@@ -9,7 +9,11 @@ Their milestone-time next steps do not override the current queue.
 
 The [checked-preparation handoff](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
 now exposes exact readback and one fresh continuation attempt through the existing
-owner. It does not publish a refinement checkpoint or change default PostMR.
+owner. C223–C225 add explicit initial review-checkpoint publication, ordinary
+checked PostMR and frozen campaign entry. Default activation, later preparation
+children and actual complete-restraint refinement remain separate gates.
+C234–C237 join explicit owned plane support to the existing repair request and
+selector; automatic acquisition of that support by the outer request remains open.
 
 ## Runtime precedence
 

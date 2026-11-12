@@ -56,7 +56,12 @@ def fake_runner(refs, mode='pass'):
         pins=spec['installed_sources']+[dict(module=n,sha256='b'*64,historical_path='/missing/'+n) for n in m.MODULES[3:]]
         sides={}
         for label in ('before','after'):
-            save(cwd/label/'native_validation.json',spec[label]['inventory'])
+            expected=spec[label].get('inventory')
+            if expected is None:
+                ref=spec[label]['inventory_ref'];raw=(cwd.parent/ref['path']).read_bytes()
+                assert ref==dict(anchor=m.ANCHOR,path=f'inputs/{label}/native_validation.json',size=len(raw),sha256=sha256(raw).hexdigest())
+                expected=json.loads(raw)
+            save(cwd/label/'native_validation.json',expected)
             sides[label]=dict(exact_native_inventory=True,special_position_indices=[],references=[deepcopy(r[label]) for r in refs])
         result=dict(spec_sha256=sha256((cwd/'spec.json').read_bytes()).hexdigest(),
             evaluator_sha256=sha256((cwd/'evaluator.py').read_bytes()).hexdigest(),
@@ -80,10 +85,11 @@ def test_prepared_plane_job_replays_after_original_inputs_are_gone_without_execu
 
 
 @pytest.mark.parametrize('mode',['pass','numeric','failed','timeout'])
-def test_owned_runner_outcome_keeps_complete_plane_accounting_and_replays_cold(tmp_path,mode):
+@pytest.mark.parametrize('compact',[False,True])
+def test_owned_runner_outcome_keeps_complete_plane_accounting_and_replays_cold(tmp_path,mode,compact):
     from nasolve import cif_captured_plane_attribution as m
     args,sdk,refs=fixture(tmp_path);output=tmp_path/'out'
-    report=m.audit_captured_plane_attribution(*args,sdk,output,_process_runner=fake_runner(refs,mode))
+    report=m.audit_captured_plane_attribution(*args,sdk,output,compact_inventory=compact,_process_runner=fake_runner(refs,mode))
     assert report['status']==('CAPTURED_PLANE_ATTRIBUTION_PASS' if mode=='pass' else 'REVIEW')
     assert report['new_native_calls']==1 and report['derivative_qualification']=='NOT_RUN'
     if mode=='pass':
@@ -155,4 +161,43 @@ def test_invalid_inputs_refuse_before_output_reservation(tmp_path,defect):
     if defect=='unrelated_capture_file':(args[-3].parent/'unrelated.txt').write_text('leave alone')
     with pytest.raises(ValueError):
         m.audit_captured_plane_attribution(*args,sdk,tmp_path/'out',timeout_seconds=seconds)
+    assert not (tmp_path/'out').exists()
+
+
+@pytest.mark.parametrize('change',[None,'spec','inventory','control','worker'])
+def test_referenced_native_inventory_retains_exact_comparison_without_embedded_duplicate(tmp_path,change):
+    from nasolve import cif_captured_plane_attribution as m
+    args,sdk,refs=fixture(tmp_path);output=tmp_path/'compact'
+    report=m.audit_captured_plane_attribution(*args,sdk,output,compact_inventory=True,
+        _process_runner=fake_runner(refs))
+    spec=json.loads((output/'job/spec.json').read_text())
+    assert report['controls']['compact_inventory'] is True
+    for label in ('before','after'):
+        raw=(output/f'inputs/{label}/native_validation.json').read_bytes()
+        assert set(spec[label])=={'inventory_ref','planes'}
+        assert spec[label]['inventory_ref']==dict(anchor=m.ANCHOR,path=f'inputs/{label}/native_validation.json',size=len(raw),sha256=sha256(raw).hexdigest())
+    legacy=tmp_path/'legacy';old=m.audit_captured_plane_attribution(*args,sdk,legacy,_process_runner=fake_runner(refs))
+    assert 'compact_inventory' not in old['controls']
+    assert report['qualification']==old['qualification']
+    assert (legacy/'job/spec.json').stat().st_size>(output/'job/spec.json').stat().st_size
+    if change=='spec':
+        spec['before']['inventory_ref']=spec['after']['inventory_ref'];save(output/'job/spec.json',spec)
+    elif change=='inventory':
+        p=output/'inputs/before/native_validation.json';p.write_bytes(p.read_bytes()+b' ')
+    elif change=='control':report['controls']['compact_inventory']=1
+    elif change=='worker':(output/'job/worker.py').write_text(m._WORKER)
+    if change is not None:
+        report['outputs'],report['directories']=m._inventory(output);save(output/m.REPORT,report)
+        with pytest.raises(ValueError):m.read_captured_plane_attribution(output)
+    else:
+        moved=output.rename(tmp_path/'relocated');shutil.rmtree(tmp_path/'original')
+        with patch('subprocess.Popen',side_effect=AssertionError('No native call during read')):
+            assert m.read_captured_plane_attribution(moved)==report
+
+
+@pytest.mark.parametrize('value',[1,None,'yes'])
+def test_ambiguous_inventory_storage_is_refused_before_output(tmp_path,value):
+    from nasolve import cif_captured_plane_attribution as m
+    args,sdk,refs=fixture(tmp_path)
+    with pytest.raises(ValueError):m.audit_captured_plane_attribution(*args,None,tmp_path/'out',compact_inventory=value)
     assert not (tmp_path/'out').exists()

@@ -89573,5 +89573,326 @@
       "No full suite",
       "Working request still 134.5 MB; safe retirement and memory/concurrency qualification remain open"
     ]
+  },
+  "owned_prepared_plane_repair_2026_11_12": {
+    "milestones": "C234–C237",
+    "base_commit": "b8c925194e61bfc70682ea9fcba9d3142fab07f9",
+    "behavior": "Explicit owned source-plane support joins existing immutable prepared repair; full source/native/derivative gates and original fallback. No automatic outer acquisition.",
+    "history_consulted": [
+      "C160/C163/C164 prepared repair/process ownership",
+      "C207 b45bd6457ce5e0a090e417706b4ea760ee50df91 full-model plan",
+      "C213/C232 owned generation",
+      "C226 whole-plane mechanics",
+      "C227 composed selection"
+    ],
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_prepared_plane_support.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_failure.py tests/test_cif_repair_attempt.py tests/test_cif_repair_process.py tests/test_cif_prepared_repair_budget.py tests/test_cif_plane_candidate.py tests/test_test_suites.py",
+        "result": "320 passed in 45.66s"
+      },
+      {
+        "command": "focused fail-before controls; /private/tmp/c234-before.log, c236-before.log, c237-before.log",
+        "result": "2 missing-support failures, 2 full-model-bystander failures, 4 persistent-assembly failures before respective fixes"
+      }
+    ],
+    "python": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python (3.12.14)",
+    "native": [
+      {
+        "milestone": "C235",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> <ignored runner>/c235_native.py",
+        "capsule": {
+          "anchor": "live_tests_directory",
+          "path": "235_Cedar_owned-plane-execution-hdla4k22"
+        },
+        "source_pins": "start.json",
+        "execution": "ACTUAL Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "summary": {
+          "status": "OWNED_LINEAR_PLANE_REQUEST_PASS",
+          "phenix": "2.2.1",
+          "request_state": "STOPPED",
+          "selected": "repaired_prepared_bundle",
+          "runtime_policy": "cif-qualified-composed-repaired-component-runtime-bundle-v1",
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-002",
+            "native-baseline",
+            "original-gradient",
+            "plane-attribution-000",
+            "repaired-gradient"
+          ],
+          "ordered_phil_count": 5,
+          "C5_missing_explicit_plane": false,
+          "request_files": 625,
+          "request_bytes": 195939137,
+          "runtime_bytes": 4888919,
+          "elapsed_seconds": 158.77797049999936,
+          "maximum_resident_set_bytes": 636207104,
+          "generation": "NOT_REPEATED; EXACT_C215_OWNED_ATTEMPT",
+          "coot": "NOT_REPEATED",
+          "refinement": "NOT_RUN",
+          "full_suite": "NOT_RUN"
+        }
+      },
+      {
+        "milestone": "C237 success",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> <ignored runner>/c237_native.py success",
+        "capsule": {
+          "anchor": "live_tests_directory",
+          "path": "237_Cedar_plane-success-zo6qmc5h"
+        },
+        "source_pins": "start.json",
+        "execution": "ACTUAL Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "summary": {
+          "status": "OWNED_PLANE_SUCCESS_PASS",
+          "phenix": "2.2.1",
+          "request_state": "STOPPED",
+          "selected": "repaired_prepared_bundle",
+          "runtime_policy": "cif-qualified-composed-repaired-component-runtime-bundle-v1",
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-002",
+            "native-baseline",
+            "original-gradient",
+            "plane-attribution-000",
+            "repaired-gradient"
+          ],
+          "ordered_phil_count": 5,
+          "C5_missing_explicit_plane": false,
+          "temporary_chain_retained": false,
+          "optional_failure": null,
+          "request_files": 471,
+          "request_bytes": 139443071,
+          "runtime_bytes": 4888882,
+          "elapsed_seconds": 157.91639983301866,
+          "maximum_resident_set_bytes": 695042048,
+          "generation": "NOT_REPEATED; EXACT_C215_OWNED_ATTEMPT",
+          "control": "success",
+          "coot": "NOT_REPEATED",
+          "refinement": "NOT_RUN",
+          "full_suite": "NOT_RUN"
+        },
+        "cold": {
+          "status": "RELOCATED_OWNED_PLANE_REQUEST_PASS",
+          "unchanged_files": 471,
+          "selected": "repaired_prepared_bundle",
+          "original_path_absent": true,
+          "original_sources_sdk_and_processes_forbidden": true,
+          "temporary_views_removed": 1,
+          "peak_temporary_evidence_bytes": 58012551,
+          "maximum_resident_set_bytes": 578748416,
+          "elapsed_seconds": 13.61960495801759,
+          "request": {
+            "anchor": "validation_capsule",
+            "path": "relocated/request"
+          }
+        },
+        "location": "artifact-location.json",
+        "cold_command": "<python3.12> <ignored runner>/c237_cold.py (temporary relocated source, moved new stopped requests)"
+      },
+      {
+        "milestone": "C237 timeout",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> <ignored runner>/c237_native.py timeout",
+        "capsule": {
+          "anchor": "live_tests_directory",
+          "path": "237_Cedar_plane-timeout-6k58_9hy"
+        },
+        "source_pins": "start.json",
+        "execution": "ACTUAL Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "summary": {
+          "status": "OWNED_PLANE_TIMEOUT_PASS",
+          "phenix": "2.2.1",
+          "request_state": "STOPPED",
+          "selected": "verified_prepared_bundle",
+          "runtime_policy": "cif-qualified-prepared-component-runtime-bundle-v1",
+          "native_phases": [
+            "attribution",
+            "native-000",
+            "native-001",
+            "native-002",
+            "native-baseline",
+            "original-gradient"
+          ],
+          "ordered_phil_count": 5,
+          "C5_missing_explicit_plane": true,
+          "temporary_chain_retained": false,
+          "optional_failure": {
+            "schema_version": 1,
+            "policy_id": "cif-prepared-native-failure-review-v1",
+            "status": "KNOWN_STOPPED_NATIVE_FAILURE",
+            "phase": "native-002",
+            "failure_kind": "NATIVE_TIMEOUT",
+            "receipt": {
+              "anchor": "repair_directory",
+              "path": "native/002/cif-native-6du0ba60/native_receipt.json",
+              "sha256": "9ddd6e2577727801ca7326b26b08001d3290e8ce664cdbba3959507f67ae056e",
+              "size": 10178
+            },
+            "plan": {
+              "anchor": "repair_directory",
+              "path": "plane-candidates/000.json",
+              "sha256": "14da07f9d25c3485b54ead622605a3f966edfb72a1dfca633498fda1355e88c6",
+              "size": 7406
+            },
+            "owner": {
+              "anchor": "repair_directory",
+              "path": "ownership/repair.json",
+              "sha256": "ff09c4ce997f20d774c2a64ac0c7c1069606e4ed92286e8fc8b9a99f50c949af",
+              "size": 4365
+            },
+            "job": {
+              "anchor": "repair_directory",
+              "path": "ownership/phases/native-002/job.json",
+              "sha256": "c72ae6301d82e796d95ff17171300caf6c2b64d01393b297e5cf271b5c96d9e5",
+              "size": 1045
+            },
+            "finished": {
+              "anchor": "repair_directory",
+              "path": "ownership/phases/native-002/finished.json",
+              "sha256": "2f1af5db9fcd87cfd49787ec430abb3dbe1d9902ef1a72dae6c3af54406b95c2",
+              "size": 465
+            },
+            "stopped_verified": true,
+            "exact_inputs": true,
+            "maintained_worker": true,
+            "consumer_binding": "DISPATCHER_ONLY; NOT_FULL_API_QUALIFICATION",
+            "fallback_authorized": false,
+            "retry_authorized": false,
+            "scientific_qualification": "NOT_ASSESSED",
+            "new_native_calls": 0
+          },
+          "request_files": 310,
+          "request_bytes": 77416352,
+          "runtime_bytes": 2362890,
+          "elapsed_seconds": 77.10083675000351,
+          "maximum_resident_set_bytes": 508133376,
+          "generation": "NOT_REPEATED; EXACT_C215_OWNED_ATTEMPT",
+          "control": "timeout",
+          "coot": "NOT_REPEATED",
+          "refinement": "NOT_RUN",
+          "full_suite": "NOT_RUN"
+        },
+        "cold": {
+          "status": "RELOCATED_OWNED_PLANE_REQUEST_PASS",
+          "unchanged_files": 310,
+          "selected": "verified_prepared_bundle",
+          "original_path_absent": true,
+          "original_sources_sdk_and_processes_forbidden": true,
+          "temporary_views_removed": 1,
+          "peak_temporary_evidence_bytes": 26947401,
+          "maximum_resident_set_bytes": 488275968,
+          "elapsed_seconds": 6.838134666002588,
+          "request": {
+            "anchor": "validation_capsule",
+            "path": "relocated/request"
+          }
+        },
+        "location": "artifact-location.json",
+        "cold_command": "<python3.12> <ignored runner>/c237_cold.py (temporary relocated source, moved new stopped requests)"
+      }
+    ],
+    "schemas": [
+      "optional plane_support in existing request/execution",
+      "cif-prepared-owned-plane-support-v1",
+      "cif-prepared-plane-stage-v1"
+    ],
+    "compatibility": "Absent fields keep legacy behavior; old strict readers reject new support mode; no migration or old output rewrite",
+    "excluded": "All scientific inputs/results, runners, logs and source pin listings remain local outside Git",
+    "limitations": [
+      "Explicit prepared support only; no outer automatic acquisition",
+      "No Coot/generation repeated; no diffraction refinement or full suite",
+      "No whole-campaign resource claim; working output still bounded separately"
+    ]
+  },
+  "compact_plane_inventory_2026_11_12": {
+    "milestones": "C238–C239",
+    "base_commit": "b8c925194e61bfc70682ea9fcba9d3142fab07f9",
+    "behavior": "Exact native inventory referenced rather than embedded; existing compact evidence choice selects storage; aggregate support refuses before more trees are read.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_captured_plane_attribution.py tests/test_cif_prepared_repair_execution.py",
+        "result": "117 passed in 46.15s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_prepared_plane_support.py tests/test_cif_repair_chain.py",
+        "result": "62 passed in 17.63s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py",
+        "result": "91 passed in 160.39s"
+      },
+      {
+        "command": "focused new fail-before controls: -k referenced_native; -k combined_support_limit",
+        "result": "5 and 2 failed before implementation; pass in focused sets"
+      }
+    ],
+    "native": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> <ignored runner>/c238_native.py success",
+      "mode": "ACTUAL Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "capsule": {
+        "anchor": "live_tests_directory",
+        "path": "238_Cedar_plane-success-d7kkb60g"
+      },
+      "source_pins": "start.json",
+      "location": "artifact-location.json",
+      "summary": {
+        "status": "OWNED_PLANE_SUCCESS_PASS",
+        "phenix": "2.2.1",
+        "request_state": "STOPPED",
+        "selected": "repaired_prepared_bundle",
+        "runtime_policy": "cif-qualified-composed-repaired-component-runtime-bundle-v1",
+        "native_phases": [
+          "attribution",
+          "native-000",
+          "native-001",
+          "native-002",
+          "native-baseline",
+          "original-gradient",
+          "plane-attribution-000",
+          "repaired-gradient"
+        ],
+        "ordered_phil_count": 5,
+        "C5_missing_explicit_plane": false,
+        "temporary_chain_retained": false,
+        "optional_failure": null,
+        "request_files": 471,
+        "request_bytes": 134380996,
+        "runtime_bytes": 4497790,
+        "elapsed_seconds": 154.33011395900394,
+        "maximum_resident_set_bytes": 622149632,
+        "generation": "NOT_REPEATED; EXACT_C215_OWNED_ATTEMPT",
+        "control": "success",
+        "coot": "NOT_REPEATED",
+        "refinement": "NOT_RUN",
+        "full_suite": "NOT_RUN"
+      },
+      "cold_command": "<python3.12> <ignored runner>/c238_cold.py",
+      "cold": {
+        "status": "RELOCATED_OWNED_PLANE_REQUEST_PASS",
+        "unchanged_files": 471,
+        "selected": "repaired_prepared_bundle",
+        "original_path_absent": true,
+        "original_sources_sdk_and_processes_forbidden": true,
+        "temporary_views_removed": 1,
+        "peak_temporary_evidence_bytes": 53341567,
+        "maximum_resident_set_bytes": 569262080,
+        "elapsed_seconds": 14.01351266700658,
+        "request": {
+          "anchor": "validation_capsule",
+          "path": "relocated/request"
+        }
+      },
+      "payload_comparison": "payload-comparison.json; exact same selected model/two CIFs/five PHILs and decision"
+    },
+    "compatibility": "Old embedded inventory and worker remain exact; new optional compact_inventory=True control requires current reader; limits unchanged; no migration",
+    "exclusions": "Scientific artifacts, logs, runners and source-pin lists stay outside Git",
+    "limitations": [
+      "One native context, not campaign-scale resource qualification",
+      "No full suite, new generation, Coot or diffraction refinement",
+      "Automatic outer support acquisition remains Q04; later preparation children Q05"
+    ]
   }
 }

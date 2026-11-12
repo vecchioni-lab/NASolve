@@ -18,6 +18,10 @@ _FIELDS = {"comp_id", "plane_id", "atom_id", "dist_esd"}
 _NONCOLLINEAR = 1e-6  # Dimensionless numerical rank guard, not a chemical cutoff.
 
 
+class UnsupportedPlaneCompletion(ValueError):
+    """Well-formed inputs supply no supported missing plane row."""
+
+
 def _source_plane_evidence(xyz, shared, original, added, sigma):
     names = sorted(set(original) | {added})
     if not all(n in xyz for n in names):
@@ -97,7 +101,7 @@ def prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionar
             except ValueError as exc:
                 unresolved.append(dict(centre=centre,reason=str(exc)))
         if not planned:
-            raise ValueError('No supported plane completion: '+repr(unresolved))
+            raise UnsupportedPlaneCompletion('No supported plane completion: '+repr(unresolved))
         # Different centres may support the same missing row. Deduplicate only
         # agreeing declarations; retain each centre's independent selection proof.
         additions = {}; addition_text = {}

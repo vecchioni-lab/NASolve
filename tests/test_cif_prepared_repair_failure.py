@@ -59,7 +59,7 @@ def test_timeout_partial_report_is_preserved_without_becoming_native_proof(tmp_p
     assert native is None and snapshots[partial]==b'{"status":' and receipt['status']=='FAILED'
 
 
-def failure_case(tmp_path,monkeypatch,kind='TIMED_OUT'):
+def failure_case(tmp_path,monkeypatch,kind='TIMED_OUT',bystander=None):
     from nasolve import cif_prepared_repair_failure as m
     from nasolve.cif_repair_process import PreparedRepairProcesses,inspect_prepared_repair_processes
     from nasolve.cif_native_validation import NATIVE_POLICY_ID
@@ -70,6 +70,11 @@ def failure_case(tmp_path,monkeypatch,kind='TIMED_OUT'):
     (plan/'candidate.cif').write_text('SYNTHETIC GRAPH REPAIR')
     refs=lambda names:[dict(path=n) for n in names]
     value=dict(modeled_components=['AAA','BBB'],inputs=refs(['0.cif','1.cif']),final_dictionaries=refs(['candidate.cif','1.cif']),steps=[dict(component='AAA',dictionary_index=0,dictionaries_after=refs(['candidate.cif','1.cif']))])
+    if bystander is not None:
+        from tests.helpers import pdb_record
+        value['modeled_components']=sorted([*value['modeled_components'],bystander])
+        (b/'model.pdb').write_text(''.join(pdb_record('HETATM',i+1,'C1',code,'A',i+1,element='C')
+            for i,code in enumerate(['AAA','BBB',bystander]))+'END\n')
     save(plan/'linear_torsion_bundle.json',value)
     consumer=dict(name='TEST',version='TEST',executable_sha256='1'*64)
     def prepared(p):
@@ -151,3 +156,12 @@ def test_valid_reported_unsupported_worker_is_distinct_from_timeout(tmp_path,mon
         return record,native,snapshots
     monkeypatch.setattr(m,'_capture',unsupported)
     assert m.inspect_prepared_native_failure(root,'native-001')['failure_kind']=='REPORTED_NATIVE_UNSUPPORTED'
+
+
+@pytest.mark.parametrize('bystander',['DG','Z81'])
+def test_optional_failure_accepts_the_full_modeled_plan_without_claiming_bystander_chemistry(tmp_path,monkeypatch,bystander):
+    m,root,receipt=failure_case(tmp_path,monkeypatch,bystander=bystander)
+    before={p.relative_to(root):(p.read_bytes(),p.stat().st_mtime_ns) for p in root.rglob('*') if p.is_file()}
+    result=m.inspect_prepared_native_failure(root,'native-001')
+    assert result['failure_kind']=='NATIVE_TIMEOUT' and result['fallback_authorized'] is False
+    assert all(((root/p).read_bytes(),(root/p).stat().st_mtime_ns)==v for p,v in before.items())

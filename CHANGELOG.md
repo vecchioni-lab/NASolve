@@ -8,6 +8,38 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reference retained native inventories and enforce aggregate support bounds (C238–C239)
+
+- Compact plane jobs reference the exact already frozen native inventory by
+  anchored path, size and checksum. Rebuild and compare the same complete inventory;
+  preserve original worker output and historical embedded jobs. Reject altered
+  references, controls, worker or inventory even after outer hashes are updated.
+- The existing compact-evidence choice selects this representation. Its new
+  optional plane-job control requires a current reader; old jobs need no migration.
+- Check aggregate plane-support size/file limits as each component arrives, before
+  reading further components. Keep all limits and scientific rules unchanged.
+- The real repaired model, two CIFs and five PHILs remain byte-identical; request
+  storage falls from 139.4 to 134.4 MB and publication from 4.9 to 4.5 MB. Cold
+  relocation passes without native execution. Campaign resource safety remains open.
+
+### Join source-supported planes to owned prepared repair (C234–C237)
+
+- Accept explicit completed owned plane support in the existing immutable repair
+  request. Preserve its exact source, attempt, files and process state. Run linear
+  and plane checks through the same owner, full native/derivative gates, selector
+  and publisher; preserve ordinary ordered NARestraints inputs.
+- Classify an exact stopped plane-native failure through its reproducible source
+  candidate. A separately qualified original can remain usable. Correct failure
+  reading for plans containing canonical/library bystanders, preserving old scope.
+  Malformed evidence and unknown processes still cannot authorize fallback/retry.
+- Assemble the combined proof temporarily, then freeze it in the final publication.
+  Preserve original/partial worker outputs; do not retain another large assembly
+  copy. No old run is cleaned. New optional support/stage fields require a current
+  reader; requests without them keep their earlier behavior and need no migration.
+- Actual Phenix success and deliberate timeout controls pass relocated, read-only
+  replay. Automatic acquisition by the complete outer request remains unfinished;
+  this is preparation qualification, not diffraction refinement.
+
 ### Inventory saved preparation without loading every file at once (C233)
 
 - Hash bounded evidence members one at a time in complete-request and ReadySet

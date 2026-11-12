@@ -83,13 +83,27 @@ Path('result.json').write_text(json.dumps(result,sort_keys=True,allow_nan=False)
 '''
 
 
+# Preserve the historical worker for old evidence. The compact form changes only
+# where the exact expected inventory is read, not the comparison or calculation.
+_REFERENCED_WORKER = _WORKER.replace(
+    " actual=namespace['report'];expected=spec[label]['inventory']",
+    """ ref=spec[label]['inventory_ref']
+ assert set(ref)=={'anchor','path','sha256','size'}
+ assert ref['anchor']=='captured_plane_attribution_directory' and ref['path']=='inputs/'+label+'/native_validation.json'
+ expected_raw=(home.parent/ref['path']).read_bytes()
+ assert len(expected_raw)==ref['size'] and sha256(expected_raw).hexdigest()==ref['sha256']
+ actual=namespace['report'];expected=json.loads(expected_raw)""")
+
+
 def _need(value, message='Captured whole-plane evidence does not reproduce'):
     if not value:
         raise ValueError(message)
 
 
 def _derive(root, controls):
-    _need(set(controls) == {'component', 'attempt_number', 'dictionary_index'})
+    compact = controls.get('compact_inventory',False)
+    _need(type(compact) is bool and set(controls) == {'component', 'attempt_number', 'dictionary_index'}
+          | ({'compact_inventory'} if compact else set()))
     source = root/'inputs/source.cif'; request = root/'inputs/generation'
     entries = [_inputs(root/'inputs'/label) for label in ('before', 'after')]
     before, after = entries
@@ -103,7 +117,7 @@ def _derive(root, controls):
     pairs = changed_plane_pairs(before[4], after[4])
     pins = before[4]['energy_inventory']['installed_sources']
     _need(_exact(pins, after[4]['energy_inventory']['installed_sources']))
-    prepared = {'job/worker.py': _WORKER.encode(),
+    prepared = {'job/worker.py': (_REFERENCED_WORKER if compact else _WORKER).encode(),
                 'job/evaluator.py': inspect.getsource(native_plane_evaluator).encode()}
     spec = {'installed_sources': pins}
     from .cif_candidate_usability import native_energy_worker
@@ -125,7 +139,9 @@ def _derive(root, controls):
         prepared[f'job/{label}/native_spec.json'] = native_spec
         for row in capture['inputs']:
             prepared[f"job/{label}/{row['path']}"] = (parent/row['path']).read_bytes()
-        spec[label] = {'inventory': native, 'planes': [p[ordinal] for p in pairs]}
+        expected = ({'inventory_ref':_ref(parent/'native_validation.json',root,ANCHOR)}
+                    if compact else {'inventory':native})
+        spec[label] = {**expected, 'planes': [p[ordinal] for p in pairs]}
     prepared['job/spec.json'] = _bytes(spec)
     arguments = (before[4], after[4], source, before[2][index],
                  request/support['support']['path'], controls['component'], after[2][index])
@@ -183,7 +199,7 @@ def _inventory(root):
 
 def audit_captured_plane_attribution(source, component, request_directory, attempt_number,
         before_receipt, after_receipt, dictionary_index, phenix, output, *,
-        timeout_seconds=120, _process_runner=None):
+        timeout_seconds=120, compact_inventory=False, _process_runner=None):
     """Freeze owned generation and two exact captures, then run one bounded job.
 
     Passing None for phenix prepares only. A fresh output is mandatory; failed
@@ -191,7 +207,9 @@ def audit_captured_plane_attribution(source, component, request_directory, attem
     existing repair owner, not this adapter. No candidate is adopted here.
     """
     _need(type(timeout_seconds) is int and 1 <= timeout_seconds <= 600)
-    controls = dict(component=component, attempt_number=attempt_number, dictionary_index=dictionary_index)
+    _need(type(compact_inventory) is bool, 'Require a boolean native-inventory storage choice')
+    controls = dict(component=component, attempt_number=attempt_number, dictionary_index=dictionary_index,
+                    **({'compact_inventory':True} if compact_inventory else {}))
     source = _path(source); request = _path(request_directory, directory=True)
     receipts = [_path(p) for p in (before_receipt, after_receipt)]
     _need(all(p.name == 'native_receipt.json' for p in receipts))

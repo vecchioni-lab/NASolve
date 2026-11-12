@@ -1,87 +1,104 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-12**, C233. Active branch **cedar**, checkout NASolve-c96.
-Implementation/validation based on C230/0eb6f1a; C233 is the completed checkpoint.
-Use the current branch HEAD for its commit identity.
+Updated **2026-11-12**, C239. Active branch **cedar**, checkout NASolve-c96.
+Implementation/validation based on C233/b8c9251; use current HEAD for the commit.
 The [queue](cif-doctor-completion-queue.md) owns work order;
 [capability limits](cif-doctor.md#current-capability-boundary) remain in force.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
 ## Current result
 
-C225 freezes explicit checked campaign preparation. C226 supplies maintained owned
-whole-plane calculations; C227 selects ordered linear/plane repairs with ordinary
-NAR context and separate derivatives. These are integration components; automatic
-plane invocation remains open. C228 deduplicates/compresses exact runtime evidence;
-C229 chooses it in new complete checked requests while preserving old layouts.
-C230 shares parent qualification within one ReadySet publication read, without a
-persistent verdict cache. Exact chemistry/provenance checks remain.
+The existing prepared repair request now accepts exact completed owned plane
+support. It freezes source/request/attempt identity and all evidence, then runs
+linear and plane checks through the same native owner, source/native/derivative
+selector and publisher. Ordinary ordered NARestraints inputs remain exact.
+No residue-name switch, generator or retry protocol was introduced. Unsupported
+completion can retain an already checked route; malformed evidence/unknown work
+cannot. The complete outer request does not yet acquire plane support itself.
 
-C231 executes a fresh complete ordinary-source request at pinned C230: real Phenix
-2.2.1-6174 / dispatcher 2.2.1 repair, baseline, ReadySet and endpoint complete; all
-owners STOPPED. Exact old construction/cache reused, no new Coot or generation.
-Selected checked ReadySet model; final publication 5,114,426 bytes, entire request
-134,538,521 bytes (484 files). Existing automatic linear repair only; no automatic
-plane repair or diffraction refinement claim. Cold replay passes with old paths,
-cache/SDK/processes forbidden. The same new request is moved, not duplicated, for
-initial checkpoint publication and relocated inspection/refinement-input checks.
-All 489 run files retain bytes/mtimes. The map/observation fixtures are synthetic
-path controls, not native MTZ validation. Final anchored location is recorded in
-live_tests_directory/231_Cedar_complete-compact-request-eugpienj/artifact-location.json.
+Actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls use C231's ordinary PDU/NAR
+bundle and exact completed C215 support. Success selects the repaired bundle with
+explicit C5 coverage and all five PHILs. A deliberately one-second plane-native
+limit stops the worker and selects the independently checked original, honestly
+retaining missing C5 coverage. Failure replay rebuilds the narrow candidate from
+source/support without Phenix. C236 also fixes the older failure reader's mismatch
+with C207's full-model plan, retaining compatibility with selected-only old plans.
 
-C232 fixes C213's contradiction with C170: owned plane support accepts a shorter
-actual parent allowance while preserving the immutable request maximum. Both phase
-contexts and jobs bind the same actual grant; changed request identity still fails.
-Real generation uses maximum 300 s/grant 180 s and stops cleanly; cold owned support
-replay passes with 27 unchanged files. Candidate remains CANDIDATE_REVIEW and the
-optimizer reports no convergence. No new force qualification or adoption. Existing
-focused profiles now include current plane and compact-storage modules.
+Storage: C237 assembles combined proof temporarily, freezes it in publication and
+removes that assembly; original/partial worker output remains. C238 references the
+already frozen native inventories instead of embedding them in plane-job specs.
+The maintained job still checks/compares the full inventories. The fresh successful
+request falls from 195.9 MB to 134.4 MB, including a 4.5 MB final result; chosen
+model, two CIFs and five PHILs are byte-identical. C239 refuses excessive aggregate
+support before reading more components. All existing limits remain unchanged.
 
-C233 reuses the bounded tree traversal to hash inventory members one at a time.
-Saved hashes/sizes, partition bounds and mutation checks remain identical. Four
-memory regressions fail before; 193 focused continuation/storage checks pass.
-The same actual complete result read before/after returns an identical hash;
-484 files unchanged, 15 temporary views removed, no scientific copy/native call.
-Maximum resident memory falls 598,654,976 to 562,069,504 bytes; temporary evidence
-remains 69,727,392 bytes. This does not establish campaign-scale resource safety.
+Success and timeout requests pass read-only relocation with old request/source/
+support paths, SDK and process calls forbidden. They were moved, not copied;
+471/310 files preserve bytes/mtimes. C238's subsequent compact success also passes,
+471 files unchanged, temporary view removed (53.3 MB), peak read memory 569.3 MB.
+This does not establish campaign-scale memory/storage safety. No new generation,
+Coot or diffraction refinement. All native owners STOPPED; no background job.
 
-## Validation and handoff
+## Validation and reviewer handoff
 
-C232: 110 focused generation/attribution/native-plane cases pass; six profile
-selector cases pass. C233: 193 continuation/runtime/storage cases and 33 outer
-request bounds/mutation/readback cases pass. Git whitespace and changed-Python
-syntax checks pass. Exact commands/results/source pins:
-ledger complete_compact_request_2026_11_12, clamped_plane_generation_2026_11_12,
-bounded_request_inventory_memory_2026_11_12. No new schema or migration for C232/233.
-Generated scientific artifacts, logs, cache and local runners remain outside Git.
-All native owners STOPPED; cold validation complete; no background native job. No full suite this push.
-Last entirely green full: C220/583d30df, 9,178 tests + 276 subtests. C222's later full
-run had failures subsequently fixed by focused checks; no full revalidation claim.
+Behavior before: C226/C227 were separate plane proof/selection components;
+prepared repair ran only its linear route. After: explicit owned plane support
+uses that same request/owner and final selector, including stopped-native fallback.
+Changed source: cif_prepared_repair_execution, cif_repair_attempt,
+cif_repair_process, cif_prepared_repair_failure, cif_plane_candidate and
+cif_captured_plane_attribution. Existing workflow profile includes the new support
+tests. README/architecture current summaries, methods/overview, queue and ledger
+are updated; historical milestone sections retain their original meaning.
+
+Compatibility: optional plane_support in request/execution,
+cif-prepared-owned-plane-support-v1, cif-prepared-plane-stage-v1, and optional
+compact_inventory=True in plane-job controls. Old absent fields/jobs remain
+readable and keep their earlier behavior; old strict readers refuse the new mode.
+No migration, old scientific output rewrite, chemical threshold or stacking-policy
+change. Source support does not authorize replacing a whole generated CIF.
+
+Focused validation: 320 affected support/execution/failure/request/process/budget/
+plane/profile tests; 91 complete-request callers; 117 compact plane-attribution/
+execution tests; 62 support/repair-chain cases, all pass. Sets overlap; do not sum
+as unique suite coverage. Fail-before controls: missing support, canonical/library
+bystanders, retained duplicate assembly, referenced inventory and early aggregate
+bounds. Exact commands/results and source pins are in ledger entries
+owned_prepared_plane_repair_2026_11_12 and compact_plane_inventory_2026_11_12.
+No full suite this push. Last entirely green full: C220/583d30df, 9,178 tests +
+276 subtests. C222's later full failures were fixed with focused checks; no full
+revalidation claim. Generated science, logs, source-pin lists and ignored runners
+remain outside Git. Locations are anchored in the ledger and capsule metadata.
 
 ## Next work — finish Q04/Q05
 
-1. Join C226/C227 plane repair into the existing repair/generation owner. C232
-   removes the shorter-budget blocker. Preserve existing ring planes, source
-   chemical state, complete native/derivative gates and a qualified fallback.
-   Do not introduce another executor or a PDU-name switch.
+1. Obtain/freeze source plane support through the existing complete-request
+   generation owner, using the current graph screen rather than residue names.
+   Bind exact numbered children, shared deadlines and finite attempt allowances;
+   retain the independently checked parent on a classified optional failure.
+   Unknown processes or malformed proof still block retry. Preserve earlier
+   request meanings. Explicit prepared repair is integrated and native-tested.
 2. Define later preparation-child publication without replacing an immutable
    earlier root or claiming a fresh MR construction descends from a refined model.
-3. Design explicit, interruption-safe retirement of redundant successful working
-   files only after every owner stops and a sealed result verifies. Preserve exact
+   C223–C225 already supply initial checkpoint publication, checked ordinary
+   PostMR and explicit frozen campaign entry; do not rebuild those paths.
+3. Design explicit interruption-safe retirement of redundant successful working
+   files only after every owner stops and a sealed result verifies. Keep exact
    recoverable inputs, tool/policy identities and necessary receipts. No incidental
    cleanup of old/failed science. Measure whole-request disk, temporary disk and
-   memory separately; existing campaigns are sequential, not 100 concurrent jobs.
+   memory separately; 100 datasets do not mean 100 concurrent readers.
+
+Prior-work audit: C160/C163/C164 own repair/recovery; C207/b45bd645 scopes plans to
+all modeled types; C213/C232 bind exact owned generation and actual parent grants;
+C226 owns whole-plane mechanics; C227 composes proofs through the existing selector.
+C228–C233 supply compact publication, shared parent reads and bounded inventories.
+Reuse these rather than introducing parallel machinery.
 
 Q06 real complete-restraint refinement and Q07 combined/held-out chemistry remain
 queued after Q04/Q05. NAR's reviewed base-role stacking atoms remain sufficient;
 Cedar's substituent chemical planes do not automatically enlarge stacking planes.
-Keep one queue and this short handoff; older milestones are evidence, not new work.
 
 ## Preserve local evidence
 
 Protected NASolve-cedar remains at e7451eed with local phaser.py/unpublished data.
-Everyday pine, metal work and earlier runs are untouched. No cleanup/new branch or
-merge. Check docs/history before diagnosis and continue on cedar. Work window began
-19:46 UTC; planned stop about 22:46 UTC.
-
-— Rowan · Codex desktop
+Everyday NASolve/pine retains its pre-existing untracked science, patches and venv.
+Work only in NASolve-c96/cedar. No new branch, cleanup or merge is authorized here.

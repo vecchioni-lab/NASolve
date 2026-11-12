@@ -21,7 +21,7 @@ exact choice as a review checkpoint for inspection and trial refinement, includi
 a checked fallback. Schema-2 campaign recipes can explicitly choose the same
 route and preserve its genuine receipt. An interrupted save can finish without
 rebuilding the model; campaign retry preserves the old run and starts fresh.
-Q04/Q05 still need general chemical-plane repair and later preparation children
+Q04/Q05 still need automatic acquisition of plane support and later preparation children
 before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
@@ -30,13 +30,20 @@ The PDU investigation illustrates the distinction: correct connectivity and a
 straight propyne do not guarantee the desired glycosidic orientation or coplanarity
 with the base. The implemented graph/geometry checks and PDU/5PC controls identify
 and test those faults without relying on the residue name. Automatic complete-plane
-repair still needs integration; near-planar coordinates alone are insufficient.
+repair now runs inside the existing repair request when completed source support is supplied;
+automatically obtaining that support remains work. Near-planar coordinates alone are insufficient.
 The [maintained plane calculation](cif-doctor.md#maintained-whole-plane-numerical-evidence-c226)
 now records and rereads the complete change in forces, including forces on the
 original ring atoms. Linear and plane repairs can now be checked and saved together
 without losing the base-pair/stacking restraints. An ordinary-model control passes
-those checks and separate derivatives; automatic invocation and real refinement
-remain work. Compact evidence now stores identical records once and compresses
+those checks and separate derivatives. A fresh owned request now executes the
+combined repair; a deliberate stopped plane check safely retains the checked
+original. Both results read correctly after relocation with no Phenix available.
+The successful request now retains about 134 MB, including a 4.5 MB final result,
+instead of 196 MB: the combined proof is assembled temporarily and native checks
+reference retained inventories instead of embedding duplicates. Original worker
+output is preserved, and the selected model/CIF/restraint bytes are identical. Automatic outer-request support acquisition and real
+refinement remain work. Compact evidence now stores identical records once and compresses
 those bytes without weakening checks. One actual repaired PDU/NAR publication
 falls from 101 MB to 4.9 MB; its subsequent ReadySet result is 6.2 MB, while the
 complete retained continuation is 43.1 MB. A fresh complete ordinary-source request

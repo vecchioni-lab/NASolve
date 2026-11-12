@@ -266,3 +266,18 @@ def test_elapsed_prelaunch_allowance_is_not_a_native_timeout_receipt(tmp_path,mo
             environment={},timeout_seconds=2,process_runner=o.runner('original-gradient'))
     assert not (work/'gradient.log').exists()
     assert o.finish('RAISED')
+
+
+@pytest.mark.parametrize('phase',['plane-attribution-000','plane-attribution-015'])
+def test_plane_attribution_uses_the_existing_owned_process_protocol(tmp_path,phase):
+    from nasolve.cif_repair_process import inspect_prepared_repair_processes
+    o=owner(tmp_path);work=tmp_path/phase/'job';work.mkdir(parents=True)
+    assert o.runner(phase)([sys.executable,'-c','print("synthetic plane worker")'],cwd=work,
+        log_path=work/'execution.log',environment=dict(os.environ),timeout_seconds=3)==0
+    assert o.finish('RETURNED')
+    state=inspect_prepared_repair_processes(tmp_path)
+    assert state['state']=='STOPPED' and state['phases'][phase]['finished']['status']=='COMPLETED'
+    before=inventory(tmp_path)
+    with pytest.raises(ValueError):o.runner(phase)([sys.executable,'-c','pass'],cwd=work,
+        log_path=work/'execution.log',environment=dict(os.environ),timeout_seconds=3)
+    assert inventory(tmp_path)==before

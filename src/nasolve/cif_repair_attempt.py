@@ -21,7 +21,7 @@ from .cif_generation_process import _valid_identity, _valid_attempt_identity
 from .cif_outer_context import OuterAllowance, parent_identity
 from .cif_generation_attempt import _attempt_identity
 from .cif_postmr_cache import verify_current_consumer
-from .cif_prepared_repair_execution import execute_prepared_dictionary_repair, POLICY_ID as EXECUTION_POLICY, PreparedRepairBudgetExceeded, compact_evidence_fields
+from .cif_prepared_repair_execution import execute_prepared_dictionary_repair, POLICY_ID as EXECUTION_POLICY, PreparedRepairBudgetExceeded, compact_evidence_fields, _plane_support_snapshot
 from .cif_repair_process import inspect_prepared_repair_processes, _uuid, POLICY_ID as PROCESS_POLICY
 from .cif_prepared_repair_failure import inspect_prepared_native_failure, failure_policy_fields, FALLBACK_POLICY_ID
 
@@ -58,7 +58,7 @@ def _inventory(tree):
     return {name:_digest(data) for name,data in tree.items()}
 
 
-def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False):
+def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k]
           for k,v in limits.items()), 'Require bounded integer repair deadlines')
@@ -67,7 +67,17 @@ def _configuration(tree, limits, max_attempts, *, qualify_no_repair=False, optio
     return dict(bundle_files=_inventory(tree), limits=dict(limits), max_attempts=max_attempts,
                 execution_policy=EXECUTION_POLICY, process_policy=PROCESS_POLICY,
                 **({'qualify_no_repair':True} if qualify_no_repair else {}),**failure_policy_fields(optional_failure_policy),
-                **compact_evidence_fields(compact_evidence))
+                **compact_evidence_fields(compact_evidence),
+                **({'plane_support':plane_support} if plane_support is not None else {}))
+
+
+def _support_declarations(root, config):
+    if config is None: return None
+    _need(isinstance(config,dict) and isinstance(config.get('choices'),dict)
+          and all(isinstance(code,str) and '/' not in code and code not in {'','.', '..'}
+                  for code in config['choices']), 'Invalid frozen plane support choices')
+    return {code:dict(request_directory=root/code,attempt_number=number)
+            for code,number in config['choices'].items()}
 
 
 def _request(root):
@@ -75,10 +85,14 @@ def _request(root):
     _need(type(request.get('schema_version')) is int and request['schema_version'] == 1
           and request.get('policy_id') == POLICY_ID and _uuid(request.get('request_id'))
           and request.get('bundle') == {'anchor':ANCHOR,'path':'inputs/bundle'})
-    _members(root/'inputs',set(),{'bundle'})
     config = request.get('configuration')
     _need(isinstance(config,dict))
-    expected = _configuration(_tree(path_in(root,'inputs/bundle')),config.get('limits',{}),config.get('max_attempts'),qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False))
+    support_config = config.get('plane_support')
+    _members(root/'inputs',set(),{'bundle'} | ({'plane-support'} if support_config is not None else set()))
+    declarations = _support_declarations(root/'inputs/plane-support',support_config)
+    expected_support, _ = _plane_support_snapshot(root/'inputs/bundle',declarations)
+    _need(expected_support == support_config, 'Prepared plane support changed')
+    expected = _configuration(_tree(path_in(root,'inputs/bundle')),config.get('limits',{}),config.get('max_attempts'),qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False),plane_support=expected_support)
     _need(config == expected, 'Prepared request snapshot or configuration changed')
     return request
 
@@ -100,11 +114,13 @@ def _execution(attempt, intent, config):
             if 'job' not in evidence:
                 continue
             limit = ('native_timeout_seconds' if phase.startswith('native-') else
-                     'attribution_timeout_seconds' if phase == 'attribution' else 'derivative_timeout_seconds')
+                     'attribution_timeout_seconds' if phase == 'attribution' or phase.startswith('plane-attribution-') else 'derivative_timeout_seconds')
             _need(evidence['job']['timeout_seconds'] <= config['limits'][limit], 'Worker exceeded frozen phase limit')
     report = work/'repair_execution.json'
     if report.exists():
         value = _json(_read(report)); mode = value.get('qualify_no_repair',False)
+        _need(value.get('plane_support') == config.get('plane_support'),
+              'Execution plane support differs from frozen request')
         storage = value.get('compact_evidence',False)
         _need(type(storage) is bool and storage == config.get('compact_evidence',False),
               'Execution storage choice differs from frozen request')
@@ -195,7 +211,7 @@ def _seal(attempt, intent, request, outcome, error=None):
 
 def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory, *,
         native_timeout_seconds=120, attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=600, max_attempts=2, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False,
+        total_timeout_seconds=600, max_attempts=2, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, plane_support=None,
         _parent_attempt_identity=None, _remaining_seconds=None):
     """Perform one fresh, bounded repair attempt under an immutable logical request.
 
@@ -225,12 +241,21 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
         if not (root/'request.json').exists() and any(p.name != 'request.lock' for p in root.iterdir()):
             raise CampaignProcessError('Repair request has unresolved initial publication')
     before = _tree(original)
+    support_config, support_files = _plane_support_snapshot(original,plane_support)
+    if support_config is not None:
+        _need(all(not root.is_relative_to(Path(row['request_directory']).absolute())
+                  and not Path(row['request_directory']).absolute().is_relative_to(root)
+                  for row in plane_support.values()), 'Repair request must be separate from plane support')
+    def support_unchanged():
+        current, files = _plane_support_snapshot(original,plane_support)
+        _need(current == support_config and files == support_files, 'Plane support changed during request')
     limits = dict(native_timeout_seconds=native_timeout_seconds,attribution_timeout_seconds=attribution_timeout_seconds,
                   derivative_timeout_seconds=derivative_timeout_seconds,total_timeout_seconds=total_timeout_seconds)
-    config = _configuration(before,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,compact_evidence=compact_evidence)
+    config = _configuration(before,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,compact_evidence=compact_evidence,plane_support=support_config)
     consumer = read_dictionary_bundle(original)['report']['consumer']
     _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer differs')
     _need(_tree(original) == before, 'Prepared source changed during preflight')
+    support_unchanged()
     remaining()
     coordinator = current_process_identity()
     root.mkdir(parents=True,exist_ok=True)
@@ -245,7 +270,17 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
                     stream.write(data);stream.flush();os.fsync(stream.fileno())
             for directory in sorted({frozen,*[p for p in frozen.rglob('*') if p.is_dir()]},key=lambda p:len(p.parts),reverse=True):
                 _sync_directory(directory)
+            if support_config is not None:
+                support_root = root/'inputs/plane-support'
+                for name in support_config['directories']:(support_root/name).mkdir(parents=True,exist_ok=True)
+                for name,data in support_files.items():
+                    path=support_root/name;path.parent.mkdir(parents=True,exist_ok=True)
+                    with path.open('xb') as stream:
+                        stream.write(data);stream.flush();os.fsync(stream.fileno())
+                for directory in sorted({support_root,*[p for p in support_root.rglob('*') if p.is_dir()]},key=lambda p:len(p.parts),reverse=True):
+                    _sync_directory(directory)
             _sync_directory(frozen.parent)
+            support_unchanged()
             write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
                 created_utc=now(),configuration=config,bundle={'anchor':ANCHOR,'path':'inputs/bundle'}))
         state = inspect_prepared_repair_request(root);request = state['request']
@@ -254,6 +289,7 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
             reason = 'exhausted attempt allowance' if state['availability'] == 'EXHAUSTED' else 'unresolved previous attempt'
             raise CampaignProcessError('Prepared repair request has '+reason)
         _need(_tree(original) == before, 'Prepared source changed before reservation')
+        support_unchanged()
         _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer changed')
         remaining()
         number = len(state['attempts'])+1
@@ -267,9 +303,12 @@ def execute_prepared_dictionary_repair_attempt(bundle, phenix, request_directory
                                                      _attempt_identity=_attempt_identity(intent),**limits,
                                                      **({'qualify_no_repair':True} if qualify_no_repair else {}),**failure_policy_fields(optional_failure_policy),
                                                      **compact_evidence_fields(compact_evidence),
+                                                     **({'plane_support':_support_declarations(root/'inputs/plane-support',support_config)}
+                                                        if support_config is not None else {}),
                                                      **({'_remaining_seconds':remaining} if _remaining_seconds is not None else {}))
             _need(_tree(original) == before and _tree(root/'inputs/bundle') == before,
                   'Prepared source or request snapshot changed during execution')
+            support_unchanged()
             _need(verify_current_consumer(phenix,phenix.executables['phenix.ready_set'],consumer), 'Prepared repair consumer changed')
             remaining()
             _seal(attempt,intent,request,'RETURNED')

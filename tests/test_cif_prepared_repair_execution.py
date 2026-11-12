@@ -304,3 +304,103 @@ def test_repair_plan_covers_model_components_outside_selected_dictionary_owners(
     assert plan['steps'][0]['plan']['removed_torsion_count'] == 1
     assert m._tree(source) == before and calls == ['consumer']
     assert not (output / 'runtime').exists() and not plan['automatic_adoption']
+
+
+@pytest.mark.parametrize('linear', [False, True])
+@pytest.mark.parametrize('outcome',['pass','unsupported','bad-evidence','negative-attribution','bad-final-derivative','native-timeout','changed-support','ownership-error','classified-plane-timeout','publication-error'])
+def test_plane_support_uses_existing_repair_owner_and_final_selector(case, monkeypatch, linear, outcome):
+    from nasolve.campaign_process import CampaignProcessError
+    m,b,sdk,out,state,calls,options=case
+    state['steps']=linear
+    generation=b.parent/'generation';generation.mkdir();(generation/'proof').write_text('owned support')
+    declared={'Q17':dict(request_directory=generation,attempt_number=1)}
+    def snapshot(bundle, choices):
+        assert choices['Q17']['attempt_number']==1
+        return dict(policy_id='test-owned-support',choices={'Q17':1},files={'Q17/proof':{'size':13}},directories=['Q17']), {'Q17/proof':b'owned support'}
+    monkeypatch.setattr(m,'_plane_support_snapshot',snapshot)
+    original=m.read_dictionary_bundle
+    def prepared(path):
+        result=original(path);result['component_dictionaries']={'Q17':result['after_dictionaries'][0]}
+        return result
+    monkeypatch.setattr(m,'read_dictionary_bundle',prepared)
+    monkeypatch.setattr(m,'resolve_dictionary_snapshot',lambda p:dict(source=b/'a.cif'))
+    def candidate(source,dictionary,code,request,attempt,output):
+        assert code=='Q17' and attempt==1 and request==out/'plane-support/Q17'
+        if outcome=='unsupported':raise m.UnsupportedPlaneCompletion('Source supplies no admissible missing row')
+        if outcome=='bad-evidence':raise ValueError('Contradictory plane proof')
+        output.parent.mkdir(parents=True,exist_ok=True);output.write_text('plane candidate')
+        if outcome=='changed-support':(out/'plane-support/Q17/proof').write_text('changed')
+        calls.append('plane-candidate');return dict(status='CANDIDATE_REVIEW')
+    monkeypatch.setattr(m,'prepare_owned_trigonal_plane_candidate',candidate)
+    def plane(source,code,request,attempt,before,after,index,phenix,output,**kwargs):
+        assert index==0 and kwargs['timeout_seconds']==9
+        assert before.parent.parent.name==('001' if linear else '000')
+        assert after.parent.parent.name==('002' if linear else '001')
+        if outcome=='ownership-error':raise CampaignProcessError('Unknown plane process')
+        output.mkdir();calls.append('plane-attribution')
+        (output/'captured_plane_attribution.json').write_text('{}')
+        if outcome=='negative-attribution':state['attribution']=False
+        return dict(status='REVIEW' if outcome=='negative-attribution' else 'CAPTURED_PLANE_ATTRIBUTION_PASS')
+    monkeypatch.setattr(m,'audit_captured_plane_attribution',plane)
+    chain_paths=[]
+    def chain(planes, output, *, linear_attribution=None):
+        chain_paths.append(output)
+        assert planes==[out/'plane-attribution-000']
+        assert linear_attribution==(out/'attribution' if linear else None)
+        output.mkdir();(output/'repair_chain.json').write_text('{}');calls.append('chain')
+    monkeypatch.setattr(m,'prepare_repair_chain',chain)
+    old_gradient=m.audit_captured_mixed_gradients
+    def gradient(receipt,sdk,output,**kwargs):
+        if output.name=='original-gradient':return old_gradient(receipt,sdk,output,**kwargs)
+        assert receipt.parent.parent.name==('001' if outcome=='unsupported' else '002' if linear else '001')
+        if outcome=='bad-final-derivative':state['repaired']=False
+        output.mkdir();(output/'captured_mixed_gradients.json').write_text('{}');calls.append('repaired')
+    monkeypatch.setattr(m,'audit_captured_mixed_gradients',gradient)
+    old_select=m.inspect_dictionary_bundle_repair
+    def select(**kwargs):
+        if outcome=='unsupported':assert 'repair_chain' not in kwargs and kwargs['attribution_directory']==out/'attribution'
+        else:assert kwargs['repair_chain'] is True and kwargs['attribution_directory']==chain_paths[-1]
+        return old_select(**kwargs)
+    monkeypatch.setattr(m,'inspect_dictionary_bundle_repair',select)
+    def original_selection(**kwargs):
+        return dict(decision=dict(selected='verified_prepared_bundle'))
+    def original_publication(output,**kwargs):
+        output.mkdir();(output/'runtime_bundle.json').write_text(json.dumps(original_selection(**kwargs)))
+    monkeypatch.setattr(m,'inspect_dictionary_bundle_original',original_selection)
+    monkeypatch.setattr(m,'prepare_original_component_runtime_bundle',original_publication)
+    native=m.inspect_native_bundle
+    def capture(*a,**kw):
+        value=native(*a,**kw)
+        if outcome in {'native-timeout','classified-plane-timeout'} and a[2].name==('002' if linear else '001'):
+            value['execution']=dict(status='TIMED_OUT',returncode=-15)
+        return value
+    monkeypatch.setattr(m,'inspect_native_bundle',capture)
+    if outcome=='classified-plane-timeout':
+        options['optional_failure_policy']=m.FALLBACK_POLICY_ID
+        monkeypatch.setattr(m,'inspect_prepared_native_failure',lambda root,phase:dict(phase=phase,status='KNOWN_STOPPED_NATIVE_FAILURE'))
+    if outcome=='publication-error':
+        def fail_publication(**kwargs):raise OSError('Synthetic publication failure')
+        monkeypatch.setattr(m,'prepare_repaired_component_runtime_bundle',fail_publication)
+    if outcome in {'bad-evidence','native-timeout','changed-support','ownership-error','publication-error'}:
+        with pytest.raises((ValueError,CampaignProcessError,OSError)):
+            m.execute_prepared_dictionary_repair(b,sdk,out,plane_support=declared,**options)
+        assert out.exists() and not (out/'runtime').exists()
+        assert not (out/'repair_execution.json').exists()
+        assert all(not p.exists() for p in chain_paths)
+        return
+    r=m.execute_prepared_dictionary_repair(b,sdk,out,plane_support=declared,**options)
+    assert r['status']=='QUALIFIED_DIAGNOSTIC_RUNTIME' and r['plane_support']['choices']=={'Q17':1}
+    assert all(not p.exists() for p in chain_paths)
+    if outcome=='classified-plane-timeout':
+        assert r['selection']['decision']['selected']=='verified_prepared_bundle'
+        assert r['plane_results'][0]['status']=='KNOWN_STOPPED_NATIVE_FAILURE'
+        assert 'chain' not in calls and 'repaired' not in calls
+    elif outcome=='unsupported':
+        assert r['plane_results'][0]['status']=='NO_SUPPORTED_PLANE_COMPLETION'
+        assert 'plane-attribution' not in calls and 'chain' not in calls
+        assert len(r['native_receipts'])==(3 if linear else 2)
+    else:
+        assert calls.index('plane-attribution') < calls.index('chain') < calls.index('repaired')
+        assert len(r['native_receipts'])==(4 if linear else 3)
+        assert r['selection']['decision']['selected']==('verified_prepared_bundle'
+            if outcome in {'negative-attribution','bad-final-derivative'} else 'repaired_prepared_bundle')

@@ -35,7 +35,7 @@ PROFILES = {
         'test_cif_topology_gate', 'test_phosphate', 'test_recipe_phosphates',
     ),
     'workflow': (
-        'test_cif_runtime_evidence', 'test_cif_compact_workflow',
+        'test_cif_runtime_evidence', 'test_cif_compact_workflow', 'test_cif_prepared_plane_support',
         'test_cif_postmr_publication', 'test_cif_ordinary_cli', 'test_cif_ordinary_outcome', 'test_cif_ordinary_postmr', 'test_postmr_runtime',
         'test_curated_cif_loops',
         'test_test_suites', 'test_cif_doctor_selection', 'test_cif_dictionary_store',
