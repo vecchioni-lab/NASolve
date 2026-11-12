@@ -7,6 +7,10 @@ for demonstrated support, use the [capability matrix](cif-doctor.md#current-capa
 The numbered sections below retain implementation contracts and historical evidence.
 Their milestone-time next steps do not override the current queue.
 
+The [checked-preparation handoff](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
+now exposes exact readback and one fresh continuation attempt through the existing
+owner. It does not publish a refinement checkpoint or change default PostMR.
+
 ## Runtime precedence
 
 Phenix is resolved in this order:
@@ -1503,7 +1507,7 @@ choosing more refinement strategies; high Rwork alone does not identify noise,
 dictionary defects or fractured arms. Declared assembly/routing and bounded
 checkpoint repair follow the [guided connection contract](construct-registration.md#geotest-guided-arm-connection).
 Frozen Free-R flags remain unchanged. The
-[handoff](development-handoff.md#restraint-doctor-and-subsequent-roadmap) owns
+[handoff](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#restraint-doctor-and-subsequent-roadmap) owns
 implementation order and returned evidence.
 
 Refine Doctor is a finisher and diagnostic layer, not an unconstrained
@@ -3467,7 +3471,7 @@ All catalogue families belong in the generalizer programme. Family/site contract
 and bounded recovery must preserve source identity, charge/stereo intent and
 NAR ownership. A component alias can isolate definitions, never justify changing
 chemistry for convergence. See the [C105 contract](cif-doctor.md#catalogue-coverage-census-c105)
-and maintained [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary).
+and maintained [milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary).
 
 
 ## Source attachment topology and state evidence (C106)

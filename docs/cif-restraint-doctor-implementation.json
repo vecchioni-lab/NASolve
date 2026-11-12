@@ -31056,10 +31056,25 @@
     "contract": "docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions",
     "requires_student_cif_review": false,
     "supersedes": "Earlier human-review/adoption design language applies to retained developer evidence, not mandatory student CIF approval. Hard unusability and final structural validation remain distinct.",
-    "implementation_boundary": "Pure selection policy and PostMR summary implemented; recovery/adoption/PDF integration planned.",
+    "implementation_boundary": "Pure selection policy, PostMR assessment and explicit checked preparation/result/continuation commands implemented (C220); default PostMR/campaign adoption, complete-plane composition, actual refinement qualification and solution-PDF integration remain open.",
     "qualified_dictionary_reuse": "IMPLEMENTED_SHARED_STORE_AND_ORDINARY_NARROW_RECIPE_REUSE; explicit representation-policy/current-site bundles are qualified diagnostics, with general cache-miss recovery and ordinary adoption still pending.",
     "background_engine_intent": "Internal recipes/model/source contracts drive automatic chemistry handling around ReadySet and NARestraints. Users should not author or review CIFs routinely; unresolved scientific choices are distinct from repairable technical failures.",
     "retained_design_principles": "docs/cif-doctor.md#design-principles-retained-from-the-early-cedar-work",
-    "completion_queue": "docs/cif-doctor-completion-queue.md"
+    "completion_queue": "docs/cif-doctor-completion-queue.md",
+    "checked_preparation": {
+      "contract": "docs/cif-doctor.md#checked-preparation-and-honest-recovery-c220",
+      "implementation": "src/nasolve/cif_ordinary_postmr.py",
+      "commands": [
+        "cif-doctor prepare-run",
+        "cif-doctor preparation-status",
+        "cif-doctor prepared-result",
+        "cif-doctor continue-preparation"
+      ],
+      "execution_owner": "src/nasolve/cif_complete_request.py",
+      "artifact_schema_change": false,
+      "default_workflow_adoption": false,
+      "refinement_qualified": false,
+      "evidence_record": "checked_preparation_handoff_2026_11_12"
+    }
   }
 }

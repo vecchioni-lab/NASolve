@@ -4,7 +4,6 @@ from hashlib import sha256
 import importlib.util
 import json
 from pathlib import Path
-from types import SimpleNamespace
 
 import pytest
 
@@ -71,13 +70,3 @@ def test_saved_constructed_native_requires_exact_return(monkeypatch, defect):
     if defect == 'none': assert m._read_cedar64_members(members) == ('proof', 'prior', 'rotation')
     else:
         with pytest.raises(ValueError): m._read_cedar64_members(members)
-
-
-@pytest.mark.parametrize('action,delivery,valid', [('saved_postmr_construction_native_only', '64_Cedar', True),
-    ('postmr_construction_native_only', '64_Cedar', False), ('saved_native_usability_only', '64_Cedar', False),
-    ('saved_postmr_construction_native_only', '63_Cedar', False)])
-def test_saved_construction_action_has_one_input_scope(action, delivery, valid):
-    m = template(); args = SimpleNamespace(**{action: True})
-    if valid: m._check_constructor_input_mode(args, delivery)
-    else:
-        with pytest.raises(ValueError): m._check_constructor_input_mode(args, delivery)

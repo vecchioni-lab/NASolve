@@ -3,6 +3,20 @@
 NASolve separates machine-local convenience state from reviewable
 crystallographic artifacts.
 
+## Working language
+
+Assume scientific literacy, without assuming Python or software-engineering
+vocabulary. Lead updates, plans and user-facing help with the lab outcome:
+what Coot builds, what ReadySet supplies, which model/restraints Phenix receives,
+what was checked, and what still needs work. Explain a technical term when it is
+needed; put implementation names, schemas and exact commands in supporting detail.
+Use the same language for the maintained roadmap. Keep precise scientific limits:
+"Phenix can read these restraints" does not mean "this model refined correctly."
+
+Keep one current queue and a short current handoff. Replace superseded status
+instead of adding another milestone diary. Link immutable Git history or the
+existing evidence ledger for older results; do not duplicate those records.
+
 ## Documentation roles
 
 The root `README.md` is the human-facing operating guide. `architecture.md` and

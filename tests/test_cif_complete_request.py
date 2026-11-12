@@ -574,3 +574,15 @@ def test_exact_result_still_validates_unselected_history(case,monkeypatch):
     before=inventory(root)
     with pytest.raises(ValueError):m.read_dictionary_request_result(root,1)
     assert inventory(root)==before
+
+
+def test_explicit_resume_checks_previous_attempt_inside_existing_owner(case):
+    m,args,root,sdk,store,generations,calls=case
+    m.initialize_dictionary_request(output=root,**args)
+    first=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations,after_attempt=0)
+    before=inventory(root)
+    with pytest.raises(ValueError,match='attempt'):
+        m.execute_dictionary_request_attempt(root,sdk,store,generation=generations,after_attempt=0)
+    assert inventory(root)==before and len(calls)==1
+    second=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations,after_attempt=1)
+    assert first['attempt_number']==1 and second['attempt_number']==2

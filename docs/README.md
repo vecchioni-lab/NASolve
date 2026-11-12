@@ -1,53 +1,20 @@
 # NASolve documentation map
 
-Updated **2026-11-11**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-12**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
 
 ## What's current?
 
-- **CIF Doctor:** start with the [Q04-to-release map](cif-doctor-completion-queue.md#pipeline-position).
-  The explicit request now owns acquisition, qualification, repair and optional
-  ReadySet/native continuation, including immutable recovery and usable fallback.
-  Connected construction/restraint intake, compact native ASU proof and its owned
-  ReadySet continuation now have live controls. The ordinary literal-source assembler
-  reproduces those exact inputs through the existing compiler. Exact result
-  readback avoids a duplicate replay while retaining integrity/history checks. Ordinary caller/checkpoint
-  adoption, actual refinement and
-  broader chemistry coverage remain open. The
-  [PDU checkpoint](cif-doctor.md#mutation-orientation-and-exocyclic-plane-coverage-c206)
-  separates mutation chi and missing plane coverage from valid native mechanics;
-  its local geometry repair is not yet ordinary runtime support.
-  [Source-graph parent-chi matching](cif-doctor.md#graph-supported-native-parent-conformation-c207)
-  now runs ordinarily with measured failure detection; PDU/5PC pass and ambiguous
-  DP matching is refused. The [trigonal coverage screen](cif-doctor.md#source-selected-trigonal-plane-coverage-c208)
-  now identifies missing explicit planes from source connectivity, retaining
-  alternative restraints. [Conservative plane candidates](cif-doctor.md#source-supported-plane-completion-candidates-c209)
-  now preserve existing groups and have PDU native geometry plus 5PC transfer
-  evidence. [Exact native plane qualification](cif-doctor.md#exact-linked-native-plane-additions-c211)
-  now validates PDU and 5PC linked plane deltas while retaining all other terms.
-  [Identity-proven construction serials](cif-doctor.md#identity-authorized-construction-serials-c210)
-  now resolve the bounded native Coot context failure while preserving terminal
-  intent. [Owned native multiple-plane generation](cif-doctor.md#owned-native-multiple-plane-generation-c212)
-  now binds that explicit option through the existing request and cache recipe;
-  PDU/5PC reproduce their plane-only candidates. [Selected owned support replay](cif-doctor.md#owned-generation-support-for-plane-completion-c213)
-  now binds the completed attempt to that narrow operation and passes cold replay.
-  [Owned native capture qualification](cif-doctor.md#owned-plane-native-capture-qualification-c214)
-  now binds exact ordered inputs and the recorded consumer. [Complete-plane mechanics](cif-doctor.md#complete-plane-energy-and-derivative-controls-c215)
-  pass native fixed-point attribution and derivative controls for PDU/5PC.
-  [Source-selected model geometry](cif-doctor.md#source-selected-model-trigonal-geometry-c216)
-  now measures PDU/5PC local shape, with bounded 5PC native transfer preserving its
-  fixed environment. Scientific geometry approval, ordinary adoption and refinement remain open. The [support matrix](cif-doctor.md#current-capability-boundary)
-  owns demonstrated capability; the [handoff](development-handoff.md) owns the latest
-  tested/pushed edge; the [ledger](cif-linked-native-registration-evidence.json)
-  owns exact validation. [Selected runtime forwarding](cif-doctor.md#selected-phenix-runtime-through-ordinary-postmr-c217)
-  now preserves the CLI/campaign installation through ordinary cache checks;
-  the [ordinary request initializer](cif-doctor.md#ordinary-preparation-into-the-existing-request-c218)
-  now shares Coot/NAR preparation into that owner before legacy work. Its [fresh owned execution and cold selection](cif-doctor.md#execute-the-ordinary-prepared-request-through-the-existing-owner-c219)
-  now pass from that exact request. Reporting/default invocation, owned plane-repair
-  composition and adoption remain open. Full regression remains deferred to integration; C160
-  is the last completed full baseline. Milestone sections preserve original scope.
+- **CIF Doctor:** start with the [scientific work map](cif-doctor-completion-queue.md#pipeline-position).
+  The checked preparation can use ordinary Coot/NARestraints inputs and complete
+  dictionary repair plus ReadySet. [Truthful preparation reporting/recovery](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
+  is now explicit; exact checkpoint selection, general plane-repair integration,
+  real refinement and broader chemical controls remain open. Read the
+  [short handoff](development-handoff.md) for validation and the next action,
+  the [human overview](cif-doctor-human-overview.md) for the explanation, and the
+  [capability table](cif-doctor.md#current-capability-boundary) for support limits.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

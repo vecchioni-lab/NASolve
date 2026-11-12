@@ -71,6 +71,12 @@ explains the methods and editable figure. The
 keeps routine users out of CIF editing; exact results and original verdicts live in
 the [evidence ledger](docs/cif-linked-native-registration-evidence.json).
 
+For the explicit Cedar checked-preparation workflow, see
+[prepare a model, read its checked result, or continue interrupted work](docs/cif-doctor.md#checked-preparation-and-honest-recovery-c220).
+This route reports a checked preparation; ordinary checkpoint/refinement adoption
+is still being integrated. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
+explains the remaining work.
+
 ## Quick start
 
 ### Install

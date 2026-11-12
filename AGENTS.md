@@ -53,6 +53,15 @@ in this repository.
   Keep implemented capability distinct from planned work; see
   [documentation roles](docs/collaboration.md#documentation-roles).
 
+## Working language
+
+- Explain work in laboratory terms first: model construction, chemical identity,
+  restraints, Coot/ReadySet/Phenix behavior, evidence and remaining limitations.
+  Assume scientific literacy, not programming vocabulary. Keep precise code/API
+  details in supporting sections. Follow [working language](docs/collaboration.md#working-language).
+- Keep the current handoff short and update the existing queue in place. Refer
+  to immutable history for superseded milestones rather than copying diaries.
+
 ## Continuity when new ideas arrive
 
 - Finish the active bounded checkpoint before diverting to a new idea unless

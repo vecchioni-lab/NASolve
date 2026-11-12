@@ -3,14 +3,6 @@ from types import SimpleNamespace
 from tests.test_cedar65_delivery import template
 import pytest
 
-@pytest.mark.parametrize('action,delivery,valid',[
-    ('postmr_cached_model_only','75_Cedar',True),('postmr_readyset_consumption_only','75_Cedar',False),
-    ('postmr_cached_model_only','74_Cedar',False),('postmr_cached_model_only','77_Cedar',False)])
-def test_cached_whole_model_has_explicit_input_scope(action,delivery,valid):
-    m=template();args=SimpleNamespace(**{action:True})
-    if valid:m._check_constructor_input_mode(args,delivery)
-    else:
-        with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)
 
 @pytest.mark.parametrize('defect',['none','build','action','readyset_calls','native_calls','parent','cases','policy','adoption','student_gate','status','native_label','preservation','dictionary','model_edit','report'])
 def test_c75_return_header_preserves_completed_scope(monkeypatch,defect):

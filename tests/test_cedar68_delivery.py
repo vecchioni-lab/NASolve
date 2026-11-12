@@ -53,13 +53,6 @@ def test_source_reuse_requires_exact_completed_c67(monkeypatch,defect):
         with pytest.raises(ValueError):m._read_cedar67_members(members)
 
 
-@pytest.mark.parametrize('action,delivery,valid',[('source_reuse_qualification_only','67_Cedar',True),
-    ('ordinary_acquisition_only','67_Cedar',False),('source_reuse_qualification_only','66_Cedar',False)])
-def test_source_reuse_action_is_explicit_and_isolated(action,delivery,valid):
-    m=template();args=SimpleNamespace(**{action:True})
-    if valid:m._check_constructor_input_mode(args,delivery)
-    else:
-        with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)
 
 
 @pytest.mark.parametrize('native_status,real_preflight',[('REVIEW',False),('FAILED',False),('FAILED',True),('NOT_RUN',False)])

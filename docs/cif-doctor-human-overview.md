@@ -1,135 +1,34 @@
 # CIF Doctor: human and manuscript overview
 
-**Implemented scope, updated 2026-11-11:** CIF Doctor assesses component graphs
-and numerical restraints, records source-preserving PostMR audits, and provides
-explicit preparation, native interpretation and bounded geometry diagnostics.
-Supported ordinary construction preserves whole connected modified bases;
-source-bound qualified dictionaries can be saved locally and reused by ordinary
-PostMR before ReadySet. The diagnostic APIs compare component/linked chemistry,
-exact native restraint membership, numerical derivatives and saved coordinate
-candidates under declared NARestraints pairing/stacking policy.
+**Current explanation, 2026-11-12.** CIF Doctor checks whether the model and
+chemical dictionaries preserve the intended molecule, whether Phenix can read
+the resulting restraints, and whether a proposed repair changes only what it
+should. It works around ReadySet and NARestraints; it does not replace them.
 
-The ordinary assessment hooks remain report-only. Explicit diagnostic recovery
-and qualification are implemented separately from automatic repair on a cache
-miss, ordinary end-to-end candidate adoption and solution-PDF integration.
-No individual mechanics or numerical test establishes scientific correctness.
-The [command guide](cif-doctor.md) owns operational contracts; the
-[implementation map](cif-restraint-doctor-implementation.json) distinguishes
-implemented APIs from planned orchestration. This overview and its editable
-figure describe the current capabilities and their limits.
+Ordinary model construction now preserves supported modified-base orientation.
+The explicit checked-preparation route can use that construction and the supplied
+base-pair/stacking restraints, generate/check dictionaries and try ReadySet.
+A failed optional improvement may retain an independently checked starting
+model with its matching restraints. Interrupted work preserves its evidence.
 
-A [PDU construction checkpoint](cif-doctor.md#mutation-orientation-and-exocyclic-plane-coverage-c206)
-now demonstrates why these gates remain separate: rigid monomer overlap can
-import an unwanted chi conformation, while a straight triple-bond chain can
-still tilt out of its ring. Native torsion matching and a source-supported plane
-completion produce a successful local geometry control with the backbone fixed.
-Plane completion remains diagnostic. [Graph-supported parent-chi matching](cif-doctor.md#graph-supported-native-parent-conformation-c207)
-now runs in ordinary construction with measured refusal of wrong native matches;
-PDU and 5PC transfer, while ambiguous DP correspondence is explicitly refused.
-Other numerical targets and actual refinement remain unqualified.
-A [source-selected plane-coverage screen](cif-doctor.md#source-selected-trigonal-plane-coverage-c208)
-now detects missing explicit membership while retaining alternative restraints
-and excluding unsupported/chiral/tetrahedral centres. It reports evidence for
-later qualified repair; it does not flatten rings or modify dictionaries.
-The [candidate completion API](cif-doctor.md#source-supported-plane-completion-candidates-c209)
-now adds only a supported missing row to an existing plane, preserving its ring
-constraints and every other term. It chooses PDU C5A and 5PC C7 by connectivity.
-PDU has fresh native geometry/readback evidence. The
-[exact native inventory gate](cif-doctor.md#exact-linked-native-plane-additions-c211)
-now passes linked PDU and 5PC controls, allowing only their reconstructed plane
-additions while retaining other terms. Bounded model geometry is now measured
-through the same source-selected audit; scientific approval remains separate.
-[Owned multiple-plane generation](cif-doctor.md#owned-native-multiple-plane-generation-c212)
-now records the option, immutable attempt and source-preserving native execution,
-and reproduces both exact plane-only candidates. Full generated dictionaries are
-not adopted on that evidence; PDU's bounded run is not converged and 5PC convergence
-is unreported. [Owned support replay](cif-doctor.md#owned-generation-support-for-plane-completion-c213)
-now binds an explicitly selected completed attempt to the plane-only operation,
-including cold replay without the old installation. The
-[native capture adapter](cif-doctor.md#owned-plane-native-capture-qualification-c214)
-now binds those candidates to exact model/dictionary/PHIL inputs and the recorded
-consumer. [Complete-plane controls](cif-doctor.md#complete-plane-energy-and-derivative-controls-c215)
-now account for the full PDU/5PC energy/force change and pass separate derivative
-audits. The [model geometry audit](cif-doctor.md#source-selected-model-trigonal-geometry-c216)
-reuses source connectivity to measure every supported occurrence, including missing
-or degenerate cases. A bounded 5PC native control improves local planarity while
-keeping 840 unselected atoms fixed and native restraints unchanged. Scientific
-geometry approval and ordinary automatic selection remain separate.
-[Identity-proven serial repair](cif-doctor.md#identity-authorized-construction-serials-c210)
-now lets ordinary Coot construction reach its existing phosphate and whole-base
-restoration proofs when only atom serials changed. Exact unselected atom fields
-and explicit terminal intent remain protected; unsupported references retain raw.
-This removes the manual serial step from the PDU control, without claiming complete
-refinement or automatic plane-candidate adoption.
+A model that passes those checks has **not yet been shown to refine correctly**.
+[Explicit commands](cif-doctor.md#checked-preparation-and-honest-recovery-c220) now
+report and resume preparation honestly. The next work is to carry that exact result
+into normal inspection/refinement checkpoints, integrate general plane repair,
+and run complete-restraint refinement and mixed/held-out chemical controls.
+The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
+order; the [short handoff](development-handoff.md) records the current evidence.
 
-An [explicit ordinary initializer](cif-doctor.md#ordinary-preparation-into-the-existing-request-c218)
-now carries normal Coot construction and NAR restraint generation directly into
-the existing immutable request, replacing the earlier manual validation handoff.
-It preserves partial work and the original MR status; a prepared request does not
-mean execution or refinement readiness. A subsequent [fresh owned execution](cif-doctor.md#execute-the-ordinary-prepared-request-through-the-existing-owner-c219)
-passes acquisition, linked repair and ReadySet/native continuation, with cold
-selected-result replay. Default invocation/adoption remain open. The owned composer
-still handles linear-torsion repairs; automatic plane completion is not yet enabled.
+The PDU investigation illustrates the distinction: correct connectivity and a
+straight propyne do not guarantee the desired glycosidic orientation or coplanarity
+with the base. The implemented graph/geometry checks and PDU/5PC controls identify
+and test those faults without relying on the residue name. Automatic complete-plane
+repair still needs integration; near-planar coordinates alone are insufficient.
 
-The explicit engine now owns the complete bounded acquisition/repair/ReadySet/
-native chain and fresh recovery under one request. Exact NAR plane intake now
-retains each selected atom and its supplied sigma-derived weight through the same
-context/native checks; see the [methods and limits](cif-doctor.md#exact-planarity-intake-c186).
-The [literal-input bridge](cif-doctor.md#original-literal-input-provenance-c187)
-also preserves original pair/stack declarations and their native/compiler evidence
-through explicit owned requests. It reuses the NAR compiler and changes no recipe
-or chemical-state authority. Ordinary orchestration, checkpoint adoption and actual
-refinement remain open. The original literal mode requires an interpretable native
-input capture. [C197 source-bound literal intake](cif-doctor.md#source-bound-literal-intake-without-prior-native-capture-c197)
-now preserves the same explicit intent using readable source graphs before that
-capture, while withholding numerical and native qualification. The alternative
-[source-bound intake](cif-doctor.md#existing-source-bound-compiler-intake-c188)
-retains an existing C80 artifact, source graphs and pair choices without requiring
-that capture. The two modes share one owner and cannot silently substitute one
-set of relationships for the other. The [frozen-source handoff](cif-doctor.md#frozen-source-selection-at-prepared-intake-c189)
-keeps a previously selected source set intact through prepared intake; it does not
-rediscover a newer source or claim construction evidence. Native interpretation
-remains required. [Grouped atom selections](cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190)
-now keep new context-bound requests aligned with native boolean scope; old records
-stay inspectable, but ambiguous input cannot start new work. A separate
-[full-model request control](cif-doctor.md#full-model-request-intake-and-isolated-native-refusal-c191)
-freezes the intended relationships but stops at an existing Phenix isolated
-atom-name failure; it adds no full-model or modified-ligand usability claim.
-[Native failure diagnostics](cif-doctor.md#identify-failed-native-qualification-separately-from-ownership-c192)
-now identify the failed seed and exact receipt while keeping ownership and
-scientific acceptance distinct. The earlier
-[generation refusal](cif-doctor.md#surface-existing-generation-diagnosis-at-acquisition-failure-c193)
-also exposes the existing stage/reason and exact receipt without implying a retry.
-A [native diagnostic](cif-doctor.md#native-hydrogen-mapping-and-component-ownership-diagnostic-c194)
-now distinguishes a hydrogen-name mapping defect from supplied-component and
-terminal-restraint conflicts. Existing PDU/5PC controls retain their native proxies;
-DA remains blocked. This adds evidence, not an enabled chemical workaround.
-[Ordinary construction](cif-doctor.md#frozen-dictionary-inputs-for-ordinary-construction-c195)
-now consumes its verified dictionary snapshots, preserving the exact recorded
-inputs if an external source changes temporarily. A durable construction record
-now follows those exact inputs into an explicitly initialized engine request and
-survives later preparation failure. It is provenance, not chemical qualification.
-Ordinary invocation and checkpoint adoption remain separate gates.
-An [explicit symmetry-pair diagnostic](cif-doctor.md#compact-maintained-asu-pair-capture-c202)
-now explains native crystal contacts without dropping image contributions. Its
-connected-model and cold controls pass. C203 freezes the mode in fresh owned
-continuations and enclosing requests and validates the connected ReadySet round
-trip; old requests preserve their original policy and selection. No new chemical support or
-refinement approval follows from numerical consistency.
-The [ordinary literal-source assembler](cif-doctor.md#ordinary-source-assembly-for-literal-intake-c204)
-now supplies the same compiler from frozen component sources and ordinary source
-precedence for the other declared sites. It preserves the validated artifact bytes,
-with no new pairing guess, chemistry rule or native-qualification claim. The
-figure's existing source-to-compiler flow is unchanged; ordinary invocation and
-checkpoint publication remain separate integration work.
-Exact result inspection now avoids repeating the selected result's reconstruction,
-while still checking completed history and rechecking the files before return.
-It does not reuse a saved verdict across reads or change scientific acceptance.
-Use the
-[pipeline position](cif-doctor-completion-queue.md#pipeline-position) for those
-remaining acceptance gates and catalogue work. The examples and numbered methods
-below preserve validation of specific contexts; they do not define another queue
-or expand the demonstrated support matrix.
+The [command and methods guide](cif-doctor.md),
+[capability table](cif-doctor.md#current-capability-boundary) and
+[evidence ledger](cif-linked-native-registration-evidence.json) provide exact
+contracts and validation. Older milestone wording is retained in Git history.
 
 ## Catalogue scope and progression
 
@@ -321,7 +220,7 @@ Ordinary source audits, supported connected-base construction and qualified cach
 reuse work today. General automatic recovery on misses, modified-sugar mutation,
 candidate adoption and solution-PDF integration remain planned. ChemDraw-derived
 references/restraint bundles are future input scope; drawing-to-model construction
-is outside CIF Doctor. The [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
+is outside CIF Doctor. The [milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
 separate a bounded integration checkpoint from complete catalogue support.
 
 ## What it does

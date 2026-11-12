@@ -1,7 +1,6 @@
 from copy import deepcopy
 from hashlib import sha256
 import json
-from types import SimpleNamespace
 import pytest
 from tests.test_cedar66_delivery import template
 
@@ -52,12 +51,3 @@ def test_acquisition_accepts_only_completed_c66(monkeypatch,defect):
     if defect=='none':assert m._read_cedar66_members(members)==('proof','prior','rotation')
     else:
         with pytest.raises(ValueError):m._read_cedar66_members(members)
-
-
-@pytest.mark.parametrize('action,delivery,valid',[('ordinary_acquisition_only','66_Cedar',True),
-    ('local_dictionary_reuse_only','66_Cedar',False),('ordinary_acquisition_only','65_Cedar',False)])
-def test_acquisition_has_one_explicit_scope(action,delivery,valid):
-    m=template();args=SimpleNamespace(**{action:True})
-    if valid:m._check_constructor_input_mode(args,delivery)
-    else:
-        with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)

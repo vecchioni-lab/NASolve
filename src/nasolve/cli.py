@@ -232,6 +232,23 @@ def build_parser() -> argparse.ArgumentParser:
         "cif-doctor", help="assess component restraints or create explicit review candidates",
     )
     cif_sub = cif_doctor.add_subparsers(dest="cif_action", required=True)
+    checked = cif_sub.add_parser("prepare-run", help="build and check modified-residue preparation; does not start refinement")
+    checked.add_argument("run", type=Path, help="accepted AutoMR run; requires a fresh PostMR directory")
+    checked.add_argument("--store", type=Path, help="optional dictionary-cache location; otherwise use the normal local cache")
+    checked.add_argument("--coot", help="one-run Coot executable override")
+    checked.add_argument("--allow-mr-review", action="store_true", help="explicitly allow a recorded MR_REVIEW result")
+    checked.add_argument("--modified-pairs-only", action="store_true", help="restrain only pairs containing a modified nucleotide")
+    checked.add_argument("--restraint-scope", choices=("all",), help="restrain all model-derived pairs and chain-order stacks")
+    checked.add_argument("--allow-unreviewed-backbone", action="store_true", help="allow the declared experimental backbone passthrough")
+    continued = cif_sub.add_parser("continue-preparation", help="start one fresh attempt from saved preparation after earlier work has stopped")
+    continued.add_argument("run", type=Path)
+    continued.add_argument("--after-attempt", required=True, type=int, help="exact last attempt number; use 0 if no attempt has started")
+    continued.add_argument("--store", type=Path, help="optional dictionary-cache location")
+    prepared = cif_sub.add_parser("prepared-result", help="read one exact checked preparation without running Coot or Phenix")
+    prepared.add_argument("run", type=Path)
+    prepared.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt number")
+    preparation_status = cif_sub.add_parser("preparation-status", help="read saved preparation attempts and whether work is still running")
+    preparation_status.add_argument("run", type=Path)
     cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
     cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
@@ -1625,8 +1642,71 @@ def _cif_link_plan(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_checked_preparation(args: argparse.Namespace) -> int:
+    """Explain the existing owner's result without promoting it to refinement."""
+    from .campaign_process import CampaignProcessError
+    from .cif_ordinary_postmr import (
+        _ordinary_request_directory, continue_checked_postmr, prepare_checked_postmr,
+        read_ordinary_postmr_result,
+    )
+    run = args.run.expanduser().absolute()
+    try:
+        if args.cif_action == "preparation-status":
+            from .cif_complete_request import inspect_dictionary_request
+            state = inspect_dictionary_request(_ordinary_request_directory(run))
+            print(f"Preparation: {state['state']}")
+            print(f"Further attempt: {state['availability']}")
+            for row in state['attempts']:
+                print(f"Attempt {row['number']}: {row['state']}")
+            print("A new attempt requires every earlier process to be known stopped.")
+            return 0
+        if args.cif_action == "prepared-result":
+            result = read_ordinary_postmr_result(run, attempt_number=args.attempt)
+        else:
+            config = load_config()
+            phenix = discover_phenix(config, explicit=args.phenix_root)
+            if args.cif_action == "continue-preparation":
+                result = continue_checked_postmr(run, phenix,
+                    after_attempt=args.after_attempt, store_root=args.store)
+            else:
+                coot = None
+                try:
+                    coot = discover_coot(config, explicit=args.coot)
+                except CootDiscoveryError:
+                    if args.coot:
+                        raise
+                result = prepare_checked_postmr(run, phenix, store_root=args.store,
+                    coot_executable=coot.executable if coot else None,
+                    allow_mr_review=args.allow_mr_review, restraint_scope=args.restraint_scope,
+                    modified_pairs_only=args.modified_pairs_only,
+                    allow_unreviewed_backbone=args.allow_unreviewed_backbone)
+    except (OSError, ValueError, ConfigError, CootDiscoveryError, PhenixDiscoveryError,
+            PostMRPreparationError, CampaignProcessError, TimeoutError) as exc:
+        print(f"Preparation could not complete: {exc}", file=sys.stderr)
+        print("Read saved attempts: " + shlex.join([
+            "nasolve", "cif-doctor", "preparation-status", str(run)]), file=sys.stderr)
+        return 2
+    print(result.message)
+    print(f"ReadySet: {result.readyset_status}")
+    if result.model_path is not None:
+        print(f"Checked model: {result.model_path}")
+    for path in result.dictionary_paths:
+        print(f"Chemical dictionary: {path}")
+    for path in result.restraint_paths:
+        print(f"Base-pair/geometry restraints: {path}")
+    print(f"Preparation report: {result.report_path}")
+    for limitation in result.limitations:
+        print(limitation)
+    print("Read this result again: " + shlex.join([
+        "nasolve", "cif-doctor", "prepared-result", str(result.run_directory),
+        "--attempt", str(result.attempt_number)]))
+    return 0 if result.model_path is not None else 2
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
+        return _cif_checked_preparation(args)
     if args.cif_action == "link-native":
         return _cif_link_native(args)
     if args.cif_action == "link-plan":

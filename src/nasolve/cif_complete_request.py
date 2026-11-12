@@ -634,13 +634,17 @@ def read_dictionary_request_result(directory, attempt_number):
     return values[0]
 
 
-def execute_dictionary_request_attempt(directory, phenix, store_root, *, generation):
+def execute_dictionary_request_attempt(directory, phenix, store_root, *, generation, after_attempt=None):
     """Execute one explicit fresh attempt from frozen intent; never retry in place.
 
     generation maps each code to its explicit runtime SDK/environment settings.
     These must reproduce frozen recipe/pins/relative dispatchers. All callers for
     a logical request must share its directory; the cache is an explicit binding.
+    Optional after_attempt binds an explicit continuation to the exact previous
+    attempt count under the same lock, before any fresh attempt is reserved.
     """
+    _need(after_attempt is None or (type(after_attempt) is int and after_attempt >= 0),
+          'Require an exact nonnegative previous attempt number')
     started = monotonic(); root = _root(directory); store = _root(store_root); sdk = _root(phenix.root)
     _need(not store.is_relative_to(root) and not root.is_relative_to(store)
           and not root.is_relative_to(sdk) and not sdk.is_relative_to(root), 'Complete request overlaps cache or SDK')
@@ -665,6 +669,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
     with exclusive_lock(root/'request.lock'):
         state = inspect_dictionary_request(root)
         _need(state['request']['record_sha256'] == request['record_sha256'], 'Complete request changed before reservation')
+        _need(after_attempt is None or len(state['attempts']) == after_attempt,
+              'Recorded attempt count changed; inspect the exact attempts before continuing')
         if state['availability'] != 'AVAILABLE': raise CampaignProcessError('Complete request is '+state['availability'])
         remaining(); number = len(state['attempts'])+1
         attempt = root/'attempts'/f'attempt-{number:04d}'; attempt.mkdir(parents=True,exist_ok=False)

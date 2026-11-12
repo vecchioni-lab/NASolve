@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explain and resume checked model preparation (C220)
+
+- Add explicit commands to prepare a run, read its recorded attempts, read one
+  exact checked result, or continue saved preparation in a fresh attempt.
+- Report the checked ReadySet result or independently checked retained model
+  honestly, preserving its matching dictionaries and ordered restraints. Changed
+  evidence cannot become a fallback; unqualified preparation exposes no model.
+- Bind continuation to the exact previous attempt number under the existing
+  execution lock. Preserve all partial work and frozen recipe/tool checks.
+- Keep default PostMR/campaigns and checkpoint adoption unchanged. No saved
+  artifact migration; real-refinement and general plane-repair integration remain open.
+- Replace the accumulated handoff diary with current scientific-language
+  orientation and immutable history links. Consolidate repeated delivery tests
+  without losing distinct cases; retire audited local source-build copies only.
+
 ### Prepare ordinary inputs for the owned dictionary engine (C218)
 
 - Add an explicit Python initializer sharing ordinary Coot/NAR preparation before

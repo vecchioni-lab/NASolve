@@ -87186,5 +87186,325 @@
     ],
     "excluded": "Generated models/CIFs/PHIL, original request tree, native captures, store, logs and runners remain local. No live environment persisted.",
     "published_revision": "30f6ac7555652558f1feeb9bd41a48436500b94f"
+  },
+  "checked_preparation_handoff_2026_11_12": {
+    "status": "VALIDATED",
+    "date": "2026-11-12",
+    "author": "Rowan · Codex desktop",
+    "branch": "cedar",
+    "base_revision": "654328105f193f25011fe927dc1db860cb82bca0",
+    "before": "Ordinary construction/request execution existed, but callers had to assemble execution/readback and lacked a plain-language exact result or frozen-settings continuation command.",
+    "after": "Explicit commands construct/check once, read exact completed results and continue the same saved preparation through one fresh existing-owner attempt; default adoption remains separate.",
+    "files": [
+      "src/nasolve/cif_ordinary_postmr.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cli.py",
+      "tests/test_cif_ordinary_outcome.py",
+      "tests/test_cif_ordinary_cli.py",
+      "tests/test_cif_complete_request.py",
+      "scripts/run_tests.py",
+      "tests/test_cedar_input_scope_delivery.py"
+    ],
+    "schemas": "UNCHANGED; new live return value and optional after_attempt execution argument only",
+    "compatibility": "Old request records and direct execution callers retain behavior. Default postmr/campaigns and checkpoint selection unchanged; explicit saved-preparation continuation reconstructs frozen settings and refuses changed identity/count or unresolved processes.",
+    "validation": {
+      "fail_before_api_owner": 20,
+      "fail_before_cli": 6,
+      "focused_tests": 213,
+      "focused_seconds": 249.85,
+      "cold": {
+        "status": "EXACT_ORDINARY_RESULT_COLD_REPLAY_PASS",
+        "elapsed_seconds": 127.65583820798201,
+        "selected": "readyset_checked_model",
+        "message": "ReadySet supplied the checked model and matching restraints.",
+        "readyset": "COMPLETED",
+        "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+        "dictionaries": 2,
+        "phils": 5,
+        "files": 1495,
+        "bytes_mtimes_unchanged": true,
+        "original_copy_absent": true,
+        "historical_paths_sdk_execution_denied": true,
+        "exact_reader_calls": 1,
+        "new_native_calls": 0,
+        "refinement_ready": false
+      },
+      "cold_worker": {
+        "returncode": 0,
+        "stopped_verified": true
+      },
+      "resume_settings": {
+        "status": "FROZEN_LIVE_SDK_SETTINGS_MATCH",
+        "scope": "CONFIGURATION_ONLY; EXECUTION_INTERCEPTED_BEFORE_ANY_ATTEMPT",
+        "phenix": "2.2.1",
+        "selected_root_provenance": "/Users/svecchio/Applications/phenix-2.2.1-6174",
+        "components": [
+          {
+            "code": "PDU",
+            "dialect": "CHEMICAL_COMPONENTS_CIF",
+            "steps": 180,
+            "timeout": 240,
+            "max_attempts": 1
+          }
+        ],
+        "files_unchanged": 1255,
+        "new_native_chemistry_calls": 0
+      },
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1; configuration-only here; C219 completed execution reused",
+      "coot": "1.3.3 revision-count 0; C218 construction evidence reused, not rerun",
+      "new_native_chemistry_calls": 0,
+      "full_suite": {
+        "status": "PASS",
+        "tests": 9178,
+        "subtests": 276,
+        "returncode": 0,
+        "stopped_verified": true,
+        "source_tests_scripts_unchanged": true,
+        "elapsed_seconds": 2144.616755625
+      },
+      "syntax": {
+        "compiled_in_memory": 592,
+        "warnings": 0,
+        "bytecode_written": false
+      },
+      "diff_check": "PASS",
+      "docs_links": "Changed Markdown targets exist; no duplicate explicit anchors"
+    },
+    "cleanup": {
+      "retired_source_builds": 89,
+      "retired_bytes": 5152171002,
+      "method": "git worktree remove without force; every exact head a retained Cedar ancestor; clean except archived Finder metadata; no active process or maintained source dependency",
+      "scientific_runs_removed": 0,
+      "other_worktrees_preserved": [
+        "NASolve",
+        "NASolve-c96",
+        "NASolve-cedar",
+        "NASolve-metal-coordination"
+      ],
+      "repeated_test_definitions_consolidated": 11,
+      "original_cases": 36,
+      "distinct_cases_retained": 32,
+      "identical_cases_removed": 4,
+      "documentation": "Current handoff reduced from 10,686 lines to a short current state; immutable original links replace historic anchors; single Q04-end science-language queue and general language policy",
+      "archived_runners": {
+        "removed": 1353,
+        "source_bytes": 6849501,
+        "archive_bytes": 2880590,
+        "remaining_originals": 0,
+        "archive_sha256": "3eb13d3b23a043a9a8d6b604ee6e2ab16e3e877abea41b726eee8b127a2f0eb3"
+      },
+      "runner_archive": "Local, outside product checkout; verified every archived byte before removing originals; recent/unclassified runners retained."
+    },
+    "commands": {
+      "focused": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_ordinary_cli.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_ordinary_outcome.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_ordinary_postmr.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_complete_request.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_complete_continuation.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_doctor_cli.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cedar_input_scope_delivery.py"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "full": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/scripts/run_tests.py",
+          "full",
+          "--junitxml",
+          "/Users/svecchio/NASolve-live-tests/220_Cedar_preparation-handoff-p2_xisz6/full-r1/tests.xml"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+        "timeout_seconds": 10800,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "cold": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-B",
+          "/Users/svecchio/NASolve-live-tests/220_Cedar_preparation-handoff-p2_xisz6/cold-r1/worker.py",
+          "/Users/svecchio/NASolve-live-tests/220_Cedar_preparation-handoff-p2_xisz6/cold-r1"
+        ],
+        "cwd": "/Users/svecchio/NASolve-live-tests/220_Cedar_preparation-handoff-p2_xisz6/cold-r1/relocated/checkout",
+        "timeout_seconds": 600,
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/NASolve-live-tests/220_Cedar_preparation-handoff-p2_xisz6/cold-r1/relocated/checkout/src"
+        }
+      },
+      "fail_before_api_owner": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_ordinary_outcome.py",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_complete_request.py::test_explicit_resume_checks_previous_attempt_inside_existing_owner"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "fail_before_cli": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "-o",
+          "addopts=",
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/tests/test_cif_ordinary_cli.py"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        }
+      },
+      "resume_configuration": {
+        "command": [
+          "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+          "branch-artifacts/cedar/runners/c220_resume_settings.py"
+        ],
+        "cwd": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve",
+        "environment": {
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "PYTHONPATH": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src"
+        },
+        "scope": "CONFIGURATION_ONLY; SCIENTIFIC_EXECUTION_INTERCEPTED"
+      }
+    },
+    "commands_role": "HISTORICAL_PROVENANCE_ONLY",
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/scope.json",
+        "sha256": "cf8801fe264b16b16c51102332305e1a4b59943908c927522bfbf1fbe01a56a7",
+        "size": 270
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/cleanup-before.json",
+        "sha256": "a75f4c96ba494b569ea59c4dedba3401497a2ec163a097625596afcc2c9e9b68",
+        "size": 54786
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/cleanup-removed.json",
+        "sha256": "26a55b6dc5dfa9fbdae07deb969f15ba607fa8ecf868e27fae61d852c24528ad",
+        "size": 17091
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/test-consolidation.json",
+        "sha256": "6b70f5e16488c23b560ec356496f7a68719128ca2ba7a4bd2eeae80af3965a6c",
+        "size": 1830
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/fail-before.log",
+        "sha256": "9f3dc1cbe0a71ca3f4b864085ed30fc5380e0057e63581d5be8e85ceac887376",
+        "size": 24793
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/cli-fail-before.log",
+        "sha256": "53cc0c969bf3ac242356fd301f0f7087e44d40d129613b16872533d2da4e2df8",
+        "size": 54467
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/focused-first.log",
+        "sha256": "a3bcadc5483f419ee27602ee92bc8d7424690725c4961b71331c4284bb3357f8",
+        "size": 99
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/focused-second.log",
+        "sha256": "e72a2af29d17a1b3007edc772948ef5f11834a3d3c6b175b17bae5928803d278",
+        "size": 272
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/cold-r1/summary.json",
+        "sha256": "c5402f2669607e200f0537c4ce84e571ce2fe5c623302101e18457d98d5f3a2b",
+        "size": 576
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/cold-r1/execution.json",
+        "sha256": "a113663da54d1ae1679addbe26c1fb08c3b08112a579d12d8d93bb8e780fd37b",
+        "size": 50
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/resume-settings.json",
+        "sha256": "0eea6b3a955313bec165dc1af0fd2adfa80c781354c6261e03d69553b294637b",
+        "size": 453
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/full-r1/tests.xml",
+        "sha256": "79735d10adddfbf045e3fb082314a72d81a63f90bb3e9d8007e36da58c60887c",
+        "size": 1390637
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/full-r1/execution.json",
+        "sha256": "ac6118e0acfa52b19c6ae5a95d432d88000d28bf1d54e32c0860cbc82ecb8fbc",
+        "size": 129
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/full-r1/source-hashes.json",
+        "sha256": "b6827f8e5c02a9f438c7bf1993a31e6e6030ae8cc2050fa61aba79fd1f8003f3",
+        "size": 75025
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/runner-archive-inventory.json",
+        "sha256": "433b402f42693785507cee6323cc385e58c78cd11fa69b1be349ed067ba85f39",
+        "size": 495064
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "220_Cedar_preparation-handoff-p2_xisz6/runner-archive-complete.json",
+        "sha256": "14353c25ae3cf2add5cc9722b38c54e2453a4045664bb4a1c369d90bf666c998",
+        "size": 193
+      }
+    ],
+    "excluded_artifacts": "All models, dictionaries, scientific inputs/outputs, requests, test logs/XML, local build inventory/Finder metadata and generated runners remain outside tracked product files.",
+    "limitations": [
+      "Explicit preparation commands are not default PostMR/campaign adoption or refinement-ready checkpoints.",
+      "General complete-plane repair still requires composition into the existing owner.",
+      "Actual full-restraint refinement, mixed and held-out chemical acceptance and remaining Q08-Q16 scope remain open."
+    ],
+    "next": "Q05: carry the exact checked model and ordered restraints into ordinary immutable inspection/refinement checkpoints and callers; retain truthful ReadySet-versus-parent labels and recover interrupted publication."
   }
 }

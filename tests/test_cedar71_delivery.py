@@ -1,20 +1,10 @@
 """The ordinary PostMR cache probe requires the exact completed C70 evidence."""
 from hashlib import sha256
 import json
-from types import SimpleNamespace
 import pytest
 from tests.test_cedar66_delivery import template
 
 
-@pytest.mark.parametrize('action,delivery,ok',[
-    ('postmr_dictionary_reuse_only','70_Cedar',True),
-    ('postmr_dictionary_reuse_only','69_Cedar',False),
-    ('saved_source_reuse_only','70_Cedar',False)])
-def test_postmr_cache_action_has_exact_parent(action,delivery,ok):
-    m=template();args=SimpleNamespace(**{action:True})
-    if ok:m._check_constructor_input_mode(args,delivery)
-    else:
-        with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)
 
 
 @pytest.mark.parametrize('defect',['none','build','action','calls','parent','repeat','report','student','adoption','preserved','replay'])

@@ -128,7 +128,7 @@ angle/planarity symmetry energies, but do not qualify manager integration,
 gradients, serialization or nonbonded exclusions. These particular mates differ
 only by translation, so their plane-angle relationship is unchanged by imaging;
 that observation is not a general rotational-symmetry implementation. See the
-[C111 handoff](development-handoff.md#c111-sticky-end-symmetry-evidence).
+[C111 handoff](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#c111-sticky-end-symmetry-evidence).
 
 Exact commands, hashes and validation results are recorded under
 `l_dna_full_model_recipe_2026_10_28` in the

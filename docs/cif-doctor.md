@@ -136,7 +136,9 @@
 
 <a id="current-capability-boundary-c203"></a>
 
-## Current capability boundary (C204)
+<a id="current-capability-boundary-c204"></a>
+
+## Current capability boundary (C220)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -163,6 +165,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. Default invocation and immutable checkpoint adoption remain Q04/Q05; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Ordinary orchestration and checkpoint adoption remain Q04/Q05. |
+| Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. | Explicit commands only. Default PostMR/campaign checkpoint adoption, general complete-plane repair and real refinement remain open. Unqualified preparation offers no model; uncertain process state blocks continuation. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Automatic recovery on ordinary cache misses, general adoption/checkpoints, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -173,13 +176,13 @@ cannot authorize changing protonation, connectivity or hand.
 
 A provisional **cedar → pine** checkpoint can expose the implemented assessment,
 reuse and explicit diagnostic tools without claiming complete catalogue support.
-The C133 frozen-source regression passes. Before merging: review the actual
+C220 passes 9,178 tests + 276 subtests and relocated exact readback. Before merging: review the actual
 integration diff, exercise representative ordinary routes against pine, and state
 the bounded feature contract. The larger generalizer programme remains separate. No merge
 is performed or authorized by this document. Exact evidence is in the
 [ledger](cif-linked-native-registration-evidence.json); priorities are in the
 [completion queue](cif-doctor-completion-queue.md). The
-[generalizer milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
+[generalizer milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
 remain the programme-level coverage summary, not a second ordered backlog.
 
 ### Design principles retained from the early Cedar work
@@ -4159,7 +4162,7 @@ automatically by a later preparation or refinement.
 ### Catalogue coverage census (C105)
 
 The generalizer targets **every ligand in the selected NARestraints catalogue**,
-including ATL, PNA and other backbone families. The [milestones](development-handoff.md#generalizer-milestones-and-interruption-boundary)
+including ATL, PNA and other backbone families. The [milestones](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#generalizer-milestones-and-interruption-boundary)
 separate catalogue inspection, chemical/site profiles, bounded recovery, native
 qualification, ordinary integration and release coverage. Returning unsupported
 for an entire family is a recorded gap, not completion of that programme.
@@ -10771,6 +10774,79 @@ Phenix. The larger scientific design remains in
 [the implementation map](cif-restraint-doctor-implementation.json).
 For a plain-language explanation, methods paragraph and editable publication
 figure, read [the human/manuscript overview](cif-doctor-human-overview.md).
+
+## Checked preparation and honest recovery (C220)
+
+The explicit checked-preparation commands use ordinary Coot construction and
+NARestraints inputs, then the existing dictionary/ReadySet checks. They report
+which exact model was retained, together with its ordered dictionaries and
+base-pair/geometry restraints. They do not yet change default `postmr`, campaigns,
+refinement checkpoints or the selected run result.
+
+```sh
+nasolve cif-doctor prepare-run /path/to/AutoMR/run_001
+nasolve cif-doctor preparation-status /path/to/AutoMR/run_001
+nasolve cif-doctor prepared-result /path/to/AutoMR/run_001 --attempt 1
+```
+
+`prepare-run` requires a fresh PostMR directory and a supported modified-component
+request. It uses the selected Phenix/Coot installation and normal local dictionary
+cache; explicit `--store`, global `--phenix-root` and `--coot` remain available.
+Scientific permissions (`--allow-mr-review`, `--restraint-scope all`,
+`--modified-pairs-only`, `--allow-unreviewed-backbone`) retain their existing meaning.
+The route preserves the original MR report; it does not mark the run ready for
+ordinary refinement. Models without supported modified-component inputs still
+use the established `postmr` route; no unsupported chemistry is silently bypassed.
+
+If a request was saved but execution was interrupted, first read its status.
+Continue from the recorded work with the exact last attempt number:
+
+```sh
+nasolve cif-doctor continue-preparation /path/to/AutoMR/run_001 --after-attempt 1
+```
+
+Use `--after-attempt 0` only when the request has no attempts yet. Continuation
+starts one fresh numbered attempt; it never repeats Coot/NAR preparation, edits
+an old attempt, or starts while an earlier process may still be alive. The
+previous-attempt number is checked inside the existing execution lock. A changed
+number, unknown process state, exhausted allowance or changed source/tool evidence
+refuses further work. A completed result should be read with `prepared-result`,
+not executed again. A failure before the request was saved is preserved and cannot
+be resumed by reconstructing it in place.
+
+The report distinguishes a checked ReadySet result from an independently checked
+starting model retained after an optional failure. The retained model is the one
+checked immediately before ReadySet; its restraints include any earlier qualified
+repairs. It reports actual ReadySet
+execution separately; no fictitious success/log is supplied. Missing or changed
+qualification evidence is an error, not permission to use a fallback. Unqualified
+preparation returns no model/dictionaries/restraints. Read commands require no
+installed SDK and do not alter attempts, run reports or checkpoint selection.
+
+Implementation: `prepare_checked_postmr`, `continue_checked_postmr` and
+`read_ordinary_postmr_result` in `cif_ordinary_postmr.py` share the existing exact
+request reader/executor. `CheckedPostMRResult` is a live return value, not a new
+saved schema. Optional `after_attempt` on `execute_dictionary_request_attempt`
+adds a locked stale-request check; existing direct callers and old records retain
+their behavior. Source/consumer checks and immutable ownership remain unchanged.
+
+**Limits:** these are source-preservation and diagnostic restraint-mechanics
+checks, not successful diffraction refinement. General complete-plane repair is
+still awaiting composition into this route. Q05 must carry the exact chosen
+model/CIF/PHIL set into ordinary inspection/refinement checkpoints; Q06 must
+validate actual refinement with all NARestraints terms and Free-R handling intact.
+C219's native PDU result is reused for C220's read-only/relocation check; no new
+chemical-support or native-generation claim follows from interface tests.
+
+C220 validation: 26 new API/owner/CLI cases fail before implementation;
+213 focused tests and **9,178 full-suite tests + 276 subtests** pass.
+The relocated exact result replays once with 1,495 files unchanged and original
+paths/SDK/execution denied. Real selected-Phenix configuration matches the frozen
+recipe and limits; execution was intercepted for that configuration-only check.
+Phenix **2.2.1-6174 / dispatcher 2.2.1** and Coot **1.3.3 revision-count 0**
+scientific execution evidence is reused from C218/C219. No fresh refinement.
+Exact commands, local artifact hashes and cleanup inventory are recorded in
+`checked_preparation_handoff_2026_11_12` in the existing evidence ledger.
 
 ## Commands
 

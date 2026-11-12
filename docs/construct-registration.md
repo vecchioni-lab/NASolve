@@ -14,7 +14,7 @@ later validation can distinguish a code regression from an intentional policy
 revision.
 
 Current development order belongs to the
-[handoff](development-handoff.md#roadmap-after-the-combined-geometry-test): the
+[handoff](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#roadmap-after-the-combined-geometry-test): the
 combined geometry trial precedes the planned SMILES-assisted CIF audit, which
 precedes operational Scout / Topo work. Preserve the post-Pine blind AlphaFold
 baseline before operational Scout. This contract defines registration behavior;
@@ -1078,7 +1078,7 @@ local arm ends and triangle connections still need assembly-aware repair. Two su
 views show local model/density discrepancies; their exact member, checkpoint
 and residue selection were not supplied. They motivate this feature but do not
 establish which atoms should connect or whether a new covalent link is intended.
-The [handoff](development-handoff.md#optional-geotest-side-trial) owns the
+The [handoff](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/development-handoff.md#optional-geotest-side-trial) owns the
 native results and attachment provenance.
 
 The user requests this geometry checker and guided stitcher as a module of the

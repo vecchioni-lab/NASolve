@@ -4,7 +4,6 @@ from hashlib import sha256
 import importlib.util
 import json
 from pathlib import Path
-from types import SimpleNamespace
 import pytest
 
 
@@ -74,12 +73,3 @@ def test_reuse_requires_exact_completed_return(monkeypatch,defect):
     if defect=='none':assert m._read_cedar65_members(members)==('proof','prior','rotation')
     else:
         with pytest.raises(ValueError):m._read_cedar65_members(members)
-
-
-@pytest.mark.parametrize('action,delivery,valid',[('local_dictionary_reuse_only','65_Cedar',True),
-    ('saved_postmr_construction_native_only','65_Cedar',False),('local_dictionary_reuse_only','64_Cedar',False)])
-def test_local_reuse_has_one_explicit_input_scope(action,delivery,valid):
-    m=template();args=SimpleNamespace(**{action:True})
-    if valid:m._check_constructor_input_mode(args,delivery)
-    else:
-        with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)

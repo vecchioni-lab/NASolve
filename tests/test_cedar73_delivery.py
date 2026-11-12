@@ -1,19 +1,9 @@
 from hashlib import sha256
 import json
-from types import SimpleNamespace
 import pytest
 from tests.test_cedar66_delivery import template
 
 
-@pytest.mark.parametrize('delivery,action,ok',[
-    ('72_Cedar','postmr_readyset_consumption_only',True),
-    ('71_Cedar','postmr_readyset_consumption_only',True),
-    ('72_Cedar','postmr_dictionary_reuse_only',False)])
-def test_consumption_retry_requires_explicit_supported_input(delivery,action,ok):
-    m=template();args=SimpleNamespace(**{action:True})
-    if ok:m._check_constructor_input_mode(args,delivery)
-    else:
-        with pytest.raises(ValueError):m._check_constructor_input_mode(args,delivery)
 
 
 @pytest.mark.parametrize('defect',['none','build','action','error','completed','archive','inputs_flag','policy','parent','replay','native','report','status'])
