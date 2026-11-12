@@ -139,8 +139,9 @@ ordinary adoption is Q05 and the actual refinement consumer is Q06.
 
 ### Q04 — Bounded automatic recovery and durable attempts
 
-**Open overall. The explicit preparation handoff is implemented at C220; ordinary
-checkpoint/default-workflow integration and complete-plane repair remain.**
+**Open overall. C220 supplies the explicit preparation handoff; C223–C224 carry
+it into an initial checkpoint and opt-in ordinary PostMR. Campaign/default-route
+integration and general chemical-plane repair remain unfinished.**
 In lab terms: preserve the intended molecule, get a checked model/restraint set,
 and resume interrupted preparation without rebuilding or damaging earlier work.
 
@@ -173,9 +174,11 @@ Already implemented and to be reused:
 
 Remaining acceptance:
 
-1. Carry that exact result through Q05 into ordinary `postmr` and campaigns.
-   Their current ReadySet-log assumption needs the verified result distinction;
+1. Carry that exact result through Q05 into campaigns; reuse C223–C224's
+   initial checkpoint and `postmr --checked-preparation` integration. Campaigns
+   still need the verified result/receipt distinction when no ReadySet log exists;
    a retained model must not get a fictitious ReadySet-success label or log.
+   Ordinary default-route enablement remains a separate, explicit decision.
 2. Integrate C208–C216's general plane operation into the existing repair owner.
    Preserve existing ring-plane groups; add only source-supported missing members
    with owned generator/native/energy evidence. Do not substitute an entire
@@ -187,6 +190,40 @@ Remaining acceptance:
 4. Preserve old request meanings and exact replay, even when a later policy fixes
    an earlier limitation. No in-place retries, automatic source rediscovery,
    renewed attempt allowance or latest-file selection.
+
+**Q04 holdover — finish chemical-plane repair before claiming closure.**
+C208–C216's checked plane-completion machinery is not yet composed into ordinary
+repair. C223–C224's publication and caller work do not close that gap. Use the
+existing repair owner, then demonstrate the resulting restraints in Q06; a flat
+starting PDU substituent does not prove that refinement will keep it flat.
+
+**NARestraints stacking and Cedar chemical planes have different jobs.** The
+installed NARestraints v1.1.3 (`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`),
+`restraints/stacking.py` and `restraints/phenix.py`, uses reviewed base-role atom
+sets resolved through workbook mappings for modified-base stacking parallelity.
+These sets include some mapped exocyclic atoms, not just ring atoms. Canonical
+neighbors use Phenix's ordinary stacking path. Keep those reviewed selections;
+Cedar's plane completion must not automatically enlarge the stacking selections.
+
+Cedar repairs intramolecular dictionary planes: preserve each existing ring plane
+and add only chemically supported missing members, with supplied restraint weights
+and the existing source/native/numerical checks. The current rule covers explicit
+neutral three-heavy-neighbor carbon with one double and two single bonds; it is
+not a universal aromaticity or appendage-flattening rule. Do not flatten flexible
+or tetrahedral groups, merge distinct planes, or infer chemical authority from
+coordinates alone. The native inventory check must preserve NAR parallelity and
+all unrelated restraints while allowing only the declared component-plane change.
+See [coverage](../src/nasolve/cif_plane_coverage.py),
+[candidate construction](../src/nasolve/cif_plane_candidate.py) and
+[native comparison](../src/nasolve/cif_plane_native.py).
+
+An unfamiliar base still needs correctly mapped, present, non-collinear atoms
+that represent its intended base plane. NAR's selector requires at least three
+mapped names; that count alone does not prove model presence or geometric rank.
+Its warning plus generic stacking fallback is not proof of a working modified-base
+stack. Retain those checks in Q06/Q07/Q12 rather than making plane repair a second
+stacking generator. Existing reviewed atom sets need no automatic expansion just
+because Cedar repairs a substituent's chemical restraints.
 
 Known scientific limits stay in the existing jobs: DP correspondence is ambiguous;
 nonstandard backbone/site adapters and H/charge/attachment authority need their

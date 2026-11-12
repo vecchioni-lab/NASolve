@@ -55,9 +55,15 @@ preparation receipt when no legacy ReadySet log exists. Reuse the shared
 constructor/executor/publisher and existing recovery owner. Keep default behavior
 compatible, never reconstruct partial work or replace an immutable earlier choice.
 
-Q04 still needs general plane-repair composition; reuse C208–C216. Q06 is real
-complete-restraint refinement. Q07 combines the mixed scaffold with ATL alongside
-and the separate unfamiliar-ligand challenge. Q08–Q16 retain chemistry/coverage/
+**Q04 holdover: general chemical-plane repair is still unfinished.** Compose
+C208–C216 into the existing repair owner; the C223–C224 handoff does not close it.
+Preserve NAR's reviewed stacking-plane selections. Cedar extends only chemically
+supported intramolecular CIF planes, without changing NAR parallelity or flattening
+arbitrary appendages. The [queue's Q04 acceptance](cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts)
+records the inspected NAR version, ownership boundary and unfamiliar-base caveats.
+This follow-up changes documentation only; no new runtime/native validation is
+claimed. Q06 is real complete-restraint refinement. Q07 combines the mixed scaffold
+with ATL alongside and the separate unfamiliar-ligand challenge. Q08–Q16 retain chemistry/coverage/
 reporting/release work. PDU plane completeness, DP ambiguity, source-H/charge and
 nonstandard-backbone qualification remain explicit limits. The new option does
 not broaden checked-route chemical eligibility or make catalogue-wide promises.
