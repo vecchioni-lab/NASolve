@@ -87506,5 +87506,79 @@
       "Actual full-restraint refinement, mixed and held-out chemical acceptance and remaining Q08-Q16 scope remain open."
     ],
     "next": "Q05: carry the exact checked model and ordered restraints into ordinary immutable inspection/refinement checkpoints and callers; retain truthful ReadySet-versus-parent labels and recover interrupted publication."
+  },
+  "checkpoint_view_restraint_integrity_2026_11_12": {
+    "status": "VALIDATED",
+    "date": "2026-11-12",
+    "author": "Rowan · Codex desktop",
+    "base_revision": "583d30df9c2bb8fd76e802e0eaa51d749c2b6eeb",
+    "before": "Checkpoint display could silently skip unresolved non-CIF restraints.",
+    "after": "All recorded restraints pass the existing reference checks before display filtering; no new validator or execution owner.",
+    "files": [
+      "src/nasolve/coot_view.py",
+      "tests/test_checkpoint_view_integrity.py"
+    ],
+    "schemas": "UNCHANGED",
+    "compatibility": "Malformed or missing recorded inputs now refuse; omitted/null legacy lists and unchecksummed schema-1 semantics preserved. Exact selection and dictionary order unchanged.",
+    "validation": {
+      "fail_before": 9,
+      "positive_before": 1,
+      "focused_tests": 124,
+      "focused_subtests": 56,
+      "smoke_tests": 139,
+      "smoke_subtests": 6,
+      "relocation": "Synthetic exact older checkpoint passes after original directory removal; files/mtimes unchanged",
+      "native": "NOT_RUN; no external tool change",
+      "full_suite": "NOT_REPEATED; last full C220/583d30d: 9178 + 276"
+    },
+    "commands": {
+      "environment": {
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "src"
+      },
+      "cwd_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96",
+      "python_provenance": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "before": "python -m pytest -q -p no:cacheprovider tests/test_checkpoint_view_integrity.py",
+      "focused": "python -m pytest -q -p no:cacheprovider tests/test_checkpoint_view_integrity.py tests/test_coot_view.py tests/test_checkpoints.py tests/test_cli.py tests/test_coot_anomalous.py tests/test_autorefine.py",
+      "smoke": "python scripts/run_tests.py smoke"
+    },
+    "harness_notes": [
+      "Initial positive control used an incorrect ViewProfile attribute; corrected before the genuine 9-fail/1-pass baseline.",
+      "First implementation changed a dictionary-specific diagnostic; restored specificity, then all affected checks passed."
+    ],
+    "artifacts": [
+      {
+        "anchor": "live_tests_directory",
+        "path": "221_Cedar_checkpoint-restraint-integrity-mjnxp38t/before-corrected.log",
+        "sha256": "aa0db50adb3b6b65d1928c3291dffcc23df942d25dd6f830d1345e68e65901db",
+        "size": 9655
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "221_Cedar_checkpoint-restraint-integrity-mjnxp38t/before.log",
+        "sha256": "3f7bf7b22eb7f0c8754480d6261e7882a72683e39f86b682d1582df58dee5d42",
+        "size": 10939
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "221_Cedar_checkpoint-restraint-integrity-mjnxp38t/focused-final.log",
+        "sha256": "7518d417fce719e9fa4f64af0689472bd980d0b2a2bbb02532e698d6a3413a1d",
+        "size": 225
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "221_Cedar_checkpoint-restraint-integrity-mjnxp38t/focused.log",
+        "sha256": "73b026251dc52c06a875911c6ae7307c630d0b72c1ecff97ad36f1251048df35",
+        "size": 2827
+      },
+      {
+        "anchor": "live_tests_directory",
+        "path": "221_Cedar_checkpoint-restraint-integrity-mjnxp38t/smoke.log",
+        "sha256": "aa331e24350d0d73b20d69e9c527c73a0c72d2ed31f8c847e9edaaa06971144d",
+        "size": 3171
+      }
+    ],
+    "excluded": "Synthetic outputs/logs remain local; no scientific data included.",
+    "next": "Q05 exact checked-preparation publication and read validation, including interrupted publication; no default adoption enabled."
   }
 }

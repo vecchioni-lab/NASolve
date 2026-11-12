@@ -395,24 +395,25 @@ def _checkpoint_dictionaries(
     run: Path, checkpoint: Mapping[str, object], schema_version: int
 ) -> tuple[Path, ...]:
     restraints = checkpoint.get("restraints")
+    if restraints is not None and not isinstance(restraints, list):
+        raise CootViewError("Malformed checkpoint restraint list")
     dictionaries: list[Path] = []
-    if isinstance(restraints, list):
-        for value in restraints:
-            if schema_version == 2:
-                _require_checkpoint_checksum(value, "restraint")
-            path = resolve_artifact_path(value, run)
-            if path is not None:
-                if path.suffix.casefold() == ".cif" and not is_modification_only(path):
-                    dictionaries.append(path)
-                continue
-            reported_value = (
-                value.get("relative_path", value.get("absolute_path", value.get("path")))
-                if isinstance(value, Mapping) else value
-            )
-            if isinstance(reported_value, str) and reported_value.casefold().endswith(".cif"):
-                raise CootViewError(
-                    "Checkpoint ligand dictionary is missing or failed checksum validation"
-                )
+    for value in restraints or []:
+        if schema_version == 2:
+            _require_checkpoint_checksum(value, "restraint")
+        # PHIL and modification-only CIFs belong to the same frozen selection,
+        # even though Coot displays only component dictionaries. Validate every
+        # recorded input before deciding which dictionaries to load.
+        reported = (
+            value.get("relative_path", value.get("absolute_path", value.get("path")))
+            if isinstance(value, Mapping) else value
+        )
+        description = ("checkpoint ligand dictionary"
+                       if isinstance(reported, str) and reported.casefold().endswith(".cif")
+                       else "checkpoint restraint")
+        path = _reported_file(value, description, run)
+        if path.suffix.casefold() == ".cif" and not is_modification_only(path):
+            dictionaries.append(path)
     return tuple(dictionaries)
 
 

@@ -30,6 +30,11 @@ The [command and methods guide](cif-doctor.md),
 [evidence ledger](cif-linked-native-registration-evidence.json) provide exact
 contracts and validation. Older milestone wording is retained in Git history.
 
+Checkpoint inspection now verifies the entire recorded restraint set, including
+base-pair/stacking files that Coot does not display. A model cannot be presented
+through this route while those recorded files are missing or changed (C221).
+This protects inspection integrity; it does not establish refinement success.
+
 ## Catalogue scope and progression
 
 The programme includes every ligand in the selected NARestraints catalogue,

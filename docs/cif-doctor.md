@@ -10775,6 +10775,28 @@ Phenix. The larger scientific design remains in
 For a plain-language explanation, methods paragraph and editable publication
 figure, read [the human/manuscript overview](cif-doctor-human-overview.md).
 
+### Verify all checkpoint restraints before inspection (C221)
+
+Coot inspection now resolves and checks every recorded checkpoint restraint before
+choosing which component dictionaries to display. Missing/changed pair or stacking
+PHIL files and damaged modification-only CIFs stop inspection; they can no longer
+be silently skipped because Coot does not load them for display. Dictionary order
+and repeated entries remain unchanged, and an explicit checkpoint remains distinct
+from the newest result. The existing path/checksum reader owns verification.
+
+Malformed non-list restraint values and malformed entries are refused. Legacy
+omitted/null lists retain their existing empty-list meaning; schema-1 references
+without a checksum do not acquire retrospective checksum verification. No saved
+schema, chemical targets, checkpoint selection or refinement execution changes.
+
+Validation: nine genuine fail-before cases; 124 affected tests + 56 subtests and
+139 smoke tests + 6 subtests pass. A relocated synthetic run resolves the exact
+older checkpoint after the original directory is removed, with bytes/timestamps
+unchanged. No Coot/Phenix process or native chemistry test ran. Full regression
+was not repeated for this local view-reader fix; C220/583d30d remains the last full
+baseline. Exact evidence: `checkpoint_view_restraint_integrity_2026_11_12`.
+
+
 ## Checked preparation and honest recovery (C220)
 
 The explicit checked-preparation commands use ordinary Coot construction and

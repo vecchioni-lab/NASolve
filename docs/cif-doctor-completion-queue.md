@@ -203,6 +203,14 @@ called it the next step.
 
 ### Q05 — Ordinary PostMR continuation and immutable adoption
 
+C221 closes an inspection-integrity prerequisite: every recorded restraint must
+resolve and satisfy any recorded checksum before Coot opens the checkpoint,
+including pair/stack PHIL and modification-only CIFs. Display filtering is separate
+from integrity checking. Exact selected-versus-latest relocation controls pass.
+The next implementation remains publishing the exact checked preparation into
+ordinary reports/checkpoints, with recovery of an interrupted publication.
+
+
 **Open. Depends on Q03/Q04.** Existing ordinary source/cache acquisition and
 per-component ReadySet inputs work (C71/C79/C134). Later component-runtime,
 whole-furanose, repaired-bundle and captured-geometry APIs remain explicit

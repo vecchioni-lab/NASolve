@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Check the whole recorded restraint set before opening a checkpoint (C221)
+
+- Coot inspection now refuses missing or changed base-pair/stacking PHIL files,
+  and verifies modification-only CIFs even though they are not displayed.
+- Reuse the existing checksum/path reader, preserving dictionary order, explicit
+  checkpoint selection and legacy records. No saved schema or chemistry changes.
+
 ### Explain and resume checked model preparation (C220)
 
 - Add explicit commands to prepare a run, read its recorded attempts, read one
