@@ -28,8 +28,9 @@ def entry_case(case, tmp_path, monkeypatch):
     old = repair.execute_prepared_dictionary_repair
     def execute(*a, **k):
         assert k['qualify_no_repair'] is True and k['optional_failure_policy'] == repair.FALLBACK_POLICY_ID
+        assert k['compact_evidence'] is True
         result = old(*a, **k)
-        result.update(status='NO_USABLE_BUNDLE', qualify_no_repair=True,
+        result.update(status='NO_USABLE_BUNDLE', qualify_no_repair=True, compact_evidence=True,
                       optional_failure_policy=k['optional_failure_policy'])
         (a[2]/'repair_execution.json').write_text(json.dumps(result))
         return result
@@ -51,6 +52,7 @@ def test_entry_freezes_ordinary_sources_and_both_derived_contexts_without_execut
     assert c['controls']['native_context'] == dict(policy_id='cif-explicit-site-native-context-v2',
         monomer_inventory='full_model', custom_restraints='required')
     assert c['qualify_no_repair'] is True and c['optional_failure_policy']
+    assert c['compact_evidence'] is True
     assert len(c['controls']['sites']['ZZZ']['contexts']) == 2
     assert m.inspect_dictionary_request(args['output'])['attempts'] == []
     assert not store.exists() and not calls

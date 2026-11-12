@@ -104,7 +104,8 @@ def _continuation_parameters(config):
         readyset_timeout_seconds=settings['readyset_timeout_seconds'],
         total_timeout_seconds=limits['total_timeout_seconds'],restore_serialization=settings['restore_serialization'],
         artifact_policy=settings.get('child_artifact_policy'),
-        nonbonded_policy=settings.get('native_nonbonded_policy'))
+        nonbonded_policy=settings.get('native_nonbonded_policy'),
+        **repair.compact_evidence_fields(config.get('compact_evidence',False)))
 
 
 def _compiler_input(kind, directory, selected_sources=None):
@@ -161,7 +162,7 @@ def _artifact_options(config):
                 **_artifact_fields(config.get('artifact_policy')))
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False):
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
@@ -242,6 +243,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         **({'model_context':model_context} if model_context is not None else {}),
         **({'restraint_context':restraint_context} if restraint_context is not None else {}),
         **compiler_refs, **construction_ref, **_artifact_fields(artifact_policy),
+        **repair.compact_evidence_fields(compact_evidence),
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
         **_continuation_fields(continuation_options,limits))))
 
@@ -252,7 +254,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'))
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -260,7 +262,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -291,7 +293,11 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     their original bounds. C199 v1 keeps its flat continuation partition.
     artifact_policy=None explicitly retains the legacy flat/C184 inventory mode.
     Readers never upgrade historical requests without the field.
+    New requests default to compact runtime evidence. The choice is frozen for
+    repair and continuation; an absent field in a saved request retains legacy
+    unpacked evidence. Explicit compact_evidence=False retains that old choice.
     """
+    repair.compact_evidence_fields(compact_evidence)
     _artifact_fields(artifact_policy)
     root = _root(output)
     if root.exists(): raise FileExistsError(root)
@@ -347,7 +353,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -389,7 +395,8 @@ def _continuation_child(attempt, intent, config, repaired):
     params = _continuation_parameters(config)
     expected = continuation._configuration(dict(native=params['native_timeout_seconds'],
         readyset=params['readyset_timeout_seconds'],total=params['total_timeout_seconds']),params['restore_serialization'],
-        artifact_policy=params['artifact_policy'],nonbonded_policy=params['nonbonded_policy'])
+        artifact_policy=params['artifact_policy'],nonbonded_policy=params['nonbonded_policy'],
+        compact_evidence=params.get('compact_evidence',False))
     _need(_same(_json(_read(work/'inputs/configuration.json')),expected), 'Continuation limits differ from frozen outer intent')
     for phase,evidence in state['phases'].items():
         if 'job' in evidence:
@@ -422,7 +429,7 @@ def _children(root, attempt, intent, config, closed=None):
             bindings[code] = None
     state = repair.inspect_prepared_repair_request(attempt/'repair')
     if state['state'] == 'RECORDED':
-        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1,qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'))
+        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1,qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False))
         _need(_same(state['request']['configuration'],expected) and len(state['attempts']) <= 1,
               'Prepared repair differs from enclosing input or limits')
         if state['attempts']:
@@ -499,6 +506,8 @@ def _result(root, attempt, intent, config, children, bindings):
     runtime = None
     if execution['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME':
         runtime = resolve_runtime_bundle(attempt/'repair/attempts/attempt-0001/execution/runtime')
+        _need(('evidence_storage' in runtime['manifest']) == config.get('compact_evidence',False),
+              'Selected repair storage differs from frozen outer intent')
     continued = None; continuation_fields = {}
     if 'continuation' in config:
         child = children['continuation']
@@ -698,7 +707,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
             child = repair.execute_prepared_dictionary_repair_attempt(attempt/'preparation/bundle',phenix,attempt/'repair',
                 **_repair_limits(config),max_attempts=1,_parent_attempt_identity=parent,_remaining_seconds=remaining,
                 **({'qualify_no_repair':True} if config.get('qualify_no_repair',False) else {}),
-                **repair.failure_policy_fields(config.get('optional_failure_policy')))
+                **repair.failure_policy_fields(config.get('optional_failure_policy')),
+                **repair.compact_evidence_fields(config.get('compact_evidence',False)))
             continuation_fields = {}
             if 'continuation' in config:
                 qualified = child['execution']['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME'

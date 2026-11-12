@@ -42,7 +42,8 @@ falls from 101 MB to 4.9 MB; its subsequent ReadySet result is 6.2 MB, while the
 complete retained continuation is 43.1 MB. Verification uses bounded temporary
 files and removes them afterward. Exact, reproducible evidence need not retain
 every duplicate forever. Safe retirement of working copies and whole-campaign
-storage qualification remain release work.
+storage qualification remain release work. Newly created checked preparations
+choose compact evidence automatically; saved requests keep their recorded layout.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and

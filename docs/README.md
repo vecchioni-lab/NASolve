@@ -12,7 +12,9 @@ milestone statements preserve their original scope; they are not a second queue.
   dictionary repair plus ReadySet. [Truthful preparation reporting/recovery](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
   is now available through `postmr --checked-preparation`; it saves the checked
   result as the initial review checkpoint. Schema-2 campaigns can explicitly choose
-  the same route. General plane-repair integration, later preparation children,
+  the same route. New checked requests save compact, exact evidence; completed
+  working-file retirement remains a separate storage task. General plane-repair
+  integration, later preparation children,
   real refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,
   the [human overview](cif-doctor-human-overview.md) for the explanation, and the

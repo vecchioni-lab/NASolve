@@ -36,7 +36,8 @@ def case(tmp_path,monkeypatch):
         result=dict(status='NO_SUPPORTED_GRAPH_REPAIR; BUNDLE_USABILITY_NOT_ASSESSED')
         (out/'repair_execution.json').write_text(json.dumps(result));return result
     monkeypatch.setattr(repair,'execute_prepared_dictionary_repair',execute)
-    args=dict(qualify_no_repair=False,optional_failure_policy=None,source_selection=sources,components=components,model=ordinary['model'],consumer=ordinary['consumer'],expected_links=ordinary['expected_links'],native_context=ordinary['native_context'],total_timeout_seconds=60,component_timeout_seconds=30,max_attempts=3)
+    # This historical ownership fixture retains its original unpacked storage contract.
+    args=dict(compact_evidence=False,qualify_no_repair=False,optional_failure_policy=None,source_selection=sources,components=components,model=ordinary['model'],consumer=ordinary['consumer'],expected_links=ordinary['expected_links'],native_context=ordinary['native_context'],total_timeout_seconds=60,component_timeout_seconds=30,max_attempts=3)
     return m,args,tmp_path/'request',sdk,tmp_path/'store',generations,calls
 
 

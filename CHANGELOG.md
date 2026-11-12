@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Use compact evidence in new checked preparations (C229)
+
+- New complete dictionary requests, including ordinary checked PostMR/campaign
+  preparation, freeze compact evidence automatically. Pass that same choice through
+  existing repair and ReadySet owners and verify the published representation.
+- Saved requests without the field keep their old layout. Reject a changed storage
+  choice on retry, mismatched child intent or an unbound execution report.
+- No new owner, recovery protocol, chemical acceptance rule or default activation
+  of the checked-preparation route. No old scientific outputs are rewritten.
+
 ### Save exact scientific evidence compactly (C228)
 
 - Add optional schema-2 runtime evidence with deduplication and compression.

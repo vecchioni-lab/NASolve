@@ -27,13 +27,18 @@ from .cif_prepared_repair_failure import inspect_prepared_native_failure, failur
 POLICY_ID = 'cif-prepared-bundle-repair-execution-v1'
 
 
+def compact_evidence_fields(value):
+    _need(type(value) is bool, 'Require a boolean compact-evidence storage choice')
+    return dict(compact_evidence=True) if value else {}
+
+
 class PreparedRepairBudgetExceeded(TimeoutError):
     """No allowance remains for the next prepared-repair boundary/native job."""
 
 
 def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout_seconds=120,
         attribution_timeout_seconds=90, derivative_timeout_seconds=300,
-        total_timeout_seconds=None, qualify_no_repair=False, optional_failure_policy=None, _attempt_identity=None, _remaining_seconds=None):
+        total_timeout_seconds=None, qualify_no_repair=False, optional_failure_policy=None, compact_evidence=False, _attempt_identity=None, _remaining_seconds=None):
     """Run a bounded repair chain and freeze only an independently usable result.
 
     The input is the existing source/site bundle, including acquired component
@@ -56,6 +61,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
     optional enclosing allowance additionally clamps every native phase and
     publication boundary without changing the configured local limits.
     """
+    storage_fields = compact_evidence_fields(compact_evidence)
     failure_fields = failure_policy_fields(optional_failure_policy)
     _need(type(qualify_no_repair) is bool, 'Require a boolean no-repair qualification mode')
     limits = {'native': native_timeout_seconds, 'attribution': attribution_timeout_seconds,
@@ -117,7 +123,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         total_timeout_seconds=total_timeout_seconds,
         retry='NOT_AUTHORIZED; USE_FRESH_OUTPUT', refinement='NOT_RUN', model_optimization='NOT_RUN')
 
-    report.update(failure_fields)
+    report.update(failure_fields); report.update(storage_fields)
     if qualify_no_repair: report['qualify_no_repair'] = True
 
     processes = PreparedRepairProcesses(output, attempt_identity=_attempt_identity)
@@ -233,8 +239,10 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
         phase = 'PUBLICATION'; event('STARTED')
         # Recheck before publication; changes cannot produce a successful output.
         unchanged()
-        publisher(output=output/'runtime', **options)
+        publisher(output=output/'runtime', **options, **storage_fields)
         saved = resolve_runtime_bundle(output/'runtime')
+        _need(('evidence_storage' in saved['manifest']) == compact_evidence,
+              'Published repair storage differs from the frozen choice')
         _need(saved['manifest']['decision']['selected'] == selection['decision']['selected'],
               'Published repair selection changed')
         report['runtime'] = reference(output/'runtime/runtime_bundle.json')

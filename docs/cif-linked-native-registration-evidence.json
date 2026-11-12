@@ -89175,5 +89175,39 @@
       "Automatic request forwarding separate C229",
       "Working-output retirement and 100-dataset disk/peak-memory qualification open"
     ]
+  },
+  "compact_request_storage_2026_11_12": {
+    "milestone": "C229",
+    "base_commit": "0cf2bba",
+    "scope": "Freeze compact storage for new checked complete requests through existing repair and continuation owners",
+    "source_sha256": {
+      "cif_complete_request.py": "c3a076ff3b5902069156b379d356e85176ec0ac7b21af46b9c9b9bed19f823a0",
+      "cif_repair_attempt.py": "e9dfdb321c8672c58bf8c312e14cb1f9057d19c1a407830330eb08c359491cf1",
+      "cif_prepared_repair_execution.py": "6b62388d66464fda623973e4f76eb0688a548a43edbf6e33c691f097d1c87652"
+    },
+    "changed_schemas": "True-only compact_evidence field in frozen complete/repair/continuation configuration and repair execution report; runtime schema 2 from C228",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_compact_workflow.py",
+        "result": "9 failed before implementation; 9 passed in 14.21s afterward"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_compact_workflow.py tests/test_cif_complete_request.py tests/test_cif_repair_attempt.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_budget.py tests/test_cif_postmr_request.py",
+        "result": "326 passed, 4 synthetic ordinary-entry fixture failures in 211.45s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_postmr_request.py tests/test_cif_complete_continuation.py",
+        "result": "117 passed in 157.92s after fixtures recorded the forwarded storage choice"
+      }
+    ],
+    "compatibility": "Saved absent fields remain false/legacy with unchanged replay meaning; new true field rejected by old strict readers; no artifact migration",
+    "generated_artifacts": "No scientific artifacts included; no new native execution; C228 native and cold storage evidence reused",
+    "remaining": [
+      "No full suite",
+      "Known-stopped working-output retirement",
+      "General automatic plane repair",
+      "Later preparation children",
+      "Real refinement and mixed/held-out chemistry"
+    ]
   }
 }

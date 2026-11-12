@@ -764,6 +764,29 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
 
+### Compact evidence in ordinary preparation (C229)
+
+New complete dictionary requests default to compact_evidence=True. Ordinary
+checked PostMR and its explicit campaign route inherit that choice without a
+new user-facing switch. The request freezes the true-only field and forwards it
+through existing repair/continuation owners; readers verify child configuration,
+execution reports and actual published storage. Fresh retries cannot change it.
+
+Saved requests without the field retain unpacked evidence and their old meaning.
+An explicit false choice preserves that behavior for low-level compatibility.
+Older readers reject unfamiliar frozen configuration rather than silently dropping
+the choice. No existing run is migrated, no new owner is introduced and no chemistry
+threshold changes. The checked route itself remains explicit; this does not enable
+it for all ordinary PostMR runs.
+
+Nine new binding/recovery checks pass. Affected checks passed 326 cases with four
+synthetic ordinary-entry fixture failures; after recording the new storage choice
+in those fixtures, all 117 ordinary-entry/complete-continuation cases pass. Existing
+historical ownership fixtures explicitly retain their old storage mode. C228's
+complete native compact continuation and cold relocation remain the scientific
+storage evidence; C229 adds request integration, not a new native/refinement claim.
+Exact commands and compatibility: ledger compact_request_storage_2026_11_12.
+
 ### Compact exact runtime evidence (C228)
 
 The four component-runtime publishers accept explicit compact_evidence=True.
