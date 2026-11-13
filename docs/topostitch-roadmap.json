@@ -4,7 +4,7 @@
   "updated": "2026-11-13",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+  "audited_code_commit": "6fc48984b5170a2411f576ab3262826963384226",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -204,7 +204,8 @@
       "goal": "Move a usable duplex toward the chosen connection while preserving local residue geometry and fixed boundaries.",
       "delivered": [
         "Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested.",
-        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed."
+        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
+        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -214,13 +215,14 @@
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
-        "E_TIGHTER_NATIVE"
+        "E_TIGHTER_NATIVE",
+        "E_EXTENDED_BACKBONE"
       ],
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
-        "scope": "Matched local native diagnostic; scalar outlier counts are not acceptance thresholds"
+        "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
+        "scope": "Schema-2 source-change coverage and matched native diagnostic; no scientific closure"
       }
     },
     {
@@ -234,22 +236,24 @@
       "goal": "Turn a plausible placement into a chemically usable candidate before refinement is trusted.",
       "delivered": [
         "Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation.",
-        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed."
+        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
+        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Expand explicit junction coverage to phosphate angles and circular backbone torsions, preserving old preview replay; then qualify native local closure, packing and symmetry contacts with existing Cedar owners.",
+      "next_action": "Qualify exact-image native bond/angle transport and gradients, then existing-owner local atomic closure and packing; source-change limits alone are not an ideal geometry gate.",
       "evidence": [
         "E_NATIVE_8D93",
-        "E_TIGHTER_NATIVE"
+        "E_TIGHTER_NATIVE",
+        "E_EXTENDED_BACKBONE"
       ],
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
-        "scope": "Matched local native diagnostic; scalar outlier counts are not acceptance thresholds"
+        "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
+        "scope": "Schema-2 source-change coverage and matched native diagnostic; no scientific closure"
       }
     },
     {
@@ -481,10 +485,10 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
+      "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "309 focused source tests plus 2 subtests pass; 43 fitting/image tests pass against the rebuilt wheel. At preceding 2d7544b: 307 installed/relocated tests plus 2 subtests and full source 1,223 tests plus 226 subtests pass. Existing public fit candidate bytes and old preview replay are preserved.",
-      "limitation": "Latest periodic-fit eligibility change has focused/installed validation; preceding full/relocation counts are not a new full run. Tests and native execution do not establish physical repair or a combined Willow/Cedar build."
+      "result": "Schema-2 checkpoint: 322 focused source/installed/relocated tests plus 2 subtests and full source 1,238 tests plus 226 subtests pass. Original checkout removed before relocation test. Both old schema-1 and new schema-2 public 8D93 frozen previews replay.",
+      "limitation": "No full installed-platform matrix or combined Willow/Cedar build. Tests and native interpretation do not establish repair or scientific acceptance."
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -534,6 +538,13 @@
       "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
       "result": "Three predeclared public 8D93 backbone-penalty controls improve the pair target with less source-relative strain. Complete Phenix 2.2.1-6174 read-only captures, Cedar cd744e2 mechanics checks, exact named proxy multisets and matched scalar identities show no new nominal >=5 bond/angle/chirality outliers; the original fit adds one angle outlier.",
       "limitation": "Source outliers remain. This is a local descriptive tradeoff, not closure, torsion/packing/native residual qualification or diffraction improvement. Native inputs and derived models remain local; no new product default is calibrated."
+    },
+    "E_EXTENDED_BACKBONE": {
+      "kind": "Extended source-change geometry and native diagnostic",
+      "reference": "docs/topostitch-preview.md#extended-backbone-checks--2026-11-13",
+      "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
+      "result": "Schema 2 audits four junction angles and circular epsilon/zeta/alpha changes in fitting and serialized previews. Public 8D93 extended fit improves the contact target; complete Phenix 2.2.1-6174 capture, bound Cedar cd744e2 receipts, contexts and named proxies match; no new nominal >=5 captured scalar outliers. Schema 1 remains replayable.",
+      "limitation": "Source-relative change only: no torsion ideal/pucker, phosphate valence, full packing, atomic closure or diffraction qualification. Source outliers remain; scientific artifacts stay local."
     }
   },
   "benchmarks": [
@@ -633,6 +644,7 @@
     "ce0a1bf: bounded fitting is delivered and native limitations recorded; S04/S05 remain partial.",
     "Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work.",
     "Selected atom-image audit 2d7544b adds bounded coordinate evidence without an identity merge; do not reimplement it as a second symmetry finder. Native MR preflight does not close the diffraction repair gate.",
-    "Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result."
+    "Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result.",
+    "Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement."
   ]
 }
