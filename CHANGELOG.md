@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch planning — not implemented
+
+- Record one proposed tool for periodic DNA recutting and connection repair,
+  replacing tentative Topo Surgeon / Topo Doctor naming. Define opt-in
+  standalone/campaign inference, tentative logical-scheme transfer, bounded
+  geometry construction, matched Rwork/Rfree comparisons and human review.
+- Add human and machine-readable design intent on Willow; no runtime policy,
+  executable, checkpoint schema, scientific artifact or existing recipe changes.
+
 ### Modified-base W Saenger overlays — isolated native integration PASS
 
 - In new W PostMR derivatives, match actual prepared modified bases against

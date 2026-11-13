@@ -125,3 +125,12 @@ and selected-branch diagnostics, exact primed atom parsing, 5CM resource identit
 installed workbook semantics and linked-phosphate scope. Full-checkout/native
 results must be recorded when returned. Do not repeat GZ11 merely to prove a
 separate new policy. P2 1W5->DZ / 1WA->DP conversions remain separate work.
+
+## Proposed TopoStitch extension — not implemented
+
+[TopoStitch](topostitch.md) specifies a future explicit opt-in for finding and
+repairing sticky ends, with tentative campaign-local connection schemes and
+matched contact/geometry/Rwork/Rfree comparisons. Existing `full-auto` and
+`run_doctor` settings do not enable it. Core trial execution, provisional
+selection and human approval remain separate; new runtime policy/version gates
+are required before any such operation is available.

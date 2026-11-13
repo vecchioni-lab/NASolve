@@ -1038,6 +1038,13 @@ checkpoint graph; it does not become a replacement atomic modeler.
 
 ### Topo Surgeon / Topo Doctor
 
+**Naming update, 2026-11-13:** the selected umbrella tool name is
+[TopoStitch](topostitch.md), covering recut, connection inference and bounded
+geometry repair. The earlier names in this section are historical design labels.
+Recutting, physical deformation and chemistry changes retain distinct semantics.
+The new contract permits explicitly authorized campaign-local hypothesis reuse;
+it does not relax the separate requirement for global reviewed-recipe promotion.
+
 Topo Net surgery will sometimes produce locally awkward coordinate geometry,
 especially after mutation, reslicing or chain reconstruction from imperfect MR
 models. These failures are not all equivalent and should not be hidden inside a

@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "kind": "topostitch-development-intent",
+  "date": "2026-11-13",
+  "status": "PLANNED_NOT_IMPLEMENTED",
+  "runtime_authority": false,
+  "contract": "docs/topostitch.md",
+  "branch": "willow",
+  "base_branch": "pine",
+  "base_commit": "d7913dd",
+  "tool_name": "TopoStitch",
+  "earlier_discussion_spelling": "TopoStich",
+  "supersedes_tentative_repair_names": [
+    "Topo Surgeon",
+    "Topo Doctor"
+  ],
+  "separate_tool": "TopoTrace",
+  "ai_runtime_required": false,
+  "operations": [
+    "infer connection",
+    "realize periodic scheme",
+    "recut representation",
+    "bend existing model",
+    "bounded local reconstruction"
+  ],
+  "separate_authority_required": [
+    "change covalent topology or terminal chemistry",
+    "junction hinge",
+    "provisional checkpoint selection",
+    "global recipe promotion"
+  ],
+  "human_option": "Find and repair sticky ends",
+  "cli_and_runtime_schema_finalized": false,
+  "authorization": {
+    "default": "off",
+    "standalone_without_intent": "ask about concrete connection before editing",
+    "explicit_inference": "bounded attempts without repeated prompts",
+    "campaign": "freeze scoped opt-in; no per-member prompts",
+    "legacy_full_auto_implies_permission": false,
+    "do_not_connect_overrides_inference": true
+  },
+  "representations": [
+    "logical construct",
+    "logical connection scheme",
+    "dataset-specific periodic realization",
+    "evidence and decisions"
+  ],
+  "edge_types": [
+    "covalent backbone",
+    "base pairing",
+    "stacking",
+    "symmetry correspondence"
+  ],
+  "inference": {
+    "source": "immutable checkpoint and frozen target/chemistry/symmetry",
+    "duplex_ends_not_chain_ends": true,
+    "missing_coordinates_imply_sticky_end": false,
+    "nearest_neighbor_is_not_assignment": true,
+    "full_oriented_frames_required": true,
+    "include_no_connection_hypothesis": true,
+    "compatible_assignment_sets": true,
+    "symmetry_orbit_deduplication": true,
+    "periodic_self_edges_allowed": true,
+    "lattice_winding_allowed": true,
+    "truncated_search_can_claim_unique": false
+  },
+  "repair_order": [
+    "representation diagnosis",
+    "small bend/twist",
+    "bounded paired-window expansion",
+    "separately enabled canonical reconstruction",
+    "native atomic audit",
+    "matched refinement comparison"
+  ],
+  "junctions": {
+    "initial": "fixed boundary and routing",
+    "future": "explicit coordinated hinge capability"
+  },
+  "evaluation": {
+    "expected_correct_repair": "better intended contacts and generally lower Rwork and Rfree",
+    "matched_no_repair_refinement_control": true,
+    "original_observations_and_free_r": true,
+    "finite_predeclared_trial_set": true,
+    "tune_repeatedly_against_rfree": false,
+    "forced_contacts_are_independent_evidence": false,
+    "tiny_r_changes_prove_improvement": false,
+    "numerical_thresholds": "pending benchmarks"
+  },
+  "scheme_transfer": {
+    "scope": "explicitly related campaign members under frozen permission",
+    "transfer": [
+      "logical end roles",
+      "pairing register and orientation",
+      "edge types",
+      "protected nicks",
+      "applicability conditions"
+    ],
+    "resolve_again": [
+      "site mapping",
+      "recipient symmetry images",
+      "geometry feasibility",
+      "recipient diffraction support"
+    ],
+    "copy_as_authority": [],
+    "retain_ancestry_and_negatives": true,
+    "correlated_descendants_are_independent_votes": false,
+    "automatic_global_promotion": false,
+    "scheduling": "local pass then frozen scheme snapshot then bounded transfer pass"
+  },
+  "campaign": {
+    "initial_hook": "after initial usable refinement, including numerical SOLVED",
+    "engine_preserves_current": true,
+    "ordinary_autorefine_trial_adapter_required": true,
+    "selection": "separate explicit policy and receipt",
+    "user_approved_by_automation": false,
+    "inspection_required": true,
+    "ambiguous_or_failed": "retain original, flag review, continue other members",
+    "resume_respects_user_veto": true
+  },
+  "ui": {
+    "concept": "Campaign desk",
+    "review": [
+      "intended connection",
+      "local or borrowed evidence",
+      "what moved",
+      "symmetry mate",
+      "geometry and matched Rwork/Rfree deltas",
+      "alternatives"
+    ],
+    "actions": [
+      "Compare",
+      "Open in Coot",
+      "Keep original",
+      "Use candidate",
+      "Reject pairing"
+    ]
+  },
+  "artifact_contract": {
+    "new_runtime_schemas_deployed": false,
+    "references": "declared anchor plus relative path and checksum",
+    "immutable_checkpoints": true,
+    "observations_and_free_r_unchanged": true
+  },
+  "first_implementation": "read-only finder and explicit proposal, then one selected bend trial",
+  "validation_required": [
+    "known-answer geometry",
+    "healthy no-op",
+    "wrong and ambiguous partner/register",
+    "true nick versus ASU seam",
+    "symmetry and lattice winding",
+    "changed recipient representation",
+    "correlated donor evidence",
+    "matched refinement control",
+    "bounded failure",
+    "resume and veto",
+    "relocation",
+    "focused and full regression suites",
+    "clean installation",
+    "native interpretation and refinement with exact versions"
+  ],
+  "open_decisions": [
+    "search bounds",
+    "objective and calibrated geometry priors",
+    "meaningful R-factor change policy",
+    "runtime schema",
+    "Cedar construction interface",
+    "qualified symmetry restraints",
+    "GUI renderer"
+  ],
+  "this_change": {
+    "code_changes": false,
+    "scientific_runs": false,
+    "generated_scientific_artifacts_included": false,
+    "runtime_compatibility_change": false
+  },
+  "recut_invariants": [
+    "periodic orbit inventory and special-position multiplicity",
+    "chemical identity and occupancy",
+    "displacement parameters including transformed anisotropic tensors",
+    "equivalent unrefined calculated structure factors"
+  ]
+}

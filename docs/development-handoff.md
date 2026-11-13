@@ -136,6 +136,15 @@ Then promote Scout along the
 ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 [metal restraint builder](metal-restraint-builder.md) are separate later scopes.
 
+## Separate Willow design work — 2026-11-13
+
+[TopoStitch](topostitch.md) and its [intent record](topostitch-intent.json)
+combine the proposed recut workbench and sticky-end geometry repair under one
+name. Willow starts from Pine `d7913dd`; planning is isolated and no runtime
+merge is needed yet. Opt-in campaign inference, tentative scheme sharing and
+matched diffraction/geometry evaluation are specified, not implemented. This
+does not change Pine scientific gates or authorize editing Cedar/live datasets.
+
 ## Work discipline and doc ownership
 
 - **One terminal action per user turn** for live NASolve debugging, then
