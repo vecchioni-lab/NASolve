@@ -53,6 +53,10 @@ or handoff, update the affected delivered scope, evidence, status and next actio
 Run `python scripts/audit_topostitch_roadmap.py --write` after an audited ledger
 edit and `--check` before pushing. The script checks consistency, not scientific
 truth; never mark a job complete merely because code exists or tests pass.
+Use the ledger's W-number for human progress updates and handoffs. Start at the
+recorded `human_updates.next` for a new substantial audited update; never renumber
+older entries or increment for a small correction. Keep full Git commits in the
+machine ledger, and do not treat a numbered update as scientific acceptance.
 Reuse existing Pine, NARestraints, Cedar and campaign owners before adding another
 helper. Keep old caveats and failed evidence; Git retains superseded queue states.
 

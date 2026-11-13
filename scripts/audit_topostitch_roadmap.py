@@ -30,6 +30,27 @@ def validate(value):
     if value.get('runtime_authority') is not False:
         raise ValueError('A development roadmap cannot grant runtime authority')
     date.fromisoformat(value['updated'])
+    updates = value['human_updates']; entries = updates['entries']
+    if updates['prefix'] != 'W' or not entries or not updates['rule']:
+        raise ValueError('Missing human update numbering contract')
+    numbers = [entry['number'] for entry in entries]
+    if (type(updates['starts_at']) is not int or updates['starts_at'] < 1
+            or any(type(n) is not int for n in numbers)
+            or numbers != list(range(updates['starts_at'],updates['starts_at']+len(entries)))
+            or type(updates['current']) is not int or updates['current'] != numbers[-1]
+            or type(updates['next']) is not int or updates['next'] != numbers[-1]+1):
+        raise ValueError('Human update numbers must be contiguous, unique and advance by one')
+    for entry in entries:
+        if not entry['title'] or entry['state'] not in {'RECORDED','IN_PROGRESS'}:
+            raise ValueError('Incomplete human update')
+        if entry['state'] == 'IN_PROGRESS':
+            if entry is not entries[-1] or entry['code_commit'] is not None:
+                raise ValueError('Only the latest human update may be in progress')
+        elif not isinstance(entry['code_commit'],str) or not re.fullmatch(r'[0-9a-f]{40}',entry['code_commit']):
+            raise ValueError('Recorded human updates require exact code provenance')
+    for item in [r['last_audit'] for r in value['milestones']] + list(value['evidence'].values()):
+        if 'human_update' in item and (type(item['human_update']) is not int or item['human_update'] not in numbers):
+            raise ValueError('Unknown human update reference')
     rows = value['milestones']; by_id = {r['id']:r for r in rows}
     if len(by_id) != len(rows):
         raise ValueError('Duplicate milestone ID')
@@ -73,6 +94,11 @@ def validate(value):
             raise ValueError(f'Evidence must retain result and limitation: {identifier}')
 
 
+def human_audit(item):
+    label = f"W{item['human_update']}" if 'human_update' in item else 'earlier work'
+    return f"[{label}](https://github.com/vecchioni-lab/NASolve/commit/{item['code_commit']})"
+
+
 def render(value):
     lines = ['# TopoStitch and Pine completion roadmap','',
         f"**Current audited work queue: {value['updated']}.** Generated from",
@@ -84,6 +110,14 @@ def render(value):
         'A recut changes representation; a bend changes the physical structure. Neither',
         'operation authorizes a chemical nick or chemistry change.','',
         '## Finish lines','']
+    updates=value['human_updates']; current=updates['entries'][-1]
+    at=lines.index('## Finish lines')
+    lines[at:at]=[f"**Current update: W{updates['current']} — {current['title']}.** "
+        +f"Next: W{updates['next']}.", '',
+        'Use these numbers in human updates. Exact commits remain in the machine ledger;',
+        'earlier history is not renumbered. An update number does not close a scientific gate.', '',
+        '## Recent Willow updates', '', '| Update | Work | Record |', '| --- | --- | --- |'] + [
+        f"| W{e['number']} | {e['title']} | {e['state']} |" for e in updates['entries'][-10:]] + ['']
     for label,key in [('First explicit stitch','explicit_stitch'),('Campaign stitching','campaign_stitch'),('Pine ASU slicing','pine_slicing')]:
         lines += [f"- **{label}:** {value['finish_lines'][key]}"]
     lines += ['', '## Current order and audit discipline','',
@@ -111,7 +145,7 @@ def render(value):
             lines += [f'- {criterion}' for criterion in row['acceptance']]
             lines += ['', '**Next action:** '+row['next_action'],
                 '**Evidence:** '+(', '.join(f'[{e}](#{e.lower()})' for e in row['evidence']) or 'None yet')+'.',
-                f"**Last audit:** {row['last_audit']['date']}, {row['last_audit']['reviewer']}, code `{row['last_audit']['code_commit'][:7]}`; {row['last_audit']['scope']}."]
+                f"**Last audit:** {row['last_audit']['date']}, {row['last_audit']['reviewer']}, {human_audit(row['last_audit'])}; {row['last_audit']['scope']}."]
         lines += ['']
     lines += ['## Benchmark register','','Private input/result bindings stay in local frozen receipts; these labels are not',
         'operational paths or proof that an arbitrary model/dataset combination is solvable.','',
@@ -122,12 +156,14 @@ def render(value):
     for identifier,item in value['evidence'].items():
         ref=item['reference'].removeprefix('docs/')
         lines += [f'<a id="{identifier.lower()}"></a>',f'### {identifier} — {item["kind"]}','',
-            f"[Evidence contract]({ref}) at code `{item['code_commit'][:7]}`.",item['result'],
+            f"[Evidence contract]({ref}) at {human_audit(item)}.",item['result'],
             '**Limit:** '+item['limitation'],'']
     lines += ['## Deferred extensions, not hidden blockers','']
     for item in value['deferred']: lines += [f"- **{item['scope']}:** {item['trigger']}"]
     lines += ['', '## Reconciliation: reuse what is already delivered','']
+    lines += ['<details><summary>Earlier implementation references</summary>', '']
     lines += ['- '+line for line in value['history_reconciliation']]
+    lines += ['', '</details>']
     lines += ['', 'Modeled on Cedar’s separation of completion queue, capability contract and',
         'evidence ledger. No queue edit grants runtime authority, scientific approval',
         'or permission to merge branches.','']

@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W33 — Human-readable Willow updates
+
+- Start human update numbering at W33 and increment for each substantial audited
+  update. Keep Git provenance in the machine ledger without renumbering history.
+- Show the current/next number in the roadmap; reject duplicate, skipped or
+  inconsistent numbers and invalid references.
+
 ### TopoStitch captured packing comparison
 
 - Compare authenticated Cedar native captures by atom identity and relative image,
