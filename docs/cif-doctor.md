@@ -170,7 +170,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; default activation and remaining phasing/native acceptance stay open. No actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and remaining phasing/native acceptance stay open. |
 | Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Default activation, alternative-aware phasing and real refinement remain open. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
-| Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. Automatic caller integration and campaign-scale resource acceptance remain Q04; old readers refuse new storage receipts. |
+| Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. C260 connects new ordinary/campaign preparation. Campaign-scale resource acceptance remains Q04; historical unarchived campaigns are not migrated and old readers refuse new storage receipts. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, alternative-aware phasing, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -1380,7 +1380,19 @@ Failed optional native work, unsuccessful plane generation, unqualified results,
 active/uncertain owners and unrelated attempts stay unpacked. Shared request inputs
 and acquisition history are not retired. An unavailable storage operation does not
 supply a new scientific verdict or permission for unchecked fallback. These APIs
-are not yet automatically invoked by ordinary/campaign callers.
+remain explicit for historical requests. C260 invokes retirement automatically only
+for a newly executed ordinary checked result, after publication and before campaign
+artifact capture. An optional storage error returns a preparation note only after
+an exact reread confirms that the result is still independently usable. Scientific
+or publication failures and interrupts propagate; no native retry is attempted.
+
+For new checked campaigns, the file collector uses the existing archive transport
+checks and excludes only archived working duplicates. It retains the durable
+archive, its binding and public/original files. This permits later explicit completion
+of partial removal without invalidating the captured campaign artifacts. An unbound
+archive grants no exclusions. Historical publication, alternatives and inspection do
+not run retirement. Do not retire files already named by an older unarchived campaign
+receipt: that old artifact contract requires a separate migration, not silent deletion.
 
 **Stable paths and proof.** Original `attempt.json`, `result.json`, `finished.json`
 and complete public roots remain: `preparation/bundle`, the repair runtime,
@@ -1429,9 +1441,21 @@ interruption/read/resume/read probe takes **527.33 s**. This replays prior Pheni
 Final archive-flush and completion-intent guards have additional focused failure
 controls and a moved-checkout/moved-request positive control. Exact test commands,
 source revisions and validation sequence are in `working_attempt_retirement_2026_11_13`
-in the [ledger](cif-linked-native-registration-evidence.json). Automatic caller
-integration and campaign-scale disk/memory acceptance remain Q04 work; these figures
+in the [ledger](cif-linked-native-registration-evidence.json). C260 connects the new
+ordinary/campaign caller; representative campaign disk/memory acceptance remains
+Q04 work. These figures
 do not justify 100 simultaneous readers or general catalogue/refinement support.
+
+C260's ordinary/campaign replay repeats the actual copied evidence with cleanup
+interrupted after 17 removals. The ordinary caller verifies and retains the result;
+all 97 recorded campaign artifacts still validate after relocation and explicit
+cleanup completion. Whole request remains 33,661,526 B; expanded archive peak is
+87,440,990 B and Python resident peak 756,350,976 B. The multi-read recovery probe
+takes 517.56 s, without native execution. All 698 originals are unchanged and the
+temporary copy is removed. 100 identical requests would retain about 3.37 GB of
+this preparation evidence; that is an arithmetic estimate, excluding other dataset/
+refinement outputs and not a measurement of 100 heterogeneous datasets. Exact
+commands and focused/relocation results: `ordinary_campaign_retention_2026_11_13`.
 
 ### Keep ordinary reads and public paths stable with archives (C257)
 

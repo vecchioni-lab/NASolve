@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compact new checked preparation before campaign capture (C260)
+
+- New ordinary checked preparation invokes the existing retirement owner after
+  publishing its exact result. Successful known-stopped working duplicates are
+  archived; public models/restraints and failed or uncertain work remain intact.
+- Optional storage errors keep the result available only after its exact scientific
+  evidence still validates. No unchecked fallback or native retry is introduced;
+  publication/chemistry failures and user interruptions remain visible.
+- Campaign artifact capture records the durable archive and retained files, excluding
+  only transport-verified working duplicates. A later explicit completion of partial
+  cleanup cannot invalidate those recorded artifacts. Historical publication and
+  inspection never trigger cleanup; old unarchived campaigns are not migrated.
+- Reuse the existing storage receipts and limits. No scientific schema, chemical
+  permission, source precedence or checkpoint-selection change.
+
 ### Retire successful working duplicates with interruption recovery (C258)
 
 - Add an explicit completed-attempt retirement API using the existing request lock,

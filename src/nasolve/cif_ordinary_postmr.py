@@ -247,11 +247,40 @@ def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparat
     return read_ordinary_postmr_result(run, attempt_number=attempt)
 
 
+def _retire_new_preparation(request_directory, attempt_number):
+    """Compact a newly published result before a campaign freezes its file list.
+
+    Historical publication and inspection do not call this helper. The existing
+    retention owner decides eligibility and preserves failed/uncertain work.
+    Storage trouble is optional only while the original exact result still reads;
+    damaged scientific evidence must not be hidden by a cleanup warning.
+    """
+    from .campaign_records import read_record
+    from .campaigns import CampaignError
+    from .cif_attempt_retention import ARTIFACT_POLICY, retire_attempt_working_files
+    from .cif_complete_request import read_dictionary_request_result
+    try:
+        request = read_record(request_directory/'request.json')
+        if request['configuration'].get('artifact_policy') != ARTIFACT_POLICY:
+            return None  # Older layouts retain their original storage contract.
+        retire_attempt_working_files(request_directory, attempt_number)
+    except (OSError, ValueError, CampaignError) as exc:
+        exact = read_dictionary_request_result(request_directory, attempt_number)
+        if exact['runtime'] is None:
+            raise ValueError('Published preparation is no longer independently usable') from exc
+        return ('Optional working-file cleanup did not complete; the exact checked '
+                f'result remains readable and remaining evidence is preserved. {type(exc).__name__}: {exc}')
+    return ('Successful preparation working copies were archived; public models '
+            'and restraints remain in place.')
+
+
 def prepare_published_postmr(run_directory, phenix, **preparation_options):
     """Use the same owner, then publish its exact result as an ordinary review root.
 
     Publication performs the complete proof read once. Do not first call the
     diagnostic reader and repeat its expensive replay just to obtain an attempt ID.
+    New successful working evidence is retired before returning to campaign capture;
+    optional storage errors retain a usable result only after an exact reread.
     An optional native failure may retain a qualified result; absence of one never
     triggers a second, unchecked preparation route.
     """
@@ -260,6 +289,9 @@ def prepare_published_postmr(run_directory, phenix, **preparation_options):
     from .postmr import PostMRResult
     run, attempt = _execute_ordinary_postmr(run_directory, phenix, **preparation_options)
     record, notes = publish_checked_preparation_with_notes(run, attempt_number=attempt)
+    storage_note = _retire_new_preparation(_ordinary_request_directory(run), attempt)
+    if storage_note is not None:
+        notes = (*notes, storage_note)
     return PostMRResult(status=record['status'], message=record['message'],
         run_directory=run, postmr_directory=run/'PostMR', report_path=run/'PostMR/report.json',
         model_path=_required_file(record['prepared_model'], 'published model', run),

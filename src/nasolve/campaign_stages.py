@@ -608,6 +608,16 @@ def execute_stage(
     # for the coordinator rather than treating the live report as immutable.
     snapshot = _snapshot_report(root, attempt, run)
     artifacts = _tree_files(root, stage_directory)
+    if stage == "postmr" and preparation_policy.get("checked_preparation", False):
+        from .cif_attempt_retention import archived_working_paths
+        # The normal caller already qualified this result. Reuse archive transport
+        # checks, not another scientific replay. Partial cleanup can finish later
+        # without deleting a file on which this campaign receipt depends.
+        duplicates = archived_working_paths(
+            run / "PostMR/DictionaryEngine/request",
+            postmr_result["checked_preparation"]["attempt_number"],
+        )
+        artifacts = [name for name in artifacts if root/name not in duplicates]
     artifacts.extend(extra.pop("artifacts", []))
     artifacts.extend(_relative_file(root, path) for path in required if path != run / "report.json")
     artifacts.append(snapshot)

@@ -1,117 +1,90 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C259 native diagnostic complete; C260 caller integration next. Active **cedar**, checkout NASolve-c96.
-The [queue](cif-doctor-completion-queue.md) owns work order; the
+Updated **2026-11-13**, C260 implementation/validation complete, commit pending.
+Active **cedar**, checkout NASolve-c96. Simon authorized this pass through
+**23:00 Europe/London**, focused tests only. No merge authorized. Finish Q04/Q05
+before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering; the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
-Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
-Simon authorized this pass through **23:00 Europe/London**, focused tests only.
 
-## Latest native control — C259 blocked before phasing
+## Latest completed step — ordinary preparation uses safe storage
 
-C258 is committed/pushed as `3d87abc`. The fresh C259 control completed Phaser
-(MR_SUCCESS, TFZ 17.10) and Coot construction, then stopped at curated 1AP acquisition:
-`_ideal_seed` requires CCD ideal coordinates, while this source supplies x/y/z.
-The C30 numerical-recovery adapter already distinguishes source-declared coordinates
-from independent ideal coordinates; ordinary acquisition has not connected that
-case. Do not silently relabel coordinates or change curated chemistry to pass.
-No checked checkpoint, ReadySet, AutoSol or diffraction refinement was reached.
+C260 connects C258 retirement after a new checked result is published, before a
+campaign freezes its files. It reuses the same archive, owner, public-path and
+chemistry checks. Optional storage failure keeps a result available only after an
+exact reread proves it still usable. Chemical/publication failures and interrupts
+remain visible. No native retry or unchecked fallback.
 
-Raw DiU first reproduced the known C188/C189 B:1 terminal-phosphate refusal. The
-fresh benchmark used the explicit C80-style free-end fixture at A:1/B:1/C:8,
-retaining D:1's original declared phosphate exactly. This is a software-test state,
-not a claim about DiU terminal chemistry. All donor inputs and partial outputs remain.
-The final owner confirms stopped processes and unchanged source code. Local evidence:
-`/Users/svecchio/NASolve-live-tests/259_Cedar_selected-autosol-wxv04px_`;
-`/private/tmp/c259-root.txt` points there. Exact hashes/versions and earlier refused
-controls are in ledger `native_selected_autosol_control_2026_11_13`.
+Campaign capture uses existing archive transport checks to exclude only archived
+working duplicates. The archive, binding, original records and public scientific
+files remain artifacts. Later explicit completion of partial cleanup does not
+invalidate them. Inspection, historical publication and alternatives do not clean
+files. Older unarchived campaign receipts still naming working files need a separate
+migration; do not silently retire those paths. Failed/uncertain work and shared
+inputs/acquisitions stay unpacked. No new schema; existing storage records require
+a current reader. No change to chemistry, source priority or checkpoint selection.
 
-## Active next bounded step — C260 ordinary storage integration
+Changed: cif_ordinary_postmr.py, cif_attempt_retention.py, campaign_stages.py and
+11 new focused cases in test_cif_preparation_retention.py. Before/after behavior,
+exact commands/hashes and limits are in ledger `ordinary_campaign_retention_2026_11_13`.
 
-Reuse C258 retirement after successful checked publication, without allowing optional
-storage failure to discard usable science. Inspect campaign receipt ownership and
-ordinary/alternative publication first; retain read-only inspection and all failed
-work. No second archive/owner/chemical validator. Curated-source acquisition above
-is a distinct, recorded Q05 acceptance prerequisite, not a silent detour.
+- Final ordinary/campaign/cleanup checks: **92 passed, 29.54 s**. A broader
+  **125 passed, 25.93 s** preceded the final campaign artifact filter.
+- Moved temporary checkout and request, original temporary paths absent:
+  **1 passed, 13.48 s** (14.38 s whole runner).
+- Actual C244 evidence copy: interrupt ordinary cleanup after **17** removals,
+  retain usable result, freeze **97** campaign artifact references excluding
+  **604** disposable paths, relocate, resume, verify every reference and exact result.
+  Same model/five PHILs/two CIFs/**51** stable paths. Whole request **33,661,526 B /
+  98 files**, versus **181,566,343 B / 698 files**. All original bytes/times unchanged.
+  Expanded archive peak **87,440,990 B** (128 MiB bound), Python resident peak
+  **756,350,976 B**, whole multi-read probe **517.56 s**. No native execution.
+  Temporary copy removed. 100 identical requests would retain **3,366,152,600 B**;
+  this is arithmetic, not a 100-dataset execution or a bound for other chemistry.
 
-## Latest completed step — remove reproducible successful working copies safely
+No jobs remain. Runners/summaries are ignored `branch-artifacts/cedar/runners/c260_*`
+in the everyday checkout. Generated science is excluded from Git. Last full suite:
+**C220/583d30df, 9,178 tests + 276 subtests**; no full suite this pass.
 
-C257 is committed/pushed as `ecafc98`. C258 adds explicit
-`retire_attempt_working_files` under the same request lock. It reuses C257 ordinary
-archive reads and C256 transport, with no second scientific/ownership validator.
-Prior work checked: C228/C229 storage choices, C237/C238 owner partitions,
-C252 ordinary alternatives, C254 outer scope, C256 archive and C257 stable paths.
+## C259 native acceptance boundary — preserve before continuing
 
-Before: ordinary reads could use a manually compacted test copy, but the product
-had no removal/recovery operation. After: only qualified, successful, stopped
-native work can be retired. Archive bytes and immutable intent are durable before
-any checksum-matching duplicate is removed. Public models/restraints, original
-scientific records, shared inputs/acquisitions and failed/uncertain work stay in
-place. Interruptions remain readable and resume explicitly without native retry.
-Changed files/archives/intent stop cleanup; completion binds exact retired counts.
-Complete unpublished archives are synced during recovery; partial archives stay
-preserved/refused. No ordinary/campaign automatic invocation yet.
+C259 is pushed as `cd744e2`. Fresh Phaser passed (MR_SUCCESS, TFZ 17.10) and Coot
+constructed the declared fixture, but curated 1AP acquisition stopped at an ideal-only
+seed requirement. The CIF has source-declared x/y/z. No checked checkpoint, ReadySet,
+AutoSol or diffraction refinement was reached. Driver confirms stopped ownership
+and unchanged C258 code. All partial outputs preserved:
+`/Users/svecchio/NASolve-live-tests/259_Cedar_selected-autosol-wxv04px_`.
+Exact hashes/tool versions are in `native_selected_autosol_control_2026_11_13`.
 
-New schema-1 storage receipts: `retire-intent.json` and `retired.json`, policy
-`cif-complete-attempt-working-retirement-v1`. Original request, attempt, result,
-finished and checkpoint schemas/identities remain unchanged. Older readers reject
-new storage records; untouched requests retain their behavior. Changed code is
-`cif_attempt_retention.py`, with a separate retirement regression file. The existing
-22-case retention suite remains intact. Overlapping storage documentation has been
-consolidated into one current contract, keeping historical anchors and Git evidence.
+Raw DiU first reproduced the known C188/C189 B:1 phosphate refusal. The fresh
+software fixture used explicit free ends A:1/B:1/C:8, preserving D:1 phosphate
+records exactly. This does not infer DiU terminal chemistry. All donor inputs remain.
 
-## Validation
-
-- **35 focused cases, 233.28 s:** initial retirement cases plus all C257 read cases.
-- **3 targeted cases, 21.64 s:** recovered-archive flush failure and changed archive/
-  working-file guards; **1 final intent-race case, 6.54 s**.
-- **1 moved-checkout/moved-request case, 9.93 s:** final source, fully retired exact
-  read and repeat retirement; old temporary checkout/request paths absent.
-- Actual C244 native evidence, copied: interrupt after **17** removals, read while
-  partial, resume product cleanup, then exact read. **604 duplicates / 163,424,933 B**
-  retired; whole request **33,661,526 B / 98 files** versus **181,566,343 B / 698**.
-  Same model, five PHILs/two CIFs, **51** persistent paths. All original file bytes/
-  timestamps unchanged; old request reads/native execution forbidden. Temporary
-  copy removed. Archive expansion peak **87,440,990 B** (128 MiB limit), Python
-  peak **752,664,576 B**, total **527.33 s**.
-
-The native-copy probe began before the final archive-sync/completion-intent
-hardening; the latter has explicit failure controls and the final relocated positive
-control above. It changes no chemistry, archive bytes, selection or public paths.
-No native process remains. Exact commands/hashes/sequence:
-`working_attempt_retirement_2026_11_13` in the existing ledger. Runners/summaries
-are in the everyday checkout's ignored `branch-artifacts/cedar/runners/c258_*`.
-Generated scientific data and runners are deliberately excluded from Git.
-
-No full suite this pass. Last wholly green full: **C220/583d30df, 9,178 tests +
-276 subtests**. Full integration validation remains required before merge.
-Archived Phenix evidence uses **2.2.1-6174 / dispatcher 2.2.1**; no new Phenix/Coot
-execution or diffraction-refinement claim belongs to this storage checkpoint.
+Prior work for the next step: C30/C31 graph-source/CCD reader adapters explicitly
+record source-declared coordinates as NOT independent ideal coordinates; C54 owns
+source-preserving native generation. Read-only reassessment shows original 1AP
+cannot simply be accepted as its own qualified numerical candidate (plane/angle
+compatibility findings), while 5IU is graph-only and needs numerical generation.
+Do not bypass these gates, relabel coordinates silently, substitute fitted-model
+positions, or change source chemistry. A bounded control using those existing
+adapters should establish the right integration route before changing production.
 
 ## Next — Q04/Q05 closure
 
-1. Connect successful-attempt storage to normal callers without allowing optional
-   storage failure to discard usable science. Check campaign ownership/receipt
-   boundaries first. Complete representative campaign disk/temporary-memory
-   acceptance. Reuse C258; do not rebuild transport, reader or retirement machinery.
-2. Qualify C253 chosen-model AutoSol natively. The earlier real DiU result has
-   anomalous data and a matching 1AP/5IU construct; its original AutoSol took 18.29 s.
-   Prepare a fresh owned control from its exact upstream Phaser result/inputs,
-   preserving all originals, and obtain genuinely checked preparation before
-   chosen-model phasing. Do not use the C252 synthetic reflection/map fixture as
-   native phasing evidence. Interrupted AutoSol result saving remains distinct from
-   preparation publication recovery: outputs are kept, not automatically adopted.
-3. Q06 actual complete-restraint diffraction refinement, then Q07 combined and
-   held-out examples. Q08–Q14 retain earlier chemistry learning. The supported
-   Q04/Q05 estimate is now roughly **1–3 further implementation patches plus
-   native/integration validation**, not the entire catalogue programme.
-4. Q16 includes final AutoPhase naming under the pinned audit, full regression,
-   integration review and honest release scope. No merge authorized.
+1. Finish committing/pushing C260; review the retained historical-campaign boundary
+   and representative resource scope. Do not rebuild storage machinery.
+2. Test the existing declared-source/reader adapters for the C259 acquisition gap,
+   preserving exact original sources and complete generation/qualification evidence.
+   Then qualify C253 chosen-model AutoSol natively from a fresh owned request.
+   Interrupted AutoSol result publication remains separate: outputs are preserved,
+   not automatically adopted. No synthetic reflection fixture as phasing evidence.
+3. Reconcile supported opt-in Q04/Q05 closure; Q06 actual complete-restraint
+   diffraction refinement, then Q07 combined/held-out cases. Q08–Q14 retain the
+   prior chemistry learning. Q15 report/PDF, Q16 final AutoPhase naming, full suite,
+   integration review and an explicitly authorized merge. No merge authorized now.
 
-Earlier this pass: C253/f337660 chosen-model AutoSol reference (native acceptance
-open); C254/39c5ae0 bounded outer view; C255/aef7911 exact Alder HL-label fix;
-C256/ebc9ccf complete archive; C257/ecafc98 ordinary archive reads. Their exact
-validation remains in the ledger and immutable commits, not a second diary here.
-Linden works independently on Willow/Pine TopoStitch. Native audit-interface
-advice was shared locally, signed Rowan; no cross-branch or shared-environment edits.
-Protected NASolve-cedar and everyday NASolve/pine science, patches and environments
-remain untouched. Continue on NASolve-c96/cedar; no new branch.
+Earlier same-day checkpoints C253–C258 remain in immutable commits and the ledger,
+not repeated here. Linden works independently on Willow/Pine; named-proxy helper
+advice was shared locally, signed Rowan. Their three short stricter-backbone
+captures finished; no Cedar edits or competing geometry subsystem. Protected
+NASolve-cedar and everyday NASolve/pine science, patches and environments are untouched.
+Continue on NASolve-c96/cedar; no new branch.

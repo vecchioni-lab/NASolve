@@ -313,3 +313,25 @@ def retire_attempt_working_files(directory, attempt_number):
         done=write_record(folder/'retired.json',_retirement_completion(intent,row['finished']))
         _retirement_records(folder,archive,row['finished'],remaining)
         return done
+
+
+def archived_working_paths(directory, attempt_number):
+    """Find redundant paths after a caller has qualified the exact result.
+
+    Campaign artifact collection uses this read-only transport check so a later
+    explicit completion of partial retirement cannot invalidate its frozen file
+    list. The archive and all public/original files remain campaign artifacts.
+    An unpublished archive grants no exclusions. This is not scientific approval.
+    """
+    from .cif_repair_attempt import _root
+    _need(type(attempt_number) is int and attempt_number >= 1,
+          'Require an exact positive attempt number')
+    root = _root(directory)
+    request = read_record(root/'request.json')
+    attempt = root/'attempts'/f'attempt-{attempt_number:04d}'
+    with attempt_read_view(root, attempt, attempt_number, request) as view:
+        if view == attempt:
+            return frozenset()
+        finished = read_record(view/'finished.json')
+        return frozenset(attempt/name for name in finished['artifacts']['files']
+                         if not kept_path(name))

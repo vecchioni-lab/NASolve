@@ -92106,5 +92106,117 @@
     "next": "Reconcile existing curated numerical input/source-coordinate adapter with ordinary acquisition under explicit source/recipe identity, then retry a fresh owned native control. Do not change source chemistry or rewrite stopped attempts.",
     "tests": "No full suite; native diagnostic only. Prior focused code validation unchanged.",
     "code_or_schema_change": false
+  },
+  "ordinary_campaign_retention_2026_11_13": {
+    "milestone": "C260",
+    "date": "2026-11-13",
+    "baseline_commit": "cd744e2",
+    "status": "ORDINARY_STORAGE_AND_CAMPAIGN_REFERENCES_PASS",
+    "source_sha256": {
+      "src/nasolve/cif_attempt_retention.py": "f3bd9f27c50dc5bd2bd5f3945731fba4a26c0ed630ee1d4c8966b48a31f16406",
+      "src/nasolve/cif_ordinary_postmr.py": "dcc65cdf28b28a1e97a70d0157de164a3adbb338b9f8ff916731764e34d69e74",
+      "src/nasolve/campaign_stages.py": "335af788d87a70d7c7d317984b9b4be66687123711f80da062e7ddee3ae5b06d",
+      "tests/test_cif_preparation_retention.py": "15531986873194a21dc9d06dd8dbac8e5f400f53c4f71275fbc6a9a49be3c7f7"
+    },
+    "prior_work": [
+      "C258 retirement, C257 ordinary reads, C256 exact transport",
+      "C223/C224 checked publication",
+      "C225 campaign receipt capture after ordinary preparation"
+    ],
+    "before": "New checked preparation did not invoke retirement. A campaign recording remaining working copies after partial removal would depend on files a subsequent cleanup removes.",
+    "after": "New checked results retire through the same owner after publication. Optional storage failure returns a note only after exact usable reread. Campaign artifacts exclude only archive-verified disposable paths, retaining all authoritative evidence. Existing inspection/publication never invokes cleanup.",
+    "schemas": "No new schema or scientific identity. Existing C256-C258 storage records require current readers. Live notes and collected campaign artifact lists reflect actual storage state.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_preparation_retention.py",
+        "stage": "Before implementation",
+        "result": "5 behavior failures and 1 pass; one additional test initially expected the wrong outer exception and was corrected."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_preparation_retention.py tests/test_postmr_runtime.py tests/test_campaign_stages.py tests/test_cif_ordinary_cli.py tests/test_cif_ordinary_outcome.py",
+        "stage": "Before final campaign archive filter",
+        "passed": 125,
+        "seconds": 25.93
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_preparation_retention.py tests/test_campaign_stages.py tests/test_postmr_runtime.py",
+        "stage": "Final implementation",
+        "passed": 92,
+        "seconds": 29.54
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python branch-artifacts/cedar/runners/c260_relocated_checkout.py",
+        "result": {
+          "status": "RELOCATED_CHECKOUT_AND_REQUEST_PASS",
+          "scope": "One targeted ordinary partial-cleanup/campaign-artifact/explicit-recovery test, from copied code relocated after its temporary original checkout disappeared. Request also relocated; both old temporary paths absent. No source checkout or original scientific data removed.",
+          "elapsed_seconds": 14.377812583988998,
+          "pytest_output": ".                                                                        [100%]\n1 passed, 10 deselected in 13.48s",
+          "temporary_checkout_removed": true
+        }
+      }
+    ],
+    "native_evidence_replay": {
+      "status": "ORDINARY_STORAGE_RECOVERY_AND_CAMPAIGN_REFERENCES_PASS",
+      "temporary_copy": "/private/tmp/c260-campaign-retention-6wsqsw92",
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+      },
+      "stage": "RELOCATED_RETIREMENT_RESUMED_WITH_VALID_CAMPAIGN_ARTIFACTS",
+      "removed_before_interruption": 17,
+      "ordinary_note": "Optional working-file cleanup did not complete; the exact checked result remains readable and remaining evidence is preserved. InterruptedError: Deliberate storage interruption after 17 owned duplicate removals",
+      "campaign_artifact_count": 97,
+      "excluded_working_paths": 604,
+      "retirement": {
+        "schema_version": 1,
+        "policy_id": "cif-complete-attempt-working-retirement-v1",
+        "intent_sha256": "ffbceee99e422704ca985727b40aedb8f140054135e8a6757e80b2f5a13bf6c2",
+        "retired_files": 604,
+        "retired_logical_bytes": 163424933,
+        "record_sha256": "3b8f9f929cd5798b8ae3660b9afc8c25a5671eae644c3ac14759396fcf510480"
+      },
+      "old_request_path_absent": true,
+      "archive": {
+        "path": "evidence.zip",
+        "sha256": "681f25bb242087d9b0ee755bc4f2115123f20ead0134a6ab83e8b64b7a7a02a0",
+        "size": 15518933
+      },
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "phils": 5,
+      "dictionaries": 2,
+      "returned_existing_paths": 51,
+      "read_only_inventory_unchanged": true,
+      "whole_request_bytes": 33661526,
+      "whole_request_files": 98,
+      "original_request_files_unchanged": 698,
+      "original_request_reads_forbidden": true,
+      "subprocess_execution_forbidden": true,
+      "source_bytes": 181566343,
+      "temporary_expansion_peak_bytes": 87440990,
+      "temporary_expansion_limit_bytes": 134217728,
+      "runtime_depth_peak": 2,
+      "maximum_resident_bytes": 756350976,
+      "elapsed_seconds": 517.5620198340039,
+      "scope": "Actual C244 native evidence copied. New ordinary storage wrapper handles interruption after 17 removals and verifies the still-usable result. Campaign artifact references freeze the durable archive and retained files, excluding archived working duplicates. After relocation and explicit completion of retirement, all campaign references and the exact result still validate. No native execution, original cleanup or diffraction-refinement claim.",
+      "hundred_identical_requests_extrapolation": {
+        "persistent_bytes": 3366152600,
+        "basis": "100 identical sequential requests; arithmetic estimate, NOT 100 executed datasets or a bound for other chemistry. Temporary disk and resident memory are measured per reader, not multiplied for this sequential model."
+      },
+      "temporary_copy_removed": true
+    },
+    "native_replay_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python branch-artifacts/cedar/runners/c260_campaign_retention.py",
+    "runner_sha256": {
+      "c260_campaign_retention.py": "4dd385cd409dd5202086987fd0d736c13a7713ce2f7aa953ac63d73e997060e6",
+      "c260_relocated_checkout.py": "7e485d06fd718b858e6cc0fea0afaa547670eaa12fbb77da666aaf6789b788fe"
+    },
+    "native_versions": "Prior C244 Phenix 2.2.1-6174 / dispatcher 2.2.1; no new native execution.",
+    "excluded": "All scientific payloads and ignored local runners remain outside Git. Successful disposable validation copy removed; originals untouched.",
+    "limitations": [
+      "Historical campaigns that already reference working files are not migrated; do not retire those files without a separately reviewed artifact migration.",
+      "Unpublished archives authorize no campaign exclusions; partially written archives stay preserved.",
+      "Public/failed/shared acquisition history remains unpacked.",
+      "100 identical requests is an arithmetic capacity estimate, not 100 executed datasets or a bound for other chemistry/refinement inputs.",
+      "Full suite deferred by Simon; last full C220/583d30df, 9178 tests + 276 subtests."
+    ]
   }
 }

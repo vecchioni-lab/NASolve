@@ -78,7 +78,7 @@ The new automatically supplied plane-repair/ReadySet request retains 181.6 MB, i
 and peaks at 570.6 MB resident memory. Those temporary files are removed. Earlier
 compact storage and shared validation removed repeated evidence without changing
 the selected scientific result; original worker output remains. Safe retirement of redundant successful working
-files now has an explicit operation; automatic caller integration, memory/concurrency limits and campaign-scale
+files now has an explicit operation used by new checked preparation; memory/concurrency limits and campaign-scale
 storage validation remain release work. A complete ReadySet continuation can now
 be reconstructed and checked from an 11.2 MB working archive under the same
 128 MiB allowance for expanded archive files. Its temporary views are removed;
@@ -91,9 +91,12 @@ redundant working files are removed: whole-request storage falls from 181.6 MB t
 33.7 MB, preserving the same selected model, five restraint files and two CIFs.
 All original science remains intact. The explicit removal operation also passes
 deliberate interruption, partial read, resumed cleanup and final read on a copied native request. It keeps failed
-or uncertain work unpacked and preserves all public model/restraint files. Automatic
-activation in ordinary/campaign callers remains separate; archive preparation alone
-still never removes source files.
+or uncertain work unpacked and preserves all public model/restraint files. New checked preparation invokes this operation after saving its result. If optional
+cleanup fails, NASolve keeps that result available only after verifying it again.
+New campaign records depend on the archive and retained scientific files, so a later
+completion of partial cleanup does not break them. Inspection and historical
+publication do not clean files; old campaign records are not silently migrated.
+Archive preparation alone still never removes source files.
 These figures do not justify running 100 readers at once. Saved scientific records
 retain their identity; an explicitly added storage receipt requires a new reader.
 
