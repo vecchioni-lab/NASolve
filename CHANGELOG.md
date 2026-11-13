@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch verified coordinate adapter
+
+- Add a read-only single-model PDB adapter for explicit end/pair site assignments,
+  deriving coordinate sequences and descriptive oriented end frames from verified
+  bytes. Missing/ambiguous sites remain unassessed; no guessed termini or atoms.
+- Add a schema-1 descriptive coordinate report separating proposal, execution
+  and review states for the future Campaign desk. No GUI or construction is run.
+- Preserve old candidate-screen semantics, runtime policies and Cedar interfaces;
+  relocation is tested with the original input removed.
+
+
 ### TopoStitch initial read-only backend
 
 - Add `nasolve.topostitch` with explicit immutable duplex-end records and a

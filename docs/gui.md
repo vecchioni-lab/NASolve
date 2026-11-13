@@ -759,6 +759,53 @@ Topo-specific content adds the periodic molecular graph, tile/junction/repeat
 semantics, surgery preview and local geometry diagnostics. It does not create a
 separate application or history system.
 
+### TopoStitch proposals, execution and review in Campaign desk
+
+The chosen minimal campaign view is **Campaign desk**. TopoStitch should reuse
+its dataset rows, Needs Attention queue, Inspector, model tree and comparison
+view. It is one tool for recut and repair, not a second campaign application.
+See [the design](topostitch.md) and [coordinate report](topostitch-coordinates.md).
+No GUI implementation is claimed by the read-only backend patch.
+
+Keep three questions separate in the UI: **What is proposed? What actually ran?
+Has a person reviewed this exact result?** Do not use one green status for all
+three. The current backend only emits proposals/observations, NOT_ATTEMPTED
+execution, UNREVIEWED review and an empty change list. There is no after-model
+to display yet. Frame availability is not a completed stitch or valid geometry.
+
+A compact campaign row should show “Connection proposed”, “Needs assignment” or
+“No candidate in searched scope” as appropriate. Expand it to see:
+
+- the named ends, explicit/caller-declared versus inferred/borrowed evidence,
+  actual source model and competing candidates;
+- current coordinates with a dashed proposed connection; full-frame and
+  symmetry details on demand rather than cluttering the default view;
+- search scope, unassessed ends and why they could not be assessed;
+- later, a concrete operation preview and the residues it would affect.
+
+Once an execution receipt exists, offer a real source/child comparison with
+actual moved/rebuilt residues, retained nicks, relevant symmetry mates,
+geometry changes and matched Rwork/Rfree deltas. Distinguish operation-complete,
+refinement-complete and human-reviewed; a failed attempt may have an artifact
+but is not a recommended repair. Selecting or viewing a child does not approve
+it. “Use candidate” and “Reject pairing” have different meanings: one chooses
+an actual model; the other changes intended connection decisions in a new
+record, not a failed geometry trial's history.
+
+Enable actions only when supported by backend capabilities and exact receipts.
+The first adapter has no Apply/Refine/Approve API; do not simulate those actions
+in frontend state. Future actions must bind the proposal hash, source checkpoint
+and model hash. A stale source or changed mapping requires recomputation/review,
+not application to whichever model happens to be current. Resolve the model
+through anchored run/checkpoint context, never a filename search or a hash alone.
+
+Campaign-level “Find and repair sticky ends” freezes authorization once; it does
+not create per-member popups. Group related review items while preserving each
+member's own evidence and outcome. Batch decisions require explicit compatible
+scope. Manual/automatic decisions and failed attempts remain in the same lineage
+and activity history. Numerical success and donor review never silently become
+approval of a recipient model.
+
 ## Design-level campaign grouping
 
 The GUI should be ready for an optional Design layer before the campaign backend

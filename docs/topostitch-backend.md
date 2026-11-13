@@ -64,14 +64,14 @@ No CLI, campaign recipe, checkpoint, PostMR, Cedar, dependency or native tool
 interface changes. Existing imports/commands retain their behavior. The API can
 be imported from a standard NASolve wheel and uses only Python's standard library.
 
-Next add a source-verified adapter that derives end records and full oriented
-frames from explicit logical registration plus coordinate evidence. It must not
-turn every PDB chain terminus into a sticky end. Periodic partner search then
-needs actual cell/symmetry, image identities, reciprocal/orbit handling, search
-completeness and tests for equivalent representations. Those features should
-not be simulated by passing duplicated image records to this first API: it has
-no periodic-equivalence semantics. Geometry feasibility, recuts, deformation,
-Cedar construction and campaign proposal adoption require separate patches.
+The [source-verified coordinate adapter](topostitch-coordinates.md) now derives
+sequences and descriptive end frames from PDB bytes plus explicit coordinate-site
+assignments. It does not yet infer ends or consume a logical registration record.
+Periodic partner search still needs actual cell/symmetry, image identities,
+reciprocal/orbit handling, search completeness and equivalent-representation
+tests. Do not simulate periodicity by passing duplicated image records to this
+first API: it has no periodic-equivalence semantics. Geometry feasibility,
+recuts, deformation, Cedar construction and campaign adoption remain future work.
 
 ## Validation and compatibility
 

@@ -145,17 +145,23 @@ merge is needed yet. Opt-in campaign inference, tentative scheme sharing and
 matched diffraction/geometry evaluation are specified, not implemented. This
 does not change Pine scientific gates or authorize editing Cedar/live datasets.
 
-The first [read-only backend primitive](topostitch-backend.md) is now implemented
-on Willow: explicit canonical overhang screening and review-only proposal records.
-Automatic end detection, periodic search, construction and campaign use remain
-unimplemented. Next: source-verified coordinate/registration adapter and oriented
-end frames before introducing periodic partner enumeration. Rowan owns Cedar's
-PostMR/campaign plane-support forwarding; no shared source files were edited.
-Validation: 39 focused tests, 1006 full tests + 226 subtests, and 39 installed-
-wheel tests passed; isolated installed import/smoke and diff checks passed.
-No native Phenix/Coot runs or scientific data changes.
+Two isolated backend slices are implemented: [explicit canonical candidate
+screening](topostitch-backend.md) and a [verified PDB coordinate adapter](topostitch-coordinates.md).
+The adapter derives overhang sequences and descriptive oriented end frames from
+explicit coordinate-site assignments. Automatic end detection, periodic search,
+geometry construction and campaign use remain unimplemented. Next: connect
+logical registration/backbone evidence and qualify periodic partner enumeration.
+The report distinguishes proposed work from NOT_ATTEMPTED execution and
+UNREVIEWED results; the GUI contract records Campaign desk integration.
 
-
+Rowan owns Cedar's PostMR/campaign plane-support forwarding and later-child
+publication. No shared source files or environments were modified. Cedar's
+selected dictionary coverage is not treated as geometry/refinement validation.
+Initial screen validation: 39 focused, 1006 full + 226 subtests, 39 installed-wheel
+checks passed. Coordinate adapter: 72 focused and installed-wheel tests, 1039 full + 226
+subtests passed; source-file relocation and isolated installed import passed.
+Exact receipts are in its backend contract. No native
+Phenix/Coot runs or scientific data changes.
 
 ## Work discipline and doc ownership
 

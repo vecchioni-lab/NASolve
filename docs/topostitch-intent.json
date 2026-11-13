@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "topostitch-development-intent",
   "date": "2026-11-13",
-  "status": "INITIAL_READ_ONLY_PRIMITIVE_IMPLEMENTED",
+  "status": "READ_ONLY_COORDINATE_ADAPTER_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
   "branch": "willow",
@@ -188,6 +188,19 @@
     "coordinate_end_detection": false,
     "symmetry_search": false,
     "construction": false,
-    "campaign_integration": false
+    "campaign_integration": false,
+    "coordinate_adapter": {
+      "module": "nasolve.topostitch_coordinates",
+      "contract": "docs/topostitch-coordinates.md",
+      "format": "single-model PDB",
+      "topology_authority": "caller-declared coordinate-site assignments",
+      "verifies_source_hash": true,
+      "descriptive_end_frames": true,
+      "automatic_end_detection": false,
+      "report_schema": 1,
+      "geometry_validated": false,
+      "execution_state": "NOT_ATTEMPTED",
+      "review_state": "UNREVIEWED"
+    }
   }
 }
