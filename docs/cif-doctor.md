@@ -142,7 +142,7 @@
 
 <a id="current-capability-boundary-c251"></a>
 
-## Current capability boundary (C257)
+## Current capability boundary (C258)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -170,7 +170,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; default activation and remaining phasing/native acceptance stay open. No actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and remaining phasing/native acceptance stay open. |
 | Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Default activation, alternative-aware phasing and real refinement remain open. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
-| Archived working evidence | C257 explicitly archives complete v2 attempts and connects ordinary history/exact-result readers to the same owner/chemistry checks, keeping all returned public paths stable. A copied native request reads at 33.7 MB instead of 181.6 MB. | No product retirement/deletion yet. Failed/active work, campaign-scale acceptance and interrupted retirement remain Q04; old readers refuse the new storage receipt. |
+| Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. Automatic caller integration and campaign-scale resource acceptance remain Q04; old readers refuse new storage receipts. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, alternative-aware phasing, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -1362,122 +1362,100 @@ complete native compact continuation and cold relocation remain the scientific
 storage evidence; C229 adds request integration, not a new native/refinement claim.
 Exact commands and compatibility: ledger compact_request_storage_2026_11_12.
 
+### Retain exact evidence without redundant successful working files (C258)
+
+The storage policy preserves model/CIF/PHIL files and the proof of their selection
+while compressing repeated successful working evidence. It reuses the existing
+complete-attempt owner and scientific validation. It never changes chemical intent,
+selects another checkpoint, launches a native job or retries an old attempt.
+
+Two explicit APIs live in `cif_attempt_retention`:
+
+| Operation | Contract |
+| --- | --- |
+| `prepare_attempt_archive(request, attempt_number)` | Validate complete history, archive one returned current-v2 attempt, replay the same owner from the archive and check all returned paths before publishing its immutable storage binding. Never delete a source file. |
+| `retire_attempt_working_files(request, attempt_number)` | Under the existing request lock, require an independently qualified public runtime and successful, stopped native phases. Publish durable archive and retirement intent before removing only checksum-matching working duplicates. Repeating resumes an interruption; it never reruns chemistry. |
+
+Failed optional native work, unsuccessful plane generation, unqualified results,
+active/uncertain owners and unrelated attempts stay unpacked. Shared request inputs
+and acquisition history are not retired. An unavailable storage operation does not
+supply a new scientific verdict or permission for unchecked fallback. These APIs
+are not yet automatically invoked by ordinary/campaign callers.
+
+**Stable paths and proof.** Original `attempt.json`, `result.json`, `finished.json`
+and complete public roots remain: `preparation/bundle`, the repair runtime,
+`continuation/runtime`, and `continuation/inputs/runtime`. Ordinary history and
+exact-result reads reconstruct the original logical attempt, replay the existing
+owner/chemistry checks, and rebase only retained returned paths. Every remaining
+physical file must match its sealed inventory; all public files must exist. Exact
+reads still recheck selected owners, and all historical attempts still validate.
+Changed public evidence is never silently repaired from an archive.
+
+`retention/attempt-NNNN/archive.json` uses schema 1 / policy
+`cif-complete-attempt-retention-v1`, binding original request/attempt hashes,
+finished-file checksum and archive checksum/size. Separate schema-1
+`retire-intent.json` and `retired.json` use
+`cif-complete-attempt-working-retirement-v1`; intent binds that storage receipt,
+and completion binds intent plus exact retired counts/bytes. Original scientific
+records remain byte-identical. Older readers reject the new storage records;
+untouched/legacy requests retain their old reading behavior. Only existing v2
+owner partitions support this explicit storage operation.
+
+A complete unpublished archive is verified and synced before recovery publishes a
+binding. A partial archive is preserved/refused and does not change ordinary reads.
+Archive/owner changes stop cleanup; each file is checked immediately before removal.
+Directory removals are flushed before completion. Interruptions before, during or
+after removal remain readable through the durable archive and can resume explicitly.
+No completion is published for changed intent or incomplete retirement.
+
+**Bounds and methods.** One root-only working view shares the unchanged **128 MiB
+physical expansion allowance** with at most two runtime-proof layers. Existing v2
+logical partition limits remain separate; hard-link reuse is optional and copies
+are charged. The deterministic complete-attempt archive binds the original finished
+checksum and sealed logical inventory before exposing paths. It replaces no owner
+or chemical validator. Temporary views and accounting unwind on exit.
+
+**Acceptance.** A fresh copy of actual C244 preparation was compacted by the product
+operation, deliberately interrupted after **17** removals, successfully read in
+that partial state, then resumed and read again. **604 duplicates / 163,424,933 B**
+were retired; whole-request storage is **33,661,526 B / 98 files**, versus
+**181,566,343 B / 698 files**. The same model, five PHILs/two CIFs and **51** persistent
+paths remain. Original-request reads/native execution were forbidden, all original
+bytes/timestamps are unchanged, and the test copy is removed. Peak expanded archive
+bytes are **87,440,990**, Python resident peak **752,664,576 B**; the complete
+interruption/read/resume/read probe takes **527.33 s**. This replays prior Phenix
+**2.2.1-6174 / dispatcher 2.2.1** evidence; it is not a new native run or refinement.
+
+Final archive-flush and completion-intent guards have additional focused failure
+controls and a moved-checkout/moved-request positive control. Exact test commands,
+source revisions and validation sequence are in `working_attempt_retirement_2026_11_13`
+in the [ledger](cif-linked-native-registration-evidence.json). Automatic caller
+integration and campaign-scale disk/memory acceptance remain Q04 work; these figures
+do not justify 100 simultaneous readers or general catalogue/refinement support.
+
 ### Keep ordinary reads and public paths stable with archives (C257)
 
-`cif_attempt_retention.prepare_attempt_archive(request, attempt_number)` explicitly
-prepares a complete returned attempt under the existing request lock. It first
-replays normal history, packs or recovers the exact C256 archive, replays the same
-complete owner from that archive, and checks every returned path before publishing
-`retention/attempt-NNNN/archive.json`. This schema-1 receipt uses
-`cif-complete-attempt-retention-v1` and binds original request/attempt record hashes,
-the original finished-file checksum and the exact archive path/checksum/size.
-It changes neither scientific identity nor selected checkpoint. No native launch.
-
-Ordinary history and exact-result reads reconstruct the archived attempt inside
-C254's bounded view, using existing owner, source, chemistry and inventory checks.
-They verify remaining physical files against the original sealed inventory before
-and after replay. Every public file must remain. Returned paths are rebased only
-under four retained complete bundle roots: `preparation/bundle`, the repair runtime,
-`continuation/runtime` and `continuation/inputs/runtime`. Original `attempt.json`,
-`result.json` and `finished.json` remain too. Unexpected temporary result paths
-refuse. Exact-result reads retain their second owner/inventory check; all historical
-attempts still validate, and an archived first attempt does not authorize reuse of
-its identity for a retry.
-
-Archive publication precedes any future retirement. A complete unpublished archive
-can be verified and bound without rewriting it. A partial archive is preserved and
-refused by the explicit preparation API; it supplies no authority and does not
-change ordinary reads. No source-removal operation or automatic activation exists
-in C257. Only current v2 artifact partitions support this explicit operation;
-legacy requests stay readable without migration. Older readers reject the added
-retention directory. Removing a public model/restraint file or changing retained
-working evidence is not repaired silently from the archive.
-
-**Methods/evidence.** Real C244 preparation was copied to a fresh temporary root,
-archived, and 604 redundant files removed only from that test copy. The normal
-exact-result/history reader returns the same model, five PHILs/two CIFs and **51
-existing persistent paths**, with no original-request reads or native execution.
-Whole-request storage is **33,660,939 B / 96 files**, versus **181,566,343 B / 698
-files**. Archive expansion peaks at **87,440,990 B** under the unchanged 128 MiB
-allowance; Python resident peak is **748,552,192 B**. Archive preparation plus
-ordinary exact read takes **322.80 s**. The read changes no copied file; all original
-bytes/timestamps remain unchanged, and the disposable copy is removed afterward.
-This is storage/reader acceptance of prior Phenix 2.2.1-6174 evidence, not a new
-native execution or diffraction-refinement claim. Focused ownership/relocation/
-corruption controls and exact commands are in `ordinary_attempt_archive_2026_11_13`
-in the [ledger](cif-linked-native-registration-evidence.json). Safe retirement and
-campaign-scale resource acceptance remain Q04 work.
+C257 introduced the archive binding and ordinary-reader integration described above.
+Its copied native control manually removed test-copy duplicates; C258 validates the
+product removal/recovery operation. Exact C257 evidence remains in ledger entry
+`ordinary_attempt_archive_2026_11_13` and commit `ecafc98`.
 
 ### Reconstruct a complete sealed attempt (C256)
 
-The current complete-request owner already separately bounds its working files,
-repair publication, continuation working files and continuation publication. A
-whole attempt can therefore exceed the single-tree archive's logical limit while
-containing far fewer distinct bytes. The explicit
-`cif-complete-attempt-working-archive-v1` format preserves those exact v2 partitions,
-sharing a content-addressed object store and C254's sole outer read scope. Each
-partition keeps its existing file/logical-byte bounds; total unique archive objects
-and expanded physical bytes retain the existing bounds. Earlier archive readers
-refuse this new policy. Ordinary archives retain byte-for-byte serialization.
-
-The transport binds an externally supplied original `finished.json` checksum.
-Before exposing any temporary path, it compares the archive's complete logical
-file/directory index with that original seal's inventory. A fresh pack also checks
-the matching returned/stopped seal and attempt identity, detects source changes,
-refuses existing destinations, and syncs the archive. These are transport checks:
-the existing complete-attempt owner must still replay process ownership, sources,
-chemistry and result selection. Temporary paths are never ordinary published inputs.
-
-Actual C244 evidence passes that existing complete-attempt validator from the
-archive with original-attempt access and native launch forbidden. **659 files /
-179,979,354 B logical** become **15,518,933 B compressed**, containing
-**87,410,244 B** of distinct bytes. Peak archive expansion during complete replay is
-**87,440,990 B** under the unchanged **134,217,728 B** physical allowance; Python
-resident peak is **740,114,432 B**, elapsed **102.09 s**. The same checked model,
-five PHILs/two CIFs and stopped owners remain. Shared request/acquisition inputs
-remain outside this attempt archive; this is not whole-request independence.
-
-The final, stricter transport-only check passes against those exact same archive
-bytes in **5.95 s**, without repeating chemical replay. All 659 original files
-remain unchanged and both temporary archives/views are removed. Existing C254
-single-tree archive bytes also reproduce exactly. **61 focused tests** cover
-shared storage plus complete-attempt transport, including a demonstrated rehashed
-logical-file substitution rejected against the original seal.
-
-The result exposes 45 path occurrences under four stable roots: prepared bundle,
-repair runtime, continuation runtime and continuation's parent runtime. C257 now preserves those usable public paths and metadata through ordinary
-history reads. No retirement transaction or product deletion exists yet.
-This work does not authorize active/failed-run cleanup or 100 concurrent readers.
-Evidence: `complete_attempt_archive_2026_11_13` in the ledger.
+`cif_complete_attempt_archive` supplies the partitioned
+`cif-complete-attempt-working-archive-v1` transport. The original seal's inventory,
+original finished-file checksum and unchanged per-partition/physical limits remain
+mandatory; callers replay the existing owner. Earlier runtime archive bytes remain
+unchanged. Exact standalone/native evidence: `complete_attempt_archive_2026_11_13`
+and commit `ebc9ccf`; ordinary integration and retirement are described above.
 
 ### Reconstruct working evidence within one bounded read (C254)
 
-An archived working directory can contain a compact ReadySet result whose proof
-in turn contains a compact prepared parent. C252's ordinary two-layer reader
-correctly refused that extra outer layer. C254 makes the outer reconstruction an
-explicit, root-only scope: it cannot be entered from a runtime view or another
-working view. The existing decoder and temporary-object pool serve both scopes.
-Ordinary runtime depth stays **two**, every archive keeps the existing logical
-bounds, and the outer working files and both proof layers share the same **128 MiB
-physical allowance**. Hard-link reuse is optional; actual copies are charged.
-Temporary paths expire and accounting unwinds on normal or exceptional exit.
-
-The complete existing C244 ReadySet-continuation reader now passes inside that
-scope, including stopped-owner evidence and exact original inventories. Its
-**42,349,420 B / 116 files** reconstruct from **11,244,253 B** compressed. Peak
-archive-expanded physical bytes are **87,147,928**, within **134,217,728**; Python
-resident peak is **687,292,416 B**, which is a different measurement. The read takes
-**81.63 s**, preserves all source-file checksums, retains five PHILs/two CIFs and
-removes its temporary archive/views. Original-request reads and subprocess launch
-are forbidden. This replays earlier Phenix evidence; it is not a new native run.
-
-Six focused scope/budget/lifetime controls and the existing compact/runtime tests
-pass (**49 tests**). No archive format, saved request, ordinary consumer behavior,
-chemical verdict or physical/depth limit changes. This API provides the scoped
-reader needed for future retention. It does **not** yet connect a partially retired
-complete request to owner inventories or stable public model/restraint paths,
-authorize deletion, or establish campaign-scale concurrency. No original files
-were retired. Exact evidence: `bounded_working_view_2026_11_13` in the ledger.
+`cif_runtime_evidence.expanded_working_evidence` adds the sole outer working scope
+without consuming another runtime layer or raising the shared physical allowance.
+Nested outer scopes refuse; temporary hard links/copies share the existing budget
+and cleanup. Exact continuation evidence: `bounded_working_view_2026_11_13` and
+commit `39c5ae0`. The integrated storage contract above preserves these bounds.
 
 ### Compact exact runtime evidence (C228)
 
@@ -1519,8 +1497,8 @@ covered by focused regression and this cold check.
 
 "Frozen proof" means exact inputs, tool/policy identities and check evidence needed
 to verify or reproduce the decision; it does not mean keeping every copy forever.
-Successful working-output retirement still needs an interruption-safe, known-stopped
-policy; 100-dataset total disk/peak-memory readiness is not yet demonstrated. Exact
+C258 supplies explicit interruption-safe, known-stopped working-file retirement;
+automatic caller integration and 100-dataset disk/peak-memory readiness remain open. Exact
 commands, pins and outcomes: ledger compact_runtime_evidence_2026_11_12.
 No full suite was run.
 

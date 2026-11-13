@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C257
+## Near-term closure estimate at C258
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -32,10 +32,10 @@ open; the remaining work is now more specific:
 | Remaining work | Observable finish |
 | --- | --- |
 | Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. |
-| Q04: retain the evidence without accumulating redundant files | Introduce a known-stopped, interruption-safe storage policy with exact replay. Keep externally referenced model/restraint paths usable, preserve failed/active work, and measure whole-request disk, temporary expansion and memory. |
+| Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. Connect the storage operation to normal callers without blocking usable science; complete campaign-scale disk/temporary-memory acceptance. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
-Planning allowance from this checkpoint: **roughly 2–5 further implementation
+Planning allowance from this checkpoint: **roughly 1–3 further implementation
 patches, plus native/integration validation**. Storage is the largest uncertainty;
 its existing nested inventories mean safe retirement is more than deleting files.
 This is an estimate, not a completion criterion. Do not open new chemistry work to
@@ -46,9 +46,9 @@ Reuse C223–C225 publication and ordinary/campaign entry, C228–C239 compact e
 proof, C244 ownership, C249 selected-CIF coverage and C251 alternative publication.
 C257 connects archived attempts to ordinary history/result reads with persistent
 public paths; its copied native request falls from 181.6 MB to 33.7 MB after manual
-test-copy duplicate removal. The product still needs known-stopped, interruption-safe
-retirement/recovery and campaign resource acceptance. Do not repeat transport or
-reader integration. Historical workstation archiving is separate from runtime retention.
+test-copy duplicate removal. C258 now passes product retirement, deliberate interruption, partial read and
+resumed completion on that copied native request. Finish caller integration and
+campaign resource acceptance; do not repeat transport, reader or retirement machinery. Historical workstation archiving is separate from runtime retention.
 Effective native planes, alternative-restraint adequacy and achieved geometry are
 Q06 checks; explicit CIF plane membership alone cannot close them.
 

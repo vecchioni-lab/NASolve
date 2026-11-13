@@ -77,8 +77,8 @@ The new automatically supplied plane-repair/ReadySet request retains 181.6 MB, i
 5.8 MB final publication. Its readback temporarily expands 81.4 MB of evidence
 and peaks at 570.6 MB resident memory. Those temporary files are removed. Earlier
 compact storage and shared validation removed repeated evidence without changing
-the selected scientific result; original worker output remains. Safe retirement
-of redundant successful working files, memory/concurrency limits and campaign-scale
+the selected scientific result; original worker output remains. Safe retirement of redundant successful working
+files now has an explicit operation; automatic caller integration, memory/concurrency limits and campaign-scale
 storage validation remain release work. A complete ReadySet continuation can now
 be reconstructed and checked from an 11.2 MB working archive under the same
 128 MiB allowance for expanded archive files. Its temporary views are removed;
@@ -89,8 +89,11 @@ Ordinary readers now use the archive while keeping the actual model and restrain
 at their stable public paths. A copied native preparation reads correctly after
 redundant working files are removed: whole-request storage falls from 181.6 MB to
 33.7 MB, preserving the same selected model, five restraint files and two CIFs.
-All original science remains intact. Product removal/recovery is still a separate
-step; the current explicit archive-preparation API never deletes source files.
+All original science remains intact. The explicit removal operation also passes
+deliberate interruption, partial read, resumed cleanup and final read on a copied native request. It keeps failed
+or uncertain work unpacked and preserves all public model/restraint files. Automatic
+activation in ordinary/campaign callers remains separate; archive preparation alone
+still never removes source files.
 These figures do not justify running 100 readers at once. Saved scientific records
 retain their identity; an explicitly added storage receipt requires a new reader.
 

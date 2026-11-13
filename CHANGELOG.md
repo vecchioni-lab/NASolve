@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Retire successful working duplicates with interruption recovery (C258)
+
+- Add an explicit completed-attempt retirement API using the existing request lock,
+  owner checks and archive-backed reader. Require a qualified runtime and successful
+  stopped native phases; keep failed, active, unknown and unqualified work unpacked.
+- Sync the exact archive and publish immutable retirement intent before removing
+  checksum-matching working duplicates. Keep all public model/restraint paths and
+  original scientific records. Recover partial cleanup without native retry;
+  record completion only after verified removal. Changed evidence stops cleanup.
+- Actual copied native preparation passes interruption after 17 removals, partial
+  read, resumed completion and final read. Whole request: 181.6 MB → 33.7 MB;
+  all originals unchanged. Ordinary/campaign automatic activation remains separate.
+  New storage receipts require a current reader; no scientific schema migration.
+
 ### Read archived attempts through ordinary preparation (C257)
 
 - Add explicit archive preparation under the existing request lock and an

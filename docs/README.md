@@ -12,9 +12,10 @@ milestone statements preserve their original scope; they are not a second queue.
   dictionary repair plus ReadySet. [Truthful preparation reporting/recovery](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
   is now available through `postmr --checked-preparation`; it saves the checked
   result as the initial review checkpoint. Schema-2 campaigns can explicitly choose
-  the same route. New checked requests save compact, exact evidence; completed
-  working-file retirement remains a separate storage task. Explicit archive preparation
-  now supports ordinary history/result reads with stable public model/restraint paths. Complete requests can
+  the same route. New checked requests save compact, exact evidence; explicit
+  retirement of successful working duplicates now preserves stable public paths
+  and recovers interrupted cleanup. Automatic caller integration and campaign-scale
+  resource acceptance remain separate storage work. Complete requests can
   reuse exact completed plane support or explicitly opt into graph-selected support
   generation. `cif-doctor prepare-run --automatic-plane-support` now exposes that
   choice with exact-result notes. Checked PostMR and schema-2 campaigns also forward

@@ -1,95 +1,90 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C257. Active **cedar**, checkout NASolve-c96.
+Updated **2026-11-13**, C258. Active **cedar**, checkout NASolve-c96.
 The [queue](cif-doctor-completion-queue.md) owns work order; the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 Simon authorized this pass through **23:00 Europe/London**, focused tests only.
 
-## Latest completed step — ordinary reads of archived attempts
+## Latest completed step — remove reproducible successful working copies safely
 
-C256 is committed/pushed as `ebc9ccf`. Prior work checked: C228/C229 exact archive
-storage and frozen request choices, C237/C238 owner partitions, C252 normal
-alternative publication, C254 bounded outer views and C256 complete-attempt
-transport. Those mechanisms are reused, not replaced. The remaining gap is
-ordinary history/result reading with stable public paths, then safe retirement.
+C257 is committed/pushed as `ecafc98`. C258 adds explicit
+`retire_attempt_working_files` under the same request lock. It reuses C257 ordinary
+archive reads and C256 transport, with no second scientific/ownership validator.
+Prior work checked: C228/C229 storage choices, C237/C238 owner partitions,
+C252 ordinary alternatives, C254 outer scope, C256 archive and C257 stable paths.
 
-C257 adds an explicit archive-preparation API under the existing request lock.
-It replays the original complete owner, verifies every returned path, and publishes
-an immutable storage receipt beside the attempt. Original request, attempt and
-finished records remain unchanged. Normal history and exact-result readers
-reconstruct archived working evidence but return persistent model/CIF/PHIL paths.
-The prepared bundle, repair runtime, continuation runtime and parent runtime stay
-intact. Every selected owner is still rechecked; all historical attempts validate.
+Before: ordinary reads could use a manually compacted test copy, but the product
+had no removal/recovery operation. After: only qualified, successful, stopped
+native work can be retired. Archive bytes and immutable intent are durable before
+any checksum-matching duplicate is removed. Public models/restraints, original
+scientific records, shared inputs/acquisitions and failed/uncertain work stay in
+place. Interruptions remain readable and resume explicitly without native retry.
+Changed files/archives/intent stop cleanup; completion binds exact retired counts.
+Complete unpublished archives are synced during recovery; partial archives stay
+preserved/refused. No ordinary/campaign automatic invocation yet.
 
-A complete unpublished archive can be recovered without repacking. Partial
-archives are preserved and refused by the explicit storage operation; they do not
-change ordinary reads. Unsupported legacy layouts, changed owners/archives/public
-files, extra files and symlinks refuse. No product source-deletion operation yet.
-The explicit storage receipt is a new compatibility boundary: older readers reject
-the retention folder. Requests without it preserve their previous behavior.
+New schema-1 storage receipts: `retire-intent.json` and `retired.json`, policy
+`cif-complete-attempt-working-retirement-v1`. Original request, attempt, result,
+finished and checkpoint schemas/identities remain unchanged. Older readers reject
+new storage records; untouched requests retain their behavior. Changed code is
+`cif_attempt_retention.py`, with a separate retirement regression file. The existing
+22-case retention suite remains intact. Overlapping storage documentation has been
+consolidated into one current contract, keeping historical anchors and Git evidence.
 
-**22 new checks pass** (19 in 126.09 s, three late-corruption/legacy controls
-in 26.35 s); **255 affected owner/continuation/publication checks pass in 406.35 s**.
-Actual C244 copy acceptance passes: 181,566,343 B / 698 source files become
-33,660,939 B / 96 retained files; same model, five PHILs/two CIFs, 51 returned
-persistent paths. Original-request reads/native execution forbidden; all original
-bytes/timestamps unchanged. The copy and temporary views are removed. Archive
-expansion peak 87,440,990 B (128 MiB limit), Python peak 748,552,192 B; archive
-preparation plus ordinary exact read 322.80 s. A moved temporary checkout also passes the targeted relocation/fresh-attempt
-control (15.71 s), with its old checkout and request paths absent. No native
-process remains running.
+## Validation
 
-Only the new throwaway copy had 604 working files manually removed for acceptance;
-product deletion is not yet implemented. Exact commands, source/test hashes and
-local runner/summary references: `ordinary_attempt_archive_2026_11_13` in the ledger.
-Code changes: new `cif_attempt_retention.py`, complete-request history/exact-read
-integration, new focused regression. New storage receipt schema only; no request,
-scientific-result, checkpoint or chemistry migration. Generated science/runners
-are deliberately excluded from Git.
+- **35 focused cases, 233.28 s:** initial retirement cases plus all C257 read cases.
+- **3 targeted cases, 21.64 s:** recovered-archive flush failure and changed archive/
+  working-file guards; **1 final intent-race case, 6.54 s**.
+- **1 moved-checkout/moved-request case, 9.93 s:** final source, fully retired exact
+  read and repeat retirement; old temporary checkout/request paths absent.
+- Actual C244 native evidence, copied: interrupt after **17** removals, read while
+  partial, resume product cleanup, then exact read. **604 duplicates / 163,424,933 B**
+  retired; whole request **33,661,526 B / 98 files** versus **181,566,343 B / 698**.
+  Same model, five PHILs/two CIFs, **51** persistent paths. All original file bytes/
+  timestamps unchanged; old request reads/native execution forbidden. Temporary
+  copy removed. Archive expansion peak **87,440,990 B** (128 MiB limit), Python
+  peak **752,664,576 B**, total **527.33 s**.
 
-## Other completed work this pass
-
-- **C253 / f337660:** AutoSol compares sites against the chosen checkpoint's
-  coordinates and cell, while native phasing still uses the original Phaser model.
-  Immutable chosen-reference/result checks, guarded schema-5 publication, exact
-  Coot inspection and unchanged distance gates. 196 tests + 31 subtests and
-  53 adjacent tests + 2 subtests pass. Native selected-reference acceptance remains.
-- **C254 / 39c5ae0:** one outer working view shares the existing 128 MiB physical
-  archive allowance with two runtime layers; actual continuation replay passes.
-- **C255 / aef7911:** reuse Alder's exact HL-label discovery correction, with
-  89 tests + 15 subtests and a real Phenix MTZ-header read. No phasing rerun.
-- **C256 / ebc9ccf:** whole-attempt archive preserves existing v2 partitions,
-  original finished checksum and inventory. 61 storage tests; actual C244 replay
-  passes from 15.5 MB compressed / 180.0 MB logical, with 87.4 MB expanded archive
-  peak and 740.1 MB Python peak. All original files unchanged. Exact details and
-  commands remain in the existing evidence ledger and those immutable commits.
-
-## Next — Q04/Q05 closure
-
-1. C257 ordinary-reader/native-copy acceptance is complete. Next add a durable,
-   known-stopped retirement transaction: archive binding before deletion,
-   preserve public files and every failed/active output, recover interruption and
-   repetition without native retry or changed selection. Measure whole-request
-   disk, temporary expansion and memory; validate representative campaign behavior.
-2. Qualify the C253 selected-model AutoSol route natively. Interrupted AutoSol
-   result saving retains outputs without automatic adoption; keep that separate
-   from existing preparation-publication recovery. Reconcile earlier evidence
-   rather than duplicating preparation, alternative or campaign machinery.
-3. Q06 actual complete-restraint diffraction refinement, then Q07 combined and
-   held-out examples. Q08–Q14 retain earlier chemistry learning. The queue's
-   supported Q04/Q05 estimate remains roughly 2–5 implementation patches plus
-   native/integration validation; prerequisites are not automatic closure.
-4. Q16 includes the final AutoPhase naming change under the pinned audit, full
-   regression, integration review and honest release scope. No merge authorized.
+The native-copy probe began before the final archive-sync/completion-intent
+hardening; the latter has explicit failure controls and the final relocated positive
+control above. It changes no chemistry, archive bytes, selection or public paths.
+No native process remains. Exact commands/hashes/sequence:
+`working_attempt_retirement_2026_11_13` in the existing ledger. Runners/summaries
+are in the everyday checkout's ignored `branch-artifacts/cedar/runners/c258_*`.
+Generated scientific data and runners are deliberately excluded from Git.
 
 No full suite this pass. Last wholly green full: **C220/583d30df, 9,178 tests +
 276 subtests**. Full integration validation remains required before merge.
-Phenix evidence uses **2.2.1-6174 / dispatcher 2.2.1**. C252 preparation observations/
-maps are synthetic fixtures; neither C252 nor archive reads prove diffraction
-refinement. Scientific data/runners remain local, excluded from Git.
+Archived Phenix evidence uses **2.2.1-6174 / dispatcher 2.2.1**; no new Phenix/Coot
+execution or diffraction-refinement claim belongs to this storage checkpoint.
 
-Linden works on Willow/Pine TopoStitch; no cross-branch edits. Protected
-NASolve-cedar and everyday NASolve/pine science, patches and environments remain
-untouched. Continue on NASolve-c96/cedar; no new branch. Keep this handoff short;
-use the existing ledger and immutable history for prior milestone details.
+## Next — Q04/Q05 closure
+
+1. Connect successful-attempt storage to normal callers without allowing optional
+   storage failure to discard usable science. Check campaign ownership/receipt
+   boundaries first. Complete representative campaign disk/temporary-memory
+   acceptance. Reuse C258; do not rebuild transport, reader or retirement machinery.
+2. Qualify C253 chosen-model AutoSol natively. The earlier real DiU result has
+   anomalous data and a matching 1AP/5IU construct; its original AutoSol took 18.29 s.
+   Prepare a fresh owned control from its exact upstream Phaser result/inputs,
+   preserving all originals, and obtain genuinely checked preparation before
+   chosen-model phasing. Do not use the C252 synthetic reflection/map fixture as
+   native phasing evidence. Interrupted AutoSol result saving remains distinct from
+   preparation publication recovery: outputs are kept, not automatically adopted.
+3. Q06 actual complete-restraint diffraction refinement, then Q07 combined and
+   held-out examples. Q08–Q14 retain earlier chemistry learning. The supported
+   Q04/Q05 estimate is now roughly **1–3 further implementation patches plus
+   native/integration validation**, not the entire catalogue programme.
+4. Q16 includes final AutoPhase naming under the pinned audit, full regression,
+   integration review and honest release scope. No merge authorized.
+
+Earlier this pass: C253/f337660 chosen-model AutoSol reference (native acceptance
+open); C254/39c5ae0 bounded outer view; C255/aef7911 exact Alder HL-label fix;
+C256/ebc9ccf complete archive; C257/ecafc98 ordinary archive reads. Their exact
+validation remains in the ledger and immutable commits, not a second diary here.
+Linden works independently on Willow/Pine TopoStitch. Native audit-interface
+advice was shared locally, signed Rowan; no cross-branch or shared-environment edits.
+Protected NASolve-cedar and everyday NASolve/pine science, patches and environments
+remain untouched. Continue on NASolve-c96/cedar; no new branch.

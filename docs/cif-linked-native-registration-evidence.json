@@ -91924,5 +91924,122 @@
       "temporary_checkout_removed": true
     },
     "relocated_checkout_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python branch-artifacts/cedar/runners/c257_relocated_checkout.py"
+  },
+  "working_attempt_retirement_2026_11_13": {
+    "milestone": "C258",
+    "date": "2026-11-13",
+    "status": "EXPLICIT_WORKING_RETIREMENT_INTERRUPTION_RECOVERY_PASS",
+    "baseline_commit": "ecafc98",
+    "source_sha256": {
+      "src/nasolve/cif_attempt_retention.py": "a43ff055ff4a286c99ceaab2a8c8a036d6807b631dad09f223269f977f4d92fc"
+    },
+    "new_test_sha256": "d1df1afe8aae1987cb636701128cf95e85d8ee373be4363e6ae67ee6947570c1",
+    "preserved_retention_test_sha256": "e6ea3059ec70f44d174a210998d3761e41989ada5a5531b649d1af74acce4c32",
+    "prior_work": [
+      "Existing request lock and stopped-owner protocol",
+      "C256 exact partitioned archive",
+      "C257 ordinary history/public path integration"
+    ],
+    "before": "C257 has archive preparation/read but no product source retirement. During C258 development the concrete late-archive-change regression failed: deletion completed after the archive changed. Final guards refuse before removal.",
+    "after": "Explicit retirement requires qualified public runtime and completely stopped successful native work. Durable archive/intent precede checksum-checked removal, public/original/shared/failed work remains, interrupted cleanup reads and resumes without native retry, completion binds intent and exact counts.",
+    "schema": {
+      "policy_id": "cif-complete-attempt-working-retirement-v1",
+      "schema_version": 1,
+      "records": [
+        "retention/attempt-NNNN/retire-intent.json",
+        "retention/attempt-NNNN/retired.json"
+      ],
+      "scientific_identity_or_schema_change": false
+    },
+    "focused": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_attempt_retirement.py tests/test_cif_attempt_retention.py",
+        "result": "35 passed in 233.28 s (initial 13 retirement + 22 archive-reader cases)"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_attempt_retirement.py -k 'flush_failure or archive_changed_after or changed_working_file'",
+        "result": "3 passed, 11 deselected in 21.64 s (one new case, two repeated after guard changes)"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_attempt_retirement.py -k changed_intent_after",
+        "result": "1 passed, 14 deselected in 6.54 s"
+      }
+    ],
+    "relocated_checkout": {
+      "status": "RELOCATED_CHECKOUT_AND_REQUEST_PASS",
+      "scope": "One targeted fully retired exact-result and idempotent storage recovery test, from copied code relocated after its temporary original checkout disappeared. Request also relocated; both old temporary paths absent. No source checkout or original scientific data removed.",
+      "elapsed_seconds": 11.863448833988514,
+      "pytest_output": ".                                                                        [100%]\n1 passed, 15 deselected in 9.93s",
+      "temporary_checkout_removed": true
+    },
+    "relocated_checkout_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python branch-artifacts/cedar/runners/c258_relocated_checkout.py",
+    "native_copy_read": {
+      "status": "INTERRUPTED_NATIVE_EVIDENCE_RETIREMENT_AND_READ_PASS",
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+      },
+      "removed_before_interruption": 17,
+      "retirement": {
+        "schema_version": 1,
+        "policy_id": "cif-complete-attempt-working-retirement-v1",
+        "intent_sha256": "ffbceee99e422704ca985727b40aedb8f140054135e8a6757e80b2f5a13bf6c2",
+        "retired_files": 604,
+        "retired_logical_bytes": 163424933,
+        "record_sha256": "3b8f9f929cd5798b8ae3660b9afc8c25a5671eae644c3ac14759396fcf510480"
+      },
+      "archive": {
+        "path": "evidence.zip",
+        "sha256": "681f25bb242087d9b0ee755bc4f2115123f20ead0134a6ab83e8b64b7a7a02a0",
+        "size": 15518933
+      },
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "phils": 5,
+      "dictionaries": 2,
+      "returned_existing_paths": 51,
+      "read_only_inventory_unchanged": true,
+      "whole_request_bytes": 33661526,
+      "whole_request_files": 98,
+      "original_request_files_unchanged": 698,
+      "original_request_reads_forbidden": true,
+      "subprocess_execution_forbidden": true,
+      "source_bytes": 181566343,
+      "temporary_expansion_peak_bytes": 87440990,
+      "temporary_expansion_limit_bytes": 134217728,
+      "runtime_depth_peak": 2,
+      "maximum_resident_bytes": 752664576,
+      "elapsed_seconds": 527.3286650410155,
+      "scope": "Actual C244 native evidence copied to a fresh temporary request. Product retirement deliberately interrupted after 17 duplicate removals; ordinary exact read succeeds while partial, then explicit product retirement resumes and ordinary exact read succeeds after completion. Same public model/restraints and all original files preserved. No native execution, cleanup of originals or diffraction-refinement claim.",
+      "temporary_copy_removed": true
+    },
+    "native_copy_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src .venv/bin/python branch-artifacts/cedar/runners/c258_ordinary_archive_read.py",
+    "validation_sequence": "Native-copy worker started before final archive-recovery fsync, changed-size and completion-intent guards. Final source has targeted negative controls plus the fully retired moved-checkout/moved-request positive control. These guards change no archive bytes, scientific inputs, selection or returned paths.",
+    "full_suite": false,
+    "last_full_tested": "C220/583d30df: 9178 tests + 276 subtests",
+    "compatibility": "Explicit current-v2-owner API only, no automatic caller activation. Old readers reject new storage receipts. Original scientific records and untouched requests unchanged. Failed/unknown/unqualified native work stays unpacked; partial unpublished archives remain preserved/refused.",
+    "remaining": "Ordinary/campaign storage integration with nonfatal optional failure, representative campaign resource acceptance, Q05 selected-model native AutoSol, Q06 refinement and final full integration.",
+    "artifacts": "Code, regression and compact evidence metadata committed. Original scientific files preserved. All new native-evidence test copies removed; runners/summaries remain local and excluded from Git.",
+    "local_evidence": {
+      "c258_ordinary_archive_read.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c258_ordinary_archive_read.py",
+        "sha256": "a9afa854c17e3dd566f1a6f446525376339c31d4ef64c3753eb6bbce0d0f1dc9"
+      },
+      "c258_ordinary_archive_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c258_ordinary_archive_summary.json",
+        "sha256": "bb3ebbcddfd771e69eecab929adbe228008b09d6af068e955610294ab3de7aef"
+      },
+      "c258_relocated_checkout.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c258_relocated_checkout.py",
+        "sha256": "1430185ba3010313fc31380110f2eaa66bd78bcc8642c182de1b530fedc02648"
+      },
+      "c258_relocated_checkout_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c258_relocated_checkout_summary.json",
+        "sha256": "1b918b8623200bb1448dd0e85fbaa81d1e00cbc2d8bb37b4266bfdeb15101ac4"
+      }
+    }
   }
 }
