@@ -142,7 +142,7 @@
 
 <a id="current-capability-boundary-c251"></a>
 
-## Current capability boundary (C254)
+## Current capability boundary (C255)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -950,6 +950,17 @@ the original dataset absent. These test orchestration and scientific comparison;
 they are not an actual Phenix AutoSol run or diffraction-refinement qualification.
 The existing C252 native preparation is also the compatibility control; exact
 commands/results are in `selected_autosol_reference_2026_11_13` in the evidence ledger.
+
+C255 additionally reuses Alder's already reviewed phase-label correction: save a
+complete exact HL quartet, in the existing AutoRefine preference order, rather
+than the anomalous observation quartet. Mixed/incomplete coefficient families
+refuse. The two functions and regression file match Alder `5561bfb`; C253's other
+AutoSol functions stay unchanged. Actual Phenix 2.2.1-6174 MTZ inspection confirms
+HLAM/HLBM/HLCM/HLDM in the documented completed DiU result. Its historical report
+stored intensity labels and is preserved unchanged. This checks label discovery,
+not a new AutoSol/refinement execution or the pending selected-model native gate.
+AutoPhase naming remains final Q16 work; the machine-readable audit records the
+completed Cedar correctness reconciliation separately.
 
 ### Preserve newer checkpoint edits (C250)
 

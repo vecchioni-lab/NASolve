@@ -91605,5 +91605,75 @@
     ],
     "artifacts": "Only source/tests/docs committed. Both temporary probe archives and views removed; 116 original continuation files unchanged. Scientific evidence and runners remain local. No original files retired.",
     "last_full_suite": "C220/583d30df: 9178 tests + 276 subtests; current full regression explicitly deferred by Simon"
+  },
+  "phase_label_reconciliation_2026_11_13": {
+    "milestone": "C255",
+    "date": "2026-11-13",
+    "status": "EXACT_ALDER_REUSE_AND_NATIVE_MTZ_READ_PASS",
+    "baseline_commit": "39c5ae0",
+    "source_commit": "5561bfb007c098f5d349b1f167e7461131593696",
+    "changed_symbols": [
+      "_hl_labels",
+      "_discover_refinement_data"
+    ],
+    "source_sha256": {
+      "src/nasolve/autosol.py": "ef353e4a9e83ae7bf8a4e7e188cf853e866ad7e666fb03bf533bee115a728c81"
+    },
+    "regression_sha256": "bdf67164760faf2fa94a0cf96bd93b3a5ae47009ebda1834a8ddc659dc4f1697",
+    "reuse_checks": "Both function source segments and the entire regression file equal Alder; every other AutoSol function equals C253/f337660. No wholesale cherry-pick or naming/metal-GUI change.",
+    "before": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_phase_labels.py",
+      "result": "6 failed, 4 passed in 0.22 s; observation labels returned as phases and mixed families incorrectly accepted"
+    },
+    "after": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_phase_labels.py tests/test_autosol.py tests/test_autosol_selected_reference.py tests/test_autorefine.py",
+      "result": "89 passed + 15 subtests in 20.92 s",
+      "full_suite": false
+    },
+    "native_read": {
+      "status": "ACTUAL_DIU_HL_DISCOVERY_PASS",
+      "phenix_version": "2.2.1",
+      "installation_directory": "phenix-2.2.1-6174",
+      "execution": "Complete native phenix.mtz.dump read; no AutoSol, Coot or refinement execution",
+      "source_run": {
+        "anchor": "live_tests_directory",
+        "path": "full-auto-984f75d-kaxrtv9w/DiU/AutoMR/run_001"
+      },
+      "phase_file": {
+        "anchor": "run",
+        "relative_path": "AutoSol/AutoSol_run_1_/overall_best_refine_data.mtz",
+        "sha256": "d6cfe6a5642fa70c112d53304087e9a2c50d42b469b11b90bc2c34fb85d648c8"
+      },
+      "historical_saved_labels": [
+        "I(+)",
+        "SIGI(+)",
+        "I(-)",
+        "SIGI(-)"
+      ],
+      "current_discovered_labels": [
+        "HLAM",
+        "HLBM",
+        "HLCM",
+        "HLDM"
+      ],
+      "original_report_and_phase_bytes_unchanged": true,
+      "elapsed_seconds": 2.329886291990988
+    },
+    "native_read_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src .venv/bin/python branch-artifacts/cedar/runners/c255_native_hl_read.py > branch-artifacts/cedar/runners/c255_native_hl_read_summary.json",
+    "evidence": {
+      "c255_native_hl_read.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c255_native_hl_read.py",
+        "sha256": "362ec90a0ed79cd8ae869c437c66a2c278da9e1fa875ecd208cac1b214939897"
+      },
+      "c255_native_hl_read_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c255_native_hl_read_summary.json",
+        "sha256": "42f01fa6ced0e094135ddd3eaee14fbe78de3405b98b3d057aca6a2b2f6e2da4"
+      }
+    },
+    "compatibility": "No schema or existing-report migration. New reports carry actual HL coefficients; original MR input, chosen-model comparison, supported elements/symmetry and distance gates unchanged. AutoRefine already separately discovers actual phase labels.",
+    "remaining": "Q04 retention/inventory integration, native selected-reference acceptance, full integration regression and final Q16 AutoPhase naming remain open.",
+    "artifacts": "Code/regression and compact metadata committed. Native report/MTZ preserved; no new structure data or native stdout stored in Git."
   }
 }

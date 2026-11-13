@@ -1,10 +1,26 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C254. Active **cedar**, checkout NASolve-c96.
+Updated **2026-11-13**, C255. Active **cedar**, checkout NASolve-c96.
 The [queue](cif-doctor-completion-queue.md) owns work order; the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 Simon authorized this pass through **23:00 Europe/London**, focused tests only.
+
+## Latest integration correction — C255 exact phase labels
+
+C254 is committed/pushed as `39c5ae0`. C255 reuses only Alder `5561bfb`'s two
+reviewed HL-discovery functions and unchanged regression file. New phase
+references carry a complete HL coefficient family, not intensity labels; mixed
+families refuse. All other C253 AutoSol functions are unchanged. The final
+AutoPhase rename remains queued. The machine-readable audit now records this
+Cedar correctness reconciliation separately, without claiming other branches changed.
+
+Before: **6 failures / 4 passes** in the copied regression. After: **89 tests +
+15 subtests, 20.92 s** across phase labels, AutoSol, selected references and
+AutoRefine. Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** performs a complete
+MTZ-header read of the documented DiU result: **HLAM/HLBM/HLCM/HLDM**, 2.33 s.
+The old report's intensity-label list and the MTZ bytes/timestamp remain unchanged.
+No AutoSol/Coot/refinement rerun. Evidence: `phase_label_reconciliation_2026_11_13`.
 
 ## Latest completed step — C254 storage view
 
@@ -97,8 +113,8 @@ from Git; the ledger entry is `selected_autosol_reference_2026_11_13`.
    AutoSol connection needs native acceptance. Interrupted AutoSol result saving
    retains outputs but does not automatically adopt them; keep it separate from
    existing preparation-publication recovery. Reconcile C156/C170, C223–C225,
-   C248, C251–C253 rather than duplicating their machinery. The Alder HL-label
-   fix remains in the Q16 integration audit; do not copy its whole AutoSol module.
+   C248, C251–C255 rather than duplicating their machinery. Alder's HL-label fix
+   is now reconciled on Cedar; preserve it alongside C253 during Q16 integration.
 3. Q06 real complete-restraint diffraction refinement, then Q07 combined and
    held-out examples. The queue now allows roughly **2–5 further implementation
    patches plus validation** for supported Q04/Q05; storage remains uncertain.

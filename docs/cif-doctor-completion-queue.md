@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C254
+## Near-term closure estimate at C255
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -447,6 +447,10 @@ publication. No automatic campaign continuation or native refinement claim follo
 inputs and reconcile remaining caller/recovery acceptance. Interrupted AutoSol
 result publication preserves outputs but does not yet automatically adopt them;
 keep this distinct from the already implemented preparation-publication recovery.
+C255 has separately reconciled Alder's exact HL phase-label fix into Cedar, with
+unchanged native arguments and a real read of the documented DiU MTZ. This closes
+the known phase-label correctness discrepancy on Cedar, not the pending native
+selected-model acceptance or final AutoPhase naming task.
 For the anomalous-site connection, preserve these distinctions:
 
 - The original Phaser model remains the phasing input; changing it to the

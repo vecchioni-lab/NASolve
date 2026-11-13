@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reconcile exact AutoSol phase labels from Alder (C255)
+
+- Reuse Alder's reviewed complete-HL-quartet discovery and regression tests.
+  New AutoSol phase references record HLAM/HLBM/HLCM/HLDM, HLA/HLB/HLC/HLD,
+  or HL_A/HL_B/HL_C/HL_D, with the existing AutoRefine preference. Never mix
+  coefficient families or label anomalous observations as experimental phases.
+- Preserve Cedar's chosen-model reference/validation and native command arguments.
+  Historical reports are not rewritten. Actual Phenix 2.2.1-6174 MTZ inspection
+  confirms the documented completed DiU file contains HLAM/HLBM/HLCM/HLDM;
+  its historical report had stored intensity labels. No phasing/refinement rerun.
+- This is separate from the final AutoPhase naming task, which remains queued.
+
 ### Bound reconstruction of archived working evidence (C254)
 
 - Add an explicit root-only working-evidence read scope around the existing two

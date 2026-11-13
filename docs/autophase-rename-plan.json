@@ -178,7 +178,16 @@
       ],
       "regression": "tests/test_autosol_phase_labels.py",
       "finding": "Alder returns an exact complete HL quartet; other audited heads return anomalous observation labels into refinement_data_phase_labels.",
-      "action": "Reconcile as its own reviewed correctness change; preserve exact-quartet, family-priority and anomalous-observation checks. Do not blindly cherry-pick the entire mixed-purpose commit."
+      "action": "Reconcile as its own reviewed correctness change; preserve exact-quartet, family-priority and anomalous-observation checks. Do not blindly cherry-pick the entire mixed-purpose commit.",
+      "cedar_reconciliation": {
+        "status": "IMPLEMENTED_AND_FOCUSED_VALIDATED_C255",
+        "date": "2026-11-13",
+        "source_commit": "5561bfb007c098f5d349b1f167e7461131593696",
+        "method": "Reuse only the two named functions and unchanged exact regression file; preserve all other Cedar AutoSol functions from C253/f337660. No naming or metal-GUI changes.",
+        "validation": "89 tests + 15 subtests; complete native phenix.mtz.dump read on documented DiU output; see phase_label_reconciliation_2026_11_13 in the evidence ledger.",
+        "other_branches": "Historical affected_at_audit list is preserved; do not infer current Pine/Willow/main status.",
+        "remaining": "Carry both exact HL labels and Cedar chosen-reference checks through final Q16 branch reconciliation."
+      }
     },
     {
       "id": "checked_preparation_validation",
