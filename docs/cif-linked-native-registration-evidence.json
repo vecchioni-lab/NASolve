@@ -92041,5 +92041,70 @@
         "sha256": "1b918b8623200bb1448dd0e85fbaa81d1e00cbc2d8bb37b4266bfdeb15101ac4"
       }
     }
+  },
+  "native_selected_autosol_control_2026_11_13": {
+    "milestone": "C259",
+    "date": "2026-11-13",
+    "baseline_commit": "3d87abc",
+    "status": "NATIVE_PHASER_PASS_CHECKED_PREPARATION_BLOCKED_BEFORE_AUTOSOL",
+    "prior_work": [
+      "C188/C189 raw W B:1 missing-OP3 refusal and C80 explicit free-end fixture",
+      "C30 source-declared coordinate adapter, explicitly not independent ideal coordinates",
+      "C253 selected-model AutoSol and C255 exact HL family discovery"
+    ],
+    "native_versions": {
+      "phenix_installation": "phenix-2.2.1-6174",
+      "phenix_version": "2.2.1",
+      "coot_version": "1.3.3 (revision-count 0)\n[with python 3.14.6 embedded]\ngit commit: git-commit-unavailable\nBinary type: Darwin-MacOSX-26.5.2-arm64-gtk4\nEnabled: Enhanced-ligand-tools C++-11 Threads Boost-based-thread-pool MoleculesToTriangles GEMMI SQLite3 LibCurl"
+    },
+    "execution": "Complete fresh Phaser and Coot construction; acquisition stopped before eLBOW, ReadySet, checked publication or AutoSol. No refinement.",
+    "control": {
+      "scope": "Explicit software-test terminal state, not inferred DiU terminal chemistry",
+      "free_five_prime_sites": [
+        "A:1",
+        "B:1",
+        "C:8"
+      ],
+      "retained_phosphate": "D:1 original records byte-identical",
+      "original_data_and_models": "UNCHANGED",
+      "fresh_phaser_status": "MR_SUCCESS",
+      "tfz": 17.1,
+      "input_model_sha256": "0f1cf7b3a00982e5fa20c6dab07ddf76f1f3266510711b5034f308027351aaba"
+    },
+    "failure": {
+      "component": "1AP",
+      "source_authority": "CURATED",
+      "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+      "exception": "_UnsupportedSeed",
+      "message": "Missing or unrepresentable ideal x coordinate for exact atom N1",
+      "cause": "Curated source has complete chem_comp_atom.x/y/z, but source-native generation calls the stricter ideal-only seed adapter before creating candidate output. The earlier numerical-recovery adapter supports source-declared coordinates explicitly, but this ordinary acquisition route does not compose it.",
+      "scope": "No evidence that AutoSol itself failed; its native acceptance remains unexecuted. No relabeling, relaxed chemistry guard, catalogue edit or experimental-coordinate substitution."
+    },
+    "ownership": {
+      "returncode": 1,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "local_evidence": {
+      "historical_path": "/Users/svecchio/NASolve-live-tests/259_Cedar_selected-autosol-wxv04px_",
+      "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY; GENERATED_SCIENCE_EXCLUDED_FROM_GIT",
+      "files": {
+        "start.json": "1f56be3205ac344a90044e5950234b2fedc62261fc755760b24f89458c7bd89b",
+        "runner-pins.json": "7dab51f873582380903e33380f7149d2b5f3c62f75746d2454f452af5d2cd2c9",
+        "versions.json": "633a27ba0c9ce48e178200e7de421eec91b077ae251c393ce2915df9406c687c",
+        "terminal-fixture.json": "7f28865b0afe6b99b7a2116627964a64060554b3cdbb8ec9d14aa3780486c0d7",
+        "driver-result.json": "d8bd28acdde920d3399a76fe15e10425e76086fe3fba5fe99663e97b6314beef",
+        "failure.json": "7f3518413758921c8fecd116370e086c8c824bfdfbc728a9b381113721d1c3ed"
+      },
+      "complete_attempt_finished_sha256": "60c871a533ea9ecf73c7e8588533a23752b388dd381852c77e85562e49fbe4e4"
+    },
+    "preceding_controls": [
+      "Runner-only checksum API mistake: stopped before native execution",
+      "Raw DiU: known B:1 terminal-state refusal, preserved",
+      "Explicit fixture: ambiguous C_G basename preflight refusal, preserved; unique relative model path used in final control"
+    ],
+    "next": "Reconcile existing curated numerical input/source-coordinate adapter with ordinary acquisition under explicit source/recipe identity, then retry a fresh owned native control. Do not change source chemistry or rewrite stopped attempts.",
+    "tests": "No full suite; native diagnostic only. Prior focused code validation unchanged.",
+    "code_or_schema_change": false
   }
 }

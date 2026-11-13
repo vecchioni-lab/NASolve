@@ -9565,6 +9565,18 @@ No captured Python or new native process is executed.
 Native guessing stays disabled. Native energy resource files are not inventoried;
 current linked/model qualification and production PostMR adoption remain open.
 
+### Ordinary curated-source acceptance gap (C259)
+
+A fresh real-observation control passes Phaser and Coot construction, then stops
+before checked publication or AutoSol: curated 1AP supplies source-declared x/y/z,
+while the ordinary source-native generator requires CCD ideal coordinates. The
+older numerical-recovery adapter explicitly supports that distinction, but is not
+yet connected to ordinary acquisition. This is an integration limit, not permission
+to relabel coordinates as ideal, infer targets from a fitted model, or replace
+curated chemical state. Its exact evidence is
+`native_selected_autosol_control_2026_11_13` in the ledger. All failed outputs are
+preserved; native chosen-model AutoSol acceptance remains open.
+
 ## Generated numerical defects and explicit candidates
 
 The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident

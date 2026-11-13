@@ -31,7 +31,7 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. Reconcile the existing C30 adapter or qualified curated-input route with exact source/recipe identity; no relabeling or chemistry bypass. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. Connect the storage operation to normal callers without blocking usable science; complete campaign-scale disk/temporary-memory acceptance. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 

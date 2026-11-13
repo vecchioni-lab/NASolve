@@ -1,10 +1,37 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C258. Active **cedar**, checkout NASolve-c96.
+Updated **2026-11-13**, C259 native diagnostic complete; C260 caller integration next. Active **cedar**, checkout NASolve-c96.
 The [queue](cif-doctor-completion-queue.md) owns work order; the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 Simon authorized this pass through **23:00 Europe/London**, focused tests only.
+
+## Latest native control — C259 blocked before phasing
+
+C258 is committed/pushed as `3d87abc`. The fresh C259 control completed Phaser
+(MR_SUCCESS, TFZ 17.10) and Coot construction, then stopped at curated 1AP acquisition:
+`_ideal_seed` requires CCD ideal coordinates, while this source supplies x/y/z.
+The C30 numerical-recovery adapter already distinguishes source-declared coordinates
+from independent ideal coordinates; ordinary acquisition has not connected that
+case. Do not silently relabel coordinates or change curated chemistry to pass.
+No checked checkpoint, ReadySet, AutoSol or diffraction refinement was reached.
+
+Raw DiU first reproduced the known C188/C189 B:1 terminal-phosphate refusal. The
+fresh benchmark used the explicit C80-style free-end fixture at A:1/B:1/C:8,
+retaining D:1's original declared phosphate exactly. This is a software-test state,
+not a claim about DiU terminal chemistry. All donor inputs and partial outputs remain.
+The final owner confirms stopped processes and unchanged source code. Local evidence:
+`/Users/svecchio/NASolve-live-tests/259_Cedar_selected-autosol-wxv04px_`;
+`/private/tmp/c259-root.txt` points there. Exact hashes/versions and earlier refused
+controls are in ledger `native_selected_autosol_control_2026_11_13`.
+
+## Active next bounded step — C260 ordinary storage integration
+
+Reuse C258 retirement after successful checked publication, without allowing optional
+storage failure to discard usable science. Inspect campaign receipt ownership and
+ordinary/alternative publication first; retain read-only inspection and all failed
+work. No second archive/owner/chemical validator. Curated-source acquisition above
+is a distinct, recorded Q05 acceptance prerequisite, not a silent detour.
 
 ## Latest completed step — remove reproducible successful working copies safely
 
