@@ -21,7 +21,7 @@ exact choice as a review checkpoint for inspection and trial refinement, includi
 a checked fallback. Schema-2 campaign recipes can explicitly choose the same
 route and preserve its genuine receipt. An interrupted save can finish without
 rebuilding the model; campaign retry preserves the old run and starts fresh.
-Q04/Q05 still need direct PostMR/campaign activation of automatic plane support and later preparation children
+Q04/Q05 still need truthful publication notes, broader recovery coverage and later preparation children
 before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
@@ -40,7 +40,7 @@ for types with missing plane coverage, and feeds the existing repair machinery.
 choice. Reading or continuing the exact request reports which components obtained
 support, needed none within the supported screen, or had a classified failed
 generation. Obtaining support alone does not prove the selected restraints adopted
-it. Direct PostMR/campaign forwarding remains open. It is not a PDU-name rule.
+it. Checked PostMR and schema-2 campaigns can now request the same support. It is not a PDU-name rule.
 A fresh native control obtains support and preserves explicit C5 coverage through
 ReadySet. A second deliberately times out generation, excludes its partial output,
 and still reaches ReadySet through independently qualified repair, with missing C5
@@ -403,8 +403,9 @@ route additionally owns dictionary generation/repair and ReadySet verification;
 C242 carries supplied completed plane support through that route. C243 separately
 checks chemical-rejection evidence; that read does not select a fallback. C244
 connects graph-selected support generation inside an explicitly enabled complete
-request. C245 connects it to `prepare-run` and exact-result notes; direct
-PostMR/campaign activation and real refinement remain separate gates.
+request. C245 connects it to `prepare-run` and exact-result notes; C246 connects
+explicit checked PostMR/campaign activation. Publication notes, final selected-plane
+coverage and real refinement remain separate gates.
 
 | Audit point | What is inspected | Why it matters |
 | --- | --- | --- |

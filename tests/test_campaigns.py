@@ -65,11 +65,20 @@ class CampaignTests(unittest.TestCase):
         self.state_path().write_text(json.dumps(state))
 
     def test_checked_preparation_choice_survives_frozen_plan_relocation(self):
+        self.check_preparation_choice_relocation(False)
+
+    def test_automatic_plane_choice_survives_frozen_plan_relocation(self):
+        self.check_preparation_choice_relocation(True)
+
+    def check_preparation_choice_relocation(self, automatic):
         self.dataset("sample")
-        self.write_preset(extra="[postmr]\nchecked_preparation = true\n")
+        self.write_preset(extra="[postmr]\nchecked_preparation = true\n" + ("automatic_plane_support = true\n" if automatic else ""))
         self.preset.write_text(self.preset.read_text().replace("schema_version = 1", "schema_version = 2"))
         plan = self.plan()
-        assert plan["preset"]["policy"]["postmr"] == {"modified_pairs_only": False, "checked_preparation": True}
+        expected = {"modified_pairs_only": False, "checked_preparation": True}
+        if automatic:
+            expected["automatic_plane_support"] = True
+        assert plan["preset"]["policy"]["postmr"] == expected
         frozen = self.state_path().read_bytes()
         original = self.root
         self.root = self.base / "relocated"
@@ -81,7 +90,7 @@ class CampaignTests(unittest.TestCase):
         assert status["integrity"] == "OK"
         assert self.state_path().read_bytes() == frozen
         saved = json.loads(frozen)
-        assert saved["preset"]["policy"]["postmr"]["checked_preparation"] is True
+        assert saved["preset"]["policy"]["postmr"] == expected
 
     def test_plans_without_subprocesses_dataset_writes_or_workspace_selection(self):
         dataset = self.dataset("QiC")

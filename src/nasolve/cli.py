@@ -158,6 +158,8 @@ def build_parser() -> argparse.ArgumentParser:
     postmr.add_argument("--coot", help="one-run Coot executable override")
     postmr.add_argument("--checked-preparation", action="store_true",
                         help="check/repair dictionaries and save the exact model/restraints as a review checkpoint; retain independently checked fallbacks")
+    postmr.add_argument("--automatic-plane-support", action="store_true",
+                        help="request bounded source-checked support for missing planes; requires --checked-preparation")
     postmr.add_argument("--restraint-scope", choices=("all",),
                         help="use NARestraints for model-derived pairs and all chain-order stacks")
     postmr.add_argument(
@@ -861,6 +863,8 @@ def _automr(args: argparse.Namespace) -> int:
 
 def _postmr(args: argparse.Namespace) -> int:
     try:
+        if getattr(args, "automatic_plane_support", False) and not getattr(args, "checked_preparation", False):
+            raise PostMRPreparationError("--automatic-plane-support requires --checked-preparation")
         config = load_config()
         run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
@@ -886,6 +890,7 @@ def _postmr(args: argparse.Namespace) -> int:
             restraint_scope=args.restraint_scope,
             allow_unreviewed_backbone=args.allow_unreviewed_backbone,
             checked_preparation=getattr(args, "checked_preparation", False),
+            **({"automatic_plane_support": True} if getattr(args, "automatic_plane_support", False) else {}),
         )
     except (
         ConfigError,

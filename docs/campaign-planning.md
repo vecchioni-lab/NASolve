@@ -458,6 +458,15 @@ Planning freezes this boolean with the recipe. Omission retains legacy PostMR;
 older recipes and their fingerprints are unchanged. Schema 1 refuses the new
 field. Older stage implementations refuse this expanded PostMR policy.
 
+For bounded missing-plane support (C246), add `automatic_plane_support = true`
+to that same `[postmr]` table. It requires `checked_preparation = true` and a real
+boolean in schema 2. The choice is frozen before execution; omission leaves old
+policies and hashes unchanged. Explicit false is retained in the campaign policy
+but does not enable support in the preparation request. Older readers reject the
+new optional field. Continuation uses the saved request; it cannot change this
+choice or repeat construction. Generated support alone does not establish final
+plane adoption or diffraction-refinement success.
+
 The campaign reuses the existing constructor, bounded request owner and publisher.
 It records the exact model/restraints, genuine preparation receipt and actual
 ReadySet outcome. A checked fallback remains a REVIEW checkpoint available for
@@ -469,5 +478,5 @@ a completed receipt stays awaiting inspection; explicit campaign retry starts a
 fresh numbered run only after prior processes are known stopped. The standalone
 exact preparation continuation/publication commands can recover the preserved run,
 but do not retrospectively complete its campaign job. No new in-place retry or
-adoption of manually recovered work is enabled. Later preparation children and
-general chemical-plane repair remain open.
+adoption of manually recovered work is enabled. Later preparation children, broader
+plane-recovery coverage and complete-restraint refinement remain open.

@@ -31,9 +31,9 @@ Qualified component numerics can be stored locally and reused before ReadySet;
 cache acquisition and supported connected-base construction are ordinary runtime
 features. The opt-in engine below also attempts supported graph repairs and
 selects independently qualified preparation. General modified-sugar mutation,
-direct PostMR/campaign activation of automatic plane support and full refinement
-qualification remain separate work. The checked command
-`nasolve cif-doctor prepare-run RUN --automatic-plane-support` obtains missing supported plane evidence
+full refinement qualification remains separate work. Automatic plane support
+can be requested explicitly through checked PostMR or schema-2 campaigns. The checked command
+`nasolve postmr RUN --checked-preparation --automatic-plane-support` obtains missing supported plane evidence
 through the existing bounded owner and reports its generation outcome.
 
 The opt-in [complete-request engine](docs/cif-doctor.md#complete-request-continuation-and-recovery-c184)

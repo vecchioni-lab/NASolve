@@ -468,6 +468,8 @@ def execute_stage(
             modified_pairs_only=preparation_policy["modified_pairs_only"],
             **({"checked_preparation": preparation_policy["checked_preparation"]}
                if "checked_preparation" in preparation_policy else {}),
+            **({"automatic_plane_support": preparation_policy["automatic_plane_support"]}
+               if "automatic_plane_support" in preparation_policy else {}),
             allow_mr_review=mr_trial,
         )
         stage_directory = result.postmr_directory

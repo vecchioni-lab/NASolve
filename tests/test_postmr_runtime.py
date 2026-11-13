@@ -172,3 +172,44 @@ def test_checked_constructor_never_rebuilds_an_existing_partial_postmr(tmp_path)
         with pytest.raises(PostMRPreparationError,match='already exists'):
             prepare_postmr(run,ready,phenix_installation=sdk,data_root=data,checked_preparation=True)
     assert (evidence.read_bytes(),evidence.stat().st_mtime_ns)==before
+
+
+@pytest.mark.parametrize('enabled', [False, True])
+def test_direct_postmr_forwards_automatic_plane_support_to_existing_owner(tmp_path, monkeypatch, enabled):
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    result = prepare_postmr(run, ready, phenix_installation=sdk,
+        checked_preparation=True, automatic_plane_support=enabled)
+    assert calls[0][1].get('automatic_plane_support', False) is enabled
+    if not enabled:
+        assert 'automatic_plane_support' not in calls[0][1]
+    assert [name for name, _ in calls] == ['construct', 'execute']
+    assert reads == [1] and result.model_path == exact['runtime']['model']
+
+
+@pytest.mark.parametrize('value,checked', [(True, False), (1, True), ('true', True), (None, True)])
+def test_invalid_plane_support_refuses_before_preparation(tmp_path, value, checked):
+    run, ready, sdk, data = setup(tmp_path)
+    before = (run/'report.json').read_bytes()
+    with patch('nasolve.postmr._selected_postmr_environment', side_effect=AssertionError('No tool setup')):
+        with pytest.raises(PostMRPreparationError, match='automatic_plane_support'):
+            prepare_postmr(run, ready, phenix_installation=sdk,
+                checked_preparation=checked, automatic_plane_support=value)
+    assert not (run/'PostMR').exists() and (run/'report.json').read_bytes() == before
+
+
+def test_postmr_plane_support_cli_reaches_existing_owner(tmp_path, monkeypatch, capsys):
+    from nasolve.cli import main
+    from nasolve.config import AppConfig
+    from nasolve.coot_runtime import CootDiscoveryError
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    with patch('nasolve.cli.load_config', return_value=AppConfig()), patch('nasolve.cli.save_config'), patch('nasolve.cli.discover_phenix', return_value=sdk), patch('nasolve.cli.remember_phenix'), patch('nasolve.cli.discover_coot', side_effect=CootDiscoveryError('absent')):
+        assert main(['postmr', str(run), '--checked-preparation', '--automatic-plane-support']) == 0
+    assert calls[0][1]['automatic_plane_support'] is True
+    assert reads == [1] and 'POSTMR_READY' in capsys.readouterr().out
+
+
+def test_postmr_plane_support_cli_requires_checked_route_before_config(capsys):
+    from nasolve.cli import main
+    with patch('nasolve.cli.load_config', side_effect=AssertionError('No configuration writes or discovery')):
+        assert main(['postmr', '--automatic-plane-support']) == 2
+    assert 'requires --checked-preparation' in capsys.readouterr().err

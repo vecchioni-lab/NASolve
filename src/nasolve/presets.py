@@ -256,7 +256,7 @@ def load_preset(source: str | Path = "5w6w") -> ProjectPreset:
             continue
         allowed = set(defaults) | ({"pair"} if name == "automr" else set())
         if name == "postmr":
-            allowed.add("checked_preparation")
+            allowed.update({"checked_preparation", "automatic_plane_support"})
         _unknown_keys(supplied, allowed, name)
         resolved = {**defaults, **supplied}
         if (name == "autosol" and workflow["mode"] == "full-auto"

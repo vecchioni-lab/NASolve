@@ -35,8 +35,8 @@ proof (C228–C239) and automatic support ownership (C244). Do not rebuild them.
 The initial publisher deliberately refuses an already adopted run; later child
 publication is real remaining work. C245 now forwards the option through
 prepared/ordinary intake and `prepare-run`,
-and projects generation outcomes on exact readback. Direct PostMR/campaign
-forwarding and publication display still need that connection. Generation notes
+and projects generation outcomes on exact readback. C246 connects explicit checked
+PostMR and frozen campaign forwarding. Publication display remains next. Generation notes
 do not yet establish final plane adoption in the selected restraints.
 Storage is already Q04 acceptance, not an added chemistry feature. Historical
 workstation archiving is separate from the maintained runtime retirement policy.
@@ -53,7 +53,7 @@ explicitly reviewed support scope; neither this estimate nor Q05 authorizes a me
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
-| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition; C245 connects prepare-run and result notes. Finish direct PostMR/campaign activation and recovery coverage. |
+| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition; C245 connects prepare-run and result notes; C246 connects explicit checked PostMR/campaign forwarding. Finish publication notes, selected-plane reporting and broader recovery coverage. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. Define later preparation children without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
@@ -65,7 +65,7 @@ explicitly reviewed support scope; neither this estimate nor Q05 authorizes a me
 | **Q13 — preserve chemical identity** | Keep hydrogens, charge, phosphates and attachment changes chemically justified. | Resolve ambiguous source states explicitly; a prettier geometry cannot authorize different chemistry. |
 | **Q14 — make sure Doctor catches real errors** | Test broken examples and sound examples that should be left alone. | Retain reproducible challenge inputs and false-alarm controls, with unavailable historical inputs stated honestly. |
 | **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF after the behavior is integrated. |
-| **Q16 — finish the branch cleanly** | Check Cedar as part of NASolve, then review the proposed integration into pine/main. | Full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
+| **Q16 — finish the branch cleanly** | Finish with the AutoPhase naming/compatibility change, then check Cedar as part of NASolve and review integration into pine/main. | Preserve Phenix AutoSol calls and old runs; follow the [machine-readable rename audit](autophase-rename-plan.json), then full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
 
 ### The next small steps
 
@@ -81,9 +81,9 @@ explicitly reviewed support scope; neither this estimate nor Q05 authorizes a me
    through the existing repair request, including real success and stopped-native
    fallback. C242 carries supplied support through the complete request/ReadySet.
    C244 obtains missing support through the existing outer owner when explicitly
-   enabled, with shared deadlines and unchanged storage bounds. Finish ordinary
-   PostMR/campaign activation and negative/recovery coverage. C245 now connects
-   prepare-run and per-component generation notes. Preserve existing ring planes;
+   enabled, with shared deadlines and unchanged storage bounds. C245 connects
+   prepare-run and per-component generation notes; C246 connects explicit checked
+   PostMR/campaign forwarding. Finish publication notes and broader recovery coverage. Preserve existing ring planes;
    PDU and 5PC are controls, not name-based switches.
 4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
    results to close the relevant chemistry jobs, rather than adding a new queue.
@@ -98,8 +98,8 @@ plane: near-planar coordinates alone do not prove the restraint is adequate.
 C207–C216 supply the general mutation/plane checks and PDU/5PC controls; combining
 the plane checks into ordinary repair now works for explicitly supplied owned
 support, including the complete request/ReadySet at C242. C244 adds explicit
-automatic acquisition; C245 adds prepare-run and result notes. Direct
-PostMR/campaign activation, wider recovery coverage and
+automatic acquisition; C245 adds prepare-run and result notes; C246 adds explicit
+checked PostMR/campaign forwarding. Publication notes, wider recovery coverage and
 safe working-file retirement remain work. DP's ambiguous correspondence,
 source-H questions and PDU numerical targets remain visible limits.
 
@@ -184,8 +184,9 @@ ordinary adoption is Q05 and the actual refinement consumer is Q06.
 **Open overall. C220 supplies the explicit preparation handoff; C223–C224 carry
 it into an initial checkpoint and opt-in ordinary PostMR; C225 adds frozen campaign
 entry. C244 adds explicit automatic support acquisition in the complete API.
-C245 connects prepared/ordinary intake and prepare-run. Direct PostMR/campaign
-forwarding, selected-adoption reporting and default-route enablement remain unfinished.**
+C245 connects prepared/ordinary intake and prepare-run; C246 adds explicit checked
+PostMR/campaign forwarding. Publication notes, selected-adoption reporting and
+default-route enablement remain unfinished.**
 In lab terms: preserve the intended molecule, get a checked model/restraint set,
 and resume interrupted preparation without rebuilding or damaging earlier work.
 
@@ -229,7 +230,8 @@ Remaining acceptance:
    support through the complete request's existing generation owner when explicitly
    enabled, with durable child identity, shared deadlines and unchanged storage
    limits. C245 adds prepared/ordinary intake, prepare-run and generation notes.
-   Complete direct PostMR/campaign forwarding and wider recovery coverage. C240
+   C246 adds explicit checked PostMR/campaign forwarding. Complete publication notes
+   and wider recovery coverage. C240
    verifies a launched stopped negative generation without admitting partial output;
    C241 preserves its optional recipe flag through existing acquisition identity.
    Reuse these and the existing graph screen/narrow candidate. Do not add another
@@ -293,7 +295,8 @@ source/recipe/child identity, one numbered generation attempt per needed type,
 shared time/attempt allowances and separately qualified handling of classified
 optional failure. Unknown/malformed ownership cannot authorize that fallback.
 C245 freezes/forwards the option through prepared/ordinary intake and prepare-run.
-Direct PostMR/campaign entry and selected-adoption reporting still need connection;
+C246 connects explicit checked PostMR/campaign entry. Publication notes and
+selected-adoption reporting still need connection;
 current absent intent must keep its meaning. Finish recovery coverage before Q04 closure.
 C232 already permits an actual parent grant below the frozen generation maximum.
 C240 proves exact launched negative generation; C241 removes the acquisition
@@ -689,6 +692,23 @@ runners under the [branch-artifact policy](collaboration.md#branch-artifact-arch
 before retiring branches/worktrees. Inventory first; do not clean unrelated runs,
 old environments or user material. Keep older readers/receipts and documented
 migration behavior. This queue does not authorize a merge.
+
+#### Final implementation task — call the NASolve workflow AutoPhase
+
+**Queued, not implemented; 2026-11-13.** After the agreed Cedar chemistry,
+consumer and reporting work, rename the public NASolve workflow **AutoPhase**,
+explicitly described as using **Phenix AutoSol**. This is the last implementation
+task in Q16, followed by final combined-source validation and merge review;
+it does not interrupt Q04/Q05 or authorize a merge.
+
+The [machine-readable compatibility audit and plan](autophase-rename-plan.json)
+pins the four audited branch heads, source boundaries, synthetic check and
+acceptance criteria. Add public aliases through the existing implementation;
+retain `nasolve autosol`, `phenix.autosol`, native `autosol.*` settings and existing
+saved run/campaign identities. No bulk replacement or historical-run migration.
+Preserve both Alder's exact HL phase-label fix and Cedar's checked-preparation
+validation; recheck branches before implementation and reconcile correctness
+separately from naming. An on-disk/schema rename is optional later work.
 
 ### Deferred extensions — retained, not hidden release requirements
 

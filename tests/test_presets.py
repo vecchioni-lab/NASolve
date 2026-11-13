@@ -294,3 +294,24 @@ def test_checked_preparation_refuses_unversioned_or_nonboolean_policy(tmp_path, 
     text = MINIMAL.replace("schema_version = 1", f"schema_version = {schema}")
     with pytest.raises(PresetError):
         load_preset(write_preset(tmp_path, text + f"[postmr]\nchecked_preparation = {value}\n"))
+
+
+@pytest.mark.parametrize('enabled', [False, True])
+def test_automatic_plane_support_frozen_policy_is_explicit(tmp_path, enabled):
+    text = MINIMAL.replace('schema_version = 1', 'schema_version = 2')
+    path = write_preset(tmp_path, text + '[postmr]\nchecked_preparation = true\nautomatic_plane_support = ' + str(enabled).lower() + '\n')
+    preset = load_preset(path)
+    assert preset.to_dict()['postmr'] == {'modified_pairs_only': False,
+        'checked_preparation': True, 'automatic_plane_support': enabled}
+    frozen = preset.config_sha256
+    path.write_text(text + '[postmr]\nchecked_preparation = true\n')
+    old = load_preset(path)
+    assert 'automatic_plane_support' not in old.to_dict()['postmr']
+    assert old.config_sha256 != frozen
+
+
+@pytest.mark.parametrize('schema,checked,value', [(1, 'true', 'true'), (2, 'false', 'true'), (2, 'true', '1'), (2, 'true', '"true"')])
+def test_invalid_automatic_plane_support_policy_refuses(tmp_path, schema, checked, value):
+    text = MINIMAL.replace('schema_version = 1', f'schema_version = {schema}')
+    with pytest.raises(PresetError):
+        load_preset(write_preset(tmp_path, text + f'[postmr]\nchecked_preparation = {checked}\nautomatic_plane_support = {value}\n'))

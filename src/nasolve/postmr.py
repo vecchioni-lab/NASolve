@@ -1892,6 +1892,7 @@ def prepare_postmr(
     *,
     phenix_installation: PhenixInstallation | None = None,
     checked_preparation: bool = False,
+    automatic_plane_support: bool = False,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
@@ -1910,6 +1911,10 @@ def prepare_postmr(
     """
     if type(checked_preparation) is not bool:
         raise PostMRPreparationError('checked_preparation must be a boolean')
+    if type(automatic_plane_support) is not bool:
+        raise PostMRPreparationError('automatic_plane_support must be a boolean')
+    if automatic_plane_support and not checked_preparation:
+        raise PostMRPreparationError('automatic_plane_support requires checked_preparation')
     options = dict(coot_executable=coot_executable, allow_mr_review=allow_mr_review,
         modified_pairs_only=modified_pairs_only, restraint_scope=restraint_scope,
         allow_unreviewed_backbone=allow_unreviewed_backbone, data_root=data_root,
@@ -1922,7 +1927,8 @@ def prepare_postmr(
         from .campaigns import CampaignError
         from .checkpoints import CheckpointError
         try:
-            return prepare_published_postmr(run_directory, phenix_installation, **options)
+            return prepare_published_postmr(run_directory, phenix_installation,
+                **({"automatic_plane_support": True} if automatic_plane_support else {}), **options)
         except (OSError, ValueError, CampaignError, CheckpointError) as exc:
             raise PostMRPreparationError(f'Checked preparation could not complete: {exc}') from exc
     return _prepare_postmr(run_directory, ready_set_executable,

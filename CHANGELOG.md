@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Request plane support through ordinary PostMR and campaigns (C246)
+
+- Add `postmr --checked-preparation --automatic-plane-support` and optional
+  schema-2 `[postmr] automatic_plane_support`. Both reach the existing bounded
+  request owner. Invalid types/combinations refuse before preparation or discovery.
+- Campaign plans freeze the explicit choice; absent settings leave old policy
+  hashes and request intent unchanged. Older readers reject the added optional
+  preset field. Existing runs/checkpoints need no migration.
+- Preserve partial work, exact-result publication, independently qualified
+  fallback and existing recovery. No chemical/default/native-command changes;
+  generation is not proof of final plane adoption or successful refinement.
+
+
 ### Request plane support through checked preparation and report its outcome (C245)
 
 - `cif-doctor prepare-run RUN --automatic-plane-support` and the prepared/ordinary

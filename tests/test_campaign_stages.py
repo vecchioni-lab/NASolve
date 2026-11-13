@@ -802,13 +802,16 @@ class CampaignStageTests(unittest.TestCase):
 
 @pytest.mark.parametrize("choice", ["verified_parent_runtime", "readyset_checked_model"])
 @pytest.mark.parametrize("mode", ["guarded", "full-auto"])
-def test_campaign_checked_postmr_keeps_exact_review_and_real_receipt(tmp_path, monkeypatch, choice, mode):
+@pytest.mark.parametrize("automatic", [None, False, True])
+def test_campaign_checked_postmr_keeps_exact_review_and_real_receipt(tmp_path, monkeypatch, choice, mode, automatic):
     from tests.test_postmr_runtime import checked_case
     from nasolve.checkpoints import read_registry, inherited_paths
     run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch, choice)
     policy = load_preset().to_dict()
     policy.update(schema_version=2, workflow={"mode": mode})
     policy["postmr"]["checked_preparation"] = True
+    if automatic is not None:
+        policy["postmr"]["automatic_plane_support"] = automatic
     attempt = tmp_path / "NASolveCampaign/jobs/postmr"
     attempt.mkdir(parents=True)
     with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
@@ -820,6 +823,7 @@ def test_campaign_checked_postmr_keeps_exact_review_and_real_receipt(tmp_path, m
     assert result["readyset_status"] == ("FAILED" if choice == "verified_parent_runtime" else "COMPLETED")
     assert result["preparation_mode"] == "checked"
     assert calls[0][0] == "construct" and calls[1][0] == "execute" and len(calls) == 2
+    assert calls[0][1].get("automatic_plane_support", False) is bool(automatic)
     assert reads == [1]  # Publication replays the proof once, no collector replay.
     assert (run / "PostMR/report.json").relative_to(tmp_path).as_posix() in result["artifacts"]
     assert (run / "PostMR/DictionaryEngine/request/attempts/attempt-0001/result.json").relative_to(tmp_path).as_posix() in result["artifacts"]
@@ -850,7 +854,7 @@ def test_campaign_unqualified_checked_postmr_preserves_attempt_without_legacy_re
     assert len(calls) == 2 and reads == [1]
 
 
-@pytest.mark.parametrize("defect", ["schema", "type", "unknown"])
+@pytest.mark.parametrize("defect", ["schema", "type", "unknown", "plane_schema", "plane_type", "plane_unchecked", "plane_missing_checked"])
 def test_campaign_rejects_invalid_preparation_choice_before_discovery(tmp_path, monkeypatch, defect):
     from tests.test_cif_postmr_publication import setup
     run, _, _ = setup(tmp_path, monkeypatch)
@@ -859,13 +863,20 @@ def test_campaign_rejects_invalid_preparation_choice_before_discovery(tmp_path, 
     if defect == "schema": policy["schema_version"] = 1
     if defect == "type": policy["postmr"]["checked_preparation"] = "true"
     if defect == "unknown": policy["postmr"]["retry_in_place"] = True
+    if defect.startswith("plane_"):
+        policy["postmr"]["automatic_plane_support"] = True
+    if defect == "plane_schema": policy["schema_version"] = 1
+    if defect == "plane_type": policy["postmr"]["automatic_plane_support"] = 1
+    if defect == "plane_unchecked": policy["postmr"]["checked_preparation"] = False
+    if defect == "plane_missing_checked": del policy["postmr"]["checked_preparation"]
     attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
     with patch("nasolve.campaign_stages.discover_phenix", side_effect=AssertionError("Invalid intent must not reach tools")):
         with pytest.raises(CampaignStageError):
             execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
 
 
-def test_campaign_checked_publication_interrupt_keeps_exact_attempt_for_existing_recovery(tmp_path, monkeypatch):
+@pytest.mark.parametrize("automatic", [False, True])
+def test_campaign_checked_publication_interrupt_keeps_exact_attempt_for_existing_recovery(tmp_path, monkeypatch, automatic):
     from tests.test_postmr_runtime import checked_case
     from tests.test_cif_postmr_publication import snapshot
     from nasolve.cif_postmr_publication import publish_checked_preparation
@@ -873,6 +884,7 @@ def test_campaign_checked_publication_interrupt_keeps_exact_attempt_for_existing
     run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
     policy = load_preset().to_dict(); policy["schema_version"] = 2
     policy["postmr"]["checked_preparation"] = True
+    policy["postmr"]["automatic_plane_support"] = automatic
     attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
     before = (run / "report.json").read_bytes()
     with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
@@ -888,4 +900,5 @@ def test_campaign_checked_publication_interrupt_keeps_exact_attempt_for_existing
         publish_checked_preparation(run, attempt_number=1)
     assert snapshot(run / "PostMR") == sealed
     assert len(calls) == 2
+    assert calls[0][1].get("automatic_plane_support", False) is automatic
     assert not (attempt / "run-report.json").exists()  # No completed campaign receipt.

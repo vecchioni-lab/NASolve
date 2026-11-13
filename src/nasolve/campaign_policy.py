@@ -56,7 +56,7 @@ def postmr_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
     """
     supplied = policy.get("postmr")
     if (not isinstance(supplied, dict)
-            or set(supplied) - {"modified_pairs_only", "checked_preparation"}
+            or set(supplied) - {"modified_pairs_only", "checked_preparation", "automatic_plane_support"}
             or type(supplied.get("modified_pairs_only")) is not bool):
         raise ValueError("Unsupported campaign PostMR policy")
     if "checked_preparation" in supplied:
@@ -64,6 +64,13 @@ def postmr_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
             raise ValueError("postmr.checked_preparation requires preset schema_version = 2")
         if type(supplied["checked_preparation"]) is not bool:
             raise ValueError("postmr.checked_preparation must be bool")
+    if "automatic_plane_support" in supplied:
+        if type(policy.get("schema_version")) is not int or policy["schema_version"] != 2:
+            raise ValueError("postmr.automatic_plane_support requires preset schema_version = 2")
+        if type(supplied["automatic_plane_support"]) is not bool:
+            raise ValueError("postmr.automatic_plane_support must be bool")
+        if supplied["automatic_plane_support"] and not supplied.get("checked_preparation", False):
+            raise ValueError("postmr.automatic_plane_support requires checked_preparation")
     return dict(supplied)
 
 

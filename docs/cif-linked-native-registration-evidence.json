@@ -90494,5 +90494,73 @@
       "No new Phenix/Coot/refinement or full suite; prior native records replayed read-only with only request-location adapter substituted"
     ],
     "static_review": "Changed Python AST/top-level duplicate checks, relative documentation targets and git diff --check; no new worker, test module or semantic redundancy certification"
+  },
+  "ordinary_campaign_plane_support_2026_11_13": {
+    "milestone": "C246",
+    "base_commit": "e7081d1394543dec5a6f405d699ff62d6fbb86d4",
+    "before": "Automatic plane support stopped at explicit preparation entry; ordinary PostMR and frozen campaign recipes could not request it.",
+    "after": "Explicit checked PostMR and schema-2 campaign policy forward the same choice to C244/C245 ownership and publication, preserving old defaults and hashes.",
+    "prior_work": [
+      "C244 existing bounded support owner",
+      "C245 strict frozen intake and generation notes",
+      "C224/C225 ordinary publication and campaign recovery"
+    ],
+    "source_sha256": {
+      "src/nasolve/postmr.py": "2ade12abb4b9d864bfbcb0d1e5bafc7ac098a84822dc14c054496a423fa2a5ab",
+      "src/nasolve/cli.py": "e0aeb2c2b993716678c7acc436cf28e64865c24a6c321eaeafe2fe5b463c091c",
+      "src/nasolve/campaign_policy.py": "5876a056a9bb1935a468792a181cf06f247a8864a8306b9c6a346856ecdb1f67",
+      "src/nasolve/campaign_stages.py": "1a26ce945dfd20cf832b05d2be33251b1fc030601fca57eeaa27d1506cc79e6f",
+      "src/nasolve/presets.py": "d52a0ebd9fcc6c055c1f632fd8d874989fe2b9bc53220ad5541eaa2807c06f5b"
+    },
+    "test_sha256": {
+      "tests/test_postmr_runtime.py": "371e40ceeb7fef3682a07c19dcbde20bf7089092de86e5c5bcc0980acc45f1ba",
+      "tests/test_presets.py": "1fd9fa00b08287d645b99c842ee3ca867188656fc3a3936a17d24c72bba07716",
+      "tests/test_campaigns.py": "2c9985ed49fc72d59756712108f24bf122ab51c71190eb8fd0f4bc16bd2206f1",
+      "tests/test_campaign_stages.py": "e3a2aae90e70a70716bdb036efb5866b73e821fb7f8df59f4a5e30c2c58d5601"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_postmr_runtime.py tests/test_presets.py tests/test_campaigns.py tests/test_campaign_stages.py -k \"automatic_plane or plane_support or campaign_checked_postmr_keeps\" --tb=short",
+        "result": "19 expected failures, 8 passed, 158 deselected before implementation in 3.41s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_postmr_runtime.py tests/test_presets.py tests/test_campaigns.py tests/test_campaign_stages.py tests/test_cif_ordinary_postmr.py tests/test_cif_postmr_request.py tests/test_cif_postmr_publication.py --tb=short",
+        "result": "298 passed, 47 subtests passed in 79.71s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_campaign_stages.py -k \"rejects_invalid_preparation or publication_interrupt\" tests/test_cif_ordinary_outcome.py --tb=short",
+        "result": "9 passed, 65 deselected in 0.95s; includes added campaign policy/interrupt controls, outcome module excluded by -k"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py workflow",
+        "result": "INCOMPLETE: sandbox run stopped after PermissionError (8 failed, 307 passed, 25 subtests in 151.77s); authorized rerun deliberately bounded after 457 passed, 25 subtests in 403.53s. Neither is a workflow-profile pass."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py smoke",
+        "result": "139 passed, 6 subtests passed in 9.98s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_campaign_process.py --tb=short",
+        "result": "22 passed, 19 subtests passed in 2.86s with process-group signaling authorized"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider -x tests/test_campaign_full_auto_pipeline.py tests/test_campaign_pipeline.py --tb=short",
+        "result": "15 passed in 11.99s; targeted triage during sandbox profile failure"
+      }
+    ],
+    "python_version": "3.12.14",
+    "compatibility": "Additive CLI/API boolean and optional schema-2 postmr.automatic_plane_support. True requires checked_preparation; explicit false remains in the campaign fingerprint but creates no support request. Absence does not insert a default key. Older policy readers reject the optional new field. No request/checkpoint migration.",
+    "relocation": "Frozen campaign test moves the root, deletes its original preset, verifies absent original path, then reads status with subprocess execution forbidden and unchanged saved bytes.",
+    "native_execution": false,
+    "full_regression": false,
+    "last_full_green": "C220/583d30df: 9178 tests and 276 subtests",
+    "exclusions": [
+      "No scientific artifacts, temporary test output, raw native inventories or local environment changes committed"
+    ],
+    "limitations": [
+      "Generation does not prove final selected-plane coverage",
+      "Publication notes remain next; later preparation children and storage acceptance remain open",
+      "No fresh Phenix/Coot/refinement validation for this entry-point forwarding patch"
+    ]
   }
 }
