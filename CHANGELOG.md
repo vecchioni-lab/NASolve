@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Identify the saved checkpoint in AutoSol inspection (C271)
+
+- Checked AutoSol views now populate the existing checkpoint ID field from their
+  immutable comparison-model reference. Previously the correct model opened but
+  the view and Coot launch record omitted its checkpoint identity.
+- Coot session files for these views now live in the existing per-checkpoint
+  workspace layout. Later selection does not relabel the AutoSol view; IDs pass
+  the existing path-component validator. Legacy views keep their existing layout.
+- No scientific result/schema changes, native rerun, checkpoint reselection or
+  migration; old Coot workspaces remain untouched.
+
 ### Recognize observed native names for protected phosphate (C269)
 
 - New checked requests with declared background terminal phosphates use native

@@ -93268,6 +93268,110 @@
     "phenix": "2.2.1-6174",
     "finding": "Five requested symmetry H-bond distance edits yielded five LINK requests and eight ASU bond proxy entries; nonbonded ASU pairs 618 to 587 and nonbonded target 1077.721614 to 963.181796. Additive contact energy over an unchanged manager is not equivalent to ordinary bond edits.",
     "scope": "Bounded unselected REVIEW controls. Not phosphodiester-link authority. Preserve distinction in later Q06/masked intent contract; do not silently substitute objective or rebuild Willow work.",
-    "cedar_changes": "None for this reported experiment"
+    "cedar_changes": "None for this reported experiment",
+    "later_report": {
+      "source": "Linden signed local updates, independently executed on Willow",
+      "scope": "Reported only, not a combined Cedar/Willow build or Cedar-native reproduction.",
+      "findings": [
+        "Thin read-only comparator reuses authenticated captures and review_native_nonbonded; relative fractional transforms preserve translations, directed weights and multiplicity.",
+        "Fresh before/after native captures show 20 previously nonoverlapping directed rows now overlapping and 103 worsening despite total nonbonded energy decreasing; all trials remain REVIEW.",
+        "Linden froze committed Cedar f2345a8 and reread older cd744e2 captures: authenticated inputs and common/added/removed comparison rows unchanged. Willow full 1284 tests + 226 subtests pass; not a Cedar full-suite result."
+      ]
+    }
+  },
+  "native_selected_autosol_2026_11_13": {
+    "checkpoint": "C270",
+    "source_commit": "f2345a8996eebf47a88da5c8c5de4789a62cfab1",
+    "status": "NATIVE_PREPARATION_AND_AUTOSOL_PASS_FINAL_VIEW_RELOCATION_PENDING",
+    "root": {
+      "anchor": "live_tests_directory",
+      "path": "270_Cedar_selected-autosol-pspkne9n"
+    },
+    "versions": {
+      "phenix_installation": "phenix-2.2.1-6174",
+      "phenix_version": "2.2.1",
+      "coot_version": "1.3.3 (revision-count 0)\n[with python 3.14.6 embedded]\ngit commit: git-commit-unavailable\nBinary type: Darwin-MacOSX-26.5.2-arm64-gtk4\nEnabled: Enhanced-ligand-tools C++-11 Threads Boost-based-thread-pool MoleculesToTriangles GEMMI SQLite3 LibCurl"
+    },
+    "preparation": {
+      "status": "POSTMR_READY",
+      "model_sha256": "38218ed98dcb8fac06334b6b5db19edce107994760c7bb9d50fc87c44e34c818",
+      "restraint_count": 7,
+      "notes": [
+        "These preparation checks do not establish diffraction-refinement success.",
+        "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+        "5IU: generated source-checked support for screened centres C5.",
+        "Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.",
+        "5IU: selected dictionary has explicit planes for screened centres C2, C4, C5; this is scoped coverage, not refinement qualification.",
+        "Successful preparation working copies were archived; public models and restraints remain in place."
+      ],
+      "whole_request": {
+        "files": 168,
+        "bytes": 35122742
+      }
+    },
+    "autosol": {
+      "status": "AUTOSOL_READY",
+      "message": "MR-SAD phases and a model-associated anomalous site are ready for refinement",
+      "matched_distance": 1.449,
+      "elapsed_seconds": 1176.6735180840187
+    },
+    "native_validation": "Complete native executions, not dry-runs: Phaser, Coot construction, source acquisition, original/repaired full-policy derivatives, plane attribution, ReadySet/native endpoint and AutoSol. Existing acceptance thresholds unchanged.",
+    "retained_op3_sites": [
+      "D:1"
+    ],
+    "original_driver": {
+      "returncode": 1,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "original_driver_failure": "Post-native diagnostic used CheckpointRecord.model_path; actual API is model. Original copied worker and failure preserved. Reusable ignored template corrected; no scientific rerun.",
+    "followthrough_001": {
+      "result": {
+        "returncode": 1,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "failure": "Right saved model is resolved, but AutoSol ViewProfile checkpoint_id is None. Synthetic before-fix test independently confirms exact model first, then fails on absent ID. C271 fixes that view/launch metadata."
+    },
+    "source_input_scope": "Explicit free ends A:1/B:1/C:8 and A:5IU software-control pair with D:1 phosphate, using actual DiU observations. Not donor-chemistry identity or a diffraction refinement claim.",
+    "source_preservation_limit": "Initial driver retained input checksums but lost in-memory pre-native source timestamp list on its diagnostic error. Followthrough verifies bytes against frozen inputs and records its own timestamps; no retrospective timestamp claim.",
+    "remaining": "Fresh owned followthrough on the saved result after C271; selection/relocation/profiling only. Do not repeat native execution.",
+    "artifacts": "All models, data, dictionaries, PHIL, native outputs, scripts and failure records local only; none committed or deleted."
+  },
+  "autosol_view_checkpoint_identity_2026_11_13": {
+    "checkpoint": "C271",
+    "base_commit": "f2345a8",
+    "status": "IMPLEMENTED_FOCUSED_RELOCATION_PASS",
+    "prior_work": "C253 immutable chosen-model AutoSol reference; existing ViewProfile, Coot per-checkpoint workspace and safe-component validator.",
+    "before": "Explicit AutoSol stage resolved the correct saved model but omitted its checkpoint ID in view/launch metadata.",
+    "after": "Populate the existing optional ID from the validated immutable reference; launch metadata and scratch workspace retain the exact comparison checkpoint after later selection.",
+    "changed_files": [
+      "src/nasolve/coot_view.py",
+      "tests/test_autosol_selected_reference.py"
+    ],
+    "compatibility": "No scientific schema, phase/model/chemistry/threshold changes. Checked AutoSol GUI workspace becomes CootGUI/autosol/<checkpoint>; legacy layout unchanged and old GUI files preserved.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_selected_reference.py::test_autosol_inspection_uses_saved_model_after_current_choice_changes -x",
+        "result": "Before: 1 failed in 1.45s; exact model assertion passes, checkpoint_id is None instead of manual-001."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_selected_reference.py tests/test_coot_view.py tests/test_coot_anomalous.py -x",
+        "result": "68 passed, 23 subtests passed in 8.56s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python branch-artifacts/cedar/runners/c271_relocated_checkout.py",
+        "result": {
+          "status": "RELOCATED_CHECKOUT_AND_REQUEST_PASS",
+          "scope": "Two saved AutoSol reference/launch identity checks, from copied code relocated after its temporary original checkout disappeared. Request also relocated; both old temporary paths absent. No source checkout or original scientific data removed.",
+          "elapsed_seconds": 2.557322957989527,
+          "pytest_output": "..                                                                       [100%]\n2 passed in 1.87s",
+          "temporary_checkout_removed": true
+        }
+      }
+    ],
+    "full_suite": "Not run per Simon; focused checks only.",
+    "artifacts": "Synthetic test fixtures only in code; scientific C270 control excluded. No new native launch required for the view fix.",
+    "remaining": "Finish exact saved C270 later-selection and guarded relocated readback under new consumer code."
   }
 }

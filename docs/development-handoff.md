@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C269 protected-phosphate name integration, based on
-C268 `35ad05a`. Active **cedar**, NASolve-c96. Simon authorized work through
+Updated **2026-11-13**, C271 AutoSol view identity fix; native C270 ran at
+C269 `f2345a8`. Active **cedar**, NASolve-c96. Simon authorized work through
 **00:00 Europe/London, 14 November**, focused tests only; no full suite or merge.
 Finish Q04/Q05 before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering.
 
@@ -27,20 +27,42 @@ A no-launch read of 853-atom native evidence also passes; all 432 inspected file
 keep their bytes/timestamps. Exact commands and scopes are recorded in ledger
 `retained_phosphate_observed_names_2026_11_13`; fresh native acceptance follows.
 
-## Next — finish the actual chosen-model handoff
+## Saved C270 result — finish diagnostic readback, not native work
 
-1. Use a fresh owned C270 run derived from ignored c267 worker/driver. It uses real
-   DiU observations with an explicitly declared A:5IU software-control pair,
-   free ends A:1/B:1/C:8 and protected D:1 phosphate. This is not donor chemistry.
-   Keep C263's source-input recipe and C118's explicit aromatic permission.
-2. Verify checked preparation, original-Phaser AutoSol input, chosen-model site
-   comparison, exact phase labels, later-selection preservation and relocated
-   inspection. C267 stopped before ReadySet/AutoSol; do not claim their success.
-3. Reconcile opt-in Q04/Q05 acceptance/resource limits. Interrupted AutoSol result
-   publication is preserved but not automatically adopted; its recovery remains
-   a separate ownership problem. Then Q06 real complete-restraint refinement,
-   Q07 combined/held-out chemistry, retained Q08–Q14 chemistry learning, Q15 report,
-   and Q16 AutoPhase compatibility naming plus integration validation/review.
+Live-tests root `270_Cedar_selected-autosol-pspkne9n` contains actual successful
+preparation and AutoSol on `f2345a8`: `POSTMR_READY`, `AUTOSOL_READY`, 1.449 Å site
+match and HLAM/HLBM/HLCM/HLDM phases. Original/repaired derivatives, plane repair
+and ReadySet/native endpoint pass. Automatic retirement leaves the whole request
+at 35,122,742 B / 168 files, with seven public restraints and OP3 only at D:1.
+This is an explicit A:5IU/free-end software fixture, not donor chemistry.
+
+Two diagnostic failures are preserved, with all processes stopped and source
+unchanged. The first driver used nonexistent `CheckpointRecord.model_path` after
+native completion; its reusable ignored template now uses `model`. The fresh
+`followthrough-001` successfully changed current selection to postmr, then exposed
+that the correct AutoSol model's view omitted its checkpoint ID. C271 fills that
+existing field with the safe saved ID and binds the GUI launch record/workspace.
+Validation: 68 tests + 23 subtests; two moved-checkout checks. No native rerun.
+
+Next use fresh owned `followthrough-002` on this saved result. Current selection
+is already postmr; verify AutoSol still opens manual-001, then relocate and perform
+guarded cold inspection/profile. Preserve both earlier failures and their workers.
+Read the followthrough's own active/process/progress/result records before any
+further action. Keep source fixed while it runs. Native launches must be forbidden.
+Original input checksums remain verifiable; pre-native source timestamps were not
+persisted by the first failed driver. Do not invent that comparison; subsequent
+readback records its own before/after timestamps.
+
+## Next — reconcile Q04/Q05 acceptance
+
+Finish this exact saved-result control. Then assess the documented storage,
+read-cost and opt-in rollout scope. Interrupted AutoSol result publication remains
+preserved but not automatically adopted; do not hide that ownership boundary.
+Q06 actual complete-restraint refinement follows Q04/Q05 scope reconciliation;
+Q07 combined/held-out chemistry and Q08–Q14 retained chemistry learning remain.
+Q15 report and Q16 AutoPhase compatibility naming/full integration review follow.
+No new ownership system, full suite, merge or native repeat is authorized by a
+post-processing test-driver typo.
 
 ## Completed foundations and boundaries — reuse
 

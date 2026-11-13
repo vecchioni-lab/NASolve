@@ -398,6 +398,7 @@ def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         dictionaries,
         f"{source} with separate AutoSol HA sites ({status})",
         f"AutoSol density-modified map ({acceptance}; {status})",
+        checkpoint_id=None if reference is None else _checkpoint_component(reference['checkpoint_id']),
     )
 
 

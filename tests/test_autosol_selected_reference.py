@@ -166,6 +166,7 @@ def test_relocated_reference_and_consumers_do_not_need_original_paths(selected_r
     assert checkpoints.read_registry(newrun)[1]['current']==identifier
     assert phase_read(newrun) is not None
     assert resolve_view_profile(newrun).checkpoint_id==identifier
+    assert resolve_view_profile(newrun,stage='autosol').checkpoint_id==identifier
     validate_result_reference(newrun,json.loads((newrun/'report.json').read_text()))
     assert snapshot(newrun)==before
 
@@ -193,6 +194,7 @@ def test_autosol_inspection_uses_saved_model_after_current_choice_changes(select
     before=snapshot(run)
     view=resolve_view_profile(run,stage='autosol')
     assert view.model_path==checkpoints._ref_path(chosen['model'],'model',run)
+    assert view.checkpoint_id==identifier
     assert identifier in view.source
     assert resolve_view_profile(run).checkpoint_id=='postmr'
     assert snapshot(run)==before
@@ -275,3 +277,20 @@ def test_selected_reference_keeps_existing_review_and_warning_distances(selected
     assert result.status==expected
     assert phase_read(run) is None
     assert 'unaccepted; inspection only' in resolve_view_profile(run,stage='autosol').map_source
+
+
+def test_autosol_launch_records_its_saved_checkpoint_after_later_selection(selected_run,tmp_path):
+    from types import SimpleNamespace
+    from nasolve.coot_view import launch_coot_view
+    run,_,_,identifier=selected_run;run_autosol(run,tmp_path)
+    checkpoints.select_checkpoint(run,'postmr')
+    before=checkpoints.registry_path(run).read_bytes();calls=[]
+    def launch(command,**kwargs):
+        calls.append((command,kwargs));return SimpleNamespace(pid=4321)
+    result=launch_coot_view(run,tmp_path/'coot',stage='autosol',launcher=launch)
+    assert result.checkpoint_id==identifier
+    assert result.working_directory==run/'CootGUI/autosol'/identifier
+    record=json.loads((result.working_directory/'launch.json').read_text())
+    assert record['checkpoint_id']==identifier and record['model_path']==str(result.model_path)
+    assert calls[0][1]['cwd']==result.working_directory
+    assert checkpoints.registry_path(run).read_bytes()==before

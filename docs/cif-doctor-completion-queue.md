@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C269
+## Near-term closure estimate at C271
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -31,16 +31,19 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. C263 now connects an explicit prepared-input recipe through existing ownership/cache/ordinary resume and plane reads, retaining original authority. Both native acquisitions and relocated cold reads pass. C264 reaches linked preparation and restores the already-documented qualified legacy DNA-group contract under explicit aromatic handling. C265 confirms that header fix, then correctly refuses charged 1AP OP3 at an incoming link. Keep that Q13 chemical-state operation separate; C266 A:5IU reaches source-native qualification and fixes a lost declaration for protected background D:1 phosphate through an explicit, replayed context; original native definitions must remain unchanged. C267 identifies observed OP3→O3T naming; C268 qualifies unchanged energy/name capture and C269 carries exact observed names through terminal and numerical checking while retaining old context meanings. Retry that independent native AutoSol control; these are distinct integration findings, not new ownership machinery. CLI defaults remain unchanged. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 preserves original-MR phasing and freezes the chosen comparison model. C270 now passes actual Phaser/Coot/NAR/plane repair/ReadySet and AutoSol on the explicit A:5IU control, including the protected D:1 phosphate. C269 reuses observed native atom names; C271 fills the previously omitted checkpoint identity in AutoSol view/launch metadata. Finish later-selection and relocated inspection against the saved result; no native rerun is needed for those checks. Charged 1AP linking remains Q13. CLI defaults remain unchanged. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
-Planning allowance from this checkpoint: **roughly 1–3 further implementation
-patches, plus native/integration validation**. The new source-input integration and native acceptance are now the largest
-uncertainty; storage caller integration is complete within its measured scope.
-This is an estimate, not a completion criterion. Do not open new chemistry work to
-fill a numerical patch budget. Update it when actual native/storage findings change
-scope. Exact C252 scope and results are in the current handoff and evidence ledger.
+No further implementation is currently identified for the chosen-model binding
+after C271; its remaining saved-result acceptance must finish before closing it.
+Then reconcile the Q04/Q05 resource, recovery and opt-in rollout limits explicitly.
+A newly exposed defect may require a bounded patch; do not reopen completed
+ownership/storage machinery or use a numerical patch estimate as a finish line.
+C270's whole automatically retained request is 35,122,742 B / 168 files. Its native
+run succeeded; the first driver used the wrong checkpoint attribute after native
+completion, and the first saved-result check exposed the missing view ID fixed by
+C271. Both stopped diagnostic failures remain preserved and separately explained.
 
 Reuse C223–C225 publication and ordinary/campaign entry, C228–C239 compact exact
 proof, C244 ownership, C249 selected-CIF coverage and C251 alternative publication.
