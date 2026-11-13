@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch pairing alternatives
+
+- Add optional `--pairings` combinatorial capacity analysis with bounded,
+  factorized alternatives, empty/partial choices and deferred self-orbit cases.
+  Competing image choices cannot reuse an end. No scheme is selected or ranked.
+- Keep coordinate/checkpoint behavior unchanged; physical image identity and
+  global scientific assignment remain separate qualification gates.
+
 ### TopoStitch contact observations
 
 - Add optional `--contacts` inspection using installed NARestraints canonical

@@ -153,8 +153,11 @@ now enumerates metric-bounded images and observed transformed frames, with a str
 optional Gemmi extra. Optional `--contacts` now measures canonical heavy-atom
 bond/angle and ring-plane observations using installed NARestraints mappings and
 recipes; effective reference data and fingerprints accompany the report. It
-makes no acceptance decision or model edit. Automatic end detection, full atom-image equivalence,
-global assignment, geometry construction and campaign use remain unimplemented.
+makes no acceptance decision or model edit. Optional `--pairings` now enumerates
+factorized one-partner alternatives, with no forced/nearest assignment and
+explicitly deferred self-orbit cases. Automatic end detection, full atom-image
+equivalence, physical assignment, geometry construction and campaign use remain
+unimplemented.
 Next: connect logical registration/backbone evidence and qualify those gates.
 The report distinguishes proposed work from NOT_ATTEMPTED execution and
 UNREVIEWED results; the GUI contract records Campaign desk integration.
@@ -178,6 +181,11 @@ Contact observations: **143 focused and installed-wheel tests passed**; a
 wheel installation with declared dependencies (NARestraints v1.1.3 at `a9264f9`,
 Gemmi 0.7.5) passed the actual periodic `--contacts` CLI smoke check and isolated
 installed-import verification. No complete-suite rerun for this isolated patch.
+Pairing alternatives: **157 focused and installed-wheel tests passed**, with an
+actual installed combined-flags CLI smoke check, including an independent
+brute-force oracle and factored forty-pair case. Cedar C253 is concurrently
+changing selected AutoSol site references/checkpoint schema; Willow does not
+consume or alter those interfaces. No combined-branch validation is claimed.
 No native Phenix/Coot runs or scientific data changes.
 
 ## Work discipline and doc ownership

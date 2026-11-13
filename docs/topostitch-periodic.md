@@ -190,6 +190,34 @@ candidate is accepted, rejected or ranked by this layer. Default reports are
 unchanged unless the flag is supplied. Neither old checkpoints nor assignment
 manifests need migration.
 
+## Optional pairing alternatives
+
+Add `--pairings` to enumerate mutually compatible choices under the initial
+one-partner-per-overhang rule. It composes with `--periodic` and `--contacts`.
+`--max-alternatives` bounds alternatives per connected group (default 256), and
+`--max-pairing-states` bounds total enumeration states (default 100,000).
+Exceeding a budget fails with no partial JSON result.
+
+The additive schema-1 `pairing_alternatives` report records the exact candidate
+report fingerprint, independent connected groups and every admitted matching
+within each group, including empty and partial matchings. A whole-structure
+scheme chooses one alternative from each group. `scheme_count` gives the product
+without materializing it: forty independent pairs need eighty stored choices,
+not a trillion complete scheme records. No nearest/most-connected choice is
+preferred; `selected_scheme` remains null.
+
+The API is `nasolve.topostitch_pairings.describe_pairing_alternatives`. It checks
+candidate input fingerprints, endpoint/register consistency and reciprocal image
+operators. It analyzes the declared graph, not source coordinate bytes. The
+outer inspector provides the verified model context. Distinct image choices
+for the same two ends compete for their capacity. An involutive self-image can
+consume one logical end; non-involutive self-images are listed as deferred for
+atom-orbit/capacity review, not declared chemically impossible. Special-position
+physical equivalence is still unvalidated for every scheme. Completeness means
+all matchings of the admitted graph, not all physical connections in a crystal.
+This is a combinatorial aid for review, not an adopted connection scheme,
+scientific assignment, campaign permission or reconstruction input.
+
 ## Records and compatibility
 
 New descriptive kinds are `topostitch-periodic-candidate-report` and
@@ -291,3 +319,15 @@ v1.1.3 (`a9264f9`) and Gemmi 0.7.5. An actual isolated installed
 `nasolve-topostitch-inspect ... --radius 15 --periodic --contacts` call on a
 synthetic fixture passed, and installed module bytes matched current source. No native Phenix/Coot tools or scientific inputs
 were used.
+
+Pairing-layer validation (2026-11-13): failing-before module import, then
+**157 focused tests passed** across the six TopoStitch files (1.60 s).
+Independent brute-force subsets agree with the matching enumeration. Tests cover
+factorization, partial/empty alternatives, periodic image competition,
+involutive/self-image capacity, reciprocal drift, input fingerprints, budgets
+and composed contact/pairing CLI behavior. **157 installed-wheel tests passed**
+(1.47 s), using the installed invocation above with both new TopoStitch test
+files appended. The actual installed command with `--periodic --contacts
+--pairings` returned two unselected schemes for the synthetic smoke fixture;
+isolated imports matched current source bytes. No global mechanics changed; the full
+suite was not repeated. No new scientific artifacts or native tool runs.

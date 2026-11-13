@@ -232,6 +232,14 @@
       "effective_reference_sha256": true,
       "acceptance_evaluated": false,
       "construction": false
+    },
+    "pairing_alternatives": {
+      "module": "nasolve.topostitch_pairings",
+      "cli_flag": "--pairings",
+      "scope": "factorized one-partner choices on admitted candidate graph",
+      "includes_empty_and_partial": true,
+      "physical_orbit_capacity_validated": false,
+      "selection": false
     }
   }
 }

@@ -770,6 +770,10 @@ No GUI implementation is claimed by the read-only backend patch. The
 observed transformed end frames for preview, plus image-distinctness/capacity
 warnings. These are proposal observations, never completed repairs. The GUI
 should consume the backend functions rather than parse terminal output.
+Optional contact observations expose measured recipe deviations without a
+pass/fail threshold. Optional pairing alternatives expose independent groups of
+competing choices, including leaving a group unconnected; do not flatten their
+Cartesian product into a huge list or present the highest contact count as best.
 
 Keep three questions separate in the UI: **What is proposed? What actually ran?
 Has a person reviewed this exact result?** Do not use one green status for all

@@ -73,12 +73,15 @@ def main(argv=None):
     parser.add_argument("--radius",required=True,type=float,help="Explicit endpoint search radius in Angstrom")
     parser.add_argument("--periodic",action="store_true",help="Search CRYST1 symmetry images (requires NASolve[topology])")
     parser.add_argument("--contacts",action="store_true",help="Measure canonical NARestraints contacts without accepting a pairing")
+    parser.add_argument("--pairings",action="store_true",help="Enumerate bounded one-partner alternatives without selecting a scheme")
+    parser.add_argument("--max-alternatives",type=int,default=256,help="Maximum alternatives per independent pairing group")
+    parser.add_argument("--max-pairing-states",type=int,default=100_000,help="Maximum total pairing search states")
     parser.add_argument("--max-pairs",type=int,default=100_000,help="Maximum endpoint-pair budget")
     parser.add_argument("--max-image-tests",type=int,default=100_000,help="Periodic translation-box test budget")
     args = parser.parse_args(argv)
     try:
-        if args.max_image_tests < 1:
-            raise ValueError("max-image-tests must be a positive integer")
+        if min(args.max_image_tests,args.max_alternatives,args.max_pairing_states) < 1:
+            raise ValueError("Search budgets must be positive integers")
         digest,assignments,manifest_hash = load_end_assignments(args.assignments)
         options = dict(expected_sha256=digest,max_distance_angstrom=args.radius,max_pairs=args.max_pairs)
         if args.contacts:
@@ -90,6 +93,12 @@ def main(argv=None):
                 max_image_tests=args.max_image_tests,**options)
         else:
             report = inspect_end_assignments(args.model,assignments,**options)
+        if args.pairings:
+            from .topostitch_pairings import describe_pairing_alternatives
+            screening = report["periodic_screening"] if args.periodic else report["screening"]
+            report["pairing_alternatives"] = describe_pairing_alternatives(screening,
+                max_alternatives_per_component=args.max_alternatives,
+                max_search_states=args.max_pairing_states)
         report["assignment_file_sha256"] = manifest_hash
         output = json.dumps(report,indent=2,sort_keys=True,allow_nan=False)
     except (OSError,ValueError,RuntimeError) as exc:
