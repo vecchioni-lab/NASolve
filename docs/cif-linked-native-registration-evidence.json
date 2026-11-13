@@ -92887,5 +92887,43 @@
       "tests/test_cif_ordinary_postmr.py",
       "tests/test_cif_phenix_configuration.py"
     ]
+  },
+  "qualified_legacy_dna_bridge_2026_11_13": {
+    "checkpoint": "C264",
+    "base_commit": "89ed7d6",
+    "status": "IMPLEMENTED_FOCUSED_VALIDATION_NATIVE_RETRY_PENDING",
+    "before": "Explicit aromatic bridge rejected an already-validated legacy source group DNA when CCD type was absent.",
+    "after": "Reuse C58 source declaration validation for qualified absent-type sources; retain typed DNA/L-DNA consistency and original bound chemistry.",
+    "changed_files": [
+      "src/nasolve/cif_linked_preparation.py",
+      "tests/test_cif_preparation_qualification.py"
+    ],
+    "schemas": "unchanged",
+    "migration": "none; existing successful preparations unchanged; formerly rejected work needs a fresh attempt",
+    "native_control": {
+      "anchor": "live_tests_directory",
+      "path": "264_Cedar_selected-autosol-noq5g3qh",
+      "phenix": "2.2.1-6174",
+      "mode": "actual execution; stopped before ReadySet/AutoSol",
+      "elapsed_seconds": 55.59346025000559,
+      "stopped_verified": true,
+      "code_unchanged": true,
+      "status": "LEGACY_DNA_HEADER_REFUSAL_AFTER_ISOLATED_ACQUISITION"
+    },
+    "validation": {
+      "before": "new legacy DNA test fails at source type requirement",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_preparation_qualification.py tests/test_cif_source_classification.py tests/test_cif_linked_preparation.py tests/test_cif_terminal_preparation.py tests/test_cif_dictionary_sites.py tests/test_cif_acquisition_preparation.py",
+      "initial_result": "231 passed, one new blank-header fixture serialization error (corrected to quoted whitespace)",
+      "full_suite": "not run per Simon",
+      "final_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_preparation_qualification.py",
+      "final_result": "69 passed in 2.58s"
+    },
+    "artifacts": "all native science and runner copies remain local; no scientific artifacts committed",
+    "limits": [
+      "No new native linked/AutoSol acceptance claimed",
+      "Raw generation verdict remains distinct from independent written-candidate qualification",
+      "Ordinary defaults unchanged"
+    ],
+    "next": "Fresh C265 native control; no in-place retry"
   }
 }

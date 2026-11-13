@@ -1,7 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C262 pushed as `668668a`; C263 implementation and focused/
-native validation complete, publication pending. Active **cedar**, NASolve-c96.
+Updated **2026-11-13**, C264 qualified legacy DNA header correction; C263 base `89ed7d6`. Active **cedar**, NASolve-c96.
 Simon authorized work through **23:00 Europe/London**, no full suite or merge.
 Finish Q04/Q05 before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering.
 
@@ -35,9 +34,25 @@ ordinary intake/resume/complete owner **159 passed**. Relocated temporary checko
 and request, old temporary paths absent: **1 passed**. Exact commands, hashes and
 limits: ledger `original_source_owned_acquisition_2026_11_13`. No full suite.
 
+## C264 — qualified legacy DNA header fix
+
+The C264 native control stopped cleanly at linked preparation after Phaser/Coot
+and isolated 1AP/5IU acquisition. Root `264_Cedar_selected-autosol-noq5g3qh`;
+55.59 seconds, all jobs stopped, C263 source hashes unchanged. No ReadySet/AutoSol.
+It exposed an existing-contract inconsistency: the explicit aromatic bridge
+rejected the curated `group DNA` header without `type`, although C58 already
+supports it under isolated qualification. Reuse that existing classification
+check and apply typed DNA/L-DNA consistency only when a type is present.
+No source changes, chemistry exceptions, threshold changes or new schemas.
+
+Focused checks: 231 affected tests passed; one blank-header fixture failed in
+Biopython serialization before product code and was corrected. Final qualification
+rerun: **69 passed in 2.58s**; exact commands in the ledger. No full suite. Fresh C265 native acceptance is next;
+ignored c265_start.py/worker reuse the C264 recipe with a 2400-second owner bound.
+
 ## Next — finish Q04/Q05 acceptance
 
-1. Publish C263, then retry the real-observation chosen-model AutoSol control in a
+1. C264 is ready; C265 retries the real-observation chosen-model AutoSol control in a
    fresh owned run. Reuse ignored c259 worker/driver with C263 explicit input policy
    and C118 neutral-purine permission. C259's software fixture declares free ends
    A:1/B:1/C:8 while preserving D:1 phosphate; it does not infer DiU chemistry.

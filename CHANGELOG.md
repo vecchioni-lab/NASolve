@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep qualified legacy DNA headers through aromatic preparation (C264)
+
+- A source that declares legacy monomer `group DNA` without a type can now use
+  the same independently qualified linked-preparation bridge when an explicit
+  aromatic representation policy is selected. Reuse the existing source
+  classification check; never infer DNA from residue names or atoms.
+- Conflicting/unknown declarations, unqualified sources and mismatched scientific
+  evidence remain rejected. Typed DNA/L-DNA behavior and chemistry are unchanged.
+  No new schema, numerical targets, default-route change or migration.
+
 ### Bind prepared native inputs to original chemical sources (C263)
 
 - Add the explicit `cif-source-reader-preparation-v1` generation recipe. Reuse the

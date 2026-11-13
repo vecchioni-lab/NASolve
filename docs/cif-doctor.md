@@ -12719,3 +12719,22 @@ adapters, effective native proxy receipts and new-checkpoint adoption remain
 follow-up work. Geometry/connectivity assessment and guided sticky-end stitching
 remain part of the Doctor roadmap, using declared routing and Scout/Topo
 primitives while preserving true nicks, terminal intent and frozen Free-R flags.
+
+
+## Retaining the qualified legacy DNA declaration (C264)
+
+The fresh original-source DiU control passes Phaser, Coot and isolated 1AP/5IU
+acquisition with C263, then exposes a header inconsistency in linked preparation.
+The curated 1AP source explicitly declares monomer `group DNA` and omits `type`.
+C58 already accepts that declaration with isolated qualification. The later explicit
+representation bridge inadvertently required a CCD DNA/L-DNA type after validating
+that legacy declaration. Restrict the typed-header check to sources with a type;
+reuse the existing strict legacy declaration check when type is absent. Chemical
+identity, source configuration, qualification binding and all linked projections
+are unchanged. Unknown or conflicting declarations still refuse before output.
+
+This is not a 1AP exception. Renamed synthetic source controls exercise legacy
+DNA groups, missing/unknown/RNA/L-DNA groups, unchanged original files, and the
+stricter unqualified path. Existing typed DNA/L-DNA tests remain in the affected
+profile. C264 native work stopped before ReadySet/AutoSol; fresh acceptance remains
+required. Exact evidence: `qualified_legacy_dna_bridge_2026_11_13` in the ledger.

@@ -163,7 +163,9 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         if not type_tokens:
             from .cif_source_classification import _source_declarations
             _source_declarations(paths[0],code)
-    if binding is not None:
+    if binding is not None and type_tokens:
+        # Missing type was already validated through the qualified legacy DNA
+        # declaration above; an explicit type must still agree with the group.
         # CCD declares L-DNA linking separately. Native group DNA selects the
         # polymer machinery; the bound source graph/configuration owns its hand.
         group=source_values.get('_chem_comp.group',[])

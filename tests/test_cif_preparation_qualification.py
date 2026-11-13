@@ -241,3 +241,37 @@ def test_named_ports_must_have_the_declared_chemical_operation(tmp_path,defect):
     else:
         with pytest.raises(ValueError):prepare_linked_component(s,c,m,contexts,out,code='ZZZ',native_qualification=q,bond_representation_policy=POLICY)
         assert not out.exists()
+
+
+@pytest.mark.parametrize('group',['DNA','dna',' DNA '])
+def test_explicit_representation_retains_qualified_legacy_dna_group(tmp_path,group):
+    from .test_cif_linked_preparation import fixture
+    from nasolve.cif_linked_preparation import prepare_linked_component,component_values,_render
+    s,c,m,contexts=fixture(tmp_path)
+    values=component_values(s,'ZZZ');values.pop('_chem_comp.type');values['_chem_comp.group']=[group]
+    s.write_text(_render(values,'ZZZ'));q=qualification(s,c,'ZZZ')
+    before=s.read_bytes(),c.read_bytes(),m.read_bytes()
+    result=prepare_linked_component(s,c,m,contexts,tmp_path/'new',code='ZZZ',
+        native_qualification=q,bond_representation_policy=POLICY)
+    assert result['source_type']=='legacy group DNA'
+    assert result['source_preserved'] and not result['automatic_adoption']
+    assert result['preparation_qualification']['candidate_reassessment']['candidate_status']=='CANDIDATE_REVIEW'
+    assert before==(s.read_bytes(),c.read_bytes(),m.read_bytes())
+    with pytest.raises(ValueError,match='source DNA LINKING'):
+        prepare_linked_component(s,c,m,contexts,tmp_path/'unqualified',code='ZZZ')
+    assert not (tmp_path/'unqualified').exists()
+
+
+@pytest.mark.parametrize('group',[None,'RNA','L-DNA','?','.',' '])
+def test_qualified_legacy_source_still_requires_explicit_dna_group(tmp_path,group):
+    from .test_cif_linked_preparation import fixture
+    from nasolve.cif_linked_preparation import prepare_linked_component,component_values,_render
+    s,c,m,contexts=fixture(tmp_path)
+    values=component_values(s,'ZZZ');values.pop('_chem_comp.type')
+    if group is None:values.pop('_chem_comp.group')
+    else:values['_chem_comp.group']=[group]
+    s.write_text(_render(values,'ZZZ'));q=qualification(s,c,'ZZZ')
+    with pytest.raises(ValueError,match='source DNA classification'):
+        prepare_linked_component(s,c,m,contexts,tmp_path/'new',code='ZZZ',
+            native_qualification=q,bond_representation_policy=POLICY)
+    assert not (tmp_path/'new').exists()
