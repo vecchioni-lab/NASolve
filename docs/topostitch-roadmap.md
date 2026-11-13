@@ -162,16 +162,16 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 Turn a plausible placement into a chemically usable candidate before refinement is trusted.
 
-**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats.
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls.
 
 **Closure audit:**
 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Qualify remaining plane/packing and endpoint chemistry behavior, then agree a fixed-base native relaxation adapter with Cedar owners; do not reuse the all-atom policy ID or claim convergence from the local iteration-limited controls.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax).
-**Last audit:** 2026-11-13, Linden, code `a3e4978`; Bounded local native diagnostic, not production closure or acceptance.
+**Next action:** Agree a supported fixed-base native trial adapter with Cedar owners, preserving captured definitions, derivative/context checks, bounded execution and endpoint chemistry/packing review. Do not attach raw symmetry plane proxies or fork the existing correction.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes).
+**Last audit:** 2026-11-13, Linden, code `7255bfd`; Native derivative gate with retained failures and existing-owner corrected composition.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -421,6 +421,13 @@ An improving serialized fit is rechecked against the original exact selected ima
 Complete local Phenix 2.2.1-6174 probes match 5 periodic bond and 8 angle values/ASU gradients. Source and placed models separately relax 107 sugar/phosphate atoms with fixed bases/anchors; fresh captures match contexts/proxies, lower native targets and resolve three severe angles each without new severe scalar outliers. All 321 endpoint coordinates pass finite-difference checks.
 **Limit:** Local diagnostic only, no new production native policy. Both stop at 200 iterations; some geometry components increase. No contact, dictionary or chemical-link edits, plane transport qualification, diffraction refinement or adoption. Reuse Cedar lifecycle at integration; artifacts remain local.
 
+<a id="e_native_planes"></a>
+### E_NATIVE_PLANES — Reproducible native plane integration gate
+
+[Evidence contract](topostitch-preview.md#reproducible-native-plane-gate) at code `7255bfd`.
+A committed synthetic probe reproduces Phenix 2.2.1-6174 raw symmetry-planarity and Cartesian-parallelity derivative failures. Explicit Cartesian image pullback passes for planarity and, reusing Cedar both-first-planes correction, parallelity. Public 8D93 two-plane controls also pass the corrected composition; raw negatives remain.
+**Limit:** No production native adapter, manager attachment, optimization or blanket API qualification. Native symmetry-parallelity constructor is unsupported. Existing Cedar correction/lifecycle remain owners; no native installation or Cedar files modified.
+
 ## Deferred extensions, not hidden blockers
 
 - **Canonical rebuilding / missing-residue generation:** Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry.
@@ -441,6 +448,7 @@ Complete local Phenix 2.2.1-6174 probes match 5 periodic bond and 8 angle values
 - Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result.
 - Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.
 - Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates.
+- Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23–C27 diagnosis or create another plane-correction implementation.
 
 Modeled on Cedar’s separation of completion queue, capability contract and
 evidence ledger. No queue edit grants runtime authority, scientific approval
