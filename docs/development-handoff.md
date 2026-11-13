@@ -180,8 +180,10 @@ Public 8D93 native interpretation is REVIEW throughout. The original fit adds an
 angle outlier; tighter controls and the new extended-audit fit add no nominal ≥5
 captured scalar outliers with matched native contexts/proxies. This remains
 source-change/descriptive evidence, not ideal geometry, native symmetry closure
-or diffraction/refinement validation. See the current inspector/preview guides
-for exact commands, versions, policies and limits.
+or diffraction/refinement validation. The reproducible native image probe retains failing raw plane gradients;
+Cartesian image pullback plus Cedar's existing parallelity correction passes
+synthetic and public controls. This is diagnostic, not a production native adapter.
+See the current inspector/preview guides for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
 Cedar through `cd744e2` owns its native audit, selected AutoSol references

@@ -396,3 +396,54 @@ captured-geometry trial lifecycle; its all-atom policy does not yet expose this
 fixed-base selection or an arbitrary symmetry-contact objective. Keep the local
 prototype distinct from Cedar's qualified policy and reuse its lifecycle at
 integration. No Coot or diffraction refinement was run; artifacts remain local.
+
+### Reproducible native plane gate
+
+The repository includes a small synthetic developer probe (no crystallographic
+input files):
+
+```sh
+phenix.python scripts/probe_topostitch_native_images.py --out new-probe.json
+# Optionally reuse the existing correction from a trusted Cedar source checkout:
+phenix.python scripts/probe_topostitch_native_images.py \
+  --cedar-source /path/to/trusted/NASolve-cedar/src --out new-corrected-probe.json
+```
+
+It records script/native source fingerprints, the explicit R3:H fixture, three
+finite-difference step sizes, per-coordinate discrepancies and raw negative
+controls. Output must be new. Exit 2 means `NATIVE_DERIVATIVE_REVIEW`; it is the
+expected result on the tested installation because failing raw controls remain
+in the report even when an alternate evaluation path passes. The optional source
+is trusted executable project code, not a captured diagnostic worker.
+
+Complete Phenix **2.2.1-6174** executions of both forms reproduce the following:
+
+| Evaluation path | Maximum component error at 10⁻⁵ Å | Result in this fixture |
+| --- | ---: | --- |
+| Native symmetry bond | 8.08×10⁻⁹ | Matches |
+| Native symmetry angle | 4.81×10⁻⁹ | Matches |
+| Native symmetry planarity | 1.986513 | Review |
+| Cartesian planarity + explicit image pullback | 3.93×10⁻⁹ | Matches |
+| Raw Cartesian parallelity + image pullback | 0.108042 | Review |
+| Cedar corrected Cartesian parallelity + image pullback | 1.46×10⁻¹¹ | Matches |
+
+The Cartesian parallelity failure and correction are already owned by Cedar's
+`cif_parallelity_correction` (`native-parallelity-both-first-planes-v1`), described
+in its C23–C27/C44–C51 evidence. This probe imports that implementation; it does
+not duplicate it or extend its symmetry-bearing-proxy policy. Instead, it
+explicitly expands the image coordinates, calls the existing Cartesian kernel,
+and accumulates gradients with the transpose Cartesian rotation. Native energies
+and declared targets/weights are unchanged. The same composition passes both
+public 8D93 plane pairs (corrected parallelity maximum error 3.80×10⁻¹¹ at 10⁻⁵ Å).
+The direct native symmetry-planarity path gives correct values but inconsistent
+gradients in these controls; the native symmetry-parallelity constructor remains
+unexercised/unsupported. Do not attach these raw proxies to a production manager
+and infer support from a plausible energy value.
+
+This is a bounded integration diagnostic, not a new runtime closure evaluator,
+a blanket API qualification or an optimizer run. Cedar's captured trial lifecycle,
+fixed-base scope, packing and endpoint chemistry still need a supported combined
+adapter before native repair can be exposed. The normal six-parameter TopoStitch
+fitter uses numerical differences of its own descriptive objective and is not
+using these failing native gradients. Synthetic probe output and public-derived
+native diagnostics remain local; only the reusable probe source is committed.

@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch native plane integration gate
+
+- Add a synthetic, read-only developer probe for symmetry contact derivatives.
+  Retain the native plane failures and check explicit Cartesian image pullback.
+- Reuse Cedar's existing optional parallelity correction rather than creating a
+  second correction or treating plausible native energies as derivative approval.
+
 ### TopoStitch transformed-image review
 
 - Recheck improving serialized periodic fits against their original selected
