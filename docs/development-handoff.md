@@ -76,6 +76,25 @@ logs and pin lists remain local outside Git. Temporary code/expanded views remov
 No full suite. Last entirely green full remains C220/583d30df: 9,178 tests + 276
 subtests. C222 failures were fixed focused; no later full-suite revalidation claim.
 
+## Orientation and bloat audit, 2026-11-13
+
+Runtime remains C244/1975b79; this follow-up changes planning only. The queue now
+estimates 6–9 focused Q04/Q05/storage patches plus an integration-validation
+checkpoint, with concrete acceptance and uncertainty. Confirmed current seams:
+ordinary intake does not forward the automatic-plane choice, ordinary result text
+is generic, and the publisher accepts only the initial preparation. Reuse those
+existing owners/readers; do not build replacements.
+
+Historical C75–C78 review nesting/transport is documented prior work, distinct
+from current compact runtime evidence. Local storage audit found duplicated old
+proof payloads; no scientific data, source snapshot, environment or worktree was
+removed. Keep local file inventory out of product Git. Exact-file comparison found
+no byte-identical nonempty tracked Python files; this is not semantic test/code
+redundancy certification. Documentation repetition needs consolidation of current
+explanations while preserving historical evidence/anchors. No runtime, schema,
+compatibility or scientific behavior changed; no native jobs or pytest run for
+this audit. Validate documentation/diff only; C244 test evidence above remains.
+
 ## Next work — finish Q04/Q05
 
 1. Freeze/forward this explicit choice through ordinary checked PostMR/campaign

@@ -18,6 +18,34 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
+## Near-term closure estimate at C244
+
+Planning estimate, 2026-11-13: **6–9 focused implementation patches from C244**,
+then an integration-validation checkpoint, to close the supported Q04/Q05 route.
+This is a scope estimate, not a promise or a new completion criterion:
+
+| Remaining work | Likely patches | Observable finish |
+| --- | --- | --- |
+| Q04: use plane recovery through normal preparation | 2–3 | Freeze/forward the choice through ordinary PostMR and campaigns; report missing coverage and qualified fallback honestly; exercise mixed outcomes and interruption. |
+| Q05: preserve later prepared choices and let every consumer use them | 3–4 | Publish later preparation children with truthful lineage, recover partial publication, and keep Coot/refinement/campaign readers on the exact chosen model/CIF/PHIL set. |
+| Existing storage acceptance | 1–2 | Retire only redundant successful working material through a known-stopped, interruption-safe policy; preserve replay and reproduce the bounded request after relocation. |
+
+Reuse initial publication (C223), ordinary/campaign entry (C224–C225), compact
+proof (C228–C239) and automatic support ownership (C244). Do not rebuild them.
+The initial publisher deliberately refuses an already adopted run; later child
+publication is real remaining work. The ordinary result currently has generic
+plane limitations and must reflect the actual result before enabling the option.
+Storage is already Q04 acceptance, not an added chemistry feature. Historical
+workstation archiving is separate from the maintained runtime retirement policy.
+
+The estimate assumes existing qualification/chemistry rules remain intact and no
+new family is added to this closure pass. Newly exposed ownership, lineage or
+chemical defects can increase it; update the estimate against concrete findings.
+Q06 then proves actual complete-restraint refinement; Q07 tests the combined and
+held-out models. Q08–Q14 retain the catalogue/chemistry programme without reopening
+completed orchestration. Q15 reporting and Q16 integration/release follow the
+explicitly reviewed support scope; neither this estimate nor Q05 authorizes a merge.
+
 ## Pipeline position
 
 | Job | In laboratory terms | What still closes it |
