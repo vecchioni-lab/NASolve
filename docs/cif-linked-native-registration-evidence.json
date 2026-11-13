@@ -91289,6 +91289,45 @@
       "command": "python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_docs_check.py",
       "result": "PASS: five Markdown files, 205 existing local link targets, nine evidence hashes, unique JSON keys, final run anchor exists, git diff --check",
       "runner_sha256": "bc52d41c561c545438260be3d11852504bb55229c086fb7740a89acbd6f29b79"
+    },
+    "working_archive_probe": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_working_archive_probe.py",
+      "runner_sha256": "f304e9751c83a9bbfd2e2013f7d4e50b04f86f5d6ea01510a140b30b12747036",
+      "evidence": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/working-archive-probe.json",
+        "sha256": "84aa5899411124719b1ae72ea1c4be5a3c23a5853f154bb9d85dbe71ca162e08"
+      },
+      "result": {
+        "status": "EXISTING_BOUNDED_ARCHIVER_EXACT_WORKING_TREE_PASS",
+        "runtime_authority": false,
+        "source": {
+          "anchor": "live_tests_directory",
+          "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request/attempts/attempt-0001/repair/attempts/attempt-0001/execution"
+        },
+        "source_seal_sha256": "b96b5f03c6b51aa37f82eb2e69f6cf529021eb182c17ac39358fb2c6a754de2a",
+        "packed": {
+          "policy_id": "cif-content-addressed-runtime-evidence-v1",
+          "logical_files": 418,
+          "logical_bytes": 131743813,
+          "unique_files": 129,
+          "unique_bytes": 57721570,
+          "archive_bytes": 8293670,
+          "archive_sha256": "22c5456f75a28c22df04794bce2b57e24aea78d58f7363b84e4199a6d1bfae6d"
+        },
+        "temporary_physical_bytes": 57721570,
+        "unchanged_source_files": 418,
+        "all_source_mtimes_unchanged": true,
+        "source_reads_forbidden_during_expansion": true,
+        "subprocess_execution_forbidden": true,
+        "temporary_view_removed": true,
+        "temporary_archive_removed": true,
+        "existing_max_logical_bytes": 134217728,
+        "existing_max_files": 1024,
+        "maximum_resident_bytes": 332447744,
+        "elapsed_seconds": 3.55594162500347,
+        "scope": "Exact byte/hash/directory reconstruction of one retained C244 successful execution subtree using existing pack/expand APIs. No complete-request reconstruction, scientific requalification, runtime archive adoption or working-file retirement. The originals remain necessary and intact."
+      }
     }
   }
 }

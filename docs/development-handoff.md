@@ -75,6 +75,11 @@ Do not rerun the completed mutating control in place.
    **181,566,343 B** of logical files, **88,181,923 B** of distinct bytes and
    **93,384,420 B** repeated. Independent compression estimates 16.0 MB before
    indices/retained-public-path requirements; it is not a usable compact request.
+   The existing archiver also reconstructs one actual 131.7 MB working subtree
+   exactly from an **8.3 MB** archive: 418 files, 57.7 MB temporary physical data,
+   original-source reads forbidden, unchanged 128 MiB logical limit. Temporary
+   archive/view removed; originals intact. This is byte-level feasibility, not
+   complete-request reconstruction, scientific requalification or retirement.
    Reuse bounded archive machinery; preserve public model/restraint references and
    every owner's inventory, known-stopped recovery and interruption safety.
 3. Reconcile remaining caller/recovery acceptance against C156/C170, C223–C225,

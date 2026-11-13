@@ -298,7 +298,12 @@ Remaining acceptance:
    compression of unique objects estimates 16.0 MB, excluding archive/index/public-
    path requirements. No files were retired and this is not a working storage
    format. Preserve public model/restraint references and nested owner inventories
-   when defining the known-stopped retirement policy.
+   when defining the known-stopped retirement policy. A bounded follow-up uses
+   the existing pack/expand APIs on an actual 131.7 MB C244 execution subtree:
+   **8.3 MB archive**, 418 files reconstructed exactly, 57.7 MB temporary physical
+   data, no original-source reads during expansion and no raised limits. Temporary
+   copies are removed; all originals remain unchanged. This proves archive
+   feasibility only, not complete-request reconstruction or permission to retire.
 
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical
