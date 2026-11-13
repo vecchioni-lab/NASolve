@@ -483,3 +483,34 @@ def test_invalid_automatic_plane_choice_refuses_before_source_freezing(entry_cas
     with pytest.raises(ValueError,match='boolean'):
         initialize_postmr_dictionary_request(**args,automatic_plane_support=value)
     assert not args['output'].exists() and not args['source_output'].exists()
+
+
+@pytest.mark.parametrize('defect',[None,'component','outgoing','missing_model_context'])
+def test_background_terminal_intent_is_frozen_and_rechecked(entry_case,defect):
+    from .test_cif_model_context import model,report
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    from nasolve.campaign_records import read_record,write_record
+    m,args,sdk,store,generations,calls=entry_case
+    model(args['model'],chains=(('A','ZZZ'),('B','YYY'),('C','DG')),last=2)
+    args['report']=report('A:1','B:1','C:1')
+    request=initialize_postmr_dictionary_request(**args)
+    c=request['configuration'];native=c['controls']['native_context']
+    assert native['policy_id']=='cif-explicit-site-native-context-v3'
+    assert native['retained_terminal_phosphates']==[dict(site='C:1',component='DG',outgoing_site='C:2')]
+    if defect:
+        saved=read_record(args['output']/'request.json');config=saved['configuration']
+        if defect=='missing_model_context':config.pop('model_context')
+        else:config['controls']['native_context']['retained_terminal_phosphates'][0][
+            'component' if defect=='component' else 'outgoing_site']='DA' if defect=='component' else None
+        write_record(args['output']/'request.json',saved,replace=True)
+        before=inventory(args['output'])
+        with pytest.raises(ValueError,match='[Rr]etained terminal phosphate'):
+            m.inspect_dictionary_request(args['output'])
+        assert inventory(args['output'])==before
+    else:
+        original=args['output'];moved=original.parent/'relocated request';shutil.move(original,moved)
+        before=inventory(moved)
+        with patch('subprocess.Popen',side_effect=AssertionError('Read must not launch')):
+            assert m.inspect_dictionary_request(moved)['attempts']==[]
+        assert not original.exists() and inventory(moved)==before
+    assert not store.exists() and not calls

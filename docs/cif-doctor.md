@@ -12738,3 +12738,34 @@ DNA groups, missing/unknown/RNA/L-DNA groups, unchanged original files, and the
 stricter unqualified path. Existing typed DNA/L-DNA tests remain in the affected
 profile. C264 native work stopped before ReadySet/AutoSol; fresh acceptance remains
 required. Exact evidence: `qualified_legacy_dna_bridge_2026_11_13` in the ledger.
+
+
+## Preserving declared background terminal phosphate (C266)
+
+An explicit A:5IU software fixture on real DiU observations reaches source-native
+qualification with generated 5IU plane support. The sole new blocking finding is
+`declared-terminal-coordinate-phosphates`: the protected D:1
+phosphate is in unchanged canonical DNA, outside the replaced dictionary sites.
+The old native check only obtains terminal declarations from replacement plans.
+The model and frozen ordinary intent already agree that D:1 must retain OP3.
+Native formal-charge readback remains explicitly unsupported with no contradictions;
+the existing separate continuation rule for that unavailable field is unchanged.
+Deleting that protected group or pretending the source 1AP port is neutral would
+be incorrect; the independent C265 charged-source refusal remains unchanged.
+
+Native context `cif-explicit-site-native-context-v3` adds ordered unique
+`retained_terminal_phosphates` entries (site, component, outgoing_site). Ordinary
+intake derives them from audited frozen `allow_op3_sites` minus replaced sites;
+complete-request reads rederive and compare them. The existing native phosphate
+check admits those explicitly named background sites only when their complete
+baseline/candidate definitions are identical, their coordinate identities and
+four-oxygen phosphate graph agree, and there is no incoming link. Existing whole
+model, unselected-definition/proxy and NAR checks remain mandatory. The list never
+infers phosphate permission from coordinates and never applies a new modifier.
+
+Older context v1/v2 and requests without background terminal phosphates remain
+unchanged. The new permission requires a current reader; rejected historical work
+is preserved and needs a fresh request/attempt, not rewritten intent. Focused
+native-context/ordinary-entry/qualification checks: 155 pass; four additional
+request binding/tamper/relocation checks pass. Actual end-to-end retry remains
+separate. See ledger `retained_terminal_phosphate_context_2026_11_13`.

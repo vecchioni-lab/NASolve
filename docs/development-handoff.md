@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C265 chemical-boundary record; C264 code `ce09607`. Active **cedar**, NASolve-c96.
+Updated **2026-11-13**, C266 background-terminal context implementation; C265 base `a017a7d`. Active **cedar**, NASolve-c96.
 Simon authorized work through **23:00 Europe/London**, no full suite or merge.
 Finish Q04/Q05 before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering.
 
@@ -34,31 +34,33 @@ ordinary intake/resume/complete owner **159 passed**. Relocated temporary checko
 and request, old temporary paths absent: **1 passed**. Exact commands, hashes and
 limits: ledger `original_source_owned_acquisition_2026_11_13`. No full suite.
 
-## C264/C265 — metadata fixed; charged phosphate boundary preserved
+## C266 — preserve a protected background phosphate
 
-C264 (`ce09607`) restores the C58 qualified legacy `group DNA` header under explicit
-aromatic handling. 231 affected tests passed; one blank-header test-fixture issue
-was corrected, then all 69 qualification tests passed. No full suite.
-C265 real Phaser/Coot/isolated acquisition passes that former gate and stops at the
-source phosphate leaving-port check: 1AP OP3 is singly bonded, −1, no H; the
-existing qualified native operation covers neutral hydroxyl departure only.
-Do not neutralize it or disable aromatic/source-state checks to get a green run.
-Root `265_Cedar_selected-autosol-lyxpqrp9`; 52.24s, all native jobs stopped, pinned
-C264 code unchanged, no ReadySet/AutoSol. Q13 now records exact general follow-up.
+C265 correctly refuses charged 1AP OP3 under the neutral-hydroxyl linking rule;
+Q13 records general source-state/linked-native follow-up. No guard is weakened.
+C266 uses a declared A:5IU software fixture on the same real observations, keeping
+protected D:1 phosphate and free ends A:1/B:1/C:8. Phaser/Coot, isolated acquisition
+and generated 5IU plane support pass; combined source-native qualification rejects
+the background terminal-phosphate declaration; the existing unsupported native
+formal-charge readback remains separately recorded without contradictions. D:1 lies outside replaced
+sites, so its frozen ordinary permission never reached the native check.
+Root `266_Cedar_selected-autosol-11iw4weh`, 74.69s, all jobs stopped/code unchanged.
+No ReadySet, AutoSol or publication. It does not describe donor chemistry.
 
-C266 will isolate Q05 acceptance with an explicitly changed A:5IU software-control
-pair on the same real-observation donor and declared free-end fixture. It is not a
-claim about donor chemistry or 1AP linking support. Ignored c266_start.py/worker
-retain original config and write a separate pair-fixture record, fresh run only,
-2400-second owner bound. Inspect progress/driver-result/active receipts.
-The storage queue now removes superseded intermediate build instructions and
-points to the completed C260 contract plus remaining resource/migration limits.
+The fix adds explicit native context v3, derived from audited frozen intent for
+unchanged background termini and rechecked on complete-request read. Exact site,
+component/outgoing link, unchanged native definition and existing phosphate graph,
+coordinate/link/proxy checks are required. No new modifier or chemical edits.
+Old v1/v2 unchanged; new context needs current reader and fresh work.
+Focused tests: 155 passed + 4 added request/tamper/relocation checks. Affected
+owner/bundle/ordinary tests running; no full suite. Fresh C267 uses ignored c267
+runners with 2400-second bound after the code checkpoint. Inspect its receipts.
 
 ## Next — finish Q04/Q05 acceptance
 
-1. C266 retries the real-observation chosen-model AutoSol control in a
-   fresh owned run. Reuse ignored c259 worker/driver with C263 explicit input policy
-   and C118 neutral-purine permission. C259's software fixture declares free ends
+1. C267 retries the real-observation chosen-model AutoSol control in a
+   fresh owned run. Use ignored c267 worker/driver with the explicit A:5IU control,
+   C263 source-input policy and C118 permission. C259's software fixture declares free ends
    A:1/B:1/C:8 while preserving D:1 phosphate; it does not infer DiU chemistry.
 2. Verify original-Phaser phasing versus chosen-model site comparison, exact phase
    labels, later-selection preservation and relocated inspection. No synthetic

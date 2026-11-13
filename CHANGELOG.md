@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve declared background terminal phosphates during checked preparation (C266)
+
+- Carry audited ordinary `allow_op3_sites` into native checking when a protected
+  terminal phosphate belongs to an unchanged background component. Previously,
+  only dictionary-replacement sites supplied terminal declarations, so valid
+  background OP3 caused the combined preparation to be rejected.
+- New explicit native context v3 binds site/component/outgoing link to the frozen
+  model intent and requires the complete background native definition to remain
+  identical. Existing coordinate, phosphate graph, linkage and restraint checks
+  still apply; no phosphate deletion, charge change or permission by atom presence.
+- Context v1/v2 meanings remain unchanged. Newly affected requests require a
+  current reader and fresh attempt; no in-place migration or default CLI activation.
+
 ### Keep qualified legacy DNA headers through aromatic preparation (C264)
 
 - A source that declares legacy monomer `group DNA` without a type can now use

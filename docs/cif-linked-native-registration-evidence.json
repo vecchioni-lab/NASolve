@@ -92958,5 +92958,156 @@
     "artifacts": "local only; no data upload or deletion",
     "queue_cleanup": "Superseded C228-C256 storage build instructions replaced by current C260 completion, measurements and remaining limits; evidence retained in history/methods/ledger.",
     "full_suite": "not run per Simon"
+  },
+  "retained_terminal_phosphate_context_2026_11_13": {
+    "checkpoint": "C266",
+    "base_commit": "a017a7d",
+    "status": "IMPLEMENTED_FOCUSED_PASS_NATIVE_RETRY_PENDING",
+    "before": "Only replaced component plans declare terminal phosphate; protected unchanged D:1 is falsely undeclared in A:5IU control.",
+    "after": "Explicit native context v3 carries audited frozen background terminal site/component/outgoing link; replay rederives intent and native checks preserve full baseline definition and phosphate graph.",
+    "changed_files": [
+      "src/nasolve/cif_native_context.py",
+      "src/nasolve/cif_linked_qualification.py",
+      "src/nasolve/cif_postmr_request.py",
+      "src/nasolve/cif_complete_request.py",
+      "tests/test_cif_retained_phosphate_context.py",
+      "tests/test_cif_postmr_request.py"
+    ],
+    "schema": {
+      "new": "cif-explicit-site-native-context-v3",
+      "field": "retained_terminal_phosphates: ordered unique site/component/outgoing_site entries",
+      "legacy": "v1/v2 unchanged; v3 only when needed",
+      "migration": "none; current reader and fresh request required"
+    },
+    "native": {
+      "root": {
+        "anchor": "live_tests_directory",
+        "path": "266_Cedar_selected-autosol-11iw4weh"
+      },
+      "phenix": "2.2.1-6174",
+      "coot": "1.3.3 Darwin-MacOSX-26.5.2-arm64-gtk4; embedded Python 3.14.6",
+      "mode": "actual execution; original real-observation donor unchanged; explicit A:5IU/free-end/protected-D1 fixture",
+      "elapsed_seconds": 74.68729845900089,
+      "stopped_verified": true,
+      "code_unchanged": true,
+      "status": "SOURCE_PREPARATION_UNQUALIFIED",
+      "readyset": "NOT_RUN",
+      "autosol": "NOT_RUN",
+      "new_blocking_finding": "Coordinate OP3 differs from declared terminal sites",
+      "other_recorded_finding": "Native formal-charge attribute unavailable, no contradictions; existing separately bounded continuation rule unchanged."
+    },
+    "validation": {
+      "before": "new explicit background context regression fails on unsupported policy",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_retained_phosphate_context.py tests/test_cif_native_context.py tests/test_cif_postmr_request.py tests/test_cif_terminal_qualification.py -x",
+      "result": "155 passed in 65.54s",
+      "additional_command": "same prefix tests/test_cif_postmr_request.py -k background_terminal -x",
+      "additional_result": "4 passed in 2.49s; includes rehashed contradiction refusals and relocated request with old path absent/read-only",
+      "full_suite": "not run per Simon",
+      "relocated_checkout": {
+        "runner": "branch-artifacts/cedar/runners/c266_relocated_checkout.py (ignored, everyday checkout)",
+        "result": "1 passed in 2.60s; whole 3.2819s",
+        "original_temporary_checkout_absent": true,
+        "original_temporary_request_absent": true,
+        "native_execution": "forbidden",
+        "temporary_checkout_removed": true
+      }
+    },
+    "artifacts": "generated science and diagnostics local only; no upload/cleanup",
+    "limits": [
+      "No automatic source-state/protonation inference",
+      "Charged 1AP OP3 operation remains refused under existing policy",
+      "Native AutoSol acceptance pending fresh C267",
+      "No diffraction refinement or default CLI activation"
+    ],
+    "failed_work_footprint_audit": {
+      "policy": "read-only-bounded-native-control-footprint-audit-v1",
+      "scope": "Only explicitly named stopped controls from this work pass; no deletion, compression, science reads, global scan or campaign extrapolation. Whole control includes donor observation copies. Store and request are subsets, not additive to whole control.",
+      "cases": [
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "264_Cedar_selected-autosol-noq5g3qh"
+          },
+          "outcome": "HEADER_REFUSAL",
+          "owner": {
+            "returncode": 1,
+            "stopped_verified": true,
+            "code_unchanged": true
+          },
+          "retirement": "NOT_AUTHORIZED_FAILED_WORK_PRESERVED",
+          "whole_control": {
+            "files": 457,
+            "logical_bytes": 29249682,
+            "allocated_bytes": 30412800
+          },
+          "complete_request": {
+            "files": 367,
+            "logical_bytes": 18921275,
+            "allocated_bytes": 19836928
+          },
+          "shared_store": {
+            "files": 10,
+            "logical_bytes": 553328,
+            "allocated_bytes": 573440
+          }
+        },
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "265_Cedar_selected-autosol-lyxpqrp9"
+          },
+          "outcome": "CHARGED_PORT_REFUSAL",
+          "owner": {
+            "returncode": 1,
+            "stopped_verified": true,
+            "code_unchanged": true
+          },
+          "retirement": "NOT_AUTHORIZED_FAILED_WORK_PRESERVED",
+          "whole_control": {
+            "files": 457,
+            "logical_bytes": 29250597,
+            "allocated_bytes": 30412800
+          },
+          "complete_request": {
+            "files": 367,
+            "logical_bytes": 18921275,
+            "allocated_bytes": 19836928
+          },
+          "shared_store": {
+            "files": 10,
+            "logical_bytes": 553328,
+            "allocated_bytes": 573440
+          }
+        },
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "266_Cedar_selected-autosol-11iw4weh"
+          },
+          "outcome": "UNQUALIFIED_BACKGROUND_TERMINAL",
+          "owner": {
+            "returncode": 1,
+            "stopped_verified": true,
+            "code_unchanged": true
+          },
+          "retirement": "NOT_AUTHORIZED_FAILED_WORK_PRESERVED",
+          "whole_control": {
+            "files": 492,
+            "logical_bytes": 47094146,
+            "allocated_bytes": 48353280
+          },
+          "complete_request": {
+            "files": 416,
+            "logical_bytes": 37543881,
+            "allocated_bytes": 38596608
+          },
+          "shared_store": {
+            "files": 5,
+            "logical_bytes": 206828,
+            "allocated_bytes": 217088
+          }
+        }
+      ]
+    }
   }
 }

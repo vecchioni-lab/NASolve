@@ -13,7 +13,7 @@ from .cif_dictionary_sites import _consumer, _need, _read
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_acquisition_attempt import _generation_binding
 from .cif_model_context import derive_prepared_model_context
-from .cif_native_context import FULL_MODEL_POLICY_ID
+from .cif_native_context import prepared_native_context
 from .cif_repair_attempt import _root
 from .cif_restraint_context import derive_restraint_context
 
@@ -122,7 +122,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         # Read only the declared construction closure. Ordinary runs may contain
         # unrelated or unpublished artifacts; none are discovered or captured.
         _construction_input(construction_inputs, model, {}, model_context)
-    native_context = dict(policy_id=FULL_MODEL_POLICY_ID, monomer_inventory='full_model',
+    native_context = prepared_native_context(model, model_context,
                           custom_restraints='required' if phils else 'absent')
     for item in components: item['contexts'] = model_context['contexts'][item['code']]
     if frozen_sources is None:

@@ -2,24 +2,58 @@
 from collections import Counter
 from math import isfinite
 import json
+import re
+from copy import deepcopy
 
 POLICY_ID='cif-explicit-site-native-context-v1'
 FULL_MODEL_POLICY_ID='cif-explicit-site-native-context-v2'
+RETAINED_TERMINAL_POLICY_ID='cif-explicit-site-native-context-v3'
 
 
 def validate_native_context(context):
-    full=isinstance(context,dict) and context.get('policy_id')==FULL_MODEL_POLICY_ID
+    retained=isinstance(context,dict) and context.get('policy_id')==RETAINED_TERMINAL_POLICY_ID
+    full=retained or isinstance(context,dict) and context.get('policy_id')==FULL_MODEL_POLICY_ID
     keys={'policy_id','custom_restraints'}|({'monomer_inventory'} if full else set())
+    if retained:keys.add('retained_terminal_phosphates')
     if (not isinstance(context,dict) or set(context)!=keys
-            or context['policy_id'] not in (POLICY_ID,FULL_MODEL_POLICY_ID)
+            or context['policy_id'] not in (POLICY_ID,FULL_MODEL_POLICY_ID,RETAINED_TERMINAL_POLICY_ID)
             or not isinstance(context['custom_restraints'],str)
             or context['custom_restraints'] not in {'required','absent'}
             or (full and context['monomer_inventory']!='full_model')):
         raise ValueError('Require an explicit supported native site/restraint context')
-    return dict(context)
+    if retained:
+        rows=context['retained_terminal_phosphates']
+        def site(value):
+            return isinstance(value,str) and re.fullmatch(r'[A-Za-z0-9_]:-?[0-9]+',value) is not None
+        if (not isinstance(rows,list) or not rows or any(not isinstance(row,dict)
+                or set(row)!={'site','component','outgoing_site'} or not site(row['site'])
+                or not isinstance(row['component'],str)
+                or re.fullmatch(r'[A-Za-z0-9]{1,3}',row['component']) is None
+                or row['outgoing_site']==row['site']
+                or (row['outgoing_site'] is not None and not site(row['outgoing_site'])) for row in rows)
+                or [r['site'] for r in rows]!=sorted({r['site'] for r in rows})):
+            raise ValueError('Require unique ordered explicit retained terminal phosphate declarations')
+    return deepcopy(context)
 
 
-def declared_phosphate_check(native,preparations,expected_links):
+def prepared_native_context(model, model_context, *, custom_restraints):
+    """Carry audited, explicitly requested background termini into native checks.
+
+    The caller supplies the existing validated prepared-model context. Coordinates
+    identify the component; they never authorize a phosphate absent from intent.
+    """
+    from .cif_linked_preparation import _model_inventory
+    selected={row['site'] for rows in model_context['contexts'].values() for row in rows}
+    outgoing=dict(model_context['expected_links'])
+    sites=_model_inventory(model)
+    retained=[dict(site=site,component=sites[site]['code'],outgoing_site=outgoing.get(site))
+        for site in sorted(set(model_context['intent']['post_mr_plan']['allow_op3_sites'])-selected)]
+    result=dict(policy_id=FULL_MODEL_POLICY_ID,monomer_inventory='full_model',custom_restraints=custom_restraints)
+    if retained:result.update(policy_id=RETAINED_TERMINAL_POLICY_ID,retained_terminal_phosphates=retained)
+    return validate_native_context(result)
+
+
+def declared_phosphate_check(native,preparations,expected_links,*,retained=(),baseline=None):
     """Authorize OP3 only at a declared, source-preserved terminal phosphate.
 
     Full definition/projection and active numerical checks remain mandatory in
@@ -31,6 +65,19 @@ def declared_phosphate_check(native,preparations,expected_links):
     try:
         plans=[p for preparation in preparations for p in preparation['sites']]
         if len({p['site'] for p in plans})!=len(plans):raise ValueError('Duplicate declared site')
+        if retained:
+            original={r['site']:r['metadata']['effective_definition'] for r in baseline['monomer_mappings']['rows']}
+            current={r['site']:r['metadata']['effective_definition'] for r in native['monomer_mappings']['rows']}
+            planned={p['site'] for p in plans}
+            for row in retained:
+                site=row['site']
+                if site in planned:raise ValueError('Retained terminal phosphate overlaps replaced component')
+                definition=original.get(site)
+                if not isinstance(definition,dict) or current.get(site)!=definition:
+                    raise ValueError('Retained terminal phosphate native definition changed or is unavailable')
+                plans.append(dict(row,incoming_site=None,five_prime_state='phosphate',
+                    three_prime_state='linked' if row['outgoing_site'] is not None else 'free_OH',
+                    expected_atoms=[a['atom_id'] for a in definition['atoms']]))
         terminal={p['site']:p for p in plans if p.get('five_prime_state')=='phosphate'}
         expected={'P':'P','OP1':'O','OP2':'O','OP3':'O',"O5'":'O'}
         atoms={};mapping={r['site']:r for r in native['monomer_mappings']['rows']}
@@ -67,6 +114,7 @@ def declared_phosphate_check(native,preparations,expected_links):
                 if source[n]['type_symbol'].upper() not in {'H','D'}]
             if heavy!=['P']:raise ValueError('Terminal oxygen has another heavy-atom attachment')
         evidence.update(declared_terminal_sites=sorted(terminal),observed_op3_sites=observed)
+        if retained:evidence['retained_terminal_sites']=[r['site'] for r in retained]
         passed=True
     except (KeyError,TypeError,ValueError,IndexError,AttributeError) as exc:
         evidence['error']=type(exc).__name__+': '+str(exc)

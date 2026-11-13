@@ -39,6 +39,13 @@ before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 
+Checked preparation also keeps explicitly requested terminal phosphates on
+unchanged background DNA. Their declarations now reach the native dictionary
+check even when Doctor is replacing a different residue's dictionary. The full
+background definition must remain identical; this is not permission to add or
+remove phosphate. A separate charged leaving-oxygen case in 1AP remains unresolved
+and is recorded under chemical-state authority in Q13.
+
 An input-format issue provides another example: the installed eLBOW monomer
 route can turn the first terminal P–O bond into a double bond even when another
 P=O is already declared. A small explicit adapter presents the already-declared
