@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W35 — Final Phenix geometry statistics
+
+- Read bond/angle RMSDs from the final PDB's named Phenix geometry summary when
+  the log has no combined geometry line, instead of reporting missing values.
+- Preserve existing log precedence, R-factor parsing and checkpoint selection;
+  incomplete or unrecognized model summaries remain unmeasured.
+
 ### W34 — Public-reference refinement control
 
 - Record three complete matched Phenix refinements with unchanged observations

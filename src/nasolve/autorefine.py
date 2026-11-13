@@ -516,6 +516,15 @@ _BONDS_ANGLES = re.compile(
     r"angles?\s*[=:]\s*([0-9]*\.?[0-9]+)",
     re.I,
 )
+# Phenix 2.2 final PDBs report RMSD, maximum deviation and RMSZ on separate
+# BOND/ANGLE rows. Require the named summary so maxima or restraint ideals
+# cannot be mistaken for RMSDs. Existing combined log summaries retain priority.
+_PDB_GEOMETRY_RMSD = re.compile(
+    r"^REMARK[ \t]+3[ \t]+DEVIATIONS FROM IDEAL VALUES[^\r\n]*\bRMSD\b[^\r\n]*\r?\n"
+    r"REMARK[ \t]+3[ \t]+BONDS?[ \t]*:[ \t]*([0-9]*\.?[0-9]+)(?=[ \t])[^\r\n]*\r?\n"
+    r"REMARK[ \t]+3[ \t]+ANGLES?[ \t]*:[ \t]*([0-9]*\.?[0-9]+)(?=[ \t\r\n]|$)",
+    re.M | re.I,
+)
 _CLASHSCORE = re.compile(r"clashscore\s*[=:]\s*([0-9]*\.?[0-9]+)", re.I)
 _ANOMALOUS_GROUP = re.compile(
     r'Anomalous scatterer group:\s*Selection:\s*"([^"]+)".*?'
@@ -1126,6 +1135,8 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
             continue
         series.append({"index": len(series), "r_work": work, "r_free": free})
     geometry = [(float(a), float(b)) for a, b in _BONDS_ANGLES.findall(log_text)]
+    if not geometry:
+        geometry = [(float(a), float(b)) for a, b in _PDB_GEOMETRY_RMSD.findall(model_text)]
     clash_values = [float(value) for value in _CLASHSCORE.findall(log_text + "\n" + model_text)]
     final = series[-1] if series else None
     initial = series[0] if series else None

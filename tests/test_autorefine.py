@@ -1406,6 +1406,28 @@ class AutoRefineTests(unittest.TestCase):
         self.assertEqual(stats["bond_rmsd"], 0.009)
         self.assertEqual(stats["diagnostics"], ["WARNING geometry needs inspection"])
 
+    def test_statistics_parser_reads_final_pdb_rmsd_summary(self):
+        header = "REMARK   3  DEVIATIONS FROM IDEAL VALUES - RMSD, RMSZ FOR BONDS AND ANGLES.\n"
+        earlier = header + "REMARK   3    BOND : 0.020 0.100 956 Z=1.0\nREMARK   3    ANGLE : 3.000 20.0 1467 Z=1.5\n"
+        final = header + "REMARK   3    BOND : 0.012 0.097 956 Z=0.729\nREMARK   3    ANGLE : 2.622 19.186 1467 Z=1.263\n"
+        stats = parse_refinement_statistics("Final R-work = 0.1776, R-free = 0.2284\n", earlier + final)
+        self.assertEqual((stats["bond_rmsd"], stats["angle_rmsd"]), (0.012, 2.622))
+        self.assertEqual((stats["r_work"], stats["r_free"]), (0.1776, 0.2284))
+
+    def test_statistics_parser_preserves_log_geometry_precedence(self):
+        model = "REMARK   3  DEVIATIONS FROM IDEAL VALUES - RMSD, RMSZ FOR BONDS AND ANGLES.\nREMARK   3    BOND : 0.012 0.097 956 Z=0.729\nREMARK   3    ANGLE : 2.622 19.186 1467 Z=1.263\n"
+        stats = parse_refinement_statistics("bonds=0.009 angles=1.2\n", model)
+        self.assertEqual((stats["bond_rmsd"], stats["angle_rmsd"]), (0.009, 1.2))
+
+    def test_statistics_parser_requires_a_complete_named_rmsd_summary(self):
+        header = "REMARK   3  DEVIATIONS FROM IDEAL VALUES - RMSD, RMSZ FOR BONDS AND ANGLES.\n"
+        rows = "REMARK   3    BOND : 0.012 0.097 956 Z=0.729\nREMARK   3    ANGLE : 2.622 19.186 1467 Z=1.263\n"
+        for model in (rows, header + rows.splitlines()[0], header + rows.replace("0.012", "-0.012")):
+            with self.subTest(model=model):
+                stats = parse_refinement_statistics("", model)
+                self.assertIsNone(stats["bond_rmsd"])
+                self.assertIsNone(stats["angle_rmsd"])
+
     def test_missing_free_r_is_rejected_without_generation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
