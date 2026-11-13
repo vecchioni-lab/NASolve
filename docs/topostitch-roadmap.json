@@ -4,7 +4,7 @@
   "updated": "2026-11-13",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "0f176a965223af7aafbc433939d2d054f608524a",
+  "audited_code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -241,7 +241,8 @@
         "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
         "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy.",
         "Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats.",
-        "Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls."
+        "Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls.",
+        "A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -253,13 +254,14 @@
         "E_TIGHTER_NATIVE",
         "E_EXTENDED_BACKBONE",
         "E_NATIVE_TRANSPORT_RELAX",
-        "E_NATIVE_PLANES"
+        "E_NATIVE_PLANES",
+        "E_TRANSPORT"
       ],
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "7255bfd70e4ffa84068bd008ca1b3360b72848af",
-        "scope": "Native derivative gate with retained failures and existing-owner corrected composition"
+        "code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
+        "scope": "Shared numerical image transport; the production masked native objective and scientific closure remain open"
       }
     },
     {
@@ -497,9 +499,9 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "0f176a965223af7aafbc433939d2d054f608524a",
+      "code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "Seven viewer tests pass; 330 focused tests + 2 subtests pass installed and relocated after the original path is absent. Full source suite: 1,246 tests + 226 subtests. Installed HTML/entry point match source; lean basic view needs no numerical extra. JavaScript syntax/mock-DOM checks pass; rendered browser validation remains pending.",
+      "result": "24 affected transport/viewer tests pass; 347 focused tests + 2 subtests pass installed and relocated with the original path absent. Full source suite: 1,263 tests + 226 subtests. The numerical transport core runs without external packages; installed 8D93 viewer coordinates differ from the prior implementation by at most 1.5e-14 Angstrom. Rendered browser checks remain pending.",
       "limitation": "Current installed check is focused, not a full platform matrix. Previous relocation count is not a new guard relocation run. No combined Cedar build or scientific acceptance."
     },
     "E_REGISTRATION": {
@@ -585,6 +587,13 @@
       "reference": "docs/topostitch-preview.md#offline-originalcandidate-view",
       "result": "Standalone offline view replays frozen previews, displays actual source/candidate and optional exact mate, and exposes points, traces, contact distances, geometry changes and unrefined/unreviewed state. Public 8D93 installed artifact has 404 atom instances, 204 moved.",
       "limitation": "No Apply/Refine/Approve or campaign/checkpoint state; no Pine cut choices or recut graph. Browser visual/interaction validation blocked by local-file automation policy; mock-DOM checks are not rendered-browser evidence."
+    },
+    "E_TRANSPORT": {
+      "kind": "Shared image-coordinate and ASU-gradient transport",
+      "code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
+      "reference": "docs/topostitch-preview.md#shared-image-coordinate-transport",
+      "result": "The viewer and committed native probe share proper Cartesian images and accumulated transpose-gradient pullback. Tests compare independent fractional paths, inverses, repeated shared ASU indices and finite-difference derivatives. Phenix 2.2.1-6174 corrected Cartesian plane checks pass using the shared core; raw negative controls remain.",
+      "limitation": "Numerical arithmetic only; explicit matrices alone do not prove crystallographic membership. No production native optimizer, new chemical topology, symmetry equivalence/packing proof or scientific acceptance."
     }
   },
   "benchmarks": [

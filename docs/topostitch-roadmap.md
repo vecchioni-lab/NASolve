@@ -162,7 +162,7 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 Turn a plausible placement into a chemically usable candidate before refinement is trusted.
 
-**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls.
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls.
 
 **Closure audit:**
 
@@ -170,8 +170,8 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
 **Next action:** Qualify an explicitly masked fixed-base native objective with frozen definitions, mask digest, displacement bounds, unchanged bases and endpoint ASU derivative evidence. Rowan confirms no qualified selective adapter exists; Cedar all-captured-atoms policy and derivative sample indices cannot stand in for a movement mask. Reuse existing Cartesian correction without extending its policy.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes).
-**Last audit:** 2026-11-13, Linden, code `7255bfd`; Native derivative gate with retained failures and existing-owner corrected composition.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport).
+**Last audit:** 2026-11-13, Linden, code `3cb9723`; Shared numerical image transport; the production masked native objective and scientific closure remain open.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -347,8 +347,8 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `0f176a9`.
-Seven viewer tests pass; 330 focused tests + 2 subtests pass installed and relocated after the original path is absent. Full source suite: 1,246 tests + 226 subtests. Installed HTML/entry point match source; lean basic view needs no numerical extra. JavaScript syntax/mock-DOM checks pass; rendered browser validation remains pending.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `3cb9723`.
+24 affected transport/viewer tests pass; 347 focused tests + 2 subtests pass installed and relocated with the original path absent. Full source suite: 1,263 tests + 226 subtests. The numerical transport core runs without external packages; installed 8D93 viewer coordinates differ from the prior implementation by at most 1.5e-14 Angstrom. Rendered browser checks remain pending.
 **Limit:** Current installed check is focused, not a full platform matrix. Previous relocation count is not a new guard relocation run. No combined Cedar build or scientific acceptance.
 
 <a id="e_registration"></a>
@@ -434,6 +434,13 @@ A committed synthetic probe reproduces Phenix 2.2.1-6174 raw symmetry-planarity 
 [Evidence contract](topostitch-preview.md#offline-originalcandidate-view) at code `0f176a9`.
 Standalone offline view replays frozen previews, displays actual source/candidate and optional exact mate, and exposes points, traces, contact distances, geometry changes and unrefined/unreviewed state. Public 8D93 installed artifact has 404 atom instances, 204 moved.
 **Limit:** No Apply/Refine/Approve or campaign/checkpoint state; no Pine cut choices or recut graph. Browser visual/interaction validation blocked by local-file automation policy; mock-DOM checks are not rendered-browser evidence.
+
+<a id="e_transport"></a>
+### E_TRANSPORT — Shared image-coordinate and ASU-gradient transport
+
+[Evidence contract](topostitch-preview.md#shared-image-coordinate-transport) at code `3cb9723`.
+The viewer and committed native probe share proper Cartesian images and accumulated transpose-gradient pullback. Tests compare independent fractional paths, inverses, repeated shared ASU indices and finite-difference derivatives. Phenix 2.2.1-6174 corrected Cartesian plane checks pass using the shared core; raw negative controls remain.
+**Limit:** Numerical arithmetic only; explicit matrices alone do not prove crystallographic membership. No production native optimizer, new chemical topology, symmetry equivalence/packing proof or scientific acceptance.
 
 ## Deferred extensions, not hidden blockers
 
