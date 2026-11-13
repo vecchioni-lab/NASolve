@@ -445,6 +445,32 @@ fixed-base selection or an arbitrary symmetry-contact objective. Keep the local
 prototype distinct from Cedar's qualified policy and reuse its lifecycle at
 integration. No Coot or diffraction refinement was run; artifacts remain local.
 
+### Shared image-coordinate transport
+
+`nasolve.topostitch_transport` owns the rigid Cartesian operation used by the
+viewer and native image probe. `crystallographic_image(cell, group, operator)`
+validates group membership (including a retained lattice shift) and compiles
+`x_image = R_cart x_ASU + t_cart`. Its `CartesianImage` core also accepts explicit
+finite proper Cartesian matrices without importing Gemmi or Phenix; those
+matrices alone are numerical inputs, not proof of crystallographic membership.
+
+`expand_sites` retains each explicit atom/image instance.
+`accumulate_image_gradients` applies `R_cart` transpose and **adds** all image
+contributions to their shared ASU atom. Repeated ASU indices are intentional;
+using the forward rotation or overwriting a prior image contribution gives the
+wrong derivative. No restraint, atom mask, topology or native-policy authority
+is inferred. This is the common numerical boundary for a future native adapter,
+not that adapter itself.
+
+Tests compare independent fractional/Gemmi paths in skew P1, P43, R3:H and
+centered cells, inverse/distance preservation, finite-difference self-image
+contacts with repeated ASU indices, invalid bindings and detached immutable
+matrices. The native plane probe now uses this same helper and records its source
+hash. Under Phenix 2.2.1-6174, Cartesian planarity and Cedar-corrected parallelity
+pullback still pass; the intentionally retained raw negative controls still fail.
+The viewer keeps JSON arrays and schema 1. Source/candidate PDBs and frozen
+preview replay are unchanged; only floating-point display arithmetic is shared.
+
 ### Reproducible native plane gate
 
 The repository includes a small synthetic developer probe (no crystallographic

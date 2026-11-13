@@ -64,6 +64,7 @@ def test_periodic_view_applies_exact_mate_to_both_coordinate_sets(tmp_path,move_
     preview=tmp_path/'preview'
     build_bend_preview(paths[0],paths[1],registration_path=paths[2],trial_path=trial,output_directory=preview)
     scene=preview_scene(preview,candidate_index=0,radius_angstrom=20,periodic=True)
+    assert all(isinstance(a[state],list) for a in scene['atoms'] for state in ('before','after'))
     assert scene['contacts'] and scene['source_image_assessment']=='SELECTED_COORDINATES_DISTINCT'
     assert scene['candidate_image_assessment']=='SELECTED_COORDINATES_DISTINCT'
     assert scene['selected_candidate']['target_image']==fitted['selected_candidate']['target_image']

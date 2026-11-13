@@ -405,16 +405,17 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**Read-only viewer checkpoint:** seven new viewer tests pass from source
-(2.92 s). All **330 focused tests + 2 subtests** pass against the rebuilt installed
-wheel (11.88 s), and again after relocating the source/test tree with its original
-path absent (11.80 s). The complete source suite passes **1,246 tests + 226
-subtests** (70.23 s). Installation includes the HTML asset and new entry point;
-the basic viewer also runs in the lean environment without Gemmi/SciPy. The
-installed periodic 8D93 view contains 404 actual atom instances (204 moved).
-JavaScript syntax and mock-DOM event smoke checks pass; rendered browser checks
-remain pending because local-file automation was blocked. This is not full GUI
-qualification.
+**Shared image-transport checkpoint:** 24 affected transport/viewer tests pass
+from source (2.59 s). All **347 focused tests + 2 subtests** pass against the
+rebuilt installed wheel (13.13 s), and after source/test relocation with the
+original path absent (13.17 s). The full source suite passes **1,263 tests + 226
+subtests** (75.34 s). The installed 8D93 viewer preserves source/candidate hashes,
+selected operator and display coordinates to <1e-10 Å; the numerical core runs
+without Gemmi/Phenix/SciPy. Shared transport also passes the corrected native
+plane probe under Phenix 2.2.1-6174, retaining its raw negative controls.
+The preceding viewer checkpoint passed JavaScript syntax/mock-DOM interaction
+checks. Rendered browser validation remains pending after the local-file
+automation policy block; no full GUI qualification is claimed.
 Environment: Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3 (`a9264f9`), Gemmi
 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. The earlier 17 fitting tests passed with
 minimum SciPy 1.14.1 / NumPy 2.2.6; that is not a current minimum-version run.

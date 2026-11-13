@@ -61,14 +61,11 @@ def preview_scene(directory, *, candidate_index=None, radius_angstrom=None,
             raise ValueError('Selected connection does not contain the preview window')
         by_id={a.end_id:a for a in assignments};instances=[];transform=identity
         if periodic:
-            from .topostitch_periodic import _crystal
+            from .topostitch_transport import crystallographic_image
             from .topostitch_images import _attach_image_audit,_audit_transformed_image
             crystal={k:screen['inputs'][k] for k in ('cell_parameters','space_group')}
-            gemmi,cell,_=_crystal(crystal['cell_parameters'],crystal['space_group'])
-            op=gemmi.Op(selected['target_image']['operator_xyz'])
-            def transform(xyz):
-                frac=cell.fractionalize(gemmi.Position(*xyz))
-                return list(cell.orthogonalize(gemmi.Fractional(*op.apply_to_xyz(list(frac)))))
+            image=crystallographic_image(**crystal,operator_xyz=selected['target_image']['operator_xyz'])
+            transform=lambda xyz:list(image.apply(xyz))
             _attach_image_audit(root/'source.pdb',assignments,observation,candidate_index=candidate_index)
             source_audit=observation['selected_image_identity']
             # The preview replay already proves identity-preserving atom motion.

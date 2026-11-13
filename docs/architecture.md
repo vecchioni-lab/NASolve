@@ -913,6 +913,9 @@ new standalone HTML comparison, optionally with an explicitly chosen exact mate.
 Its schema-1 display scene has no scientific authority; it owns no checkpoint,
 model editing, refinement or approval. The canvas/scene adapter is a read-only
 component for later Pine/Campaign desk integration, not a second state store.
+`topostitch_transport` shares proper Cartesian image transforms and accumulated
+ASU gradient pullback with the native diagnostic. It supplies numerical plumbing;
+Cedar's policies, chemistry and native trial lifecycle are separate owners.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are

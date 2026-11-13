@@ -169,12 +169,14 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** seven source viewer tests, all 330 focused installed tests +
-2 subtests, the same focused suite after original-path-absent relocation, and the
-full source suite (1,246 tests + 226 subtests) pass. The installed viewer includes
-its offline HTML asset and works without optional numerical packages for the
-basic window. Exact mate/coordinate and JavaScript mock-DOM checks pass; rendered
-browser validation is pending after a local-file automation policy block.
+**Current checks:** 24 affected transport/viewer tests, all 347 focused installed
+tests + 2 subtests, the same focused suite after original-path-absent relocation,
+and the full source suite (1,263 tests + 226 subtests) pass. The installed viewer
+includes its offline asset. Its proper Cartesian image helper also supplies
+transpose-gradient accumulation to the native diagnostic, including repeated
+ASU indices; the numerical core needs no Gemmi/Phenix. Exact mate/coordinate and
+JavaScript mock-DOM checks pass; rendered browser validation remains pending
+after a local-file automation policy block.
 Schema-2 preview
 and fitting add nonbridging phosphate angles and circular epsilon/zeta/alpha
 changes, while retaining exact schema-1 replay. The selected-image audit retains

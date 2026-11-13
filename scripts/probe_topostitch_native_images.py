@@ -20,6 +20,8 @@ def probe(cedar_source=None):
     from scitbx.array_family import flex
     from scitbx import matrix
     import cctbx_geometry_restraints_ext
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
+    from nasolve import topostitch_transport as transport
     cell=uctbx.unit_cell((40,40,70,90,90,120))
     identity=sgtbx.rt_mx();mate=sgtbx.rt_mx('-x+y+2/3,-x+1/3,z+1/3')
     first=[(0,0,0),(1.3,.1,.01),(.8,1.1,-.01),(-.5,1.4,.02),(-1.2,.4,.01),(-.7,-.6,-.02)]
@@ -28,9 +30,12 @@ def probe(cedar_source=None):
     source=flex.vec3_double(first+[cell.orthogonalize(mate.inverse()*cell.fractionalize(p)) for p in second])
     ops=[identity]*6+[mate]*6
     O=matrix.sqr(cell.orthogonalization_matrix());F=matrix.sqr(cell.fractionalization_matrix())
-    rotations=[O*matrix.sqr(op.r().as_double())*F for op in ops]
-    def expand(points):return flex.vec3_double(cell.orthogonalize(op*cell.fractionalize(p)) for op,p in zip(ops,points))
-    def pullback(grad):return flex.vec3_double(tuple(R.transpose()*matrix.col(g)) for R,g in zip(rotations,grad))
+    images=[transport.CartesianImage(
+        tuple(tuple((O*matrix.sqr(op.r().as_double())*F)[3*i+j] for j in range(3)) for i in range(3)),
+        tuple(cell.orthogonalize(op.t().as_double()))) for op in ops]
+    refs=tuple(enumerate(images))
+    def expand(points):return flex.vec3_double(transport.expand_sites(list(points),refs))
+    def pullback(grad):return flex.vec3_double(transport.accumulate_image_gradients(len(source),refs,list(grad)))
     bond=gr.shared_bond_simple_proxy([gr.bond_simple_proxy(i_seqs=(0,6),distance_ideal=2.8,weight=25,rt_mx_ji=mate)])
     angles=gr.shared_angle_proxy([gr.angle_proxy(i_seqs=(3,0,6),sym_ops=(identity,identity,mate),angle_ideal=116.2,weight=1/3.46**2)])
     plane=gr.shared_planarity_proxy([gr.planarity_proxy(i_seqs=list(range(12)),weights=flex.double(12,25))])
@@ -79,7 +84,7 @@ def probe(cedar_source=None):
         passed=sum(r['max_absolute_error']<=1e-6 for r in steps)>=2 and max(r['max_absolute_error'] for r in steps)<=1e-4
         results.append({'case':kind,'residual':value,'coordinate_count':len(source)*3,'finite_differences':steps,'derivatives_match':passed})
     sources=[]
-    for module in (gr,cctbx_geometry_restraints_ext):
+    for module in (gr,cctbx_geometry_restraints_ext,transport):
         path=Path(module.__file__).resolve();sources.append({'module':module.__name__,'historical_path':str(path),'sha256':sha256(path.read_bytes()).hexdigest()})
     if correction is not None:
         path=Path(correction.__file__).resolve();sources.append({'module':'nasolve.cif_parallelity_correction','historical_path':str(path),'sha256':sha256(path.read_bytes()).hexdigest(),'policy':correction.ORDER_CORRECTION_ID})

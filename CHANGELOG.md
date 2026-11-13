@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Shared TopoStitch image transport
+
+- Share Cartesian image coordinates and transpose-gradient accumulation between
+  the offline viewer and native derivative probe. Repeated atom/image instances
+  contribute to the same ASU variable without overwriting one another.
+- Validate proper rotations, finite values, explicit indices and optional
+  cell/group/operator membership. The numerical core needs no Gemmi or Phenix.
+- Preserve preview/fitter schemas and model bytes. This arithmetic helper does
+  not add a production native optimizer or qualify a connection.
+
 ### TopoStitch offline candidate view
 
 - Add `nasolve-topostitch-view` to compare a verified frozen source/candidate

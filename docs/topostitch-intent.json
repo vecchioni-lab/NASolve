@@ -346,6 +346,18 @@
       "browser_visual_validation": "PENDING_LOCAL_FILE_POLICY_BLOCK",
       "campaign_integration": false,
       "pine_cut_selection": false
+    },
+    "image_transport": {
+      "module": "nasolve.topostitch_transport",
+      "scope": "proper Cartesian image coordinates and accumulated transpose-gradient pullback to shared ASU variables",
+      "consumers": [
+        "offline preview viewer",
+        "native image derivative probe"
+      ],
+      "optional_checked_factory": "cell, Sohncke group and exact operator membership with Gemmi",
+      "core_external_dependencies": false,
+      "production_native_optimizer": false,
+      "scientific_qualification": false
     }
   },
   "geometry_development": {
