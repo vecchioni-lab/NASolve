@@ -79,7 +79,12 @@ Do not rerun the completed mutating control in place.
    exactly from an **8.3 MB** archive: 418 files, 57.7 MB temporary physical data,
    original-source reads forbidden, unchanged 128 MiB logical limit. Temporary
    archive/view removed; originals intact. This is byte-level feasibility, not
-   complete-request reconstruction, scientific requalification or retirement.
+   complete-request reconstruction or retirement. A further cold replay of the
+   prepared-repair runtime inside that archive **passes** (15.82 s). The ReadySet
+   continuation instead refuses the extra nesting: `Nested evidence exceeds
+   supported view depth` (1.47 s). Its normal C252 readback still passes. The next
+   storage patch must accommodate that deeper proof with an explicit bounded
+   lifecycle, not simply archive/delete files or globally raise the depth limit.
    Reuse bounded archive machinery; preserve public model/restraint references and
    every owner's inventory, known-stopped recovery and interruption safety.
 3. Reconcile remaining caller/recovery acceptance against C156/C170, C223–C225,

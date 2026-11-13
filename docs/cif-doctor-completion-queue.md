@@ -304,6 +304,12 @@ Remaining acceptance:
    data, no original-source reads during expansion and no raised limits. Temporary
    copies are removed; all originals remain unchanged. This proves archive
    feasibility only, not complete-request reconstruction or permission to retire.
+   Invoking the existing prepared-repair runtime reader inside that extra view
+   passes with original reads/native execution forbidden. The analogous ReadySet
+   continuation is refused by the existing two-view nesting guard. This is a
+   prototype-storage limit; ordinary preparation/readback remains valid. Include
+   this deeper continuation and temporary-view lifetime in the next storage
+   contract. Do not globally raise depth/byte limits merely to pass this probe.
 
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical

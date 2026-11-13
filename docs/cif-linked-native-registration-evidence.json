@@ -91328,6 +91328,64 @@
         "elapsed_seconds": 3.55594162500347,
         "scope": "Exact byte/hash/directory reconstruction of one retained C244 successful execution subtree using existing pack/expand APIs. No complete-request reconstruction, scientific requalification, runtime archive adoption or working-file retirement. The originals remain necessary and intact."
       }
+    },
+    "nested_working_archive_replay": {
+      "results": {
+        "prepared_repair": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_working_archive_nested_probe.py",
+          "runner_sha256": "94715fb10b72f70a240b29cbcaec9a13f447c2f3700bcaa481d3e3339854ee65",
+          "evidence": {
+            "anchor": "live_tests_directory",
+            "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/working-archive-nested-probe.json",
+            "sha256": "3dbfdb165df52021933d6146e9fb27805741828ca66cca0512768c9137490a99"
+          },
+          "result": {
+            "status": "NESTED_ARCHIVE_RUNTIME_REPLAY_PASS",
+            "model_sha256": "457f00691c3a275309eae16465d0c1eb1a004336fe37c747256918e8b4593c9e",
+            "phils": 5,
+            "dictionaries": 2,
+            "runtime_authority": false,
+            "archive_sha256": "22c5456f75a28c22df04794bce2b57e24aea78d58f7363b84e4199a6d1bfae6d",
+            "source_files_unchanged": 418,
+            "temporary_archive_and_view_removed": true,
+            "old_source_reads_forbidden": true,
+            "subprocess_execution_forbidden": true,
+            "elapsed_seconds": 15.823842957994202,
+            "maximum_resident_bytes": 605519872,
+            "scope": "Existing selected prepared-repair runtime reader invoked inside an extra working-evidence archive view. No limits raised, no stored verdict substituted, no complete-request reader/retirement integration. Original source remains intact."
+          }
+        },
+        "readyset_continuation": {
+          "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_continuation_archive_nested_probe.py",
+          "runner_sha256": "fbe240d86fb6430c9412bead51b02a5f0c21b45e5e8b060aa33909a926635d9f",
+          "evidence": {
+            "anchor": "live_tests_directory",
+            "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/continuation-archive-nested-probe.json",
+            "sha256": "029590f68afd85927c47d0aceb0bc82af2e4ce2aa83acf2f3ffe467f3dfbb0da"
+          },
+          "result": {
+            "status": "NESTED_CONTINUATION_ARCHIVE_RUNTIME_REPLAY_REFUSED",
+            "error_type": "ValueError",
+            "diagnostic": "Nested evidence exceeds supported view depth",
+            "runtime_authority": false,
+            "source": {
+              "anchor": "live_tests_directory",
+              "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request/attempts/attempt-0001/continuation"
+            },
+            "archive_sha256": "3825ceff07b8041ba54ac06131be61df7d347e4f3a873c1b0eccb0f793f87eea",
+            "source_files_unchanged": 116,
+            "temporary_archive_and_view_removed": true,
+            "old_source_reads_forbidden": true,
+            "subprocess_execution_forbidden": true,
+            "elapsed_seconds": 1.4657568340189755,
+            "maximum_resident_bytes": 161120256,
+            "scope": "Existing selected ReadySet continuation runtime reader invoked inside an extra working-evidence archive view. No limits raised, no stored verdict substituted, no complete-request reader/retirement integration. Original source remains intact."
+          }
+        }
+      },
+      "interpretation": "Existing bounded archive can replay the selected prepared-repair runtime inside one extra view, but wrapping ReadySet continuation adds an unsupported third view. This is a storage prototype refusal, not a failure of C252 native preparation or ordinary readback. Whole-request retirement still needs an explicit bounded reader/lifecycle design; do not globally raise limits merely to pass the probe.",
+      "changed_runtime": false,
+      "retired_source_files": 0
     }
   }
 }
