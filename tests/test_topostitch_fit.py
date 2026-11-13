@@ -18,13 +18,13 @@ from .test_construct_registration import target
 from .test_topostitch_preview import setup_preview, digest
 
 
-def fit_inputs(tmp_path, *, periodic=False, move_target=False, target_z_shift=0):
+def fit_inputs(tmp_path, *, periodic=False, move_target=False, target_z_shift=0, target_x_shift=-.2):
     model,discovery,reg,_,_=setup_preview(tmp_path,anisou=False)
     first=[r for r in model.read_text().splitlines() if r.startswith('ATOM')]
     second=[]
     for r in first:
         xyz=[float(r[a:a+8]) for a in (30,38,46)]
-        xyz=(-xyz[0]-8+(40 if periodic else 0),xyz[1],12-xyz[2]+target_z_shift)
+        xyz=(-xyz[0]-8+target_x_shift+(40 if periodic else 0),xyz[1],12-xyz[2]+target_z_shift)
         r=r[:6]+f'{int(r[6:11])+1000:5d}'+r[11:17]+(' DT' if r[17:20].strip()=='DA' else ' DA')+r[20:21]+{'A':'C','B':'D'}[r[21]]+r[22:30]+''.join(f'{v:8.3f}' for v in xyz)+r[54:]
         second.append(r)
     rows=[]; codes={}; serial=3000
@@ -228,3 +228,37 @@ def test_screw_image_fit_uses_asu_motion_before_target_image(tmp_path):
     actual=fit(paths)
     assert actual['status']==expected['status']=='TRANSFORM_FOR_REVIEW'
     assert actual['serialized_after']['pair_target_sum_squares']==pytest.approx(expected['serialized_after']['pair_target_sum_squares'],rel=1e-5)
+
+
+def test_periodic_fit_defers_partial_occupancy_before_solver(tmp_path,monkeypatch):
+    pytest.importorskip('gemmi')
+    paths=fit_inputs(tmp_path,periodic=True)
+    model,discovery,reg,request_path=paths
+    model.write_text(model.read_text().replace('  1.00','  0.50',1))
+    codes={f'{r[21]}:{int(r[22:26])}':r[17:20].strip() for r in model.read_text().splitlines() if r.startswith('ATOM')}
+    registry=build_construct_registration(inspect_pdb(model,polymer_ligand_codes={'DA','DT'}),target(*codes.items()),
+        {'copy_1':{s:s for s in codes}},source='synthetic-fit')
+    reg.write_text(json.dumps(registry))
+    value=json.loads(discovery.read_text());value.update(model_sha256=digest(model.read_bytes()),registration_sha256=digest(reg.read_bytes()));discovery.write_text(json.dumps(value))
+    change(paths,model_sha256=digest(model.read_bytes()),discovery_file_sha256=digest(discovery.read_bytes()),registration_file_sha256=digest(reg.read_bytes()))
+    def forbidden(*args,**kwargs):raise AssertionError('Ambiguous image must not reach the solver')
+    monkeypatch.setattr('nasolve.topostitch_fit._scipy',lambda:forbidden)
+    result=fit(paths)
+    assert result['status']=='IMAGE_IDENTITY_REVIEW_REQUIRED'
+    assert result['trial'] is None and result['solver']['residual_calls']==0
+    assert result['selected_image_identity']['assessment']=='COINCIDENCE_OR_OCCUPANCY_REVIEW'
+
+
+def test_periodic_fit_defers_coincident_distinct_atoms(tmp_path,monkeypatch):
+    pytest.importorskip('gemmi')
+    # Preserve the original synthetic corner case: A:1 N1 coincides exactly
+    # with the selected C:1 N1 image even though their source labels differ.
+    paths=fit_inputs(tmp_path,periodic=True,target_x_shift=0)
+    def forbidden(*args,**kwargs):raise AssertionError('Coincident source identities must not reach the solver')
+    monkeypatch.setattr('nasolve.topostitch_fit._scipy',lambda:forbidden)
+    result=fit(paths)
+    assert result['status']=='IMAGE_IDENTITY_REVIEW_REQUIRED'
+    assert result['trial'] is None and result['solver']['residual_calls']==0
+    audit=result['selected_image_identity']
+    assert audit['selected_atom_sets_disjoint'] is False
+    assert audit['selected_image_overlaps'][0]['relation']=='DISTINCT_SOURCE_ATOMS_COINCIDE'

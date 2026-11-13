@@ -160,25 +160,32 @@ UNREVIEWED and unrefined. No existing model/checkpoint is changed.
 An optional bounded fitter now proposes a terminal transform for one explicit
 pairing/image and window, counting Jacobian evaluations and rechecking serialized
 limits. No partner/window selection is inferred. The roadmap currently prioritizes
-F02/S03 physical image/connection identity, then S04/S05 local geometry closure
+F02/S03 physical image/connection identity (periodic fitting now requires a
+clear selected-coordinate source audit), then S04/S05 local geometry closure
 before S06 matched refinement. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 307 focused, installed-wheel and relocated-checkout tests + 2 subtests passed.
+**Current checks:** 309 focused source tests + 2 subtests pass; the latest 43
+fitting/image tests pass against the rebuilt wheel. The preceding image-audit
+checkpoint passed all 307 then-current focused tests from installed and relocated
+checkouts.
 The optional selected-image audit compares present atoms and retains stabilizer/
 coincident-label uncertainty; it does not merge identities or approve partners.
 Actual installed CLI checks cover composed options and public 8D93 within declared
 local windows, plus the explicit ANISOU-preserving preview. Source bytes stayed
 unchanged and unknown cuts stayed incomplete.
 Coordinates and derived benchmark files remain local only. The current full
-source suite passes 1,223 tests + 226 subtests after rerunning five sandbox-blocked
+source suite at `2d7544b` passed 1,223 tests + 226 subtests after rerunning five sandbox-blocked
 process-control tests in the unrestricted complete suite. Seventeen fitting tests also pass on the declared
 minimum SciPy 1.14.1 / NumPy 2.2.6, besides SciPy 1.18.1 / NumPy 2.5.4. Lean installs
 report the missing fitting extra cleanly. Public 8D93 source/explicit/fitted models
 completed separate read-only Phenix 2.2.1-6174 interpretation via Cedar ecafc98,
-all REVIEW, unchanged sources and 855 atoms. The fitted trial still adds an angle
-outlier; this is not geometry approval or diffraction/refinement validation.
+all REVIEW, unchanged sources and 855 atoms. The original fitted trial adds an
+angle outlier. Three predeclared tighter-backbone controls subsequently preserved
+matched native definitions/proxies and introduced no new nominal ≥5 scalar
+outliers, while improving the contact target less. This is descriptive evidence,
+not closure, geometry approval or diffraction/refinement validation.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
 Cedar through C258 (`3d87abc`) owns its native audit, selected AutoSol references

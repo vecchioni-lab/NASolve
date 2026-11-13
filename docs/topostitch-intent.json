@@ -302,7 +302,8 @@
       "geometry_validated": false,
       "automatic_partner_selection": false,
       "automatic_window_expansion": false,
-      "campaign_adoption": false
+      "campaign_adoption": false,
+      "image_identity_precondition": "periodic source selected-coordinate audit; ambiguous outcomes do not reach optimization"
     },
     "selected_image_identity": {
       "module": "nasolve.topostitch_images",
@@ -314,7 +315,7 @@
       "metric_bounded_orbit_coincidences": true,
       "identity_merging": false,
       "physical_identity_validated": false,
-      "fitter_uses_audit": false,
+      "fitter_uses_audit": true,
       "runtime_authority": false
     }
   },

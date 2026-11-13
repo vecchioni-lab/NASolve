@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch periodic fitting eligibility
+
+- Defer periodic fits whose selected source image audit finds coincident identities,
+  stabilizer observations or occupancy uncertainty, returning a review outcome
+  before optimization. Existing eligible requests and preview replay remain valid.
+- Record three tighter-backbone native controls that avoid the earlier added angle
+  outlier; preserve their remaining closure, torsion, packing and diffraction limits.
+
 ### TopoStitch selected atom-image audit
 
 - Add an opt-in, bounded audit for one periodic candidate using present atoms,

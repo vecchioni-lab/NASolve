@@ -181,6 +181,23 @@ must match `candidate_model_sha256` from the fit report. API users can call
 continuous versus serialized target changes and actual preview audit. No
 scientific acceptance, native audit or review state is upgraded by convergence.
 
+### Periodic image precondition
+
+The fitter now runs the selected present-atom image audit before invoking the
+optimizer for periodic requests. It records the full `selected_image_identity`
+evidence using a 0.01 Å coincidence tolerance, 2,000,000-test work limit and the
+inspector's finite record cap. Coincident source identities, stabilizer
+observations, partial occupancy or an unassessed selected inventory return
+`IMAGE_IDENTITY_REVIEW_REQUIRED`, zero solver residual calls and no trial.
+Budget exhaustion is an input error with no partial proposal. Nonperiodic fits
+retain their existing behavior and record no periodic audit.
+
+The proposal algorithm is `single-window-canonical-contact-least-squares-v2`;
+request, trial and preview schemas remain unchanged. Existing eligible public
+8D93 input reproduces the previous candidate bytes, and earlier frozen previews
+still replay. The audit checks the **source** selected images. It does not
+approve the moved model, full packing, global orbit capacity or a connection.
+
 ## Validation and compatibility
 
 This additive module/entry point leaves the read-only inspector, Pine
@@ -252,3 +269,37 @@ saving configuration. Diagnostics were written outside every input directory.
 All downloaded coordinates, candidate models and native receipts remain local,
 excluded from Git. This coordinate-only comparison is separate from the proposed
 8D93-to-hexagonal-recipient diffraction benchmark.
+
+### Stricter backbone controls — 2026-11-13
+
+Three policies were declared before comparison, changing only the backbone
+penalty scales in the original public 8D93 request. The source, image, window,
+other objective terms, motion bounds and 3,000-call budget were unchanged.
+
+| Control | Distance / angle scale | Serialized pair target | Max backbone bond / angle change | New nominal ≥5 bonds / angles / chirality |
+| --- | --- | ---: | --- | --- |
+| Original fit | 0.05 Å / 5° | 123.887533 | 0.053171 Å / 8.381172° | 0 / 1 / 0 |
+| Gentle | 0.02 Å / 1° | 157.293092 | 0.012602 Å / 1.597793° | 0 / 0 / 0 |
+| Conservative | 0.01 Å / 0.5° | 171.649933 | 0.008765 Å / 0.665227° | 0 / 0 / 0 |
+| Stiff | 0.005 Å / 0.25° | 183.775561 | 0.003787 Å / 0.226707° | 0 / 0 / 0 |
+
+The unmoved pair target is 190.692330. These scales are development controls,
+not calibrated tolerances or new product defaults. Each new candidate completed
+read-only Phenix 2.2.1-6174 interpretation (exit 0, REVIEW), with the same options
+above, using an immutable Cedar `cd744e2` source snapshot. Existing source outliers
+remained; no new nominal ≥5 scalar outliers or chirality sign conflicts appeared.
+
+This comparison uses Cedar's existing `_capture` receipt binding,
+`qualify_fragment_restoration` mechanics check, `_proxy_subset` ordered named
+proxy multisets and `review_captured_geometry`. It checks every captured proxy
+category, atom identity, effective definition, interpreter/API and restraint-policy
+context before matching individual scalar endpoints. All matched, so equal counts
+are not concealing exchanged outliers. Cedar code/environments were unchanged.
+
+This demonstrates a contact/strain tradeoff and removes the particular earlier
+angle regression under these tighter controls. It does **not** establish atomic
+closure, native residual improvement, complete torsion/packing qualification or
+better diffraction agreement. Present preview limits still cover the declared
+O3′–P length and two junction angles; broader phosphate-angle/torsion coverage
+and native geometry remain explicit next gates. Frozen inputs, models, native
+receipts and the matched diagnostic stay local and out of Git.

@@ -66,7 +66,8 @@ invented, and unselected crystal atoms are outside the audit's scope.
 `physical_identity_validated`, `geometry_validated` and `runtime_authority` stay
 false, and original candidate approval fields are unchanged. This first slice
 supplies F02 evidence; global partner capacity, full molecular orbit identity,
-Pine cut/scattering invariance and automatic use by the fitter remain open.
+Pine cut/scattering invariance remain open. Periodic fitting now consumes the
+source audit as a conservative precondition; see the preview guide.
 
 ## Assignment manifest
 
@@ -404,7 +405,7 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**307 focused tests + 2 subtests passed** from source (8.49 s), against the
+**Selected-image checkpoint:** 307 focused tests + 2 subtests passed from source (8.49 s), against the
 installed wheel (6.54 s), and from a relocated temporary checkout (6.40 s) after
 its original path was absent, using Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3
 (`a9264f9`), Gemmi 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. All 17 fitting tests also
@@ -456,7 +457,8 @@ This is a read-only smoke check, not unsupervised discovery or scientific repair
 validation. Downloaded coordinates and derived benchmark files are excluded from
 Git. The synthetic CLI checks also verified no input-file changes.
 
-The complete source suite now passes **1,223 tests + 226 subtests** (63.50 s).
+The complete source suite at image-audit commit `2d7544b` passes
+**1,223 tests + 226 subtests** (63.50 s).
 The first sandboxed attempt returned 1,218 passes and five process-control failures
 because `ps` and owned-group termination were denied; the unrestricted rerun above
 passed without code changes. Source command: the same environment above with
@@ -472,6 +474,15 @@ distinct within this scope; closure, global packing and physical partner capacit
 are not thereby approved. The [preview guide](topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13)
 retains the separate Phenix source/preview/fitted interpretation results and
 remaining geometry degradation.
+
+The subsequent fitter-eligibility patch passes **309 focused source tests + 2
+subtests** (7.55 s), with the **43 affected fitting/image tests** also passing
+against its rebuilt installed wheel. It does not change global mechanics; the
+earlier full-suite count is not represented as a new full-suite run. Existing
+public 8D93 requests reproduce their previous candidate bytes, and the old frozen
+preview replays unchanged. The new failing-before regression prevents optimization
+when source image occupancy requires review; an exact coincident-atom fixture is
+retained as a separate refusal case.
 
 ## Local diffraction benchmark preflight — 2026-11-13
 

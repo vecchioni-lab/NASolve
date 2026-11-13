@@ -98,6 +98,10 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
     least_squares=_scipy()
     zero=(0.,)*6
     snapshots,baseline=_prepare(model_path,discovery_path,registration_path,trial_value=_trial(request,zero))
+    def verify_inputs():
+        paths={'source':Path(model_path),'discovery':Path(discovery_path),'registration':Path(registration_path)}
+        if any(path.read_bytes()!=snapshots[name] for name,path in paths.items()) or Path(request_path).read_bytes()!=request_bytes:
+            raise ValueError('Placement inputs changed during fitting')
     digest,assignments,_,mapping=load_registered_end_assignments(model_path,discovery_path,registration_path)
     search=request['search']
     observations=inspect_end_contacts(model_path,assignments,expected_sha256=digest,
@@ -113,6 +117,11 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
     if len(selected)!=1:
         raise ValueError('Selected pairing/image is absent or ambiguous in the frozen search scope')
     index=selected[0]; candidate=candidates[index]
+    image_audit=None
+    if search['periodic']:
+        from .topostitch_images import _attach_image_audit
+        _attach_image_audit(model_path,assignments,observations,candidate_index=index)
+        image_audit=observations['selected_image_identity']
     contact=observations['contact_assessment']['candidates'][index]
     if any(p['assessment']!='MEASURED_NOT_VALIDATED' for p in contact['residue_pairs']):
         raise ValueError('Placement requires complete canonical contact measurements')
@@ -205,9 +214,10 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
     settings={'method':'trf','jac':'3-point','diff_step':1e-4,'ftol':1e-8,'xtol':1e-8,'gtol':1e-8,
               'x_scale':list(bounds),'initial_parameters':list(zero),'loss':'linear'}
     report={'schema_version':1,'kind':'topostitch-placement-proposal',
-        'algorithm':'single-window-canonical-contact-least-squares-v1',
+        'algorithm':'single-window-canonical-contact-least-squares-v2',
         'request':request,'request_file_sha256':sha256(request_bytes).hexdigest(),
         'source_model_sha256':digest,'reference_library':library,'selected_candidate':candidate,'window':window,
+        'selected_image_identity':image_audit,
         'solver':{'name':'scipy.optimize.least_squares','scipy_version':version('scipy'),
                   'numpy_version':version('numpy'),'settings':settings,'residual_calls':0,'nfev':None,'njev':None},
         'before':before,'continuous_after':None,'serialized_after':None,'trial':None,
@@ -216,8 +226,13 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
         'limitations':['One zero-initialized local search for one explicitly chosen pairing and window',
             'Canonical full-overhang geometry target; no density, diffraction or R-factor objective',
             'Objective scales are caller policy, not calibrated likelihoods or acceptance thresholds',
-            'No torsion, packing, physical image-orbit, atomistic closure or native qualification',
+            'Selected-coordinate image audit is a precondition only; full physical orbit/capacity remains unqualified',
+            'No torsion, packing, atomistic closure or native qualification',
             'No reconstruction, chemical topology changes, campaign adoption or best-partner claim']}
+    if image_audit is not None and image_audit['assessment']!='SELECTED_COORDINATES_DISTINCT':
+        report['status']='IMAGE_IDENTITY_REVIEW_REQUIRED'
+        verify_inputs()
+        return report
     calls=0
     def residual(parameters):
         nonlocal calls
@@ -256,9 +271,7 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
                         preview_audit={'max_atom_displacement_angstrom':preview['max_atom_displacement_angstrom'],
                                        'backbone_audit':preview['backbone_audit']})
     report['solver']['residual_calls']=calls
-    paths={'source':Path(model_path),'discovery':Path(discovery_path),'registration':Path(registration_path)}
-    if any(path.read_bytes()!=snapshots[name] for name,path in paths.items()) or Path(request_path).read_bytes()!=request_bytes:
-        raise ValueError('Placement inputs changed during fitting')
+    verify_inputs()
     return report
 
 
