@@ -90171,5 +90171,240 @@
       "No automatic support acquisition/selection/fallback scheduling added",
       "No full suite, Coot or refinement"
     ]
+  },
+  "automatic_plane_support_acquisition_2026_11_13": {
+    "milestone": "C244",
+    "base_commit": "9f37d914cb6cd95181393b9710407f00c7cd4dab",
+    "before": "Complete request could only consume explicitly supplied completed support",
+    "after": "Explicit automatic mode screens acquired source graphs, creates owned multiple-plane support children, and feeds existing qualification/repair/ReadySet; classified failure never grants unchecked fallback",
+    "source_sha256": {
+      "src/nasolve/cif_complete_request.py": "28b5681139087fa6270e7c923d9953ea9f640faf350e8d09d6ac6aea7ceb1e1f",
+      "tests/test_cif_complete_request.py": "ef0d0e746efe3096bbd67994716415e74fdbbdf6510952eceb6cd455f4bc49a1"
+    },
+    "prior_work": [
+      "C157/C170 existing generation and parent-time owner",
+      "C240/C243 exact stopped-negative proof",
+      "C242 explicit complete-request supplied support"
+    ],
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_plane_generation.py tests/test_cif_prepared_plane_support.py",
+        "result": "237 passed in 300.60s"
+      },
+      {
+        "command": "New automatic initializer against previous HEAD implementation; foreign-owner-before-repair regression before guard",
+        "result": "One expected failure each; corrected implementation passes affected suite"
+      }
+    ],
+    "native": {
+      "success": {
+        "capsule": {
+          "anchor": "live_tests_directory",
+          "path": "244_Cedar_automatic-plane-request-19zp3y8k"
+        },
+        "request": {
+          "anchor": "live_tests_directory",
+          "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+        },
+        "source_pins": {
+          "anchor": "validation_capsule",
+          "path": "start.json"
+        },
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "execution": "COMPLETE actual preparation; source primary cache hit, fresh optional plane generation; no refinement",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c244_start.py",
+        "cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c244_cold.py",
+        "summary": {
+          "status": "COMPLETE_AUTOMATIC_PLANE_REQUEST_PASS",
+          "phenix": "2.2.1",
+          "attempt_number": 1,
+          "selected": "readyset_checked_model",
+          "repair_selected": "repaired_prepared_bundle",
+          "continuation_phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "whole_request": {
+            "files": 698,
+            "bytes": 181566343
+          },
+          "portions": {
+            "plane-generations": {
+              "files": 27,
+              "bytes": 1038563
+            },
+            "continuation": {
+              "files": 116,
+              "bytes": 42349420
+            },
+            "preparation": {
+              "files": 42,
+              "bytes": 2040801
+            },
+            "repair": {
+              "files": 471,
+              "bytes": 134390724
+            }
+          },
+          "repair_publication": {
+            "files": 10,
+            "bytes": 4497993
+          },
+          "readyset_publication": {
+            "files": 10,
+            "bytes": 5802413
+          },
+          "cache": {
+            "files": 5,
+            "bytes": 224702
+          },
+          "old_input_files_unchanged": 25,
+          "outer_stopped_verified": true,
+          "source_generation": "PRIMARY_CACHE_HIT; FRESH_OWNED_MULTIPLE_PLANE_GENERATION",
+          "plane_generation_status": "OWNED_SUPPORT_READY",
+          "plane_missing_before": [
+            "C5"
+          ],
+          "elapsed_seconds": 856.5028140829818,
+          "maximum_resident_set_bytes": 618987520,
+          "chemistry": "GRAPH_SELECTED_AUTOMATIC_PLANE_ACQUISITION; EXISTING_LINEAR_AND_PLANE_REPAIR_THEN_READYSET",
+          "coot": "NOT_REPEATED; EXACT_C218_CONSTRUCTION",
+          "refinement": "NOT_RUN",
+          "full_suite": "NOT_RUN"
+        },
+        "cold": {
+          "status": "RELOCATED_AUTOMATIC_PLANE_REQUEST_PASS",
+          "unchanged_files": 698,
+          "selected": "readyset_checked_model",
+          "original_path_absent": true,
+          "original_sources_sdk_cache_and_processes_forbidden": true,
+          "temporary_views_removed": 15,
+          "peak_temporary_evidence_bytes": 81449634,
+          "maximum_resident_set_bytes": 570589184,
+          "elapsed_seconds": 108.96621608300484,
+          "request": {
+            "anchor": "validation_capsule",
+            "path": "relocated/request"
+          },
+          "source_module_sha256": "7b1dc26aaccc432179f6e1cd9b412f6c318a9a6e09efc22c385c8824e30ceecb"
+        }
+      },
+      "stopped_generation": {
+        "capsule": {
+          "anchor": "live_tests_directory",
+          "path": "244_Cedar_automatic-plane-failure-ch6m6b9g"
+        },
+        "request": {
+          "anchor": "live_tests_directory",
+          "path": "244_Cedar_automatic-plane-failure-ch6m6b9g/relocated/request"
+        },
+        "source_pins": {
+          "anchor": "validation_capsule",
+          "path": "start.json"
+        },
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+        "execution": "COMPLETE actual preparation; source primary cache hit, fresh optional plane generation; no refinement",
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c244_failure_start.py",
+        "cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c244_failure_cold.py",
+        "summary": {
+          "status": "COMPLETE_AUTOMATIC_PLANE_FAILURE_RECOVERY_PASS",
+          "phenix": "2.2.1",
+          "attempt_number": 1,
+          "selected": "readyset_checked_model",
+          "repair_selected": "repaired_prepared_bundle",
+          "continuation_phases": {
+            "native-baseline": "COMPLETED",
+            "native-endpoint": "COMPLETED",
+            "readyset": "COMPLETED"
+          },
+          "whole_request": {
+            "files": 506,
+            "bytes": 134822532
+          },
+          "portions": {
+            "plane-generations": {
+              "files": 22,
+              "bytes": 282292
+            },
+            "continuation": {
+              "files": 116,
+              "bytes": 40889913
+            },
+            "preparation": {
+              "files": 42,
+              "bytes": 2040801
+            },
+            "repair": {
+              "files": 284,
+              "bytes": 89912464
+            }
+          },
+          "repair_publication": {
+            "files": 10,
+            "bytes": 3736507
+          },
+          "readyset_publication": {
+            "files": 10,
+            "bytes": 5106063
+          },
+          "cache": {
+            "files": 5,
+            "bytes": 224702
+          },
+          "old_input_files_unchanged": 25,
+          "outer_stopped_verified": true,
+          "source_generation": "PRIMARY_CACHE_HIT; FRESH_OWNED_MULTIPLE_PLANE_GENERATION",
+          "plane_generation_status": "KNOWN_GENERATION_FAILURE",
+          "plane_missing_before": [
+            "C5"
+          ],
+          "elapsed_seconds": 593.7449536660279,
+          "maximum_resident_set_bytes": 563118080,
+          "chemistry": "DELIBERATE_0.25_SECOND_CANDIDATE_TIMEOUT; INDEPENDENT_LINEAR_REPAIR_QUALIFICATION_THEN_READYSET; C5_REMAINS_MISSING",
+          "coot": "NOT_REPEATED; EXACT_C218_CONSTRUCTION",
+          "refinement": "NOT_RUN",
+          "full_suite": "NOT_RUN"
+        },
+        "cold": {
+          "status": "RELOCATED_AUTOMATIC_PLANE_FAILURE_RECOVERY_PASS",
+          "unchanged_files": 506,
+          "selected": "readyset_checked_model",
+          "original_path_absent": true,
+          "original_sources_sdk_cache_and_processes_forbidden": true,
+          "temporary_views_removed": 15,
+          "peak_temporary_evidence_bytes": 69727334,
+          "maximum_resident_set_bytes": 493535232,
+          "elapsed_seconds": 92.55613116698805,
+          "request": {
+            "anchor": "validation_capsule",
+            "path": "relocated/request"
+          },
+          "source_module_sha256": "7b1dc26aaccc432179f6e1cd9b412f6c318a9a6e09efc22c385c8824e30ceecb"
+        },
+        "induced_failure": "Candidate phase actual timeout capped to 0.25 s by local runner; normal frozen upper bound unchanged; partial dictionary never support; independently qualified linear repair and ReadySet continue with C5 missing"
+      }
+    },
+    "compatibility": "Optional configuration.plane_generation_policy=cif-complete-owned-plane-generation-v1 and result.plane_generation; old absent/false and supplied-support requests unchanged; new mode requires current reader; no migration, bound or chemistry change",
+    "static_review": "Changed Python AST/top-level duplicate checks and git diff --check pass; focused review reuses existing owner, graph screen, proof readers, repair and qualification; no broad semantic redundancy claim",
+    "exclusions": "Scientific inputs, outputs, logs, pin lists and ignored runners remain local outside Git; newly completed requests moved for cold checks without bulk duplication; disposable code and expanded evidence removed",
+    "limitations": [
+      "Explicit complete-request API only; ordinary callers and default activation unchanged",
+      "Exact source/dictionary graph correspondence required; ambiguous or alternate representations need explicit qualification",
+      "Prelaunch/capability failures, incomplete handoff or caught native builder errors outside C240/C243 still refuse",
+      "Fresh outer attempts regenerate automatic support; exact explicit C242 reuse remains available",
+      "Whole-request retirement and campaign-scale memory/concurrency remain open",
+      "No full suite, new Coot invocation or diffraction refinement; Q04/Q05 remain open"
+    ]
   }
 }

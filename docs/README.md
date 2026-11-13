@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-12**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-13**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -14,8 +14,8 @@ milestone statements preserve their original scope; they are not a second queue.
   result as the initial review checkpoint. Schema-2 campaigns can explicitly choose
   the same route. New checked requests save compact, exact evidence; completed
   working-file retirement remains a separate storage task. Complete requests can
-  reuse exact completed plane support; automatically obtaining missing support,
-  later preparation children,
+  reuse exact completed plane support or explicitly opt into graph-selected support
+  generation. Ordinary-caller activation of that choice, later preparation children,
   real refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,
   the [human overview](cif-doctor-human-overview.md) for the explanation, and the

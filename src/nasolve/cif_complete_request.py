@@ -23,7 +23,9 @@ from .cif_dictionary_bundle import _context
 from .cif_dictionary_sites import _consumer, _links, _model_inventory, _need, _read, _safe
 from .cif_dictionary_store import _bytes, _json, make_dictionary_request, recipe_representation_policy, resolve_dictionary_snapshot
 from .cif_generation_acquisition import generation_dictionary_options
-from .cif_generation_attempt import _attempt_identity
+from .cif_generation_attempt import _attempt_identity, generate_source_candidate_attempt, inspect_source_generation_request
+from .cif_plane_coverage import audit_trigonal_plane_coverage
+from .cif_plane_generation import read_owned_plane_support, inspect_owned_plane_generation_failure
 from .cif_generation_process import _valid_identity
 from .cif_postmr_cache import verify_current_consumer
 from .cif_repair_attempt import _root, _members, _inventory
@@ -39,6 +41,7 @@ from .cif_runtime_continuation_process import inspect_runtime_continuation_proce
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
+PLANE_GENERATION_POLICY = 'cif-complete-owned-plane-generation-v1'
 LEGACY_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
 ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
 _RUNTIME_PREFIX = 'repair/attempts/attempt-0001/execution/runtime/'
@@ -163,7 +166,9 @@ def _artifact_options(config):
                 **_artifact_fields(config.get('artifact_policy')))
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False):
+    _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
+          'Require a boolean automatic plane choice separate from supplied support')
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
@@ -253,6 +258,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         **compiler_refs, **construction_ref, **_artifact_fields(artifact_policy),
         **repair.compact_evidence_fields(compact_evidence),
         **({'plane_support':plane_support} if plane_support is not None else {}),
+        **({'plane_generation_policy':PLANE_GENERATION_POLICY} if automatic_plane_support else {}),
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
         **_continuation_fields(continuation_options,limits))))
 
@@ -263,7 +269,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'))
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c)
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -271,7 +277,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -308,7 +314,13 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     Optional plane_support selects exact already completed owned generation by
     component/request/attempt. Freeze it with source inputs and pass that same
     choice through repair and readback; no generation or latest-attempt lookup.
+    Alternatively automatic_plane_support=True freezes the existing graph screen
+    and one fresh owned support generation per needed type per outer attempt.
+    Children share the outer allowance; classified optional failure still needs
+    independent qualification. Defaults and historical requests remain unchanged.
     """
+    _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
+          'Require a boolean automatic plane choice separate from supplied support')
     repair.compact_evidence_fields(compact_evidence)
     _artifact_fields(artifact_policy)
     root = _root(output)
@@ -369,7 +381,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -426,6 +438,74 @@ def _binding(request, child):
         attempt_id=child['intent']['attempt_id'],finished_sha256=child.get('finished',{}).get('record_sha256'))
 
 
+def _plane_plan(attempt):
+    """Screen exact acquired source dictionaries, before any site-specific edits."""
+    prepared = read_acquired_dictionary_bundle(attempt/'preparation')
+    plan = {}
+    for code in prepared['report']['selected_attempts']:
+        saved = resolve_dictionary_snapshot(attempt/'preparation/bundle/components'/code/'snapshot')
+        audit = audit_trigonal_plane_coverage(saved['source'],saved['dictionary'],code)
+        plan[code] = dict(source_sha256=audit['source_sha256'],dictionary_sha256=audit['dictionary_sha256'],
+            coverage_policy=audit['policy_id'],coverage_status=audit['status'],missing_centres=audit['missing_explicit_planes'])
+    return plan
+
+
+def _plane_children(attempt, intent, config):
+    folder = attempt/'plane-generations'; states = {}; bindings = {}
+    if not (attempt/'preparation/acquisition_preparation.json').exists():
+        _need(not folder.exists(), 'Plane generation has no completed source preparation')
+        return states,bindings
+    plan = _plane_plan(attempt); needed = {c for c,p in plan.items() if p['missing_centres']}
+    if folder.exists(): _members(folder,set(),needed)
+    for code in sorted(needed):
+        state = inspect_source_generation_request(folder/code); name = 'plane/'+code
+        if state['state'] != 'RECORDED':
+            states[name] = dict(state='NOT_CREATED' if state['state']=='NOT_RECORDED' else 'UNKNOWN',
+                                activity=False if state['state']=='NOT_RECORDED' else None)
+            bindings[name] = None; continue
+        request = state['request']; g = request['configuration']
+        c = config['components'][code]; r = c['dictionary_request']; b = c['generation_binding']
+        _need(g['component']==code and g['source']==dict(sha256=r['source_sha256'],size=r['source_size'])
+            and g['max_attempts']==1 and g['recipe']==dict(expected_dialect=r['recipe']['expected_dialect'],
+                single_block_steps=r['recipe']['single_block_steps'],timeout_seconds=b['timeout_seconds'],
+                bond_representation_policy=r['recipe'].get('bond_representation_policy'),multiple_planes=True)
+            and g['generator']['phenix_version']==r['generator']['version']
+            and all(g['generator'][k]==r['generator'][k] for k in ('api_sources','prior_sources'))
+            and {k:v['path'] for k,v in g['generator']['dispatchers'].items()}==b['dispatchers']
+            and len(state['attempts'])<=1, 'Plane child differs from frozen source/recipe/allowance')
+        if state['attempts']:
+            child = state['attempts'][0]
+            if 'intent' in child:
+                _owned(child,intent); bindings[name] = _binding(request,child)
+            else: bindings[name] = None
+            states[name] = child
+        else:
+            states[name] = dict(state='NOT_CREATED',activity=False); bindings[name] = None
+    return states,bindings
+
+
+def _plane_outcomes(root, attempt, config):
+    """Recompute decisions from exact owned evidence; never use an exception as a verdict."""
+    sources = read_acquisition_sources(root/'inputs/sources')['sources']
+    declarations = {}; outcomes = {}
+    for code,screen in _plane_plan(attempt).items():
+        row = dict(screen,status='NO_GENERATION_NEEDED')
+        if screen['missing_centres']:
+            request = attempt/'plane-generations'/code
+            receipt = _json(_read(request/'attempts/attempt-0001/generation/source_candidate_receipt.json'))
+            usable = receipt.get('status')=='CANDIDATE_REVIEW' and receipt.get('execution',{}).get('status')=='COMPLETED'
+            proof = (read_owned_plane_support if usable else inspect_owned_plane_generation_failure)(sources[code]['source'],code,request,1)
+            row.update(status='OWNED_SUPPORT_READY' if usable else 'KNOWN_GENERATION_FAILURE',proof=proof,
+                request=dict(anchor='attempt_directory',path='plane-generations/'+code),attempt_number=1)
+            if usable: declarations[code] = dict(request_directory=request,attempt_number=1)
+            else:
+                _need(config.get('qualify_no_repair') is True and config.get('optional_failure_policy')==repair.FALLBACK_POLICY_ID,
+                      'Optional plane failure requires independent qualification and explicit fallback policy')
+        outcomes[code] = row
+    support = _source_plane_support_snapshot({c:r['source'] for c,r in sources.items()},declarations or None)[0]
+    return declarations or None,support,dict(policy_id=PLANE_GENERATION_POLICY,components=outcomes)
+
+
 def _children(root, attempt, intent, config, closed=None):
     states = {}; bindings = {}; identity = _attempt_identity(intent)
     for code, expected in config['components'].items():
@@ -443,9 +523,13 @@ def _children(root, attempt, intent, config, closed=None):
             absent = not unknown or (closed is not None and closed.get(code) is None)
             states[code] = dict(state='NOT_CREATED' if absent else 'UNKNOWN',activity=False if absent else None)
             bindings[code] = None
+    if 'plane_generation_policy' in config:
+        plane_states,plane_bindings = _plane_children(attempt,intent,config)
+        states.update(plane_states); bindings.update(plane_bindings)
     state = repair.inspect_prepared_repair_request(attempt/'repair')
     if state['state'] == 'RECORDED':
-        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1,qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False),plane_support=config.get('plane_support'))
+        support = _plane_outcomes(root,attempt,config)[1] if 'plane_generation_policy' in config else config.get('plane_support')
+        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1,qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False),plane_support=support)
         _need(_same(state['request']['configuration'],expected) and len(state['attempts']) <= 1,
               'Prepared repair differs from enclosing input or limits')
         if state['attempts']:
@@ -539,7 +623,8 @@ def _result(root, attempt, intent, config, children, bindings):
         continuation_fields = dict(continuation=None if continued is None else dict(anchor='attempt_directory',path='continuation'))
     expected = dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],selected_attempts=selection,
         preparation=dict(anchor='attempt_directory',path='preparation'),repair=dict(anchor='attempt_directory',path='repair'),
-        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_outer_provenance_fields(config))
+        status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_outer_provenance_fields(config),
+        **(dict(plane_generation=_plane_outcomes(root,attempt,config)[2]) if 'plane_generation_policy' in config else {}))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
         **{name:_compiler_input(name,root/'inputs'/folder) for name,folder in _COMPILER_INPUTS.items() if name in config},
@@ -549,7 +634,8 @@ def _result(root, attempt, intent, config, children, bindings):
 
 def _attempt_state(root, attempt, number, request, result_sink=None):
     _members(attempt,{'attempt.json','result.json','finished.json'},
-             {'preparation','repair'} | ({'continuation'} if 'continuation' in request['configuration'] else set()))
+             {'preparation','repair'} | ({'continuation'} if 'continuation' in request['configuration'] else set())
+             | ({'plane-generations'} if 'plane_generation_policy' in request['configuration'] else set()))
     if not (attempt/'attempt.json').exists():
         _need(not any(attempt.iterdir()), 'Outer output has no intent')
         return dict(number=number,state='UNKNOWN',activity=None)
@@ -722,13 +808,26 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
                 consumer=controls['consumer'],expected_links=controls['expected_links'],native_context=controls['native_context'],
                 supplementary_phils=[root/'inputs'/n for n in controls['supplementary_phils']])
             remaining()
+            plane_fields = {}; support_declarations = repair._support_declarations(root/'inputs/plane-support',config.get('plane_support'))
+            if 'plane_generation_policy' in config:
+                for code,screen in _plane_plan(attempt).items():
+                    if not screen['missing_centres']: continue
+                    remaining()
+                    generate_source_candidate_attempt(source=selected['sources'][code]['source'],code=code,
+                        request_directory=attempt/'plane-generations'/code,
+                        **{**generation[code],'multiple_planes':True,'max_attempts':1},
+                        _parent_attempt_identity=parent,_remaining_seconds=remaining)
+                plane_children,_ = _plane_children(attempt,intent,config)
+                _need(all(c['state']=='STOPPED' and c['finished']['outcome']=='RETURNED' for c in plane_children.values()),
+                      'Plane support generation has an unfinished child')
+                support_declarations,_,outcomes = _plane_outcomes(root,attempt,config)
+                plane_fields = dict(plane_generation=outcomes)
             child = repair.execute_prepared_dictionary_repair_attempt(attempt/'preparation/bundle',phenix,attempt/'repair',
                 **_repair_limits(config),max_attempts=1,_parent_attempt_identity=parent,_remaining_seconds=remaining,
                 **({'qualify_no_repair':True} if config.get('qualify_no_repair',False) else {}),
                 **repair.failure_policy_fields(config.get('optional_failure_policy')),
                 **repair.compact_evidence_fields(config.get('compact_evidence',False)),
-                **({'plane_support':repair._support_declarations(root/'inputs/plane-support',config['plane_support'])}
-                   if 'plane_support' in config else {}))
+                **({'plane_support':support_declarations} if support_declarations is not None else {}))
             continuation_fields = {}
             if 'continuation' in config:
                 qualified = child['execution']['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME'
@@ -743,7 +842,7 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
             result = write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],
                 selected_attempts={c['code']:c['attempt_number'] for c in components},preparation=dict(anchor='attempt_directory',path='preparation'),
                 repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed,
-                **continuation_fields,**_outer_provenance_fields(config)))
+                **continuation_fields,**_outer_provenance_fields(config),**plane_fields))
             children,bindings = _children(root,attempt,intent,config); _result(root,attempt,intent,config,children,bindings)
             remaining(); _seal(root,attempt,intent,request,'RETURNED',remaining=remaining)
         except BaseException as exc:

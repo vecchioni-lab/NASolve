@@ -13,7 +13,11 @@ owner. C223–C225 add explicit initial review-checkpoint publication, ordinary
 checked PostMR and frozen campaign entry. Default activation, later preparation
 children and actual complete-restraint refinement remain separate gates.
 C234–C237 join explicit owned plane support to the existing repair request and
-selector; automatic acquisition of that support by the outer request remains open.
+selector. C244 lets the complete-request API opt into graph-selected acquisition
+through that same generation owner. Support belongs to exact child attempts, not
+mutable outer inputs; unknown ownership blocks recovery. Ordinary callers do not
+yet activate this option. Classified optional failure still requires independent
+qualification; no new executor or chemical acceptance rule is introduced.
 
 ## Runtime precedence
 

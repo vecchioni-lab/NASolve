@@ -1,102 +1,103 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C243. Active branch **cedar**, checkout NASolve-c96.
-C243 builds on pushed C242/5708f59; use current HEAD for the final commit identity.
-The [queue](cif-doctor-completion-queue.md) owns work order;
+Updated **2026-11-13**, C244. Active branch **cedar**, checkout NASolve-c96.
+Base C243/9f37d91; use current HEAD for final commit identity. The
+[queue](cif-doctor-completion-queue.md) owns order and
 [capability limits](cif-doctor.md#current-capability-boundary) remain in force.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
 ## Current result
 
-Doctor can now recognize a generator that completed normally but produced a
-source-chemically rejected dictionary. The existing failure reader repeats the
-full source/native-handoff/candidate assessment, binds the exact request and
-stopped worker, and returns a distinct rejection proof with its checked diagnostic.
-That output stays unusable; the proof itself allows neither fallback nor retry.
-Existing successful support and nonzero failed/timed-out proofs remain unchanged.
+The explicit complete-request API can now obtain missing source-supported plane
+evidence itself and feed the existing repair/ReadySet machinery. It screens acquired
+source dictionaries, generates only for types with missing supported coverage,
+and uses one owned generation attempt per needed type per fresh outer attempt.
+The choice is frozen; generated support belongs to child attempts, not edits to
+frozen outer inputs. Old requests and C242's supplied-support mode are unchanged.
+Ordinary PostMR/campaign callers do not yet activate this option.
 
-Prior-work review: C193 diagnostics explain failures but do not qualify evidence;
-C240 supplies strict launched-negative execution evidence; C242 already freezes
-supplied plane support through complete repair/ReadySet. C243 fills the narrow
-completed chemical-rejection gap using the same positive replay and ownership
-checks. It does not create another generator or complete automatic scheduling.
-Capability/prelaunch failures, incomplete handoffs and caught builder exceptions
-remain outside this new outcome. Never classify arbitrary errors as permission.
+C157/C170 already own generation and parent time; C240/C243 classify stopped
+negative outcomes; C242 already connects supplied support to complete repair and
+ReadySet. C244 reuses those pieces. No new executor, optimizer, graph rule, bounds,
+stacking selection or phosphate behavior. Exact source/dictionary correspondence
+is required. Do not turn arbitrary exceptions into chemical verdicts or fallback.
 
-C242's real Phenix 2.2.1-6174 / dispatcher 2.2.1 control remains the complete-request
-checkpoint: repaired plane bundle, then ReadySet-checked model, explicit PDU C5
-coverage and all five NAR files. Whole request 181.6 MB; final publication 5.8 MB;
-cold read 81.4 MB temporary evidence / 645.1 MB resident memory. Its 698 files
-survive relocation unchanged. Evidence: `complete_request_plane_support_2026_11_12`.
-Automatic acquisition of missing support is still Q04; later preparation children
-are Q05. Neither C242 nor C243 establishes diffraction refinement.
+Two actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls use ordinary C218 PDU/NAR
+inputs and an exact primary cache copy; neither supplies plane support. Success
+obtains it and carries explicit C5 coverage plus all five ordered NAR files through
+repair and ReadySet. The second deliberately caps only the candidate subprocess at
+0.25 s. Its output stays unusable; independent linear-repair qualification and
+ReadySet still succeed, with C5 missing coverage recorded. Both results cold-replay
+after relocation without original paths, source/cache/SDK or process access.
+All original input bytes/mtimes and all saved request bytes/mtimes are unchanged.
+No new Coot invocation or diffraction refinement. All workers are known stopped.
+
+Success retains 181.6 MB in 698 files; final ReadySet publication 5.8 MB. Cold read expands at most 81.4 MB temporary evidence and peaks at 570.6 MB resident memory.
+The stopped-generator control retains 134.8 MB; its cold read expands 69.7 MB and peaks at 493.5 MB resident memory.
+Whole-request retention, safe working-file retirement and campaign-scale memory/
+concurrency still need work; a small publication is not the entire storage cost.
 
 ## Validation and reviewer handoff
 
-Before: the negative reader accepted launched nonzero failed/timed-out jobs only.
-After: it additionally accepts a fully replayed completed source rejection. A
-normal exit without a complete, consistent rejected build is still insufficient.
-Changed source: `cif_plane_generation.py`, `cif_source_representation.py`;
-regressions extend `test_cif_plane_generation.py`. No new test module, executor,
-worker, generation option, chemical gate or altered time/storage bound.
+Before: completed support had to be supplied explicitly. After: opt-in automatic
+support uses exact graph findings and existing owned generation. Children must be
+validated before repair and on readback; unknown ownership blocks recovery. Known
+negative proof still requires explicit fallback policy and independent qualification.
+A failed qualification yields no runtime. Preserve every previous/partial attempt.
 
-Derived proof: `cif-owned-plane-generation-rejection-v1`, with
-`failure_kind=REJECTED_CANDIDATE`, source rejection and its rechecked diagnostic.
-Existing failure proofs are exactly unchanged, including the saved actual C240
-proof. No saved-format migration or historical resealing. Sources, phosphate
-state, Free-R behavior and NAR stacking selections are unchanged.
+Source: `cif_complete_request.py`; tests extend `test_cif_complete_request.py`.
+Optional `configuration.plane_generation_policy` freezes
+`cif-complete-owned-plane-generation-v1`; result `plane_generation` contains exact
+per-component screening/outcome proof. Old absent/false and explicit supplied support
+keep their meaning; new mode requires current reader. No migration/resealing.
+Updated existing methods, human overview, queue, architecture/maps and changelog.
 
-Python 3.12.14 focused commands, with PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:
+Python 3.12.14, exact focused command:
 
-- `-m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py tests/test_cif_source_representation.py tests/test_cif_generation_attempt.py tests/test_cif_acquisition_attempt.py`: **249 passed in 73.57 s**.
-- After two corrupt-receipt routing controls, `-m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py`: **90 passed in 32.68 s**. Sets overlap; do not sum.
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_plane_generation.py tests/test_cif_prepared_plane_support.py
+```
 
-Three new rejection cases fail before implementation; two malformed-routing cases
-also fail before their domain-error guard. The initial restricted run could not
-verify shutdown in two existing timeout controls; rerunning with process access
-passes without changing ownership rules or test timeouts. The synthetic cases
-exercise actual small subprocesses but make no Phenix chemical-validation claim.
+**237 passed in 300.60 s.** New choice fails against previous HEAD; a foreign-owner
+regression fails before the pre-repair guard and passes afterward. Controls cover
+no-needed-support, exclusive choices, fresh history, interruption, corrupt proofs,
+owner/recipe changes, qualified negative handling, exact readback and legacy reuse.
+No new test module. AST/top-level duplicate and Git whitespace checks pass.
 
-Relocated temporary code reads a new synthetic rejection and the earlier actual
-C215 success/C240 timeout with original code/request paths absent and old source,
-SDK and process access forbidden. All 73 temporary request files and 49 original
-native files retain bytes/mtimes; the 1.42 MB temporary copies are removed.
-No new Phenix, Coot or diffraction refinement execution. No active job remains.
-Exact commands, source hashes and scope: ledger entry
-`completed_plane_generation_rejection_2026_11_13`. Scientific captures, ignored
-runners and logs stay outside Git. Changed-file AST/duplicate-definition and
-Git whitespace checks pass. Methods, human explanation and queue are updated.
+Native capsules under `live_tests_directory`:
+- `244_Cedar_automatic-plane-request-19zp3y8k`
+- `244_Cedar_automatic-plane-failure-ch6m6b9g`
 
-No full suite this push. Last entirely green full remains C220/583d30df:
-9,178 tests + 276 subtests. C222's later failures were fixed with focused checks;
-no subsequent full-suite revalidation claim.
+Both requests now live at their capsule's `relocated/request`; `artifact-location.json`
+is the anchored locator. `start.json` pins sources; driver records confirm source
+unchanged and stopped. Exact commands/measurements: ledger entry
+`automatic_plane_support_acquisition_2026_11_13`. Scientific files, ignored runners,
+logs and pin lists remain local outside Git. Temporary code/expanded views removed.
+No full suite. Last entirely green full remains C220/583d30df: 9,178 tests + 276
+subtests. C222 failures were fixed focused; no later full-suite revalidation claim.
 
 ## Next work — finish Q04/Q05
 
-1. Obtain missing plane support through the existing complete-request generation
-   owner using graph findings, exact numbered children, shared deadlines and finite
-   attempts. Generated support belongs to owned child attempts; never append it to
-   frozen outer inputs or silently change C242's explicit reuse meaning. Reuse
-   `generate_source_candidate_attempt`'s parent identity and remaining-time binding;
-   extend the complete owner's child inspection/sealing and recovery consistently.
-   Consume C240/C243 classified outcomes only with a separately qualified fallback.
-   Unknown processes/corrupt proof still block retry. Preserve all partial outputs.
-2. Define later preparation-child publication without replacing an immutable root
-   or claiming fresh MR construction descends from a refined model. C223–C225
-   already supply initial checkpoint, ordinary PostMR and frozen campaign entry.
+1. Freeze/forward this explicit choice through ordinary checked PostMR/campaign
+   callers, with cache/reuse/failure/interruption checks. Do not silently change old
+   requests or turn on defaults without the declared integration contract. Keep
+   current graph-correspondence limits and missing-plane notes visible in ordinary
+   result/status reporting. Broader representations and native
+   prelaunch/incomplete-build outcomes require explicit qualification, not catch-all
+   fallback. Reuse current C244 native evidence instead of rerunning unchanged cases.
+2. Define later preparation-child publication without replacing immutable roots
+   or claiming fresh MR construction descends from a refined model. Reuse C223–C225's
+   initial checkpoint, ordinary PostMR and frozen campaign entry.
 3. Design interruption-safe retirement of redundant successful working files only
-   after owners stop and the sealed result verifies. Keep reproducible inputs and
-   necessary proof; measure whole request, temporary disk and memory separately.
-   Reuse existing scoped reads; do not add persistent verdict caches.
+   after owners stop and sealed results verify. Keep reproducible inputs and proof;
+   measure whole-request, temporary disk and memory separately. No verdict caches.
 
-Reuse C160/C163/C164 ownership/recovery, C207 full-model plans, C213/C232 generation
-binding, C226 whole-plane numerics, C227 composition and C228–C233 compact/shared
-reads. Q06 real refinement and Q07 combined/held-out chemistry follow Q04/Q05.
-NAR's reviewed base-role atoms still define stacking; Cedar's substituent planes
-do not enlarge those stacking selections automatically.
+Q06 real refinement and Q07 combined/held-out chemistry follow Q04/Q05. NAR's
+reviewed base-role atoms still define stacking; Cedar substituent planes do not
+automatically enlarge those selections. No separate replacement plane engine.
 
 ## Preserve local evidence
 
 Protected NASolve-cedar remains at e7451eed with local phaser.py/unpublished data.
-Everyday NASolve/pine retains its pre-existing untracked science, patches and venv.
+Everyday NASolve/pine retains pre-existing untracked science, patches and venv.
 Work only in NASolve-c96/cedar. No new branch, incidental cleanup or merge.

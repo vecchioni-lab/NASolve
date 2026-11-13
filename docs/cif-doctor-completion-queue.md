@@ -22,7 +22,7 @@ learned along the way; they are not a reason to keep rebuilding Q04.
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
-| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet. Complete automatic acquisition of missing support. |
+| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition. Finish ordinary-caller activation and recovery coverage. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. Define later preparation children without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
@@ -49,8 +49,9 @@ learned along the way; they are not a reason to keep rebuilding Q04.
 3. **Finish general plane repair:** C234–C237 run explicitly supplied owned support
    through the existing repair request, including real success and stopped-native
    fallback. C242 carries supplied support through the complete request/ReadySet.
-   Now obtain missing support through the existing outer owner, with
-   shared deadlines and unchanged storage bounds. Preserve existing ring planes;
+   C244 obtains missing support through the existing outer owner when explicitly
+   enabled, with shared deadlines and unchanged storage bounds. Finish ordinary
+   caller activation and negative/recovery coverage. Preserve existing ring planes;
    PDU and 5PC are controls, not name-based switches.
 4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
    results to close the relevant chemistry jobs, rather than adding a new queue.
@@ -64,8 +65,9 @@ SDK unavailable. Reuse that evidence. Its PDU C5 still lacks an explicit complet
 plane: near-planar coordinates alone do not prove the restraint is adequate.
 C207–C216 supply the general mutation/plane checks and PDU/5PC controls; combining
 the plane checks into ordinary repair now works for explicitly supplied owned
-support, including the complete request/ReadySet at C242. Automatic acquisition
-and safe working-file retirement remain work. DP's ambiguous correspondence,
+support, including the complete request/ReadySet at C242. C244 adds explicit
+automatic acquisition. Ordinary-caller activation, wider recovery coverage and
+safe working-file retirement remain work. DP's ambiguous correspondence,
 source-H questions and PDU numerical targets remain visible limits.
 
 These are work packages, not a prediction of session or commit count. Preserve
@@ -148,7 +150,8 @@ ordinary adoption is Q05 and the actual refinement consumer is Q06.
 
 **Open overall. C220 supplies the explicit preparation handoff; C223–C224 carry
 it into an initial checkpoint and opt-in ordinary PostMR; C225 adds frozen campaign
-entry. Default-route enablement and automatic acquisition of plane support remain unfinished.**
+entry. C244 adds explicit automatic support acquisition in the complete API.
+Ordinary-caller activation and default-route enablement remain unfinished.**
 In lab terms: preserve the intended molecule, get a checked model/restraint set,
 and resume interrupted preparation without rebuilding or damaging earlier work.
 
@@ -188,16 +191,19 @@ Remaining acceptance:
 2. C234–C239 join C226/C227 to the existing prepared repair request, with explicit
    owned support, real success/stopped-native fallback and compact exact proof.
    C242 freezes supplied completed support in the complete request and carries its
-   repaired result through actual ReadySet and cold readback. Next obtain missing
-   support through the complete request's existing generation owner,
-   with durable child identity, shared deadlines and bounded storage. C240 now
+   repaired result through actual ReadySet and cold readback. C244 obtains missing
+   support through the complete request's existing generation owner when explicitly
+   enabled, with durable child identity, shared deadlines and unchanged storage
+   limits. Complete ordinary-caller forwarding and wider recovery coverage. C240
    verifies a launched stopped negative generation without admitting partial output;
    C241 preserves its optional recipe flag through existing acquisition identity.
    Reuse these and the existing graph screen/narrow candidate. Do not add another
    executor. C243 adds fully replayed completed chemical rejection; its proof
    permits neither fallback nor retry alone. Earlier capability/prelaunch failures,
    incomplete native handoffs and caught builder exceptions remain outside it.
-   Connect the known outcomes first; do not infer permission from arbitrary errors.
+   C244 consumes those known outcomes with independent qualification; never infer
+   permission from arbitrary errors. Its screen requires exact source/dictionary
+   correspondence; broader allowed representations need explicit assessment.
    New generated support belongs to exact owned child attempts, not edits to the
    complete request's frozen inputs. Keep the explicit C242 reuse mode intact.
    Preserve existing ring-plane groups; add only source-supported missing members
@@ -247,15 +253,17 @@ C208–C216's checked plane-completion machinery now has C226 maintained numeric
 execution and C227 source-bound composition. C234–C239 now invoke these through
 explicit owned support in the same immutable repair request. C242 freezes supplied
 completed support in the outer request and passes actual ReadySet/cold readback.
-Automatic acquisition of missing support by the outer request remains: persist exact source/recipe/child identity,
-select a numbered stopped attempt, account for shared time and attempt allowances,
-and preserve a checked fallback when an optional native attempt is demonstrably
-unsuccessful. Unknown/malformed ownership cannot be treated as that fallback.
+C244 adds explicit automatic acquisition inside the outer request: exact
+source/recipe/child identity, one numbered generation attempt per needed type,
+shared time/attempt allowances and separately qualified handling of classified
+optional failure. Unknown/malformed ownership cannot authorize that fallback.
+Ordinary callers still need to freeze/forward the option; current absent intent
+must keep its meaning. Finish recovery coverage before claiming Q04 closure.
 C232 already permits an actual parent grant below the frozen generation maximum.
 C240 proves exact launched negative generation; C241 removes the acquisition
 recipe-identity mismatch; C243 proves completed source-chemical rejection through
-full replay. These classify outcomes but do not invoke automatic outer-request
-plane generation or authorize fallback by themselves.
+full replay. These readers classify outcomes; C244 invokes the existing owner
+and consumes their proofs, which still do not authorize fallback by themselves.
 Use that existing owner; do not raise bounds or alter historical requests.
 Then demonstrate the resulting restraints in Q06; a flat
 starting PDU substituent does not prove that refinement will keep it flat.

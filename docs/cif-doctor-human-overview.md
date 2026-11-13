@@ -21,7 +21,7 @@ exact choice as a review checkpoint for inspection and trial refinement, includi
 a checked fallback. Schema-2 campaign recipes can explicitly choose the same
 route and preserve its genuine receipt. An interrupted save can finish without
 rebuilding the model; campaign retry preserves the old run and starts fresh.
-Q04/Q05 still need automatic acquisition of plane support and later preparation children
+Q04/Q05 still need ordinary-caller activation of automatic plane support and later preparation children
 before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
@@ -33,8 +33,14 @@ than a residue-name switch. The complete request can now reuse explicitly suppli
 completed plane-generation evidence, check linear and plane repairs together,
 and carry the chosen model and restraints through ReadySet. An actual ordinary
 PDU/NAR control retains explicit C5 plane coverage and all five ordered restraint
-files in the final ReadySet result. Automatically obtaining missing plane support
-is still the next connection; the user should eventually not need to supply it.
+files in the final ReadySet result. The explicit complete-request API can now
+obtain that support itself: it checks source connectivity, generates evidence only
+for types with missing plane coverage, and feeds the existing repair machinery.
+Ordinary commands do not yet turn on this new choice. It is not a PDU-name rule.
+A fresh native control obtains support and preserves explicit C5 coverage through
+ReadySet. A second deliberately times out generation, excludes its partial output,
+and still reaches ReadySet through independently qualified repair, with missing C5
+coverage reported honestly. Both saved results survive relocation unchanged.
 
 A deliberately stopped plane check can retain the independently checked original,
 with its missing plane coverage reported honestly. Malformed evidence or unknown
@@ -45,9 +51,9 @@ the geometry. NARestraints' reviewed base atoms still define stacking; Cedar's
 chemical substituent planes do not automatically enlarge those stacking planes.
 
 Storage is measured for the whole workflow, not just its small final result.
-The new complete plane-repair/ReadySet request retains 181.6 MB, including a
+The new automatically supplied plane-repair/ReadySet request retains 181.6 MB, including a
 5.8 MB final publication. Its readback temporarily expands 81.4 MB of evidence
-and peaks at 645.1 MB resident memory. Those temporary files are removed. Earlier
+and peaks at 570.6 MB resident memory. Those temporary files are removed. Earlier
 compact storage and shared validation removed repeated evidence without changing
 the selected scientific result; original worker output remains. Safe retirement
 of redundant successful working files, memory/concurrency limits and campaign-scale
@@ -68,8 +74,10 @@ whose dictionary is chemically wrong. For the latter, it repeats the source and
 output checks and retains the specific rejection, including changes to charge,
 element or bonding. Neither outcome supplies usable plane restraints or permits
 a retry by itself. Incomplete or inconsistent evidence still stops recovery;
-the enclosing workflow must separately justify any fallback. This prepares the
-failure handling needed for automatic acquisition of missing plane support.
+the enclosing workflow must separately justify any fallback. The new automatic
+support choice consumes these outcomes through that same qualification path.
+The graph screen currently requires exact source/dictionary correspondence;
+ambiguous representations do not silently become permission to continue.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and
@@ -389,8 +397,9 @@ the same omission requires review in an effective refinement dictionary.
 The figure shows the read-only audit positions. The explicit checked-preparation
 route additionally owns dictionary generation/repair and ReadySet verification;
 C242 carries supplied completed plane support through that route. C243 separately
-checks chemical-rejection evidence; that read does not select a fallback. Automatic
-acquisition of missing plane support and real refinement remain separate gates.
+checks chemical-rejection evidence; that read does not select a fallback. C244
+connects graph-selected support generation inside an explicitly enabled complete
+request. Ordinary-caller activation and real refinement remain separate gates.
 
 | Audit point | What is inspected | Why it matters |
 | --- | --- | --- |

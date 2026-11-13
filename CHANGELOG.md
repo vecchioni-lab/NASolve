@@ -8,6 +8,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Obtain missing plane support through the existing complete-request owner (C244)
+
+- Add explicit `automatic_plane_support=True` to the complete-request API. Screen
+  exact acquired source graphs, create one owned multiple-plane generation child
+  only for each needed type, and pass verified support into existing repair and
+  ReadySet. No residue-name switch, new executor, raised bound or CLI/default change.
+- Bind child source, recipe, parent, stopped state and shared deadline. Recompute
+  outcome proofs on exact readback; preserve every prior/partial attempt. Known
+  optional generation failure still requires independent qualification; corrupt or
+  unknown evidence cannot grant fallback. Source correspondence remains strict.
+- Freeze optional `plane_generation_policy` and record per-component outcomes in
+  `plane_generation`. Absent settings and explicit supplied support keep their
+  meaning; this mode needs a current reader, with no historical migration.
+- Focused tests and actual Phenix success/stopped-generation controls pass through
+  repair and ReadySet, then exact relocated readback. The stopped case retains its
+  missing C5 coverage honestly. No full suite or diffraction refinement claim.
+
 ### Recognize completed but chemically rejected plane generation (C243)
 
 - The existing read-only generation-failure API now distinguishes a normally
