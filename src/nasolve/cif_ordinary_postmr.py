@@ -47,7 +47,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     if generation_options is not None and not isinstance(generation_options,dict):
         raise ValueError('Require explicit generation options')
     options = dict(generation_options or {})
-    allowed = {'single_block_steps','timeout_seconds','max_attempts','bond_representation_policy'}
+    allowed = {'single_block_steps','timeout_seconds','max_attempts','bond_representation_policy','source_input_policy'}
     if set(options)-allowed:
         raise ValueError('Unsupported ordinary generation option')
     configured = configure_dictionary_engine(phenix,expected_dialect=expected_dialect,**options)
@@ -325,6 +325,8 @@ def continue_checked_postmr(run_directory, phenix, *, after_attempt, store_root=
         options = dict(expected_dialect=recipe['expected_dialect'], single_block_steps=recipe['single_block_steps'],
                        timeout_seconds=binding['timeout_seconds'], max_attempts=binding['max_attempts'],
                        bond_representation_policy=recipe.get('bond_representation_policy'))
+        if 'source_input_policy' in recipe:
+            options['source_input_policy']=recipe['source_input_policy']
         key = json.dumps(options, sort_keys=True, allow_nan=False)
         if key not in configured:
             configured[key] = configure_dictionary_engine(phenix, **options)

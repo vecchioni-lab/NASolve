@@ -57,11 +57,13 @@ def _pin(path, root, *, source=False):
 
 def configure_dictionary_engine(installation: PhenixInstallation, *, expected_dialect: str,
         single_block_steps=180, timeout_seconds=600, max_attempts=2,
-        bond_representation_policy=None) -> PhenixDictionaryConfiguration:
+        bond_representation_policy=None, source_input_policy=None) -> PhenixDictionaryConfiguration:
     """Derive existing consumer/generation arguments from the selected installation.
 
     The caller supplies an already discovered installation and an explicit source
-    reader dialect. No ambient SDK or historical validation capsule is consulted.
+    reader dialect. An explicit source_input_policy lets the existing owner derive
+    and freeze the actual reader dialect from that source without changing its
+    authority. No ambient SDK or historical validation capsule is consulted.
     Only one complete lib[64]/python*/site-packages scope is supported. File pins
     are rechecked before return; actual execution still verifies native bindings.
 
@@ -97,6 +99,8 @@ def configure_dictionary_engine(installation: PhenixInstallation, *, expected_di
         single_block_steps=single_block_steps, timeout_seconds=timeout_seconds, max_attempts=max_attempts)
     if bond_representation_policy is not None:
         generation['bond_representation_policy'] = bond_representation_policy
+    if source_input_policy is not None:
+        generation['source_input_policy'] = source_input_policy
     _consumer(consumer)
     generation_dictionary_options(generation)
     _generation_binding(generation)

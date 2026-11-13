@@ -44,7 +44,11 @@ route can turn the first terminal P–O bond into a double bond even when anothe
 P=O is already declared. A small explicit adapter presents the already-declared
 double bond first, changing only table-row order. The original chemical source
 remains the authority, and a fresh 1AP control passes the existing isolated checks.
-Connecting that prepared input to ordinary acquisition remains separate work.
+An explicit generation recipe now carries that prepared input through the normal
+attempt and cache machinery while retaining the original chemical authority.
+Original 1AP and 5IU acquisitions pass isolated checks and read correctly after
+relocation without their original files or Phenix. Ordinary command defaults and
+whole-model/phasing acceptance remain separate; this does not certify a structure.
 
 The PDU investigation illustrates the distinction: correct connectivity and a
 straight propyne do not guarantee the desired glycosidic orientation or coplanarity

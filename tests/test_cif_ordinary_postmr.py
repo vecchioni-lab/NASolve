@@ -26,6 +26,7 @@ def test_ordinary_input_preparation_stops_before_legacy_and_uses_existing_reques
         assert kwargs.get('automatic_plane_support',False) is automatic
         assert kwargs['construction_inputs']==run and kwargs['frozen_sources'].is_dir()
         assert kwargs['ready_set_executable'] is None and components[0]['code']=='DE'
+        assert components[0]['generation'].get('source_input_policy')==('cif-source-reader-preparation-v1' if automatic else None)
         assert bool(kwargs['supplementary_phils']) is with_phil
         assert (kwargs['literal_na_inputs'] is not None) is with_phil
         assert kwargs['max_attempts']==2 and kwargs['continuation_options']=={'readyset_timeout_seconds':120,'restore_serialization':True}
@@ -39,7 +40,8 @@ def test_ordinary_input_preparation_stops_before_legacy_and_uses_existing_reques
         pairs.write_text('A 12\nB 4\n');output.write_text('geometry_restraints.edits {}\n')
         return {'retained_pair_count':1,'retained_pairs':[{'first':'A:12','second':'B:4'}]}
     with patch('nasolve.cif_postmr_cache.prepare_postmr_dictionaries',side_effect=AssertionError('No legacy reuse')),patch('nasolve.postmr.write_linked_profile',side_effect=AssertionError('No legacy modifiers')),patch('nasolve.postmr._run_readyset',side_effect=AssertionError('No legacy ReadySet')):
-        result=call(run,sdk,data,automatic_plane_support=automatic,max_attempts=2,continuation_options={'readyset_timeout_seconds':120,'restore_serialization':True},
+        result=call(run,sdk,data,automatic_plane_support=automatic,
+            generation_options={'source_input_policy':'cif-source-reader-preparation-v1'} if automatic else None,max_attempts=2,continuation_options={'readyset_timeout_seconds':120,'restore_serialization':True},
             **({'modified_pairs_only':True,'modified_pair_builder':builder} if with_phil else {}))
     assert result.request_directory==calls[0] and result.request=={'synthetic':True}
     assert set(result.generation)=={'DE'} and result.generation['DE']['phenix_version']==sdk.version

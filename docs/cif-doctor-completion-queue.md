@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C261
+## Near-term closure estimate at C263
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -31,7 +31,7 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. Integrate this route with exact original/derived source and recipe identity; no relabeling or chemistry bypass. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. C263 now connects an explicit prepared-input recipe through existing ownership/cache/ordinary resume and plane reads, retaining original authority. Both native acquisitions and relocated cold reads pass. Retry the full chosen-model AutoSol control; CLI defaults remain unchanged. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 

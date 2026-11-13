@@ -87,9 +87,11 @@ def test_new_preparation_executes_once_without_reconfiguring_or_second_construct
     assert calls==['construct','execute']
 
 
-def test_resume_uses_frozen_recipe_and_limits_without_running_construction(tmp_path,monkeypatch):
+@pytest.mark.parametrize('input_policy',[None,'cif-source-reader-preparation-v1'])
+def test_resume_uses_frozen_recipe_and_limits_without_running_construction(tmp_path,monkeypatch,input_policy):
     import nasolve.cif_ordinary_postmr as m
     recipe=dict(expected_dialect='CHEMICAL_COMPONENTS_CIF',single_block_steps=71,policy_id='recorded')
+    if input_policy is not None:recipe['source_input_policy']=input_policy
     saved=dict(options=dict(recipe=recipe),binding=dict(timeout_seconds=83,max_attempts=1))
     request=dict(configuration=dict(construction_inputs={'bound':True},controls=dict(sites={'PDU':{'generation':saved},'5PC':{'generation':deepcopy(saved)}})))
     monkeypatch.setattr('nasolve.cif_complete_request._request',lambda p:request)
@@ -102,7 +104,8 @@ def test_resume_uses_frozen_recipe_and_limits_without_running_construction(tmp_p
     monkeypatch.setattr(m,'read_ordinary_postmr_result',lambda run,**kw:kw)
     with patch.object(m,'initialize_ordinary_postmr_request',side_effect=AssertionError('No repeat Coot/NAR')):
         assert m.continue_checked_postmr(tmp_path,object(),after_attempt=2,store_root=tmp_path/'store')=={'attempt_number':3}
-    assert settings==[dict(expected_dialect='CHEMICAL_COMPONENTS_CIF',single_block_steps=71,timeout_seconds=83,max_attempts=1,bond_representation_policy=None)]
+    assert settings==[dict(expected_dialect='CHEMICAL_COMPONENTS_CIF',single_block_steps=71,timeout_seconds=83,max_attempts=1,bond_representation_policy=None,
+        **({'source_input_policy':input_policy} if input_policy is not None else {}))]
     assert calls==[dict(generation={'PDU':{'recorded':True},'5PC':{'recorded':True}},after_attempt=2)]
 
 

@@ -1,77 +1,69 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C261 pushed as `6da39f5`; C262 adapter/validation complete,
-publication pending. Active **cedar**, checkout NASolve-c96.
-Simon authorized this pass through **23:00 Europe/London**, focused tests only,
-no full suite or merge. Finish Q04/Q05 before Q06. The
-[queue](cif-doctor-completion-queue.md) owns ordering; the
-[capability table](cif-doctor.md#current-capability-boundary) owns support limits.
+Updated **2026-11-13**, C262 pushed as `668668a`; C263 implementation and focused/
+native validation complete, publication pending. Active **cedar**, NASolve-c96.
+Simon authorized work through **23:00 Europe/London**, no full suite or merge.
+Finish Q04/Q05 before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering.
 
-## Latest result — original-source 1AP and 5IU qualification
+## Latest result — original chemistry survives native input preparation
 
-C259 fresh Phaser/Coot passed but ordinary acquisition stopped at 1AP's source
-x/y/z versus the generator's ideal-only seed. C261 reuses C30 target-free graph,
-C37 source-reader dialect/charge handling and C118 explicit neutral-purine
-representation permission. Both curated components now pass existing isolated
-qualification against their exact originals. No production routing change yet.
+C263 adds the explicit `cif-source-reader-preparation-v1` recipe. It composes
+C30 graph export, C37 reader preservation and C262 complete bond-row ordering
+inside the existing generation owner. Original source/authority remain the cache
+and qualification basis; separate derived files and actual reader dialect are
+bound and rederived on read. Coordinate origin remains explicit. Ordinary intake,
+resume, acquisition and plane-support reads retain that choice. Old recipes and
+CLI defaults are unchanged; new prepared-input requests need a current reader.
 
-1AP required a diagnostic complete-bond-row permutation: installed eLBOW's
-SetPhosphatesOrder makes the first terminal P–O double even if another P=O exists.
-Presenting the source-declared double first avoids the unwanted OP1–P change.
-All declared bonds, H/charges, coordinates and fixed stereo stay unchanged. A
-prior candidate with two P=O bonds was correctly rejected. CCD unknown-stereo
-failures and insufficient connected-atom ordering are preserved, not retried in
-place. No invented stereo, phosphate state or fitted-model seed; no installed edits.
+Fresh original-source 1AP and 5IU acquisitions pass isolated native qualification
+and relocated read, with original/cache/SDK reads and native launch forbidden.
+Phenix 2.2.1-6174, 45.03 seconds whole control, 82.6 MB Python peak. Requests retain
+5,056,121 B/82 files and 3,699,998 B/82 files respectively. Original source bytes/
+timestamps unchanged. Local root: `263_Cedar_original-source-acquisition-vk0kfckx`;
+all jobs stopped, pinned source unchanged. Ignored c263_* runners in everyday checkout.
 
-All six C261 controls are stopped and code-pinned to ef2805c. Phenix 2.2.1-6174,
-complete bounded generation and isolated source/candidate-seed checks. No ReadySet,
-AutoSol, diffraction refinement, adoption or full suite. Exact outcomes/hashes and
-negative controls: ledger `declared_source_generation_controls_2026_11_13`.
-Local final control: `261_Cedar_declared-bond-order-generation-1jjl2ssv` under
-NASolve-live-tests; ignored runners in everyday checkout branch-artifacts/cedar/runners.
-Original sources retain bytes/timestamps. Raw science excluded from Git.
+Keep the scientific distinction: raw 1AP generation remains REJECTED for partial
+in-memory purine aromatic representation and legacy unsigned phosphate `both`
+omission. The written candidate passes existing original-source reassessment and
+independent native qualification. Do not relabel that raw verdict or weaken gates.
+C262 fixed the observed unwanted extra P=O by reordering entire source bond rows;
+no bonds, charge/H, stereo or coordinates are changed. Native code is untouched.
 
-## Next — Q04/Q05 closure
+Focused validation: 333 existing/new checks passed in the first group; four
+new tamper-fixture setup errors were corrected. Final targeted group **57 passed**;
+ordinary intake/resume/complete owner **159 passed**. Relocated temporary checkout
+and request, old temporary paths absent: **1 passed**. Exact commands, hashes and
+limits: ledger `original_source_owned_acquisition_2026_11_13`. No full suite.
 
-1. C262 implements the graph-based complete-bond-row adapter in cif_elbow_input.py.
-   17 new cases plus existing reader/charge/candidate checks: **120 passed, 12.01 s**.
-   Relocated temporary checkout/input with original temporary paths absent: **1 passed**.
-   Actual new adapter: fresh 1AP native generation and original-source isolated
-   qualification pass; stopped/code-unchanged. No ordinary routing change yet.
-   Read C261/native evidence; do not duplicate C30/C37/C118 or weaken gates.
-2. Bind explicit source/reader preparation into the existing owned acquisition,
-   retaining original source authority plus derived-input/recipe identity. Qualification
-   must still compare with the original. Avoid a new executor or untracked retry.
-3. Retry C253 chosen-model AutoSol native acceptance from a fresh owned request.
-   C259 explicit terminal fixture preserved D:1 phosphate; it does not infer DiU
-   chemistry. Interrupted AutoSol result publication remains preserved/unadopted.
-4. Reconcile supported opt-in Q04/Q05 closure, then Q06 real complete-restraint
-   refinement and Q07 combined/held-out cases. Retain Q08–Q14 chemistry learning;
-   Q15 reporting/PDF and Q16 final AutoPhase naming/full validation/integration review.
+## Next — finish Q04/Q05 acceptance
 
-C262 local native evidence: `262_Cedar_declared-phosphate-adapter-m1cnetyh`.
-Exact commands, pins and limits: ledger `declared_phosphate_input_order_2026_11_13`.
-No active native job.
+1. Publish C263, then retry the real-observation chosen-model AutoSol control in a
+   fresh owned run. Reuse ignored c259 worker/driver with C263 explicit input policy
+   and C118 neutral-purine permission. C259's software fixture declares free ends
+   A:1/B:1/C:8 while preserving D:1 phosphate; it does not infer DiU chemistry.
+2. Verify original-Phaser phasing versus chosen-model site comparison, exact phase
+   labels, later-selection preservation and relocated inspection. No synthetic
+   reflection substitute. Interrupted AutoSol publication remains preserved but
+   not automatically adopted; keep this separate remaining recovery boundary.
+3. Reconcile opt-in Q04/Q05 scope and default-route rollout; then Q06 real
+   complete-restraint refinement and Q07 combined/held-out chemical controls.
+   Q08–Q14 retain chemistry learning; Q15 report/PDF; Q16 final AutoPhase naming,
+   full regression and reviewed integration. No merge authorized.
 
-## Completed foundations — reuse, do not rebuild
+## Completed foundations — reuse
 
-C260 ordinary checked publication invokes existing C258 successful-working-file
-retirement. Optional storage failure returns usable science only after exact reread.
-Campaign capture excludes transport-verified archived duplicates; later partial
-cleanup completion preserves its references. Read-only inspection and historical
-publication never clean files. Older unarchived campaigns that still reference
-working files require a separate migration. Failed/uncertain work stays unpacked.
+C260 connects existing C258 retirement after new checked publication and before
+campaign capture. Optional cleanup failure returns science only after exact reread.
+Partial cleanup can finish without breaking new campaign artifact references.
+Inspection and historical publication never clean files. Old unarchived campaigns
+still referencing working files require separate migration. Failed/uncertain work
+and shared acquisitions remain unpacked. Actual C244 copy: 181.6 MB → 33.7 MB,
+same model/five PHILs/two CIFs/51 public paths; all original science unchanged.
+See `ordinary_campaign_retention_2026_11_13`; do not rebuild storage machinery.
+Last full suite **C220/583d30df: 9,178 tests + 276 subtests**.
 
-Final C260 checks: 92 passed; moved checkout/request: 1 passed. Actual C244 copy:
-604 duplicates removed after deliberate interruption/resume, 97 campaign references
-survive relocation, same model/five PHILs/two CIFs/51 public paths. Whole request
-181.6 MB → 33.7 MB; temporary expansion 87.4 MB, Python resident peak 756.4 MB.
-Original 698 files/timestamps unchanged; temporary validation copy removed.
-Exact commands/results: `ordinary_campaign_retention_2026_11_13`. This is one
-representative request, not a 100-dataset or concurrent-memory guarantee.
-Last full suite remains **C220/583d30df: 9,178 tests + 276 subtests**.
-
-Linden works independently on Willow/Pine. Named-proxy advice and the distinction
-between native symmetry capture and restraint-authoring interfaces were shared
-locally, signed Rowan. No Cedar edits requested. Protected NASolve-cedar and everyday
-NASolve/pine science/patches/environments remain untouched; no new branch.
+Linden works independently on Willow/Pine. Existing Cedar parallelity audit and
+plane-order correction were pointed out to avoid duplicated Cartesian diagnosis;
+new symmetry pullback/closure work remains their separate diagnostic scope.
+Protected NASolve-cedar and everyday NASolve/pine data/patches/environments remain
+untouched. Continue on NASolve-c96/cedar, no new branch.

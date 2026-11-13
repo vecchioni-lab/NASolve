@@ -9634,7 +9634,46 @@ survive. No-op input is byte-identical. The receipt records exact original/outpu
 hashes and named ordering, not chemical approval. Its fresh 1AP control passes
 original-source isolated qualification; renamed synthetic graphs, two phosphates,
 unsupported cases and source-removed relocation pass focused tests. The adapter
-is explicit, with no ordinary routing or historical receipt change.
+is explicit, with no ordinary routing or historical receipt change. The raw
+generation verdict remains REJECTED: its finished native object aromatizes only
+the six-membered purine ring, outside the complete fused-system contract, and
+legacy inspection records omission of an unsigned phosphate `both` term. The
+separately written candidate passes the existing original-source reassessment
+and isolated native qualification. This established distinction between generation
+and candidate usability is retained; no earlier verdict or guard is weakened.
+
+### Original-source ownership across reader preparation (C263)
+
+Set `source_input_policy="cif-source-reader-preparation-v1"` in the explicit
+Phenix dictionary configuration or ordinary `generation_options` to compose the
+existing C30 graph export, C37 source-reader adapter and C262 monomer bond ordering.
+The default remains the historical route. This choice is independent of an explicit
+bond-representation permission; it does not infer an aromatic or phosphate state.
+
+The existing generation request retains `inputs/source.cif` as the original.
+It also freezes four small `inputs/prepared/` files: the target-free graph, reader
+input, final consumer input and preparation record. The latter distinguishes source
+x/y/z from independent ideal coordinates. `configuration.source_preparation` binds
+exact derived-file digests and actual reader dialect; the recipe binds the policy.
+Readers rederive the projection in disposable temporary space and require exact
+bytes, including after relocation. Original evidence is never rewritten. Native
+phase records and receipts refer to the actual consumer file; acquisition/cache
+identity and independent qualification still refer to the original source.
+
+Ordinary resume reconstructs the frozen choice. Owned plane generation preserves
+both source identities while its public source reference remains the original.
+Successful, rejected and failed native evidence retain their distinct checks.
+Cache hits need neither projection nor the old SDK. An explicit retry still uses a
+new numbered attempt and requires stopped ownership; there is no new executor.
+Existing recipes/receipts are unchanged. Older readers reject the additional input
+folder, so prepared-input requests require the current reader; no migration occurs.
+
+Fresh Phenix 2.2.1-6174 acquisitions of original curated 1AP and 5IU pass isolated
+qualification and relocated cold read with original/cache/SDK reads and native
+launch forbidden. 1AP's raw generation rejection remains recorded as described
+above; the separately written candidate qualifies independently. These are not
+linked-model, ReadySet, AutoSol or diffraction-refinement results. Exact focused,
+native and relocation evidence: `original_source_owned_acquisition_2026_11_13`.
 
 ## Generated numerical defects and explicit candidates
 

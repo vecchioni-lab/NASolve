@@ -92683,10 +92683,209 @@
         "summary.json": "5b5445bb3e8e3fa4e76933ef402049dfead6e6ff04f61e603a1d4ca48e73ad4e",
         "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
         "worker.py": "38256d3bae4a1d04a805125a51c7bdef7413f77ccee536b8aa5c10197ed17eae"
-      }
+      },
+      "generation_status": "REJECTED",
+      "independent_candidate_qualification": "PASS against the exact original source. Raw generation verdict retained: native object has only the six-membered purine ring aromatic, outside the complete fused-system representation contract; written candidate qualifies separately. Legacy inspection also records omission of an unsigned phosphate both term."
     },
     "compatibility": "New explicit adapter and policy; no existing generator/reader/receipt behavior or catalogue change. No migration.",
     "artifacts": "Compact evidence only committed. Native candidates/logs and exact input copies remain local, all original scientific sources unchanged.",
     "limitations": "Input ordering does not select phosphate chemical state, establish numerical convergence, authorize linked models or qualify diffraction refinement. Original-source qualification still required; ordinary source/recipe binding is next."
+  },
+  "original_source_owned_acquisition_2026_11_13": {
+    "milestone": "C263",
+    "date": "2026-11-13",
+    "baseline_commit": "668668a",
+    "status": "EXPLICIT_OWNED_SOURCE_INPUT_RECIPE_AND_NATIVE_ACQUISITION_PASS; WHOLE_MODEL_AUTOSOL_ACCEPTANCE_OPEN",
+    "before": "Ordinary generation required ideal-only source input and did not bind existing graph/reader preparation to the original authority.",
+    "after": "Explicit recipe composes maintained adapters inside the existing generation owner. Original and derived sources/dialect remain separately bound; acquisition/cache/native qualification retain original authority. Ordinary resume and plane support honor the frozen recipe.",
+    "policy": "cif-source-reader-preparation-v1",
+    "schema_changes": "Optional generation/cache recipe source_input_policy; generation configuration.source_preparation; inputs/prepared/{graph.cif,reader.cif,consumer.cif,preparation.json}. Existing recipes/worker receipts unchanged.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_generation_input.py tests/test_cif_acquisition_input.py tests/test_cif_generation_attempt.py tests/test_cif_generation_acquisition.py tests/test_cif_acquisition_attempt.py tests/test_cif_phenix_configuration.py tests/test_cif_ordinary_postmr.py tests/test_cif_plane_generation.py",
+        "result": "333 passed, 4 test-setup failures in 72.44s; failures attempted immutable record overwrite while constructing tamper fixtures, corrected with explicit replace=True."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_generation_input.py tests/test_cif_acquisition_input.py tests/test_cif_phenix_configuration.py -x",
+        "result": "57 passed in 7.83s, including corrected tamper cases, new original-source plane success/rejection/failure and fresh-attempt recovery."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_ordinary_postmr.py tests/test_cif_ordinary_outcome.py tests/test_cif_complete_request.py",
+        "result": "159 passed in 287.78s; includes explicit intake and frozen resume forwarding."
+      }
+    ],
+    "relocated_checkout": {
+      "status": "RELOCATED_CHECKOUT_AND_REQUEST_PASS",
+      "scope": "One original-source/prepared-input owned-acquisition cold-read test, from copied code relocated after its temporary original checkout disappeared. Request also relocated; both old temporary paths absent. No source checkout or original scientific data removed.",
+      "elapsed_seconds": 2.2730187500128523,
+      "pytest_output": ".                                                                        [100%]\n1 passed in 1.65s",
+      "temporary_checkout_removed": true
+    },
+    "native": {
+      "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "execution": "Complete bounded acquisition/generation/isolated native qualification, followed by relocated read without original/cache/SDK access or process launch; not dry-run.",
+      "components": {
+        "1AP": {
+          "status": "OWNED_ACQUISITION_AND_RELOCATED_COLD_READ_PASS",
+          "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+          "source_authority": "CURATED",
+          "candidate_sha256": "16e95be781adc2dedfbba9e6365903ceefa218b696661a20747e3bd659d1fd31",
+          "generation_status": "REJECTED",
+          "generation_diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "REJECTED",
+            "candidate_state": "RETAINED_REJECTED",
+            "blocking_stage": "CANDIDATE_ASSESSMENT",
+            "summary": "Retained candidate rejected: generated-declared-chirality-changed, source-representation-handoff-not-qualified.",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": {
+              "exception_type": "ValueError",
+              "message": "Finished native inventory changed source chemistry"
+            },
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [
+              "generated-declared-chirality-changed",
+              "source-representation-handoff-not-qualified"
+            ],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "original_preserved": true,
+          "retained_file_count": 82,
+          "retained_bytes": 5056121,
+          "original_cache_sdk_reads_forbidden": true,
+          "old_request_absent": true,
+          "read_only": true,
+          "prepared_source_binding": {
+            "consumer": {
+              "sha256": "f3b36b25f962fdac275ad552148cea5d706284ef16117fe5b6c2f6e7e7559bbf",
+              "size": 4348
+            },
+            "input_files": {
+              "prepared/consumer.cif": {
+                "sha256": "f3b36b25f962fdac275ad552148cea5d706284ef16117fe5b6c2f6e7e7559bbf",
+                "size": 4348
+              },
+              "prepared/graph.cif": {
+                "sha256": "d678b7fd716f6250915a21b0b6faf1f09a1322811ce7ed38dc413888ed0506d3",
+                "size": 3477
+              },
+              "prepared/preparation.json": {
+                "sha256": "77f234135bd69abf1129d04f7da097e85d05b4c2dc76ad03b187dad0f074e044",
+                "size": 2204
+              },
+              "prepared/reader.cif": {
+                "sha256": "aa4848254536e4a25ccdd1dba7aaefd70bc3d2825a6fbac721534b018968e39d",
+                "size": 4348
+              }
+            },
+            "policy_id": "cif-source-reader-preparation-v1",
+            "reader_dialect": "MONOMER_LIBRARY_CIF"
+          }
+        },
+        "5IU": {
+          "status": "OWNED_ACQUISITION_AND_RELOCATED_COLD_READ_PASS",
+          "source_sha256": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+          "source_authority": "CURATED",
+          "candidate_sha256": "61dd1ef0b4a9b8addf8c29f9bb63fe5917f21a36dd32c845b2cec80e9bac8be3",
+          "generation_status": "CANDIDATE_REVIEW",
+          "generation_diagnostic": {
+            "policy_id": "cif-source-candidate-diagnostic-v1",
+            "generation_status": "CANDIDATE_REVIEW",
+            "candidate_state": "RETAINED_REVIEW",
+            "blocking_stage": null,
+            "summary": "Candidate retained for review; native usability requires separate qualification.",
+            "builder_started": true,
+            "failed_handoff_checks": [],
+            "handoff_reason": null,
+            "native_exception": null,
+            "execution_status": "COMPLETED",
+            "execution_returncode": 0,
+            "rejection_reasons": [],
+            "identity_change_fields": [],
+            "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+            "automatic_adoption": false
+          },
+          "original_preserved": true,
+          "retained_file_count": 82,
+          "retained_bytes": 3699998,
+          "original_cache_sdk_reads_forbidden": true,
+          "old_request_absent": true,
+          "read_only": true,
+          "prepared_source_binding": {
+            "consumer": {
+              "sha256": "9e7abb81917e1a3d8743d37d3e1f3a2a6f960295c67a6f40863f80ea3f99c561",
+              "size": 3257
+            },
+            "input_files": {
+              "prepared/consumer.cif": {
+                "sha256": "9e7abb81917e1a3d8743d37d3e1f3a2a6f960295c67a6f40863f80ea3f99c561",
+                "size": 3257
+              },
+              "prepared/graph.cif": {
+                "sha256": "9e7abb81917e1a3d8743d37d3e1f3a2a6f960295c67a6f40863f80ea3f99c561",
+                "size": 3257
+              },
+              "prepared/preparation.json": {
+                "sha256": "8991616653946911dd4f9daa85b2d0f57771adb5e70251f1d3a621242bdbbdf5",
+                "size": 1009
+              },
+              "prepared/reader.cif": {
+                "sha256": "9e7abb81917e1a3d8743d37d3e1f3a2a6f960295c67a6f40863f80ea3f99c561",
+                "size": 3257
+              }
+            },
+            "policy_id": "cif-source-reader-preparation-v1",
+            "reader_dialect": "CHEMICAL_COMPONENTS_CIF"
+          }
+        }
+      },
+      "owner": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "elapsed_seconds": 45.029936999984784,
+      "python_peak_resident_bytes": 82624512,
+      "historical_local_path": "/Users/svecchio/NASolve-live-tests/263_Cedar_original-source-acquisition-vk0kfckx",
+      "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY",
+      "files": {
+        "start.json": "7f577d392a110dd64649036eb6ca6252f6a49ba16c748ab8b746f19ba4c0ceb9",
+        "runner-pins.json": "9983bf9aaa527182378f2dfa7a61a99f874ccb8092de15d2738f843c72f3a6ce",
+        "summary.json": "eed624f63e857f43a7ed6654011bfa4738d63bc4dc83eca447562b740aa3cae0",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "worker.py": "c40b259d375d773551293bfa00fe2b1f74a8e85aa93752648bdec079a61f7071"
+      }
+    },
+    "compatibility": "Explicit opt-in; old recipes unchanged. Older readers reject new prepared inputs. No source catalogue, chemical permission, selection, retry or CLI-default change. No migration.",
+    "artifacts": "Only code/tests/compact records committed; native runs/candidates/logs remain local. Both original curated sources retain bytes/times. Temporary relocated checkout removed.",
+    "limits": "Native 1AP raw generation remains REJECTED for partial in-memory aromatic representation/legacy unsigned P term. Separately written candidate passes original-source reassessment and independent native qualification. No old verdict relabeled. No ReadySet, whole-model, AutoSol or diffraction-refinement claim; no full suite.",
+    "next": "Fresh complete chosen-model AutoSol control with the explicit source-input and existing neutral-purine recipe.",
+    "changed_files": [
+      "CHANGELOG.md",
+      "docs/README.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/cif-doctor.md",
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/development-handoff.md",
+      "src/nasolve/cif_acquisition_attempt.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_generation_acquisition.py",
+      "src/nasolve/cif_generation_attempt.py",
+      "src/nasolve/cif_generation_input.py",
+      "src/nasolve/cif_ordinary_postmr.py",
+      "src/nasolve/cif_phenix_configuration.py",
+      "src/nasolve/cif_plane_generation.py",
+      "tests/test_cif_acquisition_input.py",
+      "tests/test_cif_generation_input.py",
+      "tests/test_cif_ordinary_outcome.py",
+      "tests/test_cif_ordinary_postmr.py",
+      "tests/test_cif_phenix_configuration.py"
+    ]
   }
 }

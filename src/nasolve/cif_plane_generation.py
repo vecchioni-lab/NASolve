@@ -11,6 +11,7 @@ from .campaign_records import path_in
 from .cif_dictionary_store import _regular
 from .cif_generation_attempt import _root, _pins, inspect_source_generation_request
 from .cif_generation_process import inspect_generation_process
+from .cif_generation_input import generation_source
 from .cif_source_representation import read_multiple_plane_candidate, read_multiple_plane_execution_failure, read_rejected_multiple_plane_candidate
 from .cif_plane_candidate import prepare_trigonal_plane_candidate
 
@@ -51,6 +52,8 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
     _need(config['component'] == code and _regular(path_in(root, 'inputs/source.cif')) == original,
           "Selected generation source/component differs")
     recipe, generator = config['recipe'], config['generator']
+    input_name,native_source,native_dialect=generation_source(config)
+    native_input=_regular(path_in(root/'inputs',input_name))
     _need(recipe.get('multiple_planes') is True, "Selected request lacks multiple-plane choice")
     name = f'attempts/attempt-{attempt_number:04d}/generation'
     work = path_in(root, name)
@@ -68,17 +71,17 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
     # C170 keeps the request ceiling frozen while a parent may grant less time.
     # The completed receipt and both owned phases must bind that same grant.
     effective_timeout = report['execution']['timeout_seconds']
-    _need(_regular(path_in(work, 'source.cif')) == original and report['component'] == code
-          and report['source_sha256'] == config['source']['sha256'], "Native generation source binding differs")
+    _need(_regular(path_in(work, 'source.cif')) == native_input and report['component'] == code
+          and report['source_sha256'] == native_source['sha256'], "Native generation source binding differs")
     _need(report.get('bond_representation_policy') == recipe.get('bond_representation_policy')
-          and spec['declared_charge_control']['dialect'] == recipe['expected_dialect']
+          and spec['declared_charge_control']['dialect'] == native_dialect
           and report['single_block_steps'] == recipe['single_block_steps']
           and 0 < effective_timeout <= recipe['timeout_seconds']
           and report['phenix_version'] == generator['phenix_version']
           and _pins(report['sources']) == generator['prior_sources'], "Native generation recipe/producer differs")
     owner = {k: selected['intent'][k] for k in ('attempt_id', 'request_sha256')}
     owner['attempt_sha256'] = selected['intent']['record_sha256']
-    context = dict(component=code, source_sha256=config['source']['sha256'],
+    context = dict(component=code, source_sha256=native_source['sha256'],
         candidate_policy_id=report['policy_id'], multiple_planes=True,
         phenix_version=generator['phenix_version'], single_block_steps=recipe['single_block_steps'],
         total_timeout_seconds=effective_timeout, attempt_owner=owner)
@@ -112,7 +115,7 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
           and _regular(Path(source)) == original, "Selected generation evidence changed during replay")
     if failure:
         return dict(schema_version=1,policy_id=('cif-owned-plane-generation-rejection-v1' if rejected else 'cif-owned-plane-generation-failure-v1'),
-            status='KNOWN_STOPPED_GENERATION_FAILURE',component=code,source_sha256=report['source_sha256'],
+            status='KNOWN_STOPPED_GENERATION_FAILURE',component=code,source_sha256=config['source']['sha256'],
             attempt_number=attempt_number,request_sha256=request['record_sha256'],
             attempt_sha256=selected['intent']['record_sha256'],finished_sha256=selected['finished']['record_sha256'],
             receipt={**selected['finished']['candidate_receipt'],'anchor':'request_directory',
@@ -123,7 +126,7 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
             **(dict(rejection_diagnostic=report['diagnostic']) if rejected else {}),
             new_native_calls=0,fallback_authorized=False,retry_authorized=False)
     return dict(schema_version=1, policy_id=SUPPORT_POLICY_ID, status='OWNED_SUPPORT_REPLAY_PASS',
-        component=code, source_sha256=report['source_sha256'], attempt_number=attempt_number,
+        component=code, source_sha256=config['source']['sha256'], attempt_number=attempt_number,
         request_sha256=request['record_sha256'], attempt_sha256=selected['intent']['record_sha256'],
         finished_sha256=selected['finished']['record_sha256'],
         receipt={**selected['finished']['candidate_receipt'], 'anchor':'request_directory',

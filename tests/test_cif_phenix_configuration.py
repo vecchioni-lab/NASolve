@@ -62,10 +62,12 @@ def test_current_configuration_is_read_only_and_uses_selected_maintained_scope(t
 def test_configuration_copies_environment_and_keeps_representation_permission_explicit(tmp_path):
     sdk, _ = sdk_at(tmp_path/'sdk'); original = deepcopy(sdk)
     result = configure(sdk, single_block_steps=91, timeout_seconds=72.5, max_attempts=3,
-                       bond_representation_policy='cif-source-declared-neutral-purine-aromatic-v1')
+                       bond_representation_policy='cif-source-declared-neutral-purine-aromatic-v1',
+                       source_input_policy='cif-source-reader-preparation-v1')
     g = result.generation
     assert g['single_block_steps'] == 91 and g['timeout_seconds'] == 72.5 and g['max_attempts'] == 3
     assert generation_dictionary_options(g)['recipe']['bond_representation_policy'] == g['bond_representation_policy']
+    assert generation_dictionary_options(g)['recipe']['source_input_policy'] == 'cif-source-reader-preparation-v1'
     g['environment']['NASOLVE_TEST_SECRET'] = 'caller-change'
     g['prior_sources'][0]['sha256'] = '0'*64
     assert sdk == original and configure(sdk).generation['environment'] == sdk.environment

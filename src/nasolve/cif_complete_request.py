@@ -468,7 +468,8 @@ def _plane_children(attempt, intent, config):
         _need(g['component']==code and g['source']==dict(sha256=r['source_sha256'],size=r['source_size'])
             and g['max_attempts']==1 and g['recipe']==dict(expected_dialect=r['recipe']['expected_dialect'],
                 single_block_steps=r['recipe']['single_block_steps'],timeout_seconds=b['timeout_seconds'],
-                bond_representation_policy=r['recipe'].get('bond_representation_policy'),multiple_planes=True)
+                bond_representation_policy=r['recipe'].get('bond_representation_policy'),multiple_planes=True,
+                **({'source_input_policy':r['recipe']['source_input_policy']} if 'source_input_policy' in r['recipe'] else {}))
             and g['generator']['phenix_version']==r['generator']['version']
             and all(g['generator'][k]==r['generator'][k] for k in ('api_sources','prior_sources'))
             and {k:v['path'] for k,v in g['generator']['dispatchers'].items()}==b['dispatchers']

@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind prepared native inputs to original chemical sources (C263)
+
+- Add the explicit `cif-source-reader-preparation-v1` generation recipe. Reuse the
+  existing graph/reader/phosphate-order adapters, preserving the original source
+  and recording coordinate origin, derived bytes and the actual native dialect.
+- The existing generation owner freezes and rederives those inputs. Native phases
+  bind the derived file; cache identity, source authority and independent candidate
+  qualification retain the original. Verified cache hits skip preparation/generation.
+- Forward the choice through ordinary intake/resume, acquisition and owned plane
+  support. Preserve fresh-attempt recovery, read-only evidence and all historical
+  recipes. New prepared-input requests require a current reader; no migration or
+  CLI-default change. Raw generation rejection remains distinct from independently
+  qualified written output.
+
 ### Preserve declared phosphate bonds at monomer input (C262)
 
 - Add an explicit native-input adapter that permutes complete bond rows so a

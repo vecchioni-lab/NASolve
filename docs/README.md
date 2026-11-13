@@ -25,7 +25,9 @@ milestone statements preserve their original scope; they are not a second queue.
   and achieved geometry remain unassessed by that screen. C251 adds explicit later
   preparation alternatives with unchanged root/current choice and exact Coot/
   refinement inputs. C253 binds chosen-model AutoSol site validation while preserving
-  original-MR phasing; native AutoSol acceptance remains open. C252 validates real two-attempt publication, relocated Coot/
+  original-MR phasing; native AutoSol acceptance remains open. C263 binds an explicit
+  prepared-input recipe to original chemical authority; isolated 1AP/5IU acquisition
+  and relocated cold reads pass without changing ordinary defaults. C252 validates real two-attempt publication, relocated Coot/
   refinement inputs and preservation of a later manual choice. Alternative-aware phasing,
   real refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,

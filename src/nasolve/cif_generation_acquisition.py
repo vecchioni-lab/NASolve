@@ -42,7 +42,7 @@ def generation_dictionary_options(generation):
     """
     required = {'installation_root', 'python_executable', 'elbow_executable', 'api_sources',
                 'environment', 'expected_dialect', 'prior_sources', 'phenix_version'}
-    optional = {'single_block_steps', 'timeout_seconds', 'max_attempts', 'bond_representation_policy', 'multiple_planes'}
+    optional = {'single_block_steps', 'timeout_seconds', 'max_attempts', 'bond_representation_policy', 'multiple_planes', 'source_input_policy'}
     _need(isinstance(generation, dict) and required <= generation.keys()
           and generation.keys() <= required | optional, 'Require explicit supported generation configuration')
     steps = generation.get('single_block_steps', 180)
@@ -58,6 +58,11 @@ def generation_dictionary_options(generation):
     _need(type(multiple_planes) is bool, 'multiple_planes must be a boolean')
     if multiple_planes:
         recipe['multiple_planes'] = True
+    from .cif_generation_input import validate_source_input_policy
+    input_policy=generation.get('source_input_policy')
+    validate_source_input_policy(input_policy)
+    if input_policy is not None:
+        recipe['source_input_policy']=input_policy
     policy = generation.get('bond_representation_policy')
     from .cif_purine_representation import validate_policy
     validate_policy(policy)
@@ -144,8 +149,13 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
         work = path_in(request_directory, name)
         receipt_path = path_in(work, 'source_candidate_receipt.json')
         receipt = json.loads(_regular(receipt_path))
+        from .cif_generation_input import generation_source
+        config=state['request']['configuration']
+        _need(config['source']==dict(sha256=request['source_sha256'],size=request['source_size']),
+              'Generation original source identity differs')
+        _,native_source,_=generation_source(config)
         _need(receipt == result['generation'] and receipt.get('component') == code
-              and receipt.get('source_sha256') == request['source_sha256']
+              and receipt.get('source_sha256') == native_source['sha256']
               and receipt.get('source_preserved') is True and _regular(source) == original,
               'Generation receipt source/identity differs')
         if receipt.get('candidate_retained') is not True or receipt.get('candidate') is None:
@@ -186,6 +196,8 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
                 'stopping_evidence': receipt.get('stopping'), 'execution': receipt.get('execution'),
                 'diagnostic': receipt.get('diagnostic'), 'error': receipt.get('error'),
                 'generation_receipt_sha256': sha256(_regular(receipt_path)).hexdigest()}}
+        if 'source_preparation' in config:
+            provenance['generation_acquisition']['source_preparation']=config['source_preparation']
         if receipt.get('error'):
             provenance['notes'].append('Generation diagnostic: ' + str(receipt['error']))
         return {'candidate': candidate, 'qualification': qualification, 'provenance': provenance}

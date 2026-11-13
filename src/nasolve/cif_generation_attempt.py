@@ -19,6 +19,7 @@ from .campaign_process import CampaignProcessError, coordinator_alive, current_p
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
 from .cif_generation_process import PHASES, _valid_identity, _valid_attempt_identity, inspect_generation_process
 from .cif_source_candidate import generate_source_candidate
+from .cif_generation_input import validate_source_input_policy, source_input_files, generation_source
 from .cif_elbow_contract import _inside, _safe
 
 POLICY_ID = 'cif-source-generation-request-v1'
@@ -85,6 +86,11 @@ def _validate_configuration(config):
         raise ValueError('Noncanonical generation multiple-plane choice')
     from .cif_purine_representation import validate_policy
     validate_policy(recipe.get('bond_representation_policy'))
+    validate_source_input_policy(recipe.get('source_input_policy'))
+    if 'source_input_policy' in recipe and recipe['source_input_policy'] is None:
+        raise ValueError('Noncanonical source input policy')
+    if ('source_preparation' in config) != ('source_input_policy' in recipe):
+        raise ValueError('Generation source preparation binding differs')
     for field in ('api_sources', 'prior_sources'):
         if _pins(generator.get(field)) != generator[field]:
             raise ValueError('Noncanonical generation request native pins')
@@ -119,7 +125,7 @@ def _phase_evidence(attempt, intent, config):
         if job is not None:
             context = job['context']
             owner = intent['coordinator']
-            if (context['component'] != config['component'] or context['source_sha256'] != config['source']['sha256']
+            if (context['component'] != config['component'] or context['source_sha256'] != generation_source(config)[1]['sha256']
                     or context.get('attempt_owner') != _attempt_identity(intent)
                     or any(job['coordinator'].get(k) != owner.get(k)
                            for k in ('pid', 'pgid', 'host', 'boot_id', 'start_marker'))):
@@ -210,7 +216,7 @@ def inspect_source_generation_request(directory):
     source = path_in(root, 'inputs/source.cif')
     if not source.is_file() or _digest(source.read_bytes()) != config['source']:
         raise ValueError('Generation request source snapshot changed')
-    _members(source.parent, {'source.cif'})
+    _validate_inputs(root,config)
     attempts = path_in(root, 'attempts')
     rows = []
     if attempts.exists():
@@ -240,6 +246,9 @@ def _configuration(root, python, elbow, api, source_bytes, code, options, max_at
                             'dispatchers': {'python': dispatcher(python), 'elbow': dispatcher(elbow)}}}
     if options.get('multiple_planes') is True:
         config['recipe']['multiple_planes']=True
+    if options.get('source_input_policy') is not None:
+        config['recipe']['source_input_policy']=options['source_input_policy']
+        config['source_preparation']=source_input_files(source_bytes,code)[0]
     _validate_configuration(config)
     for row in config['generator']['api_sources'] + config['generator']['prior_sources']:
         path = _inside(root, row['path'])
@@ -247,6 +256,24 @@ def _configuration(root, python, elbow, api, source_bytes, code, options, max_at
             raise ValueError('Generation request native source changed')
     # Detach caller-owned lists/dicts before reserving immutable intent.
     return json.loads(json.dumps(config, allow_nan=False))
+
+
+def _validate_inputs(root, config):
+    original=path_in(root,'inputs/source.cif').read_bytes()
+    if _digest(original)!=config['source']:
+        raise ValueError('Generation original source changed')
+    folder=root/'inputs'
+    if 'source_preparation' not in config:
+        _members(folder,{'source.cif'})
+        return
+    expected,files=source_input_files(original,config['component'])
+    if expected!=config['source_preparation']:
+        raise ValueError('Generation source projection differs from original')
+    _members(folder,{'source.cif','prepared'})
+    _members(path_in(folder,'prepared'),{Path(n).name for n in files})
+    for name,data in files.items():
+        if path_in(folder,name).read_bytes()!=data:
+            raise ValueError('Prepared generation input changed: '+name)
 
 
 def _seal(attempt, intent, request, outcome, error=None):
@@ -262,14 +289,18 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
         api_sources, source, code, request_directory, *, environment, expected_dialect,
         prior_sources, phenix_version, single_block_steps=180, timeout_seconds=600,
         bond_representation_policy=None, max_attempts=2, _parent_attempt_identity=None, _remaining_seconds=None,
-        multiple_planes=False):
+        multiple_planes=False, source_input_policy=None):
     """Run one fresh generation attempt under a frozen request (at most five).
 
     Repeated calls are explicit retries, not cache hits. Each gets a fresh UUID
     and numbered directory; even failed/empty attempts consume their allowance.
     The unchanged low-level generator remains available for legacy one-shot
     callers. A different request directory is a different coordination scope.
+    Explicit source_input_policy preserves original chemical authority and freezes
+    separately derived reader inputs. Native phases bind that derived input; final
+    acquisition qualification still uses the original. Legacy recipes are unchanged.
     """
+    validate_source_input_policy(source_input_policy)
     if type(multiple_planes) is not bool:
         raise ValueError('multiple_planes must be a boolean')
     if _parent_attempt_identity is not None and not _valid_attempt_identity(_parent_attempt_identity):
@@ -295,6 +326,8 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
                    bond_representation_policy=bond_representation_policy)
     if multiple_planes:
         options['multiple_planes']=True
+    if source_input_policy is not None:
+        options['source_input_policy']=source_input_policy
     config = _configuration(installation, python, elbow, api_sources, original, code, options, max_attempts)
     coordinator = current_process_identity()
     root.mkdir(parents=True, exist_ok=True)
@@ -303,9 +336,18 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
             if {p.name for p in root.iterdir()} != {'request.lock'}:
                 raise CampaignProcessError('Generation request has unresolved initial publication')
             inputs = root/'inputs'; inputs.mkdir()
-            with (inputs/'source.cif').open('xb') as handle:
-                handle.write(original); handle.flush(); os.fsync(handle.fileno())
-            _sync_directory(inputs)
+            files={'source.cif':original}
+            if source_input_policy is not None:
+                projection,prepared=source_input_files(original,code)
+                if projection!=config['source_preparation']:
+                    raise ValueError('Generation source projection changed before publication')
+                files.update(prepared)
+            for name,data in files.items():
+                path=inputs/name;path.parent.mkdir(parents=True,exist_ok=True)
+                with path.open('xb') as handle:
+                    handle.write(data); handle.flush(); os.fsync(handle.fileno())
+            for folder in sorted({inputs,*[p for p in inputs.rglob('*') if p.is_dir()]},key=lambda p:len(p.parts),reverse=True):
+                _sync_directory(folder)
             write_record(root/'request.json', {'schema_version': 1, 'policy_id': POLICY_ID,
                 'request_id': str(uuid.uuid4()), 'created_utc': now(), 'configuration': config,
                 'source': {'anchor': ANCHOR, 'path': 'inputs/source.cif'}})
@@ -324,17 +366,20 @@ def generate_source_candidate_attempt(installation_root, python_executable, elbo
             **({'parent_attempt':dict(_parent_attempt_identity)} if _parent_attempt_identity is not None else {})})
         try:
             effective = dict(options)
+            effective.pop('source_input_policy',None)
+            input_name,_,effective['expected_dialect']=generation_source(config)
             if _remaining_seconds is not None:
                 remaining = _remaining_seconds()
                 if type(remaining) not in (int,float) or not math.isfinite(remaining) or remaining <= 0:
                     raise ValueError('Outer generation allowance is exhausted or invalid')
                 effective['timeout_seconds'] = min(timeout_seconds, remaining)
             result = generate_source_candidate(installation, python, elbow, config['generator']['api_sources'],
-                root/'inputs/source.cif', code, attempt/'generation', environment=environment,
+                path_in(root/'inputs',input_name), code, attempt/'generation', environment=environment,
                 attempt_identity=_attempt_identity(intent),
                 **{**effective, 'prior_sources': config['generator']['prior_sources']})
             if _digest((root/'inputs/source.cif').read_bytes()) != config['source']:
                 raise ValueError('Generation request source snapshot changed during execution')
+            _validate_inputs(root,config)
             # Mutable installed files cannot silently change a frozen request.
             if _configuration(installation, python, elbow, api_sources, original, code, options, max_attempts) != config:
                 raise ValueError('Generation request native inputs changed during execution')
