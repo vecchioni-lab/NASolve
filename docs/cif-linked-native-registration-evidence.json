@@ -91018,5 +91018,277 @@
     "full_regression": false,
     "artifacts_in_git": "Code, synthetic-test source, public methods and compact evidence metadata only; no crystallographic files copied or retired",
     "last_full_green": "C220/583d30df: 9178 tests and 276 subtests"
+  },
+  "native_preparation_alternatives_2026_11_13": {
+    "milestone": "C252",
+    "base_commit": "14cfb009febfe2373ca55beaa35fbcb7f67fc3c0",
+    "runtime_authority": false,
+    "before": "C251 implementation and synthetic caller controls passed; real two-attempt alternative publication and relocated downstream inheritance were not yet exercised.",
+    "after": "Actual optional-generation timeout retains qualified ReadySet preparation; a fresh immutable attempt obtains supported planes, publishes an unselected alternative, survives relocation, supplies exact refinement inputs, and preserves a deliberately selected manual descendant on repeat publication.",
+    "prior_work": [
+      "C218 ordinary Coot/NAR construction and frozen inputs reused unchanged",
+      "C219 exact-consumer dictionary cache privately copied; original cache unchanged",
+      "C244 automatic plane support and stopped optional failure, without altering its one-attempt requests",
+      "C249 selected-CIF source-graph screen",
+      "C250 guarded checkpoint saves",
+      "C251 alternative publication and one-history reader"
+    ],
+    "tool": {
+      "phenix_build": "phenix-2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "execution": "COMPLETE NATIVE GENERATION/REPAIR/READYSET; NOT DRY RUN",
+      "coot": "No new Coot execution; retained C218 construction and actual maintained Coot view resolver",
+      "python": "3.12.14"
+    },
+    "intent": {
+      "new_request_max_attempts": 2,
+      "frozen_at_initialization": true,
+      "previous_requests_unchanged": true,
+      "automatic_plane_support": true,
+      "first_optional_candidate_timeout_seconds": 0.25,
+      "normal_generation_timeout_seconds": 240,
+      "outer_limits_unchanged": true,
+      "driver_timeout_seconds": 3600
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_start.py",
+        "result": "NATIVE_TWO_ATTEMPT_ALTERNATIVE_AND_RELOCATED_VIEW_PASS",
+        "elapsed_seconds": 1727.153939040989,
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_refinement_read.py CONTROL",
+        "result": "EXACT_NATIVE_ALTERNATIVE_REFINEMENT_INPUT_READ_PASS",
+        "elapsed_seconds": 196.96234633299173
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_manual_followthrough.py CONTROL",
+        "result": "NATIVE_ALTERNATIVE_MANUAL_CHOICE_AND_IDEMPOTENT_PUBLICATION_PASS",
+        "elapsed_seconds": 806.5433161669935,
+        "steps": {
+          "IMPORT_UNCHANGED_MODEL_FROM_EXACT_LATER_PREPARATION": {
+            "history_replays": [
+              1,
+              2
+            ],
+            "elapsed_seconds": 195.26792958300211
+          },
+          "EXPLICITLY_SELECT_MANUAL_CHILD": {
+            "history_replays": [
+              1,
+              2
+            ],
+            "elapsed_seconds": 201.06656079099048
+          },
+          "REPEAT_ALTERNATIVE_PUBLICATION_WITHOUT_OVERWRITING_SELECTION": {
+            "history_replays": [
+              1,
+              2
+            ],
+            "elapsed_seconds": 205.67053524998482
+          },
+          "OPEN_CURRENT_MANUAL_CHILD_WITH_EXACT_INHERITED_DICTIONARIES": {
+            "history_replays": [
+              1,
+              2
+            ],
+            "elapsed_seconds": 202.08279054099694
+          }
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_manual_relocation.py CONTROL",
+        "result": "SELECTED_NATIVE_MANUAL_DESCENDANT_SECOND_RELOCATION_PASS",
+        "elapsed_seconds": 225.12003849999746
+      }
+    ],
+    "scientific_results": {
+      "first_selected": "readyset_checked_model",
+      "first_missing_explicit_screened_centres": [
+        "C5"
+      ],
+      "second_selected": "readyset_checked_model",
+      "second_explicit_screened_centres": [
+        "C2",
+        "C4",
+        "C5"
+      ],
+      "original_root_and_initial_choice_preserved_on_publication": true,
+      "alternative": "prepare-002",
+      "frozen_construction_relation": "SAME_FROZEN_CONSTRUCTION",
+      "first_attempt_files_unchanged": 467,
+      "old_inputs_unchanged": 25,
+      "selected_model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "ordered_refinement_phils": 5,
+      "ordered_refinement_cifs": 2,
+      "coot_component_cifs": 1,
+      "modification_only_cif_retained_for_refinement": true
+    },
+    "relocation": {
+      "original_control_path_absent": true,
+      "old_cache_sdk_reads_forbidden": true,
+      "subprocess_execution_forbidden": true,
+      "cold_unchanged_files": 1190,
+      "refinement_unchanged_files": 1190,
+      "history_replays_per_operation": [
+        1,
+        2
+      ]
+    },
+    "manual_followthrough": {
+      "model_is_unchanged_copy": true,
+      "status": "REVIEW",
+      "explicitly_selected": "manual-001",
+      "parent": "prepare-002",
+      "repeat_publication_and_inspection_files_unchanged": 1191,
+      "request_files_unchanged": 1183,
+      "preparation_receipts_unchanged": 3,
+      "native_tools_launched": 0
+    },
+    "resources": {
+      "whole_request": {
+        "files": 1183,
+        "bytes": 315299065
+      },
+      "native_control_at_first_completion": {
+        "files": 1207,
+        "bytes": 315604201
+      },
+      "private_cache": {
+        "files": 5,
+        "bytes": 224702
+      },
+      "python_worker_maximum_resident_bytes": 702218240,
+      "refinement_reader_maximum_resident_bytes": 547979264,
+      "manual_reader_maximum_resident_bytes": 584515584,
+      "limits": "Process resident peaks are not summed external Phenix peaks; temporary expansion not newly instrumented. No 100-dataset/concurrent-resource qualification."
+    },
+    "storage_audit": {
+      "command": "python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_storage_audit.py",
+      "scope": "Independent read-only audit of retained C244 request, separate from C252 native chemistry. Read-only C244 complete successful request. No paths changed or files retired. Compression is an arithmetic estimate, excludes indices/archive metadata, and is NOT proof of a usable compact request.",
+      "request": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+      },
+      "files": 698,
+      "logical_bytes": 181566343,
+      "unique_content_bytes": 88181923,
+      "duplicate_bytes": 93384420,
+      "independently_compressed_unique_bytes": 15991779,
+      "compressor": "stdlib zlib level 6, independent stream per unique content object",
+      "unchanged_files": 698,
+      "retired_files": 0,
+      "decision": "Target repeated native validation/receipt copies through existing bounded evidence machinery. Preserve public paths and all owner inventories; require an explicit known-stopped interruption-safe storage contract before removal. This arithmetic compression estimate is not a usable archived request."
+    },
+    "final_relocation": {
+      "status": "SELECTED_NATIVE_MANUAL_DESCENDANT_SECOND_RELOCATION_PASS",
+      "current": "manual-001",
+      "parent": "prepare-002",
+      "history_replays": [
+        1,
+        2
+      ],
+      "unchanged_files": 1191,
+      "historical_manual_source_absent": true,
+      "original_and_intermediate_paths_absent": true,
+      "subprocess_execution_forbidden": true,
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "ordered_phils": 5,
+      "ordered_cifs": 2,
+      "elapsed_seconds": 225.12003849999746,
+      "maximum_resident_bytes": 577880064,
+      "run": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/final/ordinary run"
+      },
+      "request": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/final/ordinary run/PostMR/DictionaryEngine/request"
+      },
+      "scope": "Existing C252 run moved as a whole; selected unchanged manual child and exact alternative restraints cold-read through maintained Coot/refinement input resolvers. No scientific bytes changed, no native program, no diffraction refinement."
+    },
+    "evidence": {
+      "summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/summary.json",
+        "sha256": "3c77efc9ee74018491d9727735ff823e8a6872baab1e73579741b8b27e178a6c"
+      },
+      "refinement-read-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/refinement-read-summary.json",
+        "sha256": "3c87b3250969428b9f3f533e0d5666c71868b99ccb6158097940cbd6bace135b"
+      },
+      "manual-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/manual-summary.json",
+        "sha256": "13c89969e6ee7faaa07ca610a7bda7f491bf0fb84974511bd9823c44116694ad"
+      },
+      "driver-result.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/driver-result.json",
+        "sha256": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+      },
+      "start.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/start.json",
+        "sha256": "8eb4105f4286db3edc0d066d7c2165ea7b7fb8d9e1ee05d39cd18204842e29b7"
+      },
+      "initialized.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/initialized.json",
+        "sha256": "235a14313a0c6b42d60130301e904dd5601a2bf4c7de2f2c351feea5cea79ae6"
+      },
+      "runner-pins.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/runner-pins.json",
+        "sha256": "8d40387ad046955b298c8dc4edab6afab5a1fb73bc9fbb2d594308789b286ce1"
+      },
+      "storage-audit.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/storage-audit.json",
+        "sha256": "2e06b64fadbcbcd2a9b523b0e19da0174b73ffef7ea581483e390f10b77e16b6"
+      },
+      "final-relocation-summary.json": {
+        "anchor": "live_tests_directory",
+        "path": "252_Cedar_native-preparation-alternatives-8s_l2y96/final-relocation-summary.json",
+        "sha256": "400483578cc64c2aed03ae85f28c0f52c2c52862775993d04c9b5f3e6cb7340c"
+      }
+    },
+    "runner_sha256": {
+      "c252_start.py": "dc32c587033bf2ed5eec2509ef98f4875b87784852b4e30113b1c975a530321e",
+      "c252_worker.py": "a18c279f413c8f978973417172dc899e3b0e39c03cc199590187eef5400564b6",
+      "c252_refinement_read.py": "35fee5723e4f19d295871122d6beb6da970923b831299dc8870fb446632c8556",
+      "c252_manual_followthrough.py": "bc45312f575d64af50321a095c2df8b36d9374b6ad92b5bdae4202b4e5214580",
+      "c252_manual_relocation.py": "651524dd32ddc6ee22c209239c30622ea818a5f074aed1b68637f0ded8c67884",
+      "c252_storage_audit.py": "b3e69cd5675b463fc5b08ec7c37c6f0b9905491a3f54b05f08b307d62a2520a3"
+    },
+    "changed_files": "Documentation/evidence metadata only; production source and tests unchanged from C251.",
+    "compatibility": "No additional runtime/schema/default changes. C251 schema 4 applies to explicit alternatives; legacy and initial-only meanings remain unchanged.",
+    "remaining": [
+      "Q05 selected prepared-model anomalous-site reference and checked saved provenance; preserve original-MR phasing",
+      "Q04 known-stopped working-file retirement and campaign-scale storage/temporary/memory acceptance",
+      "Q06 actual complete-restraint diffraction refinement, then Q07 combined and held-out chemistry",
+      "AutoPhase implementation remains final Q16 task; commit-pinned audit retained"
+    ],
+    "scope_limits": [
+      "Frozen PDU construction only; not universal ligand support",
+      "Synthetic observation/map path fixtures: no MTZ interpretation, Free-R validation or diffraction refinement",
+      "No fresh Coot construction or manual chemical edit",
+      "No AutoSol execution or changed crystallographic acceptance thresholds",
+      "No automatic campaign retry/receipt rewrite",
+      "No scientific artifacts committed or old runs retired"
+    ],
+    "full_regression": false,
+    "last_full_green": "C220/583d30df: 9178 tests and 276 subtests",
+    "documentation_validation": {
+      "command": "python -B EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c252_docs_check.py",
+      "result": "PASS: five Markdown files, 205 existing local link targets, nine evidence hashes, unique JSON keys, final run anchor exists, git diff --check",
+      "runner_sha256": "bc52d41c561c545438260be3d11852504bb55229c086fb7740a89acbd6f29b79"
+    }
   }
 }

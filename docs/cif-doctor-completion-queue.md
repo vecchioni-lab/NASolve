@@ -18,46 +18,47 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C244
+## Near-term closure estimate at C252
 
-Planning estimate, 2026-11-13: **6–9 focused implementation patches from C244**,
-then an integration-validation checkpoint, to close the supported Q04/Q05 route.
-This is a scope estimate, not a promise or a new completion criterion:
+The C244 estimate was **6–9 focused patches plus integration validation**. Since
+then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
+C250 protected concurrent checkpoint saves, and C251 implemented later alternatives.
+Those are completed implementation steps, not a reason to repeat their machinery.
+C252 adds actual two-attempt native preparation, relocated Coot/refinement-input
+reads and manual-choice/repeat-publication acceptance. These are complete for the
+frozen PDU construction, without a diffraction-refinement claim. Q04/Q05 remain
+open; the remaining work is now more specific:
 
-| Remaining work | Likely patches | Observable finish |
-| --- | --- | --- |
-| Q04: use plane recovery through normal preparation | 2–3 | Freeze/forward the choice through ordinary PostMR and campaigns; report missing coverage and qualified fallback honestly; exercise mixed outcomes and interruption. |
-| Q05: preserve later prepared choices and let every consumer use them | 3–4 | Publish later preparation children with truthful lineage, recover partial publication, and keep Coot/refinement/campaign readers on the exact chosen model/CIF/PHIL set. |
-| Existing storage acceptance | 1–2 | Retire only redundant successful working material through a known-stopped, interruption-safe policy; preserve replay and reproduce the bounded request after relocation. |
+| Remaining work | Observable finish |
+| --- | --- |
+| Q05: compare anomalous sites with the chosen preparation | Keep the original MR model as AutoSol's phasing input, but bind the selected prepared model, its atom coordinates and the saved site-comparison evidence. Readers must validate that binding after relocation. |
+| Q04: retain the evidence without accumulating redundant files | Introduce a known-stopped, interruption-safe storage policy with exact replay. Keep externally referenced model/restraint paths usable, preserve failed/active work, and measure whole-request disk, temporary expansion and memory. |
+| Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
-Reuse initial publication (C223), ordinary/campaign entry (C224–C225), compact
-proof (C228–C239) and automatic support ownership (C244). Do not rebuild them.
-The initial publisher deliberately refuses an already adopted run; later child
-publication is real remaining work. C245 now forwards the option through
-prepared/ordinary intake and `prepare-run`,
-and projects generation outcomes on exact readback. C246 connects explicit checked
-PostMR and frozen campaign forwarding; C247 carries verified notes through publication
-and campaign status without another proof read. C248 adds mixed sibling recovery
-controls. C249 separately reports source-bound explicit planes in selected CIFs,
-including the actual saved success/timeout controls. Effective native membership,
-alternative-restraint adequacy and achieved geometry remain Q06 checks.
-Storage is already Q04 acceptance, not an added chemistry feature. Historical
-workstation archiving is separate from the maintained runtime retirement policy.
+Planning allowance from this checkpoint: **roughly 3–6 further implementation
+patches, plus native/integration validation**. Storage is the largest uncertainty;
+its existing nested inventories mean safe retirement is more than deleting files.
+This is an estimate, not a completion criterion. Do not open new chemistry work to
+fill a numerical patch budget. Update it when actual native/storage findings change
+scope. Exact C252 scope and results are in the current handoff and evidence ledger.
 
-The estimate assumes existing qualification/chemistry rules remain intact and no
-new family is added to this closure pass. Newly exposed ownership, lineage or
-chemical defects can increase it; update the estimate against concrete findings.
-Q06 then proves actual complete-restraint refinement; Q07 tests the combined and
-held-out models. Q08–Q14 retain the catalogue/chemistry programme without reopening
-completed orchestration. Q15 reporting and Q16 integration/release follow the
-explicitly reviewed support scope; neither this estimate nor Q05 authorizes a merge.
+Reuse C223–C225 publication and ordinary/campaign entry, C228–C239 compact exact
+proof, C244 ownership, C249 selected-CIF coverage and C251 alternative publication.
+Historical workstation archiving is separate from the runtime retention policy.
+Effective native planes, alternative-restraint adequacy and achieved geometry are
+Q06 checks; explicit CIF plane membership alone cannot close them.
+
+Q06 proves actual complete-restraint refinement; Q07 tests combined and held-out
+models. Q08–Q14 retain the catalogue/chemistry programme without reopening completed
+orchestration. Q15 reporting and Q16 integration/release follow the explicitly
+reviewed support scope. Neither this estimate nor Q05 authorizes a merge.
 
 ## Pipeline position
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition; C245 connects prepare-run and result notes; C246 connects explicit checked PostMR/campaign forwarding. C247 carries notes through publication/status. C249 reports scoped explicit selected-CIF coverage. Finish remaining recovery and storage acceptance. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. C251 adds explicit later alternatives from frozen construction, with immutable receipts, guarded saves and exact Coot/refinement inputs. Complete alternative-aware phasing and remaining native/caller acceptance without replacing earlier choices. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. C251 adds explicit later alternatives from frozen construction, with immutable receipts, guarded saves and exact Coot/refinement inputs. C252 validates native alternatives, relocated Coot/refinement inputs and manual-choice preservation. Complete alternative-aware phasing without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
@@ -78,7 +79,8 @@ explicitly reviewed support scope; neither this estimate nor Q05 authorizes a me
    request only through the existing owner and a fresh numbered attempt.
 2. **Use that exact result throughout normal preparation:** C223 closes explicit
    initial checkpoint publication and normal reads; C224 connects explicit ordinary
-   PostMR; C225 freezes explicit campaign entry. Define later preparation children.
+   PostMR; C225 freezes explicit campaign entry. C251 adds explicit later
+   preparation alternatives.
    Finish Q04/Q05 before Q06. Keep latest and selected distinct.
 3. **Finish general plane repair:** C234–C237 run explicitly supplied owned support
    through the existing repair request, including real success and stopped-native
@@ -86,8 +88,9 @@ explicitly reviewed support scope; neither this estimate nor Q05 authorizes a me
    C244 obtains missing support through the existing outer owner when explicitly
    enabled, with shared deadlines and unchanged storage bounds. C245 connects
    prepare-run and per-component generation notes; C246 connects explicit checked
-   PostMR/campaign forwarding; C247 carries publication/status notes. Finish selected-plane
-   reporting and broader recovery coverage. Preserve existing ring planes;
+   PostMR/campaign forwarding; C247 carries publication/status notes. C249 closes
+   scoped selected-CIF reporting and C248 covers mixed sibling recovery. Finish
+   the remaining native/caller and storage acceptance. Preserve existing ring planes;
    PDU and 5PC are controls, not name-based switches.
 4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
    results to close the relevant chemistry jobs, rather than adding a new queue.
@@ -226,8 +229,9 @@ Remaining acceptance:
 
 1. Reuse C223–C225's initial checkpoint, explicit ordinary PostMR and frozen
    campaign entry. A checked fallback uses its genuine preparation receipt,
-   without a fictitious ReadySet-success label or log. Complete later preparation
-   children through Q05. Default-route enablement remains an explicit decision.
+   without a fictitious ReadySet-success label or log. C251/C252 supply later
+   alternatives and native handoff; finish the selected anomalous-site reference
+   through Q05. Default-route enablement remains an explicit decision.
 2. C234–C239 join C226/C227 to the existing prepared repair request, with explicit
    owned support, real success/stopped-native fallback and compact exact proof.
    C242 freezes supplied completed support in the complete request and carries its
@@ -288,7 +292,13 @@ Remaining acceptance:
    peak temporary evidence and 645.1 MB resident memory. C239 refuses oversized
    combined support before reading more component trees.
    Preserve active/failed recovery evidence until known-stopped retention rules explicitly cover it; never
-   silently clean existing scientific runs.
+   silently clean existing scientific runs. C252's two-attempt request retains 315.3 MB.
+   Its separate read-only C244 audit finds 181.6 MB of logical files but 88.2 MB
+   distinct bytes; repeated native validation/receipt copies dominate. Independent
+   compression of unique objects estimates 16.0 MB, excluding archive/index/public-
+   path requirements. No files were retired and this is not a working storage
+   format. Preserve public model/restraint references and nested owner inventories
+   when defining the known-stopped retirement policy.
 
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical
@@ -392,20 +402,43 @@ or diffraction refinement. Reuse that result rather than repeating construction.
 C250 first protects checked-registry writes against stale snapshots: compare the
 sealed registry identity under the existing kernel lock, preserve newer work on
 conflict and refresh the live identity after success. This fixes an observed
-lost-update risk; it does not yet publish later preparation children.
+lost-update risk and supplies the guarded save used by C251 alternatives.
 
 C251 implements explicit later alternatives from the same frozen construction,
 with schema-4 receipts and exact Coot/refinement readers. These are not claimed
 coordinate descendants of a selected refined model. Interrupted saves preserve
 intervening bookmarks/selection, and the sealed observation anchor now survives
 dataset renaming. A single history replay supplies all published choices.
+C252 executes actual stopped optional generation followed by a fresh successful
+attempt, then publishes both choices without replacing the initial one. Relocated
+Coot and AutoRefine input reads retain the exact selected model, five PHIL files
+and two CIFs. Manual import/explicit selection and repeat publication preserve
+the subsequent choice and all preparation files. A second relocation after manual
+import also resolves the current child with its historical source path absent.
+No native Coot edit or diffraction refinement is claimed; observation/map paths
+are synthetic fixtures.
 AutoSol retains the original Phaser model as phasing input. Its anomalous-site
 validation remains tied to the initial preparation; a selected alternative or its
 descendant refuses rather than silently using a different validation reference. No automatic
 campaign continuation or new native refinement claim follows.
 
 **Remaining acceptance:** finish alternative-aware phasing and remaining real
-caller/native acceptance without changing an immutable earlier root. Reuse the existing request owner and publication path;
+caller/native acceptance without changing an immutable earlier root.
+For the anomalous-site connection, preserve these distinctions:
+
+- The original Phaser model remains the phasing input; changing it to the
+  modified preparation would alter the scientific protocol.
+- Candidate heavy-atom coordinates and unit-cell context must come from the exact
+  chosen model. Replacing only the model path would leave the old coordinate list.
+- Save the chosen checkpoint/model identity and checksums through declared anchors;
+  verify them when phases/maps are later consumed. A newly written field that no
+  reader checks is not provenance. Preserve legacy meanings and refuse unsupported
+  authority rather than silently ignoring it.
+- Keep acceptance/review distances, source chemistry and Free-R rules unchanged.
+  A later manual/refined descendant needs its own exact-model validation; do not
+  relabel it as a fresh preparation from frozen construction.
+
+Reuse the existing request owner and publication path;
 do not build another recovery or chemistry framework. Preserve normalization and
 anomalous metadata where actually available, without inventing ReadySet success.
 Exercise cache reuse, missing/stale entries, repair, usable fallback, unqualified
