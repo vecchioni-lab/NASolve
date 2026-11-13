@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch extended backbone checks
+
+- Add opt-in schema-2 fitting and previews with nonbridging phosphate angles and
+  circular epsilon/zeta/alpha torsion changes, checked after PDB serialization.
+- Preserve schema-1 objectives and exact frozen-preview replay; reject incomplete
+  schema-2 policy or atom inventories instead of silently reducing the audit.
+- Record complete native 8D93 comparison and source/installed/relocated/full
+  regression evidence. Source-change limits do not establish ideal geometry.
+
 ### TopoStitch periodic fitting eligibility
 
 - Defer periodic fits whose selected source image audit finds coincident identities,

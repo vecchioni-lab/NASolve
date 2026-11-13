@@ -25,7 +25,7 @@ nasolve-topostitch-preview model.pdb discovery.json \
 additional dependency beyond NASolve. The optional `topology` extra is needed for
 periodic inspection, not this explicit Cartesian move.
 
-`trial.json` uses schema 1, kind `topostitch-window-transform`, and accepts only
+New `trial.json` inputs should use schema 2, kind `topostitch-window-transform`, and accepts only
 these fields. Hashes are exact lowercase SHA-256 digests of file bytes, not
 filenames or paths. Replace the descriptive placeholders below with real hashes
 and the selected ID; the numerical values are an arithmetic example, **not
@@ -33,7 +33,7 @@ scientifically qualified limits**.
 
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "kind": "topostitch-window-transform",
   "model_sha256": "<model.pdb SHA-256>",
   "discovery_file_sha256": "<discovery.json SHA-256>",
@@ -45,7 +45,8 @@ scientifically qualified limits**.
   "translation_angstrom": [0.2, 0, 0],
   "max_atom_displacement_angstrom": 2,
   "max_backbone_bond_change_angstrom": 0.2,
-  "max_backbone_angle_change_degrees": 15
+  "max_backbone_angle_change_degrees": 15,
+  "max_backbone_torsion_change_degrees": 15
 }
 ```
 
@@ -67,12 +68,15 @@ translation are scaled by its weight. This preserves each residue's internal
 shape up to PDB coordinate rounding, but can strain bonds between residues.
 
 Every declared strand link touching a movable site is therefore checked after
-serialization: O3′–P distance, C3′–O3′–P angle and O3′–P–O5′ angle. The receipt
+serialization. Schema 2 checks O3′–P distance; C3′–O3′–P and
+O3′–P–{O5′, OP1, OP2} angles; and epsilon, zeta and alpha torsions spanning
+the link. Torsion changes use the shortest signed difference in [−180°, 180°);
+the positive torsion limit cannot exceed 180°. The receipt
 records before, after and change values. Missing audit atoms, unusable occupancy,
 alternate conformers, unresolved mappings, degenerate angles and field overflow
 stop the trial before creating its output directory. Caller limits bound changes
 from the source; they do not establish ideal geometry or repair a bad starting
-bond. Torsions, clashes, stacking quality, density and symmetry contacts remain
+bond. Torsion ideals, sugar pucker, clashes, stacking quality, density and symmetry contacts remain
 separate qualification work.
 
 All atoms belonging to a movable residue move together. Associated ANISOU tensors
@@ -88,7 +92,7 @@ A bend changes the physical structure; this is not a symmetry-equivalent recut.
 
 The new folder contains `source.pdb`, `candidate.pdb`, `discovery.json`,
 `registration.json`, `trial.json` and `preview.json`. Input snapshots preserve
-exact bytes. The schema-1 `topostitch-bend-preview` receipt binds each artifact to
+exact bytes. The `topostitch-bend-preview` receipt (same schema version as its trial) binds each artifact to
 its declared run-relative path, byte count and checksum. It includes the selected
 window, weights, origin, actual displacement and backbone audit. Original input
 paths are not operational dependencies.
@@ -124,7 +128,7 @@ nasolve-topostitch-fit model.pdb discovery.json \
   --registration registration.json --request fit.json > placement.json
 ```
 
-The strict schema-1 `topostitch-placement-request` has these fields:
+The strict schema-2 `topostitch-placement-request` has these fields:
 
 | Field | Meaning |
 | --- | --- |
@@ -134,19 +138,20 @@ The strict schema-1 `topostitch-placement-request` has these fields:
 | `candidate` | Exact ordered `ends` from the inspector and `target_image_operator` (`null` for same-frame mode) |
 | `window` | Explicit `window_id`, `max_base_pairs` and `fixed_anchor_pairs` |
 | `motion_bounds` | Three positive `rotation_degrees` and three positive `translation_angstrom` component bounds; both signs are allowed |
-| `objective` | Positive `backbone_distance_scale_angstrom`, `backbone_angle_scale_degrees`, `plane_offset_scale_angstrom`, `plane_normal_scale_degrees` and `motion_weight` |
-| `limits` | The three displacement/backbone-change limits from the preview trial |
+| `objective` | Positive `backbone_distance_scale_angstrom`, `backbone_angle_scale_degrees`, `backbone_torsion_scale_degrees`, `plane_offset_scale_angstrom`, `plane_normal_scale_degrees` and `motion_weight` |
+| `limits` | The four displacement/backbone-change limits from the preview trial |
 | `max_residual_evaluations` | Positive integer cap including finite-difference Jacobian calls |
 
-The request also includes `schema_version: 1` and
+The request also includes `schema_version: 2` and
 `kind: "topostitch-placement-request"`. The norm of the rotation-bound vector
-cannot exceed 180°, and the plane-normal scale must be at most 90°. These are
+cannot exceed 180°, the torsion scale and change limit must be at most 180°,
+and the plane-normal scale must be at most 90°. These are
 component boxes, not spherical motion bounds. The final per-atom displacement
 limit still applies. Numerical scales and limits are caller policy, not
 scientifically calibrated defaults.
 
 The objective combines canonical NARestraints bond/angle deviations divided by
-recipe sigmas; paired-plane offsets and normal alignment; backbone bond/angle
+recipe sigmas; paired-plane offsets and normal alignment; backbone bond/angle/circular-torsion
 changes from the source; and a small-motion penalty scaled by the declared box.
 Plane normals may be parallel or antiparallel. Angles use degrees. The current
 whole-residue motion preserves local shape but does not optimize sugar torsions
@@ -160,7 +165,7 @@ includes Jacobian calls, which SciPy's `max_nfev` does not count. Fixed before/a
 observations are outside the solver-call count. See the
 [official least-squares API](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html).
 
-A schema-1 `topostitch-placement-proposal` returns one of:
+A `topostitch-placement-proposal` (same schema version as its request) returns one of:
 
 - `TRANSFORM_FOR_REVIEW`: converged, serialized trial passes its declared limits,
   and the named pair target improves numerically; `trial` is ready for preview.
@@ -192,8 +197,8 @@ observations, partial occupancy or an unassessed selected inventory return
 Budget exhaustion is an input error with no partial proposal. Nonperiodic fits
 retain their existing behavior and record no periodic audit.
 
-The proposal algorithm is `single-window-canonical-contact-least-squares-v2`;
-request, trial and preview schemas remain unchanged. Existing eligible public
+Schema-1 proposals retain algorithm `single-window-canonical-contact-least-squares-v2`;
+schema-2 proposals use `single-window-canonical-contact-least-squares-v3`. Existing eligible public
 8D93 input reproduces the previous candidate bytes, and earlier frozen previews
 still replay. The audit checks the **source** selected images. It does not
 approve the moved model, full packing, global orbit capacity or a connection.
@@ -202,7 +207,12 @@ approve the moved model, full packing, global orbit capacity or a connection.
 
 This additive module/entry point leaves the read-only inspector, Pine
 registration schema, campaign mechanics, Cedar code and shared environments
-unchanged. New schema-1 trial and preview kinds do not migrate old reports.
+unchanged. Schema 1 retains its original two-angle audit, objective and exact
+preview replay. Schema 2 adds mandatory torsion policy fields and extended
+backbone evidence; it never silently downgrades when atoms or fields are missing.
+Existing frozen reports are not migrated. To request the extended checks, create
+a new schema-2 request/trial from the same verified inputs; do not edit old receipts.
+Older NASolve versions reject schema 2 rather than interpreting it as schema 1.
 Focused regression tests cover preservation, ANISOU rotation, finite bounds,
 malformed records, free/protected ends, no-overwrite behavior, tampering and
 original-path-absent relocation. See the [current validation receipt](topostitch-periodic.md#current-validation-receipt--2026-11-13)
@@ -299,7 +309,32 @@ are not concealing exchanged outliers. Cedar code/environments were unchanged.
 This demonstrates a contact/strain tradeoff and removes the particular earlier
 angle regression under these tighter controls. It does **not** establish atomic
 closure, native residual improvement, complete torsion/packing qualification or
-better diffraction agreement. Present preview limits still cover the declared
-O3′–P length and two junction angles; broader phosphate-angle/torsion coverage
-and native geometry remain explicit next gates. Frozen inputs, models, native
+better diffraction agreement. These schema-1 controls cover the declared
+O3′–P length and two junction angles. Schema 2 extends source-change coverage as
+described below; native geometry remains an explicit next gate. Frozen inputs, models, native
 receipts and the matched diagnostic stay local and out of Git.
+
+### Extended backbone checks — 2026-11-13
+
+Schema 2 adds the two nonbridging phosphate angles and three cross-residue
+backbone torsions to both the fitting objective and serialized preview audit.
+The original fitted 8D93 trial changes an extended angle by 9.454433° and a
+torsion by 10.298284°, compared with the legacy maximum angle change of
+8.381172°. This explains why the smaller audit was insufficient.
+
+A new development fit kept the gentle control's 0.02 Å / 1° scales, added a 5°
+torsion scale and 15° torsion-change limit, and held the remaining inputs,
+window, bounds and budget fixed. Its serialized pair target was 161.832389
+(from 190.692330), maximum extended angle change 1.246422° and torsion change
+1.524362°. Complete Phenix 2.2.1-6174 interpretation returned exit 0, REVIEW.
+Cedar cd744e2 receipt binding, native contexts, named proxy multisets and mechanics
+checks matched the source; no new nominal ≥5 captured bond/angle/chirality
+outliers appeared. Frozen source snapshots remained unchanged. This uses the
+same native options and comparison scope above, with no Coot/refinement run.
+
+These are bounded changes from the starting geometry, not ideal torsion targets,
+phosphate valence validation, packing qualification or atomic closure. Existing
+source outliers remain. Standard OP1/OP2 atom names are required; missing atoms
+fail before creating output. Native symmetry-restraint transport and local
+relaxation remain the next S05 work, followed by matched diffraction validation.
+All native inputs and generated scientific artifacts stay local and out of Git.

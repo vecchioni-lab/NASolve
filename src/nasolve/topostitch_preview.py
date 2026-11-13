@@ -15,7 +15,7 @@ import sys
 
 from .construct_registration import validate_construct_registration
 from .run_context import artifact_reference, resolve_artifact_path
-from .topostitch_coordinates import ResidueSite, _read_atoms, _residue, _plane, _mean
+from .topostitch_coordinates import ResidueSite, _read_atoms, _residue, _plane, _mean, _dot, _cross
 from .topostitch_discovery import plan_editable_windows
 from .topostitch_inspect import _keys, _unique_object, load_registered_end_assignments
 from .topostitch_registration import _coordinate_site
@@ -153,7 +153,78 @@ def _mapped_residues(data, registration, copy_id, required):
     return sites,coordinates
 
 
+# Atom references are (0=preceding residue, 1=following residue, atom name).
+_LINK_ANGLES = (
+    ((0,"C3'"),(0,"O3'"),(1,'P')),
+    ((0,"O3'"),(1,'P'),(1,"O5'")),
+    ((0,"O3'"),(1,'P'),(1,'OP1')),
+    ((0,"O3'"),(1,'P'),(1,'OP2')),
+)
+_LINK_TORSIONS = (
+    ((0,"C4'"),(0,"C3'"),(0,"O3'"),(1,'P')),
+    ((0,"C3'"),(0,"O3'"),(1,'P'),(1,"O5'")),
+    ((0,"O3'"),(1,'P'),(1,"O5'"),(1,"C5'")),
+)
+
+
+def _dihedral(a,b,c,d):
+    axis=tuple(y-x for x,y in zip(b,c)); length=math.hypot(*axis)
+    if length < 1e-12 or not math.isfinite(length):
+        raise ValueError('Degenerate backbone torsion axis')
+    unit=tuple(x/length for x in axis)
+    left=tuple(x-y for x,y in zip(a,b));right=tuple(x-y for x,y in zip(d,c))
+    v=tuple(x-_dot(left,unit)*u for x,u in zip(left,unit))
+    w=tuple(x-_dot(right,unit)*u for x,u in zip(right,unit))
+    if min(math.hypot(*v),math.hypot(*w)) < 1e-12:
+        raise ValueError('Degenerate backbone torsion plane')
+    return math.degrees(math.atan2(_dot(_cross(unit,v),w),_dot(v,w)))
+
+
+def _circular_difference(after,before):
+    return (after-before+180.)%360.-180.
+
+
+def _extended_link_values(left,right):
+    coordinates=(left,right)
+    try:
+        distance=math.dist(left["O3'"],right['P'])
+        angles=[_angle(*(coordinates[i][name] for i,name in refs)) for refs in _LINK_ANGLES]
+        torsions=[_dihedral(*(coordinates[i][name] for i,name in refs)) for refs in _LINK_TORSIONS]
+    except KeyError as exc:
+        raise ValueError(f'Missing extended backbone audit atom: {exc}') from exc
+    return distance,angles,torsions
+
+
+def _audit_extended_links(links,before,after,trial):
+    rows=[]
+    for a,b in links:
+        old,current=(_extended_link_values(coordinates[a],coordinates[b]) for coordinates in (before,after))
+        row={'from_site':a,'to_site':b,
+            'distance_angstrom':{'before':old[0],'after':current[0],'change':current[0]-old[0]}}
+        for key,refs,values,changed,circular in (
+                ('angles_degrees',_LINK_ANGLES,old[1],current[1],False),
+                ('torsions_degrees',_LINK_TORSIONS,old[2],current[2],True)):
+            row[key]=[{'atoms':[name for _,name in spec],
+                'logical_sites':[(a,b)[i] for i,_ in spec],
+                'before':x,'after':y,'change':_circular_difference(y,x) if circular else y-x}
+                for spec,x,y in zip(refs,values,changed)]
+        rows.append(row)
+    bond=max((abs(r['distance_angstrom']['change']) for r in rows),default=0.)
+    angle=max((abs(v['change']) for r in rows for v in r['angles_degrees']),default=0.)
+    torsion=max((abs(v['change']) for r in rows for v in r['torsions_degrees']),default=0.)
+    if (bond>trial['max_backbone_bond_change_angstrom'] or angle>trial['max_backbone_angle_change_degrees']
+            or torsion>trial['max_backbone_torsion_change_degrees']):
+        raise TrialLimitError(f'Extended backbone change exceeds trial limits: bond {bond:.6g} A; angle {angle:.6g}; torsion {torsion:.6g} degrees')
+    return {'policy':'extended-junction-source-change-v2','links':rows,
+        'max_bond_change_angstrom':bond,'max_angle_change_degrees':angle,
+        'max_torsion_change_degrees':torsion,'torsion_changes':'shortest signed circular difference in [-180,180)',
+        'limits_passed':True,'ideal_geometry_validated':False,
+        'scope':'O3-P length; C3-O3-P and O3-P-{O5,OP1,OP2} angles; epsilon, zeta and alpha torsions'}
+
+
 def _audit_links(links, before, after, trial):
+    if trial.get('schema_version',1)==2:
+        return _audit_extended_links(links,before,after,trial)
     rows = []
     for a,b in links:
         values = []
@@ -187,11 +258,15 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
     if trial_value is not None:
         snapshots['trial'] = (json.dumps(trial_value,sort_keys=True,allow_nan=False)+'\n').encode('utf-8')
     trial = _json(snapshots['trial'])
+    version=trial.get('schema_version') if isinstance(trial,dict) else None
+    if type(version) is not int or version not in (1,2) or trial.get('kind')!='topostitch-window-transform':
+        raise ValueError('Expected schema-1 or schema-2 topostitch-window-transform trial')
     _keys(trial, {'schema_version','kind','model_sha256','discovery_file_sha256','registration_file_sha256',
         'window_id','max_window_pairs','fixed_anchor_pairs','rotation_vector_degrees','translation_angstrom',
-        'max_atom_displacement_angstrom','max_backbone_bond_change_angstrom','max_backbone_angle_change_degrees'})
-    if type(trial['schema_version']) is not int or trial['schema_version'] != 1 or trial['kind'] != 'topostitch-window-transform':
-        raise ValueError('Expected schema-1 topostitch-window-transform trial')
+        'max_atom_displacement_angstrom','max_backbone_bond_change_angstrom','max_backbone_angle_change_degrees'}
+        | ({'max_backbone_torsion_change_degrees'} if version==2 else set()))
+    if version==2 and not 0 < _number(trial['max_backbone_torsion_change_degrees'],'max_backbone_torsion_change_degrees',positive=True) <= 180:
+        raise ValueError('Torsion change limit must not exceed 180 degrees')
     for name,key in (('source','model_sha256'),('discovery','discovery_file_sha256'),('registration','registration_file_sha256')):
         if sha256(snapshots[name]).hexdigest() != trial[key]:
             raise ValueError(f'{name} checksum mismatch')
@@ -237,8 +312,8 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
     if any(path.read_bytes() != snapshots[name] for name,path in paths.items()):
         raise ValueError('Preview inputs changed while being read')
     snapshots['candidate'] = candidate
-    report = {'schema_version':1,'kind':'topostitch-bend-preview',
-        'algorithm':'whole-pair-smoothstep-terminal-transform-v1',
+    report = {'schema_version':version,'kind':'topostitch-bend-preview',
+        'algorithm':f'whole-pair-smoothstep-terminal-transform-v{version}',
         'source_model_sha256':trial['model_sha256'],'candidate_model_sha256':sha256(candidate).hexdigest(),
         'window':window,'terminal_origin_angstrom':list(origin),
         'site_weights':weights,'trial':trial,'transformed_atom_count':atom_count,
@@ -251,6 +326,9 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
             'Bond/angle limits measure change from source, not ideal stereochemistry',
             'No packing, density, torsion, periodic-cut or native refinement qualification',
             'No new bonds, missing atoms, chemistry changes or campaign adoption']}
+    if version==2:
+        report['limitations'][2]='Backbone bond/angle/circular-torsion limits measure source changes, not ideal stereochemistry'
+        report['limitations'][3]='No packing, density, torsion ideal/pucker, periodic-cut or native refinement qualification'
     return snapshots,report
 
 
@@ -278,7 +356,7 @@ def load_bend_preview(directory):
     """Resolve checksummed local snapshots and replay the exact trial after relocation."""
     root = Path(directory)
     report = _json((root/'preview.json').read_bytes())
-    if not isinstance(report,dict) or report.get('kind') != 'topostitch-bend-preview' or type(report.get('schema_version')) is not int or report['schema_version'] != 1:
+    if not isinstance(report,dict) or report.get('kind') != 'topostitch-bend-preview' or type(report.get('schema_version')) is not int or report['schema_version'] not in (1,2):
         raise ValueError('Unsupported bend-preview receipt')
     references = report.get('artifacts')
     if not isinstance(references,dict) or set(references) != set(_FILES):

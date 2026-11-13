@@ -18,8 +18,8 @@ from .test_construct_registration import target
 from .test_topostitch_preview import setup_preview, digest
 
 
-def fit_inputs(tmp_path, *, periodic=False, move_target=False, target_z_shift=0, target_x_shift=-.2):
-    model,discovery,reg,_,_=setup_preview(tmp_path,anisou=False)
+def fit_inputs(tmp_path, *, periodic=False, move_target=False, target_z_shift=0, target_x_shift=-.2, extended=False):
+    model,discovery,reg,_,_=setup_preview(tmp_path,anisou=False,extended=extended)
     first=[r for r in model.read_text().splitlines() if r.startswith('ATOM')]
     second=[]
     for r in first:
@@ -64,6 +64,10 @@ def fit_inputs(tmp_path, *, periodic=False, move_target=False, target_z_shift=0,
             plane_offset_scale_angstrom=.5,plane_normal_scale_degrees=10.,motion_weight=.01),
         limits=dict(max_atom_displacement_angstrom=20.,max_backbone_bond_change_angstrom=5.,max_backbone_angle_change_degrees=90.),
         max_residual_evaluations=3000)
+    if extended:
+        request['schema_version']=2
+        request['objective']['backbone_torsion_scale_degrees']=10.
+        request['limits']['max_backbone_torsion_change_degrees']=90.
     path=tmp_path/'fit.json'; path.write_text(json.dumps(request))
     return model,discovery,reg,path
 
@@ -262,3 +266,28 @@ def test_periodic_fit_defers_coincident_distinct_atoms(tmp_path,monkeypatch):
     audit=result['selected_image_identity']
     assert audit['selected_atom_sets_disjoint'] is False
     assert audit['selected_image_overlaps'][0]['relation']=='DISTINCT_SOURCE_ATOMS_COINCIDE'
+
+
+def test_extended_fit_scores_and_materializes_the_same_torsion_audit(tmp_path):
+    from nasolve.topostitch_preview import build_bend_preview,load_bend_preview
+    paths=fit_inputs(tmp_path,extended=True)
+    report=fit(paths)
+    assert report['schema_version']==2 and report['status']=='TRANSFORM_FOR_REVIEW'
+    assert report['trial']['schema_version']==2
+    assert report['preview_audit']['backbone_audit']['max_torsion_change_degrees']<=90.
+    assert all(len(r['angles_degrees'])==4 for r in report['preview_audit']['backbone_audit']['links'])
+    trial=tmp_path/'extended-trial.json';trial.write_text(json.dumps(report['trial']))
+    preview=build_bend_preview(paths[0],paths[1],registration_path=paths[2],trial_path=trial,output_directory=tmp_path/'extended-preview')
+    assert preview['candidate_model_sha256']==report['candidate_model_sha256']
+    assert preview['backbone_audit']==report['preview_audit']['backbone_audit']
+    assert load_bend_preview(tmp_path/'extended-preview')==preview
+
+
+def test_extended_fit_cannot_silently_drop_new_terms_or_limits(tmp_path):
+    paths=fit_inputs(tmp_path,extended=True)
+    original=json.loads(paths[3].read_text())
+    for section,key in [('objective','backbone_torsion_scale_degrees'),('limits','max_backbone_torsion_change_degrees')]:
+        missing=json.loads(json.dumps(original));missing[section].pop(key);paths[3].write_text(json.dumps(missing))
+        with pytest.raises(ValueError,match='Expected object fields'):fit(paths)
+    paths[3].write_text(json.dumps({**original,'schema_version':1}))
+    with pytest.raises(ValueError,match='Expected object fields'):fit(paths)

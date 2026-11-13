@@ -18,7 +18,7 @@ from .topostitch_contacts import inspect_end_contacts
 from .topostitch_coordinates import ResidueSite, _read_atoms, _residue, _plane, _dot, _cross
 from .topostitch_inspect import _keys, load_registered_end_assignments
 from .topostitch_periodic import _crystal
-from .topostitch_preview import _json, _number, _vector, _rotation, _apply, _angle, _prepare, TrialLimitError
+from .topostitch_preview import _json, _number, _vector, _rotation, _apply, _angle, _prepare, TrialLimitError, _extended_link_values, _circular_difference
 from .topostitch_registration import _coordinate_site
 
 
@@ -35,10 +35,11 @@ def _scipy():
 
 
 def _validate_request(request):
+    version=request.get('schema_version') if isinstance(request,dict) else None
+    if type(version) is not int or version not in (1,2) or request.get('kind')!='topostitch-placement-request':
+        raise ValueError('Expected a schema-1 or schema-2 topostitch-placement-request')
     _keys(request, {'schema_version','kind','model_sha256','discovery_file_sha256','registration_file_sha256',
         'reference_catalog_sha256','search','candidate','window','motion_bounds','objective','limits','max_residual_evaluations'})
-    if type(request['schema_version']) is not int or request['schema_version'] != 1 or request['kind'] != 'topostitch-placement-request':
-        raise ValueError('Expected a schema-1 topostitch-placement-request')
     search=request['search']
     _keys(search, {'periodic','radius_angstrom','max_pairs','max_image_tests'})
     if type(search['periodic']) is not bool:
@@ -64,19 +65,23 @@ def _validate_request(request):
     if min(*rotation,*translation)<=0 or math.hypot(*rotation)>180:
         raise ValueError('Motion component bounds must be positive with total rotation bound at most 180 degrees')
     _keys(request['objective'], {'backbone_distance_scale_angstrom','backbone_angle_scale_degrees',
-        'plane_offset_scale_angstrom','plane_normal_scale_degrees','motion_weight'})
+        'plane_offset_scale_angstrom','plane_normal_scale_degrees','motion_weight'}
+        | ({'backbone_torsion_scale_degrees'} if version==2 else set()))
     for name,value in request['objective'].items():
         _number(value,name,positive=True)
     if request['objective']['plane_normal_scale_degrees']>90:
         raise ValueError('Plane-normal scale must not exceed 90 degrees')
-    _keys(request['limits'], {'max_atom_displacement_angstrom','max_backbone_bond_change_angstrom','max_backbone_angle_change_degrees'})
+    _keys(request['limits'], {'max_atom_displacement_angstrom','max_backbone_bond_change_angstrom','max_backbone_angle_change_degrees'}
+        | ({'max_backbone_torsion_change_degrees'} if version==2 else set()))
     for name,value in request['limits'].items():
         _number(value,name,positive=True)
+    if version==2 and max(request['objective']['backbone_torsion_scale_degrees'],request['limits']['max_backbone_torsion_change_degrees'])>180:
+        raise ValueError('Torsion scale and change limit must not exceed 180 degrees')
     return rotation+translation
 
 
 def _trial(request, parameters):
-    return {'schema_version':1,'kind':'topostitch-window-transform',
+    return {'schema_version':request['schema_version'],'kind':'topostitch-window-transform',
         'model_sha256':request['model_sha256'],'discovery_file_sha256':request['discovery_file_sha256'],
         'registration_file_sha256':request['registration_file_sha256'],
         'window_id':request['window']['window_id'],'max_window_pairs':request['window']['max_base_pairs'],
@@ -190,8 +195,13 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
             plane_terms.extend(v/normal_scale for v in _cross(na,nb))
         for link in links:
             a,b=moved[site_map[link['from_site']]],moved[site_map[link['to_site']]]
-            distance=math.dist(a["O3'"],b['P'])
-            measured=(_angle(a["C3'"],a["O3'"],b['P']),_angle(a["O3'"],b['P'],b["O5'"]))
+            if request['schema_version']==2:
+                distance,measured,torsions=_extended_link_values(a,b)
+                backbone_terms.extend(_circular_difference(v,old['before'])/objective['backbone_torsion_scale_degrees']
+                                      for v,old in zip(torsions,link['torsions_degrees']))
+            else:
+                distance=math.dist(a["O3'"],b['P'])
+                measured=(_angle(a["C3'"],a["O3'"],b['P']),_angle(a["O3'"],b['P'],b["O5'"]))
             backbone_terms.append((distance-link['distance_angstrom']['before'])/objective['backbone_distance_scale_angstrom'])
             backbone_terms.extend((v-old['before'])/objective['backbone_angle_scale_degrees']
                                   for v,old in zip(measured,link['angles_degrees']))
@@ -213,8 +223,8 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
     _,before=evaluate(zero)
     settings={'method':'trf','jac':'3-point','diff_step':1e-4,'ftol':1e-8,'xtol':1e-8,'gtol':1e-8,
               'x_scale':list(bounds),'initial_parameters':list(zero),'loss':'linear'}
-    report={'schema_version':1,'kind':'topostitch-placement-proposal',
-        'algorithm':'single-window-canonical-contact-least-squares-v2',
+    report={'schema_version':request['schema_version'],'kind':'topostitch-placement-proposal',
+        'algorithm':'single-window-canonical-contact-least-squares-v3' if request['schema_version']==2 else 'single-window-canonical-contact-least-squares-v2',
         'request':request,'request_file_sha256':sha256(request_bytes).hexdigest(),
         'source_model_sha256':digest,'reference_library':library,'selected_candidate':candidate,'window':window,
         'selected_image_identity':image_audit,
@@ -229,6 +239,8 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
             'Selected-coordinate image audit is a precondition only; full physical orbit/capacity remains unqualified',
             'No torsion, packing, atomistic closure or native qualification',
             'No reconstruction, chemical topology changes, campaign adoption or best-partner claim']}
+    if request['schema_version']==2:
+        report['limitations'][4]='No torsion ideal/pucker, packing, atomistic closure or native qualification'
     if image_audit is not None and image_audit['assessment']!='SELECTED_COORDINATES_DISTINCT':
         report['status']='IMAGE_IDENTITY_REVIEW_REQUIRED'
         verify_inputs()

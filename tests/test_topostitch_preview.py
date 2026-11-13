@@ -19,7 +19,7 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def setup_preview(tmp_path, *, anisou=True, rotation=(0, 0, 1), translation=(0.1, 0, 0)):
+def setup_preview(tmp_path, *, anisou=True, rotation=(0, 0, 1), translation=(0.1, 0, 0), extended=False):
     rows, codes, serial = [], {}, 1
     for chain, count, x, direction in [('A', 8, -5, -1), ('B', 6, 5, 1)]:
         for resid in range(1, count+1):
@@ -31,6 +31,9 @@ def setup_preview(tmp_path, *, anisou=True, rotation=(0, 0, 1), translation=(0.1
             points.update({"C1'": (x,-2,z), 'P': (x,0,z-direction*.1),
                            "O3'": (x,0,z+direction*1.5), "C3'": (x+1,0,z+direction*.5),
                            "O5'": (x+.8,0,z-direction*.7)})
+            if extended:
+                points.update({"OP1":(x+1.2,.4,z-direction*.1),"OP2":(x-.4,1.2,z-direction*.1),
+                               "C4'":(x+1.1,1.,z+direction*.2),"C5'":(x+1.4,.6,z-direction*1.1)})
             for name,p in points.items():
                 row = pdb_record('ATOM',serial,name,code,chain,resid,x=p[0],y=p[1],z=p[2],element=name[0])
                 rows.append(row)
@@ -237,3 +240,81 @@ def test_cli_reports_a_new_preview_and_rejects_reuse(tmp_path,capsys):
     with pytest.raises(SystemExit) as exc: main(arguments)
     assert exc.value.code==2
     assert 'already exists' in capsys.readouterr().err
+
+
+def test_extended_backbone_preview_is_explicit_and_replayable(tmp_path):
+    paths=setup_preview(tmp_path,extended=True)
+    change_trial(paths,schema_version=2,max_backbone_torsion_change_degrees=180.)
+    report=build(paths,tmp_path/'extended')
+    assert report['schema_version']==2
+    assert report['backbone_audit']['policy']=='extended-junction-source-change-v2'
+    assert all(len(r['angles_degrees'])==4 and len(r['torsions_degrees'])==3 for r in report['backbone_audit']['links'])
+    assert load_bend_preview(tmp_path/'extended')==report
+
+
+def test_extended_audit_detects_phosphate_rotation_missed_by_two_angles():
+    from nasolve.topostitch_preview import _audit_links, TrialLimitError
+    left={"O3'":(1.,1.,-1.),"C3'":(2.,1.,-1.),"C4'":(2.,2.,-2.)}
+    right={'P':(0.,0.,0.),"O5'":(0.,0.,1.),'OP1':(1.,0.,0.),'OP2':(0.,1.,0.),"C5'":(1.,0.,1.5)}
+    before={'a':left,'b':right}
+    # Rotate the following residue around P--O5. The old O3-P length and two
+    # watched angles are unchanged, but phosphate orientation changes.
+    after={'a':left,'b':{k:(-p[1],p[0],p[2]) for k,p in right.items()}}
+    legacy={'schema_version':1,'max_backbone_bond_change_angstrom':.001,'max_backbone_angle_change_degrees':.001}
+    assert _audit_links([('a','b')],before,after,legacy)['max_angle_change_degrees']==pytest.approx(0)
+    with pytest.raises(TrialLimitError,match='Extended backbone'):
+        _audit_links([('a','b')],before,after,{**legacy,'schema_version':2,'max_backbone_torsion_change_degrees':180})
+
+
+def test_circular_torsion_crossing_is_two_degrees_not_358():
+    from nasolve.topostitch_preview import _dihedral,_circular_difference
+    def points(degrees):
+        angle=math.radians(degrees)
+        return [(0.,1.,0.),(0.,0.,0.),(1.,0.,0.),(1.,math.cos(angle),math.sin(angle))]
+    before=_dihedral(*points(179));after=_dihedral(*points(-179))
+    assert before==pytest.approx(179) and after==pytest.approx(-179)
+    assert _circular_difference(after,before)==pytest.approx(2)
+    assert _circular_difference(before,after)==pytest.approx(-2)
+
+
+def test_degenerate_torsion_is_not_assigned_an_arbitrary_angle():
+    from nasolve.topostitch_preview import _dihedral
+    with pytest.raises(ValueError,match='Degenerate'):
+        _dihedral((0,0,0),(1,0,0),(2,0,0),(2,1,0))
+
+
+def test_extended_torsion_limit_can_reject_with_unchanged_watched_angles():
+    from nasolve.topostitch_preview import _audit_links,TrialLimitError
+    left={"O3'":(1.,1.,-1.),"C3'":(2.,1.,-1.),"C4'":(2.,2.,-2.)}
+    right={'P':(0.,0.,0.),"O5'":(0.,0.,1.),'OP1':(1.,0.,0.),'OP2':(0.,1.,0.),"C5'":(1.,0.,1.5)}
+    changed={**right,"C5'":(0.,1.,1.5)}
+    trial={'schema_version':2,'max_backbone_bond_change_angstrom':.001,'max_backbone_angle_change_degrees':.001,'max_backbone_torsion_change_degrees':1}
+    with pytest.raises(TrialLimitError,match='torsion 90'):
+        _audit_links([('a','b')],{'a':left,'b':right},{'a':left,'b':changed},trial)
+
+
+def test_extended_preview_refuses_missing_atoms_before_creating_output(tmp_path):
+    paths=setup_preview(tmp_path)
+    change_trial(paths,schema_version=2,max_backbone_torsion_change_degrees=180.)
+    with pytest.raises(ValueError,match='Missing extended backbone audit atom'):
+        build(paths,tmp_path/'rejected')
+    assert not (tmp_path/'rejected').exists()
+
+
+@pytest.mark.parametrize('value',[0,181,True,float('nan')])
+def test_extended_preview_requires_explicit_finite_circular_bound(tmp_path,value):
+    paths=setup_preview(tmp_path,extended=True)
+    change_trial(paths,schema_version=2,max_backbone_torsion_change_degrees=value)
+    with pytest.raises(ValueError):build(paths,tmp_path/'rejected')
+    assert not (tmp_path/'rejected').exists()
+
+
+def test_extended_zero_trial_and_relocation_preserve_frozen_inputs(tmp_path):
+    paths=setup_preview(tmp_path,extended=True,rotation=(0,0,0),translation=(0,0,0))
+    change_trial(paths,schema_version=2,max_backbone_torsion_change_degrees=1.)
+    original=paths[0].read_bytes();report=build(paths,tmp_path/'old')
+    assert (tmp_path/'old/candidate.pdb').read_bytes()==original
+    assert report['backbone_audit']['max_torsion_change_degrees']==0
+    (tmp_path/'old').rename(tmp_path/'moved')
+    for p in paths[:4]:p.unlink()
+    assert load_bend_preview(tmp_path/'moved')==report

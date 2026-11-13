@@ -166,29 +166,21 @@ before S06 matched refinement. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 309 focused source tests + 2 subtests pass; the latest 43
-fitting/image tests pass against the rebuilt wheel. The preceding image-audit
-checkpoint passed all 307 then-current focused tests from installed and relocated
-checkouts.
-The optional selected-image audit compares present atoms and retains stabilizer/
-coincident-label uncertainty; it does not merge identities or approve partners.
-Actual installed CLI checks cover composed options and public 8D93 within declared
-local windows, plus the explicit ANISOU-preserving preview. Source bytes stayed
-unchanged and unknown cuts stayed incomplete.
-Coordinates and derived benchmark files remain local only. The current full
-source suite at `2d7544b` passed 1,223 tests + 226 subtests after rerunning five sandbox-blocked
-process-control tests in the unrestricted complete suite. Seventeen fitting tests also pass on the declared
-minimum SciPy 1.14.1 / NumPy 2.2.6, besides SciPy 1.18.1 / NumPy 2.5.4. Lean installs
-report the missing fitting extra cleanly. Public 8D93 source/explicit/fitted models
-completed separate read-only Phenix 2.2.1-6174 interpretation via Cedar ecafc98,
-all REVIEW, unchanged sources and 855 atoms. The original fitted trial adds an
-angle outlier. Three predeclared tighter-backbone controls subsequently preserved
-matched native definitions/proxies and introduced no new nominal ≥5 scalar
-outliers, while improving the contact target less. This is descriptive evidence,
-not closure, geometry approval or diffraction/refinement validation.
+**Current checks:** 322 focused source/installed/relocated tests + 2 subtests
+pass; the full source suite passes 1,238 tests + 226 subtests. Schema-2 preview
+and fitting add nonbridging phosphate angles and circular epsilon/zeta/alpha
+changes, while retaining exact schema-1 replay. The selected-image audit retains
+coincident-label/occupancy uncertainty and gates periodic fitting. Public source
+bytes remain unchanged; generated coordinates and diagnostic artifacts stay local.
+Public 8D93 native interpretation is REVIEW throughout. The original fit adds an
+angle outlier; tighter controls and the new extended-audit fit add no nominal ≥5
+captured scalar outliers with matched native contexts/proxies. This remains
+source-change/descriptive evidence, not ideal geometry, native symmetry closure
+or diffraction/refinement validation. See the current inspector/preview guides
+for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Cedar through C258 (`3d87abc`) owns its native audit, selected AutoSol references
+Cedar through `cd744e2` owns its native audit, selected AutoSol references
 and storage work; the consumed registration/model/context/package interfaces
 remain unchanged against the Pine base. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the

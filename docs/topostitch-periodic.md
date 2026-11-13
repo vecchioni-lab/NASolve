@@ -405,12 +405,17 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**Selected-image checkpoint:** 307 focused tests + 2 subtests passed from source (8.49 s), against the
-installed wheel (6.54 s), and from a relocated temporary checkout (6.40 s) after
-its original path was absent, using Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3
-(`a9264f9`), Gemmi 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. All 17 fitting tests also
-passed with minimum SciPy 1.14.1 / NumPy 2.2.6 (12.10 s). The selected-image CLI regression failed before the new flag existed; additional failing-before regressions cover self-reversed paired steps,
-partial pairing evidence and earlier discovery-report compatibility.
+**Extended-backbone checkpoint:** 322 focused tests + 2 subtests pass from source
+(7.68 s), against the rebuilt installed wheel (7.75 s), and from a relocated
+temporary checkout (7.48 s) after the original checkout path was absent.
+The complete source suite passes **1,238 tests + 226 subtests** (69.64 s).
+Environment: Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3 (`a9264f9`),
+Gemmi 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. The earlier 17 fitting tests also
+passed with minimum SciPy 1.14.1 / NumPy 2.2.6; that is not a schema-2 minimum
+version run. New failing-before coverage demonstrates that schema 2 was rejected
+before this change; specific tests cover phosphate rotation missed by the old
+two-angle audit, circular torsion differences, degeneracy, missing atoms and
+strict policy fields. Old schema-1 frozen public previews still replay.
 
 Coverage includes independent brute-force symmetry enumeration in P1, P21,
 P212121, P43, R3:H and P63; nonlocal/skew-cell bounds; reciprocal/self-image
@@ -457,15 +462,11 @@ This is a read-only smoke check, not unsupervised discovery or scientific repair
 validation. Downloaded coordinates and derived benchmark files are excluded from
 Git. The synthetic CLI checks also verified no input-file changes.
 
-The complete source suite at image-audit commit `2d7544b` passes
-**1,223 tests + 226 subtests** (63.50 s).
-The first sandboxed attempt returned 1,218 passes and five process-control failures
-because `ps` and owned-group termination were denied; the unrestricted rerun above
-passed without code changes. Source command: the same environment above with
-`python -m pytest -q -p no:cacheprovider`. The 307-test installed and relocated
-checks do not claim a full installed-platform matrix. `git diff --check`, Python
-3.10 syntax, JSON, documentation references and roadmap synchronization are also
-checked before publication.
+Full-suite command: the source environment above with
+`python -m pytest -q -p no:cacheprovider`, executed with process-control permission
+for campaign tests. The focused installed/relocated checks do not claim a full
+installed-platform matrix. `git diff --check`, Python 3.10 syntax, JSON,
+documentation references and roadmap synchronization are checked before publication.
 
 The actual installed command reproduced the source public 8D93 image audit:
 240 selected atoms, 274,916 budgeted atom tests, no selected overlaps or orbit
@@ -475,14 +476,12 @@ are not thereby approved. The [preview guide](topostitch-preview.md#public-8d93-
 retains the separate Phenix source/preview/fitted interpretation results and
 remaining geometry degradation.
 
-The subsequent fitter-eligibility patch passes **309 focused source tests + 2
-subtests** (7.55 s), with the **43 affected fitting/image tests** also passing
-against its rebuilt installed wheel. It does not change global mechanics; the
-earlier full-suite count is not represented as a new full-suite run. Existing
-public 8D93 requests reproduce their previous candidate bytes, and the old frozen
-preview replays unchanged. The new failing-before regression prevents optimization
-when source image occupancy requires review; an exact coincident-atom fixture is
-retained as a separate refusal case.
+The periodic fitter's source-image eligibility guard is included in these tests.
+It refuses optimization for coincident or uncertain selected images. Schema-1
+public 8D93 requests preserve their candidate bytes; new schema-2 requests opt
+into extended phosphate-angle and circular-torsion checks without migrating old
+previews. The preview guide records the separate complete native captures and
+their remaining scientific limitations.
 
 ## Local diffraction benchmark preflight — 2026-11-13
 
