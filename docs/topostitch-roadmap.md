@@ -90,7 +90,7 @@ Give both tools exact atom/site image identity, including stabilizers, reciproca
 | [S04](#s04) | Place an intact duplex by bounded bending or straightening | PARTIAL | S03 |
 | [S05](#s05) | Close and qualify the local atomic geometry | PARTIAL | S04 |
 | [S06](#s06) | Demonstrate improvement against diffraction data | OPEN | S05 |
-| [S07](#s07) | Expose one ordinary, inspectable repair trial | OPEN | S06 |
+| [S07](#s07) | Expose one ordinary, inspectable repair trial | PARTIAL | S06 |
 | [S08](#s08) | Run bounded opt-in campaigns and transfer schemes | OPEN | S02, S07 |
 
 <a id="s01"></a>
@@ -169,7 +169,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Agree a supported fixed-base native trial adapter with Cedar owners, preserving captured definitions, derivative/context checks, bounded execution and endpoint chemistry/packing review. Do not attach raw symmetry plane proxies or fork the existing correction.
+**Next action:** Qualify an explicitly masked fixed-base native objective with frozen definitions, mask digest, displacement bounds, unchanged bases and endpoint ASU derivative evidence. Rowan confirms no qualified selective adapter exists; Cedar all-captured-atoms policy and derivative sample indices cannot stand in for a movement mask. Reuse existing Cartesian correction without extending its policy.
 **Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes).
 **Last audit:** 2026-11-13, Linden, code `7255bfd`; Native derivative gate with retained failures and existing-owner corrected composition.
 
@@ -194,16 +194,16 @@ Compare repaired and unmodified models fairly, then determine where data support
 
 Let a scientist see what was proposed, built, refined and reviewed through the existing NASolve/Pine workflow.
 
-**Delivered:** Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated.
+**Delivered:** Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated. Verified standalone source/candidate/mate viewer exists with rotation, point inspection, contact distances and explicit unrefined/unreviewed state; it does not publish an ordinary trial.
 
 **Closure audit:**
 
 - Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.
 - Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.
 
-**Next action:** Connect a qualified single trial to existing checkpoint/review owners instead of creating a second history system.
-**Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Next action:** Finish human browser validation, then reuse this display component when a qualified ordinary trial can connect to existing checkpoint/review owners; do not invent a second history system.
+**Evidence:** [E_SOFTWARE](#e_software), [E_VIEW](#e_view).
+**Last audit:** 2026-11-13, Linden, code `0f176a9`; Read-only display component only; native/refinement/ordinary-trial gates stay open.
 
 <a id="s08"></a>
 ### S08 — Run bounded opt-in campaigns and transfer schemes
@@ -260,9 +260,9 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 - Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
-**Next action:** Implement the read-only cut/graph view early; the Pine workflow is not complete as a CLI-only tool.
-**Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Next action:** Reuse the offline coordinate viewer where useful, but first supply P01 periodic graph ownership and bounded cut alternatives; implement actual cut selection/materialization preview and human validation.
+**Evidence:** [E_VIEW](#e_view).
+**Last audit:** 2026-11-13, Linden, code `0f176a9`; Shared viewer is available; no Pine cut capability delivered, so P02 stays OPEN.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -347,8 +347,8 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `a3e4978`.
-46 affected source tests, 323 focused installed tests plus 2 subtests, and full source 1,239 tests plus 226 subtests pass. Prior schema-2 checkpoint passed 322 relocated tests after original path removal. Installed public 8D93 fit retains prior candidate bytes; source and transformed audits each report 240 atoms and 274,916 tests.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `0f176a9`.
+Seven viewer tests pass; 330 focused tests + 2 subtests pass installed and relocated after the original path is absent. Full source suite: 1,246 tests + 226 subtests. Installed HTML/entry point match source; lean basic view needs no numerical extra. JavaScript syntax/mock-DOM checks pass; rendered browser validation remains pending.
 **Limit:** Current installed check is focused, not a full platform matrix. Previous relocation count is not a new guard relocation run. No combined Cedar build or scientific acceptance.
 
 <a id="e_registration"></a>
@@ -427,6 +427,13 @@ Complete local Phenix 2.2.1-6174 probes match 5 periodic bond and 8 angle values
 [Evidence contract](topostitch-preview.md#reproducible-native-plane-gate) at code `7255bfd`.
 A committed synthetic probe reproduces Phenix 2.2.1-6174 raw symmetry-planarity and Cartesian-parallelity derivative failures. Explicit Cartesian image pullback passes for planarity and, reusing Cedar both-first-planes correction, parallelity. Public 8D93 two-plane controls also pass the corrected composition; raw negatives remain.
 **Limit:** No production native adapter, manager attachment, optimization or blanket API qualification. Native symmetry-parallelity constructor is unsupported. Existing Cedar correction/lifecycle remain owners; no native installation or Cedar files modified.
+
+<a id="e_view"></a>
+### E_VIEW — Verified read-only coordinate comparison
+
+[Evidence contract](topostitch-preview.md#offline-originalcandidate-view) at code `0f176a9`.
+Standalone offline view replays frozen previews, displays actual source/candidate and optional exact mate, and exposes points, traces, contact distances, geometry changes and unrefined/unreviewed state. Public 8D93 installed artifact has 404 atom instances, 204 moved.
+**Limit:** No Apply/Refine/Approve or campaign/checkpoint state; no Pine cut choices or recut graph. Browser visual/interaction validation blocked by local-file automation policy; mock-DOM checks are not rendered-browser evidence.
 
 ## Deferred extensions, not hidden blockers
 
