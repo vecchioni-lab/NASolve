@@ -1228,7 +1228,11 @@ nasolve-topostitch-preview model.pdb discovery.json \
 The trial declares its exact input checksums, window, motion and displacement/
 backbone-change limits. Source and fixed anchors stay unchanged; selected ANISOU
 tensors rotate with the atoms. A saved candidate is unreviewed and unrefined,
-with no campaign adoption or claim that its geometry improved.
+with no campaign adoption or claim that its geometry improved. An optional
+`nasolve-topostitch-fit` command (`.[topology-fit]`) can propose a bounded terminal
+motion for one explicitly chosen pairing/window. It reports convergence and
+serialized geometry changes; it neither writes nor approves a model. See the
+[placement request and outcomes](docs/topostitch-preview.md#bounded-placement-for-one-chosen-pairing).
 
 ## Problems and reproducibility
 

@@ -111,6 +111,76 @@ movable/fixed sites and show measured changes. The receipt means
 `geometry_validated: false` and no campaign/checkpoint authority. Viewing a
 candidate cannot mark it approved. There is no Apply/Refine/Approve API yet.
 
+## Bounded placement for one chosen pairing
+
+`nasolve-topostitch-fit` adds a read-only local placement search. It fixes the
+chosen pairing/image and editable window, starts once at zero motion, and fits
+six terminal rotation/translation parameters. It never chooses another partner,
+expands a window automatically, writes a model or adopts a result.
+
+```sh
+python -m pip install ".[topology-fit]"
+nasolve-topostitch-fit model.pdb discovery.json \
+  --registration registration.json --request fit.json > placement.json
+```
+
+The strict schema-1 `topostitch-placement-request` has these fields:
+
+| Field | Meaning |
+| --- | --- |
+| `model_sha256`, `discovery_file_sha256`, `registration_file_sha256` | Exact input-byte hashes, as for preview trials |
+| `reference_catalog_sha256` | `effective_catalog_sha256` from the inspector's NARestraints contact assessment |
+| `search` | `periodic` boolean, explicit `radius_angstrom`, positive integer `max_pairs` and `max_image_tests` |
+| `candidate` | Exact ordered `ends` from the inspector and `target_image_operator` (`null` for same-frame mode) |
+| `window` | Explicit `window_id`, `max_base_pairs` and `fixed_anchor_pairs` |
+| `motion_bounds` | Three positive `rotation_degrees` and three positive `translation_angstrom` component bounds; both signs are allowed |
+| `objective` | Positive `backbone_distance_scale_angstrom`, `backbone_angle_scale_degrees`, `plane_offset_scale_angstrom`, `plane_normal_scale_degrees` and `motion_weight` |
+| `limits` | The three displacement/backbone-change limits from the preview trial |
+| `max_residual_evaluations` | Positive integer cap including finite-difference Jacobian calls |
+
+The request also includes `schema_version: 1` and
+`kind: "topostitch-placement-request"`. The norm of the rotation-bound vector
+cannot exceed 180°, and the plane-normal scale must be at most 90°. These are
+component boxes, not spherical motion bounds. The final per-atom displacement
+limit still applies. Numerical scales and limits are caller policy, not
+scientifically calibrated defaults.
+
+The objective combines canonical NARestraints bond/angle deviations divided by
+recipe sigmas; paired-plane offsets and normal alignment; backbone bond/angle
+changes from the source; and a small-motion penalty scaled by the declared box.
+Plane normals may be parallel or antiparallel. Angles use degrees. The current
+whole-residue motion preserves local shape but does not optimize sugar torsions
+or solve atomistic closure. No density, diffraction, Rwork or Rfree enters this
+objective. Improved target score is not independent confirmation of the pairing.
+
+The solver uses SciPy's bounded `trf` least squares, three-point differences,
+explicit parameter scales and tolerances, and one zero initialization. The report
+records exact settings and NumPy/SciPy/library versions. Its own residual counter
+includes Jacobian calls, which SciPy's `max_nfev` does not count. Fixed before/after
+observations are outside the solver-call count. See the
+[official least-squares API](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html).
+
+A schema-1 `topostitch-placement-proposal` returns one of:
+
+- `TRANSFORM_FOR_REVIEW`: converged, serialized trial passes its declared limits,
+  and the named pair target improves numerically; `trial` is ready for preview.
+- `NO_PAIR_TARGET_IMPROVEMENT`: no useful numerical improvement; no trial.
+- `BUDGET_EXHAUSTED` or `SOLVER_DID_NOT_CONVERGE`: no partial best-so-far trial.
+- `TRIAL_LIMIT_REJECTED`: fitting converged but the serialized move exceeds a
+  declared displacement/backbone limit; no trial.
+
+Malformed/stale inputs, incomplete contact measurements, self-pair fitting and
+movement of the other end's defining residues fail explicitly. The other end may
+be in a nonidentity symmetry image; atoms are moved in their original ASU frame
+before applying that exact image. Physical orbit distinctness is not certified.
+
+To materialize an explicitly chosen successful proposal, save its `trial` object
+as a new JSON file and pass it to `nasolve-topostitch-preview`. The candidate hash
+must match `candidate_model_sha256` from the fit report. API users can call
+`fit_end_placement` and `build_bend_preview` directly; UI consumers can show the
+continuous versus serialized target changes and actual preview audit. No
+scientific acceptance, native audit or review state is upgraded by convergence.
+
 ## Validation and compatibility
 
 This additive module/entry point leaves the read-only inspector, Pine
@@ -127,4 +197,58 @@ rotated 204 ANISOU records; maximum displacement was 0.310058 Å, maximum backbo
 bond change 0.091192 Å and angle change 3.314059°. Source bytes stayed unchanged
 and the frozen trial replayed. This is a serialization/audit check, **not a
 scientific repair success**. Coordinates and derived models are excluded from
-Git. No Phenix/Coot execution or diffraction evaluation has been performed.
+Git. The explicit preview is not a native geometry pass; see the interpretation
+comparison below. No Coot execution or diffraction refinement was performed.
+
+### Public 8D93 native interpretation comparison — 2026-11-13
+
+A bounded fit used the same six-pair scope/two fixed pairs, component bounds of
+±5° and ±2 Å, and the exact selected periodic mate. Objective scales were 0.05 Å
+backbone distance, 5° backbone angle, 0.2 Å plane offset, 10° plane normal and
+motion weight 0.1; limits were 3 Å atom displacement, 0.2 Å bond change and 15°
+angle change, with 3,000 solver residual calls allowed. These are a development
+trial policy, not established scientific tolerances. SciPy 1.18.1 / NumPy 2.5.4
+converged in 91 actual residual calls. The serialized pair target sum of squares
+fell from 190.692330 to 123.887533; maximum displacement was 0.788651 Å,
+backbone bond change 0.053171 Å and angle change 8.381172°.
+
+Using Cedar `ecafc98`'s existing `cif_native_validation.inspect_native_bundle`,
+all three models completed native interpretation (not a dry-run) with Phenix
+installation **2.2.1-6174**, dispatcher **2.2.1**, exit 0 and aggregate **REVIEW**.
+This was a separate diagnostic invocation, not a Willow/Cedar merge or a new
+production interface. Each retained 855 atoms and 956 simple-bond, 1,467 angle
+and 166 chirality proxies. Source and frozen input bytes remained unchanged.
+
+| Model | Simple bonds with nominal absolute deviation ≥5 | Angles ≥5 | Chirality sign conflicts |
+| --- | ---: | ---: | ---: |
+| Source | 4 | 17 | 0 |
+| Explicit 1° / 0.2 Å preview | 7 | 17 | 0 |
+| Bounded fitted candidate | 4 | 18 | 0 |
+
+These counts come from Cedar's captured Cartesian review, not a calibrated
+acceptance threshold. The fitted candidate avoided the arbitrary move's three
+new severe bond deviations but added a severe angle deviation. That is evidence
+for further qualification/relaxation, not a repair success. Symmetry contacts,
+planes/parallelities, full packing and diffraction agreement remain unqualified.
+Native energy inventory was captured, but no optimization/refinement was run.
+
+The exact native call settings were:
+
+```python
+receipt = inspect_native_bundle(
+    model, [], output_parent, installation.executables["phenix.python"],
+    environment=installation.environment, phenix_version=installation.version,
+    timeout_seconds=120, phil_files=[geometry_phil], inventory_detail="linked",
+    installed_library_only=True, energy_inventory=True, policy_inventory=True,
+    full_monomer_inventory=True,
+)
+review = review_captured_geometry(receipt["native_validation"])
+```
+
+`geometry_phil` contained only
+`pdb_interpretation.use_ncs_to_build_restraints = False`. Installation discovery
+used the existing saved Phenix root, revalidated through `discover_phenix` without
+saving configuration. Diagnostics were written outside every input directory.
+All downloaded coordinates, candidate models and native receipts remain local,
+excluded from Git. This coordinate-only comparison is separate from the proposed
+8D93-to-hexagonal-recipient diffraction benchmark.

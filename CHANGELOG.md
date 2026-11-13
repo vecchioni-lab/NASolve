@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch bounded placement proposals
+
+- Add optional `topology-fit` and a read-only fitting command for one explicit
+  pairing/image and editable window, with finite motion and residual-call bounds.
+- Audit the rounded candidate through the existing preview engine before offering
+  a transform; retain no-op, budget, convergence and limit failures distinctly.
+- Record public 8D93 native interpretation evidence, including remaining angle
+  degradation. Convergence and successful interpretation do not approve a repair.
+
 ### TopoStitch crystallographic development notes
 
 - Record the proposed 8D93-to-hexagonal-data benchmark, later density-aware and

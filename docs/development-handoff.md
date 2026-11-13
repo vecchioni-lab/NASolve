@@ -155,21 +155,31 @@ anchors, rotates ANISOU tensors and audits serialized backbone changes. Frozen
 input snapshots and run-relative checksums support replay after relocation.
 Inspector execution stays NOT_ATTEMPTED; actual previews are CANDIDATE_BUILT,
 UNREVIEWED and unrefined. No existing model/checkpoint is changed.
-Next: bounded fitting, physical image identity and qualified native geometry
-audit. Unassisted coordinate topology discovery, reconstruction, refinement and
-campaign adoption remain unimplemented.
+An optional bounded fitter now proposes a terminal transform for one explicit
+pairing/image and window, counting Jacobian evaluations and rechecking serialized
+limits. No partner/window selection is inferred. Next: physical image identity,
+qualified local geometry closure and matched refinement. Unassisted coordinate
+topology discovery, reconstruction, refinement and campaign adoption remain
+unimplemented.
 
-**Current checks:** 265 focused, installed-wheel and relocated-checkout tests + 2 subtests passed.
+**Current checks:** 282 focused, installed-wheel and relocated-checkout tests + 2 subtests passed.
 Actual installed CLI checks cover composed options and public 8D93 within declared
 local windows, plus the explicit ANISOU-preserving preview. Source bytes stayed
 unchanged and unknown cuts stayed incomplete.
 Coordinates and derived benchmark files remain local only. The last full suite
 was the earlier periodic slice: 1,099 tests + 226 subtests; it was not rerun for
-these isolated additions. No native Phenix/Coot or diffraction validation.
+these isolated additions. Seventeen fitting tests also pass on the declared
+minimum SciPy 1.14.1 / NumPy 2.2.6, besides SciPy 1.18.1 / NumPy 2.5.4. Lean installs
+report the missing fitting extra cleanly. Public 8D93 source/explicit/fitted models
+completed separate read-only Phenix 2.2.1-6174 interpretation via Cedar ecafc98,
+all REVIEW, unchanged sources and 855 atoms. The fitted trial still adds an angle
+outlier; this is not geometry approval or diffraction/refinement validation.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Cedar C253 (`f337660`) owns selected AutoSol site references/checkpoint schema;
-Willow does not consume or edit those active interfaces or shared environments.
+Cedar through C257 (`ecafc98`) owns its native audit, selected AutoSol references
+and storage work. Willow consumes no new Cedar production interfaces and edits
+no Cedar code or shared environment. The separate native comparison reused the
+existing diagnostic helper only; see the preview guide for exact options.
 Shared guides/changelog need reconciliation at integration. No combined
 Willow/Cedar build has been validated. Keep completed patches pushed and current
 contracts concise rather than adding handoff diaries.

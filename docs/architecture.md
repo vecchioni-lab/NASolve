@@ -895,7 +895,7 @@ acceptance and structural assessment.
 
 ## Isolated TopoStitch backend
 
-TopoStitch currently has two additive entry points, outside the campaign/PostMR
+TopoStitch currently has three additive entry points, outside the campaign/PostMR
 CLI. `nasolve-topostitch-inspect` composes verified coordinate/periodic
 observations, NARestraints contacts, factorized pairing alternatives, existing
 Pine registration mapping and declared-topology end/window proposals. It writes
@@ -903,6 +903,10 @@ no files. `nasolve-topostitch-preview` applies one explicit terminal transform
 with a paired-step taper to a new candidate, preserving fixed anchors and
 rotating selected ANISOU tensors. It audits serialized backbone changes against
 caller limits; this is not atomistic closure or refinement qualification.
+`nasolve-topostitch-fit` optionally proposes that terminal motion through a finite
+single-window least-squares search, with explicit pairing/image, scales, bounds
+and total residual-call budget. Continuous optimization is followed by the same
+serialized preview audit. It writes no models and has no density/R-factor target.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are

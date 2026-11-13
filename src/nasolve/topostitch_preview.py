@@ -21,6 +21,10 @@ from .topostitch_inspect import _keys, _unique_object, load_registered_end_assig
 from .topostitch_registration import _coordinate_site
 
 
+class TrialLimitError(ValueError):
+    """A valid explicit trial exceeds its declared displacement/strain limits."""
+
+
 _FILES = {'source': 'source.pdb', 'candidate': 'candidate.pdb',
           'discovery': 'discovery.json', 'registration': 'registration.json', 'trial': 'trial.json'}
 
@@ -167,15 +171,21 @@ def _audit_links(links, before, after, trial):
     bond = max((abs(r['distance_angstrom']['change']) for r in rows),default=0.)
     angle = max((abs(a['change']) for r in rows for a in r['angles_degrees']),default=0.)
     if bond > trial['max_backbone_bond_change_angstrom'] or angle > trial['max_backbone_angle_change_degrees']:
-        raise ValueError(f'Backbone change exceeds trial limits: bond {bond:.6g} A; angle {angle:.6g} degrees')
+        raise TrialLimitError(f'Backbone change exceeds trial limits: bond {bond:.6g} A; angle {angle:.6g} degrees')
     return {'links':rows,'max_bond_change_angstrom':bond,'max_angle_change_degrees':angle,
             'limits_passed':True,'ideal_geometry_validated':False}
 
 
-def _prepare(model_path, discovery_path, registration_path, trial_path):
+def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, trial_value=None):
+    if (trial_path is None) == (trial_value is None):
+        raise ValueError('Supply exactly one explicit trial path or trial value')
     paths = {'source':Path(model_path),'discovery':Path(discovery_path),
-             'registration':Path(registration_path),'trial':Path(trial_path)}
+             'registration':Path(registration_path)}
+    if trial_path is not None:
+        paths['trial'] = Path(trial_path)
     snapshots = {name:path.read_bytes() for name,path in paths.items()}
+    if trial_value is not None:
+        snapshots['trial'] = (json.dumps(trial_value,sort_keys=True,allow_nan=False)+'\n').encode('utf-8')
     trial = _json(snapshots['trial'])
     _keys(trial, {'schema_version','kind','model_sha256','discovery_file_sha256','registration_file_sha256',
         'window_id','max_window_pairs','fixed_anchor_pairs','rotation_vector_degrees','translation_angstrom',
@@ -220,7 +230,7 @@ def _prepare(model_path, discovery_path, registration_path, trial_path):
     _,after = _mapped_residues(candidate,registry,window['copy_id'],required)
     displacement = max(math.dist(point,after[s][name]) for s in moving for name,point in before[s].items())
     if displacement > trial['max_atom_displacement_angstrom']:
-        raise ValueError(f'Atom displacement {displacement:.6g} A exceeds trial limit')
+        raise TrialLimitError(f'Atom displacement {displacement:.6g} A exceeds trial limit')
     audit = _audit_links(links,before,after,trial)
     # Loaders inspect paths; confirm that their evidence still refers to the
     # captured bytes before freezing anything. Computation above uses snapshots.

@@ -1,6 +1,6 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Status: **BOUNDED_BEND_PREVIEW_IMPLEMENTED**, 2026-11-13. Branch:
+Status: **BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED**, 2026-11-13. Branch:
 `willow`, based on Pine `d7913dd`. The full design below remains future work.
 The [first backend slice](topostitch-backend.md) screens explicitly supplied
 canonical DNA overhangs; the [coordinate adapter](topostitch-coordinates.md)
@@ -11,7 +11,10 @@ canonical recipe distances/angles in those images. Logical end mapping and
 bounded discovery within declared strand/core-pair topology are available through
 the inspector. An [explicit bend preview](topostitch-preview.md) now writes a new
 checksum-bound candidate with fixed anchors and ANISOU preservation. Automatic
-placement, atomistic closure, reconstruction and refinement remain future work. [Machine-readable intent](topostitch-intent.json)
+partner/window selection, atomistic closure, reconstruction and refinement remain
+future work. A bounded single-window fitting command now proposes a terminal
+motion against an explicitly chosen canonical pairing; convergence is not
+scientific acceptance. [Machine-readable intent](topostitch-intent.json)
 is development metadata, not runtime authorization.
 
 ## Purpose and ownership

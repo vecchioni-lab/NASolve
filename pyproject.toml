@@ -16,11 +16,13 @@ dependencies = [
 [project.optional-dependencies]
 test = ["pytest>=8"]
 topology = ["gemmi>=0.7.5,<0.8"]
+topology-fit = ["gemmi>=0.7.5,<0.8", "scipy>=1.14,<2"]
 
 [project.scripts]
 nasolve = "nasolve.cli:main"
 nasolve-topostitch-inspect = "nasolve.topostitch_inspect:main"
 nasolve-topostitch-preview = "nasolve.topostitch_preview:main"
+nasolve-topostitch-fit = "nasolve.topostitch_fit:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

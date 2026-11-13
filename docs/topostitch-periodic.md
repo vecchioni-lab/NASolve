@@ -362,10 +362,11 @@ image distinctness and global pairing constraints, then qualified geometry work.
 
 ## Current validation receipt — 2026-11-13
 
-**265 focused tests + 2 subtests passed** from source (1.85 s), against the
-installed wheel (1.82 s), and from a relocated temporary checkout (1.72 s) after
+**282 focused tests + 2 subtests passed** from source (7.65 s), against the
+installed wheel (7.65 s), and from a relocated temporary checkout (7.48 s) after
 its original path was absent, using Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3
-(`a9264f9`) and Gemmi 0.7.5. The new backend tests failed before their functions
+(`a9264f9`), Gemmi 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. All 17 fitting tests also
+passed with minimum SciPy 1.14.1 / NumPy 2.2.6 (12.10 s). The new backend tests failed before their functions
 existed; additional failing-before regressions cover self-reversed paired steps,
 partial pairing evidence and earlier discovery-report compatibility.
 
@@ -377,7 +378,9 @@ copies; chemical versus representation boundaries; protected/free ends; fixed
 anchors and whole-pair window expansion; bounded matching alternatives; no-write
 CLI behavior; explicit bend-preview anchor/ANISOU preservation, serialized
 backbone-change limits, frozen-input replay, tampering and no-overwrite behavior;
-and original-path-absent input/checkout relocation.
+bounded placement, no-op/refusal outcomes, finite Jacobian-call budgets,
+ASU motion under P43 screw images and opposite-direction proposals; and
+original-path-absent input/checkout relocation.
 
 Source command (historical environment paths, not operational model references):
 
@@ -386,7 +389,7 @@ NASOLVE_TEST_PYTHON=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.ve
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src "$NASOLVE_TEST_PYTHON" - <<'PYTEST'
 import sys
 from pathlib import Path
-sys.path.append('/private/tmp/willow-periodic-deps')
+sys.path.append('/private/tmp/willow-periodic-install/lib/python3.12/site-packages')
 import pytest
 paths = sorted(str(p) for p in Path('tests').glob('test_topostitch*.py'))
 raise SystemExit(pytest.main(paths + ['tests/test_construct_registration.py', 'tests/test_run_context.py', '-q', '-p', 'no:cacheprovider']))
@@ -403,7 +406,7 @@ patches rebuilt/reinstalled the wheel without changing the shared NASolve/Cedar
 environments. Isolated `python -I` imports matched current source bytes.
 
 Actual installed CLI checks cover periodic/contact/pairing composition, logical
-registration, discovery/windows and the separate [bend-preview writer](topostitch-preview.md). A scoped public
+registration, discovery/windows and the separate [bend-preview writer and fitter](topostitch-preview.md). A scoped public
 [8D93](https://www.rcsb.org/structure/8D93) check used explicitly declared local
 strand/core windows: two ends, one mate, two unselected pairing choices and four
 window sizes per end. It retained unknown interior cuts and preserved PDB bytes.
@@ -418,10 +421,12 @@ covering those additions. At that earlier slice, all 132 focused tests also
 passed from a relocated temporary checkout after its original path was absent;
 lean installs ran nonperiodic inspection and reported missing Gemmi cleanly.
 Current mapping/contact/preview tests additionally move their inputs and remove
-the original paths; all 265 current focused tests also passed after moving a
+the original paths; all 282 current focused tests also passed after moving a
 temporary source checkout and verifying imports came from its relocated path. `git diff --check`, intent JSON and documentation references
-are checked before publication. No Phenix/Coot execution, diffraction evaluation
-or native scientific success is claimed.
+are checked before publication. The [preview guide](topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13)
+records separate complete Phenix 2.2.1-6174 source/preview/fitted interpretation,
+including the remaining geometry degradation. No Coot execution, diffraction
+refinement or scientific repair success is claimed.
 
 Gemmi API references:
 [symmetry operations](https://gemmi.readthedocs.io/en/latest/symmetry.html) and

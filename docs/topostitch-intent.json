@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "topostitch-development-intent",
   "date": "2026-11-13",
-  "status": "BOUNDED_BEND_PREVIEW_IMPLEMENTED",
+  "status": "BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
   "branch": "willow",
@@ -283,6 +283,24 @@
       "geometry_validated": false,
       "refinement_state": "NOT_ATTEMPTED",
       "review_state": "UNREVIEWED",
+      "campaign_adoption": false,
+      "fitting_proposal_command": "nasolve-topostitch-fit"
+    },
+    "placement_fit": {
+      "module": "nasolve.topostitch_fit",
+      "command": "nasolve-topostitch-fit",
+      "dependency_extra": "topology-fit",
+      "request_kind": "topostitch-placement-request",
+      "report_kind": "topostitch-placement-proposal",
+      "schema_version": 1,
+      "scope": "one explicit pairing and window; six terminal motion variables; one zero initialization",
+      "counts_jacobian_residual_calls": true,
+      "post_serialization_audit": true,
+      "writes_models": false,
+      "uses_density_or_r_factors": false,
+      "geometry_validated": false,
+      "automatic_partner_selection": false,
+      "automatic_window_expansion": false,
       "campaign_adoption": false
     }
   },
