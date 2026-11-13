@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish generated support from selected dictionary planes (C249)
+
+- Checked preparation notes now screen the exact selected dictionaries against
+  frozen source graphs. Report explicit coverage, missing planes or unassessed
+  definitions separately from generation outcomes, using the existing graph rule.
+- Bind source/dictionary hashes and refuse changed evidence. Ambiguous definitions
+  remain unassessed; do not guess native precedence or substitute library entries.
+- Preserve selection, fallback rules, historical receipts and one complete proof
+  read. This descriptive screen does not assess effective native modifications,
+  alternative restraints, achieved geometry or diffraction refinement.
+
 ### Show checked preparation notes without repeating its proof read (C247)
 
 - Ordinary PostMR and explicit publication expose generation/fallback notes from

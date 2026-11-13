@@ -140,7 +140,7 @@
 
 <a id="current-capability-boundary-c220"></a>
 
-## Current capability boundary (C247)
+## Current capability boundary (C249)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -158,7 +158,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
 | ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
-| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. C226 adds maintained owned-capture/whole-plane numerical execution and cold replay. C227 selects and publishes an ordered source-bound linear/plane result with full ordinary NAR context and derivatives. | C234–C237 integrate explicit owned support through the same repair request, including real selection and stopped-native fallback. C242 carries that exact supplied support through a complete request and actual ReadySet. C244 adds explicitly enabled graph-selected support acquisition; C245 exposes it through prepare-run and result notes. C246 forwards the choice through checked PostMR and schema-2 campaigns; C247 exposes publication/status notes; final selected-plane reporting and broader recovery coverage remain open. No universal flattening rule. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
+| Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. C226 adds maintained owned-capture/whole-plane numerical execution and cold replay. C227 selects and publishes an ordered source-bound linear/plane result with full ordinary NAR context and derivatives. | C234–C237 integrate explicit owned support through the same repair request, including real selection and stopped-native fallback. C242 carries that exact supplied support through a complete request and actual ReadySet. C244 adds explicitly enabled graph-selected support acquisition; C245 exposes it through prepare-run and result notes. C246 forwards the choice through checked PostMR and schema-2 campaigns; C247 exposes publication/status notes; C249 separately reports explicit selected-CIF coverage. Remaining recovery/storage acceptance and effective native plane adoption remain open. No universal flattening rule. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
@@ -790,7 +790,7 @@ C223 reconstructs those messages when validating old checkpoint receipts.
 This adds no request schema, chemical rule, worker, time/storage allowance, default
 activation or new publication authority. C246 adds direct PostMR/campaign
 forwarding; C247 carries the notes through publication/status without changing old
-publication meaning. Final selected-plane adoption reporting and later preparation children
+publication meaning. Effective native plane adoption and later preparation children
 remain explicit follow-up work. Focused tests and read-only projection of C244's
 actual Phenix success/timeout evidence are recorded in
 `ordinary_plane_support_entry_2026_11_13`; no new native run or full suite.
@@ -813,7 +813,7 @@ Older readers reject this new optional field; old recipes need no migration.
 The existing publication/recovery rules still apply. Classified optional failure
 can use only an independently qualified fallback, never a second unchecked run.
 Exact-result notes describe generation; C247 carries them through ordinary publication
-and campaign status. Final selected-plane coverage remains separate work. No scientific rule, native command,
+and campaign status. C249 now reports scoped explicit selected-CIF coverage separately. No scientific rule, native command,
 request/checkpoint schema, default or time/storage allowance changes.
 
 ### Preserve honest notes when saving and using the preparation (C247)
@@ -837,6 +837,31 @@ outcome is recorded, rather than claiming that support is unavailable globally.
 Malformed proof still refuses; no cached verdict, fallback authority or new native
 execution is introduced by formatting. Failed/interrupted publication keeps its
 existing exact-attempt recovery and REVIEW meaning.
+
+### Report the planes in the exact selected dictionaries (C249)
+
+Generation success and selected-restraint coverage answer different questions.
+The ordinary checked reader now uses C208's existing source-graph screen on the
+exact selected dictionaries after its single complete proof read. Component source
+snapshots and ordered dictionary hashes come from that verified result. Inputs
+are checked again afterward; changed evidence cannot become a harmless note.
+The same notes reach explicit publication, checked PostMR and campaign status
+through C247, without changing saved publication messages or selection authority.
+
+One explicit selected definition per component is required. Missing, ambiguous,
+unreadable or unsupported definitions remain unassessed; the screen does not
+infer native dictionary precedence or substitute installed-library definitions.
+It reports supported centres with explicit planes and centres missing them.
+The rule stays graph-selected, not residue-selected. Native modifications,
+alternative restraints, achieved geometry and diffraction refinement are outside
+this descriptive screen. Absent historical generation records keep their meaning.
+
+Read-only replay of the two C244 Phenix 2.2.1-6174 controls reports C2/C4/C5
+coverage in the selected successful PDU dictionary and C5 missing in the timeout
+control. All 698/506 files keep their bytes and timestamps. This is actual retained
+native evidence through the ordinary reader with a location-only adapter, not
+fresh construction, publication or refinement. The ledger records focused tests,
+input/runner hashes and the exact scope; no scientific files enter Git.
 
 ### Obtain missing plane support inside the complete request (C244)
 
@@ -11548,7 +11573,7 @@ their behavior. Source/consumer checks and immutable ownership remain unchanged.
 **Limits:** these are source-preservation and diagnostic restraint-mechanics
 checks, not successful diffraction refinement. C244–C246 connect explicitly requested
 source-supported plane generation through this route; C247 reports its outcomes.
-Final selected-plane coverage and broader recovery qualification remain open. C223 carries the exact chosen model/CIF/PHIL set into an explicitly requested
+C249 reports explicit selected-CIF coverage; effective native adoption and broader recovery qualification remain open. C223 carries the exact chosen model/CIF/PHIL set into an explicitly requested
 initial review checkpoint; C224 composes this through explicit ordinary PostMR.
 C225 adds explicit frozen campaign entry. Q05 still owns later preparation children; Q06 must
 validate actual refinement with all NARestraints terms and Free-R handling intact.

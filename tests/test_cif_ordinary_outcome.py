@@ -152,3 +152,32 @@ def test_resume_keeps_frozen_automatic_plane_choice(tmp_path,monkeypatch):
     monkeypatch.setattr(m,'read_ordinary_postmr_result',lambda run,**kw:kw)
     with patch.object(m,'initialize_ordinary_postmr_request',side_effect=AssertionError('No repeat construction')):
         assert m.continue_checked_postmr(tmp_path,object(),after_attempt=1,store_root=tmp_path/'store')=={'attempt_number':2}
+
+
+
+@pytest.mark.parametrize('covered', [False, True])
+def test_ordinary_notes_distinguish_generation_from_selected_dictionary_coverage(tmp_path, monkeypatch, covered):
+    from copy import deepcopy
+    from nasolve import cif_ordinary_postmr as m
+    from tests.test_cif_plane_coverage import values, plane, write, bound
+    exact = selected_result(tmp_path)
+    source = values(); selected = deepcopy(source)
+    if covered: plane(selected, ['C', 'O', 'N', 'R'])
+    bundle = tmp_path/'bundle'; folder = bundle/'components/XYZ/snapshot/entry'; folder.mkdir(parents=True)
+    source_path = write(folder, source, 'source.cif')
+    dictionary = write(tmp_path, selected, 'selected.cif')
+    exact['runtime']['dictionaries'] = [dictionary]
+    exact['runtime']['manifest']['resources'] = {'dictionaries': [dict(sha256=bound(dictionary)['sha256'])]}
+    exact['preparation'] = {'bundle_directory': bundle, 'report': {'selected_attempts': {'XYZ': 1}}}
+    exact['result']['plane_generation'] = {'components': {'XYZ': dict(status='OWNED_SUPPORT_READY',
+        missing_centres=['C'], source_sha256=bound(source_path)['sha256'])}}
+    calls = []
+    def read(*args): calls.append(args); return exact
+    monkeypatch.setattr('nasolve.cif_complete_request.read_dictionary_request_result', read)
+    result = m.read_ordinary_postmr_result(tmp_path/'run', attempt_number=1)
+    notes = '\n'.join(result.limitations)
+    assert 'generated source-checked support' in notes
+    assert ('selected dictionary has explicit planes' if covered else 'selected dictionary lacks explicit planes') in notes
+    assert 'XYZ' in notes and 'screened centres C' in notes
+    assert 'alternative restraints' in notes and 'native' in notes
+    assert len(calls) == 1 and result.refinement_ready is False

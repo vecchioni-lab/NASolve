@@ -15,10 +15,11 @@ children and actual complete-restraint refinement remain separate gates.
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not
-mutable outer inputs; unknown ownership blocks recovery. Ordinary callers do not
-yet activate this option through direct PostMR/campaign commands. C245 forwards
-it through prepared/ordinary intake and `cif-doctor prepare-run`, with per-component
-generation notes on the existing result reader. Display notes do not alter the
+mutable outer inputs; unknown ownership blocks recovery. C245 forwards it through prepared/ordinary intake and `cif-doctor prepare-run`;
+C246 connects explicit checked PostMR and campaign choices. C247 carries verified
+generation notes through publication/status. C249 separately describes explicit
+source-graph plane coverage in the selected dictionaries, without claiming
+effective native restraint membership or changing selection. Display notes do not alter the
 published message used to validate historical checkpoints. Classified optional
 failure still requires independent qualification; no new executor or chemical rule.
 

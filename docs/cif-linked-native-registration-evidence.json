@@ -90748,5 +90748,100 @@
       "Later preparation-child publication",
       "Actual combined-chemistry refinement controls"
     ]
+  },
+  "selected_dictionary_planes_2026_11_13": {
+    "milestone": "C249",
+    "base_commit": "de117a2db6f76c671935a29bc61093c73870d302",
+    "before": "Generation notes did not assess the exact selected dictionaries; C247 probe was exploratory only.",
+    "after": "Existing source-graph screen projects explicit selected-CIF coverage on ordinary read/publication/status with pinned input hashes and no extra complete proof read.",
+    "prior_work": [
+      "C208 graph screen",
+      "C247 selected-plane investigation and note propagation",
+      "C248 mixed ownership controls"
+    ],
+    "file_sha256": {
+      "src/nasolve/cif_plane_coverage.py": "e7190b6af0b1381c849a9104ed79d4070cd99f13105eb667c21a0b1b2fe3d752",
+      "src/nasolve/cif_ordinary_postmr.py": "18e3a5ffbcf602b38e565198cc44e490e31eaa3484c4ef8ab579262e383beb95",
+      "tests/test_cif_plane_coverage.py": "932d403555302029e5a1e4ce11ad16bd1121155371d130584d3767d702f9a538",
+      "tests/test_cif_ordinary_outcome.py": "98ff3bb79029ef79fe19736224d6bbd30ff3f12753f6ea26cc689853559c90c4"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_plane_coverage.py tests/test_cif_ordinary_outcome.py -k 'selected_dictionary or distinguish_generation' --tb=short",
+        "result": "11 expected failures, 49 deselected in 0.79s before implementation"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_plane_coverage.py tests/test_cif_ordinary_outcome.py tests/test_cif_postmr_publication.py tests/test_postmr_runtime.py tests/test_campaign_stages.py --tb=short",
+        "result": "176 passed in 11.62s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_plane_coverage.py tests/test_cif_ordinary_outcome.py --tb=short",
+        "result": "61 passed in 0.71s after final returned-assessment hash binding"
+      }
+    ],
+    "native_saved_read": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CHECKOUT/src python EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c249_selected_read.py",
+      "runner_sha256": "fadfee57c8c349cfcd606778d943b2d432e4ea42b1421ea2e04eaaafae205c55",
+      "result": {
+        "status": "NATIVE_EVIDENCE_SELECTED_DICTIONARY_REPORTING_PASS",
+        "results": {
+          "success": {
+            "unchanged_files": 698,
+            "selected": "readyset_checked_model",
+            "readyset_status": "COMPLETED",
+            "restraints": 5,
+            "message": "ReadySet supplied the checked model and matching restraints.",
+            "limitations": [
+              "These preparation checks do not establish diffraction-refinement success.",
+              "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+              "PDU: generated source-checked support for screened centres C5.",
+              "Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.",
+              "PDU: selected dictionary has explicit planes for screened centres C2, C4, C5; this is scoped coverage, not refinement qualification."
+            ],
+            "elapsed_seconds": 103.63252754200948,
+            "request": {
+              "anchor": "live_tests_directory",
+              "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+            }
+          },
+          "timeout": {
+            "unchanged_files": 506,
+            "selected": "readyset_checked_model",
+            "readyset_status": "COMPLETED",
+            "restraints": 5,
+            "message": "ReadySet supplied the checked model and matching restraints.",
+            "limitations": [
+              "These preparation checks do not establish diffraction-refinement success.",
+              "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+              "PDU: optional plane generation timed out; generated output was not used. Initially missing screened centres: C5.",
+              "Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.",
+              "PDU: selected dictionary lacks explicit planes at screened centres C5; alternative restraints may still contribute."
+            ],
+            "elapsed_seconds": 88.18539012499969,
+            "request": {
+              "anchor": "live_tests_directory",
+              "path": "244_Cedar_automatic-plane-failure-ch6m6b9g/relocated/request"
+            }
+          }
+        },
+        "source_unchanged": true,
+        "source_sha256": {
+          "src/nasolve/cif_plane_coverage.py": "e7190b6af0b1381c849a9104ed79d4070cd99f13105eb667c21a0b1b2fe3d752",
+          "src/nasolve/cli.py": "4ffcced361381aeb5d7a425d12d6df5de40120cd1f5137a439b4f4b679db3447",
+          "src/nasolve/cif_ordinary_postmr.py": "18e3a5ffbcf602b38e565198cc44e490e31eaa3484c4ef8ab579262e383beb95"
+        },
+        "maximum_resident_bytes": 667795456,
+        "scope": "Actual C244 Phenix 2.2.1-6174 / dispatcher 2.2.1 saved success/timeout proof through ordinary selected-dictionary coverage reporting; only location adapter replaced; not fresh ordinary construction or publication; no new native execution, data copy or full suite"
+      }
+    },
+    "compatibility": "No saved schema, historical message, checkpoint, selection or qualification change. Live descriptive notes are additive; no migration. Unsupported or ambiguous definitions remain unassessed, changed evidence refuses.",
+    "limits": [
+      "Explicit supported source-graph planes only",
+      "No effective native-modifier membership, alternative-restraint adequacy, achieved geometry or diffraction-refinement claim",
+      "No new native run; retained native evidence with request-location adapter",
+      "No science artifacts committed or retired"
+    ],
+    "full_regression": false,
+    "last_full_green": "C220/583d30df: 9178 tests and 276 subtests"
   }
 }

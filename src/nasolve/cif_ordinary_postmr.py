@@ -125,6 +125,39 @@ def _plane_support_limitations(report):
     return tuple(notes)
 
 
+def _selected_plane_limitations(exact):
+    """Project selected-CIF coverage from the existing verified request read."""
+    from .cif_dictionary_sites import _need
+    from .cif_plane_coverage import audit_selected_trigonal_planes
+    generated = exact['result'].get('plane_generation')
+    runtime = exact['runtime']
+    if generated is None or runtime is None:
+        return ()
+    prepared = exact.get('preparation')
+    resources = runtime['manifest'].get('resources')
+    if prepared is None or resources is None:
+        return ('Selected dictionary plane coverage was not assessed: source-bound input references are unavailable in this reader result.',)
+    plan = generated['components']
+    _need(set(plan) == set(prepared['report']['selected_attempts']) and all(
+        isinstance(c, str) and c.isascii() and c.isalnum() for c in plan),
+        'Selected plane screen differs from prepared component ownership')
+    refs = resources['dictionaries']
+    _need(len(refs) == len(runtime['dictionaries']), 'Selected dictionary references differ')
+    sources = {code:dict(path=Path(prepared['bundle_directory'])/'components'/code/'snapshot/entry/source.cif',
+                        sha256=row['source_sha256']) for code,row in plan.items()}
+    dictionaries = [dict(path=path,sha256=ref['sha256']) for path,ref in zip(runtime['dictionaries'],refs)]
+    report = audit_selected_trigonal_planes(sources, dictionaries)
+    notes = ['Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.']
+    for code, row in report['components'].items():
+        if row['status'] == 'UNASSESSED':
+            notes.append(f"{code}: selected dictionary plane coverage is unassessed: {row['reason']}")
+        elif row['missing_explicit_planes']:
+            notes.append(f"{code}: selected dictionary lacks explicit planes at screened centres {', '.join(row['missing_explicit_planes'])}; alternative restraints may still contribute.")
+        else:
+            notes.append(f"{code}: selected dictionary has explicit planes for screened centres {', '.join(c['centre'] for c in row['centres'])}; this is scoped coverage, not refinement qualification.")
+    return tuple(notes)
+
+
 def _read_ordinary_postmr_result(run_directory, *, attempt_number):
     """Read an exact completed preparation, without discovering or running tools.
 
@@ -163,6 +196,7 @@ def _read_ordinary_postmr_result(run_directory, *, attempt_number):
         limitations=(
             'These preparation checks do not establish diffraction-refinement success.',
             *_plane_support_limitations(exact['result']),
+            *_selected_plane_limitations(exact),
         ),
     )
 

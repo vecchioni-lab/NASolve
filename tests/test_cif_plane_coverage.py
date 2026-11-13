@@ -151,3 +151,78 @@ def test_input_change_is_refused_even_with_otherwise_valid_report(tmp_path,monke
     monkeypatch.setattr(module,"_planes",mutate)
     with pytest.raises(ValueError,match="input changed"):
         module.audit_trigonal_plane_coverage(s,d,"XYZ")
+
+
+
+def bound(path):
+    from hashlib import sha256
+    return {'path': path, 'sha256': sha256(path.read_bytes()).hexdigest()}
+
+
+@pytest.mark.parametrize('covered', [False, True])
+def test_selected_dictionary_coverage_uses_actual_selected_bytes(tmp_path, covered):
+    from nasolve.cif_plane_coverage import audit_selected_trigonal_planes
+    source = values('ABC'); selected = deepcopy(source)
+    if covered:
+        plane(selected, ['C', 'O', 'N', 'R'])
+    s = write(tmp_path, source, 'source.cif'); d = write(tmp_path, selected, 'selected.cif')
+    before = [(p.read_bytes(), p.stat().st_mtime_ns) for p in (s, d)]
+    result = audit_selected_trigonal_planes({'ABC': bound(s)}, [bound(d)])
+    row = result['components']['ABC']
+    assert row['status'] == ('SCOPED_EXPLICIT_COVERAGE_PASS' if covered else 'REVIEW')
+    assert row['missing_explicit_planes'] == ([] if covered else ['C'])
+    assert row['dictionary_indices'] == [0]
+    assert result['native_membership'] == 'NOT_ASSESSED'
+    assert result['scientific_approval'] == 'NOT_RUN'
+    assert [(p.read_bytes(), p.stat().st_mtime_ns) for p in (s, d)] == before
+
+
+@pytest.mark.parametrize('defect', ['ambiguous', 'missing', 'graph', 'unreadable'])
+def test_selected_dictionary_coverage_refuses_to_guess_effective_definitions(tmp_path, defect):
+    from nasolve.cif_plane_coverage import audit_selected_trigonal_planes
+    source = values('ABC'); selected = deepcopy(source)
+    s = write(tmp_path, source, 'source.cif')
+    if defect == 'graph': selected['_chem_comp_atom.charge'][0] = '1'
+    if defect == 'missing': selected = values('DEF')
+    plane(selected, ['C', 'O', 'N', 'R'])
+    d = write(tmp_path, selected, 'selected.cif'); dictionaries = [bound(d)]
+    if defect == 'ambiguous': dictionaries.append(bound(write(tmp_path, selected, 'duplicate.cif')))
+    if defect == 'unreadable':
+        bad = tmp_path/'unsupported.cif'; bad.write_text('not CIF data')
+        dictionaries.append(bound(bad))
+    row = audit_selected_trigonal_planes({'ABC': bound(s)}, dictionaries)['components']['ABC']
+    assert row['status'] == 'UNASSESSED' and row['reason']
+    assert 'missing_explicit_planes' not in row  # Unknown is not absent coverage.
+
+
+@pytest.mark.parametrize('target', ['source', 'dictionary'])
+def test_selected_dictionary_coverage_checks_bound_hashes_before_assessment(tmp_path, target):
+    from nasolve.cif_plane_coverage import audit_selected_trigonal_planes
+    s = write(tmp_path, values(), 'source.cif'); d = write(tmp_path, values(), 'selected.cif')
+    source, dictionary = bound(s), bound(d)
+    (s if target == 'source' else d).write_text('changed after qualification')
+    with pytest.raises(ValueError, match='changed'):
+        audit_selected_trigonal_planes({'XYZ': source}, [dictionary])
+
+
+def test_selected_dictionary_change_during_unassessed_screen_is_not_hidden(tmp_path, monkeypatch):
+    import nasolve.cif_plane_coverage as m
+    s = write(tmp_path, values(), 'source.cif'); d = write(tmp_path, values(), 'selected.cif')
+    source, dictionary = bound(s), bound(d)
+    def changed(*args):
+        d.write_text('changed during screen')
+        raise ValueError('unsupported graph')
+    monkeypatch.setattr(m, 'audit_trigonal_plane_coverage', changed)
+    with pytest.raises(ValueError, match='changed'):
+        m.audit_selected_trigonal_planes({'XYZ': source}, [dictionary])
+
+
+
+def test_selected_dictionary_assessment_cannot_describe_different_bytes(tmp_path, monkeypatch):
+    import nasolve.cif_plane_coverage as m
+    s = write(tmp_path, values(), 'source.cif'); d = write(tmp_path, values(), 'selected.cif')
+    assessment = m.audit_trigonal_plane_coverage(s, d, 'XYZ')
+    assessment['dictionary_sha256'] = '0'*64
+    monkeypatch.setattr(m, 'audit_trigonal_plane_coverage', lambda *args: assessment)
+    with pytest.raises(ValueError, match='assessment differs'):
+        m.audit_selected_trigonal_planes({'XYZ': bound(s)}, [bound(d)])

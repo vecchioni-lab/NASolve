@@ -21,7 +21,7 @@ exact choice as a review checkpoint for inspection and trial refinement, includi
 a checked fallback. Schema-2 campaign recipes can explicitly choose the same
 route and preserve its genuine receipt. An interrupted save can finish without
 rebuilding the model; campaign retry preserves the old run and starts fresh.
-Q04/Q05 still need final selected-plane coverage reporting, broader recovery coverage and later preparation children
+Q04/Q05 still need remaining recovery/storage acceptance and later preparation children
 before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
@@ -45,6 +45,11 @@ A fresh native control obtains support and preserves explicit C5 coverage throug
 ReadySet. A second deliberately times out generation, excludes its partial output,
 and still reaches ReadySet through independently qualified repair, with missing C5
 coverage reported honestly. Both saved results survive relocation unchanged.
+The ordinary reader now repeats the existing source-graph screen on the exact
+selected dictionaries: successful support shows explicit C2/C4/C5 planes; the
+timeout control reports C5 missing. Ambiguous or unsupported definitions are
+unassessed. This checks explicit dictionary entries, not native modifications,
+alternative-restraint adequacy, achieved geometry or diffraction refinement.
 
 A deliberately stopped plane check can retain the independently checked original,
 with its missing plane coverage reported honestly. Malformed evidence or unknown

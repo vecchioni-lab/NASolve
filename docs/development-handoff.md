@@ -1,102 +1,77 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C248. Active **cedar**, checkout NASolve-c96.
-Base C247/2419815 (pushed); current HEAD supplies final identity. The
-[queue](cif-doctor-completion-queue.md) owns order and the
+Updated **2026-11-13**, C249. Active **cedar**, checkout NASolve-c96.
+Base C248/de117a2 (pushed); current HEAD supplies final identity. The
+[queue](cif-doctor-completion-queue.md) owns work order and the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
 ## Current result
 
-C248 adds four mixed-component ownership/recovery controls using the existing
-fixture: success/rejection in either component, stopped interruption with fresh
-outer retry, and unknown partial reservation. Existing production code passes;
-no runtime change, new schema or native chemistry claim. 23 distinct automatic-plane
-cases pass across the focused run (22 passes) and the corrected exception-type
-assertion rerun (1 pass). Exact scope/commands are in ledger
-`mixed_plane_child_recovery_2026_11_13`. No jobs remain active.
+C249 reports explicit source-graph planes in the exact selected dictionaries,
+separately from generation outcomes. Reuse C208's graph screen and the existing
+single complete proof read. Ambiguous/unsupported definitions remain unassessed;
+changed input hashes refuse. No guess about dictionary precedence, effective
+native modifiers, alternative restraints, achieved geometry or refinement success.
+C247 already carries these notes through publication, PostMR and campaign status.
+Old messages/receipts, selections, fallback rules and saved schemas stay unchanged.
 
-
-C246 connects explicit automatic plane support through checked PostMR and frozen
-schema-2 campaign recipes. C247 now carries already-verified generation notes
-through publication and ordinary output, without rereading the proof. The
-receipt-only API remains; historical preparation/checkpoint messages stay unchanged.
-Campaign PostMR receipts may contain validated `preparation_notes`; text/JSON status
-retains those notes through later stages and remains read-only. Descriptive notes
-do not change scientific gates, selection or warning classification.
-
-Historical results without a generation record say so; they no longer suggest
-that support is unavailable globally. Generated support still does not prove final
-plane adoption or diffraction-refinement success. Malformed proof cannot produce
-a fallback or a usable result. No new executor, proof cache or native command.
-
-Prior-work review: reuse C223 publication/partial-save recovery, C245 exact notes
-and C246 forwarding. The existing writer already has the verified result; return
-its notes rather than rereading science or changing receipt hashes.
+Source changes: `cif_plane_coverage.py`, `cif_ordinary_postmr.py`; extend the two
+existing test modules. No native command, new executor, proof cache or science
+artifact. Additive descriptive live reporting only; old requests need no migration.
+C246 explicit ordinary/campaign forwarding and C248 mixed ownership controls
+remain intact. C248 found no production defect; its 23 distinct focused cases
+passed across the original run and corrected exception-type assertion rerun.
 
 ## Validation and reviewer handoff
 
-Source: ordinary result/publication helpers, PostMR return value, CLI, campaign
-stage/receipt/status readers. Existing tests extended; no new test module or
-scientific artifact. Additive live API and optional campaign display metadata only;
-older readers may omit notes, old records need no migration. All earlier run choices
-and the selected model/CIF/PHIL set remain unchanged.
-
 Python 3.12.14, `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
 
-- Initial publication/ordinary callers: **148 passed**, 17.20 s.
-- Final campaign/publication callers: **151 passed, 13 subtests**, 16.66 s.
-- Historical no-generation wording: **23 passed**, 0.54 s.
-- New publication tests fail before implementation; campaign status/typed-note
-  checks likewise fail before their connection. Repeated publication verifies once;
-  saved receipt bytes/mtimes stay fixed. Existing relocation/recovery checks pass.
-- Read-only campaign status retains notes after later refinement without altering
-  any saved bytes/mtimes or changing the scientific outcome.
+- New C249 regressions before implementation: **11 expected failures**.
+- Five affected coverage/ordinary/publication/PostMR/campaign modules:
+  **176 passed**, 11.62 s.
+- After final returned-assessment hash binding: both changed test modules
+  **61 passed**, 0.71 s.
+- Actual retained C244 Phenix 2.2.1-6174 / dispatcher 2.2.1 proof: success/timeout
+  ordinary-reader controls both pass, **698/506 files unchanged**. The successful
+  selected PDU dictionary has explicit C2/C4/C5 planes; timeout still lacks C5.
+  Runtime remains `readyset_checked_model` with five ordered PHIL files. No
+  diffraction-refinement claim. Read times 103.63/88.19 s; process peak 667,795,456 B.
 
-Exact commands and hashes: ledger `published_preparation_notes_2026_11_13`.
-No full suite or new Phenix/Coot run. C246 already passed 298 affected tests + 47
-subtests, 139 smoke tests + 6 subtests and 22 process tests + 19 subtests. Its large
-workflow profile was deliberately bounded, not completed. Keep focused scope;
-do not repeat thousands of unchanged tests for display-only integration.
-Last wholly green full remains C220/583d30df: 9,178 tests + 276 subtests.
-
-## Selected-plane investigation completed
-
-Read-only C244 proof replay plus the existing source/graph screen found explicit
-C2/C4/C5 planes in the selected successful PDU CIF; the timeout control's selected
-CIF still lacks C5. All 698/506 files retain bytes/mtimes. No native execution or
-numerical/refinement approval. Exact results and runner hash are under C247's
-`selected_plane_investigation` ledger record; local runner is in the everyday
-checkout's ignored `branch-artifacts/cedar/runners/c247_selected_plane_probe.py`.
-This diagnostic is not yet integrated into ordinary selected-plane reporting.
-Both proof-read jobs and all test jobs are stopped. Do not rerun merely to recover
-context; preserve the generation-versus-selected-coverage distinction.
+Exact commands/hashes and scope: ledger `selected_dictionary_planes_2026_11_13`.
+The saved-native replay substitutes only the request-location adapter, forbids
+native processes and old source/SDK paths, and checks all bytes/timestamps.
+It is not fresh ordinary construction/publication. No new native run or full suite.
+Last wholly green full remains C220/583d30df: **9,178 tests + 276 subtests**.
+No native or test jobs remain active; use focused checks for the next bounded change.
 
 ## Next work — finish Q04/Q05
 
-1. Establish what final selected-plane coverage can honestly report; preserve
-   source/selection/graph boundaries and reuse current screens. Finish wider mixed,
-   failure and interruption coverage before claiming Q04 closure.
+1. Audit remaining prelaunch/deadline/failure boundaries against existing process
+   ownership tests before adding machinery. Unknown ownership must never authorize
+   retry or fallback; preserve every partial output and require a fresh attempt.
 2. Define later preparation-child publication without replacing the immutable root
-   or falsely making new MR construction descend from a refined model. Reuse
-   existing C223–C225 publication and recovery, including genuine fallback receipts.
+   or falsely making new MR construction descend from refined coordinates. Reuse
+   C223–C225 publication/recovery and genuine fallback receipts.
 3. Implement known-stopped, interruption-safe retirement of redundant successful
    working output; retain reproducible inputs/proof and measure whole-request,
    temporary disk and memory after relocation. No persistent verdict cache.
 
-C245–C247 close explicit ordinary/campaign forwarding and generation reporting.
-Q06 real refinement and Q07 combined/held-out controls follow Q04/Q05. Linden's
-read-only TopoStitch is isolated on Willow; preserve proposal versus adopted
-model/restraint distinctions and do not edit that worktree.
+Q06 real complete-restraint refinement and Q07 combined/held-out controls follow
+Q04/Q05. Scoped selected-CIF reporting does not need a second universal chemistry
+screen; effective native restraints and achieved geometry belong to Q06.
+Linden's read-only TopoStitch is isolated on Willow; keep proposal versus adoption
+clear and do not edit that worktree. Local coordination is authorized.
 
-AutoPhase naming is queued as the **final Q16 implementation task**, followed
-by final combined regression and merge review. The [commit-pinned machine-readable
-audit](autophase-rename-plan.json) records native-call and saved-run compatibility,
-plus the Alder phase-label/Cedar preparation-validation differences to preserve.
-This is planning only; Q04/Q05 remain next and no commands have been renamed.
+AutoPhase naming is queued as the **final Q16 implementation task**, followed by
+combined regression and merge review. The [commit-pinned machine-readable audit](autophase-rename-plan.json)
+records native-call/saved-run compatibility and Alder phase-label/Cedar preparation
+validation differences. Planning only; no commands have been renamed.
 
 ## Preserve local evidence
 
-Protected NASolve-cedar remains at e7451eed with local phaser.py/unpublished data.
-Everyday NASolve/pine retains its untracked science, patches, environments and
-Linden snapshots. Work only in NASolve-c96/cedar; no new branch or merge.
+Protected NASolve-cedar stays at e7451eed with local phaser.py/unpublished data.
+Everyday NASolve/pine retains untracked science, patches, environments and Linden
+snapshots. Work only in NASolve-c96/cedar; no new branch or merge. Local runner:
+`branch-artifacts/cedar/runners/c249_selected_read.py` in the everyday checkout.
+No retained scientific artifacts are copied into Git or silently retired.

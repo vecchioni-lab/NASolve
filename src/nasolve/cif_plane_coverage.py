@@ -131,3 +131,75 @@ def audit_trigonal_plane_coverage(source, dictionary, code):
     finally:
         if source.read_bytes() != original or dictionary.read_bytes() != before:
             raise ValueError("Plane-coverage input changed during assessment")
+
+
+
+def audit_selected_trigonal_planes(sources, dictionaries):
+    """Describe explicit selected-CIF coverage against already qualified source pins.
+
+    Live references contain path and sha256; callers retain selection authority.
+    Reuse the source-graph screen without guessing dictionary precedence, applying
+    native modifications, or inferring sufficient alternative restraints. Unknown
+    chemistry is unassessed; changed/missing evidence is an error, never a note.
+    """
+    import re
+    from .cif_dictionary_sites import _need, _read
+    from .ligand_profiles import dictionary_component_codes
+
+    _need(isinstance(sources, dict) and sources and all(
+        isinstance(code, str) and code.isascii() and code.isalnum() for code in sources),
+        'Require explicit source component identities')
+    _need(isinstance(dictionaries, (list, tuple)), 'Require ordered selected dictionaries')
+    references = [*sources.values(), *dictionaries]
+
+    def checked(reference):
+        _need(isinstance(reference, dict) and set(reference) == {'path', 'sha256'}
+              and isinstance(reference['sha256'], str)
+              and re.fullmatch('[0-9a-f]{64}', reference['sha256']), 'Require bound plane-screen references')
+        path = Path(reference['path'])
+        _need(sha256(_read(path)).hexdigest() == reference['sha256'],
+              'Selected plane-screen input changed after qualification')
+        return path
+
+    for reference in references:
+        checked(reference)
+    try:
+        members = []; unreadable = []
+        for index, reference in enumerate(dictionaries):
+            try:
+                members.append(dictionary_component_codes(Path(reference['path'])))
+            except ValueError as exc:
+                members.append(None); unreadable.append(f'dictionary {index}: {exc}')
+        rows = {}
+        for code, source in sorted(sources.items()):
+            indices = [i for i, codes in enumerate(members) if codes is not None and code in codes]
+            row = dict(status='UNASSESSED', dictionary_indices=indices)
+            if unreadable:
+                row['reason'] = 'Selected dictionary membership could not be read: ' + '; '.join(unreadable)
+            elif len(indices) != 1:
+                row['reason'] = 'Require one explicit selected dictionary; effective precedence or library definitions were not inferred.'
+            else:
+                try:
+                    audit = audit_trigonal_plane_coverage(Path(source['path']),
+                        Path(dictionaries[indices[0]]['path']), code)
+                except ValueError as exc:
+                    row['reason'] = str(exc)
+                else:
+                    _need(audit['source_sha256'] == source['sha256']
+                          and audit['dictionary_sha256'] == dictionaries[indices[0]]['sha256'],
+                          'Selected plane-screen assessment differs from bound inputs')
+                    row.update(status=audit['status'], missing_explicit_planes=audit['missing_explicit_planes'],
+                        centres=[dict(centre=c['centre'], coverage=c['coverage']) for c in audit['centres']],
+                        unassessed_centres=len(audit['unassessed_carbon_centres']))
+                    if audit['status'] == 'UNASSESSED':
+                        row['reason'] = 'No centres meet the supported source-graph rule.'
+            rows[code] = row
+        return dict(policy_id='cif-selected-dictionary-trigonal-plane-coverage-v1',
+            coverage_policy=POLICY_ID, components=rows,
+            source_sha256={code:ref['sha256'] for code,ref in sorted(sources.items())},
+            dictionary_sha256=[ref['sha256'] for ref in dictionaries],
+            native_membership='NOT_ASSESSED', scientific_approval='NOT_RUN', automatic_adoption=False)
+    finally:
+        # Do not convert a concurrent input change into an unsupported-chemistry note.
+        for reference in references:
+            checked(reference)
