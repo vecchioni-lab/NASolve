@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C256
+## Near-term closure estimate at C257
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -44,7 +44,11 @@ scope. Exact C252 scope and results are in the current handoff and evidence ledg
 
 Reuse C223–C225 publication and ordinary/campaign entry, C228–C239 compact exact
 proof, C244 ownership, C249 selected-CIF coverage and C251 alternative publication.
-Historical workstation archiving is separate from the runtime retention policy.
+C257 connects archived attempts to ordinary history/result reads with persistent
+public paths; its copied native request falls from 181.6 MB to 33.7 MB after manual
+test-copy duplicate removal. The product still needs known-stopped, interruption-safe
+retirement/recovery and campaign resource acceptance. Do not repeat transport or
+reader integration. Historical workstation archiving is separate from runtime retention.
 Effective native planes, alternative-restraint adequacy and achieved geometry are
 Q06 checks; explicit CIF plane membership alone cannot close them.
 

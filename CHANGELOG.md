@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read archived attempts through ordinary preparation (C257)
+
+- Add explicit archive preparation under the existing request lock and an
+  immutable `cif-complete-attempt-retention-v1` storage receipt. Reuse original
+  owner/chemistry checks; preserve request, attempt and finished-record identities.
+- Ordinary history and exact-result reads reconstruct archived working evidence
+  while keeping public model, dictionary, restraint and manifest paths stable.
+  Changed/missing public files, archive drift and unretained returned paths refuse.
+  A complete unpublished archive can be recovered without repacking; partial
+  archives remain preserved and do not change ordinary reads.
+- A copied real C244 request reads normally after removal of redundant test-copy
+  files: 181.6 MB becomes 33.7 MB, with the same selected model/five PHILs/two CIFs.
+  All original scientific files remain unchanged. Product retirement/deletion is
+  not yet implemented; this explicit API is not enabled automatically. Older
+  readers reject the new retention folder; untouched requests keep their behavior.
+
 ### Reconstruct a complete attempt from its original inventory (C256)
 
 - Add explicit partitioned complete-attempt archive transport for the existing v2

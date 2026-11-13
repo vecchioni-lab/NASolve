@@ -142,7 +142,7 @@
 
 <a id="current-capability-boundary-c251"></a>
 
-## Current capability boundary (C256)
+## Current capability boundary (C257)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -170,6 +170,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; default activation and remaining phasing/native acceptance stay open. No actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and remaining phasing/native acceptance stay open. |
 | Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Default activation, alternative-aware phasing and real refinement remain open. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
+| Archived working evidence | C257 explicitly archives complete v2 attempts and connects ordinary history/exact-result readers to the same owner/chemistry checks, keeping all returned public paths stable. A copied native request reads at 33.7 MB instead of 181.6 MB. | No product retirement/deletion yet. Failed/active work, campaign-scale acceptance and interrupted retirement remain Q04; old readers refuse the new storage receipt. |
 | Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, alternative-aware phasing, solution-PDF reporting and per-family release coverage remain integration milestones. |
 
 Source state and numerical usability are independent. Missing OP3 never means
@@ -1361,6 +1362,52 @@ complete native compact continuation and cold relocation remain the scientific
 storage evidence; C229 adds request integration, not a new native/refinement claim.
 Exact commands and compatibility: ledger compact_request_storage_2026_11_12.
 
+### Keep ordinary reads and public paths stable with archives (C257)
+
+`cif_attempt_retention.prepare_attempt_archive(request, attempt_number)` explicitly
+prepares a complete returned attempt under the existing request lock. It first
+replays normal history, packs or recovers the exact C256 archive, replays the same
+complete owner from that archive, and checks every returned path before publishing
+`retention/attempt-NNNN/archive.json`. This schema-1 receipt uses
+`cif-complete-attempt-retention-v1` and binds original request/attempt record hashes,
+the original finished-file checksum and the exact archive path/checksum/size.
+It changes neither scientific identity nor selected checkpoint. No native launch.
+
+Ordinary history and exact-result reads reconstruct the archived attempt inside
+C254's bounded view, using existing owner, source, chemistry and inventory checks.
+They verify remaining physical files against the original sealed inventory before
+and after replay. Every public file must remain. Returned paths are rebased only
+under four retained complete bundle roots: `preparation/bundle`, the repair runtime,
+`continuation/runtime` and `continuation/inputs/runtime`. Original `attempt.json`,
+`result.json` and `finished.json` remain too. Unexpected temporary result paths
+refuse. Exact-result reads retain their second owner/inventory check; all historical
+attempts still validate, and an archived first attempt does not authorize reuse of
+its identity for a retry.
+
+Archive publication precedes any future retirement. A complete unpublished archive
+can be verified and bound without rewriting it. A partial archive is preserved and
+refused by the explicit preparation API; it supplies no authority and does not
+change ordinary reads. No source-removal operation or automatic activation exists
+in C257. Only current v2 artifact partitions support this explicit operation;
+legacy requests stay readable without migration. Older readers reject the added
+retention directory. Removing a public model/restraint file or changing retained
+working evidence is not repaired silently from the archive.
+
+**Methods/evidence.** Real C244 preparation was copied to a fresh temporary root,
+archived, and 604 redundant files removed only from that test copy. The normal
+exact-result/history reader returns the same model, five PHILs/two CIFs and **51
+existing persistent paths**, with no original-request reads or native execution.
+Whole-request storage is **33,660,939 B / 96 files**, versus **181,566,343 B / 698
+files**. Archive expansion peaks at **87,440,990 B** under the unchanged 128 MiB
+allowance; Python resident peak is **748,552,192 B**. Archive preparation plus
+ordinary exact read takes **322.80 s**. The read changes no copied file; all original
+bytes/timestamps remain unchanged, and the disposable copy is removed afterward.
+This is storage/reader acceptance of prior Phenix 2.2.1-6174 evidence, not a new
+native execution or diffraction-refinement claim. Focused ownership/relocation/
+corruption controls and exact commands are in `ordinary_attempt_archive_2026_11_13`
+in the [ledger](cif-linked-native-registration-evidence.json). Safe retirement and
+campaign-scale resource acceptance remain Q04 work.
+
 ### Reconstruct a complete sealed attempt (C256)
 
 The current complete-request owner already separately bounds its working files,
@@ -1398,9 +1445,8 @@ shared storage plus complete-attempt transport, including a demonstrated rehashe
 logical-file substitution rejected against the original seal.
 
 The result exposes 45 path occurrences under four stable roots: prepared bundle,
-repair runtime, continuation runtime and continuation's parent runtime. Retention
-must preserve those usable public paths and metadata while connecting archived
-files to ordinary history reads. No retirement transaction or deletion exists yet.
+repair runtime, continuation runtime and continuation's parent runtime. C257 now preserves those usable public paths and metadata through ordinary
+history reads. No retirement transaction or product deletion exists yet.
 This work does not authorize active/failed-run cleanup or 100 concurrent readers.
 Evidence: `complete_attempt_archive_2026_11_13` in the ledger.
 

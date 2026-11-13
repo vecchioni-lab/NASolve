@@ -91816,5 +91816,113 @@
       "Whole-request/campaign storage, memory and concurrency acceptance"
     ],
     "artifacts": "Source/tests/compact metadata only committed. Original 659 attempt files unchanged; temporary archives/views removed; no scientific data uploaded or retired."
+  },
+  "ordinary_attempt_archive_2026_11_13": {
+    "milestone": "C257",
+    "date": "2026-11-13",
+    "status": "ORDINARY_ARCHIVED_HISTORY_AND_STABLE_PUBLIC_PATHS_PASS",
+    "baseline_commit": "ebc9ccf",
+    "source_sha256": {
+      "src/nasolve/cif_attempt_retention.py": "54f6a7f80aa8a19f1219dd35ae9b5f748bb1b941d8abb82691d505f361395a9b",
+      "src/nasolve/cif_complete_request.py": "afe38ecede76e2c8adb1d36f18a1c6052080d77a16fda25c65ed87c19320c2b5"
+    },
+    "new_test_sha256": "e6ea3059ec70f44d174a210998d3761e41989ada5a5531b649d1af74acce4c32",
+    "prior_work": [
+      "C228/C229 exact compact storage and frozen choices",
+      "C237/C238 owner partitions",
+      "C252 ordinary alternatives/publication",
+      "C254 bounded root view",
+      "C256 complete-attempt transport"
+    ],
+    "before": "New archive-reader regression fails on absent interface; previous ordinary history requires the complete physical attempt and rejects the retention folder.",
+    "after": "Explicit archive preparation replays existing owner and publishes immutable storage binding; ordinary history/exact readers reconstruct working evidence and return only preserved public paths, retaining second owner/inventory check and all-history validation.",
+    "schema": {
+      "policy_id": "cif-complete-attempt-retention-v1",
+      "schema_version": 1,
+      "path": "retention/attempt-NNNN/archive.json",
+      "request_attempt_finished_and_checkpoint_unchanged": true,
+      "legacy_migration": false
+    },
+    "focused": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_attempt_retention.py",
+        "result": "19 passed in 126.09 s (initial 19 cases)"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_attempt_retention.py -k 'change_during_read or legacy_layout'",
+        "result": "3 passed, 19 deselected in 26.35 s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_complete_continuation.py tests/test_cif_postmr_publication.py tests/test_cif_compact_workflow.py",
+        "result": "255 passed in 406.35 s"
+      }
+    ],
+    "full_suite": false,
+    "last_full_tested": "C220/583d30df: 9178 tests + 276 subtests",
+    "native_copy_read": {
+      "status": "ORDINARY_ARCHIVED_RESULT_PASS",
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+      },
+      "archive": {
+        "path": "evidence.zip",
+        "sha256": "681f25bb242087d9b0ee755bc4f2115123f20ead0134a6ab83e8b64b7a7a02a0",
+        "size": 15518933
+      },
+      "removed_files": 604,
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "phils": 5,
+      "dictionaries": 2,
+      "returned_existing_paths": 51,
+      "read_only_inventory_unchanged": true,
+      "whole_request_bytes": 33660939,
+      "whole_request_files": 96,
+      "original_request_files_unchanged": 698,
+      "original_request_reads_forbidden": true,
+      "subprocess_execution_forbidden": true,
+      "source_bytes": 181566343,
+      "temporary_expansion_peak_bytes": 87440990,
+      "temporary_expansion_limit_bytes": 134217728,
+      "runtime_depth_peak": 2,
+      "maximum_resident_bytes": 748552192,
+      "elapsed_seconds": 322.80131895802333,
+      "scope": "Real completed native preparation, copied then explicitly archived. Redundant working files removed only from new disposable test copy, not by product retirement code. Normal complete-request history and exact owner read; stable public paths survive the read scope. No native launch, original cleanup or diffraction-refinement claim.",
+      "temporary_copy_removed": true
+    },
+    "compatibility": "Explicit opt-in storage API only. Old readers reject retention folder. Current v2 owner partitions only; untouched and legacy requests retain ordinary reads. Complete unpublished archive recoverable without repacking; partial archive preserved/refused, ordinary reads unaffected.",
+    "remaining": "Product known-stopped retirement/recovery, optional-failure preservation and campaign resource acceptance; Q05 selected-reference native AutoSol acceptance; Q06 actual refinement and final integration checks remain.",
+    "artifacts": "Code, tests and compact ledger only. No scientific model/diffraction/restraint payload or runner committed. All original files preserved.",
+    "local_evidence": {
+      "c257_ordinary_archive_read.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c257_ordinary_archive_read.py",
+        "sha256": "079a285c7ad097aabdce073d47242e71cbfd64cb4d0cbcaa0f88ea6f37afafd8"
+      },
+      "c257_ordinary_archive_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c257_ordinary_archive_summary.json",
+        "sha256": "53cd20e4876f180def5393fe061f21144d9ca540f29af7c938d15608328352bd"
+      },
+      "c257_relocated_checkout.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c257_relocated_checkout.py",
+        "sha256": "e781c2f36502ed41960a4caf67c890ba66f9557c16ac707d6e0290e6caaa755b"
+      },
+      "c257_relocated_checkout_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c257_relocated_checkout_summary.json",
+        "sha256": "306f43e15317f57af690b5f5a7ccbb4db23267f9684671cde75903d43c999643"
+      }
+    },
+    "native_copy_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python branch-artifacts/cedar/runners/c257_ordinary_archive_read.py",
+    "relocated_checkout": {
+      "status": "RELOCATED_CHECKOUT_AND_REQUEST_PASS",
+      "scope": "One targeted archived exact-result and fresh-attempt test, from copied code relocated after its temporary original checkout disappeared. Request also relocated; both old temporary paths absent. No source checkout or original scientific data removed.",
+      "elapsed_seconds": 17.425938583008246,
+      "pytest_output": ".                                                                        [100%]\n1 passed, 21 deselected in 15.71s",
+      "temporary_checkout_removed": true
+    },
+    "relocated_checkout_command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python branch-artifacts/cedar/runners/c257_relocated_checkout.py"
   }
 }

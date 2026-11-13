@@ -85,8 +85,14 @@ be reconstructed and checked from an 11.2 MB working archive under the same
 original files remain. A complete attempt also now passes its original checks
 when reconstructed from a 15.5 MB archive instead of 180 MB of logical files,
 under the same expansion allowance. Its shared inputs stay outside that archive.
-Connecting these reads to stable public paths and safe retirement of a whole
-request is still open. These figures do not justify running 100 readers at once. Saved requests retain their recorded evidence layout.
+Ordinary readers now use the archive while keeping the actual model and restraints
+at their stable public paths. A copied native preparation reads correctly after
+redundant working files are removed: whole-request storage falls from 181.6 MB to
+33.7 MB, preserving the same selected model, five restraint files and two CIFs.
+All original science remains intact. Product removal/recovery is still a separate
+step; the current explicit archive-preparation API never deletes source files.
+These figures do not justify running 100 readers at once. Saved scientific records
+retain their identity; an explicitly added storage receipt requires a new reader.
 
 Here, **frozen proof** means a fixed, identifiable set of inputs and check results
 that can be verified again: the chosen model and restraints, exact chemical/source

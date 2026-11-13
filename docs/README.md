@@ -13,7 +13,8 @@ milestone statements preserve their original scope; they are not a second queue.
   is now available through `postmr --checked-preparation`; it saves the checked
   result as the initial review checkpoint. Schema-2 campaigns can explicitly choose
   the same route. New checked requests save compact, exact evidence; completed
-  working-file retirement remains a separate storage task. Complete requests can
+  working-file retirement remains a separate storage task. Explicit archive preparation
+  now supports ordinary history/result reads with stable public model/restraint paths. Complete requests can
   reuse exact completed plane support or explicitly opt into graph-selected support
   generation. `cif-doctor prepare-run --automatic-plane-support` now exposes that
   choice with exact-result notes. Checked PostMR and schema-2 campaigns also forward

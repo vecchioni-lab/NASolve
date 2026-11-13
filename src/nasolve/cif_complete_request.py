@@ -664,14 +664,21 @@ def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink
     root = _root(directory)
     result = dict(schema_version=1,policy_id=POLICY_ID,state='NOT_RECORDED',availability='BLOCKED',attempts=[],retry_authorized=False)
     if not root.exists(): return result
-    _members(root,{'request.json','request.lock'},{'inputs','acquisitions','attempts'})
+    _members(root,{'request.json','request.lock'},{'inputs','acquisitions','attempts','retention'})
+    from .cif_attempt_retention import validate_retention_layout, attempt_read_view, public_result
+    validate_retention_layout(root)
     if not (root/'request.json').exists(): return dict(result,state='UNKNOWN')
     request = _request(root); config = request['configuration']; rows = []
     if (root/'attempts').exists():
         for number,p in enumerate(sorted((root/'attempts').iterdir()),1):
             _need(p.is_dir() and not p.is_symlink() and p.name == f'attempt-{number:04d}', 'Outer attempts must be consecutive immutable directories')
-            rows.append(_attempt_state(root,p,number,request,
-                (result_sinks or {}).get(number, result_sink if number == selected_attempt else None)))
+            sink=(result_sinks or {}).get(number, result_sink if number == selected_attempt else None)
+            values=[] if sink is not None else None
+            with attempt_read_view(root,p,number,request) as view:
+                row=_attempt_state(root,view,number,request,values)
+                rows.append(public_result(row,view,p) if view!=p else row)
+                if sink is not None:
+                    sink.extend(public_result(v,view,p) if view!=p else v for v in values)
     _need(len(rows) <= config['max_attempts'], 'Outer attempt allowance exceeded')
     unknown = False
     if (root/'acquisitions').exists(): _members(root/'acquisitions',set(),set(config['components']))
@@ -750,11 +757,13 @@ def read_dictionary_request_results(directory, attempt_numbers):
         row = state['attempts'][number-1]
         _need(row['state'] == 'STOPPED' and row['finished']['outcome'] == 'RETURNED' and len(values[number]) == 1,
               'Outer attempt did not return successfully')
-        children, bindings = _children(root,attempt,row['intent'],state['request']['configuration'],row['finished']['children'])
-        _need(_same(bindings,row['finished']['children'])
-              and all(r['state'] in {'STOPPED','NOT_CREATED'} for r in children.values())
-              and _same(_attempt_files(attempt,**_artifact_options(state['request']['configuration'])),row['finished']['artifacts']),
-              'Complete request changed during exact result read')
+        from .cif_attempt_retention import attempt_read_view
+        with attempt_read_view(root,attempt,number,state['request']) as view:
+            children, bindings = _children(root,view,row['intent'],state['request']['configuration'],row['finished']['children'])
+            _need(_same(bindings,row['finished']['children'])
+                  and all(r['state'] in {'STOPPED','NOT_CREATED'} for r in children.values())
+                  and _same(_attempt_files(view,**_artifact_options(state['request']['configuration'])),row['finished']['artifacts']),
+                  'Complete request changed during exact result read')
     _need(_same(_request(root),state['request']) and all(_read(p) == data for p,data in records.items()),
           'Complete request changed during exact result read')
     return {number:rows[0] for number,rows in values.items()}
