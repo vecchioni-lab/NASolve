@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recognize completed but chemically rejected plane generation (C243)
+
+- The existing read-only generation-failure API now distinguishes a normally
+  completed build whose retained dictionary fails source-chemical assessment.
+  Reuse full positive-build replay and exact request/worker ownership checks;
+  return a distinct rejection proof, never usable support or retry/fallback authority.
+- Retain the rechecked chemical diagnostic and rejected output. Malformed,
+  unsealed or incomplete builds still refuse. Existing nonzero failure proofs and
+  successful support keep their meaning; no saved-run rewrite or migration.
+- Focused and relocated synthetic rejection controls pass; earlier actual Phenix
+  success/timeout records remain readable unchanged. Automatic acquisition and
+  broader prelaunch/native-exception handling remain separate work.
+
 ### Carry exact completed plane support through the complete dictionary request (C242)
 
 - The existing complete-request API can freeze explicit completed source-owned

@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-12.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-13.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
@@ -63,11 +63,13 @@ source; a checksum alone cannot recreate missing data. Working-file retirement
 needs an explicit, interruption-safe policy after every process is known stopped.
 Old or failed scientific runs are not silently cleaned up.
 
-Doctor can now distinguish a demonstrably stopped failed plane-generation job
-from lost ownership of a process. It retains incomplete output without mistaking
-it for chemical support. This is evidence the enclosing workflow can use; it does
-not itself choose a fallback or start another job. A related bookkeeping fix keeps
-the requested plane-generation recipe intact during dictionary reuse.
+Doctor distinguishes a stopped failed generator from a normally completed build
+whose dictionary is chemically wrong. For the latter, it repeats the source and
+output checks and retains the specific rejection, including changes to charge,
+element or bonding. Neither outcome supplies usable plane restraints or permits
+a retry by itself. Incomplete or inconsistent evidence still stops recovery;
+the enclosing workflow must separately justify any fallback. This prepares the
+failure handling needed for automatic acquisition of missing plane support.
 
 The [command and methods guide](cif-doctor.md),
 [capability table](cif-doctor.md#current-capability-boundary) and
@@ -386,7 +388,8 @@ the same omission requires review in an effective refinement dictionary.
 
 The figure shows the read-only audit positions. The explicit checked-preparation
 route additionally owns dictionary generation/repair and ReadySet verification;
-C242 carries supplied completed plane support through that route. Automatic
+C242 carries supplied completed plane support through that route. C243 separately
+checks chemical-rejection evidence; that read does not select a fallback. Automatic
 acquisition of missing plane support and real refinement remain separate gates.
 
 | Audit point | What is inspected | Why it matters |

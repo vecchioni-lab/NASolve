@@ -90094,5 +90094,82 @@
       "No full suite, Coot, new generation or diffraction refinement",
       "Whole-request retention and memory/concurrency still need campaign-scale qualification"
     ]
+  },
+  "completed_plane_generation_rejection_2026_11_13": {
+    "milestone": "C243",
+    "base_commit": "5708f5928281afc63b7997485960f1646bba41f8",
+    "before": "Only exact launched nonzero failures/timeouts classified by owned negative reader",
+    "after": "Also classify a completed source-chemically rejected build through full source/native/candidate replay; never usable support or independent fallback/retry authority",
+    "source_sha256": {
+      "src/nasolve/cif_plane_generation.py": "699df5b2820a8fac4e5b5135ab24691cab069b2ad44af79dca979c94087db7ab",
+      "src/nasolve/cif_source_representation.py": "213d9a0dc7f418e56081e3f3cbaaba4fe90b1ee2d8b31109c6b27983a5058889",
+      "tests/test_cif_plane_generation.py": "4b3a53632daef1bfa74ab9d7367791d1de3320ec8ce4ee92e5db83c2b4a5da87"
+    },
+    "prior_work": [
+      "C193 diagnostic projection is not proof",
+      "C240 owned stopped execution failure",
+      "C242 complete-request supplied-support reuse"
+    ],
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py tests/test_cif_source_representation.py tests/test_cif_generation_attempt.py tests/test_cif_acquisition_attempt.py",
+        "result": "249 passed in 73.57s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py",
+        "result": "90 passed in 32.68s after two malformed-routing guards; overlaps prior set"
+      },
+      {
+        "command": "new completed_chemical_rejection cases before implementation; new missing_execution/execution_shape controls before guard",
+        "result": "3 failures before implementation; 2 failures before domain-error guard"
+      },
+      {
+        "command": "initial restricted generation/representation run",
+        "result": "124 passed, 2 existing timeout failures: process inspection unavailable; unchanged controls pass with local process access"
+      }
+    ],
+    "cold": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c243_cold.py",
+      "summary": {
+        "status": "RELOCATED_NEGATIVE_AND_HISTORICAL_REPLAY_PASS",
+        "unchanged_files": 73,
+        "request_bytes": 1421861,
+        "original_code_absent": true,
+        "original_requests_absent": true,
+        "old_paths_sdk_processes_forbidden": true,
+        "elapsed_seconds": 0.2956978750007693,
+        "peak_resident_bytes": 62341120,
+        "negative_policy": "cif-owned-plane-generation-rejection-v1",
+        "support_status": "OWNED_SUPPORT_REPLAY_PASS",
+        "timeout_policy": "cif-owned-plane-generation-failure-v1",
+        "original_native_files_unchanged": {
+          "support": 27,
+          "timeout": 22
+        },
+        "actual_native": "READ_ONLY replay of Phenix 2.2.1-6174 / dispatcher 2.2.1 C215 support and C240 timeout; no new native call",
+        "new_rejection": "SYNTHETIC process and chemistry control; not a new Phenix rejection",
+        "temporary_inputs_removed_on_exit": true
+      },
+      "prior_native_sources": [
+        {
+          "anchor": "live_tests_directory",
+          "path": "215_Cedar_plane-mechanics-zmbafu4t/cold-r2/relocated/PDU/request"
+        },
+        {
+          "anchor": "live_tests_directory",
+          "path": "240_Cedar_plane-generation-timeout-2lrkujav/relocated/request"
+        }
+      ],
+      "legacy_negative_equality": "Current read equals C240 failure-proof.json exactly; no native execution"
+    },
+    "compatibility": "New derived cif-owned-plane-generation-rejection-v1 proof only; existing stored requests/support/failure proofs unchanged; no migration or old-output rewrite",
+    "static_review": "Changed Python parses; no shadowed top-level definitions/imported collectable tests; git diff --check passes; no broad semantic redundancy claim",
+    "exclusions": "No scientific files, logs, synthetic SDKs or ignored runners committed; temporary relocation copies removed",
+    "limitations": [
+      "Completed source rejection only; prelaunch/capability, incomplete native handoff and caught builder exceptions remain outside scope",
+      "No new native Phenix rejection experiment; synthetic controls plus actual historical evidence readback only",
+      "No automatic support acquisition/selection/fallback scheduling added",
+      "No full suite, Coot or refinement"
+    ]
   }
 }

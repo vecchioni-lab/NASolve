@@ -11,7 +11,7 @@ from .campaign_records import path_in
 from .cif_dictionary_store import _regular
 from .cif_generation_attempt import _root, _pins, inspect_source_generation_request
 from .cif_generation_process import inspect_generation_process
-from .cif_source_representation import read_multiple_plane_candidate, read_multiple_plane_execution_failure
+from .cif_source_representation import read_multiple_plane_candidate, read_multiple_plane_execution_failure, read_rejected_multiple_plane_candidate
 from .cif_plane_candidate import prepare_trigonal_plane_candidate
 
 POLICY_ID = "cif-owned-trigonal-plane-completion-v1"
@@ -29,7 +29,11 @@ def read_owned_plane_support(source, code, request_directory, attempt_number):
 
 
 def inspect_owned_plane_generation_failure(source, code, request_directory, attempt_number):
-    """Bind one known stopped negative native execution, never a usable candidate."""
+    """Bind a stopped failed execution or a completed, source-rejected candidate.
+
+    Both retain exact ownership; chemical rejection also replays full assessment.
+    Neither outcome authorizes support, fallback or retry.
+    """
     return _read_owned_plane_generation(source,code,request_directory,attempt_number,failure=True)
 
 
@@ -50,7 +54,16 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
     _need(recipe.get('multiple_planes') is True, "Selected request lacks multiple-plane choice")
     name = f'attempts/attempt-{attempt_number:04d}/generation'
     work = path_in(root, name)
-    report = (read_multiple_plane_execution_failure if failure else read_multiple_plane_candidate)(work)
+    # A receipt field chooses the stricter replay path, never the verdict itself.
+    # The selected reader and owned process records independently prove that state.
+    reader = read_multiple_plane_candidate; rejected = False
+    if failure:
+        header = json.loads(_regular(work/'source_candidate_receipt.json'))
+        _need(isinstance(header,dict) and isinstance(header.get('execution'),dict),
+              "Require a recorded generation execution")
+        rejected = header['execution'].get('status') == 'COMPLETED'
+        reader = read_rejected_multiple_plane_candidate if rejected else read_multiple_plane_execution_failure
+    report = reader(work)
     spec = json.loads(_regular(path_in(work, 'candidate_spec.json')))
     # C170 keeps the request ceiling frozen while a parent may grant less time.
     # The completed receipt and both owned phases must bind that same grant.
@@ -83,7 +96,9 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
         job, finished = evidence['job'], evidence['finished']
         completed = (finished['status'] == 'COMPLETED' and type(finished['returncode']) is int
                      and finished['returncode'] == 0)
-        if failure and phase == 'candidate':
+        if rejected and phase == 'candidate':
+            completed = completed and 'identity' in evidence
+        elif failure and phase == 'candidate':
             completed = ('identity' in evidence and finished['status'] in {'FAILED','TIMED_OUT'}
                          and type(finished['returncode']) is int and finished['returncode'] != 0
                          and finished['status'] == report['execution']['status']
@@ -96,15 +111,16 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
     _need(after['request'] == request and after['attempts'][attempt_number-1] == selected
           and _regular(Path(source)) == original, "Selected generation evidence changed during replay")
     if failure:
-        return dict(schema_version=1,policy_id='cif-owned-plane-generation-failure-v1',
+        return dict(schema_version=1,policy_id=('cif-owned-plane-generation-rejection-v1' if rejected else 'cif-owned-plane-generation-failure-v1'),
             status='KNOWN_STOPPED_GENERATION_FAILURE',component=code,source_sha256=report['source_sha256'],
             attempt_number=attempt_number,request_sha256=request['record_sha256'],
             attempt_sha256=selected['intent']['record_sha256'],finished_sha256=selected['finished']['record_sha256'],
             receipt={**selected['finished']['candidate_receipt'],'anchor':'request_directory',
                      'path':name+'/source_candidate_receipt.json'},
-            failure_kind=report['execution']['status'],returncode=report['execution']['returncode'],
+            failure_kind='REJECTED_CANDIDATE' if rejected else report['execution']['status'],returncode=report['execution']['returncode'],
             recipe=recipe,generator=generator,stopped_verified=True,exact_inputs=True,
-            partial_outputs='PRESERVED; NOT_QUALIFIED',candidate_qualification='NOT_ASSESSED',
+            partial_outputs='PRESERVED; NOT_QUALIFIED',candidate_qualification='SOURCE_REJECTED' if rejected else 'NOT_ASSESSED',
+            **(dict(rejection_diagnostic=report['diagnostic']) if rejected else {}),
             new_native_calls=0,fallback_authorized=False,retry_authorized=False)
     return dict(schema_version=1, policy_id=SUPPORT_POLICY_ID, status='OWNED_SUPPORT_REPLAY_PASS',
         component=code, source_sha256=report['source_sha256'], attempt_number=attempt_number,

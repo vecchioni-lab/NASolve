@@ -140,7 +140,7 @@
 
 <a id="current-capability-boundary-c220"></a>
 
-## Current capability boundary (C242)
+## Current capability boundary (C243)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -163,7 +163,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner; C242 freezes explicit completed plane support and carries its repaired result through that continuation. | The checked route remains opt-in. C223–C225 connect initial checkpoint publication, ordinary PostMR and explicit campaigns; C231 validates compact request publication. Automatic plane-support acquisition by the outer owner and later preparation children remain Q04/Q05. Current native evidence must qualify each source/site/consumer context. Missing or unusable generated candidates remain recorded failures; this is not universal chemistry support or ordinary refinement qualification. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner; C242 freezes explicit completed plane support and carries its repaired result through that continuation. | The checked route remains opt-in. C223–C225 connect initial checkpoint publication, ordinary PostMR and explicit campaigns; C231 validates compact request publication. Automatic plane-support acquisition by the outer owner and later preparation children remain Q04/Q05. Current native evidence must qualify each source/site/consumer context. C240/C243 distinguish owned execution failure and fully replayed source-chemical rejection without admitting those outputs; other incomplete builds still refuse. This is not universal chemistry support or ordinary refinement qualification. |
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. Default activation and later preparation children remain open; no actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); default activation and later preparation children remain open. |
@@ -763,6 +763,41 @@ full suite, automatic adoption or old schema migration. Exact commands and evide
 `source_selected_model_geometry_2026_11_11`. Native completion and better local
 shape do not qualify source numerical targets, full NAR refinement, packing or
 ordinary Q04/Q05 selection. Keep those remaining gates in the existing queue.
+
+### Recognize a completed chemical rejection without using its output (C243)
+
+`inspect_owned_plane_generation_failure` also recognizes a normally completed
+multiple-plane build whose retained candidate is `REJECTED` by the existing
+source assessment. `read_rejected_multiple_plane_candidate` shares the full
+completed-build reader: source/spec/worker identity, native handoff, output
+inventory, exact graph/charge/stereochemistry assessment and diagnostic are
+recomputed. Both owned phases must complete with integer zero return codes;
+the candidate phase must have its process identity. A receipt field selects the
+replay path, not the verdict. Altered or incomplete evidence still refuses.
+
+The derived `cif-owned-plane-generation-rejection-v1` proof records
+`failure_kind=REJECTED_CANDIDATE`, `candidate_qualification=SOURCE_REJECTED` and
+the rechecked diagnostic. It grants neither support, native usability, fallback
+nor retry. Nonzero failures keep their existing v1 proof unchanged. No native
+worker, stored request format, chemical criterion or old scientific output changes.
+This is deliberately narrower than every zero-exit failure: caught builder
+exceptions, failed native handoff, capability/prelaunch errors and missing
+candidates are not reclassified merely because a process stopped.
+
+Synthetic subprocess controls change candidate charge, element or bond order;
+all are rejected without becoming support. Rehashed contradictions, incorrect
+owner/phase records and malformed receipt routing refuse. The 249 affected
+plane/representation/generation/acquisition tests pass, then 90 plane-generation
+cases pass after adding two malformed-routing controls; these sets overlap.
+A temporary relocated source/request control rereads the synthetic rejection
+alongside the original C215 success and C240 timeout, with old paths/SDK/processes
+blocked. All 73 files keep bytes/mtimes; 49 original native files are untouched.
+The temporary 1.42 MB request copies are removed. The saved C240 negative proof
+is exactly unchanged. This is read-only replay of Phenix 2.2.1-6174 / dispatcher
+2.2.1 evidence, not a new Phenix rejection experiment. No full suite, Coot or
+refinement. Commands and scope: `completed_plane_generation_rejection_2026_11_13`
+in the evidence ledger. The complete owner still must consume these classified
+outcomes when automatic support acquisition is connected.
 
 ### Reuse completed plane support through the complete request (C242)
 

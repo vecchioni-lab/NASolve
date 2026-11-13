@@ -76,7 +76,7 @@ def test_combined_representation_and_multiple_planes_replays_without_weakening_e
     with pytest.raises(ValueError):read_multiple_plane_candidate(directory)
 
 
-def plane_generation(tmp_path,mode="none"):
+def plane_generation(tmp_path,mode="none", *, candidate_defect=None):
     from tests.test_cif_source_representation import fake_generation
     from tests.test_cif_plane_candidate import inputs
     from tests.test_cif_stereochemistry_audit import write
@@ -89,10 +89,13 @@ def plane_generation(tmp_path,mode="none"):
         p.update({a+'comp_id':['Q17']*3,a+'atom_id_1':['O','O','N'],a+'atom_id_2':['C']*3,
             a+'atom_id_3':['N','R','R'],a+'value_angle':['120']*3,a+'value_angle_esd':['2']*3})
         write(folder/'dictionary.cif',d)
+        if candidate_defect=='charge':p['_chem_comp_atom.charge'][0]='1'
+        elif candidate_defect=='element':p['_chem_comp_atom.type_symbol'][0]='N'
+        elif candidate_defect=='bond':p['_chem_comp_bond.value_order'][0]='SING'
         return write(folder/'source.cif',s),write(folder/'support.cif',p)
     directory,report=fake_generation(tmp_path,mode=mode,opt_in=False,multiple_planes=True,request_owned=True,
         ring_atoms=(),aromatic_count=0,pair_factory=pair_factory,source_name='original source CCD.cif')
-    assert report['status']==('FAILED' if mode in {'timeout','process_failure','partial_candidate_failure','partial_result_failure'} else 'CANDIDATE_REVIEW')
+    assert report['status']==('REJECTED' if candidate_defect is not None else 'FAILED' if mode in {'timeout','process_failure','partial_candidate_failure','partial_result_failure'} else 'CANDIDATE_REVIEW')
     return tmp_path/'inputs/original source CCD.cif',tmp_path/'inputs/dictionary.cif',directory.parents[2],directory
 
 
@@ -328,3 +331,79 @@ def test_completed_support_is_not_classified_as_failed_generation(tmp_path):
     from nasolve.cif_plane_generation import inspect_owned_plane_generation_failure
     source,_,request,_=plane_generation(tmp_path)
     with pytest.raises(ValueError):inspect_owned_plane_generation_failure(source,'Q17',request,1)
+
+
+@pytest.mark.parametrize('defect',['charge','element','bond'])
+def test_completed_chemical_rejection_is_known_negative_not_support(tmp_path,monkeypatch,defect):
+    from nasolve.cif_plane_generation import inspect_owned_plane_generation_failure,read_owned_plane_support
+    source,_,request,work=plane_generation(tmp_path,candidate_defect=defect)
+    report=json.loads((work/'source_candidate_receipt.json').read_text())
+    assert report['execution']['status']=='COMPLETED' and report['execution']['returncode']==0
+    assert report['result']['builder']['status']=='COMPLETED' and report['status']=='REJECTED'
+    value=inspect_owned_plane_generation_failure(source,'Q17',request,1)
+    assert value['status']=='KNOWN_STOPPED_GENERATION_FAILURE'
+    assert value['policy_id']=='cif-owned-plane-generation-rejection-v1'
+    assert value['failure_kind']=='REJECTED_CANDIDATE' and value['returncode']==0
+    assert value['candidate_qualification']=='SOURCE_REJECTED'
+    assert value['rejection_diagnostic']==report['diagnostic']
+    assert value['new_native_calls']==0 and not value['fallback_authorized'] and not value['retry_authorized']
+    assert 'support' not in value
+    with pytest.raises(ValueError):read_owned_plane_support(source,'Q17',request,1)
+    moved=request.rename(tmp_path/'relocated');source.unlink()
+    before={p:(p.read_bytes(),p.stat().st_mtime_ns) for p in moved.rglob('*') if p.is_file()}
+    def forbidden(*a,**k):raise AssertionError('Cold rejection read must not execute/probe')
+    with monkeypatch.context() as guard:
+        guard.setattr('subprocess.Popen',forbidden)
+        guard.setattr('nasolve.cif_generation_process.process_alive',forbidden)
+        guard.setattr('nasolve.cif_generation_attempt.coordinator_alive',forbidden)
+        assert inspect_owned_plane_generation_failure(moved/'inputs/source.cif','Q17',moved,1)==value
+    assert all((p.read_bytes(),p.stat().st_mtime_ns)==v for p,v in before.items())
+
+
+@pytest.mark.parametrize('defect',['diagnostic','inspection','candidate','worker','spec','builder','dispatch','unsealed','missing_execution','execution_shape'])
+def test_chemical_rejection_requires_exact_completed_evidence(tmp_path,defect):
+    from nasolve.cif_plane_generation import inspect_owned_plane_generation_failure
+    from nasolve.campaign_records import read_record,write_record
+    source,_,request,work=plane_generation(tmp_path,candidate_defect='charge')
+    def change(report):
+        if defect=='missing_execution':report.pop('execution')
+        elif defect=='execution_shape':report['execution']=None
+        elif defect=='diagnostic':report['diagnostic']['summary']='invented'
+        elif defect=='inspection':report['inspection']['status']='CANDIDATE_REVIEW'
+        elif defect=='candidate':
+            p=work/'candidate.cif';p.write_text(p.read_text().replace('Q17','ZZZ'))
+            report['candidate'].update(size=p.stat().st_size,sha256=sha256(p.read_bytes()).hexdigest())
+        elif defect=='worker':(work/'candidate_worker.py').write_text('different')
+        elif defect=='spec':
+            p=work/'candidate_spec.json';v=json.loads(p.read_text());v['arguments'].remove('--multiple_planes');p.write_text(json.dumps(v))
+        elif defect in {'builder','dispatch'}:
+            result=report['result']
+            if defect=='builder':result['builder']['status']='EXCEPTION'
+            else:result['reader']['dispatch_is_chemical_components']=False
+            (work/'candidate_result.json').write_text(json.dumps(result))
+    rebound(work,change)
+    p=work/'source_candidate_receipt.json';seal=work.parent/'finished.json'
+    finished=read_record(seal);finished['candidate_receipt'].update(size=p.stat().st_size,sha256=sha256(p.read_bytes()).hexdigest())
+    write_record(seal,finished,replace=True)
+    if defect=='unsealed':seal.unlink()
+    before={p:(p.read_bytes(),p.stat().st_mtime_ns) for p in request.rglob('*') if p.is_file()}
+    with pytest.raises(ValueError):inspect_owned_plane_generation_failure(source,'Q17',request,1)
+    assert all((p.read_bytes(),p.stat().st_mtime_ns)==v for p,v in before.items())
+
+
+@pytest.mark.parametrize('defect',['context','command','status','returncode','missing_identity'])
+def test_rejected_generation_requires_matching_completed_process(tmp_path,monkeypatch,defect):
+    import nasolve.cif_plane_generation as m
+    source,_,request,_=plane_generation(tmp_path,candidate_defect='charge')
+    original=m.inspect_generation_process
+    def changed(*a,**k):
+        value=original(*a,**k)
+        if a[1]=='candidate':
+            if defect=='context':value['job']['context']['total_timeout_seconds']+=1
+            elif defect=='command':value['job']['argv_provenance'][-1]='other.json'
+            elif defect=='status':value['finished']['status']='FAILED'
+            elif defect=='returncode':value['finished']['returncode']=True
+            else:value.pop('identity')
+        return value
+    monkeypatch.setattr(m,'inspect_generation_process',changed)
+    with pytest.raises(ValueError):m.inspect_owned_plane_generation_failure(source,'Q17',request,1)

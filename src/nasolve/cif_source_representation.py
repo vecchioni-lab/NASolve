@@ -194,12 +194,25 @@ def read_multiple_plane_candidate(directory):
     checks the receipt; an owned caller must also bind the selected request/attempt.
     Historical representation-only replay retains its broader failure scope.
     """
+    return _read_completed_multiple_plane_candidate(directory, "CANDIDATE_REVIEW")
+
+
+def read_rejected_multiple_plane_candidate(directory):
+    """Replay a completed build whose retained candidate fails source assessment.
+
+    Full source/worker/result/chemical checks still apply. This is rejection
+    evidence, never support, native usability or permission to retry.
+    """
+    return _read_completed_multiple_plane_candidate(directory, "REJECTED")
+
+
+def _read_completed_multiple_plane_candidate(directory, status):
     try:
         report = _read_representation_candidate(Path(directory), multiple_planes=True)
         result = report.get("result", {})
         reader = result.get("reader", {})
         spec = json.loads((Path(directory)/"candidate_spec.json").read_text())
-        if (report["status"] != "CANDIDATE_REVIEW"
+        if (report["status"] != status
                 or report["execution"]["status"] != "COMPLETED"
                 or type(report["execution"].get("returncode")) is not int
                 or report["execution"]["returncode"] != 0

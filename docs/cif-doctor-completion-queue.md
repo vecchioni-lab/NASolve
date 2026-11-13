@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-12.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-13.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -194,8 +194,12 @@ Remaining acceptance:
    verifies a launched stopped negative generation without admitting partial output;
    C241 preserves its optional recipe flag through existing acquisition identity.
    Reuse these and the existing graph screen/narrow candidate. Do not add another
-   executor. Earlier capability failures and zero-exit unqualified builds still
-   need an explicit, equally strict fallback classification before broad coverage.
+   executor. C243 adds fully replayed completed chemical rejection; its proof
+   permits neither fallback nor retry alone. Earlier capability/prelaunch failures,
+   incomplete native handoffs and caught builder exceptions remain outside it.
+   Connect the known outcomes first; do not infer permission from arbitrary errors.
+   New generated support belongs to exact owned child attempts, not edits to the
+   complete request's frozen inputs. Keep the explicit C242 reuse mode intact.
    Preserve existing ring-plane groups; add only source-supported missing members
    with owned generator/native/energy evidence. Do not substitute an entire
    multiple-plane generated CIF. Keep non-PDU controls and ambiguous/tetrahedral
@@ -249,7 +253,9 @@ and preserve a checked fallback when an optional native attempt is demonstrably
 unsuccessful. Unknown/malformed ownership cannot be treated as that fallback.
 C232 already permits an actual parent grant below the frozen generation maximum.
 C240 proves exact launched negative generation; C241 removes the acquisition
-recipe-identity mismatch. Neither invokes automatic outer-request plane generation.
+recipe-identity mismatch; C243 proves completed source-chemical rejection through
+full replay. These classify outcomes but do not invoke automatic outer-request
+plane generation or authorize fallback by themselves.
 Use that existing owner; do not raise bounds or alter historical requests.
 Then demonstrate the resulting restraints in Q06; a flat
 starting PDU substituent does not prove that refinement will keep it flat.

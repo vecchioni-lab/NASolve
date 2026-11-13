@@ -1,108 +1,99 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-12**, C242. Active branch **cedar**, checkout NASolve-c96.
-C242 builds on pushed 8981f9d (C240–C241); use current HEAD for its final commit.
+Updated **2026-11-13**, C243. Active branch **cedar**, checkout NASolve-c96.
+C243 builds on pushed C242/5708f59; use current HEAD for the final commit identity.
 The [queue](cif-doctor-completion-queue.md) owns work order;
 [capability limits](cif-doctor.md#current-capability-boundary) remain in force.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
 ## Current result
 
-The complete dictionary request now accepts explicitly supplied, completed plane
-support. It freezes the exact source/request/attempt evidence, uses the same
-repair machinery and passes the selected repaired model/restraints through
-ReadySet. Actual Phenix selects the repaired bundle and then the checked ReadySet
-model, retaining explicit PDU C5 plane coverage and all five ordered NAR files.
-This closes the complete-request reuse connection. Automatically obtaining missing
-support is still the next Q04 job; no default/CLI switch was added.
+Doctor can now recognize a generator that completed normally but produced a
+source-chemically rejected dictionary. The existing failure reader repeats the
+full source/native-handoff/candidate assessment, binds the exact request and
+stopped worker, and returns a distinct rejection proof with its checked diagnostic.
+That output stays unusable; the proof itself allows neither fallback nor retry.
+Existing successful support and nonzero failed/timed-out proofs remain unchanged.
 
-Prior-work review: C234–C239 already validate source-owned support and run combined
-linear/plane repair; C184/C229 already own complete request/ReadySet continuation.
-C242 shares those validators/owners instead of adding replacements. C240 supplies
-narrow evidence for launched stopped failed generation; C241 preserves the existing
-multiple-plane recipe through acquisition identity. That negative proof alone
-allows neither fallback nor retry. Earlier capability/prelaunch failures and
-zero-exit unqualified builds still need explicit treatment.
+Prior-work review: C193 diagnostics explain failures but do not qualify evidence;
+C240 supplies strict launched-negative execution evidence; C242 already freezes
+supplied plane support through complete repair/ReadySet. C243 fills the narrow
+completed chemical-rejection gap using the same positive replay and ownership
+checks. It does not create another generator or complete automatic scheduling.
+Capability/prelaunch failures, incomplete handoffs and caught builder exceptions
+remain outside this new outcome. Never classify arbitrary errors as permission.
 
-Actual Phenix **2.2.1-6174 / dispatcher 2.2.1** control uses C218's frozen ordinary
-Coot/NAR inputs, exact cached dictionaries and completed C215 plane support. No new
-generation, Coot or diffraction refinement. The outer attempt returns and every
-owner stops; source files remain pinned and old input bytes/mtimes unchanged.
-The request is then moved, not copied, and read from relocated source with old
-request/source/support/cache/SDK paths and process calls forbidden. All
-698 files preserve bytes/mtimes; temporary views are removed.
-**No active job remains.** Native/cold receipts and artifact-location.json live at
-`live_tests_directory/242_Cedar_complete-plane-request-2r0jv29f`.
-
-Storage: whole complete request **181.6 MB**, final ReadySet publication
-**5.8 MB**. Cold read expands at most **81.4 MB** temporary evidence and peaks
-at **645.1 MB** resident memory. This is a complete request, unlike C238's
-134.4 MB standalone repair. Original worker/partial evidence stays intact. Safe
-retirement and campaign-scale memory/storage qualification remain open; small
-publications do not authorize 100 simultaneous readers.
+C242's real Phenix 2.2.1-6174 / dispatcher 2.2.1 control remains the complete-request
+checkpoint: repaired plane bundle, then ReadySet-checked model, explicit PDU C5
+coverage and all five NAR files. Whole request 181.6 MB; final publication 5.8 MB;
+cold read 81.4 MB temporary evidence / 645.1 MB resident memory. Its 698 files
+survive relocation unchanged. Evidence: `complete_request_plane_support_2026_11_12`.
+Automatic acquisition of missing support is still Q04; later preparation children
+are Q05. Neither C242 nor C243 establishes diffraction refinement.
 
 ## Validation and reviewer handoff
 
-Before: only the prepared-repair request accepted supplied completed plane support.
-After: the complete request freezes it, passes the exact choice to repair, verifies
-child identity and continues the checked result through ReadySet. The preceding
-site-preparation inputs correctly exclude evidence owned by the repair stage.
+Before: the negative reader accepted launched nonzero failed/timed-out jobs only.
+After: it additionally accepts a fully replayed completed source rejection. A
+normal exit without a complete, consistent rejected build is still insufficient.
+Changed source: `cif_plane_generation.py`, `cif_source_representation.py`;
+regressions extend `test_cif_plane_generation.py`. No new test module, executor,
+worker, generation option, chemical gate or altered time/storage bound.
 
-Changed source: `cif_complete_request.py`, `cif_prepared_repair_execution.py`.
-Regression tests extend `test_cif_complete_request.py`; existing support/recovery
-coverage checks the shared validator. No new test module/profile or executor.
-Methods/capability table, human overview, documentation map, queue, changelog and
-existing evidence ledger are updated. The overview replaces older overlapping
-storage narratives with the present whole-workflow measurement.
+Derived proof: `cif-owned-plane-generation-rejection-v1`, with
+`failure_kind=REJECTED_CANDIDATE`, source rejection and its rechecked diagnostic.
+Existing failure proofs are exactly unchanged, including the saved actual C240
+proof. No saved-format migration or historical resealing. Sources, phosphate
+state, Free-R behavior and NAR stacking selections are unchanged.
 
-Compatibility: optional complete-request `configuration.plane_support` reuses
-`cif-prepared-owned-plane-support-v1`; it is absent by default. Old requests retain
-their meaning and need no migration. New mode requires a current reader. No changed
-chemical gates, limits, source/phosphate state, Free-R rules or stacking selections.
-Support never authorizes wholesale replacement by an unrelated generated CIF.
+Python 3.12.14 focused commands, with PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:
 
-Focused command (Python 3.12.14 from the existing test environment):
+- `-m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py tests/test_cif_source_representation.py tests/test_cif_generation_attempt.py tests/test_cif_acquisition_attempt.py`: **249 passed in 73.57 s**.
+- After two corrupt-receipt routing controls, `-m pytest -q -p no:cacheprovider tests/test_cif_plane_generation.py`: **90 passed in 32.68 s**. Sets overlap; do not sum.
 
-```sh
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <python3.12> -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_prepared_plane_support.py tests/test_cif_repair_attempt.py
-```
+Three new rejection cases fail before implementation; two malformed-routing cases
+also fail before their domain-error guard. The initial restricted run could not
+verify shutdown in two existing timeout controls; rerunning with process access
+passes without changing ownership rules or test timeouts. The synthetic cases
+exercise actual small subprocesses but make no Phenix chemical-validation claim.
 
-**210 passed in 221.76 s.** Eight new transport cases cover independent frozen
-reuse, immutable fresh attempts, relocation, wrong source/attempt, overlap,
-concurrent changes and dropped parent/child choices. The first new regression
-failed before implementation (missing API argument). Initial development exposed
-and fixed preparation-versus-repair evidence ownership before the final passing
-run. Changed-file AST/duplicate-definition review and `git diff --check` pass.
-Exact native/cold commands, locations and pins are recorded in ledger entry
-`complete_request_plane_support_2026_11_12`; no scientific artifacts, logs, local
-runners or large source-pin lists are included in Git.
+Relocated temporary code reads a new synthetic rejection and the earlier actual
+C215 success/C240 timeout with original code/request paths absent and old source,
+SDK and process access forbidden. All 73 temporary request files and 49 original
+native files retain bytes/mtimes; the 1.42 MB temporary copies are removed.
+No new Phenix, Coot or diffraction refinement execution. No active job remains.
+Exact commands, source hashes and scope: ledger entry
+`completed_plane_generation_rejection_2026_11_13`. Scientific captures, ignored
+runners and logs stay outside Git. Changed-file AST/duplicate-definition and
+Git whitespace checks pass. Methods, human explanation and queue are updated.
 
-No full suite this push, as requested. Last entirely green full remains
-C220/583d30df: 9,178 tests + 276 subtests. C222's later failures were fixed with
-focused checks; no subsequent full-suite revalidation claim.
+No full suite this push. Last entirely green full remains C220/583d30df:
+9,178 tests + 276 subtests. C222's later failures were fixed with focused checks;
+no subsequent full-suite revalidation claim.
 
 ## Next work — finish Q04/Q05
 
 1. Obtain missing plane support through the existing complete-request generation
    owner using graph findings, exact numbered children, shared deadlines and finite
-   attempts. Preserve a separately checked parent on explicitly classified optional
-   failure. C242 already supplies freezing/reuse/repair/ReadySet: do not rebuild it.
-   C240's negative proof is narrow; unknown processes or malformed proof still block
-   retry. Preserve old request meanings and every partial output.
+   attempts. Generated support belongs to owned child attempts; never append it to
+   frozen outer inputs or silently change C242's explicit reuse meaning. Reuse
+   `generate_source_candidate_attempt`'s parent identity and remaining-time binding;
+   extend the complete owner's child inspection/sealing and recovery consistently.
+   Consume C240/C243 classified outcomes only with a separately qualified fallback.
+   Unknown processes/corrupt proof still block retry. Preserve all partial outputs.
 2. Define later preparation-child publication without replacing an immutable root
    or claiming fresh MR construction descends from a refined model. C223–C225
    already supply initial checkpoint, ordinary PostMR and frozen campaign entry.
 3. Design interruption-safe retirement of redundant successful working files only
    after owners stop and the sealed result verifies. Keep reproducible inputs and
    necessary proof; measure whole request, temporary disk and memory separately.
-   Avoid repeat validation where an existing scoped read can be safely shared;
-   do not replace integrity checks with a persistent verdict cache.
+   Reuse existing scoped reads; do not add persistent verdict caches.
 
 Reuse C160/C163/C164 ownership/recovery, C207 full-model plans, C213/C232 generation
-binding, C226 maintained whole-plane numerics, C227 composition/selection and
-C228–C233 compact evidence/shared reads. Q06 real complete-restraint refinement
-and Q07 combined/held-out chemistry follow Q04/Q05. NAR's reviewed base-role atoms
-still define stacking; Cedar's substituent planes do not enlarge it automatically.
+binding, C226 whole-plane numerics, C227 composition and C228–C233 compact/shared
+reads. Q06 real refinement and Q07 combined/held-out chemistry follow Q04/Q05.
+NAR's reviewed base-role atoms still define stacking; Cedar's substituent planes
+do not enlarge those stacking selections automatically.
 
 ## Preserve local evidence
 
