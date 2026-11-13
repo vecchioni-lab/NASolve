@@ -4,7 +4,7 @@
   "updated": "2026-11-13",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
+  "audited_code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -273,28 +273,30 @@
       "id": "S06",
       "track": "stitch",
       "title": "Demonstrate improvement against diffraction data",
-      "status": "OPEN",
+      "status": "PARTIAL",
       "depends_on": [
         "S05"
       ],
       "goal": "Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.",
       "delivered": [
-        "Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed.",
+        "Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed.",
         "Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
         "Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors."
       ],
-      "next_action": "Preflight the supplied hex_data and straight-frame benchmark inputs; start matched refinement only after the candidate geometry gate is met.",
+      "next_action": "Qualify one deliberately damaged or mismatched duplex with a frozen native pair/exclusion policy, then matched refinement; retain the unmodified reference and cleanup-only controls. Resolve supplied-data copy/composition before calling a private-data repair successful.",
       "evidence": [
-        "E_MR_LOCAL"
+        "E_MR_LOCAL",
+        "E_PUBLIC_REFERENCE"
       ],
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "fe4388facbd3450086f16c645db09de918931a1c",
-        "scope": "Local MR placement only; S06 acceptance remains open"
+        "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b",
+        "scope": "Complete public-reference pilot with preserved data/flags, not S05 closure, damaged-MR repair or acceptance",
+        "human_update": 34
       }
     },
     {
@@ -504,11 +506,12 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
+      "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "21 packing regressions pass; 368 focused tests + 2 subtests pass installed and relocated. Full source: 1,284 tests + 226 subtests. Lean installed imports match source. Native detached comparison survives copied-checkout/capture relocation byte-identically with original Python reads blocked; both frozen Cedar cd744e2 and f2345a8 readers agree. Rendered browser validation remains pending.",
+      "result": "W33 numbering adds eight regressions and rejects duplicate/skipped/inconsistent numbers. Full source: 1,292 tests + 226 subtests. Focused installed and relocated: 376 tests + 2 subtests each. Package numerical code and installed wheel are unchanged by the documentation/audit-script patch. Prior native reader/relocation evidence remains valid; rendered browser validation is pending.",
       "limitation": "Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.",
-      "wheel_sha256": "88a57c23dffef4ce68313ed5119d2f092fb1c8db6dc7520d68372161801108b1"
+      "wheel_sha256": "88a57c23dffef4ce68313ed5119d2f092fb1c8db6dc7520d68372161801108b1",
+      "human_update": 33
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -614,6 +617,14 @@
       "reference": "docs/topostitch-preview.md#captured-native-packing-comparison",
       "result": "Thin comparison reuses Cedar capture/authentication and directed pair replay. Exact relative-image matching preserves multiplicity and separates new overlap from neighbor-list change. Real original/broad-cleanup captures confirm 20 directed rows newly overlap and 103 worsen despite lower total native nonbonded energy; relocated copied evidence produces byte-identical output with original reads blocked.",
       "limitation": "Read-only unchanged-policy scope. Directed counts are not unique physical contacts, a clashscore or chemical acceptance. No independent neighbor enumeration, torsion/plane comparison, native optimizer or model promotion."
+    },
+    "E_PUBLIC_REFERENCE": {
+      "kind": "Matched public-reference diffraction pilot",
+      "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b",
+      "human_update": 34,
+      "reference": "docs/topostitch-preview.md#w34--matched-public-reference-diffraction-control",
+      "result": "Three complete Phenix 2.2.1-6174 coordinate-only runs preserve the same 3,333 observations and 176 free reflections. Final Rwork/Rfree: original .1776/.2284; cleanup .1779/.2274; bend+cleanup .1772/.2276. Selected contacts remain better with bending, but no meaningful additional held-out benefit is established. Native geometry/packing tradeoffs and exact readbacks are retained.",
+      "limitation": "One already-refined public reference, no artificial MR damage or broader scientific acceptance. No added pair restraints, density inspection, weight tuning, campaign publication or adoption. S05 remains partial; generated artifacts stay local."
     }
   },
   "benchmarks": [
@@ -717,5 +728,26 @@
     "Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.",
     "Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates.",
     "Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23\u2013C27 diagnosis or create another plane-correction implementation."
-  ]
+  ],
+  "human_updates": {
+    "prefix": "W",
+    "starts_at": 33,
+    "current": 34,
+    "next": 35,
+    "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
+    "entries": [
+      {
+        "number": 33,
+        "title": "Human-readable Willow update numbers",
+        "state": "RECORDED",
+        "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b"
+      },
+      {
+        "number": 34,
+        "title": "Matched 8D93 reference refinement control",
+        "state": "RECORDED",
+        "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b"
+      }
+    ]
+  }
 }

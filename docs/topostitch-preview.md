@@ -648,6 +648,68 @@ reader's explicit relocated inputs; it does not qualify every historical local
 experiment as resumable. Torsion/plane comparison, optimization, acceptance,
 refinement and campaign adoption remain outside this report.
 
+### W34 — Matched public-reference diffraction control
+
+Three **complete Phenix 2.2.1-6174 refinements** test coordinate preprocessing on
+already refined public [8D93](https://www.rcsb.org/structure/8D93). This is a
+reference/healthy-control pilot, not an artificially damaged MR case or proof
+that the deposited structure needs stitching. It is early S06 evidence while
+S05 remains partial; no candidate or checkpoint is approved.
+
+The deposited structure-factor CIF contains several processing blocks. The pilot
+uses the STARANISO mean amplitudes/sigmas from `r8d93Asf`, joined by exact Miller
+index to primary `r8d93sf` status `o`/`f`. This reproduces the deposited refinement
+cohort: **3,333 observations, 3,157 work and 176 free**, 41.2867–2.9608 Å. The
+original integer flag values and free value 0 are retained in the input MTZ;
+round-trip readback verifies the exact held-out indices and observed amplitudes.
+No flag is generated and no isotropic completion or alternative data block is
+silently substituted.
+
+Before execution, one common recipe and all three model hashes were frozen:
+three coordinate-only macrocycles, ML target, fixed `wxc_scale=0.5`, no weight
+optimization, one processor and one seed. No real-space/ADP/occupancy refinement,
+added waters/atoms, experimental phases, extra pair restraints or data-outlier
+rejection is used. Native bulk-solvent/scaling remains common to all cases;
+overall isotropic scaling of ADPs is disabled. Each run finished within its
+240-second limit. There is no Rfree-guided retry, weight search or extra trial.
+
+| Starting model | Final Rwork | Final Rfree | Bond RMSD / Å | Angle RMSD / ° | Reported all-atom clashscore |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Original deposited coordinates | 0.1776 | 0.2284 | 0.012 | 2.622 | 30.78 |
+| Source backbone cleanup | 0.1779 | 0.2274 | 0.011 | 2.668 | 30.03 |
+| Broader bend + backbone cleanup | 0.1772 | 0.2276 | 0.013 | 2.842 | 27.03 |
+
+These are printed native values at the reported precision, not an estimate of
+statistical superiority. Relative to cleanup alone, bending lowers Rwork but
+Rfree is 0.0002 higher and bond/angle RMSDs worsen. A small Rfree difference from
+176 test reflections is not sufficient evidence to choose a bend. The pilot
+does not reproduce the original deposited refinement protocol or claim a new
+improved deposited structure.
+
+At the same explicitly frozen sticky-end image, the descriptive sum of squared
+NARestraints bond/angle reference deviations is 187.337, 177.269 and 112.202 after
+refinement, respectively. Bending retains a contact advantage, but all three
+scores rise during ordinary coordinate refinement (their inputs are 146.252,
+146.252 and 83.748). No partner is reselected. This favors testing a qualified
+pair-aware refinement path rather than assuming ordinary refinement will retain
+all intended contacts. The measure excludes planes and is not an acceptance score.
+
+Fresh Cedar directed-neighbor captures also replay after refinement. Compared
+with the refined original, cleanup and bend+cleanup have 11 and 21 newly
+overlapping **directed rows**, respectively; native nonbonded residuals are
+1090.331 and 1088.475 versus 1076.017. These differ from the all-atom clashscore's
+radii/hydrogen/exclusion conventions. Neither aggregate score nor a count of any
+worsening contact can decide acceptance; inspect severity, location, intended
+chemistry and the matched control together.
+
+All 855 atom identities/order and occupancies survive. Input models, parameters
+and MTZ remain byte-identical; final MTZ readback confirms exactly the same
+observations/sigmas and free membership in every case. ANISOU values remain
+unchanged within each refinement; printed B values differ by at most 0.01.
+Native output-label warnings are retained; reflection readback passes. Final
+model/map/density inspection in Coot and a damaged-model repair benchmark remain
+open. Inputs, models, maps, native captures, scripts and receipts are local only.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

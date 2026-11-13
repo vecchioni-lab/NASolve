@@ -138,6 +138,10 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
+**Willow update W34; next W35.** W33 introduced human update numbers without
+renumbering old history. Use these labels in conversation; the roadmap JSON
+retains exact code provenance.
+
 [TopoStitch](topostitch.md) on `willow` starts from Pine `d7913dd`; its
 [intent record](topostitch-intent.json) is development metadata, not runtime
 permission. The [current inspector contract](topostitch-periodic.md) owns usage,
@@ -169,9 +173,9 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 21 packing regressions, all 368 focused installed tests +
+**Current checks:** 21 packing and eight numbering regressions, all 376 focused installed tests +
 2 subtests, the same focused suite after original-copied-path-absent relocation,
-and the full source suite (1,284 tests + 226 subtests) pass. Actual native packing
+and the full source suite (1,292 tests + 226 subtests) pass. Actual native packing
 comparison output is byte-identical after copied source/models/captures relocate,
 with Python reads of original live evidence blocked. Both frozen Cedar `cd744e2`
 and `f2345a8` authenticate/replay the same measurements. The comparator preserves
@@ -205,6 +209,11 @@ contacts and individual geometry terms worsen. Native bond edits also change
 exclusions/LINK bookkeeping, unlike additive contact energies. S05 remains partial:
 a supported masked policy must audit intended edits and the surrounding packing
 before matched refinement. No candidate is promoted.
+W34 completes three matched public-reference refinements with the same 3,333
+observations and 176 free reflections. Bending retains better selected contacts,
+but Rfree (.2276) is essentially tied with cleanup alone (.2274), while bond/angle
+RMSDs worsen. No extra bending benefit or candidate adoption is established.
+This is a reference pilot; the private MR repair and density-inspection gates stay open.
 See the current inspector/preview guides for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.

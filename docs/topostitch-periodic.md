@@ -405,11 +405,12 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**Captured-packing comparison checkpoint:** 21 packing regressions pass from
-source. All **368 focused tests + 2 subtests** pass against the rebuilt installed
-wheel (13.30 s), and after source/test relocation with the original copied path
-absent (13.02 s). The full source suite passes **1,284 tests + 226 subtests**
-(75.57 s). The initial new-module regression fails against the preceding wheel.
+**W33 checkpoint:** 21 packing and eight human-numbering regressions pass from
+source. All **376 focused tests + 2 subtests** pass against the installed wheel
+(12.50 s), and after source/test/docs relocation with the original copied path
+absent (12.12 s). The full source suite passes **1,292 tests + 226 subtests**
+(79.28 s). The numbering patch changes only contributor documentation/audit code;
+the previously verified package wheel remains byte-identical. The initial new-module regression fails against the preceding wheel.
 The new developer reader also rejects changed model bytes, overwrite, and repeated
 path reads with changed snapshots. Python 3.10 syntax checks pass.
 

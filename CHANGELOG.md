@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W34 — Public-reference refinement control
+
+- Record three complete matched Phenix refinements with unchanged observations
+  and Free-R membership, including contact/geometry/packing tradeoffs.
+- Retain the lack of meaningful additional Rfree benefit from bending; no
+  damaged-model repair, GUI acceptance or checkpoint adoption is claimed.
+
 ### W33 — Human-readable Willow updates
 
 - Start human update numbering at W33 and increment for each substantial audited

@@ -9,6 +9,18 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
+**Current update: W34 — Matched 8D93 reference refinement control.** Next: W35.
+
+Use these numbers in human updates. Exact commits remain in the machine ledger;
+earlier history is not renumbered. An update number does not close a scientific gate.
+
+## Recent Willow updates
+
+| Update | Work | Record |
+| --- | --- | --- |
+| W33 | Human-readable Willow update numbers | RECORDED |
+| W34 | Matched 8D93 reference refinement control | RECORDED |
+
 ## Finish lines
 
 - **First explicit stitch:** One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).
@@ -62,7 +74,7 @@ Keep logical sites, coordinate copies, chemistry intent and immutable source ide
 
 **Next action:** Reuse the existing registration and anchored-artifact APIs; reopen only for a demonstrated missing interface.
 **Evidence:** [E_SOFTWARE](#e_software), [E_REGISTRATION](#e_registration).
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 <a id="f02"></a>
 ### F02 — Prove which symmetry images are physically distinct
@@ -78,7 +90,7 @@ Give both tools exact atom/site image identity, including stabilizers, reciproca
 
 **Next action:** Qualify physical partner capacity and complete molecular/image equivalences; the selected-source coordinate precondition is now consumed by periodic fitting.
 **Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_POST_IMAGE](#e_post_image).
-**Last audit:** 2026-11-13, Linden, code `a3e4978`; Source and transformed selected-coordinate evidence, not full physical identity.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a3e497825be1b7983739b35af83fb280897559c2); Source and transformed selected-coordinate evidence, not full physical identity.
 
 ## Roadmap A — working sticky-end repair
 
@@ -89,7 +101,7 @@ Give both tools exact atom/site image identity, including stabilizers, reciproca
 | [S03](#s03) | Choose a defensible periodic connection scheme | PARTIAL | S01, F02 |
 | [S04](#s04) | Place an intact duplex by bounded bending or straightening | PARTIAL | S03 |
 | [S05](#s05) | Close and qualify the local atomic geometry | PARTIAL | S04 |
-| [S06](#s06) | Demonstrate improvement against diffraction data | OPEN | S05 |
+| [S06](#s06) | Demonstrate improvement against diffraction data | PARTIAL | S05 |
 | [S07](#s07) | Expose one ordinary, inspectable repair trial | PARTIAL | S06 |
 | [S08](#s08) | Run bounded opt-in campaigns and transfer schemes | OPEN | S02, S07 |
 
@@ -107,7 +119,7 @@ Describe existing ends and canonical pairing geometry without moving atoms or se
 
 **Next action:** Reuse this inspector as the observation layer for all later trials.
 **Evidence:** [E_SOFTWARE](#e_software).
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 <a id="s02"></a>
 ### S02 — Find eligible ends from design and damaged-model evidence
@@ -123,7 +135,7 @@ Reduce manual end declarations while retaining true nicks, protected junctions, 
 
 **Next action:** Build a bounded evidence adapter after the explicit-placement physics is qualified; do not reimplement the guesser.
 **Evidence:** [E_SOFTWARE](#e_software), [E_NAR_REVIEW](#e_nar_review).
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 <a id="s03"></a>
 ### S03 — Choose a defensible periodic connection scheme
@@ -139,7 +151,7 @@ Identify which duplex ends should meet and in which image/register, with a no-co
 
 **Next action:** Close one explicit canonical periodic pairing before broad automatic scheme selection.
 **Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit).
-**Last audit:** 2026-11-13, Linden, code `84cb847`; Conservative source-image precondition, not a global assignment or physical capacity proof.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/84cb847a493654cca8a0ae79f28e000615d5afc3); Conservative source-image precondition, not a global assignment or physical capacity proof.
 
 <a id="s04"></a>
 ### S04 — Place an intact duplex by bounded bending or straightening
@@ -155,7 +167,7 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 **Next action:** Use the current fitter as a baseline; qualify one physical connection and expand only when the smaller window fails.
 **Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone).
-**Last audit:** 2026-11-13, Linden, code `6fc4898`; Schema-2 source-change coverage and matched native diagnostic; no scientific closure.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/6fc48984b5170a2411f576ab3262826963384226); Schema-2 source-change coverage and matched native diagnostic; no scientific closure.
 
 <a id="s05"></a>
 ### S05 — Close and qualify the local atomic geometry
@@ -171,23 +183,23 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 **Next action:** Define a supported captured masked policy with explicit additive-versus-native-edit exclusion intent, complete recipes and exact fixed atoms. Qualify individual geometry and every affected surrounding image, not only intended contacts or total energy; reuse Cedar capture/correction owners before matched refinement.
 **Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing).
-**Last audit:** 2026-11-13, Linden, code `7f4d334`; Native recipes, exclusion semantics and adverse packing evidence; authenticated read-only comparison tested. No production optimizer, refinement or adoption..
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/7f4d334713479b26eee26fb6e2208ad42d9c3f50); Native recipes, exclusion semantics and adverse packing evidence; authenticated read-only comparison tested. No production optimizer, refinement or adoption..
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
 
 Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.
 
-**Delivered:** Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet.
+**Delivered:** Three matched public-reference coordinate-only refinements now preserve deposited observations/Free-R and measure contact, geometry and diffraction tradeoffs; no repaired-MR success or meaningful extra Rfree benefit of bending is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet.
 
 **Closure audit:**
 
 - Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.
 - Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors.
 
-**Next action:** Preflight the supplied hex_data and straight-frame benchmark inputs; start matched refinement only after the candidate geometry gate is met.
-**Evidence:** [E_MR_LOCAL](#e_mr_local).
-**Last audit:** 2026-11-13, Linden, code `fe4388f`; Local MR placement only; S06 acceptance remains open.
+**Next action:** Qualify one deliberately damaged or mismatched duplex with a frozen native pair/exclusion policy, then matched refinement; retain the unmodified reference and cleanup-only controls. Resolve supplied-data copy/composition before calling a private-data repair successful.
+**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference).
+**Last audit:** 2026-11-13, Linden, [W34](https://github.com/vecchioni-lab/NASolve/commit/50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b); Complete public-reference pilot with preserved data/flags, not S05 closure, damaged-MR repair or acceptance.
 
 <a id="s07"></a>
 ### S07 — Expose one ordinary, inspectable repair trial
@@ -203,7 +215,7 @@ Let a scientist see what was proposed, built, refined and reviewed through the e
 
 **Next action:** Finish human browser validation, then reuse this display component when a qualified ordinary trial can connect to existing checkpoint/review owners; do not invent a second history system.
 **Evidence:** [E_SOFTWARE](#e_software), [E_VIEW](#e_view).
-**Last audit:** 2026-11-13, Linden, code `0f176a9`; Read-only display component only; native/refinement/ordinary-trial gates stay open.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/0f176a965223af7aafbc433939d2d054f608524a); Read-only display component only; native/refinement/ordinary-trial gates stay open.
 
 <a id="s08"></a>
 ### S08 — Run bounded opt-in campaigns and transfer schemes
@@ -219,7 +231,7 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 
 **Next action:** Reuse the qualified standalone engine and campaign owners; enable broad inference only after member-level evidence is reliable.
 **Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 ## Roadmap B — Pine ASU slicing and required GUI
 
@@ -246,7 +258,7 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 **Next action:** Build the minimum graph required for one declared recut; retain broader emergent topology as explicit unsupported scope.
 **Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software).
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 <a id="p02"></a>
 ### P02 — Offer cut choices in a required graphical preview
@@ -262,7 +274,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Reuse the offline coordinate viewer where useful, but first supply P01 periodic graph ownership and bounded cut alternatives; implement actual cut selection/materialization preview and human validation.
 **Evidence:** [E_VIEW](#e_view).
-**Last audit:** 2026-11-13, Linden, code `0f176a9`; Shared viewer is available; no Pine cut capability delivered, so P02 stays OPEN.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/0f176a965223af7aafbc433939d2d054f608524a); Shared viewer is available; no Pine cut capability delivered, so P02 stays OPEN.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -278,7 +290,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 **Next action:** Start with an explicit small cut and an independent scattering/inventory oracle before general cut optimization.
 **Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -294,7 +306,7 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 
 **Next action:** Reuse Pine phosphate intent and Cedar/native diagnostics; execute the existing symmetry-bond and local seam controls.
 **Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank).
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -310,7 +322,7 @@ Keep cut, preview, child creation, refinement and review in one usable workbench
 
 **Next action:** Extend the P02 preview into the real immutable operation/refine loop; GUI completion is a release requirement.
 **Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 <a id="p06"></a>
 ### P06 — Pass blind, multiplicity and ordinary-workflow controls
@@ -326,7 +338,7 @@ Prove ASU slicing is useful beyond a single convenient representation.
 
 **Next action:** Use the existing Pine live-check bank, then add held-out cases only for genuinely untested behavior.
 **Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank).
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
 ## Benchmark register
 
@@ -347,114 +359,121 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `7f4d334`.
-21 packing regressions pass; 368 focused tests + 2 subtests pass installed and relocated. Full source: 1,284 tests + 226 subtests. Lean installed imports match source. Native detached comparison survives copied-checkout/capture relocation byte-identically with original Python reads blocked; both frozen Cedar cd744e2 and f2345a8 readers agree. Rendered browser validation remains pending.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at [W33](https://github.com/vecchioni-lab/NASolve/commit/50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b).
+W33 numbering adds eight regressions and rejects duplicate/skipped/inconsistent numbers. Full source: 1,292 tests + 226 subtests. Focused installed and relocated: 376 tests + 2 subtests each. Package numerical code and installed wheel are unchanged by the documentation/audit-script patch. Prior native reader/relocation evidence remains valid; rendered browser validation is pending.
 **Limit:** Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.
 
 <a id="e_registration"></a>
 ### E_REGISTRATION — existing_backend
 
-[Evidence contract](construct-registration.md) at code `ce0a1bf`.
+[Evidence contract](construct-registration.md) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69).
 Existing explicit logical/copy registration is reused; focused existing registration tests pass.
 **Limit:** No new authoritative Scout wiring, symmetry-dependent registration or recut execution is implied.
 
 <a id="e_native_8d93"></a>
 ### E_NATIVE_8D93 — native_diagnostic
 
-[Evidence contract](topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13) at code `ce0a1bf`.
+[Evidence contract](topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69).
 Public source, explicit preview and fitted candidate complete Phenix 2.2.1-6174 interpretation via Cedar ecafc98: REVIEW, 855 atoms and unchanged inputs. Fitted contact target improves but one additional severe captured angle deviation remains.
 **Limit:** No diffraction refinement, density-aware fit, full periodic geometry approval or scientific acceptance; raw diagnostic artifacts remain local.
 
 <a id="e_nar_review"></a>
 ### E_NAR_REVIEW — source_review
 
-[Evidence contract](topostitch.md#implementation-sequence-and-benchmark-gates) at code `ce0a1bf`.
+[Evidence contract](topostitch.md#implementation-sequence-and-benchmark-gates) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69).
 NARestraints v1.1.3 guesser source matches the local checkout: geometric seeds, antiparallel runs and repeated weak edge rescue; raw traversal uses chain/integer adjacency and greedy selection.
 **Limit:** Review only; no TopoStitch integration or complete-topology authority.
 
 <a id="e_pine_test_bank"></a>
 ### E_PINE_TEST_BANK — planned_acceptance_bank
 
-[Evidence contract](construct-registration-live-checks.md) at code `ce0a1bf`.
+[Evidence contract](construct-registration-live-checks.md) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69).
 Existing blind recut, seam, multiplicity, repeat and persistent-GUI controls are retained as the acceptance bank.
 **Limit:** Unchecked planned tests are not execution evidence.
 
 <a id="e_image_audit"></a>
 ### E_IMAGE_AUDIT — Selected present-atom image observations
 
-[Evidence contract](topostitch-periodic.md#selected-atom-image-audit) at code `2d7544b`.
+[Evidence contract](topostitch-periodic.md#selected-atom-image-audit) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/2d7544bb5fa6902e667039c6c9b090e5299bb301).
 Exact operator/lattice records, metric-bounded orbit coincidences, source-label ambiguity and selected-image overlap are inspected with finite work/output bounds. Public 8D93: 240 selected atoms and 274,916 tests; no orbit coincidences or selected overlaps. Sources unchanged.
 **Limit:** Coordinate coincidence is tolerance-bound evidence, not an identity merge. Periodic fitting now refuses ambiguous selected source coordinates before optimization; missing/unselected atoms, global capacity and Pine cut/scattering invariance remain unqualified.
 
 <a id="e_mr_local"></a>
 ### E_MR_LOCAL — Local native MR placement preflight
 
-[Evidence contract](topostitch-periodic.md#local-diffraction-benchmark-preflight--2026-11-13) at code `fe4388f`.
+[Evidence contract](topostitch-periodic.md#local-diffraction-benchmark-preflight--2026-11-13) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/fe4388facbd3450086f16c645db09de918931a1c).
 Five serial single-job Phenix 2.2.1-6174 MR executions completed for the supplied hexagonal and basic-dataset controls. Exact scientific results, source bindings and outputs remain in local frozen receipts; no scientific data committed.
 **Limit:** One-copy/source-chemistry assumptions and different ASU cuts remain relevant. This is placement preflight, not TopoStitch deformation, matched refinement, PDF-discovery support or scientific acceptance.
 
 <a id="e_tighter_native"></a>
 ### E_TIGHTER_NATIVE — Matched native tighter-backbone controls
 
-[Evidence contract](topostitch-preview.md#stricter-backbone-controls--2026-11-13) at code `84cb847`.
+[Evidence contract](topostitch-preview.md#stricter-backbone-controls--2026-11-13) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/84cb847a493654cca8a0ae79f28e000615d5afc3).
 Three predeclared public 8D93 backbone-penalty controls improve the pair target with less source-relative strain. Complete Phenix 2.2.1-6174 read-only captures, Cedar cd744e2 mechanics checks, exact named proxy multisets and matched scalar identities show no new nominal >=5 bond/angle/chirality outliers; the original fit adds one angle outlier.
 **Limit:** Source outliers remain. This is a local descriptive tradeoff, not closure, torsion/packing/native residual qualification or diffraction improvement. Native inputs and derived models remain local; no new product default is calibrated.
 
 <a id="e_extended_backbone"></a>
 ### E_EXTENDED_BACKBONE — Extended source-change geometry and native diagnostic
 
-[Evidence contract](topostitch-preview.md#extended-backbone-checks--2026-11-13) at code `6fc4898`.
+[Evidence contract](topostitch-preview.md#extended-backbone-checks--2026-11-13) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/6fc48984b5170a2411f576ab3262826963384226).
 Schema 2 audits four junction angles and circular epsilon/zeta/alpha changes in fitting and serialized previews. Public 8D93 extended fit improves the contact target; complete Phenix 2.2.1-6174 capture, bound Cedar cd744e2 receipts, contexts and named proxies match; no new nominal >=5 captured scalar outliers. Schema 1 remains replayable.
 **Limit:** Source-relative change only: no torsion ideal/pucker, phosphate valence, full packing, atomic closure or diffraction qualification. Source outliers remain; scientific artifacts stay local.
 
 <a id="e_post_image"></a>
 ### E_POST_IMAGE — Post-transform exact image audit
 
-[Evidence contract](topostitch-preview.md#periodic-source-and-candidate-image-checks) at code `a3e4978`.
+[Evidence contract](topostitch-preview.md#periodic-source-and-candidate-image-checks) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a3e497825be1b7983739b35af83fb280897559c2).
 An improving serialized fit is rechecked against the original exact selected image and atom identities. The demonstrated source-clear/candidate-colliding regression now returns TRANSFORMED_IMAGE_REVIEW_REQUIRED with no trial. New evidence binds candidate bytes and source selection; no partner re-search.
 **Limit:** Selected present-atom coincidence evidence only; no full van der Waals packing, physical capacity, native closure or approval.
 
 <a id="e_native_transport_relax"></a>
 ### E_NATIVE_TRANSPORT_RELAX — Native symmetry gradients and fixed-base relaxation controls
 
-[Evidence contract](topostitch-preview.md#native-transport-and-backbone-only-relaxation-diagnostics--2026-11-13) at code `a3e4978`.
+[Evidence contract](topostitch-preview.md#native-transport-and-backbone-only-relaxation-diagnostics--2026-11-13) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a3e497825be1b7983739b35af83fb280897559c2).
 Complete local Phenix 2.2.1-6174 probes match 5 periodic bond and 8 angle values/ASU gradients. Source and placed models separately relax 107 sugar/phosphate atoms with fixed bases/anchors; fresh captures match contexts/proxies, lower native targets and resolve three severe angles each without new severe scalar outliers. All 321 endpoint coordinates pass finite-difference checks.
 **Limit:** Local diagnostic only, no new production native policy. Both stop at 200 iterations; some geometry components increase. No contact, dictionary or chemical-link edits, plane transport qualification, diffraction refinement or adoption. Reuse Cedar lifecycle at integration; artifacts remain local.
 
 <a id="e_native_planes"></a>
 ### E_NATIVE_PLANES — Reproducible native plane integration gate
 
-[Evidence contract](topostitch-preview.md#reproducible-native-plane-gate) at code `7255bfd`.
+[Evidence contract](topostitch-preview.md#reproducible-native-plane-gate) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/7255bfd70e4ffa84068bd008ca1b3360b72848af).
 A committed synthetic probe reproduces Phenix 2.2.1-6174 raw symmetry-planarity and Cartesian-parallelity derivative failures. Explicit Cartesian image pullback passes for planarity and, reusing Cedar both-first-planes correction, parallelity. Public 8D93 two-plane controls also pass the corrected composition; raw negatives remain.
 **Limit:** No production native adapter, manager attachment, optimization or blanket API qualification. Native symmetry-parallelity constructor is unsupported. Existing Cedar correction/lifecycle remain owners; no native installation or Cedar files modified.
 
 <a id="e_view"></a>
 ### E_VIEW — Verified read-only coordinate comparison
 
-[Evidence contract](topostitch-preview.md#offline-originalcandidate-view) at code `0f176a9`.
+[Evidence contract](topostitch-preview.md#offline-originalcandidate-view) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/0f176a965223af7aafbc433939d2d054f608524a).
 Standalone offline view replays frozen previews, displays actual source/candidate and optional exact mate, and exposes points, traces, contact distances, geometry changes and unrefined/unreviewed state. Public 8D93 installed artifact has 404 atom instances, 204 moved.
 **Limit:** No Apply/Refine/Approve or campaign/checkpoint state; no Pine cut choices or recut graph. Browser visual/interaction validation blocked by local-file automation policy; mock-DOM checks are not rendered-browser evidence.
 
 <a id="e_transport"></a>
 ### E_TRANSPORT — Shared image-coordinate and ASU-gradient transport
 
-[Evidence contract](topostitch-preview.md#shared-image-coordinate-transport) at code `3cb9723`.
+[Evidence contract](topostitch-preview.md#shared-image-coordinate-transport) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/3cb9723a4effa6cb58ea97c1972b369c77e154fd).
 The viewer and committed native probe share proper Cartesian images and accumulated transpose-gradient pullback. Tests compare independent fractional paths, inverses, repeated shared ASU indices and finite-difference derivatives. Phenix 2.2.1-6174 corrected Cartesian plane checks pass using the shared core; raw negative controls remain.
 **Limit:** Numerical arithmetic only; explicit matrices alone do not prove crystallographic membership. No production native optimizer, new chemical topology, symmetry equivalence/packing proof or scientific acceptance.
 
 <a id="e_masked_native"></a>
 ### E_MASKED_NATIVE — Local masked native and contact-preservation controls
 
-[Evidence contract](topostitch-preview.md#complete-recipes-native-exclusions-and-broader-bend-controls--2026-11-13) at code `7f4d334`.
+[Evidence contract](topostitch-preview.md#complete-recipes-native-exclusions-and-broader-bend-controls--2026-11-13) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/7f4d334713479b26eee26fb6e2208ad42d9c3f50).
 Complete Phenix 2.2.1-6174 local masked trials validate every movable ASU derivative before/after optimization and PDB rounding. Complete NAR recipes and matched core-pair controls pass readback; broader bend plus fixed-base cleanup removes its added angle and three inherited ones with all base coordinates fixed. Native bond edits alter exclusions; collateral periodic overlap and individual geometry regressions remain.
 **Limit:** All trials hit 200 iterations. Additive and native-edit objectives are different physics. Better intended contacts, lower total energy and fewer severe scalar outliers do not qualify surrounding packing. No production masked adapter, diffraction comparison or scientific acceptance. Local scientific files/workers excluded from Git.
 
 <a id="e_packing"></a>
 ### E_PACKING — Authenticated native directed packing comparison
 
-[Evidence contract](topostitch-preview.md#captured-native-packing-comparison) at code `7f4d334`.
+[Evidence contract](topostitch-preview.md#captured-native-packing-comparison) at [earlier work](https://github.com/vecchioni-lab/NASolve/commit/7f4d334713479b26eee26fb6e2208ad42d9c3f50).
 Thin comparison reuses Cedar capture/authentication and directed pair replay. Exact relative-image matching preserves multiplicity and separates new overlap from neighbor-list change. Real original/broad-cleanup captures confirm 20 directed rows newly overlap and 103 worsen despite lower total native nonbonded energy; relocated copied evidence produces byte-identical output with original reads blocked.
 **Limit:** Read-only unchanged-policy scope. Directed counts are not unique physical contacts, a clashscore or chemical acceptance. No independent neighbor enumeration, torsion/plane comparison, native optimizer or model promotion.
+
+<a id="e_public_reference"></a>
+### E_PUBLIC_REFERENCE — Matched public-reference diffraction pilot
+
+[Evidence contract](topostitch-preview.md#w34--matched-public-reference-diffraction-control) at [W34](https://github.com/vecchioni-lab/NASolve/commit/50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b).
+Three complete Phenix 2.2.1-6174 coordinate-only runs preserve the same 3,333 observations and 176 free reflections. Final Rwork/Rfree: original .1776/.2284; cleanup .1779/.2274; bend+cleanup .1772/.2276. Selected contacts remain better with bending, but no meaningful additional held-out benefit is established. Native geometry/packing tradeoffs and exact readbacks are retained.
+**Limit:** One already-refined public reference, no artificial MR damage or broader scientific acceptance. No added pair restraints, density inspection, weight tuning, campaign publication or adoption. S05 remains partial; generated artifacts stay local.
 
 ## Deferred extensions, not hidden blockers
 
@@ -465,6 +484,8 @@ Thin comparison reuses Cedar capture/authentication and directed pair replay. Ex
 - **Broad emergent topology and global reusable recipe promotion:** After bounded explicit cut/repair workflows and independent held-out evidence; do not make these hidden initial release blockers.
 
 ## Reconciliation: reuse what is already delivered
+
+<details><summary>Earlier implementation references</summary>
 
 - b2ae9dc planning: retain the design, but this queue now owns work order; historical Next paragraphs are not another queue.
 - 6b1dbbd through 71af8ad: reuse candidate/coordinate/periodic/contact/pairing/registration/discovery/window modules; missing scientific closure is not a reason to rebuild them.
@@ -477,6 +498,8 @@ Thin comparison reuses Cedar capture/authentication and directed pair replay. Ex
 - Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.
 - Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates.
 - Native plane probe 7255bfd reuses Cedar correction and records raw failures. A plausible energy is not derivative qualification; do not repeat C23–C27 diagnosis or create another plane-correction implementation.
+
+</details>
 
 Modeled on Cedar’s separation of completion queue, capability contract and
 evidence ledger. No queue edit grants runtime authority, scientific approval

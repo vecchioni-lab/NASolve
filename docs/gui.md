@@ -807,7 +807,11 @@ A compact campaign row should show “Connection proposed”, “Needs assignmen
 
 Once an execution receipt exists, offer a real source/child comparison with
 actual moved/rebuilt residues, retained nicks, relevant symmetry mates,
-geometry changes and matched Rwork/Rfree deltas. Distinguish operation-complete,
+geometry changes and matched Rwork/Rfree deltas. Show bond/angle RMSDs, the
+all-atom clashscore and changed local contacts alongside them, with explicit
+before/control/candidate context. The W34 reference pilot demonstrates mixed
+tradeoffs; neither a tiny Rfree change nor a lower global clashscore warrants
+one green "improved" badge. Distinguish operation-complete,
 refinement-complete and human-reviewed; a failed attempt may have an artifact
 but is not a recommended repair. Selecting or viewing a child does not approve
 it. “Use candidate” and “Reject pairing” have different meanings: one chooses
