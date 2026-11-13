@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve declared phosphate bonds at monomer input (C262)
+
+- Add an explicit native-input adapter that permutes complete bond rows so a
+  source-declared terminal P=O is encountered before other terminal P–O bonds.
+  This avoids an observed eLBOW monomer-reader order dependency without changing
+  chemical declarations, coordinates, numerical targets, charge or hydrogens.
+- Match source connectivity and elements rather than ligand/atom names. Ambiguous
+  affected phosphorus states refuse; no resonance form or phosphate state is chosen.
+- Original-source native qualification passes for a fresh 1AP control. This input
+  adapter remains explicit; ordinary acquisition integration is separate. Historical
+  generation policies and receipts are unchanged.
+
 ### Compact new checked preparation before campaign capture (C260)
 
 - New ordinary checked preparation invokes the existing retirement owner after

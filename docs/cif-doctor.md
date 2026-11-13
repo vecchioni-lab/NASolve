@@ -9624,6 +9624,18 @@ The remaining integration must retain original source/authority, derived-reader
 identity and recipe through the existing owner, cache and qualification paths.
 Native chosen-model AutoSol acceptance remains open.
 
+C262 adds `prepare_elbow_phosphate_bond_order(source, code, output)` to the
+existing input-adapter module. It accepts one explicit monomer component and
+permutes entire bond rows within the terminal-oxygen positions of each affected
+phosphorus. Require four declared neighbours, exactly one terminal P=O and three
+single incident bonds. Inapplicable sites stay unchanged; ambiguous affected
+sites refuse before output. All other tables, bond-field values and source bytes
+survive. No-op input is byte-identical. The receipt records exact original/output
+hashes and named ordering, not chemical approval. Its fresh 1AP control passes
+original-source isolated qualification; renamed synthetic graphs, two phosphates,
+unsupported cases and source-removed relocation pass focused tests. The adapter
+is explicit, with no ordinary routing or historical receipt change.
+
 ## Generated numerical defects and explicit candidates
 
 The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident

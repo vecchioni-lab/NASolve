@@ -39,6 +39,13 @@ before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 
+An input-format issue provides another example: the installed eLBOW monomer
+route can turn the first terminal P–O bond into a double bond even when another
+P=O is already declared. A small explicit adapter presents the already-declared
+double bond first, changing only table-row order. The original chemical source
+remains the authority, and a fresh 1AP control passes the existing isolated checks.
+Connecting that prepared input to ordinary acquisition remains separate work.
+
 The PDU investigation illustrates the distinction: correct connectivity and a
 straight propyne do not guarantee the desired glycosidic orientation or coplanarity
 with the base. Source connectivity and native geometry guide the repairs, rather

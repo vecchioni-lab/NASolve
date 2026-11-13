@@ -92583,5 +92583,110 @@
     "artifacts": "Only compact evidence/documentation committed. Local source copies, candidates, native logs, owner receipts and runners remain local; all original sources retain bytes and timestamps.",
     "next": "Implement a narrowly declared, graph-based complete-bond-row ordering adapter and bind graph/reader preparation into ordinary owned acquisition with original source identity retained. Then rerun chosen-model AutoSol acceptance.",
     "tests": "No full suite; native diagnostic only."
+  },
+  "declared_phosphate_input_order_2026_11_13": {
+    "milestone": "C262",
+    "date": "2026-11-13",
+    "baseline_commit": "6da39f5",
+    "status": "EXPLICIT_SOURCE_INPUT_ADAPTER_VALIDATED; ORDINARY_INTEGRATION_OPEN",
+    "before": "eLBOW monomer construction may introduce a second P=O by choosing the first terminal oxygen; Cedar rejects the changed candidate.",
+    "after": "Explicit adapter reorders complete source bond rows so the unique already-declared terminal P=O comes first; no named chemical/numerical field changes. Fresh 1AP passes original-source isolated qualification.",
+    "prior_work": "C261 native controls and C30/C37/C118 reused. No native kernel patch or new chemical perception.",
+    "policy": "cif-declared-phosphate-bond-row-order-v1",
+    "changed_files": [
+      "src/nasolve/cif_elbow_input.py",
+      "tests/test_cif_elbow_phosphate_order.py"
+    ],
+    "validation": {
+      "before": "New behavioral regression fails ImportError for missing adapter.",
+      "focused": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_elbow_phosphate_order.py tests/test_cif_source_reader.py tests/test_cif_connected_atom_order.py tests/test_cif_declared_charge_control.py tests/test_cif_source_candidate.py",
+        "result": "120 passed in 12.01s; includes 17 new cases, 48 complete-row permutations across renamed components."
+      },
+      "relocation": {
+        "status": "RELOCATED_CHECKOUT_AND_INPUT_PASS",
+        "scope": "One source-preserving input-order replay test, from copied code relocated after its temporary original checkout disappeared. Source and prepared input also relocated; both old temporary paths absent. No source checkout or original scientific data removed.",
+        "elapsed_seconds": 1.0027935419930145,
+        "pytest_output": ".                                                                        [100%]\n1 passed, 16 deselected in 0.07s",
+        "temporary_checkout_removed": true
+      },
+      "full_suite": "NOT_RUN_PER_USER"
+    },
+    "native": {
+      "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "execution": "Complete bounded owned generation and isolated source/candidate-seed qualification; not dry-run. No ReadySet/AutoSol/refinement/adoption.",
+      "status": "ORIGINAL_SOURCE_ISOLATED_QUALIFICATION_PASS",
+      "original_preserved": true,
+      "input_order": {
+        "schema_version": 1,
+        "policy_id": "cif-declared-phosphate-bond-row-order-v1",
+        "component": "1AP",
+        "source_sha256": "aa4848254536e4a25ccdd1dba7aaefd70bc3d2825a6fbac721534b018968e39d",
+        "consumer_sha256": "f3b36b25f962fdac275ad552148cea5d706284ef16117fe5b6c2f6e7e7559bbf",
+        "source_preserved": true,
+        "changed": true,
+        "sites": [
+          {
+            "center": "P",
+            "declared_double_bond": [
+              "OP2",
+              "P"
+            ],
+            "input_terminal_bonds": [
+              [
+                "OP1",
+                "P"
+              ],
+              [
+                "OP2",
+                "P"
+              ],
+              [
+                "OP3",
+                "P"
+              ]
+            ],
+            "output_terminal_bonds": [
+              [
+                "OP2",
+                "P"
+              ],
+              [
+                "OP1",
+                "P"
+              ],
+              [
+                "OP3",
+                "P"
+              ]
+            ]
+          }
+        ],
+        "chemical_declarations": "PRESERVED",
+        "coordinate_values": "PRESERVED",
+        "bond_rows": "COMPLETE_ROW_PERMUTATION_ONLY",
+        "reader_dialect": "MONOMER_LIBRARY_CIF",
+        "native_qualification": "NOT_RUN",
+        "automatic_adoption": false
+      },
+      "ownership": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "elapsed_seconds": 23.862523040996166,
+      "historical_local_path": "/Users/svecchio/NASolve-live-tests/262_Cedar_declared-phosphate-adapter-m1cnetyh",
+      "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY",
+      "files": {
+        "start.json": "54d549f4f511909218f53e4203b5e740622679e9767b441f2caaf9841af1bb99",
+        "runner-pins.json": "5b04bcc2e6d0948b2454db225072e17848512ccbc778d09e7aaf0d95c0be5f5f",
+        "summary.json": "5b5445bb3e8e3fa4e76933ef402049dfead6e6ff04f61e603a1d4ca48e73ad4e",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "worker.py": "38256d3bae4a1d04a805125a51c7bdef7413f77ccee536b8aa5c10197ed17eae"
+      }
+    },
+    "compatibility": "New explicit adapter and policy; no existing generator/reader/receipt behavior or catalogue change. No migration.",
+    "artifacts": "Compact evidence only committed. Native candidates/logs and exact input copies remain local, all original scientific sources unchanged.",
+    "limitations": "Input ordering does not select phosphate chemical state, establish numerical convergence, authorize linked models or qualify diffraction refinement. Original-source qualification still required; ordinary source/recipe binding is next."
   }
 }

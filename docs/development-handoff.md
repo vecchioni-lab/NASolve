@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C260 pushed as `ef2805c`; C261 diagnostics complete,
-documentation checkpoint pending. Active **cedar**, checkout NASolve-c96.
+Updated **2026-11-13**, C261 pushed as `6da39f5`; C262 adapter/validation complete,
+publication pending. Active **cedar**, checkout NASolve-c96.
 Simon authorized this pass through **23:00 Europe/London**, focused tests only,
 no full suite or merge. Finish Q04/Q05 before Q06. The
 [queue](cif-doctor-completion-queue.md) owns ordering; the
@@ -33,9 +33,12 @@ Original sources retain bytes/timestamps. Raw science excluded from Git.
 
 ## Next — Q04/Q05 closure
 
-1. Implement the small graph-based bond-row input adapter with focused preservation,
-   refusal and portability tests. Read C261/native source evidence; do not duplicate
-   C30/C37/C118 or weaken chemistry gates.
+1. C262 implements the graph-based complete-bond-row adapter in cif_elbow_input.py.
+   17 new cases plus existing reader/charge/candidate checks: **120 passed, 12.01 s**.
+   Relocated temporary checkout/input with original temporary paths absent: **1 passed**.
+   Actual new adapter: fresh 1AP native generation and original-source isolated
+   qualification pass; stopped/code-unchanged. No ordinary routing change yet.
+   Read C261/native evidence; do not duplicate C30/C37/C118 or weaken gates.
 2. Bind explicit source/reader preparation into the existing owned acquisition,
    retaining original source authority plus derived-input/recipe identity. Qualification
    must still compare with the original. Avoid a new executor or untracked retry.
@@ -45,6 +48,10 @@ Original sources retain bytes/timestamps. Raw science excluded from Git.
 4. Reconcile supported opt-in Q04/Q05 closure, then Q06 real complete-restraint
    refinement and Q07 combined/held-out cases. Retain Q08–Q14 chemistry learning;
    Q15 reporting/PDF and Q16 final AutoPhase naming/full validation/integration review.
+
+C262 local native evidence: `262_Cedar_declared-phosphate-adapter-m1cnetyh`.
+Exact commands, pins and limits: ledger `declared_phosphate_input_order_2026_11_13`.
+No active native job.
 
 ## Completed foundations — reuse, do not rebuild
 

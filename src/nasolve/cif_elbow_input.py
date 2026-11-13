@@ -1,4 +1,4 @@
-"""Project declared restraint-dictionary chemistry into the CCD reader dialect.
+"""Prepare declared chemistry for selected native reader dialects.
 
 Unknown atom aromaticity/CIP metadata stays unknown. Signed chiral volumes and
 all original fields survive; this format adapter is not chemical perception.
@@ -202,3 +202,100 @@ def prepare_elbow_source_dialect_input(original, graph, code, output):
         'chemical_declarations':'PRESERVED','stereochemistry_inferred':False,'ccd_projection':projection,
         'source_preserved':True,'graph_preserved':True,'raw_comparison':compare_dictionaries([graph],[output]),
         'native_reader_qualification':'NOT_RUN','automatic_adoption':False}
+
+
+def prepare_elbow_phosphate_bond_order(source, code, output):
+    """Present a declared terminal P=O first to the native monomer reader.
+
+    Some eLBOW monomer paths set the first terminal P--O bond to double even
+    when a different double bond is already declared. Permute complete bond
+    rows only; never choose a resonance form or repair a generated dictionary.
+    Require an explicit four-neighbour P graph with one terminal P=O and all
+    other incident bonds single. Unsupported affected sites refuse before output.
+    This opt-in input adapter is not native qualification or ordinary adoption.
+    """
+    from .cif_stereochemistry_audit import _graph
+    source, output = Path(source).resolve(strict=True), Path(output).absolute()
+    if output.exists() or output.is_symlink():
+        raise FileExistsError('Phosphate-order output already exists')
+    if output.resolve() == source or any(p.is_symlink() for p in output.parents):
+        raise ValueError('Require a separate regular phosphate-order output')
+    original = source.read_bytes()
+    blocks = _blocks(source)
+    targets = [b for b in blocks if any(k.lower() == '_chem_comp_atom.atom_id' for k in b.values)]
+    if len(targets) != 1:
+        raise ValueError('Require one phosphate-order component')
+    target = targets[0]
+    others = [b for b in blocks if b is not target]
+    if (len(others) != 1 or others[0].values.get('data_', '').lower() != 'comp_list'
+            or others[0].values.get('_chem_comp.id') != [code]):
+        raise ValueError('Require one explicit monomer component-list block')
+    values = target.values
+    lookup = {k.lower(): v for k, v in values.items()}
+    if len(lookup) != len(values):
+        raise ValueError('Ambiguous phosphate-order field aliases')
+    a, b = '_chem_comp_atom.', '_chem_comp_bond.'
+    for category, identity in ((a, 'atom_id'), (b, 'atom_id_1')):
+        count = len(lookup.get(category + identity, []))
+        columns = {k: v for k, v in lookup.items() if k.startswith(category)}
+        if (not count or any(not isinstance(v, list) or len(v) != count for v in columns.values())
+                or set(columns.get(category + 'comp_id', [])) != {code}):
+            raise ValueError('Incomplete or mixed phosphate-order category')
+    def order(token):
+        normalized = _ORDERS.get(token.upper())
+        if normalized not in {'SINGLE', 'DOUBLE', 'TRIPLE', 'AROMATIC', 'DELOCALIZED'}:
+            raise ValueError('Unsupported explicit bond order')
+        return normalized
+    count = len(lookup[b + 'atom_id_1'])
+    orders = _choice(lookup, [b + 'type', b + 'value_order'], count, order)
+    if '?' in orders:
+        raise ValueError('Phosphate ordering requires explicit bond orders')
+    assessment = assess_dictionaries([source], stage='phosphate-input-order')
+    if (len(assessment['components']) != 1 or assessment['components'][0]['component_id'] != code
+            or assessment['components'][0]['verdicts']['graph'] != 'PASS'):
+        raise ValueError('Require one graph-valid phosphate-order source')
+    elements, bonds, _, neighbours = _graph(lookup)
+    edges = [tuple(sorted(pair)) for pair in zip(lookup[b + 'atom_id_1'], lookup[b + 'atom_id_2'])]
+    if len(set(edges)) != count or any(bonds.get(edge) != value for edge, value in zip(edges, orders)):
+        raise ValueError('Ambiguous phosphate-order bond graph')
+    indices = list(range(count))
+    sites = []
+    for center in sorted(n for n, e in elements.items() if e == 'P'):
+        oxygens = {n for n in neighbours[center] if elements[n] == 'O'}
+        terminal = {n for n in oxygens if len(neighbours[n]) == 1}
+        if len(oxygens) < 2 or not terminal:
+            continue  # The native first-terminal-oxygen rule cannot apply.
+        doubles = {n for n in terminal if bonds[tuple(sorted((center, n)))] == 'DOUBLE'}
+        if (len(neighbours[center]) != 4 or len(doubles) != 1
+                or any(bonds[tuple(sorted((center, n)))] != ('DOUBLE' if n in doubles else 'SINGLE')
+                       for n in neighbours[center])):
+            raise ValueError('Require one declared terminal P=O and three single P bonds')
+        double = tuple(sorted((center, next(iter(doubles)))))
+        slots = [i for i, edge in enumerate(edges) if center in edge and any(n in terminal for n in edge)]
+        selected = sorted(slots, key=lambda i: edges[i] != double)
+        for slot, selected_index in zip(slots, selected):
+            indices[slot] = selected_index
+        sites.append({'center': center, 'declared_double_bond': list(double),
+                      'input_terminal_bonds': [list(edges[i]) for i in slots],
+                      'output_terminal_bonds': [list(edges[i]) for i in selected]})
+    converted = deepcopy(values)
+    for key, column in values.items():
+        if key.lower().startswith(b):
+            converted[key] = [column[i] for i in indices]
+    changed = indices != list(range(count))
+    payload = (''.join(_emit(converted) if block is target else block.text for block in blocks).encode()
+               if changed else original)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with output.open('xb') as handle:
+        handle.write(payload)
+    if [block.values for block in _blocks(output)] != [converted if block is target else block.values for block in blocks]:
+        raise ValueError('Phosphate-order serialization changed declarations; output retained')
+    if source.read_bytes() != original:
+        raise ValueError('Phosphate-order source changed')
+    return {'schema_version': 1, 'policy_id': 'cif-declared-phosphate-bond-row-order-v1',
+            'component': code, 'source_sha256': sha256(original).hexdigest(),
+            'consumer_sha256': sha256(payload).hexdigest(), 'source_preserved': True,
+            'changed': changed, 'sites': sites, 'chemical_declarations': 'PRESERVED',
+            'coordinate_values': 'PRESERVED', 'bond_rows': 'COMPLETE_ROW_PERMUTATION_ONLY',
+            'reader_dialect': 'MONOMER_LIBRARY_CIF', 'native_qualification': 'NOT_RUN',
+            'automatic_adoption': False}
