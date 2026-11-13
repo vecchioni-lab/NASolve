@@ -88,21 +88,23 @@
       ],
       "goal": "Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.",
       "delivered": [
-        "Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated."
+        "Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated.",
+        "Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope."
       ],
       "acceptance": [
         "Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.",
         "Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites."
       ],
-      "next_action": "Implement a read-only selected-image/orbit audit before granting physical meaning to a candidate edge.",
+      "next_action": "Use the scoped audit as an explicit connection precondition; qualify physical partner capacity and complete molecular/image equivalences before Pine cut invariance.",
       "evidence": [
-        "E_SOFTWARE"
+        "E_SOFTWARE",
+        "E_IMAGE_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "code_commit": "2d7544bb5fa6902e667039c6c9b090e5299bb301",
+        "scope": "Selected-coordinate audit and regressions complete; full physical identity and global capacity remain open"
       }
     },
     {
@@ -254,19 +256,22 @@
       ],
       "goal": "Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.",
       "delivered": [
-        "Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed."
+        "Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed.",
+        "Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
         "Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors."
       ],
       "next_action": "Preflight the supplied hex_data and straight-frame benchmark inputs; start matched refinement only after the candidate geometry gate is met.",
-      "evidence": [],
+      "evidence": [
+        "E_MR_LOCAL"
+      ],
       "last_audit": {
         "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "code_commit": "fe4388facbd3450086f16c645db09de918931a1c",
+        "scope": "Local MR placement only; S06 acceptance remains open"
       }
     },
     {
@@ -470,10 +475,10 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+      "code_commit": "2d7544bb5fa6902e667039c6c9b090e5299bb301",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "282 focused tests plus 2 subtests pass from source, installed wheel and relocated checkout. Seventeen fitting tests also pass with SciPy 1.14.1; installed CLI and lean optional-dependency behavior checked.",
-      "limitation": "Synthetic arithmetic/identity and software behavior do not certify physical repair, data fit or GUI integration."
+      "result": "307 focused source, installed-wheel and relocated-checkout tests plus 2 subtests pass; complete source suite 1,223 tests plus 226 subtests passes. Installed image-audit command reproduces the public 8D93 result.",
+      "limitation": "Synthetic regression and installation do not establish physical repair. The initial sandboxed full-suite run failed five process-control checks; unrestricted complete rerun passed without code changes. No combined Willow/Cedar build or full platform matrix is claimed."
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -502,6 +507,20 @@
       "reference": "docs/construct-registration-live-checks.md",
       "result": "Existing blind recut, seam, multiplicity, repeat and persistent-GUI controls are retained as the acceptance bank.",
       "limitation": "Unchecked planned tests are not execution evidence."
+    },
+    "E_IMAGE_AUDIT": {
+      "kind": "Selected present-atom image observations",
+      "reference": "docs/topostitch-periodic.md#selected-atom-image-audit",
+      "code_commit": "2d7544bb5fa6902e667039c6c9b090e5299bb301",
+      "result": "Exact operator/lattice records, metric-bounded orbit coincidences, source-label ambiguity and selected-image overlap are inspected with finite work/output bounds. Public 8D93: 240 selected atoms and 274,916 tests; no orbit coincidences or selected overlaps. Sources unchanged.",
+      "limitation": "Coordinate coincidence is tolerance-bound evidence, not an identity merge. Missing/unselected atoms, global capacity and Pine cut/scattering invariance remain unqualified; fitter does not consume this optional audit yet."
+    },
+    "E_MR_LOCAL": {
+      "kind": "Local native MR placement preflight",
+      "reference": "docs/topostitch-periodic.md#local-diffraction-benchmark-preflight--2026-11-13",
+      "code_commit": "fe4388facbd3450086f16c645db09de918931a1c",
+      "result": "Five serial single-job Phenix 2.2.1-6174 MR executions completed for the supplied hexagonal and basic-dataset controls. Exact scientific results, source bindings and outputs remain in local frozen receipts; no scientific data committed.",
+      "limitation": "One-copy/source-chemistry assumptions and different ASU cuts remain relevant. This is placement preflight, not TopoStitch deformation, matched refinement, PDF-discovery support or scientific acceptance."
     }
   },
   "benchmarks": [
@@ -518,22 +537,22 @@
     {
       "id": "B02",
       "case": "8D93 and 5W6W into user-supplied hex_data",
-      "state": "INPUTS_LOCATED_PREFLIGHT_PENDING",
+      "state": "MR_PREFLIGHT_COMPLETE_REPAIR_PENDING",
       "jobs": [
         "S04",
         "S06"
       ],
-      "remaining": "Freeze exact inputs and recipient setting/Free-R; validate the STARANISO report PDF role and model/copy compatibility. Keep private data and results out of Git."
+      "remaining": "Resolve one-copy/composition and ASU-cut assumptions; qualify a repair before matched no-repair refinement. Original PDF/MTZ/CIF and native results stay local."
     },
     {
       "id": "B03",
       "case": "Bent 8CS1 / 7R96 into suitable DOHU / DT straight-frame data",
-      "state": "REQUESTED_PREFLIGHT_PENDING",
+      "state": "BASIC_DATASET_MR_CONTROLS_COMPLETE",
       "jobs": [
         "S04",
         "S06"
       ],
-      "remaining": "Verify actual chemistry, model/copy compatibility and data before interpreting failed MR as a need to bend. Include straightening and changed-direction cases."
+      "remaining": "Straight reference and both bent public models placed into one basic dataset. Resolve sequence/ASU-cut comparability, then qualify unbending or changed-direction trials and matched refinement."
     },
     {
       "id": "B04",
@@ -599,6 +618,7 @@
     "149a82a: explicit bend preview and portable replay are delivered; they do not close local chemistry or refinement.",
     "aae51be and 3ef2fad: density, forward/reverse shape and NARestraints-reuse requirements remain acceptance obligations, not implemented capabilities.",
     "ce0a1bf: bounded fitting is delivered and native limitations recorded; S04/S05 remain partial.",
-    "Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work."
+    "Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work.",
+    "Selected atom-image audit 2d7544b adds bounded coordinate evidence without an identity merge; do not reimplement it as a second symmetry finder. Native MR preflight does not close the diffraction repair gate."
   ]
 }

@@ -69,16 +69,16 @@ Keep logical sites, coordinate copies, chemistry intent and immutable source ide
 
 Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.
 
-**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated.
+**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated. Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope.
 
 **Closure audit:**
 
 - Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.
 - Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites.
 
-**Next action:** Implement a read-only selected-image/orbit audit before granting physical meaning to a candidate edge.
-**Evidence:** [E_SOFTWARE](#e_software).
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Next action:** Use the scoped audit as an explicit connection precondition; qualify physical partner capacity and complete molecular/image equivalences before Pine cut invariance.
+**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit).
+**Last audit:** 2026-11-13, Linden, code `2d7544b`; Selected-coordinate audit and regressions complete; full physical identity and global capacity remain open.
 
 ## Roadmap A — working sticky-end repair
 
@@ -178,7 +178,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.
 
-**Delivered:** Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed.
+**Delivered:** Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed. Supplied-data input checks and five local native MR placement controls completed, including forward and reverse-shape candidates; no repair/refinement comparison yet.
 
 **Closure audit:**
 
@@ -186,8 +186,8 @@ Compare repaired and unmodified models fairly, then determine where data support
 - Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors.
 
 **Next action:** Preflight the supplied hex_data and straight-frame benchmark inputs; start matched refinement only after the candidate geometry gate is met.
-**Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+**Evidence:** [E_MR_LOCAL](#e_mr_local).
+**Last audit:** 2026-11-13, Linden, code `fe4388f`; Local MR placement only; S06 acceptance remains open.
 
 <a id="s07"></a>
 ### S07 — Expose one ordinary, inspectable repair trial
@@ -336,8 +336,8 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 | Case | State | Jobs | Remaining evidence |
 | --- | --- | --- | --- |
 | B01 — Public 8D93 coordinate and native controls | PARTIAL_DIAGNOSTIC | S04, S05 | Close local geometry; current fitted candidate is unapproved. |
-| B02 — 8D93 and 5W6W into user-supplied hex_data | INPUTS_LOCATED_PREFLIGHT_PENDING | S04, S06 | Freeze exact inputs and recipient setting/Free-R; validate the STARANISO report PDF role and model/copy compatibility. Keep private data and results out of Git. |
-| B03 — Bent 8CS1 / 7R96 into suitable DOHU / DT straight-frame data | REQUESTED_PREFLIGHT_PENDING | S04, S06 | Verify actual chemistry, model/copy compatibility and data before interpreting failed MR as a need to bend. Include straightening and changed-direction cases. |
+| B02 — 8D93 and 5W6W into user-supplied hex_data | MR_PREFLIGHT_COMPLETE_REPAIR_PENDING | S04, S06 | Resolve one-copy/composition and ASU-cut assumptions; qualify a repair before matched no-repair refinement. Original PDF/MTZ/CIF and native results stay local. |
+| B03 — Bent 8CS1 / 7R96 into suitable DOHU / DT straight-frame data | BASIC_DATASET_MR_CONTROLS_COMPLETE | S04, S06 | Straight reference and both bent public models placed into one basic dataset. Resolve sequence/ASU-cut comparability, then qualify unbending or changed-direction trials and matched refinement. |
 | B04 — Blind 8D93-to-3GBI-style ASU cut | PLANNED | P03, P04, P06 | Withhold reference coordinates during surgery; use same-crystal before/after scattering invariance and independent later topology/cut comparison. |
 | B05 — Healthy, wrong/ambiguous, impossible and representation controls | PARTIAL_SYNTHETIC | F02, S02, S03, S04, P01, P06 | Extend current synthetic controls to physically qualified and held-out structures; include special positions, partial copies and winding. |
 | B06 — Density-guided and nonuniform/strand-specific relaxation | PLANNED_EXTENSION | S04, S06 | First qualify geometric placement plus ordinary matched refinement; later freeze map provenance and distinguish coordinate, occupancy and ADP explanations. |
@@ -347,9 +347,9 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `ce0a1bf`.
-282 focused tests plus 2 subtests pass from source, installed wheel and relocated checkout. Seventeen fitting tests also pass with SciPy 1.14.1; installed CLI and lean optional-dependency behavior checked.
-**Limit:** Synthetic arithmetic/identity and software behavior do not certify physical repair, data fit or GUI integration.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `2d7544b`.
+307 focused source, installed-wheel and relocated-checkout tests plus 2 subtests pass; complete source suite 1,223 tests plus 226 subtests passes. Installed image-audit command reproduces the public 8D93 result.
+**Limit:** Synthetic regression and installation do not establish physical repair. The initial sandboxed full-suite run failed five process-control checks; unrestricted complete rerun passed without code changes. No combined Willow/Cedar build or full platform matrix is claimed.
 
 <a id="e_registration"></a>
 ### E_REGISTRATION — existing_backend
@@ -379,6 +379,20 @@ NARestraints v1.1.3 guesser source matches the local checkout: geometric seeds, 
 Existing blind recut, seam, multiplicity, repeat and persistent-GUI controls are retained as the acceptance bank.
 **Limit:** Unchecked planned tests are not execution evidence.
 
+<a id="e_image_audit"></a>
+### E_IMAGE_AUDIT — Selected present-atom image observations
+
+[Evidence contract](topostitch-periodic.md#selected-atom-image-audit) at code `2d7544b`.
+Exact operator/lattice records, metric-bounded orbit coincidences, source-label ambiguity and selected-image overlap are inspected with finite work/output bounds. Public 8D93: 240 selected atoms and 274,916 tests; no orbit coincidences or selected overlaps. Sources unchanged.
+**Limit:** Coordinate coincidence is tolerance-bound evidence, not an identity merge. Missing/unselected atoms, global capacity and Pine cut/scattering invariance remain unqualified; fitter does not consume this optional audit yet.
+
+<a id="e_mr_local"></a>
+### E_MR_LOCAL — Local native MR placement preflight
+
+[Evidence contract](topostitch-periodic.md#local-diffraction-benchmark-preflight--2026-11-13) at code `fe4388f`.
+Five serial single-job Phenix 2.2.1-6174 MR executions completed for the supplied hexagonal and basic-dataset controls. Exact scientific results, source bindings and outputs remain in local frozen receipts; no scientific data committed.
+**Limit:** One-copy/source-chemistry assumptions and different ASU cuts remain relevant. This is placement preflight, not TopoStitch deformation, matched refinement, PDF-discovery support or scientific acceptance.
+
 ## Deferred extensions, not hidden blockers
 
 - **Canonical rebuilding / missing-residue generation:** Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry.
@@ -395,6 +409,7 @@ Existing blind recut, seam, multiplicity, repeat and persistent-GUI controls are
 - aae51be and 3ef2fad: density, forward/reverse shape and NARestraints-reuse requirements remain acceptance obligations, not implemented capabilities.
 - ce0a1bf: bounded fitting is delivered and native limitations recorded; S04/S05 remain partial.
 - Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work.
+- Selected atom-image audit 2d7544b adds bounded coordinate evidence without an identity merge; do not reimplement it as a second symmetry finder. Native MR preflight does not close the diffraction repair gate.
 
 Modeled on Cedar’s separation of completion queue, capability contract and
 evidence ledger. No queue edit grants runtime authority, scientific approval
