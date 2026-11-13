@@ -82,6 +82,7 @@ class PostMRResult:
     readyset_log: Path | None
     restraint_paths: tuple[Path, ...]
     readyset_status: str | None = None
+    preparation_notes: tuple[str, ...] = ()
 
 
 _COOT_BASES = frozenset({"DA", "DC", "DG", "DT", "A", "C", "G", "U"})

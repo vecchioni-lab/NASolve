@@ -479,6 +479,8 @@ def execute_stage(
             # report and request closure are collected below; no invented log or
             # second expensive proof replay is needed here.
             extra.update(preparation_mode="checked", readyset_status=result.readyset_status)
+            if getattr(result, "preparation_notes", ()):
+                extra["preparation_notes"] = list(result.preparation_notes)
             if result.readyset_log is not None:
                 required.append(result.readyset_log)
         else:

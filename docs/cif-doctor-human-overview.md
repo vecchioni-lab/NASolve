@@ -21,7 +21,7 @@ exact choice as a review checkpoint for inspection and trial refinement, includi
 a checked fallback. Schema-2 campaign recipes can explicitly choose the same
 route and preserve its genuine receipt. An interrupted save can finish without
 rebuilding the model; campaign retry preserves the old run and starts fresh.
-Q04/Q05 still need truthful publication notes, broader recovery coverage and later preparation children
+Q04/Q05 still need final selected-plane coverage reporting, broader recovery coverage and later preparation children
 before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
@@ -404,8 +404,9 @@ C242 carries supplied completed plane support through that route. C243 separatel
 checks chemical-rejection evidence; that read does not select a fallback. C244
 connects graph-selected support generation inside an explicitly enabled complete
 request. C245 connects it to `prepare-run` and exact-result notes; C246 connects
-explicit checked PostMR/campaign activation. Publication notes, final selected-plane
-coverage and real refinement remain separate gates.
+explicit checked PostMR/campaign activation. C247 carries verified generation
+notes through publication and campaign status without repeating the proof read.
+Final selected-plane coverage and real refinement remain separate gates.
 
 | Audit point | What is inspected | Why it matters |
 | --- | --- | --- |

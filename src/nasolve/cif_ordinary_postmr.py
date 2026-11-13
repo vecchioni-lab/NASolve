@@ -109,7 +109,7 @@ def _ordinary_request_directory(run_directory):
 def _plane_support_limitations(report):
     """Describe already replayed generation outcomes, never infer final adoption."""
     if 'plane_generation' not in report:
-        return ('General complete-plane repair still needs integration into this preparation route.',)
+        return ('This preparation has no recorded automatic plane-generation outcome; these notes do not establish complete plane coverage.',)
     notes = ['Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.']
     for code,row in sorted(report['plane_generation']['components'].items()):
         status = row['status']; centres = ', '.join(row['missing_centres'])
@@ -161,7 +161,7 @@ def _read_ordinary_postmr_result(run_directory, *, attempt_number):
         readyset_status=readyset_status,
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
         limitations=(
-            'These preparation checks do not establish diffraction-refinement success; checkpoint adoption is a separate explicit action.',
+            'These preparation checks do not establish diffraction-refinement success.',
             *_plane_support_limitations(exact['result']),
         ),
     )
@@ -208,15 +208,15 @@ def prepare_published_postmr(run_directory, phenix, **preparation_options):
     An optional native failure may retain a qualified result; absence of one never
     triggers a second, unchecked preparation route.
     """
-    from .cif_postmr_publication import publish_checked_preparation
+    from .cif_postmr_publication import publish_checked_preparation_with_notes
     from .checkpoints import _required_file, _ref_path
     from .postmr import PostMRResult
     run, attempt = _execute_ordinary_postmr(run_directory, phenix, **preparation_options)
-    record = publish_checked_preparation(run, attempt_number=attempt)
+    record, notes = publish_checked_preparation_with_notes(run, attempt_number=attempt)
     return PostMRResult(status=record['status'], message=record['message'],
         run_directory=run, postmr_directory=run/'PostMR', report_path=run/'PostMR/report.json',
         model_path=_required_file(record['prepared_model'], 'published model', run),
-        readyset_log=None, readyset_status=record['readyset']['status'],
+        readyset_log=None, readyset_status=record['readyset']['status'], preparation_notes=notes,
         restraint_paths=tuple(_ref_path(ref, 'published restraint', run) for ref in record['refinement_restraints']))
 
 

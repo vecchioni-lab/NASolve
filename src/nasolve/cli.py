@@ -682,6 +682,8 @@ def _campaign(args: argparse.Namespace) -> int:
                     )
             if item.get("provisional"):
                 print("    PROVISIONAL FULL-AUTO RESULT: inspect maps, model and decisions before accepting.")
+            for note in item.get("preparation_notes", []):
+                print("    Preparation note: " + note)
             for warning in item.get("scientific_warnings", []):
                 print("    WARNING: " + str(warning))
             if item.get("provisional_selection"):
@@ -907,6 +909,8 @@ def _postmr(args: argparse.Namespace) -> int:
     print(f"{result.status}: {result.message}")
     print(f"Run directory: {result.run_directory}")
     print(f"Prepared model: {result.model_path}")
+    for note in getattr(result, "preparation_notes", ()):
+        print(f"Preparation note: {note}")
     if getattr(result, "readyset_status", None) is not None:
         print(f"ReadySet: {result.readyset_status}")
     if result.readyset_log is not None:
@@ -1735,15 +1739,17 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
 
 
 def _cif_publish_preparation(args: argparse.Namespace) -> int:
-    from .cif_postmr_publication import publish_checked_preparation
+    from .cif_postmr_publication import publish_checked_preparation_with_notes
     from .campaigns import CampaignError
     try:
-        result = publish_checked_preparation(args.run, attempt_number=args.attempt)
+        result, notes = publish_checked_preparation_with_notes(args.run, attempt_number=args.attempt)
     except (OSError, ValueError, CampaignError, CheckpointError, PostMRPreparationError) as exc:
         print(f"Preparation handoff could not complete: {exc}", file=sys.stderr)
         print("Preserve saved work; retry the same attempt to finish an interrupted publication.", file=sys.stderr)
         return 2
     print(result["message"])
+    for note in notes:
+        print(f"Preparation note: {note}")
     print(f"ReadySet: {result['readyset']['status']}")
     print("Checkpoint: postmr (REVIEW; refinement has not been run)")
     print("Inspect (requires its saved map): " + shlex.join(["nasolve", "show", str(args.run), "--checkpoint", "postmr"]))

@@ -111,7 +111,7 @@ def _recover_completions(root: Path, plan: dict[str, Any], state: dict[str, Any]
 
 def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> list[dict[str, str]]:
     item.update(run=None, checkpoint=None, next_stage="preflight", numerical_success=False,
-                inspection_required=False, live_process=False, scientific_warnings=[],
+                inspection_required=False, live_process=False, scientific_warnings=[], preparation_notes=[],
                 provisional=workflow_policy(plan["preset"]["policy"])["mode"] == "full-auto",
                 provisional_selection=None)
     if not item["attempts"]:
@@ -193,6 +193,9 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
                 raise CampaignError("Worker exited unsuccessfully despite an accepted stage receipt")
         item.update(run=receipt.get("run"), checkpoint=receipt.get("checkpoint"), diagnostic=receipt["message"])
         item["attempts"][-1]["run"] = item["run"]
+        for note in receipt.get("preparation_notes", []):
+            if note not in item["preparation_notes"]:
+                item["preparation_notes"].append(note)
         for warning in receipt.get("scientific_warnings", []):
             if warning not in item["scientific_warnings"]:
                 item["scientific_warnings"].append(warning)

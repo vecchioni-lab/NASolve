@@ -90562,5 +90562,156 @@
       "Publication notes remain next; later preparation children and storage acceptance remain open",
       "No fresh Phenix/Coot/refinement validation for this entry-point forwarding patch"
     ]
+  },
+  "published_preparation_notes_2026_11_13": {
+    "milestone": "C247",
+    "base_commit": "903c3710df5240a2ce478b7b1193af22c3040bc3",
+    "before": "Ordinary publication discarded current generation notes; campaigns could not retain or display them after later stages.",
+    "after": "One publication proof read supplies the unchanged sealed receipt and transient descriptive notes. PostMR and publication CLI display them; optional validated campaign receipt notes survive later stages into read-only text/JSON status.",
+    "prior_work": [
+      "C223 receipt validation recomputes persisted messages; preserve them",
+      "C245 exact-result generation notes",
+      "C246 ordinary/campaign plane-support forwarding"
+    ],
+    "source_sha256": {
+      "src/nasolve/campaign_execution.py": "46ba3f4be1ffb881f5e4329f0d8d74ee641967d22a64499a5dc470342c4166c7",
+      "src/nasolve/campaign_records.py": "0c9c8eb970475d8366e9e80c258cb5db0c1a5a894f9944235d863bbc2bfe93fb",
+      "src/nasolve/campaign_stages.py": "94d4e2032607b63ed2971124b135f4b1af56b9849faa429561d42044e9d09b73",
+      "src/nasolve/cif_ordinary_postmr.py": "38dae70bb20f485943351706d66a381c239eef630bbf9cff0aecb005561751ad",
+      "src/nasolve/cif_postmr_publication.py": "2420a4d42c65cb899c931921f9f3f6956d0625ae87a18484ca7bf4cb01eb325d",
+      "src/nasolve/cli.py": "4ffcced361381aeb5d7a425d12d6df5de40120cd1f5137a439b4f4b679db3447",
+      "src/nasolve/postmr.py": "d1fb1f24605f44105991a633a5207f366054b140b60d4c5785d6f63f93065042"
+    },
+    "test_sha256": {
+      "tests/test_campaign_execution.py": "8e1c09c0d45deb623af586afbf77811455ca292f69aea71ae144dac5f4da7747",
+      "tests/test_campaign_stages.py": "3824976126b1c55bc957fd091b11f54170f737b0cd4bf11848e82b26da982d44",
+      "tests/test_cif_ordinary_outcome.py": "4b25b3e5f753ac3eea3e84c8ee922d0018911b826b0ab9f337e7b524c7542c86",
+      "tests/test_cif_postmr_publication.py": "13030e2365ea9c86325f2d129f85f92caa84b424b957e435bf4c5b5ae79f993e",
+      "tests/test_postmr_runtime.py": "5fa34ab34a29cad1daee3cbc9255335b160e8805611f619711c83f5a18558506"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py tests/test_postmr_runtime.py tests/test_campaign_stages.py -k \"publication_returns_current_notes or publication_cli_shows_generation or publication_notes_come or campaign_records_preparation_notes\" --tb=short",
+        "result": "5 expected failures, 111 deselected before implementation, 0.91s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py tests/test_postmr_runtime.py tests/test_campaign_stages.py tests/test_cif_ordinary_cli.py tests/test_cif_ordinary_outcome.py --tb=short",
+        "result": "148 passed in 17.20s; before adding campaign status consumption"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_campaign_execution.py -k \"preparation_notes or malformed_preparation_notes\" --tb=short",
+        "result": "Expected status failure and five malformed-note subtest failures before status/receipt integration, 0.71s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_campaign_execution.py tests/test_campaign_cli.py tests/test_campaign_stages.py tests/test_cif_postmr_publication.py tests/test_postmr_runtime.py --tb=short",
+        "result": "151 passed, 13 subtests passed in 16.66s with owned-process signaling authorized"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_ordinary_outcome.py --tb=short",
+        "result": "23 passed in 0.54s after correcting historical no-generation display wording"
+      }
+    ],
+    "compatibility": "Receipt-only publish_checked_preparation API preserved. Add publish_checked_preparation_with_notes, live PostMRResult.preparation_notes tuple, and optional campaign PostMR preparation_notes list. No changes to checked-preparation messages, checkpoint schemas, fingerprints or old receipts; older campaign readers may omit display notes. Absent notes remain absent evidence. No authority/gating change.",
+    "checks": [
+      "Successful/repeated publication uses one proof read each and preserves receipt bytes/mtimes",
+      "Existing partial-publication recovery and relocated-reader controls pass",
+      "Read-only status preserves all saved campaign bytes/mtimes and carries notes through later stages",
+      "Rehashed malformed notes refuse; valid notes do not become scientific warnings or change SOLVED status",
+      "No fresh native execution, scientific artifact or duplicate proof cache"
+    ],
+    "native_execution": false,
+    "full_regression": false,
+    "last_full_green": "C220/583d30df: 9178 tests and 276 subtests",
+    "remaining": [
+      "Final selected-plane coverage is not established by generator outcomes",
+      "Broader mixed/recovery qualification and known-stopped storage retirement remain Q04",
+      "Later preparation-child publication remains Q05",
+      "Actual complete-restraint diffraction refinement remains Q06"
+    ],
+    "selected_plane_investigation": {
+      "status": "READ_ONLY_EXPLORATION_NOT_ORDINARY_REPORTING",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CHECKOUT/src python EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c247_selected_plane_probe.py",
+      "runner_sha256": "e04c9293edacb6852e8ae60ba75b60dff565f11d4a814a3e1130874754e005e7",
+      "method": "Replay each exact complete request once with subprocess.Popen forbidden; resolve each prepared component snapshot, identify selected dictionary membership through dictionary_component_codes, require one matching explicit dictionary, then apply the existing audit_trigonal_plane_coverage source/graph screen. Verify all retained request bytes/mtimes before and after.",
+      "results": {
+        "generated": {
+          "request": {
+            "anchor": "live_tests_directory",
+            "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+          },
+          "selection": "readyset_checked_model",
+          "rows": [
+            {
+              "component": "PDU",
+              "matching_selected_dictionary_indices": [
+                0
+              ],
+              "status": "SCOPED_EXPLICIT_COVERAGE_PASS",
+              "missing": [],
+              "centres": [
+                {
+                  "centre": "C2",
+                  "coverage": "EXPLICIT_PLANE_PRESENT"
+                },
+                {
+                  "centre": "C4",
+                  "coverage": "EXPLICIT_PLANE_PRESENT"
+                },
+                {
+                  "centre": "C5",
+                  "coverage": "EXPLICIT_PLANE_PRESENT"
+                }
+              ],
+              "source_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+              "dictionary_sha256": "1f7be9dbcaa38b8c3e4fb83b1081f45e0b2ab6a8b1708de6bc801cdd2fca1892"
+            }
+          ],
+          "unchanged_files": 698,
+          "seconds": 98.83239041699562,
+          "scope": "Existing C244 native proof replay plus exploratory selected-CIF graph screen; no new native execution, numerical approval or automatic selection."
+        },
+        "timed_out": {
+          "request": {
+            "anchor": "live_tests_directory",
+            "path": "244_Cedar_automatic-plane-failure-ch6m6b9g/relocated/request"
+          },
+          "selection": "readyset_checked_model",
+          "rows": [
+            {
+              "component": "PDU",
+              "matching_selected_dictionary_indices": [
+                0
+              ],
+              "status": "REVIEW",
+              "missing": [
+                "C5"
+              ],
+              "centres": [
+                {
+                  "centre": "C2",
+                  "coverage": "EXPLICIT_PLANE_PRESENT"
+                },
+                {
+                  "centre": "C4",
+                  "coverage": "EXPLICIT_PLANE_PRESENT"
+                },
+                {
+                  "centre": "C5",
+                  "coverage": "EXPLICIT_PLANE_MISSING"
+                }
+              ],
+              "source_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+              "dictionary_sha256": "65aad2c8f45d0b5303354772e47ac6e998143b2113ac7198eff6d231a0ebe5cf"
+            }
+          ],
+          "unchanged_files": 506,
+          "seconds": 84.04980112501653,
+          "scope": "Existing C244 native proof replay plus exploratory selected-CIF graph screen; no new native execution, numerical approval or automatic selection."
+        }
+      },
+      "native_version_of_retained_evidence": "Phenix 2.2.1-6174 / dispatcher 2.2.1; no new native execution",
+      "conclusion": "Generated support is not enough to infer final coverage. Selected success CIF has explicit C2/C4/C5 planes; timeout control retains C5 missing. Neither screen establishes effective native restraint membership, adequate alternative restraints, numerical target correctness or diffraction refinement.",
+      "next": "Design ordinary selected-CIF reporting with exact source/artifact binding, explicit ambiguity/unsupported cases and no new selection authority or duplicate full proof."
+    }
   }
 }

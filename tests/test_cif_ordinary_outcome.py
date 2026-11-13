@@ -33,6 +33,8 @@ def test_exact_result_uses_existing_reader_once_and_keeps_matching_order(tmp_pat
     assert result.readyset_status==('FAILED' if choice=='verified_parent_runtime' else 'COMPLETED')
     assert ('retained' in result.message.lower()) == (choice=='verified_parent_runtime')
     assert 'refinement' in ' '.join(result.limitations).lower()
+    assert 'no recorded automatic plane-generation outcome' in ' '.join(result.limitations)
+    assert 'still needs integration' not in ' '.join(result.limitations)
     assert not (tmp_path/'run/report.json').exists() and not (tmp_path/'run/PostMR/report.json').exists()
 
 

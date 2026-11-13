@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Show checked preparation notes without repeating its proof read (C247)
+
+- Ordinary PostMR and explicit publication expose generation/fallback notes from
+  the same already-verified result. Keep the receipt-only API and all historical
+  preparation/checkpoint messages unchanged; no second replay for formatting.
+- New campaign PostMR receipts can carry validated optional `preparation_notes`;
+  text/JSON status retains them through later stages without writes or changed
+  scientific gates. Old receipts need no migration; older readers may omit notes.
+- Distinguish generation outcomes from final selected-plane coverage/refinement.
+  Historical results without recorded generation no longer suggest that the
+  capability is unavailable globally. Existing proof/recovery requirements remain.
+
+
 ### Request plane support through ordinary PostMR and campaigns (C246)
 
 - Add `postmr --checked-preparation --automatic-plane-support` and optional

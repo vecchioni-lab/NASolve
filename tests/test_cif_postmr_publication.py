@@ -285,3 +285,38 @@ def test_plane_display_notes_do_not_rewrite_published_messages(tmp_path,monkeypa
         assert publication.publish_checked_preparation(run,attempt_number=1)==old
         publication.validate_published_preparation(run,json.loads((run/'report.json').read_text()))
     assert snapshot(run)==before
+
+
+@pytest.mark.parametrize('selected', ['verified_parent_runtime', 'readyset_checked_model'])
+def test_publication_returns_current_notes_without_second_proof_or_receipt_rewrite(tmp_path, monkeypatch, selected):
+    from nasolve import cif_postmr_publication as publication
+    run, exact, reads = setup(tmp_path, monkeypatch, selected)
+    exact['result']['plane_generation'] = dict(components={
+        'PDU': dict(status='OWNED_SUPPORT_READY', missing_centres=['C5']),
+        'OTHER': dict(status='KNOWN_GENERATION_FAILURE', missing_centres=['C2'], proof=dict(failure_kind='TIMED_OUT'))})
+    record, notes = publication.publish_checked_preparation_with_notes(run, attempt_number=1)
+    assert reads == [1]
+    assert 'PDU: generated source-checked support' in '\n'.join(notes)
+    assert 'OTHER: optional plane generation timed out' in '\n'.join(notes)
+    assert 'does not establish final plane adoption' in '\n'.join(notes)
+    assert 'checkpoint adoption is a separate' not in '\n'.join(notes)
+    assert 'generated' not in record['message'] and 'limitations' not in record
+    before = snapshot(run)
+    with patch('subprocess.Popen', side_effect=AssertionError('No new execution')):
+        again, current = publication.publish_checked_preparation_with_notes(run, attempt_number=1)
+    assert reads == [1, 1] and again == record and current == notes
+    assert snapshot(run) == before
+    assert publication.publish_checked_preparation(run, attempt_number=1) == record
+
+
+def test_publication_cli_shows_generation_limits_without_sdk_or_duplicate_read(tmp_path, monkeypatch, capsys):
+    from nasolve.cli import main
+    run, exact, reads = setup(tmp_path, monkeypatch)
+    exact['result']['plane_generation'] = dict(components={'PDU': dict(
+        status='KNOWN_GENERATION_FAILURE', missing_centres=['C5'], proof=dict(failure_kind='TIMED_OUT'))})
+    with patch('nasolve.cli.load_config', side_effect=AssertionError('No tool discovery')):
+        assert main(['cif-doctor', 'publish-preparation', str(run), '--attempt', '1']) == 0
+    text = capsys.readouterr().out
+    assert 'optional plane generation timed out' in text
+    assert 'does not establish final plane adoption' in text and 'REVIEW' in text
+    assert reads == [1]

@@ -172,6 +172,22 @@ def _publish_run_report(path, previous_sha256, report):
 
 
 def publish_checked_preparation(run_directory, *, attempt_number):
+    """Publish/recover one initial review checkpoint; retain the receipt-only API."""
+    return _publish_checked_preparation(run_directory, attempt_number=attempt_number)[0]
+
+
+def publish_checked_preparation_with_notes(run_directory, *, attempt_number) -> tuple[dict, tuple[str, ...]]:
+    """Return the sealed receipt and current notes from the same verified result.
+
+    Notes are descriptive, not selection authority, and are never inserted into
+    the historical preparation receipt. Repeating publication revalidates once;
+    callers must not replay the full proof again merely to format these notes.
+    """
+    record, checked = _publish_checked_preparation(run_directory, attempt_number=attempt_number)
+    return record, checked.limitations
+
+
+def _publish_checked_preparation(run_directory, *, attempt_number):
     """Publish one initial review checkpoint, or finish the same interrupted save.
 
     A different preparation never overwrites an earlier choice. No construction,
@@ -191,11 +207,11 @@ def publish_checked_preparation(run_directory, *, attempt_number):
             meta = record.get('checked_preparation')
             _need(isinstance(meta, dict) and meta.get('attempt_number') == attempt_number,
                   'A different preparation is already published or reserved; preserve its choice')
-            _checked_record(run, report, record)
+            checked = _checked_record(run, report, record)
             if report.get('postmr') == record:
                 _read(checkpoint_path)
                 _check_root(run, report, read_record(checkpoint_path))
-                return record
+                return record, checked
             _need(sha256(previous).hexdigest() == record['checked_preparation']['previous_run_report_sha256'],
                   'Run report changed since publication was reserved; preserve existing work')
         else:
@@ -228,4 +244,4 @@ def publish_checked_preparation(run_directory, *, attempt_number):
         else:
             write_record(checkpoint_path, desired)
         _publish_run_report(root_path, record['checked_preparation']['previous_run_report_sha256'], published)
-        return record
+        return record, checked

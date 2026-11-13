@@ -902,3 +902,21 @@ def test_campaign_checked_publication_interrupt_keeps_exact_attempt_for_existing
     assert len(calls) == 2
     assert calls[0][1].get("automatic_plane_support", False) is automatic
     assert not (attempt / "run-report.json").exists()  # No completed campaign receipt.
+
+
+
+def test_campaign_records_preparation_notes_without_replaying_or_changing_gate(tmp_path, monkeypatch):
+    from tests.test_postmr_runtime import checked_case
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    exact['result']['plane_generation'] = dict(components={'PDU': dict(
+        status='KNOWN_GENERATION_FAILURE', missing_centres=['C5'], proof=dict(failure_kind='TIMED_OUT'))})
+    policy = load_preset().to_dict(); policy['schema_version'] = 2
+    policy['postmr'].update(checked_preparation=True, automatic_plane_support=True)
+    attempt = tmp_path/'NASolveCampaign/jobs/postmr'; attempt.mkdir(parents=True)
+    with patch('nasolve.campaign_stages.load_config', return_value=AppConfig()), patch('nasolve.campaign_stages.discover_phenix', return_value=sdk), patch('nasolve.campaign_stages.discover_coot', side_effect=CootDiscoveryError('absent')):
+        result = execute_stage(tmp_path, {'id':'dataset', 'relative_path':'dataset'}, policy, 'postmr', attempt, run)
+    notes = '\n'.join(result['preparation_notes'])
+    assert 'optional plane generation timed out' in notes
+    assert 'does not establish final plane adoption' in notes
+    assert result['status'] == 'POSTMR_READY' and result['readyset_status'] == 'FAILED'
+    assert reads == [1] and len(calls) == 2

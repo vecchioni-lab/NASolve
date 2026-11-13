@@ -473,6 +473,11 @@ ReadySet outcome. A checked fallback remains a REVIEW checkpoint available for
 trial refinement; it does not establish successful diffraction refinement.
 Unqualified preparation stops its dependent stage, preserving the failed attempt.
 
+C247 carries verified generation notes into the PostMR stage receipt and subsequent
+text/JSON campaign status. These describe generated support or excluded failed
+output without changing the scientific continuation gate. Status reads do not
+rewrite old receipts; absent notes on historical stages remain absent evidence.
+
 Completed receipts use ordinary campaign continuation. An interrupted stage without
 a completed receipt stays awaiting inspection; explicit campaign retry starts a
 fresh numbered run only after prior processes are known stopped. The standalone

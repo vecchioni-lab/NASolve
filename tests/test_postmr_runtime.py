@@ -213,3 +213,20 @@ def test_postmr_plane_support_cli_requires_checked_route_before_config(capsys):
     with patch('nasolve.cli.load_config', side_effect=AssertionError('No configuration writes or discovery')):
         assert main(['postmr', '--automatic-plane-support']) == 2
     assert 'requires --checked-preparation' in capsys.readouterr().err
+
+
+
+def test_postmr_publication_notes_come_from_single_proof_read(tmp_path, monkeypatch, capsys):
+    from nasolve.cli import main
+    from nasolve.config import AppConfig
+    from nasolve.coot_runtime import CootDiscoveryError
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    exact['result']['plane_generation'] = dict(components={'PDU': dict(
+        status='KNOWN_GENERATION_FAILURE', missing_centres=['C5'], proof=dict(failure_kind='TIMED_OUT'))})
+    with patch('nasolve.cli.load_config', return_value=AppConfig()), patch('nasolve.cli.save_config'), patch('nasolve.cli.discover_phenix', return_value=sdk), patch('nasolve.cli.remember_phenix'), patch('nasolve.cli.discover_coot', side_effect=CootDiscoveryError('absent')):
+        assert main(['postmr', str(run), '--checked-preparation', '--automatic-plane-support']) == 0
+    text = capsys.readouterr().out
+    assert 'optional plane generation timed out' in text
+    assert 'does not establish final plane adoption' in text
+    assert reads == [1] and len(calls) == 2
+    assert 'timed out' not in json.loads((run/'PostMR/report.json').read_text())['message']

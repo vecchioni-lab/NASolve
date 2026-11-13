@@ -17,7 +17,8 @@ milestone statements preserve their original scope; they are not a second queue.
   reuse exact completed plane support or explicitly opt into graph-selected support
   generation. `cif-doctor prepare-run --automatic-plane-support` now exposes that
   choice with exact-result notes. Checked PostMR and schema-2 campaigns also forward
-  this explicit choice. Publication display, later preparation children,
+  this explicit choice. Publication and campaign status show verified generation
+  notes without changing old receipts. Later preparation children,
   real refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,
   the [human overview](cif-doctor-human-overview.md) for the explanation, and the

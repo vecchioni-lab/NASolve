@@ -163,6 +163,11 @@ def read_receipt(root: Path, directory: Path, job: dict[str, Any]) -> dict[str, 
             or not isinstance(result.get("message"), str)
             or not isinstance(result.get("artifacts"), list)):
         raise CampaignError("Stage receipt does not match its immutable job")
+    if "preparation_notes" in result:
+        notes = result["preparation_notes"]
+        if (job["stage"] != "postmr" or not isinstance(notes, list)
+                or any(not isinstance(note, str) or not note.strip() for note in notes)):
+            raise CampaignError("Malformed preparation notes in stage receipt")
     if result.get("run") is not None:
         run_path(root, job["dataset"], result["run"])
         if job.get("run") is not None and result["run"] != job["run"]:
