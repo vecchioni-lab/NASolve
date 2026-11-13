@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch selected atom-image audit
+
+- Add an opt-in, bounded audit for one periodic candidate using present atoms,
+  exact symmetry operators and metric-aware lattice translations. Report
+  stabilizer observations and coincident source identities without merging them.
+- Preserve the existing inspector and fitter behavior; this descriptive evidence
+  does not approve an image, pairing, model edit or campaign checkpoint.
+
 ### Audited TopoStitch and Pine roadmaps
 
 - Add one machine-readable work ledger and synchronized human roadmap with

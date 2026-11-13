@@ -135,10 +135,15 @@ def main(argv=None):
     parser.add_argument("--fixed-anchor-pairs",type=int,default=2,help="Innermost fixed pairs in each window")
     parser.add_argument("--max-pairs",type=int,default=100_000,help="Maximum endpoint-pair budget")
     parser.add_argument("--max-image-tests",type=int,default=100_000,help="Periodic translation-box test budget")
+    parser.add_argument("--audit-image",type=int,help="Audit present atom identities for one periodic candidate index")
+    parser.add_argument("--coincidence-tolerance",type=float,default=.01,help="Atom coincidence observation tolerance in Angstrom (at most 0.05)")
+    parser.add_argument("--max-atom-tests",type=int,default=2_000_000,help="Selected atom-image audit work budget")
     args = parser.parse_args(argv)
     try:
         if min(args.max_image_tests,args.max_alternatives,args.max_pairing_states) < 1:
             raise ValueError("Search budgets must be positive integers")
+        if args.audit_image is not None and not args.periodic:
+            raise ValueError("--audit-image requires --periodic")
         mapping = None
         if args.registration is not None:
             digest,assignments,manifest_hash,mapping = load_registered_end_assignments(
@@ -157,6 +162,10 @@ def main(argv=None):
                 max_image_tests=args.max_image_tests,**options)
         else:
             report = inspect_end_assignments(args.model,assignments,**options)
+        if args.audit_image is not None:
+            from .topostitch_images import _attach_image_audit
+            _attach_image_audit(args.model,assignments,report,candidate_index=args.audit_image,
+                coincidence_tolerance_angstrom=args.coincidence_tolerance,max_atom_tests=args.max_atom_tests)
         if args.pairings:
             from .topostitch_pairings import describe_pairing_alternatives
             screening = report["periodic_screening"] if args.periodic else report["screening"]

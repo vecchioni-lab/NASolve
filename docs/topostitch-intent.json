@@ -303,6 +303,19 @@
       "automatic_partner_selection": false,
       "automatic_window_expansion": false,
       "campaign_adoption": false
+    },
+    "selected_image_identity": {
+      "module": "nasolve.topostitch_images",
+      "cli_flag": "--audit-image",
+      "contract": "docs/topostitch-periodic.md",
+      "report_schema": 1,
+      "scope": "present atoms in two explicitly selected end definitions",
+      "exact_symmetry_operators": true,
+      "metric_bounded_orbit_coincidences": true,
+      "identity_merging": false,
+      "physical_identity_validated": false,
+      "fitter_uses_audit": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

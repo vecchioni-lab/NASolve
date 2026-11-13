@@ -26,6 +26,48 @@ with 0.7.5. Default NASolve installations and Cedar's environments are unchanged
 For the full development test profile use `.[test,topology]`; lean installations
 skip the Gemmi-dependent tests while still testing the missing-extra diagnostic.
 
+## Selected atom-image audit
+
+```sh
+nasolve-topostitch-inspect model.pdb ends.json --radius 20 --periodic \
+  --audit-image 0 --coincidence-tolerance 0.01 --max-atom-tests 2000000
+```
+
+`--audit-image` selects an index from the freshly recomputed candidate list.
+The exact source, assignment and search hashes bind that index; it is not a
+persistent connection identifier. Coordinate, registered and discovery inputs
+are supported, and the option composes with contacts, pairings and windows.
+The Python API is `nasolve.topostitch_images.inspect_periodic_image_identity`.
+No externally supplied candidate report is accepted by that public API.
+
+The added `selected_image_identity` object has schema 1 and kind
+`topostitch-selected-image-identity`. It records the present atoms in both ends'
+overhang, terminal pair and inner pair. Two separate observations are retained:
+
+- **Orbit contacts:** for every selected source atom pair, test all space-group
+  operations and metric-bounded lattice translations for coordinate coincidence.
+  Nonidentity images fixing the same source atom are stabilizer observations;
+  coincident orbits of different source labels remain ambiguous distinct labels.
+- **Selected-image overlap:** compare the source end with the exact chosen target
+  image. Retain its lattice translation; do not wrap it back into the unit cell.
+  Coincident end centers alone neither prove nor disprove atom overlap.
+
+The default observation tolerance is 0.01 Å, configurable in `(0, 0.05]`, with
+recorded 1e-7 Å numerical padding. This is not a clash threshold or a chemical
+acceptance cutoff. Near coincidences are not transitively merged. The work budget
+counts every atom-pair/operator screen and explicit distance evaluation; each
+output section is capped at 10,000 coincidence records. Exceeding a budget fails
+without partial JSON. Unknown/invalid selected occupancy leaves the audit
+`UNASSESSED`; partial occupancy remains a review condition. Missing atoms are not
+invented, and unselected crystal atoms are outside the audit's scope.
+
+`SELECTED_COORDINATES_DISTINCT` describes only the inspected coordinates.
+`COINCIDENCE_OR_OCCUPANCY_REVIEW` retains ambiguity. In either case,
+`physical_identity_validated`, `geometry_validated` and `runtime_authority` stay
+false, and original candidate approval fields are unchanged. This first slice
+supplies F02 evidence; global partner capacity, full molecular orbit identity,
+Pine cut/scattering invariance and automatic use by the fitter remain open.
+
 ## Assignment manifest
 
 The input is a strict schema-1 `topostitch-end-assignments` object:
@@ -355,19 +397,18 @@ is additive; the default NASolve dependency set is unchanged. Source changes are
 isolated in new TopoStitch modules plus package metadata. Cedar's code, selected
 bundles and publication interfaces are not consumed or modified.
 
-No generated scientific data are included. Tests use synthetic endpoints and
-synthetic PDB rings; no physical repair, Phenix/Coot execution or real diffraction
-validation is claimed. Next: automatic/registration-backed end detection, full
-image distinctness and global pairing constraints, then qualified geometry work.
+No generated scientific data are included. Unit tests use synthetic endpoints
+and synthetic PDB rings. Native diagnostic/placement evidence is recorded
+separately below; no successful physical repair or Coot acceptance is claimed.
+The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**282 focused tests + 2 subtests passed** from source (7.65 s), against the
-installed wheel (7.65 s), and from a relocated temporary checkout (7.48 s) after
+**307 focused tests + 2 subtests passed** from source (8.49 s), against the
+installed wheel (6.54 s), and from a relocated temporary checkout (6.40 s) after
 its original path was absent, using Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3
 (`a9264f9`), Gemmi 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. All 17 fitting tests also
-passed with minimum SciPy 1.14.1 / NumPy 2.2.6 (12.10 s). The new backend tests failed before their functions
-existed; additional failing-before regressions cover self-reversed paired steps,
+passed with minimum SciPy 1.14.1 / NumPy 2.2.6 (12.10 s). The selected-image CLI regression failed before the new flag existed; additional failing-before regressions cover self-reversed paired steps,
 partial pairing evidence and earlier discovery-report compatibility.
 
 Coverage includes independent brute-force symmetry enumeration in P1, P21,
@@ -379,8 +420,9 @@ anchors and whole-pair window expansion; bounded matching alternatives; no-write
 CLI behavior; explicit bend-preview anchor/ANISOU preservation, serialized
 backbone-change limits, frozen-input replay, tampering and no-overwrite behavior;
 bounded placement, no-op/refusal outcomes, finite Jacobian-call budgets,
-ASU motion under P43 screw images and opposite-direction proposals; and
-original-path-absent input/checkout relocation.
+ASU motion under P43 screw images and opposite-direction proposals; selected-atom
+stabilizers, centered/screw/skew cells, large translations, nontransitive near
+coincidences, occupancy uncertainty and original-path-absent relocation.
 
 Source command (historical environment paths, not operational model references):
 
@@ -414,19 +456,44 @@ This is a read-only smoke check, not unsupervised discovery or scientific repair
 validation. Downloaded coordinates and derived benchmark files are excluded from
 Git. The synthetic CLI checks also verified no input-file changes.
 
-The last complete suite, at the initial periodic-inspector slice, passed
-**1,099 tests + 226 subtests** (53.33 s). Later isolated TopoStitch additions did
-not change global mechanics, so that suite was not rerun or represented as
-covering those additions. At that earlier slice, all 132 focused tests also
-passed from a relocated temporary checkout after its original path was absent;
-lean installs ran nonperiodic inspection and reported missing Gemmi cleanly.
-Current mapping/contact/preview tests additionally move their inputs and remove
-the original paths; all 282 current focused tests also passed after moving a
-temporary source checkout and verifying imports came from its relocated path. `git diff --check`, intent JSON and documentation references
-are checked before publication. The [preview guide](topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13)
-records separate complete Phenix 2.2.1-6174 source/preview/fitted interpretation,
-including the remaining geometry degradation. No Coot execution, diffraction
-refinement or scientific repair success is claimed.
+The complete source suite now passes **1,223 tests + 226 subtests** (63.50 s).
+The first sandboxed attempt returned 1,218 passes and five process-control failures
+because `ps` and owned-group termination were denied; the unrestricted rerun above
+passed without code changes. Source command: the same environment above with
+`python -m pytest -q -p no:cacheprovider`. The 307-test installed and relocated
+checks do not claim a full installed-platform matrix. `git diff --check`, Python
+3.10 syntax, JSON, documentation references and roadmap synchronization are also
+checked before publication.
+
+The actual installed command reproduced the source public 8D93 image audit:
+240 selected atoms, 274,916 budgeted atom tests, no selected overlaps or orbit
+coincidences. Source bytes were unchanged. The selected coordinate sets are
+distinct within this scope; closure, global packing and physical partner capacity
+are not thereby approved. The [preview guide](topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13)
+retains the separate Phenix source/preview/fitted interpretation results and
+remaining geometry degradation.
+
+## Local diffraction benchmark preflight — 2026-11-13
+
+Five serial single-job **Phenix 2.2.1-6174** (`phenix.phaser`, dispatcher version
+2.2.1) MR executions completed: public 8D93/5W6W into the supplied hexagonal data,
+and public 5W6W/8CS1/7R96 into one requested basic dataset (straight reference plus
+two bent-model controls). The supplied MTZ, metadata CIF and STARANISO report PDF
+were crosschecked. All source inputs stayed unchanged; frozen copies, checksums,
+commands, logs, exact results and generated models stay in local benchmark
+receipts and are deliberately excluded from Git.
+
+These use the existing `prepare_automr` frozen-input API in nonstandard mode,
+then `build_phaser_eff` for an isolated native benchmark. The PDF is explicitly
+supplied as `DatasetFiles.summary`; no fake `summary.html` is generated. Normal
+folder discovery still requires `summary.html`, so this is not PDF-loader
+support. Native parameters retain one explicit ensemble, original source atoms,
+42-residue NA composition, one search copy and 1 Å model RMSD, adding explicit
+`F,SIGF` labels and `phaser.keywords.general.jobs=1`. No target chemistry edits,
+TopoStitch motion, refinement, automatic checkpoint adoption or successful repair
+are claimed. Copy/composition assumptions, different ASU cuts and terminal
+sequences must be resolved before a matched deformation/refinement comparison.
+The roadmap tracks these as placement preflight, not closure of S06.
 
 Gemmi API references:
 [symmetry operations](https://gemmi.readthedocs.io/en/latest/symmetry.html) and

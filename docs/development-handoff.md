@@ -165,13 +165,15 @@ before S06 matched refinement. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 282 focused, installed-wheel and relocated-checkout tests + 2 subtests passed.
+**Current checks:** 307 focused, installed-wheel and relocated-checkout tests + 2 subtests passed.
+The optional selected-image audit compares present atoms and retains stabilizer/
+coincident-label uncertainty; it does not merge identities or approve partners.
 Actual installed CLI checks cover composed options and public 8D93 within declared
 local windows, plus the explicit ANISOU-preserving preview. Source bytes stayed
 unchanged and unknown cuts stayed incomplete.
-Coordinates and derived benchmark files remain local only. The last full suite
-was the earlier periodic slice: 1,099 tests + 226 subtests; it was not rerun for
-these isolated additions. Seventeen fitting tests also pass on the declared
+Coordinates and derived benchmark files remain local only. The current full
+source suite passes 1,223 tests + 226 subtests after rerunning five sandbox-blocked
+process-control tests in the unrestricted complete suite. Seventeen fitting tests also pass on the declared
 minimum SciPy 1.14.1 / NumPy 2.2.6, besides SciPy 1.18.1 / NumPy 2.5.4. Lean installs
 report the missing fitting extra cleanly. Public 8D93 source/explicit/fitted models
 completed separate read-only Phenix 2.2.1-6174 interpretation via Cedar ecafc98,
@@ -179,10 +181,15 @@ all REVIEW, unchanged sources and 855 atoms. The fitted trial still adds an angl
 outlier; this is not geometry approval or diffraction/refinement validation.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Cedar through C257 (`ecafc98`) owns its native audit, selected AutoSol references
-and storage work. Willow consumes no new Cedar production interfaces and edits
+Cedar through C258 (`3d87abc`) owns its native audit, selected AutoSol references
+and storage work; the consumed registration/model/context/package interfaces
+remain unchanged against the Pine base. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the
 existing diagnostic helper only; see the preview guide for exact options.
+Five local single-job Phaser placement controls also completed through existing
+interfaces, including the supplied PDF-report input as an explicit frozen
+selection. See the inspector contract for scope and unresolved copy/cut/chemistry
+assumptions. No deformation/refinement comparison is yet established.
 Shared guides/changelog need reconciliation at integration. No combined
 Willow/Cedar build has been validated. Keep completed patches pushed and current
 contracts concise rather than adding handoff diaries.

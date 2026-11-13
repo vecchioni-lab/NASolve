@@ -106,3 +106,18 @@ def test_periodic_budget_failure_emits_no_partial_json(tmp_path,capsys):
     assert exc.value.code==2
     captured=capsys.readouterr()
     assert captured.out=='' and 'budget' in captured.err
+
+
+def test_selected_atom_image_audit_is_opt_in_and_read_only(tmp_path,capsys):
+    pytest.importorskip('gemmi')
+    model,manifest,_=inputs(tmp_path)
+    before={p.name:p.read_bytes() for p in tmp_path.iterdir()}
+    assert main([str(model),str(manifest),'--radius','15','--periodic','--audit-image','0'])==0
+    output=json.loads(capsys.readouterr().out)
+    audit=output['selected_image_identity']
+    assert audit['candidate_index']==0
+    assert audit['kind']=='topostitch-selected-image-identity'
+    assert audit['source_bytes_verified'] is True
+    assert audit['runtime_authority'] is False
+    assert output['periodic_screening']['candidates'][0]['image_distinctness_validated'] is False
+    assert before=={p.name:p.read_bytes() for p in tmp_path.iterdir()}
