@@ -1,106 +1,95 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C252. Active **cedar**, checkout NASolve-c96.
-Production source C251/14cfb00 is pushed and unchanged by this validation checkpoint.
+Updated **2026-11-13**, C253. Active **cedar**, checkout NASolve-c96.
 The [queue](cif-doctor-completion-queue.md) owns work order; the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
+Simon authorized this pass through **23:00 Europe/London**, focused tests only.
 
 ## Current result
 
-C251 saves later checked attempts as explicit, unselected REVIEW alternatives from
-the same frozen construction. It preserves the initial preparation and current
-choice, binds exact model/CIF/PHIL inputs, and guards against stale registry edits.
-Use `cif-doctor publish-preparation RUN --attempt N --as-alternative`.
-The alternative is not claimed to descend from a selected refined model.
+C253 compares AutoSol heavy-atom sites with the **chosen model's coordinates and
+unit cell**, including a preparation alternative or manual/refined descendant.
+The **original Phaser MR model remains the native phasing input**. Initial
+preparation, chemistry, distance gates and later selections remain unchanged.
+A selected model with no eligible heavy atom cannot reuse initial candidates.
 
-C252 now exercises that machinery with actual Phenix **2.2.1-6174 / 2.2.1**:
-a deliberately timed-out optional plane generator retains a qualified ReadySet
-result with honest missing-C5 notes. A fresh attempt obtains source-checked support,
-passes repair/ReadySet and saves `prepare-002`. Its selected dictionary explicitly
-covers screened centres C2/C4/C5. Original report, receipt, root and selection stay
-fixed; all **467 first-attempt files** are unchanged.
-
-After relocation with the original path absent and old/cache/SDK reads plus native
-execution forbidden, Coot resolves the exact alternative and AutoRefine resolves
-its model, **five PHIL files and two CIFs in order**. Coot uses the component CIF;
-the modification-only CIF remains in refinement's input set.
-A follow-through imports the exact unchanged model as a REVIEW manual child,
-explicitly selects it, and confirms repeat preparation publication preserves that
-choice and inherited restraints. This is an input/lineage check, not a chemical edit.
+A small immutable `AutoSol/site-reference.json` binds the chosen checkpoint/model,
+original phasing input, candidates/cell and distance controls before native launch.
+The existing guarded registry save advances this checked run to **schema 5**.
+A conflicting preflight selection prevents launch. A later selection is preserved.
+New results use anchored output references and an immutable AutoSol report; phase
+and map consumers check the reference and repeat the saved site comparison.
+Explicit AutoSol inspection shows that saved model/dictionaries, while ordinary
+inspection follows the user's current choice. Native failure retains MR continuation.
+Changed inputs or a conflicting report save retain outputs without phase adoption.
 
 ## Validation and reviewer handoff
 
-- Two complete native attempts, publication and relocated Coot read: **1727.15 s**;
-  **1190 files unchanged** during cold inspection. Owned native workers stopped.
-- AutoRefine input read: **196.96 s**, same 1190 files unchanged.
-- Manual import/explicit selection/repeat/inspection: **806.54 s**;
-  all **1183 request files**, three preparation receipts and inherited inputs preserved.
-- A second relocation after manual import leaves its historical source absent:
-  **1191 files unchanged**, exact selected model/restraints retained,
-  **225.12 s**, no native execution.
-- Each ordinary operation replays each exact attempt once. Source remains C251.
-  Commands, runner hashes and compact results: ledger
-  `native_preparation_alternatives_2026_11_13`; C251 regression commands/results
-  remain in `preparation_alternatives_2026_11_13`.
-- No full suite or repeated unchanged unit suite. Last wholly green full:
-  C220/583d30df, **9,178 tests + 276 subtests**. C251 focused checks remain the
-  latest source-regression evidence; integration still needs the full suite.
-- Documentation checks pass: five Markdown files, 205 local file-link targets,
-  nine evidence hashes, unique JSON keys and `git diff --check`.
+Before: the separated-coordinate regression returned AUTOSOL_WARNING using initial
+coordinates. After: selected iodine matches at 0 Å while the native command still
+receives the original MR model. C253's 23 new controls cover corruption, relocation,
+selection conflicts, native failure, alternatives, exact inspection and old readers.
 
-This checkpoint changes documentation/evidence metadata only; C251 compatibility
-and schema remain unchanged. Scientific outputs/runners stay local and no old
-runs were retired. Observation/map files are **synthetic path fixtures**: no MTZ,
-Free-R or diffraction-refinement validation, new Coot launch or AutoSol execution
-is claimed. Explicit plane membership is not achieved-geometry qualification.
+Focused command (Python is the everyday checkout's `.venv/bin/python`):
 
-All C252 native/readback jobs have finished. Evidence anchor `live_tests_directory`:
-`252_Cedar_native-preparation-alternatives-8s_l2y96/final/ordinary run`.
-Final test choice is `manual-001`, deliberately selected by the manual control;
-initial and `prepare-002` records remain intact. Runners live in the everyday
-checkout's ignored `branch-artifacts/cedar/runners/` and are hashed in the ledger.
-Do not rerun the completed mutating control in place.
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_autosol_selected_reference.py tests/test_autosol.py tests/test_cif_postmr_publication.py tests/test_checkpoints.py tests/test_coot_view.py tests/test_autorefine.py
+```
+
+**196 passed + 31 subtests, 22.91 s.** Adjacent inspection/candidate and ordinary
+entry checks: **53 passed + 2 subtests, 1.04 s**. Documentation checks pass: seven
+Markdown files, 322 local links, nine hashes, JSON uniqueness, syntax and whitespace.
+The evidence ledger records the absolute
+interpreter command and changed-source/test hashes. No full suite; last wholly
+green full remains C220/583d30df, **9,178 tests + 276 subtests**. Full integration
+validation remains required before merge.
+
+The existing C252 native preparation also reads cold under C253: exact current
+`manual-001`, parent `prepare-002`, five PHILs and two CIFs; histories 1/2 each
+replayed once; **1,191 files unchanged**, **198.23 s**, Python peak **654,458,880 B**.
+Old/cache/SDK paths and native execution were forbidden. Its schema stays 4.
+That job is finished. No new native AutoSol, Coot or diffraction refinement claim.
+C252 generated the preparation with Phenix 2.2.1-6174 / dispatcher 2.2.1; its
+observation/map inputs are synthetic fixtures. Native evidence stays local.
+
+Changed modules: autosol/reference, checkpoints, preparation publication, Coot
+and AutoRefine consumers. Schema 5 is introduced only for a newly frozen checked
+AutoSol reference; older readers refuse it, later alternative saves preserve it.
+Existing schemas/results are not rewritten. Scientific files/runners are excluded
+from Git; the ledger entry is `selected_autosol_reference_2026_11_13`.
 
 ## Next work — Q04/Q05 closure
 
-1. **Compare heavy-atom sites with the chosen model.** AutoSol must keep the
-   original Phaser MR model as its phasing input. Connect the chosen prepared
-   model's candidate coordinates/unit cell and saved validation identity, and
-   have phase/map readers verify that binding. Preserve thresholds and old runs.
-   C251 currently refuses schema-4 non-root selection rather than using the wrong
-   initial reference. Do not merely replace a model path and retain old coordinates.
-2. **Keep necessary evidence without redundant working copies.** The two-attempt
-   request retains **315,299,065 B**. A read-only C244 audit found
-   **181,566,343 B** of logical files, **88,181,923 B** of distinct bytes and
-   **93,384,420 B** repeated. Independent compression estimates 16.0 MB before
-   indices/retained-public-path requirements; it is not a usable compact request.
-   The existing archiver also reconstructs one actual 131.7 MB working subtree
-   exactly from an **8.3 MB** archive: 418 files, 57.7 MB temporary physical data,
-   original-source reads forbidden, unchanged 128 MiB logical limit. Temporary
-   archive/view removed; originals intact. This is byte-level feasibility, not
-   complete-request reconstruction or retirement. A further cold replay of the
-   prepared-repair runtime inside that archive **passes** (15.82 s). The ReadySet
-   continuation instead refuses the extra nesting: `Nested evidence exceeds
-   supported view depth` (1.47 s). Its normal C252 readback still passes. The next
-   storage patch must accommodate that deeper proof with an explicit bounded
-   lifecycle, not simply archive/delete files or globally raise the depth limit.
-   Reuse bounded archive machinery; preserve public model/restraint references and
-   every owner's inventory, known-stopped recovery and interruption safety.
-3. Reconcile remaining caller/recovery acceptance against C156/C170, C223–C225,
-   C248, C251/C252 rather than rebuilding them. Then Q06 real complete-restraint
-   refinement and Q07 combined/held-out examples. The queue estimates roughly
-   3–6 remaining implementation patches for supported Q04/Q05, plus validation;
-   this is not an estimate for the entire catalogue programme or permission to merge.
+1. **Keep necessary evidence without redundant working copies.** The C252
+   two-attempt request retains **315,299,065 B**. C244 had **181,566,343 B** logical,
+   **88,181,923 B** distinct and **93,384,420 B** repeated. Existing compression
+   reconstructs one 131.7 MB subtree from an **8.3 MB** archive (418 files,
+   57.7 MB physical temporary bytes), within the unchanged 128 MiB logical bound.
+   Original-source reads were forbidden; temporary probe artifacts were removed.
+   Prepared-repair replay inside that extra view passes; ReadySet continuation
+   refuses `Nested evidence exceeds supported view depth`. Normal C252 reading
+   passes. Design an explicit bounded view lifecycle, not a global limit increase
+   or archive/delete shortcut. Preserve public model/restraint paths, owner
+   inventories, known-stopped recovery and partial outputs. No originals retired.
+2. **Qualify/reconcile the remaining normal callers.** C253's selected-model
+   AutoSol connection needs native acceptance. Interrupted AutoSol result saving
+   retains outputs but does not automatically adopt them; keep it separate from
+   existing preparation-publication recovery. Reconcile C156/C170, C223–C225,
+   C248, C251–C253 rather than duplicating their machinery. The Alder HL-label
+   fix remains in the Q16 integration audit; do not copy its whole AutoSol module.
+3. Q06 real complete-restraint diffraction refinement, then Q07 combined and
+   held-out examples. The queue now allows roughly **2–5 further implementation
+   patches plus validation** for supported Q04/Q05; storage remains uncertain.
+   This is not an estimate for the entire catalogue programme or permission to merge.
 
-Native Python worker peak was **702,218,240 B**; the read-only refinement
-process peaked at **547,979,264 B**. These are not combined external-Phenix
-peaks. Campaign-scale disk, temporary expansion and concurrency remain open.
+C252 run: live-tests anchor
+`252_Cedar_native-preparation-alternatives-8s_l2y96/final/ordinary run`.
+Do not rerun completed mutating controls in place. Runners/metadata are in the
+ordinary checkout's ignored `branch-artifacts/cedar/runners/`.
 
-Linden's TopoStitch coordinate-end work remains isolated on Willow/Pine; later
-checkpoint adoption requires explicit interface qualification. No cross-branch edit.
-AutoPhase naming stays the **final Q16 implementation task**; preserve the
-[commit-pinned audit](autophase-rename-plan.json), native AutoSol calls and saved
-identities, including Alder phase-label/Cedar preparation validation differences.
+Linden works independently on Willow/Pine TopoStitch; C253 schema/interface notice
+sent locally, signed Rowan. No cross-branch edit. AutoPhase naming remains the
+**final Q16 implementation task** under the [pinned audit](autophase-rename-plan.json).
 Protected NASolve-cedar and everyday NASolve/pine science, patches and environments
 remain untouched. Continue on NASolve-c96/cedar; no new branch or merge.

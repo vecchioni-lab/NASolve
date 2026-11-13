@@ -22,7 +22,8 @@ milestone statements preserve their original scope; they are not a second queue.
   the exact selected dictionaries; native modifications, alternative restraints
   and achieved geometry remain unassessed by that screen. C251 adds explicit later
   preparation alternatives with unchanged root/current choice and exact Coot/
-  refinement inputs. C252 validates real two-attempt publication, relocated Coot/
+  refinement inputs. C253 binds chosen-model AutoSol site validation while preserving
+  original-MR phasing; native AutoSol acceptance remains open. C252 validates real two-attempt publication, relocated Coot/
   refinement inputs and preservation of a later manual choice. Alternative-aware phasing,
   real refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,

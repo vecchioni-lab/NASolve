@@ -91387,5 +91387,106 @@
       "changed_runtime": false,
       "retired_source_files": 0
     }
+  },
+  "selected_autosol_reference_2026_11_13": {
+    "milestone": "C253",
+    "status": "FOCUSED_SELECTED_REFERENCE_AND_NATIVE_PREPARATION_COMPATIBILITY_PASS",
+    "date": "2026-11-13",
+    "baseline_commit": "9bd980605d4d2956d13e51df7d313ec4191a6d46",
+    "scope": "Checked AutoSol uses selected checkpoint candidate coordinates/unit cell for comparison and retains original Phaser MR model for phasing. No native AutoSol run or diffraction-refinement claim.",
+    "prior_work": [
+      "C223 checked preparation",
+      "C250 guarded registry save",
+      "C251 alternatives",
+      "C252 native/relocated consumers",
+      "original AutoSol protocol; Alder phase-label fix remains in Q16 integration audit"
+    ],
+    "source_sha256": {
+      "src/nasolve/autosol.py": "1747551ad876bf2646e3850928f61d91aebd1d38f0d9c929e72ecd17d3471905",
+      "src/nasolve/autosol_reference.py": "184b4315ce6ff333a5335bb27ed53fc94ebb519beb4a79b09dbebab34fed1b83",
+      "src/nasolve/checkpoints.py": "9cd98691ca7553c7ce88dd31d9521658195efbc047131914c8d5573e641c98a3",
+      "src/nasolve/cif_postmr_publication.py": "27bcc5eca72dbc2da87cd4ae78f52fe98fb7db18ca9e7301bdf5fd04b49663ba",
+      "src/nasolve/coot_view.py": "4d225754531fff73710bce829548d69f98e648ba6b4e807562557ffb87f71e8c",
+      "src/nasolve/autorefine.py": "9496c13ebd16febb69441a1db243217754abca4f69bed09b284e7c24c7a34a49"
+    },
+    "new_test_sha256": "33a1255646a5c150c95b6522399f133e14af0995dfd367838ce2e62324122a92",
+    "regression_before": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_selected_reference.py",
+      "result": "One expected failure: initial iodine x=1, selected iodine x=20, result AUTOSOL_WARNING rather than AUTOSOL_READY. Fixture setup passed; original and selected candidate lists deliberately differ."
+    },
+    "focused_after": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_selected_reference.py tests/test_autosol.py tests/test_cif_postmr_publication.py tests/test_checkpoints.py tests/test_coot_view.py tests/test_autorefine.py",
+      "result": "196 passed + 31 subtests in 22.91 s",
+      "new_selected_reference_cases": 23,
+      "full_suite": false
+    },
+    "coverage": [
+      "Chosen candidate coordinates rather than initial coordinates",
+      "Original Phaser model remains actual command input",
+      "Unchanged automatic/review distances",
+      "Selected preparation alternative and manual child",
+      "Explicit AutoSol view follows saved comparison, ordinary view follows current choice",
+      "Preflight selection conflict prevents native launch",
+      "Selection changed during native execution is preserved",
+      "Changed model/phasing input/report preserves outputs without adoption",
+      "Native failure allows MR continuation",
+      "Rehashed reference/result contradictions refused by phase/map consumers",
+      "Relocated dataset with original absent and native execution forbidden",
+      "No-heavy-atom selected model cannot reuse initial candidates",
+      "Schema 5 preserved by later alternative publication; old reader and downgrade refusal"
+    ],
+    "schemas": {
+      "checkpoint": 5,
+      "site_reference": "autosol-selected-site-reference-v1",
+      "path": "AutoSol/site-reference.json",
+      "result": "AutoSol/report.json becomes immutable checksummed record for newly bound checked runs",
+      "legacy": "Existing schemas/results not rewritten; new schema only after successful preflight and guarded reference binding"
+    },
+    "existing_native_preparation_readback": {
+      "status": "C253_EXISTING_NATIVE_SCHEMA4_READBACK_PASS",
+      "schema_version": 4,
+      "current": "manual-001",
+      "history_replays": [
+        1,
+        2
+      ],
+      "unchanged_files": 1191,
+      "subprocess_execution_forbidden": true,
+      "ordered_phils": 5,
+      "ordered_cifs": 2,
+      "elapsed_seconds": 198.23310370798572,
+      "maximum_resident_bytes": 654458880
+    },
+    "readback_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src .venv/bin/python branch-artifacts/cedar/runners/c253_native_compat_read.py /Users/svecchio/NASolve-live-tests/252_Cedar_native-preparation-alternatives-8s_l2y96",
+    "readback_evidence": {
+      "c253_native_compat_read.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c253_native_compat_read.py",
+        "sha256": "9fa59ab83375e26aa731bc2d7b6e6cfe2a95f222401e98a4c0dfa50a1e40e2fe"
+      },
+      "c253_native_compat_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c253_native_compat_summary.json",
+        "sha256": "3002a63461654ba321694d0735c59eddc56193fd70165991fd7528440706e32e"
+      }
+    },
+    "native_execution": "None in C253. Executable stubs exercise AutoSol arguments/results; existing preparation was generated in C252 with Phenix 2.2.1-6174 / dispatcher 2.2.1. No Coot launch.",
+    "scientific_changes": "No altered elemental triggers, supported symmetry operators, distance gates, phosphate chemistry, Free-R, original-MR phasing or automatic selection policy.",
+    "limitations": [
+      "Native selected-reference AutoSol acceptance remains to qualify",
+      "Interrupted result publication retains immutable output but is not automatically adopted; no in-place native retry",
+      "Q04 whole-request storage retirement remains open",
+      "Alder HL-label integration remains recorded in final Q16 audit",
+      "Last full suite remains C220/583d30df, 9178 tests + 276 subtests; new full suite explicitly deferred by Simon"
+    ],
+    "artifacts": "Code, tests and compact documentation only committed; native science and runner/output metadata remain local. Existing 1191 C252 files unchanged. No files retired.",
+    "adjacent_callers": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_checkpoint_view_integrity.py tests/test_checkpoint_candidate.py tests/test_cif_ordinary_outcome.py tests/test_cif_ordinary_cli.py",
+      "result": "53 passed + 2 subtests in 1.04 s"
+    },
+    "documentation_checks": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python branch-artifacts/cedar/runners/c253_docs_check.py",
+      "result": "7 Markdown files, 322 local link targets, 6 source hashes, 1 new-test hash, 2 local evidence hashes; JSON uniqueness, in-memory syntax and git diff --check pass"
+    }
   }
 }

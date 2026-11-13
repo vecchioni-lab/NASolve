@@ -38,7 +38,7 @@ class CheckpointRecord:
 
 
 SCHEMA_VERSION = 2
-READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION, 3, 4}
+READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION, 3, 4, 5}
 AUTOMATIC_STATUSES = {"READY", "SUCCESS", "USER_APPROVED"}
 REUSABLE_STATUSES = AUTOMATIC_STATUSES | {"REVIEW"}
 
@@ -223,6 +223,11 @@ def _phase_reference(report: Mapping[str, object], run: Path) -> dict[str, objec
     autosol = report.get("autosol")
     if not isinstance(autosol, Mapping) or autosol.get("use_for_refinement") is not True:
         return None
+    from .autosol_reference import validate_result_reference
+    try:
+        validate_result_reference(run, report)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise CheckpointError(str(exc)) from exc
     outputs = autosol.get("outputs")
     if not isinstance(outputs, Mapping):
         raise CheckpointError("Approved AutoSol result has no output references")
@@ -351,10 +356,9 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
 
 def _validate_preparation(run, report, registry=None):
     from .cif_postmr_publication import validate_published_preparation
-    from .campaigns import CampaignError
     try:
         validate_published_preparation(run, report, registry)
-    except (OSError, ValueError, CampaignError) as exc:
+    except (OSError, ValueError, RuntimeError) as exc:
         raise CheckpointError(str(exc)) from exc
 
 
@@ -406,8 +410,8 @@ def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
 
 
 def save_registry(run: Path, registry: dict[str, object]) -> Path:
-    checked = registry.get("schema_version") in {3, 4} or any("checked_preparation" in i for i in _items(registry))
-    registry["schema_version"] = (4 if registry.get("schema_version") == 4 else 3) if checked else SCHEMA_VERSION
+    checked = registry.get("schema_version") in {3, 4, 5} or any("checked_preparation" in i for i in _items(registry))
+    registry["schema_version"] = (registry["schema_version"] if registry.get("schema_version") in {4, 5} else 3) if checked else SCHEMA_VERSION
     registry["run_directory"] = "."
     for item in _items(registry):
         for key in ("model", "observations", "phases"):
@@ -487,8 +491,8 @@ def save_registry(run: Path, registry: dict[str, object]) -> Path:
                         "Checkpoint registry changed since it was read; preserve completed "
                         "outputs, reread the registry and reconcile the pending edit"
                     )
-                if saved.get("schema_version") == 4 and registry["schema_version"] != 4:
-                    raise CheckpointError("Cannot downgrade a preparation-alternative registry")
+                if saved.get("schema_version", 0) > registry["schema_version"]:
+                    raise CheckpointError("Cannot downgrade a checked checkpoint registry")
                 record = write_record(path, registry, replace=True)
             # Some callers intentionally save the same live object twice (for
             # example manual import followed by its bookmark). Advance that

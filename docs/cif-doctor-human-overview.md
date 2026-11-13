@@ -26,13 +26,15 @@ choice, leaving the original preparation and current selection alone. Coot and
 trial refinement use that choice's matching model/restraints. Its origin is the
 same frozen construction, not the coordinates of a refined model selected later.
 Interrupted saving preserves both the scientific work and any newer selections.
-AutoSol deliberately phases with the original MR model; its heavy-atom site check
-still uses the initial prepared model and says so if a different choice is selected.
+AutoSol deliberately phases with the original MR model. Its heavy-atom site check
+now uses the chosen model's coordinates and unit cell, and saves which model it
+compared. Later inspection/refinement checks that evidence; choosing another model
+does not rewrite the earlier comparison.
 A fresh two-attempt Phenix control now confirms later-choice publication, relocated
 Coot/refinement inputs and preservation of a selected manual child when an earlier
 preparation is published again. The manual model is an unchanged copy; this does
 not demonstrate a Coot edit or diffraction refinement. Q04/Q05 still need the
-selected-model heavy-atom comparison and remaining recovery/storage acceptance
+native acceptance of that comparison and remaining recovery/storage acceptance
 before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.

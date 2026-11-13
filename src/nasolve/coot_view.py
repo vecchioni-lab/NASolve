@@ -306,6 +306,16 @@ def _postmr_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
 def _autosol_map(
     run: Path, report: Mapping[str, object], *, allow_missing: bool = False
 ) -> Path | None:
+    from .autosol_reference import validate_result_reference
+    try:
+        validate_result_reference(run, report)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise CootViewError(str(exc)) from exc
+    return _autosol_map_outputs(run, report, allow_missing=allow_missing)
+
+
+def _autosol_map_outputs(run, report, *, allow_missing=False):
+    """Resolve the map after its owning caller has checked the site reference."""
     autosol = report.get("autosol")
     outputs = autosol.get("outputs") if isinstance(autosol, Mapping) else None
     value = outputs.get("density_modified_map") if isinstance(outputs, Mapping) else None
@@ -346,6 +356,11 @@ def _autosol_map(
 
 
 def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
+    from .autosol_reference import validate_result_reference
+    try:
+        reference = validate_result_reference(run, report)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise CootViewError(str(exc)) from exc
     autosol = report.get("autosol")
     outputs = autosol.get("outputs") if isinstance(autosol, Mapping) else None
     if not isinstance(outputs, Mapping):
@@ -358,8 +373,20 @@ def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         outputs.get("heavy_atom_model_sha256"),
         "AutoSol HA model",
     )
-    model = _prepared_model(run, report)
-    map_path = _autosol_map(run, report)
+    if reference is None:
+        model = _prepared_model(run, report)
+        dictionaries = _postmr_dictionaries(run, report)
+        source = "PostMR ReadySet prepared model"
+    else:
+        from .campaign_records import read_record
+        from .checkpoints import registry_path, resolve_checkpoint
+        registry = read_record(registry_path(run))
+        _validate_preparation_view(run, report, registry)
+        checkpoint = resolve_checkpoint(registry, reference['checkpoint_id'])
+        model = _reported_file(reference['model'], "AutoSol validation model", run)
+        dictionaries = _checkpoint_dictionaries(run, checkpoint, registry['schema_version'])
+        source = f"Saved AutoSol validation checkpoint {reference['checkpoint_id']}"
+    map_path = _autosol_map_outputs(run, report)
     assert map_path is not None
     status = str(autosol.get("status", "legacy status unrecorded"))
     acceptance = "accepted" if _accepted_autosol(report) else "unaccepted; inspection only"
@@ -368,8 +395,8 @@ def _autosol_profile(run: Path, report: Mapping[str, object]) -> ViewProfile:
         model,
         map_path,
         (heavy_atom,),
-        _postmr_dictionaries(run, report),
-        f"PostMR ReadySet prepared model with separate AutoSol HA sites ({status})",
+        dictionaries,
+        f"{source} with separate AutoSol HA sites ({status})",
         f"AutoSol density-modified map ({acceptance}; {status})",
     )
 
@@ -379,7 +406,7 @@ def _refinement_map(
 ) -> Path:
     outputs = checkpoint.get("outputs")
     map_value = outputs.get("map_coefficients") if isinstance(outputs, Mapping) else None
-    if schema_version in {2, 3, 4} and map_value is not None:
+    if schema_version in {2, 3, 4, 5} and map_value is not None:
         _require_checkpoint_checksum(map_value, "map coefficients")
     reported_map = resolve_artifact_path(map_value, run)
     if reported_map is not None:
@@ -388,7 +415,7 @@ def _refinement_map(
         raise CootViewError(
             "Checkpoint map coefficients are missing or failed checksum validation"
         )
-    if schema_version in {2, 3, 4}:
+    if schema_version in {2, 3, 4, 5}:
         reflection_value = (
             outputs.get("refinement_reflections")
             if isinstance(outputs, Mapping)
@@ -410,7 +437,7 @@ def _checkpoint_dictionaries(
         raise CootViewError("Malformed checkpoint restraint list")
     dictionaries: list[Path] = []
     for value in restraints or []:
-        if schema_version in {2, 3, 4}:
+        if schema_version in {2, 3, 4, 5}:
             _require_checkpoint_checksum(value, "restraint")
         # PHIL and modification-only CIFs belong to the same frozen selection,
         # even though Coot displays only component dictionaries. Validate every
@@ -436,7 +463,7 @@ def _refinement_anomalous_maps(
     value = outputs.get("refinement_reflections") if isinstance(outputs, Mapping) else None
     if value is None:
         return (map_path,)
-    if schema_version in {2, 3, 4}:
+    if schema_version in {2, 3, 4, 5}:
         _require_checkpoint_checksum(value, "refinement reflections")
     reflections = _reported_file(value, "checkpoint refinement reflections", run)
     return tuple(dict.fromkeys((map_path, reflections)))
@@ -448,7 +475,7 @@ def _same_observations(
     paths = []
     for item in (child, parent):
         value = item.get("observations")
-        if schema_version in {2, 3, 4}:
+        if schema_version in {2, 3, 4, 5}:
             _require_checkpoint_checksum(value, "observations")
         paths.append(_reported_file(value, "checkpoint observations", run))
     if paths[0] != paths[1] and file_sha256(paths[0]) != file_sha256(paths[1]):
@@ -527,7 +554,7 @@ def _autorefine_profile(
     except ValueError as exc:
         raise CootViewError(str(exc)) from exc
     model_ref = checkpoint.get("model")
-    if schema_version in {2, 3, 4}:
+    if schema_version in {2, 3, 4, 5}:
         _require_checkpoint_checksum(model_ref, "model")
     model = _reported_file(model_ref, "checkpoint model", run)
     map_path, map_source, anomalous_paths = _checkpoint_map(
@@ -542,7 +569,7 @@ def _autorefine_profile(
         (),
         _checkpoint_dictionaries(run, checkpoint, schema_version),
         f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})"
-        + (f": {checkpoint.get('label')}" if schema_version in {3, 4} else ""),
+        + (f": {checkpoint.get('label')}" if schema_version in {3, 4, 5} else ""),
         map_source,
         current,
         anomalous_paths,

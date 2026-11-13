@@ -8,6 +8,24 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare anomalous sites with the chosen model (C253)
+
+- Checked AutoSol now rescans the selected preparation or manual/refined model
+  for heavy-atom candidates and uses its unit cell. The original Phaser model
+  remains the native phasing input; acceptance/review distances are unchanged.
+- Before native launch, save a small immutable, run-relative site-reference
+  receipt and advance that checked registry to schema 5. Preserve current choice,
+  earlier preparation receipts and ordered restraints. A competing preflight
+  selection prevents launch; a selection changed during execution is retained.
+- Coot and refinement consumers verify the saved comparison model, candidates,
+  original phasing input and site-result evidence. Explicit AutoSol inspection
+  shows that saved model and its dictionaries even after another choice is selected.
+- New checked AutoSol outputs use anchored references and an immutable result
+  record; conflicting run-report publication preserves the other work and outputs.
+  Qualified native failure retains MR continuation. Legacy histories keep their
+  meanings; old readers refuse schema 5. No native AutoSol/refinement qualification
+  or automatic interrupted-result adoption is claimed by the focused tests.
+
 ### Save later preparation alternatives without replacing earlier work (C251)
 
 - Add explicit `cif-doctor publish-preparation RUN --attempt N --as-alternative`.

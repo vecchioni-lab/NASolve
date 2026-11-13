@@ -49,7 +49,7 @@ def _write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def _read_run_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
+def _read_run_state(run_directory: Path):
     selected = run_directory.expanduser().resolve()
     report_path = selected if selected.name == "report.json" else selected / "report.json"
     run = report_path.parent
@@ -80,14 +80,13 @@ def _read_run_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
         if isinstance(report.get("postmr"),dict) and "checked_preparation" in report["postmr"]:
             path = registry_path(run); _read(path); registry = read_record(path)
         _validate_preparation(run, report, registry)
-        if registry is not None and registry.get("schema_version") == 4 and registry.get("current") != "postmr":
-            raise AutoSolPreparationError(
-                "AutoSol currently validates anomalous sites against the initial checked "
-                "preparation; a different checkpoint is selected. Preserve that choice "
-                "and explicitly select postmr only if the initial validation reference is intended."
-            )
     except (CheckpointError, OSError, ValueError, CampaignError) as exc:
         raise AutoSolPreparationError(str(exc)) from exc
+    return run, report, registry
+
+
+def _read_run_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
+    run, report, _ = _read_run_state(run_directory)
     return run, report
 
 
@@ -649,15 +648,39 @@ def _record_result(
     report: dict[str, object],
     autosol_directory: Path,
     payload: dict[str, object],
+    *,
+    site_reference: dict | None = None,
 ) -> Path:
     report_path = autosol_directory / "report.json"
-    _write_json(report_path, payload)
+    previous_sha256 = None
+    if site_reference is not None:
+        from .autosol_reference import validate_reference
+        from .campaign_records import read_record, write_record
+        from .checkpoints import registry_path
+        from .cif_postmr_publication import _publish_run_report
+        reference = validate_reference(run, read_record(registry_path(run)))
+        if reference is None:
+            raise AutoSolPreparationError("AutoSol lost its saved site reference")
+        previous_sha256 = reference["run_report_sha256_before_autosol"]
+        # New output consumers resolve declared anchors, including after a
+        # dataset/run rename. Absolute command strings remain historical only.
+        from .checkpoints import _file_reference
+        for key in ("heavy_atom_model", "refinement_data"):
+            value = payload["outputs"].get(key)
+            if value is not None:
+                payload["outputs"][key] = _file_reference(Path(value), run)
+        payload = write_record(report_path, dict(payload, site_reference=site_reference))
+    else:
+        _write_json(report_path, payload)
     report["stage"] = "autosol"
     report["status"] = payload["status"]
     report["message"] = payload["message"]
     report["updated_utc"] = payload["created_utc"]
     report["autosol"] = payload
-    _write_json(run / "report.json", report)
+    if previous_sha256 is not None:
+        _publish_run_report(run / "report.json", previous_sha256, report)
+    else:
+        _write_json(run / "report.json", report)
     return report_path
 
 
@@ -669,6 +692,7 @@ def _warning_result(
     *,
     log_path: Path | None = None,
     command: list[str] | None = None,
+    site_reference: dict | None = None,
 ) -> AutoSolResult:
     message = (
         "AutoSol did not produce validated experimental phases; continue with the "
@@ -688,7 +712,7 @@ def _warning_result(
         "use_for_refinement": False,
         "continuation": "continue without AutoSol phases; user review requested",
     }
-    report_path = _record_result(run, report, autosol_directory, payload)
+    report_path = _record_result(run, report, autosol_directory, payload, site_reference=site_reference)
     return AutoSolResult(
         status="AUTOSOL_WARNING",
         message=message,
@@ -713,13 +737,18 @@ def execute_autosol(
     processor_count: int | None = None,
 ) -> AutoSolResult:
     """Run the conditional MR-SAD branch and validate a model-associated HA site."""
-    run, report = _read_run_report(run_directory)
+    run, report, registry = _read_run_state(run_directory)
     postmr = report.get("postmr")
     anomalous = postmr.get("anomalous") if isinstance(postmr, Mapping) else None
     candidates = anomalous.get("candidates") if isinstance(anomalous, Mapping) else None
+    selected = prepared_model = None
+    site_reference = None
+    if registry is not None:
+        from .autosol_reference import chosen_model
+        selected, prepared_model, candidates = chosen_model(run, registry)
     if not isinstance(candidates, list) or not candidates:
         raise AutoSolPreparationError(
-            "PostMR found no nucleotide heavy atom; AutoSol is not required"
+            "Chosen preparation has no nucleotide heavy atom; AutoSol is not required"
         )
     if not all(isinstance(candidate, Mapping) for candidate in candidates):
         raise AutoSolPreparationError("PostMR anomalous candidates are malformed")
@@ -739,23 +768,30 @@ def execute_autosol(
         ) from exc
     log_path = autosol_directory / "autosol.console.log"
     try:
-        reflections = _required_path(report, "inputs", "reflections", run)
+        if registry is None:
+            reflections = _required_path(report, "inputs", "reflections", run)
+        else:
+            from .checkpoints import _required_observations
+            reflections = _required_observations(report, run)
         summary = _required_path(report, "inputs", "summary", run)
         inputs = report.get("inputs")
         assert isinstance(inputs, Mapping)
         _verify_frozen_checksum(
             reflections, inputs.get("reflections_sha256"), "reflections"
         )
-        prepared_value = postmr.get("prepared_model") if isinstance(postmr, Mapping) else None
-        prepared_model = resolve_artifact_path(prepared_value, run)
-        if prepared_model is None:
-            raise AutoSolPreparationError("PostMR prepared model is missing")
-        _verify_frozen_checksum(
-            prepared_model,
-            postmr.get("prepared_sha256") if isinstance(postmr, Mapping) else None,
-            "PostMR prepared model",
-        )
+        if registry is None:
+            prepared_value = postmr.get("prepared_model") if isinstance(postmr, Mapping) else None
+            prepared_model = resolve_artifact_path(prepared_value, run)
+            if prepared_model is None:
+                raise AutoSolPreparationError("PostMR prepared model is missing")
+            _verify_frozen_checksum(
+                prepared_model,
+                postmr.get("prepared_sha256") if isinstance(postmr, Mapping) else None,
+                "PostMR prepared model",
+            )
         phaser_model = _original_phaser_model(run, report)
+        if registry is not None:
+            _unit_cell(prepared_model)  # Qualify the comparison frame before launching.
         wavelength, wavelength_source = read_wavelength(summary)
         input_dump = _run_mtz_dump(reflections, mtz_dump_executable, environment)
         labels = anomalous_labels(input_dump)
@@ -765,6 +801,10 @@ def execute_autosol(
         return _warning_result(
             run, report, autosol_directory, str(exc), log_path=log_path
         )
+    if registry is not None:
+        from .autosol_reference import freeze_reference
+        site_reference = freeze_reference(run, registry, selected, prepared_model,
+            candidates, phaser_model, match_tolerance, review_tolerance, report)
     sequence_path = autosol_directory / "sequence_input.txt"
     if sequence_source is not None:
         shutil.copyfile(sequence_source, sequence_path)
@@ -806,6 +846,7 @@ def execute_autosol(
             f"Could not launch AutoSol: {exc}",
             log_path=log_path,
             command=command,
+            site_reference=site_reference,
         )
     log_path.write_text(completed.stdout, encoding="utf-8")
     if completed.returncode:
@@ -816,6 +857,7 @@ def execute_autosol(
             f"AutoSol exited with status {completed.returncode}",
             log_path=log_path,
             command=command,
+            site_reference=site_reference,
         )
     try:
         effective_path = _find_unique(autosol_directory, "autosol.eff")
@@ -840,6 +882,7 @@ def execute_autosol(
             str(exc),
             log_path=log_path,
             command=command,
+            site_reference=site_reference,
         )
     comparable = [
         attempt for attempt in attempts
@@ -916,7 +959,7 @@ def execute_autosol(
             else "continue without AutoSol phases pending user review"
         ),
     }
-    report_path = _record_result(run, report, autosol_directory, payload)
+    report_path = _record_result(run, report, autosol_directory, payload, site_reference=site_reference)
     return AutoSolResult(
         status=status,
         message=message,

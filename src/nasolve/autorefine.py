@@ -1328,6 +1328,11 @@ def _require_unchanged_phase(phase: _VerifiedPhase) -> None:
 def _effective_phase(
     report: Mapping[str, object], inherited: Mapping[str, object], run: Path
 ) -> _VerifiedPhase | None:
+    from .autosol_reference import validate_result_reference
+    try:
+        validate_result_reference(run, report)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise AutoRefineError(str(exc)) from exc
     inherited_phase = inherited.get("phases")
     if isinstance(inherited_phase, Path) and inherited_phase.is_file():
         metadata = inherited.get("phase_metadata")

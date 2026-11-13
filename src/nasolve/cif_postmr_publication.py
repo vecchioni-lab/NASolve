@@ -14,6 +14,7 @@ import re
 from pathlib import Path
 import tempfile
 
+from .autosol_reference import CHECKPOINT_SCHEMA as SITE_REFERENCE_SCHEMA
 from .campaign_records import now, read_record, write_record, _sync_directory
 from .campaign_process import exclusive_lock
 from .cif_dictionary_sites import _need, _read
@@ -101,8 +102,8 @@ def _registry(run, report):
 
 def _check_root(run, report, registry):
     from .checkpoints import _root_payload
-    _need(type(registry.get('schema_version')) is int and registry['schema_version'] in {CHECKPOINT_SCHEMA, ALTERNATIVE_SCHEMA},
-          'Checked preparation requires checkpoint schema 3 or 4')
+    _need(type(registry.get('schema_version')) is int and registry['schema_version'] in {CHECKPOINT_SCHEMA, ALTERNATIVE_SCHEMA, SITE_REFERENCE_SCHEMA},
+          'Checked preparation requires checkpoint schema 3, 4 or 5')
     items = registry.get('checkpoints')
     _need(isinstance(items, list) and all(isinstance(i, dict) for i in items), 'Malformed checked checkpoint registry')
     roots = [item for item in items if item.get('id') == 'postmr']
@@ -153,7 +154,7 @@ def validate_published_preparation(run, report, registry=None, *, additional_att
     """
     postmr = report.get('postmr')
     active = isinstance(postmr, dict) and 'checked_preparation' in postmr
-    active = active or (isinstance(registry, dict) and registry.get('schema_version') in (CHECKPOINT_SCHEMA,ALTERNATIVE_SCHEMA))
+    active = active or (isinstance(registry, dict) and registry.get('schema_version') in (CHECKPOINT_SCHEMA,ALTERNATIVE_SCHEMA,SITE_REFERENCE_SCHEMA))
     path = run/'PostMR/report.json'
     if not active and path.is_file():
         try:
@@ -183,7 +184,7 @@ def validate_published_preparation(run, report, registry=None, *, additional_att
         marked = (item.get('kind') == 'preparation' or item['id'].startswith('prepare-')
                   or 'preparation_relation' in item or 'checked_preparation' in item)
         if not marked: continue
-        _need(saved_registry['schema_version'] == ALTERNATIVE_SCHEMA,
+        _need(saved_registry['schema_version'] in {ALTERNATIVE_SCHEMA, SITE_REFERENCE_SCHEMA},
               'Preparation alternatives require checkpoint schema 4')
         match = re.fullmatch(r'prepare-([0-9]{3,})',item['id'])
         _need(match is not None, 'Malformed preparation checkpoint identity')
@@ -207,6 +208,8 @@ def validate_published_preparation(run, report, registry=None, *, additional_att
         _check_alternative(run,report,receipt,number,verified[number])
         _need(item == _alternative_node(run,report,receipt),
               'Alternative checkpoint differs from its exact checked preparation')
+    from .autosol_reference import validate_reference
+    validate_reference(run, saved_registry)
     _need(all(_read(path) == before for path,before in pins.items()),
           'Published preparation changed during validation')
     return verified
@@ -214,7 +217,7 @@ def validate_published_preparation(run, report, registry=None, *, additional_att
 
 def validate_preparation_lineage(registry, selected):
     """Retain inherited restraints along the selected branch; allow new models."""
-    if registry.get('schema_version') not in {CHECKPOINT_SCHEMA, ALTERNATIVE_SCHEMA}:
+    if registry.get('schema_version') not in {CHECKPOINT_SCHEMA, ALTERNATIVE_SCHEMA, SITE_REFERENCE_SCHEMA}:
         return
     items = registry.get('checkpoints', [])
     indexed = {i['id']:i for i in items if isinstance(i, dict) and isinstance(i.get('id'), str)}
@@ -227,7 +230,7 @@ def validate_preparation_lineage(registry, selected):
         parent = indexed.get(node['parent'])
         _need(parent is not None, 'Missing checked checkpoint parent')
         if node.get('kind') == 'preparation':
-            _need(registry.get('schema_version') == ALTERNATIVE_SCHEMA
+            _need(registry.get('schema_version') in {ALTERNATIVE_SCHEMA, SITE_REFERENCE_SCHEMA}
                   and node.get('preparation_relation') == 'SAME_FROZEN_CONSTRUCTION'
                   and parent['id'] == 'postmr' and 'checked_preparation' in node,
                   'Malformed preparation alternative lineage')
@@ -375,7 +378,7 @@ def publish_preparation_alternative(run_directory, *, attempt_number):
         _need(_read(run/'report.json') == previous, 'Run report changed during alternative publication; receipt retained')
         _need(_read(receipt) == receipt_bytes, 'Alternative receipt changed during publication')
         if not existing:
-            registry['schema_version'] = ALTERNATIVE_SCHEMA
+            registry['schema_version'] = max(registry['schema_version'], ALTERNATIVE_SCHEMA)
             registry['checkpoints'].append(node)
             save_registry(run,registry)  # C250 locks and compares the original identity.
         return record, checked.limitations

@@ -520,15 +520,14 @@ def test_alternative_publication_cannot_adopt_unqualified_or_initial_attempt(alt
     assert set(after)-set(before)<= {'AutoRefine/checkpoints.lock'}
 
 
-def test_autosol_does_not_silently_use_root_when_alternative_is_selected(alternative_preparation):
-    from nasolve.autosol import _read_run_report,AutoSolPreparationError
+def test_autosol_can_read_selected_alternative_without_changing_it(alternative_preparation):
+    from nasolve.autosol import _read_run_report
     p,run,values,reads=alternative_preparation
     p.publish_preparation_alternative(run,attempt_number=2)
     _read_run_report(run)  # Unselected alternative leaves initial phasing semantics intact.
     checkpoints.select_checkpoint(run,'prepare-002')
     before=snapshot(run)
-    with pytest.raises(AutoSolPreparationError,match='initial.*preparation'):
-        _read_run_report(run)
+    _read_run_report(run)
     assert snapshot(run)==before
 
 

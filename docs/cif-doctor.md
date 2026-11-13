@@ -142,7 +142,7 @@
 
 <a id="current-capability-boundary-c251"></a>
 
-## Current capability boundary (C252)
+## Current capability boundary (C253)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -165,7 +165,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
 | Source-bound repaired-bundle decision/publication | C152 binds source/site preparation to exact native repair and derivatives. C153 freezes the selected model/CIF/PHIL and proof through the public reader. A matching two-component PDU/5PC control selects repaired dictionaries and replays after relocation. | Separate diagnostic capability. The control has two complete monomers and a NAR numerical parallelity request; it is not the 42-residue mixed scaffold or an experimental protonation choice. Ordinary adoption/refinement stay separate. |
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
-| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner; C242 freezes explicit completed plane support and carries its repaired result through that continuation. | The checked route remains opt-in. C223–C225 connect initial checkpoint publication, ordinary PostMR and explicit campaigns; C231 validates compact request publication. C244 adds explicit automatic plane-support acquisition by that same owner; C245 connects prepared/ordinary intake and prepare-run. C246 adds direct PostMR/campaign forwarding; C247 adds publication/status notes; C249 reports scoped explicit selected-CIF coverage; C251 adds explicit later alternatives; C252 validates native two-attempt publication and relocated downstream inputs. Alternative-aware phasing remains Q05. Current native evidence must qualify each source/site/consumer context. C240/C243 distinguish owned execution failure and fully replayed source-chemical rejection without admitting those outputs; other incomplete builds still refuse. This is not universal chemistry support or ordinary refinement qualification. |
+| Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner; C242 freezes explicit completed plane support and carries its repaired result through that continuation. | The checked route remains opt-in. C223–C225 connect initial checkpoint publication, ordinary PostMR and explicit campaigns; C231 validates compact request publication. C244 adds explicit automatic plane-support acquisition by that same owner; C245 connects prepared/ordinary intake and prepare-run. C246 adds direct PostMR/campaign forwarding; C247 adds publication/status notes; C249 reports scoped explicit selected-CIF coverage; C251 adds explicit later alternatives; C252 validates native two-attempt publication and relocated downstream inputs. C253 connects selected-model site validation and checked phase/map reading; native AutoSol acceptance remains Q05. Current native evidence must qualify each source/site/consumer context. C240/C243 distinguish owned execution failure and fully replayed source-chemical rejection without admitting those outputs; other incomplete builds still refuse. This is not universal chemistry support or ordinary refinement qualification. |
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
 | Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; default activation and remaining phasing/native acceptance stay open. No actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and remaining phasing/native acceptance stay open. |
@@ -876,14 +876,13 @@ Manual/refined descendants preserve the alternative's restraint prefix. No
 coordinate move or missing/changed file is excused by the new checkpoint kind.
 
 **Compatibility and remaining scope.** Initial-only schema 3 and legacy schema
-1/2 keep their meanings; old readers reject schema 4. Only explicit alternative
-publication changes the registry schema. The original report/receipt/root stay
+1/2 keep their meanings; old readers reject schema 4. Explicit alternative
+publication introduces schema 4; C253 checked AutoSol adds schema 5. The original report/receipt/root stay
 fixed. Checked reflection reads now use their already-recorded observation anchor
 and checksum, including after a dataset rename; invalid references cannot fall
-back to historical paths. AutoSol deliberately phases with the original Phaser model and validates the
-resulting anomalous sites against the initial preparation. A schema-4 non-root
-selection refuses with an explicit diagnostic until that site-validation reference
-is connected to alternatives; the original phasing input must remain unchanged. Campaign retries still create fresh runs; this
+back to historical paths. AutoSol deliberately phases with the original Phaser
+model. C253 connects its site validation to the chosen prepared/manual/refined
+model, as described below. Campaign retries still create fresh runs; this
 command does not rewrite frozen campaign stage receipts or invent continuation.
 
 Focused synthetic transport/consumer tests cover interrupted saves, stale-writer
@@ -909,6 +908,48 @@ all saved bytes/timestamps are unchanged. No new Coot edit,
 MTZ interpretation or diffraction refinement is claimed; observation/map paths are
 synthetic fixtures. Full results: `native_preparation_alternatives_2026_11_13`.
 
+
+### Compare heavy-atom sites with the chosen model (C253)
+
+**Purpose and behavior.** AutoSol must phase from the original Phaser MR model,
+but compare its resulting heavy-atom sites with the model the user actually chose.
+Checked runs now rescan that exact checkpoint, including a later preparation or
+manual/refined descendant. Its atom coordinates and unit cell supply the existing
+symmetry-aware comparison. The initial preparation stays unchanged. Existing
+supported elements/space groups and 4 Å acceptance / 8 Å review gates are unchanged.
+
+**Method.** Reuse checkpoint selection/lineage, the existing nucleotide-heavy-atom
+scanner and AutoSol matcher. Before native launch, seal
+`AutoSol/site-reference.json`: chosen checkpoint/model, original Phaser model,
+candidate coordinates, unit cell, distance controls and the pre-AutoSol report
+identity. All operational model references carry run anchors and checksums. The
+existing guarded registry save binds that receipt and advances only this checked
+run to schema 5. A competing preflight edit prevents launch. A later selection
+change is preserved and does not change the historical comparison.
+
+New checked AutoSol results are immutable records with anchored heavy-atom and
+refinement-data references. Phase/map consumers validate the reference and result,
+rescan the bound model, and repeat the small site comparison against the saved
+heavy-atom output. This does not repeat the expensive preparation history; that
+remains the caller's existing single read. Explicit `show --stage autosol` displays
+the saved comparison model/dictionaries and separate heavy-atom sites. Ordinary
+checkpoint inspection still follows the explicit/current choice.
+
+**Failure, compatibility and evidence.** Qualified native failure records the
+same reference and retains MR continuation. Changed input evidence or a changed
+run report cannot authorize phases or overwrite newer work; completed native
+outputs remain available. An interrupted result publication is not automatically
+adopted and never authorizes a native retry in place. Earlier schemas/results keep
+their meaning; older readers reject schema 5, and later alternative publication
+preserves it. This saves a small receipt, not another model or evidence archive.
+
+Focused executable-stub tests separate original and chosen iodine coordinates by
+19 Å, exercise review/warning limits, later alternatives, selection changes,
+rehash-resistant contradictions, immutable result conflicts and relocation with
+the original dataset absent. These test orchestration and scientific comparison;
+they are not an actual Phenix AutoSol run or diffraction-refinement qualification.
+The existing C252 native preparation is also the compatibility control; exact
+commands/results are in `selected_autosol_reference_2026_11_13` in the evidence ledger.
 
 ### Preserve newer checkpoint edits (C250)
 

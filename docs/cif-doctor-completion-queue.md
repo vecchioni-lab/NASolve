@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C252
+## Near-term closure estimate at C253
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -31,11 +31,11 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: compare anomalous sites with the chosen preparation | Keep the original MR model as AutoSol's phasing input, but bind the selected prepared model, its atom coordinates and the saved site-comparison evidence. Readers must validate that binding after relocation. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. |
 | Q04: retain the evidence without accumulating redundant files | Introduce a known-stopped, interruption-safe storage policy with exact replay. Keep externally referenced model/restraint paths usable, preserve failed/active work, and measure whole-request disk, temporary expansion and memory. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
-Planning allowance from this checkpoint: **roughly 3–6 further implementation
+Planning allowance from this checkpoint: **roughly 2–5 further implementation
 patches, plus native/integration validation**. Storage is the largest uncertainty;
 its existing nested inventories mean safe retirement is more than deleting files.
 This is an estimate, not a completion criterion. Do not open new chemistry work to
@@ -428,13 +428,17 @@ the subsequent choice and all preparation files. A second relocation after manua
 import also resolves the current child with its historical source path absent.
 No native Coot edit or diffraction refinement is claimed; observation/map paths
 are synthetic fixtures.
-AutoSol retains the original Phaser model as phasing input. Its anomalous-site
-validation remains tied to the initial preparation; a selected alternative or its
-descendant refuses rather than silently using a different validation reference. No automatic
-campaign continuation or new native refinement claim follows.
+C253 retains the original Phaser model as phasing input and binds anomalous-site
+validation to the chosen model's candidates/unit cell. Schema 5 and an immutable
+site-reference/result let ordinary phase/map consumers verify that comparison
+without changing the initial preparation or later selections. Focused controls
+cover alternatives, manual choice, relocation, native failure and conflicting
+publication. No automatic campaign continuation or native refinement claim follows.
 
-**Remaining acceptance:** finish alternative-aware phasing and remaining real
-caller/native acceptance without changing an immutable earlier root.
+**Remaining acceptance:** qualify the selected-model AutoSol route with native
+inputs and reconcile remaining caller/recovery acceptance. Interrupted AutoSol
+result publication preserves outputs but does not yet automatically adopt them;
+keep this distinct from the already implemented preparation-publication recovery.
 For the anomalous-site connection, preserve these distinctions:
 
 - The original Phaser model remains the phasing input; changing it to the

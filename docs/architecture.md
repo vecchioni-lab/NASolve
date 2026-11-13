@@ -1482,9 +1482,16 @@ intervening registry changes through the C250 conflict guard. Old readers refuse
 schema 4. Checked observation reads use the original checksum and sealed anchor,
 including after dataset renaming; no basename search or host-path substitution.
 Coot clearly labels inherited maps as unrecalculated for the prepared alternative.
-AutoSol keeps its original Phaser model as phasing input. Its anomalous-site
-validation still uses the initial preparation, so it refuses a selected alternative
-or descendant until that validation-reference integration is implemented.
+C253 keeps the original Phaser model as AutoSol's phasing input, while rescanning
+the chosen checkpoint for heavy-atom validation coordinates and its unit cell.
+An immutable `AutoSol/site-reference.json` binds those inputs before native launch;
+the checked registry advances to schema 5 under the existing guarded save. Normal
+phase/map consumers verify the saved comparison and immutable AutoSol result,
+including matching the reported sites again with the unchanged distance gates.
+Later choices do not rewrite the reference. Explicit AutoSol inspection shows its
+saved model/dictionaries. New output references are anchored; old readers refuse
+schema 5. An interrupted result publication preserves output evidence without
+silently adopting it. Legacy AutoSol results retain their earlier contract.
 Legacy schema 1/2 runs remain unchanged; older readers reject schema 3.
 
 Publication uses the existing request lock, writes the preparation receipt and
