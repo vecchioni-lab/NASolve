@@ -13,8 +13,9 @@ def call(run,sdk,data,**kwargs):
     return initialize_ordinary_postmr_request(run,sdk,expected_dialect='CHEMICAL_COMPONENTS_CIF',data_root=data,**kwargs)
 
 
+@pytest.mark.parametrize('automatic',[False,True])
 @pytest.mark.parametrize('with_phil',[False,True])
-def test_ordinary_input_preparation_stops_before_legacy_and_uses_existing_request(tmp_path,monkeypatch,with_phil):
+def test_ordinary_input_preparation_stops_before_legacy_and_uses_existing_request(tmp_path,monkeypatch,with_phil,automatic):
     import nasolve.cif_ordinary_postmr as entry
     from nasolve.postmr_lineage import read_postmr_construction
     run,ready,_,data=setup(tmp_path);sdk,_=sdk_at(tmp_path/'sdk');sdk.executables['phenix.ready_set'].write_bytes(ready.read_bytes())
@@ -22,6 +23,7 @@ def test_ordinary_input_preparation_stops_before_legacy_and_uses_existing_reques
     def initialize(model,report,components,source_output,output,**kwargs):
         bound=read_postmr_construction(run)
         assert bound['model']==model and source_output is None
+        assert kwargs.get('automatic_plane_support',False) is automatic
         assert kwargs['construction_inputs']==run and kwargs['frozen_sources'].is_dir()
         assert kwargs['ready_set_executable'] is None and components[0]['code']=='DE'
         assert bool(kwargs['supplementary_phils']) is with_phil
@@ -37,7 +39,7 @@ def test_ordinary_input_preparation_stops_before_legacy_and_uses_existing_reques
         pairs.write_text('A 12\nB 4\n');output.write_text('geometry_restraints.edits {}\n')
         return {'retained_pair_count':1,'retained_pairs':[{'first':'A:12','second':'B:4'}]}
     with patch('nasolve.cif_postmr_cache.prepare_postmr_dictionaries',side_effect=AssertionError('No legacy reuse')),patch('nasolve.postmr.write_linked_profile',side_effect=AssertionError('No legacy modifiers')),patch('nasolve.postmr._run_readyset',side_effect=AssertionError('No legacy ReadySet')):
-        result=call(run,sdk,data,max_attempts=2,continuation_options={'readyset_timeout_seconds':120,'restore_serialization':True},
+        result=call(run,sdk,data,automatic_plane_support=automatic,max_attempts=2,continuation_options={'readyset_timeout_seconds':120,'restore_serialization':True},
             **({'modified_pairs_only':True,'modified_pair_builder':builder} if with_phil else {}))
     assert result.request_directory==calls[0] and result.request=={'synthetic':True}
     assert set(result.generation)=={'DE'} and result.generation['DE']['phenix_version']==sdk.version
@@ -65,3 +67,11 @@ def test_invalid_generation_configuration_refuses_before_preparation(tmp_path):
     run,ready,_,data=setup(tmp_path);sdk,_=sdk_at(tmp_path/'sdk')
     with pytest.raises(ValueError,match='generation option'):call(run,sdk,data,generation_options={'invent_targets':True})
     assert not (run/'PostMR').exists()
+
+
+@pytest.mark.parametrize('value',[None,1,'yes',{}])
+def test_invalid_automatic_plane_choice_refuses_before_tool_configuration(tmp_path,value):
+    with patch('nasolve.cif_ordinary_postmr.configure_dictionary_engine',side_effect=AssertionError('No tool setup')):
+        with pytest.raises(ValueError,match='boolean'):
+            call(tmp_path/'run',object(),None,automatic_plane_support=value)
+    assert not (tmp_path/'run').exists()

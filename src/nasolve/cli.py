@@ -242,6 +242,8 @@ def build_parser() -> argparse.ArgumentParser:
     checked.add_argument("--modified-pairs-only", action="store_true", help="restrain only pairs containing a modified nucleotide")
     checked.add_argument("--restraint-scope", choices=("all",), help="restrain all model-derived pairs and chain-order stacks")
     checked.add_argument("--allow-unreviewed-backbone", action="store_true", help="allow the declared experimental backbone passthrough")
+    checked.add_argument("--automatic-plane-support", action="store_true",
+        help="obtain missing source-supported plane evidence through owned generation; repair/ReadySet qualification still applies")
     continued = cif_sub.add_parser("continue-preparation", help="start one fresh attempt from saved preparation after earlier work has stopped")
     continued.add_argument("run", type=Path)
     continued.add_argument("--after-attempt", required=True, type=int, help="exact last attempt number; use 0 if no attempt has started")
@@ -1698,7 +1700,8 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
                     coot_executable=coot.executable if coot else None,
                     allow_mr_review=args.allow_mr_review, restraint_scope=args.restraint_scope,
                     modified_pairs_only=args.modified_pairs_only,
-                    allow_unreviewed_backbone=args.allow_unreviewed_backbone)
+                    allow_unreviewed_backbone=args.allow_unreviewed_backbone,
+                    **({"automatic_plane_support":True} if args.automatic_plane_support else {}))
     except (OSError, ValueError, ConfigError, CootDiscoveryError, PhenixDiscoveryError,
             PostMRPreparationError, CampaignProcessError, TimeoutError) as exc:
         print(f"Preparation could not complete: {exc}", file=sys.stderr)

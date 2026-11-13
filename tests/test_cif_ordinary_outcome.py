@@ -109,3 +109,44 @@ def test_resume_refuses_missing_or_ambiguous_previous_attempt(tmp_path,after):
     import nasolve.cif_ordinary_postmr as m
     with patch('nasolve.cif_complete_request._request',side_effect=AssertionError('no request read')):
         with pytest.raises(ValueError):m.continue_checked_postmr(tmp_path,object(),after_attempt=after)
+
+
+@pytest.mark.parametrize('choice',['readyset_checked_model','verified_parent_runtime',None])
+def test_plane_generation_notes_never_claim_selected_plane_adoption(tmp_path,monkeypatch,choice):
+    import nasolve.cif_ordinary_postmr as m
+    exact=selected_result(tmp_path,selected=choice,status='NO_USABLE_BUNDLE' if choice is None else 'QUALIFIED_DIAGNOSTIC_RUNTIME')
+    monkeypatch.setattr('nasolve.cif_complete_request.read_dictionary_request_result',lambda *a:exact)
+    old=m.read_ordinary_postmr_result(tmp_path/'run',attempt_number=1)
+    exact['result']['plane_generation']=dict(policy_id='cif-complete-owned-plane-generation-v1',components={
+        'PDU':dict(status='OWNED_SUPPORT_READY',missing_centres=['C5']),
+        'AAA':dict(status='NO_GENERATION_NEEDED',missing_centres=[]),
+        'YYY':dict(status='KNOWN_GENERATION_FAILURE',missing_centres=['N7'],proof=dict(failure_kind='TIMED_OUT')),
+        'ZZZ':dict(status='KNOWN_GENERATION_FAILURE',missing_centres=['Q9'],proof=dict(failure_kind='REJECTED_CANDIDATE'))})
+    before=deepcopy(exact)
+    with patch('subprocess.Popen',side_effect=AssertionError('Read must not execute')):
+        result=m.read_ordinary_postmr_result(tmp_path/'run',attempt_number=1)
+    notes=' '.join(result.limitations)
+    assert 'PDU: generated source-checked support' in notes and 'C5' in notes
+    assert 'AAA: no missing planes' in notes and 'supported source-graph screen' in notes
+    assert 'YYY: optional plane generation timed out' in notes and 'N7' in notes
+    assert 'ZZZ: optional plane generation was chemically rejected' in notes
+    assert 'does not establish final plane adoption' in notes
+    assert 'still needs integration' not in notes
+    assert result.message==old.message and result.model_path==old.model_path
+    assert result.refinement_ready is False and exact==before
+
+
+def test_resume_keeps_frozen_automatic_plane_choice(tmp_path,monkeypatch):
+    import nasolve.cif_ordinary_postmr as m
+    request=dict(configuration=dict(plane_generation_policy='cif-complete-owned-plane-generation-v1',construction_inputs={},
+        controls=dict(sites={'PDU':dict(generation=dict(options=dict(recipe=dict(expected_dialect='CHEMICAL_COMPONENTS_CIF',single_block_steps=180)),binding=dict(timeout_seconds=240,max_attempts=1)))})))
+    monkeypatch.setattr('nasolve.cif_complete_request._request',lambda p:request)
+    monkeypatch.setattr(m,'configure_dictionary_engine',lambda *a,**k:SimpleNamespace(generation={'original_recipe':True}))
+    def execute(root,sdk,store,**kw):
+        assert request['configuration']['plane_generation_policy']=='cif-complete-owned-plane-generation-v1'
+        assert kw==dict(after_attempt=1,generation={'PDU':{'original_recipe':True}})
+        return {'attempt_number':2}
+    monkeypatch.setattr('nasolve.cif_complete_request.execute_dictionary_request_attempt',execute)
+    monkeypatch.setattr(m,'read_ordinary_postmr_result',lambda run,**kw:kw)
+    with patch.object(m,'initialize_ordinary_postmr_request',side_effect=AssertionError('No repeat construction')):
+        assert m.continue_checked_postmr(tmp_path,object(),after_attempt=1,store_root=tmp_path/'store')=={'attempt_number':2}

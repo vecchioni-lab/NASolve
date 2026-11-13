@@ -30,16 +30,20 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         expected_dialect, coot_executable=None, data_root=None, allow_mr_review=False,
         modified_pairs_only=False, restraint_scope=None, allow_unreviewed_backbone=False,
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
-        continuation_options=None, **execution_limits) -> PreparedPostMRRequest:
+        continuation_options=None, automatic_plane_support=False, **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
     Configuration/chemical permissions remain explicit. Existing constructors,
     source authority, literal compiler and request context gates own their rules.
     The default CLI remains unchanged. No legacy modifiers, cache adapter, ReadySet
     or request execution runs on this route. Failure retains all partial outputs;
-    an existing PostMR directory cannot be prepared again in place.
+    an existing PostMR directory cannot be prepared again in place. The explicit
+    automatic_plane_support choice is frozen by the complete owner; continuation
+    reads that saved choice rather than accepting a new override.
     """
     from .postmr import _prepare_postmr
+    if type(automatic_plane_support) is not bool:
+        raise ValueError('automatic_plane_support must be a boolean')
     if generation_options is not None and not isinstance(generation_options,dict):
         raise ValueError('Require explicit generation options')
     options = dict(generation_options or {})
@@ -62,7 +66,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
-            continuation_options=continuation_options,**execution_limits)
+            continuation_options=continuation_options,
+            **({'automatic_plane_support':True} if automatic_plane_support else {}),**execution_limits)
         return PreparedPostMRRequest(inputs.run_directory,request,record,
             {code:dict(configured.generation) for code in inputs.components})
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,
@@ -99,6 +104,25 @@ class CheckedPostMRResult:
 def _ordinary_request_directory(run_directory):
     from .cif_repair_attempt import _root
     return _root(run_directory)/'PostMR'/'DictionaryEngine'/'request'
+
+
+def _plane_support_limitations(report):
+    """Describe already replayed generation outcomes, never infer final adoption."""
+    if 'plane_generation' not in report:
+        return ('General complete-plane repair still needs integration into this preparation route.',)
+    notes = ['Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.']
+    for code,row in sorted(report['plane_generation']['components'].items()):
+        status = row['status']; centres = ', '.join(row['missing_centres'])
+        if status == 'NO_GENERATION_NEEDED':
+            notes.append(f'{code}: no missing planes were found within the supported source-graph screen; other chemistry is not assessed by that screen.')
+        elif status == 'OWNED_SUPPORT_READY':
+            notes.append(f'{code}: generated source-checked support for screened centres {centres}.')
+        elif status == 'KNOWN_GENERATION_FAILURE':
+            reason = {'TIMED_OUT':'timed out','REJECTED_CANDIDATE':'was chemically rejected'}.get(row['proof']['failure_kind'],'failed')
+            notes.append(f'{code}: optional plane generation {reason}; generated output was not used. Initially missing screened centres: {centres}.')
+        else:
+            raise ValueError('Unsupported checked plane-generation outcome')
+    return tuple(notes)
 
 
 def _read_ordinary_postmr_result(run_directory, *, attempt_number):
@@ -138,7 +162,7 @@ def _read_ordinary_postmr_result(run_directory, *, attempt_number):
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
         limitations=(
             'These preparation checks do not establish diffraction-refinement success; checkpoint adoption is a separate explicit action.',
-            'General complete-plane repair still needs integration into this preparation route.',
+            *_plane_support_limitations(exact['result']),
         ),
     )
 

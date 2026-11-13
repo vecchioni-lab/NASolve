@@ -90406,5 +90406,93 @@
       "Whole-request retirement and campaign-scale memory/concurrency remain open",
       "No full suite, new Coot invocation or diffraction refinement; Q04/Q05 remain open"
     ]
+  },
+  "ordinary_plane_support_entry_2026_11_13": {
+    "milestone": "C245",
+    "base_commit": "be69b1ded804a811aa60c14fce67bb7ce2eafcc1",
+    "before": "Automatic plane support available only at complete-request intake; ordinary result showed generic limitations",
+    "after": "Prepared/ordinary intake and prepare-run freeze the existing explicit choice; exact reader projects per-component generation outcomes without claiming final adoption or changing saved publication messages",
+    "source_sha256": {
+      "src/nasolve/cif_postmr_request.py": "023215dcea7f649127491896f3c395d47ff04a771f1ad033bc76e01c643933c4",
+      "src/nasolve/cli.py": "289bf423730690f2c30f7affe1f48d99c96f8421a8edaf024bf0e2ddf3adf4ad",
+      "src/nasolve/cif_ordinary_postmr.py": "071b2cdb6e1ca70dce6132d0a99f92ce4233e2a16b41615a253be3f4a45f255b"
+    },
+    "test_sha256": {
+      "tests/test_cif_postmr_request.py": "c95e6670c1d74279e764209dd7fa84c331b6bc8ebae1bc92e09a69bdc832ec16",
+      "tests/test_cif_ordinary_postmr.py": "79c68a4d2f657116fb139e8cfbaf47557ef4b8fff708c3490414dfc5b5e79524",
+      "tests/test_cif_ordinary_outcome.py": "40fc63ae9306a1a05b9a7b6434b77fbca3a13e8b42e47b5c6a42a1b825665eab",
+      "tests/test_cif_ordinary_cli.py": "ba2f23320e2ff2c0e6f674b3f8b4eef79b92587f24d9a8027405556311325cbf",
+      "tests/test_cif_postmr_publication.py": "0426685aa1edc1644bfb0033b0b7eb2ae0c5e1a8d817c08e31c56fac40358e22"
+    },
+    "prior_work": [
+      "C220 existing command/result/recovery owner",
+      "C223 publication regenerates saved message on validation; preserve it",
+      "C244 bounded automatic support generation and actual success/timeout controls"
+    ],
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_request.py tests/test_cif_ordinary_postmr.py tests/test_cif_ordinary_outcome.py tests/test_cif_ordinary_cli.py tests/test_cif_postmr_publication.py tests/test_cif_preparation_view.py",
+        "result": "166 passed in 67.36s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py -k plane_display_notes",
+        "result": "1 passed, 31 deselected in 5.88s; added after preceding collection, 167 distinct affected tests total"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_request.py tests/test_cif_ordinary_outcome.py tests/test_cif_ordinary_cli.py -k 'freezes_automatic_plane_choice or plane_generation_notes or forwards_explicit_automatic_plane'",
+        "result": "6 expected failures before implementation, 97 deselected in 2.89s"
+      }
+    ],
+    "native_replay": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c245_read.py",
+      "scope": "Actual C244 Phenix 2.2.1-6174 / dispatcher 2.2.1 saved success/timeout proof through ordinary display; only location adapter replaced; not fresh ordinary construction or publication; no new native execution, data copy or full suite",
+      "results": {
+        "success": {
+          "unchanged_files": 698,
+          "selected": "readyset_checked_model",
+          "readyset_status": "COMPLETED",
+          "restraints": 5,
+          "message": "ReadySet supplied the checked model and matching restraints.",
+          "limitations": [
+            "These preparation checks do not establish diffraction-refinement success; checkpoint adoption is a separate explicit action.",
+            "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+            "PDU: generated source-checked support for screened centres C5."
+          ],
+          "elapsed_seconds": 104.69314791599754,
+          "request": {
+            "anchor": "live_tests_directory",
+            "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+          }
+        },
+        "timeout": {
+          "unchanged_files": 506,
+          "selected": "readyset_checked_model",
+          "readyset_status": "COMPLETED",
+          "restraints": 5,
+          "message": "ReadySet supplied the checked model and matching restraints.",
+          "limitations": [
+            "These preparation checks do not establish diffraction-refinement success; checkpoint adoption is a separate explicit action.",
+            "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+            "PDU: optional plane generation timed out; generated output was not used. Initially missing screened centres: C5."
+          ],
+          "elapsed_seconds": 88.7048633749946,
+          "request": {
+            "anchor": "live_tests_directory",
+            "path": "244_Cedar_automatic-plane-failure-ch6m6b9g/relocated/request"
+          }
+        }
+      },
+      "source_unchanged": true,
+      "maximum_resident_bytes": 578830336
+    },
+    "compatibility": "Additive prepare-run flag and boolean intake keywords; absent/false configuration and saved publication messages unchanged. No new request/checkpoint schema or migration. Continuation reads frozen policy, accepts no override.",
+    "exclusions": "No scientific outputs, copied native request, raw source-pin inventory or ignored runner committed; no new scientific capsule",
+    "limitations": [
+      "Direct postmr/campaign flag forwarding and truthful publication display remain next",
+      "Generation notes do not certify final plane adoption in selected restraints",
+      "Existing exact-source graph and chemical qualification boundaries unchanged",
+      "No new Phenix/Coot/refinement or full suite; prior native records replayed read-only with only request-location adapter substituted"
+    ],
+    "static_review": "Changed Python AST/top-level duplicate checks, relative documentation targets and git diff --check; no new worker, test module or semantic redundancy certification"
   }
 }

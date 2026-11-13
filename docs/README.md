@@ -15,7 +15,8 @@ milestone statements preserve their original scope; they are not a second queue.
   the same route. New checked requests save compact, exact evidence; completed
   working-file retirement remains a separate storage task. Complete requests can
   reuse exact completed plane support or explicitly opt into graph-selected support
-  generation. Ordinary-caller activation of that choice, later preparation children,
+  generation. `cif-doctor prepare-run --automatic-plane-support` now exposes that
+  choice with exact-result notes. Direct PostMR/campaign forwarding, later preparation children,
   real refinement and broader chemical controls remain open. Read the
   [short handoff](development-handoff.md) for validation and the next action,
   the [human overview](cif-doctor-human-overview.md) for the explanation, and the

@@ -16,8 +16,11 @@ C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not
 mutable outer inputs; unknown ownership blocks recovery. Ordinary callers do not
-yet activate this option. Classified optional failure still requires independent
-qualification; no new executor or chemical acceptance rule is introduced.
+yet activate this option through direct PostMR/campaign commands. C245 forwards
+it through prepared/ordinary intake and `cif-doctor prepare-run`, with per-component
+generation notes on the existing result reader. Display notes do not alter the
+published message used to validate historical checkpoints. Classified optional
+failure still requires independent qualification; no new executor or chemical rule.
 
 ## Runtime precedence
 

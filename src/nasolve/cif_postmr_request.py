@@ -19,7 +19,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -53,8 +53,11 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     original qualification and the existing optional-failure policy, is mandatory.
     The caller still supplies the selected consumer and generation recipe/pins.
     Optional continuation_options freezes one selected-runtime continuation under
-    the same owner; initialization never runs it. Ordinary PostMR defaults are unchanged.
+    the same owner; initialization never runs it. Optional automatic_plane_support
+    freezes C244's source-selected support generation in that same request. It
+    does not generate during intake or change absent/default request meaning.
     """
+    _need(type(automatic_plane_support) is bool, 'automatic_plane_support must be a boolean')
     _need(isinstance(components, (list, tuple)) and components,
           'Require explicit PostMR component generation settings')
     components = deepcopy(components)
@@ -135,6 +138,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
         continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy, construction_inputs=construction_inputs,
+        **({'automatic_plane_support':True} if automatic_plane_support else {}),
         **execution_limits)
 
 def prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources, output, *,

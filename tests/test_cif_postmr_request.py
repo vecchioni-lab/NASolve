@@ -461,3 +461,25 @@ def test_postmr_literal_assembly_preserves_partial_output_after_late_change(lite
     before = inventory(output); assert before
     with pytest.raises(FileExistsError): prepare_postmr_literal_inputs(model, phils, frozen, output, data_root=data)
     assert inventory(output) == before
+
+
+@pytest.mark.parametrize('enabled',[False,True])
+def test_prepared_entry_freezes_automatic_plane_choice(entry_case,enabled):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    m,args,sdk,store,generations,calls=entry_case
+    with patch('subprocess.Popen',side_effect=AssertionError('Intake must not execute')):
+        result=initialize_postmr_dictionary_request(**args,automatic_plane_support=enabled)
+    assert ('plane_generation_policy' in result['configuration']) is enabled
+    if enabled:assert result['configuration']['plane_generation_policy']==m.PLANE_GENERATION_POLICY
+    assert not calls and not (args['output']/'attempts').exists()
+    before=inventory(args['output']);m.inspect_dictionary_request(args['output'])
+    assert inventory(args['output'])==before
+
+
+@pytest.mark.parametrize('value',[None,1,'yes',{}])
+def test_invalid_automatic_plane_choice_refuses_before_source_freezing(entry_case,value):
+    from nasolve.cif_postmr_request import initialize_postmr_dictionary_request
+    m,args,*_=entry_case
+    with pytest.raises(ValueError,match='boolean'):
+        initialize_postmr_dictionary_request(**args,automatic_plane_support=value)
+    assert not args['output'].exists() and not args['source_output'].exists()

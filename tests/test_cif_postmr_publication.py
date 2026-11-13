@@ -270,3 +270,18 @@ def test_checked_backbone_links_survive_later_model_edits(tmp_path):
                               for line in original.read_text().splitlines(keepends=True)))
     with pytest.raises(AutoRefineError,match='phosphate'):
         validate_refined_model(broken,report)
+
+
+def test_plane_display_notes_do_not_rewrite_published_messages(tmp_path,monkeypatch):
+    from nasolve import cif_ordinary_postmr as ordinary,cif_postmr_publication as publication
+    run,exact,_=setup(tmp_path,monkeypatch)
+    exact['result']['plane_generation']=dict(components={'PDU':dict(status='KNOWN_GENERATION_FAILURE',
+        missing_centres=['C5'],proof=dict(failure_kind='TIMED_OUT'))})
+    current=ordinary._plane_support_limitations
+    monkeypatch.setattr(ordinary,'_plane_support_limitations',lambda report:('Historical display wording',))
+    old=publication.publish_checked_preparation(run,attempt_number=1);before=snapshot(run)
+    monkeypatch.setattr(ordinary,'_plane_support_limitations',current)
+    with patch('subprocess.Popen',side_effect=AssertionError('No new execution')):
+        assert publication.publish_checked_preparation(run,attempt_number=1)==old
+        publication.validate_published_preparation(run,json.loads((run/'report.json').read_text()))
+    assert snapshot(run)==before

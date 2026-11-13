@@ -1,122 +1,88 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C244. Active branch **cedar**, checkout NASolve-c96.
-Base C243/9f37d91; use current HEAD for final commit identity. The
-[queue](cif-doctor-completion-queue.md) owns order and
-[capability limits](cif-doctor.md#current-capability-boundary) remain in force.
+Updated **2026-11-13**, C245. Active **cedar**, checkout NASolve-c96.
+Base C244 plus planning audit / be69b1d; current HEAD supplies final identity.
+The [queue](cif-doctor-completion-queue.md) owns order and the
+[capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
 ## Current result
 
-The explicit complete-request API can now obtain missing source-supported plane
-evidence itself and feed the existing repair/ReadySet machinery. It screens acquired
-source dictionaries, generates only for types with missing supported coverage,
-and uses one owned generation attempt per needed type per fresh outer attempt.
-The choice is frozen; generated support belongs to child attempts, not edits to
-frozen outer inputs. Old requests and C242's supplied-support mode are unchanged.
-Ordinary PostMR/campaign callers do not yet activate this option.
+`nasolve cif-doctor prepare-run RUN --automatic-plane-support` now freezes the
+existing bounded support-generation choice through prepared/ordinary intake.
+Invalid non-booleans refuse before source freezing/tool setup; absent/false keep
+previous intent. Continuation uses the frozen request, with no new flag override,
+repeat construction or new generation framework.
 
-C157/C170 already own generation and parent time; C240/C243 classify stopped
-negative outcomes; C242 already connects supplied support to complete repair and
-ReadySet. C244 reuses those pieces. No new executor, optimizer, graph rule, bounds,
-stacking selection or phosphate behavior. Exact source/dictionary correspondence
-is required. Do not turn arbitrary exceptions into chemical verdicts or fallback.
+Exact result/continuation reading reports each component's generation outcome:
+source-checked support obtained, no missing coverage within the supported screen,
+or a classified failed generation whose output was excluded. It names initially
+screened centres. Generation success does not prove final plane adoption in the
+selected restraints, and preparation does not establish diffraction refinement.
+Source-graph eligibility, independent qualification, phosphates and NAR ownership
+are unchanged. Direct `postmr --checked-preparation` and campaigns still do not
+forward this option; defaults remain unchanged.
 
-Two actual Phenix 2.2.1-6174 / dispatcher 2.2.1 controls use ordinary C218 PDU/NAR
-inputs and an exact primary cache copy; neither supplies plane support. Success
-obtains it and carries explicit C5 coverage plus all five ordered NAR files through
-repair and ReadySet. The second deliberately caps only the candidate subprocess at
-0.25 s. Its output stays unusable; independent linear-repair qualification and
-ReadySet still succeed, with C5 missing coverage recorded. Both results cold-replay
-after relocation without original paths, source/cache/SDK or process access.
-All original input bytes/mtimes and all saved request bytes/mtimes are unchanged.
-No new Coot invocation or diffraction refinement. All workers are known stopped.
-
-Success retains 181.6 MB in 698 files; final ReadySet publication 5.8 MB. Cold read expands at most 81.4 MB temporary evidence and peaks at 570.6 MB resident memory.
-The stopped-generator control retains 134.8 MB; its cold read expands 69.7 MB and peaks at 493.5 MB resident memory.
-Whole-request retention, safe working-file retirement and campaign-scale memory/
-concurrency still need work; a small publication is not the entire storage cost.
+Prior-work review: C220 already owns the command/result/recovery path; C244 already
+owns support generation and real success/timeout checks. C223 recomputes published
+messages during saved-checkpoint validation. Therefore C245 changes display-only
+limitations and preserves the persisted message, avoiding old receipt invalidation.
+No new executor, chemical rule, request schema or altered time/storage budget.
 
 ## Validation and reviewer handoff
 
-Before: completed support had to be supplied explicitly. After: opt-in automatic
-support uses exact graph findings and existing owned generation. Children must be
-validated before repair and on readback; unknown ownership blocks recovery. Known
-negative proof still requires explicit fallback policy and independent qualification.
-A failed qualification yields no runtime. Preserve every previous/partial attempt.
+Source: `cif_postmr_request.py`, `cif_ordinary_postmr.py`, `cli.py`. Tests extend
+five existing intake/result/CLI/publication modules. Guides, queue, changelog and
+existing ledger updated. No new test module or scientific artifact in Git.
+Before: support choice stopped at complete intake and results had generic notes.
+After: explicit prepare-run/intake reaches the same owner and reports exact
+outcomes. Historical request intent and publication bytes keep their meaning.
 
-Source: `cif_complete_request.py`; tests extend `test_cif_complete_request.py`.
-Optional `configuration.plane_generation_policy` freezes
-`cif-complete-owned-plane-generation-v1`; result `plane_generation` contains exact
-per-component screening/outcome proof. Old absent/false and explicit supplied support
-keep their meaning; new mode requires current reader. No migration/resealing.
-Updated existing methods, human overview, queue, architecture/maps and changelog.
+Python 3.12.14, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`:
 
-Python 3.12.14, exact focused command:
+- `-m pytest -q -p no:cacheprovider tests/test_cif_postmr_request.py tests/test_cif_ordinary_postmr.py tests/test_cif_ordinary_outcome.py tests/test_cif_ordinary_cli.py tests/test_cif_postmr_publication.py tests/test_cif_preparation_view.py`: **166 passed in 67.36 s**.
+- Added afterward: `-m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py -k plane_display_notes`: **1 passed in 5.88 s**. 167 distinct affected tests total.
+- Six new option/result/CLI controls fail before implementation. Strict intake,
+  frozen continuation, usable/fallback/unusable display and unchanged publication
+  all have focused checks. No full suite.
 
-```sh
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_plane_generation.py tests/test_cif_prepared_plane_support.py
-```
+Read-only replay uses both actual C244 Phenix 2.2.1-6174 / dispatcher 2.2.1 requests.
+The ordinary-location adapter points to those existing validation capsules; full
+scientific replay is real. This is not fresh ordinary construction/publication.
+All 698 success and 506 timeout request files retain bytes/mtimes, each result keeps
+its selected ReadySet model and five ordered PHIL files, and the new notes distinguish
+generation success from timeout. Original inputs/cache/SDK and execution are
+forbidden. No new Phenix, Coot, refinement, bulk copy or scientific capsule.
+Code stayed fixed during replay. Exact commands/hashes/scope are in ledger entry
+`ordinary_plane_support_entry_2026_11_13`. All jobs are stopped.
 
-**237 passed in 300.60 s.** New choice fails against previous HEAD; a foreign-owner
-regression fails before the pre-repair guard and passes afterward. Controls cover
-no-needed-support, exclusive choices, fresh history, interruption, corrupt proofs,
-owner/recipe changes, qualified negative handling, exact readback and legacy reuse.
-No new test module. AST/top-level duplicate and Git whitespace checks pass.
-
-Native capsules under `live_tests_directory`:
-- `244_Cedar_automatic-plane-request-19zp3y8k`
-- `244_Cedar_automatic-plane-failure-ch6m6b9g`
-
-Both requests now live at their capsule's `relocated/request`; `artifact-location.json`
-is the anchored locator. `start.json` pins sources; driver records confirm source
-unchanged and stopped. Exact commands/measurements: ledger entry
-`automatic_plane_support_acquisition_2026_11_13`. Scientific files, ignored runners,
-logs and pin lists remain local outside Git. Temporary code/expanded views removed.
-No full suite. Last entirely green full remains C220/583d30df: 9,178 tests + 276
+Changed Python AST/top-level duplicates, documentation targets and Git whitespace
+checks pass. Last wholly green full remains C220/583d30df: 9,178 tests + 276
 subtests. C222 failures were fixed focused; no later full-suite revalidation claim.
-
-## Orientation and bloat audit, 2026-11-13
-
-Runtime remains C244/1975b79; this follow-up changes planning only. The queue now
-estimates 6–9 focused Q04/Q05/storage patches plus an integration-validation
-checkpoint, with concrete acceptance and uncertainty. Confirmed current seams:
-ordinary intake does not forward the automatic-plane choice, ordinary result text
-is generic, and the publisher accepts only the initial preparation. Reuse those
-existing owners/readers; do not build replacements.
-
-Historical C75–C78 review nesting/transport is documented prior work, distinct
-from current compact runtime evidence. Local storage audit found duplicated old
-proof payloads; no scientific data, source snapshot, environment or worktree was
-removed. Keep local file inventory out of product Git. Exact-file comparison found
-no byte-identical nonempty tracked Python files; this is not semantic test/code
-redundancy certification. Documentation repetition needs consolidation of current
-explanations while preserving historical evidence/anchors. No runtime, schema,
-compatibility or scientific behavior changed; no native jobs or pytest run for
-this audit. Validate documentation/diff only; C244 test evidence above remains.
 
 ## Next work — finish Q04/Q05
 
-1. Freeze/forward this explicit choice through ordinary checked PostMR/campaign
-   callers, with cache/reuse/failure/interruption checks. Do not silently change old
-   requests or turn on defaults without the declared integration contract. Keep
-   current graph-correspondence limits and missing-plane notes visible in ordinary
-   result/status reporting. Broader representations and native
-   prelaunch/incomplete-build outcomes require explicit qualification, not catch-all
-   fallback. Reuse current C244 native evidence instead of rerunning unchanged cases.
-2. Define later preparation-child publication without replacing immutable roots
-   or claiming fresh MR construction descends from a refined model. Reuse C223–C225's
-   initial checkpoint, ordinary PostMR and frozen campaign entry.
-3. Design interruption-safe retirement of redundant successful working files only
-   after owners stop and sealed results verify. Keep reproducible inputs and proof;
-   measure whole-request, temporary disk and memory separately. No verdict caches.
+1. Connect the explicit choice to direct PostMR/campaign declarations and truthful
+   publication display. Reuse the already validated result when publishing; avoid
+   another full proof read just to format notes. Preserve old publication messages
+   and frozen campaign/request meaning. Distinguish generated support from final
+   selected-plane adoption; mixed/failure/interruption coverage remains necessary.
+2. Define later preparation-child publication without replacing an immutable root
+   or implying fresh MR construction descends from a refined model. Reuse existing
+   C223–C225 publication and recovery, including genuine fallback receipts.
+3. Implement known-stopped, interruption-safe retirement of redundant successful
+   working output. Retain reproducible inputs/proof, test relocation and measure
+   whole-request, temporary disk and memory. No persistent verdict cache.
 
-Q06 real refinement and Q07 combined/held-out chemistry follow Q04/Q05. NAR's
-reviewed base-role atoms still define stacking; Cedar substituent planes do not
-automatically enlarge those selections. No separate replacement plane engine.
+The C244-based 6–9 patch estimate remains in the queue; C245 completes its first
+intake/command/reporting slice. Q06 real refinement and Q07 combined/held-out tests
+follow Q04/Q05. Broader chemistry remains queued without rebuilding completed work.
+Morning audit identified old nested review duplication; the inventory stays local
+outside product Git. No scientific cleanup. Consolidate current explanations while
+preserving historical evidence/anchors; no need to reproduce old transport fixes.
 
 ## Preserve local evidence
 
 Protected NASolve-cedar remains at e7451eed with local phaser.py/unpublished data.
-Everyday NASolve/pine retains pre-existing untracked science, patches and venv.
-Work only in NASolve-c96/cedar. No new branch, incidental cleanup or merge.
+Everyday NASolve/pine retains its untracked science, patches, environments and
+Linden snapshots. Work only in NASolve-c96/cedar; no new branch or merge.

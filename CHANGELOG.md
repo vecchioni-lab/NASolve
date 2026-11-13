@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Request plane support through checked preparation and report its outcome (C245)
+
+- `cif-doctor prepare-run RUN --automatic-plane-support` and the prepared/ordinary
+  intake APIs freeze the existing bounded support-generation choice. Strict boolean
+  validation precedes source freezing/tool setup. Continuation uses the saved choice;
+  the new flag cannot override an existing request.
+- Exact-result and continuation output describe generated support, no-needed-support
+  and classified generation failure per component. They do not infer final plane
+  adoption or refinement success. Saved publication messages remain unchanged, so
+  richer display notes do not invalidate historical checkpoint receipts.
+- Direct `postmr --checked-preparation` and campaign forwarding remain separate;
+  defaults, request schemas, chemical criteria and time/storage bounds are unchanged.
+
 ### Obtain missing plane support through the existing complete-request owner (C244)
 
 - Add explicit `automatic_plane_support=True` to the complete-request API. Screen
