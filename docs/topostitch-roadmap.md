@@ -162,16 +162,16 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 Turn a plausible placement into a chemically usable candidate before refinement is trusted.
 
-**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls.
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls. Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW.
 
 **Closure audit:**
 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Qualify an explicitly masked fixed-base native objective with frozen definitions, mask digest, displacement bounds, unchanged bases and endpoint ASU derivative evidence. Rowan confirms no qualified selective adapter exists; Cedar all-captured-atoms policy and derivative sample indices cannot stand in for a movement mask. Reuse existing Cartesian correction without extending its policy.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport).
-**Last audit:** 2026-11-13, Linden, code `3cb9723`; Shared numerical image transport; the production masked native objective and scientific closure remain open.
+**Next action:** Qualify full emitted NARestraints plane selections/weights and native bond-edit/exclusion semantics before a supported masked native adapter. Preserve core pairs, exact immobile atoms, captured definitions/mask/objective identity and endpoint ASU derivative checks. Do not reuse Cedar all-atoms policy for the new scope.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native).
+**Last audit:** 2026-11-13, Linden, code `3cb9723`; Local masked/contact controls; no production adapter, ideal-geometry or refinement acceptance.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -441,6 +441,13 @@ Standalone offline view replays frozen previews, displays actual source/candidat
 [Evidence contract](topostitch-preview.md#shared-image-coordinate-transport) at code `3cb9723`.
 The viewer and committed native probe share proper Cartesian images and accumulated transpose-gradient pullback. Tests compare independent fractional paths, inverses, repeated shared ASU indices and finite-difference derivatives. Phenix 2.2.1-6174 corrected Cartesian plane checks pass using the shared core; raw negative controls remain.
 **Limit:** Numerical arithmetic only; explicit matrices alone do not prove crystallographic membership. No production native optimizer, new chemical topology, symmetry equivalence/packing proof or scientific acceptance.
+
+<a id="e_masked_native"></a>
+### E_MASKED_NATIVE — Local masked native and contact-preservation controls
+
+[Evidence contract](topostitch-preview.md#explicit-movement-mask-and-contact-controls--2026-11-13) at code `3cb9723`.
+Complete Phenix 2.2.1-6174 controls bind explicit 107-atom fixed-base or 204-atom window masks, preserve other atoms, and pass every selected Cartesian derivative at initial/continuous/rounded points. Chosen contacts improve beyond cleanup controls; core-pair terms reduce collateral pair drift. Native captures/definitions match, with no new severe captured scalar outliers or selected-image coincidences.
+**Limit:** All hit 200 iterations. Exploratory six-membered planes and weights are not full NARestraints output; additive contacts leave bonded tables/exclusions unchanged. Full torsion/packing, emitted-recipe semantics, production capture lifecycle, refinement and scientific acceptance remain open. Scientific files and local workers are not committed.
 
 ## Deferred extensions, not hidden blockers
 

@@ -445,6 +445,70 @@ fixed-base selection or an arbitrary symmetry-contact objective. Keep the local
 prototype distinct from Cedar's qualified policy and reuse its lifecycle at
 integration. No Coot or diffraction refinement was run; artifacts remain local.
 
+### Explicit movement-mask and contact controls — 2026-11-13
+
+Local complete Phenix 2.2.1-6174 executions now exercise a separately identified
+masked objective. They reuse Cedar `cd744e2`'s `evaluate_fixed_native` and static
+constraint signature, without changing Cedar's all-atoms trial policy. Model,
+mask, tether, effective PHIL, native/helper sources and objective identities are
+recorded locally. Nonbonded neighbors follow the native manager's policy; their
+membership is not claimed frozen.
+
+The fixed-base check keeps 748 atoms fixed and permits only 107 explicitly named
+sugar/phosphate atoms. Every one of the 321 movable Cartesian components passes
+central differences at 1e-4 and 1e-5 Å before optimization, at the continuous
+endpoint and after PDB rounding (worst error at 1e-5: 1.06e-6). Both source/placed
+controls reproduce the previously captured backbone-only candidates byte-for-byte,
+with matching static native definitions. This qualifies that local projection
+calculation, not a production trial adapter or ideal DNA geometry.
+
+A second diagnostic permits all 204 atoms of the already selected movable window;
+651 other atoms stay fixed. It compares a native-geometry/tether control with the
+same objective plus the chosen image's five reference distances, eight angles,
+two plane groups and two parallelity terms. A further matched pair adds the
+12 declared existing duplex pairs to both objectives. Every trial starts from the
+same schema-2 candidate; the six-pair scope, two fixed anchor pairs, 0.1 Å tether,
+200-iteration/1,000-optimization-call caps, 2 Å trial and 1 Å final displacement
+limits are declared before execution. The shared image helper expands Cartesian
+coordinates and accumulates gradients into the actual ASU variables.
+
+| Local objective | Serialized native geometry target | Selected contact target | Largest move / Å |
+| --- | ---: | ---: | ---: |
+| Starting candidate | 7192.557988 | 125.597906 | 0 |
+| Native cleanup control | 6532.450184 | 117.369689 | 0.182543 |
+| Cleanup + selected contacts | 6529.205252 | 100.673520 | 0.198784 |
+| Cleanup + core pair terms | 6536.152202 | 117.450800 | 0.182543 |
+| Cleanup + core + selected contacts | 6532.916244 | 100.674680 | 0.198784 |
+
+These targets are unnormalized diagnostic sums with distinct meanings; the
+selected-contact target is **not** the SciPy fitter's earlier pair score. All
+four trials stop at the 200-iteration limit, so none is called converged. Their
+612-variable initial/continuous/rounded derivative checks pass at both steps
+(7,347 audit evaluations per trial; worst 1e-5 error <2.8e-6). Source and
+unselected coordinates, identities, occupancy/B and non-coordinate PDB records
+remain unchanged. Native readback contexts and named proxy inventories match;
+no new nominal absolute >=5 captured bond/angle/chirality outliers or chirality
+sign conflicts appear, and three prior angle outliers resolve. Selected image
+coordinates remain distinct. Existing outliers and some worsening individual
+geometry components remain.
+
+Core pair bond/angle deviation sums worsen from 27.169238 to 38.811180 without
+core terms, versus 29.405228 with them. The latter limits the largest core-pair
+angle change to 1.251271° (versus 2.670175°); it does not freeze duplex geometry.
+This is evidence to retain core-pair preservation in a native adapter, not to
+accept the endpoint automatically.
+
+**Recipe/integration limits:** bond and angle references come from frozen
+NARestraints 1.1.3 tables. These exploratory plane terms use six-membered ring
+outlines, planarity sigma 0.2 Å and parallelity weight 1. They are not the complete
+NARestraints emitted plane selections/sigmas (0.176 Å and 0.027). The additive
+objective does not alter native bonded tables, exclusions or LINK records.
+Supported integration must qualify those semantics and the complete emitted
+recipe, full torsion/packing behavior and captured input lifecycle. No covalent
+seam is built, no density/Rwork/Rfree is used, and no checkpoint is published or
+selected. All input models, workers, native receipts and generated candidates
+remain local and outside Git.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

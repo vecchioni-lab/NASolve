@@ -191,6 +191,12 @@ source-change/descriptive evidence, not ideal geometry, native symmetry closure
 or diffraction/refinement validation. The reproducible native image probe retains failing raw plane gradients;
 Cartesian image pullback plus Cedar's existing parallelity correction passes
 synthetic and public controls. This is diagnostic, not a production native adapter.
+Masked native controls now preserve fixed bases explicitly or permit the selected
+window's atoms under bounded motion. Adding the chosen image contacts improves
+them beyond matched cleanup; adding existing core-pair terms limits duplex drift.
+Derivative/readback checks pass in this scope, but all trials hit the iteration
+cap. Plane terms are exploratory, not the full emitted NARestraints recipe;
+native edit/exclusion semantics and supported adapter lifecycle remain open.
 See the current inspector/preview guides for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
