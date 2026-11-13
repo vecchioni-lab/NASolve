@@ -6,7 +6,8 @@ The [first backend slice](topostitch-backend.md) screens explicitly supplied
 canonical DNA overhangs; the [coordinate adapter](topostitch-coordinates.md)
 verifies PDB bytes and derives sequences/descriptive end frames from explicit
 site assignments. The [periodic inspector](topostitch-periodic.md) now searches explicit end
-images and prints review-only reports. Automatic end discovery, model
+images and prints review-only reports; optional contact inspection measures
+canonical recipe distances/angles in those images. Automatic end discovery, model
 construction and refinement remain future work. [Machine-readable intent](topostitch-intent.json)
 is development metadata, not runtime authorization.
 
@@ -363,8 +364,9 @@ not random residues of the same crystal. 7R96 is an architectural bending contro
 not a high-resolution source of local torsion targets. No live-test-specific
 chain labels, distances or symmetry operators are baked into the algorithm.
 
-Later code patches require failing-before/passing-after regression tests, focused
-and complete suites with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, clean-install
+Later behavior patches require meaningful failing-before/passing-after regression
+tests and focused checks with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`; run the
+complete suite when shared/global mechanics change. Retain clean-install
 checks, relocation tests for artifact changes, and exact native tool versions
 with dry-run versus full-execution receipts. Known-answer scientific recovery
 and human inspection are separate from unit-test success.

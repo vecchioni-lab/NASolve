@@ -1199,6 +1199,10 @@ python -m pip install ".[topology]"
 nasolve-topostitch-inspect model.pdb ends.json --radius 20 --periodic
 ```
 
+Add `--contacts` to include observed canonical base-pair distances and angles
+against the installed NARestraints role mappings and recipes. These measurements
+do not approve a connection or apply restraints.
+
 The command prints a review-only JSON report and writes no files. Omit
 `--periodic` for same-frame screening without Gemmi. See the [backend scope and
 limitations](docs/topostitch-periodic.md) before interpreting a candidate as a

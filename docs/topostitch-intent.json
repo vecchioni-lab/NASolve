@@ -154,7 +154,7 @@
     "bounded failure",
     "resume and veto",
     "relocation",
-    "focused and full regression suites",
+    "focused regression suites; complete suite for shared/global mechanics",
     "clean installation",
     "native interpretation and refinement with exact versions"
   ],
@@ -220,6 +220,18 @@
       "input_schema": 1,
       "writes_files": false,
       "changes_checkpoints": false
+    },
+    "contact_observations": {
+      "module": "nasolve.topostitch_contacts",
+      "cli_flag": "--contacts",
+      "canonical_scope": [
+        "AT",
+        "GC"
+      ],
+      "reference_source": "installed NARestraints role mappings and recipes",
+      "effective_reference_sha256": true,
+      "acceptance_evaluated": false,
+      "construction": false
     }
   }
 }

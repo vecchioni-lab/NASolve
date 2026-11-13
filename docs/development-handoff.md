@@ -150,7 +150,10 @@ screening](topostitch-backend.md) and a [verified PDB coordinate adapter](topost
 The adapter derives overhang sequences and descriptive oriented end frames from
 explicit coordinate-site assignments. The [periodic inspector](topostitch-periodic.md)
 now enumerates metric-bounded images and observed transformed frames, with a strict assignment-file CLI and
-optional Gemmi extra. Automatic end detection, full atom-image equivalence,
+optional Gemmi extra. Optional `--contacts` now measures canonical heavy-atom
+bond/angle and ring-plane observations using installed NARestraints mappings and
+recipes; effective reference data and fingerprints accompany the report. It
+makes no acceptance decision or model edit. Automatic end detection, full atom-image equivalence,
 global assignment, geometry construction and campaign use remain unimplemented.
 Next: connect logical registration/backbone evidence and qualify those gates.
 The report distinguishes proposed work from NOT_ATTEMPTED execution and
@@ -171,6 +174,10 @@ Periodic inspector: **132 installed-wheel and relocated-checkout tests**, plus
 dependency behavior passed. The original temporary checkout/input paths were
 absent during their respective relocation checks. Exact commands, additive
 schema/packaging scope and limits are in the [periodic contract](topostitch-periodic.md).
+Contact observations: **143 focused and installed-wheel tests passed**; a
+wheel installation with declared dependencies (NARestraints v1.1.3 at `a9264f9`,
+Gemmi 0.7.5) passed the actual periodic `--contacts` CLI smoke check and isolated
+installed-import verification. No complete-suite rerun for this isolated patch.
 No native Phenix/Coot runs or scientific data changes.
 
 ## Work discipline and doc ownership

@@ -158,6 +158,38 @@ All report variants retain `runtime_authority=false`, empty `changes`,
 and required inspection. The coordinate report is byte-verified; the nested pure
 screen identifies its source digest but performs no I/O itself.
 
+## Optional contact observations
+
+Add `--contacts` to measure the candidate overhang pairs in the current model:
+
+```sh
+nasolve-topostitch-inspect model.pdb ends.json --radius 20 --periodic --contacts
+```
+
+`nasolve.topostitch_contacts.inspect_end_contacts` uses the same verified source
+and candidate search, then transforms each target atom by the exact candidate
+operator. It reads the installed NARestraints canonical AT/GC recipes and the
+bundled residue-role library. It records the effective role/recipe snapshot,
+its SHA-256 and NARestraints version, so a changed mapping cannot silently look
+like the same reference configuration. It does not read a user-local workbook.
+
+The additive `contact_assessment` contains schema-1
+`topostitch-contact-observations`: per-candidate/per-residue-pair atom identities,
+measured heavy-atom bond distances and angles, reference ideals/sigmas and signed
+deviations. Six-member ring normals, plane offsets and ring-plane residuals are
+observations only. Atom references distinguish the source and transformed target
+image, including when a recipe's role order reverses their order.
+
+Missing exocyclic atoms, unusable occupancies and degenerate angles remain
+explicit incomplete measurements with `null` values, never zero-distance
+contacts or silently omitted evidence. Other available measurements survive.
+The existing adapter still rejects ambiguous conformers or duplicate sites.
+Reference sigmas are not calibrated acceptance cutoffs. No hydrogen placement,
+stacking, backbone torsion, packing or diffraction check is implied, and no
+candidate is accepted, rejected or ranked by this layer. Default reports are
+unchanged unless the flag is supplied. Neither old checkpoints nor assignment
+manifests need migration.
+
 ## Records and compatibility
 
 New descriptive kinds are `topostitch-periodic-candidate-report` and
@@ -244,3 +276,18 @@ native refinement result for this patch.
 Gemmi API references used for this implementation:
 [symmetry operations](https://gemmi.readthedocs.io/en/latest/symmetry.html) and
 [unit-cell transforms](https://gemmi.readthedocs.io/en/latest/cell.html).
+
+Contact-layer validation (2026-11-13): the new test module first failed at import
+before implementation. The five TopoStitch test files then passed **143 tests**
+with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, using the same test interpreter
+and optional Gemmi path shown above. Checks include role remapping/provenance,
+partial contacts, degenerate angles, exact screw-image atom transforms, rigid
+transforms, no-write CLI behavior and relocation with the original path absent.
+This isolated additive inspector change did not alter global mechanics, so the
+complete suite was not repeated. The same **143 tests passed against the installed wheel** (1.60 s), using the
+installed-test command above with `test_topostitch_contacts.py` appended. The
+wheel was installed with its declared dependencies, including NARestraints
+v1.1.3 (`a9264f9`) and Gemmi 0.7.5. An actual isolated installed
+`nasolve-topostitch-inspect ... --radius 15 --periodic --contacts` call on a
+synthetic fixture passed, and installed module bytes matched current source. No native Phenix/Coot tools or scientific inputs
+were used.

@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch contact observations
+
+- Add optional `--contacts` inspection using installed NARestraints canonical
+  role mappings and recipes, with effective-reference fingerprints and exact
+  target-image atom transformations. Report distance/angle deviations and plane
+  observations; retain missing/unusable atoms as incomplete measurements.
+- Keep default reports and all model/checkpoint behavior unchanged. No contact
+  threshold, automatic pairing decision or refinement restraint is introduced.
+
 ### Contributor workflow
 
 - Record standing publication of validated feature-branch updates, cross-branch

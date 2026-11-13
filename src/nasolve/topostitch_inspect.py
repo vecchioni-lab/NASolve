@@ -72,6 +72,7 @@ def main(argv=None):
     parser.add_argument("assignments",type=Path,help="Schema-1 end assignments bound to the model SHA-256")
     parser.add_argument("--radius",required=True,type=float,help="Explicit endpoint search radius in Angstrom")
     parser.add_argument("--periodic",action="store_true",help="Search CRYST1 symmetry images (requires NASolve[topology])")
+    parser.add_argument("--contacts",action="store_true",help="Measure canonical NARestraints contacts without accepting a pairing")
     parser.add_argument("--max-pairs",type=int,default=100_000,help="Maximum endpoint-pair budget")
     parser.add_argument("--max-image-tests",type=int,default=100_000,help="Periodic translation-box test budget")
     args = parser.parse_args(argv)
@@ -80,7 +81,11 @@ def main(argv=None):
             raise ValueError("max-image-tests must be a positive integer")
         digest,assignments,manifest_hash = load_end_assignments(args.assignments)
         options = dict(expected_sha256=digest,max_distance_angstrom=args.radius,max_pairs=args.max_pairs)
-        if args.periodic:
+        if args.contacts:
+            from .topostitch_contacts import inspect_end_contacts
+            report = inspect_end_contacts(args.model,assignments,periodic=args.periodic,
+                max_image_tests=args.max_image_tests,**options)
+        elif args.periodic:
             report = inspect_periodic_end_assignments(args.model,assignments,
                 max_image_tests=args.max_image_tests,**options)
         else:
