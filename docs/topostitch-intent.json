@@ -309,13 +309,15 @@
       "automatic_partner_selection": false,
       "automatic_window_expansion": false,
       "campaign_adoption": false,
-      "image_identity_precondition": "periodic source selected-coordinate audit; ambiguous outcomes do not reach optimization",
+      "image_identity_precondition": "periodic source and serialized trial selected-coordinate audits; ambiguous source stops optimization, ambiguous trial is withheld",
       "supported_schema_versions": [
         1,
         2
       ],
       "schema_1_replay_preserved": true,
-      "schema_2_backbone_audit": "source-relative O3-P distance, four junction angles, circular epsilon/zeta/alpha changes; not ideal geometry"
+      "schema_2_backbone_audit": "source-relative O3-P distance, four junction angles, circular epsilon/zeta/alpha changes; not ideal geometry",
+      "post_transform_selected_image_audit": true,
+      "transformed_image_report_kind": "topostitch-transformed-image-identity"
     },
     "selected_image_identity": {
       "module": "nasolve.topostitch_images",

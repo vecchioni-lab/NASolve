@@ -166,11 +166,15 @@ before S06 matched refinement. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 322 focused source/installed/relocated tests + 2 subtests
-pass; the full source suite passes 1,238 tests + 226 subtests. Schema-2 preview
+**Current checks:** 46 affected source tests, all 323 focused installed tests +
+2 subtests, and the full source suite (1,239 tests + 226 subtests) pass. The
+preceding schema-2 checkpoint passed all 322 then-current relocated tests after
+the original path was absent. Schema-2 preview
 and fitting add nonbridging phosphate angles and circular epsilon/zeta/alpha
 changes, while retaining exact schema-1 replay. The selected-image audit retains
-coincident-label/occupancy uncertainty and gates periodic fitting. Public source
+coincident-label/occupancy uncertainty and gates periodic fitting. A second
+audit now withholds serialized transforms that introduce selected-image
+coincidences. Public source
 bytes remain unchanged; generated coordinates and diagnostic artifacts stay local.
 Public 8D93 native interpretation is REVIEW throughout. The original fit adds an
 angle outlier; tighter controls and the new extended-audit fit add no nominal ≥5

@@ -224,10 +224,10 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
     settings={'method':'trf','jac':'3-point','diff_step':1e-4,'ftol':1e-8,'xtol':1e-8,'gtol':1e-8,
               'x_scale':list(bounds),'initial_parameters':list(zero),'loss':'linear'}
     report={'schema_version':request['schema_version'],'kind':'topostitch-placement-proposal',
-        'algorithm':'single-window-canonical-contact-least-squares-v3' if request['schema_version']==2 else 'single-window-canonical-contact-least-squares-v2',
+        'algorithm':'single-window-canonical-contact-least-squares-v4',
         'request':request,'request_file_sha256':sha256(request_bytes).hexdigest(),
         'source_model_sha256':digest,'reference_library':library,'selected_candidate':candidate,'window':window,
-        'selected_image_identity':image_audit,
+        'selected_image_identity':image_audit,'transformed_image_identity':None,
         'solver':{'name':'scipy.optimize.least_squares','scipy_version':version('scipy'),
                   'numpy_version':version('numpy'),'settings':settings,'residual_calls':0,'nfev':None,'njev':None},
         'before':before,'continuous_after':None,'serialized_after':None,'trial':None,
@@ -236,7 +236,7 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
         'limitations':['One zero-initialized local search for one explicitly chosen pairing and window',
             'Canonical full-overhang geometry target; no density, diffraction or R-factor objective',
             'Objective scales are caller policy, not calibrated likelihoods or acceptance thresholds',
-            'Selected-coordinate image audit is a precondition only; full physical orbit/capacity remains unqualified',
+            'Selected-coordinate image audits cover source and serialized trial only; full physical orbit/capacity remains unqualified',
             'No torsion, packing, atomistic closure or native qualification',
             'No reconstruction, chemical topology changes, campaign adoption or best-partner claim']}
     if request['schema_version']==2:
@@ -278,10 +278,20 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
                 if report['serialized_after']['pair_target_sum_squares']>=before['pair_target_sum_squares']-1e-8:
                     report['status']='NO_PAIR_TARGET_IMPROVEMENT'
                 else:
-                    report.update(status='TRANSFORM_FOR_REVIEW',trial=proposed,
-                        candidate_model_sha256=preview['candidate_model_sha256'],
-                        preview_audit={'max_atom_displacement_angstrom':preview['max_atom_displacement_angstrom'],
-                                       'backbone_audit':preview['backbone_audit']})
+                    if search['periodic']:
+                        from .topostitch_images import _audit_transformed_image
+                        report['transformed_image_identity']=_audit_transformed_image(
+                            final_snapshots['candidate'],image_audit,
+                            cell_parameters=screening['inputs']['cell_parameters'],
+                            space_group=screening['inputs']['space_group'])
+                    if (report['transformed_image_identity'] is not None
+                            and report['transformed_image_identity']['assessment']!='SELECTED_COORDINATES_DISTINCT'):
+                        report['status']='TRANSFORMED_IMAGE_REVIEW_REQUIRED'
+                    else:
+                        report.update(status='TRANSFORM_FOR_REVIEW',trial=proposed,
+                            candidate_model_sha256=preview['candidate_model_sha256'],
+                            preview_audit={'max_atom_displacement_angstrom':preview['max_atom_displacement_angstrom'],
+                                           'backbone_audit':preview['backbone_audit']})
     report['solver']['residual_calls']=calls
     verify_inputs()
     return report

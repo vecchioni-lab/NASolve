@@ -291,3 +291,48 @@ def test_extended_fit_cannot_silently_drop_new_terms_or_limits(tmp_path):
         with pytest.raises(ValueError,match='Expected object fields'):fit(paths)
     paths[3].write_text(json.dumps({**original,'schema_version':1}))
     with pytest.raises(ValueError,match='Expected object fields'):fit(paths)
+
+
+def test_periodic_fit_rechecks_the_serialized_selected_images(tmp_path):
+    pytest.importorskip('gemmi')
+    from nasolve.topostitch_preview import _prepare
+    paths=fit_inputs(tmp_path,periodic=True)
+    first=fit(paths);assert first['status']=='TRANSFORM_FOR_REVIEW'
+    snapshots,_=_prepare(paths[0],paths[1],paths[2],trial_value=first['trial'])
+    candidate_lines=snapshots['candidate'].decode('ascii').splitlines()
+    # Put an unscored atom of the stationary selected end at the future position
+    # of a moving atom. The source is clear; canonical pair scores still improve.
+    import gemmi
+    image=gemmi.Op(first['selected_candidate']['target_image']['operator_xyz'])
+    cell=gemmi.UnitCell(40,40,40,90,90,90)
+    point=next([float(r[a:a+8]) for a in (30,38,46)] for r in candidate_lines
+               if r.startswith('ATOM') and r[21]=='C' and int(r[22:26])==1 and r[12:16].strip()=="O3'")
+    frac=cell.fractionalize(gemmi.Position(*point))
+    target_point=cell.orthogonalize(gemmi.Fractional(*image.inverse().apply_to_xyz(list(frac))))
+    rows=paths[0].read_text().splitlines(keepends=True)
+    modified=0
+    for i,r in enumerate(rows):
+        if r.startswith('ATOM') and r[21]=='A' and int(r[22:26])==1 and r[12:16].strip()=="O3'":
+            rows[i]=r[:30]+''.join(f'{v:8.3f}' for v in target_point)+r[54:];modified+=1
+    assert modified==1;paths[0].write_text(''.join(rows))
+    # Update only the documented source-hash bindings after deliberately changing
+    # this synthetic fixture; identities, logical windows and references are fixed.
+    from nasolve.model_assessment import inspect_pdb
+    assessment=inspect_pdb(paths[0],polymer_ligand_codes={'DA','DT'})
+    codes={f'{r[21]}:{int(r[22:26])}':r[17:20].strip() for r in rows if r.startswith('ATOM')}
+    registry=build_construct_registration(assessment,target(*codes.items()),
+        {'copy_1':{s:s for s in codes}},source='synthetic-fit')
+    paths[2].write_text(json.dumps(registry))
+    discovery=json.loads(paths[1].read_text());discovery.update(model_sha256=digest(paths[0].read_bytes()),registration_sha256=digest(paths[2].read_bytes()));paths[1].write_text(json.dumps(discovery))
+    change(paths,model_sha256=digest(paths[0].read_bytes()),registration_file_sha256=digest(paths[2].read_bytes()),discovery_file_sha256=digest(paths[1].read_bytes()))
+    before={p:p.read_bytes() for p in tmp_path.iterdir()}
+    result=fit(paths)
+    assert result['selected_image_identity']['assessment']=='SELECTED_COORDINATES_DISTINCT'
+    assert result['serialized_after']['pair_target_sum_squares']<result['before']['pair_target_sum_squares']
+    assert result['status']=='TRANSFORMED_IMAGE_REVIEW_REQUIRED'
+    assert result['trial'] is None
+    audit=result['transformed_image_identity']
+    assert audit['assessment']=='COINCIDENCE_OR_OCCUPANCY_REVIEW'
+    assert audit['selected_image_overlaps']
+    assert audit['source_audit_input_sha256']==result['selected_image_identity']['input_sha256']
+    assert {p:p.read_bytes() for p in tmp_path.iterdir()}==before

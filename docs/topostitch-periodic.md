@@ -405,17 +405,19 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**Extended-backbone checkpoint:** 322 focused tests + 2 subtests pass from source
-(7.68 s), against the rebuilt installed wheel (7.75 s), and from a relocated
-temporary checkout (7.48 s) after the original checkout path was absent.
-The complete source suite passes **1,238 tests + 226 subtests** (69.64 s).
-Environment: Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3 (`a9264f9`),
-Gemmi 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. The earlier 17 fitting tests also
-passed with minimum SciPy 1.14.1 / NumPy 2.2.6; that is not a schema-2 minimum
-version run. New failing-before coverage demonstrates that schema 2 was rejected
-before this change; specific tests cover phosphate rotation missed by the old
-two-angle audit, circular torsion differences, degeneracy, missing atoms and
-strict policy fields. Old schema-1 frozen public previews still replay.
+**Transformed-image checkpoint:** all 46 affected fitting/image tests pass from
+source (9.83 s), and all 323 focused tests + 2 subtests pass against the rebuilt
+installed wheel (9.43 s). The complete source suite passes **1,239 tests + 226
+subtests** (74.47 s). The preceding schema-2 checkpoint also passed all 322
+then-current focused tests after relocation with the original path absent.
+Environment: Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3 (`a9264f9`), Gemmi
+0.7.5, SciPy 1.18.1 and NumPy 2.5.4. The earlier 17 fitting tests passed with
+minimum SciPy 1.14.1 / NumPy 2.2.6; that is not a current minimum-version run.
+The new regression fails before the guard: a distinct source improves its
+contact score but places an unscored atom on the selected mate. The updated
+fitter withholds that transform without writing files. Actual installed 8D93
+fitting preserves the schema-2 candidate bytes and reports a distinct transformed
+selection (240 atoms, 274,916 tests). Schema-1/2 preview replay is unchanged.
 
 Coverage includes independent brute-force symmetry enumeration in P1, P21,
 P212121, P43, R3:H and P63; nonlocal/skew-cell bounds; reciprocal/self-image

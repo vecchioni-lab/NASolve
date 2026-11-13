@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch transformed-image review
+
+- Recheck improving serialized periodic fits against their original selected
+  atom identities and exact image; withhold transforms that introduce a
+  coincidence, even when the source audit and base-pair score pass.
+- Record separate candidate-hash-bound image evidence without rerunning partner
+  selection or changing preview replay. This remains a coincidence check, not
+  full packing approval.
+- Record local native symmetry-gradient and fixed-base backbone-relaxation
+  controls, with iteration-limit, geometry-component and integration caveats.
+
 ### TopoStitch extended backbone checks
 
 - Add opt-in schema-2 fitting and previews with nonbridging phosphate angles and
