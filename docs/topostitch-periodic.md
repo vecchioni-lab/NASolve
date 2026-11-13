@@ -405,17 +405,29 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**Shared image-transport checkpoint:** 24 affected transport/viewer tests pass
-from source (2.59 s). All **347 focused tests + 2 subtests** pass against the
-rebuilt installed wheel (13.13 s), and after source/test relocation with the
-original path absent (13.17 s). The full source suite passes **1,263 tests + 226
-subtests** (75.34 s). The installed 8D93 viewer preserves source/candidate hashes,
-selected operator and display coordinates to <1e-10 Å; the numerical core runs
-without Gemmi/Phenix/SciPy. Shared transport also passes the corrected native
-plane probe under Phenix 2.2.1-6174, retaining its raw negative controls.
-The preceding viewer checkpoint passed JavaScript syntax/mock-DOM interaction
-checks. Rendered browser validation remains pending after the local-file
-automation policy block; no full GUI qualification is claimed.
+**Captured-packing comparison checkpoint:** 21 packing regressions pass from
+source. All **368 focused tests + 2 subtests** pass against the rebuilt installed
+wheel (13.30 s), and after source/test relocation with the original copied path
+absent (13.02 s). The full source suite passes **1,284 tests + 226 subtests**
+(75.57 s). The initial new-module regression fails against the preceding wheel.
+The new developer reader also rejects changed model bytes, overwrite, and repeated
+path reads with changed snapshots. Python 3.10 syntax checks pass.
+
+Actual Phenix 2.2.1-6174 captures replay through Cedar's maintained directed
+nonbonded reviewer. The comparison is byte-identical after copied
+source/models/captures relocate, with original copied paths absent and Python
+reads of original live evidence/source blocked. Both frozen Cedar `cd744e2` and
+`f2345a8` readers produce identical measurements from the same captures. This is
+narrow read-only compatibility, not a combined branch/runtime qualification.
+Installed comparison/image arithmetic needs no Cedar/Gemmi/Phenix; the developer
+capture-reader wrapper explicitly requires a trusted Cedar source and dependencies.
+Wheel SHA256: `88a57c23dffef4ce68313ed5119d2f092fb1c8db6dc7520d68372161801108b1`.
+
+The preceding installed 8D93 viewer retains source/candidate hashes, selected
+operator and display coordinates to <1e-10 Å. Corrected native plane controls
+pass while raw negative controls remain. JavaScript syntax/mock-DOM checks pass;
+rendered browser validation remains pending after the local-file automation policy
+block. No full GUI or scientific repair qualification is claimed.
 Environment: Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3 (`a9264f9`), Gemmi
 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. The earlier 17 fitting tests passed with
 minimum SciPy 1.14.1 / NumPy 2.2.6; that is not a current minimum-version run.

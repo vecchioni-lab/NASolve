@@ -162,16 +162,16 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 Turn a plausible placement into a chemically usable candidate before refinement is trusted.
 
-**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls. Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW.
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls. Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW. Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted. A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar.
 
 **Closure audit:**
 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Qualify full emitted NARestraints plane selections/weights and native bond-edit/exclusion semantics before a supported masked native adapter. Preserve core pairs, exact immobile atoms, captured definitions/mask/objective identity and endpoint ASU derivative checks. Do not reuse Cedar all-atoms policy for the new scope.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native).
-**Last audit:** 2026-11-13, Linden, code `3cb9723`; Local masked/contact controls; no production adapter, ideal-geometry or refinement acceptance.
+**Next action:** Define a supported captured masked policy with explicit additive-versus-native-edit exclusion intent, complete recipes and exact fixed atoms. Qualify individual geometry and every affected surrounding image, not only intended contacts or total energy; reuse Cedar capture/correction owners before matched refinement.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing).
+**Last audit:** 2026-11-13, Linden, code `7f4d334`; Native recipes, exclusion semantics and adverse packing evidence; authenticated read-only comparison tested. No production optimizer, refinement or adoption..
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -335,7 +335,7 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 
 | Case | State | Jobs | Remaining evidence |
 | --- | --- | --- | --- |
-| B01 — Public 8D93 coordinate and native controls | PARTIAL_DIAGNOSTIC | S04, S05 | Close local geometry; current fitted candidate is unapproved. |
+| B01 — Public 8D93 coordinate and native controls | PARTIAL_DIAGNOSTIC | S04, S05 | Qualify surrounding periodic packing and individual geometry under an explicit native masked policy; broad bend cleanup fixes its added angle but worsens collateral contacts. |
 | B02 — 8D93 and 5W6W into user-supplied hex_data | MR_PREFLIGHT_COMPLETE_REPAIR_PENDING | S04, S06 | Resolve one-copy/composition and ASU-cut assumptions; qualify a repair before matched no-repair refinement. Original PDF/MTZ/CIF and native results stay local. |
 | B03 — Bent 8CS1 / 7R96 into suitable DOHU / DT straight-frame data | BASIC_DATASET_MR_CONTROLS_COMPLETE | S04, S06 | Straight reference and both bent public models placed into one basic dataset. Resolve sequence/ASU-cut comparability, then qualify unbending or changed-direction trials and matched refinement. |
 | B04 — Blind 8D93-to-3GBI-style ASU cut | PLANNED | P03, P04, P06 | Withhold reference coordinates during surgery; use same-crystal before/after scattering invariance and independent later topology/cut comparison. |
@@ -347,9 +347,9 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `3cb9723`.
-24 affected transport/viewer tests pass; 347 focused tests + 2 subtests pass installed and relocated with the original path absent. Full source suite: 1,263 tests + 226 subtests. The numerical transport core runs without external packages; installed 8D93 viewer coordinates differ from the prior implementation by at most 1.5e-14 Angstrom. Rendered browser checks remain pending.
-**Limit:** Current installed check is focused, not a full platform matrix. Previous relocation count is not a new guard relocation run. No combined Cedar build or scientific acceptance.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `7f4d334`.
+21 packing regressions pass; 368 focused tests + 2 subtests pass installed and relocated. Full source: 1,284 tests + 226 subtests. Lean installed imports match source. Native detached comparison survives copied-checkout/capture relocation byte-identically with original Python reads blocked; both frozen Cedar cd744e2 and f2345a8 readers agree. Rendered browser validation remains pending.
+**Limit:** Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.
 
 <a id="e_registration"></a>
 ### E_REGISTRATION — existing_backend
@@ -445,9 +445,16 @@ The viewer and committed native probe share proper Cartesian images and accumula
 <a id="e_masked_native"></a>
 ### E_MASKED_NATIVE — Local masked native and contact-preservation controls
 
-[Evidence contract](topostitch-preview.md#explicit-movement-mask-and-contact-controls--2026-11-13) at code `3cb9723`.
-Complete Phenix 2.2.1-6174 controls bind explicit 107-atom fixed-base or 204-atom window masks, preserve other atoms, and pass every selected Cartesian derivative at initial/continuous/rounded points. Chosen contacts improve beyond cleanup controls; core-pair terms reduce collateral pair drift. Native captures/definitions match, with no new severe captured scalar outliers or selected-image coincidences.
-**Limit:** All hit 200 iterations. Exploratory six-membered planes and weights are not full NARestraints output; additive contacts leave bonded tables/exclusions unchanged. Full torsion/packing, emitted-recipe semantics, production capture lifecycle, refinement and scientific acceptance remain open. Scientific files and local workers are not committed.
+[Evidence contract](topostitch-preview.md#complete-recipes-native-exclusions-and-broader-bend-controls--2026-11-13) at code `7f4d334`.
+Complete Phenix 2.2.1-6174 local masked trials validate every movable ASU derivative before/after optimization and PDB rounding. Complete NAR recipes and matched core-pair controls pass readback; broader bend plus fixed-base cleanup removes its added angle and three inherited ones with all base coordinates fixed. Native bond edits alter exclusions; collateral periodic overlap and individual geometry regressions remain.
+**Limit:** All trials hit 200 iterations. Additive and native-edit objectives are different physics. Better intended contacts, lower total energy and fewer severe scalar outliers do not qualify surrounding packing. No production masked adapter, diffraction comparison or scientific acceptance. Local scientific files/workers excluded from Git.
+
+<a id="e_packing"></a>
+### E_PACKING — Authenticated native directed packing comparison
+
+[Evidence contract](topostitch-preview.md#captured-native-packing-comparison) at code `7f4d334`.
+Thin comparison reuses Cedar capture/authentication and directed pair replay. Exact relative-image matching preserves multiplicity and separates new overlap from neighbor-list change. Real original/broad-cleanup captures confirm 20 directed rows newly overlap and 103 worsen despite lower total native nonbonded energy; relocated copied evidence produces byte-identical output with original reads blocked.
+**Limit:** Read-only unchanged-policy scope. Directed counts are not unique physical contacts, a clashscore or chemical acceptance. No independent neighbor enumeration, torsion/plane comparison, native optimizer or model promotion.
 
 ## Deferred extensions, not hidden blockers
 

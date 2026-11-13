@@ -509,6 +509,145 @@ seam is built, no density/Rwork/Rfree is used, and no checkpoint is published or
 selected. All input models, workers, native receipts and generated candidates
 remain local and outside Git.
 
+### Complete recipes, native exclusions and broader-bend controls — 2026-11-13
+
+Further **complete local Phenix 2.2.1-6174 executions** use the actual
+NARestraints 1.1.3 emitted pair recipes, including full plane atom selections,
+planarity sigma 0.176 Å and parallelity sigma 0.027. Effective PHIL is parsed
+with unused definitions rejected; selections bind to captured atom identities
+and explicit Cartesian images. These local recipe snapshots describe ASU roles;
+they are **not exportable cross-symmetry refinement PHIL**.
+
+The matched trials retain the preceding 204-atom movement scope and budgets.
+Both include all 12 declared core pairs; only the contact trial adds the two
+selected inter-image pairs. All 612-coordinate initial/continuous/PDB-rounded
+derivative checks pass (worst 1e-5 Å error 2.68e-6), as do fresh native context,
+proxy, immobile-byte and selected-image checks. Both stop at 200 iterations.
+
+| Full-recipe objective | Native geometry | Selected contacts | Existing core pairs |
+| --- | ---: | ---: | ---: |
+| Starting candidate | 7192.557988 | 228.789516 | 336.128612 |
+| Cleanup + core pairs | 6545.915697 | 226.906229 | 259.077233 |
+| Cleanup + core + selected pairs | 6547.217972 | 176.738735 | 259.042567 |
+
+The contact trial improves its selected target while slightly worsening native
+geometry versus its matched control. It adds no nominal absolute >=5 captured
+bond/angle/chirality outliers; three inherited angles resolve. However, individual
+torsion/monomer-plane residuals and some native nonbonded overlaps worsen. Summed
+energies alone therefore cannot accept the result. These targets differ from the
+earlier exploratory recipe and must not be compared across objective definitions.
+
+A separate **read-only native interpretation** establishes an important integration
+boundary. Adding the five chosen symmetry distances as ordinary Phenix bond edits
+changes native nonbonded exclusions and creates five internal LINK requests.
+At identical coordinates, the bond target rises by 36.435957, while the nonbonded
+target falls from 1077.721614 to 963.181796; ASU neighbor proxy entries change from
+618 to 587. Five requested distances produce eight ASU bond-proxy entries, not
+eight independent chemical bonds. This is different physics from appending those
+five energies to an unchanged native manager. The supported adapter must declare
+which semantics it implements and audit the intended proxy/exclusion changes.
+LINK bookkeeping for a pair restraint must not become inferred phosphodiester
+chemistry. This installed Phenix bond-edit scope exposes `symmetry_operation`;
+its angle/dihedral/planarity/parallelity edit scopes do not provide corresponding
+per-atom symmetry fields. Full periodic recipes need a qualified image-aware
+path, not an ordinary ASU PHIL export with plausible selections.
+
+The earlier, more strongly bent schema-1 candidate was also revisited with the
+same **107 sugar/phosphate atoms movable and 748 atoms fixed**. No contact terms
+are added and every base coordinate remains byte-identical to that bent model.
+Its native geometry target falls from 7299.779902 to 6714.289955 with maximum
+cleanup motion 0.127679 Å. All 321-variable endpoint derivatives pass; fresh
+capture resolves the bend-induced severe angle and three inherited severe angles,
+with no new severe captured scalar deviations or chirality sign conflicts versus
+the original source. The chosen image remains coordinate-distinct. This supports
+bend-then-backbone-cleanup as a candidate strategy, but does **not** close S05.
+
+The full-neighborhood comparison explains why. One other periodic contact,
+DT C101 C7 to DC C114 C2′ through `-y+1/3,x-y-1/3,z-1/3`, has native VDW overlap
+0.083625 Å in the original model and 0.445409 Å after bend plus cleanup. Some
+previously nonoverlapping pairs also overlap. Maximum overlap over the whole
+model actually decreases (1.009571 to 0.977553 Å), hiding these local regressions.
+Monomer-plane residual sum rises from 118.608875 to 130.371311; the largest local
+plane RMS change is 0.013109 to 0.019338 Å and includes the movable glycosidic C1′.
+Keeping base coordinates fixed does not freeze every monomer plane.
+
+These observations reconstruct all 442 captured torsion and 42 monomer-plane
+proxies and verify their summed energies against fresh captures. Native neighbor
+pairs are compared by atom identity and exact reciprocal-normalized image;
+`max(0, native VDW distance - observed distance)` is a **native-policy overlap,
+not a MolProbity clashscore**. No newly listed overlapping neighbor is not the same
+as no new overlap among existing neighbors. The source and cleanup-only control
+retain their own unfavorable components. No model is promoted, no Free-R data or
+refinement is used, and all scientific inputs/results stay local.
+
+**Next S05 slice:** define one captured masked-trial policy with exact source,
+mask, recipe and exclusion intent; require intended-contact and surrounding-image
+comparisons, individual geometry changes and fixed-boundary checks at the rounded
+endpoint. Reuse Cedar capture/correction/validation owners rather than building a
+parallel native lifecycle. Keep numerical convergence, geometric qualification
+and later matched diffraction improvement as separate gates. More optimization
+iterations are not a substitute for those missing acceptance checks.
+
+### Captured native packing comparison
+
+`nasolve.topostitch_packing.compare_native_packing` is a thin read-only comparison
+over authenticated Cedar captures and its maintained `review_native_nonbonded`
+reviewer. It does not generate neighbors or execute a native worker. The developer
+wrapper authenticates exact model/receipt snapshots through Cedar, replays the
+captured directed pair sums/gradients, checks unchanged inputs and writes a
+separate report:
+
+```sh
+python scripts/compare_topostitch_native_packing.py \
+  --cedar-source /trusted/cedar/src \
+  --before-receipt /evidence/before/native_receipt.json \
+  --before-model /evidence/before.pdb \
+  --after-receipt /evidence/after/native_receipt.json \
+  --after-model /evidence/after.pdb \
+  --out /review/new-packing-comparison.json
+```
+
+Use the actual receipt paths returned by Cedar, not a guessed filename. Captures
+must request `nonbonded_inventory=True`,
+`nonbonded_policy=cif_native_asu.POLICY_ID`, linked energy/policy inventories and
+full monomer inventory through the existing `inspect_native_bundle` owner.
+`--cedar-source` is explicitly trusted executable source; captured worker text is
+never executed by this reader. The wrapper refuses overwrite or output inside a
+frozen native capture. Exit zero means a report was written, not accepted geometry.
+
+The additive schema-1 `topostitch-native-packing-comparison` retains source native
+hashes, common/added/removed directed pairs, every native row and weight, changed
+multiplicity, and separate counts for newly overlapping existing neighbors and
+newly listed overlapping neighbors. Its API requires caller authentication; the
+wrapper adds model/receipt hashes and reviewer-source fingerprints. No old schema
+or checkpoint changes. The installed comparison core has no native/Gemmi dependency;
+the developer wrapper needs the trusted Cedar checkout and its Python dependencies.
+
+Identity is the ordered atom-label pair plus `first_image^-1 * second_image`,
+including lattice translation. Native image indices may change between managers;
+reciprocal directions and repeated native contributions remain separate. Standard
+fractional rotations must be proper integer unimodular matrices; translations
+must reconstruct with denominator at most 24 within 1e-12. Unsupported mappings
+fail explicitly. This bounded rational interpretation is not a general orbit or
+space-group validator. Matching requires identical atom identities/order, cell,
+static restraints, interpretation context and nonbonded function. Native-edit
+comparisons that change those definitions are deliberately outside this first scope.
+
+Fresh complete Phenix 2.2.1-6174 captures of original 8D93 and the broader
+bend-plus-cleanup candidate contain 8,305 and 8,309 directed rows. Replay confirms
+native nonbonded target 1115.631384 → 1017.394684, while **103 matched directed rows
+worsen and 20 previously nonoverlapping rows overlap**. There are 35 added and
+31 removed identities, with no newly listed overlapping row or multiplicity
+change. Counts are directed native rows, not unique physical contacts. This
+independent Cedar-owned capture confirms the earlier local packing observation.
+
+The detached report is byte-identical after moving copied source/models/captures,
+with the original copied paths absent and Python reads of the original live
+source/evidence directories blocked during the comparison. This validates this
+reader's explicit relocated inputs; it does not qualify every historical local
+experiment as resumable. Torsion/plane comparison, optimization, acceptance,
+refinement and campaign adoption remain outside this report.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

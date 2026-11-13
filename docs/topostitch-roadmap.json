@@ -4,7 +4,7 @@
   "updated": "2026-11-13",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
+  "audited_code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -243,13 +243,15 @@
         "Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats.",
         "Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls.",
         "A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls.",
-        "Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW."
+        "Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW.",
+        "Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted.",
+        "A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Qualify full emitted NARestraints plane selections/weights and native bond-edit/exclusion semantics before a supported masked native adapter. Preserve core pairs, exact immobile atoms, captured definitions/mask/objective identity and endpoint ASU derivative checks. Do not reuse Cedar all-atoms policy for the new scope.",
+      "next_action": "Define a supported captured masked policy with explicit additive-versus-native-edit exclusion intent, complete recipes and exact fixed atoms. Qualify individual geometry and every affected surrounding image, not only intended contacts or total energy; reuse Cedar capture/correction owners before matched refinement.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -257,13 +259,14 @@
         "E_NATIVE_TRANSPORT_RELAX",
         "E_NATIVE_PLANES",
         "E_TRANSPORT",
-        "E_MASKED_NATIVE"
+        "E_MASKED_NATIVE",
+        "E_PACKING"
       ],
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
-        "scope": "Local masked/contact controls; no production adapter, ideal-geometry or refinement acceptance"
+        "code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
+        "scope": "Native recipes, exclusion semantics and adverse packing evidence; authenticated read-only comparison tested. No production optimizer, refinement or adoption."
       }
     },
     {
@@ -501,10 +504,11 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
+      "code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "24 affected transport/viewer tests pass; 347 focused tests + 2 subtests pass installed and relocated with the original path absent. Full source suite: 1,263 tests + 226 subtests. The numerical transport core runs without external packages; installed 8D93 viewer coordinates differ from the prior implementation by at most 1.5e-14 Angstrom. Rendered browser checks remain pending.",
-      "limitation": "Current installed check is focused, not a full platform matrix. Previous relocation count is not a new guard relocation run. No combined Cedar build or scientific acceptance."
+      "result": "21 packing regressions pass; 368 focused tests + 2 subtests pass installed and relocated. Full source: 1,284 tests + 226 subtests. Lean installed imports match source. Native detached comparison survives copied-checkout/capture relocation byte-identically with original Python reads blocked; both frozen Cedar cd744e2 and f2345a8 readers agree. Rendered browser validation remains pending.",
+      "limitation": "Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.",
+      "wheel_sha256": "88a57c23dffef4ce68313ed5119d2f092fb1c8db6dc7520d68372161801108b1"
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -599,10 +603,17 @@
     },
     "E_MASKED_NATIVE": {
       "kind": "Local masked native and contact-preservation controls",
-      "code_commit": "3cb9723a4effa6cb58ea97c1972b369c77e154fd",
-      "reference": "docs/topostitch-preview.md#explicit-movement-mask-and-contact-controls--2026-11-13",
-      "result": "Complete Phenix 2.2.1-6174 controls bind explicit 107-atom fixed-base or 204-atom window masks, preserve other atoms, and pass every selected Cartesian derivative at initial/continuous/rounded points. Chosen contacts improve beyond cleanup controls; core-pair terms reduce collateral pair drift. Native captures/definitions match, with no new severe captured scalar outliers or selected-image coincidences.",
-      "limitation": "All hit 200 iterations. Exploratory six-membered planes and weights are not full NARestraints output; additive contacts leave bonded tables/exclusions unchanged. Full torsion/packing, emitted-recipe semantics, production capture lifecycle, refinement and scientific acceptance remain open. Scientific files and local workers are not committed."
+      "code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
+      "reference": "docs/topostitch-preview.md#complete-recipes-native-exclusions-and-broader-bend-controls--2026-11-13",
+      "result": "Complete Phenix 2.2.1-6174 local masked trials validate every movable ASU derivative before/after optimization and PDB rounding. Complete NAR recipes and matched core-pair controls pass readback; broader bend plus fixed-base cleanup removes its added angle and three inherited ones with all base coordinates fixed. Native bond edits alter exclusions; collateral periodic overlap and individual geometry regressions remain.",
+      "limitation": "All trials hit 200 iterations. Additive and native-edit objectives are different physics. Better intended contacts, lower total energy and fewer severe scalar outliers do not qualify surrounding packing. No production masked adapter, diffraction comparison or scientific acceptance. Local scientific files/workers excluded from Git."
+    },
+    "E_PACKING": {
+      "kind": "Authenticated native directed packing comparison",
+      "code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
+      "reference": "docs/topostitch-preview.md#captured-native-packing-comparison",
+      "result": "Thin comparison reuses Cedar capture/authentication and directed pair replay. Exact relative-image matching preserves multiplicity and separates new overlap from neighbor-list change. Real original/broad-cleanup captures confirm 20 directed rows newly overlap and 103 worsen despite lower total native nonbonded energy; relocated copied evidence produces byte-identical output with original reads blocked.",
+      "limitation": "Read-only unchanged-policy scope. Directed counts are not unique physical contacts, a clashscore or chemical acceptance. No independent neighbor enumeration, torsion/plane comparison, native optimizer or model promotion."
     }
   },
   "benchmarks": [
@@ -614,7 +625,7 @@
         "S04",
         "S05"
       ],
-      "remaining": "Close local geometry; current fitted candidate is unapproved."
+      "remaining": "Qualify surrounding periodic packing and individual geometry under an explicit native masked policy; broad bend cleanup fixes its added angle but worsens collateral contacts."
     },
     {
       "id": "B02",

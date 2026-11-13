@@ -169,14 +169,18 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 24 affected transport/viewer tests, all 347 focused installed
-tests + 2 subtests, the same focused suite after original-path-absent relocation,
-and the full source suite (1,263 tests + 226 subtests) pass. The installed viewer
-includes its offline asset. Its proper Cartesian image helper also supplies
-transpose-gradient accumulation to the native diagnostic, including repeated
-ASU indices; the numerical core needs no Gemmi/Phenix. Exact mate/coordinate and
-JavaScript mock-DOM checks pass; rendered browser validation remains pending
-after a local-file automation policy block.
+**Current checks:** 21 packing regressions, all 368 focused installed tests +
+2 subtests, the same focused suite after original-copied-path-absent relocation,
+and the full source suite (1,284 tests + 226 subtests) pass. Actual native packing
+comparison output is byte-identical after copied source/models/captures relocate,
+with Python reads of original live evidence blocked. Both frozen Cedar `cd744e2`
+and `f2345a8` authenticate/replay the same measurements. The comparator preserves
+relative image identity, directed multiplicity and per-contact regressions; it
+adds no native worker or geometry acceptance. The installed numerical comparison
+and image-transport cores need no native/Gemmi dependencies.
+The offline viewer includes its asset; exact coordinate and JavaScript mock-DOM
+checks pass. Rendered browser validation remains pending after a local-file
+automation policy block.
 Schema-2 preview
 and fitting add nonbridging phosphate angles and circular epsilon/zeta/alpha
 changes, while retaining exact schema-1 replay. The selected-image audit retains
@@ -194,13 +198,17 @@ synthetic and public controls. This is diagnostic, not a production native adapt
 Masked native controls now preserve fixed bases explicitly or permit the selected
 window's atoms under bounded motion. Adding the chosen image contacts improves
 them beyond matched cleanup; adding existing core-pair terms limits duplex drift.
-Derivative/readback checks pass in this scope, but all trials hit the iteration
-cap. Plane terms are exploratory, not the full emitted NARestraints recipe;
-native edit/exclusion semantics and supported adapter lifecycle remain open.
+Derivative/readback checks now also pass with complete emitted NARestraints
+plane selections/sigmas; all trials hit the iteration cap. A broader bend followed
+by fixed-base cleanup removes its added angle outlier, but collateral periodic
+contacts and individual geometry terms worsen. Native bond edits also change
+exclusions/LINK bookkeeping, unlike additive contact energies. S05 remains partial:
+a supported masked policy must audit intended edits and the surrounding packing
+before matched refinement. No candidate is promoted.
 See the current inspector/preview guides for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Cedar through `a017a7d` owns its native audit, selected AutoSol references
+Cedar through `f2345a8` owns its native audit, selected AutoSol references
 and storage work; the consumed registration/model/context/package interfaces
 remain unchanged against the Pine base. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the

@@ -916,6 +916,10 @@ component for later Pine/Campaign desk integration, not a second state store.
 `topostitch_transport` shares proper Cartesian image transforms and accumulated
 ASU gradient pullback with the native diagnostic. It supplies numerical plumbing;
 Cedar's policies, chemistry and native trial lifecycle are separate owners.
+`topostitch_packing` compares Cedar-reviewed directed native neighbors by exact
+bounded rational image identity, retaining multiplicity and collateral changes.
+Its developer wrapper authenticates captures through Cedar; no second native
+worker, neighbor finder, optimizer or approval lifecycle is introduced.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are

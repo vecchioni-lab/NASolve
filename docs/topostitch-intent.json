@@ -358,6 +358,21 @@
       "core_external_dependencies": false,
       "production_native_optimizer": false,
       "scientific_qualification": false
+    },
+    "native_packing_comparison": {
+      "module": "nasolve.topostitch_packing",
+      "developer_command": "scripts/compare_topostitch_native_packing.py",
+      "contract": "docs/topostitch-preview.md#captured-native-packing-comparison",
+      "report_kind": "topostitch-native-packing-comparison",
+      "report_schema_version": 1,
+      "capture_owner": "Cedar inspect_native_bundle and authenticated receipt binding",
+      "review_owner": "Cedar review_native_nonbonded / directed ASU policy",
+      "scope": "unchanged native context/static definitions; explicit atom identities and relative images; preserve directed multiplicity",
+      "core_external_dependencies": false,
+      "native_worker_added": false,
+      "runtime_authority": false,
+      "geometry_accepted": false,
+      "campaign_integration": false
     }
   },
   "geometry_development": {
