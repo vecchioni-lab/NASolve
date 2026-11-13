@@ -774,6 +774,9 @@ Optional contact observations expose measured recipe deviations without a
 pass/fail threshold. Optional pairing alternatives expose independent groups of
 competing choices, including leaving a group unconnected; do not flatten their
 Cartesian product into a huge list or present the highest contact count as best.
+Window proposals distinguish movable sites from fixed inner anchors and record
+junction/routing stops. Display them as logical scope until coordinate mapping
+and geometry feasibility have actually been checked; there is still no after-model.
 
 Keep three questions separate in the UI: **What is proposed? What actually ran?
 Has a person reviewed this exact result?** Do not use one green status for all

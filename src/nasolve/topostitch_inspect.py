@@ -82,7 +82,7 @@ def load_registered_end_assignments(model, path, registration_path):
     elif value.get("kind") == "topostitch-end-discovery-input":
         from .topostitch_discovery import BackboneStrand, discover_logical_end_assignments
         _keys(value, {"schema_version", "kind", "model_sha256", "registration_sha256", "copy_id", "strands", "duplex_pairs"},
-              {"protected_sites", "max_overhang_length", "pairing_inventory_complete"})
+              {"protected_sites", "max_overhang_length", "pairing_inventory_complete", "do_not_connect_sites"})
         if not isinstance(value["strands"], list) or not isinstance(value["duplex_pairs"], list):
             raise ValueError("strands and duplex_pairs must be arrays")
         strands = []
@@ -92,7 +92,8 @@ def load_registered_end_assignments(model, path, registration_path):
         logical, discovery = discover_logical_end_assignments(strands,value["duplex_pairs"],
             copy_id=value["copy_id"],protected_sites=value.get("protected_sites",()),
             max_overhang_length=value.get("max_overhang_length",12),
-            pairing_inventory_complete=value.get("pairing_inventory_complete",False))
+            pairing_inventory_complete=value.get("pairing_inventory_complete",False),
+            do_not_connect_sites=value.get("do_not_connect_sites",()))
     else:
         raise ValueError("--registration requires a logical end-assignment or end-discovery manifest")
     registration_data = Path(registration_path).read_bytes()
@@ -129,6 +130,9 @@ def main(argv=None):
     parser.add_argument("--pairings",action="store_true",help="Enumerate bounded one-partner alternatives without selecting a scheme")
     parser.add_argument("--max-alternatives",type=int,default=256,help="Maximum alternatives per independent pairing group")
     parser.add_argument("--max-pairing-states",type=int,default=100_000,help="Maximum total pairing search states")
+    parser.add_argument("--windows",action="store_true",help="Propose bounded editable windows from a discovery manifest")
+    parser.add_argument("--max-window-pairs",type=int,default=12,help="Maximum paired window length")
+    parser.add_argument("--fixed-anchor-pairs",type=int,default=2,help="Innermost fixed pairs in each window")
     parser.add_argument("--max-pairs",type=int,default=100_000,help="Maximum endpoint-pair budget")
     parser.add_argument("--max-image-tests",type=int,default=100_000,help="Periodic translation-box test budget")
     args = parser.parse_args(argv)
@@ -142,6 +146,8 @@ def main(argv=None):
         else:
             digest,assignments,manifest_hash = load_end_assignments(args.assignments)
         options = dict(expected_sha256=digest,max_distance_angstrom=args.radius,max_pairs=args.max_pairs)
+        if args.windows and (mapping is None or "discovery_assessment" not in mapping):
+            raise ValueError("--windows requires a registered end-discovery manifest")
         if args.contacts:
             from .topostitch_contacts import inspect_end_contacts
             report = inspect_end_contacts(args.model,assignments,periodic=args.periodic,
@@ -157,6 +163,10 @@ def main(argv=None):
             report["pairing_alternatives"] = describe_pairing_alternatives(screening,
                 max_alternatives_per_component=args.max_alternatives,
                 max_search_states=args.max_pairing_states)
+        if args.windows:
+            from .topostitch_discovery import plan_editable_windows
+            report["editable_windows"] = plan_editable_windows(mapping["discovery_assessment"],
+                max_base_pairs=args.max_window_pairs,fixed_anchor_pairs=args.fixed_anchor_pairs)
         if mapping is not None:
             report["registration_assessment"] = mapping
             if not mapping["coverage_complete"]:

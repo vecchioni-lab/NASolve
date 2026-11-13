@@ -1209,6 +1209,8 @@ with a checksum-bound logical manifest; explicit copy mappings handle renamed
 chains and residue numbering without guessing missing sites. A discovery
 manifest can derive those ends from declared chemical strand routes and a complete
 duplex-core pairing inventory; unknown cuts and incomplete pairing stay unresolved.
+Add `--windows` with that manifest to preview whole-pair movement scopes with fixed
+inner anchors. This proposes which sites could move; it does not move them.
 
 The command prints a review-only JSON report and writes no files. Omit
 `--periodic` for same-frame screening without Gemmi. See the [backend scope and

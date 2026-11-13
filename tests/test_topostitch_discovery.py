@@ -138,10 +138,11 @@ def test_discovery_cli_feeds_registration_and_preserves_unknown_boundaries(tmp_p
            'pairing_inventory_complete':True}
     manifest.write_text(json.dumps(value))
     before={p.name:p.read_bytes() for p in tmp_path.iterdir()}
-    args=[str(model),str(manifest),'--registration',str(reg),'--radius','15','--pairings']
+    args=[str(model),str(manifest),'--registration',str(reg),'--radius','15','--pairings','--windows']
     assert main(args)==0
     report=json.loads(capsys.readouterr().out)
     assert len(report['ends'])==2
+    assert all(e['status']=='INSUFFICIENT_PAIRED_CONTEXT' for e in report['editable_windows']['ends'])
     assert report['pairing_alternatives']['scheme_count']==2
     assert report['workflow']['proposal_state']=='INCOMPLETE_ASSESSMENT'
     assert len(report['registration_assessment']['discovery_assessment']['logical_assignments'])==2
@@ -158,3 +159,68 @@ def test_discovery_report_is_json_normalized_and_detached():
     import json
     _,report=discover()
     assert json.loads(json.dumps(report,allow_nan=False))==report
+
+
+def long_core(protected=()):
+    routes=[BackboneStrand('a',tuple(f'A:{i}' for i in range(1,9)),'chemical','unknown'),
+            BackboneStrand('b',tuple(f'B:{i}' for i in range(1,7)),'unknown','chemical')]
+    pairs=[(f'A:{i}',f'B:{9-i}') for i in range(3,9)]
+    return discover_logical_end_assignments(routes,pairs,copy_id='copy_1',
+        protected_sites=protected,pairing_inventory_complete=True)[1]
+
+
+def test_windows_expand_by_whole_pairs_and_preserve_two_inner_anchors():
+    from nasolve.topostitch_discovery import plan_editable_windows
+    report=plan_editable_windows(long_core(),max_base_pairs=5,fixed_anchor_pairs=2)
+    end,=report['ends']
+    assert [v['base_pair_count'] for v in end['windows']]==[3,4,5]
+    last=end['windows'][-1]
+    assert last['fixed_pairs']==[['A:6','B:3'],['A:7','B:2']]
+    assert last['movable_pairs']==[['A:3','B:6'],['A:4','B:5'],['A:5','B:4']]
+    assert last['overhang_sites']==['A:1','A:2']
+    assert end['stop_reason']=='PAIR_COUNT_LIMIT'
+    assert report['selected_window'] is None
+    assert report['geometry_feasibility_evaluated'] is False
+
+
+def test_window_expansion_stops_before_protected_junction():
+    from nasolve.topostitch_discovery import plan_editable_windows
+    end,=plan_editable_windows(long_core(('A:7',)),max_base_pairs=8)['ends']
+    assert end['stop_reason']=='PROTECTED_JUNCTION'
+    assert max(w['base_pair_count'] for w in end['windows'])==4
+    assert all('A:7' not in w['movable_sites'] for w in end['windows'])
+
+
+def test_window_requires_movable_context_and_rejects_stale_discovery():
+    from nasolve.topostitch_discovery import plan_editable_windows
+    _,discovery=discover()
+    end,=plan_editable_windows(discovery,max_base_pairs=5)['ends']
+    assert end['status']=='INSUFFICIENT_PAIRED_CONTEXT'
+    assert end['windows']==[]
+    discovery['logical_assignments'][0]['polarity']='3prime'
+    with pytest.raises(ValueError,match='discovery'):
+        plan_editable_windows(discovery,max_base_pairs=5)
+
+
+def test_declared_free_end_is_retained_but_never_gets_a_movement_window():
+    from nasolve.topostitch_discovery import plan_editable_windows
+    report=long_core()
+    values=report['inputs']
+    assignments,report=discover_logical_end_assignments(
+        [BackboneStrand(**s) for s in values['strands']],values['duplex_pairs'],
+        copy_id='copy_1',pairing_inventory_complete=True,do_not_connect_sites=('A:1',))
+    assert assignments[0].state=='free'
+    end,=plan_editable_windows(report,max_base_pairs=6)['ends']
+    assert end['status']=='EXCLUDED_END_STATE'
+    assert end['windows']==[]
+
+
+def test_window_planner_accepts_earlier_discovery_report_without_free_site_extension():
+    import hashlib,json
+    from nasolve.topostitch_discovery import plan_editable_windows
+    report=long_core()
+    report['inputs'].pop('do_not_connect_sites')
+    report.pop('unmatched_do_not_connect_sites')
+    report['input_sha256']=hashlib.sha256(json.dumps(report['inputs'],sort_keys=True,separators=(',',':')).encode()).hexdigest()
+    end,=plan_editable_windows(report,max_base_pairs=5)['ends']
+    assert [w['base_pair_count'] for w in end['windows']]==[3,4,5]

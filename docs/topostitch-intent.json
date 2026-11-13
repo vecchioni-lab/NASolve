@@ -256,7 +256,16 @@
       "scope": "declared chemical routes and duplex-core pairing inventory",
       "pairing_inventory_complete_default": false,
       "coordinate_topology_inferred": false,
-      "preserves_unknown_boundaries": true
+      "preserves_unknown_boundaries": true,
+      "do_not_connect_sites": true
+    },
+    "editable_windows": {
+      "module": "nasolve.topostitch_discovery",
+      "cli_flag": "--windows",
+      "scope": "logical whole-pair expansion with fixed inner anchors",
+      "protected_junctions_stop_expansion": true,
+      "geometry_feasibility_evaluated": false,
+      "selection": false
     }
   }
 }

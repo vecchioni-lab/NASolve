@@ -138,68 +138,35 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-[TopoStitch](topostitch.md) and its [intent record](topostitch-intent.json)
-combine the proposed recut workbench and sticky-end geometry repair under one
-name. Willow starts from Pine `d7913dd`; planning is isolated and no runtime
-merge is needed yet. Opt-in campaign inference, tentative scheme sharing and
-matched diffraction/geometry evaluation are specified, not implemented. This
-does not change Pine scientific gates or authorize editing Cedar/live datasets.
+[TopoStitch](topostitch.md) on `willow` starts from Pine `d7913dd`; its
+[intent record](topostitch-intent.json) is development metadata, not runtime
+permission. The [current inspector contract](topostitch-periodic.md) owns usage,
+schemas, validation commands and limits.
 
-Read-only backend slices are implemented: [explicit canonical candidate
-screening](topostitch-backend.md) and a [verified PDB coordinate adapter](topostitch-coordinates.md).
-The adapter derives overhang sequences and descriptive oriented end frames from
-explicit coordinate-site assignments. The [periodic inspector](topostitch-periodic.md)
-now enumerates metric-bounded images and observed transformed frames, with a strict assignment-file CLI and
-optional Gemmi extra. Optional `--contacts` now measures canonical heavy-atom
-bond/angle and ring-plane observations using installed NARestraints mappings and
-recipes; effective reference data and fingerprints accompany the report. It
-makes no acceptance decision or model edit. Optional `--pairings` now enumerates
-factorized one-partner alternatives, with no forced/nearest assignment and
-explicitly deferred self-orbit cases. Automatic end detection, full atom-image
-equivalence, physical assignment, geometry construction and campaign use remain
-unimplemented. Logical end roles can now resolve through the existing Pine
-registration via `--registration`, with explicit copies, source/target identity
-checks, and unresolved-end coverage retained. A discovery manifest now derives
-end roles within declared chemical routes and a complete duplex-core pairing
-inventory; partial evidence and representation boundaries remain unresolved.
-Unassisted coordinate-based topology/pair detection is still future work.
-Next: qualify physical image/geometry gates and bounded repair windows.
-The report distinguishes proposed work from NOT_ATTEMPTED execution and
-UNREVIEWED results; the GUI contract records Campaign desk integration.
+Implemented: verified PDB end frames; metric-bounded periodic image search;
+NARestraints contact observations; factorized one-partner alternatives; logical
+end mapping through Pine registration; bounded discovery within declared chemical
+routes/core pairing; and whole-pair window proposals with fixed inner anchors.
+Incomplete pairing, missing mappings, uncertain cuts, protected junctions and
+declared free ends remain explicit. Reports separate proposals from
+NOT_ATTEMPTED execution and UNREVIEWED review, with no model/checkpoint changes.
+Next: qualify coordinate realization, physical image identity and bounded geometry
+trials. Unassisted coordinate-based topology discovery, repair/refinement and
+campaign adoption remain unimplemented.
 
-Rowan owns Cedar's PostMR/campaign plane-support forwarding and later-child
-publication. No Cedar worktree files or shared environments were modified. Cedar's
-selected dictionary coverage is not treated as geometry/refinement validation.
-Compatibility review against Pine `d7913dd` and Cedar `9bd9806`: TopoStitch
-runtime files do not overlap Cedar changes, but shared guides and the changelog
-require reconciliation on integration. A combined Willow/Cedar build has not
-been validated; separate passing suites are not a substitute.
-Initial screen validation: 39 focused, 1006 full + 226 subtests, 39 installed-wheel
-checks passed. Coordinate adapter: 72 focused and installed-wheel tests, 1039 full + 226
-subtests passed; source-file relocation and isolated installed import passed.
-Periodic inspector: **132 installed-wheel and relocated-checkout tests**, plus
-**1,099 full + 226 subtests** passed. Installed CLI relocation and lean optional-
-dependency behavior passed. The original temporary checkout/input paths were
-absent during their respective relocation checks. Exact commands, additive
-schema/packaging scope and limits are in the [periodic contract](topostitch-periodic.md).
-Contact observations: **143 focused and installed-wheel tests passed**; a
-wheel installation with declared dependencies (NARestraints v1.1.3 at `a9264f9`,
-Gemmi 0.7.5) passed the actual periodic `--contacts` CLI smoke check and isolated
-installed-import verification. No complete-suite rerun for this isolated patch.
-Pairing alternatives: **157 focused and installed-wheel tests passed**, with an
-actual installed combined-flags CLI smoke check, including an independent
-brute-force oracle and factored forty-pair case. Cedar C253 (`f337660`) changes selected AutoSol site references/checkpoint
-schema; Willow does not consume or alter those interfaces. No combined-branch validation is claimed.
-Logical mapping: **211 focused and installed-wheel tests + 2 subtests passed**,
-plus an actual installed logical-manifest CLI check, including existing
-construct-registration regressions. The adapter does not change Pine's mapping
-implementation or Cedar's active checkpoint interfaces.
-Declared-topology discovery: **227 focused and installed-wheel tests + 2 subtests
-passed**. A public 8D93 installed-CLI smoke check recovered two ends/one mate
-within declared route windows and retained unknown cuts; source bytes unchanged.
-Missing pair evidence never establishes an overhang without declared scope
-completeness. Downloaded coordinates and derived benchmark files are local only.
-No native Phenix/Coot runs or scientific data changes.
+**Current checks:** 232 focused and installed-wheel tests + 2 subtests passed.
+Actual installed CLI checks cover composed options and public 8D93 within declared
+local windows; source bytes stayed unchanged and unknown cuts stayed incomplete.
+Coordinates and derived benchmark files remain local only. The last full suite
+was the earlier periodic slice: 1,099 tests + 226 subtests; it was not rerun for
+these isolated additions. No native Phenix/Coot or diffraction validation.
+
+**Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
+Cedar C253 (`f337660`) owns selected AutoSol site references/checkpoint schema;
+Willow does not consume or edit those active interfaces or shared environments.
+Shared guides/changelog need reconciliation at integration. No combined
+Willow/Cedar build has been validated. Keep completed patches pushed and current
+contracts concise rather than adding handoff diaries.
 
 ## Work discipline and doc ownership
 

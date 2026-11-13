@@ -173,6 +173,31 @@ state incomplete while still showing assessable candidates. This is discovery
 **within declared topology**, not yet an unattended end finder from an arbitrary
 PDB or an automatic pairing/strand-registration engine.
 
+## Editable-window proposals
+
+With a discovery manifest, add `--windows` to describe increasing paired windows
+for each discovered end. `--max-window-pairs` defaults to 12;
+`--fixed-anchor-pairs` defaults to 2. Each proposal moves the overhang and outer
+whole pairs while holding its innermost pairs fixed. Expansion stops before a
+protected junction, changed pairing route or route-scope boundary. Too little
+paired context yields an explicit outcome rather than a guessed anchor.
+
+The API `plan_editable_windows` in `nasolve.topostitch_discovery` replays and
+checks the discovery evidence before producing schema-1
+`topostitch-editable-window-proposals`. It records logical movable/fixed sites,
+stable window IDs and why expansion stopped; no window is selected. This is a
+movement-scope proposal, not coordinate mapping, motion, closure feasibility or
+combined-window overlap validation. A later geometry trial must qualify those
+properties against the actual source model and periodic target.
+
+Optional `do_not_connect_sites` in discovery input marks matching overhang or
+terminal-pair sites as declared free ends. They remain visible with `state=free`,
+but candidate search and window planning exclude them. Unmatched declarations
+remain visible and keep coverage incomplete. This is separate from protected
+junctions. Earlier schema-1 discovery reports without this additive extension
+remain readable by the window planner: their original fingerprint is checked,
+and only the missing free-site fields receive empty in-memory defaults.
+
 ## Periodic backend
 
 `nasolve.topostitch_periodic.propose_periodic_connections` accepts explicit
@@ -335,132 +360,65 @@ synthetic PDB rings; no physical repair, Phenix/Coot execution or real diffracti
 validation is claimed. Next: automatic/registration-backed end detection, full
 image distinctness and global pairing constraints, then qualified geometry work.
 
-## Validation basis
+## Current validation receipt — 2026-11-13
 
-Focused tests compare the bounded search with an independent brute-force image
-enumeration for P1, P21, P212121, P43, R3:H and P63, including centering,
-non-orthogonal cells, screw operations, large cell shifts and cutoff boundaries.
-They verify reciprocal operators, endpoint reimaging, self-edge capacity warnings,
-frame transformations, budgets, missing-extra behavior, strict manifests, source
-drift, SCALE/CRYST1 handling and relocation after the original model is removed.
+**232 focused tests + 2 subtests passed** from source (1.33 s) and against the
+installed wheel (1.37 s), using Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3
+(`a9264f9`) and Gemmi 0.7.5. The new backend tests failed before their functions
+existed; additional failing-before regressions cover self-reversed paired steps,
+partial pairing evidence and earlier discovery-report compatibility.
 
-The two new test modules first failed at collection with `ModuleNotFoundError`
-because their backends did not exist. Final validation on 2026-11-13 used Python
-3.12.14, pytest 9.1.1 and optional Gemmi 0.7.5:
+Coverage includes independent brute-force symmetry enumeration in P1, P21,
+P212121, P43, R3:H and P63; nonlocal/skew-cell bounds; reciprocal/self-image
+capacity; transformed frames/contact atoms; library role fingerprints; incomplete
+contacts; exact source and registration checksums; renamed/split chains and
+copies; chemical versus representation boundaries; protected/free ends; fixed
+anchors and whole-pair window expansion; bounded matching alternatives; no-write
+CLI behavior; and original-path-absent input relocation.
 
-| Check | Result |
-| --- | --- |
-| Complete source suite, topology extra available | **1,099 tests + 226 subtests passed**, 53.33 s |
-| Four TopoStitch modules against installed wheel | **132 passed**, 0.61 s |
-| Four TopoStitch modules from relocated temporary checkout, original temporary checkout absent | **132 passed**, 0.61 s |
-| Installed command on synthetic PDB and assignment manifest | Verified periodic JSON, no changed input files |
-| Same installed command after moving inputs and renaming PDB, old input directory absent | Identical report |
-| Lean wheel without Gemmi | Nonperiodic command passed; periodic request exited 2 with actionable extra-install error and no partial stdout |
-| Isolated installed import and package metadata | Imported wheel modules; both entry points and optional extra present |
-| Python 3.10 parser syntax check | Passed; this is not a Python 3.10 runtime test |
-| `git diff --check` and intent/Markdown references | Passed |
-
-Exact full-suite invocation from the Willow checkout (paths below are historical
-validation provenance, not operational model references):
+Source command (historical environment paths, not operational model references):
 
 ```sh
 NASOLVE_TEST_PYTHON=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src "$NASOLVE_TEST_PYTHON" - <<'PYTEST'
 import sys
+from pathlib import Path
 sys.path.append('/private/tmp/willow-periodic-deps')
 import pytest
-raise SystemExit(pytest.main(['-q', '-p', 'no:cacheprovider']))
+paths = sorted(str(p) for p in Path('tests').glob('test_topostitch*.py'))
+raise SystemExit(pytest.main(paths + ['tests/test_construct_registration.py', '-q', '-p', 'no:cacheprovider']))
 PYTEST
 ```
 
-The optional dependency was installed only under `/private/tmp`; the shared
-NASolve/Cedar environment was not changed. A disposable build environment built
-`nasolve-0.1.0-py3-none-any.whl` with `pip wheel --no-deps --no-build-isolation`.
-Two fresh virtual environments installed that wheel with `--no-deps`; one also
-installed Gemmi 0.7.5. This checks the new inspector's packaging and isolated
-optional-dependency behavior, not a fresh provisioning of Phenix, Coot or the
-existing NARestraints dependency.
+The equivalent explicit paths were used for the receipt above. Installed tests
+ran from `/private/tmp`, using the same test interpreter, absolute test paths,
+`--import-mode=importlib` and
+`PYTHONPATH=/private/tmp/willow-periodic-install/lib/python3.12/site-packages`.
+A wheel was built with `pip wheel --no-deps --no-build-isolation` and installed
+into that disposable environment with its declared dependencies. Subsequent
+patches rebuilt/reinstalled the wheel without changing the shared NASolve/Cedar
+environments. Isolated `python -I` imports matched current source bytes.
 
-The exact installed test invocation used:
+Actual installed CLI checks cover periodic/contact/pairing composition, logical
+registration and discovery/windows. A scoped public
+[8D93](https://www.rcsb.org/structure/8D93) check used explicitly declared local
+strand/core windows: two ends, one mate, two unselected pairing choices and four
+window sizes per end. It retained unknown interior cuts and preserved PDB bytes.
+This is a read-only smoke check, not unsupervised discovery or scientific repair
+validation. Downloaded coordinates and derived benchmark files are excluded from
+Git. The synthetic CLI checks also verified no input-file changes.
 
-```sh
-PYTHONDONTWRITEBYTECODE=1 \
-PYTHONPATH=/private/tmp/willow-periodic-install/lib/python3.12/site-packages \
-"$NASOLVE_TEST_PYTHON" -m pytest \
-  /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-linden/tests/test_topostitch.py \
-  /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-linden/tests/test_topostitch_coordinates.py \
-  /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-linden/tests/test_topostitch_periodic.py \
-  /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-linden/tests/test_topostitch_inspect.py \
-  -q -p no:cacheprovider --import-mode=importlib
-```
+The last complete suite, at the initial periodic-inspector slice, passed
+**1,099 tests + 226 subtests** (53.33 s). Later isolated TopoStitch additions did
+not change global mechanics, so that suite was not rerun or represented as
+covering those additions. At that earlier slice, all 132 focused tests also
+passed from a relocated temporary checkout after its original path was absent;
+lean installs ran nonperiodic inspection and reported missing Gemmi cleanly.
+Current mapping/contact tests additionally move their inputs and remove the
+original paths. `git diff --check`, intent JSON and documentation references
+are checked before publication. No Phenix/Coot execution, diffraction evaluation
+or native scientific success is claimed.
 
-That command ran from `/private/tmp`, with isolated `python -I` checks verifying
-installed module origins. Relocation testing copied the tracked checkout plus
-this patch into a temporary clone, renamed its directory, asserted the old path
-was absent, verified imports originated in the relocated `src`, then ran the
-same four test files with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and the
-optional Gemmi directory appended. No live-run inputs were copied or published.
-No external crystallographic tools ran, so there is no Phenix/Coot version or
-native refinement result for this patch.
-
-Gemmi API references used for this implementation:
+Gemmi API references:
 [symmetry operations](https://gemmi.readthedocs.io/en/latest/symmetry.html) and
 [unit-cell transforms](https://gemmi.readthedocs.io/en/latest/cell.html).
-
-Contact-layer validation (2026-11-13): the new test module first failed at import
-before implementation. The five TopoStitch test files then passed **143 tests**
-with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, using the same test interpreter
-and optional Gemmi path shown above. Checks include role remapping/provenance,
-partial contacts, degenerate angles, exact screw-image atom transforms, rigid
-transforms, no-write CLI behavior and relocation with the original path absent.
-This isolated additive inspector change did not alter global mechanics, so the
-complete suite was not repeated. The same **143 tests passed against the installed wheel** (1.60 s), using the
-installed-test command above with `test_topostitch_contacts.py` appended. The
-wheel was installed with its declared dependencies, including NARestraints
-v1.1.3 (`a9264f9`) and Gemmi 0.7.5. An actual isolated installed
-`nasolve-topostitch-inspect ... --radius 15 --periodic --contacts` call on a
-synthetic fixture passed, and installed module bytes matched current source. No native Phenix/Coot tools or scientific inputs
-were used.
-
-Pairing-layer validation (2026-11-13): failing-before module import, then
-**157 focused tests passed** across the six TopoStitch files (1.60 s).
-Independent brute-force subsets agree with the matching enumeration. Tests cover
-factorization, partial/empty alternatives, periodic image competition,
-involutive/self-image capacity, reciprocal drift, input fingerprints, budgets
-and composed contact/pairing CLI behavior. **157 installed-wheel tests passed**
-(1.47 s), using the installed invocation above with both new TopoStitch test
-files appended. The actual installed command with `--periodic --contacts
---pairings` returned two unselected schemes for the synthetic smoke fixture;
-isolated imports matched current source bytes. No global mechanics changed; the full
-suite was not repeated. No new scientific artifacts or native tool runs.
-
-Logical-registration validation (2026-11-13): new tests failed at import before
-implementation, then **211 focused tests + 2 subtests passed** (1.56 s), covering
-all seven TopoStitch files and `tests/test_construct_registration.py`. The command
-uses the source invocation above with those test paths supplied to pytest.
-Cases include label/number changes, insertion codes, split chains, explicit
-copies, partial coverage, target/actual identity conflicts, model/registration
-checksum drift, no-write CLI behavior and relocation after original-path removal.
-The existing Pine registration implementation is unchanged; no global mechanics
-changed, so no complete-suite rerun was needed. **211 installed-wheel tests + 2
-subtests passed** (1.93 s), using the installed invocation with the logical-mapping
-and construct-registration test files added. An actual installed logical-manifest
-CLI call resolved renamed sites, returned two pairing choices and preserved all
-input bytes.
-
-Declared-topology discovery validation (2026-11-13): module-import failure before
-implementation, plus failing-before regressions for self-reversed core steps and
-partial pairing evidence. **227 focused tests + 2 subtests passed** (1.39 s) across
-the eight TopoStitch files and construct-registration tests. Added coverage spans
-5-prime/3-prime order, internal gaps, chemical versus representation/unknown
-boundaries, protected junctions, two tails, length budgets, isolated/duplicate
-pairing, stable input ordering, JSON normalization and the composed discovery CLI.
-The same **227 installed-wheel tests + 2 subtests passed** (1.82 s), using the
-installed command above with discovery and construct-registration tests added.
-An actual installed discovery/registration/periodic/contact/pairing call on public
-8D93 recovered two ends and one mate from explicitly declared local strand/core
-windows, retained unknown interior-cut coverage, and preserved source bytes.
-This is a scoped read-only smoke check, not unsupervised topology discovery or
-scientific repair validation. Its downloaded coordinates and generated benchmark
-manifests/reports remain local and are excluded from Git. No shared mechanics,
-checkpoint schemas or native-tool behavior changed.

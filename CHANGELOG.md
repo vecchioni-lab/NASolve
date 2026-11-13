@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch editable windows
+
+- Add `--windows` whole-pair scope proposals with fixed inner anchors, bounded
+  expansion and junction/routing stops. No coordinates move or window is selected.
+- Preserve explicit do-not-connect sites as free ends, excluding them from
+  candidate/window generation. Keep earlier schema-1 discovery reports readable.
+- Consolidate current validation/handoff guidance instead of accumulating diaries.
+
 ### TopoStitch declared-topology end discovery
 
 - Derive end roles from explicit chemical strand order and duplex-core pairing,
