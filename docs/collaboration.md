@@ -14,6 +14,26 @@ but are not implementation instructions.
 
 See [`docs/README.md`](README.md) for the complete documentation map.
 
+## Development cadence
+
+Keep completed patches pushed to their active feature branch after appropriate
+validation. This does not imply merging other branches or rewriting remote
+history. Check related branch interfaces and shared-file changes as work proceeds,
+particularly Cedar; reconcile overlapping documentation and validate shared
+behavior before integration. Distinguish a compatibility review from a tested
+combined build.
+
+Use focused regression tests for isolated behavior changes. Run the complete
+suite when global/shared mechanics change, and verify installation after each
+substantial code patch. Documentation-only changes need content/link checks.
+Record what actually ran and what remains untested.
+
+Maintain the existing human guides and agent-readable contracts together.
+Consolidate stale guidance instead of creating repeated handoff files. Avoid
+unused code, redundant tests and leftover task-owned scratch directories, while
+preserving scientific evidence and other contributors' work. Raise evidence-based
+objections to mistaken assumptions with a practical alternative.
+
 ## Command available from any directory
 
 The tracked launcher can be linked into an existing `PATH` directory. From the

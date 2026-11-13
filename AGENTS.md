@@ -29,11 +29,32 @@ in this repository.
   compatibility, portability, or reproducibility change.
 - Preserve support for explicit CLI paths when adding workspace shortcuts.
 
+## Ongoing collaboration
+
+- Keep completed, appropriately validated patches committed and pushed to the
+  active feature branch. Do not force-push or merge other branches implicitly.
+- Check current related branch changes for interface and shared-file conflicts,
+  especially Cedar, before touching shared mechanics. Record unresolved overlap;
+  a clean textual merge alone does not establish runtime compatibility.
+- Update existing human guides and agent-readable contracts with behavior and
+  remaining limits. Prefer one current source of truth over new handoff diaries.
+- Avoid unused scaffolding, redundant tests and abandoned scratch directories.
+  Remove only task-owned disposable material; preserve others' work and scientific
+  evidence. Keep tests that protect distinct behavior or demonstrated failures.
+- Challenge assumptions when evidence disagrees; explain the consequence and
+  recommend a concrete alternative rather than silently following a mistake.
+
 ## Required validation
 
-- Add a regression test that fails before the change and passes afterward.
-- Run the focused tests and the complete suite with
-  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`.
+- For behavior changes, add a meaningful regression test that fails before the
+  change and passes afterward. Documentation-only edits need relevant checks,
+  not artificial tests.
+- Run focused tests with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`.
+  Run the complete suite when global/shared mechanics change; do not repeat it
+  for isolated patches without a concrete integration concern. Record scope and
+  rationale so focused validation is not mistaken for a full-suite result.
+- Verify installation after each substantial code patch, including affected
+  entry points and optional dependencies.
 - For external-tool changes, record the exact Phenix/Coot version and whether
   the check was a dry-run or a complete execution.
 - For portability changes, test from a relocated temporary checkout after the

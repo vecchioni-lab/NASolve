@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Contributor workflow
+
+- Record standing publication of validated feature-branch updates, cross-branch
+  compatibility review, concise human/agent documentation and task-owned cleanup.
+- Use focused validation for isolated patches, reserving the complete suite for
+  shared mechanics; retain installation checks after substantial code changes.
+
 ### TopoStitch periodic proposal inspection
 
 - Add optional Gemmi-backed, metric-bounded periodic endpoint enumeration with

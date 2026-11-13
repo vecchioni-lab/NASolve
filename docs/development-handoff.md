@@ -159,6 +159,10 @@ UNREVIEWED results; the GUI contract records Campaign desk integration.
 Rowan owns Cedar's PostMR/campaign plane-support forwarding and later-child
 publication. No Cedar worktree files or shared environments were modified. Cedar's
 selected dictionary coverage is not treated as geometry/refinement validation.
+Compatibility review against Pine `d7913dd` and Cedar `9bd9806`: TopoStitch
+runtime files do not overlap Cedar changes, but shared guides and the changelog
+require reconciliation on integration. A combined Willow/Cedar build has not
+been validated; separate passing suites are not a substitute.
 Initial screen validation: 39 focused, 1006 full + 226 subtests, 39 installed-wheel
 checks passed. Coordinate adapter: 72 focused and installed-wheel tests, 1039 full + 226
 subtests passed; source-file relocation and isolated installed import passed.
