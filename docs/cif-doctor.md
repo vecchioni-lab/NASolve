@@ -9601,6 +9601,29 @@ curated chemical state. Its exact evidence is
 `native_selected_autosol_control_2026_11_13` in the ledger. All failed outputs are
 preserved; native chosen-model AutoSol acceptance remains open.
 
+### Source-declared input controls (C261)
+
+Existing target-free graph and reader adapters now produce isolated qualified
+1AP and 5IU candidates against their exact original curated sources. This is a
+native diagnostic, not ordinary acquisition or refinement support. Source x/y/z
+remain explicitly distinguished from independently declared ideal coordinates.
+
+For 1AP, the existing explicit neutral-purine representation permission and
+preserved monomer-reader dialect avoid previously documented reader failures.
+The installed eLBOW monomer path then changes the first terminal P–O bond to
+double even when another P=O is already declared. Cedar rejects that candidate.
+A fresh control permutes complete bond-table rows so the already-declared P=O
+is encountered first; all chemical fields and coordinates remain identical.
+The resulting candidate passes the unchanged original-source isolated checks.
+This does not authorize choosing a phosphate resonance form, changing H/charge,
+removing OP3, repairing a generated bond after optimization, or weakening a gate.
+
+See `declared_source_generation_controls_2026_11_13` in the evidence ledger for
+all stopped negative controls, source/native hashes, limits and exact outcomes.
+The remaining integration must retain original source/authority, derived-reader
+identity and recipe through the existing owner, cache and qualification paths.
+Native chosen-model AutoSol acceptance remains open.
+
 ## Generated numerical defects and explicit candidates
 
 The assessor's `cif-doctor-graph-numerics-v2` policy checks exact coincident

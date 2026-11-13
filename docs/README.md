@@ -14,8 +14,8 @@ milestone statements preserve their original scope; they are not a second queue.
   result as the initial review checkpoint. Schema-2 campaigns can explicitly choose
   the same route. New checked requests save compact, exact evidence; explicit
   retirement of successful working duplicates now preserves stable public paths
-  and recovers interrupted cleanup. Automatic caller integration and campaign-scale
-  resource acceptance remain separate storage work. Complete requests can
+  and recovers interrupted cleanup. C260 connects new ordinary/campaign callers; broader campaign-scale
+  resource acceptance and historical-campaign migration remain separate. Complete requests can
   reuse exact completed plane support or explicitly opt into graph-selected support
   generation. `cif-doctor prepare-run --automatic-plane-support` now exposes that
   choice with exact-result notes. Checked PostMR and schema-2 campaigns also forward

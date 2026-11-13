@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C260
+## Near-term closure estimate at C261
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -31,13 +31,13 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. Reconcile the existing C30 adapter or qualified curated-input route with exact source/recipe identity; no relabeling or chemistry bypass. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. Integrate this route with exact original/derived source and recipe identity; no relabeling or chemistry bypass. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
 Planning allowance from this checkpoint: **roughly 1–3 further implementation
-patches, plus native/integration validation**. Storage is the largest uncertainty;
-its existing nested inventories mean safe retirement is more than deleting files.
+patches, plus native/integration validation**. The new source-input integration and native acceptance are now the largest
+uncertainty; storage caller integration is complete within its measured scope.
 This is an estimate, not a completion criterion. Do not open new chemistry work to
 fill a numerical patch budget. Update it when actual native/storage findings change
 scope. Exact C252 scope and results are in the current handoff and evidence ledger.
@@ -110,9 +110,9 @@ C207–C216 supply the general mutation/plane checks and PDU/5PC controls; combi
 the plane checks into ordinary repair now works for explicitly supplied owned
 support, including the complete request/ReadySet at C242. C244 adds explicit
 automatic acquisition; C245 adds prepare-run and result notes; C246 adds explicit
-checked PostMR/campaign forwarding; C247 carries publication/status notes. Final
-selected-plane reporting, wider recovery coverage and
-safe working-file retirement remain work. DP's ambiguous correspondence,
+checked PostMR/campaign forwarding; C247 carries publication/status notes. C249 selected-plane reporting, C248 sibling recovery and C258/C260 working-file
+retirement/caller integration are complete within their recorded scopes. Remaining
+acceptance and rollout limits are listed above. DP's ambiguous correspondence,
 source-H questions and PDU numerical targets remain visible limits.
 
 These are work packages, not a prediction of session or commit count. Preserve

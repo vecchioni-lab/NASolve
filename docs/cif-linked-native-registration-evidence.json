@@ -92218,5 +92218,370 @@
       "100 identical requests is an arithmetic capacity estimate, not 100 executed datasets or a bound for other chemistry/refinement inputs.",
       "Full suite deferred by Simon; last full C220/583d30df, 9178 tests + 276 subtests."
     ]
+  },
+  "declared_source_generation_controls_2026_11_13": {
+    "milestone": "C261",
+    "date": "2026-11-13",
+    "baseline_commit": "ef2805c",
+    "status": "ISOLATED_ORIGINAL_SOURCE_QUALIFICATION_PASS_1AP_AND_5IU; ORDINARY_INTEGRATION_OPEN",
+    "native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+    "execution": "Complete bounded native generation and existing isolated source/candidate-seed qualification, not dry-run. No ReadySet, AutoSol, diffraction refinement, model editing or adoption.",
+    "prior_work": [
+      "C30 explicit declared-coordinate origin and target-free graph export",
+      "C34 literal unknown stereo reader failure; C37 preserved monomer dialect and declared charge control",
+      "C116 connected atom ordering (insufficient for this control)",
+      "C117/C118 exact neutral-purine representation permission",
+      "Original reviewed 1AP monomer source replaced a failed eLBOW output; its numerical values remain unmodified"
+    ],
+    "limits": {
+      "generation_attempts_per_component_per_control": 1,
+      "generation_timeout_seconds": 240,
+      "native_steps": 180,
+      "isolated_job_seconds": 60,
+      "isolated_total_seconds": 180,
+      "outer_driver_seconds": 1800
+    },
+    "findings": [
+      "5IU passes with existing graph/CCD adapters.",
+      "1AP CCD route first blocks localized/aromatic purine mismatch; existing explicit neutral-purine permission resolves only that representation. Unknown stereo tokens then break native chiral construction; connected atom ordering is insufficient.",
+      "Preserved monomer dialect builds 1AP but changes OP1-P SINGLE to DOUBLE while OP2-P remains DOUBLE and charges remain exact; current gates reject it.",
+      "Installed Bondise calls SetPhosphatesOrder for monomer format; it makes the first terminal P-O double without testing existing double orders.",
+      "A fresh diagnostic permutes complete bond rows, presenting the source-declared OP2-P double first. No atom, charge, H, coordinate, bond declaration, signed stereo or numerical target changes. Native generation then passes original-source isolated qualification.",
+      "First bond-order runner stops before native execution because an order-sensitive numerical-row comparison rejects the intended permutation. Corrected control compares complete row multisets and all other tables; the failed output is retained."
+    ],
+    "controls": [
+      {
+        "historical_local_path": "/Users/svecchio/NASolve-live-tests/261_Cedar_declared-source-generation-9qgkidth",
+        "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY; NOT_AN_OPERATIONAL_REFERENCE",
+        "ownership": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "elapsed_seconds": 18.978402042004745,
+        "components": {
+          "1AP": {
+            "status": "FAILED",
+            "original_preserved": true,
+            "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+            "candidate": null,
+            "diagnostic": {
+              "policy_id": "cif-source-candidate-diagnostic-v1",
+              "generation_status": "FAILED",
+              "candidate_state": "ABSENT",
+              "blocking_stage": "SOURCE_HANDOFF",
+              "summary": "Source handoff blocked before construction: bond_orders.",
+              "builder_started": false,
+              "failed_handoff_checks": [
+                "bond_orders"
+              ],
+              "handoff_reason": null,
+              "native_exception": {
+                "exception_type": "ValueError",
+                "message": "Declared source charge handoff failed"
+              },
+              "execution_status": "COMPLETED",
+              "execution_returncode": 0,
+              "rejection_reasons": [],
+              "identity_change_fields": [],
+              "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+              "automatic_adoption": false
+            },
+            "original_source_candidate_status": null,
+            "qualified": false
+          },
+          "5IU": {
+            "status": "ORIGINAL_SOURCE_ISOLATED_QUALIFICATION_PASS",
+            "original_preserved": true,
+            "source_sha256": "c621cc62fec1c1e189a544c811e57e874c2284045d806a4c67c6fe27d0b05f73",
+            "candidate": {
+              "anchor": "candidate_directory",
+              "path": "candidate.cif",
+              "sha256": "04497b7438f86afe90957f3e4cc405f066522a97a1ec1a3fca3765444c25f544",
+              "size": 11860
+            },
+            "diagnostic": {
+              "policy_id": "cif-source-candidate-diagnostic-v1",
+              "generation_status": "CANDIDATE_REVIEW",
+              "candidate_state": "RETAINED_REVIEW",
+              "blocking_stage": null,
+              "summary": "Candidate retained for review; native usability requires separate qualification.",
+              "builder_started": true,
+              "failed_handoff_checks": [],
+              "handoff_reason": null,
+              "native_exception": null,
+              "execution_status": "COMPLETED",
+              "execution_returncode": 0,
+              "rejection_reasons": [],
+              "identity_change_fields": [],
+              "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+              "automatic_adoption": false
+            },
+            "original_source_candidate_status": "CANDIDATE_REVIEW",
+            "qualified": true
+          }
+        },
+        "files": {
+          "start.json": "a3925dc186caa9668e7732ab650adb9b6df379666b91f6a9138fddaf245750e2",
+          "runner-pins.json": "e3de3a1fc25f3804d251c6d2c0475b63a397c843b3a122283a3bf2e680a5a167",
+          "summary.json": "b919f4cd6dc01474e0fae91182a6ff5d810c5d9052f902e9e8e38e5c240af3dd",
+          "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+          "worker.py": "ff40f24c73e709e875577047e91777be69f52de7d82dcf221d564660271fcdf0"
+        }
+      },
+      {
+        "historical_local_path": "/Users/svecchio/NASolve-live-tests/261_Cedar_declared-purine-generation-4wp_4mlu",
+        "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY; NOT_AN_OPERATIONAL_REFERENCE",
+        "ownership": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "elapsed_seconds": 2.8129751670057885,
+        "components": {
+          "1AP": {
+            "status": "FAILED",
+            "original_preserved": true,
+            "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+            "candidate": null,
+            "diagnostic": {
+              "policy_id": "cif-source-candidate-diagnostic-v1",
+              "generation_status": "FAILED",
+              "candidate_state": "ABSENT",
+              "blocking_stage": "NATIVE_BUILDER",
+              "summary": "Native builder: list index out of range",
+              "builder_started": true,
+              "failed_handoff_checks": [],
+              "handoff_reason": null,
+              "native_exception": {
+                "exception_type": "IndexError",
+                "message": "list index out of range"
+              },
+              "execution_status": "COMPLETED",
+              "execution_returncode": 0,
+              "rejection_reasons": [],
+              "identity_change_fields": [],
+              "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+              "automatic_adoption": false
+            },
+            "original_source_candidate_status": null,
+            "qualified": false
+          }
+        },
+        "files": {
+          "start.json": "a3925dc186caa9668e7732ab650adb9b6df379666b91f6a9138fddaf245750e2",
+          "runner-pins.json": "2302d44cc02756702af77db076a5b5f4073bdcc541a941927ee6ef2a816d9075",
+          "summary.json": "98e8afc7024993fbcd3f5a27751ffdd3d36be1dcfec86af4baf7ab1bc5b9155a",
+          "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+          "worker.py": "0c170e2ac4ac623cad57dbeedfc48c676c18a5299fd2e3e374c9310f893ee3c1"
+        }
+      },
+      {
+        "historical_local_path": "/Users/svecchio/NASolve-live-tests/261_Cedar_ordered-purine-generation-5hgftjp_",
+        "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY; NOT_AN_OPERATIONAL_REFERENCE",
+        "ownership": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "elapsed_seconds": 3.0257868749904446,
+        "components": {
+          "1AP": {
+            "status": "FAILED",
+            "original_preserved": true,
+            "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+            "candidate": null,
+            "diagnostic": {
+              "policy_id": "cif-source-candidate-diagnostic-v1",
+              "generation_status": "FAILED",
+              "candidate_state": "ABSENT",
+              "blocking_stage": "NATIVE_BUILDER",
+              "summary": "Native builder: ",
+              "builder_started": true,
+              "failed_handoff_checks": [],
+              "handoff_reason": null,
+              "native_exception": {
+                "exception_type": "AssertionError",
+                "message": ""
+              },
+              "execution_status": "COMPLETED",
+              "execution_returncode": 0,
+              "rejection_reasons": [],
+              "identity_change_fields": [],
+              "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+              "automatic_adoption": false
+            },
+            "original_source_candidate_status": null,
+            "qualified": false
+          }
+        },
+        "files": {
+          "start.json": "a3925dc186caa9668e7732ab650adb9b6df379666b91f6a9138fddaf245750e2",
+          "runner-pins.json": "99a82a83891a7386d62f0dc900993825249279bbae6d9b5ecde3c4bf956fac7a",
+          "summary.json": "ae7cf4f78e286812288854dff27a5134abb1e7ba531bc364ba1be270d28811bb",
+          "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+          "worker.py": "2a7d79a902919419fb539f97987ae2f70b80f07b51e55a375b9d231a9ad96c17"
+        }
+      },
+      {
+        "historical_local_path": "/Users/svecchio/NASolve-live-tests/261_Cedar_preserved-dialect-generation-agovpspc",
+        "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY; NOT_AN_OPERATIONAL_REFERENCE",
+        "ownership": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "elapsed_seconds": 22.764048457989702,
+        "components": {
+          "1AP": {
+            "status": "REJECTED",
+            "original_preserved": true,
+            "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+            "candidate": {
+              "anchor": "candidate_directory",
+              "path": "candidate.cif",
+              "sha256": "20fe87d2ba0a3171e90e4a186cc4d7db805d67b45244ee9815b1641216f47c9c",
+              "size": 13892
+            },
+            "diagnostic": {
+              "policy_id": "cif-source-candidate-diagnostic-v1",
+              "generation_status": "REJECTED",
+              "candidate_state": "RETAINED_REJECTED",
+              "blocking_stage": "CANDIDATE_ASSESSMENT",
+              "summary": "Retained candidate rejected: generated-atom-bond-or-hydrogen-identity-changed, generated-declared-chirality-changed, source-representation-handoff-not-qualified. Changed identity fields: bond_orders.",
+              "builder_started": true,
+              "failed_handoff_checks": [],
+              "handoff_reason": null,
+              "native_exception": {
+                "exception_type": "ValueError",
+                "message": "Finished native inventory changed source chemistry"
+              },
+              "execution_status": "COMPLETED",
+              "execution_returncode": 0,
+              "rejection_reasons": [
+                "generated-atom-bond-or-hydrogen-identity-changed",
+                "generated-declared-chirality-changed",
+                "source-representation-handoff-not-qualified"
+              ],
+              "identity_change_fields": [
+                "bond_orders"
+              ],
+              "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+              "automatic_adoption": false
+            },
+            "original_source_candidate_status": "REJECTED",
+            "qualified": false
+          }
+        },
+        "files": {
+          "start.json": "a3925dc186caa9668e7732ab650adb9b6df379666b91f6a9138fddaf245750e2",
+          "runner-pins.json": "dd73ee3a5761785153f45ab12e395f8bc3841f8bd126c1d1ab1b3e2bc55b9269",
+          "summary.json": "2e45e6624ee4fb51dec9e8c0787b07ec6bd34447824874015e370eaa70282c93",
+          "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+          "worker.py": "e40c02d4c75c775f6ad87e424f1e8710ab8de995c01ce450e83a0f09966767a9"
+        }
+      },
+      {
+        "historical_local_path": "/Users/svecchio/NASolve-live-tests/261_Cedar_declared-bond-order-generation-rp2t32z3",
+        "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY; NOT_AN_OPERATIONAL_REFERENCE",
+        "ownership": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "elapsed_seconds": 0.19029133400181308,
+        "components": {
+          "1AP": {
+            "status": "FAILED",
+            "original_preserved": true,
+            "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+            "candidate": null,
+            "diagnostic": null,
+            "original_source_candidate_status": null,
+            "qualified": false
+          }
+        },
+        "files": {
+          "start.json": "a3925dc186caa9668e7732ab650adb9b6df379666b91f6a9138fddaf245750e2",
+          "runner-pins.json": "3a44e74876c318841418da4bf94da2e9cb14ed1fbb1f173faff0755630fb5f05",
+          "summary.json": "13a5ce3a4adffca6555f864f153fe055e87a3a9899868924cf084c69139661f5",
+          "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+          "worker.py": "e2a66d4de33826cdea0ae76660fece8b6fc3ab137b12435ca9983f03761aa264"
+        }
+      },
+      {
+        "historical_local_path": "/Users/svecchio/NASolve-live-tests/261_Cedar_declared-bond-order-generation-1jjl2ssv",
+        "path_role": "LOCAL_VALIDATION_PROVENANCE_ONLY; NOT_AN_OPERATIONAL_REFERENCE",
+        "ownership": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "elapsed_seconds": 23.9178947499895,
+        "components": {
+          "1AP": {
+            "status": "ORIGINAL_SOURCE_ISOLATED_QUALIFICATION_PASS",
+            "original_preserved": true,
+            "source_sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+            "candidate": {
+              "anchor": "candidate_directory",
+              "path": "candidate.cif",
+              "sha256": "6c3c3c26ed32316d93a46851c5d0ceeee4ced06ad01c88f70b7d6ac5bf7c078b",
+              "size": 13892
+            },
+            "diagnostic": {
+              "policy_id": "cif-source-candidate-diagnostic-v1",
+              "generation_status": "REJECTED",
+              "candidate_state": "RETAINED_REJECTED",
+              "blocking_stage": "CANDIDATE_ASSESSMENT",
+              "summary": "Retained candidate rejected: generated-declared-chirality-changed, source-representation-handoff-not-qualified.",
+              "builder_started": true,
+              "failed_handoff_checks": [],
+              "handoff_reason": null,
+              "native_exception": {
+                "exception_type": "ValueError",
+                "message": "Finished native inventory changed source chemistry"
+              },
+              "execution_status": "COMPLETED",
+              "execution_returncode": 0,
+              "rejection_reasons": [
+                "generated-declared-chirality-changed",
+                "source-representation-handoff-not-qualified"
+              ],
+              "identity_change_fields": [],
+              "native_usability": "NOT_ASSESSED_BY_DIAGNOSTIC",
+              "automatic_adoption": false
+            },
+            "original_source_candidate_status": "CANDIDATE_REVIEW",
+            "qualified": true
+          }
+        },
+        "files": {
+          "start.json": "a3925dc186caa9668e7732ab650adb9b6df379666b91f6a9138fddaf245750e2",
+          "runner-pins.json": "0b116009bc7f74a2c80c6cdddf572f6cbd52aa1d372bca7c87a8d0772bc12f47",
+          "summary.json": "1fb5e1a92a2e0f359e6abe02a78c06d70b98e3b5dd1d6f675eda819faa1e225d",
+          "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+          "worker.py": "4f61077db231240a9713bec2ca20188052bf43214ea3f60b3878dc485c80cf26"
+        }
+      }
+    ],
+    "source_code_evidence": {
+      "elbow/chemistry/BondTopologyMixins.py": {
+        "sha256": "c9e58414b3913e3ab657dfcfcff78ac1600e56d1f84eba8f2dfd2881c6a9ef49",
+        "size": 77495
+      },
+      "elbow/chemistry/SimpleMoleculeClass.py": {
+        "sha256": "a57aa79f7f6d9113d6e7ab747498ed3e4878dda8056613a27eb067836901e9a7",
+        "size": 73230
+      },
+      "elbow/chemistry/TopologyMixins.py": {
+        "sha256": "701214ece8611674b766c4359041f7b3c32b4f55ea02e66207d496b0df5a21bc",
+        "size": 103763
+      }
+    },
+    "compatibility": "No production code, schema, source catalogue, thresholds or installed native files changed. No historical verdict upgraded.",
+    "artifacts": "Only compact evidence/documentation committed. Local source copies, candidates, native logs, owner receipts and runners remain local; all original sources retain bytes and timestamps.",
+    "next": "Implement a narrowly declared, graph-based complete-bond-row ordering adapter and bind graph/reader preparation into ordinary owned acquisition with original source identity retained. Then rerun chosen-model AutoSol acceptance.",
+    "tests": "No full suite; native diagnostic only."
   }
 }
