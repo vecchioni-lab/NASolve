@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C255
+## Near-term closure estimate at C256
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -317,7 +317,14 @@ Remaining acceptance:
    This closes the extra-view/lifetime prerequisite. Next bind retained archives
    to original owner inventories, keep public model/restraint paths stable, and
    verify a fresh complete request through interruption-safe retirement/recovery.
-   No original retirement or whole-request storage integration exists yet.
+   C256 also preserves the owner's existing partitions in a complete-attempt
+   archive and binds its index to the original finished seal. The complete C244
+   attempt replays from 15.5 MB instead of 180.0 MB logical files, at 87.4 MB
+   peak archive expansion. Shared request/acquisition inputs remain external;
+   no source files retired. Ordinary archive bytes stay identical. Next integrate
+   that view with ordinary history reads, retain all returned public paths, and
+   implement a durable known-stopped retirement transaction with partial/repeat
+   recovery. No original retirement or whole-request storage integration exists yet.
 
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical

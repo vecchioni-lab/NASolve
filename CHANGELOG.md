@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reconstruct a complete attempt from its original inventory (C256)
+
+- Add explicit partitioned complete-attempt archive transport for the existing v2
+  owner layout. Preserve each owner's logical partition bounds and share the
+  existing 128 MiB physical expansion allowance; repeated content is stored once.
+- Bind the archive to the original finished-file checksum and sealed logical
+  inventory. Rehashed replacement files, changed partitions and foreign seals
+  refuse before exposing a view. Reuse archive/path/object validation and
+  deterministic serialization; sync new archives before returning them.
+- The actual C244 complete-attempt validator passes from a 15.5 MB archive of
+  180.0 MB logical files, with original-attempt reads/native execution forbidden.
+  All 659 source files remain unchanged and temporary copies are removed.
+  This is transport/read validation, not ordinary-reader integration or deletion.
+
 ### Reconcile exact AutoSol phase labels from Alder (C255)
 
 - Reuse Alder's reviewed complete-HL-quartet discovery and regression tests.

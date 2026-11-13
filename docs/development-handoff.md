@@ -1,10 +1,35 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C255. Active **cedar**, checkout NASolve-c96.
+Updated **2026-11-13**, C256. Active **cedar**, checkout NASolve-c96.
 The [queue](cif-doctor-completion-queue.md) owns work order; the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 Simon authorized this pass through **23:00 Europe/London**, focused tests only.
+
+## Latest completed step — C256 complete-attempt archive read
+
+C255 is committed/pushed as `aef7911`. C256 reuses the existing v2 owner partitions
+in an explicit complete-attempt archive. Every partition retains its logical bound;
+one object store/root view retains the unchanged physical allowance. The original
+finished-file checksum and sealed inventory are checked before exposing paths.
+Changed source/foreign seal/rehashed logical substitutions refuse. Archive bytes
+are synced, existing destinations never overwritten, and no source file is removed.
+
+**61 focused storage tests pass, 29.69 s.** The actual complete C244 attempt also
+passes its existing owner/chemistry/result validator from a **15,518,933 B** archive
+of **179,979,354 B / 659 files**. Original-attempt reads/native launch forbidden;
+shared request/acquisition inputs remain original. Same model, five PHILs/two CIFs;
+peak archive expansion **87,440,990 B / 134,217,728 B**, Python peak **740,114,432 B**,
+**102.09 s**. Original files unchanged; temporary archive/views removed.
+The final stricter transport check passes on the exact same archive bytes in
+**5.95 s**, without repeating chemistry. Earlier single-tree bytes reproduce exactly.
+Evidence: `complete_attempt_archive_2026_11_13`.
+
+This is transport/read validation, not source retirement or ordinary-reader
+integration. Next preserve all returned paths (prepared bundle, repair runtime,
+continuation runtime and its parent runtime), connect the view to ordinary history
+reads, then add a durable known-stopped retirement transaction with interruption
+and repeat recovery. No existing scientific run has been compacted in place.
 
 ## Latest integration correction — C255 exact phase labels
 
@@ -105,10 +130,10 @@ from Git; the ledger entry is `selected_autosol_reference_2026_11_13`.
    reconstructs one 131.7 MB subtree from an **8.3 MB** archive (418 files,
    57.7 MB physical temporary bytes), within the unchanged 128 MiB logical bound.
    Original-source reads were forbidden; temporary probe artifacts were removed.
-   C254 now closes the ReadySet extra-view refusal through the explicit bounded
-   scope above. Normal C252 reading also passes. Next integrate original owner
-   inventories and stable public references with known-stopped, interruption-safe
-   retirement. Preserve failed/active work and partial outputs. No originals retired.
+   C254 closes the ReadySet extra-view refusal; C256 binds a complete attempt
+   archive to the original owner inventory and replays it. Normal C252 reading
+   also passes. Next integrate ordinary history reads and stable public references
+   with known-stopped, interruption-safe retirement. Preserve failed/active work and partial outputs. No originals retired.
 2. **Qualify/reconcile the remaining normal callers.** C253's selected-model
    AutoSol connection needs native acceptance. Interrupted AutoSol result saving
    retains outputs but does not automatically adopt them; keep it separate from

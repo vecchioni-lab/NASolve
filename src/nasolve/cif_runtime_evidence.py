@@ -36,10 +36,18 @@ def _index(value):
           and type(value['schema_version']) is int and value['schema_version']==1
           and value['policy_id']==POLICY_ID, 'Unsupported compact evidence index')
     files=value['files'];directories=value['directories']
-    _need(isinstance(files,dict) and 0<len(files)<=MAX_FILES
+    _file_index(files, directories, max_files=MAX_FILES)
+    total=sum(r['size'] for r in files.values())
+    _need(total<=MAX_BYTES, 'Logical evidence exceeds expanded bounds')
+    return files,directories,total
+
+
+def _file_index(files, directories, *, max_files):
+    """Shared path/object validation; callers retain their own logical budgets."""
+    _need(isinstance(files,dict) and 0<len(files)<=max_files
           and all(_strict(name) for name in files), 'Unsafe or excessive logical evidence files')
     _unique(files)
-    _need(isinstance(directories,list) and len(directories)<=4*MAX_FILES
+    _need(isinstance(directories,list) and len(directories)<=4*max_files
           and all(_strict(name) for name in directories)
           and directories==sorted(set(directories))
           and len({_alias(n) for n in directories})==len(directories), 'Unsafe evidence directories')
@@ -55,15 +63,12 @@ def _index(value):
               and isinstance(ref['sha256'],str) and _SHA.fullmatch(ref['sha256'])
               and type(ref['size']) is int and 0<=ref['size']<=MAX_FILE_BYTES,
               'Malformed evidence object reference')
-    total=sum(r['size'] for r in files.values())
-    _need(total<=MAX_BYTES, 'Logical evidence exceeds expanded bounds')
-    return files,directories,total
 
 
-def _decode(data,digest):
+def _decode(data,digest, *, index_reader=_index):
     try:
         members=archive_members(data,digest)
-        value=_parse_json(members['index.json']);files,directories,total=_index(value)
+        value=_parse_json(members['index.json']);files,directories,total=index_reader(value)
         objects={name.removeprefix('objects/'):payload for name,payload in members.items() if name.startswith('objects/')}
         expected={r['sha256'] for r in files.values()}
         _need(set(members)=={'manifest.json','index.json'}|{'objects/'+h for h in expected}
@@ -86,6 +91,18 @@ def pack_runtime_evidence(directory, output):
     index=dict(schema_version=1,policy_id=POLICY_ID,files=refs,directories=directories)
     _index(index)
     objects={refs[name]['sha256']:data for name,data in before.items()}
+    data, digest = _archive_bytes(index, objects)
+    _decode(data,digest)  # Same bounds and CRC/object checks as the public reader.
+    _need(_tree(root)==before and directories==sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir()),
+          'Source evidence changed during compression')
+    with output.open('xb') as handle:handle.write(data)
+    return dict(policy_id=POLICY_ID,logical_files=len(refs),logical_bytes=sum(map(len,before.values())),
+                unique_files=len(objects),unique_bytes=sum(map(len,objects.values())),
+                archive_bytes=len(data),archive_sha256=digest)
+
+
+def _archive_bytes(index, objects):
+    """One deterministic object archive serializer for explicit index policies."""
     members={'objects/'+h:data for h,data in objects.items()};members['index.json']=_json_bytes(index)
     members['manifest.json']=_json_bytes({name:dict(sha256=sha256(data).hexdigest(),bytes=len(data)) for name,data in members.items()})
     _need(len(members)<=1024, 'Too many unique archive objects')
@@ -96,13 +113,7 @@ def pack_runtime_evidence(directory, output):
             info.create_system=3;info.external_attr=(stat.S_IFREG|0o600)<<16
             archive.writestr(info,data,compresslevel=9)
     data=stream.getvalue();digest=sha256(data).hexdigest()
-    _decode(data,digest)  # Same bounds and CRC/object checks as the public reader.
-    _need(_tree(root)==before and directories==sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir()),
-          'Source evidence changed during compression')
-    with output.open('xb') as handle:handle.write(data)
-    return dict(policy_id=POLICY_ID,logical_files=len(refs),logical_bytes=sum(map(len,before.values())),
-                unique_files=len(objects),unique_bytes=sum(map(len,objects.values())),
-                archive_bytes=len(data),archive_sha256=digest)
+    return data, digest
 
 
 @contextmanager
@@ -127,24 +138,31 @@ def expanded_working_evidence(archive, digest):
     the two permitted runtime layers. Temporary paths expire at scope exit. This
     operation never retires source files, authorizes recovery or qualifies science.
     """
+    with _working_evidence(archive, digest, decoder=_decode) as view:
+        yield view
+
+
+@contextmanager
+def _working_evidence(archive, digest, *, decoder):
+    """Reserve the sole outer view, using an explicitly selected bounded index."""
     _need(not _WORKING_VIEW_ACTIVE.get() and _ACTIVE_DEPTH.get() == 0
           and _ACTIVE_BYTES.get() == 0 and _ACTIVE_OBJECTS.get() is None,
           'Working evidence requires an outer root scope')
     token = _WORKING_VIEW_ACTIVE.set(True)
     try:
-        with _expanded_evidence(archive, digest, runtime_layer=False) as view:
+        with _expanded_evidence(archive, digest, runtime_layer=False, decoder=decoder) as view:
             yield view
     finally:
         _WORKING_VIEW_ACTIVE.reset(token)
 
 
 @contextmanager
-def _expanded_evidence(archive, digest, *, runtime_layer):
+def _expanded_evidence(archive, digest, *, runtime_layer, decoder=_decode):
     """One decoder/expander and accounting path for both explicitly owned scopes."""
     archive=Path(archive).absolute()
     _need(archive.is_file() and not any(p.is_symlink() for p in (archive,*archive.parents))
           and archive.stat().st_size<=MAX_ARCHIVE_BYTES, 'Unsafe or oversized evidence archive')
-    data=_read(archive);index,objects,total=_decode(data,digest)
+    data=_read(archive);index,objects,total=decoder(data,digest)
     used=_ACTIVE_BYTES.get();written=dict(_ACTIVE_OBJECTS.get() or {})
     _need(used+sum(len(data) for h,data in objects.items() if h not in written)<=MAX_ACTIVE_BYTES,
           'Nested evidence exceeds temporary expansion allowance')

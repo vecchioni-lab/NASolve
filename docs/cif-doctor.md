@@ -142,7 +142,7 @@
 
 <a id="current-capability-boundary-c251"></a>
 
-## Current capability boundary (C255)
+## Current capability boundary (C256)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -1360,6 +1360,49 @@ historical ownership fixtures explicitly retain their old storage mode. C228's
 complete native compact continuation and cold relocation remain the scientific
 storage evidence; C229 adds request integration, not a new native/refinement claim.
 Exact commands and compatibility: ledger compact_request_storage_2026_11_12.
+
+### Reconstruct a complete sealed attempt (C256)
+
+The current complete-request owner already separately bounds its working files,
+repair publication, continuation working files and continuation publication. A
+whole attempt can therefore exceed the single-tree archive's logical limit while
+containing far fewer distinct bytes. The explicit
+`cif-complete-attempt-working-archive-v1` format preserves those exact v2 partitions,
+sharing a content-addressed object store and C254's sole outer read scope. Each
+partition keeps its existing file/logical-byte bounds; total unique archive objects
+and expanded physical bytes retain the existing bounds. Earlier archive readers
+refuse this new policy. Ordinary archives retain byte-for-byte serialization.
+
+The transport binds an externally supplied original `finished.json` checksum.
+Before exposing any temporary path, it compares the archive's complete logical
+file/directory index with that original seal's inventory. A fresh pack also checks
+the matching returned/stopped seal and attempt identity, detects source changes,
+refuses existing destinations, and syncs the archive. These are transport checks:
+the existing complete-attempt owner must still replay process ownership, sources,
+chemistry and result selection. Temporary paths are never ordinary published inputs.
+
+Actual C244 evidence passes that existing complete-attempt validator from the
+archive with original-attempt access and native launch forbidden. **659 files /
+179,979,354 B logical** become **15,518,933 B compressed**, containing
+**87,410,244 B** of distinct bytes. Peak archive expansion during complete replay is
+**87,440,990 B** under the unchanged **134,217,728 B** physical allowance; Python
+resident peak is **740,114,432 B**, elapsed **102.09 s**. The same checked model,
+five PHILs/two CIFs and stopped owners remain. Shared request/acquisition inputs
+remain outside this attempt archive; this is not whole-request independence.
+
+The final, stricter transport-only check passes against those exact same archive
+bytes in **5.95 s**, without repeating chemical replay. All 659 original files
+remain unchanged and both temporary archives/views are removed. Existing C254
+single-tree archive bytes also reproduce exactly. **61 focused tests** cover
+shared storage plus complete-attempt transport, including a demonstrated rehashed
+logical-file substitution rejected against the original seal.
+
+The result exposes 45 path occurrences under four stable roots: prepared bundle,
+repair runtime, continuation runtime and continuation's parent runtime. Retention
+must preserve those usable public paths and metadata while connecting archived
+files to ordinary history reads. No retirement transaction or deletion exists yet.
+This work does not authorize active/failed-run cleanup or 100 concurrent readers.
+Evidence: `complete_attempt_archive_2026_11_13` in the ledger.
 
 ### Reconstruct working evidence within one bounded read (C254)
 

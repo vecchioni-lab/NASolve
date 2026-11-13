@@ -91675,5 +91675,146 @@
     "compatibility": "No schema or existing-report migration. New reports carry actual HL coefficients; original MR input, chosen-model comparison, supported elements/symmetry and distance gates unchanged. AutoRefine already separately discovers actual phase labels.",
     "remaining": "Q04 retention/inventory integration, native selected-reference acceptance, full integration regression and final Q16 AutoPhase naming remain open.",
     "artifacts": "Code/regression and compact metadata committed. Native report/MTZ preserved; no new structure data or native stdout stored in Git."
+  },
+  "complete_attempt_archive_2026_11_13": {
+    "milestone": "C256",
+    "date": "2026-11-13",
+    "status": "COMPLETE_ATTEMPT_PARTITIONED_ARCHIVE_AND_OWNER_REPLAY_PASS",
+    "baseline_commit": "aef7911",
+    "source_sha256": {
+      "src/nasolve/cif_runtime_evidence.py": "70c11d5fb1ced7a97f42ea0015a9a5ef33b0ec41fa3f8ca4bf6c240dc3813159",
+      "src/nasolve/cif_complete_attempt_archive.py": "379f99ac458457a249ffe4a064dd44726c2d524803aa7142773da5184450e692"
+    },
+    "new_test_sha256": "959f07c44ce28423673a4ccb32d6417420386cba6ea73f8c73f7e998137933fa",
+    "prior_work": [
+      "Existing v2 complete-attempt artifact partitions",
+      "C228 deterministic archives/decoder",
+      "C254 root-only working view",
+      "C252 and C254 nested native readback"
+    ],
+    "schema": {
+      "policy_id": "cif-complete-attempt-working-archive-v1",
+      "index_schema_version": 1,
+      "supported_owner_artifact_policy": "cif-complete-request-partitioned-artifacts-v2",
+      "legacy_archives": "Unchanged bytes; old readers refuse new index policy",
+      "request_or_checkpoint_changes": false
+    },
+    "before": "Seven missing-interface failures, followed by one concrete fail-before regression: rehashed logical file replacement was exposed despite the original finished seal. The decoder now compares the full logical index to that seal before yielding.",
+    "focused": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_complete_attempt_archive.py tests/test_cif_working_evidence_view.py tests/test_cif_runtime_evidence.py tests/test_cif_compact_workflow.py",
+      "result": "61 passed in 29.69 s",
+      "full_suite": false
+    },
+    "complete_owner_replay": {
+      "status": "COMPLETE_ATTEMPT_ARCHIVE_REPLAY_PASS",
+      "process_state": "STOPPED",
+      "result_status": "QUALIFIED_DIAGNOSTIC_RUNTIME",
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "phils": 5,
+      "dictionaries": 2,
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request/attempts/attempt-0001"
+      },
+      "packed": {
+        "policy_id": "cif-complete-attempt-working-archive-v1",
+        "logical_files": 659,
+        "logical_bytes": 179979354,
+        "unique_files": 197,
+        "unique_bytes": 87410244,
+        "archive_bytes": 15518933,
+        "archive_sha256": "681f25bb242087d9b0ee755bc4f2115123f20ead0134a6ab83e8b64b7a7a02a0",
+        "finished_sha256": "80d96493ebd5322987fcb822e2c592dcb477f45e4860732e7bb78d7b88d14508"
+      },
+      "source_files_unchanged": 659,
+      "temporary_archives_and_views_removed": true,
+      "original_attempt_reads_forbidden": true,
+      "original_request_inputs_and_acquisitions_retained": true,
+      "subprocess_execution_forbidden": true,
+      "temporary_physical_peak_bytes": 87440990,
+      "temporary_physical_limit_bytes": 134217728,
+      "runtime_depth_peak": 2,
+      "runtime_depth_limit": 2,
+      "old_archive_bytes_identical": true,
+      "elapsed_seconds": 102.09473666700069,
+      "maximum_resident_bytes": 740114432,
+      "scope": "Existing complete-attempt owner/result/inventory replay inside one partitioned archive view. Shared request/acquisition inputs remain original. No retirement, ordinary-reader integration or publication of temporary paths."
+    },
+    "hardened_transport_replay": {
+      "status": "COMPLETE_ATTEMPT_HARDENED_TRANSPORT_PASS",
+      "sealed_inventory_equal": true,
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request/attempts/attempt-0001"
+      },
+      "packed": {
+        "policy_id": "cif-complete-attempt-working-archive-v1",
+        "logical_files": 659,
+        "logical_bytes": 179979354,
+        "unique_files": 197,
+        "unique_bytes": 87410244,
+        "archive_bytes": 15518933,
+        "archive_sha256": "681f25bb242087d9b0ee755bc4f2115123f20ead0134a6ab83e8b64b7a7a02a0",
+        "finished_sha256": "80d96493ebd5322987fcb822e2c592dcb477f45e4860732e7bb78d7b88d14508"
+      },
+      "source_files_unchanged": 659,
+      "temporary_archives_and_views_removed": true,
+      "original_attempt_reads_forbidden": true,
+      "original_request_inputs_and_acquisitions_retained": true,
+      "subprocess_execution_forbidden": true,
+      "temporary_physical_peak_bytes": 87410244,
+      "temporary_physical_limit_bytes": 134217728,
+      "runtime_depth_peak": 0,
+      "runtime_depth_limit": 2,
+      "old_archive_bytes_identical": true,
+      "elapsed_seconds": 5.951871083991136,
+      "maximum_resident_bytes": 280674304,
+      "scope": "Hardened transport decoder and original sealed inventory replay for the exact archive bytes previously passed by the complete owner; no repeated chemistry replay. Shared request/acquisition inputs remain original. No retirement, ordinary-reader integration or publication of temporary paths."
+    },
+    "validation_sequence": "Complete owner/chemistry replay passed before adding the direct sealed-index pre-yield check and archive fsync. Final transport replay regenerated identical archive bytes and passed the stricter decoder/inventory checks; no repeated chemical replay.",
+    "returned_path_audit": {
+      "occurrences": 45,
+      "roots": [
+        "preparation/bundle",
+        "repair/attempts/attempt-0001/execution/runtime",
+        "continuation/runtime",
+        "continuation/inputs/runtime"
+      ],
+      "purpose": "Retirement must keep operational paths available after temporary views close; no result has been published from a temporary path."
+    },
+    "evidence": {
+      "c256_complete_attempt_archive_read.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c256_complete_attempt_archive_read.py",
+        "sha256": "37dd3d0b2b31ba16f2edf427e16c4c26b0d803c5fcf8bce241ba2f1165378a40"
+      },
+      "c256_complete_attempt_archive_read_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c256_complete_attempt_archive_read_summary.json",
+        "sha256": "e53482fc7e8fd01c2ccbfec2f926a46e27cf56f5449d363c22f6403266938f5b"
+      },
+      "c256_hardened_transport_read.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c256_hardened_transport_read.py",
+        "sha256": "ca15cffefeae6b0406f060d56722fbc291206565c9e11b9382e1b2341d0ba436"
+      },
+      "c256_hardened_transport_read_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c256_hardened_transport_read_summary.json",
+        "sha256": "185d8444987affcbd3fb884a571ebbdcc7b16a53877d8f50f3821e5e8801a52b"
+      }
+    },
+    "native_commands": [
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src .venv/bin/python branch-artifacts/cedar/runners/c256_complete_attempt_archive_read.py",
+      "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src .venv/bin/python branch-artifacts/cedar/runners/c256_hardened_transport_read.py"
+    ],
+    "native_execution": "None; replay of existing Phenix 2.2.1-6174 / 2.2.1 evidence. No Coot, phasing or diffraction refinement.",
+    "remaining": [
+      "Ordinary complete-history integration with retained public paths",
+      "Durable archive publication/retirement transaction",
+      "Known-stopped, changed-file, interrupted/repeat recovery controls",
+      "Whole-request/campaign storage, memory and concurrency acceptance"
+    ],
+    "artifacts": "Source/tests/compact metadata only committed. Original 659 attempt files unchanged; temporary archives/views removed; no scientific data uploaded or retired."
   }
 }
