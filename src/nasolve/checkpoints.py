@@ -444,8 +444,31 @@ def save_registry(run: Path, registry: dict[str, object]) -> Path:
     path = registry_path(run)
     path.parent.mkdir(parents=True, exist_ok=True)
     if checked:
-        from .campaign_records import write_record
-        write_record(path, registry, replace=True)
+        from .campaign_records import read_record, write_record
+        from .campaign_process import exclusive_lock
+        from .campaigns import CampaignError
+        from .cif_dictionary_sites import _read
+        try:
+            expected = registry.get("record_sha256")
+            if not isinstance(expected, str) or not re.fullmatch("[0-9a-f]{64}", expected):
+                raise CheckpointError("Checked registry save requires its original record checksum")
+            # Validate parent traversal before opening the persistent lock inode.
+            _read(path)
+            with exclusive_lock(path.with_name("checkpoints.lock")):
+                _read(path)
+                saved = read_record(path)
+                if saved["record_sha256"] != expected:
+                    raise CheckpointError(
+                        "Checkpoint registry changed since it was read; preserve completed "
+                        "outputs, reread the registry and reconcile the pending edit"
+                    )
+                record = write_record(path, registry, replace=True)
+            # Some callers intentionally save the same live object twice (for
+            # example manual import followed by its bookmark). Advance that
+            # object's identity only after the atomic save succeeds.
+            registry["record_sha256"] = record["record_sha256"]
+        except (OSError, ValueError, CampaignError) as exc:
+            raise CheckpointError(str(exc)) from exc
     else:
         _write_json(path, registry)
     return path

@@ -90843,5 +90843,42 @@
     ],
     "full_regression": false,
     "last_full_green": "C220/583d30df: 9178 tests and 276 subtests"
+  },
+  "checked_registry_conflicts_2026_11_13": {
+    "milestone": "C250",
+    "base_commit": "56c65c21b77d9169c1fcdfa62b1c28027f8d9276",
+    "prior_work": [
+      "C223 sealed checked registry and immutable initial publication",
+      "Existing campaign_process.exclusive_lock and atomic campaign_records.write_record",
+      "Existing C156/C170 process/prelaunch/deadline controls; no duplicate recovery owner needed"
+    ],
+    "before": "A stale checked registry object could overwrite newer checkpoints, selections and bookmarks; successful save did not refresh the live checksum.",
+    "after": "Compare original record checksum under persistent kernel lock; refuse stale/missing/symlinked state, preserve newer evidence, refresh same live identity only after successful save.",
+    "files": {
+      "src/nasolve/checkpoints.py": "5e9e45b518740b841c7966ffa69971ac9768b14b5a6392ce564f0beafb450801",
+      "tests/test_cif_postmr_publication.py": "4cd786a825f6053f0003816b38507ab10f695f96044fa7eebeb6daf5f97bfafe"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py -k checked_registry --tb=short",
+        "result": "7 expected failures, 35 deselected in 1.04s before implementation"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py tests/test_checkpoints.py tests/test_checkpoint_candidate.py tests/test_autorefine.py --tb=short",
+        "result": "103 passed and 21 subtests passed in 12.30s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python scripts/run_tests.py smoke",
+        "result": "139 passed and 6 subtests passed in 7.28s"
+      }
+    ],
+    "compatibility": "No saved schema or chemistry change; legacy schema 1/2 unchanged. Checked writes create/retain AutoRefine/checkpoints.lock. No scientific artifacts included, removed or regenerated.",
+    "limitations": [
+      "Writer conflict requires metadata reconciliation against a fresh registry; it does not authorize rerunning completed native work",
+      "Later preparation-child publication remains Q05",
+      "No full suite or new external-tool execution"
+    ],
+    "full_regression": false,
+    "native_execution": false
   }
 }

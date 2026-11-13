@@ -389,6 +389,11 @@ publisher and ordinary inspection/refinement-input readers after relocation.
 Synthetic observation/map path fixtures test this handoff, not native MTZ reading
 or diffraction refinement. Reuse that result rather than repeating construction.
 
+C250 first protects checked-registry writes against stale snapshots: compare the
+sealed registry identity under the existing kernel lock, preserve newer work on
+conflict and refresh the live identity after success. This fixes an observed
+lost-update risk; it does not yet publish later preparation children.
+
 **Remaining acceptance:** define later preparation-child adoption without changing
 an immutable earlier root. Reuse the existing request owner and publication path;
 do not build another recovery or chemistry framework. Preserve normalization and

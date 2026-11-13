@@ -1,12 +1,25 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C249. Active **cedar**, checkout NASolve-c96.
-Base C248/de117a2 (pushed); current HEAD supplies final identity. The
+Updated **2026-11-13**, C250. Active **cedar**, checkout NASolve-c96.
+Base C249/56c65c2 (pushed); current HEAD supplies final identity. The
 [queue](cif-doctor-completion-queue.md) owns work order and the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
 ## Current result
+
+C250 fixes stale checked-registry saves that could erase newer checkpoints,
+selection or bookmarks. Compare the original sealed identity under the existing
+kernel lock; refuse conflict, missing identity or symlink traversal; advance the
+live identity after a successful atomic save. No saved schema, chemistry, legacy
+schema 1/2 behavior or preparation-receipt change. Source: `checkpoints.py`;
+extend `test_cif_postmr_publication.py`. Seven new regressions fail before the
+change; 103 affected tests + 21 subtests pass in 12.30 s; the focused smoke
+profile passes 139 tests + 6 subtests in 7.28 s. On conflict preserve
+completed scientific output and reconcile metadata; do not repeat native work.
+The small persistent `AutoRefine/checkpoints.lock` prevents competing writers.
+Exact scope: ledger `checked_registry_conflicts_2026_11_13`.
+
 
 C249 reports explicit source-graph planes in the exact selected dictionaries,
 separately from generation outcomes. Reuse C208's graph screen and the existing
@@ -47,9 +60,10 @@ No native or test jobs remain active; use focused checks for the next bounded ch
 
 ## Next work — finish Q04/Q05
 
-1. Audit remaining prelaunch/deadline/failure boundaries against existing process
-   ownership tests before adding machinery. Unknown ownership must never authorize
-   retry or fallback; preserve every partial output and require a fresh attempt.
+1. Prior-work audit confirms prelaunch missing-program, no-PID interruption,
+   deadline-before-launch and unknown descendants already have process controls
+   (C156/C170). Reuse these; unknown ownership cannot authorize retry or fallback.
+   Wider native chemistry acceptance remains distinct from transport tests.
 2. Define later preparation-child publication without replacing the immutable root
    or falsely making new MR construction descend from refined coordinates. Reuse
    C223–C225 publication/recovery and genuine fallback receipts.

@@ -320,3 +320,74 @@ def test_publication_cli_shows_generation_limits_without_sdk_or_duplicate_read(t
     assert 'optional plane generation timed out' in text
     assert 'does not establish final plane adoption' in text and 'REVIEW' in text
     assert reads == [1]
+
+
+
+@pytest.mark.parametrize('change', ['bookmark', 'selection', 'child'])
+def test_checked_registry_stale_save_preserves_newer_work(tmp_path, monkeypatch, change):
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    run, _, _ = setup(tmp_path, monkeypatch)
+    publish_checked_preparation(run, attempt_number=1)
+    _, stale = checkpoints.read_registry(run)
+    if change == 'bookmark':
+        checkpoints.add_checkpoint(run, name='newer bookmark')
+    else:
+        manual = run/'manual.pdb'
+        manual.write_bytes((run/'PostMR/Model/readyset_model.pdb').read_bytes())
+        child = checkpoints.add_checkpoint(run, name='newer model', model=manual)
+        if change == 'selection':
+            checkpoints.select_checkpoint(run, child.checkpoint_id)
+    before = snapshot(run)
+    stale['bookmarks']['older pending edit'] = 'postmr'
+    with pytest.raises(checkpoints.CheckpointError, match='changed since'):
+        checkpoints.save_registry(run, stale)
+    assert snapshot(run) == before
+
+
+def test_checked_registry_serial_saves_refresh_same_live_identity(tmp_path, monkeypatch):
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    run, _, _ = setup(tmp_path, monkeypatch)
+    publish_checked_preparation(run, attempt_number=1)
+    _, registry = checkpoints.read_registry(run)
+    old = registry['record_sha256']
+    registry['bookmarks']['one'] = 'postmr'
+    checkpoints.save_registry(run, registry)
+    assert registry['record_sha256'] != old
+    assert registry['record_sha256'] == read_record(checkpoints.registry_path(run))['record_sha256']
+    registry['bookmarks']['two'] = 'postmr'
+    checkpoints.save_registry(run, registry)
+    assert read_record(checkpoints.registry_path(run))['bookmarks'] == {'one':'postmr', 'two':'postmr'}
+
+
+def test_checked_registry_conflict_is_checked_inside_existing_kernel_lock(tmp_path, monkeypatch):
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    from nasolve.campaign_process import exclusive_lock
+    run, _, _ = setup(tmp_path, monkeypatch)
+    publish_checked_preparation(run, attempt_number=1)
+    _, registry = checkpoints.read_registry(run)
+    with exclusive_lock(run/'AutoRefine/checkpoints.lock'):
+        before = snapshot(run)
+        registry['bookmarks']['busy'] = 'postmr'
+        with pytest.raises(checkpoints.CheckpointError, match='lock busy'):
+            checkpoints.save_registry(run, registry)
+        assert snapshot(run) == before
+
+
+@pytest.mark.parametrize('defect', ['missing_digest', 'registry_symlink'])
+def test_checked_registry_writer_requires_bound_regular_registry(tmp_path, monkeypatch, defect):
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    run, _, _ = setup(tmp_path, monkeypatch)
+    publish_checked_preparation(run, attempt_number=1)
+    _, registry = checkpoints.read_registry(run)
+    path = checkpoints.registry_path(run)
+    if defect == 'missing_digest':
+        registry.pop('record_sha256')
+    else:
+        target = path.with_name('preserved.json'); path.rename(target); path.symlink_to(target)
+    # The lock inode may be created; evidence and registry bytes must not change.
+    before = snapshot(run)
+    with pytest.raises(checkpoints.CheckpointError):
+        checkpoints.save_registry(run, registry)
+    after = snapshot(run)
+    assert all(after[name] == value for name, value in before.items())
+    assert set(after)-set(before) <= {'AutoRefine/checkpoints.lock'}

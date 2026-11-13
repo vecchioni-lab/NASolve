@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve newer checked-checkpoint edits (C250)
+
+- Checked registry saves now compare their original sealed identity under the
+  existing kernel-lock implementation before replacing the registry. A stale
+  edit refuses instead of erasing a newer checkpoint, selection or bookmark.
+- Refresh the caller's live identity after a successful atomic save so serial
+  updates remain possible. Missing identity, symbolic-link traversal and busy
+  writers refuse. Scientific outputs and preparation receipts remain untouched.
+- Legacy schema 1/2 semantics and checked schema 3 format remain unchanged.
+  On conflict, reread/reconcile the pending metadata edit; do not rerun completed
+  scientific work merely because its registry save conflicted.
+
 ### Distinguish generated support from selected dictionary planes (C249)
 
 - Checked preparation notes now screen the exact selected dictionaries against
