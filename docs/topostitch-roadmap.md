@@ -69,7 +69,7 @@ Keep logical sites, coordinate copies, chemistry intent and immutable source ide
 
 Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.
 
-**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated. Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope.
+**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated. Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope. Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices.
 
 **Closure audit:**
 
@@ -77,8 +77,8 @@ Give both tools exact atom/site image identity, including stabilizers, reciproca
 - Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites.
 
 **Next action:** Qualify physical partner capacity and complete molecular/image equivalences; the selected-source coordinate precondition is now consumed by periodic fitting.
-**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit).
-**Last audit:** 2026-11-13, Linden, code `84cb847`; Periodic fitting now consumes selected-coordinate eligibility; full physical identity remains open.
+**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_POST_IMAGE](#e_post_image).
+**Last audit:** 2026-11-13, Linden, code `a3e4978`; Source and transformed selected-coordinate evidence, not full physical identity.
 
 ## Roadmap A — working sticky-end repair
 
@@ -162,16 +162,16 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 Turn a plausible placement into a chemically usable candidate before refinement is trusted.
 
-**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy.
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats.
 
 **Closure audit:**
 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Qualify exact-image native bond/angle transport and gradients, then existing-owner local atomic closure and packing; source-change limits alone are not an ideal geometry gate.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone).
-**Last audit:** 2026-11-13, Linden, code `6fc4898`; Schema-2 source-change coverage and matched native diagnostic; no scientific closure.
+**Next action:** Qualify remaining plane/packing and endpoint chemistry behavior, then agree a fixed-base native relaxation adapter with Cedar owners; do not reuse the all-atom policy ID or claim convergence from the local iteration-limited controls.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax).
+**Last audit:** 2026-11-13, Linden, code `a3e4978`; Bounded local native diagnostic, not production closure or acceptance.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -347,9 +347,9 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `6fc4898`.
-Schema-2 checkpoint: 322 focused source/installed/relocated tests plus 2 subtests and full source 1,238 tests plus 226 subtests pass. Original checkout removed before relocation test. Both old schema-1 and new schema-2 public 8D93 frozen previews replay.
-**Limit:** No full installed-platform matrix or combined Willow/Cedar build. Tests and native interpretation do not establish repair or scientific acceptance.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `a3e4978`.
+46 affected source tests, 323 focused installed tests plus 2 subtests, and full source 1,239 tests plus 226 subtests pass. Prior schema-2 checkpoint passed 322 relocated tests after original path removal. Installed public 8D93 fit retains prior candidate bytes; source and transformed audits each report 240 atoms and 274,916 tests.
+**Limit:** Current installed check is focused, not a full platform matrix. Previous relocation count is not a new guard relocation run. No combined Cedar build or scientific acceptance.
 
 <a id="e_registration"></a>
 ### E_REGISTRATION — existing_backend
@@ -407,6 +407,20 @@ Three predeclared public 8D93 backbone-penalty controls improve the pair target 
 Schema 2 audits four junction angles and circular epsilon/zeta/alpha changes in fitting and serialized previews. Public 8D93 extended fit improves the contact target; complete Phenix 2.2.1-6174 capture, bound Cedar cd744e2 receipts, contexts and named proxies match; no new nominal >=5 captured scalar outliers. Schema 1 remains replayable.
 **Limit:** Source-relative change only: no torsion ideal/pucker, phosphate valence, full packing, atomic closure or diffraction qualification. Source outliers remain; scientific artifacts stay local.
 
+<a id="e_post_image"></a>
+### E_POST_IMAGE — Post-transform exact image audit
+
+[Evidence contract](topostitch-preview.md#periodic-source-and-candidate-image-checks) at code `a3e4978`.
+An improving serialized fit is rechecked against the original exact selected image and atom identities. The demonstrated source-clear/candidate-colliding regression now returns TRANSFORMED_IMAGE_REVIEW_REQUIRED with no trial. New evidence binds candidate bytes and source selection; no partner re-search.
+**Limit:** Selected present-atom coincidence evidence only; no full van der Waals packing, physical capacity, native closure or approval.
+
+<a id="e_native_transport_relax"></a>
+### E_NATIVE_TRANSPORT_RELAX — Native symmetry gradients and fixed-base relaxation controls
+
+[Evidence contract](topostitch-preview.md#native-transport-and-backbone-only-relaxation-diagnostics--2026-11-13) at code `a3e4978`.
+Complete local Phenix 2.2.1-6174 probes match 5 periodic bond and 8 angle values/ASU gradients. Source and placed models separately relax 107 sugar/phosphate atoms with fixed bases/anchors; fresh captures match contexts/proxies, lower native targets and resolve three severe angles each without new severe scalar outliers. All 321 endpoint coordinates pass finite-difference checks.
+**Limit:** Local diagnostic only, no new production native policy. Both stop at 200 iterations; some geometry components increase. No contact, dictionary or chemical-link edits, plane transport qualification, diffraction refinement or adoption. Reuse Cedar lifecycle at integration; artifacts remain local.
+
 ## Deferred extensions, not hidden blockers
 
 - **Canonical rebuilding / missing-residue generation:** Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry.
@@ -426,6 +440,7 @@ Schema 2 audits four junction angles and circular epsilon/zeta/alpha changes in 
 - Selected atom-image audit 2d7544b adds bounded coordinate evidence without an identity merge; do not reimplement it as a second symmetry finder. Native MR preflight does not close the diffraction repair gate.
 - Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result.
 - Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.
+- Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates.
 
 Modeled on Cedar’s separation of completion queue, capability contract and
 evidence ledger. No queue edit grants runtime authority, scientific approval

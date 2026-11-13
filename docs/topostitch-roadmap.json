@@ -4,7 +4,7 @@
   "updated": "2026-11-13",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "6fc48984b5170a2411f576ab3262826963384226",
+  "audited_code_commit": "a3e497825be1b7983739b35af83fb280897559c2",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -89,7 +89,8 @@
       "goal": "Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.",
       "delivered": [
         "Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated.",
-        "Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope."
+        "Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope.",
+        "Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices."
       ],
       "acceptance": [
         "Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.",
@@ -98,13 +99,14 @@
       "next_action": "Qualify physical partner capacity and complete molecular/image equivalences; the selected-source coordinate precondition is now consumed by periodic fitting.",
       "evidence": [
         "E_SOFTWARE",
-        "E_IMAGE_AUDIT"
+        "E_IMAGE_AUDIT",
+        "E_POST_IMAGE"
       ],
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
-        "scope": "Periodic fitting now consumes selected-coordinate eligibility; full physical identity remains open"
+        "code_commit": "a3e497825be1b7983739b35af83fb280897559c2",
+        "scope": "Source and transformed selected-coordinate evidence, not full physical identity"
       }
     },
     {
@@ -237,23 +239,25 @@
       "delivered": [
         "Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation.",
         "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
-        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy."
+        "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy.",
+        "Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Qualify exact-image native bond/angle transport and gradients, then existing-owner local atomic closure and packing; source-change limits alone are not an ideal geometry gate.",
+      "next_action": "Qualify remaining plane/packing and endpoint chemistry behavior, then agree a fixed-base native relaxation adapter with Cedar owners; do not reuse the all-atom policy ID or claim convergence from the local iteration-limited controls.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
-        "E_EXTENDED_BACKBONE"
+        "E_EXTENDED_BACKBONE",
+        "E_NATIVE_TRANSPORT_RELAX"
       ],
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
-        "scope": "Schema-2 source-change coverage and matched native diagnostic; no scientific closure"
+        "code_commit": "a3e497825be1b7983739b35af83fb280897559c2",
+        "scope": "Bounded local native diagnostic, not production closure or acceptance"
       }
     },
     {
@@ -485,10 +489,10 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
+      "code_commit": "a3e497825be1b7983739b35af83fb280897559c2",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "Schema-2 checkpoint: 322 focused source/installed/relocated tests plus 2 subtests and full source 1,238 tests plus 226 subtests pass. Original checkout removed before relocation test. Both old schema-1 and new schema-2 public 8D93 frozen previews replay.",
-      "limitation": "No full installed-platform matrix or combined Willow/Cedar build. Tests and native interpretation do not establish repair or scientific acceptance."
+      "result": "46 affected source tests, 323 focused installed tests plus 2 subtests, and full source 1,239 tests plus 226 subtests pass. Prior schema-2 checkpoint passed 322 relocated tests after original path removal. Installed public 8D93 fit retains prior candidate bytes; source and transformed audits each report 240 atoms and 274,916 tests.",
+      "limitation": "Current installed check is focused, not a full platform matrix. Previous relocation count is not a new guard relocation run. No combined Cedar build or scientific acceptance."
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -545,6 +549,20 @@
       "code_commit": "6fc48984b5170a2411f576ab3262826963384226",
       "result": "Schema 2 audits four junction angles and circular epsilon/zeta/alpha changes in fitting and serialized previews. Public 8D93 extended fit improves the contact target; complete Phenix 2.2.1-6174 capture, bound Cedar cd744e2 receipts, contexts and named proxies match; no new nominal >=5 captured scalar outliers. Schema 1 remains replayable.",
       "limitation": "Source-relative change only: no torsion ideal/pucker, phosphate valence, full packing, atomic closure or diffraction qualification. Source outliers remain; scientific artifacts stay local."
+    },
+    "E_POST_IMAGE": {
+      "kind": "Post-transform exact image audit",
+      "code_commit": "a3e497825be1b7983739b35af83fb280897559c2",
+      "reference": "docs/topostitch-preview.md#periodic-source-and-candidate-image-checks",
+      "result": "An improving serialized fit is rechecked against the original exact selected image and atom identities. The demonstrated source-clear/candidate-colliding regression now returns TRANSFORMED_IMAGE_REVIEW_REQUIRED with no trial. New evidence binds candidate bytes and source selection; no partner re-search.",
+      "limitation": "Selected present-atom coincidence evidence only; no full van der Waals packing, physical capacity, native closure or approval."
+    },
+    "E_NATIVE_TRANSPORT_RELAX": {
+      "kind": "Native symmetry gradients and fixed-base relaxation controls",
+      "code_commit": "a3e497825be1b7983739b35af83fb280897559c2",
+      "reference": "docs/topostitch-preview.md#native-transport-and-backbone-only-relaxation-diagnostics--2026-11-13",
+      "result": "Complete local Phenix 2.2.1-6174 probes match 5 periodic bond and 8 angle values/ASU gradients. Source and placed models separately relax 107 sugar/phosphate atoms with fixed bases/anchors; fresh captures match contexts/proxies, lower native targets and resolve three severe angles each without new severe scalar outliers. All 321 endpoint coordinates pass finite-difference checks.",
+      "limitation": "Local diagnostic only, no new production native policy. Both stop at 200 iterations; some geometry components increase. No contact, dictionary or chemical-link edits, plane transport qualification, diffraction refinement or adoption. Reuse Cedar lifecycle at integration; artifacts remain local."
     }
   },
   "benchmarks": [
@@ -645,6 +663,7 @@
     "Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work.",
     "Selected atom-image audit 2d7544b adds bounded coordinate evidence without an identity merge; do not reimplement it as a second symmetry finder. Native MR preflight does not close the diffraction repair gate.",
     "Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result.",
-    "Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement."
+    "Schema-2 extended backbone patch 6fc4898 preserves schema-1 replay; S04/S05 remain partial pending native image-aware closure and matched refinement.",
+    "Post-transform image guard a3e4978 catches source-clear candidates that collide after fitting. Native bond/angle derivative and fixed-base relaxation diagnostics narrow S05 uncertainty without creating another Cedar engine or closing scientific gates."
   ]
 }
