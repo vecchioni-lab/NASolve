@@ -120,6 +120,59 @@ chemistry or source model is edited. This first adapter resolves identity-image
 sites only: a periodic recut realization and automatic end detection are later
 capabilities, not consequences of successful label mapping.
 
+## Discovering ends from declared topology
+
+A third input kind, `topostitch-end-discovery-input` (schema 1), derives logical
+end assignments instead of requiring each overhang/anchor to be written out.
+It uses the same explicit `--registration` path and file/model SHA-256 fields.
+The remaining fields are:
+
+```json
+{
+  "copy_id": "copy_1",
+  "pairing_inventory_complete": true,
+  "strands": [
+    {"strand_id": "long", "sites": ["A:1", "A:2", "A:3", "A:4"],
+     "five_prime_boundary": "chemical", "three_prime_boundary": "unknown"},
+    {"strand_id": "short", "sites": ["B:2", "B:3"],
+     "five_prime_boundary": "unknown", "three_prime_boundary": "chemical"}
+  ],
+  "duplex_pairs": [["A:3", "B:3"], ["A:4", "B:2"]],
+  "protected_sites": [],
+  "max_overhang_length": 12
+}
+```
+
+This is a shape example, not a real-structure recipe. Strand sites are explicit
+chemical 5-prime to 3-prime order, independent of coordinate chain names or
+residue numbers. Boundary meanings are `chemical`, `representation` or
+`unknown`; only declared chemical termini support a discovered overhang. Route
+fragments can have unknown/representation boundaries but cannot silently turn
+those cuts into chemical termini. Protected sites mark junction boundaries.
+
+`pairing_inventory_complete` defaults to **false**. Set it true only when the
+declared duplex-core pairing inventory is complete within the supplied route
+scope. A partial contact-detection list does not establish that all other bases
+are unpaired. Without that declaration, missing pairing evidence remains
+`PAIRING_COVERAGE_UNKNOWN` and cannot create an overhang assignment.
+
+`nasolve.topostitch_discovery.discover_logical_end_assignments` follows adjacent
+antiparallel core pairs to their boundaries. It needs two distinct paired steps,
+exactly one unpaired terminal tail, and chemical boundaries on both outward
+routes. It derives ordered overhang/terminal/inner sites and 5-prime/3-prime
+polarity. Stable IDs depend on logical roles, not coordinate labels. Internal
+unpaired intervals, changed pairing routes, two tails, isolated pairs, protected
+junctions and length limits remain explicit boundary outcomes. No atoms are
+built, phosphate bonds added, or coordinate-based chemical topology inferred.
+
+The schema-1 `topostitch-logical-end-discovery` assessment is nested in
+`registration_assessment.discovery_assessment`. It retains normalized input,
+its fingerprint, all boundary outcomes, unanchored strands and the derived
+logical assignments. Incomplete discovery or mapping keeps the outer proposal
+state incomplete while still showing assessable candidates. This is discovery
+**within declared topology**, not yet an unattended end finder from an arbitrary
+PDB or an automatic pairing/strand-registration engine.
+
 ## Periodic backend
 
 `nasolve.topostitch_periodic.propose_periodic_connections` accepts explicit
@@ -394,3 +447,20 @@ subtests passed** (1.93 s), using the installed invocation with the logical-mapp
 and construct-registration test files added. An actual installed logical-manifest
 CLI call resolved renamed sites, returned two pairing choices and preserved all
 input bytes.
+
+Declared-topology discovery validation (2026-11-13): module-import failure before
+implementation, plus failing-before regressions for self-reversed core steps and
+partial pairing evidence. **227 focused tests + 2 subtests passed** (1.39 s) across
+the eight TopoStitch files and construct-registration tests. Added coverage spans
+5-prime/3-prime order, internal gaps, chemical versus representation/unknown
+boundaries, protected junctions, two tails, length budgets, isolated/duplicate
+pairing, stable input ordering, JSON normalization and the composed discovery CLI.
+The same **227 installed-wheel tests + 2 subtests passed** (1.82 s), using the
+installed command above with discovery and construct-registration tests added.
+An actual installed discovery/registration/periodic/contact/pairing call on public
+8D93 recovered two ends and one mate from explicitly declared local strand/core
+windows, retained unknown interior-cut coverage, and preserved source bytes.
+This is a scoped read-only smoke check, not unsupervised topology discovery or
+scientific repair validation. Its downloaded coordinates and generated benchmark
+manifests/reports remain local and are excluded from Git. No shared mechanics,
+checkpoint schemas or native-tool behavior changed.

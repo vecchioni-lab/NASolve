@@ -159,8 +159,11 @@ explicitly deferred self-orbit cases. Automatic end detection, full atom-image
 equivalence, physical assignment, geometry construction and campaign use remain
 unimplemented. Logical end roles can now resolve through the existing Pine
 registration via `--registration`, with explicit copies, source/target identity
-checks, and unresolved-end coverage retained. Next: connect backbone/pairing
-evidence to end discovery, then qualify physical image/geometry gates.
+checks, and unresolved-end coverage retained. A discovery manifest now derives
+end roles within declared chemical routes and a complete duplex-core pairing
+inventory; partial evidence and representation boundaries remain unresolved.
+Unassisted coordinate-based topology/pair detection is still future work.
+Next: qualify physical image/geometry gates and bounded repair windows.
 The report distinguishes proposed work from NOT_ATTEMPTED execution and
 UNREVIEWED results; the GUI contract records Campaign desk integration.
 
@@ -185,13 +188,17 @@ Gemmi 0.7.5) passed the actual periodic `--contacts` CLI smoke check and isolate
 installed-import verification. No complete-suite rerun for this isolated patch.
 Pairing alternatives: **157 focused and installed-wheel tests passed**, with an
 actual installed combined-flags CLI smoke check, including an independent
-brute-force oracle and factored forty-pair case. Cedar C253 is concurrently
-changing selected AutoSol site references/checkpoint schema; Willow does not
-consume or alter those interfaces. No combined-branch validation is claimed.
+brute-force oracle and factored forty-pair case. Cedar C253 (`f337660`) changes selected AutoSol site references/checkpoint
+schema; Willow does not consume or alter those interfaces. No combined-branch validation is claimed.
 Logical mapping: **211 focused and installed-wheel tests + 2 subtests passed**,
 plus an actual installed logical-manifest CLI check, including existing
 construct-registration regressions. The adapter does not change Pine's mapping
 implementation or Cedar's active checkpoint interfaces.
+Declared-topology discovery: **227 focused and installed-wheel tests + 2 subtests
+passed**. A public 8D93 installed-CLI smoke check recovered two ends/one mate
+within declared route windows and retained unknown cuts; source bytes unchanged.
+Missing pair evidence never establishes an overhang without declared scope
+completeness. Downloaded coordinates and derived benchmark files are local only.
 No native Phenix/Coot runs or scientific data changes.
 
 ## Work discipline and doc ownership

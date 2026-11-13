@@ -1206,7 +1206,9 @@ compatible one-partner choices, including leaving ends unconnected. Independent
 groups are kept separate to avoid expanding every whole-crystal combination.
 For logical construct-site definitions, use `--registration registration.json`
 with a checksum-bound logical manifest; explicit copy mappings handle renamed
-chains and residue numbering without guessing missing sites.
+chains and residue numbering without guessing missing sites. A discovery
+manifest can derive those ends from declared chemical strand routes and a complete
+duplex-core pairing inventory; unknown cuts and incomplete pairing stay unresolved.
 
 The command prints a review-only JSON report and writes no files. Omit
 `--periodic` for same-frame screening without Gemmi. See the [backend scope and

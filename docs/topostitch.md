@@ -7,7 +7,9 @@ canonical DNA overhangs; the [coordinate adapter](topostitch-coordinates.md)
 verifies PDB bytes and derives sequences/descriptive end frames from explicit
 site assignments. The [periodic inspector](topostitch-periodic.md) now searches explicit end
 images and prints review-only reports; optional contact inspection measures
-canonical recipe distances/angles in those images. Automatic end discovery, model
+canonical recipe distances/angles in those images. Logical end mapping and
+bounded discovery within declared strand/core-pair topology are available through
+the inspector. Unassisted coordinate-based end discovery, model
 construction and refinement remain future work. [Machine-readable intent](topostitch-intent.json)
 is development metadata, not runtime authorization.
 

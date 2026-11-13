@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch declared-topology end discovery
+
+- Derive end roles from explicit chemical strand order and duplex-core pairing,
+  with registered coordinate resolution through the existing inspector.
+- Preserve uncertainty for partial pairing inventories, internal gaps, chain-cut
+  boundaries, protected junctions and unsupported tail patterns. No missing
+  evidence is silently converted into a chemical terminus or new bond.
+
 ### TopoStitch logical end mapping
 
 - Add optional checksum-bound logical end manifests and `--registration` input,

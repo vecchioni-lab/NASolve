@@ -68,23 +68,50 @@ def load_registered_end_assignments(model, path, registration_path):
     from .topostitch_registration import LogicalEndAssignment, resolve_registered_ends
     data = Path(path).read_bytes()
     value = json.loads(data.decode("utf-8"), object_pairs_hook=_unique_object)
-    _keys(value, {"schema_version", "kind", "model_sha256", "registration_sha256", "ends"})
-    if (type(value["schema_version"]) is not int or value["schema_version"] != 1
-            or value["kind"] != "topostitch-logical-end-assignments"):
-        raise ValueError("--registration requires a schema-1 logical end-assignment manifest")
+    if not isinstance(value, dict) or type(value.get("schema_version")) is not int or value["schema_version"] != 1:
+        raise ValueError("--registration requires a schema-1 logical or discovery manifest")
+    discovery = None
+    if value.get("kind") == "topostitch-logical-end-assignments":
+        _keys(value, {"schema_version", "kind", "model_sha256", "registration_sha256", "ends"})
+        if not isinstance(value["ends"], list):
+            raise ValueError("ends must be an array of logical assignments")
+        logical = []
+        for row in value["ends"]:
+            _keys(row, {"end_id", "copy_id", "overhang_sites", "terminal_pair", "inner_pair", "polarity"}, {"state"})
+            logical.append(LogicalEndAssignment(**row))
+    elif value.get("kind") == "topostitch-end-discovery-input":
+        from .topostitch_discovery import BackboneStrand, discover_logical_end_assignments
+        _keys(value, {"schema_version", "kind", "model_sha256", "registration_sha256", "copy_id", "strands", "duplex_pairs"},
+              {"protected_sites", "max_overhang_length", "pairing_inventory_complete"})
+        if not isinstance(value["strands"], list) or not isinstance(value["duplex_pairs"], list):
+            raise ValueError("strands and duplex_pairs must be arrays")
+        strands = []
+        for strand in value["strands"]:
+            _keys(strand, {"strand_id", "sites", "five_prime_boundary", "three_prime_boundary"})
+            strands.append(BackboneStrand(**strand))
+        logical, discovery = discover_logical_end_assignments(strands,value["duplex_pairs"],
+            copy_id=value["copy_id"],protected_sites=value.get("protected_sites",()),
+            max_overhang_length=value.get("max_overhang_length",12),
+            pairing_inventory_complete=value.get("pairing_inventory_complete",False))
+    else:
+        raise ValueError("--registration requires a logical end-assignment or end-discovery manifest")
     registration_data = Path(registration_path).read_bytes()
     registration_hash = sha256(registration_data).hexdigest()
     if value["registration_sha256"] != registration_hash:
         raise ValueError("Registration file checksum mismatch")
     registration = json.loads(registration_data.decode("utf-8"), object_pairs_hook=_unique_object)
-    if not isinstance(value["ends"], list):
-        raise ValueError("ends must be an array of logical assignments")
-    logical = []
-    for row in value["ends"]:
-        _keys(row, {"end_id", "copy_id", "overhang_sites", "terminal_pair", "inner_pair", "polarity"}, {"state"})
-        logical.append(LogicalEndAssignment(**row))
     assignments, mapping = resolve_registered_ends(model, logical, registration,
         expected_sha256=value["model_sha256"])
+    if discovery is not None:
+        # Validate even unassigned routes against the selected registration;
+        # otherwise a typo in an unresolved region could silently disappear.
+        if value["copy_id"] not in {c["copy_id"] for c in registration["copies"]}:
+            raise ValueError("Unknown registered copy in discovery input")
+        known = set(registration["target"]["sites"])
+        if any(site not in known for strand in strands for site in strand.sites):
+            raise ValueError("Unknown logical site in discovery strand")
+        mapping["discovery_assessment"] = discovery
+        mapping["coverage_complete"] = mapping["coverage_complete"] and discovery["coverage_complete"]
     mapping["registration_file_sha256"] = registration_hash
     return value["model_sha256"], assignments, sha256(data).hexdigest(), mapping
 
@@ -94,8 +121,8 @@ def main(argv=None):
         prog="nasolve-topostitch-inspect",
         description="Inspect explicitly assigned DNA ends; print proposals without changing models.")
     parser.add_argument("model",type=Path,help="Exact single-model PDB path")
-    parser.add_argument("assignments",type=Path,help="Schema-1 end assignments bound to the model SHA-256")
-    parser.add_argument("--registration",type=Path,help="Exact construct-registration JSON for a checksum-bound logical assignment manifest")
+    parser.add_argument("assignments",type=Path,help="Checksum-bound coordinate, logical or discovery manifest")
+    parser.add_argument("--registration",type=Path,help="Exact construct-registration JSON for a logical or discovery manifest")
     parser.add_argument("--radius",required=True,type=float,help="Explicit endpoint search radius in Angstrom")
     parser.add_argument("--periodic",action="store_true",help="Search CRYST1 symmetry images (requires NASolve[topology])")
     parser.add_argument("--contacts",action="store_true",help="Measure canonical NARestraints contacts without accepting a pairing")
