@@ -301,6 +301,11 @@ C245 freezes/forwards the option through prepared/ordinary intake and prepare-ru
 C246 connects explicit checked PostMR/campaign entry; C247 carries generation notes
 through publication and campaign status. Selected-adoption reporting remains open;
 current absent intent must keep its meaning. Finish recovery coverage before Q04 closure.
+C248 adds mixed sibling controls: support/rejection in either component, a stopped
+interruption retried in a fresh outer attempt, and an unknown partial reservation
+that blocks retry while preserving the successful sibling. These pass through
+existing production ownership; the generation/repair transport is synthetic.
+They do not establish native mixed-chemistry or diffraction-refinement support.
 C232 already permits an actual parent grant below the frozen generation maximum.
 C240 proves exact launched negative generation; C241 removes the acquisition
 recipe-identity mismatch; C243 proves completed source-chemical rejection through

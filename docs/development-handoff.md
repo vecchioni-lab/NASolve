@@ -1,12 +1,21 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C247. Active **cedar**, checkout NASolve-c96.
-Base C246/903c371 (pushed); current HEAD supplies final identity. The
+Updated **2026-11-13**, C248. Active **cedar**, checkout NASolve-c96.
+Base C247/2419815 (pushed); current HEAD supplies final identity. The
 [queue](cif-doctor-completion-queue.md) owns order and the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 
 ## Current result
+
+C248 adds four mixed-component ownership/recovery controls using the existing
+fixture: success/rejection in either component, stopped interruption with fresh
+outer retry, and unknown partial reservation. Existing production code passes;
+no runtime change, new schema or native chemistry claim. 23 distinct automatic-plane
+cases pass across the focused run (22 passes) and the corrected exception-type
+assertion rerun (1 pass). Exact scope/commands are in ledger
+`mixed_plane_child_recovery_2026_11_13`. No jobs remain active.
+
 
 C246 connects explicit automatic plane support through checked PostMR and frozen
 schema-2 campaign recipes. C247 now carries already-verified generation notes

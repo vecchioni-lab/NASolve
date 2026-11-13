@@ -704,13 +704,14 @@ def auto_planes(case,monkeypatch):
     options=dict(outcome='support',needed=True,generated=[])
     def plan(attempt):
         return {c:dict(source_sha256='s',dictionary_sha256='d',coverage_policy='synthetic',
-            coverage_status='REVIEW' if c==code and options['needed'] else 'SCOPED_EXPLICIT_COVERAGE_PASS',
-            missing_centres=['C'] if c==code and options['needed'] else []) for c in generations}
+            coverage_status='REVIEW' if c in options.get('needed_codes', {code} if options['needed'] else set()) else 'SCOPED_EXPLICIT_COVERAGE_PASS',
+            missing_centres=['C'] if c in options.get('needed_codes', {code} if options['needed'] else set()) else []) for c in generations}
     monkeypatch.setattr(m,'_plane_plan',plan)
     def generate(*,source,code,request_directory,_parent_attempt_identity,_remaining_seconds,**g):
         assert g['multiple_planes'] is True and g['max_attempts']==1 and 0<_remaining_seconds()<=args['total_timeout_seconds']
         options['generated'].append(request_directory)
-        if options['outcome']=='partial':request_directory.mkdir(parents=True);raise KeyboardInterrupt('partial generation reservation')
+        outcome = options.get('outcomes', {}).get(code, options['outcome'])
+        if outcome=='partial':request_directory.mkdir(parents=True);raise KeyboardInterrupt('partial generation reservation')
         request_directory.mkdir(parents=True);(request_directory/'inputs').mkdir()
         (request_directory/'inputs/source.cif').write_bytes(source.read_bytes())
         parent=read_record(request_directory.parent.parent/'attempt.json')
@@ -725,9 +726,9 @@ def auto_planes(case,monkeypatch):
         intent=write_record(attempt/'attempt.json',dict(number=1,attempt_id=str(uuid.uuid4()),request_sha256=header['record_sha256'],
             coordinator=parent['coordinator'],parent_attempt=_parent_attempt_identity))
         work=attempt/'generation';work.mkdir()
-        (work/'source_candidate_receipt.json').write_text(json.dumps(dict(status='CANDIDATE_REVIEW' if options['outcome']=='support' else 'REJECTED',execution=dict(status='COMPLETED'))))
+        (work/'source_candidate_receipt.json').write_text(json.dumps(dict(status='CANDIDATE_REVIEW' if outcome=='support' else 'REJECTED',execution=dict(status='COMPLETED'))))
         write_record(attempt/'finished.json',dict(outcome='RETURNED',stopped_verified=True,attempt_sha256=intent['record_sha256']))
-        if options['outcome']=='interrupt':raise KeyboardInterrupt('after stopped child')
+        if outcome=='interrupt':raise KeyboardInterrupt('after stopped child')
         return dict(attempt_number=1)
     def inspect(path):
         if not path.exists():return dict(state='NOT_RECORDED')
@@ -736,11 +737,12 @@ def auto_planes(case,monkeypatch):
         return dict(state='RECORDED',request=read_record(path/'request.json'),attempts=[dict(number=1,state='STOPPED',activity=False,
             intent=read_record(attempt/'attempt.json'),finished=read_record(attempt/'finished.json'))])
     def proof(source,c,path,n):
-        assert c==code and n==1 and source.read_bytes()==(path/'inputs/source.cif').read_bytes()
+        assert c in generations and n==1 and source.read_bytes()==(path/'inputs/source.cif').read_bytes()
         return dict(policy_id='synthetic-transport',source_sha256=sha256(source.read_bytes()).hexdigest())
-    def negative(*a):
-        if options['outcome']=='corrupt':raise ValueError('unclassified evidence')
-        return dict(proof(*a),failure_kind='REJECTED_CANDIDATE',fallback_authorized=False)
+    def negative(source, c, path, number):
+        if options.get('outcomes', {}).get(c, options['outcome'])=='corrupt':
+            raise ValueError('unclassified evidence')
+        return dict(proof(source, c, path, number),failure_kind='REJECTED_CANDIDATE',fallback_authorized=False)
     def snapshot(sources,declarations):
         if declarations is None:return None,{}
         files={};dirs=[]
@@ -853,3 +855,81 @@ def test_classified_plane_failure_still_runs_independent_qualification(auto_plan
     m.initialize_dictionary_request(output=root,**args);result=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
     assert len(calls)==1 and result['result']['plane_generation']['components'][code]['status']=='KNOWN_GENERATION_FAILURE'
     assert m.read_dictionary_request_result(root,1)['runtime'] is None  # A failed qualification stays unusable.
+
+
+@pytest.mark.parametrize('failed_index', [0, 1])
+def test_mixed_plane_outcomes_keep_component_ownership_and_independent_qualification(auto_planes, monkeypatch, failed_index):
+    from nasolve import cif_repair_attempt as repair
+    (m, args, root, sdk, store, generations, calls), options, _ = auto_planes
+    codes = sorted(generations); assert len(codes) == 2
+    failed = codes[failed_index]; supported = codes[1-failed_index]
+    options['needed_codes'] = set(codes)
+    options['outcomes'] = {failed: 'rejected', supported: 'support'}
+    args.update(qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID)
+    original = repair.execute_prepared_dictionary_repair
+    observed = []
+    def execute(*a, **kw):
+        observed.append(kw)
+        assert kw['qualify_no_repair'] is True
+        assert set(kw['plane_support']) == {supported}
+        assert kw['plane_support'][supported]['request_directory'].name == supported
+        value = original(*a, **kw)
+        value.update(qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID,
+                     status='NO_USABLE_BUNDLE')
+        (a[2]/'repair_execution.json').write_text(json.dumps(value))
+        return value
+    monkeypatch.setattr(repair, 'execute_prepared_dictionary_repair', execute)
+    m.initialize_dictionary_request(output=root, **args)
+    result = m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    rows = result['result']['plane_generation']['components']
+    assert rows[supported]['status'] == 'OWNED_SUPPORT_READY'
+    assert rows[failed]['status'] == 'KNOWN_GENERATION_FAILURE'
+    assert rows[failed]['proof']['fallback_authorized'] is False
+    assert rows[supported]['request']['path'] != rows[failed]['request']['path']
+    assert len(observed) == 1 and len(options['generated']) == 2
+    assert result['result']['status'] == 'NO_USABLE_BUNDLE'
+    before = inventory(root)
+    with monkeypatch.context() as check:
+        check.setattr(m, 'generate_source_candidate_attempt', lambda **kw: pytest.fail('Read cannot generate'))
+        assert m.read_dictionary_request_result(root, 1)['runtime'] is None
+    assert inventory(root) == before
+
+
+def test_mixed_plane_interruption_preserves_both_children_and_restarts_in_fresh_outer_attempt(auto_planes):
+    (m, args, root, sdk, store, generations, calls), options, _ = auto_planes
+    codes = list(generations); assert len(codes) == 2
+    options['needed_codes'] = set(codes)
+    options['outcomes'] = {codes[0]: 'support', codes[1]: 'interrupt'}
+    m.initialize_dictionary_request(output=root, **args)
+    with pytest.raises(KeyboardInterrupt, match='stopped child'):
+        m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    old = inventory(root/'attempts/attempt-0001')
+    assert not calls and len(options['generated']) == 2
+    state = m.inspect_dictionary_request(root)
+    assert state['attempts'][0]['state'] == 'STOPPED'
+    options['outcomes'][codes[1]] = 'support'
+    second = m.execute_dictionary_request_attempt(root, sdk, store, generation=generations, after_attempt=1)
+    assert second['attempt_number'] == 2 and len(calls) == 1
+    assert len(set(options['generated'])) == 4
+    assert inventory(root/'attempts/attempt-0001') == old
+    assert all(row['status'] == 'OWNED_SUPPORT_READY' for row in second['result']['plane_generation']['components'].values())
+
+
+def test_mixed_unknown_plane_child_blocks_retry_without_discarding_successful_sibling(auto_planes):
+    (m, args, root, sdk, store, generations, calls), options, _ = auto_planes
+    codes = list(generations); assert len(codes) == 2
+    options['needed_codes'] = set(codes)
+    options['outcomes'] = {codes[0]: 'support', codes[1]: 'partial'}
+    m.initialize_dictionary_request(output=root, **args)
+    with pytest.raises(KeyboardInterrupt, match='partial generation'):
+        m.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    old = inventory(root)
+    assert not calls and len(options['generated']) == 2
+    state = m.inspect_dictionary_request(root)
+    assert state['retry_authorized'] is False
+    options['outcomes'][codes[1]] = 'support'
+    from nasolve.campaign_process import CampaignProcessError
+    with pytest.raises(CampaignProcessError, match='BLOCKED'):
+        m.execute_dictionary_request_attempt(root, sdk, store, generation=generations, after_attempt=1)
+    assert inventory(root) == old and not (root/'attempts/attempt-0002').exists()
+    assert len(options['generated']) == 2

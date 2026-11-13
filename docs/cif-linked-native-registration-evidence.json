@@ -90713,5 +90713,40 @@
       "conclusion": "Generated support is not enough to infer final coverage. Selected success CIF has explicit C2/C4/C5 planes; timeout control retains C5 missing. Neither screen establishes effective native restraint membership, adequate alternative restraints, numerical target correctness or diffraction refinement.",
       "next": "Design ordinary selected-CIF reporting with exact source/artifact binding, explicit ambiguity/unsupported cases and no new selection authority or duplicate full proof."
     }
+  },
+  "mixed_plane_child_recovery_2026_11_13": {
+    "milestone": "C248",
+    "base_commit": "2419815fc3e2ba63a909208ae0199d5c2f9b7708",
+    "production_source_changed": false,
+    "before": "Automatic-plane fixture exercised one needed child at a time; mixed sibling outcome/partial-reservation behavior lacked focused controls.",
+    "after": "Existing fixture supports per-component needed/outcome choices; four added cases exercise success/rejection in either component, stopped interruption with fresh outer retry, and unknown partial reservation preserving a successful sibling.",
+    "prior_work": [
+      "C244 component ownership/shared deadline/recovery",
+      "C247 truthful generation notes distinct from selected coverage"
+    ],
+    "test_sha256": {
+      "tests/test_cif_complete_request.py": "5079dd4dc781dc2986e4d18f53909cfbde374fedc2e73103205a285172e3e3df"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py -k 'automatic_support or automatic_plane or generated_plane or classified_plane or mixed_plane or mixed_unknown_plane' --tb=short",
+        "result": "22 passed, 1 failed, 99 deselected in 97.71s; remaining failure was new test expecting ValueError instead of existing CampaignProcessError(BLOCKED)."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py -k mixed_unknown_plane --tb=short",
+        "result": "1 passed, 121 deselected in 3.59s after correcting only that assertion. 23 distinct focused cases passed across the two runs."
+      }
+    ],
+    "finding": "No production defect exposed. Support declarations contain only the successful component. Classified failure has no fallback authority; failed independent qualification stays NO_USABLE_BUNDLE. Known-stopped child interruption uses a new outer attempt and distinct child directories; unknown partial reservation blocks retry with all previous bytes retained.",
+    "compatibility": "No API, scientific behavior, saved schema, defaults or native-tool changes.",
+    "scope": "Synthetic generation/repair transport around real request, source, acquisition, ownership and publication structures; not native mixed-component chemical/refinement qualification.",
+    "native_execution": false,
+    "full_regression": false,
+    "remaining": [
+      "Ordinary selected-dictionary plane coverage reporting",
+      "Other prelaunch/process-failure boundaries and campaign-scale storage acceptance",
+      "Later preparation-child publication",
+      "Actual combined-chemistry refinement controls"
+    ]
   }
 }
