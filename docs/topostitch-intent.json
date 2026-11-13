@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "topostitch-development-intent",
   "date": "2026-11-13",
-  "status": "READ_ONLY_PERIODIC_INSPECTOR_IMPLEMENTED",
+  "status": "BOUNDED_BEND_PREVIEW_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
   "branch": "willow",
@@ -266,6 +266,24 @@
       "protected_junctions_stop_expansion": true,
       "geometry_feasibility_evaluated": false,
       "selection": false
+    },
+    "bend_preview": {
+      "module": "nasolve.topostitch_preview",
+      "command": "nasolve-topostitch-preview",
+      "contract": "docs/topostitch-preview.md",
+      "input_kind": "topostitch-window-transform",
+      "report_kind": "topostitch-bend-preview",
+      "schema_version": 1,
+      "scope": "explicit single-window smooth terminal transform with fixed inner anchors",
+      "writes_new_candidate_only": true,
+      "rotates_selected_anisou": true,
+      "audits_serialized_backbone_changes": true,
+      "portable_snapshot_replay": true,
+      "automatic_fitting": false,
+      "geometry_validated": false,
+      "refinement_state": "NOT_ATTEMPTED",
+      "review_state": "UNREVIEWED",
+      "campaign_adoption": false
     }
   }
 }

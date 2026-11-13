@@ -47,7 +47,7 @@ historical handoffs as current instructions.
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
-| Proposed TopoStitch recut and connection repair | [Design contract](topostitch.md), [development intent](topostitch-intent.json) — [candidate screen](topostitch-backend.md) and [coordinate adapter](topostitch-coordinates.md), [periodic inspector](topostitch-periodic.md); campaign inference, scheme transfer and repair remain planned |
+| Proposed TopoStitch recut and connection repair | [Design contract](topostitch.md), [development intent](topostitch-intent.json) — [candidate screen](topostitch-backend.md) and [coordinate adapter](topostitch-coordinates.md), [periodic inspector](topostitch-periodic.md) and [explicit bend previews](topostitch-preview.md); campaign inference, scheme transfer and repair remain planned |
 | Future GUI | [GUI contract](gui.md), [GUI live checks](gui-live-checks.md) |
 | Proposed metal-coordination builder | [Metal restraint builder](metal-restraint-builder.md), [development intent](metal-restraint-builder-intent.json) — **design, not implemented** |
 

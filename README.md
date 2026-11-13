@@ -1187,11 +1187,11 @@ pipeline retains common validation, provenance, non-overwrite behavior, and
 external-tool isolation. Numerical acceptance and model/map inspection remain
 separate outcomes.
 
-## Experimental TopoStitch inspection
+## Experimental TopoStitch inspection and previews
 
 TopoStitch's read-only backend can inspect explicitly assigned canonical DNA
 ends and propose nearby crystallographic images. It does not yet discover ends
-automatically or repair/refine a model. Install the optional dependency and use
+from an arbitrary model or repair/refine automatically. Install the optional dependency and use
 an explicit [end-assignment manifest](docs/topostitch-periodic.md):
 
 ```bash
@@ -1216,6 +1216,19 @@ The command prints a review-only JSON report and writes no files. Omit
 `--periodic` for same-frame screening without Gemmi. See the [backend scope and
 limitations](docs/topostitch-periodic.md) before interpreting a candidate as a
 connection; no existing campaign recipe enables construction or selection.
+
+A separate [bend-preview command](docs/topostitch-preview.md) can now materialize
+one explicitly selected window and terminal transform in a new folder:
+
+```bash
+nasolve-topostitch-preview model.pdb discovery.json \
+  --registration registration.json --trial trial.json --out new-preview
+```
+
+The trial declares its exact input checksums, window, motion and displacement/
+backbone-change limits. Source and fixed anchors stay unchanged; selected ANISOU
+tensors rotate with the atoms. A saved candidate is unreviewed and unrefined,
+with no campaign adoption or claim that its geometry improved.
 
 ## Problems and reproducibility
 

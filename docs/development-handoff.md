@@ -141,22 +141,28 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 [TopoStitch](topostitch.md) on `willow` starts from Pine `d7913dd`; its
 [intent record](topostitch-intent.json) is development metadata, not runtime
 permission. The [current inspector contract](topostitch-periodic.md) owns usage,
-schemas, validation commands and limits.
+schemas, validation commands and limits; the [bend-preview guide](topostitch-preview.md)
+owns explicit candidate generation.
 
 Implemented: verified PDB end frames; metric-bounded periodic image search;
 NARestraints contact observations; factorized one-partner alternatives; logical
 end mapping through Pine registration; bounded discovery within declared chemical
 routes/core pairing; and whole-pair window proposals with fixed inner anchors.
 Incomplete pairing, missing mappings, uncertain cuts, protected junctions and
-declared free ends remain explicit. Reports separate proposals from
-NOT_ATTEMPTED execution and UNREVIEWED review, with no model/checkpoint changes.
-Next: qualify coordinate realization, physical image identity and bounded geometry
-trials. Unassisted coordinate-based topology discovery, repair/refinement and
+declared free ends remain explicit. A separate explicit preview writer now
+applies a tapered paired-step transform in a new candidate, preserves source and
+anchors, rotates ANISOU tensors and audits serialized backbone changes. Frozen
+input snapshots and run-relative checksums support replay after relocation.
+Inspector execution stays NOT_ATTEMPTED; actual previews are CANDIDATE_BUILT,
+UNREVIEWED and unrefined. No existing model/checkpoint is changed.
+Next: bounded fitting, physical image identity and qualified native geometry
+audit. Unassisted coordinate topology discovery, reconstruction, refinement and
 campaign adoption remain unimplemented.
 
-**Current checks:** 232 focused and installed-wheel tests + 2 subtests passed.
+**Current checks:** 265 focused, installed-wheel and relocated-checkout tests + 2 subtests passed.
 Actual installed CLI checks cover composed options and public 8D93 within declared
-local windows; source bytes stayed unchanged and unknown cuts stayed incomplete.
+local windows, plus the explicit ANISOU-preserving preview. Source bytes stayed
+unchanged and unknown cuts stayed incomplete.
 Coordinates and derived benchmark files remain local only. The last full suite
 was the earlier periodic slice: 1,099 tests + 226 subtests; it was not rerun for
 these isolated additions. No native Phenix/Coot or diffraction validation.

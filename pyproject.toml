@@ -20,6 +20,7 @@ topology = ["gemmi>=0.7.5,<0.8"]
 [project.scripts]
 nasolve = "nasolve.cli:main"
 nasolve-topostitch-inspect = "nasolve.topostitch_inspect:main"
+nasolve-topostitch-preview = "nasolve.topostitch_preview:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

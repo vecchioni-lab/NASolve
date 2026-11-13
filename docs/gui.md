@@ -776,13 +776,18 @@ competing choices, including leaving a group unconnected; do not flatten their
 Cartesian product into a huge list or present the highest contact count as best.
 Window proposals distinguish movable sites from fixed inner anchors and record
 junction/routing stops. Display them as logical scope until coordinate mapping
-and geometry feasibility have actually been checked; there is still no after-model.
+and geometry feasibility have actually been checked. The separate
+[bend-preview receipt](topostitch-preview.md) can supply a real source/candidate
+comparison for an explicitly requested transform, including moved sites, fixed
+anchors, measured backbone changes and exact anchored artifacts. Its state is
+CANDIDATE_BUILT / NOT_ATTEMPTED refinement / UNREVIEWED; it is not a repaired result.
 
 Keep three questions separate in the UI: **What is proposed? What actually ran?
 Has a person reviewed this exact result?** Do not use one green status for all
-three. The current backend only emits proposals/observations, NOT_ATTEMPTED
-execution, UNREVIEWED review and an empty change list. There is no after-model
-to display yet. Frame availability is not a completed stitch or valid geometry.
+three. The inspector emits proposals/observations and NOT_ATTEMPTED execution;
+the explicit preview writer additionally emits an actual candidate. Neither
+provides scientific acceptance, native refinement or campaign adoption. Frame
+availability or a built candidate is not a completed stitch or valid geometry.
 
 A compact campaign row should show “Connection proposed”, “Needs assignment” or
 “No candidate in searched scope” as appropriate. Expand it to see:

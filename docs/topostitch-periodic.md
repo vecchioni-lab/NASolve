@@ -362,8 +362,9 @@ image distinctness and global pairing constraints, then qualified geometry work.
 
 ## Current validation receipt — 2026-11-13
 
-**232 focused tests + 2 subtests passed** from source (1.33 s) and against the
-installed wheel (1.37 s), using Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3
+**265 focused tests + 2 subtests passed** from source (1.85 s), against the
+installed wheel (1.82 s), and from a relocated temporary checkout (1.72 s) after
+its original path was absent, using Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3
 (`a9264f9`) and Gemmi 0.7.5. The new backend tests failed before their functions
 existed; additional failing-before regressions cover self-reversed paired steps,
 partial pairing evidence and earlier discovery-report compatibility.
@@ -374,7 +375,9 @@ capacity; transformed frames/contact atoms; library role fingerprints; incomplet
 contacts; exact source and registration checksums; renamed/split chains and
 copies; chemical versus representation boundaries; protected/free ends; fixed
 anchors and whole-pair window expansion; bounded matching alternatives; no-write
-CLI behavior; and original-path-absent input relocation.
+CLI behavior; explicit bend-preview anchor/ANISOU preservation, serialized
+backbone-change limits, frozen-input replay, tampering and no-overwrite behavior;
+and original-path-absent input/checkout relocation.
 
 Source command (historical environment paths, not operational model references):
 
@@ -386,7 +389,7 @@ from pathlib import Path
 sys.path.append('/private/tmp/willow-periodic-deps')
 import pytest
 paths = sorted(str(p) for p in Path('tests').glob('test_topostitch*.py'))
-raise SystemExit(pytest.main(paths + ['tests/test_construct_registration.py', '-q', '-p', 'no:cacheprovider']))
+raise SystemExit(pytest.main(paths + ['tests/test_construct_registration.py', 'tests/test_run_context.py', '-q', '-p', 'no:cacheprovider']))
 PYTEST
 ```
 
@@ -400,7 +403,7 @@ patches rebuilt/reinstalled the wheel without changing the shared NASolve/Cedar
 environments. Isolated `python -I` imports matched current source bytes.
 
 Actual installed CLI checks cover periodic/contact/pairing composition, logical
-registration and discovery/windows. A scoped public
+registration, discovery/windows and the separate [bend-preview writer](topostitch-preview.md). A scoped public
 [8D93](https://www.rcsb.org/structure/8D93) check used explicitly declared local
 strand/core windows: two ends, one mate, two unselected pairing choices and four
 window sizes per end. It retained unknown interior cuts and preserved PDB bytes.
@@ -414,8 +417,9 @@ not change global mechanics, so that suite was not rerun or represented as
 covering those additions. At that earlier slice, all 132 focused tests also
 passed from a relocated temporary checkout after its original path was absent;
 lean installs ran nonperiodic inspection and reported missing Gemmi cleanly.
-Current mapping/contact tests additionally move their inputs and remove the
-original paths. `git diff --check`, intent JSON and documentation references
+Current mapping/contact/preview tests additionally move their inputs and remove
+the original paths; all 265 current focused tests also passed after moving a
+temporary source checkout and verifying imports came from its relocated path. `git diff --check`, intent JSON and documentation references
 are checked before publication. No Phenix/Coot execution, diffraction evaluation
 or native scientific success is claimed.
 

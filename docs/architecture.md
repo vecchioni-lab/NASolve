@@ -892,3 +892,21 @@ interpretation belongs alongside inspection evidence; it does not require
 altering the recorded clashscore. Future campaign acceptance policies should
 be preset-specific and should preserve the distinction between numerical
 acceptance and structural assessment.
+
+## Isolated TopoStitch backend
+
+TopoStitch currently has two additive entry points, outside the campaign/PostMR
+CLI. `nasolve-topostitch-inspect` composes verified coordinate/periodic
+observations, NARestraints contacts, factorized pairing alternatives, existing
+Pine registration mapping and declared-topology end/window proposals. It writes
+no files. `nasolve-topostitch-preview` applies one explicit terminal transform
+with a paired-step taper to a new candidate, preserving fixed anchors and
+rotating selected ANISOU tensors. It audits serialized backbone changes against
+caller limits; this is not atomistic closure or refinement qualification.
+
+Preview folders freeze exact inputs and source/candidate PDBs under checksummed
+run-relative references; replay verifies the result after relocation. They are
+not numbered NASolve checkpoints, do not change registration or chemistry, and
+have no campaign selection authority. Cedar construction/native audit remains
+a separate interface to qualify. See [preview usage and limits](topostitch-preview.md)
+and the [periodic inspector contract](topostitch-periodic.md).

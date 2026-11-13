@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch isolated bend previews
+
+- Add an explicit single-window trial writer with whole-pair tapered motion,
+  unchanged source/fixed anchors, and rotation of selected ANISOU tensors.
+- Check displacement and backbone bond/angle changes after PDB serialization;
+  reject unsupported records, stale inputs and out-of-limit trials before output.
+- Freeze checksummed source/candidate/input snapshots with replayable run-relative
+  references. No automatic fitting, native refinement or campaign adoption.
+
 ### TopoStitch editable windows
 
 - Add `--windows` whole-pair scope proposals with fixed inner anchors, bounded
