@@ -33,9 +33,12 @@ does not rewrite the earlier comparison.
 A fresh two-attempt Phenix control now confirms later-choice publication, relocated
 Coot/refinement inputs and preservation of a selected manual child when an earlier
 preparation is published again. The manual model is an unchanged copy; this does
-not demonstrate a Coot edit or diffraction refinement. Q04/Q05 still need the
-native acceptance of that comparison and remaining recovery/storage acceptance
-before moving to complete-restraint refinement and mixed/held-out controls.
+not demonstrate a Coot edit or diffraction refinement. A separate iodine-bearing
+control now completes preparation and AutoSol, retaining its protected terminal
+phosphate. The saved comparison still opens after choosing a different model and
+moving the run. Coot also loads its final dictionary, models and density map.
+Q04/Q05 still need practical inspection-cost and recovery/rollout reconciliation
+before complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 
@@ -55,7 +58,7 @@ An explicit generation recipe now carries that prepared input through the normal
 attempt and cache machinery while retaining the original chemical authority.
 Original 1AP and 5IU acquisitions pass isolated checks and read correctly after
 relocation without their original files or Phenix. Ordinary command defaults and
-whole-model/phasing acceptance remain separate; this does not certify a structure.
+broader whole-model chemistry coverage remain separate; this does not certify a structure.
 
 The PDU investigation illustrates the distinction: correct connectivity and a
 straight propyne do not guarantee the desired glycosidic orientation or coplanarity
@@ -115,7 +118,11 @@ New campaign records depend on the archive and retained scientific files, so a l
 completion of partial cleanup does not break them. Inspection and historical
 publication do not clean files; old campaign records are not silently migrated.
 Archive preparation alone still never removes source files.
-These figures do not justify running 100 readers at once. Saved scientific records
+A fresh iodine-bearing successful request now retains 35.1 MB including shared
+acquisition; stopped failed examples retain 18.9–37.5 MB each without cleanup.
+Opening the successful result still takes about 100 seconds on this machine;
+repeated numerical checking is the next practical cost to reduce. These figures
+do not justify running 100 readers at once. Saved scientific records
 retain their identity; an explicitly added storage receipt requires a new reader.
 
 Here, **frozen proof** means a fixed, identifiable set of inputs and check results

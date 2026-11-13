@@ -11,8 +11,10 @@ The [checked-preparation handoff](cif-doctor.md#checked-preparation-and-honest-r
 now exposes exact readback and one fresh continuation attempt through the existing
 owner. C223–C225 add explicit initial review-checkpoint publication, ordinary
 checked PostMR and frozen campaign entry. C251 adds explicit later preparation
-alternatives with unchanged root/current choice. Default activation, alternative-aware
-phasing and actual complete-restraint refinement remain separate gates.
+alternatives with unchanged root/current choice. C253 binds AutoSol comparison to
+the chosen model while preserving original-MR phasing; C270/C271/C272 validate
+native phasing, later-selection identity, relocated readback and final Coot loading.
+Default activation and actual complete-restraint refinement remain separate gates.
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not

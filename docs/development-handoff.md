@@ -1,91 +1,70 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C271 AutoSol view identity fix; native C270 ran at
-C269 `f2345a8`. Active **cedar**, NASolve-c96. Simon authorized work through
-**00:00 Europe/London, 14 November**, focused tests only; no full suite or merge.
-Finish Q04/Q05 before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering.
+Updated **2026-11-13**, C272 native consumer/closure consolidation. Active **cedar**,
+NASolve-c96; product HEAD before this documentation is C271 `cedc28d`.
+Simon extended work to **00:30 Europe/London, 14 November**. Focused checks only;
+no full suite, new branch or merge. Finish Q04/Q05 before Q06. The
+[queue](cif-doctor-completion-queue.md) owns ordering.
 
-## Current checkpoint — preserve the phosphate Phenix actually read
+## Completed checkpoint — the chosen result reaches AutoSol and Coot
 
-C266 carries explicit ordinary permission for protected background terminal
-phosphates into native checks. C267 then exposes a naming mismatch: Phenix p5*END
-binds coordinate OP3 to native O3T. The chemical definitions are unchanged.
-C268 qualifies combined full-model energy/name observation on 853 real atoms;
-energies, gradients, geometry and definitions exactly match the prior capture.
-Its first driver had a post-completion analysis assertion error; the stopped
-failure is preserved and separate no-launch relocated readback passes.
+C269 `f2345a8` preserves actually observed phosphate names under explicit native
+context v4 without changing chemistry or pinned numerical workers. Native C270
+passes Phaser, Coot/NAR construction, original/repaired derivatives, plane repair,
+ReadySet/native endpoint and AutoSol: `POSTMR_READY`, `AUTOSOL_READY`, 1.449 Å
+site match, HLAM/HLBM/HLCM/HLDM phases, seven restraints and OP3 retained at D:1.
+This is an explicit A:5IU/free-end fixture using real DiU observations, not donor
+chemistry or diffraction-refinement success. Whole retained request: 35,122,742 B
+/ 168 files, including shared acquisition and continuation.
 
-C269 uses these observed bindings under explicit native context v4, retaining
-complete before/after definition/name equality, terminal graph and all existing
-source/link/proxy checks. It also preserves the names in existing numerical and
-plane-attribution reconstruction. No native kernel, mathematical worker, chemical
-state or coordinates change. Old v1/v2/v3 reads retain their original meanings;
-new requests require a current reader. No alias whitelist or automatic adoption.
-Focused validation: **327 passed**, then **298 affected-consumer checks passed**;
-one additional stopped-failure binding test and three moved-checkout checks pass.
-A no-launch read of 853-atom native evidence also passes; all 432 inspected files
-keep their bytes/timestamps. Exact commands and scopes are recorded in ledger
-`retained_phosphate_observed_names_2026_11_13`; fresh native acceptance follows.
+Two stopped diagnostic failures remain preserved: the first driver used the wrong
+checkpoint attribute after native success; followthrough-001 exposed missing view
+checkpoint metadata. C271 fixes that existing field, with 68 tests + 23 subtests
+and two moved-checkout checks. No native rerun was needed.
 
-## Saved C270 result — finish diagnostic readback, not native work
+C270 followthrough-002 now PASSES: current postmr does not replace the saved
+manual-001 AutoSol comparison. The run is under
+`270_Cedar_selected-autosol-pspkne9n/relocated/DiU/AutoMR/run_001` in live-tests;
+its original path is gone. Guarded cold reading forbids original/cache/SDK reads
+and native calls; all 389 run files keep bytes/timestamps. Original input bytes
+match frozen inputs, and five originals remain unchanged during followthrough.
+The failed initial driver did not persist pre-native timestamp baselines; do not
+claim retrospective timestamp comparison. Full diagnostic control is about 62.3 MB.
 
-Live-tests root `270_Cedar_selected-autosol-pspkne9n` contains actual successful
-preparation and AutoSol on `f2345a8`: `POSTMR_READY`, `AUTOSOL_READY`, 1.449 Å site
-match and HLAM/HLBM/HLCM/HLDM phases. Original/repaired derivatives, plane repair
-and ReadySet/native endpoint pass. Automatic retirement leaves the whole request
-at 35,122,742 B / 168 files, with seven public restraints and OP3 only at D:1.
-This is an explicit A:5IU/free-end software fixture, not donor chemistry.
+C272 `272_Cedar_native-coot-consumer-us_fv7b_` passes actual headless Coot 1.3.3
+loading of copied final display inputs: dictionary return 41, comparison and HA
+models, FWT/PHWT map via ordinary --auto. All 389 original files remain unchanged.
+No model edits, optimization, effective-plane or diffraction-refinement claim.
+Both controls stopped cleanly, source unchanged. Exact commands/hashes/results:
+evidence ledger `native_selected_autosol_2026_11_13` and
+`native_coot_final_consumer_2026_11_13`. Raw science/scripts stay local.
 
-Two diagnostic failures are preserved, with all processes stopped and source
-unchanged. The first driver used nonexistent `CheckpointRecord.model_path` after
-native completion; its reusable ignored template now uses `model`. The fresh
-`followthrough-001` successfully changed current selection to postmr, then exposed
-that the correct AutoSol model's view omitted its checkpoint ID. C271 fills that
-existing field with the safe saved ID and binds the GUI launch record/workspace.
-Validation: 68 tests + 23 subtests; two moved-checkout checks. No native rerun.
+## Next bounded work — make inspection practical without weakening evidence
 
-Next use fresh owned `followthrough-002` on this saved result. Current selection
-is already postmr; verify AutoSol still opens manual-001, then relocate and perform
-guarded cold inspection/profile. Preserve both earlier failures and their workers.
-Read the followthrough's own active/process/progress/result records before any
-further action. Keep source fixed while it runs. Native launches must be forbidden.
-Original input checksums remain verifiable; pre-native source timestamps were not
-persisted by the first failed driver. Do not invent that comparison; subsequent
-readback records its own before/after timestamps.
+An ordinary selected-view read takes about 99 s. cProfile cold read takes 302.9 s
+(overhead included), with 630.7 MB peak Python memory. Seven repaired-bundle
+inspections repeat fourteen mixed-gradient replays; deepcopy and repeated vector
+norms dominate. Existing C231/C250 request-wide history reuse and C254/C256 bounded
+archive object sharing already solve different duplication problems. Reuse them.
 
-## Next — reconcile Q04/Q05 acceptance
+Investigate narrowly scoped reuse of identical pure numerical validation within
+one exact request read. Every file/source/owner binding must still validate; changed
+inputs must recalculate, and failed validations must not be cached. No persistent
+trust cache. Do not edit historical numerical worker bytes: they are compared
+exactly during old evidence replay. Record speed and unchanged outcomes against
+this stopped saved C270 result, without new native work or scientific modification.
 
-Finish this exact saved-result control. Then assess the documented storage,
-read-cost and opt-in rollout scope. Interrupted AutoSol result publication remains
-preserved but not automatically adopted; do not hide that ownership boundary.
-Q06 actual complete-restraint refinement follows Q04/Q05 scope reconciliation;
-Q07 combined/held-out chemistry and Q08–Q14 retained chemistry learning remain.
-Q15 report and Q16 AutoPhase compatibility naming/full integration review follow.
-No new ownership system, full suite, merge or native repeat is authorized by a
-post-processing test-driver typo.
+Then reconcile Q04/Q05 scope explicitly: supported opt-in preparation, preserved
+but not automatically adopted interrupted AutoSol publication, historical campaign
+migration and measured serial resource use. Repeated-failure/100-dataset bounds
+remain unproven. Q06 actual complete-restraint refinement follows; Q07 mixed and
+held-out chemistry and Q08–Q14 retained chemistry learning are not dropped.
+Q13 still owns charged 1AP leaving-port authority. Q15 reporting and Q16 AutoPhase
+compatibility naming/full integration review remain later. No automatic merge.
 
-## Completed foundations and boundaries — reuse
-
-- C263's explicit source-reader recipe reuses source graph export, reader
-  preservation and whole-bond-row ordering. Original-source 1AP/5IU isolated
-  native acquisitions and relocated reads pass. Raw 1AP generation still reports
-  its historical in-memory issues; independent written-CIF qualification passes.
-  Do not relabel that raw verdict. C265 correctly refuses charged 1AP OP3 under
-  the neutral-hydroxyl linking operation; generalized charge-aware linking is Q13.
-- C252 validates native preparation alternatives, relocated Coot/refinement-input
-  reads and manual-choice preservation. C253 implements chosen-model AutoSol
-  reference without replacing original MR phasing; live acceptance remains above.
-- C260 connects existing successful-working retirement to new ordinary/campaign
-  publication. Actual C244 copy: 181.6 MB → 33.7 MB, same public model/five PHILs/two
-  CIFs/51 paths. Optional cleanup failure requires exact usable-result reread.
-  Failed/uncertain work/shared acquisitions remain unpacked. Old unarchived
-  campaign references need separate migration. One expensive reader at a time
-  until concurrency is measured; do not rebuild storage machinery.
-
-Exact commands, hashes, ownership and historical evidence live in
-`cif-linked-native-registration-evidence.json`. Raw science and ignored cNNN
-runners remain local. Last full suite: **C220/583d30df, 9,178 tests + 276 subtests**.
-Linden works on Willow/Pine; shared parallelity correction was identified to avoid
-repeating it. No qualified selective-coordinate adapter exists in Cedar.
-Everyday NASolve/pine and protected NASolve-cedar data/environments remain untouched.
-No new branch. Signed handoffs between agents: **— Rowan**.
+Last full suite: **C220/583d30df, 9,178 tests + 276 subtests**. Subsequent focused
+validation is recorded in the ledger; this is not a current full-suite claim.
+Linden works on Willow/Pine; ordinary bond-edit exclusion changes must not be
+confused with additive contact energy. Reported Willow evidence is attributed,
+not a combined-build validation. Everyday NASolve/pine and protected local science
+remain untouched. Signed inter-agent handoffs: **— Rowan**.

@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C271
+## Near-term closure at C272
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -31,13 +31,18 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: qualify the chosen-model anomalous-site connection | C253 preserves original-MR phasing and freezes the chosen comparison model. C270 now passes actual Phaser/Coot/NAR/plane repair/ReadySet and AutoSol on the explicit A:5IU control, including the protected D:1 phosphate. C269 reuses observed native atom names; C271 fills the previously omitted checkpoint identity in AutoSol view/launch metadata. Finish later-selection and relocated inspection against the saved result; no native rerun is needed for those checks. Charged 1AP linking remains Q13. CLI defaults remain unchanged. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 preserves original-MR phasing and freezes the chosen comparison model. C270 now passes actual Phaser/Coot/NAR/plane repair/ReadySet and AutoSol on the explicit A:5IU control, including the protected D:1 phosphate. C269 reuses observed native atom names; C271 fills the previously omitted checkpoint identity in AutoSol view/launch metadata. Later-selection and guarded relocated inspection now pass: current postmr does not replace the saved manual-001 comparison. C272 native Coot loads the final dictionary, both models and FWT/PHWT map; all 389 run files remain unchanged. Charged 1AP linking remains Q13. CLI defaults remain unchanged. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
 No further implementation is currently identified for the chosen-model binding
-after C271; its remaining saved-result acceptance must finish before closing it.
-Then reconcile the Q04/Q05 resource, recovery and opt-in rollout limits explicitly.
+after C271; C270/C272 close its selected-model native and relocated acceptance for
+the explicit A:5IU control. Reconcile Q04/Q05 resource, recovery and opt-in rollout
+limits explicitly. The next bounded improvement is practical inspection cost: an
+unprofiled selected-result read takes about 99 s and repeats the same numerical
+proof. Reuse identical pure calculations only within a single inspection, retaining
+all file/owner/source checks; preserve pinned worker bytes and historical replay.
+Do not introduce a persistent trust cache or a second scientific validator.
 A newly exposed defect may require a bounded patch; do not reopen completed
 ownership/storage machinery or use a numerical patch estimate as a finish line.
 C270's whole automatically retained request is 35,122,742 B / 168 files. Its native
@@ -71,7 +76,7 @@ reviewed support scope. Neither this estimate nor Q05 authorizes a merge.
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition; C245 connects prepare-run and result notes; C246 connects explicit checked PostMR/campaign forwarding. C247 carries notes through publication/status. C249 reports scoped explicit selected-CIF coverage. Finish remaining recovery and storage acceptance. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. C251 adds explicit later alternatives from frozen construction, with immutable receipts, guarded saves and exact Coot/refinement inputs. C252 validates native alternatives, relocated Coot/refinement inputs and manual-choice preservation. Complete alternative-aware phasing without replacing earlier choices. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. C251 adds explicit later alternatives from frozen construction, with immutable receipts, guarded saves and exact Coot/refinement inputs. C252 validates native alternatives, relocated Coot/refinement inputs and manual-choice preservation. C270/C271/C272 qualify chosen-model phasing, later-selection preservation, relocated readback and final native Coot loading. Finish practical read-cost and explicit recovery/rollout scope reconciliation. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
@@ -291,7 +296,12 @@ Remaining acceptance:
    Every original file/checksum/timestamp is unchanged. Exact commands and evidence:
    ledger `ordinary_campaign_retention_2026_11_13`.
 
-   Remaining acceptance must measure the **whole request**, including shared
+   C270 additionally measures a successful **whole request**, 35,122,742 B / 168
+   files, including shared acquisition and continuation, after automatic retention.
+   Its whole relocated diagnostic control is about 62.3 MB. Cold inspection leaves
+   389 run files unchanged; profiled Python peak is 630.7 MB. This complements the
+   failed controls below, but does not establish a repeated-failure campaign bound.
+   Remaining acceptance must account for the **whole request**, including shared
    acquisitions, unsuccessful attempts, continuation and publication. Preserve
    active/failed/unknown work. New ordinary cleanup is optional only after exact
    scientific reread; a cleanup problem must not hide a chemistry failure. Historical
