@@ -933,3 +933,24 @@ def test_mixed_unknown_plane_child_blocks_retry_without_discarding_successful_si
         m.execute_dictionary_request_attempt(root, sdk, store, generation=generations, after_attempt=1)
     assert inventory(root) == old and not (root/'attempts/attempt-0002').exists()
     assert len(options['generated']) == 2
+
+
+
+def test_named_results_share_one_history_replay_and_recheck_selected_evidence(case,monkeypatch,tmp_path):
+    m,args,root,sdk,store,generations,calls=case
+    m.initialize_dictionary_request(output=root,**args)
+    one=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    two=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    moved=root.rename(tmp_path/'moved-request');before=inventory(moved)
+    original=m._result;seen=[]
+    def count(*a,**kw):
+        seen.append(a[1].name);return original(*a,**kw)
+    monkeypatch.setattr(m,'_result',count)
+    monkeypatch.setattr('subprocess.Popen',lambda *a,**kw:pytest.fail('Read must not execute'))
+    values=m.read_dictionary_request_results(moved,[2,1])
+    assert list(values)==[2,1]
+    assert values[1]['result']==one['result'] and values[2]['result']==two['result']
+    assert seen==['attempt-0001','attempt-0002'] and inventory(moved)==before
+    with pytest.raises(ValueError):m.read_dictionary_request_results(moved,[1,1])
+    with pytest.raises(ValueError):m.read_dictionary_request_results(moved,[True])
+    assert inventory(moved)==before

@@ -38,7 +38,7 @@ class CheckpointRecord:
 
 
 SCHEMA_VERSION = 2
-READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION, 3}
+READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION, 3, 4}
 AUTOMATIC_STATUSES = {"READY", "SUCCESS", "USER_APPROVED"}
 REUSABLE_STATUSES = AUTOMATIC_STATUSES | {"REVIEW"}
 
@@ -246,6 +246,33 @@ def _phase_reference(report: Mapping[str, object], run: Path) -> dict[str, objec
     }
 
 
+def _required_observations(report: Mapping[str, object], run: Path) -> Path:
+    """Use a checked preparation's declared anchor, retaining the frozen checksum.
+
+    Legacy input strings keep their resolver. Checked receipts already carry an
+    explicit run/dataset/repository reference; do not fall back to a historical
+    dataset name or host path when that declared reference is missing or changed.
+    Both callers hash the resolved bytes against inputs.reflections_sha256.
+    """
+    inputs = report.get("inputs")
+    if not isinstance(inputs, Mapping):
+        raise CheckpointError("Run report has no frozen AutoMR inputs")
+    postmr = report.get("postmr")
+    if isinstance(postmr, Mapping) and "checked_preparation" in postmr:
+        meta = postmr["checked_preparation"]
+        reference = meta.get("observations") if isinstance(meta, Mapping) else None
+        if not isinstance(reference, Mapping) or reference.get("anchor") not in ("run", "dataset", "repository"):
+            raise CheckpointError("Checked preparation requires declared observation anchors")
+        expected = inputs.get("reflections_sha256")
+        actual = reference.get("sha256")
+        if not isinstance(expected,str) or not isinstance(actual,str) or expected.casefold() != actual.casefold():
+            raise CheckpointError("Checked observation reference differs from frozen input checksum")
+        path = _ref_path(reference, "authoritative reflections", run, verify_checksum=False)
+        assert path is not None
+        return path
+    return _required_file(inputs.get("reflections"), "authoritative reflections", run)
+
+
 def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
     postmr = report["postmr"]
     assert isinstance(postmr, Mapping)
@@ -271,9 +298,7 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
         raise CheckpointError(
             "Rebased PostMR prepared model does not match its frozen checksum"
         )
-    reflections = _required_file(
-        inputs.get("reflections"), "authoritative reflections", run
-    )
+    reflections = _required_observations(report, run)
     reflections_sha256 = _sha256(reflections)
     expected_reflections_sha256 = inputs.get("reflections_sha256")
     if expected_reflections_sha256 is not None and not isinstance(
@@ -381,8 +406,8 @@ def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
 
 
 def save_registry(run: Path, registry: dict[str, object]) -> Path:
-    checked = registry.get("schema_version") == 3 or any("checked_preparation" in i for i in _items(registry))
-    registry["schema_version"] = 3 if checked else SCHEMA_VERSION
+    checked = registry.get("schema_version") in {3, 4} or any("checked_preparation" in i for i in _items(registry))
+    registry["schema_version"] = (4 if registry.get("schema_version") == 4 else 3) if checked else SCHEMA_VERSION
     registry["run_directory"] = "."
     for item in _items(registry):
         for key in ("model", "observations", "phases"):
@@ -462,6 +487,8 @@ def save_registry(run: Path, registry: dict[str, object]) -> Path:
                         "Checkpoint registry changed since it was read; preserve completed "
                         "outputs, reread the registry and reconcile the pending edit"
                     )
+                if saved.get("schema_version") == 4 and registry["schema_version"] != 4:
+                    raise CheckpointError("Cannot downgrade a preparation-alternative registry")
                 record = write_record(path, registry, replace=True)
             # Some callers intentionally save the same live object twice (for
             # example manual import followed by its bookmark). Advance that

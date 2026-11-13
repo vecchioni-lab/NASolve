@@ -69,12 +69,24 @@ def _read_run_report(run_directory: Path) -> tuple[Path, dict[str, object]]:
         )
     if report.get("stage") != "postmr" or report.get("status") != "POSTMR_READY":
         raise AutoSolPreparationError("AutoSol requires a completed POSTMR_READY run")
-    # A checked preparation retains its complete producer proof for every normal
-    # scientific consumer, including anomalous phasing.
-    from .checkpoints import _validate_preparation, CheckpointError
+    # Phasing deliberately uses the original Phaser model. The prepared model
+    # supplies anomalous-site expectations and the validation reference.
+    from .checkpoints import _validate_preparation, CheckpointError, registry_path
+    from .campaign_records import read_record
+    from .campaigns import CampaignError
+    from .cif_dictionary_sites import _read
     try:
-        _validate_preparation(run, report)
-    except CheckpointError as exc:
+        registry = None
+        if isinstance(report.get("postmr"),dict) and "checked_preparation" in report["postmr"]:
+            path = registry_path(run); _read(path); registry = read_record(path)
+        _validate_preparation(run, report, registry)
+        if registry is not None and registry.get("schema_version") == 4 and registry.get("current") != "postmr":
+            raise AutoSolPreparationError(
+                "AutoSol currently validates anomalous sites against the initial checked "
+                "preparation; a different checkpoint is selected. Preserve that choice "
+                "and explicitly select postmr only if the initial validation reference is intended."
+            )
+    except (CheckpointError, OSError, ValueError, CampaignError) as exc:
         raise AutoSolPreparationError(str(exc)) from exc
     return run, report
 

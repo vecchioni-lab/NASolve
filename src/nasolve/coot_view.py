@@ -379,7 +379,7 @@ def _refinement_map(
 ) -> Path:
     outputs = checkpoint.get("outputs")
     map_value = outputs.get("map_coefficients") if isinstance(outputs, Mapping) else None
-    if schema_version in {2, 3} and map_value is not None:
+    if schema_version in {2, 3, 4} and map_value is not None:
         _require_checkpoint_checksum(map_value, "map coefficients")
     reported_map = resolve_artifact_path(map_value, run)
     if reported_map is not None:
@@ -388,7 +388,7 @@ def _refinement_map(
         raise CootViewError(
             "Checkpoint map coefficients are missing or failed checksum validation"
         )
-    if schema_version in {2, 3}:
+    if schema_version in {2, 3, 4}:
         reflection_value = (
             outputs.get("refinement_reflections")
             if isinstance(outputs, Mapping)
@@ -410,7 +410,7 @@ def _checkpoint_dictionaries(
         raise CootViewError("Malformed checkpoint restraint list")
     dictionaries: list[Path] = []
     for value in restraints or []:
-        if schema_version in {2, 3}:
+        if schema_version in {2, 3, 4}:
             _require_checkpoint_checksum(value, "restraint")
         # PHIL and modification-only CIFs belong to the same frozen selection,
         # even though Coot displays only component dictionaries. Validate every
@@ -436,7 +436,7 @@ def _refinement_anomalous_maps(
     value = outputs.get("refinement_reflections") if isinstance(outputs, Mapping) else None
     if value is None:
         return (map_path,)
-    if schema_version in {2, 3}:
+    if schema_version in {2, 3, 4}:
         _require_checkpoint_checksum(value, "refinement reflections")
     reflections = _reported_file(value, "checkpoint refinement reflections", run)
     return tuple(dict.fromkeys((map_path, reflections)))
@@ -448,7 +448,7 @@ def _same_observations(
     paths = []
     for item in (child, parent):
         value = item.get("observations")
-        if schema_version in {2, 3}:
+        if schema_version in {2, 3, 4}:
             _require_checkpoint_checksum(value, "observations")
         paths.append(_reported_file(value, "checkpoint observations", run))
     if paths[0] != paths[1] and file_sha256(paths[0]) != file_sha256(paths[1]):
@@ -477,7 +477,7 @@ def _checkpoint_map(
     if kind == "postmr":
         map_path, map_source = _postmr_map(run, report)
         return map_path, map_source, (map_path,)
-    if kind != "manual":
+    if kind not in {"manual", "preparation"}:
         raise CootViewError(f"Checkpoint {identifier} has unsupported kind: {kind}")
     parent_id = checkpoint.get("parent")
     parent = checkpoints.get(parent_id) if isinstance(parent_id, str) else None
@@ -489,7 +489,7 @@ def _checkpoint_map(
     )
     return (
         map_path,
-        f"inherited {map_source} (not recalculated for manual model)",
+        f"inherited {map_source} (not recalculated for {'prepared alternative' if kind == 'preparation' else 'manual model'})",
         anomalous_paths,
     )
 
@@ -527,7 +527,7 @@ def _autorefine_profile(
     except ValueError as exc:
         raise CootViewError(str(exc)) from exc
     model_ref = checkpoint.get("model")
-    if schema_version in {2, 3}:
+    if schema_version in {2, 3, 4}:
         _require_checkpoint_checksum(model_ref, "model")
     model = _reported_file(model_ref, "checkpoint model", run)
     map_path, map_source, anomalous_paths = _checkpoint_map(
@@ -542,7 +542,7 @@ def _autorefine_profile(
         (),
         _checkpoint_dictionaries(run, checkpoint, schema_version),
         f"{selection} {checkpoint.get('kind')} checkpoint {current} ({status})"
-        + (f": {checkpoint.get('label')}" if schema_version == 3 else ""),
+        + (f": {checkpoint.get('label')}" if schema_version in {3, 4} else ""),
         map_source,
         current,
         anomalous_paths,

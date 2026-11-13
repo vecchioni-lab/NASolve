@@ -79,7 +79,9 @@ the [evidence ledger](docs/cif-linked-native-registration-evidence.json).
 For the explicit Cedar checked-preparation workflow, see
 [prepare a model, read its checked result, or continue interrupted work](docs/cif-doctor.md#checked-preparation-and-honest-recovery-c220).
 This route can save an initial review checkpoint with matching model/restraints;
-later preparation children and complete-restraint refinement remain unfinished. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
+later attempts can be saved explicitly with `publish-preparation --as-alternative`,
+leaving the current selection unchanged. Alternative-aware phasing and
+complete-restraint refinement remain unfinished. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
 explains the remaining work.
 
 ## Quick start

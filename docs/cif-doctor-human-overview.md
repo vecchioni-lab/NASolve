@@ -21,7 +21,14 @@ exact choice as a review checkpoint for inspection and trial refinement, includi
 a checked fallback. Schema-2 campaign recipes can explicitly choose the same
 route and preserve its genuine receipt. An interrupted save can finish without
 rebuilding the model; campaign retry preserves the old run and starts fresh.
-Q04/Q05 still need remaining recovery/storage acceptance and later preparation children
+A later checked preparation can now be saved explicitly as a separate review
+choice, leaving the original preparation and current selection alone. Coot and
+trial refinement use that choice's matching model/restraints. Its origin is the
+same frozen construction, not the coordinates of a refined model selected later.
+Interrupted saving preserves both the scientific work and any newer selections.
+AutoSol deliberately phases with the original MR model; its heavy-atom site check
+still uses the initial prepared model and says so if a different choice is selected. Q04/Q05 still need remaining recovery/storage acceptance and
+alternative-aware phasing/native caller checks
 before moving to complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.

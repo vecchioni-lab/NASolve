@@ -391,3 +391,288 @@ def test_checked_registry_writer_requires_bound_regular_registry(tmp_path, monke
     after = snapshot(run)
     assert all(after[name] == value for name, value in before.items())
     assert set(after)-set(before) <= {'AutoRefine/checkpoints.lock'}
+
+
+
+@pytest.fixture
+def alternative_preparation(tmp_path, monkeypatch):
+    from nasolve import cif_postmr_publication as publication
+    run, first, calls = setup(tmp_path, monkeypatch)
+    publication.publish_checked_preparation(run, attempt_number=1)
+    request = run/'PostMR/DictionaryEngine/request'
+    second = deepcopy(first)
+    attempt = request/'attempts/attempt-0002'; attempt.mkdir()
+    write_record(attempt/'result.json', dict(status='QUALIFIED_DIAGNOSTIC_RUNTIME'))
+    model = attempt/'selected.pdb'; model.write_text(first['runtime']['model'].read_text()+'REMARK preparation alternative\n')
+    cif = attempt/'selected.cif'; cif.write_text('data_new_selected\n')
+    phil = attempt/'selected.phil'; phil.write_text('geometry_restraints {}\n')
+    second['runtime'].update(model=model, dictionaries=[cif], phils=[phil])
+    values = {1:first, 2:second}; reads=[]
+    def batch(root, numbers):
+        assert root == request
+        reads.append(tuple(numbers))
+        return {number:values[number] for number in numbers}
+    monkeypatch.setattr('nasolve.cif_complete_request.read_dictionary_request_results',batch,raising=False)
+    return publication, run, values, reads
+
+
+def test_later_preparation_is_unselected_alternative_from_frozen_construction(alternative_preparation):
+    p, run, values, reads = alternative_preparation
+    root_report=(run/'report.json').read_bytes(); root_receipt=(run/'PostMR/report.json').read_bytes()
+    before=read_record(checkpoints.registry_path(run)); root=deepcopy(before['checkpoints'][0])
+    result, notes=p.publish_preparation_alternative(run,attempt_number=2)
+    assert reads == [(1,2)]  # One complete history read, not one per publication.
+    saved=read_record(checkpoints.registry_path(run))
+    assert saved['schema_version']==4 and saved['current']=='postmr'
+    assert saved['checkpoints'][0]==root and saved['bookmarks']==before['bookmarks']
+    item=saved['checkpoints'][1]
+    assert item['id']=='prepare-002' and item['parent']=='postmr'
+    assert item['kind']=='preparation' and item['preparation_relation']=='SAME_FROZEN_CONSTRUCTION'
+    assert item['status']=='REVIEW' and item['compatibility']['refinement_validation']=='NOT_RUN'
+    assert result['checkpoint_id']==item['id'] and notes
+    assert (run/'report.json').read_bytes()==root_report and (run/'PostMR/report.json').read_bytes()==root_receipt
+    paths=checkpoints.inherited_paths(item,run)
+    assert paths['model']==values[2]['runtime']['model']
+    assert paths['restraints']==values[2]['runtime']['phils']+values[2]['runtime']['dictionaries']
+    profile=resolve_view_profile(run,checkpoint='prepare-002')
+    assert profile.checkpoint_id=='prepare-002' and 'not recalculated for prepared alternative' in profile.map_source
+    before=snapshot(run);p.publish_preparation_alternative(run,attempt_number=2)
+    assert snapshot(run)==before
+
+
+def test_alternative_selection_and_manual_descendant_keep_exact_new_restraints(alternative_preparation):
+    p,run,values,reads=alternative_preparation
+    p.publish_preparation_alternative(run,attempt_number=2)
+    checkpoints.select_checkpoint(run,'prepare-002')
+    added=checkpoints.add_checkpoint(run,name='edited alternative',model=values[2]['runtime']['model'])
+    _,registry=checkpoints.read_registry(run)
+    assert registry['schema_version']==4 and registry['current']=='prepare-002'
+    item=checkpoints.resolve_checkpoint(registry,added.checkpoint_id)
+    assert item['parent']=='prepare-002'
+    assert checkpoints.inherited_paths(item,run)['restraints']==values[2]['runtime']['phils']+values[2]['runtime']['dictionaries']
+    checkpoints.select_checkpoint(run,added.checkpoint_id)
+    before=snapshot(run);p.publish_preparation_alternative(run,attempt_number=2)
+    assert snapshot(run)==before
+    assert resolve_view_profile(run).checkpoint_id==added.checkpoint_id
+    _,registry=checkpoints.read_registry(run);item=checkpoints.resolve_checkpoint(registry,added.checkpoint_id)
+    item['restraints']=item['restraints'][1:]
+    write_record(checkpoints.registry_path(run),registry,replace=True)
+    with pytest.raises(checkpoints.CheckpointError,match='inherited'):
+        checkpoints.resolve_checkpoint(registry,added.checkpoint_id)
+
+
+@pytest.mark.parametrize('boundary',['receipt','registry'])
+def test_interrupted_alternative_publication_reuses_receipt_and_preserves_newer_selection(alternative_preparation,monkeypatch,boundary):
+    p,run,values,reads=alternative_preparation
+    original=p.write_record
+    def interrupted(path,value,**kw):
+        result=original(path,value,**kw)
+        if boundary=='receipt' and path.name=='attempt-0002.json':
+            raise OSError('interrupted after save')
+        return result
+    with monkeypatch.context() as patcher:
+        patcher.setattr(p,'write_record',interrupted)
+        if boundary=='registry':
+            save=checkpoints.save_registry
+            def interrupted_registry(*args,**kwargs):
+                save(*args,**kwargs);raise OSError('interrupted after save')
+            patcher.setattr(checkpoints,'save_registry',interrupted_registry)
+        with pytest.raises(OSError,match='interrupted'):
+            p.publish_preparation_alternative(run,attempt_number=2)
+    receipt=run/'PostMR/Preparations/attempt-0002.json'
+    sealed=receipt.read_bytes(),receipt.stat().st_mtime_ns
+    checkpoints.add_checkpoint(run,name='intervening bookmark')
+    before=read_record(checkpoints.registry_path(run))
+    p.publish_preparation_alternative(run,attempt_number=2)
+    after=read_record(checkpoints.registry_path(run))
+    assert after['current']==before['current'] and after['bookmarks']==before['bookmarks']
+    assert (receipt.read_bytes(),receipt.stat().st_mtime_ns)==sealed
+    assert len([x for x in after['checkpoints'] if x['id']=='prepare-002'])==1
+
+
+@pytest.mark.parametrize('defect',['model','restraints','parent','relation','receipt','schema'])
+def test_alternative_consumers_refuse_rehashed_broken_binding(alternative_preparation,defect):
+    p,run,values,reads=alternative_preparation
+    p.publish_preparation_alternative(run,attempt_number=2)
+    registry=read_record(checkpoints.registry_path(run));item=registry['checkpoints'][1]
+    if defect=='model':item['model']=registry['checkpoints'][0]['model']
+    elif defect=='restraints':item['restraints']=registry['checkpoints'][0]['restraints']
+    elif defect=='parent':item['parent']='manual-001'
+    elif defect=='relation':item['preparation_relation']='REFINED_FROM_PARENT'
+    elif defect=='receipt':item.pop('checked_preparation')
+    else:registry['schema_version']=3
+    write_record(checkpoints.registry_path(run),registry,replace=True)
+    before=snapshot(run)
+    with pytest.raises(checkpoints.CheckpointError):checkpoints.read_registry(run)
+    with pytest.raises(CootViewError):resolve_view_profile(run,checkpoint='prepare-002')
+    assert snapshot(run)==before
+
+
+def test_alternative_publication_cannot_adopt_unqualified_or_initial_attempt(alternative_preparation):
+    p,run,values,reads=alternative_preparation
+    before=snapshot(run)
+    with pytest.raises(ValueError):p.publish_preparation_alternative(run,attempt_number=1)
+    values[2]['runtime']=None
+    with pytest.raises(ValueError,match='independently checked'):
+        p.publish_preparation_alternative(run,attempt_number=2)
+    after=snapshot(run)
+    assert all(after[name]==value for name,value in before.items())
+    assert set(after)-set(before)<= {'AutoRefine/checkpoints.lock'}
+
+
+def test_autosol_does_not_silently_use_root_when_alternative_is_selected(alternative_preparation):
+    from nasolve.autosol import _read_run_report,AutoSolPreparationError
+    p,run,values,reads=alternative_preparation
+    p.publish_preparation_alternative(run,attempt_number=2)
+    _read_run_report(run)  # Unselected alternative leaves initial phasing semantics intact.
+    checkpoints.select_checkpoint(run,'prepare-002')
+    before=snapshot(run)
+    with pytest.raises(AutoSolPreparationError,match='initial.*preparation'):
+        _read_run_report(run)
+    assert snapshot(run)==before
+
+
+
+def test_alternative_refinement_receives_selected_model_and_matching_restraints(alternative_preparation,tmp_path):
+    from nasolve.autorefine import execute_autorefine
+    from tests.test_autorefine import make_refine,make_mtz_dump
+    p,run,values,reads=alternative_preparation
+    p.publish_preparation_alternative(run,attempt_number=2)
+    result=execute_autorefine(run,make_refine(tmp_path),make_mtz_dump(tmp_path,anomalous=False),
+        from_checkpoint='prepare-002',macro_cycles=1,phenix_version='2.2.1-6174',environment={'PATH':'/usr/bin:/bin'})
+    received=json.loads(next((run/'AutoRefine').rglob('received_args.json')).read_text())
+    expected=[values[2]['runtime']['model'],*values[2]['runtime']['phils'],*values[2]['runtime']['dictionaries']]
+    assert all(str(path) in received for path in expected)
+    assert all(str(path) not in received for path in values[1]['runtime']['dictionaries'])
+    _,registry=checkpoints.read_registry(run)
+    assert registry['schema_version']==4
+    item=checkpoints.resolve_checkpoint(registry,result.checkpoint_id)
+    assert item['parent']=='prepare-002'
+    assert checkpoints.inherited_paths(item,run)['restraints']==expected[1:]
+
+
+def test_alternative_cli_is_explicit_and_does_not_discover_tools(alternative_preparation,monkeypatch,capsys):
+    from nasolve.cli import main
+    p,run,values,reads=alternative_preparation
+    monkeypatch.setattr('nasolve.cli.load_config',lambda:pytest.fail('No SDK discovery'))
+    assert main(['cif-doctor','publish-preparation',str(run),'--attempt','2','--as-alternative'])==0
+    output=capsys.readouterr().out
+    assert 'same frozen construction' in output and 'selection is unchanged' in output
+    assert '--checkpoint prepare-002' in output and 'REVIEW' in output
+    assert reads==[(1,2)]
+
+
+def test_alternative_publication_and_reads_survive_relocation(alternative_preparation,monkeypatch,tmp_path):
+    import shutil
+    p,run,values,reads=alternative_preparation
+    p.publish_preparation_alternative(run,attempt_number=2)
+    dataset=run.parents[1];moved=tmp_path/'moved-dataset';shutil.move(str(dataset),moved)
+    newrun=moved/run.relative_to(dataset)
+    for exact in values.values():
+        runtime=exact['runtime'];runtime['model']=newrun/runtime['model'].relative_to(run)
+        for key in ('dictionaries','phils'):runtime[key]=[newrun/path.relative_to(run) for path in runtime[key]]
+    def batch(root,numbers):
+        assert root==newrun/'PostMR/DictionaryEngine/request'
+        return {n:values[n] for n in numbers}
+    monkeypatch.setattr('nasolve.cif_complete_request.read_dictionary_request_results',batch)
+    monkeypatch.setattr('subprocess.Popen',lambda *a,**kw:pytest.fail('Cold read must not run'))
+    before=snapshot(moved)
+    p.publish_preparation_alternative(newrun,attempt_number=2)
+    assert checkpoints.read_registry(newrun)[1]['schema_version']==4
+    assert resolve_view_profile(newrun,checkpoint='prepare-002').model_path==values[2]['runtime']['model']
+    assert snapshot(moved)==before and not dataset.exists()
+
+
+def test_alternative_conflicting_save_retains_receipt_for_fresh_reconciliation(alternative_preparation,monkeypatch):
+    p,run,values,reads=alternative_preparation
+    original=p._alternative_node;intervened=[]
+    def competing(*args):
+        node=original(*args)
+        if not intervened:
+            intervened.append(True)
+            checkpoints.add_checkpoint(run,name='newer while saving')
+        return node
+    with monkeypatch.context() as patcher:
+        patcher.setattr(p,'_alternative_node',competing)
+        with pytest.raises(checkpoints.CheckpointError,match='changed since'):
+            p.publish_preparation_alternative(run,attempt_number=2)
+    receipt=run/'PostMR/Preparations/attempt-0002.json';before=receipt.read_bytes(),receipt.stat().st_mtime_ns
+    registry=read_record(checkpoints.registry_path(run))
+    assert registry['bookmarks']=={'newer while saving':'postmr'} and len(registry['checkpoints'])==1
+    p.publish_preparation_alternative(run,attempt_number=2)
+    assert (receipt.read_bytes(),receipt.stat().st_mtime_ns)==before
+    assert read_record(checkpoints.registry_path(run))['bookmarks']==registry['bookmarks']
+
+
+def test_alternative_cannot_write_through_symlinked_publication_directory(alternative_preparation,tmp_path):
+    p,run,values,reads=alternative_preparation
+    elsewhere=tmp_path/'elsewhere';elsewhere.mkdir()
+    (run/'PostMR/Preparations').symlink_to(elsewhere,target_is_directory=True)
+    from nasolve.campaigns import CampaignError
+    with pytest.raises(CampaignError,match='symbolic link'):
+        p.publish_preparation_alternative(run,attempt_number=2)
+    assert not list(elsewhere.iterdir())
+
+
+
+def test_initial_checked_observations_follow_declared_anchor_after_dataset_rename(tmp_path,monkeypatch):
+    import shutil
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    run,exact,_=setup(tmp_path,monkeypatch);publish_checked_preparation(run,attempt_number=1)
+    dataset=run.parents[1];moved=tmp_path/'renamed-dataset';shutil.move(str(dataset),moved)
+    newrun=moved/run.relative_to(dataset)
+    runtime=exact['runtime'];runtime['model']=newrun/runtime['model'].relative_to(run)
+    for key in ('dictionaries','phils'):runtime[key]=[newrun/path.relative_to(run) for path in runtime[key]]
+    monkeypatch.setattr('nasolve.cif_complete_request.read_dictionary_request_result',lambda *a:exact)
+    before=snapshot(moved)
+    registry=checkpoints.read_registry(newrun)[1]
+    assert checkpoints.inherited_paths(registry['checkpoints'][0],newrun)['observations']==moved/'staraniso.mtz'
+    publish_checked_preparation(newrun,attempt_number=1)
+    assert snapshot(moved)==before and not dataset.exists()
+
+
+@pytest.mark.parametrize('defect',['missing','checksum','absolute'])
+def test_checked_observation_anchor_never_falls_back_to_historical_path(tmp_path,monkeypatch,defect):
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    run,exact,_=setup(tmp_path,monkeypatch);publish_checked_preparation(run,attempt_number=1)
+    report=json.loads((run/'report.json').read_text())
+    ref=report['postmr']['checked_preparation']['observations']
+    if defect=='missing':ref['relative_path']='missing.mtz'
+    elif defect=='checksum':ref['sha256']='0'*64
+    else:ref.update(anchor='absolute',absolute_path=report['inputs']['reflections'])
+    with pytest.raises(checkpoints.CheckpointError):checkpoints._required_observations(report,run)
+
+
+
+@pytest.mark.parametrize('defect',['attempt_type','initial_receipt','unqualified_second'])
+def test_alternative_saved_proof_must_remain_bound_to_its_exact_result(alternative_preparation,defect):
+    p,run,values,reads=alternative_preparation
+    p.publish_preparation_alternative(run,attempt_number=2)
+    receipt=run/'PostMR/Preparations/attempt-0002.json'
+    record=read_record(receipt)
+    if defect=='unqualified_second':
+        values[2]['runtime']=None
+    else:
+        if defect=='attempt_type':record['preparation']['checked_preparation']['attempt_number']=2.0
+        else:record['initial_preparation']['sha256']='0'*64
+        write_record(receipt,record,replace=True)
+        registry=read_record(checkpoints.registry_path(run))
+        registry['checkpoints'][1]['checked_preparation']=checkpoints._file_reference(receipt,run)
+        write_record(checkpoints.registry_path(run),registry,replace=True)
+    before=snapshot(run)
+    with pytest.raises(checkpoints.CheckpointError):checkpoints.read_registry(run)
+    assert snapshot(run)==before
+
+
+def test_alternative_schema_is_preserved_and_old_readers_refuse(alternative_preparation,monkeypatch):
+    p,run,values,reads=alternative_preparation
+    p.publish_preparation_alternative(run,attempt_number=2)
+    _,registry=checkpoints.read_registry(run)
+    before=snapshot(run);registry['schema_version']=3
+    with pytest.raises(checkpoints.CheckpointError,match='downgrade'):
+        checkpoints.save_registry(run,registry)
+    assert snapshot(run)==before
+    monkeypatch.setattr(checkpoints,'READABLE_SCHEMA_VERSIONS',{1,2,3})
+    with pytest.raises(checkpoints.CheckpointError,match='Unsupported checkpoint schema'):
+        checkpoints.read_registry(run)
+    assert snapshot(run)==before

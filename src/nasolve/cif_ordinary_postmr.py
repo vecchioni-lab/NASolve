@@ -170,6 +170,19 @@ def _read_ordinary_postmr_result(run_directory, *, attempt_number):
     _need(type(attempt_number) is int and attempt_number >= 1, 'Require an exact positive attempt number')
     request = _ordinary_request_directory(run_directory)
     exact = read_dictionary_request_result(request, attempt_number)
+    return _ordinary_result_from_exact(request, attempt_number, exact)
+
+
+def _read_ordinary_postmr_results(run_directory, attempt_numbers):
+    """Project several named choices from one verified complete-history read."""
+    from .cif_complete_request import read_dictionary_request_results
+    request = _ordinary_request_directory(run_directory)
+    return {number:_ordinary_result_from_exact(request, number, exact)
+            for number,exact in read_dictionary_request_results(request, attempt_numbers).items()}
+
+
+def _ordinary_result_from_exact(request, attempt_number, exact):
+    from .cif_dictionary_sites import _need
     _need(exact.get('construction_inputs') is not None, 'Require recorded ordinary construction evidence')
     runtime = exact['runtime']
     continued = exact.get('continuation')

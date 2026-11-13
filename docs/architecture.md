@@ -10,8 +10,9 @@ Their milestone-time next steps do not override the current queue.
 The [checked-preparation handoff](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
 now exposes exact readback and one fresh continuation attempt through the existing
 owner. C223–C225 add explicit initial review-checkpoint publication, ordinary
-checked PostMR and frozen campaign entry. Default activation, later preparation
-children and actual complete-restraint refinement remain separate gates.
+checked PostMR and frozen campaign entry. C251 adds explicit later preparation
+alternatives with unchanged root/current choice. Default activation, alternative-aware
+phasing and actual complete-restraint refinement remain separate gates.
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not
@@ -1468,13 +1469,31 @@ ordered model/CIF/PHIL selection and truthful fallback outcome. This route uses
 checkpoint schema 3 and an immutable checksummed `PostMR/report.json` that binds
 the original request/result, construction/compiler proof, observations and intent.
 Normal checkpoint, Coot and AutoSol reads reuse the same complete evidence reader.
+C251 adds explicit `--as-alternative` publication for a later attempt from the
+same frozen construction. Its schema-4 `prepare-NNN` checkpoint has a sealed
+`PostMR/Preparations/attempt-NNNN.json` receipt and a
+`SAME_FROZEN_CONSTRUCTION` relation to the initial root. That relation is not a
+claim of coordinate derivation from the initial prepared or a refined model.
+Publication leaves current selection, root/report/receipt and bookmarks unchanged;
+manual/refined descendants inherit the alternative's own ordered restraints.
+Root plus named alternatives share one history replay, bounded by the existing
+request attempt allowance. Interrupted saving reuses the receipt and preserves
+intervening registry changes through the C250 conflict guard. Old readers refuse
+schema 4. Checked observation reads use the original checksum and sealed anchor,
+including after dataset renaming; no basename search or host-path substitution.
+Coot clearly labels inherited maps as unrecalculated for the prepared alternative.
+AutoSol keeps its original Phaser model as phasing input. Its anomalous-site
+validation still uses the initial preparation, so it refuses a selected alternative
+or descendant until that validation-reference integration is implemented.
 Legacy schema 1/2 runs remain unchanged; older readers reject schema 3.
 
 Publication uses the existing request lock, writes the preparation receipt and
 initial registry first, then commits the run report last. Repeating the exact
 command completes that same interrupted save; it cannot replace a prior choice
 or reset a later selected checkpoint. New manual/refined coordinates are allowed,
-while every selected descendant keeps its parent's ordered restraint prefix.
+while every manual/refined descendant keeps its parent's ordered restraint prefix.
+A schema-4 preparation alternative instead carries its independently verified
+ordered bundle from the same frozen construction.
 The saved `checked_model_topology` also carries the prepared-model context's
 identities and phosphate connections into ordinary manual/refined model checks;
 coordinates may move without changing those links.

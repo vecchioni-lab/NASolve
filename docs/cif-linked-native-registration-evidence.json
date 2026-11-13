@@ -90880,5 +90880,143 @@
     ],
     "full_regression": false,
     "native_execution": false
+  },
+  "preparation_alternatives_2026_11_13": {
+    "milestone": "C251",
+    "base_commit": "92efb7dd9e74cd339867647fc5b9f6bf12a2f623",
+    "before": "Initial publisher refused other attempts. Coot did not recognize preparation alternatives; checked observation reconstruction still relied on the historical dataset name despite a sealed portable anchor.",
+    "after": "Explicit unselected REVIEW alternatives from the same frozen construction, immutable receipt/recoverable guarded registry append, one complete-history replay, exact Coot/refinement inputs, preserved root/current choice, declared observation anchors after dataset rename.",
+    "prior_work": [
+      "C223 initial publication and exact producer binding",
+      "C230/C233 call-local one-replay validation",
+      "C247 note propagation",
+      "C249 selected-CIF notes",
+      "C250 stale checked-registry protection"
+    ],
+    "file_sha256": {
+      "src/nasolve/autosol.py": "905b358c7995c72a5d496812ad9a49ca3a3e3d4948af00addd9e554fe58b5586",
+      "src/nasolve/checkpoints.py": "c53d6b26c6c7ae2ee5b11797cb6a7b497ce6c0a1219940d0a43d87e785912230",
+      "src/nasolve/cif_complete_request.py": "cf118015777184eaabb3c9edc29a097386b73956827243df8e33ad26df248d2a",
+      "src/nasolve/cif_ordinary_postmr.py": "c8d51a5ed17e2297fbc5b83738e216dd0842c90429804195b76ee076fd092a31",
+      "src/nasolve/cif_postmr_publication.py": "ff78ce9bb47cbeb106aab432635a70224770239d81af98a35964fdbcadab63f2",
+      "src/nasolve/cli.py": "eada61d25857341e415761715c1f5d06fe75db5bedb9da798995b0d0d21247e1",
+      "src/nasolve/coot_view.py": "d372450737cba12542c2caafa44e020b5de17f507d7e661ab60ad2191931744a",
+      "tests/test_cif_complete_request.py": "ff281951447c50b3af0da0dd5776875b5313d5e1cc453a6ff533f18a126b2e73",
+      "tests/test_cif_postmr_publication.py": "9a95a389b125b8de5a5f896e7053f1af9f6e568d4889023e1a5df0304f8d8ce4"
+    },
+    "schemas": {
+      "checkpoint_registry": 4,
+      "alternative_receipt_policy": "checked-postmr-alternative-v1",
+      "path": "PostMR/Preparations/attempt-NNNN.json",
+      "kind": "preparation",
+      "relation": "SAME_FROZEN_CONSTRUCTION",
+      "parent": "postmr",
+      "selection": "UNCHANGED",
+      "initial_only": 3,
+      "legacy": [
+        1,
+        2
+      ]
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py -k 'alternative or later_preparation' --tb=short",
+        "result": "12 expected failures, 42 deselected in 1.06s before implementation"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py tests/test_cif_ordinary_outcome.py tests/test_cif_complete_request.py -k 'alternative or later_preparation or named_results or exact_result' --tb=short",
+        "result": "23 passed, 1 failure (unsupported Coot checkpoint kind), 178 deselected in 57.77s; resolved in same patch"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py tests/test_cif_ordinary_outcome.py tests/test_checkpoints.py tests/test_coot_view.py tests/test_autosol.py tests/test_checkpoint_candidate.py --tb=short",
+        "result": "Initially 161 passed + 20 subtests, 1 renamed-dataset observation failure in 12.48s. After declared-anchor correction and four additional controls: 166 passed + 20 subtests in 7.55s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_ordinary_cli.py tests/test_autorefine.py tests/test_campaign_stages.py tests/test_campaign_execution.py --tb=short",
+        "result": "244 passed + 26 subtests in 305.34s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_cif_postmr_publication.py --tb=short",
+        "result": "67 passed in 5.52s after strict attempt typing, idempotence after later selection, and downgrade refusal"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_autosol.py tests/test_cif_postmr_publication.py -k 'autosol or normal_consumers' --tb=short",
+        "result": "31 passed + 2 subtests, 57 deselected in 5.80s after pinning the AutoSol registry read and clarifying original-MR phasing versus prepared-site validation"
+      }
+    ],
+    "native_saved_read": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CHECKOUT/src python EVERYDAY_CHECKOUT/branch-artifacts/cedar/runners/c251_shared_history_read.py",
+      "runner_sha256": "8fb138811e438e47412285231ae14ef95c221fe26e42727cf8f3dbbf0e4f5890",
+      "result": {
+        "status": "NATIVE_EVIDENCE_SHARED_EXACT_READER_COMPATIBILITY_PASS",
+        "results": {
+          "success": {
+            "unchanged_files": 698,
+            "history_replays": [
+              "attempt-0001"
+            ],
+            "selected": "readyset_checked_model",
+            "readyset_status": "COMPLETED",
+            "restraints": 5,
+            "message": "ReadySet supplied the checked model and matching restraints.",
+            "limitations": [
+              "These preparation checks do not establish diffraction-refinement success.",
+              "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+              "PDU: generated source-checked support for screened centres C5.",
+              "Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.",
+              "PDU: selected dictionary has explicit planes for screened centres C2, C4, C5; this is scoped coverage, not refinement qualification."
+            ],
+            "elapsed_seconds": 105.65909291701973,
+            "request": {
+              "anchor": "live_tests_directory",
+              "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request"
+            }
+          },
+          "timeout": {
+            "unchanged_files": 506,
+            "history_replays": [
+              "attempt-0001"
+            ],
+            "selected": "readyset_checked_model",
+            "readyset_status": "COMPLETED",
+            "restraints": 5,
+            "message": "ReadySet supplied the checked model and matching restraints.",
+            "limitations": [
+              "These preparation checks do not establish diffraction-refinement success.",
+              "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+              "PDU: optional plane generation timed out; generated output was not used. Initially missing screened centres: C5.",
+              "Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.",
+              "PDU: selected dictionary lacks explicit planes at screened centres C5; alternative restraints may still contribute."
+            ],
+            "elapsed_seconds": 89.56111137499101,
+            "request": {
+              "anchor": "live_tests_directory",
+              "path": "244_Cedar_automatic-plane-failure-ch6m6b9g/relocated/request"
+            }
+          }
+        },
+        "source_unchanged": true,
+        "source_sha256": {
+          "src/nasolve/cif_postmr_publication.py": "ff78ce9bb47cbeb106aab432635a70224770239d81af98a35964fdbcadab63f2",
+          "src/nasolve/cif_plane_coverage.py": "e7190b6af0b1381c849a9104ed79d4070cd99f13105eb667c21a0b1b2fe3d752",
+          "src/nasolve/cif_complete_request.py": "cf118015777184eaabb3c9edc29a097386b73956827243df8e33ad26df248d2a",
+          "src/nasolve/cif_ordinary_postmr.py": "c8d51a5ed17e2297fbc5b83738e216dd0842c90429804195b76ee076fd092a31"
+        },
+        "maximum_resident_bytes": 660389888,
+        "scope": "Actual C244 Phenix 2.2.1-6174 / dispatcher 2.2.1 saved success/timeout proof through shared exact-history reader and ordinary selected-dictionary notes; one replay per attempt; only location adapter replaced; not fresh construction or native alternative publication; no new native execution, data copy or full suite"
+      }
+    },
+    "compatibility": "Schema 4 only on explicit later alternative publication; older readers refuse. No root/report/receipt rewrite, no default activation, no legacy migration. Checked registry writes preserve schema 4 and current selection. The historical input strings remain provenance; declared observation anchors and checksums supply operational resolution.",
+    "scientific_boundary": "AutoSol deliberately uses the original Phaser MR model for phasing. Its anomalous-site reference remains the initial preparation; schema-4 non-root selections refuse until that validation reference is integrated. No acceptance thresholds, chemical guardrails, Free-R or native command changes.",
+    "limits": [
+      "Synthetic alternative publication/refinement transport, not native multi-alternative execution",
+      "Saved-native compatibility proves unchanged single-attempt readback, not new chemistry or diffraction refinement",
+      "Campaign stage receipts remain frozen; explicit standalone alternative saving does not resume campaign stages",
+      "Storage retirement and remaining Q04/Q05 native/caller acceptance remain open"
+    ],
+    "native_execution": false,
+    "full_regression": false,
+    "artifacts_in_git": "Code, synthetic-test source, public methods and compact evidence metadata only; no crystallographic files copied or retired",
+    "last_full_green": "C220/583d30df: 9178 tests and 276 subtests"
   }
 }

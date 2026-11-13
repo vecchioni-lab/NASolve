@@ -57,7 +57,7 @@ explicitly reviewed support scope; neither this estimate nor Q05 authorizes a me
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition; C245 connects prepare-run and result notes; C246 connects explicit checked PostMR/campaign forwarding. C247 carries notes through publication/status. C249 reports scoped explicit selected-CIF coverage. Finish remaining recovery and storage acceptance. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. Define later preparation children without replacing earlier choices. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. C251 adds explicit later alternatives from frozen construction, with immutable receipts, guarded saves and exact Coot/refinement inputs. Complete alternative-aware phasing and remaining native/caller acceptance without replacing earlier choices. |
 | **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
@@ -394,8 +394,18 @@ sealed registry identity under the existing kernel lock, preserve newer work on
 conflict and refresh the live identity after success. This fixes an observed
 lost-update risk; it does not yet publish later preparation children.
 
-**Remaining acceptance:** define later preparation-child adoption without changing
-an immutable earlier root. Reuse the existing request owner and publication path;
+C251 implements explicit later alternatives from the same frozen construction,
+with schema-4 receipts and exact Coot/refinement readers. These are not claimed
+coordinate descendants of a selected refined model. Interrupted saves preserve
+intervening bookmarks/selection, and the sealed observation anchor now survives
+dataset renaming. A single history replay supplies all published choices.
+AutoSol retains the original Phaser model as phasing input. Its anomalous-site
+validation remains tied to the initial preparation; a selected alternative or its
+descendant refuses rather than silently using a different validation reference. No automatic
+campaign continuation or new native refinement claim follows.
+
+**Remaining acceptance:** finish alternative-aware phasing and remaining real
+caller/native acceptance without changing an immutable earlier root. Reuse the existing request owner and publication path;
 do not build another recovery or chemistry framework. Preserve normalization and
 anomalous metadata where actually available, without inventing ReadySet success.
 Exercise cache reuse, missing/stale entries, repair, usable fallback, unqualified

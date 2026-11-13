@@ -256,6 +256,7 @@ def build_parser() -> argparse.ArgumentParser:
     publish = cif_sub.add_parser("publish-preparation", help="save one exact checked preparation as the run's review checkpoint; no refinement is run")
     publish.add_argument("run", type=Path)
     publish.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt; also resumes an interrupted save of that same choice")
+    publish.add_argument("--as-alternative", action="store_true", help="save a later attempt as a separate REVIEW checkpoint from the same frozen construction; preserve the current selection")
     preparation_status = cif_sub.add_parser("preparation-status", help="read saved preparation attempts and whether work is still running")
     preparation_status.add_argument("run", type=Path)
     cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
@@ -1739,20 +1740,25 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
 
 
 def _cif_publish_preparation(args: argparse.Namespace) -> int:
-    from .cif_postmr_publication import publish_checked_preparation_with_notes
+    from .cif_postmr_publication import publish_checked_preparation_with_notes, publish_preparation_alternative
     from .campaigns import CampaignError
+    alternative = getattr(args, "as_alternative", False)
     try:
-        result, notes = publish_checked_preparation_with_notes(args.run, attempt_number=args.attempt)
+        result, notes = (publish_preparation_alternative if alternative else publish_checked_preparation_with_notes)(args.run, attempt_number=args.attempt)
     except (OSError, ValueError, CampaignError, CheckpointError, PostMRPreparationError) as exc:
         print(f"Preparation handoff could not complete: {exc}", file=sys.stderr)
         print("Preserve saved work; retry the same attempt to finish an interrupted publication.", file=sys.stderr)
         return 2
-    print(result["message"])
+    identifier = result['checkpoint_id'] if alternative else 'postmr'
+    prepared = result['preparation'] if alternative else result
+    print(prepared["message"])
+    if alternative:
+        print("Saved an alternative from the same frozen construction; current checkpoint selection is unchanged.")
     for note in notes:
         print(f"Preparation note: {note}")
-    print(f"ReadySet: {result['readyset']['status']}")
-    print("Checkpoint: postmr (REVIEW; refinement has not been run)")
-    print("Inspect (requires its saved map): " + shlex.join(["nasolve", "show", str(args.run), "--checkpoint", "postmr"]))
+    print(f"ReadySet: {prepared['readyset']['status']}")
+    print(f"Checkpoint: {identifier} (REVIEW; refinement has not been run)")
+    print("Inspect (requires its saved map): " + shlex.join(["nasolve", "show", str(args.run), "--checkpoint", identifier]))
     return 0
 
 

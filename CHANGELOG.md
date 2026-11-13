@@ -8,6 +8,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Save later preparation alternatives without replacing earlier work (C251)
+
+- Add explicit `cif-doctor publish-preparation RUN --attempt N --as-alternative`.
+  A later checked attempt becomes an unselected REVIEW checkpoint from the same
+  frozen construction. Preserve the initial run report, receipt, root and current
+  selection; never claim that it derives from a selected refined model.
+- New alternative receipts use checkpoint schema 4. Ordinary readers verify the
+  root and exact alternatives through one complete-history replay. Coot uses the
+  recorded ancestor map with an unrecalculated-map label; refinement inherits the
+  selected model and ordered restraints. Legacy/initial-only runs keep their schema.
+- Recover interrupted receipt/registry publication without rerunning tools or
+  discarding intervening bookmarks/selections. Use the checked-registry conflict
+  guard; older readers reject schema 4 rather than ignore its new authority.
+- AutoSol deliberately phases with the original Phaser model. Its anomalous-site
+  check still uses the initial preparation; refuse schema-4 non-root selections
+  instead of silently using another validation reference. Connecting that check
+  to later alternatives remains a separate step.
+- Fix checked-observation relocation by using its already-sealed run/dataset/
+  repository anchor and original checksum. Renamed datasets need no rewritten
+  history; missing or changed anchors never fall back to an old host path.
+
 ### Preserve newer checked-checkpoint edits (C250)
 
 - Checked registry saves now compare their original sealed identity under the

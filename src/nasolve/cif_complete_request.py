@@ -659,8 +659,8 @@ def _attempt_state(root, attempt, number, request, result_sink=None):
     return dict(result,state='STOPPED_UNFINISHED' if safe else 'LIVE' if live else 'UNKNOWN',activity=False if safe else True if live else None)
 
 
-def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink=None):
-    """Shared validation; optionally retain one result within this read only."""
+def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink=None, result_sinks=None):
+    """Shared validation; retain only explicitly requested results within this read."""
     root = _root(directory)
     result = dict(schema_version=1,policy_id=POLICY_ID,state='NOT_RECORDED',availability='BLOCKED',attempts=[],retry_authorized=False)
     if not root.exists(): return result
@@ -671,7 +671,7 @@ def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink
         for number,p in enumerate(sorted((root/'attempts').iterdir()),1):
             _need(p.is_dir() and not p.is_symlink() and p.name == f'attempt-{number:04d}', 'Outer attempts must be consecutive immutable directories')
             rows.append(_attempt_state(root,p,number,request,
-                result_sink if number == selected_attempt else None))
+                (result_sinks or {}).get(number, result_sink if number == selected_attempt else None)))
     _need(len(rows) <= config['max_attempts'], 'Outer attempt allowance exceeded')
     unknown = False
     if (root/'acquisitions').exists(): _members(root/'acquisitions',set(),set(config['components']))
@@ -723,28 +723,41 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
 
 
 def read_dictionary_request_result(directory, attempt_number):
-    """Read one exact result, replaying science once and rechecking integrity.
+    """Read one exact result through the same bounded history validation."""
+    return read_dictionary_request_results(directory, [attempt_number])[attempt_number]
 
-    Every completed historical attempt still validates. Only this call's selected
-    result is retained; no verdict or output survives in a cross-call cache.
+
+def read_dictionary_request_results(directory, attempt_numbers):
+    """Read named exact results in one history replay, without a persistent cache.
+
+    All completed historical attempts still validate. Retain only the explicitly
+    requested results, in caller order, and recheck each selected owner/inventory.
+    This lets one registry bind several preparation choices without replaying its
+    whole chemistry history once per checkpoint.
     """
-    _need(type(attempt_number) is int and attempt_number >= 1, 'Require an exact outer attempt number')
-    root = _root(directory); attempt = root/'attempts'/f'attempt-{attempt_number:04d}'
-    records = {p:_read(p) for p in (root/'request.json',attempt/'finished.json') if p.is_file()}
-    values = []
-    state = _inspect_dictionary_request(root,selected_attempt=attempt_number,result_sink=values)
-    _need(attempt_number <= len(state['attempts']), 'Require an exact outer attempt number')
-    row = state['attempts'][attempt_number-1]
-    _need(row['state'] == 'STOPPED' and row['finished']['outcome'] == 'RETURNED' and len(values) == 1,
-          'Outer attempt did not return successfully')
-    children,bindings = _children(root,attempt,row['intent'],state['request']['configuration'],row['finished']['children'])
-    _need(_same(bindings,row['finished']['children'])
-          and all(r['state'] in {'STOPPED','NOT_CREATED'} for r in children.values())
-          and _same(_attempt_files(attempt,**_artifact_options(state['request']['configuration'])),row['finished']['artifacts'])
-          and _same(_request(root),state['request'])
-          and all(_read(p) == data for p,data in records.items()),
+    _need(isinstance(attempt_numbers, (list, tuple)) and attempt_numbers
+          and all(type(n) is int and n >= 1 for n in attempt_numbers)
+          and len(attempt_numbers) == len(set(attempt_numbers)),
+          'Require distinct exact positive outer attempt numbers')
+    root = _root(directory)
+    attempts = {n:root/'attempts'/f'attempt-{n:04d}' for n in attempt_numbers}
+    paths = [root/'request.json', *(p/'finished.json' for p in attempts.values())]
+    records = {p:_read(p) for p in paths if p.is_file()}
+    values = {n:[] for n in attempt_numbers}
+    state = _inspect_dictionary_request(root, result_sinks=values)
+    for number, attempt in attempts.items():
+        _need(number <= len(state['attempts']), 'Require an exact outer attempt number')
+        row = state['attempts'][number-1]
+        _need(row['state'] == 'STOPPED' and row['finished']['outcome'] == 'RETURNED' and len(values[number]) == 1,
+              'Outer attempt did not return successfully')
+        children, bindings = _children(root,attempt,row['intent'],state['request']['configuration'],row['finished']['children'])
+        _need(_same(bindings,row['finished']['children'])
+              and all(r['state'] in {'STOPPED','NOT_CREATED'} for r in children.values())
+              and _same(_attempt_files(attempt,**_artifact_options(state['request']['configuration'])),row['finished']['artifacts']),
+              'Complete request changed during exact result read')
+    _need(_same(_request(root),state['request']) and all(_read(p) == data for p,data in records.items()),
           'Complete request changed during exact result read')
-    return values[0]
+    return {number:rows[0] for number,rows in values.items()}
 
 
 def execute_dictionary_request_attempt(directory, phenix, store_root, *, generation, after_attempt=None):
