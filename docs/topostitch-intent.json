@@ -300,7 +300,25 @@
     ],
     "map_provenance_required": true,
     "initial_and_post_refinement_motion_recorded_separately": true,
-    "existing_pair_inference_to_review": "NARestraints damaged-MR base-pair inference"
+    "existing_pair_inference_to_review": "NARestraints damaged-MR base-pair inference",
+    "core_shape_cases": [
+      "usable straight duplex to data-supported curved shape",
+      "usable bent MR duplex to straighter shape",
+      "usable curved duplex to a different curvature direction or distribution"
+    ],
+    "future_model_sources": [
+      "MR templates",
+      "AlphaFold-derived models"
+    ],
+    "alphafold_integration_implemented": false,
+    "preserve_usable_local_duplex_geometry": true,
+    "pair_inference_review": {
+      "module": "restraints.guesser",
+      "evidence": "geometric seeds, antiparallel runs, iterative weak edge rescue",
+      "current_route_basis": "chain labels and consecutive integer residue numbers",
+      "selected_output_is_complete_topology": false,
+      "logical_mapping_and_periodic_recheck_required": true
+    }
   },
   "planned_diffraction_benchmark": {
     "starting_model": "8D93",

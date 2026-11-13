@@ -151,6 +151,17 @@ it does not simply mean a long distance or absence from a bond table.
 
 ## Geometry search and construction
 
+The core use case is an existing duplex with usable local geometry but the wrong
+larger-scale shape. Explicit benchmark classes are: a straight MR/predicted
+(including future AlphaFold-derived) duplex that must curve to fit recipient
+data; a bent MR duplex that must straighten; and a curved template that must
+bend in a different direction or redistribute curvature. Preserve useful local
+pair/sugar geometry and sequence in these cases. Do not assume every failure
+requires new residues, a single preferred bend direction or increasing curvature.
+AlphaFold integration is planned separately; no prediction service is required
+by this tool and no such integration is implemented by these notes. Damaged or
+incomplete duplexes remain additional, harder cases rather than the default.
+
 Apply the smallest feasible operation first:
 
 1. Resolve whether a representation-only recut suffices. Recutting cannot heal
@@ -396,8 +407,12 @@ repair. Compare initial placement and post-stitch refinement to reveal where
 curvature and strand-specific backbone adjustment are actually supported.
 
 Before adding coordinate-based pairing discovery, inspect NARestraints' existing
-base-pair inference for damaged MR models. Reuse its demonstrated candidate and
-recovery logic where appropriate, preserving ambiguity and original evidence;
+base-pair inference for damaged MR models. The reviewed `restraints.guesser`
+seeds geometric candidates, builds antiparallel runs and iteratively rescues
+weaker edge pairs. Current traversal uses chain labels/integer residue adjacency,
+and greedy selection does not preserve every competing alternative. Reuse that
+candidate/recovery evidence through logical route mapping rather than treating
+the selected output as a complete topology inventory. Preserve ambiguity and original evidence;
 do not treat a guessed pair inventory as complete chemical routing or automatic
 permission to join sticky ends.
 

@@ -21,7 +21,9 @@ entries are reconstructed from repository history.
 
 - Record the proposed 8D93-to-hexagonal-data benchmark, later density-aware and
   strand-specific relaxation, nonuniform bending and review of NARestraints' MR
-  pair inference. These are planned capabilities, not current scientific claims.
+  pair inference. Explicit shape benchmarks include straight-to-curved, unbending
+  and changed curvature direction, including future AlphaFold-derived inputs.
+  These are planned capabilities, not current scientific claims.
 
 ### TopoStitch isolated bend previews
 
