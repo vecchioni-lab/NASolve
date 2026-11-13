@@ -79,8 +79,11 @@ and peaks at 570.6 MB resident memory. Those temporary files are removed. Earlie
 compact storage and shared validation removed repeated evidence without changing
 the selected scientific result; original worker output remains. Safe retirement
 of redundant successful working files, memory/concurrency limits and campaign-scale
-storage validation remain release work. These figures do not justify running
-100 readers at once. Saved requests retain their recorded evidence layout.
+storage validation remain release work. A complete ReadySet continuation can now
+be reconstructed and checked from an 11.2 MB working archive under the same
+128 MiB allowance for expanded archive files. Its temporary views are removed;
+original files remain. Connecting that read to safe retirement of a whole request
+is still open. These figures do not justify running 100 readers at once. Saved requests retain their recorded evidence layout.
 
 Here, **frozen proof** means a fixed, identifiable set of inputs and check results
 that can be verified again: the chosen model and restraints, exact chemical/source

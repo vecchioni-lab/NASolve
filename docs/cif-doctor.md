@@ -142,7 +142,7 @@
 
 <a id="current-capability-boundary-c251"></a>
 
-## Current capability boundary (C253)
+## Current capability boundary (C254)
 
 The tool is useful now for assessment, qualified local reuse and explicit
 scientific diagnostics. It is not yet a universal automatic ligand repair and
@@ -1350,6 +1350,35 @@ complete native compact continuation and cold relocation remain the scientific
 storage evidence; C229 adds request integration, not a new native/refinement claim.
 Exact commands and compatibility: ledger compact_request_storage_2026_11_12.
 
+### Reconstruct working evidence within one bounded read (C254)
+
+An archived working directory can contain a compact ReadySet result whose proof
+in turn contains a compact prepared parent. C252's ordinary two-layer reader
+correctly refused that extra outer layer. C254 makes the outer reconstruction an
+explicit, root-only scope: it cannot be entered from a runtime view or another
+working view. The existing decoder and temporary-object pool serve both scopes.
+Ordinary runtime depth stays **two**, every archive keeps the existing logical
+bounds, and the outer working files and both proof layers share the same **128 MiB
+physical allowance**. Hard-link reuse is optional; actual copies are charged.
+Temporary paths expire and accounting unwinds on normal or exceptional exit.
+
+The complete existing C244 ReadySet-continuation reader now passes inside that
+scope, including stopped-owner evidence and exact original inventories. Its
+**42,349,420 B / 116 files** reconstruct from **11,244,253 B** compressed. Peak
+archive-expanded physical bytes are **87,147,928**, within **134,217,728**; Python
+resident peak is **687,292,416 B**, which is a different measurement. The read takes
+**81.63 s**, preserves all source-file checksums, retains five PHILs/two CIFs and
+removes its temporary archive/views. Original-request reads and subprocess launch
+are forbidden. This replays earlier Phenix evidence; it is not a new native run.
+
+Six focused scope/budget/lifetime controls and the existing compact/runtime tests
+pass (**49 tests**). No archive format, saved request, ordinary consumer behavior,
+chemical verdict or physical/depth limit changes. This API provides the scoped
+reader needed for future retention. It does **not** yet connect a partially retired
+complete request to owner inventories or stable public model/restraint paths,
+authorize deletion, or establish campaign-scale concurrency. No original files
+were retired. Exact evidence: `bounded_working_view_2026_11_13` in the ledger.
+
 ### Compact exact runtime evidence (C228)
 
 The four component-runtime publishers accept explicit compact_evidence=True.
@@ -1364,7 +1393,9 @@ readers refuse schema 2 rather than applying a weaker legacy interpretation.
 Public model/CIF/PHIL files remain direct files. The same source/native/numerical
 checks reconstruct evidence only in temporary read scopes. Each view is limited
 to 128 MiB logical data, with a shared 128 MiB physical temporary allowance and at
-most two nested views (continuation and prepared parent). Identical temporary
+most two nested runtime views (continuation and prepared parent). C254 adds one
+explicit root-only working reconstruction under the same physical allowance.
+Identical temporary
 objects share hard links; when unavailable, each physical copy consumes the same
 allowance. Cleanup runs on normal and exceptional exits. Stored code is never run.
 Only the publisher's own unpublished staging copy is discarded after compression;

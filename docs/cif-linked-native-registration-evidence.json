@@ -91488,5 +91488,122 @@
       "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python branch-artifacts/cedar/runners/c253_docs_check.py",
       "result": "7 Markdown files, 322 local link targets, 6 source hashes, 1 new-test hash, 2 local evidence hashes; JSON uniqueness, in-memory syntax and git diff --check pass"
     }
+  },
+  "bounded_working_view_2026_11_13": {
+    "milestone": "C254",
+    "status": "BOUNDED_WORKING_VIEW_AND_OWNED_NATIVE_CONTINUATION_REPLAY_PASS",
+    "date": "2026-11-13",
+    "baseline_commit": "f337660",
+    "prior_work": [
+      "C228 archive and aggregate temporary budget",
+      "C233 incremental inventories",
+      "C237/C238 fewer proof copies",
+      "C252 extra ReadySet proof depth refusal"
+    ],
+    "source_sha256": {
+      "src/nasolve/cif_runtime_evidence.py": "76c6a76ba15e009e8b6535dbc2c5f9e779cac91cea7c4c9d5a17f39f48425467"
+    },
+    "new_test_sha256": "990a59e466b91ae487c25c96fe9c602ed71e7af7bc4201946cdda3a025a56ae3",
+    "before": "Six API tests fail because the explicit working-view interface is absent; the C252 actual extra-archive ReadySet runtime read refuses at the ordinary two-layer depth guard.",
+    "focused": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_working_evidence_view.py tests/test_cif_runtime_evidence.py tests/test_cif_compact_workflow.py",
+      "result": "49 passed in 26.99 s",
+      "full_suite": false
+    },
+    "native_runtime_read": {
+      "status": "BOUNDED_WORKING_CONTINUATION_REPLAY_PASS",
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "phils": 5,
+      "dictionaries": 2,
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request/attempts/attempt-0001/continuation"
+      },
+      "packed": {
+        "policy_id": "cif-content-addressed-runtime-evidence-v1",
+        "logical_files": 116,
+        "logical_bytes": 42349420,
+        "unique_files": 74,
+        "unique_bytes": 34236125,
+        "archive_bytes": 11244253,
+        "archive_sha256": "3825ceff07b8041ba54ac06131be61df7d347e4f3a873c1b0eccb0f793f87eea"
+      },
+      "source_files_unchanged": 116,
+      "temporary_archive_and_view_removed": true,
+      "old_source_reads_forbidden": true,
+      "subprocess_execution_forbidden": true,
+      "temporary_physical_peak_bytes": 87147928,
+      "temporary_physical_limit_bytes": 134217728,
+      "runtime_depth_peak": 2,
+      "runtime_depth_limit": 2,
+      "elapsed_seconds": 15.639513708010782,
+      "maximum_resident_bytes": 514506752,
+      "scope": "Existing ReadySet continuation reader in one explicitly owned outer working view; ordinary runtime depth and shared physical-byte limit unchanged. No complete-request inventory/retirement integration or scientific output change."
+    },
+    "native_owned_continuation_read": {
+      "status": "BOUNDED_WORKING_OWNED_CONTINUATION_REPLAY_PASS",
+      "process_state": "STOPPED",
+      "continuation_status": "QUALIFIED_DIAGNOSTIC_CONTINUATION",
+      "model_sha256": "99ef08c3d9dcb640ab8922108bbd97ddc8459dfccf796d11d8d12dc4f3095469",
+      "phils": 5,
+      "dictionaries": 2,
+      "source": {
+        "anchor": "live_tests_directory",
+        "path": "244_Cedar_automatic-plane-request-19zp3y8k/relocated/request/attempts/attempt-0001/continuation"
+      },
+      "packed": {
+        "policy_id": "cif-content-addressed-runtime-evidence-v1",
+        "logical_files": 116,
+        "logical_bytes": 42349420,
+        "unique_files": 74,
+        "unique_bytes": 34236125,
+        "archive_bytes": 11244253,
+        "archive_sha256": "3825ceff07b8041ba54ac06131be61df7d347e4f3a873c1b0eccb0f793f87eea"
+      },
+      "source_files_unchanged": 116,
+      "temporary_archive_and_view_removed": true,
+      "old_source_reads_forbidden": true,
+      "subprocess_execution_forbidden": true,
+      "temporary_physical_peak_bytes": 87147928,
+      "temporary_physical_limit_bytes": 134217728,
+      "runtime_depth_peak": 2,
+      "runtime_depth_limit": 2,
+      "elapsed_seconds": 81.6316732080013,
+      "maximum_resident_bytes": 687292416,
+      "scope": "Complete existing ReadySet continuation reader, including ownership and inventories, in one explicitly owned outer working view; ordinary runtime depth and shared physical-byte limit unchanged. No complete-request inventory/retirement integration or scientific output change."
+    },
+    "evidence": {
+      "c254_continuation_working_view.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c254_continuation_working_view.py",
+        "sha256": "b25a7cfd7566b157ed0a63c302fb4dea3f01e2a41ec8dd837eb70d6294b06751"
+      },
+      "c254_continuation_working_view_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c254_continuation_working_view_summary.json",
+        "sha256": "c57ef69a6d442b23251c711c07db9cee3148cc9c1ebadeb6f96c1bdcc3bf49be"
+      },
+      "c254_owned_continuation_working_view.py": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c254_owned_continuation_working_view.py",
+        "sha256": "0bba1441bd5df8d7d585eb3c47156151e414936e3aacc7639eb48f5d652c30d3"
+      },
+      "c254_owned_continuation_working_view_summary.json": {
+        "anchor": "everyday_checkout",
+        "path": "branch-artifacts/cedar/runners/c254_owned_continuation_working_view_summary.json",
+        "sha256": "6ecbb67515737c0b34bc0b5eea37833585f75246a38d8ad2842386c4297b6df8"
+      }
+    },
+    "native_read_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src .venv/bin/python branch-artifacts/cedar/runners/c254_owned_continuation_working_view.py > branch-artifacts/cedar/runners/c254_owned_continuation_working_view_summary.json",
+    "compatibility": "No archive-format or saved-request change. Ordinary runtime depth remains 2; new outer scope root-only, shares unchanged 128 MiB physical expansion budget and common decoder.",
+    "ownership_boundary": "The existing continuation reader replays all stopped-owner records and inventories in the view. This does not replace the enclosing complete-request owner, grant retry/deletion, or bind a partially retired request.",
+    "remaining": [
+      "Whole-request archive/owner-inventory integration",
+      "Persistent public model/restraint path retention",
+      "Known-stopped interruption-safe retirement and repeated/partial recovery",
+      "Campaign disk/temporary/memory/concurrency validation"
+    ],
+    "artifacts": "Only source/tests/docs committed. Both temporary probe archives and views removed; 116 original continuation files unchanged. Scientific evidence and runners remain local. No original files retired.",
+    "last_full_suite": "C220/583d30df: 9178 tests + 276 subtests; current full regression explicitly deferred by Simon"
   }
 }

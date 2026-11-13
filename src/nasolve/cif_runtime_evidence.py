@@ -26,6 +26,7 @@ MAX_ACTIVE_BYTES = MAX_BYTES
 _ACTIVE_BYTES = ContextVar('runtime_evidence_expanded_bytes', default=0)
 _ACTIVE_OBJECTS = ContextVar('runtime_evidence_objects', default=None)
 _ACTIVE_DEPTH = ContextVar('runtime_evidence_depth', default=0)
+_WORKING_VIEW_ACTIVE = ContextVar('working_evidence_view_active', default=False)
 MAX_DEPTH = 2
 _SHA = re.compile(r'[0-9a-f]{64}\Z')
 
@@ -113,6 +114,33 @@ def expanded_runtime_evidence(archive, digest):
     without hard links must charge each real copy to that same allowance.
     """
     _need(_ACTIVE_DEPTH.get()<MAX_DEPTH, 'Nested evidence exceeds supported view depth')
+    with _expanded_evidence(archive, digest, runtime_layer=True) as view:
+        yield view
+
+
+@contextmanager
+def expanded_working_evidence(archive, digest):
+    """Own one outer working-directory view around the existing runtime proof.
+
+    Entry is root-only: a runtime or another working view cannot open this scope.
+    Its objects share the same physical-byte budget and temporary-object pool as
+    the two permitted runtime layers. Temporary paths expire at scope exit. This
+    operation never retires source files, authorizes recovery or qualifies science.
+    """
+    _need(not _WORKING_VIEW_ACTIVE.get() and _ACTIVE_DEPTH.get() == 0
+          and _ACTIVE_BYTES.get() == 0 and _ACTIVE_OBJECTS.get() is None,
+          'Working evidence requires an outer root scope')
+    token = _WORKING_VIEW_ACTIVE.set(True)
+    try:
+        with _expanded_evidence(archive, digest, runtime_layer=False) as view:
+            yield view
+    finally:
+        _WORKING_VIEW_ACTIVE.reset(token)
+
+
+@contextmanager
+def _expanded_evidence(archive, digest, *, runtime_layer):
+    """One decoder/expander and accounting path for both explicitly owned scopes."""
     archive=Path(archive).absolute()
     _need(archive.is_file() and not any(p.is_symlink() for p in (archive,*archive.parents))
           and archive.stat().st_size<=MAX_ARCHIVE_BYTES, 'Unsafe or oversized evidence archive')
@@ -135,7 +163,7 @@ def expanded_runtime_evidence(archive, digest):
                 written.setdefault(ref['sha256'],target)
             target.chmod(0o400)
         token=_ACTIVE_BYTES.set(used);object_token=_ACTIVE_OBJECTS.set(written)
-        depth_token=_ACTIVE_DEPTH.set(_ACTIVE_DEPTH.get()+1)
+        depth_token=_ACTIVE_DEPTH.set(_ACTIVE_DEPTH.get()+int(runtime_layer))
         try:yield view
         finally:
             _ACTIVE_DEPTH.reset(depth_token);_ACTIVE_OBJECTS.reset(object_token);_ACTIVE_BYTES.reset(token)

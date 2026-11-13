@@ -1,10 +1,32 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C253. Active **cedar**, checkout NASolve-c96.
+Updated **2026-11-13**, C254. Active **cedar**, checkout NASolve-c96.
 The [queue](cif-doctor-completion-queue.md) owns work order; the
 [capability table](cif-doctor.md#current-capability-boundary) owns support limits.
 Finish Q04/Q05 before Q06. Laboratory language first. No merge authorized.
 Simon authorized this pass through **23:00 Europe/London**, focused tests only.
+
+## Latest completed step — C254 storage view
+
+C253 is committed/pushed as `f337660`. C254 adds one root-only working-evidence
+reconstruction around the two existing runtime-proof layers. Both scopes use one
+decoder/object pool and the unchanged 128 MiB physical limit. Nested working views
+are refused; normal/error exits clean temporary paths and restore accounting.
+No old request, public path, archive format, chemistry or runtime depth changes.
+
+**49 focused tests pass in 26.99 s**: working-scope controls, existing runtime
+archives and compact workflow. The actual C244 complete ReadySet-continuation
+reader also passes with original-request reads and native execution forbidden:
+116 source-file checksums unchanged, five PHILs/two CIFs, owners STOPPED;
+42,349,420 B logical reconstructed from 11,244,253 B compressed; 87,147,928 B peak
+archive expansion (limit 134,217,728), 687,292,416 B Python peak, 81.63 s.
+Temporary archive/views are removed; all original files remain. No new native
+Phenix/Coot execution. Evidence: `bounded_working_view_2026_11_13`.
+
+This closes the bounded-view/lifetime prerequisite, not working-file retirement.
+The next storage step must bind archives to existing owner inventories, retain
+public model/restraint paths and recover interruptions before removing any files.
+Prior work checked: C228, C233, C237/C238 and C252; reuse these mechanisms.
 
 ## Current result
 
@@ -67,11 +89,10 @@ from Git; the ledger entry is `selected_autosol_reference_2026_11_13`.
    reconstructs one 131.7 MB subtree from an **8.3 MB** archive (418 files,
    57.7 MB physical temporary bytes), within the unchanged 128 MiB logical bound.
    Original-source reads were forbidden; temporary probe artifacts were removed.
-   Prepared-repair replay inside that extra view passes; ReadySet continuation
-   refuses `Nested evidence exceeds supported view depth`. Normal C252 reading
-   passes. Design an explicit bounded view lifecycle, not a global limit increase
-   or archive/delete shortcut. Preserve public model/restraint paths, owner
-   inventories, known-stopped recovery and partial outputs. No originals retired.
+   C254 now closes the ReadySet extra-view refusal through the explicit bounded
+   scope above. Normal C252 reading also passes. Next integrate original owner
+   inventories and stable public references with known-stopped, interruption-safe
+   retirement. Preserve failed/active work and partial outputs. No originals retired.
 2. **Qualify/reconcile the remaining normal callers.** C253's selected-model
    AutoSol connection needs native acceptance. Interrupted AutoSol result saving
    retains outputs but does not automatically adopt them; keep it separate from

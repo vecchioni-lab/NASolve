@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C253
+## Near-term closure estimate at C254
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -309,7 +309,15 @@ Remaining acceptance:
    continuation is refused by the existing two-view nesting guard. This is a
    prototype-storage limit; ordinary preparation/readback remains valid. Include
    this deeper continuation and temporary-view lifetime in the next storage
-   contract. Do not globally raise depth/byte limits merely to pass this probe.
+   contract. C254 now provides one explicit root-only working view sharing the
+   unchanged byte budget with the two ordinary proof layers. The complete actual
+   ReadySet continuation (ownership and inventories included) replays from an
+   11.2 MB archive: 87.1 MB peak archive expansion, 687.3 MB process peak,
+   81.63 s, all 116 source-file checksums unchanged. Temporary copies removed.
+   This closes the extra-view/lifetime prerequisite. Next bind retained archives
+   to original owner inventories, keep public model/restraint paths stable, and
+   verify a fresh complete request through interruption-safe retirement/recovery.
+   No original retirement or whole-request storage integration exists yet.
 
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical

@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bound reconstruction of archived working evidence (C254)
+
+- Add an explicit root-only working-evidence read scope around the existing two
+  runtime-proof layers. Reuse one archive decoder, temporary-object pool and
+  shared 128 MiB physical allowance; ordinary runtime depth remains two.
+- Nested callers cannot open another working scope. Copy fallback still consumes
+  the same byte allowance, and temporary views/budgets unwind on failure.
+- The actual C244 ReadySet continuation, including ownership/inventory checks,
+  replays from an 11.2 MB archive with original-request reads and native execution
+  forbidden. All 116 source-file checksums are unchanged; temporary copies removed.
+  This is the read-lifecycle prerequisite for working-file retirement, not a
+  retirement policy or a change to existing saved requests/public references.
+
 ### Compare anomalous sites with the chosen model (C253)
 
 - Checked AutoSol now rescans the selected preparation or manual/refined model
