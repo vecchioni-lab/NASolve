@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch crystallographic development notes
+
+- Record the proposed 8D93-to-hexagonal-data benchmark, later density-aware and
+  strand-specific relaxation, nonuniform bending and review of NARestraints' MR
+  pair inference. These are planned capabilities, not current scientific claims.
+
 ### TopoStitch isolated bend previews
 
 - Add an explicit single-window trial writer with whole-pair tapered motion,

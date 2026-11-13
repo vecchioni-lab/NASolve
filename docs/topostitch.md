@@ -180,6 +180,26 @@ rotating frames; benchmark distributions rather than adopting this number as
 a target or cutoff. Frozen objective terms, initialization, candidate order,
 solver tolerances, library versions and any random seed must be recorded.
 
+The first smooth taper is an initialization, not a physical claim that bending
+is uniformly distributed or that both strands must move equally. A later
+qualified local relaxation may redistribute roll/tilt/twist unevenly, or move
+one sugar-phosphate path more than the other while maintaining pairing, stacking
+and chemical geometry. Record the initial proposal and the post-refinement
+movement separately; do not mistake an imposed taper for a measured conformation.
+
+Density-aware placement is a later capability. A cluster of negative difference
+density at phosphates is a useful review signal, but does not uniquely prescribe
+a displacement: occupancy/ADPs and model/map errors can contribute. Combine
+signed difference features, nearby positive support, ordinary map fit and
+backbone geometry. Freeze map provenance, coefficients/labels, origin, cell,
+resolution and source model; no unrecorded map sharpening or origin guessing.
+Use bounded local evidence and matched refinement, not repeated Rfree-guided
+retuning. Phenix documents a combined map/restraint target and fragment morphing
+in [real-space refinement](https://phenix-online.org/documentation/reference/real_space_refine.html);
+its [map interpretation notes](https://phenix-online.org/phenixwebsite_static/mainsite/files/presentations/latest/pavel_maps.pdf)
+distinguish coordinate and electron-count explanations for difference features.
+Those capabilities require native qualification before integration here.
+
 Junctions are hard boundaries for automatic extension and topology changes.
 Initially hold junction coordinates fixed. A later explicit hinge capability
 may allow coordinated arm bending without changing strand routing or tearing
@@ -366,6 +386,20 @@ Partition geometry calibration and held-out validation by structure/design famil
 not random residues of the same crystal. 7R96 is an architectural bending control,
 not a high-resolution source of local torsion targets. No live-test-specific
 chain labels, distances or symmetry operators are baked into the algorithm.
+
+The user proposes 8D93 as a starting model for a hexagonal recipient dataset
+(to be supplied). Keep that diffraction benchmark separate from the current
+public 8D93 coordinate-only smoke test. Freeze the recipient's actual space-group
+setting, cell, observations, Free-R flags and maps when available; do not transfer
+8D93 symmetry or assume that a successful file transformation is data-supported
+repair. Compare initial placement and post-stitch refinement to reveal where
+curvature and strand-specific backbone adjustment are actually supported.
+
+Before adding coordinate-based pairing discovery, inspect NARestraints' existing
+base-pair inference for damaged MR models. Reuse its demonstrated candidate and
+recovery logic where appropriate, preserving ambiguity and original evidence;
+do not treat a guessed pair inventory as complete chemical routing or automatic
+permission to join sticky ends.
 
 Later behavior patches require meaningful failing-before/passing-after regression
 tests and focused checks with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`; run the

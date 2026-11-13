@@ -285,5 +285,28 @@
       "review_state": "UNREVIEWED",
       "campaign_adoption": false
     }
+  },
+  "geometry_development": {
+    "smooth_taper_is_initialization_only": true,
+    "nonuniform_bending_future": true,
+    "strand_specific_backbone_relaxation_future": true,
+    "density_aware_fitting_implemented": false,
+    "negative_phosphate_density_is_unique_displacement_instruction": false,
+    "density_evidence": [
+      "signed difference features",
+      "nearby positive support",
+      "ordinary map fit",
+      "chemical geometry"
+    ],
+    "map_provenance_required": true,
+    "initial_and_post_refinement_motion_recorded_separately": true,
+    "existing_pair_inference_to_review": "NARestraints damaged-MR base-pair inference"
+  },
+  "planned_diffraction_benchmark": {
+    "starting_model": "8D93",
+    "recipient": "user-supplied hexagonal dataset pending",
+    "coordinate_smoke_test_is_diffraction_validation": false,
+    "recipient_symmetry_resolved_independently": true,
+    "same_observations_and_free_r_for_matched_controls": true
   }
 }

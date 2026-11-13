@@ -59,7 +59,9 @@ Translation is applied after rotation, in the source PDB Cartesian frame.
 The terminal pair and all overhang residues receive weight 1. Each remaining
 movable paired step receives the smoothstep weight `3t² − 2t³`, where
 `t = 1 − i/m`, `i` is the zero-based terminal-first pair index and `m` is the
-number of movable pairs. Fixed anchors have weight 0 and their records are
+number of movable pairs. This taper is an initialization, not a claim about the
+physical distribution of curvature; strand-specific or density-driven relaxation
+is not implemented. Fixed anchors have weight 0 and their records are
 untouched. Each paired step moves rigidly as a group; rotation angle and
 translation are scaled by its weight. This preserves each residue's internal
 shape up to PDB coordinate rounding, but can strain bonds between residues.
