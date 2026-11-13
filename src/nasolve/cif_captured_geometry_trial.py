@@ -77,8 +77,12 @@ def _readback(root,ref,model,cifs,phils,capture):
     _need(len(receipt['inputs'])==len(expected)
         and receipt['phil_namespace_policy']==capture['phil_namespace_policy']
         and receipt['dictionary_source_policy']==capture['dictionary_source_policy']
-        and receipt.get('full_monomer_inventory_policy')==capture.get('full_monomer_inventory_policy'))
+        and receipt.get('full_monomer_inventory_policy')==capture.get('full_monomer_inventory_policy')
+        and receipt.get('atom_name_mapping_policy')==capture.get('atom_name_mapping_policy'))
     gradients._full_monomers(capture,native,capture.get('native_validation'))
+    if capture.get('atom_name_mapping_policy') is not None:
+        from .cif_native_context import _observed_names
+        _need(_observed_names(native)==_observed_names(capture['native_validation']))
     for row,(role,source) in zip(receipt['inputs'],expected):
         _need(row['role']==role and (path.parent/row['path']).read_bytes()==source.read_bytes())
     return receipt
@@ -198,7 +202,8 @@ def trial_captured_geometry(gradient_directory,phenix,output,*,max_iterations=10
                 geometry._dump(root/'full_precision_geometry.json',review_fixed_coordinates(expected,result['final_sites_cart']))
                 readback=inspect_native_bundle(candidate,cifs,root/'native_readback',executable,environment=phenix.environment,phenix_version=phenix.version,
                     timeout_seconds=min(timeout_seconds,60),phil_files=phils,phil_namespace_policy=capture['phil_namespace_policy'],inventory_detail='linked',policy_inventory=True,energy_inventory=True,installed_library_only=capture['dictionary_source_policy']=='INSTALLED_LIBRARY_ONLY',
-                    **({'full_monomer_inventory':True} if capture.get('full_monomer_inventory_policy') is not None else {}))
+                    **({'full_monomer_inventory':True} if capture.get('full_monomer_inventory_policy') is not None else {}),
+                    **({'atom_name_mapping':True} if capture.get('atom_name_mapping_policy') is not None else {}))
                 report['new_native_calls']+=int('returncode' in readback.get('execution',{}))
                 report['native_readback']={'receipt':geometry._ref(Path(readback['native_directory'])/'native_receipt.json',root)}
                 if readback.get('status')=='REVIEW' and readback['execution'].get('returncode')==0:

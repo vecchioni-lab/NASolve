@@ -24,7 +24,8 @@ def case(tmp_path,monkeypatch):
         p=Path(p)
         return dict(report={'consumer':{'test':'identity'},'components':['Q17','Q18']},model=p/'model.pdb',
             before_dictionaries=[p/'a.cif',p/'b.cif'],after_dictionaries=[p/'a.cif',p/'b.cif'],
-            before_phils=[p/'policy.phil'],after_phils=[p/'policy.phil'])
+            before_phils=[p/'policy.phil'],after_phils=[p/'policy.phil'],
+            native_options=dict(full_monomer_inventory=True,**({'atom_name_mapping':True} if state.get('mapped') else {})))
     def plan(ds,codes,out):
         assert codes==['Q17','Q18'];out.mkdir()
         for i,d in enumerate(ds):shutil.copyfile(d,out/f'{i}.cif')
@@ -404,3 +405,12 @@ def test_plane_support_uses_existing_repair_owner_and_final_selector(case, monke
         assert len(r['native_receipts'])==(4 if linear else 3)
         assert r['selection']['decision']['selected']==('verified_prepared_bundle'
             if outcome in {'negative-attribution','bad-final-derivative'} else 'repaired_prepared_bundle')
+
+
+def test_retained_terminal_capture_uses_frozen_native_options(case,monkeypatch):
+    m,b,sdk,out,state,calls,o=case;state['mapped']=True;original=m.inspect_native_bundle;seen=[]
+    def native(*args,**kwargs):
+        seen.append(kwargs.get('atom_name_mapping'));return original(*args,**kwargs)
+    monkeypatch.setattr(m,'inspect_native_bundle',native)
+    assert m.execute_prepared_dictionary_repair(b,sdk,out,**o)['status']=='QUALIFIED_DIAGNOSTIC_RUNTIME'
+    assert seen==[True,True,True]

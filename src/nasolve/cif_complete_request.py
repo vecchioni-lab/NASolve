@@ -211,15 +211,16 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
                   'Invalid terminal resource reference')
             allowed.update(f'resources/{code}/'+n for n in _terminal(inputs/resource,controls['consumer']))
     _need(_same(_links(inputs/'model.pdb',all_contexts,controls['expected_links']), controls['expected_links']), 'Model links differ')
-    from .cif_native_context import RETAINED_TERMINAL_POLICY_ID, prepared_native_context
-    retained = controls['native_context']['policy_id'] == RETAINED_TERMINAL_POLICY_ID
+    from .cif_native_context import RETAINED_TERMINAL_POLICY_ID, MAPPED_TERMINAL_POLICY_ID, prepared_native_context
+    retained = controls['native_context']['policy_id'] in (RETAINED_TERMINAL_POLICY_ID,MAPPED_TERMINAL_POLICY_ID)
     _need(not retained or model_context is not None,
           'Retained terminal phosphates require frozen prepared-model intent')
     if model_context is not None:
         derived = validate_prepared_model_context(inputs/'model.pdb', model_context)
         if retained:
             _need(_same(controls['native_context'], prepared_native_context(inputs/'model.pdb',derived,
-                custom_restraints=controls['native_context']['custom_restraints'])),
+                custom_restraints=controls['native_context']['custom_restraints'],
+                retained_policy=controls['native_context']['policy_id'])),
                 'Retained terminal phosphate context differs from frozen model intent')
         if restraint_context is None:
             _need(not names and controls['native_context']['custom_restraints'] == 'absent',

@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C266
+## Near-term closure estimate at C269
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -31,7 +31,7 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. C263 now connects an explicit prepared-input recipe through existing ownership/cache/ordinary resume and plane reads, retaining original authority. Both native acquisitions and relocated cold reads pass. C264 reaches linked preparation and restores the already-documented qualified legacy DNA-group contract under explicit aromatic handling. C265 confirms that header fix, then correctly refuses charged 1AP OP3 at an incoming link. Keep that Q13 chemical-state operation separate; C266 A:5IU reaches source-native qualification and fixes a lost declaration for protected background D:1 phosphate through an explicit, replayed context; original native definitions must remain unchanged. Retry that independent native AutoSol control. CLI defaults remain unchanged. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. C263 now connects an explicit prepared-input recipe through existing ownership/cache/ordinary resume and plane reads, retaining original authority. Both native acquisitions and relocated cold reads pass. C264 reaches linked preparation and restores the already-documented qualified legacy DNA-group contract under explicit aromatic handling. C265 confirms that header fix, then correctly refuses charged 1AP OP3 at an incoming link. Keep that Q13 chemical-state operation separate; C266 A:5IU reaches source-native qualification and fixes a lost declaration for protected background D:1 phosphate through an explicit, replayed context; original native definitions must remain unchanged. C267 identifies observed OP3→O3T naming; C268 qualifies unchanged energy/name capture and C269 carries exact observed names through terminal and numerical checking while retaining old context meanings. Retry that independent native AutoSol control; these are distinct integration findings, not new ownership machinery. CLI defaults remain unchanged. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
@@ -51,6 +51,12 @@ resumed completion on that copied native request. C260 connects fresh ordinary/c
 and retain the historical-campaign migration boundary. Do not repeat transport, reader or retirement machinery. Historical workstation archiving is separate from runtime retention.
 Effective native planes, alternative-restraint adequacy and achieved geometry are
 Q06 checks; explicit CIF plane membership alone cannot close them.
+
+Q06 must also keep ordinary bond edits distinct from additive contact energy over
+an unchanged native manager: Linden's Willow `2f95a09` reports changed nonbonded
+exclusions when symmetry distance edits are installed. This is reported evidence,
+not a Cedar-validated equivalence or permission to create phosphodiester links;
+see ledger `willow_bond_edit_nonbonded_distinction_2026_11_13`.
 
 Q06 proves actual complete-restraint refinement; Q07 tests combined and held-out
 models. Q08–Q14 retain the catalogue/chemistry programme without reopening completed

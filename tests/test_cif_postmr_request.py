@@ -495,7 +495,7 @@ def test_background_terminal_intent_is_frozen_and_rechecked(entry_case,defect):
     args['report']=report('A:1','B:1','C:1')
     request=initialize_postmr_dictionary_request(**args)
     c=request['configuration'];native=c['controls']['native_context']
-    assert native['policy_id']=='cif-explicit-site-native-context-v3'
+    assert native['policy_id']=='cif-explicit-site-native-context-v4'
     assert native['retained_terminal_phosphates']==[dict(site='C:1',component='DG',outgoing_site='C:2')]
     if defect:
         saved=read_record(args['output']/'request.json');config=saved['configuration']

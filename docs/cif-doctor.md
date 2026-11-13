@@ -4405,8 +4405,11 @@ included. Nothing is removed to make the derivative check pass.
 Schema 1 `cif-captured-mixed-fixed-gradient-v1` owns the separate capture, preparation,
 job and qualification inventory. Bounds are one native process, 1–600 seconds,
 2000 energy evaluations and 5000 plane-evaluation pairs, with 1–64 parallelity
-proxies. Only the base linked policy/energy capture is accepted: additional native
-mapping, gradient, nonbonded-inventory or full-monomer modes need their own adapter.
+proxies. The original base linked policy/energy capture remains supported. The
+full-model adapter also preserves explicit identity evidence; C269 additionally
+carries C268's authenticated full-model atom-name observations into the same native
+manager reconstruction. Separate gradient/nonbonded augmentation of the capture
+remains unsupported. No mathematical worker or manager-equality check is relaxed.
 The inherited fixed-policy gate requires secondary-structure generation disabled
 and no competing automatic pair/stack origins. Special positions are refused by
 the numerical worker. Existing numerical eligibility and source-pinning limits
@@ -12795,3 +12798,30 @@ capture without rerunning it. 129 focused capture/identity/mapping/timeout tests
 pass. This qualifies capture composition, not terminal adoption or AutoSol.
 See ledger `native_energy_atom_mapping_2026_11_13`; next reuse the exact recorded
 bindings in a new terminal-context policy, preserving the literal v3 meaning.
+
+
+## Using observed names without changing phosphate chemistry (C269)
+
+New ordinary checked requests with explicitly retained background termini use
+`cif-explicit-site-native-context-v4`. This preserves the v3 declaration shape and
+all existing chemical/linkage checks, but reads each coordinate-to-dictionary name
+from C112's actual native observation. Both complete captures must bind every
+reported atom/site; the retained site must have identical complete name bindings
+and identical complete chemical definitions before and after preparation. The
+four oxygen neighbors, coordinate elements, terminal permission and outgoing link
+must still agree. Synthetic alternate names verify this is not an OP3/O3T whitelist.
+No coordinate is renamed, phosphate deleted, proton inferred or charge changed.
+
+Frozen context selects the native observation options for the existing owned
+capture and failure reader. Numerical reconstruction and whole-plane attribution
+reuse the unchanged name-observation helper; their exact native-manager equality,
+energy/derivative checks and mathematical workers remain intact. Geometry endpoint
+readback retains and checks the same names. This is observation composition, not
+permission to combine the separate native derivative/nonbonded augmentation modes.
+
+Complete-request reads rederive v4 from frozen model intent. Old v3 reads explicitly
+rederive v3 and retain the literal-name refusal; v1/v2 are unchanged. New context
+and composed numerical jobs need a current reader. No old attempt is rewritten,
+no CLI default changes, and a capture alone still cannot authorize chemical use.
+Focused/relocation results and the subsequent live acceptance control are recorded
+in ledger `retained_phosphate_observed_names_2026_11_13`.

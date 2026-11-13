@@ -126,9 +126,10 @@ def qualify_linked_bundle(baseline: dict, linked: dict, preparations: list[dict]
     if native_context is None:
         check('zero-unrequested-coordinate-OP3',not any(a['atom_id'] in {'OP3','O3P'} for a in linked['atoms']))
     else:
-        from .cif_native_context import declared_phosphate_check
+        from .cif_native_context import declared_phosphate_check, MAPPED_TERMINAL_POLICY_ID
         checks.append(declared_phosphate_check(linked,preparations,expected_links,
-            retained=native_context.get('retained_terminal_phosphates',()),baseline=baseline))
+            retained=native_context.get('retained_terminal_phosphates',()),baseline=baseline,
+            mapped=native_context['policy_id']==MAPPED_TERMINAL_POLICY_ID))
     before_links,after_links=native_backbone_links(baseline),native_backbone_links(linked)
     check('exact-backbone-links',set(after_links)==set(expected_links) and after_links==before_links,
           expected=len(expected_links),observed=len(after_links))

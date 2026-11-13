@@ -45,11 +45,15 @@ def _inputs(parent):
     model = _input(parent, {k:rows[0][k] for k in ('path','sha256','size')} | {'anchor':'manifest_directory'}, {})
     capture, expected, snapshots = _capture(path, model.read_bytes())
     _need(capture['status'] == 'REVIEW' and all(energy_inventory_checks(expected).values()))
-    _native_atoms(expected, model.read_bytes())
+    keys,_ = _native_atoms(expected, model.read_bytes())
     spec = _json((parent/'native_spec.json').read_bytes())
     _need(set(spec) <= {'policy_id','model','dictionaries','phil_files','phil_namespace_policy',
-        'inventory_detail','policy_inventory','energy_inventory','installed_library_only','full_monomer_inventory'}
+        'inventory_detail','policy_inventory','energy_inventory','installed_library_only','full_monomer_inventory','atom_name_mapping'}
         and spec.get('policy_inventory') is True and spec.get('energy_inventory') is True)
+    if spec.get('atom_name_mapping'):
+        from .cif_native_atom_mapping import bound_name_mappings
+        mapping,_=bound_name_mappings(expected,keys)
+        _need(mapping['status']=='RECORDED')
     dictionaries = [parent/p for p in spec['dictionaries']]; phils = [parent/p for p in spec['phil_files']]
     bind = lambda p:numerical._ref(p,parent,'captured_native_directory')
     bindings = {'active_capture':bind(path),'model':bind(model),
@@ -73,6 +77,19 @@ def _full_monomers(capture, native, expected=None):
     return True
 
 
+def _native_context_worker(worker, capture):
+    """Rebuild the same observation layers without changing numerical workers."""
+    if capture.get('atom_name_mapping_policy') is not None:
+        from .cif_native_atom_mapping import native_mapping_worker, POLICY_ID
+        _need(capture['atom_name_mapping_policy']==POLICY_ID
+            and capture.get('full_monomer_inventory_policy') is not None)
+        worker=native_mapping_worker(worker)
+    if capture.get('full_monomer_inventory_policy') is not None:
+        from .cif_native_monomers import native_monomer_worker
+        worker=native_monomer_worker(worker)
+    return worker
+
+
 def _preserve_native_context(root, capture, preparation, reference=numerical._ref):
     """Compose the existing opt-in monomer worker without changing numerical cores."""
     path = root/'job/native_spec.json'; spec = _json(path.read_bytes())
@@ -81,12 +98,15 @@ def _preserve_native_context(root, capture, preparation, reference=numerical._re
         spec['installed_library_only'] = True
     if capture.get('full_monomer_inventory_policy') is not None:
         _full_monomers(capture, capture['native_validation'])
-        from .cif_native_monomers import native_monomer_worker, POLICY_ID
+        from .cif_native_monomers import POLICY_ID
         spec['full_monomer_inventory'] = True
-        worker = root/'job/native_worker.py'
-        worker.write_text(native_monomer_worker(worker.read_text()))
-        preparation['native_worker'] = reference(worker, root)
         preparation['full_monomer_inventory_policy'] = POLICY_ID
+        if capture.get('atom_name_mapping_policy') is not None:
+            spec['atom_name_mapping'] = True
+            preparation['atom_name_mapping_policy'] = capture['atom_name_mapping_policy']
+        worker = root/'job/native_worker.py'
+        worker.write_text(_native_context_worker(worker.read_text(),capture))
+        preparation['native_worker'] = reference(worker, root)
     numerical._compact_dump(path, spec)
     preparation['native_spec'] = reference(path, root)
     return preparation
@@ -203,10 +223,8 @@ def _read_captured_mixed_gradients(directory):
         and report['directories']==sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir()))
     capture,model,dictionaries,phils,expected,bindings=_inputs(parent);_need(report['inputs']==bindings)
     prep=report['preparation'];work=root/'job'
-    worker = native_energy_worker(_NATIVE_WORKER)
-    if _full_monomers(capture, expected):
-        from .cif_native_monomers import native_monomer_worker
-        worker = native_monomer_worker(worker)
+    _full_monomers(capture, expected)
+    worker = _native_context_worker(native_energy_worker(_NATIVE_WORKER),capture)
     _need((work/'native_worker.py').read_bytes()==worker.encode() and (work/'gradient_worker.py').read_bytes()==_numerical_engine(expected)._WORKER.encode())
     for name,source in numerical._CORE_FILES.items():_need((work/name).read_bytes()==Path(__file__).with_name(source).read_bytes())
     from tempfile import TemporaryDirectory

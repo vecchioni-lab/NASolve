@@ -93182,5 +93182,92 @@
       "Terminal use needs a distinct explicit context; v3 remains literal",
       "No ReadySet/AutoSol/refinement acceptance claimed"
     ]
+  },
+  "retained_phosphate_observed_names_2026_11_13": {
+    "checkpoint": "C269",
+    "base_commit": "35ad05a",
+    "status": "INTEGRATED_FOCUSED_AND_READ_ONLY_PASS_NATIVE_RETRY_NEXT",
+    "prior_work": [
+      "C112 observed native atom bindings; no inferred alias table",
+      "C266 explicit retained background terminal context",
+      "C268 exact full-model energy/name composition",
+      "Existing captured numerical and plane-attribution owners/workers"
+    ],
+    "behavior_before": "Literal terminal check refused unchanged canonical p5*END OP3-to-O3T binding; numerical reconstruction also needed the same observation in exact manager equality.",
+    "behavior_after": "New v4 requests use complete actual bindings and unchanged whole background definitions, preserve all chemical/link/proxy checks, and retain the names in existing numerical/plane reconstruction and endpoint reads.",
+    "changed_files": [
+      "src/nasolve/cif_captured_geometry_trial.py",
+      "src/nasolve/cif_captured_mixed_gradients.py",
+      "src/nasolve/cif_captured_plane_attribution.py",
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_dictionary_bundle.py",
+      "src/nasolve/cif_dictionary_sites.py",
+      "src/nasolve/cif_linked_qualification.py",
+      "src/nasolve/cif_native_context.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "src/nasolve/cif_prepared_repair_failure.py",
+      "tests/test_cif_energy_atom_mapping.py",
+      "tests/test_cif_postmr_request.py",
+      "tests/test_cif_prepared_repair_execution.py",
+      "tests/test_cif_prepared_repair_failure.py",
+      "tests/test_cif_retained_phosphate_context.py",
+      "tests/test_cif_retained_phosphate_mapping.py"
+    ],
+    "compatibility": "New cif-explicit-site-native-context-v4; same declaration fields as v3, distinct mapped semantics. v1/v2/v3 unchanged; v3 explicitly rederived as v3. New composed numerical jobs require current reader. Historical mathematical/native worker variants remain byte-identical. No CLI default activation or in-place migration.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_retained_phosphate_mapping.py tests/test_cif_retained_phosphate_context.py tests/test_cif_energy_atom_mapping.py tests/test_cif_postmr_request.py tests/test_cif_prepared_repair_failure.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_budget.py -x",
+        "result": "327 passed in 88.62s (0:01:28)"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_energy_atom_mapping.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_captured_geometry_trial.py tests/test_cif_captured_plane_attribution.py tests/test_cif_dictionary_bundle.py tests/test_cif_complete_request.py -x",
+        "result": "298 passed in 407.28s (0:06:47)"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_prepared_repair_failure.py::test_failed_native_capture_must_keep_frozen_mapping_request",
+        "result": "1 passed in 3.17s"
+      }
+    ],
+    "before_fix": "Numerical reconstruction regression fails KeyError atom_name_mapping before the propagation fix. New v4 named-terminal tests distinguish passing observed bindings from unchanged literal v3 refusal.",
+    "relocation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python branch-artifacts/cedar/runners/c269_relocated_checkout.py",
+      "status": "RELOCATED_CHECKOUT_AND_REQUEST_PASS",
+      "scope": "Three explicit retained-terminal/name-composition/request cold-read checks, from copied code relocated after its temporary original checkout disappeared. Request also relocated; both old temporary paths absent. No source checkout or original scientific data removed.",
+      "elapsed_seconds": 2.500653459021123,
+      "pytest_output": "...                                                                      [100%]\n3 passed in 1.81s",
+      "temporary_checkout_removed": true
+    },
+    "actual_read_only_control": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python branch-artifacts/cedar/runners/c269_readback.py",
+      "status": "NATIVE_CAPTURE_READ_ONLY_PREFLIGHT_PASS",
+      "elapsed_seconds": 12.162101833993802,
+      "old_v3_result_unchanged": true,
+      "old_and_new_capture_files_unchanged": 432,
+      "actual_atom_count": 853,
+      "terminal_binding": "OP3 to O3T",
+      "numerical_preparation": "NEW_MAPPED_WORKER_PREPARED_ONLY",
+      "scope": "Same-capture terminal diagnostic and fresh numerical preparation only; no before/after scientific acceptance or derivative execution. No native launch; temporary preparation removed."
+    },
+    "development_notes": [
+      "Synthetic fixture now returns the real frozen native_options contract.",
+      "New numerical test first had a missing parent directory; corrected setup then demonstrated actual missing mapping.",
+      "Read-only runner first used the macOS /var symlink spelling for a temporary directory; resolved its temporary root, then passed. No product guard relaxed."
+    ],
+    "artifacts": "All scientific captures/runners remain local and excluded; no scientific data deleted or uploaded. Temporary test/preparation copies removed by their existing TemporaryDirectory owners.",
+    "full_suite": "Not run per Simon; last full C220/583d30df, 9178 tests and 276 subtests.",
+    "remaining": [
+      "Fresh complete chosen-model AutoSol control C270",
+      "Native numerical/plane composition acceptance is not established by preparation-only readback",
+      "Q04/Q05 storage/recovery/opt-in scope reconciliation before Q06",
+      "Charged source phosphate linking remains Q13; no neutralization/OP3 deletion"
+    ]
+  },
+  "willow_bond_edit_nonbonded_distinction_2026_11_13": {
+    "source": "Linden signed local handoff; Willow 2f95a09 and helper 3cb9723",
+    "status": "REPORTED_NOT_INDEPENDENTLY_REPRODUCED_IN_CEDAR",
+    "phenix": "2.2.1-6174",
+    "finding": "Five requested symmetry H-bond distance edits yielded five LINK requests and eight ASU bond proxy entries; nonbonded ASU pairs 618 to 587 and nonbonded target 1077.721614 to 963.181796. Additive contact energy over an unchanged manager is not equivalent to ordinary bond edits.",
+    "scope": "Bounded unselected REVIEW controls. Not phosphodiester-link authority. Preserve distinction in later Q06/masked intent contract; do not silently substitute objective or rebuild Willow work.",
+    "cedar_changes": "None for this reported experiment"
   }
 }

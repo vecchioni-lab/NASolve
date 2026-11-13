@@ -73,6 +73,9 @@ def test_declarations_come_from_frozen_intent_and_survive_relocation(tmp_path):
     old=tmp_path/'old';old.mkdir();p=model(old/'model.pdb',chains=(('A','ZZZ'),('B','DG')))
     bound=derive_prepared_model_context(p,report('A:1','B:1'),['ZZZ'])
     result=prepared_native_context(p,bound,custom_restraints='absent')
+    assert result['policy_id']=='cif-explicit-site-native-context-v4'
+    legacy=prepared_native_context(p,bound,custom_restraints='absent',retained_policy=POLICY)
+    assert legacy==dict(result,policy_id=POLICY)
     assert result['retained_terminal_phosphates']==[dict(site='B:1',component='DG',outgoing_site='B:9')]
     new=tmp_path/'new';shutil.move(old,new);assert not old.exists()
     assert prepared_native_context(new/'model.pdb',validate_prepared_model_context(new/'model.pdb',bound),custom_restraints='absent')==result

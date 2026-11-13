@@ -8,15 +8,16 @@ from copy import deepcopy
 POLICY_ID='cif-explicit-site-native-context-v1'
 FULL_MODEL_POLICY_ID='cif-explicit-site-native-context-v2'
 RETAINED_TERMINAL_POLICY_ID='cif-explicit-site-native-context-v3'
+MAPPED_TERMINAL_POLICY_ID='cif-explicit-site-native-context-v4'
 
 
 def validate_native_context(context):
-    retained=isinstance(context,dict) and context.get('policy_id')==RETAINED_TERMINAL_POLICY_ID
+    retained=isinstance(context,dict) and context.get('policy_id') in (RETAINED_TERMINAL_POLICY_ID,MAPPED_TERMINAL_POLICY_ID)
     full=retained or isinstance(context,dict) and context.get('policy_id')==FULL_MODEL_POLICY_ID
     keys={'policy_id','custom_restraints'}|({'monomer_inventory'} if full else set())
     if retained:keys.add('retained_terminal_phosphates')
     if (not isinstance(context,dict) or set(context)!=keys
-            or context['policy_id'] not in (POLICY_ID,FULL_MODEL_POLICY_ID,RETAINED_TERMINAL_POLICY_ID)
+            or context['policy_id'] not in (POLICY_ID,FULL_MODEL_POLICY_ID,RETAINED_TERMINAL_POLICY_ID,MAPPED_TERMINAL_POLICY_ID)
             or not isinstance(context['custom_restraints'],str)
             or context['custom_restraints'] not in {'required','absent'}
             or (full and context['monomer_inventory']!='full_model')):
@@ -36,24 +37,45 @@ def validate_native_context(context):
     return deepcopy(context)
 
 
-def prepared_native_context(model, model_context, *, custom_restraints):
+def prepared_native_context(model, model_context, *, custom_restraints, retained_policy=MAPPED_TERMINAL_POLICY_ID):
     """Carry audited, explicitly requested background termini into native checks.
 
     The caller supplies the existing validated prepared-model context. Coordinates
     identify the component; they never authorize a phosphate absent from intent.
     """
     from .cif_linked_preparation import _model_inventory
+    if retained_policy not in (RETAINED_TERMINAL_POLICY_ID,MAPPED_TERMINAL_POLICY_ID):
+        raise ValueError('Unsupported retained terminal declaration policy')
     selected={row['site'] for rows in model_context['contexts'].values() for row in rows}
     outgoing=dict(model_context['expected_links'])
     sites=_model_inventory(model)
     retained=[dict(site=site,component=sites[site]['code'],outgoing_site=outgoing.get(site))
         for site in sorted(set(model_context['intent']['post_mr_plan']['allow_op3_sites'])-selected)]
     result=dict(policy_id=FULL_MODEL_POLICY_ID,monomer_inventory='full_model',custom_restraints=custom_restraints)
-    if retained:result.update(policy_id=RETAINED_TERMINAL_POLICY_ID,retained_terminal_phosphates=retained)
+    if retained:result.update(policy_id=retained_policy,retained_terminal_phosphates=retained)
     return validate_native_context(result)
 
 
-def declared_phosphate_check(native,preparations,expected_links,*,retained=(),baseline=None):
+def native_context_options(context):
+    """Exact optional native observations selected by the frozen context."""
+    context=validate_native_context(context)
+    result={'full_monomer_inventory':True} if context.get('monomer_inventory')=='full_model' else {}
+    if context['policy_id']==MAPPED_TERMINAL_POLICY_ID:result['atom_name_mapping']=True
+    return result
+
+
+def _observed_names(native):
+    from .cif_native_atom_mapping import bound_name_mappings
+    from .cif_linked_qualification import _site
+    atoms=native['atoms']
+    if any(type(a.get('i_seq')) is not int or a['i_seq']!=i for i,a in enumerate(atoms)):
+        raise ValueError('Native name bindings need complete ordered atom indices')
+    summary,maps=bound_name_mappings(native,[(_site(a),a['identity']['resname'].strip(),a['atom_id']) for a in atoms])
+    if summary['status']!='RECORDED':raise ValueError('Retained terminal native names are unavailable')
+    return maps
+
+
+def declared_phosphate_check(native,preparations,expected_links,*,retained=(),baseline=None,mapped=False):
     """Authorize OP3 only at a declared, source-preserved terminal phosphate.
 
     Full definition/projection and active numerical checks remain mandatory in
@@ -64,6 +86,13 @@ def declared_phosphate_check(native,preparations,expected_links,*,retained=(),ba
     evidence={};passed=False
     try:
         plans=[p for preparation in preparations for p in preparation['sites']]
+        name_maps={}
+        if mapped:
+            old_names,new_names=_observed_names(baseline),_observed_names(native)
+            for row in retained:
+                site=row['site']
+                if old_names.get(site)!=new_names.get(site):raise ValueError('Retained terminal atom-name binding changed')
+                name_maps[site]=new_names[site]
         if len({p['site'] for p in plans})!=len(plans):raise ValueError('Duplicate declared site')
         if retained:
             original={r['site']:r['metadata']['effective_definition'] for r in baseline['monomer_mappings']['rows']}
@@ -89,11 +118,12 @@ def declared_phosphate_check(native,preparations,expected_links,*,retained=(),ba
         if any(name=='O3P' for site,name in atoms):raise ValueError('Unrequested coordinate O3P')
         if observed!=sorted(terminal):raise ValueError('Coordinate OP3 differs from declared terminal sites')
         for site,plan in terminal.items():
+            names={name:name_maps[site][name] if site in name_maps else name for name in expected}
             if (plan.get('incoming_site') is not None or any(right==site for left,right in expected_links)
                     or [right for left,right in expected_links if left==site] != (
                         [] if plan.get('outgoing_site') is None else [plan['outgoing_site']])
                     or plan.get('three_prime_state')!=('linked' if plan.get('outgoing_site') is not None else 'free_OH')
-                    or not set(expected)<=set(plan['expected_atoms'])):
+                    or not set(names.values())<=set(plan['expected_atoms'])):
                 raise ValueError('Terminal phosphate conflicts with linkage or source projection')
             definition=mapping[site]['metadata']['effective_definition']
             rows=definition['atoms'];source={r['atom_id']:r for r in rows}
@@ -102,19 +132,21 @@ def declared_phosphate_check(native,preparations,expected_links,*,retained=(),ba
                 atom=atoms[(site,name)]
                 if (atom['element'].strip().upper()!=element
                         or atom['identity']['resname'].strip()!=plan['component']
-                        or source[name]['type_symbol'].upper()!=element):
+                        or source[names[name]]['type_symbol'].upper()!=element):
                     raise ValueError('Terminal phosphate component or element differs')
             edges=[(r['atom_id_1'],r['atom_id_2']) for r in definition['bonds']]
-            neighbors=[b if a=='P' else a for a,b in edges if 'P' in (a,b)]
-            if Counter(neighbors)!=Counter({'OP1':1,'OP2':1,'OP3':1,"O5'":1}):
+            phosphorus,leaving=names['P'],names['OP3']
+            neighbors=[b if a==phosphorus else a for a,b in edges if phosphorus in (a,b)]
+            if Counter(neighbors)!=Counter({names[n]:1 for n in ('OP1','OP2','OP3',"O5'")}):
                 raise ValueError('Terminal phosphate does not have the declared four oxygen neighbors')
-            if [b if a=='OP3' else a for a,b in edges if 'OP3' in (a,b)].count('P')!=1:
+            if [b if a==leaving else a for a,b in edges if leaving in (a,b)].count(phosphorus)!=1:
                 raise ValueError('Terminal oxygen is not attached exactly once to its phosphorus')
-            heavy=[n for a,b in edges if 'OP3' in (a,b) for n in [b if a=='OP3' else a]
+            heavy=[n for a,b in edges if leaving in (a,b) for n in [b if a==leaving else a]
                 if source[n]['type_symbol'].upper() not in {'H','D'}]
-            if heavy!=['P']:raise ValueError('Terminal oxygen has another heavy-atom attachment')
+            if heavy!=[phosphorus]:raise ValueError('Terminal oxygen has another heavy-atom attachment')
         evidence.update(declared_terminal_sites=sorted(terminal),observed_op3_sites=observed)
         if retained:evidence['retained_terminal_sites']=[r['site'] for r in retained]
+        if mapped:evidence['retained_atom_name_bindings']=name_maps
         passed=True
     except (KeyError,TypeError,ValueError,IndexError,AttributeError) as exc:
         evidence['error']=type(exc).__name__+': '+str(exc)

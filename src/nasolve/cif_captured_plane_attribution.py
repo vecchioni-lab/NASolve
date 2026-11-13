@@ -14,7 +14,7 @@ import tempfile
 import time
 
 from .cif_attachment_native import _json
-from .cif_captured_mixed_gradients import _inputs
+from .cif_captured_mixed_gradients import _inputs, _native_context_worker
 from .cif_component_runtime import _tree, MAX_FILES, MAX_BYTES
 from .cif_dictionary_store import _bytes
 from .cif_fana_junction import _path
@@ -122,19 +122,15 @@ def _derive(root, controls):
     spec = {'installed_sources': pins}
     from .cif_candidate_usability import native_energy_worker
     from .cif_native_validation import _NATIVE_WORKER
-    from .cif_native_monomers import native_monomer_worker
     for ordinal, (label, entry) in enumerate(zip(('before', 'after'), entries)):
         capture, model, dictionaries, phils, native, _ = entry
         parent = root/'inputs'/label
         _need(set(_tree(parent)) == {'native_receipt.json'} | {r['path'] for r in capture['outputs']},
               'Capture directory has unrelated files')
         native_spec = (parent/'native_spec.json').read_bytes()
-        parsed = _json(native_spec)
         # _inputs validates the supported spec fields and energy capture. Write
         # maintained code afresh; no historical worker is used as executable input.
-        worker = native_energy_worker(_NATIVE_WORKER)
-        if parsed.get('full_monomer_inventory'):
-            worker = native_monomer_worker(worker)
+        worker = _native_context_worker(native_energy_worker(_NATIVE_WORKER),capture)
         prepared[f'job/{label}/native_worker.py'] = worker.encode()
         prepared[f'job/{label}/native_spec.json'] = native_spec
         for row in capture['inputs']:

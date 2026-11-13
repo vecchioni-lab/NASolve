@@ -226,7 +226,7 @@ def execute_prepared_dictionary_repair(bundle, phenix, output, *, native_timeout
             phenix_version=phenix.version, timeout_seconds=phase_limit('native'),
             phil_files=phils, phil_namespace_policy='refinement-root-to-interpreter-v1',
             inventory_detail='linked', policy_inventory=True, energy_inventory=True,
-            full_monomer_inventory=True, _process_runner=processes.runner('native-'+label))
+            **prepared['native_options'], _process_runner=processes.runner('native-'+label))
         receipt = Path(result['native_directory']).absolute()/'native_receipt.json'
         _need(receipt.is_relative_to(parent), 'Native capture returned another phase directory')
         report['native_receipts'].append(reference(receipt))

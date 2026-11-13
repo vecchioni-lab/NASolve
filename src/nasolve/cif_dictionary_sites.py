@@ -163,13 +163,14 @@ def _inputs(root, controls):
         result[field]=[root/name for name in names]
         for path in result[field]:_read(path)
     cifs=result['supplementary_dictionaries']; phils=result['supplementary_phils']
+    from .cif_native_context import native_context_options
     full=controls.get('native_context',{}).get('monomer_inventory')=='full_model'
     policy=[root/'prepared/native_interpretation.phil'] if full else []
     return {'model':root/'inputs/model.pdb',
         'before_dictionaries':[root/'snapshot/entry/dictionary.cif',*cifs],
         'after_dictionaries':[root/'prepared/base_dictionary.cif',root/'prepared/site_modifications.cif',*cifs],
         'before_phils':[*phils,*policy],'after_phils':[*phils,root/'prepared/site_modifications.phil',*policy],
-        **({'native_options':{'full_monomer_inventory':True}} if full else {})}
+        **({'native_options':native_context_options(controls['native_context'])} if full else {})}
 
 
 def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, expected_links,

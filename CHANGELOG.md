@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Recognize observed native names for protected phosphate (C269)
+
+- New checked requests with declared background terminal phosphates use native
+  context v4: their model-to-dictionary atom names come from the actual Phenix
+  capture. OP3 need not literally be called OP3 in the native definition.
+- Require complete bound name evidence, unchanged background definitions and
+  unchanged before/after name bindings; preserve every existing terminal graph,
+  linkage, source and restraint check. No alias whitelist or chemical editing.
+- Carry that observation through owned native capture, numerical reconstruction,
+  plane attribution and endpoint readback. Existing mathematical workers and old
+  v1/v2/v3 meanings stay unchanged. New requests need a current reader; historical
+  failures remain preserved. No CLI default activation or automatic adoption.
+
+
 ### Observe native atom names alongside fixed energy evidence (C268)
 
 - Compose the existing atom-name mapping, full-model identity and fixed-energy

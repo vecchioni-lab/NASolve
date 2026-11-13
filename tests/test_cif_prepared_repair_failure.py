@@ -59,7 +59,7 @@ def test_timeout_partial_report_is_preserved_without_becoming_native_proof(tmp_p
     assert native is None and snapshots[partial]==b'{"status":' and receipt['status']=='FAILED'
 
 
-def failure_case(tmp_path,monkeypatch,kind='TIMED_OUT',bystander=None):
+def failure_case(tmp_path,monkeypatch,kind='TIMED_OUT',bystander=None,mapped=False):
     from nasolve import cif_prepared_repair_failure as m
     from nasolve.cif_repair_process import PreparedRepairProcesses,inspect_prepared_repair_processes
     from nasolve.cif_native_validation import NATIVE_POLICY_ID
@@ -78,7 +78,7 @@ def failure_case(tmp_path,monkeypatch,kind='TIMED_OUT',bystander=None):
     save(plan/'linear_torsion_bundle.json',value)
     consumer=dict(name='TEST',version='TEST',executable_sha256='1'*64)
     def prepared(p):
-        p=Path(p);return dict(report=dict(components=['AAA','BBB'],consumer=consumer),model=p/'model.pdb',after_dictionaries=[p/'a.cif',p/'b.cif'],after_phils=[p/'policy.phil'],component_dictionaries={'AAA':p/'a.cif','BBB':p/'b.cif'})
+        p=Path(p);return dict(report=dict(components=['AAA','BBB'],consumer=consumer),model=p/'model.pdb',after_dictionaries=[p/'a.cif',p/'b.cif'],after_phils=[p/'policy.phil'],component_dictionaries={'AAA':p/'a.cif','BBB':p/'b.cif'},native_options=dict(full_monomer_inventory=True,**({'atom_name_mapping':True} if mapped else {})))
     monkeypatch.setattr(m,'read_dictionary_bundle',prepared);monkeypatch.setattr(m,'read_linear_torsion_bundle',lambda p:json.loads((p/'linear_torsion_bundle.json').read_bytes()))
     owner=PreparedRepairProcesses(root);work=root/'native/001/capture';work.mkdir(parents=True)
     (work/'native_worker.py').write_text('import time;time.sleep(10)' if kind=='TIMED_OUT' else 'raise SystemExit(3)')
@@ -89,6 +89,7 @@ def failure_case(tmp_path,monkeypatch,kind='TIMED_OUT',bystander=None):
     for i,(role,p) in enumerate([('model',b/'model.pdb'),('dictionary',plan/'candidate.cif'),('dictionary',plan/'1.cif'),('phil',b/'policy.phil')]):
         target=work/f'{i}{p.suffix}';shutil.copyfile(p,target);rows.append(dict(artifact(target,work),role=role,input_index=i))
     spec=dict(policy_id=NATIVE_POLICY_ID,model=rows[0]['path'],dictionaries=[p['path'] for p in rows[1:3]],phil_files=[rows[3]['path']],phil_namespace_policy='refinement-root-to-interpreter-v1',inventory_detail='linked',policy_inventory=True,energy_inventory=True,full_monomer_inventory=True)
+    if mapped:spec['atom_name_mapping']=True
     save(work/'native_spec.json',spec)
     record=dict(status='FAILED',execution=dict(status=kind,returncode=finished['returncode'],timeout_seconds=.1 if kind=='TIMED_OUT' else 3),phenix_version='TEST',executable_sha256='1'*64,full_monomer_inventory_policy=MONOMER_POLICY,inputs=rows,outputs=[],command=command)
     record['outputs']=[artifact(p,work) for p in sorted(work.rglob('*')) if p.is_file()]
@@ -165,3 +166,11 @@ def test_optional_failure_accepts_the_full_modeled_plan_without_claiming_bystand
     result=m.inspect_prepared_native_failure(root,'native-001')
     assert result['failure_kind']=='NATIVE_TIMEOUT' and result['fallback_authorized'] is False
     assert all(((root/p).read_bytes(),(root/p).stat().st_mtime_ns)==v for p,v in before.items())
+
+
+def test_failed_native_capture_must_keep_frozen_mapping_request(tmp_path,monkeypatch):
+    m,root,receipt=failure_case(tmp_path,monkeypatch,mapped=True)
+    assert m.inspect_prepared_native_failure(root,'native-001')['stopped_verified'] is True
+    path=receipt.parent/'native_spec.json';spec=json.loads(path.read_bytes());spec.pop('atom_name_mapping');save(path,spec)
+    with pytest.raises(ValueError,match='maintained repair context'):
+        m.inspect_prepared_native_failure(root,'native-001')

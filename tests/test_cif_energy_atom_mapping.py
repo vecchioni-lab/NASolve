@@ -18,6 +18,8 @@ def composed_fixture(root):
     paths=mapped_fixture(root,True);path=paths[1];r=json.loads(path.read_text());n=r['native_validation']
     for row in n['monomer_mappings']['rows']:row['chain_id']=row['literal_identity']['chain_id']
     n['full_monomer_inventory']=capture_full_monomers(n,False)
+    n['energy_inventory']=dict(policy_id='cif-fixed-native-usability-energy-v1',status='RECORDED',normalization=False,
+        evaluation_calls=2,snapshots=[dict(target=1.,gradient=[0.]*(3*n['atom_count']),gradient_norm=0.) for _ in range(2)],installed_sources=[])
     r['full_monomer_inventory_policy']=POLICY_ID
     spec=json.loads((path.parent/'native_spec.json').read_text())
     spec.update(energy_inventory=True,full_monomer_inventory=True,policy_inventory=True)
@@ -78,3 +80,29 @@ def test_unsupported_composition_refuses_before_allocation(tmp_path,options):
     with pytest.raises(ValueError):inspect_native_bundle(tmp_path/'absent',[],tmp_path/'out',tmp_path/'python',
         environment={},phenix_version='test',**kwargs)
     assert not (tmp_path/'out').exists()
+
+
+def test_captured_manager_intake_keeps_the_observed_mapping(tmp_path):
+    from nasolve.cif_captured_mixed_gradients import _inputs
+    paths=composed_fixture(tmp_path)
+    capture,model,dictionaries,phils,native,bindings=_inputs(paths[1].parent)
+    assert native['atom_name_mapping_policy']=='cif-native-observed-atom-name-mapping-v1'
+    assert bindings['active_capture']['sha256']
+    assert dictionaries==[] and capture['dictionary_source_policy']=='INSTALLED_LIBRARY_ONLY' and model.is_file()
+
+
+def test_numerical_rebuild_keeps_mapping_in_the_exact_manager(tmp_path):
+    from nasolve.cif_captured_mixed_gradients import _inputs,_preserve_native_context
+    from nasolve.cif_native_validation import _NATIVE_WORKER
+    from nasolve.cif_candidate_usability import native_energy_worker
+    from nasolve.cif_native_atom_mapping import native_mapping_worker
+    from nasolve.cif_native_monomers import native_monomer_worker
+    (tmp_path/'capture').mkdir();paths=composed_fixture(tmp_path/'capture')
+    capture,*_= _inputs(paths[1].parent)
+    work=tmp_path/'numerical/job';work.mkdir(parents=True)
+    save(work/'native_spec.json',{})
+    (work/'native_worker.py').write_text(native_energy_worker(_NATIVE_WORKER))
+    preparation=_preserve_native_context(work.parent,capture,{})
+    assert json.loads((work/'native_spec.json').read_bytes())['atom_name_mapping'] is True
+    assert preparation['atom_name_mapping_policy']==capture['atom_name_mapping_policy']
+    assert (work/'native_worker.py').read_text()==native_monomer_worker(native_mapping_worker(native_energy_worker(_NATIVE_WORKER)))

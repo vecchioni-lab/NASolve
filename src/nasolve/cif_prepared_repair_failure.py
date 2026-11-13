@@ -104,7 +104,7 @@ def _inspect(root, phase):
         dictionaries=[row['path'] for row in rows if row['role']=='dictionary'],
         phil_files=[row['path'] for row in rows if row['role']=='phil'],
         phil_namespace_policy='refinement-root-to-interpreter-v1',inventory_detail='linked',
-        policy_inventory=True,energy_inventory=True,full_monomer_inventory=True)
+        policy_inventory=True,energy_inventory=True,**prepared['native_options'])
         and record.get('full_monomer_inventory_policy')==MONOMER_POLICY,
         'Failed native request differs from the maintained repair context')
     _need(set(_tree(receipt.parent))=={'native_receipt.json'}|{row['path'] for row in record['outputs']},

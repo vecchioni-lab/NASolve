@@ -13,7 +13,7 @@ from .cif_dictionary_sites import (
     _bind_capture, _consumer, _diagnostic_continuation, _need, _read,
     _site_native_checks, prepare_dictionary_sites, read_dictionary_sites,
 )
-from .cif_native_context import validate_native_context
+from .cif_native_context import validate_native_context, native_context_options
 from .cif_native_monomers import FULL_MODEL_PHIL
 from .ligand_profiles import combine_dictionary_inputs, dictionary_component_codes, COMPONENT_LIST_POLICY
 
@@ -94,7 +94,7 @@ def _inputs(root, controls, children):
         before_phils=[*phils, policy],
         after_phils=[*phils, *(c['after_phils'][0] for c in active), policy],
         component_dictionaries={c['report']['component']:c['after_dictionaries'][0] for c in children},
-        native_options=dict(full_monomer_inventory=True),
+        native_options=native_context_options(controls['native_context']),
         preparations=[c['preparation'] for c in children],
         projections={s:p for c in children for s,p in c['projections'].items()})
 
