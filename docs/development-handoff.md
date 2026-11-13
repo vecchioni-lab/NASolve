@@ -142,7 +142,9 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 [intent record](topostitch-intent.json) is development metadata, not runtime
 permission. The [current inspector contract](topostitch-periodic.md) owns usage,
 schemas, validation commands and limits; the [bend-preview guide](topostitch-preview.md)
-owns explicit candidate generation.
+owns explicit candidate generation. The [audited completion roadmap](topostitch-roadmap.md)
+is the one work queue for the sticky-end and Pine ASU-slicing tracks; its JSON
+ledger and audit command keep status, dependencies and closure evidence aligned.
 
 Implemented: verified PDB end frames; metric-bounded periodic image search;
 NARestraints contact observations; factorized one-partner alternatives; logical
@@ -157,8 +159,9 @@ Inspector execution stays NOT_ATTEMPTED; actual previews are CANDIDATE_BUILT,
 UNREVIEWED and unrefined. No existing model/checkpoint is changed.
 An optional bounded fitter now proposes a terminal transform for one explicit
 pairing/image and window, counting Jacobian evaluations and rechecking serialized
-limits. No partner/window selection is inferred. Next: physical image identity,
-qualified local geometry closure and matched refinement. Unassisted coordinate
+limits. No partner/window selection is inferred. The roadmap currently prioritizes
+F02/S03 physical image/connection identity, then S04/S05 local geometry closure
+before S06 matched refinement. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 

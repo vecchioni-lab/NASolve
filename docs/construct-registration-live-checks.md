@@ -3,6 +3,10 @@
 Status: **living minimum checklist**. Keep this short. Add or remove checks as the
 registration architecture changes.
 
+The [TopoStitch/Pine completion roadmap](topostitch-roadmap.md) owns scheduling
+and closure of its surgery/repair jobs. This file supplies human acceptance cases,
+not another implementation queue; unrelated Scout checks retain their own scope.
+
 This file is not a substitute for unit/regression tests. It records the smallest
 set of **human-visible / real-workflow checks** that should not be forgotten as
 implementation moves across branches, chats and campaign work.

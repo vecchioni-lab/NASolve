@@ -372,19 +372,11 @@ review; this intent JSON must never be loaded as an authorization manifest.
 
 ## Implementation sequence and benchmark gates
 
-1. Read-only end/contact finder and explicit proposal record. Validate invariance
-   under chain renaming, residue numbering, equivalent ASU cuts and coordinates
-   outside the reference cell. Verify no edits or pointer changes. Recut-only
-   fixtures must preserve orbit inventory and calculated structure factors.
-2. One explicitly chosen connection: small bend, atomic checks, matched control
-   and refinement child. Canonical DNA first, with qualified symmetry handling.
-3. Adaptive windows and optional rebuilding; junction hinge remains a separate
-   capability. Benchmark geometry/reachability and stop cleanly when impossible.
-4. Opt-in campaign trials and review receipts, then logical-scheme transfer.
-   Transfer can initially be read-only before it drives a construction attempt.
-5. Human-reviewed reusable recipes and broader chemistry/topology only after
-   known-answer and held-out validation. Preserve installability after every
-   substantial implementation patch.
+The [audited completion roadmap](topostitch-roadmap.md) is the single current
+work queue for sticky-end repair and Pine ASU slicing. Its machine-readable
+ledger records dependencies, delivered scope, closure criteria, evidence and
+next actions; update it at each substantial checkpoint. The benchmark obligations
+below and Pine's live-check bank are acceptance resources, not separate queues.
 
 Essential tests include healthy no-op controls; perturbed known structures;
 known-length missing intervals; wrong register and twist; nearest wrong partner;

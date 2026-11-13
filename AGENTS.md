@@ -44,6 +44,18 @@ in this repository.
 - Challenge assumptions when evidence disagrees; explain the consequence and
   recommend a concrete alternative rather than silently following a mistake.
 
+### TopoStitch milestone audits
+
+For TopoStitch and Pine ASU-slicing work, read `docs/topostitch-roadmap.json`
+(the status source) and its generated human view before choosing new work.
+At each substantial validated slice, native result, changed assumption, blocker
+or handoff, update the affected delivered scope, evidence, status and next action.
+Run `python scripts/audit_topostitch_roadmap.py --write` after an audited ledger
+edit and `--check` before pushing. The script checks consistency, not scientific
+truth; never mark a job complete merely because code exists or tests pass.
+Reuse existing Pine, NARestraints, Cedar and campaign owners before adding another
+helper. Keep old caveats and failed evidence; Git retains superseded queue states.
+
 ## Required validation
 
 - For behavior changes, add a meaningful regression test that fails before the

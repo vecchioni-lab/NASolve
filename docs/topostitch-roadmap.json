@@ -1,0 +1,604 @@
+{
+  "schema_version": 1,
+  "kind": "topostitch-development-roadmap",
+  "updated": "2026-11-13",
+  "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
+  "branch": "willow",
+  "audited_code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+  "runtime_authority": false,
+  "finish_lines": {
+    "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
+    "campaign_stitch": "Add qualified end inference and bounded campaign-local transfer/review (S02, S08), without repeated member prompts or silent promotion.",
+    "pine_slicing": "A scientist can choose, preview and materialize a faithful ASU cut, prove physical/scattering invariance, preserve seam chemistry and complete the persistent graphical review/refine loop (P01-P06)."
+  },
+  "current_priority": [
+    "F02",
+    "S03",
+    "S04",
+    "S05"
+  ],
+  "work_order": {
+    "stitch": [
+      "F01",
+      "S01",
+      "F02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S02",
+      "S08"
+    ],
+    "pine": [
+      "F01",
+      "F02",
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06"
+    ]
+  },
+  "audit_rules": [
+    "Read this queue and the current handoff at session start; identify the job and its exact missing acceptance gate before coding.",
+    "At each substantial tested/pushed slice, native result, changed assumption, blocker or handoff, update delivered scope, evidence, status and next action together; rerun the roadmap audit.",
+    "A job closes only when every criterion is supported in the declared scope and dependencies are qualified for that same scope. Unit tests, optimizer convergence, native interpretation and scientific/human acceptance are distinct.",
+    "Keep partial/negative results and original caveats. Reopen a closed scope when new evidence contradicts it; record why rather than silently rewriting a pass.",
+    "Before a new helper or subsystem, check existing Pine, NARestraints, Cedar and campaign owners. Missing shared interfaces are a coordination task, not a reason to fork their machinery.",
+    "Do not advance sideways into deferred chemistry, providers or elaborate UI polish to avoid a failed physical gate. Keep failed/ambiguous/no-op outcomes legitimate.",
+    "Validate focused behavior and installation during development; complete integration/full regression, native/platform/relocation and human checks before a supported release or merge. Pushing experimental work does not authorize merging.",
+    "Keep scientific inputs/results local unless explicitly authorized for publication. Runtime artifacts use declared anchors and checksums; this roadmap grants no runtime permission."
+  ],
+  "milestones": [
+    {
+      "id": "F01",
+      "track": "shared",
+      "title": "Bind the intended construct to exact model inputs",
+      "status": "SCOPED_COMPLETE",
+      "depends_on": [],
+      "goal": "Keep logical sites, coordinate copies, chemistry intent and immutable source identity distinct.",
+      "delivered": [
+        "Existing Pine registration resolves explicit copies and logical sites; TopoStitch verifies model/manifest bytes and actual residue identities."
+      ],
+      "acceptance": [
+        "Explicit mapping survives renamed/split chains, numbering changes, partial copies and relocation without guessing missing sites.",
+        "This closure covers backend identity plumbing only; authoritative live Scout wiring, symmetry cuts and automatic chemistry are excluded."
+      ],
+      "next_action": "Reuse the existing registration and anchored-artifact APIs; reopen only for a demonstrated missing interface.",
+      "evidence": [
+        "E_SOFTWARE",
+        "E_REGISTRATION"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "F02",
+      "track": "shared",
+      "title": "Prove which symmetry images are physically distinct",
+      "status": "PARTIAL",
+      "depends_on": [
+        "F01"
+      ],
+      "goal": "Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.",
+      "delivered": [
+        "Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated."
+      ],
+      "acceptance": [
+        "Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.",
+        "Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites."
+      ],
+      "next_action": "Implement a read-only selected-image/orbit audit before granting physical meaning to a candidate edge.",
+      "evidence": [
+        "E_SOFTWARE"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S01",
+      "track": "stitch",
+      "title": "Inspect explicitly declared duplex ends",
+      "status": "SCOPED_COMPLETE",
+      "depends_on": [
+        "F01"
+      ],
+      "goal": "Describe existing ends and canonical pairing geometry without moving atoms or selecting a partner.",
+      "delivered": [
+        "Verified end frames, canonical NARestraints contact observations, strict manifests and explicit incomplete outcomes are implemented."
+      ],
+      "acceptance": [
+        "Known explicit ends produce source-bound observations; missing atoms, free ends and unsupported chemistry remain visible.",
+        "Closure is limited to the declared canonical PDB scope, not automatic end discovery or valid stereochemistry."
+      ],
+      "next_action": "Reuse this inspector as the observation layer for all later trials.",
+      "evidence": [
+        "E_SOFTWARE"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S02",
+      "track": "stitch",
+      "title": "Find eligible ends from design and damaged-model evidence",
+      "status": "PARTIAL",
+      "depends_on": [
+        "F01",
+        "S01"
+      ],
+      "goal": "Reduce manual end declarations while retaining true nicks, protected junctions, uncertainty and user intent.",
+      "delivered": [
+        "Declared chemical routes/core pairs can produce logical ends and windows. NARestraints run-based recovery was reviewed but is not integrated."
+      ],
+      "acceptance": [
+        "Reuse NARestraints geometric seeds and weak-pair run rescue through logical routes; preserve alternatives, gaps, missing coverage and explicit do-not-connect declarations.",
+        "Validate intact and mangled models, repeated/single-base overhangs and false neighbors; a guessed pair list cannot silently become complete topology."
+      ],
+      "next_action": "Build a bounded evidence adapter after the explicit-placement physics is qualified; do not reimplement the guesser.",
+      "evidence": [
+        "E_SOFTWARE",
+        "E_NAR_REVIEW"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S03",
+      "track": "stitch",
+      "title": "Choose a defensible periodic connection scheme",
+      "status": "PARTIAL",
+      "depends_on": [
+        "S01",
+        "F02"
+      ],
+      "goal": "Identify which duplex ends should meet and in which image/register, with a no-connection alternative.",
+      "delivered": [
+        "Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved."
+      ],
+      "acceptance": [
+        "A selected edge has verified physical image identity, sequence/register/orientation and capacity; wrong, ambiguous, self-orbit and impossible cases stay distinct.",
+        "Standalone use binds a concrete choice; opt-in inference freezes its scope and alternatives without creating undeclared covalent links."
+      ],
+      "next_action": "Close one explicit canonical periodic pairing before broad automatic scheme selection.",
+      "evidence": [
+        "E_SOFTWARE"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S04",
+      "track": "stitch",
+      "title": "Place an intact duplex by bounded bending or straightening",
+      "status": "PARTIAL",
+      "depends_on": [
+        "S03"
+      ],
+      "goal": "Move a usable duplex toward the chosen connection while preserving local residue geometry and fixed boundaries.",
+      "delivered": [
+        "Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested."
+      ],
+      "acceptance": [
+        "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
+        "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
+      ],
+      "next_action": "Use the current fitter as a baseline; qualify one physical connection and expand only when the smaller window fails.",
+      "evidence": [
+        "E_SOFTWARE",
+        "E_NATIVE_8D93"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S05",
+      "track": "stitch",
+      "title": "Close and qualify the local atomic geometry",
+      "status": "PARTIAL",
+      "depends_on": [
+        "S04"
+      ],
+      "goal": "Turn a plausible placement into a chemically usable candidate before refinement is trusted.",
+      "delivered": [
+        "Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation."
+      ],
+      "acceptance": [
+        "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
+        "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
+      ],
+      "next_action": "Resolve the demonstrated O3-prime/P boundary strain with a bounded, source-preserving native geometry route; reuse Cedar capabilities after interface qualification.",
+      "evidence": [
+        "E_NATIVE_8D93"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S06",
+      "track": "stitch",
+      "title": "Demonstrate improvement against diffraction data",
+      "status": "OPEN",
+      "depends_on": [
+        "S05"
+      ],
+      "goal": "Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.",
+      "delivered": [
+        "Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed."
+      ],
+      "acceptance": [
+        "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
+        "Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors."
+      ],
+      "next_action": "Preflight the supplied hex_data and straight-frame benchmark inputs; start matched refinement only after the candidate geometry gate is met.",
+      "evidence": [],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S07",
+      "track": "stitch",
+      "title": "Expose one ordinary, inspectable repair trial",
+      "status": "OPEN",
+      "depends_on": [
+        "S06"
+      ],
+      "goal": "Let a scientist see what was proposed, built, refined and reviewed through the existing NASolve/Pine workflow.",
+      "delivered": [
+        "Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated."
+      ],
+      "acceptance": [
+        "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
+        "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions."
+      ],
+      "next_action": "Connect a qualified single trial to existing checkpoint/review owners instead of creating a second history system.",
+      "evidence": [],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "S08",
+      "track": "stitch",
+      "title": "Run bounded opt-in campaigns and transfer schemes",
+      "status": "OPEN",
+      "depends_on": [
+        "S02",
+        "S07"
+      ],
+      "goal": "Avoid repetitive prompts while keeping inferred/borrowed connections tentative and reviewable.",
+      "delivered": [],
+      "acceptance": [
+        "Freeze campaign authorization once; re-resolve logical schemes in each member, preserve donor ancestry and negative evidence, honor vetoes and bound retries/resources.",
+        "Use the existing Campaign Doctor and Campaign desk; verify mixed success/failure, deterministic resume and held-out families before claiming unattended support. No automatic global recipe promotion."
+      ],
+      "next_action": "Reuse the qualified standalone engine and campaign owners; enable broad inference only after member-level evidence is reliable.",
+      "evidence": [],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "P01",
+      "track": "pine",
+      "title": "Build the periodic molecular graph and declared scope",
+      "status": "PARTIAL",
+      "depends_on": [
+        "F01",
+        "F02"
+      ],
+      "goal": "Represent the observed periodic object independently of a tile hypothesis or PDB chain cut.",
+      "delivered": [
+        "Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not."
+      ],
+      "acceptance": [
+        "Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.",
+        "Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle."
+      ],
+      "next_action": "Build the minimum graph required for one declared recut; retain broader emergent topology as explicit unsupported scope.",
+      "evidence": [
+        "E_REGISTRATION",
+        "E_SOFTWARE"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "P02",
+      "track": "pine",
+      "title": "Offer cut choices in a required graphical preview",
+      "status": "OPEN",
+      "depends_on": [
+        "P01"
+      ],
+      "goal": "Let the scientist decide where to slice the ASU while seeing the same physical periodic object.",
+      "delivered": [],
+      "acceptance": [
+        "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
+        "Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported."
+      ],
+      "next_action": "Implement the read-only cut/graph view early; the Pine workflow is not complete as a CLI-only tool.",
+      "evidence": [],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "P03",
+      "track": "pine",
+      "title": "Materialize a cut without changing the crystal",
+      "status": "OPEN",
+      "depends_on": [
+        "P02"
+      ],
+      "goal": "Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.",
+      "delivered": [],
+      "acceptance": [
+        "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
+        "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
+      ],
+      "next_action": "Start with an explicit small cut and an independent scattering/inventory oracle before general cut optimization.",
+      "evidence": [],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "P04",
+      "track": "pine",
+      "title": "Qualify seam chemistry and native interpretation",
+      "status": "OPEN",
+      "depends_on": [
+        "P03"
+      ],
+      "goal": "Make a representation seam remain a continuous backbone where chemistry says it is continuous.",
+      "delivered": [],
+      "acceptance": [
+        "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
+        "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal."
+      ],
+      "next_action": "Reuse Pine phosphate intent and Cedar/native diagnostics; execute the existing symmetry-bond and local seam controls.",
+      "evidence": [
+        "E_PINE_TEST_BANK"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "P05",
+      "track": "pine",
+      "title": "Complete the persistent Pine surgery/refine GUI loop",
+      "status": "OPEN",
+      "depends_on": [
+        "P04"
+      ],
+      "goal": "Keep cut, preview, child creation, refinement and review in one usable workbench.",
+      "delivered": [],
+      "acceptance": [
+        "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
+        "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery."
+      ],
+      "next_action": "Extend the P02 preview into the real immutable operation/refine loop; GUI completion is a release requirement.",
+      "evidence": [],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    },
+    {
+      "id": "P06",
+      "track": "pine",
+      "title": "Pass blind, multiplicity and ordinary-workflow controls",
+      "status": "OPEN",
+      "depends_on": [
+        "P05"
+      ],
+      "goal": "Prove ASU slicing is useful beyond a single convenient representation.",
+      "delivered": [],
+      "acceptance": [
+        "Run blind 8D93-to-3GBI-style slicing without giving the transformer 3GBI coordinates; independently compare cut/topology afterward. Scattering invariance compares 8D93 with its own recut, not two different crystals.",
+        "Pass extra/partial-copy, repeated-root, wrong-cut and healthy no-op controls through the ordinary Pine GUI/workflow; finish human review and supported-scope integration validation."
+      ],
+      "next_action": "Use the existing Pine live-check bank, then add held-out cases only for genuinely untested behavior.",
+      "evidence": [
+        "E_PINE_TEST_BANK"
+      ],
+      "last_audit": {
+        "date": "2026-11-13",
+        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "reviewer": "Linden",
+        "scope": "Backend implementation and documented evidence; no new scientific approval"
+      }
+    }
+  ],
+  "evidence": {
+    "E_SOFTWARE": {
+      "kind": "software_validation",
+      "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+      "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
+      "result": "282 focused tests plus 2 subtests pass from source, installed wheel and relocated checkout. Seventeen fitting tests also pass with SciPy 1.14.1; installed CLI and lean optional-dependency behavior checked.",
+      "limitation": "Synthetic arithmetic/identity and software behavior do not certify physical repair, data fit or GUI integration."
+    },
+    "E_REGISTRATION": {
+      "kind": "existing_backend",
+      "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+      "reference": "docs/construct-registration.md",
+      "result": "Existing explicit logical/copy registration is reused; focused existing registration tests pass.",
+      "limitation": "No new authoritative Scout wiring, symmetry-dependent registration or recut execution is implied."
+    },
+    "E_NATIVE_8D93": {
+      "kind": "native_diagnostic",
+      "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+      "reference": "docs/topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13",
+      "result": "Public source, explicit preview and fitted candidate complete Phenix 2.2.1-6174 interpretation via Cedar ecafc98: REVIEW, 855 atoms and unchanged inputs. Fitted contact target improves but one additional severe captured angle deviation remains.",
+      "limitation": "No diffraction refinement, density-aware fit, full periodic geometry approval or scientific acceptance; raw diagnostic artifacts remain local."
+    },
+    "E_NAR_REVIEW": {
+      "kind": "source_review",
+      "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+      "reference": "docs/topostitch.md#implementation-sequence-and-benchmark-gates",
+      "result": "NARestraints v1.1.3 guesser source matches the local checkout: geometric seeds, antiparallel runs and repeated weak edge rescue; raw traversal uses chain/integer adjacency and greedy selection.",
+      "limitation": "Review only; no TopoStitch integration or complete-topology authority."
+    },
+    "E_PINE_TEST_BANK": {
+      "kind": "planned_acceptance_bank",
+      "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+      "reference": "docs/construct-registration-live-checks.md",
+      "result": "Existing blind recut, seam, multiplicity, repeat and persistent-GUI controls are retained as the acceptance bank.",
+      "limitation": "Unchecked planned tests are not execution evidence."
+    }
+  },
+  "benchmarks": [
+    {
+      "id": "B01",
+      "case": "Public 8D93 coordinate and native controls",
+      "state": "PARTIAL_DIAGNOSTIC",
+      "jobs": [
+        "S04",
+        "S05"
+      ],
+      "remaining": "Close local geometry; current fitted candidate is unapproved."
+    },
+    {
+      "id": "B02",
+      "case": "8D93 and 5W6W into user-supplied hex_data",
+      "state": "INPUTS_LOCATED_PREFLIGHT_PENDING",
+      "jobs": [
+        "S04",
+        "S06"
+      ],
+      "remaining": "Freeze exact inputs and recipient setting/Free-R; validate the STARANISO report PDF role and model/copy compatibility. Keep private data and results out of Git."
+    },
+    {
+      "id": "B03",
+      "case": "Bent 8CS1 / 7R96 into suitable DOHU / DT straight-frame data",
+      "state": "REQUESTED_PREFLIGHT_PENDING",
+      "jobs": [
+        "S04",
+        "S06"
+      ],
+      "remaining": "Verify actual chemistry, model/copy compatibility and data before interpreting failed MR as a need to bend. Include straightening and changed-direction cases."
+    },
+    {
+      "id": "B04",
+      "case": "Blind 8D93-to-3GBI-style ASU cut",
+      "state": "PLANNED",
+      "jobs": [
+        "P03",
+        "P04",
+        "P06"
+      ],
+      "remaining": "Withhold reference coordinates during surgery; use same-crystal before/after scattering invariance and independent later topology/cut comparison."
+    },
+    {
+      "id": "B05",
+      "case": "Healthy, wrong/ambiguous, impossible and representation controls",
+      "state": "PARTIAL_SYNTHETIC",
+      "jobs": [
+        "F02",
+        "S02",
+        "S03",
+        "S04",
+        "P01",
+        "P06"
+      ],
+      "remaining": "Extend current synthetic controls to physically qualified and held-out structures; include special positions, partial copies and winding."
+    },
+    {
+      "id": "B06",
+      "case": "Density-guided and nonuniform/strand-specific relaxation",
+      "state": "PLANNED_EXTENSION",
+      "jobs": [
+        "S04",
+        "S06"
+      ],
+      "remaining": "First qualify geometric placement plus ordinary matched refinement; later freeze map provenance and distinguish coordinate, occupancy and ADP explanations."
+    }
+  ],
+  "deferred": [
+    {
+      "scope": "Canonical rebuilding / missing-residue generation",
+      "trigger": "Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry."
+    },
+    {
+      "scope": "Junction hinges and broader modified/RNA/backbone chemistry",
+      "trigger": "Explicit capability and native tests; fixed junctions and canonical DNA remain the first supported scope."
+    },
+    {
+      "scope": "AlphaFold provider integration",
+      "trigger": "Separate input-provider work; existing predicted coordinates can be benchmark inputs without an AI runtime dependency."
+    },
+    {
+      "scope": "Direct density-guided fitting",
+      "trigger": "After frozen map/data identity and matched-refinement baselines exist; ordinary data validation is already required in S06."
+    },
+    {
+      "scope": "Broad emergent topology and global reusable recipe promotion",
+      "trigger": "After bounded explicit cut/repair workflows and independent held-out evidence; do not make these hidden initial release blockers."
+    }
+  ],
+  "history_reconciliation": [
+    "b2ae9dc planning: retain the design, but this queue now owns work order; historical Next paragraphs are not another queue.",
+    "6b1dbbd through 71af8ad: reuse candidate/coordinate/periodic/contact/pairing/registration/discovery/window modules; missing scientific closure is not a reason to rebuild them.",
+    "149a82a: explicit bend preview and portable replay are delivered; they do not close local chemistry or refinement.",
+    "aae51be and 3ef2fad: density, forward/reverse shape and NARestraints-reuse requirements remain acceptance obligations, not implemented capabilities.",
+    "ce0a1bf: bounded fitting is delivered and native limitations recorded; S04/S05 remain partial.",
+    "Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work."
+  ]
+}

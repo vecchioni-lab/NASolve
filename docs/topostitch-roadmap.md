@@ -1,0 +1,401 @@
+# TopoStitch and Pine completion roadmap
+
+**Current audited work queue: 2026-11-13.** Generated from
+[the machine-readable ledger](topostitch-roadmap.json); edit that ledger and run
+`python scripts/audit_topostitch_roadmap.py --write`, then `--check`.
+This is one queue with two linked tracks, not two competing implementations.
+The [design](topostitch.md) owns semantics, the [handoff](development-handoff.md)
+owns the current code/validation edge, and cited evidence owns scientific claims.
+A recut changes representation; a bend changes the physical structure. Neither
+operation authorizes a chemical nick or chemistry change.
+
+## Finish lines
+
+- **First explicit stitch:** One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).
+- **Campaign stitching:** Add qualified end inference and bounded campaign-local transfer/review (S02, S08), without repeated member prompts or silent promotion.
+- **Pine ASU slicing:** A scientist can choose, preview and materialize a faithful ASU cut, prove physical/scattering invariance, preserve seam chemistry and complete the persistent graphical review/refine loop (P01-P06).
+
+## Current order and audit discipline
+
+**Immediate focus:** F02, S03, S04, S05.
+The two tracks share F01/F02. Intact-duplex repair does not require finishing
+the whole ASU editor; ASU slicing cannot be used to disguise a physical gap.
+Prototype work may precede a dependency, but scientific closure cannot.
+
+- **Stitch:** F01 → S01 → F02 → S03 → S04 → S05 → S06 → S07 → S02 → S08.
+- **Pine:** F01 → F02 → P01 → P02 → P03 → P04 → P05 → P06.
+
+Audit at every substantial checkpoint, not only at the end of a session:
+
+1. Read this queue and the current handoff at session start; identify the job and its exact missing acceptance gate before coding.
+2. At each substantial tested/pushed slice, native result, changed assumption, blocker or handoff, update delivered scope, evidence, status and next action together; rerun the roadmap audit.
+3. A job closes only when every criterion is supported in the declared scope and dependencies are qualified for that same scope. Unit tests, optimizer convergence, native interpretation and scientific/human acceptance are distinct.
+4. Keep partial/negative results and original caveats. Reopen a closed scope when new evidence contradicts it; record why rather than silently rewriting a pass.
+5. Before a new helper or subsystem, check existing Pine, NARestraints, Cedar and campaign owners. Missing shared interfaces are a coordination task, not a reason to fork their machinery.
+6. Do not advance sideways into deferred chemistry, providers or elaborate UI polish to avoid a failed physical gate. Keep failed/ambiguous/no-op outcomes legitimate.
+7. Validate focused behavior and installation during development; complete integration/full regression, native/platform/relocation and human checks before a supported release or merge. Pushing experimental work does not authorize merging.
+8. Keep scientific inputs/results local unless explicitly authorized for publication. Runtime artifacts use declared anchors and checksums; this roadmap grants no runtime permission.
+
+**Status meanings:** SCOPED_COMPLETE closes only its stated supported scope;
+PARTIAL records delivered work with open acceptance; OPEN has not met its gate;
+DEFERRED is outside the current finish line. COMPLETE requires the full declared
+gate. The audit script checks consistency and references, not scientific truth.
+
+## Shared foundations
+
+| Job | Laboratory outcome | Status | Depends on |
+| --- | --- | --- | --- |
+| [F01](#f01) | Bind the intended construct to exact model inputs | SCOPED_COMPLETE | — |
+| [F02](#f02) | Prove which symmetry images are physically distinct | PARTIAL | F01 |
+
+<a id="f01"></a>
+### F01 — Bind the intended construct to exact model inputs
+
+Keep logical sites, coordinate copies, chemistry intent and immutable source identity distinct.
+
+**Delivered:** Existing Pine registration resolves explicit copies and logical sites; TopoStitch verifies model/manifest bytes and actual residue identities.
+
+**Closure audit:**
+
+- Explicit mapping survives renamed/split chains, numbering changes, partial copies and relocation without guessing missing sites.
+- This closure covers backend identity plumbing only; authoritative live Scout wiring, symmetry cuts and automatic chemistry are excluded.
+
+**Next action:** Reuse the existing registration and anchored-artifact APIs; reopen only for a demonstrated missing interface.
+**Evidence:** [E_SOFTWARE](#e_software), [E_REGISTRATION](#e_registration).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="f02"></a>
+### F02 — Prove which symmetry images are physically distinct
+
+Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.
+
+**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated.
+
+**Closure audit:**
+
+- Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.
+- Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites.
+
+**Next action:** Implement a read-only selected-image/orbit audit before granting physical meaning to a candidate edge.
+**Evidence:** [E_SOFTWARE](#e_software).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+## Roadmap A — working sticky-end repair
+
+| Job | Laboratory outcome | Status | Depends on |
+| --- | --- | --- | --- |
+| [S01](#s01) | Inspect explicitly declared duplex ends | SCOPED_COMPLETE | F01 |
+| [S02](#s02) | Find eligible ends from design and damaged-model evidence | PARTIAL | F01, S01 |
+| [S03](#s03) | Choose a defensible periodic connection scheme | PARTIAL | S01, F02 |
+| [S04](#s04) | Place an intact duplex by bounded bending or straightening | PARTIAL | S03 |
+| [S05](#s05) | Close and qualify the local atomic geometry | PARTIAL | S04 |
+| [S06](#s06) | Demonstrate improvement against diffraction data | OPEN | S05 |
+| [S07](#s07) | Expose one ordinary, inspectable repair trial | OPEN | S06 |
+| [S08](#s08) | Run bounded opt-in campaigns and transfer schemes | OPEN | S02, S07 |
+
+<a id="s01"></a>
+### S01 — Inspect explicitly declared duplex ends
+
+Describe existing ends and canonical pairing geometry without moving atoms or selecting a partner.
+
+**Delivered:** Verified end frames, canonical NARestraints contact observations, strict manifests and explicit incomplete outcomes are implemented.
+
+**Closure audit:**
+
+- Known explicit ends produce source-bound observations; missing atoms, free ends and unsupported chemistry remain visible.
+- Closure is limited to the declared canonical PDB scope, not automatic end discovery or valid stereochemistry.
+
+**Next action:** Reuse this inspector as the observation layer for all later trials.
+**Evidence:** [E_SOFTWARE](#e_software).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="s02"></a>
+### S02 — Find eligible ends from design and damaged-model evidence
+
+Reduce manual end declarations while retaining true nicks, protected junctions, uncertainty and user intent.
+
+**Delivered:** Declared chemical routes/core pairs can produce logical ends and windows. NARestraints run-based recovery was reviewed but is not integrated.
+
+**Closure audit:**
+
+- Reuse NARestraints geometric seeds and weak-pair run rescue through logical routes; preserve alternatives, gaps, missing coverage and explicit do-not-connect declarations.
+- Validate intact and mangled models, repeated/single-base overhangs and false neighbors; a guessed pair list cannot silently become complete topology.
+
+**Next action:** Build a bounded evidence adapter after the explicit-placement physics is qualified; do not reimplement the guesser.
+**Evidence:** [E_SOFTWARE](#e_software), [E_NAR_REVIEW](#e_nar_review).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="s03"></a>
+### S03 — Choose a defensible periodic connection scheme
+
+Identify which duplex ends should meet and in which image/register, with a no-connection alternative.
+
+**Delivered:** Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved.
+
+**Closure audit:**
+
+- A selected edge has verified physical image identity, sequence/register/orientation and capacity; wrong, ambiguous, self-orbit and impossible cases stay distinct.
+- Standalone use binds a concrete choice; opt-in inference freezes its scope and alternatives without creating undeclared covalent links.
+
+**Next action:** Close one explicit canonical periodic pairing before broad automatic scheme selection.
+**Evidence:** [E_SOFTWARE](#e_software).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="s04"></a>
+### S04 — Place an intact duplex by bounded bending or straightening
+
+Move a usable duplex toward the chosen connection while preserving local residue geometry and fixed boundaries.
+
+**Delivered:** Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested.
+
+**Closure audit:**
+
+- Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.
+- Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.
+
+**Next action:** Use the current fitter as a baseline; qualify one physical connection and expand only when the smaller window fails.
+**Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="s05"></a>
+### S05 — Close and qualify the local atomic geometry
+
+Turn a plausible placement into a chemically usable candidate before refinement is trusted.
+
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation.
+
+**Closure audit:**
+
+- Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
+- Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
+
+**Next action:** Resolve the demonstrated O3-prime/P boundary strain with a bounded, source-preserving native geometry route; reuse Cedar capabilities after interface qualification.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="s06"></a>
+### S06 — Demonstrate improvement against diffraction data
+
+Compare repaired and unmodified models fairly, then determine where data support curvature and strand-specific motion.
+
+**Delivered:** Coordinate/native smoke evidence exists; no matched diffraction-refinement result is claimed.
+
+**Closure audit:**
+
+- Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.
+- Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors.
+
+**Next action:** Preflight the supplied hex_data and straight-frame benchmark inputs; start matched refinement only after the candidate geometry gate is met.
+**Evidence:** None yet.
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="s07"></a>
+### S07 — Expose one ordinary, inspectable repair trial
+
+Let a scientist see what was proposed, built, refined and reviewed through the existing NASolve/Pine workflow.
+
+**Delivered:** Standalone inspect/fit/preview commands exist; ordinary checkpoint/campaign publication and GUI actions are not integrated.
+
+**Closure audit:**
+
+- Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.
+- Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.
+
+**Next action:** Connect a qualified single trial to existing checkpoint/review owners instead of creating a second history system.
+**Evidence:** None yet.
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="s08"></a>
+### S08 — Run bounded opt-in campaigns and transfer schemes
+
+Avoid repetitive prompts while keeping inferred/borrowed connections tentative and reviewable.
+
+**Delivered:** No implemented capability is claimed.
+
+**Closure audit:**
+
+- Freeze campaign authorization once; re-resolve logical schemes in each member, preserve donor ancestry and negative evidence, honor vetoes and bound retries/resources.
+- Use the existing Campaign Doctor and Campaign desk; verify mixed success/failure, deterministic resume and held-out families before claiming unattended support. No automatic global recipe promotion.
+
+**Next action:** Reuse the qualified standalone engine and campaign owners; enable broad inference only after member-level evidence is reliable.
+**Evidence:** None yet.
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+## Roadmap B — Pine ASU slicing and required GUI
+
+| Job | Laboratory outcome | Status | Depends on |
+| --- | --- | --- | --- |
+| [P01](#p01) | Build the periodic molecular graph and declared scope | PARTIAL | F01, F02 |
+| [P02](#p02) | Offer cut choices in a required graphical preview | OPEN | P01 |
+| [P03](#p03) | Materialize a cut without changing the crystal | OPEN | P02 |
+| [P04](#p04) | Qualify seam chemistry and native interpretation | OPEN | P03 |
+| [P05](#p05) | Complete the persistent Pine surgery/refine GUI loop | OPEN | P04 |
+| [P06](#p06) | Pass blind, multiplicity and ordinary-workflow controls | OPEN | P05 |
+
+<a id="p01"></a>
+### P01 — Build the periodic molecular graph and declared scope
+
+Represent the observed periodic object independently of a tile hypothesis or PDB chain cut.
+
+**Delivered:** Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not.
+
+**Closure audit:**
+
+- Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.
+- Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle.
+
+**Next action:** Build the minimum graph required for one declared recut; retain broader emergent topology as explicit unsupported scope.
+**Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="p02"></a>
+### P02 — Offer cut choices in a required graphical preview
+
+Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
+
+**Delivered:** No implemented capability is claimed.
+
+**Closure audit:**
+
+- Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.
+- Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
+
+**Next action:** Implement the read-only cut/graph view early; the Pine workflow is not complete as a CLI-only tool.
+**Evidence:** None yet.
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="p03"></a>
+### P03 — Materialize a cut without changing the crystal
+
+Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.
+
+**Delivered:** No implemented capability is claimed.
+
+**Closure audit:**
+
+- Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
+- Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
+
+**Next action:** Start with an explicit small cut and an independent scattering/inventory oracle before general cut optimization.
+**Evidence:** None yet.
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="p04"></a>
+### P04 — Qualify seam chemistry and native interpretation
+
+Make a representation seam remain a continuous backbone where chemistry says it is continuous.
+
+**Delivered:** No implemented capability is claimed.
+
+**Closure audit:**
+
+- Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.
+- Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.
+
+**Next action:** Reuse Pine phosphate intent and Cedar/native diagnostics; execute the existing symmetry-bond and local seam controls.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="p05"></a>
+### P05 — Complete the persistent Pine surgery/refine GUI loop
+
+Keep cut, preview, child creation, refinement and review in one usable workbench.
+
+**Delivered:** No implemented capability is claimed.
+
+**Closure audit:**
+
+- Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.
+- Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.
+
+**Next action:** Extend the P02 preview into the real immutable operation/refine loop; GUI completion is a release requirement.
+**Evidence:** None yet.
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+<a id="p06"></a>
+### P06 — Pass blind, multiplicity and ordinary-workflow controls
+
+Prove ASU slicing is useful beyond a single convenient representation.
+
+**Delivered:** No implemented capability is claimed.
+
+**Closure audit:**
+
+- Run blind 8D93-to-3GBI-style slicing without giving the transformer 3GBI coordinates; independently compare cut/topology afterward. Scattering invariance compares 8D93 with its own recut, not two different crystals.
+- Pass extra/partial-copy, repeated-root, wrong-cut and healthy no-op controls through the ordinary Pine GUI/workflow; finish human review and supported-scope integration validation.
+
+**Next action:** Use the existing Pine live-check bank, then add held-out cases only for genuinely untested behavior.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank).
+**Last audit:** 2026-11-13, Linden, code `ce0a1bf`; Backend implementation and documented evidence; no new scientific approval.
+
+## Benchmark register
+
+Private input/result bindings stay in local frozen receipts; these labels are not
+operational paths or proof that an arbitrary model/dataset combination is solvable.
+
+| Case | State | Jobs | Remaining evidence |
+| --- | --- | --- | --- |
+| B01 — Public 8D93 coordinate and native controls | PARTIAL_DIAGNOSTIC | S04, S05 | Close local geometry; current fitted candidate is unapproved. |
+| B02 — 8D93 and 5W6W into user-supplied hex_data | INPUTS_LOCATED_PREFLIGHT_PENDING | S04, S06 | Freeze exact inputs and recipient setting/Free-R; validate the STARANISO report PDF role and model/copy compatibility. Keep private data and results out of Git. |
+| B03 — Bent 8CS1 / 7R96 into suitable DOHU / DT straight-frame data | REQUESTED_PREFLIGHT_PENDING | S04, S06 | Verify actual chemistry, model/copy compatibility and data before interpreting failed MR as a need to bend. Include straightening and changed-direction cases. |
+| B04 — Blind 8D93-to-3GBI-style ASU cut | PLANNED | P03, P04, P06 | Withhold reference coordinates during surgery; use same-crystal before/after scattering invariance and independent later topology/cut comparison. |
+| B05 — Healthy, wrong/ambiguous, impossible and representation controls | PARTIAL_SYNTHETIC | F02, S02, S03, S04, P01, P06 | Extend current synthetic controls to physically qualified and held-out structures; include special positions, partial copies and winding. |
+| B06 — Density-guided and nonuniform/strand-specific relaxation | PLANNED_EXTENSION | S04, S06 | First qualify geometric placement plus ordinary matched refinement; later freeze map provenance and distinguish coordinate, occupancy and ADP explanations. |
+
+## Evidence and limits
+
+<a id="e_software"></a>
+### E_SOFTWARE — software_validation
+
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at code `ce0a1bf`.
+282 focused tests plus 2 subtests pass from source, installed wheel and relocated checkout. Seventeen fitting tests also pass with SciPy 1.14.1; installed CLI and lean optional-dependency behavior checked.
+**Limit:** Synthetic arithmetic/identity and software behavior do not certify physical repair, data fit or GUI integration.
+
+<a id="e_registration"></a>
+### E_REGISTRATION — existing_backend
+
+[Evidence contract](construct-registration.md) at code `ce0a1bf`.
+Existing explicit logical/copy registration is reused; focused existing registration tests pass.
+**Limit:** No new authoritative Scout wiring, symmetry-dependent registration or recut execution is implied.
+
+<a id="e_native_8d93"></a>
+### E_NATIVE_8D93 — native_diagnostic
+
+[Evidence contract](topostitch-preview.md#public-8d93-native-interpretation-comparison--2026-11-13) at code `ce0a1bf`.
+Public source, explicit preview and fitted candidate complete Phenix 2.2.1-6174 interpretation via Cedar ecafc98: REVIEW, 855 atoms and unchanged inputs. Fitted contact target improves but one additional severe captured angle deviation remains.
+**Limit:** No diffraction refinement, density-aware fit, full periodic geometry approval or scientific acceptance; raw diagnostic artifacts remain local.
+
+<a id="e_nar_review"></a>
+### E_NAR_REVIEW — source_review
+
+[Evidence contract](topostitch.md#implementation-sequence-and-benchmark-gates) at code `ce0a1bf`.
+NARestraints v1.1.3 guesser source matches the local checkout: geometric seeds, antiparallel runs and repeated weak edge rescue; raw traversal uses chain/integer adjacency and greedy selection.
+**Limit:** Review only; no TopoStitch integration or complete-topology authority.
+
+<a id="e_pine_test_bank"></a>
+### E_PINE_TEST_BANK — planned_acceptance_bank
+
+[Evidence contract](construct-registration-live-checks.md) at code `ce0a1bf`.
+Existing blind recut, seam, multiplicity, repeat and persistent-GUI controls are retained as the acceptance bank.
+**Limit:** Unchecked planned tests are not execution evidence.
+
+## Deferred extensions, not hidden blockers
+
+- **Canonical rebuilding / missing-residue generation:** Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry.
+- **Junction hinges and broader modified/RNA/backbone chemistry:** Explicit capability and native tests; fixed junctions and canonical DNA remain the first supported scope.
+- **AlphaFold provider integration:** Separate input-provider work; existing predicted coordinates can be benchmark inputs without an AI runtime dependency.
+- **Direct density-guided fitting:** After frozen map/data identity and matched-refinement baselines exist; ordinary data validation is already required in S06.
+- **Broad emergent topology and global reusable recipe promotion:** After bounded explicit cut/repair workflows and independent held-out evidence; do not make these hidden initial release blockers.
+
+## Reconciliation: reuse what is already delivered
+
+- b2ae9dc planning: retain the design, but this queue now owns work order; historical Next paragraphs are not another queue.
+- 6b1dbbd through 71af8ad: reuse candidate/coordinate/periodic/contact/pairing/registration/discovery/window modules; missing scientific closure is not a reason to rebuild them.
+- 149a82a: explicit bend preview and portable replay are delivered; they do not close local chemistry or refinement.
+- aae51be and 3ef2fad: density, forward/reverse shape and NARestraints-reuse requirements remain acceptance obligations, not implemented capabilities.
+- ce0a1bf: bounded fitting is delivered and native limitations recorded; S04/S05 remain partial.
+- Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work.
+
+Modeled on Cedar’s separation of completion queue, capability contract and
+evidence ledger. No queue edit grants runtime authority, scientific approval
+or permission to merge branches.

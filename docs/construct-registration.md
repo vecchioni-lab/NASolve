@@ -1041,7 +1041,10 @@ checkpoint graph; it does not become a replacement atomic modeler.
 **Naming update, 2026-11-13:** the selected umbrella tool name is
 [TopoStitch](topostitch.md), covering recut, connection inference and bounded
 geometry repair. The earlier names in this section are historical design labels.
-Recutting, physical deformation and chemistry changes retain distinct semantics.
+The [Pine ASU-slicing roadmap](topostitch-roadmap.md#roadmap-b--pine-asu-slicing-and-required-gui)
+owns its current milestones and required graphical workflow; the existing live
+checks below remain the acceptance bank. Recutting, physical deformation and
+chemistry changes retain distinct semantics.
 The new contract permits explicitly authorized campaign-local hypothesis reuse;
 it does not relax the separate requirement for global reviewed-recipe promotion.
 

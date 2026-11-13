@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Audited TopoStitch and Pine roadmaps
+
+- Add one machine-readable work ledger and synchronized human roadmap with
+  separate sticky-end repair and ASU-slicing tracks, explicit dependencies,
+  closure audits, evidence limits and a required Pine graphical workflow.
+- Record forward/reverse shape and supplied-data benchmarks; reconcile existing
+  work and deferred extensions so historical notes do not create parallel queues.
+
 ### TopoStitch bounded placement proposals
 
 - Add optional `topology-fit` and a read-only fitting command for one explicit
