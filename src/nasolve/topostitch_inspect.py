@@ -64,12 +64,38 @@ def load_end_assignments(path: Path):
     return digest,tuple(assignments),sha256(data).hexdigest()
 
 
+def load_registered_end_assignments(model, path, registration_path):
+    from .topostitch_registration import LogicalEndAssignment, resolve_registered_ends
+    data = Path(path).read_bytes()
+    value = json.loads(data.decode("utf-8"), object_pairs_hook=_unique_object)
+    _keys(value, {"schema_version", "kind", "model_sha256", "registration_sha256", "ends"})
+    if (type(value["schema_version"]) is not int or value["schema_version"] != 1
+            or value["kind"] != "topostitch-logical-end-assignments"):
+        raise ValueError("--registration requires a schema-1 logical end-assignment manifest")
+    registration_data = Path(registration_path).read_bytes()
+    registration_hash = sha256(registration_data).hexdigest()
+    if value["registration_sha256"] != registration_hash:
+        raise ValueError("Registration file checksum mismatch")
+    registration = json.loads(registration_data.decode("utf-8"), object_pairs_hook=_unique_object)
+    if not isinstance(value["ends"], list):
+        raise ValueError("ends must be an array of logical assignments")
+    logical = []
+    for row in value["ends"]:
+        _keys(row, {"end_id", "copy_id", "overhang_sites", "terminal_pair", "inner_pair", "polarity"}, {"state"})
+        logical.append(LogicalEndAssignment(**row))
+    assignments, mapping = resolve_registered_ends(model, logical, registration,
+        expected_sha256=value["model_sha256"])
+    mapping["registration_file_sha256"] = registration_hash
+    return value["model_sha256"], assignments, sha256(data).hexdigest(), mapping
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(
         prog="nasolve-topostitch-inspect",
         description="Inspect explicitly assigned DNA ends; print proposals without changing models.")
     parser.add_argument("model",type=Path,help="Exact single-model PDB path")
     parser.add_argument("assignments",type=Path,help="Schema-1 end assignments bound to the model SHA-256")
+    parser.add_argument("--registration",type=Path,help="Exact construct-registration JSON for a checksum-bound logical assignment manifest")
     parser.add_argument("--radius",required=True,type=float,help="Explicit endpoint search radius in Angstrom")
     parser.add_argument("--periodic",action="store_true",help="Search CRYST1 symmetry images (requires NASolve[topology])")
     parser.add_argument("--contacts",action="store_true",help="Measure canonical NARestraints contacts without accepting a pairing")
@@ -82,7 +108,12 @@ def main(argv=None):
     try:
         if min(args.max_image_tests,args.max_alternatives,args.max_pairing_states) < 1:
             raise ValueError("Search budgets must be positive integers")
-        digest,assignments,manifest_hash = load_end_assignments(args.assignments)
+        mapping = None
+        if args.registration is not None:
+            digest,assignments,manifest_hash,mapping = load_registered_end_assignments(
+                args.model,args.assignments,args.registration)
+        else:
+            digest,assignments,manifest_hash = load_end_assignments(args.assignments)
         options = dict(expected_sha256=digest,max_distance_angstrom=args.radius,max_pairs=args.max_pairs)
         if args.contacts:
             from .topostitch_contacts import inspect_end_contacts
@@ -99,6 +130,10 @@ def main(argv=None):
             report["pairing_alternatives"] = describe_pairing_alternatives(screening,
                 max_alternatives_per_component=args.max_alternatives,
                 max_search_states=args.max_pairing_states)
+        if mapping is not None:
+            report["registration_assessment"] = mapping
+            if not mapping["coverage_complete"]:
+                report["workflow"]["proposal_state"] = "INCOMPLETE_ASSESSMENT"
         report["assignment_file_sha256"] = manifest_hash
         output = json.dumps(report,indent=2,sort_keys=True,allow_nan=False)
     except (OSError,ValueError,RuntimeError) as exc:

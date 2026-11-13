@@ -157,8 +157,10 @@ makes no acceptance decision or model edit. Optional `--pairings` now enumerates
 factorized one-partner alternatives, with no forced/nearest assignment and
 explicitly deferred self-orbit cases. Automatic end detection, full atom-image
 equivalence, physical assignment, geometry construction and campaign use remain
-unimplemented.
-Next: connect logical registration/backbone evidence and qualify those gates.
+unimplemented. Logical end roles can now resolve through the existing Pine
+registration via `--registration`, with explicit copies, source/target identity
+checks, and unresolved-end coverage retained. Next: connect backbone/pairing
+evidence to end discovery, then qualify physical image/geometry gates.
 The report distinguishes proposed work from NOT_ATTEMPTED execution and
 UNREVIEWED results; the GUI contract records Campaign desk integration.
 
@@ -186,6 +188,10 @@ actual installed combined-flags CLI smoke check, including an independent
 brute-force oracle and factored forty-pair case. Cedar C253 is concurrently
 changing selected AutoSol site references/checkpoint schema; Willow does not
 consume or alter those interfaces. No combined-branch validation is claimed.
+Logical mapping: **211 focused and installed-wheel tests + 2 subtests passed**,
+plus an actual installed logical-manifest CLI check, including existing
+construct-registration regressions. The adapter does not change Pine's mapping
+implementation or Cedar's active checkpoint interfaces.
 No native Phenix/Coot runs or scientific data changes.
 
 ## Work discipline and doc ownership

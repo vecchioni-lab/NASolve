@@ -240,6 +240,15 @@
       "includes_empty_and_partial": true,
       "physical_orbit_capacity_validated": false,
       "selection": false
+    },
+    "logical_end_mapping": {
+      "module": "nasolve.topostitch_registration",
+      "cli_option": "--registration",
+      "input_kind": "topostitch-logical-end-assignments",
+      "registration_schema": 1,
+      "checks_actual_residue_identity": true,
+      "periodic_site_images_resolved": false,
+      "topology_inferred": false
     }
   }
 }

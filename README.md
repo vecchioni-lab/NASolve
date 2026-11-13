@@ -1204,6 +1204,9 @@ against the installed NARestraints role mappings and recipes. These measurements
 do not approve a connection or apply restraints. Add `--pairings` to list
 compatible one-partner choices, including leaving ends unconnected. Independent
 groups are kept separate to avoid expanding every whole-crystal combination.
+For logical construct-site definitions, use `--registration registration.json`
+with a checksum-bound logical manifest; explicit copy mappings handle renamed
+chains and residue numbering without guessing missing sites.
 
 The command prints a review-only JSON report and writes no files. Omit
 `--periodic` for same-frame screening without Gemmi. See the [backend scope and

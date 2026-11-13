@@ -71,6 +71,55 @@ parsed assignment hash and exact assignment-file hash. A report is evidence, not
 a standalone resumable checkpoint: a future GUI must resolve its model through
 verified run/dataset anchors and hashes, or an explicitly supplied matching file.
 
+## Logical end definitions through construct registration
+
+Coordinate manifests remain supported unchanged. For end roles written against
+logical construct sites, pass the existing schema-1 Pine registration explicitly:
+
+```sh
+nasolve-topostitch-inspect model.pdb logical-ends.json \
+  --registration registration.json --radius 20 --periodic --contacts --pairings
+```
+
+The logical manifest has `schema_version: 1`,
+`kind: "topostitch-logical-end-assignments"`, `model_sha256`,
+`registration_sha256` (the exact registration **file bytes**) and `ends`.
+Each end has the usual ID, polarity/state and three site lists, plus an explicit
+`copy_id`. Its sites are logical strings such as `"strand-a:12"`, rather than
+coordinate-site objects. For example, an end row is:
+
+```json
+{
+  "end_id": "arm-a", "copy_id": "copy_1", "polarity": "5prime",
+  "overhang_sites": ["A:1", "A:2"],
+  "terminal_pair": ["A:3", "B:3"],
+  "inner_pair": ["A:4", "B:2"]
+}
+```
+
+`nasolve.topostitch_registration.resolve_registered_ends` validates the existing
+registration contract, binds it to the actual PDB checksum, and checks selected
+registered residue identities against the coordinate bytes and target codes.
+It returns coordinate assignments plus schema-1
+`topostitch-registration-end-map` evidence. Multiple copies are explicit; logical
+order survives renamed/split coordinate chains and supported insertion codes.
+This does not infer covalent continuity or make a split chain into a chemical nick.
+
+Missing mappings and identity conflicts retain unresolved ends and their reasons.
+Unknown logical/copy identifiers are input errors. Partial selected copies keep
+coverage incomplete, even when some ends can be inspected. The outer report's
+`registration_assessment` retains every requested end; its proposal state remains
+`INCOMPLETE_ASSESSMENT` when mapping coverage is incomplete. Existing coordinate
+and candidate assessments remain visible for the resolvable subset.
+
+The assessment records a canonical-content registration fingerprint separately
+from `registration_file_sha256`, plus logical assignment content and its hash.
+Paths remain explicit CLI inputs; reports do not require an original filesystem
+location. No existing registration/checkpoint schema is changed, and no mapping,
+chemistry or source model is edited. This first adapter resolves identity-image
+sites only: a periodic recut realization and automatic end detection are later
+capabilities, not consequences of successful label mapping.
+
 ## Periodic backend
 
 `nasolve.topostitch_periodic.propose_periodic_connections` accepts explicit
@@ -331,3 +380,17 @@ files appended. The actual installed command with `--periodic --contacts
 --pairings` returned two unselected schemes for the synthetic smoke fixture;
 isolated imports matched current source bytes. No global mechanics changed; the full
 suite was not repeated. No new scientific artifacts or native tool runs.
+
+Logical-registration validation (2026-11-13): new tests failed at import before
+implementation, then **211 focused tests + 2 subtests passed** (1.56 s), covering
+all seven TopoStitch files and `tests/test_construct_registration.py`. The command
+uses the source invocation above with those test paths supplied to pytest.
+Cases include label/number changes, insertion codes, split chains, explicit
+copies, partial coverage, target/actual identity conflicts, model/registration
+checksum drift, no-write CLI behavior and relocation after original-path removal.
+The existing Pine registration implementation is unchanged; no global mechanics
+changed, so no complete-suite rerun was needed. **211 installed-wheel tests + 2
+subtests passed** (1.93 s), using the installed invocation with the logical-mapping
+and construct-registration test files added. An actual installed logical-manifest
+CLI call resolved renamed sites, returned two pairing choices and preserved all
+input bytes.

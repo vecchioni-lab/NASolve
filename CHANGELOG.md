@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch logical end mapping
+
+- Add optional checksum-bound logical end manifests and `--registration` input,
+  reusing Pine's existing construct-registration contract for explicit copies.
+- Verify selected actual/target residue identities; retain unresolved ends and
+  partial coverage. Preserve coordinate manifests, source files and existing
+  registration/checkpoint schemas. No topology or periodic cut is inferred.
+
 ### TopoStitch pairing alternatives
 
 - Add optional `--pairings` combinatorial capacity analysis with bounded,
