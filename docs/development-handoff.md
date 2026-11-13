@@ -145,23 +145,29 @@ merge is needed yet. Opt-in campaign inference, tentative scheme sharing and
 matched diffraction/geometry evaluation are specified, not implemented. This
 does not change Pine scientific gates or authorize editing Cedar/live datasets.
 
-Two isolated backend slices are implemented: [explicit canonical candidate
+Read-only backend slices are implemented: [explicit canonical candidate
 screening](topostitch-backend.md) and a [verified PDB coordinate adapter](topostitch-coordinates.md).
 The adapter derives overhang sequences and descriptive oriented end frames from
-explicit coordinate-site assignments. Automatic end detection, periodic search,
-geometry construction and campaign use remain unimplemented. Next: connect
-logical registration/backbone evidence and qualify periodic partner enumeration.
+explicit coordinate-site assignments. The [periodic inspector](topostitch-periodic.md)
+now enumerates metric-bounded images and observed transformed frames, with a strict assignment-file CLI and
+optional Gemmi extra. Automatic end detection, full atom-image equivalence,
+global assignment, geometry construction and campaign use remain unimplemented.
+Next: connect logical registration/backbone evidence and qualify those gates.
 The report distinguishes proposed work from NOT_ATTEMPTED execution and
 UNREVIEWED results; the GUI contract records Campaign desk integration.
 
 Rowan owns Cedar's PostMR/campaign plane-support forwarding and later-child
-publication. No shared source files or environments were modified. Cedar's
+publication. No Cedar worktree files or shared environments were modified. Cedar's
 selected dictionary coverage is not treated as geometry/refinement validation.
 Initial screen validation: 39 focused, 1006 full + 226 subtests, 39 installed-wheel
 checks passed. Coordinate adapter: 72 focused and installed-wheel tests, 1039 full + 226
 subtests passed; source-file relocation and isolated installed import passed.
-Exact receipts are in its backend contract. No native
-Phenix/Coot runs or scientific data changes.
+Periodic inspector: **132 installed-wheel and relocated-checkout tests**, plus
+**1,099 full + 226 subtests** passed. Installed CLI relocation and lean optional-
+dependency behavior passed. The original temporary checkout/input paths were
+absent during their respective relocation checks. Exact commands, additive
+schema/packaging scope and limits are in the [periodic contract](topostitch-periodic.md).
+No native Phenix/Coot runs or scientific data changes.
 
 ## Work discipline and doc ownership
 

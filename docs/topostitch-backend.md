@@ -67,9 +67,9 @@ be imported from a standard NASolve wheel and uses only Python's standard librar
 The [source-verified coordinate adapter](topostitch-coordinates.md) now derives
 sequences and descriptive end frames from PDB bytes plus explicit coordinate-site
 assignments. It does not yet infer ends or consume a logical registration record.
-Periodic partner search still needs actual cell/symmetry, image identities,
-reciprocal/orbit handling, search completeness and equivalent-representation
-tests. Do not simulate periodicity by passing duplicated image records to this
+The [periodic inspector](topostitch-periodic.md) now adds cell/symmetry image
+search with exact operators and completeness within a bounded scope. Full
+atom-orbit equivalence and compatible global assignments remain future work. Do not simulate periodicity by passing duplicated image records to this
 first API: it has no periodic-equivalence semantics. Geometry feasibility,
 recuts, deformation, Cedar construction and campaign adoption remain future work.
 

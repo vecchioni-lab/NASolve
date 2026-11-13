@@ -1,12 +1,13 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Status: **READ_ONLY_COORDINATE_ADAPTER_IMPLEMENTED**, 2026-11-13. Branch:
+Status: **READ_ONLY_PERIODIC_INSPECTOR_IMPLEMENTED**, 2026-11-13. Branch:
 `willow`, based on Pine `d7913dd`. The full design below remains future work.
 The [first backend slice](topostitch-backend.md) screens explicitly supplied
 canonical DNA overhangs; the [coordinate adapter](topostitch-coordinates.md)
 verifies PDB bytes and derives sequences/descriptive end frames from explicit
-site assignments. Automatic end discovery, periodic search, model construction
-and refinement remain future work. [Machine-readable intent](topostitch-intent.json)
+site assignments. The [periodic inspector](topostitch-periodic.md) now searches explicit end
+images and prints review-only reports. Automatic end discovery, model
+construction and refinement remain future work. [Machine-readable intent](topostitch-intent.json)
 is development metadata, not runtime authorization.
 
 ## Purpose and ownership

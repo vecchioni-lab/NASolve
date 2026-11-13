@@ -765,7 +765,11 @@ The chosen minimal campaign view is **Campaign desk**. TopoStitch should reuse
 its dataset rows, Needs Attention queue, Inspector, model tree and comparison
 view. It is one tool for recut and repair, not a second campaign application.
 See [the design](topostitch.md) and [coordinate report](topostitch-coordinates.md).
-No GUI implementation is claimed by the read-only backend patch.
+No GUI implementation is claimed by the read-only backend patch. The
+[periodic inspector](topostitch-periodic.md) supplies exact mate operators and
+observed transformed end frames for preview, plus image-distinctness/capacity
+warnings. These are proposal observations, never completed repairs. The GUI
+should consume the backend functions rather than parse terminal output.
 
 Keep three questions separate in the UI: **What is proposed? What actually ran?
 Has a person reviewed this exact result?** Do not use one green status for all

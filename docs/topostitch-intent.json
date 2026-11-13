@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "topostitch-development-intent",
   "date": "2026-11-13",
-  "status": "READ_ONLY_COORDINATE_ADAPTER_IMPLEMENTED",
+  "status": "READ_ONLY_PERIODIC_INSPECTOR_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
   "branch": "willow",
@@ -186,7 +186,7 @@
     "report_schema": 1,
     "runtime_authority": false,
     "coordinate_end_detection": false,
-    "symmetry_search": false,
+    "symmetry_search": true,
     "construction": false,
     "campaign_integration": false,
     "coordinate_adapter": {
@@ -201,6 +201,25 @@
       "geometry_validated": false,
       "execution_state": "NOT_ATTEMPTED",
       "review_state": "UNREVIEWED"
+    },
+    "periodic_search": true,
+    "periodic": {
+      "module": "nasolve.topostitch_periodic",
+      "contract": "docs/topostitch-periodic.md",
+      "dependency_extra": "topology",
+      "tested_gemmi_version": "0.7.5",
+      "supplied_end_scope_only": true,
+      "full_atom_orbit_distinctness": false,
+      "global_assignment": false,
+      "construction": false
+    },
+    "inspector": {
+      "command": "nasolve-topostitch-inspect",
+      "module": "nasolve.topostitch_inspect",
+      "input_kind": "topostitch-end-assignments",
+      "input_schema": 1,
+      "writes_files": false,
+      "changes_checkpoints": false
     }
   }
 }

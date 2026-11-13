@@ -1187,6 +1187,23 @@ pipeline retains common validation, provenance, non-overwrite behavior, and
 external-tool isolation. Numerical acceptance and model/map inspection remain
 separate outcomes.
 
+## Experimental TopoStitch inspection
+
+TopoStitch's read-only backend can inspect explicitly assigned canonical DNA
+ends and propose nearby crystallographic images. It does not yet discover ends
+automatically or repair/refine a model. Install the optional dependency and use
+an explicit [end-assignment manifest](docs/topostitch-periodic.md):
+
+```bash
+python -m pip install ".[topology]"
+nasolve-topostitch-inspect model.pdb ends.json --radius 20 --periodic
+```
+
+The command prints a review-only JSON report and writes no files. Omit
+`--periodic` for same-frame screening without Gemmi. See the [backend scope and
+limitations](docs/topostitch-periodic.md) before interpreting a candidate as a
+connection; no existing campaign recipe enables construction or selection.
+
 ## Problems and reproducibility
 
 Start troubleshooting with:

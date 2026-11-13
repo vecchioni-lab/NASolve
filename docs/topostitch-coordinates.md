@@ -118,9 +118,10 @@ implementation the two TopoStitch test files pass 72 cases. No native tool runs,
 real coordinates, maps or diffraction inputs were used. Standard-library-only
 code leaves Cedar, existing CLI/recipes and checkpoint schemas unchanged.
 
-Next: validate logical strand/pairing assignments against registration and
-backbone evidence, add coordinate-driven duplex-end detection, and introduce
-qualified periodic image enumeration. The [GUI contract](gui.md) specifies how
+The [periodic wrapper and inspector](topostitch-periodic.md) now add
+CRYST1-aware image enumeration and observed transformed frames. Next: validate
+logical strand/pairing assignments against registration/backbone evidence, add
+coordinate-driven duplex-end detection and qualify full atom-image distinctness. The [GUI contract](gui.md) specifies how
 proposals and eventual execution/review receipts fit into Campaign desk.
 
 

@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch periodic proposal inspection
+
+- Add optional Gemmi-backed, metric-bounded periodic endpoint enumeration with
+  exact image/inverse operators, finite budgets, self-image capacity warnings
+  and explicit special-position uncertainty. Preserve no-selection semantics.
+- Add verified CRYST1/SCALE integration, observed transformed end frames for
+  future GUI previews, and strict checksum-bound assignment manifests.
+- Add `nasolve-topostitch-inspect`, a read-only stdout JSON command, and the
+  optional `topology` extra. Default dependencies, Cedar, main CLI, checkpoint
+  schemas and campaign behavior are unchanged; no construction is enabled.
+
+
 ### TopoStitch verified coordinate adapter
 
 - Add a read-only single-model PDB adapter for explicit end/pair site assignments,
