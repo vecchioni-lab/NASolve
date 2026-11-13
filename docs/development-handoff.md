@@ -162,14 +162,20 @@ pairing/image and window, counting Jacobian evaluations and rechecking serialize
 limits. No partner/window selection is inferred. The roadmap currently prioritizes
 F02/S03 physical image/connection identity (periodic fitting now requires a
 clear selected-coordinate source audit), then S04/S05 local geometry closure
-before S06 matched refinement. Unassisted coordinate
+before S06 matched refinement. A verified offline source/candidate/mate view
+now supports rotation, atomic inspection and measured contact comparisons. It
+has no selection/refinement/approval API; Pine cut choice/materialization and
+campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 46 affected source tests, all 323 focused installed tests +
-2 subtests, and the full source suite (1,239 tests + 226 subtests) pass. The
-preceding schema-2 checkpoint passed all 322 then-current relocated tests after
-the original path was absent. Schema-2 preview
+**Current checks:** seven source viewer tests, all 330 focused installed tests +
+2 subtests, the same focused suite after original-path-absent relocation, and the
+full source suite (1,246 tests + 226 subtests) pass. The installed viewer includes
+its offline HTML asset and works without optional numerical packages for the
+basic window. Exact mate/coordinate and JavaScript mock-DOM checks pass; rendered
+browser validation is pending after a local-file automation policy block.
+Schema-2 preview
 and fitting add nonbridging phosphate angles and circular epsilon/zeta/alpha
 changes, while retaining exact schema-1 replay. The selected-image audit retains
 coincident-label/occupancy uncertainty and gates periodic fitting. A second
@@ -186,11 +192,15 @@ synthetic and public controls. This is diagnostic, not a production native adapt
 See the current inspector/preview guides for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Cedar through `cd744e2` owns its native audit, selected AutoSol references
+Cedar through `a017a7d` owns its native audit, selected AutoSol references
 and storage work; the consumed registration/model/context/package interfaces
 remain unchanged against the Pine base. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the
 existing diagnostic helper only; see the preview guide for exact options.
+Rowan confirms no qualified selective-coordinate adapter exists: Cedar's current
+trial declares all captured atoms variable, and derivative sample indices are
+not a movement mask. A future fixed-base objective needs its own explicit mask,
+policy identity, frozen definitions and ASU endpoint derivative evidence.
 Five local single-job Phaser placement controls also completed through existing
 interfaces, including the supplied PDF-report input as an explicit frozen
 selection. See the inspector contract for scope and unresolved copy/cut/chemistry

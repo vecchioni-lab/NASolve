@@ -405,15 +405,20 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**Transformed-image checkpoint:** all 46 affected fitting/image tests pass from
-source (9.83 s), and all 323 focused tests + 2 subtests pass against the rebuilt
-installed wheel (9.43 s). The complete source suite passes **1,239 tests + 226
-subtests** (74.47 s). The preceding schema-2 checkpoint also passed all 322
-then-current focused tests after relocation with the original path absent.
+**Read-only viewer checkpoint:** seven new viewer tests pass from source
+(2.92 s). All **330 focused tests + 2 subtests** pass against the rebuilt installed
+wheel (11.88 s), and again after relocating the source/test tree with its original
+path absent (11.80 s). The complete source suite passes **1,246 tests + 226
+subtests** (70.23 s). Installation includes the HTML asset and new entry point;
+the basic viewer also runs in the lean environment without Gemmi/SciPy. The
+installed periodic 8D93 view contains 404 actual atom instances (204 moved).
+JavaScript syntax and mock-DOM event smoke checks pass; rendered browser checks
+remain pending because local-file automation was blocked. This is not full GUI
+qualification.
 Environment: Python 3.12.14, pytest 9.1.1, NARestraints 1.1.3 (`a9264f9`), Gemmi
 0.7.5, SciPy 1.18.1 and NumPy 2.5.4. The earlier 17 fitting tests passed with
 minimum SciPy 1.14.1 / NumPy 2.2.6; that is not a current minimum-version run.
-The new regression fails before the guard: a distinct source improves its
+The transformed-image regression fails before its guard: a distinct source improves its
 contact score but places an unscored atom on the selected mate. The updated
 fitter withholds that transform without writing files. Actual installed 8D93
 fitting preserves the schema-2 candidate bytes and reports a distinct transformed
@@ -428,7 +433,9 @@ anchors and whole-pair window expansion; bounded matching alternatives; no-write
 CLI behavior; explicit bend-preview anchor/ANISOU preservation, serialized
 backbone-change limits, frozen-input replay, tampering and no-overwrite behavior;
 bounded placement, no-op/refusal outcomes, finite Jacobian-call budgets,
-ASU motion under P43 screw images and opposite-direction proposals; selected-atom
+ASU motion under P43 screw images and opposite-direction proposals; offline view
+replay, exact mate coordinates in both movement directions, unrelated unmapped
+routes, script-safe scene embedding and frozen-directory/no-overwrite checks; selected-atom
 stabilizers, centered/screw/skew cells, large translations, nontransitive near
 coincidences, occupancy uncertainty and original-path-absent relocation.
 

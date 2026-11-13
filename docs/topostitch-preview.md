@@ -115,6 +115,54 @@ movable/fixed sites and show measured changes. The receipt means
 `geometry_validated: false` and no campaign/checkpoint authority. Viewing a
 candidate cannot mark it approved. There is no Apply/Refine/Approve API yet.
 
+## Offline original/candidate view
+
+```sh
+nasolve-topostitch-view new-preview --out connection.html
+# Optional: reproduce an explicitly chosen original-model search and show its mate.
+nasolve-topostitch-view new-preview --candidate 0 --radius 20 --periodic \
+  --out connection-with-mate.html
+```
+
+Open the resulting HTML in a browser. It contains all display coordinates and
+code; no server, online service, CDN, browser plugin or AI runtime is required.
+The basic window view needs no Gemmi/SciPy. A periodic mate requires the
+`topology` extra; it does not require the fitter. Write outside the frozen preview
+folder to a new file; existing files are never replaced. The standalone artifact
+contains structure coordinates, so treat it like the source model when sharing.
+
+The writer verifies and replays the exact frozen preview before reading its
+source/candidate atoms and checks that inputs remained unchanged. A mate is
+optional and must be chosen explicitly with the **original-model** candidate
+index and search radius/budgets. It is not recovered by trusting a fit report or
+searching the moved model. Both coordinate sets use the same exact target image.
+Source and transformed selected-image ambiguity stay visible as review warnings;
+these checks do not qualify whole-window packing.
+
+Use Original, Candidate or Overlay; drag to rotate, Shift-drag to pan, scroll to
+zoom, or use keyboard arrows, +/− and Home. Click O3′ points for residue, image,
+scope and coordinate detail; All atoms permits atomic inspection. Solid traces
+join consecutive **declared** strand sites at O3′, six-membered base outlines
+show orientation, and dashed lines show measured proposed base contacts. None
+of those lines asserts a newly built covalent link. Unmapped unrelated routes do
+not acquire invented coordinates or trace edges.
+
+`nasolve.topostitch_view.preview_scene` provides the detached schema-1
+`topostitch-preview-view` display payload for later UI reuse. It contains actual
+coordinates, search/image identity, source/candidate/receipt hashes and the
+verified preview's workflow state. It is a display derivative, not a new
+checkpoint, model loader, authoritative graph or resumable scientific record.
+The HTML exposes no Apply/Refine/Approve controls. Pine still needs its periodic
+molecular graph, selectable cut alternatives and backend materialization before
+this component can support a real recut workflow.
+
+Python data/replay tests, installed and relocated asset checks, and JavaScript
+syntax plus mock-DOM interaction checks cover this component. The 8D93 view
+contains 404 atom instances, 204 moved, from the actual schema-2 candidate.
+**Browser visual/interaction validation remains pending:** automation policy
+blocked opening the local HTML. The mock-DOM check is not a rendered-browser
+check, and the full GUI is not claimed complete.
+
 ## Bounded placement for one chosen pairing
 
 `nasolve-topostitch-fit` adds a read-only local placement search. It fixes the

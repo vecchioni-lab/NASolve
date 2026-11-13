@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<title>TopoStitch · Connection preview</title>
+<style>
+:root{color-scheme:light;--ink:#23302f;--muted:#657570;--line:#dbe3de;--paper:#f4f7f3;--source:#177f7b;--mate:#8655ad;--review:#825a12}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:7px;padding:7px 12px;background:white;color:var(--ink)}button:hover{background:#edf3ee}button:focus-visible,input:focus-visible,canvas:focus-visible{outline:3px solid #245e99;outline-offset:3px}header{padding:18px 26px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}h1{font-size:23px;font-weight:620;letter-spacing:-.03em;margin:2px 0 0}h2{font-size:14px;margin:0 0 12px;font-weight:650}p{margin:6px 0 12px}.badge{display:inline-block;background:#fff1cf;color:var(--review);border:1px solid #ead39f;border-radius:20px;padding:6px 12px;font-size:12px;white-space:nowrap}.layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;height:calc(100vh - 92px);min-height:550px}.view{min-width:0;position:relative;display:flex;flex-direction:column}.toolbar{padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:18px;border-bottom:1px solid var(--line);background:#f9fbf8}.segmented{display:flex;gap:0}.segmented button{border-radius:0;border-right:0}.segmented button:first-child{border-radius:7px 0 0 7px}.segmented button:last-child{border-radius:0 7px 7px 0;border-right:1px solid var(--line)}.segmented button[aria-pressed="true"]{background:var(--ink);color:white;border-color:var(--ink)}label{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}.stage{position:relative;flex:1;min-height:350px;overflow:hidden}canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}.key{position:absolute;top:16px;left:20px;display:flex;flex-wrap:wrap;gap:15px;font-size:12px;color:var(--muted);pointer-events:none}.key span{display:inline-flex;align-items:center;gap:6px}.swatch{width:10px;height:10px;border-radius:50%;background:var(--source)}.mate{background:var(--mate)}.original{background:transparent;border:2px solid #8b9993}.controls{position:absolute;right:16px;bottom:16px;display:flex;gap:6px}.hint{padding:10px 20px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}aside{background:white;border-left:1px solid var(--line);padding:22px;overflow:auto}.section{padding:0 0 20px;margin:0 0 20px;border-bottom:1px solid var(--line)}.muted{color:var(--muted)}.tiny{font-size:11px}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:13px 10px}.metric strong{display:block;font-size:21px;font-weight:550;font-variant-numeric:tabular-nums;letter-spacing:-.04em}.metric span{font-size:11px;color:var(--muted)}.selection{border:1px solid var(--line);border-radius:8px;padding:12px;background:#f8faf7;min-height:110px}.selection h3{margin:0 0 7px;font-size:14px}.selection dl{margin:0;display:grid;grid-template-columns:65px 1fr;gap:4px;font-size:11px}.selection dt{color:var(--muted)}.selection dd{margin:0;font-variant-numeric:tabular-nums}.statusline{font-size:12px;color:var(--muted);margin-bottom:14px}.warning{padding:10px;border-left:3px solid #bb8221;background:#fff6de;font-size:12px;margin-bottom:12px}table{border-collapse:collapse;width:100%;font-size:11px;font-variant-numeric:tabular-nums}td,th{text-align:right;border-bottom:1px solid #edf0ed;padding:6px 3px}td:first-child,th:first-child{text-align:left}th{font-weight:500;color:var(--muted)}details{font-size:11px;overflow-wrap:anywhere}summary{cursor:pointer;color:var(--muted);padding:4px 0}pre{white-space:pre-wrap;font:10px/1.6 ui-monospace,monospace;color:var(--muted)}#tooltip{position:absolute;display:none;background:#24342e;color:white;padding:5px 8px;border-radius:5px;font-size:11px;pointer-events:none;white-space:nowrap;z-index:2}#error{display:none;padding:24px;color:#8b2a25}#connection{font-weight:550;font-size:15px;overflow-wrap:anywhere}.footnote{color:var(--muted);font-size:11px}
+@media(max-width:850px){.layout{grid-template-columns:1fr;height:auto;min-height:0}.view{height:65vh;min-height:450px}aside{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:20px}.section{margin:0}.toolbar{gap:12px}.badge{white-space:normal}header{padding:15px 20px}}@media(max-width:520px){aside{display:block}.section{margin-bottom:20px}header{align-items:flex-start}h1{font-size:20px}.toolbar{padding:12px}.hint{font-size:10px}.key{left:12px;gap:9px}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">TopoStitch</div><h1>Connection preview</h1></div><span class="badge">! Unrefined · Needs review</span></header>
+<div id="error" role="alert"></div>
+<main class="layout">
+<section class="view" aria-label="Original and candidate comparison">
+<div class="toolbar"><div class="segmented" aria-label="Coordinate view"><button data-mode="before" aria-pressed="false">Original</button><button data-mode="after" aria-pressed="false">Candidate</button><button data-mode="overlay" aria-pressed="true">Overlay</button></div><label><input id="show-atoms" type="checkbox">All atoms</label><label><input id="show-contacts" type="checkbox" checked>Contacts</label><label><input id="show-rings" type="checkbox" checked>Bases</label></div>
+<div class="stage"><canvas tabindex="0" aria-label="Rotatable molecular preview. Arrow keys rotate; plus and minus zoom; Home resets."></canvas><div class="key"><span><i class="swatch"></i>First end</span><span id="mate-key"><i class="swatch mate"></i>Other end / mate</span><span><i class="swatch original"></i>Original overlay</span></div><div class="controls"><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button><button id="reset">Reset view</button></div><div id="tooltip" role="tooltip"></div></div>
+<div class="hint">Drag to rotate · Shift-drag to pan · Scroll to zoom · Click an O3′ point to inspect. Solid lines show declared O3′ traces; dashed lines show proposed base contacts.</div>
+</section>
+<aside aria-label="Connection and geometry details">
+<section class="section"><h2>Proposed connection</h2><p id="connection"></p><p class="statusline">Candidate built · Refinement not run<br>Human review not recorded</p><div id="warnings"></div><p class="footnote">This view shows the actual saved candidate. Viewing it does not select or approve a model.</p></section>
+<section class="section"><h2>What changed</h2><div class="metrics"><div class="metric"><strong id="moved-count"></strong><span>moved atoms in view</span></div><div class="metric"><strong id="max-move"></strong><span>largest move / Å</span></div><div class="metric"><strong id="bond-change"></strong><span>largest link change / Å</span></div><div class="metric"><strong id="angle-change"></strong><span>largest angle change / °</span></div></div><p id="torsion" class="tiny muted"></p><p class="footnote">Changes are relative to the original. They are not an ideal-geometry verdict.</p></section>
+<section class="section"><h2>Inspect a point</h2><div class="selection" id="selection"><p class="muted tiny">Click a backbone point, or turn on All atoms for atomic detail.</p></div></section>
+<section class="section" id="contacts-section"><h2>Proposed contact distances</h2><table><thead><tr><th>Atom pair</th><th>Original</th><th>Candidate</th></tr></thead><tbody id="contact-rows"></tbody></table><p class="footnote">Distances in Å. Dashed contacts are hypotheses, not new covalent bonds.</p></section>
+<details><summary>Symmetry, scope and provenance</summary><pre id="provenance"></pre></details>
+</aside></main>
+<script id="scene" type="application/json">__SCENE_JSON__</script>
+<script>
+(()=>{'use strict';
+const scene=JSON.parse(document.getElementById('scene').textContent);
+if(scene.schema_version!==1||scene.kind!=='topostitch-preview-view'){document.getElementById('error').textContent='This view requires a compatible NASolve viewer.';document.getElementById('error').style.display='block';document.querySelector('main').style.display='none';return;}
+const atoms=scene.atoms,canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),stage=document.querySelector('.stage'),tooltip=document.getElementById('tooltip');
+let mode='overlay',yaw=-.55,pitch=.25,zoom=1,pan=[0,0],selected=null,drag=null,points=[],width=0,height=0;
+const palette={source:'#177f7b',target:'#8655ad'},all=atoms.flatMap(a=>[a.before,a.after]);
+const center=[0,1,2].map(k=>(Math.min(...all.map(p=>p[k]))+Math.max(...all.map(p=>p[k])))/2);
+const radius=Math.max(1,...all.map(p=>Math.hypot(...p.map((v,k)=>v-center[k]))));
+const showAtoms=document.getElementById('show-atoms'),showContacts=document.getElementById('show-contacts'),showRings=document.getElementById('show-rings');
+const text=(id,value)=>{document.getElementById(id).textContent=value;};
+const siteName=a=>a.label+' '+a.atom_name.replaceAll("'",'′');
+const candidate=scene.selected_candidate;
+const roles=['source','target'].map(role=>[...new Set(atoms.filter(a=>a.instance===role&&a.scope!=='fixed').map(a=>a.label))]);
+text('connection',candidate?roles.map(v=>v.length?v[0]+'…'+v[v.length-1]:'—').join(' ↔ '):'Selected backbone window');
+if(!candidate)document.getElementById('mate-key').style.display='none';
+for(const warning of scene.warnings){const node=document.createElement('div');node.className='warning';node.textContent=warning;document.getElementById('warnings').append(node);}
+text('moved-count',atoms.filter(a=>a.displacement_angstrom>0).length);
+text('max-move',scene.max_atom_displacement_angstrom.toFixed(3));
+text('bond-change',scene.backbone_audit.max_bond_change_angstrom.toFixed(3));
+text('angle-change',scene.backbone_audit.max_angle_change_degrees.toFixed(2));
+if(scene.backbone_audit.max_torsion_change_degrees!==undefined)text('torsion','Largest torsion change: '+scene.backbone_audit.max_torsion_change_degrees.toFixed(2)+'°');
+for(const row of scene.contacts){const tr=document.createElement('tr');for(const value of [row.atoms.map(i=>siteName(atoms[i])).join(' ↔ '),row.before_angstrom.toFixed(2),row.after_angstrom.toFixed(2)]){const td=document.createElement('td');td.textContent=value;tr.append(td);}document.getElementById('contact-rows').append(tr);}
+if(!scene.contacts.length)document.getElementById('contacts-section').style.display='none';
+text('provenance',JSON.stringify({space_group:scene.crystal?.space_group??null,cell:scene.crystal?.cell_parameters??null,image:candidate?.target_image?.operator_xyz??'Identity / no mate chosen',source_image_review:scene.source_image_assessment,candidate_image_review:scene.candidate_image_assessment,scope:scene.scope,source_sha256:scene.source_model_sha256,candidate_sha256:scene.candidate_model_sha256,preview_sha256:scene.preview_receipt_sha256},null,2));
+function project(p){let [x,y,z]=p.map((v,i)=>v-center[i]);const X=Math.cos(yaw)*x+Math.sin(yaw)*z,Z=-Math.sin(yaw)*x+Math.cos(yaw)*z,Y=Math.cos(pitch)*y-Math.sin(pitch)*Z,depth=Math.sin(pitch)*y+Math.cos(pitch)*Z;const scale=.39*Math.min(width,height)*zoom/radius;return [width/2+pan[0]+X*scale,height/2+pan[1]-Y*scale,depth];}
+function line(ids,coords,color,dash,alpha=1,lineWidth=1.7,close=false){if(!ids.length)return;ctx.beginPath();ids.forEach((id,i)=>{const p=project(atoms[id][coords]);if(i)ctx.lineTo(p[0],p[1]);else ctx.moveTo(p[0],p[1]);});if(close)ctx.closePath();ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.globalAlpha=alpha;ctx.setLineDash(dash);ctx.stroke();ctx.setLineDash([]);ctx.globalAlpha=1;}
+function layer(coords,ghost){const alpha=ghost ? 0.28 : 1;
+if(showRings.checked)for(const ring of scene.base_rings)line(ring,coords,ghost?'#6f7c75':palette[atoms[ring[0]].instance],[],alpha*.45,1,true);
+for(const trace of scene.traces)line(trace,coords,ghost?'#87968e':palette[atoms[trace[0]].instance],ghost?[3,3]:[],alpha,ghost?1.2:2.2);
+if(showContacts.checked)for(const contact of scene.contacts)line(contact.atoms,coords,'#b17b25',[4,4],ghost ? 0.2 : 0.85,1.2);
+const visible=atoms.map((a,i)=>({a,i,p:project(a[coords])})).filter(o=>showAtoms.checked||o.a.atom_name==="O3'").sort((a,b)=>a.p[2]-b.p[2]);
+for(const {a,i,p} of visible){const size=a.atom_name==="O3'"?4:2.3;ctx.beginPath();ctx.arc(p[0],p[1],size,0,Math.PI*2);ctx.globalAlpha=alpha;ctx.fillStyle=ghost?'#a5b0a8':palette[a.instance];if(!ghost)ctx.fill();ctx.strokeStyle=ghost?'#7e8c84':'#fff';ctx.lineWidth=ghost?1:1.1;ctx.stroke();ctx.globalAlpha=1;if(!ghost)points.push({i,x:p[0],y:p[1],depth:p[2]});if(i===selected&&!ghost){ctx.beginPath();ctx.arc(p[0],p[1],size+4,0,Math.PI*2);ctx.strokeStyle='#253b32';ctx.lineWidth=1.7;ctx.stroke();}}
+}
+function draw(){ctx.clearRect(0,0,width,height);ctx.fillStyle='#f4f7f3';ctx.fillRect(0,0,width,height);points=[];if(mode==='overlay')layer('before',true);layer(mode==='before'?'before':'after',false);}
+function resize(){const rect=stage.getBoundingClientRect(),dpr=window.devicePixelRatio||1;width=rect.width;height=rect.height;canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);canvas.style.width=width+'px';canvas.style.height=height+'px';ctx.setTransform(dpr,0,0,dpr,0,0);draw();}
+function inspect(index){selected=index;const a=atoms[index],box=document.getElementById('selection');box.replaceChildren();const h=document.createElement('h3');h.textContent=siteName(a)+' · '+a.residue_code;box.append(h);const dl=document.createElement('dl');for(const [label,value] of [['Scope',a.scope==='fixed'?'Fixed anchor':a.scope==='movable'?'Editable window':'Other end'],['Image',a.instance==='target'?'Selected mate':'First end'],['Original',a.before.map(v=>v.toFixed(3)).join(', ')],['Candidate',a.after.map(v=>v.toFixed(3)).join(', ')],['Move',a.displacement_angstrom.toFixed(3)+' Å']]){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;dl.append(dt,dd);}box.append(dl);draw();}
+function nearest(x,y){let found=null,best=100;for(const p of points){const d=(p.x-x)**2+(p.y-y)**2;if(d<best){best=d;found=p;}}return found;}
+function mouse(e){const r=canvas.getBoundingClientRect();return [e.clientX-r.left,e.clientY-r.top];}
+canvas.addEventListener('pointerdown',e=>{const p=mouse(e);drag={start:p,last:p,moved:0,pan:e.shiftKey};canvas.setPointerCapture(e.pointerId);canvas.style.cursor='grabbing';tooltip.style.display='none';});
+canvas.addEventListener('pointermove',e=>{const p=mouse(e);if(drag){const dx=p[0]-drag.last[0],dy=p[1]-drag.last[1];drag.moved+=Math.hypot(dx,dy);if(drag.pan){pan[0]+=dx;pan[1]+=dy;}else{yaw+=dx*.008;pitch=Math.max(-1.5,Math.min(1.5,pitch+dy*.008));}drag.last=p;draw();}else{const hit=nearest(...p);tooltip.style.display=hit?'block':'none';if(hit){tooltip.textContent=siteName(atoms[hit.i]);tooltip.style.left=Math.min(width-130,p[0]+12)+'px';tooltip.style.top=Math.max(4,p[1]-30)+'px';}}});
+canvas.addEventListener('pointerup',e=>{if(drag&&drag.moved<4){const hit=nearest(...mouse(e));if(hit)inspect(hit.i);}drag=null;canvas.style.cursor='grab';});
+canvas.addEventListener('pointercancel',()=>{drag=null;canvas.style.cursor='grab';});canvas.addEventListener('pointerleave',()=>{tooltip.style.display='none';});
+function zoomBy(amount){zoom=Math.min(8,Math.max(.25,zoom*amount));draw();}
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoomBy(Math.exp(-e.deltaY*.001));},{passive:false});
+function reset(){yaw=-.55;pitch=.25;zoom=1;pan=[0,0];draw();}
+canvas.addEventListener('keydown',e=>{let handled=true;if(e.key==='ArrowLeft')yaw-=.12;else if(e.key==='ArrowRight')yaw+=.12;else if(e.key==='ArrowUp')pitch-=.12;else if(e.key==='ArrowDown')pitch+=.12;else if(e.key==='+'||e.key==='=')zoomBy(1.2);else if(e.key==='-')zoomBy(1/1.2);else if(e.key==='Home')reset();else handled=false;if(handled){e.preventDefault();draw();}});
+for(const button of document.querySelectorAll('[data-mode]'))button.addEventListener('click',()=>{mode=button.dataset.mode;for(const b of document.querySelectorAll('[data-mode]'))b.setAttribute('aria-pressed',String(b===button));draw();});
+for(const control of [showAtoms,showContacts,showRings])control.addEventListener('change',draw);
+document.getElementById('zoom-in').addEventListener('click',()=>zoomBy(1.25));document.getElementById('zoom-out').addEventListener('click',()=>zoomBy(.8));document.getElementById('reset').addEventListener('click',reset);
+new ResizeObserver(resize).observe(stage);resize();
+})();
+</script>
+</body>
+</html>

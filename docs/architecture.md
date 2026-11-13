@@ -895,7 +895,7 @@ acceptance and structural assessment.
 
 ## Isolated TopoStitch backend
 
-TopoStitch currently has three additive entry points, outside the campaign/PostMR
+TopoStitch currently has four additive entry points, outside the campaign/PostMR
 CLI. `nasolve-topostitch-inspect` composes verified coordinate/periodic
 observations, NARestraints contacts, factorized pairing alternatives, existing
 Pine registration mapping and declared-topology end/window proposals. It writes
@@ -907,6 +907,12 @@ caller limits; this is not atomistic closure or refinement qualification.
 single-window least-squares search, with explicit pairing/image, scales, bounds
 and total residual-call budget. Continuous optimization is followed by the same
 serialized preview audit. It writes no models and has no density/R-factor target.
+
+`nasolve-topostitch-view` verifies/replays those frozen previews and writes one
+new standalone HTML comparison, optionally with an explicitly chosen exact mate.
+Its schema-1 display scene has no scientific authority; it owns no checkpoint,
+model editing, refinement or approval. The canvas/scene adapter is a read-only
+component for later Pine/Campaign desk integration, not a second state store.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are

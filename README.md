@@ -1234,6 +1234,17 @@ motion for one explicitly chosen pairing/window. It reports convergence and
 serialized geometry changes; it neither writes nor approves a model. See the
 [placement request and outcomes](docs/topostitch-preview.md#bounded-placement-for-one-chosen-pairing).
 
+To inspect an actual saved candidate, generate a standalone read-only view:
+
+```bash
+nasolve-topostitch-view new-preview --out connection.html
+```
+
+Open the HTML in a browser to rotate, compare and inspect the original and
+candidate. Add an explicit candidate index, radius and `--periodic` to include a
+symmetry mate; see [viewer scope and controls](docs/topostitch-preview.md#offline-originalcandidate-view).
+Viewing does not select, refine or approve the model.
+
 ## Problems and reproducibility
 
 Start troubleshooting with:

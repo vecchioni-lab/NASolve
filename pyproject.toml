@@ -23,6 +23,7 @@ nasolve = "nasolve.cli:main"
 nasolve-topostitch-inspect = "nasolve.topostitch_inspect:main"
 nasolve-topostitch-preview = "nasolve.topostitch_preview:main"
 nasolve-topostitch-fit = "nasolve.topostitch_fit:main"
+nasolve-topostitch-view = "nasolve.topostitch_view:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -36,6 +37,7 @@ nasolve = [
   "data/restraints/*.eff",
   "data/restraints/*.txt",
   "data/*.json",
+  "data/topostitch-view.html",
 ]
 
 [tool.pytest.ini_options]

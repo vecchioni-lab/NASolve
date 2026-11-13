@@ -765,7 +765,13 @@ The chosen minimal campaign view is **Campaign desk**. TopoStitch should reuse
 its dataset rows, Needs Attention queue, Inspector, model tree and comparison
 view. It is one tool for recut and repair, not a second campaign application.
 See [the design](topostitch.md) and [coordinate report](topostitch-coordinates.md).
-No GUI implementation is claimed by the read-only backend patch. The
+An initial [offline source/candidate view](topostitch-preview.md#offline-originalcandidate-view)
+is implemented as a verified scene adapter and packaged standalone canvas. It
+shows actual frozen coordinates and an explicitly chosen mate, allows rotation
+and point inspection, and keeps execution/refinement/review states separate.
+It has no state-changing controls; browser visual validation is pending. This
+component does not choose the future GUI shell or implement Pine cut choices,
+materialization, campaign integration or persistent review. The
 [periodic inspector](topostitch-periodic.md) supplies exact mate operators and
 observed transformed end frames for preview, plus image-distinctness/capacity
 warnings. These are proposal observations, never completed repairs. The GUI

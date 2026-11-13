@@ -331,6 +331,21 @@
       "physical_identity_validated": false,
       "fitter_uses_audit": true,
       "runtime_authority": false
+    },
+    "preview_view": {
+      "module": "nasolve.topostitch_view",
+      "command": "nasolve-topostitch-view",
+      "contract": "docs/topostitch-preview.md#offline-originalcandidate-view",
+      "scene_kind": "topostitch-preview-view",
+      "scene_schema_version": 1,
+      "scope": "verified frozen source/candidate coordinates and optional explicit source-search mate",
+      "output": "standalone offline HTML outside frozen preview",
+      "runtime_authority": false,
+      "writes_models": false,
+      "network_required": false,
+      "browser_visual_validation": "PENDING_LOCAL_FILE_POLICY_BLOCK",
+      "campaign_integration": false,
+      "pine_cut_selection": false
     }
   },
   "geometry_development": {

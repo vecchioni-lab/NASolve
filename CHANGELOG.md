@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch offline candidate view
+
+- Add `nasolve-topostitch-view` to compare a verified frozen source/candidate
+  window, optionally with one explicitly selected exact symmetry mate.
+- Package a self-contained HTML view with rotation, point inspection, declared
+  O3′ traces, base outlines, contact distances and separate review/refinement
+  status. It creates no model, checkpoint, approval or network request.
+- Preserve schema-1/2 preview replay and relocation. This is a read-only visual
+  component; Pine cut selection and campaign GUI integration remain open.
+
 ### TopoStitch native plane integration gate
 
 - Add a synthetic, read-only developer probe for symmetry contact derivatives.
