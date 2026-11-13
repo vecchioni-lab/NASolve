@@ -95,7 +95,7 @@
         "Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.",
         "Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites."
       ],
-      "next_action": "Use the scoped audit as an explicit connection precondition; qualify physical partner capacity and complete molecular/image equivalences before Pine cut invariance.",
+      "next_action": "Qualify physical partner capacity and complete molecular/image equivalences; the selected-source coordinate precondition is now consumed by periodic fitting.",
       "evidence": [
         "E_SOFTWARE",
         "E_IMAGE_AUDIT"
@@ -103,8 +103,8 @@
       "last_audit": {
         "date": "2026-11-13",
         "reviewer": "Linden",
-        "code_commit": "2d7544bb5fa6902e667039c6c9b090e5299bb301",
-        "scope": "Selected-coordinate audit and regressions complete; full physical identity and global capacity remain open"
+        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
+        "scope": "Periodic fitting now consumes selected-coordinate eligibility; full physical identity remains open"
       }
     },
     {
@@ -174,7 +174,8 @@
       ],
       "goal": "Identify which duplex ends should meet and in which image/register, with a no-connection alternative.",
       "delivered": [
-        "Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved."
+        "Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved.",
+        "Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected."
       ],
       "acceptance": [
         "A selected edge has verified physical image identity, sequence/register/orientation and capacity; wrong, ambiguous, self-orbit and impossible cases stay distinct.",
@@ -182,13 +183,14 @@
       ],
       "next_action": "Close one explicit canonical periodic pairing before broad automatic scheme selection.",
       "evidence": [
-        "E_SOFTWARE"
+        "E_SOFTWARE",
+        "E_IMAGE_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
+        "scope": "Conservative source-image precondition, not a global assignment or physical capacity proof"
       }
     },
     {
@@ -201,7 +203,8 @@
       ],
       "goal": "Move a usable duplex toward the chosen connection while preserving local residue geometry and fixed boundaries.",
       "delivered": [
-        "Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested."
+        "Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested.",
+        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -210,13 +213,14 @@
       "next_action": "Use the current fitter as a baseline; qualify one physical connection and expand only when the smaller window fails.",
       "evidence": [
         "E_SOFTWARE",
-        "E_NATIVE_8D93"
+        "E_NATIVE_8D93",
+        "E_TIGHTER_NATIVE"
       ],
       "last_audit": {
         "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
+        "scope": "Matched local native diagnostic; scalar outlier counts are not acceptance thresholds"
       }
     },
     {
@@ -229,21 +233,23 @@
       ],
       "goal": "Turn a plausible placement into a chemically usable candidate before refinement is trusted.",
       "delivered": [
-        "Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation."
+        "Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation.",
+        "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Resolve the demonstrated O3-prime/P boundary strain with a bounded, source-preserving native geometry route; reuse Cedar capabilities after interface qualification.",
+      "next_action": "Expand explicit junction coverage to phosphate angles and circular backbone torsions, preserving old preview replay; then qualify native local closure, packing and symmetry contacts with existing Cedar owners.",
       "evidence": [
-        "E_NATIVE_8D93"
+        "E_NATIVE_8D93",
+        "E_TIGHTER_NATIVE"
       ],
       "last_audit": {
         "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
+        "scope": "Matched local native diagnostic; scalar outlier counts are not acceptance thresholds"
       }
     },
     {
@@ -475,10 +481,10 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "2d7544bb5fa6902e667039c6c9b090e5299bb301",
+      "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "307 focused source, installed-wheel and relocated-checkout tests plus 2 subtests pass; complete source suite 1,223 tests plus 226 subtests passes. Installed image-audit command reproduces the public 8D93 result.",
-      "limitation": "Synthetic regression and installation do not establish physical repair. The initial sandboxed full-suite run failed five process-control checks; unrestricted complete rerun passed without code changes. No combined Willow/Cedar build or full platform matrix is claimed."
+      "result": "309 focused source tests plus 2 subtests pass; 43 fitting/image tests pass against the rebuilt wheel. At preceding 2d7544b: 307 installed/relocated tests plus 2 subtests and full source 1,223 tests plus 226 subtests pass. Existing public fit candidate bytes and old preview replay are preserved.",
+      "limitation": "Latest periodic-fit eligibility change has focused/installed validation; preceding full/relocation counts are not a new full run. Tests and native execution do not establish physical repair or a combined Willow/Cedar build."
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -513,7 +519,7 @@
       "reference": "docs/topostitch-periodic.md#selected-atom-image-audit",
       "code_commit": "2d7544bb5fa6902e667039c6c9b090e5299bb301",
       "result": "Exact operator/lattice records, metric-bounded orbit coincidences, source-label ambiguity and selected-image overlap are inspected with finite work/output bounds. Public 8D93: 240 selected atoms and 274,916 tests; no orbit coincidences or selected overlaps. Sources unchanged.",
-      "limitation": "Coordinate coincidence is tolerance-bound evidence, not an identity merge. Missing/unselected atoms, global capacity and Pine cut/scattering invariance remain unqualified; fitter does not consume this optional audit yet."
+      "limitation": "Coordinate coincidence is tolerance-bound evidence, not an identity merge. Periodic fitting now refuses ambiguous selected source coordinates before optimization; missing/unselected atoms, global capacity and Pine cut/scattering invariance remain unqualified."
     },
     "E_MR_LOCAL": {
       "kind": "Local native MR placement preflight",
@@ -521,6 +527,13 @@
       "code_commit": "fe4388facbd3450086f16c645db09de918931a1c",
       "result": "Five serial single-job Phenix 2.2.1-6174 MR executions completed for the supplied hexagonal and basic-dataset controls. Exact scientific results, source bindings and outputs remain in local frozen receipts; no scientific data committed.",
       "limitation": "One-copy/source-chemistry assumptions and different ASU cuts remain relevant. This is placement preflight, not TopoStitch deformation, matched refinement, PDF-discovery support or scientific acceptance."
+    },
+    "E_TIGHTER_NATIVE": {
+      "kind": "Matched native tighter-backbone controls",
+      "reference": "docs/topostitch-preview.md#stricter-backbone-controls--2026-11-13",
+      "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
+      "result": "Three predeclared public 8D93 backbone-penalty controls improve the pair target with less source-relative strain. Complete Phenix 2.2.1-6174 read-only captures, Cedar cd744e2 mechanics checks, exact named proxy multisets and matched scalar identities show no new nominal >=5 bond/angle/chirality outliers; the original fit adds one angle outlier.",
+      "limitation": "Source outliers remain. This is a local descriptive tradeoff, not closure, torsion/packing/native residual qualification or diffraction improvement. Native inputs and derived models remain local; no new product default is calibrated."
     }
   },
   "benchmarks": [
@@ -619,6 +632,7 @@
     "aae51be and 3ef2fad: density, forward/reverse shape and NARestraints-reuse requirements remain acceptance obligations, not implemented capabilities.",
     "ce0a1bf: bounded fitting is delivered and native limitations recorded; S04/S05 remain partial.",
     "Pine construct-registration and live-check contracts retain semantics/test cases; this linked queue owns TopoStitch scheduling, not unrelated Scout or Cedar work.",
-    "Selected atom-image audit 2d7544b adds bounded coordinate evidence without an identity merge; do not reimplement it as a second symmetry finder. Native MR preflight does not close the diffraction repair gate."
+    "Selected atom-image audit 2d7544b adds bounded coordinate evidence without an identity merge; do not reimplement it as a second symmetry finder. Native MR preflight does not close the diffraction repair gate.",
+    "Periodic fit guard 84cb847 consumes the existing selected-image audit. Tighter native controls establish a contact/strain tradeoff, not scientific closure; preserve the original failed angle result."
   ]
 }
