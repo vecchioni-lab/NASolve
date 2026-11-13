@@ -1,9 +1,12 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Status: **PLANNED_NOT_IMPLEMENTED**, 2026-11-13. Planning branch: `willow`,
-branched from Pine at `d7913dd`. No runtime changes or scientific runs accompany
-this design. [Machine-readable intent](topostitch-intent.json) records the
-same boundaries; it is not a runtime schema or an executable recipe.
+Status: **INITIAL_READ_ONLY_PRIMITIVE_IMPLEMENTED**, 2026-11-13. Branch:
+`willow`, based on Pine `d7913dd`. The full design below remains future work.
+The [first backend slice](topostitch-backend.md) screens explicitly supplied
+canonical DNA overhangs; it does not discover ends from coordinates, search
+symmetry images, build models or run refinement. No scientific runs accompany
+this patch. [Machine-readable intent](topostitch-intent.json) is development
+metadata, not runtime authorization.
 
 ## Purpose and ownership
 

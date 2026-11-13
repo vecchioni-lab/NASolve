@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch initial read-only backend
+
+- Add `nasolve.topostitch` with explicit immutable duplex-end records and a
+  bounded canonical full-overhang candidate screen. Retain competing partners,
+  no-connection alternatives, declared free/connected ends and uncertainty.
+- Return a deterministic schema-1 descriptive report with the supplied model
+  hash, detached input snapshot and input fingerprint. No coordinate detection,
+  symmetry search, model editing, checkpoint selection or campaign policy change.
+- Keep Cedar integration untouched; this new module has no third-party imports.
+
+
 ### TopoStitch planning — not implemented
 
 - Record one proposed tool for periodic DNA recutting and connection repair,

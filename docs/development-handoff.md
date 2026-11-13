@@ -136,7 +136,7 @@ Then promote Scout along the
 ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 [metal restraint builder](metal-restraint-builder.md) are separate later scopes.
 
-## Separate Willow design work — 2026-11-13
+## Separate Willow work — 2026-11-13
 
 [TopoStitch](topostitch.md) and its [intent record](topostitch-intent.json)
 combine the proposed recut workbench and sticky-end geometry repair under one
@@ -144,6 +144,18 @@ name. Willow starts from Pine `d7913dd`; planning is isolated and no runtime
 merge is needed yet. Opt-in campaign inference, tentative scheme sharing and
 matched diffraction/geometry evaluation are specified, not implemented. This
 does not change Pine scientific gates or authorize editing Cedar/live datasets.
+
+The first [read-only backend primitive](topostitch-backend.md) is now implemented
+on Willow: explicit canonical overhang screening and review-only proposal records.
+Automatic end detection, periodic search, construction and campaign use remain
+unimplemented. Next: source-verified coordinate/registration adapter and oriented
+end frames before introducing periodic partner enumeration. Rowan owns Cedar's
+PostMR/campaign plane-support forwarding; no shared source files were edited.
+Validation: 39 focused tests, 1006 full tests + 226 subtests, and 39 installed-
+wheel tests passed; isolated installed import/smoke and diff checks passed.
+No native Phenix/Coot runs or scientific data changes.
+
+
 
 ## Work discipline and doc ownership
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "kind": "topostitch-development-intent",
   "date": "2026-11-13",
-  "status": "PLANNED_NOT_IMPLEMENTED",
+  "status": "INITIAL_READ_ONLY_PRIMITIVE_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
   "branch": "willow",
@@ -167,16 +167,27 @@
     "qualified symmetry restraints",
     "GUI renderer"
   ],
-  "this_change": {
-    "code_changes": false,
-    "scientific_runs": false,
-    "generated_scientific_artifacts_included": false,
-    "runtime_compatibility_change": false
-  },
   "recut_invariants": [
     "periodic orbit inventory and special-position multiplicity",
     "chemical identity and occupancy",
     "displacement parameters including transformed anisotropic tensors",
     "equivalent unrefined calculated structure factors"
-  ]
+  ],
+  "planning_change": {
+    "code_changes": false,
+    "scientific_runs": false,
+    "generated_scientific_artifacts_included": false,
+    "runtime_compatibility_change": false
+  },
+  "implementation": {
+    "contract": "docs/topostitch-backend.md",
+    "module": "nasolve.topostitch",
+    "scope": "explicit supplied canonical overhang candidate screen in one Cartesian frame",
+    "report_schema": 1,
+    "runtime_authority": false,
+    "coordinate_end_detection": false,
+    "symmetry_search": false,
+    "construction": false,
+    "campaign_integration": false
+  }
 }
