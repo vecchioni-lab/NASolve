@@ -95,7 +95,8 @@ def _capture_evidence(path, model, *, timed_out=False):
         if name not in records:
             raise ValueError('Missing required native artifact: ' + name)
     spec = _json(records['native_spec.json'])
-    if timed_out and ('gradient_indices' in spec or 'atom_name_mapping' in spec):
+    combined_mapping = spec.get('atom_name_mapping') is True and spec.get('energy_inventory') is True
+    if timed_out and ('gradient_indices' in spec or ('atom_name_mapping' in spec and not combined_mapping)):
         raise ValueError('Unsupported timed-out capture extension')
     worker = _NATIVE_WORKER
     for flag in ('policy_inventory', 'energy_inventory', 'nonbonded_inventory', 'atom_name_mapping', 'full_monomer_inventory'):
@@ -103,8 +104,6 @@ def _capture_evidence(path, model, *, timed_out=False):
             raise ValueError('Invalid native inventory request: ' + flag)
     if spec.get('energy_inventory'):
         from .cif_candidate_usability import native_energy_worker
-        if spec.get('atom_name_mapping'):
-            raise ValueError('Unsupported combined energy/mapping worker')
         worker = native_energy_worker(worker)
     from .cif_native_asu import validate_policy as validate_nonbonded_policy, POLICY_ID as asu_policy
     nonbonded_policy=spec.get('nonbonded_policy')
@@ -117,7 +116,10 @@ def _capture_evidence(path, model, *, timed_out=False):
             raise ValueError('Nonbonded inventory requires native energy evidence')
         worker = native_nonbonded_worker(worker, policy=nonbonded_policy)
     if 'atom_name_mapping' in spec:
-        from .cif_native_atom_mapping import native_mapping_worker, POLICY_ID as mapping_policy
+        from .cif_native_atom_mapping import native_mapping_worker, validate_mapping_composition, POLICY_ID as mapping_policy
+        validate_mapping_composition(linked=spec.get('inventory_detail')=='linked',energy=spec.get('energy_inventory'),
+            full=spec.get('full_monomer_inventory'),policy=spec.get('policy_inventory'),
+            nonbonded=spec.get('nonbonded_inventory'),gradients='gradient_indices' in spec)
         if spec['atom_name_mapping'] is not True or receipt.get('atom_name_mapping_policy') != mapping_policy:
             raise ValueError('Invalid native atom mapping request/policy')
         worker = native_mapping_worker(worker)

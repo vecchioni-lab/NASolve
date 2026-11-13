@@ -492,8 +492,11 @@ def inspect_native_bundle(model: Path, dictionaries: Sequence[Path], output_pare
         validate_nonbonded_policy(nonbonded_policy, enabled=nonbonded_inventory)
     if type(atom_name_mapping) is not bool:
         raise ValueError("Native atom name mapping must be an explicit boolean")
-    if atom_name_mapping and (inventory_detail != "linked" or energy_inventory):
-        raise ValueError("Atom name mapping requires linked inventory without energy augmentation")
+    if atom_name_mapping:
+        from .cif_native_atom_mapping import validate_mapping_composition
+        validate_mapping_composition(linked=inventory_detail == "linked", energy=energy_inventory,
+            full=full_monomer_inventory, policy=policy_inventory, nonbonded=nonbonded_inventory,
+            gradients=gradient_indices is not None)
     if gradient_indices is not None:
         from .cif_native_gradients import validate_gradient_request
         validate_gradient_request(gradient_indices, linked=inventory_detail == "linked", energy=energy_inventory,

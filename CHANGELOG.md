@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Observe native atom names alongside fixed energy evidence (C268)
+
+- Compose the existing atom-name mapping, full-model identity and fixed-energy
+  capture only when all three plus the explicit restraint-policy inventory are
+  requested. Original worker variants and defaults stay unchanged; no chemical
+  identity, coordinate, target, gradient or native-kernel changes.
+- Exact receipt replay and stopped timeout evidence recognize that composition.
+  Mapping with derivative/nonbonded augmentation remains unsupported. New combined
+  captures require a current reader; partial timeout output never becomes proof.
+- Actual Phenix 2.2.1-6174 capture of 853 atoms records nine aliases, including
+  terminal OP3→O3T, with exactly unchanged prior energy/gradient/geometry and
+  definitions. Cold relocated read passes. Integration into terminal qualification
+  remains a separate step; observed aliases alone grant no chemical authority.
+
 ### Preserve declared background terminal phosphates during checked preparation (C266)
 
 - Carry audited ordinary `allow_op3_sites` into native checking when a protected

@@ -4,6 +4,18 @@ from inspect import getsource
 POLICY_ID = 'cif-native-observed-atom-name-mapping-v1'
 
 
+def validate_mapping_composition(*, linked, energy, full, policy, nonbonded, gradients):
+    """Permit observed names with fixed energy only in explicit full-model capture.
+
+    Mapping still grants no chemical authority. Historical name-only workers and
+    unsupported gradient/nonbonded compositions retain their existing contracts.
+    """
+    if not linked or nonbonded or gradients:
+        raise ValueError('Atom mapping requires linked inventory without pair or derivative augmentation')
+    if energy and not (full and policy):
+        raise ValueError('Energy/atom mapping requires explicit full-model and policy inventories')
+
+
 def capture_atom_name_mapping(mm):
     """Runs inside the isolated native worker, using the actual mapping object."""
     fields = ('expected_atoms', 'unexpected_atoms', 'duplicate_atoms',

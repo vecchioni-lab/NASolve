@@ -12769,3 +12769,29 @@ is preserved and needs a fresh request/attempt, not rewritten intent. Focused
 native-context/ordinary-entry/qualification checks: 155 pass; four additional
 request binding/tamper/relocation checks pass. Actual end-to-end retry remains
 separate. See ledger `retained_terminal_phosphate_context_2026_11_13`.
+
+
+## Full-model energy and observed atom names together (C268)
+
+C267 retains the background terminal declaration but the literal phosphate check
+still refuses the native definition: installed Phenix p5*END binds model OP3 to
+native O3T. This is the observed naming distinction already captured in C112;
+it is not evidence that OP3 should be deleted or guessed to be another oxygen.
+
+C268 composes the unchanged C112 mapping helper with the existing full-model and
+fixed-energy capture, requiring explicit policy inventory and excluding derivative
+or nonbonded augmentation. Exact maintained-worker reconstruction, receipt/policy
+binding and full identity replay remain required. Stopped timeout evidence may
+preserve a partial combined capture but cannot qualify it. Historical worker
+variants are unchanged; old readers reject the new combination.
+
+A complete Phenix 2.2.1-6174 execution on C267's exact baseline inputs records
+853 atoms/nine aliases, including D:1 OP3→O3T. Before/after energies, gradients,
+geometry, restraint policy, full identities and definitions are exactly identical.
+Relocation and readback launch no native work. The first driver incorrectly treated
+the energy-check dictionary as a list after native completion; its stopped failure
+is preserved, and a separate corrected read-only assessment verifies the existing
+capture without rerunning it. 129 focused capture/identity/mapping/timeout tests
+pass. This qualifies capture composition, not terminal adoption or AutoSol.
+See ledger `native_energy_atom_mapping_2026_11_13`; next reuse the exact recorded
+bindings in a new terminal-context policy, preserving the literal v3 meaning.

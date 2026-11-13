@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C266 background-terminal context implementation; C265 base `a017a7d`. Active **cedar**, NASolve-c96.
-Simon authorized work through **23:00 Europe/London**, no full suite or merge.
+Updated **2026-11-13**, C268 full-model energy/name capture validated; C266 base `6dab315`. Active **cedar**, NASolve-c96.
+Simon authorized work through **00:00 Europe/London, 14 November**, no full suite or merge.
 Finish Q04/Q05 before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering.
 
 ## Latest result — original chemistry survives native input preparation
@@ -53,8 +53,16 @@ component/outgoing link, unchanged native definition and existing phosphate grap
 coordinate/link/proxy checks are required. No new modifier or chemical edits.
 Old v1/v2 unchanged; new context needs current reader and fresh work.
 Focused tests: 155 passed + 4 added request/tamper/relocation checks. Affected
-owner/bundle/ordinary tests running; no full suite. Fresh C267 uses ignored c267
-runners with 2400-second bound after the code checkpoint. Inspect its receipts.
+owner/bundle/ordinary tests: **201 passed in 304.54s**. Relocated temporary checkout
+and request: **1 passed in 2.60s**, both old temporary paths absent. No full suite. C267 (`267_Cedar_selected-autosol-k17oznfd`) is stopped, code unchanged: the
+background permission now reaches the check, but canonical Phenix p5*END maps model
+OP3 to dictionary O3T. Native source/baseline definitions are identical; the existing
+literal phosphate check refuses. C112 already captures actual name bindings; reuse
+that helper rather than inventing aliases. Its historical capture excludes energy
+augmentation, so qualify an explicit full-model energy+mapping composition before
+connecting it. Preserve v1/v2/v3 context meanings and old worker bytes. No native
+jobs are currently running. No ReadySet/AutoSol result is claimed.
+
 
 ## Next — finish Q04/Q05 acceptance
 
@@ -88,3 +96,17 @@ plane-order correction were pointed out to avoid duplicated Cartesian diagnosis;
 new symmetry pullback/closure work remains their separate diagnostic scope.
 Protected NASolve-cedar and everyday NASolve/pine data/patches/environments remain
 untouched. Continue on NASolve-c96/cedar, no new branch.
+
+
+## C268 — reuse C112 name bindings without changing mechanics
+
+The explicit full-model/policy/energy/name composition passes 129 focused checks.
+Actual Phenix 2.2.1-6174 root `268_Cedar_energy-mapping-w0pqcco7`: 853 atoms,
+nine observed aliases, D:1 OP3→O3T. Native energies/gradients/geometry/definitions
+exactly match the prior C267 baseline. Relocated no-launch read passes. Native
+completed; the original driver then hit a checks-dict/list assertion mistake.
+Its failure and immutable worker remain; c268_readback.py separately verifies the
+known-stopped output, no repeated native call. Read `readback-summary.json` plus
+`driver-result.json`, not the driver's return code alone. All source pins match.
+Next: a new explicit terminal context may use these captured names while keeping
+v3 literal and preserving all original definition/state checks. No native job active.

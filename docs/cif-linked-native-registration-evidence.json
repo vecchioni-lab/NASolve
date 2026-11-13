@@ -93010,7 +93010,9 @@
         "original_temporary_request_absent": true,
         "native_execution": "forbidden",
         "temporary_checkout_removed": true
-      }
+      },
+      "affected_owner_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_dictionary_bundle.py tests/test_cif_native_monomers.py tests/test_cif_ordinary_postmr.py",
+      "affected_owner_result": "201 passed in 304.54s"
     },
     "artifacts": "generated science and diagnostics local only; no upload/cleanup",
     "limits": [
@@ -93109,5 +93111,76 @@
         }
       ]
     }
+  },
+  "native_energy_atom_mapping_2026_11_13": {
+    "checkpoint": "C268",
+    "base_commit": "6dab315",
+    "status": "EXPLICIT_COMPOSITION_IMPLEMENTED_NATIVE_PASS",
+    "prior_work": [
+      "C112 native observed atom name mapping",
+      "C138 full-model identity",
+      "existing fixed native usability energy capture"
+    ],
+    "c267": {
+      "root": {
+        "anchor": "live_tests_directory",
+        "path": "267_Cedar_selected-autosol-k17oznfd"
+      },
+      "status": "SOURCE_PREPARATION_UNQUALIFIED",
+      "finding": "Frozen D:1 terminal permission is recognized; native p5*END definition uses O3T while model uses OP3. Literal v3 refuses.",
+      "stopped_verified": true,
+      "code_unchanged": true,
+      "readyset": "NOT_RUN",
+      "autosol": "NOT_RUN"
+    },
+    "changed_files": [
+      "src/nasolve/cif_native_atom_mapping.py",
+      "src/nasolve/cif_native_validation.py",
+      "src/nasolve/cif_attachment_native.py",
+      "tests/test_cif_energy_atom_mapping.py"
+    ],
+    "schema": "Existing flags/policy IDs composed explicitly; exact new maintained worker. Legacy variants unchanged; older reader rejects combined capture. No native library edits.",
+    "native": {
+      "root": {
+        "anchor": "live_tests_directory",
+        "path": "268_Cedar_energy-mapping-w0pqcco7"
+      },
+      "status": "FULL_MODEL_ENERGY_MAPPING_NATIVE_AND_RELOCATION_PASS",
+      "phenix": "2.2.1-6174",
+      "readback_seconds": 0.22148016598657705,
+      "atoms": 853,
+      "alias_count": 9,
+      "terminal_alias": "O3T",
+      "energy_checks": {
+        "energy_inventory": true,
+        "finite_energy_and_gradient": true,
+        "fixed_coordinate_repeats": true
+      },
+      "exact_previous_energy_gradient_geometry_and_definitions": true,
+      "original_preserved_during_readback": true,
+      "driver_note": "Native completed successfully; first driver assertion treated the checks dict as a list. Stopped driver and all outputs retained. This separate corrected analysis launches no native work.",
+      "qualification": "Capture-composition evidence only; no chemical adoption, ReadySet or AutoSol",
+      "owner": {
+        "returncode": 1,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "source_hashes": "start.json pins exact source, including proposed composition patch",
+      "runner": "ignored c268_start.py/worker.py plus separate c268_readback.py; original failed driver preserved"
+    },
+    "validation": {
+      "before": "new composed replay test fails at explicit combined energy/mapping refusal",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_energy_atom_mapping.py tests/test_cif_native_atom_mapping.py tests/test_cif_native_monomers.py tests/test_cif_prepared_repair_failure.py -x",
+      "result": "129 passed in 12.87s",
+      "relocation": "native copied inputs/output moved; old path absent, no native launch, all readback files/checksums/mtimes unchanged",
+      "full_suite": "not run per Simon"
+    },
+    "artifacts": "local only; no scientific uploads or deletion",
+    "limits": [
+      "Capture composition grants no chemical authority",
+      "Derivative/nonbonded augmentation remains incompatible with mapping",
+      "Terminal use needs a distinct explicit context; v3 remains literal",
+      "No ReadySet/AutoSol/refinement acceptance claimed"
+    ]
   }
 }
