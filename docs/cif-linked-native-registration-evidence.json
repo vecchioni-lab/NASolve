@@ -92925,5 +92925,38 @@
       "Ordinary defaults unchanged"
     ],
     "next": "Fresh C265 native control; no in-place retry"
+  },
+  "charged_source_phosphate_boundary_2026_11_13": {
+    "checkpoint": "C265",
+    "commit": "ce09607",
+    "status": "NATIVE_LINKED_PREPARATION_REFUSED_PRESERVED",
+    "root": {
+      "anchor": "live_tests_directory",
+      "path": "265_Cedar_selected-autosol-lyxpqrp9"
+    },
+    "native": {
+      "phenix": "2.2.1-6174",
+      "mode": "actual Phaser/Coot/isolated acquisition; no ReadySet/AutoSol",
+      "elapsed_seconds": 52.23705170801259,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "source": {
+      "component": "1AP",
+      "sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+      "leaving_atom": "OP3",
+      "element": "O",
+      "formal_charge": -1,
+      "bond_to_P": "SINGLE",
+      "attached_hydrogens": []
+    },
+    "reason": "Existing explicit native backbone operation supports neutral hydroxyl departure; charged source port requires separate operation authority. C264 legacy DNA header now passes.",
+    "source_edits": false,
+    "guard_changes": false,
+    "native_support_claim": false,
+    "follow_up": "Q13 graph/state-derived charged phosphate operation with retained-state and linked native evidence; no residue-code exception. Separate A:5IU control for Q05.",
+    "artifacts": "local only; no data upload or deletion",
+    "queue_cleanup": "Superseded C228-C256 storage build instructions replaced by current C260 completion, measurements and remaining limits; evidence retained in history/methods/ledger.",
+    "full_suite": "not run per Simon"
   }
 }

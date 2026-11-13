@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C264 qualified legacy DNA header correction; C263 base `89ed7d6`. Active **cedar**, NASolve-c96.
+Updated **2026-11-13**, C265 chemical-boundary record; C264 code `ce09607`. Active **cedar**, NASolve-c96.
 Simon authorized work through **23:00 Europe/London**, no full suite or merge.
 Finish Q04/Q05 before Q06. The [queue](cif-doctor-completion-queue.md) owns ordering.
 
@@ -34,25 +34,29 @@ ordinary intake/resume/complete owner **159 passed**. Relocated temporary checko
 and request, old temporary paths absent: **1 passed**. Exact commands, hashes and
 limits: ledger `original_source_owned_acquisition_2026_11_13`. No full suite.
 
-## C264 — qualified legacy DNA header fix
+## C264/C265 — metadata fixed; charged phosphate boundary preserved
 
-The C264 native control stopped cleanly at linked preparation after Phaser/Coot
-and isolated 1AP/5IU acquisition. Root `264_Cedar_selected-autosol-noq5g3qh`;
-55.59 seconds, all jobs stopped, C263 source hashes unchanged. No ReadySet/AutoSol.
-It exposed an existing-contract inconsistency: the explicit aromatic bridge
-rejected the curated `group DNA` header without `type`, although C58 already
-supports it under isolated qualification. Reuse that existing classification
-check and apply typed DNA/L-DNA consistency only when a type is present.
-No source changes, chemistry exceptions, threshold changes or new schemas.
+C264 (`ce09607`) restores the C58 qualified legacy `group DNA` header under explicit
+aromatic handling. 231 affected tests passed; one blank-header test-fixture issue
+was corrected, then all 69 qualification tests passed. No full suite.
+C265 real Phaser/Coot/isolated acquisition passes that former gate and stops at the
+source phosphate leaving-port check: 1AP OP3 is singly bonded, −1, no H; the
+existing qualified native operation covers neutral hydroxyl departure only.
+Do not neutralize it or disable aromatic/source-state checks to get a green run.
+Root `265_Cedar_selected-autosol-lyxpqrp9`; 52.24s, all native jobs stopped, pinned
+C264 code unchanged, no ReadySet/AutoSol. Q13 now records exact general follow-up.
 
-Focused checks: 231 affected tests passed; one blank-header fixture failed in
-Biopython serialization before product code and was corrected. Final qualification
-rerun: **69 passed in 2.58s**; exact commands in the ledger. No full suite. Fresh C265 native acceptance is next;
-ignored c265_start.py/worker reuse the C264 recipe with a 2400-second owner bound.
+C266 will isolate Q05 acceptance with an explicitly changed A:5IU software-control
+pair on the same real-observation donor and declared free-end fixture. It is not a
+claim about donor chemistry or 1AP linking support. Ignored c266_start.py/worker
+retain original config and write a separate pair-fixture record, fresh run only,
+2400-second owner bound. Inspect progress/driver-result/active receipts.
+The storage queue now removes superseded intermediate build instructions and
+points to the completed C260 contract plus remaining resource/migration limits.
 
 ## Next — finish Q04/Q05 acceptance
 
-1. C264 is ready; C265 retries the real-observation chosen-model AutoSol control in a
+1. C266 retries the real-observation chosen-model AutoSol control in a
    fresh owned run. Reuse ignored c259 worker/driver with C263 explicit input policy
    and C118 neutral-purine permission. C259's software fixture declares free ends
    A:1/B:1/C:8 while preserving D:1 phosphate; it does not infer DiU chemistry.

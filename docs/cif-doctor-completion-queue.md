@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure estimate at C264
+## Near-term closure estimate at C265
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -31,7 +31,7 @@ open; the remaining work is now more specific:
 
 | Remaining work | Observable finish |
 | --- | --- |
-| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. C263 now connects an explicit prepared-input recipe through existing ownership/cache/ordinary resume and plane reads, retaining original authority. Both native acquisitions and relocated cold reads pass. C264 reaches linked preparation and restores the already-documented qualified legacy DNA-group contract under explicit aromatic handling. Retry the full chosen-model AutoSol control in a fresh run; CLI defaults remain unchanged. |
+| Q05: qualify the chosen-model anomalous-site connection | C253 implements the chosen-coordinate/unit-cell reference, immutable result and ordinary phase/map validation while preserving original-MR phasing. Focused relocation/failure/selection controls pass; qualify the supported native AutoSol route before closing acceptance. C259 fresh Phaser/Coot passes but curated 1AP acquisition stops before AutoSol: source-declared x/y/z are not supported by the ideal-only ordinary generator. C261 now qualifies isolated 1AP/5IU candidates using existing source/reader adapters plus a source-declared bond-row permutation that avoids native phosphate order corruption. C263 now connects an explicit prepared-input recipe through existing ownership/cache/ordinary resume and plane reads, retaining original authority. Both native acquisitions and relocated cold reads pass. C264 reaches linked preparation and restores the already-documented qualified legacy DNA-group contract under explicit aromatic handling. C265 confirms that header fix, then correctly refuses charged 1AP OP3 at an incoming link. Keep that Q13 chemical-state operation separate; use a declared A:5IU software control for independent native AutoSol acceptance. CLI defaults remain unchanged. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
@@ -267,68 +267,36 @@ Remaining acceptance:
    an earlier limitation. No in-place retries, automatic source rediscovery,
    renewed attempt allowance or latest-file selection.
 
-5. Keep completed evidence compact enough for 100-dataset campaigns. C228
-   deduplicates/compresses publications: the C227 parent falls from 101 MB to 4.9 MB;
-   a complete native ReadySet continuation is 43.1 MB including its 6.2 MB result.
-   Cold read peaks at 86.5 MB temporary evidence. C229 freezes compact storage in
-   new checked requests and forwards it through existing owners; old requests keep
-   their layout. C231 executes a fresh complete ordinary-source request: its final
-   result is 5.1 MB but the whole request is 134.5 MB. Cold replay and exact initial
-   checkpoint handoff pass without scientific duplicates. Next define interruption-safe
-   retirement of redundant successful working files only after all owners stop
-   and the sealed result verifies. A small publication does not bound a campaign.
-   Measure the entire request/continuation/publication footprint; retain exact
-   inputs, tool/policy identity, necessary check results and a reproducible trail.
-   Prefer deduplication/compression over weaker checking or larger disk allowances.
-   Bound temporary expansion, process memory and concurrency as well as persistent
-   storage. C230 removes repeat parent qualification; the real read still peaks
-   near 684 MB resident memory despite an 86.5 MB temporary evidence footprint.
-   C233 changes complete/continuation inventories to hash one file at a time;
-   the same C231 whole read falls from 599 to 562 MB resident memory with identical
-   results and 69.7 MB temporary evidence. This does not retire working files.
-   Do not extrapolate a small archive into permission for 100 concurrent readers.
-   C237 avoids a redundant composed-proof working copy; C238 references an already
-   frozen native inventory rather than embedding it again. A real owned plane
-   repair now retains 134.4 MB including its 4.5 MB publication, versus 195.9 MB
-   before those changes, with identical chosen model/restraints. This is a prepared
-   repair request. C242 measures the complete outer-request/ReadySet boundary:
-   181.6 MB retained, including 5.8 MB final publication; cold read uses 81.4 MB
-   peak temporary evidence and 645.1 MB resident memory. C239 refuses oversized
-   combined support before reading more component trees.
-   Preserve active/failed recovery evidence until known-stopped retention rules explicitly cover it; never
-   silently clean existing scientific runs. C252's two-attempt request retains 315.3 MB.
-   Its separate read-only C244 audit finds 181.6 MB of logical files but 88.2 MB
-   distinct bytes; repeated native validation/receipt copies dominate. Independent
-   compression of unique objects estimates 16.0 MB, excluding archive/index/public-
-   path requirements. No files were retired and this is not a working storage
-   format. Preserve public model/restraint references and nested owner inventories
-   when defining the known-stopped retirement policy. A bounded follow-up uses
-   the existing pack/expand APIs on an actual 131.7 MB C244 execution subtree:
-   **8.3 MB archive**, 418 files reconstructed exactly, 57.7 MB temporary physical
-   data, no original-source reads during expansion and no raised limits. Temporary
-   copies are removed; all originals remain unchanged. This proves archive
-   feasibility only, not complete-request reconstruction or permission to retire.
-   Invoking the existing prepared-repair runtime reader inside that extra view
-   passes with original reads/native execution forbidden. The analogous ReadySet
-   continuation is refused by the existing two-view nesting guard. This is a
-   prototype-storage limit; ordinary preparation/readback remains valid. Include
-   this deeper continuation and temporary-view lifetime in the next storage
-   contract. C254 now provides one explicit root-only working view sharing the
-   unchanged byte budget with the two ordinary proof layers. The complete actual
-   ReadySet continuation (ownership and inventories included) replays from an
-   11.2 MB archive: 87.1 MB peak archive expansion, 687.3 MB process peak,
-   81.63 s, all 116 source-file checksums unchanged. Temporary copies removed.
-   This closes the extra-view/lifetime prerequisite. Next bind retained archives
-   to original owner inventories, keep public model/restraint paths stable, and
-   verify a fresh complete request through interruption-safe retirement/recovery.
-   C256 also preserves the owner's existing partitions in a complete-attempt
-   archive and binds its index to the original finished seal. The complete C244
-   attempt replays from 15.5 MB instead of 180.0 MB logical files, at 87.4 MB
-   peak archive expansion. Shared request/acquisition inputs remain external;
-   no source files retired. Ordinary archive bytes stay identical. Next integrate
-   that view with ordinary history reads, retain all returned public paths, and
-   implement a durable known-stopped retirement transaction with partial/repeat
-   recovery. No original retirement or whole-request storage integration exists yet.
+5. **Storage implementation is complete through C260; finish representative
+   resource acceptance.** Reuse C228–C239 compact proofs, C254 bounded expansion,
+   C256 partitioned archives, C257 exact ordinary reads, C258 interrupted retirement
+   and C260 new ordinary/campaign integration. Do not rebuild transport, recovery,
+   archive formats or checkpoint publication. Their intermediate C228–C256 limits
+   and experiments remain historical evidence in the methods and evidence ledger.
+
+   The actual C244 copy falls from **181,566,343 B / 698 files to 33,661,526 B /
+   98 files**. Retirement removes 604 successful working duplicates; public models,
+   five PHILs, two CIFs and 51 public references remain stable. The C260 control
+   interrupts after 17 removals, reads the exact result, captures 97 campaign
+   references, relocates, completes retirement and verifies all 97 references.
+   Every original file/checksum/timestamp is unchanged. Exact commands and evidence:
+   ledger `ordinary_campaign_retention_2026_11_13`.
+
+   Remaining acceptance must measure the **whole request**, including shared
+   acquisitions, unsuccessful attempts, continuation and publication. Preserve
+   active/failed/unknown work. New ordinary cleanup is optional only after exact
+   scientific reread; a cleanup problem must not hide a chemistry failure. Historical
+   unarchived campaign references to working files need a separate reviewed
+   migration; inspection and old publication never clean them automatically.
+
+   Keep the shared **128 MiB physical expansion** bound and existing nesting/file
+   limits. C260 replay peaks at 87,440,990 B temporary expansion and 756,350,976 B
+   Python resident memory. Archive size does not bound process memory or justify
+   concurrent readers. One hundred identical retained requests would occupy
+   3,366,152,600 B by arithmetic only: no 100-dataset execution or concurrency claim.
+   Record representative differing outcomes and a practical concurrency/resource
+   recommendation before claiming laptop-scale campaign acceptance. No new byte
+   allowance or silent deletion is authorized by this queue.
 
 **Q04 holdover — finish chemical-plane repair before claiming closure.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical
@@ -669,6 +637,17 @@ unsupported. Name the workbook hash/version rather than assuming the installed
 NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
+
+**C265 concrete holdover:** curated 1AP has singly bonded terminal OP3 with charge
+−1 and no H. The explicit native backbone rule supports a neutral hydroxyl leaving
+group, so it refuses this internal link. General support must identify the source
+port by graph/state, preserve nonreacting OP1/OP2 and every retained charge/H,
+record the exact leaving-group and total-charge change, and qualify the linked
+native dictionary. Do not neutralize the source, bypass the explicit representation
+rule or add a 1AP-only exception. C58's earlier unqualified/legacy pathway does not
+establish this newer source-bound operation. Keep the refusal until that authority
+and native evidence exist. Original acquisition itself passed.
+
 
 **Open; incremental prerequisite for affected Q04/Q07/Q09/Q10/Q12 cases.**
 C152 reconfirms the specific Q03 phosphate-state boundary: retained PDU/5PC
