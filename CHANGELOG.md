@@ -17,6 +17,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### TopoStitch captured packing comparison
+
+- Compare authenticated Cedar native captures by atom identity and relative image,
+  preserving directed multiplicity and reporting collateral overlaps separately
+  from neighbor-list changes. Add a read-only developer report command.
+- Reuse Cedar capture and pair replay; no native worker, model edit, acceptance
+  threshold or default dependency changes. Detached report schema is additive.
+
+### TopoStitch native acceptance audit
+
+- Record complete NARestraints recipe and masked native derivative controls,
+  and distinguish additive contacts from bond edits that change exclusions.
+- Retain the broader-bend cleanup result and its collateral symmetry-contact
+  regressions. Local geometry remains partial; no refinement or model promotion.
+
 ### Shared TopoStitch image transport
 
 - Share Cartesian image coordinates and transpose-gradient accumulation between
