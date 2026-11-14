@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W61 — Audit chemistry at failed optimizer endpoints
+
+- Record two read-only native observations with common pair policy and explicit
+  local geometry/packing tradeoffs. Preserve both optimizer failures; no runtime,
+  schema, restraint, model-selection or acceptance-policy change.
+
 ### W60 — Retain chosen links and anchors in saved cut requests
 
 - Add an explicit forest request kind to the existing preview command; recompute

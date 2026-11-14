@@ -1699,3 +1699,66 @@ No native model file, candidate selection or stopping-policy change follows.
 Exact predeclared commands and failed-job receipts remain local; they use the
 same W51 CLI arguments (`--trial-iterations 500 --trial-calls 2000
 --timeout-seconds 1200`) through frozen W54 source.
+
+
+## W61 — Read-only chemistry at failed last accepted points
+
+Two predeclared serial calls to the existing captured endpoint observer inspect
+W54's authenticated callback-confirmed last accepted points (paired iteration 358;
+core-only 351). Receipt/file hashes, complete source/mask bindings and failed
+parent status are checked before extracting the points. Both review calls use
+**the same original complete 14-pair recipe**. The core-only optimization used 12
+core pairs, so its common review score is not its original optimization score.
+No optimizer, restraint change, refinement or candidate-model export is run.
+
+Phenix **2.2.1-6174**, frozen Cedar `f2345a8`, complete native execution (8.48/7.92s)
+returns `ENDPOINT_OBSERVATIONS_REVIEW` for both. The source observations agree
+exactly. Source/full-precision/three-decimal cases repeat exactly under the fixed
+original native manager; this is not fresh candidate reinterpretation. All inputs
+and both W54 FAILED receipts remain unchanged.
+
+| Full-precision observation | Paired endpoint | Core-only endpoint |
+| --- | ---: | ---: |
+| Common 14-pair objective | 7094.401790 | 7121.996121 |
+| Native geometry target | 6546.387958 | 6544.925962 |
+| Selected 2-pair target change from source | -52.144860 | -1.809397 |
+| Core 12-pair target change from source | -77.019477 | -77.014866 |
+| Largest atom displacement / Å | 0.196911 | 0.182182 |
+| Existing contacts newly positive in overlap | 18 | 18 |
+| Existing positive overlaps worsened | 110 | 113 |
+| Largest newly positive overlap / Å | 0.075566 | 0.075565 |
+| Largest positive-overlap increase / Å | 0.139359 | 0.162903 |
+| Native ordinary-torsion target change | +1.391813 | +1.659604 |
+| Native monomer-plane target change | -0.980100 | -2.792361 |
+
+All 12 core-pair targets improve in both; selected-0 worsens under core-only
+cleanup despite the small summed selected improvement. Affected scalar review
+covers 230 simple bonds, 356 angles and 39 chiral volumes. Source nominal absolute
+>=3 counts are 9 bonds/15 angles (3 angles >=5); both endpoint and rounded cases
+have zero in these screens and no chiral sign conflict. These are descriptive
+captured-geometry screens, **not new acceptance thresholds**. Fixed torsion/plane
+terms are unchanged. Individual native terms can worsen despite improved sums:
+the largest monomer-plane increase is at A:104 (~+3.53); the largest ordinary
+torsion increase involves C:111 O3′–C:112 P/O5′/C5′ (~+0.70846).
+
+Native pair identity/multiplicity remains 8316; no added/removed entries. Aggregate
+nonbonded target improves from 1077.721614 to 1002.145960/1003.381017 while individual
+contacts regress as listed. Rounding retains 18 newly positive overlaps for paired,
+and 17 for core-only. No numerical difference is used to relabel a failed optimizer
+or select an endpoint. The 345 captured constant-torsion rows all have weight 0 and
+periodicity 0: retain them as inventory, without claiming an unimplemented live
+individual qualification or treating them as 345 missing active restraint forces.
+
+Validation uses the existing `scripts/probe_topostitch_captured_objective.py`
+with explicit model/complete recipe/mask/native receipt/Cedar/Phenix paths and
+checksums, `--endpoint-points`, `--endpoint-sha256`, `--timeout-seconds 600`, and
+no trial flags. Exact two commands, predeclared plan, failed-parent hashes,
+authenticated staged captures, observations and executable summarizers are in
+local W61 evidence. Receipt hashes: paired
+`3ecd57b46a183933e242133f7d9c3f525e208c87e8b60eb742153045e753a40e`;
+core-only `1b38b14f40e87465332b79a1b8c1db21aab48075b0ca30022e420c3c3496d5f6`.
+No runtime/schema/dependency change: W60 full 1576 plus 229 subtests and installed 370
+remain the current software validation; roadmap synchronization and 8 focused
+roadmap tests pass for this documentation update. Scientific artifacts remain
+local and excluded from Git. S05 is still partial; ordinary enforcement, full
+chemical judgment and later matched diffraction qualification remain open.

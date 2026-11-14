@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W60; next W61.** Human W-numbers and exact code provenance live
+**Willow update W61; next W62.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -169,9 +169,12 @@ compact selection provenance; direct-image packets/scenes remain exact. The view
 shows the fixed logical sites and chosen links. This is proposal intent, not review.
 
 **Next bounded work:** actual graphical cut choice and persistent human review
-still need qualification. In parallel, reuse the existing read-only endpoint owner
-to inspect the W54 failed last-accepted points' affected chemistry/packing under
-one common complete recipe; preserve FAILED outcomes and avoid new optimization. P01 and P02 remain partial. Do not materialize an ASU before the
+still need qualification. W61 completed the two read-only W54 failed-point reviews
+under one common complete recipe: selected/core pair and scalar geometry improve,
+but individual packing/torsion/plane regressions remain visible. Original FAILED
+outcomes persist; no optimizer rerun, candidate or acceptance. See the W61 preview
+guide audit. Continue exact orbit/representation checks and complete Cedar native
+enforcement without treating recutting as geometry repair. P01 and P02 remain partial. Do not materialize an ASU before the
 P03 identity/scattering and P04 seam-chemistry gates. W55 supplies an independent
 sampled complex-Fcalc/ANISOU transport diagnostic, not complete invariance proof.
 

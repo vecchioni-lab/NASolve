@@ -267,7 +267,8 @@
         "W46 composes Cedar native torsion/plane kernels into endpoint observations with explicit live-policy, single-proxy and full-family target/gradient checks. Six controls retain individual regressions and unchanged fixed terms; no chemical acceptance or ordinary refinement route is added.",
         "W51 predeclared500-iteration paired/core-only controls reproduce the old200-iteration traces, then retain native rounding line-search failures; no candidate or endpoint qualification follows.",
         "W53 fresh native contexts reproduce both W51 last accepted points exactly and pass unchanged complete612-variable derivatives. Predeclared directional probes show score quantization and local steepest-direction quadratic decreases below one score ULP; this supports a precision limit, not convergence or acceptance.",
-        "W54 separately audits only callback-confirmed last accepted points after optimizer errors. Both native W51 trajectories/errors reproduce exactly; full/rounded612-variable diagnostics pass and original FAILED/no-adoption status remains. Source drift, absent accepted steps, budget shortage and partial diagnostic failure remain explicit."
+        "W54 separately audits only callback-confirmed last accepted points after optimizer errors. Both native W51 trajectories/errors reproduce exactly; full/rounded612-variable diagnostics pass and original FAILED/no-adoption status remains. Source drift, absent accepted steps, budget shortage and partial diagnostic failure remain explicit.",
+        "W61 reuses existing read-only native endpoint observation for both W54 failed accepted points under a common complete recipe. Source/full/rounded cases reproduce; scalar and selected/core-pair improvements coexist with individual packing/torsion/plane regressions. Both original optimizer failures persist; no candidate, new threshold or acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -296,13 +297,15 @@
         "E_NATIVE_TERMS",
         "E_NATIVE_STOPPING_LIMIT",
         "E_NATIVE_PRECISION",
-        "E_FAILED_ENDPOINT_DIAGNOSTIC"
+        "E_FAILED_ENDPOINT_DIAGNOSTIC",
+        "E_FAILED_ENDPOINT_CHEMISTRY"
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
+        "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
         "reviewer": "Linden",
-        "scope": "Failure-path diagnostics and two complete native reproductions; no optimizer recovery, chemistry acceptance or ordinary-refinement support"
+        "human_update": 61,
+        "scope": "Two complete read-only native observations of authenticated failed points; diagnostic improvement does not close chemistry, enforcement or convergence"
       }
     },
     {
@@ -887,6 +890,14 @@
       "reference": "docs/topostitch-periodic.md#w60--preserve-selected-link-and-anchor-intent-in-saved-proposals",
       "result": "9 new regressions; focused71,full1576 plus229subtests,installed/relocated370,6helps. Both public alternatives reproduce exact prior observations while retaining graph-link/anchor choice; installed forest and legacy commands pass. JS intent display/interactions checked with doubles.",
       "limitation": "Proposal intent is not human approval; no GUI editing, automatic cut, coordinate writer, chemical seam or native execution. Browser visual review open. Old direct-image packets unchanged; new kind requires compatible reader. Scientific artifacts local only."
+    },
+    "E_FAILED_ENDPOINT_CHEMISTRY": {
+      "kind": "failed_endpoint_chemistry_observations",
+      "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
+      "human_update": 61,
+      "reference": "docs/topostitch-preview.md#w61--read-only-chemistry-at-failed-last-accepted-points",
+      "result": "Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8. Exact source equality/input preservation and all receipt inventories verified. Both selected/core target effects, scalar geometry, ordinary torsions/planes and8316 native contacts reviewed at full/rounded precision.",
+      "limitation": "Original FAILED outcomes retained. No candidate model, fresh candidate reinterpretation, geometry threshold, optimization, ordinary refinement or scientific acceptance. Zero-weight constant inventory is not a missing positive force. Runtime unchanged; W60 tests/install remain applicable. Scientific data local only."
     }
   },
   "benchmarks": [
@@ -1002,8 +1013,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 60,
-    "next": 61,
+    "current": 61,
+    "next": 62,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1171,6 +1182,12 @@
       {
         "number": 60,
         "title": "Retain chosen graph links and anchors in saved proposals",
+        "state": "RECORDED",
+        "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd"
+      },
+      {
+        "number": 61,
+        "title": "Inspect chemistry and packing at failed last accepted points",
         "state": "RECORDED",
         "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd"
       }
