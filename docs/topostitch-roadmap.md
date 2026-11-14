@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W42 | Expose the captured native job through one reusable package boundary | RECORDED |
 | W43 | Review full-precision native endpoint packing beside serialized coordinates | RECORDED |
 | W44 | Expose individual selected and core pair contributions | RECORDED |
-| W45 | Isolate intended contacts with a matched retained-core control | IN_PROGRESS |
+| W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
 
 ## Finish lines
 
@@ -191,8 +191,8 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
 **Next action:** Compose maintained Cedar native torsion/plane kernels into full-precision and rounded endpoint observations, checking complete live proxy policy and native sums without inventing missing symmetry. Then qualify affected chemistry and ordinary native enforcement before a declared damaged-model bend/cleanup and matched refinement comparison.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/f448549b96a90d4035e3479c297212bbb5a339e5); Individual native term/container parity and selected/core endpoint attribution; lossless compact review and installed relocation; no scientific acceptance.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a8531f5958a9d3c8857ed4e2f224b1a8a4f3c108); Matched retained-core native control and fresh endpoint parity on unchanged W44 runtime; no scientific acceptance.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -546,6 +546,13 @@ Five complete Phenix 2.2.1-6174 source/full-precision/rounded observations repla
 [Evidence contract](topostitch-preview.md#w44--individual-pair-attribution) at [W44](https://github.com/vecchioni-lab/NASolve/commit/f448549b96a90d4035e3479c297212bbb5a339e5).
 Five complete Phenix 2.2.1-6174 endpoint controls reproduce native container sums and expose individual pair changes. Whole-window paired improves all pair totals; cleanup worsens one selected and two core pairs. Full Willow 1397 plus 229 subtests; focused 50; installed/relocated 140 and byte-identical native report. Existing review dictionaries remain identical after removing only the new field; compact JSON reduces size about 55%.
 **Limit:** Read-only diagnostic attribution, not calibrated chemistry acceptance. Original trials remain capped with packing regressions and imperfect contacts. No objective changes, ordinary refinement-consumer qualification, Cedar edits/merge or campaign adoption. Scientific files stay local.
+
+<a id="e_core_control"></a>
+### E_CORE_CONTROL — matched_retained_core_native_control
+
+[Evidence contract](topostitch-preview.md#w45--matched-retained-core-control) at [W45](https://github.com/vecchioni-lab/NASolve/commit/a8531f5958a9d3c8857ed4e2f224b1a8a4f3c108).
+One complete Phenix 2.2.1-6174 core-only trial uses the same source, mask, tether and caps as W41 paired trial. All 612-variable initial/full/rounded derivative checks pass, as do complete endpoint observations and independent rounded target/gradient/packing parity. All core pair totals improve; one selected pair worsens without its terms, while both improve with them. Existing APIs suffice; W44 full/installed validation remains applicable.
+**Limit:** Both trials remain NOT_CONVERGED_LIMIT; per-contact regressions, imperfect contacts, broader chemistry and ordinary refinement enforcement remain open. No runtime/schema change, new chemical policy, Cedar edits, diffraction or adoption. Generated scientific evidence stays local.
 
 ## Deferred extensions, not hidden blockers
 
