@@ -758,3 +758,62 @@ The roadmap tracks these as placement preflight, not closure of S06.
 Gemmi API references:
 [symmetry operations](https://gemmi.readthedocs.io/en/latest/symmetry.html) and
 [unit-cell transforms](https://gemmi.readthedocs.io/en/latest/cell.html).
+
+## W48 — Declared periodic graph for Pine
+
+The installed backend `nasolve.topostitch_graph` adds two read-only APIs:
+
+```python
+from nasolve.topostitch_graph import build_registered_periodic_graph
+report = build_registered_periodic_graph(
+    model_path, discovery_manifest_path, registration_path,
+    extra_edges=[{
+        "kind": "base_pairing",
+        "source_site": "A:1",       # logical identities in the selected copy
+        "target_site": "B:2",
+        "target_operator_xyz": "x+1,y,z",
+    }],
+)
+```
+
+The example operator must belong to the input crystal. The three paths are
+explicit caller inputs, validated by the existing discovery/registration owners;
+source, discovery and registration hashes bind the report. It contains no
+host-absolute operational path. `extra_edges` defaults to empty. Their values
+are explicit caller hypotheses, not inferred or accepted connections.
+
+The registered report has kind `topostitch-registered-periodic-graph`, schema 1.
+It retains every target site for the one declared discovery copy, including
+missing mappings, coordinate identity issues and sites outside declared routes.
+Other registered copies and unrepresented atom indices remain excluded scope.
+Existing route order supplies backbone edges and declared core pairs supply
+pairing edges. Extra edges may be pairing, stacking or symmetry correspondence;
+extra covalent links are refused until seam chemistry has its own qualified
+adapter. Chemical, representation and unknown route boundaries, protected sites
+and do-not-connect intent are retained. A boundary is never guessed from PDB
+labels, a missing atom or the graph's connected-component count.
+
+The nested `topostitch-declared-periodic-graph` schema-1 report is also available
+through `describe_periodic_graph(node_ids, edges, cell_parameters=..., space_group=...)`.
+Each explicit edge has `edge_id`, `kind`, `source`, `target`, and
+`target_operator_xyz`; node and edge IDs are distinct positive integers, not PDB
+serials. Edge `u -> v` means `x_u` connects to `g(x_v)`. Reverse traversal uses
+`g^-1`. The deterministic spanning forest records each parent edge and exact root
+image `T_v`; each non-tree edge records the loop `T_u g T_v^-1`. Nonidentity
+translation or screw loops are legitimate winding observations. Mixed edge-kind
+loops do not prove chemical strand closure. Parallel edges stay explicit.
+
+Limits are 10,000 nodes, 20,000 edges and absolute exact operator numerators at
+most 1,000,000. Gemmi composition is checked against Python integer arithmetic;
+whole lattice translations are never wrapped away. Scope remains the shared
+conventional single-model PDB/Sohncke adapter. These APIs change no coordinates,
+chemistry, registry or checkpoint. Physical orbit equivalence, whole-ASU/tile
+multiplicity, cut choices, materialization and scattering invariance remain open.
+
+Validation: 20 focused graph regressions include noncommuting screw/translation
+order, reverse edges, centering, self loops, missing sites and checksum drift.
+The pre-patch checkout fails to import the absent backend. Public 8D93 consumes
+its existing declared artifact references and preserves all source bytes. Full
+Willow and installed/relocated results are recorded in the audited roadmap.
+No Phenix/Coot execution is needed for this read-only graph addition. Scientific
+fixtures and generated reports remain local and are not included in Git.

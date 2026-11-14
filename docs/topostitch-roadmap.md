@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W47 — Bind one periodic edge to exact reciprocal partner incidence.** Next: W48.
+**Current update: W48 — Preserve declared periodic routes and exact image loops.** Next: W49.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W38 | Compose bounded native geometry with an explicit movable mask | RECORDED |
 | W39 | Reconstruct captured native context for masked evaluation | RECORDED |
 | W40 | Bind native endpoint review to exact movement and serialized bytes | RECORDED |
 | W41 | Run bounded native trials with initial and endpoint derivative gates | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
 | W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | RECORDED |
 | W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
+| W48 | Preserve declared periodic routes and exact image loops | IN_PROGRESS |
 
 ## Finish lines
 

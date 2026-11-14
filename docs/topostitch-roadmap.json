@@ -860,8 +860,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 47,
-    "next": 48,
+    "current": 48,
+    "next": 49,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -953,6 +953,12 @@
         "title": "Bind one periodic edge to exact reciprocal partner incidence",
         "state": "RECORDED",
         "code_commit": "c887c65ea966b3a7107a1220289fde646587e875"
+      },
+      {
+        "number": 48,
+        "title": "Preserve declared periodic routes and exact image loops",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

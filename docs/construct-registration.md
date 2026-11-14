@@ -802,6 +802,11 @@ not a permanent truth. A tile record may be:
 A declared tile always remains visible as experimental intent even if the
 observed crystal suggests another organization.
 
+The Willow W48 [declared graph prototype](topostitch-periodic.md#w48--declared-periodic-graph-for-pine)
+now preserves one registered discovery copy's routes and typed image loops.
+Missing sites and excluded copies/coordinates remain explicit. This is not yet a
+complete recut-ready graph, physical orbit quotient or tile inference engine.
+
 ### Full-strand input and tile reconstruction
 
 When the user can provide the actual complete strand list, that strand inventory

@@ -429,6 +429,20 @@
       "global_assignment_validated": false,
       "full_molecular_identity_validated": false,
       "runtime_authority": false
+    },
+    "declared_periodic_graph": {
+      "module": "nasolve.topostitch_graph",
+      "contract": "docs/topostitch-periodic.md#w48--declared-periodic-graph-for-pine",
+      "schema_version": 1,
+      "inputs": "exact registered discovery copy plus caller-declared noncovalent image edges",
+      "missing_sites_retained": true,
+      "edge_kinds_distinct": true,
+      "exact_noncommuting_cycle_images": true,
+      "other_copy_and_coordinate_scope_explicit": true,
+      "physical_orbit_identity_validated": false,
+      "covalent_seam_creation": false,
+      "cut_materialization": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

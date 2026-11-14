@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W47; next W48.** W33 introduced human update numbers without
+**Willow update W48; next W49.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,15 +173,20 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W47 edge:** one exact reciprocal-incidence owner now connects the
-pairing and atom-image audits. A periodic fit requires one partner within the
-selected-coordinate scope; lattice shifts are never wrapped away. Ambiguity and
-global/molecular identity remain open. Full Willow: 1,424 + 229 subtests;
-focused/installed-relocated: 68. Existing public 8D93 placement reproduces exactly
-apart from added capacity metadata and algorithm v5. No native runtime/Cedar edits.
-Next prototype the minimum declared periodic graph for one Pine cut, retaining
-edge kinds, unknown coverage and winding; materialization/physical approval stay
-behind the existing F02/Pine gates. S05 ordinary refinement remains separate.
+**Current W48 edge:** a read-only periodic graph reuses Pine registration and
+TopoStitch declared routes. It keeps typed edges, source bindings, missing sites,
+boundary meanings and excluded scope; exact loop operators retain screw and
+translation winding. No coordinate/materialization or native-runtime changes.
+Next qualify explicit image relabeling algebra for one declared cut, retaining
+P01/F02 physical gates and P02 graphical review as incomplete. See the
+[API and scope](topostitch-periodic.md#w48--declared-periodic-graph-for-pine).
+
+**Prior W47 edge:** periodic fitting now consumes exact reciprocal incidence
+bound to selected source/transformed atom audits. Source and moved fixtures each
+have one partner in that selected scope; complete molecular/global identity is
+still open. Full Willow: 1,424 + 229 subtests; focused/installed-relocated: 68.
+Existing numerical placement remains unchanged apart from capacity metadata
+and algorithm v5. No Cedar/native changes.
 
 **Prior W46 edge:** endpoint review now composes maintained Cedar torsion/plane
 kernels with checked live proxy semantics and complete family target/gradient

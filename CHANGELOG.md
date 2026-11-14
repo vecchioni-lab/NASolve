@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W48 — Preserve declared periodic routes and exact image loops
+
+- Add a read-only typed periodic multigraph and a checksum-bound Pine registration
+  adapter. Retain missing sites, uncertain/chemical/representation boundaries,
+  protected sites, excluded coordinates and other-copy scope explicitly.
+- Keep backbone, pairing, stacking and symmetry correspondence separate. Exact
+  spanning-tree/cycle operators preserve noncommuting rotations and lattice winding.
+- Bound graph size and integer arithmetic. No existing CLI/schema is changed;
+  new graph reports do not authorize covalent seam creation, recutting or refinement.
+
 ### W47 — Bind a periodic edge to exact reciprocal partner incidence
 
 - Reuse one exact incidence calculation in pairing alternatives and selected
