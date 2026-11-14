@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Read complete printed parallelity observations (C287)
+
+- Add a read-only observer for Phenix GEO parallelity groups after the installed
+  parser dropped later groups and misassigned unequal-plane tail atoms. Preserve
+  group counts, original plane columns and printed residual/angle/sigma values.
+- Incomplete or unsupported evidence refuses; absent output is not a zero-restraint
+  claim. No restraint reconstruction, chemistry approval, installed-tool changes
+  or automatic runtime gate. Both saved native reports retain all 58 groups.
+
 ### Reuse numerical calculations during status and archive checks (C284)
 
 - Complete-request status and archive-eligibility inspection now use the same

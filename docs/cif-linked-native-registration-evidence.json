@@ -94783,5 +94783,123 @@
     "documentation_cleanup": "One current acceptance table and stable contracts replace completed Q04 acceptance chronology; shortened docs index and corrected README/architecture/human overview. Historical evidence retained in Git/ledger; no raw scientific artifacts removed.",
     "next": "Q06 effective native plane/parallelity membership, ordinary consumer derivatives and achieved geometry; PDU post-refinement survival plus held-out related substituent. Reuse existing owners and saved C279 before launching duplicate refinement.",
     "tests": "Documentation-only; git diff --check. Retain C283 focused/relocation/synthetic results and C284 170 focused tests plus exact saved-native comparisons. No new or full suite. Last completely green full source C220/583d30df (9178 tests +276 subtests)."
+  },
+  "ordinary_refinement_effective_plane_observations_2026_11_14": {
+    "checkpoint": "C286",
+    "code_commit": "d5996bc4",
+    "status": "NATIVE_INPUT_RECONSTRUCTION_AND_PRINTED_PLANE_MATCH_WITH_PARSER_LIMIT",
+    "prior_work": "C279 actual ordinary refinement retained complete chosen inputs and GEO; C23-C26 established diagnostic parallelity defects/corrections; C215/C216 plane mechanics/achieved geometry do not qualify ordinary full NAR refinement. Reuse saved C279, no diffraction rerun.",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c286_start.py",
+    "summary": {
+      "status": "NATIVE_REFINEMENT_INPUT_OBSERVATION_COMPLETE",
+      "comparison": {
+        "planarity_printed_membership_and_rounded_weights_match": true,
+        "parallelity_printed_ordered_membership_match": false,
+        "planarity_native_count": 45,
+        "planarity_printed_count": 45,
+        "parallelity_native_count": 58,
+        "parallelity_printed_count": 1,
+        "planarity_prepared_vs_refined_inventory_same": true,
+        "parallelity_prepared_vs_refined_inventory_same": true
+      },
+      "tool_version": "2.2.1",
+      "tool_build": "phenix-2.2.1-6174",
+      "unchanged_source_files": 410,
+      "stopped_native_processes": 3,
+      "source_checkpoint": "refine-001",
+      "captures": {
+        "prepared": "prepared/cif-native-noyq70zf/native_receipt.json",
+        "refined": "refined/cif-native-560i85r7/native_receipt.json"
+      },
+      "retained_bytes": 20435971,
+      "retained_files": 61,
+      "elapsed_seconds": 58.42882104200544,
+      "maximum_python_resident_bytes": 632864768,
+      "scope": "Fresh interpretation of exact prepared/final models with validated ordered refinement inputs, plus existing native parser of actual saved GEO. No Coot, ReadySet, phasing or diffraction refinement repeated. A reconstructed manager and rounded GEO observations do not establish the original refinement process gradient or scientific acceptance. No inputs, SDK or selected checkpoint edited."
+    },
+    "driver": {
+      "returncode": 0,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "observation": "Both prepared and refined model interpretations preserve identical 45 planarity and 58 parallelity proxy inventories. All 45 printed final planes match native membership and rounded weights. Installed GeoParser returned only 1/58 parallelity groups and assigned a longer second-plane tail to the first; no missing-restraint scientific diagnosis follows.",
+    "records": {
+      "anchor": "live_tests_directory",
+      "path": "286_Cedar_refinement-consumer-qmeu53bo",
+      "sha256": {
+        "start.json": "36a20160d8a3c473efc5827423e3822cab42186dd0ba60d2340ff5689a1812ec",
+        "runner-pins.json": "551e54309b1a51c473e2dadbe6a7834bd6e57bf0456b5eee807cc7b7853d0238",
+        "worker.py": "65d7f247bd4b90393bdae431b61881d25a9b0fd83a7296e8d4bb1ac7e30d072e",
+        "geo_worker.py": "f635cee7e7fc3e9edb8f9bc577948e35d07f48890f27a6574828a8044a1b57ef",
+        "source-inventory.json": "3031a2e3b804f180a9425a2fc0e76bd53fde64203e81faad803ce3aa6f7e4b54",
+        "summary.json": "b99aa18b1cd334954614c44685a4cc989fa7a4b30a9cc6b62fbe3fe6c10b8608",
+        "comparison.json": "6ebbebee57b59cc86b40fa1482d35c5064cb355ea18412cf17317294a878e2d7",
+        "geo-observations.json": "4ccb4f229106d52aa94855e6aa33fe79b7dc8496705fdaec8fce7bcdace4bbfb",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+      }
+    },
+    "compatibility": "Existing native interpretation owner, complete-checkpoint reader and exact refinement namespace adapter unchanged. Actual Phenix 2.2.1 / build phenix-2.2.1-6174 interpretation completed; no Coot/ReadySet/AutoSol/diffraction refinement repeated.",
+    "artifacts": "20.4 MB local native control at summary, no original dataset copy. All 410 original run files unchanged. Raw scientific/native inventories and logs excluded from Git.",
+    "limits": "A reconstructed manager and printed GEO do not establish exact original runtime weights, ordinary refinement derivatives, chemical survival, PDU support or structural approval. No installed SDK changes."
+  },
+  "printed_parallelity_readback_2026_11_14": {
+    "checkpoint": "C287",
+    "base_commit": "d5996bc4",
+    "status": "FOCUSED_AND_NATIVE_SAVED_READBACK_PASS",
+    "prior_work": "Repository search found no existing GEO-parallelity reader. C286 directly reproduced installed GeoParser blank-line section truncation (1 of 58) and unequal-column misassignment. Native to_proxy also has a placeholder weight and is never used. Reuse native captures and add only a pure printed-observation reader.",
+    "before_after": "Read all declared parallelity groups across blank lines and preserve both fixed label columns, including unequal plane sizes. Count mismatch, malformed/unsupported text, ambiguous labels, nonfinite values and concurrent input changes refuse rather than return partial evidence. Missing section is NOT_RECORDED, not zero. Printed numerical tokens and values are retained without exact weight/target reconstruction.",
+    "files": {
+      "src/nasolve/cif_printed_parallelity.py": "ee50a9fe0626cf6480fb1253d56ede04f599fed9c1a5a1d332a6eab51f4eac05",
+      "tests/test_cif_printed_parallelity.py": "8b8b321b857a127e5ab6c5cbbb9a2a67e5584271baa87097aa30f0409e6f6423"
+    },
+    "schema": {
+      "version": 1,
+      "policy_id": "cif-printed-parallelity-observation-v1",
+      "scope": "Pure internal observation report only; no checkpoint/request/worker format change or automatic adoption."
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_printed_parallelity.py",
+        "before": "New API absent: collection failure in 0.08 s. Initial 18 tests passed; real GEO then exposed unhandled Nonbonded interactions heading. Added native-format boundary regression: 1 failed,18 passed in 0.40 s before exact fix.",
+        "after": "19 passed in 0.05 s. Both unequal-plane directions, multiple sections/origins, absent versus explicit zero, bad counts/labels/units/numerics/content, changed input and relocated read-only file covered."
+      }
+    ],
+    "saved_read_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c287_printed_readback_v2.py",
+    "saved_native_comparison": {
+      "status": "PRINTED_PARALLELITY_READBACK_PASS",
+      "results": {
+        "prepared": {
+          "groups": 58,
+          "ordered_plane_membership_matches": true,
+          "printed_sha256": "b64d48cbbb1df86e788faee6007c15c8a4da8c3c6d9e836a7c2beb69edaacc6f",
+          "native_receipt_sha256": "bc542e7c0ac17edcd57cf6c617d13ccdceee68ee2e01bf5d8d33a6a774f40b80",
+          "unequal_plane_groups": 54
+        },
+        "refined": {
+          "groups": 58,
+          "ordered_plane_membership_matches": true,
+          "printed_sha256": "555f05c41c56a99910a1fd716b8803062b2ec383b8637bbf55e5b2aa51049e5c",
+          "native_receipt_sha256": "6b72e7ecbf1bbdc40100ec47377bf15fe3719676aa7956d2c35aa492c759a531",
+          "unequal_plane_groups": 54
+        }
+      },
+      "original_native_control_files_unchanged": 64,
+      "original_run_files_unchanged": 410,
+      "elapsed_seconds": 0.6030487500247546,
+      "new_native_calls": 0,
+      "scope": "Existing C286 native capture owner authenticates inventory; source file checks preserve old native/refinement evidence. Both before/after printed reports match all 58 ordered native plane memberships, including unequal group sizes. Printed residual/angle/sigma are observations, not exact weights/targets or derivative/scientific qualification."
+    },
+    "records": {
+      "anchor": "everyday_checkout",
+      "path": "branch-artifacts/cedar/runners/c287_printed_readback_records_v2",
+      "sha256": {
+        "summary.json": "eddd4c07ac6eaf6064700a14bc61d51a652e2dac7c50f78261328d557b1b351c",
+        "refined-observations.json": "632148789e1311fcc2f228b9f9f78cadd533ba66a73fc60f79d12d7dec1a95b8",
+        "prepared-observations.json": "ceb70295ccffe6185dda68108fec1b292db9b3d35ecb843dfe8a8bc6d6a6efad"
+      }
+    },
+    "compatibility": "Supports observed pipe-header GEO with PDB label columns and residual/delta(deg)/sigma. Unsupported formats explicitly refuse; no source scientific threshold, Phenix installation, worker, model or selection edits. Pure API is diagnostic, not an ordinary runtime gate.",
+    "artifacts": "Compact metadata committed; full observations/runners and C286 native proof stay local. No native rerun; all 64 C286 control files and 410 original run files unchanged.",
+    "remaining": "Q06 raw ordinary native derivative behavior, exact effective targets/weights and achieved chemical geometry remain. Membership agreement does not close PDU post-refinement survival. No full suite."
   }
 }

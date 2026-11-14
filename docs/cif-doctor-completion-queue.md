@@ -481,6 +481,15 @@ report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
 
+C286/C287 establish the first consumer observation: the saved C279 before/after
+GEO retains all 58 ordered parallelity memberships; final GEO also matches all
+45 native plane groups and rounded weights. The comparison uses fresh native
+interpretation of the exact selected inputs. A small checked
+reader avoids the installed GEO parser's truncated/unequal-plane readback. No
+refinement was repeated. This closes this control's printed membership check,
+not exact targets/weights, derivatives, chemical survival or PDU acceptance.
+
+
 **Open; can start independently, required before ordinary-refinement claims.**
 C206 adds an explicit achieved-geometry requirement: check parent-to-mutant
 orientation, local trigonal geometry, retained ring planes and exocyclic coverage,

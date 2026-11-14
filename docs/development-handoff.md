@@ -1,8 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C285**. Active **cedar** in NASolve-c96; latest pushed
-code **C284 `aee2fbd7`**, preceded by C283 `af9aee87`. C285 is documentation/scope
-reconciliation. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
+Updated **2026-11-14, C287**. Active **cedar** in NASolve-c96; latest pushed
+code **C284 `aee2fbd7`**, preceded by C283 `af9aee87`. C285 scope reconciliation is pushed as `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
 connectivity interruptions expected. Focused checks only: **no full suite, new
 branch or merge**. Linden owns Pine/Willow; everyday NASolve code stays untouched.
 
@@ -42,11 +41,26 @@ Exact commands, hashes, outcomes and limitations are in the existing evidence
 ledger under C280–C285 keys, ending `q04_q05_supported_scope_2026_11_14`.
 C283 focused: 271 tests +92 subtests, plus 5 sandbox-blocked process tests passing
 with ps access; relocated temporary source: 16 pass. C284: 170 pass in 485.09 s.
-All native and read-only validation groups have stopped; **no active job**.
+C280–C287 validation groups stopped; no active jobs remain.
 No raw science/logs/runners are committed. Last full suite remains
 **C220/583d30df, 9,178 tests +276 subtests**, not a current-source pass.
 
 ## Next bounded work — Q06: what refinement actually does
+
+**C286 completed and stopped:** exact prepared/final input interpretation and
+native GEO observation retain 410 original files. Both fresh native inventories
+have the same 45 planes and 58 parallelities; all printed final plane members and
+rounded weights agree. The installed GeoParser returns only 1/58 parallelities
+and misassigns unequal-plane tails. No SDK edits or diffraction rerun.
+
+**C287 tested, being published:** pure checked GEO parallelity reader retains all
+58 groups before/after, exactly matching ordered native membership, including 54
+unequal-plane groups. Nineteen focused tests pass, including a native nonbonded
+header regression and relocated read. All 64 C286 files and 410 original files
+unchanged. Printed values are observations only; no exact weight/target inference.
+No active jobs remain. Next inspect actual native derivative behavior with the
+existing numerical helpers and exact captured inputs; keep raw and corrected
+results distinct. Do not rerun C279 preparation/phasing/refinement.
 
 Start from saved C279's successful ordinary refinement and its exact chosen
 bundle. Reuse existing native inventory, source-selected trigonal measurements
@@ -60,8 +74,8 @@ evaluators. C215 validates plane-completion energy accounting with zero parallel
 C216 measures general source-selected trigonal geometry. These do not qualify
 ordinary phenix.refine derivatives. Installed local source still has the earlier
 accumulation loop; source inspection alone is not a new ordinary-consumer test.
-The existing Phenix GeoParser can read printed .geo observations; printed values
-have limited precision and must not be promoted to exact native source authority.
+C287 supplies checked parallelity observations after the installed GeoParser
+failed count/column agreement. Printed precision must not become exact authority.
 
 Simon's reported PDU distortion after collaborator refinement is explicitly Q06,
 then reused in Q07. Exact collaborator files/revision/settings remain unidentified;

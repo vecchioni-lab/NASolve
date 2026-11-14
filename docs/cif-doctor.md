@@ -1054,6 +1054,45 @@ incomplete native work, a shared/foreign/unknown active group, or a missing camp
 stage receipt. Existing campaign supervision remains unchanged. No default
 checked-preparation activation or standalone native-attempt isolation is added.
 
+### Observe actual printed refinement parallelities (C287)
+
+`cif_printed_parallelity.read_printed_parallelity(path)` reads an explicit saved
+GEO file; `parse_printed_parallelity(text)` supplies the pure parser. Supported
+input uses pipe section headings, fixed PDB-label columns and the printed
+residual/delta(deg)/sigma table. Blank lines separate groups without ending the
+section. Each group's first row identifies both columns; longer first or second
+planes retain their own atoms. Declared group counts must match complete parsed
+groups. Missing sections report NOT_RECORDED, not zero native restraints.
+
+The schema-1 `cif-printed-parallelity-observation-v1` observation retains literal
+labels, origin text, line positions, printed number tokens/values and source hash.
+Changed input, malformed counts/labels/numerics or unsupported layout refuses.
+It never reconstructs a restraint, supplies an exact weight/target, edits the model
+or declares scientific PASS. This is a diagnostic reader, not an ordinary runtime
+acceptance gate; printed precision remains separate from exact native evidence.
+
+C286 rereads C279's authenticated prepared/refined models with their exact validated
+refinement input set using **Phenix 2.2.1-6174 / dispatcher 2.2.1**. Both fresh native
+interpretations preserve 45 plane and 58 parallelity inventories. All 45 final
+printed planes agree in membership and rounded weights. The installed GEO parser
+returned only 1/58 parallelities and moved a longer second-plane tail into the first.
+Its proxy reconstruction is not used; this is a readback defect, not evidence that
+Phenix lost 57 restraints during refinement. No SDK file was changed.
+
+C287's reader agrees with all 58 ordered native plane memberships before and after
+refinement, including 54 unequal-plane groups. All 64 native-control files and 410
+original run files preserve bytes/timestamps; no native rerun. Nineteen focused
+regressions include both unequal-plane directions, multiple origins, malformed
+and changed input, absent versus explicit zero and relocated read-only files.
+The first native read exposed an unsupported nonbonded interactions heading; its
+new regression fails before the boundary fix and passes afterward. Exact receipts:
+`ordinary_refinement_effective_plane_observations_2026_11_14` and
+`printed_parallelity_readback_2026_11_14` in the evidence ledger.
+
+Q06 still needs ordinary-consumer derivatives, exact targets/weights and achieved
+chemical geometry. The diagnostic corrected evaluator, reconstructed manager and
+printed table do not qualify original Phenix refinement forces or PDU survival.
+
 ### Avoid repeated numerical work during exact inspection (C273)
 
 The exact complete-request reader owns one short-lived numerical reuse scope.
