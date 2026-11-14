@@ -192,7 +192,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 **Next action:** Qualify affected chemistry and complete ordinary native enforcement through Cedar before a supported repair/refinement route. Preserve failed/capped outcomes; passing accepted-point derivatives do not justify tolerance relaxation or adoption. Continue shared physical identity and Pine preview/scattering gates without treating recutting as repair.
 **Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/5cecbb513264c2f534db759a5822fa8d36eea444); Failure-path diagnostics and two complete native reproductions; no optimizer recovery, chemistry acceptance or ordinary-refinement support.
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/6bdc16884bbd9a5c47450d67f3f08743c56e7992); Failure-path diagnostics and two complete native reproductions; no optimizer recovery, chemistry acceptance or ordinary-refinement support.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -615,7 +615,7 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 <a id="e_failed_endpoint_diagnostic"></a>
 ### E_FAILED_ENDPOINT_DIAGNOSTIC — last_accepted_failed_trial_observation
 
-[Evidence contract](topostitch-preview.md#w54--audit-last-accepted-points-without-recovering-failed-trials) at [W54](https://github.com/vecchioni-lab/NASolve/commit/5cecbb513264c2f534db759a5822fa8d36eea444).
+[Evidence contract](topostitch-preview.md#w54--audit-last-accepted-points-without-recovering-failed-trials) at [W54](https://github.com/vecchioni-lab/NASolve/commit/6bdc16884bbd9a5c47450d67f3f08743c56e7992).
 11 new capability regressions fail against preceding runtime; all33 focused trial/job tests pass. Full Willow1489 plus229 subtests; installed/relocated276,5helps,lean import and3.10syntax. Both complete Phenix2.2.1-6174 controls reproduce W51 traces,accepted history and errors exactly. Nested full/rounded612-variable checks pass; full samples match independentW53. Failed jobs return2, sources remain unchanged.
 **Limit:** Additive diagnostic metadata only. Original FAILED/error preserved; no rejected-trial fallback, candidate emission, tolerance change or scientific acceptance. Native observations remain local; no Cedar/runtime SDK change, schema migration or full combined-branch qualification.
 

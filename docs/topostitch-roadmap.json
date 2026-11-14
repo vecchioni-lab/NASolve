@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
+  "audited_code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -300,7 +300,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
+        "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
         "reviewer": "Linden",
         "scope": "Failure-path diagnostics and two complete native reproductions; no optimizer recovery, chemistry acceptance or ordinary-refinement support"
       }
@@ -817,7 +817,7 @@
     },
     "E_FAILED_ENDPOINT_DIAGNOSTIC": {
       "kind": "last_accepted_failed_trial_observation",
-      "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
+      "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
       "human_update": 54,
       "reference": "docs/topostitch-preview.md#w54--audit-last-accepted-points-without-recovering-failed-trials",
       "result": "11 new capability regressions fail against preceding runtime; all33 focused trial/job tests pass. Full Willow1489 plus229 subtests; installed/relocated276,5helps,lean import and3.10syntax. Both complete Phenix2.2.1-6174 controls reproduce W51 traces,accepted history and errors exactly. Nested full/rounded612-variable checks pass; full samples match independentW53. Failed jobs return2, sources remain unchanged.",
@@ -1071,7 +1071,7 @@
         "number": 54,
         "title": "Audit accepted points while preserving optimizer failures",
         "state": "RECORDED",
-        "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444"
+        "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992"
       }
     ]
   }
