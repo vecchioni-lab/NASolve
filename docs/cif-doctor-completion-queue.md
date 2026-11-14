@@ -77,9 +77,9 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
-| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition; C245 connects prepare-run and result notes; C246 connects explicit checked PostMR/campaign forwarding. C247 carries notes through publication/status. C249 reports scoped explicit selected-CIF coverage. Finish remaining recovery and storage acceptance. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. C251 adds explicit later alternatives from frozen construction, with immutable receipts, guarded saves and exact Coot/refinement inputs. C252 validates native alternatives, relocated Coot/refinement inputs and manual-choice preservation. C270/C271/C272 qualify chosen-model phasing, later-selection preservation, relocated readback and final native Coot loading. Finish practical read-cost and explicit recovery/rollout scope reconciliation. |
-| **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
+| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Preparation, owned repair/fallback, fresh-attempt recovery and successful-working retirement have their recorded controls. Finish repeated-failure/campaign resource acceptance and the explicit supported recovery scope; preserve unknown/failed work. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Alternatives, selected-model phasing, cold inspection and the normal five-cycle refinement handoff are demonstrated through C278. Finish the coupled Q04 recovery/resource/rollout boundary; no default activation or historical migration is implied. |
+| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | C278 supplies one actual 5IU refinement control. Still qualify effective plane/parallelity membership and derivatives, targets and achieved geometry; include PDU surviving refinement and a related held-out substituent. Numerical acceptance or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
@@ -93,30 +93,19 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
 ### The next small steps
 
-1. **Preparation handoff — complete through explicit commands at C220:** show the checked ReadySet model or the
-   independently checked starting model, with an honest explanation. Read an
-   exact completed attempt without launching anything; continue an interrupted
-   request only through the existing owner and a fresh numbered attempt.
-2. **Use that exact result throughout normal preparation:** C223 closes explicit
-   initial checkpoint publication and normal reads; C224 connects explicit ordinary
-   PostMR; C225 freezes explicit campaign entry. C251 adds explicit later
-   preparation alternatives.
-   Finish Q04/Q05 before Q06. Keep latest and selected distinct.
-3. **Finish general plane repair:** C234–C237 run explicitly supplied owned support
-   through the existing repair request, including real success and stopped-native
-   fallback. C242 carries supplied support through the complete request/ReadySet.
-   C244 obtains missing support through the existing outer owner when explicitly
-   enabled, with shared deadlines and unchanged storage bounds. C245 connects
-   prepare-run and per-component generation notes; C246 connects explicit checked
-   PostMR/campaign forwarding; C247 carries publication/status notes. C249 closes
-   scoped selected-CIF reporting and C248 covers mixed sibling recovery. Finish
-   the remaining native/caller and storage acceptance. Preserve existing ring planes;
-   PDU and 5PC are controls, not name-based switches.
-4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
-   results to close the relevant chemistry jobs, rather than adding a new queue.
-5. **Refresh user reporting and review the release.** A smaller provisional
-   integration may expose explicitly limited tools before all catalogue entries
-   work; it must not advertise an unfinished automatic engine.
+1. **Finish Q04/Q05 acceptance:** quantify complete retained outcomes across
+   repeated failures/campaigns and reconcile the explicit supported recovery and
+   rollout limits. Use the existing owner, bounds and retained controls; keep
+   failed/unknown science intact and do not invent another queue or executor.
+2. **Preserve the completed handoff:** source recipe, plane support, selected
+   preparation, phasing, first refinement and relocated inspection are connected
+   for the recorded controls. Add a regression only for a newly exposed gap.
+3. **Qualify the actual chemistry after refinement:** use Q06's full effective
+   restraints/derivative/geometry checks, including Simon's PDU survival case.
+   Then run Q07's combined and unfamiliar-ligand controls, retaining Q08–Q14 learning.
+4. **Refresh reporting and review integration:** Q15 and Q16 retain the user PDF,
+   AutoPhase compatibility rename, full regression and reviewed release scope.
+   A limited pilot must state its limits; no automatic merge is authorized.
 
 C219 already executed the ordinary Coot/NAR-derived request through generation,
 repair and ReadySet, and reread the selected result with the original paths and
