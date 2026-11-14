@@ -403,25 +403,28 @@
         "Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not.",
         "W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding.",
         "W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery.",
-        "W52 composes the fresh registered graph, all-present atom observations and exact image transport into a source-bound in-memory whole-residue preview, preserving fixed context and checking graph-edge geometry."
+        "W52 composes the fresh registered graph, all-present atom observations and exact image transport into a source-bound in-memory whole-residue preview, preserving fixed context and checking graph-edge geometry.",
+        "W56 freezes explicit image proposals with unchanged source/discovery/registration and anchored artifacts; full replay verifies derived observations after relocation. This is a durable review input, not editable chemical intent, a new ASU or graphical approval."
       ],
       "acceptance": [
         "Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.",
         "Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle."
       ],
-      "next_action": "Connect the shared Pine editable intent and persistent preview boundary to genuine graphical review; retain unresolved molecular/whole-ASU scope and defer coordinate/ADP/scattering materialization to P03.",
+      "next_action": "Use the saved explicit representative packet for P02 before/after graphical inspection and persistent reviewed choices; retain incomplete whole-object identity and chemistry scope.",
       "evidence": [
         "E_REGISTRATION",
         "E_SOFTWARE",
         "E_DECLARED_GRAPH",
         "E_GRAPH_RELABEL",
-        "E_REGISTERED_RELABEL_PREVIEW"
+        "E_REGISTERED_RELABEL_PREVIEW",
+        "E_REPRESENTATIVE_BUNDLE"
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24",
+        "code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
         "reviewer": "Linden",
-        "scope": "Registered source/atom ownership and numerical image observations only; P01 remains PARTIAL, P02/P03 remain OPEN."
+        "human_update": 56,
+        "scope": "Saved explicit proposal/replay only; P01 remains partial, P02 open, no coordinate or chemistry writer"
       }
     },
     {
@@ -834,6 +837,14 @@
       "reference": "docs/topostitch-periodic.md#w55--observe-sampled-scattering-before-and-after-representative-relabeling",
       "result": "22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved. Temporary installed Cedar C297 fe7e9fd73988fc2ffb5501c3740fd9e06da0b45d plus24 Willow modules passes298 focused owner/API checks and exact public preview/scattering replay; no merge or full combined-suite/CLI metadata claim.",
       "limitation": "Finite sampled observation only; no acceptance threshold, coordinate serialization, whole-object/multiplicity/scattering proof or chemistry/refinement approval. NCS and unsupported scattering inputs refuse. Initial unsupported centering-absence native output and failed launch evidence retained locally. No SDK/Cedar changes or scientific data committed."
+    },
+    "E_REPRESENTATIVE_BUNDLE": {
+      "kind": "immutable_representative_proposal",
+      "code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
+      "human_update": 56,
+      "reference": "docs/topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal",
+      "result": "22 new regressions,67focused,full1533 plus229subtests,320installed/relocated,6helps,lean import,3.10syntax. Original inputs absent; exact public855-atom/36-image replay and installed CLI packet. Existing preview/scattering replay unchanged.",
+      "limitation": "New additive schema1 proposal/receipt only; no model, chemical intent edit, GUI review, refinement or checkpoint. Exact algorithm/Gemmi replay required; no silent migration. Scientific artifacts excluded from Git; no Cedar/runtime-native changes."
     }
   },
   "benchmarks": [
@@ -949,8 +960,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 55,
-    "next": 56,
+    "current": 56,
+    "next": 57,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1088,6 +1099,12 @@
       {
         "number": 55,
         "title": "Observe sampled scattering and anisotropic representative transport",
+        "state": "RECORDED",
+        "code_commit": "52fb6d471df249546518f70bdb2021794336fa70"
+      },
+      {
+        "number": 56,
+        "title": "Save and replay explicit representative proposals",
         "state": "RECORDED",
         "code_commit": "52fb6d471df249546518f70bdb2021794336fa70"
       }

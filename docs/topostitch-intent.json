@@ -503,6 +503,25 @@
       "coordinate_materialization": false,
       "scattering_invariance_validated": false,
       "runtime_authority": false
+    },
+    "representative_preview_bundle": {
+      "module": "nasolve.topostitch_recut_bundle",
+      "entry_point": "nasolve-topostitch-cut-preview",
+      "apis": [
+        "build_relabel_preview",
+        "load_relabel_preview"
+      ],
+      "proposal_kind": "topostitch-representative-proposal",
+      "receipt_kind": "topostitch-representative-preview-bundle",
+      "schema_version": 1,
+      "unchanged_source_snapshot": true,
+      "explicit_images_only": true,
+      "local_anchored_artifacts": true,
+      "full_replay_on_load": true,
+      "graphical_review": false,
+      "coordinates_materialized": false,
+      "chemical_connectivity_changed": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

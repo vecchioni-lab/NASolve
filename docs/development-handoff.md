@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W55; next W56.** W33 introduced human update numbers without
+**Willow update W56; next W57.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,15 +173,20 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W55 edge:** a source-bound in-memory scattering observer now accompanies
-registered representative previews. It retains complex Fcalc differences on an
-explicit reflection sample and rotates ANISOU without writing a model. Synthetic
-wrong-ADP/coordinate controls are detected; the public sampled result agrees with
-an independent native cctbx before/after check on allowed indices. No threshold,
-complete scattering proof or materialized cut is claimed. Full Willow: 1,511 plus
-229 subtests; installed/relocated: 298. Next persist the explicit proposal/source
-binding for genuine graphical review before materialization. P01 remains partial;
-P02 is open and P03 has only a diagnostic prototype.
+**Current W56 edge:** explicit representative proposals now freeze unchanged
+source/discovery/registration inputs in a replayable anchored packet. Installed
+`nasolve-topostitch-cut-preview` preserves source bytes and requires a new output
+directory. Loading recomputes the entire observation from its own frozen inputs;
+public replay survives removal of the original input directory. Full Willow:
+1,533 plus 229 subtests; installed/relocated: 320. Next add the genuine before/after
+periodic view and review choices. P01 stays partial; P02 remains open and no
+replacement model, chemical seam, native restraint or checkpoint is written.
+
+W55's separate source-bound sampled scattering observer retains complex Fcalc
+differences and transports ANISOU in memory. Synthetic negative controls and an
+independent native cctbx allowed-index check support the stated observations;
+no threshold or complete scattering/materialized-cut proof is claimed. Installed
+legacy preview/scattering replay remains exact. P03 stays partial.
 
 **Prior W52 edge:** `preview_registered_relabel` now binds exact outer
 registration/source identity to whole-residue atom images, fixed context and

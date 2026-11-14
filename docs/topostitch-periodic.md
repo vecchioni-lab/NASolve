@@ -1072,3 +1072,81 @@ with the 24 Willow TopoStitch modules passes the same 298 focused owner/API
 checks and exactly reproduces the public preview/scattering observations.
 The original temporary source directory is absent. This checks those interfaces,
 not a branch merge, full combined suite or merged CLI/dependency metadata.
+
+
+## W56 — Freeze and replay an explicit representative proposal
+
+The installed `nasolve-topostitch-cut-preview` command freezes one explicit
+proposal alongside byte-identical model, discovery and registration inputs.
+It reuses the registered graph, atom-orbit and coordinate-image preview owners.
+It does not create an edited model, chemistry decision or NASolve checkpoint.
+
+```bash
+nasolve-topostitch-cut-preview model.pdb --discovery discovery.json \
+  --registration registration.json --proposal proposal.json --out new-cut-preview
+```
+
+The schema-1 `topostitch-representative-proposal` request has exactly these fields:
+
+```json
+{
+  "schema_version": 1,
+  "kind": "topostitch-representative-proposal",
+  "registered_graph_sha256": "<exact outer registered report_sha256>",
+  "node_images": [{"node_id": 2, "operator_xyz": "y,-x,z+1/4"}],
+  "extra_edges": [],
+  "coincidence_tolerance_angstrom": 0.01,
+  "max_atom_tests": 2000000
+}
+```
+
+The example operator is for P43; choose an actual group member and exact node
+identity from the declared graph. The hash is the 64-character outer registered
+report hash, not the nested graph hash. Include the same noncovalent `extra_edges`
+used to build that report. New covalent edges remain unsupported. Explicit image
+choices change representation only; they do not declare a nick or chemical seam.
+
+`build_relabel_preview` validates before creating a new exclusive directory.
+The packet contains unchanged `source.pdb`, `discovery.json`, `registration.json`,
+`proposal.json`, then `preview.json` written last. Interrupted writes preserve
+partial evidence; a directory without its receipt is incomplete. Existing output
+is never overwritten. Source and proposal checksums, fixed run-relative paths
+and byte sizes use NASolve's existing artifact-reference owners.
+
+`load_relabel_preview(directory)` verifies those local references and recomputes
+the full observation from the frozen inputs. It rejects altered derived results,
+rehashed approval flags, changed inputs, duplicate keys, external symlinks,
+wrong references and artifact drift during replay. No historical absolute path
+or basename lookup is consulted. Exact replay needs a compatible algorithm and
+Gemmi runtime; incompatible saved observations refuse rather than silently migrate.
+The receipt kind is `topostitch-representative-preview-bundle`, schema 1. Its
+workflow stays PREVIEW_BUILT / UNREVIEWED / NOT_ATTEMPTED. Human review, model
+materialization, chemical connectivity changes and checkpoint selection are false.
+W55 scattering remains a separate source/preview-bound diagnostic.
+
+Before this patch, registered image previews were in-memory observations only.
+The new module/CLI and receipt are additive; existing commands and bundles retain
+their behavior. The existing bend viewer does not yet display this packet. The
+next step is a genuine before/after periodic view with atom and edge inspection,
+then persistent reviewed choices; neither GUI review nor chemistry is claimed.
+
+Validation: 22 new regressions, 67 focused tests, the complete suite **1,533 plus
+229 subtests**, and 320 installed/relocated owner tests pass. Two demonstrated
+replay gaps (boolean/numeric equality and late artifact drift) failed before their
+fixes. Six installed command helps, Python 3.10 syntax and lean import pass. The
+installed command builds the exact expected public packet. The 855-atom public
+snapshot with 36 proposed image atoms reproduces the prior W52 observation exactly
+and reopens after its original input directory is removed; installed replay also
+blocks original source paths. W55 scattering and older preview replay remain exact.
+
+Commands use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<installed-dependency-site>`
+with `python -m pytest -q -p no:cacheprovider`, targeting
+`tests/test_topostitch_recut_bundle.py`, `tests/test_topostitch_recut.py` and
+`tests/test_topostitch_preview.py` for the focused check; omit targets for the full
+suite. Wheel construction uses `python -m pip wheel --no-deps --no-build-isolation .`;
+installed/relocated checks use only the installed site on PYTHONPATH. The installed
+command is exercised with all four explicit paths and a new `--out` directory.
+Wheel SHA-256: `dffd1e0ce2c00d6ef86456f501867f43ddd88956d8ae4c7089c5d8015ee186d0`.
+No native Phenix/Coot execution or Cedar change was needed. All scientific inputs,
+outputs and installation evidence remain local and are deliberately excluded from
+Git; committed tests contain synthetic fixtures only.

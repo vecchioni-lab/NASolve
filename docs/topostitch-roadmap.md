@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W55 — Observe sampled scattering and anisotropic representative transport.** Next: W56.
+**Current update: W56 — Save and replay explicit representative proposals.** Next: W57.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | RECORDED |
 | W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
 | W48 | Preserve declared periodic routes and exact image loops | RECORDED |
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W53 | Measure precision at retained failed-trial points | RECORDED |
 | W54 | Audit accepted points while preserving optimizer failures | RECORDED |
 | W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
+| W56 | Save and replay explicit representative proposals | RECORDED |
 
 ## Finish lines
 
@@ -258,16 +258,16 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 
 Represent the observed periodic object independently of a tile hypothesis or PDB chain cut.
 
-**Delivered:** Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not. W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding. W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery. W52 composes the fresh registered graph, all-present atom observations and exact image transport into a source-bound in-memory whole-residue preview, preserving fixed context and checking graph-edge geometry.
+**Delivered:** Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not. W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding. W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery. W52 composes the fresh registered graph, all-present atom observations and exact image transport into a source-bound in-memory whole-residue preview, preserving fixed context and checking graph-edge geometry. W56 freezes explicit image proposals with unchanged source/discovery/registration and anchored artifacts; full replay verifies derived observations after relocation. This is a durable review input, not editable chemical intent, a new ASU or graphical approval.
 
 **Closure audit:**
 
 - Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.
 - Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle.
 
-**Next action:** Connect the shared Pine editable intent and persistent preview boundary to genuine graphical review; retain unresolved molecular/whole-ASU scope and defer coordinate/ADP/scattering materialization to P03.
-**Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software), [E_DECLARED_GRAPH](#e_declared_graph), [E_GRAPH_RELABEL](#e_graph_relabel), [E_REGISTERED_RELABEL_PREVIEW](#e_registered_relabel_preview).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/9deb105da5c0cf769cdba7046175b6e330f3cf24); Registered source/atom ownership and numerical image observations only; P01 remains PARTIAL, P02/P03 remain OPEN..
+**Next action:** Use the saved explicit representative packet for P02 before/after graphical inspection and persistent reviewed choices; retain incomplete whole-object identity and chemistry scope.
+**Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software), [E_DECLARED_GRAPH](#e_declared_graph), [E_GRAPH_RELABEL](#e_graph_relabel), [E_REGISTERED_RELABEL_PREVIEW](#e_registered_relabel_preview), [E_REPRESENTATIVE_BUNDLE](#e_representative_bundle).
+**Last audit:** 2026-11-14, Linden, [W56](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70); Saved explicit proposal/replay only; P01 remains partial, P02 open, no coordinate or chemistry writer.
 
 <a id="p02"></a>
 ### P02 — Offer cut choices in a required graphical preview
@@ -625,6 +625,13 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 [Evidence contract](topostitch-periodic.md#w55--observe-sampled-scattering-before-and-after-representative-relabeling) at [W55](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70).
 22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved. Temporary installed Cedar C297 fe7e9fd73988fc2ffb5501c3740fd9e06da0b45d plus24 Willow modules passes298 focused owner/API checks and exact public preview/scattering replay; no merge or full combined-suite/CLI metadata claim.
 **Limit:** Finite sampled observation only; no acceptance threshold, coordinate serialization, whole-object/multiplicity/scattering proof or chemistry/refinement approval. NCS and unsupported scattering inputs refuse. Initial unsupported centering-absence native output and failed launch evidence retained locally. No SDK/Cedar changes or scientific data committed.
+
+<a id="e_representative_bundle"></a>
+### E_REPRESENTATIVE_BUNDLE — immutable_representative_proposal
+
+[Evidence contract](topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal) at [W56](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70).
+22 new regressions,67focused,full1533 plus229subtests,320installed/relocated,6helps,lean import,3.10syntax. Original inputs absent; exact public855-atom/36-image replay and installed CLI packet. Existing preview/scattering replay unchanged.
+**Limit:** New additive schema1 proposal/receipt only; no model, chemical intent edit, GUI review, refinement or checkpoint. Exact algorithm/Gemmi replay required; no silent migration. Scientific artifacts excluded from Git; no Cedar/runtime-native changes.
 
 ## Deferred extensions, not hidden blockers
 

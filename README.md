@@ -1245,6 +1245,19 @@ candidate. Add an explicit candidate index, radius and `--periodic` to include a
 symmetry mate; see [viewer scope and controls](docs/topostitch-preview.md#offline-originalcandidate-view).
 Viewing does not select, refine or approve the model.
 
+For an explicit ASU-representative proposal, save a separate verified preview:
+
+```bash
+nasolve-topostitch-cut-preview model.pdb --discovery discovery.json \
+  --registration registration.json --proposal proposal.json --out new-cut-preview
+```
+
+The [proposal contract](docs/topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal)
+binds the chosen images to the exact registered source. The new folder contains
+unchanged input snapshots and a recomputable JSON preview. It writes no replacement
+ASU, creates no chemical link and remains unreviewed. Graphical cut selection is
+still under development; the bend viewer above does not open this bundle type.
+
 ## Problems and reproducibility
 
 Start troubleshooting with:

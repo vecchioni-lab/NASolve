@@ -24,6 +24,7 @@ nasolve-topostitch-inspect = "nasolve.topostitch_inspect:main"
 nasolve-topostitch-preview = "nasolve.topostitch_preview:main"
 nasolve-topostitch-fit = "nasolve.topostitch_fit:main"
 nasolve-topostitch-view = "nasolve.topostitch_view:main"
+nasolve-topostitch-cut-preview = "nasolve.topostitch_recut_bundle:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

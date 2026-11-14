@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W56 — Save replayable representative proposals
+
+- Add an installed explicit-path command and immutable preview packet containing
+  unchanged source inputs, an image proposal and a fully recomputed observation.
+- Verify anchored checksums, typed report replay and input stability after
+  relocation. Preserve partial writes and refuse existing output directories.
+- Keep review, chemistry, model materialization and checkpoint authority separate;
+  existing bend previews and commands retain their behavior.
+
 ### W55 — Observe representative-change scattering and ADP transport
 
 - Add a bounded read-only complex Fcalc observer over explicit reflections,
