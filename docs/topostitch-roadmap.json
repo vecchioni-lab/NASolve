@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "ab48c235e463bfbc3d97ec0f55a8025be106ebcb",
+  "audited_code_commit": "f448549b96a90d4035e3479c297212bbb5a339e5",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -278,13 +278,14 @@
         "E_ENDPOINT_REVIEW",
         "E_BOUNDED_TRIAL",
         "E_CAPTURED_JOB_API",
-        "E_ENDPOINT_OBSERVATIONS"
+        "E_ENDPOINT_OBSERVATIONS",
+        "E_PAIR_ATTRIBUTION"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "ab48c235e463bfbc3d97ec0f55a8025be106ebcb",
-        "scope": "Read-only full-precision/rounded ASU endpoint observations, independent rounded native parity, exact installed/relocated review; no scientific acceptance"
+        "code_commit": "f448549b96a90d4035e3479c297212bbb5a339e5",
+        "scope": "Individual native term/container parity and selected/core endpoint attribution; lossless compact review and installed relocation; no scientific acceptance"
       }
     },
     {
@@ -708,6 +709,14 @@
       "reference": "docs/topostitch-preview.md#w43--full-precision-endpoint-observations",
       "result": "Five complete Phenix 2.2.1-6174 source/full-precision/rounded observations replay through Cedar ASU and selected-environment owners. Rounded observations agree with independent W41 PDB captures in full native energy/gradient and matched pair residuals; changed neighbor rows contribute zero in these controls. Binary displacement roundtrip failure is retained and covered explicitly. Full Willow 1384 tests plus 229 subtests; installed/relocated focused 127 and byte-identical complete endpoint review. Wrong hashes and fixed motion reject before launch; default native behavior reproduces W41.",
       "limitation": "Fixed-manager coordinate observations, not ordinary full-precision model reinterpretation or universal exclusion/neighbor completeness. Capped trials and per-contact regressions remain; no broader chemistry, diffraction, physical repair or adoption qualification. Scientific files stay local; no Cedar edits/merge."
+    },
+    "E_PAIR_ATTRIBUTION": {
+      "kind": "native_selected_and_core_pair_attribution",
+      "code_commit": "f448549b96a90d4035e3479c297212bbb5a339e5",
+      "human_update": 44,
+      "reference": "docs/topostitch-preview.md#w44--individual-pair-attribution",
+      "result": "Five complete Phenix 2.2.1-6174 endpoint controls reproduce native container sums and expose individual pair changes. Whole-window paired improves all pair totals; cleanup worsens one selected and two core pairs. Full Willow 1397 plus 229 subtests; focused 50; installed/relocated 140 and byte-identical native report. Existing review dictionaries remain identical after removing only the new field; compact JSON reduces size about 55%.",
+      "limitation": "Read-only diagnostic attribution, not calibrated chemistry acceptance. Original trials remain capped with packing regressions and imperfect contacts. No objective changes, ordinary refinement-consumer qualification, Cedar edits/merge or campaign adoption. Scientific files stay local."
     }
   },
   "benchmarks": [
@@ -892,8 +901,8 @@
       {
         "number": 44,
         "title": "Expose individual selected and core pair contributions",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "f448549b96a90d4035e3479c297212bbb5a339e5"
       }
     ]
   }
