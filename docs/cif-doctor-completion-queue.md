@@ -481,7 +481,7 @@ report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
 
-**Current consumer route through C301:** `autorefine --checked-plane-forces`
+**Current consumer route through C302:** `autorefine --checked-plane-forces`
 explicitly uses the qualified local Phenix implementation, complete ordered plane
 parameters and the existing immutable AutoRefine/checkpoint owners. Actual
 zero-cycle model setup precedes refinement and has separate outputs. Corrected
@@ -507,7 +507,12 @@ The first fresh A:PDU campaign (C301) stopped correctly at outgoing phosphate
 validation: global Coot renumbering exposed an omitted declared canonical mutation
 in serial authority. The generalized serial-only fix passes 237 tests +10 subtests
 and read-only replay of the actual failure with all original run files unchanged.
-A fresh native campaign, then achieved-chemistry inspection, remains next.
+C302 then passes construction, acquisition, repair and ReadySet, but outer v2
+completion hits combined parent/repair storage bounds before refinement. V3 now
+separates that exact owned child with unchanged per-part and physical archive
+caps; old formats and failed C302 remain intact. Focused archive/retention and
+relocation checks pass. The next fresh PDU campaign must demonstrate actual
+refinement; native return and dictionary readiness alone do not close Q06.
 
 **Next:** inspect achieved chemistry and run a fresh PDU:A control on the existing
 declared test scaffold through the checked campaign. This does not resolve the

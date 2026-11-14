@@ -96887,5 +96887,91 @@
       "Q06 remains open; no broader scientific qualification or full-suite claim."
     ],
     "artifacts": "Code/tests/compact evidence only. Models/data/logs/runners stay local; failed C301 and source files preserved."
+  },
+  "owned_repair_partition_boundary_2026_11_14": {
+    "milestone": "C302",
+    "status": "OWNED_REPAIR_STORAGE_BOUNDARY_FIXED_NATIVE_RETRY_PENDING",
+    "base_commit": "bea76681",
+    "behavior": {
+      "before": "PDU construction, fresh acquisition, source-supported repair and ReadySet continuation qualified, but the v2 outer working partition also counted the separately owned repair attempt and refused completion before checkpoint/refinement.",
+      "after": "Fresh requests freeze v3 with a separate exact repair/attempts/attempt-0001/ partition. Nested published runtimes and continuation retain their existing partitions. Archive expansion and retention use the same owner boundaries and exact frozen version; v1/v2 and absent policy preserve old meaning."
+    },
+    "source_sha256": {
+      "src/nasolve/cif_complete_request.py": "199ca2644df2cea60dca22d96dfa7763a755e87b3a309e0911b23b37e3735aa5",
+      "src/nasolve/cif_component_runtime.py": "243d71584cfc667ab41ddc1184a0e08cec2772a7cf02d3f7fb51024573fd0ec8",
+      "src/nasolve/cif_complete_attempt_archive.py": "9b077ed99fe259b164705ecf4b1db3141cf75d5309d9b21ac7e8c7f14fa2317a",
+      "src/nasolve/cif_attempt_retention.py": "f8b6596a1925acb12948e70ed814241e358625bd652070a104bb2821cd249fa9"
+    },
+    "validation": {
+      "before": "17 new cases failed, 4 passed against C301 in 10.04 s; new v3 unavailable. Actual C302 v2 bound reproduced read-only.",
+      "broader_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_complete_child_bounds.py tests/test_cif_complete_attempt_archive.py tests/test_cif_attempt_retention.py tests/test_cif_complete_request.py tests/test_cif_complete_continuation.py --tb=short",
+      "broader_result": "233 passed, 2 failed in 563.19 s. Both failures were existing completion-headroom fixtures that counted combined children instead of the newly separate parent partition; corrected fixtures then passed 2/2. Final archive-policy binding checks passed 35/35. No full suite.",
+      "final_binding_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_complete_child_bounds.py tests/test_cif_complete_attempt_archive.py tests/test_cif_attempt_retention.py::test_archive_publication_repeat_and_reads_do_not_change_scientific_records tests/test_cif_attempt_retention.py::test_exact_archive_reads_relocate_and_allow_a_fresh_attempt_without_repairing_old_work --tb=short",
+      "final_binding_result": "35 passed in 36.92 s",
+      "completion_headroom_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py::test_completion_must_fit_frozen_artifact_bounds_before_success --tb=short",
+      "completion_headroom_result": "2 passed in 8.98 s after making the simulated no-headroom condition apply to the parent partition, not combined children.",
+      "coverage": "Each of five exact partitions retains byte/file/member limits; aliases/other attempt IDs and symlinks refuse. Archive deduplication stays within 128 MiB physical expansion, including refusal below actual usage. Original source/anchor removed in relocation test. Existing v2 archive/retention replays unchanged. New frozen archive policy must match its owning request.",
+      "full_suite": "NOT_RUN"
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "302_Cedar_PDU-campaign-fig6ru2e",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "status": "BLOCKED",
+      "diagnostic": "PostMRPreparationError: Checked preparation could not complete: Frozen tree exceeds supported bounds",
+      "elapsed_seconds": 944.4945295409998,
+      "retained_logical_bytes": 206267251,
+      "original_inputs_unchanged": 5,
+      "dictionary_unchanged": true,
+      "tool_build": "phenix-2.2.1-6174",
+      "coot_version": "1.3.3 revision-count 0",
+      "completed": "Actual preflight/Phaser/Coot, PDU generation/qualification/repair and ReadySet continuation; no checkpoint or diffraction refinement.",
+      "records": {
+        "summary.json": "a8fe1caff481473b67d7309d8eb1d7a8189c8bb6d0d94b24a1432614f95b066a",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "declared-test-intent.json": "13e4ea5f600ddb79048d8512d72a7ac41dbc5ae9b5b850f7a325f5cb62268c7f",
+        "dictionary-source.json": "f2b2ed64041cd011adf60e5e2a80088da5a6f2968a90a63c836e91b091a959cf"
+      }
+    },
+    "bound_observation": {
+      "status": "READ_ONLY_POLICY_COMPARISON_NOT_RECOVERY",
+      "old_policy": "cif-complete-request-partitioned-artifacts-v2",
+      "new_policy": "cif-complete-request-partitioned-artifacts-v3",
+      "files_unchanged": 743,
+      "partitions": {
+        "repair/attempts/attempt-0001/execution/runtime/": [
+          10,
+          4707517
+        ],
+        "repair/attempts/attempt-0001/": [
+          418,
+          133109287
+        ],
+        "continuation/runtime/": [
+          10,
+          6043146
+        ],
+        "continuation/": [
+          106,
+          36718305
+        ],
+        "": [
+          199,
+          10594938
+        ]
+      },
+      "unique_bytes": 93987312
+    },
+    "compatibility": "New artifact policy v3 only for fresh requests; no in-place migration or reinterpretation of failed C302 v2. Old readers refuse unknown v3. Archive container schema unchanged, explicit policy binding added.128MiB per-part/physical expansion,32MiB member,1024 files per part, unique-object count/nesting caps unchanged; logical composed envelope gains only the exact owned repair child. No scientific or native runtime change.",
+    "artifacts": "Code/tests/compact evidence only; native files and failed attempts retained locally. This observation does not seal, archive, retire or qualify the failed C302 outer attempt.",
+    "remaining": [
+      "Fresh complete PDU native campaign on v3, then actual refinement survival and cold/consumer readback.",
+      "Related G:5PC control remains queued after PDU; original PDU:PDU/B:1 unchanged.",
+      "Real successful PDU retirement/capacity and100-dataset cost remain unqualified; no full-suite or universal-chemistry claim."
+    ]
   }
 }

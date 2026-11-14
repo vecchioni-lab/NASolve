@@ -359,8 +359,10 @@ def test_completion_must_fit_frozen_artifact_bounds_before_success(case,monkeypa
     capture=m._attempt_files
     def no_headroom(attempt, **options):
         result=capture(attempt, **options)
-        if bound=='files':monkeypatch.setattr(frozen_tree,'MAX_FILES',len(result['files']))
-        else:monkeypatch.setattr(frozen_tree,'MAX_BYTES',sum(r['size'] for r in result['files'].values()))
+        prefixes=m._artifact_partitions(options.get('artifact_policy'),options.get('with_continuation',False))
+        parent={n:r for n,r in result['files'].items() if not n.startswith(prefixes)}
+        if bound=='files':monkeypatch.setattr(frozen_tree,'MAX_FILES',len(parent))
+        else:monkeypatch.setattr(frozen_tree,'MAX_BYTES',sum(r['size'] for r in parent.values()))
         return result
     monkeypatch.setattr(m,'_attempt_files',no_headroom)
     with pytest.raises(ValueError,match='completion exceeds frozen artifact bounds'):
@@ -496,7 +498,7 @@ def test_partitioned_request_cannot_alias_the_runtime_partition(tmp_path, monkey
     if alias == 'runtime-link': (base / alias).symlink_to(base / 'runtime', target_is_directory=True)
     else:
         target = base / alias; target.mkdir(parents=True); (target / 'unrelated').write_bytes(b'x' * 60)
-    with pytest.raises(ValueError): m._attempt_files(tmp_path, artifact_policy=m.ARTIFACT_POLICY)
+    with pytest.raises(ValueError): m._attempt_files(tmp_path, artifact_policy=m.NESTED_ARTIFACT_POLICY)
 
 
 @pytest.mark.parametrize('policy', ['unknown', '', True, {}, ['cif-complete-request-partitioned-artifacts-v1']])

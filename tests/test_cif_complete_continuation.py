@@ -255,13 +255,13 @@ def test_v2_nested_continuation_partitions_keep_independent_bounds(tmp_path, mon
         folder = tmp_path / name; folder.mkdir(parents=True)
         for i in range(11 if label == excess else 6): (folder / str(i)).write_bytes(b'x' * 10)
     if excess is None:
-        result = m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.ARTIFACT_POLICY)
+        result = m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.NESTED_ARTIFACT_POLICY)
         assert len(result['files']) == 24
         with pytest.raises(ValueError):
             m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.LEGACY_ARTIFACT_POLICY)
     else:
         with pytest.raises(ValueError):
-            m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.ARTIFACT_POLICY)
+            m._attempt_files(tmp_path, with_continuation=True, artifact_policy=m.NESTED_ARTIFACT_POLICY)
 
 
 def test_old_continuation_settings_retain_flat_child_policy(case):

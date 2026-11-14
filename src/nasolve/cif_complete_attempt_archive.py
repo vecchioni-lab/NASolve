@@ -15,16 +15,20 @@ from .campaign_records import read_record, _sync_directory
 from .cif_dictionary_sites import _need, _read
 
 POLICY_ID = 'cif-complete-attempt-working-archive-v1'
-ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
+ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v3'
+SUPPORTED_ARTIFACT_POLICIES = frozenset({
+    'cif-complete-request-partitioned-artifacts-v2', ARTIFACT_POLICY})
 REPAIR_RUNTIME = 'repair/attempts/attempt-0001/execution/runtime/'
 CONTINUATION_RUNTIME = 'continuation/runtime/'
 
 
 def _prefixes(artifact_policy, with_continuation):
-    _need(artifact_policy == ARTIFACT_POLICY and type(with_continuation) is bool,
+    from .cif_complete_request import _artifact_partitions
+    _need(type(artifact_policy) is str and artifact_policy in SUPPORTED_ARTIFACT_POLICIES
+          and type(with_continuation) is bool,
           'Unsupported complete-attempt archive partition policy')
-    # Most specific prefix wins, exactly as in the owner's bounded inventory.
-    return (REPAIR_RUNTIME, CONTINUATION_RUNTIME, 'continuation/') if with_continuation else (REPAIR_RUNTIME,)
+    # Use the owner's exact boundaries and longest-prefix order on both paths.
+    return _artifact_partitions(artifact_policy, with_continuation)
 
 
 def _index(value):
@@ -102,7 +106,7 @@ def pack_complete_attempt_evidence(directory, output, *, artifact_policy, with_c
 
 
 @contextmanager
-def expanded_complete_attempt_evidence(archive, digest, *, finished_sha256):
+def expanded_complete_attempt_evidence(archive, digest, *, finished_sha256, artifact_policy=None):
     """Keep all reconstructed paths inside one root-only, physically bounded view.
 
     The caller supplies the original sealed finished-file checksum, then replays
@@ -110,8 +114,12 @@ def expanded_complete_attempt_evidence(archive, digest, *, finished_sha256):
     """
     _need(isinstance(finished_sha256,str) and storage._SHA.fullmatch(finished_sha256),
           'Require the original finished-file checksum')
+    _need(artifact_policy is None or (type(artifact_policy) is str
+          and artifact_policy in SUPPORTED_ARTIFACT_POLICIES), 'Unsupported expected owner partition policy')
     def expected_decode(data, digest):
         index,objects,total=_decode(data,digest)
+        _need(artifact_policy is None or index['artifact_policy']==artifact_policy,
+              'Working archive partition policy differs from frozen owner')
         _need(index['finished_sha256']==finished_sha256, 'Working archive belongs to a different finished owner')
         return index,objects,total
     with storage._working_evidence(archive,digest,decoder=expected_decode) as view:

@@ -57,7 +57,7 @@ def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_pr
     # Composed owners may retain separately bounded published children. Prefixes
     # are exact directory boundaries. Nested publications use the longest match;
     # no partition may borrow another's allowance.
-    _need(isinstance(partition_prefixes,tuple) and len(partition_prefixes) <= 3
+    _need(isinstance(partition_prefixes,tuple) and len(partition_prefixes) <= 4
           and all(isinstance(p,str) and p.endswith('/') and _safe(p[:-1]) for p in partition_prefixes)
           and len(set(partition_prefixes)) == len(partition_prefixes), 'Invalid frozen tree partitions')
     _need(not partition_prefixes or (max_files == MAX_FILES and max_bytes == MAX_BYTES),

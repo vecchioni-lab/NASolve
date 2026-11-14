@@ -35,6 +35,14 @@ existing authority. Independent context audit checks the exact scope and deltas;
 a failed final proof preserves the attempted scope while rolling back its effects.
 Historical context calls without the new policy retain their old behavior.
 
+Complete preparation's v3 artifact policy gives its exact owned repair attempt
+an independent existing 128 MiB/1024-file allowance, alongside the already separate
+published runtimes and continuation. It fixes parent/child accounting, preserving
+32MiB member limits and the shared 128 MiB physical archive expansion/object pool.
+Archive and owner use one boundary function; retention binds the frozen version.
+V1/V2/absent policies keep historical meanings. Failed oversized old attempts are
+not rewritten or retired; a fresh request carries the new policy.
+
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not

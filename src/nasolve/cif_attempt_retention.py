@@ -15,7 +15,7 @@ from .campaign_records import read_record, write_record, _sync_directory
 from .campaign_process import exclusive_lock
 from .cif_dictionary_sites import _need, _read
 from .cif_complete_attempt_archive import (
-    ARTIFACT_POLICY, REPAIR_RUNTIME, CONTINUATION_RUNTIME,
+    SUPPORTED_ARTIFACT_POLICIES, REPAIR_RUNTIME, CONTINUATION_RUNTIME,
     pack_complete_attempt_evidence, expanded_complete_attempt_evidence,
 )
 
@@ -68,7 +68,7 @@ def _binding(root, attempt, number, request):
           and isinstance(ref['sha256'],str) and storage._SHA.fullmatch(ref['sha256'])
           and type(ref['size']) is int and 0<ref['size']<=storage.MAX_ARCHIVE_BYTES,
           'Invalid complete-attempt archive reference')
-    _need(request['configuration'].get('artifact_policy')==ARTIFACT_POLICY,
+    _need(request['configuration'].get('artifact_policy') in SUPPORTED_ARTIFACT_POLICIES,
           'Unsupported retained owner partition policy')
     return record,data
 
@@ -114,7 +114,8 @@ def attempt_read_view(root, attempt, number, request):
     _retirement_records(archive.parent,record,finished,current)
     _need(archive.stat().st_size==record['archive']['size'], 'Attempt archive size changed')
     with expanded_complete_attempt_evidence(archive,record['archive']['sha256'],
-            finished_sha256=record['finished_sha256']) as view:
+            finished_sha256=record['finished_sha256'],
+            artifact_policy=request['configuration']['artifact_policy']) as view:
         yield view/'evidence'
         current=_remaining(attempt,request,finished)
         _retirement_records(archive.parent,record,finished,current)
@@ -131,7 +132,7 @@ def _archive_history(root, attempt_number):
     _need(state['state']=='RECORDED' and state['availability'] in {'AVAILABLE','EXHAUSTED'}
           and attempt_number<=len(state['attempts']), 'Require a known-stopped complete request')
     request=state['request'];row=state['attempts'][attempt_number-1]
-    _need(request['configuration'].get('artifact_policy')==ARTIFACT_POLICY and row['state']=='STOPPED'
+    _need(request['configuration'].get('artifact_policy') in SUPPORTED_ARTIFACT_POLICIES and row['state']=='STOPPED'
           and row['finished']['outcome']=='RETURNED' and len(results)==1,
           'Require a returned current-partition attempt')
     return request,row,results[0]
@@ -155,13 +156,14 @@ def _prepare_locked(root, attempt_number, history):
     archive=folder/'evidence.zip'
     finished_sha=sha256(_read(attempt/'finished.json')).hexdigest()
     if not archive.exists():
-        pack_complete_attempt_evidence(attempt,archive,artifact_policy=ARTIFACT_POLICY,
+        pack_complete_attempt_evidence(attempt,archive,artifact_policy=config['artifact_policy'],
             with_continuation='continuation' in config)
     from .cif_runtime_evidence import MAX_ARCHIVE_BYTES
     _need(archive.is_file() and archive.stat().st_size<=MAX_ARCHIVE_BYTES,
           'Unsafe or oversized unpublished attempt archive')
     digest=sha256(_read(archive)).hexdigest();results=[]
-    with expanded_complete_attempt_evidence(archive,digest,finished_sha256=finished_sha) as view:
+    with expanded_complete_attempt_evidence(archive,digest,finished_sha256=finished_sha,
+            artifact_policy=config['artifact_policy']) as view:
         complete._attempt_state(root,view/'evidence',attempt_number,request,results)
         _need(len(results)==1, 'Archive has no exact returned result')
         public_result(results[0],view/'evidence',attempt)

@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C301**. Active **cedar** in NASolve-c96. Remote last verified
-**C300 `d9f3bbb8`**, including C295–C299.
+Updated **2026-11-14, C302**. Active **cedar** in NASolve-c96. Remote last verified
+**C301 `bea76681`**, including C295–C300.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
@@ -84,7 +84,7 @@ is a mechanical substitution control with retained observations, not donor
 chemistry or a solved structure; it does not unblock original PDU:PDU/B:1. Keep
 the original source and all failed work.
 
-**C301 complete, being committed:** fresh declared A:PDU control
+**C301 committed/pushed `bea76681`:** fresh declared A:PDU control
 `301_Cedar_PDU-campaign-idfuqpan` passed preflight/Phaser/Coot, then the phosphate
 guard stopped B:4 outgoing O3′–P displacement. No ReadySet/refinement ran. All
 jobs stopped, source pins and five original inputs unchanged. Mixed Coot context
@@ -99,7 +99,23 @@ failed final proof retains attempted scope and established rollback behavior.
 **Next:** fresh A:PDU campaign on this fixed source, then inspect source-selected
 ring/C5/propyne/chi through ReadySet and actual refinement. Record staged geometry,
 not just tool completion. The prior failed run and original PDU:PDU/B:1 stay
-untouched. No native jobs currently active. Q06 remains open.
+untouched. Q06 remains open.
+
+**C302 fixed, being committed:** `302_Cedar_PDU-campaign-fig6ru2e` passes
+construction, PDU generation/repair and ReadySet, then refuses v2 outer completion
+before checkpoint/refinement: parent bucket 143.7 MB also counted the owned repair
+child. All processes stopped; source pins and five original inputs unchanged.
+V3 separates that exact child, retaining 128 MiB/1024 files per part, 32 MiB members
+and 128 MiB shared physical expansion. Actual unique attempt contents 94.0 MB;
+all 743 observed attempt files unchanged. V2 still refuses the original grouping.
+Old archive/retention and relocated new-format tests pass; exact frozen policy
+is bound on read. No migration or retirement of failed C302. Native retries need
+a fresh request/run. Full validation commands/results are in the existing ledger.
+
+**Next:** fresh PDU campaign on the committed fix, then source-selected staged
+chemistry, cold readback and actual consumer membership. Local c303 runners are
+prepared; c304 G:5PC is deferred until PDU succeeds. No active native jobs, no
+full suite. Original PDU:PDU/B:1 stays separate and untouched. Q06 remains open.
 
 ## PDU control remains separate
 

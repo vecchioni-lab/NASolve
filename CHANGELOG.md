@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bound complete preparation by its actual child owners (C302)
+
+- Fresh checked requests use artifact policy v3 to count the owned repair attempt
+  separately from parent preparation. Preserve each part's existing file/byte
+  limits and the shared archive expansion limit; no unlimited storage allowance.
+- Archive and retention readers use the same boundaries and exact frozen policy.
+  Existing v1/v2/absent-policy requests retain their meaning; older readers refuse
+  v3. Preserve failed old attempts and retry through a fresh request/run.
+
 ### Restore mixed canonical/modified construction after Coot renumbering (C301)
 
 - Include declared normal-base mutations in explicitly bound serial-only repair

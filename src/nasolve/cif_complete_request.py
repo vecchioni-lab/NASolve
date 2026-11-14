@@ -44,7 +44,9 @@ POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
 PLANE_GENERATION_POLICY = 'cif-complete-owned-plane-generation-v1'
 LEGACY_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
-ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
+NESTED_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
+ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v3'
+_REPAIR_PREFIX = 'repair/attempts/attempt-0001/'
 _RUNTIME_PREFIX = 'repair/attempts/attempt-0001/execution/runtime/'
 _COMPILER_INPUTS = {'literal_na_inputs':'literal_na', 'explicit_na_policy':'explicit_na'}
 _LIMITS = dict(native_timeout_seconds=600, component_timeout_seconds=3600,
@@ -157,9 +159,30 @@ def _construction_input(directory, model, sources, model_context):
 
 
 def _artifact_fields(policy):
-    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, ARTIFACT_POLICY}),
+    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY}),
           'Unsupported complete-request artifact policy')
     return {} if policy is None else dict(artifact_policy=policy)
+
+
+def _artifact_partitions(policy, with_continuation):
+    """Exact existing child owners; no child can borrow another's allowance.
+
+    V3 separates the one owned repair attempt from the enclosing preparation.
+    Its published runtime remains separately bounded as in V1/V2. Old policies
+    retain their exact historical partition meanings.
+    """
+    _artifact_fields(policy)
+    _need(type(with_continuation) is bool, 'Invalid continuation partition choice')
+    if policy is None:
+        return ()
+    prefixes = (_RUNTIME_PREFIX,)
+    if policy == ARTIFACT_POLICY:
+        prefixes += (_REPAIR_PREFIX,)
+    if with_continuation:
+        prefixes += ('continuation/',)
+        if policy in {NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY}:
+            prefixes += ('continuation/runtime/',)
+    return tuple(sorted(prefixes, key=len, reverse=True))
 
 
 def _artifact_options(config):
@@ -565,8 +588,7 @@ def _repair_limits(config):
 def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
     _artifact_fields(artifact_policy)
     if artifact_policy is not None:
-        prefixes=(_RUNTIME_PREFIX,) + (('continuation/',) if with_continuation else ())
-        if with_continuation and artifact_policy == ARTIFACT_POLICY: prefixes+=('continuation/runtime/',)
+        prefixes = _artifact_partitions(artifact_policy, with_continuation)
         files=frozen_tree._bounded_inventory(attempt,max_files=frozen_tree.MAX_FILES,
             max_bytes=frozen_tree.MAX_BYTES,partition_prefixes=prefixes)
         dirs=sorted(p.relative_to(attempt).as_posix() for p in attempt.rglob('*') if p.is_dir())
@@ -731,7 +753,9 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
     # write_record adds one 64-character digest and a final newline. Reserve
     # that complete record too, so successful publication stays readable.
     completion_size = serialized_record_size(completion)
-    prefixes=(('continuation/',) if composed else ()) + ((_RUNTIME_PREFIX,) if 'artifact_policy' in request['configuration'] else ())
+    policy = request['configuration'].get('artifact_policy')
+    prefixes = (_artifact_partitions(policy, composed) if policy is not None
+                else (('continuation/',) if composed else ()))
     partition = {n:r for n,r in artifacts['files'].items() if not n.startswith(prefixes)}
     _need(len(partition)+1 <= frozen_tree.MAX_FILES
           and completion_size <= frozen_tree.MAX_FILE_BYTES
