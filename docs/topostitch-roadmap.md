@@ -24,7 +24,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W36 | Audit native periodic-restraint callback lifecycle | RECORDED |
 | W37 | Bind complete canonical recipes to exact atom images | RECORDED |
 | W38 | Compose bounded native geometry with an explicit movable mask | RECORDED |
-| W39 | Reconstruct captured native context for masked evaluation | IN_PROGRESS |
+| W39 | Reconstruct captured native context for masked evaluation | RECORDED |
 
 ## Finish lines
 
@@ -188,8 +188,8 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
 **Next action:** Qualify one bounded unselected trial with controlled native lifecycle, no native/additive pair duplication, and endpoint full-precision/serialized geometry and periodic packing. W39 authenticates source and initial observed reconstruction only; future neighbors and complete exclusions still require qualification. Preserve W37 derivative-review controls and the separate Pine recut route.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition).
-**Last audit:** 2026-11-14, Linden, [W38](https://github.com/vecchioni-lab/NASolve/commit/5f7aad230eb04728de4211e69c496fa75948eef2); Direct masked composition and all-variable derivative/negative controls; native policy authentication and scientific gates remain open.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/9cfd5e1c1bed50a89b815c53014dc156195f10d6); Authenticated source and fresh initial observed reconstruction; no complete exclusion-policy proof, optimizer or scientific acceptance.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -501,6 +501,13 @@ Complete Phenix 2.2.1-6174 energy/derivative probes bind actual NARestraints ful
 [Evidence contract](topostitch-preview.md#w38--explicit-movable-coordinates-and-direct-native-composition) at [W38](https://github.com/vecchioni-lab/NASolve/commit/5f7aad230eb04728de4211e69c496fa75948eef2).
 Complete Phenix 2.2.1-6174 checks of all 321 fixed-base and 612 whole-window variables on the prior exact-source-bound control, plus all 246 variables of an independent 7R96 canonical-pair mask, pass at source and declared nonuniform perturbations. Ten negative controls reject identity/reference/definition/callback changes, invalid masks, motion/weight failures and budget exhaustion. Exact fixed coordinates and native/pair/tether component sums reproduce; installed native targets match.
 **Limit:** Direct unnormalized evaluator only. Native construction/context and complete nonbonded/exclusion-policy authentication remain caller-owned; Cedar fixed_signature does not cover that entire policy. No optimizer, manager rebuild/continuation, refinement, packing acceptance or model promotion. Artifacts stay local.
+
+<a id="e_captured_composition"></a>
+### E_CAPTURED_COMPOSITION — authenticated_initial_native_reconstruction
+
+[Evidence contract](topostitch-preview.md#w39--reconstruct-the-observed-native-starting-context) at [W39](https://github.com/vecchioni-lab/NASolve/commit/9cfd5e1c1bed50a89b815c53014dc156195f10d6).
+Cedar-authenticated captures rebuild through fresh trusted workers and exactly match complete initial observed monomer/geometry/energy/ASU inventories. Phenix 2.2.1-6174 107-atom, 204-atom and independent 82-atom controls exactly reproduce W38 source/nonuniform composed energies. Request-hash and resealed-worker negatives reject before execution. Installed and relocated reconstruction pass; full Willow 1338 tests plus 229 subtests.
+**Limit:** Developer-only initial reconstruction/evaluation. No complete exclusion/neighbor-generation authentication, optimizer, candidate, refinement or adoption. Native capture and numerical owners remain Cedar; scientific artifacts stay local. No combined Cedar/Willow build is claimed.
 
 ## Deferred extensions, not hidden blockers
 

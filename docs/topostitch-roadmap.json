@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2",
+  "audited_code_commit": "9cfd5e1c1bed50a89b815c53014dc156195f10d6",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -268,14 +268,14 @@
         "E_PACKING",
         "E_NATIVE_CALLBACK",
         "E_PAIR_RECIPE",
-        "E_MASKED_COMPOSITION"
+        "E_MASKED_COMPOSITION",
+        "E_CAPTURED_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2",
-        "human_update": 38,
-        "scope": "Direct masked composition and all-variable derivative/negative controls; native policy authentication and scientific gates remain open"
+        "code_commit": "9cfd5e1c1bed50a89b815c53014dc156195f10d6",
+        "scope": "Authenticated source and fresh initial observed reconstruction; no complete exclusion-policy proof, optimizer or scientific acceptance"
       }
     },
     {
@@ -659,6 +659,14 @@
       "reference": "docs/topostitch-preview.md#w38--explicit-movable-coordinates-and-direct-native-composition",
       "result": "Complete Phenix 2.2.1-6174 checks of all 321 fixed-base and 612 whole-window variables on the prior exact-source-bound control, plus all 246 variables of an independent 7R96 canonical-pair mask, pass at source and declared nonuniform perturbations. Ten negative controls reject identity/reference/definition/callback changes, invalid masks, motion/weight failures and budget exhaustion. Exact fixed coordinates and native/pair/tether component sums reproduce; installed native targets match.",
       "limitation": "Direct unnormalized evaluator only. Native construction/context and complete nonbonded/exclusion-policy authentication remain caller-owned; Cedar fixed_signature does not cover that entire policy. No optimizer, manager rebuild/continuation, refinement, packing acceptance or model promotion. Artifacts stay local."
+    },
+    "E_CAPTURED_COMPOSITION": {
+      "kind": "authenticated_initial_native_reconstruction",
+      "code_commit": "9cfd5e1c1bed50a89b815c53014dc156195f10d6",
+      "human_update": 39,
+      "reference": "docs/topostitch-preview.md#w39--reconstruct-the-observed-native-starting-context",
+      "result": "Cedar-authenticated captures rebuild through fresh trusted workers and exactly match complete initial observed monomer/geometry/energy/ASU inventories. Phenix 2.2.1-6174 107-atom, 204-atom and independent 82-atom controls exactly reproduce W38 source/nonuniform composed energies. Request-hash and resealed-worker negatives reject before execution. Installed and relocated reconstruction pass; full Willow 1338 tests plus 229 subtests.",
+      "limitation": "Developer-only initial reconstruction/evaluation. No complete exclusion/neighbor-generation authentication, optimizer, candidate, refinement or adoption. Native capture and numerical owners remain Cedar; scientific artifacts stay local. No combined Cedar/Willow build is claimed."
     }
   },
   "benchmarks": [
@@ -813,8 +821,8 @@
       {
         "number": 39,
         "title": "Reconstruct captured native context for masked evaluation",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "9cfd5e1c1bed50a89b815c53014dc156195f10d6"
       }
     ]
   }
