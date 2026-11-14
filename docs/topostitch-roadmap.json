@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
+  "audited_code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -489,7 +489,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
+        "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
         "reviewer": "Linden",
         "human_update": 62,
         "scope": "Exact labelled position orbit correspondence and floating coordinate binding; P03 remains partial without model writing, tensor serialization, physical identity or chemistry approval"
@@ -904,7 +904,7 @@
     },
     "E_ORBIT_PERMUTATIONS": {
       "kind": "exact_labelled_orbit_permutations",
-      "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
+      "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
       "human_update": 62,
       "reference": "docs/topostitch-periodic.md#w62--exact-labelled-orbit-permutations-for-a-proposed-cut",
       "result": "16 regressions; independent rational checks across65 Sohncke groups; focused47,full1592 plus229subtests,installed/relocated386,6helps,lean/3.10. Both public proposals preserve855 labelled atoms and7695 cell-image incidences; exact replay and old outputs preserved.",
@@ -1206,7 +1206,7 @@
         "number": 62,
         "title": "Verify exact labelled crystal-image permutations",
         "state": "RECORDED",
-        "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2"
+        "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164"
       }
     ]
   }

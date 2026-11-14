@@ -299,7 +299,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 **Next action:** Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations).
-**Last audit:** 2026-11-14, Linden, [W62](https://github.com/vecchioni-lab/NASolve/commit/27878592c8d06975fa9c8a6dc11272ff5d7ef3c2); Exact labelled position orbit correspondence and floating coordinate binding; P03 remains partial without model writing, tensor serialization, physical identity or chemistry approval.
+**Last audit:** 2026-11-14, Linden, [W62](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164); Exact labelled position orbit correspondence and floating coordinate binding; P03 remains partial without model writing, tensor serialization, physical identity or chemistry approval.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -671,7 +671,7 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 <a id="e_orbit_permutations"></a>
 ### E_ORBIT_PERMUTATIONS — exact_labelled_orbit_permutations
 
-[Evidence contract](topostitch-periodic.md#w62--exact-labelled-orbit-permutations-for-a-proposed-cut) at [W62](https://github.com/vecchioni-lab/NASolve/commit/27878592c8d06975fa9c8a6dc11272ff5d7ef3c2).
+[Evidence contract](topostitch-periodic.md#w62--exact-labelled-orbit-permutations-for-a-proposed-cut) at [W62](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164).
 16 regressions; independent rational checks across65 Sohncke groups; focused47,full1592 plus229subtests,installed/relocated386,6helps,lean/3.10. Both public proposals preserve855 labelled atoms and7695 cell-image incidences; exact replay and old outputs preserved.
 **Limit:** No special-position weighting, unique physical atom/molecule identity, tensor serialization, model writer, chemical connection, native execution or graphical approval. Source data and scientific outputs stay local; schema additive.
 
