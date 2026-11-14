@@ -507,6 +507,10 @@ score assertion remains preserved. **Next: qualify an explicit ordinary NASolve
 execution route** using existing ownership/checkpoint readers, complete native
 parameter/capability evidence and supported symmetry/process scope. This is not
 automatic deployment, PDU survival or universal Phenix support. No SDK edits.
+C296 adds complete ordered plane-parameter readback and rejects malformed/missing
+settings before compiled evaluation. Ordinary startup and 18 synthetic parameter
+cases pass; no native cycle was rerun. Historical captures are not retroactively
+declared complete. Continue with explicit ordinary execution/source binding.
 
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's

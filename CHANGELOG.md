@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Check complete plane parameters before native evaluation (C296)
+
+- Explicit parallelity correction now rejects malformed memberships, missing
+  settings and unsupported symmetry before calling compiled native code. Preserve
+  all existing caller forces on refusal; apply the native constructor's bounds.
+- Expose complete ordered parameter readback, including limit, origin and
+  absent/empty symmetry, for source-bound consumer checks. No chemical target,
+  default refinement, historical worker or installed SDK change.
+
 ### Explicitly compose corrected native plane forces (C291–C294)
 
 - Add an opt-in callable preserving the native parallelity score and adding

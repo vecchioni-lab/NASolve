@@ -12,6 +12,48 @@ from .cif_parallelity_correction import correct_parallelity_gradient
 POLICY_ID = 'native-parallelity-kernel-adapter-v1'
 
 
+def parallelity_parameters(proxies, *, site_count):
+    """Copy every consumed parameter for the supported Cartesian interface.
+
+    Preserve ordered memberships, repeated restraints and shared atoms. Missing
+    fields are unsupported, not assumed native defaults. The returned plain rows
+    may be recorded with a caller's exact atom ordering and source identity; they
+    do not themselves qualify a native version or approve chemical targets.
+    """
+    if type(site_count) is not int or site_count < 0:
+        raise ValueError('Require a nonnegative native site count')
+    rows = []
+    try:
+        for proxy in proxies:
+            row = {key: list(getattr(proxy, key)) for key in ('i_seqs', 'j_seqs')}
+            for indices in (row['i_seqs'], row['j_seqs']):
+                if (len(indices) < 3
+                        or any(type(i) is not int or not 0 <= i < site_count for i in indices)
+                        or len(set(indices)) != len(indices)):
+                    raise ValueError('Require unambiguous plane indices')
+            for key in ('weight', 'target_angle_deg', 'slack', 'limit'):
+                value = getattr(proxy, key)
+                if type(value) not in (int, float) or not math.isfinite(value):
+                    raise ValueError('Require finite native plane parameters')
+                row[key] = value
+            # These bounds are the native proxy constructor contract, not new
+            # scientific acceptance thresholds or target retuning.
+            if row['weight'] <= 0 or not 0 <= row['slack'] <= 90 or row['limit'] < 1:
+                raise ValueError('Invalid native plane parameter bounds')
+            row['top_out'], row['origin_id'] = proxy.top_out, proxy.origin_id
+            if (type(row['top_out']) is not bool or type(row['origin_id']) is not int
+                    or not 0 <= row['origin_id'] <= 255):
+                raise ValueError('Invalid native plane mode or origin')
+            sym_ops = proxy.sym_ops
+            row['sym_ops'] = None if sym_ops is None else list(sym_ops)
+            if row['sym_ops']:
+                raise ValueError('Symmetry-bearing plane correction is unsupported')
+            rows.append(row)
+    except (AttributeError, TypeError) as exc:
+        raise ValueError('Incomplete native parallelity interface') from exc
+    return rows
+
+
 class ParallelityKernel:
     """Preserve the native score and add checked forces to the supplied buffer.
 
@@ -51,6 +93,9 @@ class ParallelityKernel:
         incoming = list(gradient_array.as_double()) if gradients else []
         if not all(math.isfinite(x) for x in incoming):
             raise ValueError('Nonfinite incoming gradient')
+        # Validate indices and the complete native parameter interface before
+        # entering compiled code, which cannot safely inspect malformed indices.
+        parallelity_parameters(proxies, site_count=count)
         # Never allow a failed native call/check to partially modify forces that
         # earlier restraints already added to the caller's array.
         buffer = self._flex.vec3_double(count, (0., 0., 0.))

@@ -96285,5 +96285,139 @@
       "scope": "Read-only coordinate observation, not a test-suite or native refinement pass"
     },
     "publication": "Simon authorized compact evidence; models/data/logs/local runners excluded"
+  },
+  "complete_parallelity_parameters_2026_11_14": {
+    "milestone": "C296",
+    "status": "COMPLETE_PARAMETER_READBACK_AND_PRE_NATIVE_CHECKS_QUALIFIED",
+    "base_commit": "c74149196e1d40722f2bb20f6b00303ba7da9c74",
+    "prior_work": [
+      "C147/C148 and replacement workers already preserve numerical parameters; unchanged historical worker bytes",
+      "C294 maintained explicit kernel composition; C295 editable symmetry intent remains separate"
+    ],
+    "behavior": {
+      "before": "Some malformed/unsupported proxies entered the compiled residual call before validation; general historical inventories omit limit/symmetry.",
+      "after": "New complete Cartesian parameter reader preserves ordered memberships, weights, target, slack, limit, top-out, origin and explicit absent/empty symmetry; kernel validates before any native residual call.",
+      "limits": "No ordinary runtime option, installed SDK edit, chemical target or historical worker/schema change. Missing fields and symmetry-bearing planes refuse."
+    },
+    "source_sha256": {
+      "src/nasolve/cif_parallelity_kernel.py": "074c51faa384856f014631c72d97a14237ec3b7b6d833d405ca92aa02b507568",
+      "tests/test_cif_parallelity_parameters.py": "82d6dee7f7ee10f117e57898026eee975e7dd3d1489aa198354956c75a092e93",
+      "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+      "src/nasolve/cif_gradient_audit.py": "a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc",
+      "src/nasolve/cif_native_validation.py": "68d8acd8ea64f72d15a6c01fa43e40b37da9a280af5f64c6dbb7a998ce38391d"
+    },
+    "tests": {
+      "before": "32 failed in 0.07s before implementation",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_parallelity_parameters.py tests/test_cif_parallelity_kernel.py tests/test_cif_parallelity_correction.py tests/test_cif_objective_probe.py",
+      "result": "94 passed in 3.12s; no full suite"
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "296_Cedar_plane-parameters-8nfoggvi",
+      "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "scope": "Ordinary zero-cycle dry-run plus isolated synthetic parameter controls; no actual refinement repeated",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "startup": {
+        "ordinary_raw": {
+          "evaluation_calls": 162,
+          "sampled_gradients_consistent": false,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED",
+          "review_directions": 17,
+          "directions": 20,
+          "target": 1.1401030244830264,
+          "baseline_context": {
+            "normalization_factor": 8.862105636299185e-05,
+            "number_of_restraints": 11284,
+            "nonbonded_proxies": 8004,
+            "pair_list_updates": 1
+          },
+          "repeat_context": {
+            "normalization_factor": 8.862105636299185e-05,
+            "number_of_restraints": 11284,
+            "nonbonded_proxies": 8004,
+            "pair_list_updates": 1
+          }
+        },
+        "kernel_adapted": {
+          "evaluation_calls": 162,
+          "sampled_gradients_consistent": true,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED",
+          "review_directions": 0,
+          "directions": 20,
+          "target": 1.1401030244830264,
+          "baseline_context": {
+            "normalization_factor": 8.862105636299185e-05,
+            "number_of_restraints": 11284,
+            "nonbonded_proxies": 8004,
+            "pair_list_updates": 1
+          },
+          "repeat_context": {
+            "normalization_factor": 8.862105636299185e-05,
+            "number_of_restraints": 11284,
+            "nonbonded_proxies": 8004,
+            "pair_list_updates": 1
+          }
+        }
+      },
+      "raw_corrected_targets_identical": true,
+      "atoms": 853,
+      "proxies": 58,
+      "consumed_modes": {
+        "target_angle_deg": [
+          "0.0"
+        ],
+        "slack": [
+          "0.0"
+        ],
+        "limit": [
+          "1.0"
+        ],
+        "top_out": [
+          "False"
+        ],
+        "origin_id": [
+          "4"
+        ],
+        "sym_ops": [
+          "None"
+        ]
+      },
+      "synthetic_cases": 18,
+      "synthetic_shapes": [
+        "4/4",
+        "4/6",
+        "6/4"
+      ],
+      "synthetic_variants": [
+        "standard",
+        "nonzero target 7.3",
+        "slack 4",
+        "top-out limit 1.4",
+        "combined",
+        "within slack 89"
+      ],
+      "synthetic_directions": 141,
+      "synthetic_review_directions": 0,
+      "original_files_unchanged": 410,
+      "capture_files_unchanged": 64,
+      "retained_bytes": 5892712,
+      "saved_records": {
+        "complete-plane-parameters.json": "d94c5351c95915c03e981b67af799aefad881d86e60099ffb7589652ebf48578",
+        "parameter-controls.json": "1b2e47d0fcb9da69e4fd58b1a39c288a8a4267019f908f0a280376b5fd884851",
+        "installed-sources.json": "9326fb658759aadcdbd75ac4410340f04f17d8e335a0c2f8ccc4aa542f29e07b",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+      }
+    },
+    "remaining": [
+      "Ordinary explicit execution route and capability/source/process binding",
+      "Effective PDU and held-out chemistry survival; symmetry chemistry remains declared but not enforced"
+    ],
+    "artifacts": "Code/tests/compact evidence only in Git; native inputs, models, logs, synthetic raw reports and runners remain local."
   }
 }

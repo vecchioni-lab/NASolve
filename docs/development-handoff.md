@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C295**. Active **cedar** in NASolve-c96. Remote last verified
-**C289 `7e843af7`**; C290 is local **`c911bdc5`**, C291–C294 **`dac3b18c`**.
+Updated **2026-11-14, C296**. Active **cedar** in NASolve-c96. Remote last verified
+**C295 `c7414919`**, including C290 and C291–C294.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
@@ -41,6 +41,18 @@ Defaults, old-run migration, broader capacity/platform checks and full integrati
 remain Q16. Last full suite: **C220/583d30df, 9,178 tests +276 subtests**.
 
 ## Q06 — real refinement preserves the intended chemistry
+
+**C296 complete, being committed:** complete ordered plane parameters are checked
+before compiled evaluation. Reuse C294's correction; historical general inventories
+and numerical worker bytes remain unchanged. Missing fields/unsupported symmetry
+refuse without touching caller forces. 32 regressions fail before; 94 focused tests
+pass in 3.12 s. Native `296_Cedar_plane-parameters-8nfoggvi` is stopped (rc0,
+source unchanged): ordinary zero-cycle startup keeps all 58 parallelities and the
+same score; corrected 20/20 directions pass, raw fails 17/20. All 18 synthetic
+parameter/plane-size cases pass (141 directions); no chemical acceptance claim.
+Original 410 files and prior capture 64 files unchanged; retained 5.9 MB.
+Next: explicit ordinary execution route with exact source/process/parameter
+evidence; no default activation. Symmetry intent stays separate and editable.
 
 C286/C287 establish the C279 prepared/final GEO memberships (45 planes,
 58 parallelities); the checked reader avoids the installed parser's truncation.

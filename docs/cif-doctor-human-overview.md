@@ -173,6 +173,11 @@ base-pair/stacking files that Coot does not display. A model cannot be presented
 through this route while those recorded files are missing or changed (C221).
 This protects inspection integrity; it does not establish refinement success.
 
+The explicit plane-force correction also checks complete memberships and native
+settings before compiled evaluation, retaining targets and recording all consumed
+parameters. Missing settings or unsupported symmetry refuse; this prerequisite
+does not yet enable the correction in ordinary NASolve refinement commands.
+
 ## Catalogue scope and progression
 
 The programme includes every ligand in the selected NARestraints catalogue,
