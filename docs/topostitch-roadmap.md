@@ -693,7 +693,7 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 ### E_CUT_PREFERENCE — source_bound_cut_preference
 
 [Evidence contract](topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference) at [W65](https://github.com/vecchioni-lab/NASolve/commit/3993bb3abce5ef64157e08a07658d7698fc4b652).
-15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass.
+15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass. Temporary installed C303 composition passes424Willow/221Cedar plus6subtests and exact default-owner capture/preference/legacy replay.
 **Limit:** Preference is caller-supplied evidence, not authenticated human or scientific approval; no model/checkpoint action or separate campaign history. Real browser/download/human review remains open. Scientific artifacts local only.
 
 ## Deferred extensions, not hidden blockers

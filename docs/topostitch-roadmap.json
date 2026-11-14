@@ -941,7 +941,7 @@
       "code_commit": "3993bb3abce5ef64157e08a07658d7698fc4b652",
       "human_update": 65,
       "reference": "docs/topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference",
-      "result": "15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass.",
+      "result": "15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass. Temporary installed C303 composition passes424Willow/221Cedar plus6subtests and exact default-owner capture/preference/legacy replay.",
       "limitation": "Preference is caller-supplied evidence, not authenticated human or scientific approval; no model/checkpoint action or separate campaign history. Real browser/download/human review remains open. Scientific artifacts local only."
     }
   },

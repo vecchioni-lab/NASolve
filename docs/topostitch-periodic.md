@@ -1679,3 +1679,14 @@ with the host NASolve `.venv/bin/python -m pytest -q -p no:cacheprovider` from t
 Willow checkout. These local environment paths are validation provenance, not
 operational artifact locators; a normal installed topology environment uses the
 portable commands above.
+
+
+A final temporary installed composition with published Cedar C303 `c9736e39`
+passes **424 Willow + 221 Cedar tests and 6 subtests**, six helps and exact public
+packet/orbit/scattering/source-native/preference replay through default installed
+Cedar owners. The Cedar set covers complete-request, complete-child-bounds,
+attachment-native and checkpoint behavior; it took 292.13 seconds. Archived
+published source and an explicit metadata/module/HTML union were used, with the
+original temporary source path removed before replay. This is scoped compatibility,
+not a branch merge, full combined suite, browser qualification or native execution.
+The W65 code remains unchanged by that check.

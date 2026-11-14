@@ -243,10 +243,11 @@ Virtual L/R recipe labels are not ordinary source-model refinement selections.
 Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
 movement masks require their own qualified consumer policy.
 
-**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W63's
-temporary installed composition with published Cedar C302 `d32825e9` passes 397
-Willow + 238 Cedar tests and 19 subtests, six helps and exact old/new packet/orbit/
-view/scattering/source-native replay through the default installed Cedar owners.
+**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W65's
+temporary installed composition with published Cedar C303 `c9736e39` passes 424
+Willow + 221 Cedar tests and 6 subtests, six helps and exact old/new packet/orbit/
+view/scattering/source-native/preference replay through default installed owners.
+Cedar checks cover complete-request, child-bounds, attachment-native and checkpoints.
 Metadata union is explicit (extras, entry points, exact viewer asset); runtime
 overlays have source hashes. This is scoped compatibility, not a merge, full
 combined suite, combined human-guide review or native execution.
