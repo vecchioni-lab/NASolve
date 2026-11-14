@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W63 — Expose existing source bonds at proposed representation seams.** Next: W64.
+**Current update: W64 — Compare explicit cuts through a shared-camera preview.** Next: W65.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W54 | Audit accepted points while preserving optimizer failures | RECORDED |
 | W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
 | W56 | Save and replay explicit representative proposals | RECORDED |
 | W57 | Inspect periodic representative proposals in the shared viewer | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
 | W63 | Expose existing source bonds at proposed representation seams | RECORDED |
+| W64 | Compare explicit cuts through a shared-camera preview | IN_PROGRESS |
 
 ## Finish lines
 
@@ -274,7 +274,7 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.
 
 **Closure audit:**
 
@@ -282,8 +282,8 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
 **Next action:** Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.
-**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams).
-**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison).
+**Last audit:** 2026-11-14, Linden, [W64](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20); Explicit comparison and interaction controls only; P02 remains partial without rendered/user review or persistent choice.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -681,6 +681,13 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 [Evidence contract](topostitch-periodic.md#w63--show-existing-source-bonds-at-proposed-asu-seams) at [W63](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20).
 11 regressions; focused52,full1603 plus229subtests,installed/relocated397,six helps. Complete Phenix2.2.1-6174 source capture:855 atoms/956simple/0ASU/38interresidue links. Both explicit public cuts expose two source-native seams outside the declared backbone graph, retaining P/OP1/OP2 and exact-image geometry. Temporary installed C302 composition passes397Willow/238Cedar plus19subtests and exact default-owner native/old replay.
 **Limit:** Observation only: source interpretation is not complete intent; existing symmetry bonds/angles/exclusions unqualified. No new bond, atom edit, model, native refinement, graphical approval or scientific acceptance. Scientific artifacts local; original setup refusal preserved.
+
+<a id="e_cut_comparison"></a>
+### E_CUT_COMPARISON — explicit_cut_comparison_view
+
+[Evidence contract](topostitch-periodic.md#w64--compare-explicit-cuts-in-one-shared-view) at [W64](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20).
+12 regressions; focused42,full1615 plus229subtests. Public explicit alternatives preserve exact W63 scenes and relocate with source paths blocked. Actual JavaScript checks shared camera, repeated cut switching, refreshed seam details, stale selection clearing and legacy controls. Installed/relocated409,six helps,lean/3.10 and exact installed comparison/legacy replay pass.
+**Limit:** No automatic alternatives, saved human choice/approval, model or chemistry action. Browser rendering/user review still open. Stale installed-wheel refusal retained; scientific artifacts local only.
 
 ## Deferred extensions, not hidden blockers
 

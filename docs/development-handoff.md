@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W63; next W64.** Human W-numbers and exact code provenance live
+**Willow update W64; next W65.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,603 plus 229 subtests**; focused52;
-installed/relocated397, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,615 plus 229 subtests**; focused42;
+installed/relocated409, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -177,6 +177,12 @@ intended topology; the observer neither extends the graph nor activates a bond.
 One complete Phenix 2.2.1-6174 source capture passed (no optimization/refinement);
 initial input/output-parent setup refusal is preserved. P04 is partial for this
 observation only. Exact hashes, commands and limits are in the W63 periodic guide.
+
+W64 lets the existing view compare 2–8 explicit same-source/graph packets through
+`--compare`, with human Cut numbers and one camera/scale. Switching refreshes native
+seams/provenance and clears old atom/edge inspection. No packet changes or saved
+human decision; legacy scenes are exact. Public replay and actual JavaScript
+interaction controls pass, but rendered/browser review is still open.
 
 **Next bounded work:** actual graphical cut choice and persistent human review
 still need qualification. W61 completed the two read-only W54 failed-point reviews

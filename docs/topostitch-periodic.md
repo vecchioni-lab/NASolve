@@ -1530,3 +1530,74 @@ source inputs were relocated before replay. This adds source-capture compatibili
 to W62's packet/orbit/view/scattering checks. Only explicit topology metadata,
 TopoStitch modules and viewer asset were overlaid on the archived Cedar commit;
 no dirty Cedar file, branch merge, full combined suite or native execution was used.
+
+
+## W64 — Compare explicit cuts in one shared view
+
+The existing offline viewer accepts additional representative packets:
+
+```bash
+nasolve-topostitch-view /path/to/cut-a --compare /path/to/cut-b --out /path/to/new-comparison.html
+```
+
+Repeat `--compare` for up to seven additional packets. All 2–8 cuts must replay
+from the **same exact source and registered graph**; different source coordinates,
+registration/graph intent, duplicate packets, bend previews, stale artifacts and
+unrelated bend-search options refuse before writing HTML. Every input remains
+unchanged. The output must sit outside every supplied packet. A 50,000-point
+combined display budget bounds the shared camera's atom/edge coordinate inventory.
+This is a visualization bound, not a scientific eligibility criterion.
+
+`nasolve.topostitch_view.representative_comparison` returns an additive schema-1
+`topostitch-representative-comparison-view` containing the unchanged per-cut scenes,
+ordered local **Cut 1, Cut 2, …** display identifiers and exact comparison/source/
+graph hashes. The numbers are local presentation labels; hashes identify the
+proposals. Reordering inputs changes the comparison identity. No paths are embedded.
+Optional `--native-receipt`/`--cedar-source` have W63's meaning and apply to all cuts;
+the common receipt and all packets must stay unchanged throughout preparation.
+
+The **Inspect cut** selector updates the proposal, edge operators, boundaries,
+provenance and optional source-native seam report. It retains the common camera,
+rotation, pan, zoom, coordinate mode and display toggles. Switching clears stale
+atom/edge inspection rather than leaving the prior cut's details visible. Reset
+fits all compared proposals, so changing cut does not silently change scale.
+The displayed cut is **not selected or approved**; there is no model write,
+checkpoint, saved human decision, automatic alternative generator or ranking.
+Single-cut and bend scenes retain their exact existing payloads and commands.
+P02 remains partial pending rendered/user validation, real cut editing and
+persistent human review; P03/P04 chemical/materialization gates are unchanged.
+
+Twelve regressions fail against the old feature boundary and pass with the new
+comparison. They exercise exact scenes/order, wrong sources/graphs, input counts,
+duplicates, late drift, relocation, output containment, budget and bend refusals.
+Focused **42** and full Willow **1,615 plus 229 subtests** pass:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_topostitch_cut_comparison.py tests/test_topostitch_native_seams.py tests/test_topostitch_recut_view.py tests/test_topostitch_view.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider
+python -m pip wheel --no-deps --no-build-isolation --wheel-dir /path/to/local/wheels .
+```
+
+Python 3.12.14 with the full topology dependencies/Gemmi 0.7.5 was used. The stale
+installed W63 wheel initially refused the new API import, as expected; that failed
+installation control is retained before rebuilding/reinstalling. Final wheel
+SHA-256: `904d8fbf17256847081178d2e6a6ac9eb4c3e75a1533f8af25fa9549234ec044`.
+Its module and viewer asset match the final source bytes.
+
+Both predeclared public alternatives compare 855 source atoms with two observed
+native seams apiece. The exact prior W63 scenes are retained, and the combined
+result replays after relocation with original paths blocked. Actual packaged
+JavaScript exercises repeated switching, shared original-coordinate pixel positions,
+current seam/provenance/edge details, cleared stale selections and legacy bend/
+missing-anchor/single-cut controls through DOM/canvas doubles. This does **not**
+close the blocked rendered-browser/user review gate. No new native execution,
+refinement, chemistry or Cedar change was needed. Scientific inputs, comparison
+HTML/JSON and local validation are excluded from Git. Existing schemas need no
+migration; the new comparison kind requires this compatible viewer.
+
+
+Installed/relocated **409** tests, six helps, lean imports and Python 3.10 syntax
+pass. The installed `--compare` command produces the exact native-context comparison
+scene; legacy bundle, forest, orbit, single-view and source-native replay also pass.
+W63's scoped C302 owner-composition qualification remains the compatibility baseline;
+W64 adds no Cedar owner interface or package metadata change.

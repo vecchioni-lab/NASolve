@@ -205,6 +205,62 @@ def representative_scene(directory, *, native_receipt=None, cedar_source=None):
     return scene
 
 
+_MAX_COMPARISON_POINTS = 50_000
+
+
+def representative_comparison(directories, *, native_receipt=None, cedar_source=None):
+    """Compare 2–8 explicit cuts of one frozen source/graph without selecting one.
+
+    Each alternative is the existing verified scene, not a new model or recipe.
+    Ordered local cut numbers are presentation identifiers; hashes bind identity.
+    """
+    from .topostitch_recut_bundle import _FILES
+    from .topostitch_registration import _fingerprint
+    if not isinstance(directories, (list, tuple)) or not 2 <= len(directories) <= 8:
+        raise ValueError('Require 2 to 8 explicit representative packet paths')
+    roots = [Path(path).resolve() for path in directories]
+    if len(set(roots)) != len(roots):
+        raise ValueError('Comparison requires distinct representative packets')
+    frozen = {}
+    if native_receipt is not None:
+        path = Path(native_receipt).expanduser().resolve()
+        frozen[path] = path.read_bytes()
+    for root in roots:
+        manifest = root / 'preview.json'
+        data = manifest.read_bytes()
+        receipt = _json(data)
+        if not isinstance(receipt, dict) or receipt.get('kind') != 'topostitch-representative-preview-bundle':
+            raise ValueError('Cut comparison requires representative preview packets')
+        frozen[manifest] = data
+        for name in _FILES.values():
+            path = root / name
+            frozen[path] = path.read_bytes()
+    scenes = [representative_scene(root, native_receipt=native_receipt, cedar_source=cedar_source)
+              for root in roots]
+    first = scenes[0]
+    if any(scene[key] != first[key] for scene in scenes
+           for key in ('source_model_sha256', 'registered_graph_sha256')):
+        raise ValueError('Cut alternatives must bind the same source and registered graph')
+    if len({scene['preview_receipt_sha256'] for scene in scenes}) != len(scenes):
+        raise ValueError('Comparison contains duplicate representative packets')
+    points = sum(2 * len(scene['atoms']) + sum(4 for edge in scene['periodic_edges']
+                 if edge.get('before_points')) for scene in scenes)
+    if points > _MAX_COMPARISON_POINTS:
+        raise ValueError('Cut comparison exceeds the 50000-point display budget')
+    if any(path.read_bytes() != data for path, data in frozen.items()):
+        raise ValueError('Representative packets changed during comparison')
+    result = dict(schema_version=1, kind='topostitch-representative-comparison-view',
+                  source_model_sha256=first['source_model_sha256'],
+                  registered_graph_sha256=first['registered_graph_sha256'],
+                  alternatives=[dict(cut_id=i, scene=scene) for i, scene in enumerate(scenes, 1)],
+                  selection_applied=False, graphical_review_recorded=False,
+                  coordinates_materialized=False, chemical_connectivity_changed=False,
+                  runtime_authority=False,
+                  scope='Caller-supplied cuts of the same source and declared graph; inspection only, no ranking or approval')
+    result['comparison_sha256'] = _fingerprint(result)
+    return result
+
+
 def _html(scene):
     data=json.dumps(scene,separators=(',',':'),allow_nan=False,ensure_ascii=True)
     data=data.replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
@@ -212,20 +268,24 @@ def _html(scene):
     return template.replace('__SCENE_JSON__',data)
 
 
-def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,**options):
+def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),**options):
     if cedar_source is not None and native_receipt is None:
         raise ValueError('A trusted Cedar source requires an explicit native receipt')
     root=Path(directory).resolve();out=Path(output_path).absolute()
     if out.exists():raise FileExistsError(out)
-    if out.resolve().is_relative_to(root):raise ValueError('Write the view outside the frozen preview directory')
+    if not isinstance(comparison_directories,(list,tuple)) or len(comparison_directories)>7:
+        raise ValueError('At most seven additional explicit comparison paths are supported')
+    roots=[root]+[Path(path).resolve() for path in comparison_directories]
+    if any(out.resolve().is_relative_to(path) for path in roots):raise ValueError('Write the view outside every frozen preview directory')
     receipt=_json((root/'preview.json').read_bytes())
     if not isinstance(receipt,dict):raise ValueError('Unsupported preview receipt')
     kind=receipt.get('kind')
-    if kind=='topostitch-representative-preview-bundle':
+    if comparison_directories or kind=='topostitch-representative-preview-bundle':
         defaults=dict(candidate_index=None,radius_angstrom=None,periodic=False,max_pairs=100_000,max_image_tests=100_000)
         if any(k not in defaults or type(v) is not type(defaults[k]) or v!=defaults[k] for k,v in options.items()):
             raise ValueError('Representative preview already declares its images; bend-search options do not apply')
-        scene=representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source)
+        scene=(representative_comparison(roots,native_receipt=native_receipt,cedar_source=cedar_source) if comparison_directories
+               else representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source))
     else:
         if native_receipt is not None:raise ValueError('Native seam observation requires a representative preview')
         scene=preview_scene(root,**options)
@@ -238,6 +298,7 @@ def main(argv=None):
     parser=argparse.ArgumentParser(prog='nasolve-topostitch-view',description='Write an offline, read-only view of a verified bend or representative preview.')
     parser.add_argument('preview',type=Path)
     parser.add_argument('--out',type=Path,required=True,help='New standalone HTML file outside the frozen preview')
+    parser.add_argument('--compare',type=Path,action='append',default=[],help='Additional explicit cut packet from the same source/graph (repeat up to seven times)')
     parser.add_argument('--candidate',type=int,help='Explicit candidate index in the original model search')
     parser.add_argument('--radius',type=float,help='Exact source search radius when choosing a candidate')
     parser.add_argument('--periodic',action='store_true',help='Show the exact chosen symmetry mate (requires topology extra)')
@@ -247,9 +308,11 @@ def main(argv=None):
     parser.add_argument('--cedar-source',type=Path,help='Explicit trusted developer Cedar source; default uses installed owners')
     args=parser.parse_args(argv)
     try:scene=write_preview_view(args.preview,args.out,candidate_index=args.candidate,radius_angstrom=args.radius,
-        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source)
+        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare)
     except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
-    print(f'Read-only view: {args.out}\n{len(scene["atoms"])} displayed atom instances; proposal remains unreviewed.')
+    detail=(str(len(scene['alternatives']))+' explicit cuts; none selected' if 'alternatives' in scene
+            else str(len(scene['atoms']))+' displayed atom instances; proposal remains unreviewed')
+    print(f'Read-only view: {args.out}\n{detail}.')
     return 0
 
 

@@ -595,6 +595,24 @@
       "coordinates_materialized": false,
       "scientific_acceptance": false,
       "runtime_authority": false
+    },
+    "representative_comparison": {
+      "module": "nasolve.topostitch_view",
+      "api": "representative_comparison",
+      "schema_version": 1,
+      "kind": "topostitch-representative-comparison-view",
+      "cli": "nasolve-topostitch-view --compare (repeatable)",
+      "input_scope": "2\u20138 explicit packets from one exact source and registered graph; no inferred alternatives",
+      "display_point_budget": 50000,
+      "camera": "Shared across cuts; rotation/pan/zoom/mode/toggles retained",
+      "stale_selection": "Atom/edge inspection cleared on cut switch; warnings, ownership and native seams refreshed",
+      "local_identifiers": "Cut 1, Cut 2, \u2026 in explicit input order; exact hashes retain proposal identity",
+      "legacy_scenes_unchanged": true,
+      "selection_applied": false,
+      "graphical_review_recorded": false,
+      "coordinates_materialized": false,
+      "chemical_connectivity_changed": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

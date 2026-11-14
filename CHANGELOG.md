@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W64 — Compare explicit ASU cuts in the existing viewer
+
+- Add repeatable `--compare` for source/graph-bound representative packets and a
+  shared-camera cut selector with current seam details and cleared stale selections.
+- Preserve single-cut/bend behavior; reject mixed sources, stale or duplicate
+  packets and excess display budgets. Inspection does not select or approve a cut.
+
 ### W63 — Expose existing backbone bonds at proposed cuts
 
 - Bind Cedar's authenticated source-native interresidue links to exact proposed

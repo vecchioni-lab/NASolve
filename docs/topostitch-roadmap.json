@@ -444,7 +444,8 @@
         "W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge.",
         "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.",
         "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.",
-        "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change."
+        "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
+        "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
@@ -457,14 +458,15 @@
         "E_VIEW_PACKAGE_BOUNDARY",
         "E_EXPLICIT_FOREST",
         "E_SAVED_FOREST_INTENT",
-        "E_NATIVE_REPRESENTATION_SEAMS"
+        "E_NATIVE_REPRESENTATION_SEAMS",
+        "E_CUT_COMPARISON"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
         "reviewer": "Linden",
-        "human_update": 63,
-        "scope": "Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified"
+        "human_update": 64,
+        "scope": "Explicit comparison and interaction controls only; P02 remains partial without rendered/user review or persistent choice"
       }
     },
     {
@@ -923,6 +925,14 @@
       "reference": "docs/topostitch-periodic.md#w63--show-existing-source-bonds-at-proposed-asu-seams",
       "result": "11 regressions; focused52,full1603 plus229subtests,installed/relocated397,six helps. Complete Phenix2.2.1-6174 source capture:855 atoms/956simple/0ASU/38interresidue links. Both explicit public cuts expose two source-native seams outside the declared backbone graph, retaining P/OP1/OP2 and exact-image geometry. Temporary installed C302 composition passes397Willow/238Cedar plus19subtests and exact default-owner native/old replay.",
       "limitation": "Observation only: source interpretation is not complete intent; existing symmetry bonds/angles/exclusions unqualified. No new bond, atom edit, model, native refinement, graphical approval or scientific acceptance. Scientific artifacts local; original setup refusal preserved."
+    },
+    "E_CUT_COMPARISON": {
+      "kind": "explicit_cut_comparison_view",
+      "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
+      "human_update": 64,
+      "reference": "docs/topostitch-periodic.md#w64--compare-explicit-cuts-in-one-shared-view",
+      "result": "12 regressions; focused42,full1615 plus229subtests. Public explicit alternatives preserve exact W63 scenes and relocate with source paths blocked. Actual JavaScript checks shared camera, repeated cut switching, refreshed seam details, stale selection clearing and legacy controls. Installed/relocated409,six helps,lean/3.10 and exact installed comparison/legacy replay pass.",
+      "limitation": "No automatic alternatives, saved human choice/approval, model or chemistry action. Browser rendering/user review still open. Stale installed-wheel refusal retained; scientific artifacts local only."
     }
   },
   "benchmarks": [
@@ -1038,8 +1048,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 63,
-    "next": 64,
+    "current": 64,
+    "next": 65,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1227,6 +1237,12 @@
         "title": "Expose existing source bonds at proposed representation seams",
         "state": "RECORDED",
         "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20"
+      },
+      {
+        "number": 64,
+        "title": "Compare explicit cuts through a shared-camera preview",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }
