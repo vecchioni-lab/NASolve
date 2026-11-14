@@ -670,8 +670,9 @@ def _attempt_state(root, attempt, number, request, result_sink=None):
     return dict(result,state='STOPPED_UNFINISHED' if safe else 'LIVE' if live else 'UNKNOWN',activity=False if safe else True if live else None)
 
 
+@numerical_replay_scope()
 def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink=None, result_sinks=None):
-    """Shared validation; retain only explicitly requested results within this read."""
+    """Shared read-only validation with bounded pure numerical reuse for this read."""
     root = _root(directory)
     result = dict(schema_version=1,policy_id=POLICY_ID,state='NOT_RECORDED',availability='BLOCKED',attempts=[],retry_authorized=False)
     if not root.exists(): return result

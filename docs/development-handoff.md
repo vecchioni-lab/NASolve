@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C283**. Active **cedar**, NASolve-c96. C283 campaign
-verification change is tested and being published; prior pushed state `948a7860`.
+Updated **2026-11-14, C284**. Active **cedar**, NASolve-c96. C283 campaign
+verification change is committed and pushed as `af9aee87`.
 Simon directly authorized a new Q04/Q05 pass beginning 16:04 Europe/London,
 then extended its cutoff to **23:00 on 2026-11-14**, with connectivity interruptions
 expected. Focused checks only: **no full suite, new branch or merge**.
@@ -44,13 +44,18 @@ subtests; five sandbox-blocked process tests separately pass with ps access.
 Relocated temporary checkout: 16 pass. No full suite or new native chemistry.
 Exact scope and commands: `campaign_stage_integrity_scope_2026_11_14`.
 
-**Immediate next:** C284's two status/archive-eligibility regression cases already
-fail because only exact-result reads enter C273's bounded numerical reuse scope.
-Wrap the existing single read-only owner inspection with that same scope, then
-check focused tests and one saved native control read without launching Phenix.
-Do not cache files, ownership, errors or verdicts across calls. All native jobs
-are stopped; no active science to recover. Complete this bounded patch before
-reconciling Q04/Q05 supported release scope in the existing queue.
+**C284 completed:** the existing shared read-only inspection now enters C273's
+bounded numerical reuse scope. 170 focused tests pass; four fresh-process status/
+archive-eligibility reads of saved C282 return identical complete result hashes,
+with all 327 source files unchanged and numerical replay 28 → 2 per read. All
+read driver groups stopped with unchanged product source. No Phenix rerun.
+Exact commands/timings and limits: `owner_inspection_numerical_reuse_2026_11_14`.
+C283's task-owned temporary source copy (8.7 MB) was removed after verifying its
+committed modules and relocated checks; small receipts retained, no science removed.
+
+**Next:** reconcile the supported Q04/Q05 scope once in the maintained queue;
+then Q06 inspects actual refinement behavior, preserving the distinction between
+file delivery and effective restraints/chemical survival. No active jobs remain.
 
 ## Latest result — the prepared bundle reaches real refinement
 

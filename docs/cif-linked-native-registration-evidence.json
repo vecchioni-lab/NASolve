@@ -94602,6 +94602,144 @@
     },
     "compatibility": "No saved format, default, selection, native chemistry, process owner, retry allowance or integrity threshold change. No persistent checksum cache. Private stage view retains original fingerprint/counts and cannot be used for full reconciliation.",
     "artifacts": "No scientific artifacts committed. Synthetic dataset tree removed after pass; compact runner/receipts retained locally.",
-    "remaining": "No native rerun for this orchestration-only change. C279 and C282 retain their exact historical code qualification. C284 will address a separately reproduced inspection-local numerical-reuse gap; Q04/Q05 scope reconciliation remains open. Last full suite C220/583d30df: 9178 tests + 276 subtests."
+    "remaining": "No native rerun for this orchestration-only change. C279 and C282 retain their exact historical code qualification. C284 will address a separately reproduced inspection-local numerical-reuse gap; Q04/Q05 scope reconciliation remains open. Last full suite C220/583d30df: 9178 tests + 276 subtests.",
+    "preview_cleanup": {
+      "scope": "Only the task-owned C283 tracked source/test/frame preview; no scientific run or original files. Reconstruct via base git archive 948a7860 and committed C283 af9aee87 diff.",
+      "removed_files": 655,
+      "removed_bytes": 8699215,
+      "inventory_sha256": "626f5a0a19f9c2e52aa231021a697fa0300d8f6c00e435fe86642c2129d63e35",
+      "relocated_validation": "16 focused tests passed in 1.64 s after original temporary source path disappeared.",
+      "preview_source_removed": true
+    }
+  },
+  "owner_inspection_numerical_reuse_2026_11_14": {
+    "checkpoint": "C284",
+    "base_commit": "af9aee87",
+    "status": "FOCUSED_AND_EXACT_NATIVE_READ_COMPARISON_PASS",
+    "prior_work": "C273 already supplies bounded pure numerical reuse to exact-result reads. Direct complete-request status and archive-eligibility readers enter the same owner inspection without that scope; no new cache/math/owner is needed.",
+    "before_after": "Add the existing scope around one synchronous read-only _inspect_dictionary_request call. Reuse only identical complete JSON inputs and validator identity. All file, owner, archive, source and scientific checks still execute; each later inspection starts fresh.",
+    "files": {
+      "src/nasolve/cif_complete_request.py": "327fed3ffb1d1ca15e1d17317f1623601969af0b9b6497caa6dc3a6069342e8d",
+      "tests/test_cif_numerical_replay.py": "8e633b9508e35d263dc79aa75c9a1e66c3dcafe926151f1912462572d7be40e7"
+    },
+    "schema_change": null,
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider /private/tmp/c284_inspection_replay.py",
+        "result": "Before change: both status/archive-eligibility regressions fail (2 failed in 10.34 s); duplicate calculations observed."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_numerical_replay.py tests/test_cif_complete_request.py tests/test_cif_attempt_retention.py tests/test_cif_preparation_retention.py",
+        "result": "170 passed in 485.09 s. Two regressions prove reuse within each entrance, no cross-read carryover and unchanged file bytes/timestamps. Existing scope and owner negatives retained. No full suite."
+      }
+    ],
+    "native_read_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c284_read_start.py",
+    "comparison": {
+      "status": "EXACT_NATIVE_REQUEST_INSPECTION_REUSE_PASS",
+      "results": {
+        "status": {
+          "baseline": {
+            "status": "READ_PASS",
+            "mode": "baseline",
+            "entry": "status",
+            "result_sha256": "40799f9ed6fa03ccc6888f298713161b0bc71f7e7464c2f2ef440037f1f8b003",
+            "result_serialized_bytes": 481373,
+            "read_seconds": 219.48216975000105,
+            "total_seconds": 220.33348970802035,
+            "numerical_replays": {
+              "mixed": 28,
+              "zero_parallelity": 0
+            },
+            "maximum_python_resident_bytes": 708542464,
+            "unchanged_files": 327,
+            "native_calls": 0,
+            "old_source_cache_sdk_reads_forbidden": true
+          },
+          "reuse": {
+            "status": "READ_PASS",
+            "mode": "reuse",
+            "entry": "status",
+            "result_sha256": "40799f9ed6fa03ccc6888f298713161b0bc71f7e7464c2f2ef440037f1f8b003",
+            "result_serialized_bytes": 481373,
+            "read_seconds": 107.01865758301574,
+            "total_seconds": 107.2506452499947,
+            "numerical_replays": {
+              "mixed": 2,
+              "zero_parallelity": 0
+            },
+            "maximum_python_resident_bytes": 632225792,
+            "unchanged_files": 327,
+            "native_calls": 0,
+            "old_source_cache_sdk_reads_forbidden": true
+          }
+        },
+        "archive_eligibility": {
+          "baseline": {
+            "status": "READ_PASS",
+            "mode": "baseline",
+            "entry": "archive_eligibility",
+            "result_sha256": "bd23baf9efa93207aee1ec4c056f5055688db4848cb46429b2c6f73e545b1267",
+            "result_serialized_bytes": 1589175,
+            "read_seconds": 205.91426020799554,
+            "total_seconds": 206.12957987500704,
+            "numerical_replays": {
+              "mixed": 28,
+              "zero_parallelity": 0
+            },
+            "maximum_python_resident_bytes": 631848960,
+            "unchanged_files": 327,
+            "native_calls": 0,
+            "old_source_cache_sdk_reads_forbidden": true
+          },
+          "reuse": {
+            "status": "READ_PASS",
+            "mode": "reuse",
+            "entry": "archive_eligibility",
+            "result_sha256": "bd23baf9efa93207aee1ec4c056f5055688db4848cb46429b2c6f73e545b1267",
+            "result_serialized_bytes": 1589175,
+            "read_seconds": 96.75067704200046,
+            "total_seconds": 96.96467287500855,
+            "numerical_replays": {
+              "mixed": 2,
+              "zero_parallelity": 0
+            },
+            "maximum_python_resident_bytes": 632193024,
+            "unchanged_files": 327,
+            "native_calls": 0,
+            "old_source_cache_sdk_reads_forbidden": true
+          }
+        }
+      },
+      "identical_status_and_archive_eligibility": true,
+      "scope": "One saved two-attempt native fixture, fresh sequential readers. No Phenix rerun, persistent cache, scientific-policy change, universal speed, memory-cap or native-campaign capacity claim."
+    },
+    "records": {
+      "anchor": "everyday_checkout",
+      "path": "branch-artifacts/cedar/runners/c284_read_records",
+      "sha256": {
+        "worker.py": "2095e8674c697e76f38ba1434f492a5b4af2dda80a2d57364ff45f3e6232347f",
+        "summary.json": "828c0d7c82ec2725e208766eb1da87751bcaf81bc68ea677aac47bddbf197d70",
+        "start.json": "51a6638983d1028daa21b0325770e3025559bc73ae2ec28f137feff292cec92d",
+        "archive_eligibility-reuse/summary.json": "fe38a12f496b407cc8e4e6c5c29a735c6f96ee88ca7edc2c41a12820e7db830a",
+        "archive_eligibility-reuse/active.json": "e81edce3c100876dad0e5bb9aceb443c08effc83e55421dc3f1f8078a0b54313",
+        "archive_eligibility-reuse/process.json": "c86068383fdc5ffe9275e287ab3042c1f92ff5a67005c0cffcea5ca3f58c494e",
+        "archive_eligibility-reuse/driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "archive_eligibility-baseline/summary.json": "1dd8e2e58cb7e6b2d4d25f413c9968f970ab18ba1337f25e098a16aef063ef07",
+        "archive_eligibility-baseline/active.json": "e81edce3c100876dad0e5bb9aceb443c08effc83e55421dc3f1f8078a0b54313",
+        "archive_eligibility-baseline/process.json": "f9f7a1b27188afb23991df0d89ce5c73efb9f62933fe7376a9f0b783cb41489c",
+        "archive_eligibility-baseline/driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "status-reuse/summary.json": "7d9075dea38229a8518170b151c11d26a34b13ce6028ae505de42506c9c0cb42",
+        "status-reuse/active.json": "e81edce3c100876dad0e5bb9aceb443c08effc83e55421dc3f1f8078a0b54313",
+        "status-reuse/process.json": "2f05f3bfbafb891aad52264943f157c4471f2480efa6d70d0d39f361a277e82a",
+        "status-reuse/driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "status-baseline/summary.json": "25a523e381b5213046b1af94cc7459120e984d73f2091e1e8c3297a93b51d7a1",
+        "status-baseline/active.json": "e81edce3c100876dad0e5bb9aceb443c08effc83e55421dc3f1f8078a0b54313",
+        "status-baseline/process.json": "abd9f9c71ed0d4fcc747eb1c602a8b06a4e7780dc8033f0805df1079578179a8",
+        "status-baseline/driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+      }
+    },
+    "compatibility": "No stored schema, native worker, chemistry, threshold, selection or installed SDK changes. Existing exact-result nested scopes still share one read; unrelated reads never share verdicts. Exceptions are not cached. At most 16 verdicts of 64 KiB each; all existing pure helper limits retained.",
+    "artifacts": "Only compact metadata committed; saved C282 evidence is read in place with every file unchanged. No scientific copies or new native runs. Temporary archive views are removed by the existing reader; local receipts retained.",
+    "limits": "Single saved native Phenix 2.2.1-6174 two-attempt control; no new Phenix/Coot execution, universal performance/peak-memory claim, concurrency or native-100-dataset qualification. Q06 chemical survival remains open."
   }
 }

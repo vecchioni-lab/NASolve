@@ -4,6 +4,7 @@ import pytest
 from nasolve.cif_numerical_replay import numerical_replay_scope, validate_mixed_result
 from nasolve.cif_mixed_gradient import _validate_result
 from tests.test_cif_mixed_gradient import mixed_initial_result
+from tests.test_cif_complete_request import case
 
 
 def test_identical_numerical_proof_runs_once_per_scope_without_sharing_mutable_result():
@@ -84,3 +85,40 @@ def test_input_dictionary_order_is_not_normalized_or_treated_as_equivalent():
         assert validate_mixed_result(check,{'a':1,'b':2},{},[])=={'order':['a','b']}
         assert validate_mixed_result(check,{'b':2,'a':1},{},[])=={'order':['b','a']}
     assert len(calls)==2
+
+
+@pytest.mark.parametrize("entry", ["status", "archive_eligibility"])
+def test_owner_inspection_reuses_calculation_only_within_one_read(case, entry):
+    from unittest.mock import patch
+    from nasolve.cif_attempt_retention import _archive_history
+    from tests.test_cif_repair_attempt import inventory
+
+    complete, args, root, sdk, store, generations, calls = case
+    complete.initialize_dictionary_request(output=root, **args)
+    complete.execute_dictionary_request_attempt(root, sdk, store, generation=generations)
+    original = complete._result
+    calculations = []
+
+    def calculator(result, expected, indices):
+        calculations.append(1)
+        return {"status": result["status"]}
+
+    def observed(*args, **kwargs):
+        exact = original(*args, **kwargs)
+        first = validate_mixed_result(calculator, exact["result"], {}, [])
+        second = validate_mixed_result(calculator, exact["result"], {}, [])
+        assert first == second
+        return exact
+
+    def read():
+        if entry == "status":
+            return complete.inspect_dictionary_request(root)
+        return _archive_history(root, 1)
+
+    before = inventory(root)
+    with patch.object(complete, "_result", observed):
+        read()
+        assert len(calculations) == 1
+        read()
+        assert len(calculations) == 2
+    assert inventory(root) == before

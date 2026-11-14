@@ -1056,7 +1056,10 @@ checked-preparation activation or standalone native-attempt isolation is added.
 
 ### Avoid repeated numerical work during exact inspection (C273)
 
-The exact complete-request reader now owns one short-lived numerical reuse scope.
+The exact complete-request reader owns one short-lived numerical reuse scope.
+C284 also enters that same scope for the shared read-only history inspection, so
+status and archive-eligibility checks receive the same reuse without broadening it
+to native execution or archive mutation.
 Each captured-gradient reader still authenticates its complete file inventory,
 worker/native sources, input bindings, manager and saved qualification. Only the
 pure numerical calculation may reuse a verdict when the validator and every JSON
@@ -1075,6 +1078,16 @@ identical view/model/map/dictionaries and unchanged 389 run files. Python peak i
 716.6 MB versus 635.8 MB in this pair. These are single-fixture observations, not a
 concurrency or 100-dataset guarantee. Exact validation and negative controls are
 in `inspection_local_numerical_reuse_2026_11_13` in the evidence ledger.
+
+C284's four fresh-process reads use saved C282 evidence with historical/source/
+cache/SDK access forbidden. Both status and archive eligibility return identical
+complete result hashes before/after the change; all 327 files retain bytes and
+timestamps. Numerical replay falls from 28 calls to 2 for each entrance. Observed
+status time: 219.48 → 107.02 s;
+archive eligibility: 205.91 → 96.75 s.
+This is a single sequential comparison, not a guaranteed runtime or capacity bound.
+170 focused request/retention/numerical tests pass. Exact command and limits:
+`owner_inspection_numerical_reuse_2026_11_14` in the evidence ledger. No native rerun.
 
 ### Compare heavy-atom sites with the chosen model (C253)
 

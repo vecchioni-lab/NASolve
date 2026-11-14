@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reuse numerical calculations during status and archive checks (C284)
+
+- Complete-request status and archive-eligibility inspection now use the same
+  bounded, per-read numerical reuse as exact-result inspection. File, ownership,
+  archive and scientific evidence checks remain fresh; nothing is saved or trusted
+  across reads. No chemistry, stored-format, retry or selection change.
+
 ### Avoid repeatedly reading unrelated campaign data (C283)
 
 - Stage workers and their controller now verify the active dataset, its earlier
