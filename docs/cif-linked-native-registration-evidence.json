@@ -94184,5 +94184,37 @@
       "geometry_evidence": "Existing graph-selected descriptive reader: 5IU B4 C5 local maximum elevation changes0.0023 to1.3303degrees, with angle sum359.9838degrees after refinement. Final GEO prints42 covalent planes,3 user planes and58 user parallelities; its 5IU ring plane includesI5, delta0.020A at sigma0.020A. Counts/descriptive geometry are not complete membership, derivative or scientific qualification. Built MR file contains no5IU measurement; prepared/final models do. No PDU claim.",
       "resources": "Whole diagnostic control70,099,150B/469files at summary snapshot. No native concurrent-memory or100dataset bound inferred. Cold reader606,683,136B peak; one reader at a time."
     }
+  },
+  "q04_q05_closure_audit_2026_11_14": {
+    "checkpoint": "C278",
+    "code_commit": "7e95917",
+    "status": "DOC_AND_REDUNDANCY_AUDIT_NO_NEW_NATIVE_OR_SUITE",
+    "complete_within_scope": {
+      "preparation_recovery": "C244/C248 complete owner and mixed child controls; C252 native failed-optional/successful continuation.",
+      "retirement": "C258/C260 interrupted retirement, exact reread and97 preserved campaign references; C276 ordinary native retention.",
+      "chosen_input_handoff": "C251/C252 alternatives; C270-C272 selected phasing/Coot; C273 calculation reuse; C276 source profile; C277 first refinement; C278 exact namespace adapter and fresh normal native five-cycle refinement/relocation.",
+      "sealed_autosol_save": "C274/C275 exact known-stopped completion and ordinary-command reuse."
+    },
+    "still_open": {
+      "Q04_resource_acceptance": "Whole repeated-failure/campaign capacity, accounting for preserved failures/shared acquisitions/continuation/native scratch. Max attempts1-5 and physical replay expansion128MiB do not bound native scratch bytes or100-dataset retention.",
+      "Q04_Q05_scope": "Explicit supported rollout/recovery boundaries before overall closure; no default activation. No duplicate owner, relaxed acceptance or silent retrofit."
+    },
+    "recorded_limits": [
+      "pre-seal or unfinished AutoSol work is not adopted",
+      "unknown/shared/foreign producer groups conservatively refuse pending save",
+      "standalone AutoSol has no isolated child owner",
+      "missing campaign outer receipt is not fabricated",
+      "old unarchived campaign working-file references require separate reviewed migration"
+    ],
+    "resource_evidence_keys": [
+      "ordinary_campaign_retention_2026_11_13",
+      "retained_terminal_phosphate_context_2026_11_13",
+      "ordinary_source_recipe_callers_2026_11_14",
+      "refinement_policy_namespace_2026_11_14"
+    ],
+    "operating_scope": "Sequential campaign, one heavy reader; measured single controls only. Keep original/failed/active science. No new storage allowance or cleanup policy.",
+    "redundancy_cleanup": "Replaced obsolete near-term patch estimate/history with one current completion matrix. Corrected stale ordinary-caller/phasing/first-refinement next-step text. Kept Q06 chemistry/native-derivative acceptance and downstream PDU survival explicit. Short handoff points to ledger; no new queue.",
+    "next": "Resource/recovery acceptance and scope reconciliation using existing owners/retained evidence, then full Q06 effective-restraint and achieved-geometry controls. Do not add another compiler, publication or process stack.",
+    "tests": "No code change or new tests in this documentation audit; retain C278 focused/native/relocation results. No full suite."
   }
 }
