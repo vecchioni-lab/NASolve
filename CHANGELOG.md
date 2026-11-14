@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W52 — Bind representative previews to registered atom ownership
+
+- Compose the existing graph, exact relabeling, all-present orbit and Cartesian
+  image owners into a read-only registered preview. Verify the outer source
+  binding before resolving requested whole-residue atom indices.
+- Keep unrequested/context atoms unchanged; retain missing anchors and scope;
+  verify coordinate round trips and graph-edge image arithmetic.
+- Return in-memory observations only. No coordinate writer, ANISOU transport,
+  chemical boundary edit, symmetry-bond restraint or GUI approval is added.
+
 ### W51 — Record bounded native stopping limits and shared periodic intent
 
 - Retain two predeclared 500-iteration native controls as line-search rounding

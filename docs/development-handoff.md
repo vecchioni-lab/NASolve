@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W51; next W52.** W33 introduced human update numbers without
+**Willow update W52; next W53.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,12 +173,17 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W51 edge:** the matched 500-iteration direct native controls reproduce
-the old 200-iteration traces exactly, then retain rounding line-search failures.
-No candidate, endpoint qualification or tolerance relaxation follows. Quantify
-near-stationary numerical precision before selecting another stopping policy.
-W48–W50 graph/relabel/orbit owners are ready for an explicitly source-bound
-read-only cut preview; no coordinate materialization is yet supported.
+**Current W52 edge:** `preview_registered_relabel` now binds exact outer
+registration/source identity to whole-residue atom images, fixed context and
+edge-image arithmetic. It reuses W48–W50 reports without changing their content.
+Missing requested coordinates refuse; other uncertainty remains visible. No
+coordinate writer, ANISOU transport, native link or graphical approval is added.
+Next supply the persistent Pine intent/preview boundary and genuine graphical
+review before P03 materialization, while retaining F02/P01 incomplete scope.
+
+W51's matched500-iteration native controls remain failed rounding line searches;
+there is no post-exception endpoint qualification or tolerance relaxation. The
+near-stationary precision/stopping question remains queued under S05.
 
 **Shared Pine/Cedar boundary:** Pine retains editable periodic connectivity and
 user choices across reslicing; TopoStitch exposes them, Cedar reports enforcement.

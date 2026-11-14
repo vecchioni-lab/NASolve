@@ -465,6 +465,21 @@
       "physical_identity_validated": false,
       "asu_cut_validated": false,
       "runtime_authority": false
+    },
+    "registered_image_preview": {
+      "module": "nasolve.topostitch_recut",
+      "api": "preview_registered_relabel",
+      "schema_version": 1,
+      "requires_outer_registered_graph_hash": true,
+      "whole_residue_source_atom_ownership": true,
+      "fixed_context_preserved": true,
+      "edge_image_arithmetic_checked": true,
+      "coordinate_materialization": false,
+      "ANISOU_transport": false,
+      "chemical_boundary_edits": false,
+      "native_symmetry_bond_generation": false,
+      "graphical_review_recorded": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

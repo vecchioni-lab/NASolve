@@ -15,7 +15,8 @@
     "F02",
     "S03",
     "S04",
-    "S05"
+    "S05",
+    "P01"
   ],
   "work_order": {
     "stitch": [
@@ -906,8 +907,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 51,
-    "next": 52,
+    "current": 52,
+    "next": 53,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1023,6 +1024,12 @@
         "title": "Record native stopping limits and shared periodic chemistry intent",
         "state": "RECORDED",
         "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec"
+      },
+      {
+        "number": 52,
+        "title": "Bind representative previews to registered source atoms",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

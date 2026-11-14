@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W51 — Record native stopping limits and shared periodic chemistry intent.** Next: W52.
+**Current update: W52 — Bind representative previews to registered source atoms.** Next: W53.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W42 | Expose the captured native job through one reusable package boundary | RECORDED |
 | W43 | Review full-precision native endpoint packing beside serialized coordinates | RECORDED |
 | W44 | Expose individual selected and core pair contributions | RECORDED |
 | W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
 | W50 | Observe all present model atom orbits | RECORDED |
 | W51 | Record native stopping limits and shared periodic chemistry intent | RECORDED |
+| W52 | Bind representative previews to registered source atoms | IN_PROGRESS |
 
 ## Finish lines
 
@@ -37,7 +37,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 ## Current order and audit discipline
 
-**Immediate focus:** F02, S03, S04, S05.
+**Immediate focus:** F02, S03, S04, S05, P01.
 The two tracks share F01/F02. Intact-duplex repair does not require finishing
 the whole ASU editor; ASU slicing cannot be used to disguise a physical gap.
 Prototype work may precede a dependency, but scientific closure cannot.

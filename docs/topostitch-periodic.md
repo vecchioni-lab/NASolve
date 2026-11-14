@@ -915,3 +915,59 @@ source drift, bounded refusal and relocation. The retained 8D93 and independent
 coincidences at the explicit tolerance. These statements concern the exact input
 snapshots, not completeness of their deposited entries. All scientific inputs and
 reports remain local. No Phenix/Coot execution or Cedar changes are involved.
+
+## W52 — Bind an image preview to registered source atoms
+
+The installed API `nasolve.topostitch_recut.preview_registered_relabel` composes
+W48's registered graph, W49's image algebra, W50's all-present atom observation
+and the existing Cartesian image transport. Call it with explicit model,
+discovery and registration paths, `node_images`, optional `extra_edges`, and the
+fresh outer graph's `expected_registered_graph_sha256`. The outer binding is
+required: identical graph algebra in a renamed or different model does not
+identify the same coordinate source. Numerical orbit options are the same as W50.
+
+```python
+from nasolve.topostitch_graph import build_registered_periodic_graph
+from nasolve.topostitch_recut import preview_registered_relabel
+bound = build_registered_periodic_graph(model, discovery, registration)
+preview = preview_registered_relabel(
+    model, discovery, registration,
+    node_images=[{"node_id": 2, "operator_xyz": "x+1,y,z"}],
+    expected_registered_graph_sha256=bound["report_sha256"],
+)
+```
+
+Node numbers refer to this exact bound report. A requested nonidentity image
+must have resolved, unambiguous registered coordinates; the complete residue's
+present atom indices move together in memory. Unrequested and unregistered
+context atoms stay exactly unchanged. Missing unrequested nodes, unknown route
+boundaries, protected/free-site intent and source orbit/occupancy findings remain
+visible. Changing a protected node's representative is not permission to bend a
+junction or change its routing. No source file is changed.
+
+The schema-1 `topostitch-registered-image-relabel-preview` report retains the
+fresh registered graph and orbit observation, relabeling proof, requested atom
+groups, fixed indices and proposed in-memory coordinates. Every moved atom is
+checked by inverse Cartesian image transport. O3-prime anchors, when uniquely
+present, check each edge's before/after image arithmetic and distance invariance;
+missing anchors stay `ANCHOR_UNAVAILABLE`, without centroid substitution. These
+anchor distances are display observations, not chemical bond or pairing targets.
+The numerical coordinate bound is `1e-7 Å + 64 ULPs` at the coordinate scale;
+edge distance comparison allows four times that arithmetic bound. It is not a
+chemical acceptance threshold.
+
+This is **not** a materialized ASU or an immutable NASolve child. There is no
+coordinate writer, ANISOU/tensor transport, terminal-chemistry change, native
+restraint generation or approval action. The shared Pine intent owner must still
+carry editable choices, and P02 must supply the graphical review. Complete
+physical/scattering/chemistry qualification remains open. A semantic continuation
+does not activate a lone symmetry bond while its phosphate-angle policy is
+unsupported.
+
+Nine regressions cover exact atom ownership through renamed chains, missing
+requested sites, unchanged context, stale outer identity, absent anchors,
+noncommuting edge-image checks, deliberately reversed image transport and
+relocation. The retained public-source example relabels two whole residues
+(36 atoms), keeps 819 fixed, and verifies all 38 declared edge observations.
+Old graph/relabel/orbit reports reproduce exactly; all source bytes are preserved.
+Scientific fixtures and observations remain local. No Phenix/Coot run is needed.
