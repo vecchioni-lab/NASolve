@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W44 | Expose individual selected and core pair contributions | RECORDED |
 | W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
 | W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | RECORDED |
-| W47 | Bind one periodic edge to exact reciprocal partner incidence | IN_PROGRESS |
+| W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
 
 ## Finish lines
 
@@ -98,8 +98,8 @@ Give both tools exact atom/site image identity, including stabilizers, reciproca
 - Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites.
 
 **Next action:** Qualify physical partner capacity and complete molecular/image equivalences; the selected-source coordinate precondition is now consumed by periodic fitting.
-**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_POST_IMAGE](#e_post_image).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a3e497825be1b7983739b35af83fb280897559c2); Source and transformed selected-coordinate evidence, not full physical identity.
+**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_POST_IMAGE](#e_post_image), [E_SINGLE_EDGE_CAPACITY](#e_single_edge_capacity).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/c887c65ea966b3a7107a1220289fde646587e875); Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval.
 
 ## Roadmap A — working sticky-end repair
 
@@ -159,8 +159,8 @@ Identify which duplex ends should meet and in which image/register, with a no-co
 - Standalone use binds a concrete choice; opt-in inference freezes its scope and alternatives without creating undeclared covalent links.
 
 **Next action:** Close one explicit canonical periodic pairing before broad automatic scheme selection.
-**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/84cb847a493654cca8a0ae79f28e000615d5afc3); Conservative source-image precondition, not a global assignment or physical capacity proof.
+**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_SINGLE_EDGE_CAPACITY](#e_single_edge_capacity).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/c887c65ea966b3a7107a1220289fde646587e875); Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval.
 
 <a id="s04"></a>
 ### S04 — Place an intact duplex by bounded bending or straightening
@@ -560,6 +560,13 @@ One complete Phenix 2.2.1-6174 core-only trial uses the same source, mask, tethe
 [Evidence contract](topostitch-preview.md#w46--native-torsion-and-monomer-plane-observations) at [W46](https://github.com/vecchioni-lab/NASolve/commit/17d0efe6df451f22535db9253c1588dd4e248896).
 Maintained Cedar kernels match original live proxies and complete native family targets/gradients in six Phenix 2.2.1-6174 endpoint controls. Live missing/nondefault torsion policy and nonidentity images reject. Per-term scope/measurements retain local regressions hidden by aggregates. Full Willow 1416 plus 229 subtests; focused 40; installed/relocated 159 plus exact native report. Temporary installed Cedar 7e843af7 composition passes 159 focused tests and byte-identical native review via its owned runner.
 **Limit:** Fixed-point identity-only torsion/plane observations, not new derivative or chemical qualification. Other families remain deferred; no pucker assignment, ordinary corrected refinement, Cedar edits, branch merge, complete combined suite or adoption. Initial sandbox permission and temporary missing-wrapper failures are retained. Scientific evidence remains local.
+
+<a id="e_single_edge_capacity"></a>
+### E_SINGLE_EDGE_CAPACITY — selected_single_periodic_edge_capacity
+
+[Evidence contract](topostitch-preview.md#w47--one-periodic-edge-and-its-reciprocal-partners) at [W47](https://github.com/vecchioni-lab/NASolve/commit/c887c65ea966b3a7107a1220289fde646587e875).
+Shared exact reciprocal incidence retains lattice translations for selected source/transformed audits. P1/P2/C2/P43 controls distinguish one versus two self-image partners; ambiguity stays under review. Periodic fitter consumes scoped capacity. Full Willow 1424 plus 229 subtests; focused/installed-relocated 68. Public 8D93 numerical report exactly reproduces apart from added capacity metadata and algorithm v5, including after relocation with old paths blocked.
+**Limit:** One declared edge under present selected-coordinate/tolerance assumptions; full molecular identity, special-position equivalence, global scheme, sequence/orientation, geometry and connection acceptance remain unqualified. No native Phenix/Coot execution, chemical link, recut, Cedar edits or adoption. Generated evidence stays local.
 
 ## Deferred extensions, not hidden blockers
 

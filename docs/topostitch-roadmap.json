@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "17d0efe6df451f22535db9253c1588dd4e248896",
+  "audited_code_commit": "c887c65ea966b3a7107a1220289fde646587e875",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -102,13 +102,14 @@
       "evidence": [
         "E_SOFTWARE",
         "E_IMAGE_AUDIT",
-        "E_POST_IMAGE"
+        "E_POST_IMAGE",
+        "E_SINGLE_EDGE_CAPACITY"
       ],
       "last_audit": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "a3e497825be1b7983739b35af83fb280897559c2",
-        "scope": "Source and transformed selected-coordinate evidence, not full physical identity"
+        "code_commit": "c887c65ea966b3a7107a1220289fde646587e875",
+        "scope": "Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval"
       }
     },
     {
@@ -189,13 +190,14 @@
       "next_action": "Close one explicit canonical periodic pairing before broad automatic scheme selection.",
       "evidence": [
         "E_SOFTWARE",
-        "E_IMAGE_AUDIT"
+        "E_IMAGE_AUDIT",
+        "E_SINGLE_EDGE_CAPACITY"
       ],
       "last_audit": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "84cb847a493654cca8a0ae79f28e000615d5afc3",
-        "scope": "Conservative source-image precondition, not a global assignment or physical capacity proof"
+        "code_commit": "c887c65ea966b3a7107a1220289fde646587e875",
+        "scope": "Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval"
       }
     },
     {
@@ -739,6 +741,14 @@
       "reference": "docs/topostitch-preview.md#w46--native-torsion-and-monomer-plane-observations",
       "result": "Maintained Cedar kernels match original live proxies and complete native family targets/gradients in six Phenix 2.2.1-6174 endpoint controls. Live missing/nondefault torsion policy and nonidentity images reject. Per-term scope/measurements retain local regressions hidden by aggregates. Full Willow 1416 plus 229 subtests; focused 40; installed/relocated 159 plus exact native report. Temporary installed Cedar 7e843af7 composition passes 159 focused tests and byte-identical native review via its owned runner.",
       "limitation": "Fixed-point identity-only torsion/plane observations, not new derivative or chemical qualification. Other families remain deferred; no pucker assignment, ordinary corrected refinement, Cedar edits, branch merge, complete combined suite or adoption. Initial sandbox permission and temporary missing-wrapper failures are retained. Scientific evidence remains local."
+    },
+    "E_SINGLE_EDGE_CAPACITY": {
+      "kind": "selected_single_periodic_edge_capacity",
+      "code_commit": "c887c65ea966b3a7107a1220289fde646587e875",
+      "human_update": 47,
+      "reference": "docs/topostitch-preview.md#w47--one-periodic-edge-and-its-reciprocal-partners",
+      "result": "Shared exact reciprocal incidence retains lattice translations for selected source/transformed audits. P1/P2/C2/P43 controls distinguish one versus two self-image partners; ambiguity stays under review. Periodic fitter consumes scoped capacity. Full Willow 1424 plus 229 subtests; focused/installed-relocated 68. Public 8D93 numerical report exactly reproduces apart from added capacity metadata and algorithm v5, including after relocation with old paths blocked.",
+      "limitation": "One declared edge under present selected-coordinate/tolerance assumptions; full molecular identity, special-position equivalence, global scheme, sequence/orientation, geometry and connection acceptance remain unqualified. No native Phenix/Coot execution, chemical link, recut, Cedar edits or adoption. Generated evidence stays local."
     }
   },
   "benchmarks": [
@@ -941,8 +951,8 @@
       {
         "number": 47,
         "title": "Bind one periodic edge to exact reciprocal partner incidence",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "c887c65ea966b3a7107a1220289fde646587e875"
       }
     ]
   }
