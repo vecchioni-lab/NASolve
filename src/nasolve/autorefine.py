@@ -1570,6 +1570,16 @@ def execute_autorefine(
         parent = resolve_checkpoint(registry, from_checkpoint)
         if parent.get("usable") is not True:
             raise AutoRefineError(f"Checkpoint {parent.get('id')} is not reusable")
+        if not correct_native_parallelity:
+            from .refinement_parallelity import requires_checked_plane_forces
+            try:
+                requires_correction = requires_checked_plane_forces(registry, parent)
+            except ValueError as exc:
+                raise AutoRefineError(str(exc)) from exc
+            if requires_correction:
+                raise AutoRefineError(
+                    'This checkpoint descends from checked plane-force refinement; '
+                    'continue explicitly with --checked-plane-forces. No new round was started.')
         inherited = (
             _inherited_paths_for_autorefine(parent, run)
             if use_experimental_phases

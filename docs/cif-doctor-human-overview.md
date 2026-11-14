@@ -173,16 +173,15 @@ base-pair/stacking files that Coot does not display. A model cannot be presented
 through this route while those recorded files are missing or changed (C221).
 This protects inspection integrity; it does not establish refinement success.
 
-The explicit plane-force correction also checks complete memberships and native
-settings before compiled evaluation, retaining targets and recording all consumed
-parameters. Missing settings or unsupported symmetry refuse; this prerequisite
-does not yet enable the correction in ordinary NASolve refinement commands.
-An explicit native-program helper now checks the tested Phenix implementation,
-records the settings used by its processes, and restores its temporary binding
-even on failure. Unknown implementations refuse; normal run/checkpoint integration
-now has an opt-in API and relocated read-only evidence checks. Separate preflight
-outputs and explicit continuation are the next gates before CLI exposure. A helper
-completing refinement is not structure approval.
+The explicit `autorefine --checked-plane-forces` route checks the tested Phenix
+implementation, retains the native score and targets, and records complete plane
+settings used by its processes. It first builds the native model at zero cycles,
+keeping those files separate. Later refinement from that result—including after
+a manual edit—must explicitly retain the correction. Saved checkpoints can be
+checked after relocation without running their frozen code. Unknown native
+implementations or unsupported symmetry refuse; defaults remain unchanged.
+Campaign and Refine Doctor forwarding are next. A helper completing refinement
+is not structure approval; achieved chemistry and PDU survival remain Q06.
 
 ## Catalogue scope and progression
 

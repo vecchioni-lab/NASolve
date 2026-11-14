@@ -21,6 +21,9 @@ def completed(tmp_path,monkeypatch,*,failure=None,changed=None,bad_preflight=Fal
             native_args=command[4:]
             if phase=='preflight':
                 assert '--dry_run' not in native_args and native_args[-1]=='refinement.dry_run=True'
+                assert 'output.prefix=parallelity_runtime/preflight/native' in native_args
+                assert 'output.prefix=refined' not in native_args
+            if phase=='preflight':(folder/'native_001.geo').write_text('preflight geometry preserved')
             profile=json.loads((root/'code/_nasolve_refinement/data/parallelity-native-profile.json').read_text())
             failed=phase==failure
             result=dict(schema_version=1,policy_id='explicit-native-parallelity-refinement-v1',
@@ -126,3 +129,52 @@ def test_opt_in_requires_python_before_creating_registry_or_round(tmp_path):
 def test_zero_exit_without_complete_model_preflight_cannot_start_refinement(tmp_path,monkeypatch):
     with pytest.raises(AutoRefineError,match='preflight evidence'):
         completed(tmp_path,monkeypatch,bad_preflight=True)
+
+
+def test_preflight_native_outputs_are_retained_in_the_phase_receipt(tmp_path,monkeypatch):
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch)
+    record=json.loads(receipt.read_text())
+    files=record['phases'][0]['files']
+    native=[r for r in files if r['relative_path'].endswith('/preflight/native_001.geo')]
+    assert len(native)==1
+    assert (run/native[0]['relative_path']).read_text()=='preflight geometry preserved'
+    assert (result.round_directory/'refined_001.pdb').is_file()
+
+
+@pytest.mark.parametrize('manual',[False,True])
+def test_checked_ancestry_cannot_silently_drop_the_correction(tmp_path,monkeypatch,manual):
+    from nasolve.checkpoints import add_checkpoint
+    from tests.test_cif_postmr_publication import snapshot
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch)
+    parent=child['id']
+    if manual:
+        imported=add_checkpoint(run,name='manual-child',model=run/child['model']['relative_path'],parent=parent)
+        parent=imported.checkpoint_id
+    before=snapshot(run)
+    with patch('subprocess.Popen',side_effect=AssertionError('refusal must precede native execution')):
+        with pytest.raises(AutoRefineError,match='checked-plane-forces'):
+            execute_autorefine(run,tmp_path/'tools/phenix.refine',tmp_path/'tools/phenix.mtz.dump',
+                phenix_version='2.2.1-6174',from_checkpoint=parent)
+    assert snapshot(run)==before
+    assert not (run/'AutoRefine/round_002').exists()
+
+
+@pytest.mark.parametrize('checked,parent',[(True,'refine-001'),(False,'postmr')])
+def test_explicit_continuation_and_uncorrected_sibling_use_existing_checkpoint_owner(tmp_path,monkeypatch,checked,parent):
+    from tests.test_cif_postmr_publication import snapshot
+    run,result,registry,child,receipt,commands=completed(tmp_path,monkeypatch)
+    before=snapshot(result.round_directory)
+    next_result=execute_autorefine(run,tmp_path/'tools/phenix.refine',tmp_path/'tools/phenix.mtz.dump',
+        phenix_version='2.2.1-6174',from_checkpoint=parent,correct_native_parallelity=checked,
+        phenix_python_executable=Path(sys.executable) if checked else None)
+    _,saved=read_registry(run);next_child=resolve_checkpoint(saved,next_result.checkpoint_id)
+    assert next_child['id']=='refine-002' and next_child['parent']==parent and next_child['usable']
+    assert ('parallelity_execution' in next_child['outputs']) is checked
+    assert snapshot(result.round_directory)==before
+
+
+def test_checked_ancestry_reuses_strict_lineage_validation():
+    from nasolve.refinement_parallelity import requires_checked_plane_forces
+    parent=dict(id='refine-001',parent='missing',outputs={'parallelity_execution':{}})
+    with pytest.raises(ValueError,match='unknown parent'):
+        requires_checked_plane_forces({'checkpoints':[parent]},parent)

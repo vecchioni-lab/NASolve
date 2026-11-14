@@ -96591,5 +96591,89 @@
       "Campaign propagation/default activation, broad native profiles and PDU/held-out chemical survival remain separate."
     ],
     "artifacts": "Only code/tests/compact evidence committed; native models/data/logs and runners excluded. Failed attempt retained. Successful source cloned with cp -cRp; logical bytes do not measure unique APFS storage."
+  },
+  "explicit_cli_plane_force_continuation_2026_11_14": {
+    "milestone": "C299",
+    "status": "EXPLICIT_CLI_CONTINUATION_AND_ISOLATED_PREFLIGHT_QUALIFIED",
+    "base_commit": "85a45a0f",
+    "behavior": {
+      "before": "No ordinary CLI opt-in; preflight shared native output names; later rounds could omit checked forces.",
+      "after": "Explicit --checked-plane-forces uses configured phenix.python; model preflight writes only under its phase folder. Corrected ancestry, including manual children, requires explicit continuation before native work or a new round. Uncorrected sibling branches remain unchanged."
+    },
+    "source_sha256": {
+      "src/nasolve/refinement_parallelity.py": "71921d146e8b67a09a2d19dda9718f6b934d24fe00352830a95344db151588ac",
+      "src/nasolve/autorefine.py": "87c690e2601ac6322f850c3ca6de1be12457bcbe329acb6272b3024be6636f32",
+      "src/nasolve/cli.py": "fb52940259194e64f9bffdd0a31ec45eb3dab77f4185908722e11b24981a0992",
+      "tests/test_refinement_parallelity.py": "8e674adb802976011e30ae610369c24a81af7a7d9a4c3fe61992210ac40d9885",
+      "tests/test_cli_parallelity.py": "8ea976f78db0def80fda002d46f003e5cba634e0467370e0bf8a17c611f508b3"
+    },
+    "tests": {
+      "before": "CLI regression: 3 failed and 1 passed against C298, 0.33 s",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cli_parallelity.py tests/test_cli.py tests/test_refinement_parallelity.py tests/test_autorefine.py tests/test_checkpoints.py",
+      "result": "99 passed +33 subtests in 15.46 s; no full suite"
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "299_Cedar_cli-continuation-n0qa9yxh",
+      "summary": {
+        "status": "EXPLICIT_CLI_CONTINUATION_COMPLETE",
+        "outer_driver_returncode": 1,
+        "outer_failure": "incorrect expectation of a PDB from zero-cycle setup; actual CLI/refinement completed; this separate readback does not rerun refinement",
+        "checkpoint": "refine-003",
+        "parent": "refine-002",
+        "selected": "refine-003",
+        "native_version": "2.2.1",
+        "native_build": "phenix-2.2.1-6174",
+        "native_macro_cycles": 1,
+        "preflight_macro_cycles": 0,
+        "parallelity_count": 58,
+        "complete_parameters_unchanged": true,
+        "phase_returncodes": [
+          0,
+          0
+        ],
+        "native_process_observations": 18,
+        "original_files_unchanged": 473,
+        "old_round_files_unchanged": 57,
+        "relocated_files_unchanged": 524,
+        "original_copy_absent": true,
+        "relocated_cold_read": true,
+        "silent_drop_refused_before_round": true,
+        "preflight_native_files": [
+          "native_001.eff",
+          "native_001.geo",
+          "native_001.log",
+          "native_data.mtz"
+        ],
+        "runtime_evidence_bytes": 2346136,
+        "logical_retained_bytes": 87493224,
+        "copy_method": "macOS cp -cRp clone-on-write; logical bytes are not unique physical storage",
+        "elapsed_seconds": 54.77666645802674,
+        "scope": "Actual opt-in CLI continuation, isolated native preflight outputs, old round/source preservation and relocated cold reading. No default, campaign/Doctor, PDU survival or whole-suite claim.",
+        "reported_final_statistics": {
+          "r_work": 0.2042,
+          "r_free": 0.227,
+          "clashscore": 28.64
+        }
+      },
+      "driver": {
+        "returncode": 1,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "records": {
+        "summary.json": "618015b4bc23fa44bf0a598a11d2f02ec353846d20eaf6791f1951383d0da921",
+        "driver-result.json": "d8bd28acdde920d3399a76fe15e10425e76086fe3fba5fe99663e97b6314beef",
+        "failure.json": "f8ed073922d4da3d3e8b1d7ae7c162190ef2ef344d488818d048730fe0a6a31d",
+        "refused-command.json": "d4ad9a441842dec1b504b2e78bf973ee6b89b8b7cf27ce8dae7cbafef82f8c55"
+      }
+    },
+    "compatibility": "Optional schema-1 request preflight_mode native-model-zero-cycle-isolated-v1; prior native-model-zero-cycle-v1 success and argument-only failed records remain readable. Checkpoint schema unchanged. Default recipes unchanged. Exact C297 frozen helper/profile unchanged.",
+    "preserved_failure": "Native CLI returned zero and saved refine-003; outer driver then failed an incorrect assertion that zero-cycle setup writes a PDB. It writes EFF/GEO/log/MTZ. Driver rc1/failure preserved; separately completed relocation/cold read without rerunning refinement.",
+    "remaining": [
+      "Carry the explicit choice through campaign and Refine Doctor owners.",
+      "Qualify achieved chemistry, PDU/held-out survival and wider native profiles separately."
+    ],
+    "artifacts": "Only code/tests/compact evidence committed. Native models/data/logs/runners excluded. Source cloned copy-on-write; logical storage is not unique physical disk use."
   }
 }

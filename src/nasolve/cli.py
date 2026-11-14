@@ -218,6 +218,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--cycles", type=int, default=5,
         help="number of refinement macrocycles (default: 5)",
     )
+    autorefine.add_argument(
+        "--checked-plane-forces", action="store_true",
+        help="explicit native plane-force correction for this round (qualified Phenix build required)",
+    )
     doctor = subparsers.add_parser(
         "refine-doctor",
         aliases=["refine_doctor"],
@@ -1083,6 +1087,13 @@ def _autorefine(args: argparse.Namespace) -> int:
         def progress(checkpoint_id: str, log_path: Path) -> None:
             print(f"AutoRefine {checkpoint_id} started; full output: {log_path}")
 
+        runtime_options = {}
+        if args.checked_plane_forces:
+            python_executable = phenix.executables.get("phenix.python")
+            if python_executable is None:
+                raise AutoRefineError("Checked plane forces require the configured phenix.python")
+            runtime_options = dict(correct_native_parallelity=True,
+                                   phenix_python_executable=python_executable)
         result = execute_autorefine(
             run,
             phenix.executables["phenix.refine"],
@@ -1093,6 +1104,7 @@ def _autorefine(args: argparse.Namespace) -> int:
             recipe=args.recipe,
             macro_cycles=args.cycles,
             progress=progress,
+            **runtime_options,
         )
     except (AutoRefineError, ConfigError, PhenixDiscoveryError) as exc:
         print(f"AutoRefine error: {exc}", file=sys.stderr)

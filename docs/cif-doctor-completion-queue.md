@@ -481,44 +481,29 @@ report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
 
-C286/C287 establish the first consumer observation: the saved C279 before/after
-GEO retains all 58 ordered parallelity memberships; final GEO also matches all
-45 native plane groups and rounded weights. The comparison uses fresh native
-interpretation of the exact selected inputs. A small checked
-reader avoids the installed GEO parser's truncated/unequal-plane readback. No
-refinement was repeated. This closes this control's printed membership check,
-not exact targets/weights, derivatives, chemical survival or PDU acceptance.
-C288 observes the actual ordinary dry-run manager: fixed-scale raw full/parallelity
-derivatives fail and the existing diagnostic correction passes. Family isolation
-also rebuilds contacts and changes normalization, so a whole-objective-only probe
-was next. C289 now keeps all restraints active, with unchanged contacts and
-normalization: ordinary raw full-objective forces fail 17/20 sampled directions;
-the existing diagnostic correction passes 20/20 at the identical score. This is
-actual startup-consumer defect evidence, not a corrected refinement route. All
-failed attempts stay preserved; no runtime correction or SDK change. Next choose
-and qualify a supported remedy separately from PDU chemical survival; do not
-attribute PDU distortion to this defect without its exact evidence.
+**Current consumer route through C299:** `autorefine --checked-plane-forces`
+explicitly uses the qualified local Phenix implementation, complete ordered plane
+parameters and the existing immutable AutoRefine/checkpoint owners. Actual
+zero-cycle model setup precedes refinement and has separate outputs. Corrected
+ancestry, including manual children, cannot silently drop the correction. C298
+passes five cycles and relocated cold reads; C299 passes actual CLI continuation
+for one cycle and relocated inspection of both old/new request formats. No native
+code is executed during inspection. All defaults and chemical targets are fixed.
 
-C291–C294 add an explicit kernel callable that installs no hook. Actual five-cycle
-Phenix controls retain original NAR/Free-R/recipe, pass endpoint force probes and
-exercise fork workers. Replacement-manager mechanics agree after recording each
-normalization/contact count; no optimization scale changes. C293's failed exact-
-score assertion remains preserved. **Next: qualify an explicit ordinary NASolve
-execution route** using existing ownership/checkpoint readers, complete native
-parameter/capability evidence and supported symmetry/process scope. This is not
-automatic deployment, PDU survival or universal Phenix support. No SDK edits.
-C296 adds complete ordered plane-parameter readback and rejects malformed/missing
-settings before compiled evaluation. Ordinary startup and 18 synthetic parameter
-cases pass; no native cycle was rerun. Historical captures are not retroactively
-declared complete. C297 then qualifies an explicit maintained native-program helper:
-exact source/platform checks, preserved failures, restored bindings and compact
-usage observations; original five-cycle control/Free-R/endpoint forces agree.
-Next freeze and validate its evidence through ordinary AutoRefine/checkpoint owners,
-including relocation, before exposing the explicit command option. C298 now joins
-that opt-in API/checkpoint route and passes five native cycles plus relocated cold
-reading. The argument-only preflight failure remains preserved; model-building
-zero-cycle preflight is the supported route. Finish separate preflight output
-naming and corrected-parent continuation before CLI exposure; defaults remain off.
+The evidence chain remains in the existing ledger: C286/C287 printed 45 planes
+and 58 parallelities; C289 ordinary raw full-objective forces fail 17/20 sampled
+directions and correction passes 20/20 at the same score; C291–C294 qualify
+five-cycle/fork/replacement-manager mechanics; C296 checks all constructor
+parameters; C297 checks exact native source/platform and restores bindings.
+C293's diagnostic normalized-score assertion, C298's argument-only preflight
+failure and C299's incorrect outer preflight-PDB assertion remain preserved.
+The latter happened after a successful CLI refinement; separate readback completed
+without rerunning it. None of these observations diagnoses the collaborator's PDU.
+
+**Next:** carry the explicit choice through existing campaign and Refine Doctor
+owners; then complete achieved-chemistry/PDU/held-out controls. Unknown native
+implementations and symmetry planes remain unsupported. No SDK edits, default
+activation, broad platform qualification or complete scientific acceptance.
 
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's

@@ -1046,6 +1046,17 @@ numerical definitions. A validated AutoSol MTZ contributes
 only its Hendrickson-Lattman coefficients; its HA coordinates never replace
 known model atoms.
 
+The explicit `nasolve autorefine RUN --checked-plane-forces` route corrects a
+qualified native plane-force defect while preserving the native score and all
+restraint targets. It currently admits only the recorded local Phenix 2.2.1-6174
+Darwin/arm64 implementation, checked by exact source hashes; a version string
+alone is insufficient. Unknown implementations refuse and the default stays off.
+Native zero-cycle model setup runs before refinement and keeps its own outputs.
+Once a checkpoint uses this route, later refinement from it or its manual
+descendants must explicitly keep `--checked-plane-forces`. Inspection never
+executes the frozen code. Campaign and Refine Doctor forwarding remain pending;
+this mechanism is not complete chemical or structural approval.
+
 Reflection-array binding is version-gated. Phenix 1.20.x receives explicit
 observation, Free-R, and optional experimental-phase file/label command
 selectors without the unsupported Data Manager block. Phenix 2.1.x and 2.2.x

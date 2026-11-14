@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C298**. Active **cedar** in NASolve-c96. Remote last verified
-**C295 `c7414919`**, including C290 and C291–C294.
+Updated **2026-11-14, C299**. Active **cedar** in NASolve-c96. Remote last verified
+**C298 `85a45a0f`**, including C295–C297.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
@@ -42,76 +42,35 @@ remain Q16. Last full suite: **C220/583d30df, 9,178 tests +276 subtests**.
 
 ## Q06 — real refinement preserves the intended chemistry
 
-**C296 committed/pushed `1d455fdd`:** complete ordered plane parameters are checked
-before compiled evaluation. 94 focused tests pass; ordinary startup and 18 synthetic
-parameter cases pass. No historical worker changes or default activation.
+**C299 complete, being committed:** `autorefine --checked-plane-forces` uses the
+configured Phenix Python, isolates zero-cycle native setup outputs, and requires
+explicit continuation through corrected ancestry (including manual edits).
+99 focused tests +33 subtests pass. Native CLI one-cycle continuation produced
+refine-003 from C298 refine-002, kept all 58 complete plane parameter rows, and
+passed cold relocation with both request formats. Omission refuses before native
+work/new round; an uncorrected sibling keeps legacy behavior.
 
-**C297 committed/pushed `fe7e9fd7`:** explicit source-qualified native helper,
-failure-preserving observations and binding restoration. Original five-cycle
-control passes with 25 processes, exact complete parameters/Free-R/result and
-20/20 endpoint force checks. Runtime observations occupy 361 kB.
+Local control `299_Cedar_cli-continuation-n0qa9yxh`: actual CLI returned zero and
+selected its new checkpoint in the isolated clone. Outer driver rc1 is preserved:
+it incorrectly expected a PDB from zero-cycle setup, which writes EFF/GEO/log/MTZ.
+Separate readback finished relocation/inspection without another refinement.
+All native jobs stopped; source pins unchanged. Exact files/counts/storage and
+commands are in `explicit_cli_plane_force_continuation_2026_11_14` in the ledger.
 
-**C298 complete, being committed:** opt-in ordinary AutoRefine API freezes the
-qualified helper/inputs under its existing round and validates evidence/ancestry
-on cold reads. First attempt `298_Cedar_autorefine-runtime-uc71lg0j` remains stopped
-rc1/FAILED: CLI `--dry_run` is argument validation only. Current reader preserves
-that failure; no refinement ran, prior selection and all files remain fixed.
-Fresh `298_Cedar_autorefine-runtime-p48put25` passes actual zero-cycle model setup,
-five cycles, saved refine-002 from postmr, and cold read after relocating the whole
-owned fork with its temporary original absent. Current remains refine-001; 416
-original source files and 473 relocated files unchanged at readback. Final reported
-Rwork/Rfree 0.2194/0.2318, all 58 complete plane parameters unchanged, 25 native
-process observations. Runtime evidence/code 479 kB; source clone is copy-on-write.
-21 affected integration tests pass; broader refinement/checkpoint checks passed
-(89 +19 subtests before the final counter check), no full suite.
-Next: isolate native preflight output names, prevent silent loss of corrected
-forces on continuation, then expose/test the explicit CLI option. No default,
-campaign, PDU or symmetry enforcement claim. All native jobs are stopped.
+Prior qualified foundations: C296 `1d455fdd` validates complete plane parameters;
+C297 `fe7e9fd7` freezes the exact local native implementation and restores bindings;
+C298 `85a45a0f` joins ordinary AutoRefine/checkpoint readers and passes five cycles
+plus cold relocation. Its argument-only preflight failure remains stopped/readable.
+C291–C294 qualify five-cycle/fork/replacement-manager forces. Preserve original
+Free-R, NAR membership, observations and native targets. No SDK edits. Native
+version is Phenix 2.2.1-6174 / dispatcher 2.2.1, local Darwin/arm64 exact profile;
+version labels alone are not broader capability or pristine-distribution proof.
 
-C286/C287 establish the C279 prepared/final GEO memberships (45 planes,
-58 parallelities); the checked reader avoids the installed parser's truncation.
-C288 exposes a diagnostic contact/normalization change when switching families.
-C289 keeps all terms active and demonstrates an actual ordinary startup force
-error: raw fails 17/20 sampled directions, diagnostic correction passes 20/20 at
-identical score. Do not attribute PDU distortion to this independently found defect.
-
-**C291–C294 now qualify an explicit kernel-composition mechanism.** New
-`cif_parallelity_kernel.ParallelityKernel` reuses the unchanged both-first-planes
-correction, preserves the native score and adds checked forces atomically to the
-caller's existing array. It installs no hook and adds no ordinary runtime option.
-Unit-cell/symmetry planes remain unsupported; counters are process-local evidence.
-
-- C291 startup: adapted 20/20, raw fails 17/20; identical score/contacts/normalization.
-- C292 actual one-cycle programs: adapted endpoint 20/20, raw fails 18/20.
-- C293/C294 actual original five-cycle recipe: endpoint 20/20, same static
-  restraints and indexed Free-R (4530/250 test), 25 process receipts including
-  fork workers. Phenix 2.2.1-6174 / dispatcher 2.2.1; exact source hashes recorded.
-- C293 completes refinement but a later exact normalized-score assertion after
-  model.select(all atoms) fails; preserve its rc1. C294 records contacts 8041→8060,
-  total terms 11321→11340. Unnormalized targets are identical, maximum force
-  difference 5.7e-14; the selected manager's own normalized force probe passes.
-  This diagnostic division never changes optimizer normalization.
-- All drivers/native jobs are stopped. C294 driver returns zero; source/SDK files,
-  original 410 run files and 64 earlier capture files stay unchanged. Local roots
-  `291_Cedar_kernel-compatibility-33uhgsdp`, `292_Cedar_ordinary-cycle-k4cfrddj`,
-  `293_Cedar_kernel-five-cycles-jjxia03q`, `294_Cedar_manager-copy-kzcnunvi`.
-
-Focused command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q
--p no:cacheprovider tests/test_cif_parallelity_kernel.py
-tests/test_cif_parallelity_correction.py tests/test_cif_objective_probe.py`
-→ **62 pass, 3.17 s**. Nineteen regressions fail before the API; 19 pass from a
-relocated minimal source copy with its temporary original absent. Seven saved
-reports replay without native execution and with 275 files unchanged; this is
-arithmetic replay, not whole-run portability. Exact evidence:
-`explicit_parallelity_kernel_compatibility_2026_11_14` in the existing ledger.
-
-**Next bounded gap:** qualify an explicit ordinary NASolve execution route for the
-adapter, binding native capabilities/full consumed parameters and policy through
-existing immutable attempt/checkpoint owners. Keep default behavior unchanged.
-Historical static signatures omit some optional fields; source/version labels
-alone are not universal capability proof. Other platforms/process modes, complete
-chemical acceptance and PDU survival remain open. Do not patch installed Phenix,
-drop NAR terms, retune chemistry or duplicate Linden's W46 endpoint observer.
+**Next bounded step:** carry the explicit choice through campaign and Refine
+Doctor owners without a new executor or default activation. Then achieved chemical
+geometry, PDU/held-out survival and broader platform/capacity scope. Do not duplicate
+Linden's endpoint observer or topology owners. C299 is a command/continuation
+qualification, not complete chemistry or PDU acceptance.
 
 ## PDU control remains separate
 

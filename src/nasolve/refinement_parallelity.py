@@ -69,7 +69,7 @@ def read_execution_request(run, reference, *, checkpoint):
           and all(isinstance(a,str) and a for a in record['command'])
           and isinstance(record['code'],dict) and set(record['code'])==set(_expected_code()))
     if 'preflight_mode' in record:
-        _need(record['preflight_mode']=='native-model-zero-cycle-v1'
+        _need(record['preflight_mode'] in ('native-model-zero-cycle-v1','native-model-zero-cycle-isolated-v1')
               and type(record['macro_cycles']) is int and record['macro_cycles']>0)
     path_in(run,reference['relative_path'])
     for item in record['inputs']:_bound_path(item,'parallelity refinement input',run)
@@ -98,13 +98,13 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
         code[name]=_file_reference(target,run)
     request=root/'request.json'
     write_record(request,dict(schema_version=1,policy_id=POLICY_ID,checkpoint=checkpoint,
-        parent=parent,preflight_mode='native-model-zero-cycle-v1',macro_cycles=macro_cycles,
+        parent=parent,preflight_mode='native-model-zero-cycle-isolated-v1',macro_cycles=macro_cycles,
         inputs=[_file_reference(Path(p),run) for p in inputs],
         command=list(command),code=code))
     reference=_file_reference(request,run)
-    read_execution_request(run,reference,checkpoint=checkpoint)
     prefix=[str(python_executable),'-B',str(root/'entry.py')]
-    return reference,[*prefix,'preflight',*command[1:],'refinement.dry_run=True'],[*prefix,'refine',*command[1:]]
+    request_record=read_execution_request(run,reference,checkpoint=checkpoint)
+    return reference,[*prefix,'preflight',*_preflight_arguments(request_record)],[*prefix,'refine',*command[1:]]
 
 
 def _parameters(value):
@@ -116,6 +116,26 @@ def _parameters(value):
     _need(rows==value['proxies'])
 
 
+def _preflight_arguments(request):
+    arguments=list(request['command'][1:])
+    if 'preflight_mode' not in request:return ['--dry_run',*arguments]
+    if request['preflight_mode']=='native-model-zero-cycle-isolated-v1':
+        _need(arguments.count('output.prefix=refined')==1,'Unknown refinement output-prefix contract')
+        arguments=['output.prefix=parallelity_runtime/preflight/native' if a=='output.prefix=refined' else a for a in arguments]
+    return [*arguments,'refinement.dry_run=True']
+
+
+def requires_checked_plane_forces(registry, selected):
+    """Reuse established ancestry validation; manual edits retain their history."""
+    items=registry.get('checkpoints',[])
+    corrected={item.get('id') for item in items if isinstance(item,dict)
+               and isinstance(item.get('outputs'),dict) and 'parallelity_execution' in item['outputs']}
+    if not corrected:return False
+    from .checkpoint_candidate import _lineage,CheckpointCandidateError
+    try:return bool(corrected.intersection(_lineage(registry,selected)))
+    except CheckpointCandidateError as exc:raise ValueError(str(exc)) from exc
+
+
 def _phase(run, root, phase, code, request, *, require_complete):
     """Interpret already-hash-checked files, never launch the native consumer."""
     result_path=path_in(run,root+'/'+phase+'/result.json')
@@ -123,13 +143,9 @@ def _phase(run, root, phase, code, request, *, require_complete):
         _need(not require_complete,'Successful native execution lacks runtime evidence')
         return None
     result=json.loads(result_path.read_text())
-    expected_arguments=request['command'][1:]
-    if phase=='preflight':
-        if request.get('preflight_mode')=='native-model-zero-cycle-v1':
-            expected_arguments=[*expected_arguments,'refinement.dry_run=True']
-        else:
-            _need(not require_complete,'Legacy argument-only preflight cannot qualify refinement')
-            expected_arguments=['--dry_run',*expected_arguments]
+    expected_arguments=_preflight_arguments(request) if phase=='preflight' else request['command'][1:]
+    if phase=='preflight' and 'preflight_mode' not in request:
+        _need(not require_complete,'Legacy argument-only preflight cannot qualify refinement')
     _need(isinstance(result,dict) and result.get('schema_version')==1
           and type(result.get('schema_version')) is int
           and type(result.get('pid')) is int and result['pid']>0

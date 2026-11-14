@@ -18,6 +18,13 @@ C276–C279 connect the normal explicit campaign through five actual refinement
 cycles and relocated inspection. Q04/Q05 supported-route acceptance is recorded
 in the completion map. Default activation and effective chemical/refinement
 qualification remain separate release and Q06 gates.
+The explicit `autorefine --checked-plane-forces` route freezes qualified helper
+code and ordered inputs under the existing refinement round. Native model setup
+has isolated outputs; cold readers validate anchored evidence without execution.
+Corrected ancestry cannot silently lose that choice through manual edits. The
+exact native profile and complete parameters are checked; default activation,
+campaign/Doctor forwarding and achieved-chemistry qualification remain separate.
+
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not

@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve checked plane forces through explicit CLI continuation (C299)
+
+- `autorefine --checked-plane-forces` uses the configured Phenix Python and the
+  qualified, frozen runtime. Defaults remain unchanged.
+- Keep native zero-cycle setup files separate from refinement outputs. Retain
+  older request formats for read-only inspection after relocation.
+- Require explicit checked continuation from a corrected ancestor, including
+  manual children; refuse before native work or a new round. Other branches are
+  unaffected. No chemistry, selection threshold or installed Phenix edits.
+
 ### Bind explicit plane-force correction to refinement checkpoints (C298)
 
 - AutoRefine's opt-in API freezes the qualified helper and ordered inputs under
