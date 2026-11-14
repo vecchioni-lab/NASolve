@@ -192,7 +192,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 **Next action:** Retain and audit the identified last accepted point after optimizer failure while preserving FAILED/original error and no candidate adoption. Qualify affected chemistry and complete ordinary native enforcement separately; do not relax stopping policy based solely on precision observations.
 **Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/9deb105da5c0cf769cdba7046175b6e330f3cf24); Read-only native precision observations; original optimizer failure and all chemical/ordinary-refinement gates remain.
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/5cecbb513264c2f534db759a5822fa8d36eea444); Read-only native precision observations; original optimizer failure and all chemical/ordinary-refinement gates remain.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -608,7 +608,7 @@ Nine regressions pass; the prior package fails to import the absent module. Full
 <a id="e_native_precision"></a>
 ### E_NATIVE_PRECISION — predeclared_failed_trial_precision_observation
 
-[Evidence contract](topostitch-preview.md#w53--measure-precision-at-the-last-accepted-failed-trial-points) at [W53](https://github.com/vecchioni-lab/NASolve/commit/9deb105da5c0cf769cdba7046175b6e330f3cf24).
+[Evidence contract](topostitch-preview.md#w53--measure-precision-at-the-last-accepted-failed-trial-points) at [W53](https://github.com/vecchioni-lab/NASolve/commit/5cecbb513264c2f534db759a5822fa8d36eea444).
 Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target components and gradient norms exactly. Both complete612-variable derivative checks pass unchanged1e-3 bounds at1e-4/1e-5 Angstrom. Eight fixed directions at nine scales retain score quantization; local quadratic decrease estimates6.60e-13/7.31e-13 are below9.095e-13 score ULP. Baselines repeat exactly.
 **Limit:** Numerical diagnostic only, not native convergence, geometry acceptance or a new stopping policy. No optimizer/candidate emission/SDK or Cedar edits. Product code unchanged from W52; prior full/installed tests apply. Generated inputs and observations remain local.
 

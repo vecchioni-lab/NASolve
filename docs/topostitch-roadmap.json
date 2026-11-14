@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24",
+  "audited_code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -298,7 +298,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24",
+        "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
         "reviewer": "Linden",
         "scope": "Read-only native precision observations; original optimizer failure and all chemical/ordinary-refinement gates remain"
       }
@@ -807,7 +807,7 @@
     },
     "E_NATIVE_PRECISION": {
       "kind": "predeclared_failed_trial_precision_observation",
-      "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24",
+      "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
       "human_update": 53,
       "reference": "docs/topostitch-preview.md#w53--measure-precision-at-the-last-accepted-failed-trial-points",
       "result": "Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target components and gradient norms exactly. Both complete612-variable derivative checks pass unchanged1e-3 bounds at1e-4/1e-5 Angstrom. Eight fixed directions at nine scales retain score quantization; local quadratic decrease estimates6.60e-13/7.31e-13 are below9.095e-13 score ULP. Baselines repeat exactly.",
@@ -1055,7 +1055,7 @@
         "number": 53,
         "title": "Measure precision at retained failed-trial points",
         "state": "RECORDED",
-        "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24"
+        "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444"
       }
     ]
   }
