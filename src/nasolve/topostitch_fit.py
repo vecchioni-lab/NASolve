@@ -224,7 +224,7 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
     settings={'method':'trf','jac':'3-point','diff_step':1e-4,'ftol':1e-8,'xtol':1e-8,'gtol':1e-8,
               'x_scale':list(bounds),'initial_parameters':list(zero),'loss':'linear'}
     report={'schema_version':request['schema_version'],'kind':'topostitch-placement-proposal',
-        'algorithm':'single-window-canonical-contact-least-squares-v4',
+        'algorithm':'single-window-canonical-contact-least-squares-v5',
         'request':request,'request_file_sha256':sha256(request_bytes).hexdigest(),
         'source_model_sha256':digest,'reference_library':library,'selected_candidate':candidate,'window':window,
         'selected_image_identity':image_audit,'transformed_image_identity':None,
@@ -243,6 +243,10 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
         report['limitations'][4]='No torsion ideal/pucker, packing, atomistic closure or native qualification'
     if image_audit is not None and image_audit['assessment']!='SELECTED_COORDINATES_DISTINCT':
         report['status']='IMAGE_IDENTITY_REVIEW_REQUIRED'
+        verify_inputs()
+        return report
+    if image_audit is not None and not image_audit['single_edge_capacity']['one_partner_in_selected_scope']:
+        report['status']='CONNECTION_CAPACITY_REVIEW_REQUIRED'
         verify_inputs()
         return report
     calls=0

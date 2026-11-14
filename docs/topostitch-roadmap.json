@@ -91,7 +91,8 @@
       "delivered": [
         "Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated.",
         "Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope.",
-        "Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices."
+        "Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices.",
+        "W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open."
       ],
       "acceptance": [
         "Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.",
@@ -178,7 +179,8 @@
       "goal": "Identify which duplex ends should meet and in which image/register, with a no-connection alternative.",
       "delivered": [
         "Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved.",
-        "Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected."
+        "Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected.",
+        "W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open."
       ],
       "acceptance": [
         "A selected edge has verified physical image identity, sequence/register/orientation and capacity; wrong, ambiguous, self-orbit and impossible cases stay distinct.",
@@ -848,8 +850,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 46,
-    "next": 47,
+    "current": 47,
+    "next": 48,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -935,6 +937,12 @@
         "title": "Observe native torsion and monomer-plane endpoint terms through Cedar kernels",
         "state": "RECORDED",
         "code_commit": "17d0efe6df451f22535db9253c1588dd4e248896"
+      },
+      {
+        "number": 47,
+        "title": "Bind one periodic edge to exact reciprocal partner incidence",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

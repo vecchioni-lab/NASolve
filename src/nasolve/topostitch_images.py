@@ -106,6 +106,48 @@ def _selected_overlap(points, left, right, op, cell, gemmi, tolerance, budget):
     return contacts
 
 
+def _single_edge_capacity(audit, gemmi):
+    """Bind exact edge incidence to this fresh selected-coordinate observation.
+
+    This deliberately excludes global schemes and special-position equivalences.
+    It never merges labels or uses a center as evidence of molecular identity.
+    """
+    from .topostitch_pairings import _periodic_incidence
+    inputs = audit['inputs']; ends = inputs['ends']
+    operator = gemmi.Op(inputs['target_image']['operator_xyz'])
+    incidence = _periodic_incidence(ends, operator, gemmi)
+    scopes = audit['end_atom_indices']
+    shared = sorted(set(scopes['source']) & set(scopes['target']))
+    issues = []
+    if audit['assessment'] != 'SELECTED_COORDINATES_DISTINCT':
+        issues.append('SELECTED_COORDINATE_IDENTITY_UNRESOLVED')
+    if not scopes['source'] or not scopes['target']:
+        issues.append('EMPTY_SELECTED_ATOM_SCOPE')
+    if ends[0] != ends[1] and shared:
+        issues.append('DISTINCT_END_LABELS_SHARE_SOURCE_ATOMS')
+    identity_self = ends[0] == ends[1] and operator.triplet() == 'x,y,z'
+    if identity_self:
+        issues.append('IDENTITY_SELF_EDGE')
+    status = ('CAPACITY_REVIEW_REQUIRED' if issues else
+              'ONE_PARTNER_IN_SELECTED_SCOPE' if all(r['partner_count'] == 1 for r in incidence)
+              else 'MULTIPLE_PARTNERS_IN_SELECTED_SCOPE')
+    return {'schema_version': 1, 'kind': 'topostitch-single-edge-capacity',
+        'source_model_sha256': audit['source_model_sha256'],
+        'coordinate_evidence_sha256': sha256(json.dumps(audit,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest(),
+        'ends': list(ends), 'target_image': inputs['target_image'], 'incidence': incidence,
+        'assessment': status, 'issues': issues, 'shared_source_atom_indices': shared,
+        'one_partner_in_selected_scope': status == 'ONE_PARTNER_IN_SELECTED_SCOPE',
+        'coordinate_basis': 'PRESENT_SELECTED_ATOMS_AT_RECORDED_COINCIDENCE_TOLERANCE',
+        'coincidence_tolerance_angstrom': inputs['coincidence_tolerance_angstrom'],
+        'lattice_translations_preserved': True, 'identities_merged': False,
+        'global_assignment_validated': False, 'full_molecular_identity_validated': False,
+        'geometry_validated': False, 'runtime_authority': False, 'connection_accepted': False,
+        'limitations': ['One explicit undirected edge orbit, not a complete connection scheme',
+            'Conditional on the selected present-atom coordinate audit and its tolerance',
+            'Special-position, coincident-label and partial-occupancy cases require review',
+            'No sequence/orientation approval, chemical linkage, recut or automatic adoption']}
+
+
 def _attach_image_audit(model_path, assignments, report, *, candidate_index,
                         coincidence_tolerance_angstrom=.01, max_atom_tests=2_000_000):
     """Internal adapter: report must come from this call's fresh periodic screen."""
@@ -171,6 +213,7 @@ def _attach_image_audit(model_path, assignments, report, *, candidate_index,
         result['atom_tests'] = budget.used
         ambiguous = result['orbit_contacts'] or result['selected_image_overlaps'] or any(a['occupancy']<1 for a in atoms)
         result['assessment'] = 'COINCIDENCE_OR_OCCUPANCY_REVIEW' if ambiguous else 'SELECTED_COORDINATES_DISTINCT'
+    result['single_edge_capacity'] = _single_edge_capacity(result, gemmi)
     report['selected_image_identity'] = result
     return report
 
@@ -209,7 +252,7 @@ def _audit_transformed_image(data, source_audit, *, cell_parameters, space_group
         'ends':options['ends'],'target_image':options['target_image'],
         'coincidence_tolerance_angstrom':tolerance,'numerical_padding_angstrom':_PADDING,
         'max_atom_tests':options['max_atom_tests'],'max_coincidence_records_per_section':_MAX_COINCIDENCES}
-    return {'schema_version':1,'kind':'topostitch-transformed-image-identity',
+    result = {'schema_version':1,'kind':'topostitch-transformed-image-identity',
         'algorithm':'fixed-selected-image-after-transform-v1','gemmi_version':gemmi.__version__,
         **inputs,'inputs':inputs,'input_sha256':sha256(json.dumps(inputs,sort_keys=True,separators=(',',':')).encode()).hexdigest(),
         'selection_basis':'Exact source selection and image; no post-transform candidate search',
@@ -219,6 +262,8 @@ def _audit_transformed_image(data, source_audit, *, cell_parameters, space_group
         'physical_identity_validated':False,'geometry_validated':False,'runtime_authority':False,
         'limitations':['Present selected atoms only; no full packing, van der Waals or closure qualification',
             'Coincidence observations never merge source identities or approve a connection']}
+    result['single_edge_capacity'] = _single_edge_capacity(result, gemmi)
+    return result
 
 def inspect_periodic_image_identity(model_path, assignments, *, expected_sha256,
         max_distance_angstrom, candidate_index, coincidence_tolerance_angstrom=.01,

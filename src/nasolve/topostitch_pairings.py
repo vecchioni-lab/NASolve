@@ -10,11 +10,29 @@ import json
 import math
 
 from .topostitch import DuplexEnd
-from .topostitch_periodic import _gemmi, _op_key
+from .topostitch_periodic import _gemmi, _op_key, _image_record
 
 
 def _fingerprint(value):
     return sha256(json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+
+
+def _periodic_incidence(ends, operator, gemmi):
+    """Neighbors at identity representatives of one undirected edge orbit.
+
+    An A--g(B) edge also gives B--g^-1(A). Retain whole-cell translations:
+    reducing operators modulo the cell can turn two partners into a false one.
+    This exact combinatorial result assumes distinct end orbits and trivial
+    stabilizers; the coordinate audit must establish its own applicable scope.
+    """
+    if len(ends) != 2 or any(not isinstance(e, str) or not e for e in ends):
+        raise ValueError('Require two explicit endpoint identifiers')
+    neighbors = {name: {} for name in sorted(set(ends))}
+    for a, b, op in ((ends[0], ends[1], operator), (ends[1], ends[0], operator.inverse())):
+        key = (b, _op_key(op))
+        neighbors[a][key] = {'end_id': b, 'image': _image_record(op, gemmi)}
+    return [{'end_id': name, 'neighbors': [rows[key] for key in sorted(rows)],
+             'partner_count': len(rows)} for name, rows in neighbors.items()]
 
 
 def _candidate_graph(report):
@@ -68,7 +86,7 @@ def _candidate_graph(report):
             if a.end_id == b.end_id:
                 if op.triplet() == 'x,y,z':
                     raise ValueError('Identity self candidate cannot pair an end to itself')
-                if _op_key(op) != _op_key(inverse):
+                if _periodic_incidence(pair, op, gemmi)[0]['partner_count'] != 1:
                     deferred.append({'candidate_index': i,
                         'reason': 'SELF_ORBIT_CAPACITY_UNRESOLVED',
                         'detail': 'Forward and inverse images differ; one-partner capacity needs atom-orbit review'})

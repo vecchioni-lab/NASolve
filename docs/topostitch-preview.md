@@ -1449,6 +1449,58 @@ connection capacity and ordinary refinement enforcement are still open. Rowan's
 reported C289 ordinary full-objective force discrepancy remains separate consumer
 evidence; Willow does not install a corrected ordinary refinement route.
 
+### W47 — One periodic edge and its reciprocal partners
+
+A declared `A → g(B)` connection also requires `B → g⁻¹(A)` at the identity
+representatives. The existing pairing owner now supplies that exact incidence
+calculation to the image audit. A self-edge through an involution can have one
+partner; a screw, translation or centering translation can give distinct forward
+and inverse partners. Operators are never reduced modulo the unit cell when
+counting them. This calculation supplies a shared primitive for Pine's graph.
+
+Source and transformed image audits add `single_edge_capacity`, bound by a digest
+of the complete enclosing coordinate audit before that field is added. Its
+`ONE_PARTNER_IN_SELECTED_SCOPE` outcome is conditional on distinct present
+selected atoms at the recorded coincidence tolerance. Shared atoms under distinct
+end labels, identity self-edges, coincidences, special-position ambiguity and
+partial occupancy stay under review. `MULTIPLE_PARTNERS_IN_SELECTED_SCOPE` is a
+conflict for the declared one-partner hypothesis, not a blanket rejection of
+periodic networks. Global assignment and full molecular identity remain false.
+No sequence/orientation, covalent connectivity, geometry or adoption is approved.
+
+Periodic fitting now requires that scoped outcome in addition to its prior
+coordinate-identity guard; otherwise it returns `CONNECTION_CAPACITY_REVIEW_REQUIRED`
+without solver calls. Proposal algorithm becomes v5; request/preview schemas and
+explicit-path CLI arguments stay compatible. Existing pairing alternatives retain
+their prior conservative self-edge deferral. No new inference or cut is selected.
+
+Validation:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_images.py tests/test_topostitch_pairings.py tests/test_topostitch_fit.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w47-capacity/public-control.py
+python3 /private/tmp/willow-w47-capacity/installed-check.py
+```
+
+Focused **68**, full Willow **1,424 + 229 subtests**, installed/relocated **68**
+pass. P1 translation, P2 involution, C2 centering and P43 screw controls preserve
+exact reciprocal distinctions; centroid coincidence does not imply atom identity.
+The public 8D93 source and moved-end audits both support one partner in scope.
+After excluding only new capacity metadata and the algorithm version, its complete
+prior placement report reproduces exactly. The installed wheel repeats that after
+moving the temporary checkout and blocking original source/input paths. Original
+scientific files are unchanged; generated evidence remains local, not Git.
+Five entry-point checks, lean imports and Python 3.10 syntax pass. Wheel SHA256:
+`25404b11b03f7973ec2e13eeb207fcf6d9f4f35b5c76f2540972577fb3f41232`.
+No Phenix/Coot execution was needed for this host-side image calculation.
+
+F02/S03 remain partial for complete molecular equivalence and global schemes.
+Next build the minimum read-only declared graph for one proposed Pine cut,
+retaining typed edges, unknown coverage and nonzero periodic winding. This may
+prototype algebra before the remaining physical/materialization gates close;
+it does not authorize a recut or replace S05 chemistry/refinement work.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

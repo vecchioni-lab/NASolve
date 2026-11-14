@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W46; next W47.** W33 introduced human update numbers without
+**Willow update W47; next W48.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,17 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W46 edge:** endpoint review now composes maintained Cedar torsion/plane
+**Current W47 edge:** one exact reciprocal-incidence owner now connects the
+pairing and atom-image audits. A periodic fit requires one partner within the
+selected-coordinate scope; lattice shifts are never wrapped away. Ambiguity and
+global/molecular identity remain open. Full Willow: 1,424 + 229 subtests;
+focused/installed-relocated: 68. Existing public 8D93 placement reproduces exactly
+apart from added capacity metadata and algorithm v5. No native runtime/Cedar edits.
+Next prototype the minimum declared periodic graph for one Pine cut, retaining
+edge kinds, unknown coverage and winding; materialization/physical approval stay
+behind the existing F02/Pine gates. S05 ordinary refinement remains separate.
+
+**Prior W46 edge:** endpoint review now composes maintained Cedar torsion/plane
 kernels with checked live proxy semantics and complete family target/gradient
 parity. Six native controls pass; individual regressions remain visible even when
 aggregate scores improve. Full Willow: 1,416 + 229 subtests; installed/relocated:

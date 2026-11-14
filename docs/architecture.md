@@ -895,6 +895,12 @@ acceptance and structural assessment.
 
 ## Isolated TopoStitch backend
 
+The pairing owner supplies exact forward/reciprocal edge incidence to selected
+atom-image audits. These bind one-partner capacity only within their recorded
+coordinate scope; nontrivial lattice translations, ambiguity and unresolved
+molecular/global identity remain explicit. Periodic fitting consumes this scoped
+precondition without selecting a connection or creating chemical bonds.
+
 TopoStitch currently has four additive entry points, outside the campaign/PostMR
 CLI. `nasolve-topostitch-inspect` composes verified coordinate/periodic
 observations, NARestraints contacts, factorized pairing alternatives, existing

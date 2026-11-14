@@ -405,6 +405,13 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-14
 
+**W47 checkpoint:** selected source/transformed image audits now bind exact
+reciprocal partner incidence without reducing lattice shifts. Capacity is scoped
+to the present selected-coordinate evidence; global/molecular identity is open.
+Focused/installed-relocated **68**, full Willow **1,424 + 229 subtests**, and exact
+public-placement compatibility pass. See [W47](topostitch-preview.md#w47--one-periodic-edge-and-its-reciprocal-partners).
+
+
 **W46 checkpoint:** individual live torsion/plane observations compose Cedar
 kernels with original-proxy and full-family target/gradient checks. Six native
 endpoint controls pass while retaining local regressions and deferred chemistry.

@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W46 — Observe native torsion and monomer-plane endpoint terms through Cedar kernels.** Next: W47.
+**Current update: W47 — Bind one periodic edge to exact reciprocal partner incidence.** Next: W48.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W37 | Bind complete canonical recipes to exact atom images | RECORDED |
 | W38 | Compose bounded native geometry with an explicit movable mask | RECORDED |
 | W39 | Reconstruct captured native context for masked evaluation | RECORDED |
 | W40 | Bind native endpoint review to exact movement and serialized bytes | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W44 | Expose individual selected and core pair contributions | RECORDED |
 | W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
 | W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | RECORDED |
+| W47 | Bind one periodic edge to exact reciprocal partner incidence | IN_PROGRESS |
 
 ## Finish lines
 
@@ -90,7 +90,7 @@ Keep logical sites, coordinate copies, chemistry intent and immutable source ide
 
 Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.
 
-**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated. Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope. Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices.
+**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated. Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope. Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices. W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open.
 
 **Closure audit:**
 
@@ -151,7 +151,7 @@ Reduce manual end declarations while retaining true nicks, protected junctions, 
 
 Identify which duplex ends should meet and in which image/register, with a no-connection alternative.
 
-**Delivered:** Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved. Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected.
+**Delivered:** Exact nearby images and factorized one-partner alternatives exist; no physical/global assignment is approved. Periodic fitting now returns IMAGE_IDENTITY_REVIEW_REQUIRED with zero solver calls for selected-coordinate coincidences or occupancy uncertainty; no connection is automatically selected. W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open.
 
 **Closure audit:**
 

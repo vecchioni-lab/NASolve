@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W47 — Bind a periodic edge to exact reciprocal partner incidence
+
+- Reuse one exact incidence calculation in pairing alternatives and selected
+  image audits. Preserve lattice translations when counting forward/inverse mates.
+- Bind a single-edge capacity report to fresh source and transformed atom-level
+  observations; retain ambiguity for shared atoms, coincidences and occupancy.
+- Require one partner within that selected scope before periodic fitting.
+  Existing public numerical placement is unchanged. No global assignment,
+  molecular identity merge, chemical linkage or connection approval is added.
+
 ### W46 — Observe individual native torsions and monomer planes
 
 - Compose Cedar's maintained native torsion/plane kernels into endpoint review,

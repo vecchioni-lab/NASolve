@@ -419,6 +419,16 @@
           "chemical_qualification": false
         }
       }
+    },
+    "single_edge_capacity": {
+      "owner": "nasolve.topostitch_pairings and nasolve.topostitch_images",
+      "scope": "One declared undirected edge orbit, conditional on present selected-atom coordinate evidence",
+      "unwrapped_reciprocal_incidence": true,
+      "source_and_transformed_audits": true,
+      "periodic_fit_precondition": true,
+      "global_assignment_validated": false,
+      "full_molecular_identity_validated": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

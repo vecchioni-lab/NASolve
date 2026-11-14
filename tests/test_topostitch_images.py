@@ -81,6 +81,8 @@ def test_distinct_selected_images_can_share_center():
     points=[(-1,0,0),(1,0,0),(0,-1,0),(0,1,0)]
     assert overlap(points,[0,1],[2,3],'x,y,z')==[]
     assert orbit(points)==[]
+    checked=capacity(points,[0,1],[2,3],['a','b'],'x,y,z')
+    assert checked['one_partner_in_selected_scope'] and not checked['geometry_validated']
 
 
 def test_self_image_overlap_is_not_a_new_partner():
@@ -185,3 +187,67 @@ def test_partial_occupancy_keeps_distinct_coordinates_under_review(tmp_path):
     audit=inspect(model,manifest)['selected_image_identity']
     assert audit['assessment']=='COINCIDENCE_OR_OCCUPANCY_REVIEW'
     assert audit['physical_identity_validated'] is False
+    assert audit['single_edge_capacity']['assessment']=='CAPACITY_REVIEW_REQUIRED'
+
+
+def capacity(points,left,right,ends,operator,group='P 1'):
+    from nasolve.topostitch_images import _single_edge_capacity
+    from nasolve.topostitch_periodic import _image_record
+    gemmi,unit,sg=_crystal(CELL,group)
+    aliases=orbit(points,group=group);overlaps=overlap(points,left,right,operator,group=group)
+    audit=dict(source_model_sha256='a'*64,inputs=dict(ends=ends,target_image=_image_record(gemmi.Op(operator),gemmi),
+        coincidence_tolerance_angstrom=.01),end_atom_indices=dict(source=left,target=right),
+        assessment='COINCIDENCE_OR_OCCUPANCY_REVIEW' if aliases or overlaps else 'SELECTED_COORDINATES_DISTINCT',
+        orbit_contacts=aliases,selected_image_overlaps=overlaps)
+    return _single_edge_capacity(audit,gemmi)
+
+
+def test_single_periodic_edge_keeps_both_unwrapped_reciprocal_neighbors():
+    r=capacity([(1.,2.,3.),(3.,4.,5.)],[0],[1],['a','b'],'x+2,y,z')
+    assert r['assessment']=='ONE_PARTNER_IN_SELECTED_SCOPE'
+    assert [(x['end_id'],x['partner_count'],x['neighbors'][0]['image']['operator_xyz']) for x in r['incidence']]==[
+        ('a',1,'x+2,y,z'),('b',1,'x-2,y,z')]
+    assert not r['global_assignment_validated'] and not r['full_molecular_identity_validated']
+    assert not r['connection_accepted']
+
+
+@pytest.mark.parametrize('operator,group,partners',[
+    ('-x,y,-z','P 2',1),
+    ('x+1,y,z','P 1',2),
+    ('x+1/2,y+1/2,z','C 2',2),
+    ('y,-x,z+1/4','P 43',2),
+])
+def test_generic_self_edge_counts_distinct_forward_and_inverse_images(operator,group,partners):
+    r=capacity([(1.,2.,3.)],[0],[0],['a','a'],operator,group)
+    assert r['incidence'][0]['partner_count']==partners
+    assert r['one_partner_in_selected_scope']==(partners==1)
+    assert r['assessment']==('ONE_PARTNER_IN_SELECTED_SCOPE' if partners==1 else 'MULTIPLE_PARTNERS_IN_SELECTED_SCOPE')
+
+
+def test_centering_inverse_is_not_identified_modulo_the_cell():
+    r=capacity([(1.,2.,3.)],[0],[0],['a','a'],'x+1/2,y+1/2,z','C 2')
+    images=[n['image'] for n in r['incidence'][0]['neighbors']]
+    assert images[0]['symmetry_operation']==images[1]['symmetry_operation']
+    assert images[0]['lattice_translation']!=images[1]['lattice_translation']
+    assert r['assessment']=='MULTIPLE_PARTNERS_IN_SELECTED_SCOPE'
+
+
+def test_stabilizer_or_shared_source_labels_cannot_establish_capacity():
+    special=capacity([(0.,2.,0.)],[0],[0],['a','a'],'-x,y,-z','P 2')
+    assert special['assessment']=='CAPACITY_REVIEW_REQUIRED'
+    shared=capacity([(1.,2.,3.)],[0],[0],['a','b'],'x+1,y,z')
+    assert shared['assessment']=='CAPACITY_REVIEW_REQUIRED'
+    assert 'DISTINCT_END_LABELS_SHARE_SOURCE_ATOMS' in shared['issues']
+    identity=capacity([(1.,2.,3.)],[0],[0],['a','a'],'x,y,z')
+    assert 'IDENTITY_SELF_EDGE' in identity['issues']
+
+
+def test_public_image_audit_binds_capacity_without_connection_approval(tmp_path):
+    pytest.importorskip('gemmi')
+    model,manifest,_=inputs(tmp_path);audit=inspect(model,manifest)['selected_image_identity']
+    report=audit.pop('single_edge_capacity')
+    expected=hashlib.sha256(json.dumps(audit,sort_keys=True,separators=(',',':'),allow_nan=False).encode()).hexdigest()
+    assert report['coordinate_evidence_sha256']==expected
+    assert report['source_model_sha256']==audit['source_model_sha256']
+    assert report['target_image']==audit['inputs']['target_image']
+    assert not report['connection_accepted'] and not report['runtime_authority']
