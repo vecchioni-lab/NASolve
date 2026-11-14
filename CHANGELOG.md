@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W40 — Bind endpoint review to the explicit movement mask
+
+- Audit full-precision motion and exact PDB rounding while preserving fixed atoms,
+  identities, headers and all noncoordinate bytes. Reject rounding beyond limits.
+- Extend the existing packing reader with optional endpoint evidence, reusing
+  Cedar geometry and selected/boundary/fixed-environment review. Legacy packing
+  output remains unchanged when the optional inputs are absent.
+- Require explicit Cartesian tensor preservation for coordinate-only ANISOU
+  motion; no rigid-body tensor transport, ADP refinement or geometry approval.
+
 ### W39 — Reconstruct the observed native starting context
 
 - Authenticate a Cedar capture, rebuild its manager from freshly generated trusted

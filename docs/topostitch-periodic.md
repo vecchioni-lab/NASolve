@@ -405,7 +405,25 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W39 checkpoint (2026-11-14):** 15 new reconstruction regressions pass.
+**W40 checkpoint (2026-11-14):** 20 endpoint regressions cover exact protected
+bytes, fixed motion below serialization precision, outward rounding, unsupported
+movable chemistry and explicit ANISOU preservation. Full Willow source: **1,358
+passed + 229 subtests** (85.60 s), using the W39 command with topology dependencies.
+Installed focused: **101 passed** (1.03 s): capture, endpoint, mask, packing, recipe
+and transport. The initial copied harness lacked the developer packing script;
+after including that existing test dependency the complete declared set passes.
+Relocated focused: **69 passed**, plus byte-identical complete native endpoint
+review with old capture/source reads blocked and the original copied checkout
+absent. Lean optional import and Python 3.10 syntax pass. Installed endpoint
+results match all three native-control audits. The original packing command's
+content/keys remain unchanged without endpoint options; wrong mask/point hashes
+reject. Wheel SHA256:
+`c1cb9c71cf7891592cecf37ddd7c43033d4475cd94b067286602dad92f949b75`.
+See [W40](topostitch-preview.md#w40--bind-endpoint-review-to-movement-and-serialized-bytes)
+for the native command and retained ANISOU/default-rejection evidence. No existing
+artifact migration, optimization or model adoption is introduced.
+
+**Prior W39 checkpoint (2026-11-14):** 15 new reconstruction regressions pass.
 Full Willow source: **1,338 passed + 229 subtests** (65.90 s), with the declared
 topology dependencies. The initial run omitted Gemmi and had 15 dependency
 failures/77 skips; its log is retained, and the corrected complete run is green.

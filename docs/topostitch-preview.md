@@ -1033,6 +1033,63 @@ S05 remains partial. Next qualify a bounded trial's full native lifecycle and
 individual geometry/packing at full precision and serialized coordinates; preserve
 existing W37 derivative-review outcomes and avoid native/additive pair double counting.
 
+### W40 — Bind endpoint review to movement and serialized bytes
+
+`topostitch_endpoint.audit_masked_endpoint` checks a supplied full-precision
+endpoint and candidate PDB against an explicit mask. It requires identical atom
+identity/order, unchanged fixed records and **every noncoordinate byte**, exact
+8.3 coordinate serialization, and the displacement limit both before and after
+rounding. Full-precision fixed motion cannot hide below PDB precision. This audit
+writes nothing; first scope is full-occupancy canonical DNA without movable
+alternate conformers. It is not a geometry or chemistry acceptance decision.
+
+The existing packing reader optionally binds that audit to authenticated source
+and candidate native captures:
+
+```bash
+python scripts/compare_topostitch_native_packing.py \
+  --cedar-source /trusted/cedar/src \
+  --before-model SOURCE.pdb --before-receipt BEFORE/native_receipt.json \
+  --after-model CANDIDATE.pdb --after-receipt AFTER/native_receipt.json \
+  --mask MASK.json --mask-sha256 MASK_FILE_SHA256 \
+  --full-precision POINTS.json --full-precision-sha256 POINTS_FILE_SHA256 \
+  --anisou-policy preserve-cartesian --out ENDPOINT_REVIEW.json
+```
+
+`POINTS.json` is the complete ordered ASU Cartesian point list; the mask is the
+existing schema-1 source-bound request. The four mask/point arguments are supplied
+together. Without them the original packing report retains its behavior/content.
+Cedar's fixed-policy geometry checker must confirm unchanged native identities,
+definitions, proxies and context. Its selected-environment reviewer supplies
+separate selected-only, boundary and fixed-only scalar/repulsion observations.
+The full-precision scalar projection, serialized native observations and directed
+packing changes remain distinct. Full-precision native energies/packing and
+endpoint derivatives are explicitly **not evaluated by this read-only command**.
+
+The default tensor policy rejects movable ANISOU. For coordinate-only trials,
+`preserve-cartesian` explicitly keeps each associated tensor byte unchanged; it
+neither invents a rotation for nonrigid movement nor qualifies thermal motion.
+Rigid previews retain their separate existing tensor-rotation owner. Rowan
+confirmed this limited interpretation; no Cedar change was needed.
+
+Three complete **Phenix 2.2.1-6174** endpoint captures from W39's nonuniform
+controls pass exact serialization and native mechanics: 107-, 204- and independent
+82-atom masks. All contain movable ANISOU; the initial default rejections remain
+recorded before explicit preservation was declared. Full-precision maximum motion
+is about 0.002517 Å; rounding reaches 0.003 Å, with maximum roundtrip error about
+0.000676 Å. This is a serialization control, not an optimized repair.
+The fixed-base example lowers native repulsion 1077.7216 → 1077.1472 while 38
+existing directed contacts worsen; the whole-window and 7R96 controls worsen
+89 and 40 respectively. Neighbor-list additions/removals remain separate from
+resolved/new overlaps. No candidate is selected or called chemically acceptable.
+
+Relocated copied code/captures reproduce the complete review **byte-for-byte**
+with the original temporary checkout absent and old capture/source reads blocked.
+Installed endpoint audits reproduce all three source results. Scientific inputs,
+perturbed models and reports stay local. S05 still needs a bounded optimization
+and full-precision/serialized derivative, geometry and packing qualification;
+this review does not close those gates.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

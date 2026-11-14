@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W39; next W40.** W33 introduced human update numbers without
+**Willow update W40; next W41.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,20 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W39 edge:** a developer-only reconstruction probe reuses Cedar capture,
+**Current W40 edge:** exact full-precision/mask/PDB-byte binding is available
+through an optional extension of the existing packing reader. Cedar owns native
+mechanics and selected/boundary/fixed environment review; unchanged legacy packing
+content is tested. Three complete Phenix 2.2.1-6174 endpoint captures pass mechanics
+and explicit Cartesian ANISOU preservation; initial default rejections remain.
+Lower global repulsion can still accompany worse individual contacts. All outputs
+remain descriptive, unselected and local. Full Willow: 1,358 tests + 229 subtests;
+installed focused: 101; relocated focused: 69 and byte-identical complete review
+with original reads blocked. No optimizer or endpoint derivative qualification.
+Next connect a bounded trial to the established initial-context and endpoint
+boundaries, retaining failed/capped outcomes and matched controls. Density-aware
+curvature placement stays in the audited later queue.
+
+**Prior W39 edge:** a developer-only reconstruction probe reuses Cedar capture,
 worker builders, native process ownership and inventory replay. Fresh native
 contexts match the authenticated initial full-monomer/geometry/energy/ASU-pair
 observations for both prior 8D93 masks and independent 7R96; repeated masked
@@ -271,10 +284,10 @@ added. The existing guide records both routes and their acceptance gates.
 See the current inspector/preview guides for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Frozen Cedar through `f2345a8` was tested for native readback; current Cedar
-C274/C275 have added sealed AutoSol publication recovery and CLI reuse, following C273 native-audit reuse; the consumed registration/model/context/package interfaces
-remain unchanged against the Pine base. Rowan confirms Cedar C273 is pushed and changes numerical-proof reuse only and does not edit
-the AutoRefine statistics parser. Willow consumes no new Cedar production interfaces and edits
+Frozen Cedar through `f2345a8` was tested for native readback; current Cedar through C278/C279 adds first-campaign refinement admission and
+consumer-specific round-local PHIL wrapping after sealed AutoSol recovery; the consumed registration/model/context/package interfaces
+remain unchanged against the Pine base. The consumed correction/audit/selected-geometry helpers remain unchanged through
+Cedar `b6d6dfe`; C278 changes AutoRefine input handling, not its statistics parser. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the
 existing diagnostic helper only; see the preview guide for exact options.
 Rowan confirms no qualified selective-coordinate adapter exists: Cedar's current

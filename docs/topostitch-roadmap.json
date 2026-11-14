@@ -250,7 +250,8 @@
         "Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed.",
         "W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible.",
         "W38 adds explicit bounded coordinate masks and a direct native/pair/tether evaluator using Cedar owners; source and perturbed full-coordinate checks pass for two movement scopes and an independent 7R96 mask, with no optimization or scientific acceptance.",
-        "W39 reuses Cedar capture authentication and trusted native reconstruction, matching all initial observed inventories/ASU pairs before masked evaluation; three native controls reproduce W38 and no optimizer or complete exclusion-policy proof is claimed."
+        "W39 reuses Cedar capture authentication and trusted native reconstruction, matching all initial observed inventories/ASU pairs before masked evaluation; three native controls reproduce W38 and no optimizer or complete exclusion-policy proof is claimed.",
+        "W40 binds full-precision points and exact serialized PDB bytes to the explicit mask, then reuses Cedar native mechanics/selected-environment and existing packing review. Explicit Cartesian ANISOU preservation and local collateral regressions remain visible; no optimization or scientific acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -778,8 +779,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 39,
-    "next": 40,
+    "current": 40,
+    "next": 41,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -823,6 +824,12 @@
         "title": "Reconstruct captured native context for masked evaluation",
         "state": "RECORDED",
         "code_commit": "9cfd5e1c1bed50a89b815c53014dc156195f10d6"
+      },
+      {
+        "number": 40,
+        "title": "Bind native endpoint review to exact movement and serialized bytes",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }
