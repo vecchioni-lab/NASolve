@@ -21,6 +21,7 @@ from .checkpoints import (
     append_checkpoint,
     inherited_paths,
     initialize_registry,
+    read_registry,
     next_checkpoint_id,
     resolve_checkpoint,
 )
@@ -1522,6 +1523,7 @@ def execute_autorefine(
     phenix_version: str,
     environment: Mapping[str, str] | None = None,
     from_checkpoint: str | None = None,
+    expected_registry_sha256: str | None = None,
     recipe: str = "AutoRefine/default",
     macro_cycles: int = 5,
     processor_count: int | None = None,
@@ -1537,15 +1539,28 @@ def execute_autorefine(
     auto_select_success: bool = True,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
-    """Run one quiet refinement round and append an immutable checkpoint."""
+    """Run one quiet refinement round and append an immutable checkpoint.
+
+    An expected registry digest pins a caller's already-admitted saved choice;
+    that path never initializes a missing registry. Ordinary callers retain the
+    existing initialization behavior. Later saves still use the registry guard.
+    """
     xyz_wxc_scale = (
         0.1
         if recipe == "AutoRefine/geometry-conservative"
         else 0.5
     )
     selector_policy = reflection_selector_policy(phenix_version)
+    if expected_registry_sha256 is not None and (
+        not isinstance(expected_registry_sha256, str)
+        or re.fullmatch(r"[0-9a-f]{64}", expected_registry_sha256) is None
+    ):
+        raise AutoRefineError("Malformed expected checkpoint registry checksum")
     try:
-        run, registry = initialize_registry(run_directory)
+        registry_reader = read_registry if expected_registry_sha256 is not None else initialize_registry
+        run, registry = registry_reader(run_directory)
+        if expected_registry_sha256 is not None and registry.get("record_sha256") != expected_registry_sha256:
+            raise AutoRefineError("Checkpoint registry changed before refinement; preserve newer choices")
         parent = resolve_checkpoint(registry, from_checkpoint)
         if parent.get("usable") is not True:
             raise AutoRefineError(f"Checkpoint {parent.get('id')} is not reusable")

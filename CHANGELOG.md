@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Admit checked preparation to its first campaign refinement (C277)
+
+- A checked preparation's initial checkpoint registry no longer counts as a prior
+  refinement attempt. Campaigns pass that exact saved choice to AutoRefine's
+  existing scientific reader and preserve the complete ordered restraint set.
+- Continue refusing previous/partial/unknown work, later checkpoints, symlinks,
+  invalid preparation and prior report history even if its folder was removed.
+  A changed registry before the engine read refuses without native launch; later
+  saves retain the existing concurrent-update guard. No in-place retry or new schema.
+
 ### Carry source-preserving dictionary input through ordinary callers (C276)
 
 - Ordinary PostMR, CIF Doctor prepare-run and schema-2 campaign recipes can now

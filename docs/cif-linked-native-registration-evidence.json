@@ -93956,5 +93956,45 @@
       "corrected isolated diagnostic evaluator"
     ],
     "next": "Finish current Q04/Q05 caller handoff; explicit downstream Q06 entry owns work. Obtain exact collaborator artifacts when investigating historical failure; no unrelated-data search."
+  },
+  "campaign_first_refinement_2026_11_14": {
+    "checkpoint": "C277",
+    "base_commit": "d5f505a",
+    "status": "FOCUSED_CALLER_HANDOFF_PASS",
+    "before": "Any AutoRefine directory refused; checked publication always creates a registry there, blocking first campaign refinement.",
+    "after": "Admit initial checked postmr registry only. Small directory/history gate pins record digest; existing AutoRefine read_registry performs full validation once. Missing/changed registry refuses without initialization. Existing guarded save protects later edits.",
+    "files": [
+      "src/nasolve/campaign_stages.py",
+      "src/nasolve/autorefine.py",
+      "tests/test_cif_campaign_first_refinement.py"
+    ],
+    "schemas": "None. Optional Python API expected_registry_sha256; default standalone initialization unchanged. No native argument, allocator, chemistry, Free-R or phosphate change.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_campaign_first_refinement.py -x",
+        "result": "Before: 1 failed in 1.49 s, existing AutoRefine refusal. Initial fix: 11 passed in 2.21 s. Final reader-count assertion/docstring/local reader variable: 11 passed in 1.47 s."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_campaign_first_refinement.py tests/test_campaign_stages.py tests/test_campaign_execution.py tests/test_autorefine.py tests/test_cif_postmr_publication.py -x",
+        "result": "190 passed, 26 subtests passed in 28.67 s before final equivalent local-reader variable/docstring and test assertion."
+      }
+    ],
+    "negative_controls": [
+      "empty existing folder",
+      "unknown output",
+      "partial round",
+      "later manual choice",
+      "broken registry",
+      "changed prepared model",
+      "symlink registry",
+      "prior report history after folder removed",
+      "new choice between admission and full reader",
+      "missing expected registry never initialized"
+    ],
+    "native_scope": "No native Phenix/Coot execution in this patch; real campaign stage and AutoRefine engine use stub executables. Complete ordered PHIL/CIF arguments and PostMR bytes/mtimes verified. Native campaign continuation remains integration follow-up.",
+    "compatibility": "No migration; old no-folder first refinement unchanged. Existing work never silently adopted or retried in place.",
+    "artifacts": "Only source/tests/docs committed; temporary test outputs excluded. C276 native control unchanged.",
+    "remaining": "Native whole-campaign continuation, explicit opt-in/resource/recovery scope reconciliation; Q06 effective restraints and actual geometry survival including reported PDU problem.",
+    "full_suite": "Not run per Simon; last full C220/583d30df 9178 tests + 276 subtests."
   }
 }

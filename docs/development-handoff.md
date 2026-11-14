@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14**, C276 normal campaign source-recipe integration. Active **cedar**,
-NASolve-c96; base before this patch is C275 `d2381fc`.
+Updated **2026-11-14**, C277 first campaign refinement handoff. Active **cedar**,
+NASolve-c96; base before this patch is C276 `d5f505a`.
 Simon originally authorized **12:36–14:36 Europe/London, 14 November**. Linden
 relayed Simon’s extension to **16:00**, with a later wind-down message expected.
 Focused checks only;
@@ -32,13 +32,26 @@ geometry and effective-restraint comparison, generalized beyond PDU names. Exact
 collaborator files/version are not identified; no diagnosed cause or success claim.
 This does not change the current first-refinement handoff task.
 
-**Next concrete fix:** campaign first refinement rejects any AutoRefine folder,
-including the registry saved by checked preparation. New uncommitted regression
-`tests/test_cif_campaign_first_refinement.py` reproduces it. Admission must allow
-only the initial checked registry, preserve partial/prior/unknown work, and pin
-that registry through the existing refinement reader so newer choices survive.
-Do not duplicate full preparation validation. Q04/Q05 remain open until this
-caller defect and explicit scope reconciliation are complete.
+## Completed — prepared checkpoints can enter first campaign refinement
+
+C277 fixes the blanket AutoRefine-folder refusal. Admit only the initial checked
+registry (plus optional lock), reject any prior/partial/unknown work or report
+history, and pass its digest through the existing full read-only AutoRefine reader.
+A newer choice before that read refuses; later saves keep the existing concurrent
+update guard. No extra expensive proof reader, migration, retry or schema change.
+
+190 focused tests + 26 subtests pass in 28.67 s. Final one-reader assertion and
+wording: 11 tests in 1.47 s. The pre-fix regression failed on the old folder gate.
+Tests run actual campaign/AutoRefine code with stub executables: exact ordered
+PHIL/CIF inputs, unchanged PostMR, parent lineage and eight refusal cases plus
+selection race/missing-registry guards. They are not native refinement proof.
+
+**Next:** audit Q04/Q05 acceptance against existing owners/evidence and run the
+normal campaign continuation using the fresh C276 prepared result, if bounded
+native time permits. Preserve the original control by using a distinct local
+validation copy. Do not rebuild preparation or enable defaults. Keep unowned,
+pre-seal and missing campaign-receipt limits explicit. Real refinement geometry
+and Simon's PDU survival control remain Q06, with no premature closure claim.
 
 ## Completed — the ordinary command returns the exact saved result
 

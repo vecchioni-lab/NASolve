@@ -301,6 +301,38 @@ def _tree_files(root: Path, directory: Path) -> list[str]:
     return paths
 
 
+def _require_first_refinement(run: Path, report: dict[str, Any]) -> str | None:
+    """Admit the checked preparation registry, never an earlier refinement.
+
+    This is a small directory/history admission check, not scientific validation.
+    AutoRefine's existing reader still validates the complete saved registry,
+    preparation and selected inputs before any native work; do not replay it here.
+    """
+    from .campaign_records import read_record
+    try:
+        directory = path_in(run, "AutoRefine")
+        if "autorefine" in report or "autorefine_history" in report:
+            raise ValueError("prior refinement history is present")
+        if not directory.exists():
+            return None
+        names = {path.name for path in directory.iterdir()}
+        postmr = report.get("postmr")
+        if (not isinstance(postmr, dict) or "checked_preparation" not in postmr
+                or "checkpoints.json" not in names
+                or names - {"checkpoints.json", "checkpoints.lock"}
+                or any(not path_in(run, "AutoRefine/" + name).is_file() for name in names)):
+            raise ValueError("existing refinement work or unknown directory contents")
+        registry = read_record(directory / "checkpoints.json")
+        entries = registry.get("checkpoints")
+        if (registry.get("current") != "postmr" or not isinstance(entries, list)
+                or len(entries) != 1 or not isinstance(entries[0], dict)
+                or entries[0].get("id") != "postmr"):
+            raise ValueError("existing checkpoint choices beyond the initial preparation")
+        return registry["record_sha256"]
+    except (OSError, ValueError, CampaignError) as exc:
+        raise CampaignStageError("Campaign first refinement refuses existing AutoRefine work: " + str(exc)) from exc
+
+
 def _snapshot_report(root: Path, attempt: Path, run: Path) -> str:
     snapshot = attempt / "run-report.json"
     with snapshot.open("xb") as handle:
@@ -515,13 +547,13 @@ def execute_stage(
         refine_policy = _object(policy.get("autorefine"), "AutoRefine policy")
         if refine_policy != {"recipe": "AutoRefine/default", "cycles": 5}:
             raise CampaignStageError("Unsupported campaign AutoRefine recipe")
-        if (run / "AutoRefine").exists():
-            raise CampaignStageError("Campaign first refinement refuses an existing AutoRefine directory")
+        expected_registry = _require_first_refinement(run, report)
         result = execute_autorefine(
             run, _program(phenix, "phenix.refine"), _program(phenix, "phenix.mtz.dump"),
             phenix_version=phenix.version, environment=phenix.environment,
             from_checkpoint="postmr", recipe=refine_policy["recipe"],
             macro_cycles=refine_policy["cycles"],
+            **({"expected_registry_sha256": expected_registry} if expected_registry is not None else {}),
             **({"use_experimental_phases": False} if phase_policy["policy"] == "disabled" else {}),
         )
         stage_directory = result.round_directory

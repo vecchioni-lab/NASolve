@@ -910,6 +910,23 @@ MTZ interpretation or diffraction refinement is claimed; observation/map paths a
 synthetic fixtures. Full results: `native_preparation_alternatives_2026_11_13`.
 
 
+### First campaign refinement after checked preparation (C277)
+
+Checked publication creates `AutoRefine/checkpoints.json` before any refinement.
+The previous blanket refusal of an existing AutoRefine directory therefore blocked
+that normal handoff. Campaign admission now allows only the initial checked
+`postmr` registry and its optional lock, with no previous refinement history,
+other files or later choices. It passes the record digest to AutoRefine's existing
+read-only scientific validator; a changed or missing registry refuses without
+initialization/native work. The existing guarded save protects later changes.
+Default standalone initialization, attempt allocation, native arguments, chemistry,
+phosphate and Free-R rules are unchanged. No migration or new artifact schema.
+
+Focused tests execute the real campaign stage and AutoRefine engine with stub
+executables, checking all ordered PHIL/CIF inputs and untouched preparation files.
+These prove the handoff and refusal behavior, not native refinement mechanics.
+Exact checks: `campaign_first_refinement_2026_11_14` in the evidence ledger.
+
 ### Source-preserving dictionary input in ordinary commands (C276)
 
 The successful C270 control passed C263/C264 source-input options directly to the

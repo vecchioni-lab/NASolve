@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure at C276
+## Near-term closure at C277
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -33,7 +33,7 @@ open; the remaining work is now more specific:
 | --- | --- |
 | Q05: qualify the chosen-model anomalous-site connection | C253 preserves original-MR phasing and freezes the chosen comparison model. C270 now passes actual Phaser/Coot/NAR/plane repair/ReadySet and AutoSol on the explicit A:5IU control, including the protected D:1 phosphate. C269 reuses observed native atom names; C271 fills the previously omitted checkpoint identity in AutoSol view/launch metadata. Later-selection and guarded relocated inspection now pass: current postmr does not replace the saved manual-001 comparison. C272 native Coot loads the final dictionary, both models and FWT/PHWT map; all 389 run files remain unchanged. Charged 1AP linking remains Q13. CLI defaults remain unchanged. |
 | Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
-| Q05: permit the first campaign refinement after checked preparation | C276 found the first-refinement gate rejects the AutoRefine directory created by checked checkpoint publication. A regression reproduces it. Admit only the initial checked registry, preserve prior/unknown work and guard any newer selection; use the existing refinement validator. This is the next concrete caller fix, before Q06. |
+| Q05: permit the first campaign refinement after checked preparation | C277 admits only the initial checked preparation registry and pins it through the existing AutoRefine reader. Focused real-engine/stub-native regression preserves exact ordered restraints and refuses prior/unknown/changed work. Native whole-campaign continuation is the next integration check; no diffraction-refinement qualification yet. |
 | Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
 
 No further implementation is currently identified for the chosen-model binding
@@ -52,7 +52,8 @@ The AutoSol execution API and campaign caller stay unchanged. C276 closes a
 separate recipe-forwarding gap: ordinary PostMR/prepare-run and frozen campaigns
 can request C263/C264 source adapters through one explicit profile. Its actual
 normal campaign preparation passes with ordinary limits and cold relocation.
-The first-refinement directory gate is the next exposed caller defect. Reconcile
+C277 closes the first-refinement directory gate in focused checks, including a
+newer-choice race without an extra scientific reader. Reconcile
 the remaining pre-seal, standalone-group and campaign-receipt limits below. Do not reopen completed preparation/storage
 systems or weaken their validation to make status or inspection faster.
 A newly exposed defect may require a bounded patch; a numerical patch estimate
