@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C296**. Active **cedar** in NASolve-c96. Remote last verified
+Updated **2026-11-14, C297**. Active **cedar** in NASolve-c96. Remote last verified
 **C295 `c7414919`**, including C290 and C291–C294.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
@@ -42,17 +42,20 @@ remain Q16. Last full suite: **C220/583d30df, 9,178 tests +276 subtests**.
 
 ## Q06 — real refinement preserves the intended chemistry
 
-**C296 complete, being committed:** complete ordered plane parameters are checked
-before compiled evaluation. Reuse C294's correction; historical general inventories
-and numerical worker bytes remain unchanged. Missing fields/unsupported symmetry
-refuse without touching caller forces. 32 regressions fail before; 94 focused tests
-pass in 3.12 s. Native `296_Cedar_plane-parameters-8nfoggvi` is stopped (rc0,
-source unchanged): ordinary zero-cycle startup keeps all 58 parallelities and the
-same score; corrected 20/20 directions pass, raw fails 17/20. All 18 synthetic
-parameter/plane-size cases pass (141 directions); no chemical acceptance claim.
-Original 410 files and prior capture 64 files unchanged; retained 5.9 MB.
-Next: explicit ordinary execution route with exact source/process/parameter
-evidence; no default activation. Symmetry intent stays separate and editable.
+**C296 committed/pushed `1d455fdd`:** complete ordered plane parameters are checked
+before compiled evaluation. 94 focused tests pass; ordinary startup and 18 synthetic
+parameter cases pass. No historical worker changes or default activation.
+
+**C297 complete, being committed:** the explicit native-program helper verifies
+an exact native source/platform profile, preserves FAILED/error observations and
+restores the original binding. 11 regressions fail against C296; 62 focused checks
+pass. Native `297_Cedar_runtime-boundary-whhvpnal` stopped rc0 with unchanged source:
+all five original cycles finish, 25 processes use the helper, all complete plane
+parameters match, endpoint forces pass 20/20. Rwork/Rfree and indexed Free-R match
+C294 exactly; 410 original and 64 capture files unchanged. Usage evidence is 361 kB.
+No ordinary command/checkpoint wiring yet. Next freeze the helper and exact inputs
+under each existing AutoRefine round, validate saved evidence on read/relocation,
+then expose an explicit option; no defaults or independent execution owner.
 
 C286/C287 establish the C279 prepared/final GEO memberships (45 planes,
 58 parallelities); the checked reader avoids the installed parser's truncation.

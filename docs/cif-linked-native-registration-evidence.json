@@ -96419,5 +96419,83 @@
       "Effective PDU and held-out chemistry survival; symmetry chemistry remains declared but not enforced"
     ],
     "artifacts": "Code/tests/compact evidence only in Git; native inputs, models, logs, synthetic raw reports and runners remain local."
+  },
+  "explicit_native_refinement_boundary_2026_11_14": {
+    "milestone": "C297",
+    "status": "EXPLICIT_MAINTAINED_NATIVE_PROGRAM_BOUNDARY_QUALIFIED",
+    "base_commit": "1d455fdd",
+    "behavior": {
+      "before": "Qualified native execution needed local control scripts to install/restore the callable and record usage.",
+      "after": "Explicit maintained helper runs the native program against an exact qualified source/platform profile, retains failure/error and deduplicated process/parameter observations, and restores the binding.",
+      "not_included": "No ordinary CLI/checkpoint integration, process ownership, input selection, automatic adoption or SDK file edits; caller owns those boundaries."
+    },
+    "source_sha256": {
+      "src/nasolve/cif_refinement_runtime.py": "5b9329c988b3c07c9c3da4586ecce03c6751955fc02ccdf2f35b42088eaa2900",
+      "src/nasolve/data/parallelity-native-profile.json": "5fe3c6657c78e2b85ea6bab3da68f4e79a3f91a2b1498f745be77f1080a2db28",
+      "tests/test_cif_refinement_runtime.py": "885d6326aec104e1199e654539b9887ad0b1fb08b39334b29e7b5f409a4cf415"
+    },
+    "tests": {
+      "before": "11 failures against C296 source snapshot (0.18 s)",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_refinement_runtime.py tests/test_cif_parallelity_parameters.py tests/test_cif_parallelity_kernel.py",
+      "result": "62 passed in 0.59 s; no full suite"
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "297_Cedar_runtime-boundary-whhvpnal",
+      "version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "scope": "Complete execution, original five-cycle recipe and exact selected input set",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "result": {
+        "status": "FIVE_CYCLE_MAINTAINED_RUNTIME_COMPLETE",
+        "mode": "kernel_adapted",
+        "macro_cycles_executed": 5,
+        "atoms": 853,
+        "plane_count": 45,
+        "parallelity_count": 58,
+        "complete_parameters_match": true,
+        "r_work": 0.21941176316835678,
+        "r_free": 0.23177548764738745,
+        "free_r_observation_count": 4530,
+        "free_r_test_count": 250,
+        "free_r_indexed_values_sha256": "70938cc387cd9a8a898471d1dc63083bda04d5780ddc21eafb37b5fcf5d5c4f8",
+        "endpoint_review": {
+          "sampled_gradients_consistent": true,
+          "directions": 20,
+          "target": 0.27333774170594044
+        },
+        "runtime_processes": 25,
+        "runtime_observations": 25,
+        "runtime_bytes": 360978,
+        "binding_restored": true,
+        "seconds": 115.26531654200517,
+        "scope": "Explicit maintained native-program helper, exact qualified source profile, original five cycles/inputs/Free-R; no ordinary NASolve command/receipt integration or chemical acceptance."
+      },
+      "negative_controls": {
+        "replaced_binding_refused": true,
+        "changed_source_refused": true,
+        "installed_files_edited": false
+      },
+      "original_files_unchanged": 410,
+      "capture_files_unchanged": 64,
+      "retained_bytes": 10180610,
+      "sampled_peak_rss_kib": 3723728,
+      "records": {
+        "kernel_adapted/runtime-evidence/result.json": "154f639f22a891e760dabd24863f6053fdf131f516c39450162517d30ee2769c",
+        "kernel_adapted/endpoint-probe.json": "2eee4b87196a0f02e9dd4ba3ee3e4920e57b3f51b14268c917130b781aeef628",
+        "kernel_adapted/endpoint-review.json": "7d2ede5f084d9e910b329b5aee021afee0af44aafc449cd1d949d3522b2943c5",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+      }
+    },
+    "compatibility": "Deliberately narrow Darwin arm64 exact native source profile. File hashes identify tested implementation, not pristine-distribution attestation. Unknown native sources/platforms refuse explicitly.",
+    "remaining": [
+      "Freeze runtime/evidence under the ordinary immutable round and validate it on checkpoint reads, including failed attempts and relocation",
+      "Connect an explicit ordinary command without enabling defaults",
+      "PDU and held-out effective chemistry survival remain separate"
+    ],
+    "artifacts": "Only code/tests/compact evidence committed; native models, diffraction inputs, logs, raw observations and runners remain local."
   }
 }

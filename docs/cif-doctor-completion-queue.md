@@ -510,7 +510,11 @@ automatic deployment, PDU survival or universal Phenix support. No SDK edits.
 C296 adds complete ordered plane-parameter readback and rejects malformed/missing
 settings before compiled evaluation. Ordinary startup and 18 synthetic parameter
 cases pass; no native cycle was rerun. Historical captures are not retroactively
-declared complete. Continue with explicit ordinary execution/source binding.
+declared complete. C297 then qualifies an explicit maintained native-program helper:
+exact source/platform checks, preserved failures, restored bindings and compact
+usage observations; original five-cycle control/Free-R/endpoint forces agree.
+Next freeze and validate its evidence through ordinary AutoRefine/checkpoint owners,
+including relocation, before exposing the explicit command option.
 
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's

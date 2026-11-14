@@ -177,6 +177,10 @@ The explicit plane-force correction also checks complete memberships and native
 settings before compiled evaluation, retaining targets and recording all consumed
 parameters. Missing settings or unsupported symmetry refuse; this prerequisite
 does not yet enable the correction in ordinary NASolve refinement commands.
+An explicit native-program helper now checks the tested Phenix implementation,
+records the settings used by its processes, and restores its temporary binding
+even on failure. Unknown implementations refuse; normal run/checkpoint integration
+remains the next gate. A helper completing refinement is not structure approval.
 
 ## Catalogue scope and progression
 

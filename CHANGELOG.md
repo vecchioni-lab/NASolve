@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicit qualified native refinement execution (C297)
+
+- Add a maintained native-program helper for the tested parallelity correction.
+  Verify the exact qualified native source/platform profile, retain failures and
+  complete parameter/process usage observations, and restore the original binding.
+- Deduplicate observations across repeated evaluations. Caller-owned processes,
+  inputs, preflight and checkpoint publication remain outside this helper. No
+  ordinary command/default activation, installed SDK edits or chemistry changes.
+
 ### Check complete plane parameters before native evaluation (C296)
 
 - Explicit parallelity correction now rejects malformed memberships, missing
