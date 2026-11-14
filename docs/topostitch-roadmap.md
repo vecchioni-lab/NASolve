@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
 | W50 | Observe all present model atom orbits | RECORDED |
 | W51 | Record native stopping limits and shared periodic chemistry intent | RECORDED |
-| W52 | Bind representative previews to registered source atoms | IN_PROGRESS |
+| W52 | Bind representative previews to registered source atoms | RECORDED |
 
 ## Finish lines
 
@@ -258,16 +258,16 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 
 Represent the observed periodic object independently of a tile hypothesis or PDB chain cut.
 
-**Delivered:** Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not. W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding. W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery.
+**Delivered:** Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not. W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding. W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery. W52 composes the fresh registered graph, all-present atom observations and exact image transport into a source-bound in-memory whole-residue preview, preserving fixed context and checking graph-edge geometry.
 
 **Closure audit:**
 
 - Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.
 - Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle.
 
-**Next action:** Bind one explicit cut preview to registered source/atom ownership before graphical P02 work; retain incomplete physical, seam-chemistry and whole-ASU gates.
-**Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software), [E_DECLARED_GRAPH](#e_declared_graph), [E_GRAPH_RELABEL](#e_graph_relabel).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a46c15008f790e86c0194f2ef6d734f6df55f420); Exact image algebra only; P01 remains PARTIAL, P02/P03 remain OPEN and F02 is not bypassed..
+**Next action:** Connect the shared Pine editable intent and persistent preview boundary to genuine graphical review; retain unresolved molecular/whole-ASU scope and defer coordinate/ADP/scattering materialization to P03.
+**Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software), [E_DECLARED_GRAPH](#e_declared_graph), [E_GRAPH_RELABEL](#e_graph_relabel), [E_REGISTERED_RELABEL_PREVIEW](#e_registered_relabel_preview).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/9deb105da5c0cf769cdba7046175b6e330f3cf24); Registered source/atom ownership and numerical image observations only; P01 remains PARTIAL, P02/P03 remain OPEN..
 
 <a id="p02"></a>
 ### P02 — Offer cut choices in a required graphical preview
@@ -597,6 +597,13 @@ Shared exact reciprocal incidence retains lattice translations for selected sour
 [Evidence contract](topostitch-preview.md#w51--native-convergence-ceiling-control) at [W51](https://github.com/vecchioni-lab/NASolve/commit/6ff9eb874bc3f07cd64231f52cf21e3485f657ec).
 Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 Å, but no post-exception endpoint derivative gate or candidate emission occurs.
 **Limit:** Negative evidence only; no convergence, scientific acceptance, stopping tolerance relaxation, ordinary refinement or Cedar change. Runtime code remains W50, whose full/installed validation applies; roadmap/doc checks pass. Generated runs/traces stay local.
+
+<a id="e_registered_relabel_preview"></a>
+### E_REGISTERED_RELABEL_PREVIEW — registered_source_atom_image_preview
+
+[Evidence contract](topostitch-periodic.md#w52--bind-an-image-preview-to-registered-source-atoms) at [W52](https://github.com/vecchioni-lab/NASolve/commit/9deb105da5c0cf769cdba7046175b6e330f3cf24).
+Nine regressions pass; the prior package fails to import the absent module. Full Willow 1477 plus 229 subtests; installed/relocated shared-owner tests178. Public source:36 atoms in2 requested residues,819 exact fixed atoms,38 edge arithmetic checks; legacy graph/relabel/orbit reports reproduce exactly. Installed preview is identical after relocation with original paths blocked. Five command helps, lean import and Python3.10 syntax pass.
+**Limit:** In-memory whole-residue representative preview only. Missing/ambiguous requested coordinates refuse; other scope/occupancy uncertainty remains. No coordinate serialization, ANISOU transport, native seam restraints, graphical approval, physical/scattering acceptance or Cedar changes. Scientific outputs stay local.
 
 ## Deferred extensions, not hidden blockers
 

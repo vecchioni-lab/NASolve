@@ -405,6 +405,15 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-14
 
+**W52 checkpoint:** nine new tests; complete Willow 1,477 plus 229 subtests;
+installed/relocated shared-owner tests178. The prior package lacks the new module.
+The complete public preview and its earlier graph/relabel/orbit observations
+reproduce after relocation with original paths blocked and the old checkout absent.
+Five command helps, lean import and Python3.10 syntax pass. Commands/environments
+follow W48 below, using `tests/test_topostitch_recut.py` for the focused suite.
+Wheel SHA-256: `2113d2951694ea27b3a18815318551574cb0afd19097e57689fcaf148b90d9c6`.
+No Phenix/Coot execution, native enforcement or coordinate writing is introduced.
+
 **W50 checkpoint:** 76 focused graph/image tests; complete Willow 1,468 plus
 229 subtests; installed/relocated shared-owner tests 155. The ten new tests fail
 against W49. Both public-derived orbit reports reproduce exactly with original
