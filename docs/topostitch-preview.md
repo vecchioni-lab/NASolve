@@ -1333,6 +1333,58 @@ owners, then qualify affected chemistry before matched diffraction refinement.
 No Cedar edits, branch merge, campaign adoption or physical partner-capacity
 qualification is implied.
 
+### W45 — Matched retained-core control
+
+The W41 cleanup control removed all additive pair terms. W45 isolates the effect
+of the two intended contact pairs by retaining the identical 12 core pairs in
+both arms. Existing `prepare_pair_recipe` reproduces the old complete packet
+exactly and generates the core-only packet; no new runtime API is necessary.
+The original paired trial is reused, with immutable receipts verified.
+
+One new complete **Phenix 2.2.1-6174** trial uses the same captured source, 204-atom
+mask, 0.1 Å tether, 0.5 Å motion bound and 200-iteration/2,000-optimizer-call caps.
+All 612 initial/full-precision/rounded derivatives pass at both declared steps
+(maximum error 0.000266). It stops at 200 iterations/209 calls and is explicitly
+**NOT_CONVERGED_LIMIT**. No budget, weight or Free-R tuning was performed.
+
+Both endpoints are observed using the same complete packet:
+
+| Full-precision observation | Core only | Core + selected |
+| --- | ---: | ---: |
+| Native geometry target | 6544.928214 | 6546.376345 |
+| Core pair target | 259.112026 | 259.106108 |
+| Selected pair target | 226.973167 | 176.648087 |
+| Tether target | 90.975770 | 112.271268 |
+
+All core pair totals improve in both arms. One selected pair worsens in the
+core-only control; both improve when included. Individual packing still worsens:
+113/112 directed contacts in full-precision/rounded core-only observations,
+versus 110/110 with selected terms. These counts are descriptive, not independent
+chemical clashes or an acceptance threshold. Fresh rounded interpretation agrees
+in full native target/gradient and matched pair residuals; changed neighbor rows
+have zero contribution in this control. Numerical improvement is not repair.
+
+Exact expanded native commands, frozen plan and comparisons remain in local
+execution receipts. Validation commands were:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w45-core-control/prepare-and-run.py
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w45-core-control/prepare-endpoints.py
+PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w45-core-control/capture-endpoints.py
+python3 /private/tmp/willow-w45-core-control/observe-complete.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w45-core-control/compare-fresh.py
+python3 /private/tmp/willow-w45-core-control/summarize.py
+```
+
+All completed successfully; this is actual native execution, not a dry-run.
+Runtime code and artifact schemas are unchanged, so W44 full-suite/installation
+results still apply. Scientific inputs, generated coordinates and captures are
+local only; the archive is evidence, not a resumable NASolve run. Historical paths
+above are provenance. Next reuse Cedar's maintained native torsion/plane kernels
+for complete endpoint observations, checking live proxy policy and container sums
+rather than reconstructing missing symmetry. Ordinary refinement enforcement,
+sugar-pucker/chemical acceptance and matched diffraction remain open.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

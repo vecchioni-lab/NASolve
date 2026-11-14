@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W45 — Isolate contact terms from core-pair preservation
+
+- Record a predeclared native control retaining the same core pairs as the paired
+  trial, using existing recipe/trial/review APIs without new runtime code.
+- Preserve capped outcomes, per-pair and packing regressions, fresh native parity
+  and the next chemistry-observation gate. No model or checkpoint is approved.
+
 ### W44 — Attribute selected and core pair changes
 
 - Describe each existing native pair term and verify its contribution against the

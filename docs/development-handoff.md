@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W44; next W45.** W33 introduced human update numbers without
+**Willow update W45; next W46.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,16 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W44 edge:** native per-term attribution reproduces container scores and
+**Current W45 edge:** one matched native control retains the same 12 core pairs
+as the paired trial and toggles only the intended contacts. Existing APIs suffice;
+no runtime changes. All source/endpoint derivatives and fresh rounded native
+readback pass, but both arms remain capped with packing regressions. Core-only
+protects core pair totals while one selected pair worsens; adding selected terms
+improves both selected totals. Next compose Cedar's maintained torsion/plane
+kernels into endpoint observations; do not invent missing proxy policy or treat
+container parity as chemical approval.
+
+**Prior W44 edge:** native per-term attribution reproduces container scores and
 preserves every selected/core pair change. Whole-window paired control improves
 all pair totals; cleanup alone worsens two core pairs and one selected pair.
 Contacts still need repair, capped outcomes and packing regressions remain.
