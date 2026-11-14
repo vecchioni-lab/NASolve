@@ -267,7 +267,7 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 **Next action:** Use the saved explicit representative packet for P02 before/after graphical inspection and persistent reviewed choices; retain incomplete whole-object identity and chemistry scope.
 **Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software), [E_DECLARED_GRAPH](#e_declared_graph), [E_GRAPH_RELABEL](#e_graph_relabel), [E_REGISTERED_RELABEL_PREVIEW](#e_registered_relabel_preview), [E_REPRESENTATIVE_BUNDLE](#e_representative_bundle).
-**Last audit:** 2026-11-14, Linden, [W56](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70); Saved explicit proposal/replay only; P01 remains partial, P02 open, no coordinate or chemistry writer.
+**Last audit:** 2026-11-14, Linden, [W56](https://github.com/vecchioni-lab/NASolve/commit/73642f5fd1309c75b2986659c106f4a53db83d61); Saved explicit proposal/replay only; P01 remains partial, P02 open, no coordinate or chemistry writer.
 
 <a id="p02"></a>
 ### P02 — Offer cut choices in a required graphical preview
@@ -629,7 +629,7 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 <a id="e_representative_bundle"></a>
 ### E_REPRESENTATIVE_BUNDLE — immutable_representative_proposal
 
-[Evidence contract](topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal) at [W56](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70).
+[Evidence contract](topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal) at [W56](https://github.com/vecchioni-lab/NASolve/commit/73642f5fd1309c75b2986659c106f4a53db83d61).
 22 new regressions,67focused,full1533 plus229subtests,320installed/relocated,6helps,lean import,3.10syntax. Original inputs absent; exact public855-atom/36-image replay and installed CLI packet. Existing preview/scattering replay unchanged.
 **Limit:** New additive schema1 proposal/receipt only; no model, chemical intent edit, GUI review, refinement or checkpoint. Exact algorithm/Gemmi replay required; no silent migration. Scientific artifacts excluded from Git; no Cedar/runtime-native changes.
 

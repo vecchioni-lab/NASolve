@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
+  "audited_code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -421,7 +421,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
+        "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
         "reviewer": "Linden",
         "human_update": 56,
         "scope": "Saved explicit proposal/replay only; P01 remains partial, P02 open, no coordinate or chemistry writer"
@@ -840,7 +840,7 @@
     },
     "E_REPRESENTATIVE_BUNDLE": {
       "kind": "immutable_representative_proposal",
-      "code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
+      "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
       "human_update": 56,
       "reference": "docs/topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal",
       "result": "22 new regressions,67focused,full1533 plus229subtests,320installed/relocated,6helps,lean import,3.10syntax. Original inputs absent; exact public855-atom/36-image replay and installed CLI packet. Existing preview/scattering replay unchanged.",
@@ -1106,7 +1106,7 @@
         "number": 56,
         "title": "Save and replay explicit representative proposals",
         "state": "RECORDED",
-        "code_commit": "52fb6d471df249546518f70bdb2021794336fa70"
+        "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61"
       }
     ]
   }
