@@ -254,13 +254,14 @@
         "W40 binds full-precision points and exact serialized PDB bytes to the explicit mask, then reuses Cedar native mechanics/selected-environment and existing packing review. Explicit Cartesian ANISOU preservation and local collateral regressions remain visible; no optimization or scientific acceptance.",
         "W41 composes a bounded native optimizer with complete initial/full-precision/serialized derivative gates and a matched cleanup control. Five native trials and fresh rounded readback pass the declared numerical checks; all remain iteration-capped with individual packing regressions and no acceptance.",
         "W42 extracts one installed captured-job API, preserving the CLI/native results and reusing Cedar observation/process owners. Installed/relocated and temporary same-package compatibility checks pass; uncertain process ownership escapes with retained evidence. No branch merge or scientific acceptance.",
-        "W43 adds explicit full-precision/rounded fixed-manager ASU endpoint observations through existing Cedar capture/review owners. Five controls agree with independent rounded native target/gradient readback; changed neighbor entries contribute zero in these cases. Binary displacement rounding, per-contact changes and failed evidence remain explicit; no physical acceptance."
+        "W43 adds explicit full-precision/rounded fixed-manager ASU endpoint observations through existing Cedar capture/review owners. Five controls agree with independent rounded native target/gradient readback; changed neighbor entries contribute zero in these cases. Binary displacement rounding, per-contact changes and failed evidence remain explicit; no physical acceptance.",
+        "W44 attributes every native pair term, verifies complete container sums and retains selected/core changes for all five endpoints. Cleanup exposes individually worsening pairs; compact JSON preserves old review tables. No objective or acceptance change."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Attribute complete intended/core pair contributions so aggregate improvement cannot hide a damaged pair, alongside full-precision/serialized geometry and packing. Then run a declared bend/cleanup comparison and close affected chemistry before matched refinement. Keep fixed-manager observations separate from ordinary reinterpretation and scientific acceptance.",
+      "next_action": "Predeclare a bend/cleanup comparison using the existing fit, preview, masked native and endpoint review owners. Qualify affected chemistry and ordinary native enforcement before matched refinement. Keep per-pair/packing regressions, fixed-manager observations and scientific acceptance distinct.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -818,8 +819,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 43,
-    "next": 44,
+    "current": 44,
+    "next": 45,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -887,6 +888,12 @@
         "title": "Review full-precision native endpoint packing beside serialized coordinates",
         "state": "RECORDED",
         "code_commit": "ab48c235e463bfbc3d97ec0f55a8025be106ebcb"
+      },
+      {
+        "number": 44,
+        "title": "Expose individual selected and core pair contributions",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

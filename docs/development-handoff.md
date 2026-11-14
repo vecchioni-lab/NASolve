@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W43; next W44.** W33 introduced human update numbers without
+**Willow update W44; next W45.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,16 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W43 edge:** the same package/CLI can read an explicit masked endpoint
+**Current W44 edge:** native per-term attribution reproduces container scores and
+preserves every selected/core pair change. Whole-window paired control improves
+all pair totals; cleanup alone worsens two core pairs and one selected pair.
+Contacts still need repair, capped outcomes and packing regressions remain.
+Full Willow: 1,397 tests + 229 subtests; installed/relocated: 140 and byte-identical
+native endpoint review. Compact JSON preserves existing tables and cuts report
+size by about 55%. No Cedar changes. Next declare a bend/cleanup comparison using
+these existing owners, then qualify chemistry before matched diffraction.
+
+**Prior W43 edge:** the same package/CLI can read an explicit masked endpoint
 and compare source/full-precision/rounded native ASU packing through Cedar owners.
 Five complete Phenix 2.2.1-6174 controls pass; independently reinterpreted rounded
 PDBs agree in full native target/gradient and matched pair residuals. Differing

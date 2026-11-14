@@ -162,3 +162,50 @@ def test_library_partial_plane_behavior_is_explicitly_guarded(tmp_path):
     assert "planarity {" in emitted and "name N7" not in emitted
     text="".join(l for l in fixture().splitlines(keepends=True) if l[12:16].strip()!="N7")
     with pytest.raises(ValueError,match="complete.*N7"):prepare(tmp_path,text)
+
+
+def attribution_fixture(core=1.,selected=5.):
+    from nasolve.topostitch_native_recipe import _pair_term_summary
+    from nasolve.topostitch_recipe import POLICY
+    rows=[]
+    for pair,purpose,value in [('retained','core',core),('connection','selected',selected)]:
+        for kind,measurement in [('bond','distance_angstrom'),('angle','angle_degrees'),
+                ('planarity','rms_distance_angstrom'),('parallelity','native_delta_degrees')]:
+            rows.append(dict(number=len(rows)+1,definition=dict(pair_id=pair,purpose=purpose,kind=kind,
+                sigma=.2,i_seqs=[0,1],ideal=1.),native_residual=value,measurement={measurement:1.}))
+    return dict(schema_version=1,kind='topostitch-native-pair-attribution',binding_sha256='a'*64,
+        points_sha256='b'*64,terms=rows,**_pair_term_summary(rows),normalization=POLICY['normalization'],
+        native_container_sum_verified=True,runtime_authority=False,scientific_acceptance=False)
+
+
+def test_improving_total_keeps_a_worsened_core_pair_visible():
+    from nasolve.topostitch_native_recipe import compare_pair_attribution
+    before=attribution_fixture();after=attribution_fixture(core=2,selected=1)
+    after['points_sha256']='c'*64
+    report=compare_pair_attribution(before,after)
+    assert report['target_change']==-12
+    assert report['purposes']['core']['increased_pair_ids']==['retained']
+    assert report['purposes']['selected']['increased_pair_ids']==[]
+    assert report['purposes']['core']['target_change']==4
+    assert report['source_points_sha256']!=report['endpoint_points_sha256']
+    assert not report['runtime_authority'] and not report['scientific_acceptance']
+
+
+@pytest.mark.parametrize('change',['binding','definition','summary','missing_family','number','negative','nonfinite','purpose','measurement','claim','digest'])
+def test_incomplete_or_changed_pair_attribution_cannot_be_compared(change):
+    from nasolve.topostitch_native_recipe import compare_pair_attribution,_pair_term_summary
+    before=attribution_fixture();after=attribution_fixture()
+    if change=='binding':after['binding_sha256']='d'*64
+    elif change=='definition':
+        after['terms'][0]['definition']['sigma']=.3
+        after.update(_pair_term_summary(after['terms']))
+    elif change=='summary':after['target']+=1
+    elif change=='missing_family':after['terms'].pop()
+    elif change=='number':after['terms'][0]['number']=2
+    elif change=='negative':after['terms'][0]['native_residual']=-1
+    elif change=='nonfinite':after['terms'][0]['native_residual']=float('nan')
+    elif change=='purpose':after['terms'][0]['definition']['purpose']='selected'
+    elif change=='measurement':after['terms'][0]['measurement']['distance_angstrom']=float('inf')
+    elif change=='claim':after['scientific_acceptance']=True
+    else:after['binding_sha256']=before['binding_sha256']=None
+    with pytest.raises(ValueError):compare_pair_attribution(before,after)

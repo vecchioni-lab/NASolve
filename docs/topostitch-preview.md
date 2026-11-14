@@ -1281,6 +1281,58 @@ geometry/packing evidence; then use a declared bend/cleanup comparison. Broader
 sugar/torsion/plane qualification and matched diffraction remain open. Density
 calibration stays in S06 and no campaign acceptance path is enabled.
 
+### W44 — Individual pair attribution
+
+The endpoint observation now includes `NativePairRecipe.describe_terms`: existing
+native bond, angle, planarity and parallelity kernels provide individual residuals
+and measurements. Their family/total sums must reproduce the complete containers.
+`compare_pair_attribution` checks the complete binding, definitions and arithmetic,
+then retains each selected/core pair's change. The raw score remains available
+when cleanup uses pair weight zero. Native parallelity delta is a descriptive
+angle, **not** a Gaussian sigma score or calibrated acceptance threshold.
+
+All five W41 endpoints completed this read-only check in **Phenix 2.2.1-6174**;
+no optimization or refinement was repeated. Both fixed-base controls retain
+constant pair terms. In the whole-window paired control, all 12 core and both
+selected pair totals improve (full-precision role changes −77.022504 and
+−52.141429 respectively). Cleanup alone worsens two core pairs and one selected
+pair despite the selected aggregate improving. Both core pairs in the independent
+7R96 control improve. These are per-pair totals, not a claim that every individual
+term improves. Selected contact distances remain imperfect: for example one
+2.120 Å contact reaches only 2.274 Å and another remains about 3.551 Å. Capped
+optimization and the W43 collateral packing changes remain unqualified.
+
+The schema-1 diagnostic endpoint review adds `pair_attribution_from_source`, and
+raw observations add `pair_attribution` per coordinate case. The existing report
+is now written with compact JSON separators. Removing only the new attribution
+field reproduces all five old review dictionaries exactly; the whole-window
+file shrinks from 109,527,599 to 48,962,830 bytes. No scientific tables are dropped.
+These diagnostics are not resumable checkpoints or authority to accept a model.
+
+Validation (complete execution, not a dry-run):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_recipe.py tests/test_topostitch_trial.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider
+python3 /private/tmp/willow-w44-pair-attribution/run-controls.py
+python3 /private/tmp/willow-w44-pair-attribution/check-legacy-content.py
+python3 /private/tmp/willow-w44-pair-attribution/installed-check.py
+```
+
+The focused tests passed **50**; complete Willow passed **1,397 + 229 subtests**.
+The rebuilt wheel passed **140** installed/relocated focused tests and reproduced
+one entire native endpoint report byte for byte after moving the temporary
+checkout and blocking original source/input paths. Wrong endpoint hashes and
+fixed-atom motion refuse before native job creation. Local execution receipts
+retain the expanded native commands and exact inputs; these historical paths
+are provenance, not committed operational artifact references. Scientific
+coordinates/captures/reports and wheels remain local and excluded from Git.
+
+S05 remains partial. Next predeclare a bend/cleanup comparison using these same
+owners, then qualify affected chemistry before matched diffraction refinement.
+No Cedar edits, branch merge, campaign adoption or physical partner-capacity
+qualification is implied.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

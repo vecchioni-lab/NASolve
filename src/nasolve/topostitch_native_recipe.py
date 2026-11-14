@@ -249,6 +249,103 @@ class NativePairRecipe:
         return {'target':total,'components':values,'gradients':pulled,'normalization':POLICY['normalization']}
 
 
+    def describe_terms(self, points, *, atom_identities):
+        """Attribute existing native terms without changing their objective.
+
+        Complete container sums are checked against individual kernel residuals.
+        Measurements describe these explicit recipes, never calibrated acceptance.
+        """
+        points=[tuple(p) for p in points]
+        aggregate=self.evaluate(points,atom_identities=atom_identities,compute_gradients=False)
+        expanded=self._flex.vec3_double(expand_sites(points,self._refs))
+        containers=dict(bond=self._bonds,angle=self._angles,planarity=self._planes,parallelity=self._parallel)
+        positions={kind:0 for kind in containers};rows=[]
+        for number,definition in enumerate(self._terms,1):
+            kind=definition['kind'];proxy=containers[kind][positions[kind]];positions[kind]+=1
+            restraint=getattr(self._gr,kind)(sites_cart=expanded,proxy=proxy)
+            if kind=='bond':measurement=dict(distance_angstrom=float(restraint.distance_model))
+            elif kind=='angle':measurement=dict(angle_degrees=float(restraint.angle_model))
+            elif kind=='planarity':measurement=dict(rms_distance_angstrom=float(restraint.rms_deltas()))
+            else:measurement=dict(native_delta_degrees=float(restraint.delta))
+            if any(not math.isfinite(v) for v in measurement.values()):
+                raise ValueError('Nonfinite native pair measurement')
+            rows.append(dict(number=number,definition=dict(definition),native_residual=float(restraint.residual()),measurement=measurement))
+        if any(positions[k]!=len(v) for k,v in containers.items()):
+            raise ValueError('Native term containers differ from the bound definition inventory')
+        summary=_pair_term_summary(rows)
+        if (not math.isclose(summary['target'],aggregate['target'],rel_tol=1e-10,abs_tol=1e-8)
+                or any(not math.isclose(summary['components'][k],v,rel_tol=1e-10,abs_tol=1e-8) for k,v in aggregate['components'].items())):
+            raise ValueError('Individual pair terms do not reproduce complete native containers')
+        return dict(schema_version=1,kind='topostitch-native-pair-attribution',
+            binding_sha256=recipe_digest(self.binding_report()),points_sha256=recipe_digest(points),
+            terms=rows,**summary,normalization=POLICY['normalization'],
+            native_container_sum_verified=True,runtime_authority=False,scientific_acceptance=False)
+
+
+def _pair_term_summary(terms):
+    """Pure attribution arithmetic; caller owns native execution/authentication."""
+    if not isinstance(terms,list) or not terms or len(terms)>20000:
+        raise ValueError('Require a bounded complete pair-term inventory')
+    numbers=[];groups={};components={k:[] for k in _ALLOWED}
+    measurement_keys={'bond':'distance_angstrom','angle':'angle_degrees',
+        'planarity':'rms_distance_angstrom','parallelity':'native_delta_degrees'}
+    for row in terms:
+        definition=row['definition'];kind=definition['kind'];pair=definition['pair_id'];purpose=definition['purpose']
+        number=row['number'];value=row['native_residual'];measurement=row['measurement']
+        if (type(number) is not int or not isinstance(pair,str) or not pair
+                or kind not in _ALLOWED or purpose not in ('selected','core')
+                or type(value) not in (int,float) or not math.isfinite(value) or value<0
+                or set(measurement)!={measurement_keys[kind]}
+                or any(type(v) not in (int,float) or not math.isfinite(v) for v in measurement.values())):
+            raise ValueError('Invalid pair-term attribution')
+        numbers.append(number);group=groups.setdefault(pair,dict(purpose=purpose,values={k:[] for k in _ALLOWED}))
+        if group['purpose']!=purpose:raise ValueError('Pair purpose changed within its terms')
+        group['values'][kind].append(value);components[kind].append(value)
+    if numbers!=list(range(1,len(terms)+1)):
+        raise ValueError('Pair-term numbers must retain the complete bound order')
+    pairs=[]
+    for pair,group in groups.items():
+        if any(not values for values in group['values'].values()):raise ValueError('Incomplete pair family inventory')
+        values={k:math.fsum(v) for k,v in group['values'].items()}
+        pairs.append(dict(pair_id=pair,purpose=group['purpose'],target=math.fsum(values.values()),components=values,
+            term_counts={k:len(v) for k,v in group['values'].items()}))
+    values={k:math.fsum(v) for k,v in components.items()}
+    return dict(target=math.fsum(values.values()),components=values,pairs=pairs)
+
+
+def compare_pair_attribution(before, after):
+    """Retain each pair's change; lower aggregate energy is not acceptance."""
+    for report in (before,after):
+        if (type(report['schema_version']) is not int or report['schema_version']!=1
+                or report['kind']!='topostitch-native-pair-attribution'
+                or report['normalization']!=POLICY['normalization']
+                or report['native_container_sum_verified'] is not True
+                or report['runtime_authority'] is not False or report['scientific_acceptance'] is not False):
+            raise ValueError('Unsupported pair attribution policy')
+        if any(not isinstance(report[k],str) or len(report[k])!=64 or any(c not in '0123456789abcdef' for c in report[k])
+                for k in ('binding_sha256','points_sha256')):
+            raise ValueError('Require explicit pair binding and coordinate digests')
+        actual=_pair_term_summary(report['terms'])
+        if any(actual[k]!=report[k] for k in ('target','components','pairs')):
+            raise ValueError('Pair attribution summary does not reproduce its terms')
+    if (before['binding_sha256']!=after['binding_sha256']
+            or [r['definition'] for r in before['terms']]!=[r['definition'] for r in after['terms']]):
+        raise ValueError('Pair binding or complete term definitions changed')
+    rows=[]
+    for a,b in zip(before['pairs'],after['pairs']):
+        if (a['pair_id'],a['purpose'],a['term_counts'])!=(b['pair_id'],b['purpose'],b['term_counts']):
+            raise ValueError('Pair attribution identities changed')
+        rows.append(dict(pair_id=a['pair_id'],purpose=a['purpose'],before=a['target'],after=b['target'],
+            change=b['target']-a['target'],component_changes={k:b['components'][k]-a['components'][k] for k in _ALLOWED}))
+    return dict(schema_version=1,kind='topostitch-pair-attribution-comparison',
+        binding_sha256=before['binding_sha256'],source_points_sha256=before['points_sha256'],endpoint_points_sha256=after['points_sha256'],
+        target_change=after['target']-before['target'],pairs=rows,
+        purposes={purpose:dict(target_change=math.fsum(r['change'] for r in rows if r['purpose']==purpose),
+            pair_count=sum(r['purpose']==purpose for r in rows),
+            increased_pair_ids=[r['pair_id'] for r in rows if r['purpose']==purpose and r['change']>0]) for purpose in ('selected','core')},
+        increases_are_descriptive_not_acceptance_thresholds=True,runtime_authority=False,scientific_acceptance=False)
+
+
 class NativeMaskedObjective:
     """Direct, bounded composition of native geometry, pair energy and a tether.
 

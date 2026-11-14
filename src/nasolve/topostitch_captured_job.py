@@ -62,7 +62,8 @@ try:
         cases=endpoint_coordinate_cases(model,json.loads((root/'endpoint.json').read_bytes()),
             movable_indices=request['movable_indices'],max_displacement_angstrom=request['max_displacement_angstrom'])
         observations=observe_masked_coordinates(objective,cases,
-            capture_pairs=lambda points:ns['capture_asu_pairs'](geo,points))
+            capture_pairs=lambda points:ns['capture_asu_pairs'](geo,points),
+            describe_pairs=lambda points:pairs.describe_terms(points,atom_identities=objective._identities))
         result.update(status='ENDPOINT_OBSERVATIONS_REVIEW' if observations['status']=='COORDINATE_OBSERVATIONS_REVIEW' else 'ENDPOINT_OBSERVATIONS_FAILED',
             context=context,binding=objective.binding_report(),observations=observations)
     elif 'trial' in spec:
@@ -87,8 +88,9 @@ sys.exit(0 if result['status'] in ('INITIAL_CONTEXT_AND_EVALUATIONS_MATCH','BOUN
 '''
 
 
-def _save(path, value):
-    path.write_text(json.dumps(value, indent=2, allow_nan=False)+'\n')
+def _save(path, value, *, compact=False):
+    options=dict(sort_keys=True,separators=(',',':')) if compact else dict(indent=2)
+    path.write_text(json.dumps(value, allow_nan=False, **options)+'\n')
 
 
 @contextmanager
@@ -273,6 +275,7 @@ def _run(args, cedar, phenix, process_runner):
         report['context']=topostitch_capture.compare_reconstructed_context(native,rebuilt)
         if args.endpoint_points is not None:
             from nasolve.topostitch_packing import compare_native_packing
+            from nasolve.topostitch_native_recipe import compare_pair_attribution
             observations=evaluation['observations']
             if (observations['status']!='COORDINATE_OBSERVATIONS_REVIEW'
                     or observations['origin']!='FIXED_MANAGER_EVALUATION_NOT_REINTERPRETATION'
@@ -282,9 +285,12 @@ def _run(args, cedar, phenix, process_runner):
                 raise ValueError('Incomplete fixed-manager endpoint observation')
             projected={row['name']:topostitch_endpoint.project_coordinate_observation(native,row,
                 expected_points=endpoint_cases[row['name']]) for row in observations['cases']}
+            attributions={row['name']:row['pair_attribution'] for row in observations['cases']}
             pair_review=cedar['cif_native_nonbonded'].review_native_nonbonded
             review=dict(schema_version=1,kind='topostitch-native-endpoint-review',
                 origin=observations['origin'],endpoint_points_sha256=args.endpoint_sha256,
+                pair_attribution_from_source={name:compare_pair_attribution(attributions['source'],attributions[name])
+                    for name in ('full_precision','rounded')},
                 environments={name:cedar['cif_selected_environment'].review_selected_environment(value,mask['movable_indices'])
                     for name,value in projected.items()},
                 packing_from_source={name:compare_native_packing(projected['source'],projected[name],reviewer=pair_review)
@@ -293,7 +299,7 @@ def _run(args, cedar, phenix, process_runner):
                 source_reconstruction_packing=compare_native_packing(native,projected['source'],reviewer=pair_review),
                 runtime_authority=False,scientific_acceptance=False,automatic_adoption=False,
                 derivatives='NOT_RUN_BY_ENDPOINT_OBSERVER',chemistry_qualification='NOT_ESTABLISHED')
-            _save(root/'endpoint-review.json',review)
+            _save(root/'endpoint-review.json',review,compact=True)
         report['status']=evaluation['status']
     except subprocess.TimeoutExpired as exc:
         report['execution'].update(status='TIMED_OUT',returncode=getattr(exc,'returncode',None))

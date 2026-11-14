@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W44 — Attribute selected and core pair changes
+
+- Describe each existing native pair term and verify its contribution against the
+  complete native containers; retain measurements and individual pair/role changes.
+- Expose this read-only attribution beside endpoint geometry and packing, including
+  cleanup controls whose pair weight is zero. Aggregate improvement cannot hide
+  a worsening pair. No objective, optimizer or acceptance policy changes.
+- Write the large endpoint review as compact JSON, preserving every existing
+  scientific table and adding attribution. Existing consumers still parse JSON;
+  no checkpoint or input schema migration is required.
+
 ### W43 — Observe full-precision and rounded native endpoint packing
 
 - Add an explicit read-only endpoint mode to the existing captured-job API/CLI.

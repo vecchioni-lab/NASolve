@@ -399,7 +399,14 @@
         "review_owner": "Cedar environment/arithmetic review plus existing TopoStitch packing comparison",
         "new_optimization": false,
         "new_derivative_qualification": false,
-        "scientific_acceptance": false
+        "scientific_acceptance": false,
+        "pair_attribution": {
+          "owner": "Existing native pair kernels; verify complete container sums",
+          "individual_terms": true,
+          "selected_and_core_changes": true,
+          "raw_scores_when_pair_weight_zero": true,
+          "acceptance_thresholds": false
+        }
       }
     }
   },

@@ -122,3 +122,15 @@ def test_endpoint_observer_admits_complete_cases_and_budget_before_evaluation():
     with pytest.raises(ValueError,match='budget'):observe_masked_coordinates(objective,observation_cases(),capture_pairs=observed_pairs)
     assert objective._calls==0
     with pytest.raises(ValueError,match='Require source'):observe_masked_coordinates(objective,{},capture_pairs=observed_pairs)
+
+
+def test_endpoint_pair_attribution_must_match_raw_unweighted_score():
+    from nasolve.topostitch_trial import observe_masked_coordinates
+    objective=ObservationObjective();evaluate=objective.evaluate
+    def with_pair_score(delta):
+        return dict(evaluate(delta),unweighted_pair_target=3.)
+    objective.evaluate=with_pair_score
+    result=observe_masked_coordinates(objective,observation_cases(),capture_pairs=observed_pairs,
+        describe_pairs=lambda points:dict(target=4.))
+    assert result['status']=='FAILED' and 'raw pair target' in result['error']
+    assert not result['scientific_acceptance']

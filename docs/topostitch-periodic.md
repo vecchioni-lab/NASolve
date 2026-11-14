@@ -403,7 +403,17 @@ and synthetic PDB rings. Native diagnostic/placement evidence is recorded
 separately below; no successful physical repair or Coot acceptance is claimed.
 The audited roadmap owns the remaining image, capacity and geometry gates.
 
-## Current validation receipt — 2026-11-13
+## Current validation receipt — 2026-11-14
+
+**W44 checkpoint:** individual native pair terms reproduce complete container
+scores for all five prior endpoints. Selected/core attribution exposes worsening
+pairs hidden by aggregate scores; no acceptance policy changes. Full Willow:
+**1,397 + 229 subtests**; focused: **50**; installed/relocated: **140** plus a
+byte-identical complete native endpoint review with original paths blocked.
+Compact JSON preserves the old review content exactly while reducing the largest
+report from about 110 MB to 49 MB. See [W44](topostitch-preview.md#w44--individual-pair-attribution)
+for commands, schema additions, native version and scientific limitations.
+
 
 **W43 checkpoint (2026-11-14):** twelve new regression cases cover exact source/
 full-precision/rounded masking, forbidden fixed motion, rounding limits, finite

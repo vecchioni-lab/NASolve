@@ -107,7 +107,7 @@ def run_native_masked_trial(objective, *, max_iterations, max_calls):
     return result
 
 
-def observe_masked_coordinates(objective, cases, *, capture_pairs):
+def observe_masked_coordinates(objective, cases, *, capture_pairs, describe_pairs=None):
     """Observe actual native directed pairs at three explicitly bound coordinates.
 
     Fresh manager construction/context authentication belongs to the caller.
@@ -149,6 +149,11 @@ def observe_masked_coordinates(objective, cases, *, capture_pairs):
                     proxy_counts=raw['proxy_counts']))
             if len(snapshots)!=2:raise ValueError('Require two actual native snapshots')
             row.update(native_energy_snapshots=snapshots,exact_repeat=True)
+            if describe_pairs is not None:
+                attribution=describe_pairs(points)
+                if not math.isclose(attribution['target'],evaluation['unweighted_pair_target'],rel_tol=1e-10,abs_tol=1e-8):
+                    raise ValueError('Individual pair attribution differs from the composed raw pair target')
+                row['pair_attribution']=attribution
         result['status']='COORDINATE_OBSERVATIONS_REVIEW'
     except (ValueError,RuntimeError,OverflowError,KeyError,TypeError) as exc:
         result['error']=type(exc).__name__+': '+str(exc)

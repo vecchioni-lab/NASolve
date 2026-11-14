@@ -951,6 +951,11 @@ An explicit checksum-bound endpoint mode composes source/full-precision/rounded
 native ASU observations with Cedar's existing pure environment reviewers and the
 packing comparator. It labels fixed-manager evaluation separately from ordinary
 model reinterpretation and retains actual binary displacement coordinates.
+Individual native pair kernels additionally supply read-only term measurements
+and residuals, checked against their complete containers. Source/endpoint reports
+retain selected/core pair changes even when cleanup disables their objective
+weight. Compact endpoint JSON preserves the complete existing review tables;
+this adds diagnostic fields only, without a second chemistry or acceptance owner.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are
