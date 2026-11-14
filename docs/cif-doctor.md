@@ -1054,6 +1054,43 @@ incomplete native work, a shared/foreign/unknown active group, or a missing camp
 stage receipt. Existing campaign supervision remains unchanged. No default
 checked-preparation activation or standalone native-attempt isolation is added.
 
+### Probe the complete ordinary refinement objective (C289)
+
+`cif_objective_probe.probe_objective(evaluate, points, selected_indices)` samples
+one complete score/force callback without switching restraint families or changing
+normalization. It uses the existing four central-difference steps (10⁻³–10⁻⁶ Å),
+absolute/relative tolerances (10⁻⁴ each), full-gradient/global directions and up to
+six atoms' Cartesian directions. Two adjacent passing step sizes are required;
+the final baseline must repeat. Calls are bounded (default 256, maximum 512).
+
+Schema-1 `cif-whole-objective-probe-v1` retains finite native observations and
+bounded JSON context metadata. `review_objective_probe(record)` recalculates the
+arithmetic without native execution. Changed context is reported separately from
+force agreement. Missing context is not an unchanged-context claim. The calling
+owner must still authenticate inputs, native processes, exact restraint identities
+and tool versions; mathematical replay alone does not do that. No optimizer,
+chemical acceptance, automatic correction or runtime refinement gate is added.
+Historical workers and numerical cores remain unchanged.
+
+C288 used the installed ordinary Phenix program's explicit dry-run route on the
+same authenticated C279 inputs. Its family-isolation audit rebuilt contacts and
+changed normalization, so cross-audit normalized targets were not comparable.
+C289 avoids that diagnostic side effect: all 8,004 contacts, 11,284 total terms,
+normalization 1/11,284, pair-list update count and exact static restraints remain
+unchanged. **Phenix 2.2.1-6174 / dispatcher 2.2.1** raw full-objective forces fail
+17/20 sampled directions. The existing diagnostic parallelity correction passes
+20/20, with the identical target 1.1401030244830264. Each arm uses 162 evaluations.
+The actual initialized consumer retains all 45 planes and 58 parallelities.
+
+This qualifies the observed defect at ordinary refinement startup, with zero
+macro-cycles; it does not qualify a corrected runtime route or diagnose Simon's
+reported PDU distortion. Installed files, original model/restraints and Free-R
+choices are unchanged. Q06 must retain this consumer limitation while checking a
+supported remedy and separate PDU chemical survival. The local control retains
+about 5.7 MB; all processes stopped. Thirty focused tests and moved-copy cold
+arithmetic replay pass. Exact inputs, sources, results and exclusions are in
+`whole_ordinary_objective_probe_2026_11_14` in the evidence ledger.
+
 ### Observe actual printed refinement parallelities (C287)
 
 `cif_printed_parallelity.read_printed_parallelity(path)` reads an explicit saved

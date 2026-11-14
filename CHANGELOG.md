@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Probe complete native objectives without switching restraints (C289)
+
+- Add a bounded diagnostic for one complete score/force callback. Keep actual
+  normalization and all restraint families active; retain changing context as an
+  observation separately from numerical agreement.
+- Recompute saved directional arithmetic without native execution. This does not
+  authenticate the producer, approve chemistry, alter installed software or change
+  runtime refinement behavior. Historical numerical workers remain unchanged.
+
 ### Read complete printed parallelity observations (C287)
 
 - Add a read-only observer for Phenix GEO parallelity groups after the installed

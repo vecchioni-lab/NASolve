@@ -491,7 +491,13 @@ not exact targets/weights, derivatives, chemical survival or PDU acceptance.
 C288 observes the actual ordinary dry-run manager: fixed-scale raw full/parallelity
 derivatives fail and the existing diagnostic correction passes. Family isolation
 also rebuilds contacts and changes normalization, so a whole-objective-only probe
-is next. All failed attempts stay preserved; no runtime correction or SDK change.
+was next. C289 now keeps all restraints active, with unchanged contacts and
+normalization: ordinary raw full-objective forces fail 17/20 sampled directions;
+the existing diagnostic correction passes 20/20 at the identical score. This is
+actual startup-consumer defect evidence, not a corrected refinement route. All
+failed attempts stay preserved; no runtime correction or SDK change. Next choose
+and qualify a supported remedy separately from PDU chemical survival; do not
+attribute PDU distortion to this defect without its exact evidence.
 
 
 **Open; can start independently, required before ordinary-refinement claims.**

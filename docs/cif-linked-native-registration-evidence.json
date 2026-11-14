@@ -95208,5 +95208,127 @@
       "No automatic correction, restraint dropping or SDK edit."
     ],
     "next": "Probe the full ordinary normalized objective without switching any restraint-family flags. Reuse existing finite-difference constants while preserving prior frozen audit code."
+  },
+  "whole_ordinary_objective_probe_2026_11_14": {
+    "status": "FOCUSED_AND_NATIVE_DIAGNOSTIC_VALIDATED",
+    "milestone": "C289",
+    "base_commit": "5441a199",
+    "prior_work": "C23–C26 existing correction; C288 family switching exposed contact/normalization side effect. New callback probes whole objective with no flags.",
+    "source_files": [
+      "src/nasolve/cif_objective_probe.py",
+      "tests/test_cif_objective_probe.py"
+    ],
+    "source_sha256": {
+      "src/nasolve/cif_objective_probe.py": "5ce8edfb90986f81a8029a156484d11a68b7d25b5958e9237ed5fd100c126fff",
+      "tests/test_cif_objective_probe.py": "8b6ede6940603b9d9c6721543c0099a7dd45ab44e96c13812af664fedf6c453f"
+    },
+    "schema": "New diagnostic-only cif-whole-objective-probe-v1 JSON; no runtime/checkpoint migration.",
+    "regression_before": "18 failed in 0.07 s: API absent.",
+    "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_objective_probe.py tests/test_cif_gradient_audit.py",
+    "focused_result": "30 passed in 1.58 s; no full suite",
+    "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CEDAR/src PYTHON -B branch-artifacts/cedar/runners/c289_start.py",
+    "native_anchor": "local_live_tests",
+    "native_directory": "289_Cedar_whole-objective-8zz96zko",
+    "native_summary": {
+      "status": "ORDINARY_STARTUP_OBSERVATION_COMPLETE",
+      "native": {
+        "status": "WHOLE_ORDINARY_OBJECTIVE_OBSERVATION_COMPLETE",
+        "results": {
+          "ordinary_raw": {
+            "evaluation_calls": 162,
+            "sampled_gradients_consistent": false,
+            "baseline_repeat_consistent": true,
+            "context_observation": "UNCHANGED",
+            "review_directions": 17,
+            "directions": 20,
+            "target": 1.1401030244830264,
+            "baseline_context": {
+              "normalization_factor": 8.862105636299185e-05,
+              "number_of_restraints": 11284,
+              "nonbonded_proxies": 8004,
+              "pair_list_updates": 1
+            },
+            "repeat_context": {
+              "normalization_factor": 8.862105636299185e-05,
+              "number_of_restraints": 11284,
+              "nonbonded_proxies": 8004,
+              "pair_list_updates": 1
+            }
+          },
+          "diagnostic_corrected": {
+            "evaluation_calls": 162,
+            "sampled_gradients_consistent": true,
+            "baseline_repeat_consistent": true,
+            "context_observation": "UNCHANGED",
+            "review_directions": 0,
+            "directions": 20,
+            "target": 1.1401030244830264,
+            "baseline_context": {
+              "normalization_factor": 8.862105636299185e-05,
+              "number_of_restraints": 11284,
+              "nonbonded_proxies": 8004,
+              "pair_list_updates": 1
+            },
+            "repeat_context": {
+              "normalization_factor": 8.862105636299185e-05,
+              "number_of_restraints": 11284,
+              "nonbonded_proxies": 8004,
+              "pair_list_updates": 1
+            }
+          }
+        },
+        "raw_corrected_baseline_targets_identical": true,
+        "static_signature_before_and_after": "b07155c3eab5e611893c0698bdd2596e1c2ec1ca9aa2b0eacd6e272832da3485",
+        "original_coordinates_restored": true,
+        "installed_sources_unchanged": true,
+        "seconds": 13.793232666997937,
+        "scope": "Installed ordinary phenix.refine program with explicit dry_run=True, zero macro-cycles. Probe its complete normalized model energy method without passing/switching family flags. Separate diagnostic correction changes returned parallelity forces only; original energy and point-specific normalization retained. No runtime correction, SDK edit or scientific approval."
+      },
+      "tool_version": "2.2.1",
+      "tool_build": "phenix-2.2.1-6174",
+      "original_files_unchanged": 410,
+      "capture_files_unchanged": 64,
+      "retained_files": 41,
+      "retained_bytes": 5736690,
+      "elapsed_seconds": 71.94347212501452,
+      "maximum_python_resident_bytes": 631570432
+    },
+    "driver": {
+      "returncode": 0,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "cold_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CEDAR/src PYTHON -B branch-artifacts/cedar/runners/c289_read_saved.py",
+    "cold_replay": {
+      "status": "RELOCATED_COLD_ARITHMETIC_REPLAY_PASS",
+      "results": {
+        "ordinary_raw": {
+          "source_sha256": "a17ac8a02f1225dd8d9cbaf743881f3840173ca14b17d8dd1e8e5857449ecb87",
+          "sampled_gradients_consistent": false,
+          "context_observation": "UNCHANGED",
+          "evaluation_calls": 162
+        },
+        "diagnostic_corrected": {
+          "source_sha256": "8774392e0e3f46c468090c5f2893910bd06e687fcd2c1ee5c1dfe4d397fbd8dc",
+          "sampled_gradients_consistent": true,
+          "context_observation": "UNCHANGED",
+          "evaluation_calls": 162
+        }
+      },
+      "original_directory_absent": true,
+      "original_native_files_unchanged": 44,
+      "new_native_calls": 0,
+      "seconds": 0.01881962502375245,
+      "scope": "Pure mathematical replay of saved native samples; no native producer or source-ownership authentication claim. Original scientific control untouched."
+    },
+    "upstream_observation": {
+      "url": "https://github.com/cctbx/cctbx_project/blob/master/cctbx/geometry_restraints/parallelity.h",
+      "file_blob_sha": "25d3a75f20d3611dcb32d919a893bc0beb18e6a0",
+      "read_date": "2026-11-14",
+      "observation": "Public source still has the same incomplete second-plane accumulation loop; no qualified upgrade route inferred."
+    },
+    "compatibility": "No installed SDK edit, old worker/core change, native correction activation, restraint deletion or default behavior change.",
+    "artifacts": "Only code/tests/compact docs committed; all native science, inputs, logs and runners excluded. Failed C288 attempts preserved. Two exact disposable relocated replay copies removed after readback; originals unchanged.",
+    "remaining": "Qualify a supported ordinary correction route; PDU and held-out achieved chemistry remain separate. No full refinement-cycle or scientific approval."
   }
 }

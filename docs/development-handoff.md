@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C287**. Active **cedar** in NASolve-c96; latest pushed
-code **C287 `cbece417`**; scoped Q04/Q05 reconciliation is C285 `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
+Updated **2026-11-14, C289**. Active **cedar** in NASolve-c96; latest pushed
+code **C287 `cbece417`**, C288 observations pushed as `5441a199`; C289 tested, being published. Scoped Q04/Q05 reconciliation is C285 `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
 connectivity interruptions expected. Focused checks only: **no full suite, new
 branch or merge**. Linden owns Pine/Willow; everyday NASolve code stays untouched.
 
@@ -47,50 +47,41 @@ No raw science/logs/runners are committed. Last full suite remains
 
 ## Next bounded work — Q06: what refinement actually does
 
-**C286 completed and stopped:** exact prepared/final input interpretation and
-native GEO observation retain 410 original files. Both fresh native inventories
-have the same 45 planes and 58 parallelities; all printed final plane members and
-rounded weights agree. The installed GeoParser returns only 1/58 parallelities
-and misassigns unequal-plane tails. No SDK edits or diffraction rerun.
+- C286/C287: exact prepared/final inventories and GEO agree on 45 planes and
+  58 ordered parallelities (54 unequal groups). Checked reader fixes only GEO
+  observation; no native restraint reconstruction or inferred exact weights.
+- C288: ordinary startup's family-isolation diagnostic changes its contact cache
+  and normalization. Four failed/refused attempts remain preserved (23.34 MB).
+  Fixed-scale raw/corrected scores agree; corrected sampled derivatives pass.
+- **C289: whole-objective check passes its software/native-control contract.**
+  Actual Phenix 2.2.1-6174 ordinary dry-run, zero cycles. No family switching:
+  8004 contacts, 11284 terms, normalization 1/11284, pair-list updates=1 and exact
+  static restraints remain unchanged. Raw forces fail 17/20 sampled directions;
+  existing diagnostic correction passes 20/20 at identical target 1.1401030244830264.
+  Each arm 162 calls; all 410 original run and 64 C286 files unchanged. Driver/native
+  return zero; all processes stopped; source and installed files unchanged.
 
-**C287 tested and pushed (`cbece417`):** pure checked GEO parallelity reader retains all
-58 groups before/after, exactly matching ordered native membership, including 54
-unequal-plane groups. Nineteen focused tests pass, including a native nonbonded
-header regression and relocated read. All 64 C286 files and 410 original files
-unchanged. Printed values are observations only; no exact weight/target inference.
-**C288 observed; all jobs stopped:** four preserved fresh attempts under local
-live-tests. Last is `288_Cedar_ordinary-derivatives-4vf0oir2`; compact reviewed
-receipts are `c288_saved_records/` under ignored Cedar runners. Exact ordinary
-Phenix dry-run retains 853 atoms, 45 planes and 58 parallelities, with zero cycles.
-All four derivative audits completed, but its final cross-audit equality refused:
-isolating restraint families rebuilds contacts and changes normalization (11284
-versus 11151 terms). Fixed-scale raw and corrected targets agree exactly; raw
-all/parallelity fail 18/21 directions, corrected all eight families pass. Earlier
-attempts preserve import/normalization assumption failures. No attempt is called
-exit-zero. All 410 original run files, 64 C286 files, source and observed SDK pins
-remain unchanged. Four attempts total 23.34 MB; failed evidence retained.
+New `cif_objective_probe` reuses the existing finite-difference tolerances without
+editing pinned workers/cores. Pure replay distinguishes absent/changed context
+from numerical agreement; it does not authenticate native execution. Focused
+command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider
+ tests/test_cif_objective_probe.py tests/test_cif_gradient_audit.py` → 30 pass,
+1.58 s. Eighteen new cases fail before the API exists. Moved-copy cold replay of
+both native reports passes with no native process and 44 original files unchanged.
+Native output `289_Cedar_whole-objective-8zz96zko` (local live-tests anchor) is
+~5.7 MB; compact read receipt under ignored runners `c289_read_records/`.
 
-**Next C289:** a small whole-objective probe must keep every restraint active
-throughout and retain actual native normalization. Existing family-audit helpers
-change the manager cache, so they do not isolate this question. Reuse existing
-finite-difference tolerances/probe design without modifying historical pinned
-worker/core sources. No source/SDK patch or diffraction rerun is justified yet.
-
-
-Start from saved C279's successful ordinary refinement and its exact chosen
-bundle. Reuse existing native inventory, source-selected trigonal measurements
-and derivative owners. Compare effective plane/parallelity membership and target/
-weight meaning with actual refinement outputs, then inspect achieved geometry.
-Do not rerun preparation/phasing merely to make a new diagnostic folder.
-
-Prior work checked: C23/C24 reproduce installed parallelity accumulation failure;
-C25/C26 and maintained numerical owners correct it only in explicit diagnostic
-evaluators. C215 validates plane-completion energy accounting with zero parallelity;
-C216 measures general source-selected trigonal geometry. These do not qualify
-ordinary phenix.refine derivatives. Installed local source still has the earlier
-accumulation loop; source inspection alone is not a new ordinary-consumer test.
-C287 supplies checked parallelity observations after the installed GeoParser
-failed count/column agreement. Printed precision must not become exact authority.
+**Next:** native consumer limitation is now demonstrated, not merely suspected
+from C23–C26/source inspection. Choose and qualify a supported compatible remedy
+before claiming ordinary corrected refinement. No installed SDK patch, dropped
+restraint, altered chemical target or default runtime change. Current upstream
+public parallelity.h still contains the accumulation loop (blob
+`25d3a75f20d3611dcb32d919a893bc0beb18e6a0`); no upgrade remedy is established.
+Separately inspect PDU chemical survival using existing exact source/control
+artifacts, not another preparation/phasing rerun or a PDU-name repair switch.
+Linden's W46 now reuses Cedar's native plane/torsion kernels for endpoint
+attribution; do not duplicate that observer. These scalar/derivative findings do
+not approve sugar pucker, chemistry or a refined structure.
 
 Simon's reported PDU distortion after collaborator refinement is explicitly Q06,
 then reused in Q07. Exact collaborator files/revision/settings remain unidentified;

@@ -59,7 +59,12 @@ second preparation after archiving the first remains usable and does not change
 the current choice. Keep work serial and one expensive reader at a time. Native
 100-dataset disk/RAM capacity, automatic defaults and old-run migration are not
 qualified. Q06 now asks whether actual refinement preserves the intended chemistry;
-mixed and held-out controls follow.
+mixed and held-out controls follow. A direct check of the ordinary
+Phenix startup model now shows why this matters: its installed parallelity forces
+can disagree with its own score, despite having the correct restraint groups.
+The existing local diagnostic correction passes the same check, but is not a
+qualified ordinary-refinement remedy. This is distinct from a missing CIF plane
+and does not establish the cause of the reported PDU distortion.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 
