@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
+  "audited_code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -461,7 +461,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
+        "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
         "reviewer": "Linden",
         "human_update": 63,
         "scope": "Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified"
@@ -521,7 +521,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
+        "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
         "reviewer": "Linden",
         "human_update": 63,
         "scope": "Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified"
@@ -918,7 +918,7 @@
     },
     "E_NATIVE_REPRESENTATION_SEAMS": {
       "kind": "native_source_link_representation_observation",
-      "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
+      "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
       "human_update": 63,
       "reference": "docs/topostitch-periodic.md#w63--show-existing-source-bonds-at-proposed-asu-seams",
       "result": "11 regressions; focused52,full1603 plus229subtests,installed/relocated397,six helps. Complete Phenix2.2.1-6174 source capture:855 atoms/956simple/0ASU/38interresidue links. Both explicit public cuts expose two source-native seams outside the declared backbone graph, retaining P/OP1/OP2 and exact-image geometry. Temporary installed C302 composition passes397Willow/238Cedar plus19subtests and exact default-owner native/old replay.",
@@ -1225,8 +1225,8 @@
       {
         "number": 63,
         "title": "Expose existing source bonds at proposed representation seams",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20"
       }
     ]
   }

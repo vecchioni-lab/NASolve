@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W60 | Retain chosen graph links and anchors in saved proposals | RECORDED |
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
-| W63 | Expose existing source bonds at proposed representation seams | IN_PROGRESS |
+| W63 | Expose existing source bonds at proposed representation seams | RECORDED |
 
 ## Finish lines
 
@@ -283,7 +283,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.
 **Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams).
-**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
+**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -316,7 +316,7 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 
 **Next action:** Carry Pine declared continuation/terminus intent into Cedar without atom deletion or OP3 inference from an ASU boundary; keep bond enforcement disabled until full seam angle/native policy is qualified.
 **Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams).
-**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
+**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -678,7 +678,7 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 <a id="e_native_representation_seams"></a>
 ### E_NATIVE_REPRESENTATION_SEAMS — native_source_link_representation_observation
 
-[Evidence contract](topostitch-periodic.md#w63--show-existing-source-bonds-at-proposed-asu-seams) at [W63](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164).
+[Evidence contract](topostitch-periodic.md#w63--show-existing-source-bonds-at-proposed-asu-seams) at [W63](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20).
 11 regressions; focused52,full1603 plus229subtests,installed/relocated397,six helps. Complete Phenix2.2.1-6174 source capture:855 atoms/956simple/0ASU/38interresidue links. Both explicit public cuts expose two source-native seams outside the declared backbone graph, retaining P/OP1/OP2 and exact-image geometry. Temporary installed C302 composition passes397Willow/238Cedar plus19subtests and exact default-owner native/old replay.
 **Limit:** Observation only: source interpretation is not complete intent; existing symmetry bonds/angles/exclusions unqualified. No new bond, atom edit, model, native refinement, graphical approval or scientific acceptance. Scientific artifacts local; original setup refusal preserved.
 
