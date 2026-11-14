@@ -277,3 +277,32 @@ def test_absent_parallelity_cannot_change_captured_full_gradient_or_counts(tmp_p
         else:raw['proxy_counts']['n_bond_proxies'] = 1
     result['raw_snapshot'] = deepcopy(expected['energy_inventory']['snapshots'][0])
     with pytest.raises(ValueError):_validate_result(result, expected, result['selected_indices'])
+
+
+@pytest.mark.parametrize('defect',['unbound-file','qualification','rehashed-sample','rehashed-sources'])
+def test_warm_numerical_reuse_still_rechecks_every_saved_artifact(tmp_path,monkeypatch,defect):
+    from nasolve.cif_captured_mixed_gradients import audit_captured_mixed_gradients,read_captured_mixed_gradients,REPORT
+    from nasolve.cif_numerical_replay import numerical_replay_scope
+    from nasolve import cif_mixed_gradient as numerical
+    receipt,phenix,_=parent(tmp_path,monkeypatch,'correct');out=tmp_path/'audit'
+    q=audit_captured_mixed_gradients(receipt,phenix,out,timeout_seconds=30)
+    assert q['status']=='CAPTURED_MIXED_DERIVATIVES_PASS'
+    original=numerical._validate_result;calls=[]
+    def counted(*args):calls.append(1);return original(*args)
+    monkeypatch.setattr(numerical,'_validate_result',counted)
+    monkeypatch.setattr('subprocess.Popen',lambda *a,**k:pytest.fail('Read launched native work'))
+    with numerical_replay_scope():
+        assert read_captured_mixed_gradients(out)==q
+        assert read_captured_mixed_gradients(out)==q
+        assert len(calls)==1
+        if defect=='unbound-file':(out/'capture/native.log').write_text('changed after successful read')
+        else:
+            path=out/('qualification.json' if defect=='qualification' else 'job/gradient_result.json')
+            value=json.loads(path.read_text())
+            if defect=='qualification':value['checks']['unchanged_native_energy']=False
+            elif defect=='rehashed-sample':value['gradient_audit']['cases']['initial']['families']['all']['directions'][0]['samples'][0]['plus_target']+=1.
+            else:value['installed_numeric_sources_after'][0]['sha256']='0'*64
+            path.write_text(json.dumps(value))
+            q['outputs']=[numerical._ref(out/row['path'],out) for row in q['outputs']]
+            (out/REPORT).write_text(json.dumps(q))
+        with pytest.raises(ValueError):read_captured_mixed_gradients(out)

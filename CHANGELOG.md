@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reuse identical numerical calculations within one inspection (C273)
+
+- Exact complete-request reading can now reuse an identical captured derivative
+  calculation within that inspection, keyed by complete inputs and validator. Every
+  artifact, native source, worker, ownership and qualification binding still checks.
+- Keep at most sixteen small verdicts in memory and discard them when the read
+  finishes or fails. Changed inputs recalculate; exceptions are never cached;
+  later inspections start afresh. Full capacity falls back to ordinary validation.
+- No persistent cache, file/schema changes, native worker edits, acceptance changes
+  or migration. Historical numerical evidence keeps its original meaning.
+
 ### Identify the saved checkpoint in AutoSol inspection (C271)
 
 - Checked AutoSol views now populate the existing checkpoint ID field from their

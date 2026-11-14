@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-13.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-14.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
@@ -93,37 +93,24 @@ These are preparation checks, not a claim that diffraction refinement preserves
 the geometry. NARestraints' reviewed base atoms still define stacking; Cedar's
 chemical substituent planes do not automatically enlarge those stacking planes.
 
-Storage is measured for the whole workflow, not just its small final result.
-The new automatically supplied plane-repair/ReadySet request retains 181.6 MB, including a
-5.8 MB final publication. Its readback temporarily expands 81.4 MB of evidence
-and peaks at 570.6 MB resident memory. Those temporary files are removed. Earlier
-compact storage and shared validation removed repeated evidence without changing
-the selected scientific result; original worker output remains. Safe retirement of redundant successful working
-files now has an explicit operation used by new checked preparation; memory/concurrency limits and campaign-scale
-storage validation remain release work. A complete ReadySet continuation can now
-be reconstructed and checked from an 11.2 MB working archive under the same
-128 MiB allowance for expanded archive files. Its temporary views are removed;
-original files remain. A complete attempt also now passes its original checks
-when reconstructed from a 15.5 MB archive instead of 180 MB of logical files,
-under the same expansion allowance. Its shared inputs stay outside that archive.
-Ordinary readers now use the archive while keeping the actual model and restraints
-at their stable public paths. A copied native preparation reads correctly after
-redundant working files are removed: whole-request storage falls from 181.6 MB to
-33.7 MB, preserving the same selected model, five restraint files and two CIFs.
-All original science remains intact. The explicit removal operation also passes
-deliberate interruption, partial read, resumed cleanup and final read on a copied native request. It keeps failed
-or uncertain work unpacked and preserves all public model/restraint files. New checked preparation invokes this operation after saving its result. If optional
-cleanup fails, NASolve keeps that result available only after verifying it again.
-New campaign records depend on the archive and retained scientific files, so a later
-completion of partial cleanup does not break them. Inspection and historical
-publication do not clean files; old campaign records are not silently migrated.
-Archive preparation alone still never removes source files.
-A fresh iodine-bearing successful request now retains 35.1 MB including shared
-acquisition; stopped failed examples retain 18.9–37.5 MB each without cleanup.
-Opening the successful result still takes about 100 seconds on this machine;
-repeated numerical checking is the next practical cost to reduce. These figures
-do not justify running 100 readers at once. Saved scientific records
-retain their identity; an explicitly added storage receipt requires a new reader.
+Storage is measured for the whole workflow, including shared acquisition,
+continuation and failed attempts. Successful working duplicates can now be archived
+after the checked result is safely saved: the earlier 181.6 MB request becomes
+33.7 MB, preserving its model, five restraint files and two CIFs. A fresh iodine
+control retains 35.1 MB. Failed examples retain 18.9–37.5 MB without cleanup.
+Interrupted cleanup preserves the public files and can resume; optional cleanup
+failure keeps a result usable only after exact rereading. Historical campaign
+references are not silently migrated. The existing 128 MiB temporary expansion
+allowance stays unchanged; it does not cap total Python or native-process memory.
+
+Inspection now avoids recalculating identical numerical evidence within the same
+read, while still checking every file and its source. On the saved iodine control,
+this reduces one inspection from 104 to 59 seconds with the same result and no
+changed run files. Reuse ends when inspection finishes; a later read starts afresh.
+Memory peaks remain substantial (about 636 MB Python in that check), so use one
+expensive reader at a time. These controls do not establish 100-dataset concurrency
+or repeated-failure storage bounds. Exact receipts and historical measurements
+remain in the methods and evidence ledger.
 
 Here, **frozen proof** means a fixed, identifiable set of inputs and check results
 that can be verified again: the chosen model and restraints, exact chemical/source

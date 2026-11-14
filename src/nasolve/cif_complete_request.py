@@ -10,6 +10,7 @@ from time import monotonic
 import uuid
 
 from .failure_reporting import add_failure_note
+from .cif_numerical_replay import numerical_replay_scope
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record, serialized_record_size
 from . import cif_acquisition_attempt as acquisition
@@ -744,13 +745,15 @@ def read_dictionary_request_result(directory, attempt_number):
     return read_dictionary_request_results(directory, [attempt_number])[attempt_number]
 
 
+@numerical_replay_scope()
 def read_dictionary_request_results(directory, attempt_numbers):
     """Read named exact results in one history replay, without a persistent cache.
 
     All completed historical attempts still validate. Retain only the explicitly
     requested results, in caller order, and recheck each selected owner/inventory.
     This lets one registry bind several preparation choices without replaying its
-    whole chemistry history once per checkpoint.
+    whole chemistry history once per checkpoint. Identical pure numerical checks
+    share only this call's bounded scope; all artifact/owner checks still execute.
     """
     _need(isinstance(attempt_numbers, (list, tuple)) and attempt_numbers
           and all(type(n) is int and n >= 1 for n in attempt_numbers)

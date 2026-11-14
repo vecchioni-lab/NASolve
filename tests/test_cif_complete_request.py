@@ -954,3 +954,22 @@ def test_named_results_share_one_history_replay_and_recheck_selected_evidence(ca
     with pytest.raises(ValueError):m.read_dictionary_request_results(moved,[1,1])
     with pytest.raises(ValueError):m.read_dictionary_request_results(moved,[True])
     assert inventory(moved)==before
+
+
+
+def test_exact_request_read_owns_and_discards_its_numerical_reuse_scope(case,monkeypatch):
+    from nasolve.cif_numerical_replay import validate_mixed_result
+    m,args,root,sdk,store,generations,calls=case
+    m.initialize_dictionary_request(output=root,**args)
+    m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    original=m._result;replays=[]
+    def pure_check(*args):replays.append(1);return {'status':'REVIEW'}
+    def observed(*args,**kwargs):
+        for _ in range(2):assert validate_mixed_result(pure_check,{}, {}, [])=={'status':'REVIEW'}
+        return original(*args,**kwargs)
+    monkeypatch.setattr(m,'_result',observed)
+    before=inventory(root)
+    first=m.read_dictionary_request_result(root,1)
+    assert len(replays)==1
+    assert m.read_dictionary_request_result(root,1)==first and len(replays)==2
+    assert inventory(root)==before

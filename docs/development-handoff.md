@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-13**, C272 native consumer/closure consolidation. Active **cedar**,
-NASolve-c96; product HEAD before this documentation is C271 `cedc28d`.
+Updated **2026-11-14**, C273 bounded inspection improvement. Active **cedar**,
+NASolve-c96; base before this patch is C272 `35f12d9`.
 Simon extended work to **00:30 Europe/London, 14 November**. Focused checks only;
 no full suite, new branch or merge. Finish Q04/Q05 before Q06. The
 [queue](cif-doctor-completion-queue.md) owns ordering.
@@ -39,28 +39,45 @@ Both controls stopped cleanly, source unchanged. Exact commands/hashes/results:
 evidence ledger `native_selected_autosol_2026_11_13` and
 `native_coot_final_consumer_2026_11_13`. Raw science/scripts stay local.
 
-## Next bounded work — make inspection practical without weakening evidence
+## Completed — faster exact inspection, unchanged science
 
-An ordinary selected-view read takes about 99 s. cProfile cold read takes 302.9 s
-(overhead included), with 630.7 MB peak Python memory. Seven repaired-bundle
-inspections repeat fourteen mixed-gradient replays; deepcopy and repeated vector
-norms dominate. Existing C231/C250 request-wide history reuse and C254/C256 bounded
-archive object sharing already solve different duplication problems. Reuse them.
+C273 lets one exact request read reuse only identical pure numerical calculations.
+Every artifact/source/owner/qualification check still runs. Scope is temporary,
+limited to sixteen small verdicts, discarded on success/error; changed inputs
+recalculate and exceptions never cache. Historical worker bytes remain identical.
+C231/C250 history sharing and C254/C256 bounded object sharing remain the owners
+of their different jobs; no second scientific validator or persistent trust cache.
 
-Investigate narrowly scoped reuse of identical pure numerical validation within
-one exact request read. Every file/source/owner binding must still validate; changed
-inputs must recalculate, and failed validations must not be cached. No persistent
-trust cache. Do not edit historical numerical worker bytes: they are compared
-exactly during old evidence replay. Record speed and unchanged outcomes against
-this stopped saved C270 result, without new native work or scientific modification.
+Validation: 205 focused checks pass, then 19 final-code checks in a relocated
+checkout pass (including order/type distinctions, warm-evidence tampering and
+scope disposal). Saved native C270 reads in fresh guarded processes take 103.72 s
+without reuse and 59.04 s with it; fourteen numerical replays become two. Exact
+view and all 389 file bytes/timestamps agree. Python peaks: 716.6/635.8 MB. No new
+native calls, chemistry changes or scientific copies. Single-pair timing only.
+Local control `273_Cedar_read-cost-617w29jd` is stopped, source unchanged. Commands,
+hashes, revision details and limits: `inspection_local_numerical_reuse_2026_11_13`.
 
-Then reconcile Q04/Q05 scope explicitly: supported opt-in preparation, preserved
-but not automatically adopted interrupted AutoSol publication, historical campaign
-migration and measured serial resource use. Repeated-failure/100-dataset bounds
-remain unproven. Q06 actual complete-restraint refinement follows; Q07 mixed and
-held-out chemistry and Q08–Q14 retained chemistry learning are not dropped.
-Q13 still owns charged 1AP leaving-port authority. Q15 reporting and Q16 AutoPhase
-compatibility naming/full integration review remain later. No automatic merge.
+## Next — finish saving phasing work safely after interruption
+
+Q04/Q05 are not declared closed. Successful preparation/phasing/inspection now
+has native acceptance. The remaining concrete recovery boundary is AutoSol's
+stage-result save followed by guarded run-report publication: interruption can
+leave completed outputs unadopted. Direct AutoSol lacks standalone durable child
+ownership; campaign outer-worker ownership is separate. Reuse existing owners,
+locks and immutable result checks for future owned runs; do not put native children
+outside a campaign's tracked ownership or infer process death from a saved file.
+Old unowned partial outputs stay preserved/unadopted. No in-place native retry.
+Inspect `autosol._record_result`, `execute_autosol`, `campaign_stages`, the existing
+campaign process owner and selected-reference conflict tests before implementation.
+This boundary audit is recorded in `q04_q05_remaining_boundary_audit_2026_11_13`.
+
+Keep one expensive reader at a time. Single successful/failing requests are
+measured; repeated-failure/100-dataset bounds, historical campaign migration and
+default activation remain explicit scope/release limits. Q06 actual full-restraint
+refinement follows Q04/Q05 reconciliation. Q07 mixed/held-out chemistry and Q08–Q14
+retained chemistry learning stay queued; charged 1AP leaving-port authority is Q13.
+Q15 reporting and Q16 AutoPhase compatibility naming/full integration review
+remain later. No merge or new native refinement tonight.
 
 Last full suite: **C220/583d30df, 9,178 tests + 276 subtests**. Subsequent focused
 validation is recorded in the ledger; this is not a current full-suite claim.

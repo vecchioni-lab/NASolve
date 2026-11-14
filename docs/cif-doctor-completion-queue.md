@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-13.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-14.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure at C272
+## Near-term closure at C273
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -38,13 +38,16 @@ open; the remaining work is now more specific:
 No further implementation is currently identified for the chosen-model binding
 after C271; C270/C272 close its selected-model native and relocated acceptance for
 the explicit A:5IU control. Reconcile Q04/Q05 resource, recovery and opt-in rollout
-limits explicitly. The next bounded improvement is practical inspection cost: an
-unprofiled selected-result read takes about 99 s and repeats the same numerical
-proof. Reuse identical pure calculations only within a single inspection, retaining
-all file/owner/source checks; preserve pinned worker bytes and historical replay.
-Do not introduce a persistent trust cache or a second scientific validator.
-A newly exposed defect may require a bounded patch; do not reopen completed
-ownership/storage machinery or use a numerical patch estimate as a finish line.
+limits explicitly. C273 reduces the saved native inspection from 103.72 s to
+59.04 s by calculating identical numerical evidence twice rather than fourteen
+times within one read. Every file/owner/source check remains; historical worker
+bytes are unchanged. The two fresh-process reads return exactly the same view and
+leave all 389 run files unchanged. This single pair is not a general speed claim.
+Next resolve the interrupted AutoSol result-save boundary below, reusing existing
+ownership and publication machinery. Do not reopen completed preparation/storage
+systems or weaken their validation to make status or inspection faster.
+A newly exposed defect may require a bounded patch; a numerical patch estimate
+is not a finish line.
 C270's whole automatically retained request is 35,122,742 B / 168 files. Its native
 run succeeded; the first driver used the wrong checkpoint attribute after native
 completion, and the first saved-result check exposed the missing view ID fixed by
@@ -447,14 +450,24 @@ without changing the initial preparation or later selections. Focused controls
 cover alternatives, manual choice, relocation, native failure and conflicting
 publication. No automatic campaign continuation or native refinement claim follows.
 
-**Remaining acceptance:** qualify the selected-model AutoSol route with native
-inputs and reconcile remaining caller/recovery acceptance. Interrupted AutoSol
-result publication preserves outputs but does not yet automatically adopt them;
-keep this distinct from the already implemented preparation-publication recovery.
+**Remaining acceptance:** C270–C272 complete selected-model native AutoSol,
+later-selection/relocated inspection and final native Coot loading for the explicit
+A:5IU fixture. C273 reduces duplicate numerical work within exact inspection.
+The concrete remaining recovery boundary is **finish saving already completed
+phasing work after an interruption**. `_record_result` writes the immutable stage
+result before guarded run-report publication; no explicit completion operation
+currently rejoins that split. Direct AutoSol also lacks standalone durable child
+ownership. Campaign outer-worker ownership is a separate context: do not move a
+child into an untracked independent process group. First design existing-owner
+integration for future runs, then exact-result completion with known-stopped work,
+unchanged inputs and preserved newer selections. Old unowned partial directories
+remain visible and unadopted; no guessed process death or native retry in place.
+Keep this separate from completed preparation-publication recovery. Reconcile
+serial resource/rollout scope before declaring Q04/Q05 closed.
 C255 has separately reconciled Alder's exact HL phase-label fix into Cedar, with
 unchanged native arguments and a real read of the documented DiU MTZ. This closes
-the known phase-label correctness discrepancy on Cedar, not the pending native
-selected-model acceptance or final AutoPhase naming task.
+the known phase-label correctness discrepancy on Cedar; C270 now supplies native
+selected-model acceptance. The final AutoPhase naming task remains Q16.
 For the anomalous-site connection, preserve these distinctions:
 
 - The original Phaser model remains the phasing input; changing it to the

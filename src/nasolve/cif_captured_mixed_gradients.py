@@ -16,6 +16,7 @@ from .cif_attachment_native import _capture, _json, _native_atoms
 from .cif_attachment_links import _input
 from .cif_candidate_usability import energy_inventory_checks
 from .cif_fana_junction import _path
+from .cif_numerical_replay import validate_mixed_result
 
 POLICY_ID = 'cif-captured-mixed-fixed-gradient-v1'
 REPORT = 'captured_mixed_gradients.json'
@@ -255,7 +256,8 @@ def _read_captured_mixed_gradients(directory):
             and native['energy_inventory']['installed_sources']==expected['energy_inventory']['installed_sources']
             and numerical._numeric_equal(native['energy_inventory'],expected['energy_inventory'])
             and numerical._numeric_equal(result['raw_snapshot'],native['energy_inventory']['snapshots'][0]))
-        _need(numerical._numeric_equal(q,_numerical_engine(expected)._validate_result(result,expected,prep['selected_indices'])))
+        _need(numerical._numeric_equal(q,validate_mixed_result(
+            _numerical_engine(expected)._validate_result,result,expected,prep['selected_indices'])))
         for field,modules in [('installed_numeric_sources',numerical._NUMERIC),('installed_adapter_sources',numerical._ADAPTERS)]:
             rows=result[field]
             _need([r['module'] for r in rows]==list(modules) and all(isinstance(r['sha256'],str) and len(r['sha256'])==64

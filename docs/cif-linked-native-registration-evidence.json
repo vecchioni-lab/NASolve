@@ -93509,7 +93509,7 @@
   "saved_preparation_read_cost_2026_11_13": {
     "checkpoint": "C272",
     "source_commit": "cedc28d7978163c12d43a6b962a3c7803ac4f983",
-    "status": "PROFILED_NOT_OPTIMIZED",
+    "status": "PROFILED; BOUNDED_REUSE_QUALIFIED_IN_C273",
     "profile": {
       "anchor": "live_tests_directory",
       "path": "270_Cedar_selected-autosol-pspkne9n/followthrough-002/cold-view.pstats"
@@ -93525,5 +93525,120 @@
     },
     "interpretation": "cProfile materially inflates elapsed time. Nested exact readers repeat identical numerical reconstruction; _gradient_replay also repeatedly computes the same vector norms. Native worker bytes are pinned, so editing the historical core would invalidate old evidence. Investigate narrowly scoped reuse of identical pure numerical validation within one read, retaining every file/source/owner check and no persistent trust cache.",
     "limits": "No concurrency or 100-dataset run claim. Keep one expensive reader at a time; failed/unknown work remains intact."
+  },
+  "inspection_local_numerical_reuse_2026_11_13": {
+    "checkpoint": "C273",
+    "base_commit": "35f12d9cc9f4d7ccb80776136fb68562891faac9",
+    "status": "FOCUSED_RELOCATION_SAVED_NATIVE_READ_PASS",
+    "prior_work": "C231/C250 already share complete history within one multi-result read; C254/C256 share bounded temporary evidence objects. C272 profile identifies fourteen numerical reconstructions inside a single view, so reuse only that pure calculation, not artifact validation.",
+    "before": "Each captured-gradient read repeats the full pure numerical reconstruction even for identical complete inputs within one exact request inspection.",
+    "after": "The existing exact request reader owns a temporary scope. Captured-gradient readers still authenticate all files, worker/source identities, manager bindings and qualifications; only the same validator with byte-equivalent complete JSON inputs reuses a small verdict. No path-only or persistent trust cache.",
+    "changed_source_files": [
+      "src/nasolve/cif_numerical_replay.py",
+      "src/nasolve/cif_captured_mixed_gradients.py",
+      "src/nasolve/cif_complete_request.py"
+    ],
+    "bounds": {
+      "maximum_verdicts": 16,
+      "maximum_serialized_verdict_bytes": 65536,
+      "raw_capture_cache": false,
+      "overflow": "ordinary validation",
+      "exceptions": "never retained",
+      "scope": "one synchronous exact request read, discarded on normal or exceptional exit"
+    },
+    "compatibility": "No schema, policy, native command, scientific threshold or historical worker-byte change. REVIEW remains REVIEW. No migration. Standalone captured reads outside a scope repeat full validation.",
+    "unchanged_worker_sha256": {
+      "cif_mixed_gradient.py": "1bf8a4ce86a4eca5ca77228648dd891844338acf6d17cb68d4481440eaf523c6",
+      "cif_gradient_audit.py": "a4d6571512313ae7ce8522668bd152ea806c5478803b74e296822bc313f275cc",
+      "cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+      "cif_parallelity_audit.py": "9401c68376e8699fa0f50d7522af1217a72d084cbe5abd41c94bdc1446fa6281",
+      "cif_zero_parallelity_gradients.py": "0122b9e4b1e5c12d6e9dc61474df6c722af56e9cc4d233cf0c8fc11ba6eae3b6"
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_numerical_replay.py -x",
+        "result": "Before reuse implementation: 1 failed in 0.15s, two identical proofs were calculated twice."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_numerical_replay.py tests/test_cif_captured_mixed_gradients.py tests/test_cif_complete_request.py tests/test_cif_ordinary_postmr.py -x",
+        "result": "205 passed in 312.24s. This process loaded the initial key serializer; final hardening then retains dictionary insertion order rather than sorting it. Final-code relocated checks below cover that change and all new seams."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c273_relocated_checkout.py",
+        "result": {
+          "status": "RELOCATED_CHECKOUT_NUMERICAL_REPLAY_PASS",
+          "scope": "Copied code runs after its old temporary path is gone; saved synthetic captures relocate without parent/SDK; changed warm evidence still refuses. Analytic fake SDK tests, no crystallographic native execution.",
+          "elapsed_seconds": 11.546617624990176,
+          "pytest_output": "...................                                                      [100%]\n19 passed in 10.63s",
+          "temporary_checkout_removed": true
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c273_read_start.py",
+        "result": {
+          "status": "EXACT_VIEW_NUMERICAL_REUSE_PASS",
+          "identical_view": true,
+          "speedup": 1.7569694874699209,
+          "measurements": {
+            "baseline": {
+              "status": "READ_PASS",
+              "mode": "baseline",
+              "read_seconds": 103.72311500000069,
+              "total_seconds": 104.00359795801342,
+              "numerical_replays": {
+                "mixed": 14,
+                "zero_parallelity": 0
+              },
+              "maximum_python_resident_bytes": 716587008,
+              "unchanged_run_files": 389,
+              "new_native_calls": 0,
+              "historical_source_cache_sdk_reads_forbidden": true
+            },
+            "reuse": {
+              "status": "READ_PASS",
+              "mode": "reuse",
+              "read_seconds": 59.03523979199235,
+              "total_seconds": 59.25557624999783,
+              "numerical_replays": {
+                "mixed": 2,
+                "zero_parallelity": 0
+              },
+              "maximum_python_resident_bytes": 635764736,
+              "unchanged_run_files": 389,
+              "new_native_calls": 0,
+              "historical_source_cache_sdk_reads_forbidden": true
+            }
+          },
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "273_Cedar_read-cost-617w29jd"
+          },
+          "start_sha256": "e038d7a47455dff5af06e3d3df73dae7b84718dbbdafb60aec748b6ffb29659d",
+          "summary_sha256": "d240e6d12f1074ba88d48efdb68841182eac6ae603e5081b61adb013cc467909"
+        }
+      }
+    ],
+    "negative_controls": "Changed samples, expected manager, probe selection, qualification, native source fingerprints and unbound files refuse even after a successful warm read. Errors do not cache. Nested scope, scope exit, independent verdict copies, capacity fallback, validator identity and JSON type/order distinctions are checked.",
+    "validation_setup_note": "An initial command named nonexistent tests/test_cif_zero_parallelity_gradients.py and collected no tests. Corrected discovery confirms absent-parallelity tests are in test_cif_captured_mixed_gradients.py.",
+    "scope": "One sequential pair on saved C270; guarded old-source/cache/SDK reads and native launches forbidden, all 389 run files unchanged. No new Phenix/Coot execution, concurrency/100-dataset or diffraction-refinement claim.",
+    "remaining": "Inspection still takes about a minute on this fixture. Preserve serial resource guidance and finish explicit Q04/Q05 recovery/rollout scope before Q06. Do not edit pinned historical numerical cores for speed.",
+    "artifacts": "Only source/tests/docs committed. Local scientific input remains in C270; C273 adds small diagnostics/source pins and no copied scientific dataset.",
+    "full_suite": "Not run per Simon. Last full C220/583d30df: 9178 tests + 276 subtests.",
+    "completed_date": "2026-11-14"
+  },
+  "q04_q05_remaining_boundary_audit_2026_11_13": {
+    "checkpoint": "C273",
+    "status": "READ_ONLY_SCOPE_RECONCILIATION",
+    "checked_locations": [
+      "src/nasolve/autosol.py:_record_result",
+      "src/nasolve/autosol.py:execute_autosol",
+      "src/nasolve/campaign_stages.py:execute_autosol caller",
+      "tests/test_autosol_selected_reference.py:test_changed_inputs_during_execution_preserve_outputs_without_adopting_them",
+      "src/nasolve/campaign_process.py:run_owned_command"
+    ],
+    "complete": "Preparation process ownership/recovery, alternative publication, successful-working retirement, selected-model AutoSol acceptance and final Coot load have their recorded controls. C273 reduces repeated pure inspection work.",
+    "remaining": "AutoSol writes immutable stage output before guarded run-report publication, but has no explicit resume operation for an interrupted result save. Its direct subprocess.run does not provide standalone durable child ownership; campaign outer-worker ownership is a separate context. Do not infer a dead process from a report file or attach an untracked child session outside its campaign owner.",
+    "next": "Design the smallest existing-owner integration and exact-result completion path for future owned AutoSol runs; distinguish preserving a completed result from launching a fresh attempt. Old unowned partial directories stay explicit/unadopted; no retrofit by guessing. Retain stable selection, original-MR phasing and unchanged scientific checks. This is a queued boundary, not implementation or permission to change defaults.",
+    "resource_scope": "Representative single successful/failing requests are measured; one expensive reader at a time. Repeated-failure/100-dataset bounds, historical campaign migration and default activation remain explicit integration/release limits. No Q04/Q05 full closure or Q06 start claimed."
   }
 }
