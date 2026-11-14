@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
+  "audited_code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -450,7 +450,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
+        "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
         "reviewer": "Linden",
         "human_update": 57,
         "scope": "Read-only explicit-proposal inspection prototype; P02 partial, rendered browser/user review and cut-choice semantics remain open"
@@ -852,7 +852,7 @@
     },
     "E_REPRESENTATIVE_VIEW": {
       "kind": "read_only_periodic_view",
-      "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
+      "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
       "human_update": 57,
       "reference": "docs/topostitch-periodic.md#w57--inspect-periodic-representative-proposals-in-the-shared-viewer",
       "result": "11 new regressions; focused40,full1544 plus229subtests,installed/relocated338,6helps,lean import,3.10syntax. Public855 atoms/42nodes/38edges and legacy replay exact. Actual packaged JS runs with DOM/canvas doubles through edge selection/focus, atom inspection, modes, cell and missing anchors.",
@@ -1124,7 +1124,7 @@
         "number": 57,
         "title": "Inspect periodic representative proposals in the shared viewer",
         "state": "RECORDED",
-        "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61"
+        "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee"
       }
     ]
   }

@@ -283,7 +283,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Perform genuine graphical/user validation, then add bounded intent-compatible cut alternatives and persistent review choices through the saved Pine-bound proposal owner. Keep materialization and chemical seams behind P03/P04.
 **Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view).
-**Last audit:** 2026-11-14, Linden, [W57](https://github.com/vecchioni-lab/NASolve/commit/73642f5fd1309c75b2986659c106f4a53db83d61); Read-only explicit-proposal inspection prototype; P02 partial, rendered browser/user review and cut-choice semantics remain open.
+**Last audit:** 2026-11-14, Linden, [W57](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee); Read-only explicit-proposal inspection prototype; P02 partial, rendered browser/user review and cut-choice semantics remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -636,7 +636,7 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 <a id="e_representative_view"></a>
 ### E_REPRESENTATIVE_VIEW — read_only_periodic_view
 
-[Evidence contract](topostitch-periodic.md#w57--inspect-periodic-representative-proposals-in-the-shared-viewer) at [W57](https://github.com/vecchioni-lab/NASolve/commit/73642f5fd1309c75b2986659c106f4a53db83d61).
+[Evidence contract](topostitch-periodic.md#w57--inspect-periodic-representative-proposals-in-the-shared-viewer) at [W57](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee).
 11 new regressions; focused40,full1544 plus229subtests,installed/relocated338,6helps,lean import,3.10syntax. Public855 atoms/42nodes/38edges and legacy replay exact. Actual packaged JS runs with DOM/canvas doubles through edge selection/focus, atom inspection, modes, cell and missing anchors.
 **Limit:** No rendered-browser or human visual approval, bounded cut alternatives, persistent review, materialized ASU or chemical link. Existing schemas/commands remain compatible. Scientific artifacts local only; no Cedar or native-tool changes.
 
