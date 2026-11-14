@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W56 — Save and replay explicit representative proposals.** Next: W57.
+**Current update: W57 — Inspect periodic representative proposals in the shared viewer.** Next: W58.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
 | W48 | Preserve declared periodic routes and exact image loops | RECORDED |
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
 | W50 | Observe all present model atom orbits | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W54 | Audit accepted points while preserving optimizer failures | RECORDED |
 | W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
 | W56 | Save and replay explicit representative proposals | RECORDED |
+| W57 | Inspect periodic representative proposals in the shared viewer | RECORDED |
 
 ## Finish lines
 
@@ -247,7 +247,7 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 | Job | Laboratory outcome | Status | Depends on |
 | --- | --- | --- | --- |
 | [P01](#p01) | Build the periodic molecular graph and declared scope | PARTIAL | F01, F02 |
-| [P02](#p02) | Offer cut choices in a required graphical preview | OPEN | P01 |
+| [P02](#p02) | Offer cut choices in a required graphical preview | PARTIAL | P01 |
 | [P03](#p03) | Materialize a cut without changing the crystal | PARTIAL | P02 |
 | [P04](#p04) | Qualify seam chemistry and native interpretation | OPEN | P03 |
 | [P05](#p05) | Complete the persistent Pine surgery/refine GUI loop | OPEN | P04 |
@@ -274,16 +274,16 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** No implemented capability is claimed.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation.
 
 **Closure audit:**
 
 - Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
-**Next action:** Reuse the offline coordinate viewer where useful, but first supply P01 periodic graph ownership and bounded cut alternatives; implement actual cut selection/materialization preview and human validation.
-**Evidence:** [E_VIEW](#e_view).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/0f176a965223af7aafbc433939d2d054f608524a); Shared viewer is available; no Pine cut capability delivered, so P02 stays OPEN.
+**Next action:** Perform genuine graphical/user validation, then add bounded intent-compatible cut alternatives and persistent review choices through the saved Pine-bound proposal owner. Keep materialization and chemical seams behind P03/P04.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view).
+**Last audit:** 2026-11-14, Linden, [W57](https://github.com/vecchioni-lab/NASolve/commit/73642f5fd1309c75b2986659c106f4a53db83d61); Read-only explicit-proposal inspection prototype; P02 partial, rendered browser/user review and cut-choice semantics remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -632,6 +632,13 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 [Evidence contract](topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal) at [W56](https://github.com/vecchioni-lab/NASolve/commit/73642f5fd1309c75b2986659c106f4a53db83d61).
 22 new regressions,67focused,full1533 plus229subtests,320installed/relocated,6helps,lean import,3.10syntax. Original inputs absent; exact public855-atom/36-image replay and installed CLI packet. Existing preview/scattering replay unchanged.
 **Limit:** New additive schema1 proposal/receipt only; no model, chemical intent edit, GUI review, refinement or checkpoint. Exact algorithm/Gemmi replay required; no silent migration. Scientific artifacts excluded from Git; no Cedar/runtime-native changes.
+
+<a id="e_representative_view"></a>
+### E_REPRESENTATIVE_VIEW — read_only_periodic_view
+
+[Evidence contract](topostitch-periodic.md#w57--inspect-periodic-representative-proposals-in-the-shared-viewer) at [W57](https://github.com/vecchioni-lab/NASolve/commit/73642f5fd1309c75b2986659c106f4a53db83d61).
+11 new regressions; focused40,full1544 plus229subtests,installed/relocated338,6helps,lean import,3.10syntax. Public855 atoms/42nodes/38edges and legacy replay exact. Actual packaged JS runs with DOM/canvas doubles through edge selection/focus, atom inspection, modes, cell and missing anchors.
+**Limit:** No rendered-browser or human visual approval, bounded cut alternatives, persistent review, materialized ASU or chemical link. Existing schemas/commands remain compatible. Scientific artifacts local only; no Cedar or native-tool changes.
 
 ## Deferred extensions, not hidden blockers
 

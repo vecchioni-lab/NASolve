@@ -1150,3 +1150,59 @@ Wheel SHA-256: `dffd1e0ce2c00d6ef86456f501867f43ddd88956d8ae4c7089c5d8015ee186d0
 No native Phenix/Coot execution or Cedar change was needed. All scientific inputs,
 outputs and installation evidence remain local and are deliberately excluded from
 Git; committed tests contain synthetic fixtures only.
+
+
+## W57 — Inspect periodic representative proposals in the shared viewer
+
+`nasolve-topostitch-view new-cut-preview --out cut.html` now recognizes a W56
+representative packet as well as the existing bend packet. It replays frozen
+inputs first, writes a new standalone HTML outside that packet, and makes no
+model, chemistry, review or checkpoint change. Bend-search options refuse for
+a representative packet because its images are already explicit. Existing bend
+commands, saved scenes and optional selected-mate behavior remain supported.
+
+The new schema-1 `topostitch-representative-view` scene contains every present
+source atom in source order, exact before/proposed positions, logical and
+coordinate identities, protection flags, unchanged context, declared route
+boundaries, scope findings and the original source-orbit assessment. Each typed
+edge retains its exact before/after target operator and transformed O3′ endpoints.
+These endpoints are not necessarily the displayed target ASU representative.
+Missing anchors retain their node identities without invented positions. Graph
+lines are display observations, not newly activated atom-level chemical bonds.
+
+The existing renderer adds Original / Proposed / Overlay modes for this packet,
+atom inspection, typed graph edges, an edge selector with image/spacing details,
+edge focusing, optional unit-cell outline and declared-boundary/coverage details.
+All-atom and base-ring toggles, rotation, pan, zoom and keyboard controls are reused.
+There is no Apply button, automatic cut enumeration, persistent human-review
+record or changed-coordinate export. P02 remains partial, with actual rendered
+browser/user validation still required. A prior local-file automation policy block
+has not been bypassed; no visual or scientific approval is claimed.
+
+Before W57, the offline viewer accepted bend packets only. Changes are limited
+to `topostitch_view.py`, its existing packaged HTML asset, synthetic regressions
+and current documentation/intent. W56 proposal/receipt schemas do not change.
+Eleven new tests protect exact image endpoints, renamed logical ownership, all
+source atoms, missing/context scope, relocation, input drift and dispatch errors.
+The first endpoint test used a base-only fixture; it was corrected to the existing
+O3′-anchored fixture. A malformed receipt dispatch regression failed before its
+fix. The initial public harness lacked the test-root import path and was retried
+with that path explicitly supplied; original failure evidence is retained.
+
+Validation uses the W56 commands, with focused targets
+`tests/test_topostitch_recut_view.py`, `tests/test_topostitch_view.py`, and
+`tests/test_topostitch_recut_bundle.py`: **40 pass**. Final complete Willow:
+**1,544 plus 229 subtests**. Installed/relocated owner checks: **338 pass**, six
+command helps, lean import and Python 3.10 syntax. The installed command emits
+the exact public scene after relocation with original paths blocked. Existing
+bundle, graph and scattering replay remains exact. Wheel SHA-256:
+`b6ca58eac298d44c2b2a7c651627d0682d950e29077d8777660f3942ea5508d2`.
+
+The public scene retains 855 atoms, 42 nodes and 38 edges in R3:H. A Node VM
+executes the actual packaged JavaScript with DOM/canvas doubles for public,
+legacy bend and missing-anchor scenes, exercising mode switches, atom picking,
+all edge choices, focus, rotation/zoom and cell display without nonfinite draw
+coordinates. O3* spelling also passes. This is interaction-logic evidence only,
+not browser rendering, layout or accessibility qualification. No Phenix/Coot
+execution or Cedar changes were required. Scientific snapshots, generated HTML,
+local harnesses and receipts remain excluded from Git.

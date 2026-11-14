@@ -1255,8 +1255,17 @@ nasolve-topostitch-cut-preview model.pdb --discovery discovery.json \
 The [proposal contract](docs/topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal)
 binds the chosen images to the exact registered source. The new folder contains
 unchanged input snapshots and a recomputable JSON preview. It writes no replacement
-ASU, creates no chemical link and remains unreviewed. Graphical cut selection is
-still under development; the bend viewer above does not open this bundle type.
+ASU, creates no chemical link and remains unreviewed. Inspect that proposal with
+the same offline viewer:
+
+```bash
+nasolve-topostitch-view new-cut-preview --out cut.html
+```
+
+Switch Original / Proposed / Overlay, inspect atoms and exact graph-edge images,
+and optionally show the unit cell. Declared boundaries and missing anchors remain
+visible. Cut alternatives, persistent review choices and materialization are still
+under development. No bend-search options are needed for this packet.
 
 ## Problems and reproducibility
 

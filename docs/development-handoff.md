@@ -136,288 +136,81 @@ Then promote Scout along the
 ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 [metal restraint builder](metal-restraint-builder.md) are separate later scopes.
 
-## Separate Willow work — 2026-11-13
+## Separate Willow work — 2026-11-14
 
-**Willow update W56; next W57.** W33 introduced human update numbers without
-renumbering old history. Use these labels in conversation; the roadmap JSON
-retains exact code provenance.
+**Willow update W57; next W58.** Human W-numbers and exact code provenance live
+in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
+The [intent record](topostitch-intent.json) lists implemented owners but grants no
+runtime authority. The [periodic guide](topostitch-periodic.md) and
+[bend-preview guide](topostitch-preview.md) retain exact commands, native failures,
+versions, historical validation and scientific limits. Git retains earlier handoffs.
+Do not restart completed probes merely because their chronological notes were
+removed here.
 
-[TopoStitch](topostitch.md) on `willow` starts from Pine `d7913dd`; its
-[intent record](topostitch-intent.json) is development metadata, not runtime
-permission. The [current inspector contract](topostitch-periodic.md) owns usage,
-schemas, validation commands and limits; the [bend-preview guide](topostitch-preview.md)
-owns explicit candidate generation. The [audited completion roadmap](topostitch-roadmap.md)
-is the one work queue for the sticky-end and Pine ASU-slicing tracks; its JSON
-ledger and audit command keep status, dependencies and closure evidence aligned.
+**Current edge:** W56 freezes explicit representative-image proposals with unchanged
+source/discovery/registration and anchored replay. W57 displays them through the
+existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
+edge-image endpoints, unit cell, declared boundaries and missing scope. Its
+before/after comparison is read-only; no replacement ASU, chemical bond, approval
+or checkpoint is written. Full Willow: **1,544 plus 229 subtests**; focused40;
+installed/relocated338, six helps, lean import and 3.10 syntax. Public and legacy
+replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
+visual review remains open after the earlier local-file automation policy block.
 
-Implemented: verified PDB end frames; metric-bounded periodic image search;
-NARestraints contact observations; factorized one-partner alternatives; logical
-end mapping through Pine registration; bounded discovery within declared chemical
-routes/core pairing; and whole-pair window proposals with fixed inner anchors.
-Incomplete pairing, missing mappings, uncertain cuts, protected junctions and
-declared free ends remain explicit. A separate explicit preview writer now
-applies a tapered paired-step transform in a new candidate, preserves source and
-anchors, rotates ANISOU tensors and audits serialized backbone changes. Frozen
-input snapshots and run-relative checksums support replay after relocation.
-Inspector execution stays NOT_ATTEMPTED; actual previews are CANDIDATE_BUILT,
-UNREVIEWED and unrefined. No existing model/checkpoint is changed.
-An optional bounded fitter now proposes a terminal transform for one explicit
-pairing/image and window, counting Jacobian evaluations and rechecking serialized
-limits. No partner/window selection is inferred. The roadmap currently prioritizes
-F02/S03 physical image/connection identity (periodic fitting now requires a
-clear selected-coordinate source audit), then S04/S05 local geometry closure
-before S06 matched refinement. A verified offline source/candidate/mate view
-now supports rotation, atomic inspection and measured contact comparisons. It
-has no selection/refinement/approval API; Pine cut choice/materialization and
-campaign integration are still open. Unassisted coordinate
-topology discovery, reconstruction, refinement and campaign adoption remain
-unimplemented.
+**Next bounded work:** qualify the graphical preview, then supply bounded explicit
+cut alternatives and persistent review choices using Pine identity and the saved
+proposal owner. P01 and P02 remain partial. Do not materialize an ASU before the
+P03 identity/scattering and P04 seam-chemistry gates. W55 supplies an independent
+sampled complex-Fcalc/ANISOU transport diagnostic, not complete invariance proof.
 
-**Current W56 edge:** explicit representative proposals now freeze unchanged
-source/discovery/registration inputs in a replayable anchored packet. Installed
-`nasolve-topostitch-cut-preview` preserves source bytes and requires a new output
-directory. Loading recomputes the entire observation from its own frozen inputs;
-public replay survives removal of the original input directory. Full Willow:
-1,533 plus 229 subtests; installed/relocated: 320. Next add the genuine before/after
-periodic view and review choices. P01 stays partial; P02 remains open and no
-replacement model, chemical seam, native restraint or checkpoint is written.
+**Stitch capability and scientific boundary:** source-bound end frames, periodic
+image search, logical registration, declared-route discovery, fixed-anchor paired
+windows, explicit bend previews and bounded fitting exist. Periodic fitting checks
+selected source/transformed atom identity and reciprocal incidence; complete
+molecular/global image equivalence remains open. Unassisted partner inference,
+reconstruction and campaign adoption are unimplemented. Native capture/trial and
+endpoint observers reuse Cedar owners and preserve intended/core pair changes,
+packing regressions, derivatives and rounded-coordinate readback separately.
+All fixed-base/whole-window trials remain capped or failed, unselected and local.
 
-W55's separate source-bound sampled scattering observer retains complex Fcalc
-differences and transports ANISOU in memory. Synthetic negative controls and an
-independent native cctbx allowed-index check support the stated observations;
-no threshold or complete scattering/materialized-cut proof is claimed. Installed
-legacy preview/scattering replay remains exact. P03 stays partial.
+W51's 500-iteration controls retain line-search rounding failures. W53 exactly
+replays their last accepted points: complete derivatives pass, while predeclared
+precision probes support score-resolution limits. This is not convergence or
+chemistry approval. W54 preserves separately audited last-accepted diagnostics
+without converting failed jobs to success or emitting candidates. Do not relax
+stopping policy merely to obtain a pass. Scalar outlier improvements can coexist
+with worse individual contacts and affected geometry.
 
-**Prior W52 edge:** `preview_registered_relabel` now binds exact outer
-registration/source identity to whole-residue atom images, fixed context and
-edge-image arithmetic. It reuses W48–W50 reports without changing their content.
-Missing requested coordinates refuse; other uncertainty remains visible. No
-coordinate writer, ANISOU transport, native link or graphical approval is added.
-Next supply the persistent Pine intent/preview boundary and genuine graphical
-review before P03 materialization, while retaining F02/P01 incomplete scope.
-
-W53 reproduces both W51 last accepted points exactly in fresh native contexts.
-All 612 derivatives pass unchanged bounds; predeclared directional probes show
-score quantization and local quadratic improvement estimates below one score ULP.
-This supports numerical-resolution limits, not convergence or geometry approval.
-W51 stays FAILED. W54 now retains a separately audited last accepted point after
-optimizer errors. Both native histories/errors reproduce exactly and new full/rounded
-derivative diagnostics pass, while jobs stay FAILED and emit no candidate.
-Full Willow: 1,489 plus 229 subtests; installed/relocated: 276. Next close the
-shared physical/chemistry gates and ordinary-refinement integration, not tolerance
-relaxation or automatic adoption. The installed temporary
-Cedar C295/Willow compatibility check passes 264 focused tests and exact public
-preview replay; no merge or complete combined-suite claim.
+W34's three matched reference refinements used the same observations/Free-R:
+bend-plus-cleanup Rfree .2276 versus cleanup .2274 gives no meaningful additional
+held-out benefit, with worse bond/angle RMSDs. No candidate adoption follows.
+The private MR repair and density-inspection gates remain open. General tools
+must handle straight→bent, bent→straight and changed/nonuniform/distal curvature;
+benchmark IDs and transforms belong in requests, not algorithm branches.
+Calibrated read-only negative-backbone-density observation is queued in S06,
+then human review, then later density-guided placement. Construct 4T28/PDB 8SJW
+is a future example; the exact B:11 interpretation remains unverified.
 
 **Shared Pine/Cedar boundary:** Pine retains editable periodic connectivity and
 user choices across reslicing; TopoStitch exposes them, Cedar reports enforcement.
-A declared symmetry continuation preserves P/OP1/OP2 without automatic OP3 or
-dephosphorylation. Do not emit the symmetry bond alone while the surrounding
-phosphate-angle policy is unqualified. See the
+A declared periodic bond preserves **P/OP1/OP2** independently of partner resolution.
+No automatic OP3/dephosphorylation and no lone symmetry-bond restraint while the
+surrounding phosphate-angle/exclusion policy is unqualified. See the
 [shared contract](construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar).
+Virtual L/R recipe labels are not ordinary source-model refinement selections.
+Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
+movement masks require their own qualified consumer policy.
 
-**Prior W47 edge:** periodic fitting now consumes exact reciprocal incidence
-bound to selected source/transformed atom audits. Source and moved fixtures each
-have one partner in that selected scope; complete molecular/global identity is
-still open. Full Willow: 1,424 + 229 subtests; focused/installed-relocated: 68.
-Existing numerical placement remains unchanged apart from capacity metadata
-and algorithm v5. No Cedar/native changes.
-
-**Prior W46 edge:** endpoint review now composes maintained Cedar torsion/plane
-kernels with checked live proxy semantics and complete family target/gradient
-parity. Six native controls pass; individual regressions remain visible even when
-aggregate scores improve. Full Willow: 1,416 + 229 subtests; installed/relocated:
-159 and byte-identical native review. Temporary installed Cedar C289 composition
-also passes 159 focused tests and exact native review through its owned runner.
-No branch merge, Cedar changes or chemical acceptance.
-S05 still needs qualified chemistry and an ordinary refinement consumer; Rowan's
-C289 reported full-objective native-force discrepancy is not a supported corrected
-runtime. Next address shared explicit-connection physical capacity (F02/S03),
-keeping global inference and special-position equivalences under review.
-
-**Prior W45 edge:** one matched native control retains the same 12 core pairs
-as the paired trial and toggles only the intended contacts. Existing APIs suffice;
-no runtime changes. All source/endpoint derivatives and fresh rounded native
-readback pass, but both arms remain capped with packing regressions. Core-only
-protects core pair totals while one selected pair worsens; adding selected terms
-improves both selected totals. Next compose Cedar's maintained torsion/plane
-kernels into endpoint observations; do not invent missing proxy policy or treat
-container parity as chemical approval.
-
-**Prior W44 edge:** native per-term attribution reproduces container scores and
-preserves every selected/core pair change. Whole-window paired control improves
-all pair totals; cleanup alone worsens two core pairs and one selected pair.
-Contacts still need repair, capped outcomes and packing regressions remain.
-Full Willow: 1,397 tests + 229 subtests; installed/relocated: 140 and byte-identical
-native endpoint review. Compact JSON preserves existing tables and cuts report
-size by about 55%. No Cedar changes. Next declare a bend/cleanup comparison using
-these existing owners, then qualify chemistry before matched diffraction.
-
-**Prior W43 edge:** the same package/CLI can read an explicit masked endpoint
-and compare source/full-precision/rounded native ASU packing through Cedar owners.
-Five complete Phenix 2.2.1-6174 controls pass; independently reinterpreted rounded
-PDBs agree in full native target/gradient and matched pair residuals. Differing
-neighbor rows contribute zero in these controls. Precision-dependent contact
-changes remain visible; the original trials are still capped and unselected.
-Full Willow: 1,384 tests + 229 subtests; installed/relocated focused: 127 and a
-byte-identical complete endpoint review with original paths blocked. Native core
-interfaces are unchanged through Cedar af9aee87; no merge or Cedar edits.
-Next attribute individual intended/core pair contributions before a declared
-bend/cleanup comparison. Broader chemistry and S06 diffraction remain open;
-density-aware placement stays in its existing later queue.
-
-**Prior W42 edge:** the installed `run_captured_objective` API owns the existing
-capture/trial orchestration; the developer CLI remains compatible. Cedar owns
-capture, observation layering and process execution; uncertain cleanup errors
-escape after saving evidence. Source native results reproduce W41 exactly.
-Installed/relocated Willow and a temporary Cedar 948a7860 overlay pass native
-read-only execution, including the injected owned runner. Full Willow: 1,372
-tests + 229 subtests; installed focused: 74; temporary combined focused: 244 + 19
-subtests. No branch merge, complete combined suite or campaign adoption is claimed.
-Next close full-precision/serialized packing and affected chemistry before S06
-matched refinement. Density-supported curvature remains in its later queue.
-
-**Prior W41 edge:** the existing capture probe can explicitly run a bounded
-native trial with complete source/full-precision/rounded derivative audits and
-a matched cleanup switch. Five Phenix 2.2.1-6174 trials pass derivatives and fresh
-rounded native target readback but reach the 200-iteration limit. Whole-window
-pairing improves its score at a different geometry/packing tradeoff from cleanup;
-fixed-base pair terms are constant. No repair, refinement or adoption is claimed.
-Full Willow: 1,364 tests + 229 subtests. Source and installed validation, retained
-failures and compatibility are in the [validation receipt](topostitch-periodic.md#current-validation-receipt--2026-11-13).
-Next extract one installed captured-job boundary using Cedar's anchored inputs,
-observation ordering and process runner; no Cedar merge/edit or second executor.
-S05 still needs broader chemistry/packing closure; S06 needs matched diffraction.
-Density-supported bend location remains in the later audited queue.
-
-**Prior W40 edge:** exact full-precision/mask/PDB-byte binding is available
-through an optional extension of the existing packing reader. Cedar owns native
-mechanics and selected/boundary/fixed environment review; unchanged legacy packing
-content is tested. Three complete Phenix 2.2.1-6174 endpoint captures pass mechanics
-and explicit Cartesian ANISOU preservation; initial default rejections remain.
-Lower global repulsion can still accompany worse individual contacts. All outputs
-remain descriptive, unselected and local. Full Willow: 1,358 tests + 229 subtests;
-installed focused: 101; relocated focused: 69 and byte-identical complete review
-with original reads blocked. No optimizer or endpoint derivative qualification.
-Next connect a bounded trial to the established initial-context and endpoint
-boundaries, retaining failed/capped outcomes and matched controls. Density-aware
-curvature placement stays in the audited later queue.
-
-**Prior W39 edge:** a developer-only reconstruction probe reuses Cedar capture,
-worker builders, native process ownership and inventory replay. Fresh native
-contexts match the authenticated initial full-monomer/geometry/energy/ASU-pair
-observations for both prior 8D93 masks and independent 7R96; repeated masked
-energies exactly reproduce W38. Tampered workers and wrong request hashes fail.
-Full Willow: 1,338 tests + 229 subtests; installed and relocated focused: 60 each.
-Installed and relocated native reconstruction also pass (Phenix 2.2.1-6174).
-The guide retains initial environment/harness failures and exact validation scope.
-No optimizer, candidate, refinement, adoption or complete exclusion-policy proof
-is added. This is full Pine-derived Willow coverage, not Cedar or a combined build.
-Next qualify one bounded trial's native lifecycle and endpoint geometry/packing;
-matching initial observations alone does not freeze future neighbors or prove
-physical acceptance. Avoid native/additive pair double counting. Preserve the
-separate Pine recut route and consumer-specific PHIL handling (Cedar C278 finding).
-Scientific files stay local. Density-supported bend-center/width alternatives
-and construct 4T28/PDB 8SJW are queued, not implemented; exact B:11 interpretation
-remains unverified.
-
-**Prior W38 edge:** bounded coordinate masks and direct native/pair/tether
-composition pass all-coordinate derivative checks for both movement scopes and
-7R96, including ten negative controls. Full Willow: 1,323 + 229 subtests;
-installed focused: 410 + 18; relocated: 107. No optimizer or ordinary refinement
-adapter was added. Its static-definition hash is not complete policy authentication.
-
-**Prior W37 checks:** reusable explicit canonical image recipes and a native
-pair-energy compiler replace local-only binding code. Complete source suite:
-1,312 tests + 229 subtests; focused source: 88; installed: 438 + 18 subtests;
-relocated copied checkout with its original absent: 96. Isolated installed native
-execution matches the 14-pair energy/components. Phenix 2.2.1-6174 complete
-derivative probes pass 8D93, 7R96, P43 and P21 controls; 5W6W and strained P1 keep
-REVIEW at the larger difference step. Per-coordinate convergence diagnostics are
-retained, not used to relabel those outcomes. See W37 in the preview guide for
-API, exact scopes and native evidence; the inspector guide owns validation commands.
-The new packet/binding/probe schemas are additive; existing previews and entry
-points remain unchanged. Virtual L/R recipe labels must never be treated as
-ordinary refinement selections on the source model. No optimizer, manager hook,
-native exclusion edit or checkpoint is introduced. Scientific artifacts remain
-local. Generality is explicit: benchmark IDs/transforms belong in fixture inputs,
-not algorithm rules. Calibrated read-only negative-backbone-density detection is
-queued in S06, then review, then later density-guided motion.
-
-**Prior W35 checks:** W35's three parser regressions reproduce the missing native
-bond/angle RMSDs and preserve log precedence/incomplete-output behavior. Focused
-source: 53 tests + 16 subtests; full source: 1,295 tests + 229 subtests; rebuilt
-installed wheel: 421 focused tests + 18 subtests. The isolated installed parser
-matches all three final Phenix 2.2.1-6174 PDB/log outputs. No refinement was rerun
-for this readback fix. Existing statistics keys and checkpoint behavior are
-unchanged; model/log summaries outside the recognized formats remain unmeasured.
-Earlier W33 relocation: 376 focused tests + 2 subtests with the original copied
-path absent; this parser-only patch does not change paths or artifact schemas.
-Actual native packing
-comparison output is byte-identical after copied source/models/captures relocate,
-with Python reads of original live evidence blocked. Both frozen Cedar `cd744e2`
-and `f2345a8` authenticate/replay the same measurements. The comparator preserves
-relative image identity, directed multiplicity and per-contact regressions; it
-adds no native worker or geometry acceptance. The installed numerical comparison
-and image-transport cores need no native/Gemmi dependencies.
-The offline viewer includes its asset; exact coordinate and JavaScript mock-DOM
-checks pass. Rendered browser validation remains pending after a local-file
-automation policy block.
-Schema-2 preview
-and fitting add nonbridging phosphate angles and circular epsilon/zeta/alpha
-changes, while retaining exact schema-1 replay. The selected-image audit retains
-coincident-label/occupancy uncertainty and gates periodic fitting. A second
-audit now withholds serialized transforms that introduce selected-image
-coincidences. Public source
-bytes remain unchanged; generated coordinates and diagnostic artifacts stay local.
-Public 8D93 native interpretation is REVIEW throughout. The original fit adds an
-angle outlier; tighter controls and the new extended-audit fit add no nominal ≥5
-captured scalar outliers with matched native contexts/proxies. This remains
-source-change/descriptive evidence, not ideal geometry, native symmetry closure
-or diffraction/refinement validation. The reproducible native image probe retains failing raw plane gradients;
-Cartesian image pullback plus Cedar's existing parallelity correction passes
-synthetic and public controls. This is diagnostic, not a production native adapter.
-Masked native controls now preserve fixed bases explicitly or permit the selected
-window's atoms under bounded motion. Adding the chosen image contacts improves
-them beyond matched cleanup; adding existing core-pair terms limits duplex drift.
-Derivative/readback checks now also pass with complete emitted NARestraints
-plane selections/sigmas; all trials hit the iteration cap. A broader bend followed
-by fixed-base cleanup removes its added angle outlier, but collateral periodic
-contacts and individual geometry terms worsen. Native bond edits also change
-exclusions/LINK bookkeeping, unlike additive contact energies. S05 remains partial:
-a supported masked policy must audit intended edits and the surrounding packing
-before matched refinement. No candidate is promoted.
-W34 completes three matched public-reference refinements with the same 3,333
-observations and 176 free reflections. Bending retains better selected contacts,
-but Rfree (.2276) is essentially tied with cleanup alone (.2274), while bond/angle
-RMSDs worsen. No extra bending benefit or candidate adoption is established.
-This is a reference pilot; the private MR repair and density-inspection gates stay open.
-W36's read-only native callback probe passes added-term derivatives but confirms
-that all-atom selection and symmetry discard drop the callback; normalization
-and enablement also require explicit policy. Before further bending/refinement,
-qualify a complete periodic recipe through the intended manager lifecycle or a
-separately qualified Pine recut. No production adapter or extra refinement was
-added. The existing guide records both routes and their acceptance gates.
-See the current inspector/preview guides for exact commands, versions, policies and limits.
-
-**Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Frozen Cedar through `f2345a8` was tested for native readback; current Cedar through C278/C279 adds first-campaign refinement admission and
-consumer-specific round-local PHIL wrapping after sealed AutoSol recovery; the consumed registration/model/context/package interfaces
-remain unchanged against the Pine base. The consumed correction/audit/selected-geometry helpers remain unchanged through
-Cedar `b6d6dfe`; C278 changes AutoRefine input handling, not its statistics parser. Willow consumes no new Cedar production interfaces and edits
-no Cedar code or shared environment. The separate native comparison reused the
-existing diagnostic helper only; see the preview guide for exact options.
-Rowan confirms no qualified selective-coordinate adapter exists: Cedar's current
-trial declares all captured atoms variable, and derivative sample indices are
-not a movement mask. A future fixed-base objective needs its own explicit mask,
-policy identity, frozen definitions and ASU endpoint derivative evidence.
-Five local single-job Phaser placement controls also completed through existing
-interfaces, including the supplied PDF-report input as an explicit frozen
-selection. See the inspector contract for scope and unresolved copy/cut/chemistry
-assumptions. No deformation/refinement comparison is yet established.
-Shared guides/changelog need reconciliation at integration. No combined
-Willow/Cedar build has been validated. Keep completed patches pushed and current
-contracts concise rather than adding handoff diaries.
+**Compatibility:** Willow is isolated from the dirty Pine/Cedar checkouts. Latest
+completed installed owner/API composition used Cedar C297 `fe7e9fd7`:298 focused
+checks and exact public preview/scattering replay; no merge, combined CLI/package
+metadata or full combined-suite qualification. Rowan reports C298 `85a45a0f`
+ordinary opt-in AutoRefine integration with native and relocation controls; C299
+CLI/ancestry work is separate and is not yet Willow qualification. Do not edit
+Cedar or its installation. Reconcile shared guides/changelog only at explicit
+integration. Preserve immutable runs, unpublished inputs, maps, Free-R and all
+negative evidence. Scientific artifacts stay local; evidence archives are forensic
+records, not resumable portable runs.
 
 ## Work discipline and doc ownership
 

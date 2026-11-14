@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W57 — Inspect exact periodic representatives and graph edges
+
+- Extend the existing offline viewer to replay saved representative packets and
+  show all source atoms, logical ownership, exact image endpoints and unit cells.
+- Keep typed edges, declared boundaries, missing anchors and unchanged context
+  explicit. Reuse atom inspection, rotation and comparison controls.
+- Preserve bend-view behavior; no cut selection, model writer, chemical bond,
+  persistent review or checkpoint action is added. Browser visual review is open.
+
 ### W56 — Save replayable representative proposals
 
 - Add an installed explicit-path command and immutable preview packet containing

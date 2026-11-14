@@ -522,6 +522,22 @@
       "coordinates_materialized": false,
       "chemical_connectivity_changed": false,
       "runtime_authority": false
+    },
+    "representative_view": {
+      "module": "nasolve.topostitch_view",
+      "api": "representative_scene",
+      "entry_point": "nasolve-topostitch-view",
+      "schema_version": 1,
+      "scene_kind": "topostitch-representative-view",
+      "all_present_source_atoms": true,
+      "exact_per_edge_partner_images": true,
+      "declared_boundary_and_scope_inspection": true,
+      "shared_offline_renderer": true,
+      "rendered_browser_validation": false,
+      "cut_alternative_selection": false,
+      "persistent_review": false,
+      "coordinates_materialized": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

@@ -431,25 +431,29 @@
       "id": "P02",
       "track": "pine",
       "title": "Offer cut choices in a required graphical preview",
-      "status": "OPEN",
+      "status": "PARTIAL",
       "depends_on": [
         "P01"
       ],
       "goal": "Let the scientist decide where to slice the ASU while seeing the same physical periodic object.",
-      "delivered": [],
+      "delivered": [
+        "W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation."
+      ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
         "Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported."
       ],
-      "next_action": "Reuse the offline coordinate viewer where useful, but first supply P01 periodic graph ownership and bounded cut alternatives; implement actual cut selection/materialization preview and human validation.",
+      "next_action": "Perform genuine graphical/user validation, then add bounded intent-compatible cut alternatives and persistent review choices through the saved Pine-bound proposal owner. Keep materialization and chemical seams behind P03/P04.",
       "evidence": [
-        "E_VIEW"
+        "E_VIEW",
+        "E_REPRESENTATIVE_VIEW"
       ],
       "last_audit": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
+        "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
         "reviewer": "Linden",
-        "code_commit": "0f176a965223af7aafbc433939d2d054f608524a",
-        "scope": "Shared viewer is available; no Pine cut capability delivered, so P02 stays OPEN"
+        "human_update": 57,
+        "scope": "Read-only explicit-proposal inspection prototype; P02 partial, rendered browser/user review and cut-choice semantics remain open"
       }
     },
     {
@@ -845,6 +849,14 @@
       "reference": "docs/topostitch-periodic.md#w56--freeze-and-replay-an-explicit-representative-proposal",
       "result": "22 new regressions,67focused,full1533 plus229subtests,320installed/relocated,6helps,lean import,3.10syntax. Original inputs absent; exact public855-atom/36-image replay and installed CLI packet. Existing preview/scattering replay unchanged.",
       "limitation": "New additive schema1 proposal/receipt only; no model, chemical intent edit, GUI review, refinement or checkpoint. Exact algorithm/Gemmi replay required; no silent migration. Scientific artifacts excluded from Git; no Cedar/runtime-native changes."
+    },
+    "E_REPRESENTATIVE_VIEW": {
+      "kind": "read_only_periodic_view",
+      "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
+      "human_update": 57,
+      "reference": "docs/topostitch-periodic.md#w57--inspect-periodic-representative-proposals-in-the-shared-viewer",
+      "result": "11 new regressions; focused40,full1544 plus229subtests,installed/relocated338,6helps,lean import,3.10syntax. Public855 atoms/42nodes/38edges and legacy replay exact. Actual packaged JS runs with DOM/canvas doubles through edge selection/focus, atom inspection, modes, cell and missing anchors.",
+      "limitation": "No rendered-browser or human visual approval, bounded cut alternatives, persistent review, materialized ASU or chemical link. Existing schemas/commands remain compatible. Scientific artifacts local only; no Cedar or native-tool changes."
     }
   },
   "benchmarks": [
@@ -960,8 +972,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 56,
-    "next": 57,
+    "current": 57,
+    "next": 58,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1105,6 +1117,12 @@
       {
         "number": 56,
         "title": "Save and replay explicit representative proposals",
+        "state": "RECORDED",
+        "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61"
+      },
+      {
+        "number": 57,
+        "title": "Inspect periodic representative proposals in the shared viewer",
         "state": "RECORDED",
         "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61"
       }
