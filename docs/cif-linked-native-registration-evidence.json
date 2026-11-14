@@ -94216,5 +94216,232 @@
     "redundancy_cleanup": "Replaced obsolete near-term patch estimate/history with one current completion matrix. Corrected stale ordinary-caller/phasing/first-refinement next-step text. Kept Q06 chemistry/native-derivative acceptance and downstream PDU survival explicit. Short handoff points to ledger; no new queue.",
     "next": "Resource/recovery acceptance and scope reconciliation using existing owners/retained evidence, then full Q06 effective-restraint and achieved-geometry controls. Do not add another compiler, publication or process stack.",
     "tests": "No code change or new tests in this documentation audit; retain C278 focused/native/relocation results. No full suite."
+  },
+  "repeated_failure_resource_acceptance_2026_11_14": {
+    "checkpoint": "C280 validation of existing C278 code",
+    "code_commit": "7e95917",
+    "checkout_commit": "b6d6dfe0ba5ce700ddcbc9b3fcad84c0296ceb19",
+    "status": "REPEATED_NATIVE_FAILURE_EXHAUSTION_AND_RELOCATION_PASS",
+    "purpose": "Close repeated native-failure/allowance/retained-evidence acceptance through the existing ordinary continuation owner, without redesign or changing frozen historical chemistry.",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c280_start.py",
+    "control": {
+      "anchor": "live_tests_directory",
+      "path": "280_Cedar_repeated-failure-t4bq0sgw"
+    },
+    "source": {
+      "anchor": "live_tests_directory",
+      "path": "266_Cedar_selected-autosol-11iw4weh/original/DiU"
+    },
+    "summary": {
+      "status": "REPEATED_NATIVE_FAILURE_EXHAUSTION_AND_RELOCATION_PASS",
+      "tool_version": "2.2.1",
+      "tool_build": "phenix-2.2.1-6174",
+      "source_request_sha256": "a6de9e110e58daf62b6334eaa58d922a0721a31fa7a4851b78b9fca720dc0bfc",
+      "whole_request": {
+        "files": 741,
+        "logical_bytes": 70706491,
+        "allocated_bytes": 72523776
+      },
+      "whole_control": {
+        "files": 812,
+        "logical_bytes": 80274923,
+        "allocated_bytes": 82284544
+      },
+      "unchanged_original_files": 471,
+      "unchanged_first_attempt_files": 307,
+      "unchanged_cold_files": 796,
+      "cold_seconds": 57.27017520801746,
+      "elapsed_seconds": 223.8338871250162,
+      "maximum_python_resident_bytes": 177324032,
+      "scope": "Actual ordinary continuation of copied historical C266 unqualified request. Second native attempt; no synthetic scientific failure. Two immutable stopped outcomes, preserved original chemistry/context/allowance. No ReadySet success, Coot launch, diffraction refinement, adoption, cleanup or 100-dataset capacity claim. Peak Python RSS includes entire worker and is not combined native memory."
+    },
+    "driver": {
+      "returncode": 0,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "records": {
+      "start.json": "e8ca40f93a0d9cd75dcf2d767bc5700adf363cc044ed8c62303cf97e02d71d70",
+      "runner-pins.json": "2c4da503ec31d9dd528adc28d40f6f1340d217cf95e974db895b31416f33c300",
+      "summary.json": "ebcdb5a9c8f4b5b6ec4e4ed981a73552d6543f97fa9798d962c346ee4b4c30aa",
+      "after-summary.json": "e625b36b1074e6bf4628184b44a4ca96f681349b137f43625916adc04dfc91cc",
+      "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+    },
+    "observed_behavior": [
+      "Copied stopped unqualified C266 request; retained its original context and maximum of two attempts. Current native-name policy was not retrofitted.",
+      "Ordinary continue_checked_postmr executes the fresh second attempt with actual Phenix 2.2.1-6174. It returns no qualified model; RETURNED is not scientific acceptance.",
+      "Third attempt refuses EXHAUSTED without native launch; unqualified publication and retirement refuse for both attempts. Original frozen inputs, first attempt and source dataset remain unchanged.",
+      "Both failures read after relocation, with original/source/store/SDK reads and native launches forbidden except operating-system process identity probes. No checkpoint is fabricated."
+    ],
+    "resource_audit": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c280_resource_audit.py",
+      "sha256": "daa17cf113388742c88a177f7215c6aab901ca53bcc10631ffa59bda756cc07e",
+      "method": "Six explicitly named recorded controls; stream SHA-256 twice per request file and verify size/mtime plus whole-control stat inventory unchanged. No expansion, native work or deletion. Allocated stat blocks are not exclusive APFS/cloned disk ownership.",
+      "cases": [
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "252_Cedar_native-preparation-alternatives-8s_l2y96"
+          },
+          "request_relative_path": "final/ordinary run/PostMR/DictionaryEngine/request",
+          "outcome": "historical_two_attempt_optional_failure_then_success_unretired",
+          "maximum_attempts": 2,
+          "request_files": 1183,
+          "request_logical_bytes": 315299065,
+          "request_allocated_stat_bytes": 318676992,
+          "whole_control_logical_bytes": 315712641,
+          "shared_acquisition_bytes": 483163,
+          "request_inventory_sha256": "fd9c5bf895e392db37655c74685a98670b85cf706e71f36bf0d4e023130063ee"
+        },
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "264_Cedar_selected-autosol-noq5g3qh"
+          },
+          "request_relative_path": "original/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request",
+          "outcome": "stopped_header_refusal",
+          "maximum_attempts": 2,
+          "request_files": 367,
+          "request_logical_bytes": 18921275,
+          "request_allocated_stat_bytes": 19836928,
+          "whole_control_logical_bytes": 29249682,
+          "shared_acquisition_bytes": 8758211,
+          "request_inventory_sha256": "5ddb9d4fdf94c1e4b9abb1dc7eab5cf7243fb4e15a017ec4a80a1442857977d0"
+        },
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "265_Cedar_selected-autosol-lyxpqrp9"
+          },
+          "request_relative_path": "original/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request",
+          "outcome": "stopped_charged_port_refusal",
+          "maximum_attempts": 2,
+          "request_files": 367,
+          "request_logical_bytes": 18921275,
+          "request_allocated_stat_bytes": 19836928,
+          "whole_control_logical_bytes": 29250597,
+          "shared_acquisition_bytes": 8758211,
+          "request_inventory_sha256": "3e1a7c3428643380d38b17698bc8920b24608df182ba05752ce9a30a68291fca"
+        },
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "266_Cedar_selected-autosol-11iw4weh"
+          },
+          "request_relative_path": "original/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request",
+          "outcome": "returned_unqualified_terminal_context",
+          "maximum_attempts": 2,
+          "request_files": 416,
+          "request_logical_bytes": 37543881,
+          "request_allocated_stat_bytes": 38514688,
+          "whole_control_logical_bytes": 47094146,
+          "shared_acquisition_bytes": 3700968,
+          "request_inventory_sha256": "cf898e8dabbdcce99cc5cc572d57dea0ad8f1cd6ed8c5b4f4c34b682f6caabbc"
+        },
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "276_Cedar_source-recipe-campaign-pk37b79m"
+          },
+          "request_relative_path": "relocated/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request",
+          "outcome": "new_success_automatically_retired",
+          "maximum_attempts": 2,
+          "request_files": 168,
+          "request_logical_bytes": 35128115,
+          "request_allocated_stat_bytes": 35540992,
+          "whole_control_logical_bytes": 44911764,
+          "shared_acquisition_bytes": 3701079,
+          "request_inventory_sha256": "f634d60f4a6b0688e37f5d405c1f53f70219dee6c1492647ee9dd8da1626c361"
+        },
+        {
+          "root": {
+            "anchor": "live_tests_directory",
+            "path": "279_Cedar_refinement-policy-2cfxjsvp"
+          },
+          "request_relative_path": "relocated/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request",
+          "outcome": "same_preparation_plus_native_phasing_refinement",
+          "maximum_attempts": 2,
+          "request_files": 168,
+          "request_logical_bytes": 35128115,
+          "request_allocated_stat_bytes": 35540992,
+          "whole_control_logical_bytes": 70280879,
+          "shared_acquisition_bytes": 3701079,
+          "request_inventory_sha256": "f634d60f4a6b0688e37f5d405c1f53f70219dee6c1492647ee9dd8da1626c361"
+        }
+      ],
+      "extrapolation": {
+        "kind": "arithmetic_only_not_execution_or_upper_bound",
+        "datasets": 100,
+        "one_current_successful_request_bytes": 3512811500,
+        "one_historical_two_attempt_request_bytes": 31529906500,
+        "exclude": "Raw diffraction data, other NASolve stages, external-tool temporary output, future explicit campaign retries and unrelated files."
+      }
+    },
+    "compatibility": "No product code/schema/defaults, acceptance thresholds or migration changed.",
+    "artifacts": "Only documentation/compact evidence metadata committed. All scientific inputs, failed outputs, native logs and generated runners remain local and excluded. No original or failed work removed.",
+    "tests": "Native acceptance control and read-only footprint audit only. No full suite or duplicate scientific test matrix.",
+    "remaining": "C281 serial synthetic coordinator check passed; native archived-first continuation and supported recovery/rollout scope remain next. Neither native controls nor synthetic fixtures establish a universal scratch-disk or RAM bound."
+  },
+  "serial_campaign_resource_acceptance_2026_11_14": {
+    "checkpoint": "C281 validation of existing code",
+    "code_commit": "7e95917",
+    "checkout_commit": "b6d6dfe",
+    "status": "SERIAL_100_DATASET_FAILURE_ISOLATION_AND_EXPLICIT_RETRY_PASS",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c281_campaign_capacity.py",
+    "working_directory": "NASolve-c96 checkout",
+    "summary": {
+      "status": "SERIAL_100_DATASET_FAILURE_ISOLATION_AND_EXPLICIT_RETRY_PASS",
+      "datasets": 100,
+      "stages": 306,
+      "failed": 50,
+      "prepared": 50,
+      "additional_explicit_retries": 2,
+      "original_run_snapshots_unchanged": 100,
+      "unchanged_relocated_files": 2951,
+      "storage": {
+        "files": 2951,
+        "logical_bytes": 1602926,
+        "allocated_stat_bytes": 12414976
+      },
+      "seconds": {
+        "initial": 232.28674845799105,
+        "repeat": 0.8878384160052519,
+        "explicit_retry_2": 4.451206041005207,
+        "explicit_retry_3": 4.378072124993196,
+        "cold_status": 1.7930980829987675
+      },
+      "hash_io": {
+        "initial_files": 651504,
+        "initial_bytes": 24494862,
+        "repeat_files": 2704,
+        "repeat_bytes": 96012,
+        "explicit_retry_2_files": 13763,
+        "explicit_retry_2_bytes": 497870,
+        "explicit_retry_3_files": 13763,
+        "explicit_retry_3_bytes": 497870,
+        "cold_status_files": 1352,
+        "cold_status_bytes": 48006
+      },
+      "maximum_python_resident_bytes": 84262912,
+      "elapsed_seconds": 247.66644162498415,
+      "scope": "Existing synthetic stage transport; actual sequential coordinator, request/receipt integrity, immutable run allocation and relocated status. No chemical/native/diffraction/memory-load simulation. Repeating run never retries failures; explicit retries are deliberate new runs and have no campaign-wide fixed count or byte cap. Fixture byte costs cannot be multiplied into a scientific dataset budget."
+    },
+    "validation": "Existing synthetic stage transport from tests/test_campaign_execution.py. Real coordinator, immutable job/stage receipts, allocation, checksum/readback and failure isolation. 100 exact first-run snapshots preserved, two deliberate retries for one failed dataset allocate run_002/run_003, no implicit retries, old root and frame source absent during cold status.",
+    "fixtures": {
+      "tests/test_campaign_execution.py": "8e1c09c0d45deb623af586afbf77811455ca292f69aea71ae144dac5f4da7747",
+      "tests/helpers.py": "77fb5eb10e9a98916ab30b113a9268deee2bcb5bde7be01eb37c0a48e0477518"
+    },
+    "records": {
+      "anchor": "everyday_checkout",
+      "path": "branch-artifacts/cedar/runners/c281_campaign_capacity_records",
+      "sha256": {
+        "start.json": "aa22ce9dcc2ce9719a70ae5a1bdbb737291094966c7930e668c46e016713390b",
+        "summary.json": "eb55973722295a5faf160baa70cf83ab64452a03994521821bb751bd8a4318ab",
+        "cleanup.json": "a4084953b494860c171058c6b00115f8ca0331869d9f78f1429bd808a585e45e"
+      }
+    },
+    "artifacts": "Only compact metadata/docs committed. Generated synthetic dataset tree removed after verified pass; small local receipts and runner retained. No scientific source or failed native output deleted.",
+    "limitations": "No full suite, 100-dataset native execution, native RAM/scratch bound, background scheduling or chemical acceptance claim. Explicit campaign retry intentionally creates a new run and new per-request allowance; there is no global fixed campaign retry/byte cap.",
+    "followup": "Investigate 651,504 hash reads for the initial 100-dataset/300-stage pass. Inspect prior history before proposing scoped verification. Preserve selected dataset, dependency and shared-resource validation before/after every native stage; no persistent stale-cache shortcut. Finish current C282 native continuation before switching."
   }
 }

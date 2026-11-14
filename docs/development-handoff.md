@@ -1,10 +1,40 @@
 # NASolve development handoff — current state
 
 Updated **2026-11-14, C278**. Active **cedar**, NASolve-c96; latest code
-**C278 `7e95917`**, committed and pushed. Simon originally authorized 12:36–14:36 Europe/London;
-Linden relayed Simon's extension to 16:00 with wind-down signal expected. Focused
-checks only: **no full suite, new branch or merge**. The
+**C278 `7e95917`**, committed and pushed; continuity docs through `b6d6dfe`.
+Simon directly authorized a new Q04/Q05 pass beginning 16:04 Europe/London,
+then extended its cutoff to **23:00 on 2026-11-14**, with connectivity interruptions
+expected. Focused checks only: **no full suite, new branch or merge**.
+Current bounded work: audit existing complete-request retention and recovery
+evidence, quantify repeated-failure/campaign resource use, and implement only
+newly demonstrated gaps. Preserve existing controls and avoid duplicate native work. The
 [completion queue](cif-doctor-completion-queue.md) owns unfinished work.
+
+## Active acceptance pass — C280, 16:04–23:00 London
+
+C280 copied the stopped C266 failure and executed its second ordinary native
+attempt with unchanged frozen context/allowance. Both outcomes remain unqualified;
+all processes stopped. A third attempt refuses EXHAUSTED; publication and retirement
+refuse; both failures read after relocation without original/source/SDK access.
+Whole request: 70,706,491 B / 741 files; 471 original files and 307 first-attempt
+files unchanged. Exact command and scope: ledger
+`repeated_failure_resource_acceptance_2026_11_14`. No product code change.
+
+Read-only footprint audit: current successful request 35.1 MB; historical
+unretired PDU two-attempt request 315.3 MB. Failed/shared/native working evidence
+must be included; neither figure is a hard capacity bound. C281 passed 100 synthetic campaign datasets (50 failures, 50 prepared), 306 stages
+including two explicit fresh-run retries, and unchanged relocated status. Synthetic
+fixtures were removed; no native chemistry is implied. It observed 651,504 file-hash
+reads in the initial pass; investigate redundant work after the current bounded
+control, without weakening integrity checks.
+
+**C282 native control is running:** `282_Cedar_retained-continuation-2soqtcwf`
+under the existing owned runner, 1,800-second limit. Fresh copy of C276 only. Continue
+an archived first preparation, publish a second unselected result and retire only
+its eligible working duplicates while preserving all earlier campaign references.
+Process identity, progress, code pins and log are in that local control; memory
+sampling is diagnostic only. Keep source unchanged until it stops, verify owner
+and outcome, and record completion before switching. No full suite.
 
 ## Latest result — the prepared bundle reaches real refinement
 
