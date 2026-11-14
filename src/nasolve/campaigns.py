@@ -1099,8 +1099,8 @@ def _json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
-def campaign_status(root: Path) -> dict[str, Any]:
-    """Read only the frozen collection, reporting drift without adoption or repair."""
+def _campaign_view(root: Path, *, dataset_id: str | None = None) -> dict[str, Any]:
+    """Validate the entire frozen plan, then hash the requested execution scope."""
     campaign = _root(root)
     plan_path = campaign / _STATE_DIRECTORY / "plan.json"
     try:
@@ -1110,6 +1110,13 @@ def campaign_status(root: Path) -> dict[str, Any]:
         _validate_plan(payload)
     except (OSError, UnicodeError, ValueError, TypeError, RecursionError) as exc:
         raise CampaignError(f"Cannot read campaign plan: {exc}") from exc
+    if dataset_id is not None:
+        entries = [entry for entry in payload["datasets"] if entry["id"] == dataset_id]
+        if len(entries) != 1:
+            raise CampaignError("Stage dataset is not in the frozen campaign plan")
+        # A transient stage view retains the original plan fingerprint/counts.
+        # Never save it as a plan or present it as whole-campaign status.
+        payload["datasets"] = entries
     cache: dict[tuple[str, str, int], str | None] = {}
 
     def check(reference: dict[str, Any]) -> str | None:
@@ -1146,6 +1153,24 @@ def campaign_status(root: Path) -> dict[str, Any]:
                                                for entry in payload["datasets"]) else "OK",
     })
     return payload
+
+
+def campaign_status(root: Path) -> dict[str, Any]:
+    """Read the whole frozen collection, reporting drift without adoption or repair."""
+    return _campaign_view(root)
+
+
+def _stage_plan(root: Path, dataset_id: str) -> dict[str, Any]:
+    """Fresh stage-local inputs plus all shared resources; no persistent cache.
+
+    Full plan structure/fingerprint still validates before selecting one entry.
+    Its local discovery inventory and checksums are checked with the same reader
+    as whole-campaign status. Other datasets are independently verified before
+    their stages and by the controller's full entry/exit and status audits.
+    """
+    if not isinstance(dataset_id, str) or not dataset_id:
+        raise CampaignError("Require an exact frozen stage dataset")
+    return _campaign_view(root, dataset_id=dataset_id)
 
 
 __all__ = ["CampaignError", "plan_campaign", "campaign_status"]

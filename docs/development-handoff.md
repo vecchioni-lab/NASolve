@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C278**. Active **cedar**, NASolve-c96; latest code
-**C278 `7e95917`**, committed and pushed; continuity docs through `b6d6dfe`.
+Updated **2026-11-14, C283**. Active **cedar**, NASolve-c96. C283 campaign
+verification change is tested and being published; prior pushed state `948a7860`.
 Simon directly authorized a new Q04/Q05 pass beginning 16:04 Europe/London,
 then extended its cutoff to **23:00 on 2026-11-14**, with connectivity interruptions
 expected. Focused checks only: **no full suite, new branch or merge**.
@@ -28,13 +28,29 @@ fixtures were removed; no native chemistry is implied. It observed 651,504 file-
 reads in the initial pass; investigate redundant work after the current bounded
 control, without weakening integrity checks.
 
-**C282 native control is running:** `282_Cedar_retained-continuation-2soqtcwf`
-under the existing owned runner, 1,800-second limit. Fresh copy of C276 only. Continue
-an archived first preparation, publish a second unselected result and retire only
-its eligible working duplicates while preserving all earlier campaign references.
-Process identity, progress, code pins and log are in that local control; memory
-sampling is diagnostic only. Keep source unchanged until it stops, verify owner
-and outcome, and record completion before switching. No full suite.
+**C282 completed and stopped:** a second native preparation after an archived first
+passes ReadySet, publishes prepare-002 without selecting it, and retires only its
+eligible working duplicates. All 207 earlier campaign references remain valid;
+257 original source files and 327 relocated cold-read files remain unchanged.
+Whole request falls from 191.9 MB to 65.7 MB. Native build 2.2.1-6174; no phasing or
+refinement rerun. Exact compact record:
+`retained_first_attempt_native_continuation_2026_11_14` in the evidence ledger.
+
+**C283:** reuse the existing campaign validator/reconciler for active-dataset stage
+checks, retaining whole-plan structure/shared-resource checks and full entry/exit/
+status audits. The same synthetic capacity control falls from 651,504 to 13,104
+initial hash reads with identical outcomes. Actual focused run: 271 tests + 92
+subtests; five sandbox-blocked process tests separately pass with ps access.
+Relocated temporary checkout: 16 pass. No full suite or new native chemistry.
+Exact scope and commands: `campaign_stage_integrity_scope_2026_11_14`.
+
+**Immediate next:** C284's two status/archive-eligibility regression cases already
+fail because only exact-result reads enter C273's bounded numerical reuse scope.
+Wrap the existing single read-only owner inspection with that same scope, then
+check focused tests and one saved native control read without launching Phenix.
+Do not cache files, ownership, errors or verdicts across calls. All native jobs
+are stopped; no active science to recover. Complete this bounded patch before
+reconciling Q04/Q05 supported release scope in the existing queue.
 
 ## Latest result — the prepared bundle reaches real refinement
 

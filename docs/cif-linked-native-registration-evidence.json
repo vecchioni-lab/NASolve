@@ -94443,5 +94443,165 @@
     "artifacts": "Only compact metadata/docs committed. Generated synthetic dataset tree removed after verified pass; small local receipts and runner retained. No scientific source or failed native output deleted.",
     "limitations": "No full suite, 100-dataset native execution, native RAM/scratch bound, background scheduling or chemical acceptance claim. Explicit campaign retry intentionally creates a new run and new per-request allowance; there is no global fixed campaign retry/byte cap.",
     "followup": "Investigate 651,504 hash reads for the initial 100-dataset/300-stage pass. Inspect prior history before proposing scoped verification. Preserve selected dataset, dependency and shared-resource validation before/after every native stage; no persistent stale-cache shortcut. Finish current C282 native continuation before switching."
+  },
+  "retained_first_attempt_native_continuation_2026_11_14": {
+    "checkpoint": "C282 validation of existing code",
+    "checkout_commit": "b6d6dfe0ba5ce700ddcbc9b3fcad84c0296ceb19",
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c282_start.py",
+    "before_after": "A previously archived successful first preparation remains reusable; a fresh second native preparation is published unselected and only its eligible working duplicates are retired. The original choice, first archive and all 207 earlier campaign artifact references remain unchanged.",
+    "summary": {
+      "status": "NATIVE_RETAINED_FIRST_ATTEMPT_CONTINUATION_ALTERNATIVE_AND_RELOCATION_PASS",
+      "tool_version": "2.2.1",
+      "tool_build": "phenix-2.2.1-6174",
+      "current": "postmr",
+      "alternative": "prepare-002",
+      "whole_request": {
+        "files": 236,
+        "logical_bytes": 65658597,
+        "allocated_stat_bytes": 66248704
+      },
+      "whole_control": {
+        "files": 344,
+        "logical_bytes": 75482630,
+        "allocated_stat_bytes": 76349440
+      },
+      "unchanged_source_files": 257,
+      "unchanged_cold_files": 327,
+      "unchanged_campaign_references": 207,
+      "cold_seconds": 212.56917670901748,
+      "elapsed_seconds": 1530.1390989999927,
+      "maximum_python_resident_bytes": 635600896,
+      "scope": "Actual ordinary continuation on copied archived C276 request; complete native repair/ReadySet and unselected alternative publication. Existing successful-working retirement on only the new second attempt, after checking old campaign reference nonmembership. Exact cold original/alternative/campaign reads. No Coot construction, phasing, refinement, current-choice change, historical cleanup or default-route change."
+    },
+    "retention": {
+      "before": {
+        "files": 861,
+        "logical_bytes": 191853201,
+        "allocated_stat_bytes": 194351104
+      },
+      "after": {
+        "files": 236,
+        "logical_bytes": 65658597,
+        "allocated_stat_bytes": 66248704
+      },
+      "retirement": {
+        "schema_version": 1,
+        "policy_id": "cif-complete-attempt-working-retirement-v1",
+        "intent_sha256": "23d3006b77df2374d3182f0c12bd0651757c7f6e3c31104114eab6add00948d5",
+        "retired_files": 629,
+        "retired_logical_bytes": 140908531,
+        "record_sha256": "5f3c5c2f5e79d5c377d2b16f21c1509ff204026658d9b0ac1f8913938b532091"
+      }
+    },
+    "driver": {
+      "returncode": 0,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "memory": {
+      "sample_count": 1495,
+      "sampled_peak_rss_kib": 620464,
+      "sampling_errors": [],
+      "scope": "Once-per-second ps RSS sum for the observed worker and live descendants across process groups. Sampling lower bound, not a memory cap or guaranteed peak; shared pages may be counted more than once. Monitor does not control or signal jobs."
+    },
+    "records": {
+      "anchor": "live_tests_directory",
+      "path": "282_Cedar_retained-continuation-2soqtcwf",
+      "sha256": {
+        "start.json": "e8ca40f93a0d9cd75dcf2d767bc5700adf363cc044ed8c62303cf97e02d71d70",
+        "runner-pins.json": "7deb41acf0dc8002fdfee299ea5740b20a0a4390c5ae9937b91535e17439b3f6",
+        "worker.py": "5f49693dc666315734429aa76dc112797db13a02d1ab05b173e05807562694ca",
+        "source-inputs.json": "475591c6de37c8b2c8efd24c4f1410e4c7f922ca8efa289806b9066af089124f",
+        "summary.json": "10a7c45adf345b8de125954b387e2bd8e6e188b5e624b230069604d38468dd0a",
+        "retention-summary.json": "472fed6cfd44477d59ade3c541bb58e322ca54b3b8b71344a62727d20ecca39d",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "sampled-process-memory.json": "a30fc3c6008d9f1f79dc9752fa691616d431173073a75534e4e70fb44c0c3247"
+      }
+    },
+    "compatibility": "Existing APIs, records, frozen source recipe, native commands and ownership unchanged. Explicit publication/second-attempt retirement, not default activation or old-campaign migration.",
+    "artifacts": "Only compact metadata committed. Native science, full source pins, inventory, logs and runners remain local; original C276 source and all failed evidence preserved.",
+    "limits": "Actual Phenix 2.2.1 / build phenix-2.2.1-6174 complete repair/ReadySet execution. No Coot construction, phasing, diffraction refinement, PDU survival, native 100-dataset capacity or hard memory/disk quota claim."
+  },
+  "campaign_stage_integrity_scope_2026_11_14": {
+    "checkpoint": "C283",
+    "base_commit": "948a7860",
+    "prior_work": "Reviewed existing campaign status/records/controller/worker, campaign methods and history from initial campaign implementation through C247. Reuse the same full plan validator, shared resource reader and per-attempt reconciliation. No previous stage-local verification owner found.",
+    "before_after": "Previously each stage hashed unrelated datasets and replayed their completed artifacts. Now each stage freshly checks its exact dataset, dependencies and all shared resources; full collection audits remain at entry, exit, retry and explicit status. Entire frozen plan structure/fingerprint always validates. Other-dataset drift is refused before that dataset starts and reported by the final full audit.",
+    "changed_files_sha256": {
+      "src/nasolve/campaigns.py": "c56f0a54a12b357e88aad4699cf2fac3a842ef023461295c1295bb5ff510fcd9",
+      "src/nasolve/campaign_execution.py": "876d5a2b26186eec214e15496c06f77bddf73b966b8ee9abff72aaeb1917a39f",
+      "src/nasolve/campaign_worker.py": "f1389d16caeb2049560fff7d428cffc3fe3fb8d0dcbef35435fed3fe9e1a51af",
+      "tests/test_campaign_integrity_scope.py": "a1fc168c23f05ba620471ef64cd8a212de3d9c58cd278d58ed80dc2b4b4178cf"
+    },
+    "schema_change": null,
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider /private/tmp/c283_campaign_io_regression.py",
+        "result": "Before fix: 2 failed, 6 passed in 1.18 s; repeated unrelated file reads exposed."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_campaign*.py tests/test_cif_campaign_first_refinement.py tests/test_cif_preparation_retention.py",
+        "result": "271 passed + 92 subtests in 56.58 s; 5 process tests blocked by sandbox /bin/ps permission. Those exact 5 rerun with process-inspection access: 5 passed in 2.51 s. No product failure; no full suite."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_campaign_integrity_scope.py tests/test_campaign_execution.py::CampaignExecutionTests::test_boundary_stop_resumes_after_relocation_without_original",
+        "result": "Relocated temporary source checkout: 16 passed in 1.64 s; original source path absent. Source modules byte-identical to actual patch; new test later expanded to readable formatting with identical AST."
+      }
+    ],
+    "capacity_comparison": {
+      "baseline_key": "serial_campaign_resource_acceptance_2026_11_14",
+      "same_fixture": true,
+      "summary": {
+        "status": "SERIAL_100_DATASET_FAILURE_ISOLATION_AND_EXPLICIT_RETRY_PASS",
+        "datasets": 100,
+        "stages": 306,
+        "failed": 50,
+        "prepared": 50,
+        "additional_explicit_retries": 2,
+        "original_run_snapshots_unchanged": 100,
+        "unchanged_relocated_files": 2951,
+        "storage": {
+          "files": 2951,
+          "logical_bytes": 1602926,
+          "allocated_stat_bytes": 12414976
+        },
+        "seconds": {
+          "initial": 47.965473040996585,
+          "repeat": 1.0901352080109064,
+          "explicit_retry_2": 2.0391086669988,
+          "explicit_retry_3": 1.9272553750197403,
+          "cold_status": 1.417940292012645
+        },
+        "hash_io": {
+          "initial_files": 13104,
+          "initial_bytes": 1171962,
+          "repeat_files": 2704,
+          "repeat_bytes": 96012,
+          "explicit_retry_2_files": 4553,
+          "explicit_retry_2_bytes": 171041,
+          "explicit_retry_3_files": 4553,
+          "explicit_retry_3_bytes": 171041,
+          "cold_status_files": 1352,
+          "cold_status_bytes": 48006
+        },
+        "maximum_python_resident_bytes": 87441408,
+        "elapsed_seconds": 58.31473491698853,
+        "scope": "Existing synthetic stage transport; actual sequential coordinator, request/receipt integrity, immutable run allocation and relocated status. No chemical/native/diffraction/memory-load simulation. Repeating run never retries failures; explicit retries are deliberate new runs and have no campaign-wide fixed count or byte cap. Fixture byte costs cannot be multiplied into a scientific dataset budget."
+      },
+      "interpretation": "Initial hash reads 651504 -> 13104 (about 98% fewer); initial times 232.29 -> 47.97 s on an uncontrolled machine. Same 306 synthetic stages, failure isolation, explicit retries and unchanged original/cold files. No universal timing or scientific capacity claim."
+    },
+    "capacity_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:. /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c283_campaign_capacity.py",
+    "capacity_records": {
+      "anchor": "everyday_checkout",
+      "path": "branch-artifacts/cedar/runners/c283_campaign_capacity_records",
+      "sha256": {
+        "start.json": "12a78e154affe2b98371d267ce15ab6606e9b2a700d0bdb6ce2749e83869c926",
+        "summary.json": "548afb48e3ed4a711248adf281d1dc2efab759c50bf279cb5a71f2af9a1a48fa",
+        "cleanup.json": "a4084953b494860c171058c6b00115f8ca0331869d9f78f1429bd808a585e45e"
+      }
+    },
+    "compatibility": "No saved format, default, selection, native chemistry, process owner, retry allowance or integrity threshold change. No persistent checksum cache. Private stage view retains original fingerprint/counts and cannot be used for full reconciliation.",
+    "artifacts": "No scientific artifacts committed. Synthetic dataset tree removed after pass; compact runner/receipts retained locally.",
+    "remaining": "No native rerun for this orchestration-only change. C279 and C282 retain their exact historical code qualification. C284 will address a separately reproduced inspection-local numerical-reuse gap; Q04/Q05 scope reconciliation remains open. Last full suite C220/583d30df: 9178 tests + 276 subtests."
   }
 }

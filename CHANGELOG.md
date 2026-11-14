@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Avoid repeatedly reading unrelated campaign data (C283)
+
+- Stage workers and their controller now verify the active dataset, its earlier
+  results and all shared resources at each stage boundary. The entire frozen plan
+  structure still validates; entry, exit and explicit status audit every dataset.
+- A 100-dataset synthetic control reduces initial file-hash reads from 651,504
+  to 13,104 with unchanged failure isolation, explicit retries and relocated
+  results. No persistent file cache, saved-format or scientific-policy change.
+
 ### Preserve full-model interpretation policy in refinement (C278)
 
 - Phenix refinement rejected the interpreter-only spelling of Cedar's retained
