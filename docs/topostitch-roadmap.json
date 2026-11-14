@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "fa170e21e33bd6740790072e83524545601fd606",
+  "audited_code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -454,7 +454,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "fa170e21e33bd6740790072e83524545601fd606",
+        "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
         "reviewer": "Linden",
         "human_update": 59,
         "scope": "Explicit graph-image proposal only; P02 remains partial with saved forest intent and actual graphical choice/review open"
@@ -872,7 +872,7 @@
     },
     "E_EXPLICIT_FOREST": {
       "kind": "explicit_forest_image_proposal",
-      "code_commit": "fa170e21e33bd6740790072e83524545601fd606",
+      "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
       "human_update": 59,
       "reference": "docs/topostitch-periodic.md#w59--calculate-representatives-along-explicitly-chosen-links",
       "result": "21forest cases plus typed replay regression; focused78,full1567 plus229subtests,installed/relocated361,6helps. P43/R3/P21/unwrapped/reversed/disconnected/winding and source packet/view controls. Two predeclared public anchors move282/286 atoms and preserve sampled scattering within stated raw differences.",
@@ -1156,7 +1156,7 @@
         "number": 59,
         "title": "Calculate representatives along explicitly chosen graph links",
         "state": "RECORDED",
-        "code_commit": "fa170e21e33bd6740790072e83524545601fd606"
+        "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410"
       }
     ]
   }

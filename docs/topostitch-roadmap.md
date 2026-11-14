@@ -283,7 +283,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Retain selected-edge/anchor edit intent in source-bound saved proposals, then qualify actual graphical choices and persistent review. Keep partial topology/physical identity and chemical seams behind their existing gates.
 **Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest).
-**Last audit:** 2026-11-14, Linden, [W59](https://github.com/vecchioni-lab/NASolve/commit/fa170e21e33bd6740790072e83524545601fd606); Explicit graph-image proposal only; P02 remains partial with saved forest intent and actual graphical choice/review open.
+**Last audit:** 2026-11-14, Linden, [W59](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410); Explicit graph-image proposal only; P02 remains partial with saved forest intent and actual graphical choice/review open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -650,7 +650,7 @@ Missing-asset regression fails before fix; focused41,full1545 plus229subtests,in
 <a id="e_explicit_forest"></a>
 ### E_EXPLICIT_FOREST — explicit_forest_image_proposal
 
-[Evidence contract](topostitch-periodic.md#w59--calculate-representatives-along-explicitly-chosen-links) at [W59](https://github.com/vecchioni-lab/NASolve/commit/fa170e21e33bd6740790072e83524545601fd606).
+[Evidence contract](topostitch-periodic.md#w59--calculate-representatives-along-explicitly-chosen-links) at [W59](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410).
 21forest cases plus typed replay regression; focused78,full1567 plus229subtests,installed/relocated361,6helps. P43/R3/P21/unwrapped/reversed/disconnected/winding and source packet/view controls. Two predeclared public anchors move282/286 atoms and preserve sampled scattering within stated raw differences.
 **Limit:** No inferred partner/tree/cut, saved forest edit intent, model, chemistry or graphical approval. Partial public graph is not a full molecular object. No native execution; all scientific data local only.
 
