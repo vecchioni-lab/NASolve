@@ -128,6 +128,102 @@ def load_relabel_preview(directory):
     return receipt
 
 
+
+def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None):
+    """Expose existing source bonds that a proposed representation cuts.
+
+    Cedar authenticates the capture and binds native atoms/identity links. Only
+    those already interpreted interresidue identity bonds are transported here.
+    Source symmetry bonds remain explicit unqualified evidence; no bond, angle,
+    terminal atom or model is generated, and native interpretation is not run.
+    """
+    import math
+    from .topostitch_captured_job import _cedar
+    from .topostitch_graph import _compose, _inverse
+    from .topostitch_periodic import _crystal
+    from .topostitch_recut import _arithmetic_bound
+    root=Path(directory);manifest=root/'preview.json';manifest_bytes=manifest.read_bytes()
+    packet=load_relabel_preview(root)
+    frozen={root/ref['relative_path']:(root/ref['relative_path']).read_bytes() for ref in packet['artifacts'].values()}
+    if (_fingerprint(_json(manifest_bytes))!=_fingerprint(packet)
+            or any(sha256(frozen[root/ref['relative_path']]).hexdigest()!=ref['sha256'] for ref in packet['artifacts'].values())):
+        raise ValueError('Representative packet changed before native link binding')
+    model=frozen[root/'source.pdb'];preview=packet['observation'];bound=preview['registered_graph']
+    if sha256(model).hexdigest()!=packet['source_model_sha256']:
+        raise ValueError('Native link source differs from the representative packet')
+    with _cedar(cedar_source) as cedar:
+        owner=cedar['cif_attachment_native']
+        receipt,native,captured=owner._capture(Path(native_receipt),model)
+        if receipt['status']!='REVIEW':raise ValueError('Require a complete read-only source native capture')
+        keys,labels=owner._native_atoms(native,model)
+        links,symmetry=owner._links(native,keys,labels,{key[0] for key in keys})
+        crystal=bound['periodic_graph']['crystal']
+        gemmi,cell,_=_crystal(crystal['cell_parameters'],crystal['space_group']);identity=gemmi.Op('x,y,z')
+        atoms=preview['source_orbit_observation']['atoms'];by_key={};site_images={}
+        for i,row in enumerate(atoms):
+            a=row['identity']
+            if a['altloc'] or a['insertion_code']:raise ValueError('Native link view requires unambiguous source residue identities')
+            key=((a['chain'] or '_')+':'+str(a['residue_number']),a['residue_code'],a['atom_name'])
+            if key in by_key:raise ValueError('Duplicate source atom identity')
+            by_key[key]=i
+        if len(keys)!=len(by_key) or set(keys)!=set(by_key):raise ValueError('Native and preview atom identities differ')
+        image_by_atom={i:'x,y,z' for i in range(len(atoms))}
+        for group in preview['atom_image_groups']:
+            for i in group['atom_indices']:image_by_atom[i]=group['operator_xyz']
+        for key,i in by_key.items():
+            xyz=image_by_atom[i]
+            if key[0] in site_images and site_images[key[0]]!=xyz:
+                raise ValueError('Native link observation requires whole-residue images')
+            site_images[key[0]]=xyz
+        node_by_site={node['mapping']['coordinate_site']:node['node_id'] for node in bound['nodes'] if node['mapping'] is not None}
+        rows=[]
+        for number,link in enumerate(links,1):
+            a,b=[tuple(k) for k in link['endpoints']];i,j=by_key[a],by_key[b]
+            left,right=gemmi.Op(site_images[a[0]]),gemmi.Op(site_images[b[0]])
+            relative=_compose(left,_inverse(right,identity))
+            before=[atoms[i]['position_angstrom'],atoms[j]['position_angstrom']]
+            proposed=[preview['proposed_points_angstrom'][i],preview['proposed_points_angstrom'][j]]
+            transformed=list(cell.op_as_transform(relative).apply(gemmi.Position(*proposed[1])))
+            expected=[list(cell.op_as_transform(left).apply(gemmi.Position(*p))) for p in before]
+            actual=[proposed[0],transformed];tolerance=_arithmetic_bound(*before,*actual,*expected)
+            error=max(abs(a-b) for p,q in zip(actual,expected) for a,b in zip(p,q))
+            if error>tolerance or abs(math.dist(*actual)-math.dist(*before))>4*tolerance:
+                raise ValueError('Transported native source link changed its image geometry')
+            nodes=[node_by_site.get(key[0]) for key in (a,b)]
+            declared=[edge['edge_id'] for edge in bound['periodic_graph']['edges']
+                if edge['kind']=='covalent_backbone' and None not in nodes
+                and {edge['source'],edge['target']}==set(nodes) and edge['target_operator_xyz']=='x,y,z']
+            phosphate=None
+            if {a[2].replace('*',"'"),b[2].replace('*',"'")}=={"O3'",'P'}:
+                site=next(key[0] for key in (a,b) if key[2]=='P')
+                present=sorted(key[2] for key in by_key if key[0]==site and key[2] in ('P','OP1','OP2'))
+                phosphate=dict(site=site,present_source_atoms=present,missing_source_atoms=sorted(set(('P','OP1','OP2'))-set(present)),atoms_created_or_deleted=False)
+            rows.append(dict(link_id=number,source_link=link,source_atom_indices=[i,j],
+                status='PROPOSED_SYMMETRY_SEAM' if relative.triplet()!='x,y,z' else 'SAME_REPRESENTATIVE',
+                source_site_images=[left.triplet(),right.triplet()],proposed_target_operator_xyz=relative.triplet(),
+                before_points=before,after_image_points=actual,after_direct_points=proposed,
+                before_distance_angstrom=math.dist(*before),after_image_distance_angstrom=math.dist(*actual),
+                after_direct_distance_angstrom=math.dist(*proposed),maximum_coordinate_error_angstrom=error,
+                declared_backbone_edge_ids=declared,phosphate_inventory=phosphate))
+        if any(path.read_bytes()!=data for path,data in captured.items()):raise ValueError('Native capture changed during seam observation')
+    if manifest.read_bytes()!=manifest_bytes or any(path.read_bytes()!=data for path,data in frozen.items()):
+        raise ValueError('Representative packet changed during seam observation')
+    result=dict(schema_version=1,kind='topostitch-representative-native-link-observation',status='SOURCE_LINKS_REVIEW_REQUIRED',
+        source_model_sha256=packet['source_model_sha256'],preview_receipt_sha256=sha256(manifest_bytes).hexdigest(),
+        preview_sha256=preview['preview_sha256'],native_receipt_sha256=sha256(captured[Path(native_receipt).expanduser().resolve()]).hexdigest(),
+        native_policy_id=receipt['policy_id'],native_version=receipt['phenix_version'],
+        native_bond_counts={k:native['geometry']['proxy_counts'][k] for k in ('bond_simple','bond_asu')},
+        links=rows,proposed_seam_count=sum(r['status']=='PROPOSED_SYMMETRY_SEAM' for r in rows),
+        source_symmetry_links_unqualified=symmetry,source_atom_count=len(atoms),
+        bond_enforcement_enabled=False,chemical_connectivity_changed=False,phosphate_atoms_changed=False,
+        coordinates_materialized=False,scientific_acceptance=False,runtime_authority=False,
+        limitations=['Source native interpretation is evidence, not complete intended topology or chemical approval',
+                     'Only existing interresidue identity simple bonds are transported; source symmetry bonds and all angle/exclusion policies remain unqualified',
+                     'Direct proposed-ASU separation may be large while exact-image distance is unchanged; no automatic bond, OP3 or dephosphorylation'])
+    result['report_sha256']=_fingerprint(result)
+    return result
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(prog='nasolve-topostitch-cut-preview',
         description='Freeze an explicit representative proposal for review; no edited model or chemical link.')

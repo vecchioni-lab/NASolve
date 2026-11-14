@@ -443,7 +443,8 @@
         "W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation.",
         "W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge.",
         "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.",
-        "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI."
+        "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.",
+        "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
@@ -455,14 +456,15 @@
         "E_REPRESENTATIVE_VIEW",
         "E_VIEW_PACKAGE_BOUNDARY",
         "E_EXPLICIT_FOREST",
-        "E_SAVED_FOREST_INTENT"
+        "E_SAVED_FOREST_INTENT",
+        "E_NATIVE_REPRESENTATION_SEAMS"
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
+        "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
         "reviewer": "Linden",
-        "human_update": 60,
-        "scope": "Saved proposal intent only; P02 graphical choice/review, P03/P04 and chemistry remain open"
+        "human_update": 63,
+        "scope": "Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified"
       }
     },
     {
@@ -499,12 +501,14 @@
       "id": "P04",
       "track": "pine",
       "title": "Qualify seam chemistry and native interpretation",
-      "status": "OPEN",
+      "status": "PARTIAL",
       "depends_on": [
         "P03"
       ],
       "goal": "Make a representation seam remain a continuous backbone where chemistry says it is continuous.",
-      "delivered": [],
+      "delivered": [
+        "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change."
+      ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
@@ -512,13 +516,15 @@
       ],
       "next_action": "Carry Pine declared continuation/terminus intent into Cedar without atom deletion or OP3 inference from an ASU boundary; keep bond enforcement disabled until full seam angle/native policy is qualified.",
       "evidence": [
-        "E_PINE_TEST_BANK"
+        "E_PINE_TEST_BANK",
+        "E_NATIVE_REPRESENTATION_SEAMS"
       ],
       "last_audit": {
-        "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "date": "2026-11-14",
+        "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "human_update": 63,
+        "scope": "Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified"
       }
     },
     {
@@ -909,6 +915,14 @@
       "reference": "docs/topostitch-periodic.md#w62--exact-labelled-orbit-permutations-for-a-proposed-cut",
       "result": "16 regressions; independent rational checks across65 Sohncke groups; focused47,full1592 plus229subtests,installed/relocated386,6helps,lean/3.10. Both public proposals preserve855 labelled atoms and7695 cell-image incidences; exact replay and old outputs preserved.",
       "limitation": "No special-position weighting, unique physical atom/molecule identity, tensor serialization, model writer, chemical connection, native execution or graphical approval. Source data and scientific outputs stay local; schema additive."
+    },
+    "E_NATIVE_REPRESENTATION_SEAMS": {
+      "kind": "native_source_link_representation_observation",
+      "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164",
+      "human_update": 63,
+      "reference": "docs/topostitch-periodic.md#w63--show-existing-source-bonds-at-proposed-asu-seams",
+      "result": "11 regressions; focused52,full1603 plus229subtests,installed/relocated397,six helps. Complete Phenix2.2.1-6174 source capture:855 atoms/956simple/0ASU/38interresidue links. Both explicit public cuts expose two source-native seams outside the declared backbone graph, retaining P/OP1/OP2 and exact-image geometry. Temporary installed C302 composition passes397Willow/238Cedar plus19subtests and exact default-owner native/old replay.",
+      "limitation": "Observation only: source interpretation is not complete intent; existing symmetry bonds/angles/exclusions unqualified. No new bond, atom edit, model, native refinement, graphical approval or scientific acceptance. Scientific artifacts local; original setup refusal preserved."
     }
   },
   "benchmarks": [
@@ -1024,8 +1038,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 62,
-    "next": 63,
+    "current": 63,
+    "next": 64,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1207,6 +1221,12 @@
         "title": "Verify exact labelled crystal-image permutations",
         "state": "RECORDED",
         "code_commit": "ea27b49bdbb08f4806eb9b200d223050c46e3164"
+      },
+      {
+        "number": 63,
+        "title": "Expose existing source bonds at proposed representation seams",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

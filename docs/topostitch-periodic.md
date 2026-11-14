@@ -1441,3 +1441,92 @@ viewer asset and TopoStitch modules are added to the archived Cedar base; metada
 union and every overlaid source hash are recorded. Cedar's dirty working files
 are excluded. This is a scoped package/owner compatibility check, not a merge,
 complete combined suite, combined human-documentation review or native execution.
+
+
+## W63 — Show existing source bonds at proposed ASU seams
+
+The source-bound packet now supports an optional read-only native-link observation:
+`nasolve.topostitch_recut_bundle.observe_relabel_native_links(packet, native_receipt)`.
+The existing viewer exposes it with `--native-receipt`:
+
+```bash
+nasolve-topostitch-view /path/to/representative-packet --native-receipt /path/to/capture/native_receipt.json --out /path/to/new-review.html
+```
+
+Use an authenticated **unchanged source-model** Cedar capture, not a capture of a
+bent candidate or another representation. Installed Cedar owners are the default;
+the isolated Willow prototype can explicitly use `--cedar-source /path/to/trusted/cedar/src`.
+That developer option loads trusted code; it is not a scientific input resolver.
+No native process is launched by this observer. The packet and all capture artifacts
+are checked by their existing owners and must remain byte-identical during replay.
+Native atoms are joined by exact source identity, so native reordering cannot change
+which atoms are tracked. Ambiguous altloc/insertion identities refuse in this scope.
+
+Cedar owns capture authentication, atom binding and the interpreted bond inventory.
+Only existing **interresidue identity simple bonds** are transported. If source
+endpoints use proposed images `h_left` and `h_right`, the second proposed endpoint
+is viewed through `h_left * inverse(h_right)`. Independent Cartesian transforms
+verify the unchanged original bond geometry. Duplicate source proxies remain
+separate. Existing ASU bonds and simple bonds with nonidentity operators stay
+explicitly unqualified; they are not mistaken for identity links. All angle,
+plane and exclusion policies remain outside this observation.
+
+The additive schema-1 `topostitch-representative-native-link-observation` binds
+source, preview packet, registered preview and native receipt hashes. It reports
+source/direct/exact-image endpoint coordinates and distances, native policy/version,
+proxy counts and links absent from the declared backbone graph. For O3′–P links it
+inventories source **P/OP1/OP2**. This is observed native connectivity, not complete
+intended topology or chemical approval. Missing atoms remain missing; no atom,
+OP3, terminal treatment, active bond, angle restraint or replacement model is made.
+
+The optional viewer section **Existing links across the cut** lists affected links
+and retained phosphate atoms. No extra bond line or Apply action is introduced.
+Old scenes and packets are unchanged when no capture is supplied. A source-native
+link absent from the logical graph is an explicit coverage gap, not permission to
+silently extend that graph. The new observation and optional scene field are
+additive; older readers need not consume them and no old packet migration is needed.
+P04 is now partial for observation only; native seam enforcement remains open.
+
+Eleven adapter regressions cover exact-image distances, no-op, source reordering,
+duplicate links, unqualified source symmetry rows, incomplete/failed/drifting
+captures, relocation and optional CLI behavior. The pre-feature module fails these
+new imports. Focused **52** and complete Willow **1,603 plus 229 subtests** pass:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_topostitch_native_seams.py tests/test_topostitch_recut_bundle.py tests/test_topostitch_recut_view.py tests/test_topostitch_view.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider
+python -m pip wheel --no-deps --no-build-isolation --wheel-dir /path/to/local/wheels .
+```
+
+Host Python 3.12.14 used the declared full topology environment (Gemmi 0.7.5).
+Installed/relocated **397** tests, six command helps, lean imports and Python 3.10
+syntax pass. Both native reports/scenes replay exactly after removing original
+paths; the installed optional-view command reproduces its exact scene. Final
+module/HTML bytes match wheel SHA-256
+`bd3e31e175c241e19bdf3369373f6a59e3d86d09703666a3b998edcdbf8ae97a`.
+Actual viewer JavaScript with DOM/canvas doubles passes native, plain representative,
+bend and missing-anchor controls. This is not rendered-browser or human review;
+that earlier graphical validation gap remains open.
+
+One complete read-only **Phenix 2.2.1-6174** source capture used frozen Cedar
+`f2345a8`, with no optimization/refinement/Coot execution. Initial setup refused
+before native launch because the proposed output parent contained the PHIL input;
+that refusal is retained. Separating input/output parents produced `REVIEW` in
+1.8515 seconds. The exact source has 855 atoms, 956 simple native bonds, zero ASU
+bonds and 38 interresidue identity links. Native receipt SHA-256:
+`ff2384075aa0613b0531cf473e96d9331ac76a755695e68e5e583e612d1d027d`.
+Both W60 alternatives create two representation seams: anchor 1 at C:108–109 and
+D:115–116; anchor 21 at A:108–109 and C:108–109. All four O3′–P observations retain
+P/OP1/OP2 and original exact-image distances. None of those links is present in
+the partial declared backbone graph. Neither proposal is selected or chemically
+approved. Scientific sources, native capture, packets, views and validation logs
+remain local and are excluded from Git.
+
+
+A temporary installed composition with published Cedar C302 `d32825e9` passes
+**397 Willow + 238 Cedar tests and 19 subtests**, six helps and exact public replay,
+including authentication through the default installed Cedar owners. Temporary
+source inputs were relocated before replay. This adds source-capture compatibility
+to W62's packet/orbit/view/scattering checks. Only explicit topology metadata,
+TopoStitch modules and viewer asset were overlaid on the archived Cedar commit;
+no dirty Cedar file, branch merge, full combined suite or native execution was used.

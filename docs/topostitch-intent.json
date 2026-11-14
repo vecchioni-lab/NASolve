@@ -576,6 +576,25 @@
       "scattering_invariance_validated": false,
       "coordinates_materialized": false,
       "runtime_authority": false
+    },
+    "representative_native_links": {
+      "module": "nasolve.topostitch_recut_bundle",
+      "api": "observe_relabel_native_links",
+      "schema_version": 1,
+      "kind": "topostitch-representative-native-link-observation",
+      "source_owner": "Cedar authenticated capture, native atoms and interpreted identity-link inventory",
+      "scope": "Existing interresidue identity simple bonds only; exact source identity mapping preserves reorder and proxy multiplicity",
+      "image_relation": "h_left * inverse(h_right)",
+      "source_symmetry_links": "Retained unqualified; not converted to identity links",
+      "phosphate_policy": "Inventory existing P/OP1/OP2; no atom creation/deletion or OP3 inference",
+      "viewer": "Optional --native-receipt on representative packets; --cedar-source is explicit trusted developer code",
+      "declared_graph_coverage": "Report missing source links without extending graph",
+      "bond_enforcement_enabled": false,
+      "chemical_connectivity_changed": false,
+      "phosphate_atoms_changed": false,
+      "coordinates_materialized": false,
+      "scientific_acceptance": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

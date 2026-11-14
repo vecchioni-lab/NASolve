@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W62; next W63.** Human W-numbers and exact code provenance live
+**Willow update W63; next W64.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,592 plus 229 subtests**; focused47;
-installed/relocated386, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,603 plus 229 subtests**; focused52;
+installed/relocated397, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -168,6 +168,16 @@ through the existing packet command. Reopening derives the same images and verif
 compact selection provenance; direct-image packets/scenes remain exact. The viewer
 shows the fixed logical sites and chosen links. This is proposal intent, not review.
 
+W63 adds an optional authenticated source-native link comparison to those packets
+and the viewer. Each public cut moves two existing O3′–P bonds across the proposed
+ASU boundary that are absent from the partial declared graph. Exact-image distance
+and source P/OP1/OP2 are preserved. Source symmetry bonds and surrounding angle/
+exclusion policy remain unqualified. Source interpretation is evidence, not full
+intended topology; the observer neither extends the graph nor activates a bond.
+One complete Phenix 2.2.1-6174 source capture passed (no optimization/refinement);
+initial input/output-parent setup refusal is preserved. P04 is partial for this
+observation only. Exact hashes, commands and limits are in the W63 periodic guide.
+
 **Next bounded work:** actual graphical cut choice and persistent human review
 still need qualification. W61 completed the two read-only W54 failed-point reviews
 under one common complete recipe: selected/core pair and scalar geometry improve,
@@ -176,7 +186,7 @@ outcomes persist; no optimizer rerun, candidate or acceptance. See the W61 previ
 guide audit. W62 now proves exact labelled group-image permutations/inverse lattice
 shifts and complete atom ownership for explicit proposals, with independent point
 binding. Special-position weights, ADP serialization and physical unique-atom
-identity remain separate. Continue P02 choices/review and complete Cedar native
+identity remain separate. Continue P02 choices/review and coordinate complete Cedar native
 enforcement without treating recutting as geometry repair. P01 and P02 remain partial. Do not materialize an ASU before the
 P03 identity/scattering and P04 seam-chemistry gates. W55 supplies an independent
 sampled complex-Fcalc/ANISOU transport diagnostic, not complete invariance proof.
@@ -219,12 +229,13 @@ Virtual L/R recipe labels are not ordinary source-model refinement selections.
 Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
 movement masks require their own qualified consumer policy.
 
-**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W62's
-temporary installed composition with published Cedar C301 `bea76681` passes 386
-Willow + 182 Cedar tests and 19 subtests, six helps and exact old/new packet/orbit/
-view/scattering replay. Metadata union is explicit (extras, entry points, exact
-viewer asset); runtime overlays have source hashes. This is scoped compatibility,
-not a merge, full combined suite, combined human-guide review or native execution.
+**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W63's
+temporary installed composition with published Cedar C302 `d32825e9` passes 397
+Willow + 238 Cedar tests and 19 subtests, six helps and exact old/new packet/orbit/
+view/scattering/source-native replay through the default installed Cedar owners.
+Metadata union is explicit (extras, entry points, exact viewer asset); runtime
+overlays have source hashes. This is scoped compatibility, not a merge, full
+combined suite, combined human-guide review or native execution.
 
 Do not edit Cedar or its installation. Preserve immutable runs, unpublished inputs,
 maps, Free-R and all negative evidence. Scientific artifacts stay local; evidence

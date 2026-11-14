@@ -125,13 +125,15 @@ def preview_scene(directory, *, candidate_index=None, radius_angstrom=None,
             'periodic':periodic,'max_pairs':max_pairs,'max_image_tests':max_image_tests}}
 
 
-def representative_scene(directory):
+def representative_scene(directory, *, native_receipt=None, cedar_source=None):
     """Inspect a frozen representative proposal, including exact edge images.
 
     Points are display coordinates, never a new chemical bond or materialized
     model. Missing anchors remain explicit rather than acquiring guessed points.
     """
-    from .topostitch_recut_bundle import load_relabel_preview
+    from .topostitch_recut_bundle import load_relabel_preview, observe_relabel_native_links
+    if cedar_source is not None and native_receipt is None:
+        raise ValueError('A trusted Cedar source requires an explicit native receipt')
     from .topostitch_registration import _fingerprint
     import gemmi
     root=Path(directory);receipt_bytes=(root/'preview.json').read_bytes()
@@ -191,6 +193,15 @@ def representative_scene(directory):
         max_atom_displacement_angstrom=max((a['displacement_angstrom'] for a in atoms),default=0.),
         scope='All present source atoms and declared typed graph; target endpoints use exact edge images. No inferred chemical links.')
     if 'forest_selection' in receipt:scene['forest_selection']=receipt['forest_selection']
+    if native_receipt is not None:
+        native_links=observe_relabel_native_links(root,native_receipt,cedar_source=cedar_source)
+        if native_links['preview_receipt_sha256']!=sha256(receipt_bytes).hexdigest():
+            raise ValueError('Native link observation belongs to a different representative preview')
+        scene['native_links']=native_links
+        if native_links['proposed_seam_count']:
+            scene['warnings'].append(f'{native_links["proposed_seam_count"]} existing source interresidue bonds cross this proposed ASU boundary; symmetry-bond enforcement remains disabled.')
+        if native_links['source_symmetry_links_unqualified']:
+            scene['warnings'].append('Source symmetry-bond entries are retained but are outside this identity-link observation.')
     return scene
 
 
@@ -201,7 +212,9 @@ def _html(scene):
     return template.replace('__SCENE_JSON__',data)
 
 
-def write_preview_view(directory,output_path,**options):
+def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,**options):
+    if cedar_source is not None and native_receipt is None:
+        raise ValueError('A trusted Cedar source requires an explicit native receipt')
     root=Path(directory).resolve();out=Path(output_path).absolute()
     if out.exists():raise FileExistsError(out)
     if out.resolve().is_relative_to(root):raise ValueError('Write the view outside the frozen preview directory')
@@ -212,8 +225,10 @@ def write_preview_view(directory,output_path,**options):
         defaults=dict(candidate_index=None,radius_angstrom=None,periodic=False,max_pairs=100_000,max_image_tests=100_000)
         if any(k not in defaults or type(v) is not type(defaults[k]) or v!=defaults[k] for k,v in options.items()):
             raise ValueError('Representative preview already declares its images; bend-search options do not apply')
-        scene=representative_scene(root)
-    else:scene=preview_scene(root,**options)
+        scene=representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source)
+    else:
+        if native_receipt is not None:raise ValueError('Native seam observation requires a representative preview')
+        scene=preview_scene(root,**options)
     html=_html(scene)  # Validate the installed asset before creating any output.
     with out.open('x',encoding='utf-8') as stream:stream.write(html)
     return scene
@@ -228,10 +243,12 @@ def main(argv=None):
     parser.add_argument('--periodic',action='store_true',help='Show the exact chosen symmetry mate (requires topology extra)')
     parser.add_argument('--max-pairs',type=int,default=100_000)
     parser.add_argument('--max-image-tests',type=int,default=100_000)
+    parser.add_argument('--native-receipt',type=Path,help='Optional authenticated source capture for existing-link seam observations')
+    parser.add_argument('--cedar-source',type=Path,help='Explicit trusted developer Cedar source; default uses installed owners')
     args=parser.parse_args(argv)
     try:scene=write_preview_view(args.preview,args.out,candidate_index=args.candidate,radius_angstrom=args.radius,
-        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests)
-    except (OSError,ValueError,RuntimeError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
+        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source)
+    except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
     print(f'Read-only view: {args.out}\n{len(scene["atoms"])} displayed atom instances; proposal remains unreviewed.')
     return 0
 

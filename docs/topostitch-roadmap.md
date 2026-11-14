@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W62 — Verify exact labelled crystal-image permutations.** Next: W63.
+**Current update: W63 — Expose existing source bonds at proposed representation seams.** Next: W64.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W53 | Measure precision at retained failed-trial points | RECORDED |
 | W54 | Audit accepted points while preserving optimizer failures | RECORDED |
 | W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
 | W56 | Save and replay explicit representative proposals | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W60 | Retain chosen graph links and anchors in saved proposals | RECORDED |
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
+| W63 | Expose existing source bonds at proposed representation seams | IN_PROGRESS |
 
 ## Finish lines
 
@@ -249,7 +249,7 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 | [P01](#p01) | Build the periodic molecular graph and declared scope | PARTIAL | F01, F02 |
 | [P02](#p02) | Offer cut choices in a required graphical preview | PARTIAL | P01 |
 | [P03](#p03) | Materialize a cut without changing the crystal | PARTIAL | P02 |
-| [P04](#p04) | Qualify seam chemistry and native interpretation | OPEN | P03 |
+| [P04](#p04) | Qualify seam chemistry and native interpretation | PARTIAL | P03 |
 | [P05](#p05) | Complete the persistent Pine surgery/refine GUI loop | OPEN | P04 |
 | [P06](#p06) | Pass blind, multiplicity and ordinary-workflow controls | OPEN | P05 |
 
@@ -274,7 +274,7 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.
 
 **Closure audit:**
 
@@ -282,8 +282,8 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
 **Next action:** Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.
-**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent).
-**Last audit:** 2026-11-14, Linden, [W60](https://github.com/vecchioni-lab/NASolve/commit/f4d27cc06cad0c7d3f1f228a3815b61a72a341fd); Saved proposal intent only; P02 graphical choice/review, P03/P04 and chemistry remain open.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams).
+**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -306,7 +306,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 Make a representation seam remain a continuous backbone where chemistry says it is continuous.
 
-**Delivered:** No implemented capability is claimed.
+**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.
 
 **Closure audit:**
 
@@ -315,8 +315,8 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 - Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
 **Next action:** Carry Pine declared continuation/terminus intent into Cedar without atom deletion or OP3 inference from an ASU boundary; keep bond enforcement disabled until full seam angle/native policy is qualified.
-**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams).
+**Last audit:** 2026-11-14, Linden, [W63](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164); Read-only source-native seam coverage; graphical review and complete native seam enforcement remain unqualified.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -674,6 +674,13 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 [Evidence contract](topostitch-periodic.md#w62--exact-labelled-orbit-permutations-for-a-proposed-cut) at [W62](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164).
 16 regressions; independent rational checks across65 Sohncke groups; focused47,full1592 plus229subtests,installed/relocated386,6helps,lean/3.10. Both public proposals preserve855 labelled atoms and7695 cell-image incidences; exact replay and old outputs preserved.
 **Limit:** No special-position weighting, unique physical atom/molecule identity, tensor serialization, model writer, chemical connection, native execution or graphical approval. Source data and scientific outputs stay local; schema additive.
+
+<a id="e_native_representation_seams"></a>
+### E_NATIVE_REPRESENTATION_SEAMS — native_source_link_representation_observation
+
+[Evidence contract](topostitch-periodic.md#w63--show-existing-source-bonds-at-proposed-asu-seams) at [W63](https://github.com/vecchioni-lab/NASolve/commit/ea27b49bdbb08f4806eb9b200d223050c46e3164).
+11 regressions; focused52,full1603 plus229subtests,installed/relocated397,six helps. Complete Phenix2.2.1-6174 source capture:855 atoms/956simple/0ASU/38interresidue links. Both explicit public cuts expose two source-native seams outside the declared backbone graph, retaining P/OP1/OP2 and exact-image geometry. Temporary installed C302 composition passes397Willow/238Cedar plus19subtests and exact default-owner native/old replay.
+**Limit:** Observation only: source interpretation is not complete intent; existing symmetry bonds/angles/exclusions unqualified. No new bond, atom edit, model, native refinement, graphical approval or scientific acceptance. Scientific artifacts local; original setup refusal preserved.
 
 ## Deferred extensions, not hidden blockers
 

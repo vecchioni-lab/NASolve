@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W63 — Expose existing backbone bonds at proposed cuts
+
+- Bind Cedar's authenticated source-native interresidue links to exact proposed
+  images and show affected links/phosphate inventory in the optional preview.
+- Expose missing declared-graph coverage; retain source symmetry bonds as
+  unqualified evidence. Preserve old packets/scenes and P/OP1/OP2; no new
+  bond restraint, atom editing, model writing or scientific approval.
+
 ### W62 — Verify complete labelled image permutations
 
 - Add a source-bound read-only orbit observer that checks exact symmetry-copy
