@@ -96497,5 +96497,99 @@
       "PDU and held-out effective chemistry survival remain separate"
     ],
     "artifacts": "Only code/tests/compact evidence committed; native models, diffraction inputs, logs, raw observations and runners remain local."
+  },
+  "ordinary_autorefine_parallelity_route_2026_11_14": {
+    "milestone": "C298",
+    "status": "EXPLICIT_AUTOREFINE_API_AND_COLD_CHECKPOINT_ROUTE_QUALIFIED",
+    "base_commit": "fe7e9fd7",
+    "behavior": {
+      "before": "Maintained compatibility helper was separate from ordinary AutoRefine execution and checkpoint evidence.",
+      "after": "Opt-in API freezes exact qualified helper code, native profile and ordered input references inside the immutable round; checks model-building preflight before refinement, seals return codes/evidence and validates it on cold checkpoint reads.",
+      "default": "Unchanged; no CLI option yet."
+    },
+    "source_sha256": {
+      "src/nasolve/autorefine.py": "741a182ca922b766a6902d4f742227f4d55806647a3cc035d1b19ccb0ff72904",
+      "src/nasolve/checkpoints.py": "bfea09971ec7c9b83e22c3465146273674108e21e2800e4c31a703cbf49246b1",
+      "src/nasolve/refinement_parallelity.py": "70fac91d5a5718cdca10d5e52d4b240dc563b4f5f6212f8a5d49f024105aff8d",
+      "tests/test_refinement_parallelity.py": "8a8f05927984c75442d93bd17ca80ed5d1d886a352f32197a45eb0a7cf250130"
+    },
+    "tests": {
+      "before": "16 new integration cases failed against C297 (0.37 s)",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_refinement_parallelity.py tests/test_refinement_inputs.py tests/test_autorefine.py tests/test_checkpoints.py",
+      "focused_result": "89 passed +19 subtests in 14.96 s before final counter checks; affected integration file then 21 passed in 5.75 s",
+      "scope": "No full suite; tests cover failure isolation, immutable code, rehashed substitutions, ancestry, requested cycles, symlinks, usage consistency and relocated read-only inspection."
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "298_Cedar_autorefine-runtime-p48put25",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "summary": {
+        "status": "ORDINARY_AUTOREFINE_EXPLICIT_ROUTE_COMPLETE",
+        "checkpoint": "refine-002",
+        "selected_unchanged": "refine-001",
+        "parent": "postmr",
+        "native_version": "2.2.1",
+        "native_build": "phenix-2.2.1-6174",
+        "native_macro_cycles": 5,
+        "preflight_macro_cycles": 0,
+        "parallelity_count": 58,
+        "complete_parameters_unchanged": true,
+        "phase_returncodes": [
+          0,
+          0
+        ],
+        "native_process_observations": 25,
+        "original_files_unchanged": 416,
+        "relocated_files_unchanged": 473,
+        "original_copy_absent": true,
+        "relocated_cold_read": true,
+        "runtime_evidence_bytes": 479058,
+        "logical_retained_bytes": 78453778,
+        "copy_method": "macOS cp -cRp clone-on-write; logical bytes are not unique physical storage",
+        "elapsed_seconds": 319.9813753750059,
+        "scope": "Actual ordinary AutoRefine API, unchanged chemistry/Free-R/recipe and current selection; explicit correction only. No default activation, PDU survival or whole-suite claim.",
+        "reported_final_statistics": {
+          "r_work": 0.2194,
+          "r_free": 0.2318,
+          "clashscore": 26.36
+        }
+      },
+      "records": {
+        "summary.json": "124a3b56c551edc4cb193a8f98d83c28e79e24a710c145586e15c9a56813edc2",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+      }
+    },
+    "retained_failure": {
+      "anchor": "local_live_tests",
+      "directory": "298_Cedar_autorefine-runtime-uc71lg0j",
+      "driver": {
+        "returncode": 1,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "reason": "CLI --dry_run validates arguments and returns no model; helper retained FAILED AttributeError, no actual refinement launched.",
+      "resolution": "Fresh attempt uses refinement.dry_run=True for actual zero-cycle native model setup; complete evidence is checked before refinement.",
+      "cold_read": {
+        "status": "FAILED_ATTEMPT_REMAINS_READABLE",
+        "failed_checkpoint": "refine-002",
+        "selected": "refine-001",
+        "source_files_unchanged": 416,
+        "attempt_files_unchanged": 447,
+        "seconds": 54.183110707992455,
+        "reason": "Argument-only --dry_run returned no native model; no refinement started. New route uses explicit zero-cycle model preflight."
+      },
+      "legacy": "Old argument-only failed request remains readable; it cannot qualify a successful native preflight."
+    },
+    "compatibility": "Optional output receipt and round-local schema-1 request/execution records; old checkpoints without marker unchanged. Exact C297 source policy retained independent of future mutable checkout. New evidence needs this reader. No installed SDK changes.",
+    "remaining": [
+      "Isolate model-preflight output prefix before exposing CLI; currently it shares ordinary output names inside its new round. Compact input/parameter/usage evidence is retained.",
+      "Explicit CLI and continuation policy must prevent silently dropping corrected forces when branching from a corrected parent.",
+      "Campaign propagation/default activation, broad native profiles and PDU/held-out chemical survival remain separate."
+    ],
+    "artifacts": "Only code/tests/compact evidence committed; native models/data/logs and runners excluded. Failed attempt retained. Successful source cloned with cp -cRp; logical bytes do not measure unique APFS storage."
   }
 }

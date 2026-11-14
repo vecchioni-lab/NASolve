@@ -514,7 +514,11 @@ declared complete. C297 then qualifies an explicit maintained native-program hel
 exact source/platform checks, preserved failures, restored bindings and compact
 usage observations; original five-cycle control/Free-R/endpoint forces agree.
 Next freeze and validate its evidence through ordinary AutoRefine/checkpoint owners,
-including relocation, before exposing the explicit command option.
+including relocation, before exposing the explicit command option. C298 now joins
+that opt-in API/checkpoint route and passes five native cycles plus relocated cold
+reading. The argument-only preflight failure remains preserved; model-building
+zero-cycle preflight is the supported route. Finish separate preflight output
+naming and corrected-parent continuation before CLI exposure; defaults remain off.
 
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's

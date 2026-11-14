@@ -180,7 +180,9 @@ does not yet enable the correction in ordinary NASolve refinement commands.
 An explicit native-program helper now checks the tested Phenix implementation,
 records the settings used by its processes, and restores its temporary binding
 even on failure. Unknown implementations refuse; normal run/checkpoint integration
-remains the next gate. A helper completing refinement is not structure approval.
+now has an opt-in API and relocated read-only evidence checks. Separate preflight
+outputs and explicit continuation are the next gates before CLI exposure. A helper
+completing refinement is not structure approval.
 
 ## Catalogue scope and progression
 

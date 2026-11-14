@@ -386,10 +386,12 @@ def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
             raise CheckpointError("Checkpoint registry has no PostMR root")
         _validate_preparation(run, report, registry)
         from .refinement_inputs import validate_checkpoint_refinement_inputs
+        from .refinement_parallelity import validate_checkpoint_execution
         try:
             for item in checkpoints:
                 if isinstance(item, dict):
                     validate_checkpoint_refinement_inputs(run, item)
+                    validate_checkpoint_execution(run, item, registry)
         except (OSError, ValueError, RuntimeError) as exc:
             raise CheckpointError(str(exc)) from exc
         return run, registry

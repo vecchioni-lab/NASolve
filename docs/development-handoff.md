@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C297**. Active **cedar** in NASolve-c96. Remote last verified
+Updated **2026-11-14, C298**. Active **cedar** in NASolve-c96. Remote last verified
 **C295 `c7414919`**, including C290 and C291–C294.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
@@ -46,16 +46,27 @@ remain Q16. Last full suite: **C220/583d30df, 9,178 tests +276 subtests**.
 before compiled evaluation. 94 focused tests pass; ordinary startup and 18 synthetic
 parameter cases pass. No historical worker changes or default activation.
 
-**C297 complete, being committed:** the explicit native-program helper verifies
-an exact native source/platform profile, preserves FAILED/error observations and
-restores the original binding. 11 regressions fail against C296; 62 focused checks
-pass. Native `297_Cedar_runtime-boundary-whhvpnal` stopped rc0 with unchanged source:
-all five original cycles finish, 25 processes use the helper, all complete plane
-parameters match, endpoint forces pass 20/20. Rwork/Rfree and indexed Free-R match
-C294 exactly; 410 original and 64 capture files unchanged. Usage evidence is 361 kB.
-No ordinary command/checkpoint wiring yet. Next freeze the helper and exact inputs
-under each existing AutoRefine round, validate saved evidence on read/relocation,
-then expose an explicit option; no defaults or independent execution owner.
+**C297 committed/pushed `fe7e9fd7`:** explicit source-qualified native helper,
+failure-preserving observations and binding restoration. Original five-cycle
+control passes with 25 processes, exact complete parameters/Free-R/result and
+20/20 endpoint force checks. Runtime observations occupy 361 kB.
+
+**C298 complete, being committed:** opt-in ordinary AutoRefine API freezes the
+qualified helper/inputs under its existing round and validates evidence/ancestry
+on cold reads. First attempt `298_Cedar_autorefine-runtime-uc71lg0j` remains stopped
+rc1/FAILED: CLI `--dry_run` is argument validation only. Current reader preserves
+that failure; no refinement ran, prior selection and all files remain fixed.
+Fresh `298_Cedar_autorefine-runtime-p48put25` passes actual zero-cycle model setup,
+five cycles, saved refine-002 from postmr, and cold read after relocating the whole
+owned fork with its temporary original absent. Current remains refine-001; 416
+original source files and 473 relocated files unchanged at readback. Final reported
+Rwork/Rfree 0.2194/0.2318, all 58 complete plane parameters unchanged, 25 native
+process observations. Runtime evidence/code 479 kB; source clone is copy-on-write.
+21 affected integration tests pass; broader refinement/checkpoint checks passed
+(89 +19 subtests before the final counter check), no full suite.
+Next: isolate native preflight output names, prevent silent loss of corrected
+forces on continuation, then expose/test the explicit CLI option. No default,
+campaign, PDU or symmetry enforcement claim. All native jobs are stopped.
 
 C286/C287 establish the C279 prepared/final GEO memberships (45 planes,
 58 parallelities); the checked reader avoids the installed parser's truncation.

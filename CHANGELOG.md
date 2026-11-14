@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind explicit plane-force correction to refinement checkpoints (C298)
+
+- AutoRefine's opt-in API freezes the qualified helper and ordered inputs under
+  its existing numbered round. Build/check the native model at zero cycles before
+  refinement; a zero exit without complete preflight evidence cannot proceed.
+- Seal success/failure evidence and validate source, ancestry, parameters, usage,
+  cycle count and files on read-only checkpoint inspection, including relocation.
+  Preserve failed attempts/current selection and legacy checkpoint behavior.
+- No CLI/default activation yet. Isolated preflight output naming and explicit
+  corrected-parent continuation remain gates before exposing the command.
+
 ### Explicit qualified native refinement execution (C297)
 
 - Add a maintained native-program helper for the tested parallelity correction.

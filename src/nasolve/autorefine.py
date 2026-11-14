@@ -1537,6 +1537,8 @@ def execute_autorefine(
     extra_restraints: Sequence[Path] = (),
     terminal_geometry_protection: Mapping[str, object] | None = None,
     auto_select_success: bool = True,
+    correct_native_parallelity: bool = False,
+    phenix_python_executable: Path | None = None,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint.
@@ -1545,6 +1547,10 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
+    if type(correct_native_parallelity) is not bool:
+        raise AutoRefineError('Native parallelity correction must be explicitly enabled or disabled')
+    if correct_native_parallelity and (phenix_python_executable is None or not Path(phenix_python_executable).is_file()):
+        raise AutoRefineError('Explicit plane-force correction requires the configured phenix.python')
     xyz_wxc_scale = (
         0.1
         if recipe == "AutoRefine/geometry-conservative"
@@ -1773,7 +1779,14 @@ def execute_autorefine(
     except (OSError, ValueError, RuntimeError) as exc:
         raise AutoRefineError(f"Refinement input preparation failed: {exc}") from exc
 
+    parallelity_request = None
     def require_refinement_inputs_unchanged() -> None:
+        if parallelity_request is not None:
+            try:
+                from .refinement_parallelity import read_execution_request
+                read_execution_request(run, parallelity_request, checkpoint=checkpoint_id)
+            except (OSError, ValueError, RuntimeError) as exc:
+                raise AutoRefineError(f'Parallelity execution inputs changed: {exc}') from exc
         if refinement_input_reference is not None:
             try:
                 validate_refinement_inputs(run, execution_restraint_records,
@@ -1791,6 +1804,16 @@ def execute_autorefine(
     log_path = round_directory / "phenix.refine.log"
     preflight_log = round_directory / "phenix.refine.preflight.log"
     preflight_command = [command[0], "--dry_run", *command[1:]]
+    if correct_native_parallelity:
+        from .refinement_parallelity import prepare_execution
+        try:
+            parallelity_request, preflight_command, command = prepare_execution(
+                run, checkpoint=checkpoint_id, parent=parent['id'],
+                inputs=[observations, model, *execution_restraints,
+                        *([phase_file] if phase_file is not None else []), parameters],
+                command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles)
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise AutoRefineError(f'Parallelity execution preparation failed: {exc}') from exc
     if progress is not None:
         progress(checkpoint_id, log_path)
     preflight_failed = False
@@ -1825,6 +1848,12 @@ def execute_autorefine(
             preflight_failed = True
         else:
             require_refinement_inputs_unchanged()
+            if parallelity_request is not None:
+                from .refinement_parallelity import validate_preflight
+                try:
+                    validate_preflight(run, parallelity_request, checkpoint=checkpoint_id)
+                except (OSError, ValueError, RuntimeError) as exc:
+                    raise AutoRefineError(f'Parallelity preflight evidence is incomplete: {exc}') from exc
             try:
                 with log_path.open("w", encoding="utf-8") as log_handle:
                     completed = subprocess.run(
@@ -1844,6 +1873,16 @@ def execute_autorefine(
             else:
                 completed_returncode = completed.returncode
     require_refinement_inputs_unchanged()
+    parallelity_execution_reference = None
+    if parallelity_request is not None:
+        from .refinement_parallelity import finish_execution
+        try:
+            parallelity_execution_reference = finish_execution(run, parallelity_request,
+                checkpoint=checkpoint_id,
+                preflight_returncode=completed_returncode if preflight_failed else 0,
+                refinement_returncode=None if preflight_failed else completed_returncode)
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise AutoRefineError(f'Parallelity execution evidence is incomplete: {exc}') from exc
     log_text = log_path.read_text(encoding="utf-8", errors="replace")
     output_model = _discover_output(round_directory, "refined_*.pdb")
     model_cif = _discover_filtered_output(
@@ -1927,6 +1966,7 @@ def execute_autorefine(
         terminal_protection_record = None
 
     output_references = {
+        **({"parallelity_execution": parallelity_execution_reference} if parallelity_execution_reference is not None else {}),
         **({"refinement_inputs": refinement_input_reference} if refinement_input_reference is not None else {}),
         "model_cif": file_reference(model_cif) if model_cif else None,
         "reflection_cif": file_reference(reflection_cif) if reflection_cif else None,
