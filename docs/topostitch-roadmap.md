@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W43 | Review full-precision native endpoint packing beside serialized coordinates | RECORDED |
 | W44 | Expose individual selected and core pair contributions | RECORDED |
 | W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
-| W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | IN_PROGRESS |
+| W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | RECORDED |
 
 ## Finish lines
 
@@ -191,8 +191,8 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
 **Next action:** Qualify affected chemistry and ordinary native enforcement before a declared damaged-model bend/cleanup and matched refinement comparison. Preserve the reported C289 ordinary force discrepancy as a consumer limitation. Shared F02/S03 explicit-connection capacity is the next independent gate; do not infer global or special-position identity from centers.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a8531f5958a9d3c8857ed4e2f224b1a8a4f3c108); Matched retained-core native control and fresh endpoint parity on unchanged W44 runtime; no scientific acceptance.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/17d0efe6df451f22535db9253c1588dd4e248896); Six complete native torsion/plane endpoint observations; installed relocation and temporary same-package Cedar C289 compatibility; no chemical acceptance.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -553,6 +553,13 @@ Five complete Phenix 2.2.1-6174 endpoint controls reproduce native container sum
 [Evidence contract](topostitch-preview.md#w45--matched-retained-core-control) at [W45](https://github.com/vecchioni-lab/NASolve/commit/a8531f5958a9d3c8857ed4e2f224b1a8a4f3c108).
 One complete Phenix 2.2.1-6174 core-only trial uses the same source, mask, tether and caps as W41 paired trial. All 612-variable initial/full/rounded derivative checks pass, as do complete endpoint observations and independent rounded target/gradient/packing parity. All core pair totals improve; one selected pair worsens without its terms, while both improve with them. Existing APIs suffice; W44 full/installed validation remains applicable.
 **Limit:** Both trials remain NOT_CONVERGED_LIMIT; per-contact regressions, imperfect contacts, broader chemistry and ordinary refinement enforcement remain open. No runtime/schema change, new chemical policy, Cedar edits, diffraction or adoption. Generated scientific evidence stays local.
+
+<a id="e_native_terms"></a>
+### E_NATIVE_TERMS — native_torsion_and_plane_endpoint_observations
+
+[Evidence contract](topostitch-preview.md#w46--native-torsion-and-monomer-plane-observations) at [W46](https://github.com/vecchioni-lab/NASolve/commit/17d0efe6df451f22535db9253c1588dd4e248896).
+Maintained Cedar kernels match original live proxies and complete native family targets/gradients in six Phenix 2.2.1-6174 endpoint controls. Live missing/nondefault torsion policy and nonidentity images reject. Per-term scope/measurements retain local regressions hidden by aggregates. Full Willow 1416 plus 229 subtests; focused 40; installed/relocated 159 plus exact native report. Temporary installed Cedar 7e843af7 composition passes 159 focused tests and byte-identical native review via its owned runner.
+**Limit:** Fixed-point identity-only torsion/plane observations, not new derivative or chemical qualification. Other families remain deferred; no pucker assignment, ordinary corrected refinement, Cedar edits, branch merge, complete combined suite or adoption. Initial sandbox permission and temporary missing-wrapper failures are retained. Scientific evidence remains local.
 
 ## Deferred extensions, not hidden blockers
 

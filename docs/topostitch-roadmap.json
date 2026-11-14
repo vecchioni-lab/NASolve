@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "a8531f5958a9d3c8857ed4e2f224b1a8a4f3c108",
+  "audited_code_commit": "17d0efe6df451f22535db9253c1588dd4e248896",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -282,13 +282,14 @@
         "E_CAPTURED_JOB_API",
         "E_ENDPOINT_OBSERVATIONS",
         "E_PAIR_ATTRIBUTION",
-        "E_CORE_CONTROL"
+        "E_CORE_CONTROL",
+        "E_NATIVE_TERMS"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "a8531f5958a9d3c8857ed4e2f224b1a8a4f3c108",
-        "scope": "Matched retained-core native control and fresh endpoint parity on unchanged W44 runtime; no scientific acceptance"
+        "code_commit": "17d0efe6df451f22535db9253c1588dd4e248896",
+        "scope": "Six complete native torsion/plane endpoint observations; installed relocation and temporary same-package Cedar C289 compatibility; no chemical acceptance"
       }
     },
     {
@@ -728,6 +729,14 @@
       "reference": "docs/topostitch-preview.md#w45--matched-retained-core-control",
       "result": "One complete Phenix 2.2.1-6174 core-only trial uses the same source, mask, tether and caps as W41 paired trial. All 612-variable initial/full/rounded derivative checks pass, as do complete endpoint observations and independent rounded target/gradient/packing parity. All core pair totals improve; one selected pair worsens without its terms, while both improve with them. Existing APIs suffice; W44 full/installed validation remains applicable.",
       "limitation": "Both trials remain NOT_CONVERGED_LIMIT; per-contact regressions, imperfect contacts, broader chemistry and ordinary refinement enforcement remain open. No runtime/schema change, new chemical policy, Cedar edits, diffraction or adoption. Generated scientific evidence stays local."
+    },
+    "E_NATIVE_TERMS": {
+      "kind": "native_torsion_and_plane_endpoint_observations",
+      "code_commit": "17d0efe6df451f22535db9253c1588dd4e248896",
+      "human_update": 46,
+      "reference": "docs/topostitch-preview.md#w46--native-torsion-and-monomer-plane-observations",
+      "result": "Maintained Cedar kernels match original live proxies and complete native family targets/gradients in six Phenix 2.2.1-6174 endpoint controls. Live missing/nondefault torsion policy and nonidentity images reject. Per-term scope/measurements retain local regressions hidden by aggregates. Full Willow 1416 plus 229 subtests; focused 40; installed/relocated 159 plus exact native report. Temporary installed Cedar 7e843af7 composition passes 159 focused tests and byte-identical native review via its owned runner.",
+      "limitation": "Fixed-point identity-only torsion/plane observations, not new derivative or chemical qualification. Other families remain deferred; no pucker assignment, ordinary corrected refinement, Cedar edits, branch merge, complete combined suite or adoption. Initial sandbox permission and temporary missing-wrapper failures are retained. Scientific evidence remains local."
     }
   },
   "benchmarks": [
@@ -924,8 +933,8 @@
       {
         "number": 46,
         "title": "Observe native torsion and monomer-plane endpoint terms through Cedar kernels",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "17d0efe6df451f22535db9253c1588dd4e248896"
       }
     ]
   }
