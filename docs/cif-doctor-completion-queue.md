@@ -488,6 +488,10 @@ interpretation of the exact selected inputs. A small checked
 reader avoids the installed GEO parser's truncated/unequal-plane readback. No
 refinement was repeated. This closes this control's printed membership check,
 not exact targets/weights, derivatives, chemical survival or PDU acceptance.
+C288 observes the actual ordinary dry-run manager: fixed-scale raw full/parallelity
+derivatives fail and the existing diagnostic correction passes. Family isolation
+also rebuilds contacts and changes normalization, so a whole-objective-only probe
+is next. All failed attempts stay preserved; no runtime correction or SDK change.
 
 
 **Open; can start independently, required before ordinary-refinement claims.**

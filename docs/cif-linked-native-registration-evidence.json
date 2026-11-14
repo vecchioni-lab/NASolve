@@ -94901,5 +94901,312 @@
     "compatibility": "Supports observed pipe-header GEO with PDB label columns and residual/delta(deg)/sigma. Unsupported formats explicitly refuse; no source scientific threshold, Phenix installation, worker, model or selection edits. Pure API is diagnostic, not an ordinary runtime gate.",
     "artifacts": "Compact metadata committed; full observations/runners and C286 native proof stay local. No native rerun; all 64 C286 control files and 410 original run files unchanged.",
     "remaining": "Q06 raw ordinary native derivative behavior, exact effective targets/weights and achieved chemical geometry remain. Membership agreement does not close PDU post-refinement survival. No full suite."
+  },
+  "ordinary_refinement_derivative_observation_2026_11_14": {
+    "status": "OBSERVED_WITH_DIAGNOSTIC_COMPARISON_LIMIT",
+    "delivery_prefix": "C288",
+    "base_revision": "cbece417",
+    "author": "Rowan",
+    "before": "C23–C26 qualify explicit diagnostic managers; ordinary refinement forces were unobserved.",
+    "after": "Installed ordinary Phenix Program dry-run builds the exact C279 model, 45 planes and 58 parallelities. Four full derivative audits complete, but final cross-audit equality refuses because family switching rebuilds contacts and changes normalization. Fixed-scale raw/corrected targets agree; raw all/parallelity fail 18 of 21 directions, corrected all eight families pass.",
+    "tool": {
+      "version": "2.2.1",
+      "build": "phenix-2.2.1-6174",
+      "execution": "ACTUAL_ORDINARY_PROGRAM_DRY_RUN; ZERO_MACRO_CYCLES"
+    },
+    "native_audits": {
+      "ordinary_raw": {
+        "report_sha256": "e5300ba5aff54b62dd15f2001dbb863c323368e736d739e1ba01235b4957e9fd",
+        "analysis_completed": true,
+        "evaluation_calls": 1367,
+        "target": 1.1401030244830264,
+        "native_normalization": 8.862105636299185e-05,
+        "comparison_normalization": 8.862105636299185e-05,
+        "sampled_gradients_consistent": false,
+        "baseline_repeat_consistent": false,
+        "target_additivity": {
+          "all": 1.1401030244830264,
+          "sum_controls": 1.1401030244830264,
+          "consistent": true
+        },
+        "gradient_additivity": {
+          "difference_norm": 2.7976236046841077e-16,
+          "consistent": true
+        },
+        "families": {
+          "all": {
+            "consistent": false,
+            "review_directions": 20,
+            "directions": 21
+          },
+          "bond": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "angle": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "dihedral": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "chirality": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "planarity": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "parallelity": {
+            "consistent": false,
+            "review_directions": 18,
+            "directions": 21
+          },
+          "nonbonded": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          }
+        }
+      },
+      "ordinary_corrected_diagnostic": {
+        "report_sha256": "3ca76ade29d54c40b118c8f281642c8bdd63e684619ebb72be21fe5d851ae026",
+        "analysis_completed": true,
+        "evaluation_calls": 1367,
+        "target": 1.1537012400920519,
+        "native_normalization": 8.96780557797507e-05,
+        "comparison_normalization": 8.96780557797507e-05,
+        "sampled_gradients_consistent": false,
+        "baseline_repeat_consistent": true,
+        "target_additivity": {
+          "all": 1.1537012400920519,
+          "sum_controls": 1.1401030244830264,
+          "consistent": false
+        },
+        "gradient_additivity": {
+          "difference_norm": 0.017833203765196832,
+          "consistent": false
+        },
+        "families": {
+          "all": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "bond": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "angle": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "dihedral": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "chirality": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "planarity": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "parallelity": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "nonbonded": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          }
+        }
+      },
+      "fixed_scale_raw": {
+        "report_sha256": "87e8cb71c420f69e58831df3e0e7f969066513ca8f473961bed901ed207369b8",
+        "analysis_completed": true,
+        "evaluation_calls": 1367,
+        "target": 1.1401030244830264,
+        "native_normalization": 8.96780557797507e-05,
+        "comparison_normalization": 8.862105636299185e-05,
+        "sampled_gradients_consistent": false,
+        "baseline_repeat_consistent": true,
+        "target_additivity": {
+          "all": 1.1401030244830264,
+          "sum_controls": 1.1401030244830264,
+          "consistent": true
+        },
+        "gradient_additivity": {
+          "difference_norm": 2.953839240578773e-16,
+          "consistent": true
+        },
+        "families": {
+          "all": {
+            "consistent": false,
+            "review_directions": 18,
+            "directions": 21
+          },
+          "bond": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "angle": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "dihedral": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "chirality": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "planarity": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "parallelity": {
+            "consistent": false,
+            "review_directions": 18,
+            "directions": 21
+          },
+          "nonbonded": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          }
+        }
+      },
+      "fixed_scale_corrected_diagnostic": {
+        "report_sha256": "c4d8c76714f2b8332ac9a7f1347cf6e85641e6cdbd6f9f4e6d55e709bb2f869c",
+        "analysis_completed": true,
+        "evaluation_calls": 1367,
+        "target": 1.1401030244830264,
+        "native_normalization": 8.96780557797507e-05,
+        "comparison_normalization": 8.862105636299185e-05,
+        "sampled_gradients_consistent": true,
+        "baseline_repeat_consistent": true,
+        "target_additivity": {
+          "all": 1.1401030244830264,
+          "sum_controls": 1.1401030244830264,
+          "consistent": true
+        },
+        "gradient_additivity": {
+          "difference_norm": 3.0069264532604245e-16,
+          "consistent": true
+        },
+        "families": {
+          "all": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "bond": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "angle": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "dihedral": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "chirality": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "planarity": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "parallelity": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          },
+          "nonbonded": {
+            "consistent": true,
+            "review_directions": 0,
+            "directions": 21
+          }
+        }
+      }
+    },
+    "retention": {
+      "attempt_directories": [
+        "288_Cedar_ordinary-derivatives-q6b9owd6",
+        "288_Cedar_ordinary-derivatives-0bc1f6n8",
+        "288_Cedar_ordinary-derivatives-qh1i6xd0",
+        "288_Cedar_ordinary-derivatives-4vf0oir2"
+      ],
+      "total_bytes": 23336664,
+      "all_driver_and_native_processes_stopped": true,
+      "original_run_files_unchanged": 410,
+      "original_capture_files_unchanged": 64,
+      "source_code_and_observed_sdk_files_unchanged": true
+    },
+    "failures_preserved": [
+      "First: launcher clears PYTHONPATH, no native initialization.",
+      "Second: ordinary startup uses normalization=True; unnormalized assumption refuses.",
+      "Third: normalization denominator changes at a directional probe; fixed-denominator assumption refuses.",
+      "Fourth: all four audits saved; final exact equality across actual-normalization audits refuses. No attempt represented as exit-zero."
+    ],
+    "commands": {
+      "driver": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CEDAR/src PYTHON -B branch-artifacts/cedar/runners/c288_start.py",
+      "native": "phenix.python -B native_worker.py native-spec.json",
+      "read_only_review": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CEDAR/src PYTHON -B branch-artifacts/cedar/runners/c288_saved_review.py",
+      "timeouts_seconds": {
+        "native": 900,
+        "outer": 1800
+      }
+    },
+    "artifacts": {
+      "anchor": "local_live_tests",
+      "directories": [
+        "288_Cedar_ordinary-derivatives-q6b9owd6",
+        "288_Cedar_ordinary-derivatives-0bc1f6n8",
+        "288_Cedar_ordinary-derivatives-qh1i6xd0",
+        "288_Cedar_ordinary-derivatives-4vf0oir2"
+      ],
+      "compact_summary_anchor": "ignored_cedar_runners",
+      "compact_summary_path": "c288_saved_records/summary.json"
+    },
+    "schemas": "NO_PRODUCT_CHANGE",
+    "compatibility": "No installed SDK, runtime defaults, scientific inputs, restraint policy or checkpoint changes.",
+    "validation": "Existing native math reused; no product tests or full suite rerun. Saved-data review verifies unchanged original files, source pins and stopped receipts.",
+    "limitations": [
+      "Family-isolation changes manager contact cache; normalized target shift is diagnostic-context evidence, not yet ordinary optimizer behavior.",
+      "No PDU survival, full refinement derivative or scientific approval.",
+      "No automatic correction, restraint dropping or SDK edit."
+    ],
+    "next": "Probe the full ordinary normalized objective without switching any restraint-family flags. Reuse existing finite-difference constants while preserving prior frozen audit code."
   }
 }

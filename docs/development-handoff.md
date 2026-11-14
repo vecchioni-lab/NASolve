@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
 Updated **2026-11-14, C287**. Active **cedar** in NASolve-c96; latest pushed
-code **C284 `aee2fbd7`**, preceded by C283 `af9aee87`. C285 scope reconciliation is pushed as `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
+code **C287 `cbece417`**; scoped Q04/Q05 reconciliation is C285 `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
 connectivity interruptions expected. Focused checks only: **no full suite, new
 branch or merge**. Linden owns Pine/Willow; everyday NASolve code stays untouched.
 
@@ -53,14 +53,29 @@ have the same 45 planes and 58 parallelities; all printed final plane members an
 rounded weights agree. The installed GeoParser returns only 1/58 parallelities
 and misassigns unequal-plane tails. No SDK edits or diffraction rerun.
 
-**C287 tested, being published:** pure checked GEO parallelity reader retains all
+**C287 tested and pushed (`cbece417`):** pure checked GEO parallelity reader retains all
 58 groups before/after, exactly matching ordered native membership, including 54
 unequal-plane groups. Nineteen focused tests pass, including a native nonbonded
 header regression and relocated read. All 64 C286 files and 410 original files
 unchanged. Printed values are observations only; no exact weight/target inference.
-No active jobs remain. Next inspect actual native derivative behavior with the
-existing numerical helpers and exact captured inputs; keep raw and corrected
-results distinct. Do not rerun C279 preparation/phasing/refinement.
+**C288 observed; all jobs stopped:** four preserved fresh attempts under local
+live-tests. Last is `288_Cedar_ordinary-derivatives-4vf0oir2`; compact reviewed
+receipts are `c288_saved_records/` under ignored Cedar runners. Exact ordinary
+Phenix dry-run retains 853 atoms, 45 planes and 58 parallelities, with zero cycles.
+All four derivative audits completed, but its final cross-audit equality refused:
+isolating restraint families rebuilds contacts and changes normalization (11284
+versus 11151 terms). Fixed-scale raw and corrected targets agree exactly; raw
+all/parallelity fail 18/21 directions, corrected all eight families pass. Earlier
+attempts preserve import/normalization assumption failures. No attempt is called
+exit-zero. All 410 original run files, 64 C286 files, source and observed SDK pins
+remain unchanged. Four attempts total 23.34 MB; failed evidence retained.
+
+**Next C289:** a small whole-objective probe must keep every restraint active
+throughout and retain actual native normalization. Existing family-audit helpers
+change the manager cache, so they do not isolate this question. Reuse existing
+finite-difference tolerances/probe design without modifying historical pinned
+worker/core sources. No source/SDK patch or diffraction rerun is justified yet.
+
 
 Start from saved C279's successful ordinary refinement and its exact chosen
 bundle. Reuse existing native inventory, source-selected trigonal measurements
