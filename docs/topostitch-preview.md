@@ -1577,3 +1577,39 @@ adapter before native repair can be exposed. The normal six-parameter TopoStitch
 fitter uses numerical differences of its own descriptive objective and is not
 using these failing native gradients. Synthetic probe output and public-derived
 native diagnostics remain local; only the reusable probe source is committed.
+
+### W51 — Native convergence ceiling control
+
+Two predeclared complete native executions in **Phenix 2.2.1-6174** restarted
+W41's paired and W45's retained-core-only objectives from their identical source.
+Only the supported iteration ceiling changed from 200 to 500 and the watchdog
+from 600 to 1200 seconds. The 2000-call cap, native context, frozen Cedar
+`f2345a8`, source/mask, tether, hard displacement, pair weights and derivative
+policy were unchanged. Consumed Willow source was frozen at W50 before running;
+no source/runtime changes occurred during either serial job.
+
+Both initial complete derivative gates pass, and every recorded evaluation
+through the old 200-iteration stopping point reproduces exactly. The paired
+control then fails the existing L-BFGS rounding-error line-search policy at 358
+accepted steps/390 calls; core-only fails at 351/385. Last accepted projected
+gradient norms are about 0.000380 and 0.000548. Additional movement relative to
+the 200-iteration endpoints is at most 0.0000913 and 0.0001043 Å per atom,
+respectively. These small changes do not turn the failed jobs into successful
+convergence or accepted structures.
+
+No full-precision/serialized endpoint derivative gate ran after the exception;
+no candidate was emitted and no stopping exception was ignored. Inputs and
+consumed sources remain unchanged. Keep the earlier capped, fully audited
+endpoints distinct from these later failed trajectories. The next numerical
+question is whether objective precision/conditioning limits the unchanged
+stopping criterion; quantify that before changing tolerances or optimizer policy.
+This is independent of Cedar's ordinary-refinement consumer investigation.
+
+Exact commands and frozen inputs are retained in the local execution receipts.
+The two CLI invocations used the same explicit W41/W45 model, recipe, mask and
+native-receipt arguments with `--trial-iterations 500 --trial-calls 2000
+--timeout-seconds 1200`, through a frozen copy of
+`scripts/probe_topostitch_captured_objective.py`. This is an evidence-only update:
+W50's 1,468-test + 229-subtest full suite and 155 installed/relocated checks still
+apply to unchanged runtime code. Generated native jobs, inputs and traces stay
+local; they are neither committed nor resumable NASolve checkpoints.

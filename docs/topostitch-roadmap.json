@@ -475,9 +475,10 @@
       "delivered": [],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
-        "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal."
+        "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
+        "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Reuse Pine phosphate intent and Cedar/native diagnostics; execute the existing symmetry-bond and local seam controls.",
+      "next_action": "Carry Pine declared continuation/terminus intent into Cedar without atom deletion or OP3 inference from an ASU boundary; keep bond enforcement disabled until full seam angle/native policy is qualified.",
       "evidence": [
         "E_PINE_TEST_BANK"
       ],
@@ -500,7 +501,8 @@
       "delivered": [],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
-        "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery."
+        "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
+        "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
       "next_action": "Extend the P02 preview into the real immutable operation/refine loop; GUI completion is a release requirement.",
       "evidence": [],
@@ -872,6 +874,10 @@
     {
       "scope": "Broad emergent topology and global reusable recipe promotion",
       "trigger": "After bounded explicit cut/repair workflows and independent held-out evidence; do not make these hidden initial release blockers."
+    },
+    {
+      "scope": "Symmetry-spanning phosphate angle enforcement",
+      "trigger": "Preserve declared continuation chemistry now; only investigate complete local angle/plane/nonbonded/native policy in explicit future controls. Do not activate a symmetry bond alone."
     }
   ],
   "history_reconciliation": [
@@ -890,8 +896,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 50,
-    "next": 51,
+    "current": 51,
+    "next": 52,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1001,6 +1007,12 @@
         "title": "Observe all present model atom orbits",
         "state": "RECORDED",
         "code_commit": "19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9"
+      },
+      {
+        "number": 51,
+        "title": "Record native stopping limits and shared periodic chemistry intent",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

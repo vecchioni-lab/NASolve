@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W51 — Record bounded native stopping limits and shared periodic intent
+
+- Retain two predeclared 500-iteration native controls as line-search rounding
+  failures, including exact agreement with the earlier 200-iteration traces.
+  No endpoint qualification, stopping-policy change or candidate adoption follows.
+- Clarify Pine/TopoStitch/Cedar ownership: preserve declared periodic phosphate
+  continuation and P/OP1/OP2 independently of partner resolution and native support.
+  Symmetry-bond-only enforcement remains disabled pending complete angle policy.
+
 ### W50 — Observe all present model atom orbits
 
 - Extend the existing bounded orbit engine to every ATOM/HETATM record in source

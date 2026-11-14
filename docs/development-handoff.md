@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W50; next W51.** W33 introduced human update numbers without
+**Willow update W51; next W52.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,15 +173,19 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W50 edge:** the shared orbit observer now covers all present source
-ATOM/HETATM records, retaining waters/ions/unregistered content, source-order
-identities, occupancy uncertainty, special positions and coincident labels.
-Two public-derived source snapshots pass the present-coordinate observation;
-physical molecular identity and cut/scattering qualification remain open.
-W48/W49 already provide a registered declared graph and exact relabeling algebra.
-Next bind those pieces for one explicit source-aware cut preview without writing
-coordinates or overriding boundary chemistry. See the
-[model-wide API](topostitch-periodic.md#w50--observe-all-present-model-atom-orbits).
+**Current W51 edge:** the matched 500-iteration direct native controls reproduce
+the old 200-iteration traces exactly, then retain rounding line-search failures.
+No candidate, endpoint qualification or tolerance relaxation follows. Quantify
+near-stationary numerical precision before selecting another stopping policy.
+W48–W50 graph/relabel/orbit owners are ready for an explicitly source-bound
+read-only cut preview; no coordinate materialization is yet supported.
+
+**Shared Pine/Cedar boundary:** Pine retains editable periodic connectivity and
+user choices across reslicing; TopoStitch exposes them, Cedar reports enforcement.
+A declared symmetry continuation preserves P/OP1/OP2 without automatic OP3 or
+dephosphorylation. Do not emit the symmetry bond alone while the surrounding
+phosphate-angle policy is unqualified. See the
+[shared contract](construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar).
 
 **Prior W47 edge:** periodic fitting now consumes exact reciprocal incidence
 bound to selected source/transformed atom audits. Source and moved fixtures each

@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W50 — Observe all present model atom orbits.** Next: W51.
+**Current update: W51 — Record native stopping limits and shared periodic chemistry intent.** Next: W52.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W41 | Run bounded native trials with initial and endpoint derivative gates | RECORDED |
 | W42 | Expose the captured native job through one reusable package boundary | RECORDED |
 | W43 | Review full-precision native endpoint packing beside serialized coordinates | RECORDED |
 | W44 | Expose individual selected and core pair contributions | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W48 | Preserve declared periodic routes and exact image loops | RECORDED |
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
 | W50 | Observe all present model atom orbits | RECORDED |
+| W51 | Record native stopping limits and shared periodic chemistry intent | IN_PROGRESS |
 
 ## Finish lines
 
@@ -312,8 +312,9 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 
 - Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.
 - Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.
+- Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
-**Next action:** Reuse Pine phosphate intent and Cedar/native diagnostics; execute the existing symmetry-bond and local seam controls.
+**Next action:** Carry Pine declared continuation/terminus intent into Cedar without atom deletion or OP3 inference from an ASU boundary; keep bond enforcement disabled until full seam angle/native policy is qualified.
 **Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank).
 **Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
 
@@ -328,6 +329,7 @@ Keep cut, preview, child creation, refinement and review in one usable workbench
 
 - Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.
 - Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.
+- Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate.
 
 **Next action:** Extend the P02 preview into the real immutable operation/refine loop; GUI completion is a release requirement.
 **Evidence:** None yet.
@@ -597,6 +599,7 @@ Shared exact reciprocal incidence retains lattice translations for selected sour
 - **Calibrated negative backbone difference-density detection:** S06 after exact map/model/data binding and matched-refinement baselines; read-only patch evidence and scientist-calibrated false-positive controls first, S07/campaign review next, direct coordinate fitting later. Retain nearby positive support, ordinary map fit, spatial correlation, occupancy/ADP and processing uncertainty.
 - **Direct density-guided fitting:** After frozen map/data identity and matched-refinement baselines exist; ordinary data validation is already required in S06.
 - **Broad emergent topology and global reusable recipe promotion:** After bounded explicit cut/repair workflows and independent held-out evidence; do not make these hidden initial release blockers.
+- **Symmetry-spanning phosphate angle enforcement:** Preserve declared continuation chemistry now; only investigate complete local angle/plane/nonbonded/native policy in explicit future controls. Do not activate a symmetry bond alone.
 
 ## Reconciliation: reuse what is already delivered
 

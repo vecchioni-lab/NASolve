@@ -582,5 +582,26 @@
     "human_view": "docs/topostitch-roadmap.md",
     "audit_command": "python scripts/audit_topostitch_roadmap.py --check",
     "update_trigger": "each substantial validated slice, native result, changed assumption, blocker or handoff"
+  },
+  "periodic_connectivity_ownership": {
+    "intent_owner": "Pine",
+    "front_end": "TopoStitch",
+    "native_chemistry_enforcement_owner": "Cedar",
+    "editable_across_unit_cells_required": true,
+    "intent_partner_resolution_and_enforcement_distinct": true,
+    "preserve_user_choices_across_reslicing_or_flag_unresolved": true,
+    "persistent_editable_record_implemented": false,
+    "declared_phosphate_continuation": {
+      "retain": [
+        "P",
+        "OP1",
+        "OP2"
+      ],
+      "do_not_infer_terminal_OP3": true,
+      "missing_literal_neighbor_authorizes_dephosphorylation": false,
+      "generate_symmetry_bond_alone": false,
+      "complete_phosphate_angle_policy": "DEFERRED_UNQUALIFIED"
+    },
+    "contract": "docs/construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar"
   }
 }

@@ -1097,6 +1097,46 @@ allow the user to save/import a corrected PDB as a new immutable checkpoint.
 That manual model must retain the failed automated attempts and user-review
 provenance rather than erasing them.
 
+### Shared periodic connectivity intent: Pine, TopoStitch and Cedar
+
+Pine owns editable connectivity intent across symmetry images and unit cells,
+not only connections visible inside the asymmetric-unit file. TopoStitch is the
+front-end interface for inspecting and editing that intent and proposing repairs
+or representation cuts. Cedar owns chemistry preparation and reports whether the
+resolved intent can actually be enforced by the selected native restraint route.
+These are shared responsibilities, not separate competing topology registries.
+
+Keep three facts separate: **declared chemical continuation**, **resolved partner
+and exact image**, and **qualified native enforcement**. Observed proximity is
+evidence for review, not a substitute for the user's declared chemistry. An
+unresolved image does not turn an intended continuation into a free terminus.
+The intended record must retain logical copy/site/atom identities, edge kind and
+direction, true terminus/nick versus representation seam, exact relative operator
+and lattice translation when resolved, uncertainty, and the provenance/revision
+of user choices. Its coordinate realization is bound to exact model,
+registration, cell and setting; transferring logical intent to another dataset
+must resolve recipient images again.
+
+Reslicing must transform those image assignments and preserve prior choices and
+logical identities, or explicitly flag unresolved mappings. It must not reset a
+choice because chain labels or ASU representatives changed. GUI editing creates
+a new provenance-bearing revision; prior immutable runs and decisions remain
+available. Show declared intent, geometric evidence and enforcement support as
+separate user-visible states. The persistent editable record and GUI are still
+planned; W48–W50 provide read-only graph/image observations, not that authority.
+
+**Current phosphate rule (user clarification, 2026-11-14):** when a site is
+declared to continue covalently through symmetry, retain its P, OP1 and OP2;
+do not add terminal OP3 or dephosphorylate it merely because the incoming partner
+is absent from the literal Cartesian/ASU neighborhood. A separately declared
+true terminal phosphate remains a different case. Keep the intended bond in
+Pine's semantic record, but do **not** generate or activate the symmetry bond
+alone: earlier Cedar/PostMR work established bond support without a supported
+surrounding phosphate-angle restraint route. Bond-only enforcement can permit
+wrong orientation or clashes. Creative angle-policy work is deferred until it
+can be qualified as a complete local geometry/native policy; no new enforcement
+or atom editing is authorized by recording the intent.
+
 ### Materialization, Coot repair and Phenix enforcement
 
 Topo Net itself should remain preview/intent logic. Applying a reviewed surgery
@@ -1121,7 +1161,8 @@ symmetry-spanning phosphate angle geometry must be validated separately. A
 bond-distance restraint without trustworthy O3-prime-P-O angle control may
 still permit a locally wrong phosphate orientation or clash. Until a dedicated
 live experiment demonstrates safe behavior, symmetry-bond enforcement remains
-experimental-only and visibly provenance-tagged.
+disabled for automatic preparation/refinement; explicit future experiments must
+remain separate and visibly provenance-tagged.
 
 ### Blind topology-surgery validation
 
