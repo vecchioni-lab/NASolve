@@ -511,17 +511,21 @@
         "build_relabel_preview",
         "load_relabel_preview"
       ],
-      "proposal_kind": "topostitch-representative-proposal",
       "receipt_kind": "topostitch-representative-preview-bundle",
       "schema_version": 1,
       "unchanged_source_snapshot": true,
-      "explicit_images_only": true,
       "local_anchored_artifacts": true,
       "full_replay_on_load": true,
       "graphical_review": false,
       "coordinates_materialized": false,
       "chemical_connectivity_changed": false,
-      "runtime_authority": false
+      "runtime_authority": false,
+      "proposal_kinds": [
+        "topostitch-representative-proposal",
+        "topostitch-forest-proposal"
+      ],
+      "explicit_image_or_forest_choice": true,
+      "forest_selection_recomputed_on_replay": true
     },
     "representative_view": {
       "module": "nasolve.topostitch_view",
@@ -551,10 +555,10 @@
       "full_graph_winding_preserved": true,
       "unselected_vertices_unchanged": true,
       "automatic_cut_selection": false,
-      "persistent_forest_intent": false,
       "coordinates_materialized": false,
       "chemical_connectivity_changed": false,
-      "runtime_authority": false
+      "runtime_authority": false,
+      "saved_proposal_owner": "nasolve.topostitch_recut_bundle"
     }
   },
   "geometry_development": {

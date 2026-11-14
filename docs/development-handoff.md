@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W59; next W60.** Human W-numbers and exact code provenance live
+**Willow update W60; next W61.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,567 plus 229 subtests**; focused78;
-installed/relocated361, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,576 plus 229 subtests**; focused71;
+installed/relocated370, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -163,9 +163,15 @@ It preserves exact path order and full graph winding; no partner/tree/cut is inf
 Two predeclared public alternatives pass packet/view/scattering observations but
 remain unselected. Their partial topology is not a complete ASU or chemistry proof.
 
-**Next bounded work:** retain selected-edge/anchor intent in the existing saved
-proposal boundary, then qualify actual graphical cut choice and persistent review.
-Manual node-image lists alone lose why a representative was chosen. P01 and P02 remain partial. Do not materialize an ASU before the
+W60 retains those chosen edges/anchors in a `topostitch-forest-proposal` request
+through the existing packet command. Reopening derives the same images and verifies
+compact selection provenance; direct-image packets/scenes remain exact. The viewer
+shows the fixed logical sites and chosen links. This is proposal intent, not review.
+
+**Next bounded work:** actual graphical cut choice and persistent human review
+still need qualification. In parallel, reuse the existing read-only endpoint owner
+to inspect the W54 failed last-accepted points' affected chemistry/packing under
+one common complete recipe; preserve FAILED outcomes and avoid new optimization. P01 and P02 remain partial. Do not materialize an ASU before the
 P03 identity/scattering and P04 seam-chemistry gates. W55 supplies an independent
 sampled complex-Fcalc/ANISOU transport diagnostic, not complete invariance proof.
 

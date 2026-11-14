@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W60 — Retain chosen links and anchors in saved cut requests
+
+- Add an explicit forest request kind to the existing preview command; recompute
+  image assignments through the registered graph and preserve the original choice.
+- Show that intent in the read-only viewer. Old direct-image packets and scenes
+  remain unchanged; no migration, model edit, chemical link or approval action.
+
 ### W59 — Calculate explicit connected representative choices
 
 - Reuse exact periodic graph algebra to assign images along caller-selected

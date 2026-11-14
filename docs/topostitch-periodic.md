@@ -1303,6 +1303,60 @@ ASU, full molecular connectivity or a finite whole crystal. Missing route scope
 and P01/P03/P04 gates remain. No native refinement, chemistry or rendered-browser
 approval occurs. Scientific inputs, reports and views remain local, outside Git.
 
-Next retain the chosen-edge/anchor meaning in the source-bound saved request
-before exposing persistent GUI cut choices; manual image lists alone lose that
-edit intent. Continue to reuse the same packet/replay/graph owners.
+W60 below retains the chosen-edge/anchor meaning in the same source-bound saved
+request. Actual graphical choice and persistent human review remain open.
+
+
+## W60 — Preserve selected-link and anchor intent in saved proposals
+
+The existing `nasolve-topostitch-cut-preview ... --proposal ...` command also
+accepts schema-1 `topostitch-forest-proposal`. It uses the same common fields as
+W56, replacing `node_images` with `selected_edge_ids` and `anchor_node_ids`:
+
+```json
+{
+  "schema_version": 1,
+  "kind": "topostitch-forest-proposal",
+  "registered_graph_sha256": "<exact outer registered report_sha256>",
+  "selected_edge_ids": [6, 37],
+  "anchor_node_ids": [1],
+  "extra_edges": [],
+  "coincidence_tolerance_angstrom": 0.01,
+  "max_atom_tests": 2000000
+}
+```
+
+Numbers above are illustrative caller-owned graph IDs, not universal residue
+numbers. Supply the same extra edges used to create the bound graph. Mixed image-
+list/forest fields, stale bindings and invalid forest choices refuse before output.
+The loader rebuilds the registered graph, derives exact images through W59 and
+then calls the existing registered atom preview. Frozen `proposal.json` retains
+what was chosen; the compact `forest_selection` receipt field retains canonical
+edge/anchor IDs, nested source-graph hash and the derivation report hash.
+Full replay recomputes all of them instead of trusting cached images or choices.
+
+Packet kind/version and its five files are unchanged. Direct-image requests and
+old receipts/scenes reproduce exactly, without migration or added default fields.
+The additive request kind needs this reader; older readers reject it. New forest
+scenes include the selection metadata, and the existing boundary/coverage panel
+shows chosen graph-edge numbers and fixed logical sites. This records caller
+proposal intent, not a scientist's acceptance. Human review remains UNREVIEWED.
+There is still no automatic cut choice, GUI editing, model/chemistry write or
+checkpoint action.
+
+Nine regressions cover equivalent explicit-image results, retained choice bytes,
+installed-style CLI input, relocation after original removal, incompatible/stale
+fields and altered/rehashed selection evidence. The positive cases fail before
+the feature. Focused checks pass **71**; full Willow **1,576 plus 229 subtests**;
+installed/relocated **370**, six helps, lean imports and Python 3.10 syntax pass.
+Commands follow W59 with `tests/test_topostitch_forest_bundle.py` added. The installed
+CLI builds the exact forest packet as well as the legacy direct-image packet.
+Wheel SHA-256: `275669fdd15071df76e22e052b022b9d436f25af755965eb76554d3a1eb6cb7a`.
+
+Both W59 public alternatives reproduce their exact prior coordinate/graph
+observations with the retained link/anchor request. Fresh packet hashes correctly
+reflect the different intent representation. Originals are removed before replay.
+The actual viewer JavaScript displays both selections and retains all tested
+interactions through DOM/canvas doubles; browser rendering/user review is still
+unqualified. No new scattering calculation, Phenix/Coot execution or Cedar change
+was needed. All scientific packets/views and local validation remain outside Git.

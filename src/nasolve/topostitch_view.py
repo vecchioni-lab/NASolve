@@ -178,7 +178,7 @@ def representative_scene(directory):
     if observation['source_orbit_observation']['issues']:warnings.append('Source orbit or occupancy findings require review; see provenance.')
     if (root/'preview.json').read_bytes()!=receipt_bytes or any((root/receipt['artifacts'][k]['relative_path']).read_bytes()!=v for k,v in snapshots.items()):
         raise ValueError('Representative preview inputs changed while preparing the view')
-    return dict(schema_version=1,kind='topostitch-representative-view',source_model_sha256=receipt['source_model_sha256'],
+    scene=dict(schema_version=1,kind='topostitch-representative-view',source_model_sha256=receipt['source_model_sha256'],
         preview_receipt_sha256=sha256(receipt_bytes).hexdigest(),representative_preview_sha256=observation['preview_sha256'],
         proposal_sha256=receipt['proposal_sha256'],registered_graph_sha256=receipt['registered_graph_sha256'],
         workflow=receipt['workflow'],runtime_authority=False,coordinates_materialized=False,graphical_review_recorded=False,
@@ -190,6 +190,8 @@ def representative_scene(directory):
         source_orbit_issues=observation['source_orbit_observation']['issues'],warnings=warnings,
         max_atom_displacement_angstrom=max((a['displacement_angstrom'] for a in atoms),default=0.),
         scope='All present source atoms and declared typed graph; target endpoints use exact edge images. No inferred chemical links.')
+    if 'forest_selection' in receipt:scene['forest_selection']=receipt['forest_selection']
+    return scene
 
 
 def _html(scene):

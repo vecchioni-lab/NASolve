@@ -439,25 +439,27 @@
       "delivered": [
         "W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation.",
         "W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge.",
-        "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection."
+        "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.",
+        "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
         "Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported."
       ],
-      "next_action": "Retain selected-edge/anchor edit intent in source-bound saved proposals, then qualify actual graphical choices and persistent review. Keep partial topology/physical identity and chemical seams behind their existing gates.",
+      "next_action": "Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.",
       "evidence": [
         "E_VIEW",
         "E_REPRESENTATIVE_VIEW",
         "E_VIEW_PACKAGE_BOUNDARY",
-        "E_EXPLICIT_FOREST"
+        "E_EXPLICIT_FOREST",
+        "E_SAVED_FOREST_INTENT"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
         "reviewer": "Linden",
-        "human_update": 59,
-        "scope": "Explicit graph-image proposal only; P02 remains partial with saved forest intent and actual graphical choice/review open"
+        "human_update": 60,
+        "scope": "Saved proposal intent only; P02 graphical choice/review, P03/P04 and chemistry remain open"
       }
     },
     {
@@ -877,6 +879,14 @@
       "reference": "docs/topostitch-periodic.md#w59--calculate-representatives-along-explicitly-chosen-links",
       "result": "21forest cases plus typed replay regression; focused78,full1567 plus229subtests,installed/relocated361,6helps. P43/R3/P21/unwrapped/reversed/disconnected/winding and source packet/view controls. Two predeclared public anchors move282/286 atoms and preserve sampled scattering within stated raw differences.",
       "limitation": "No inferred partner/tree/cut, saved forest edit intent, model, chemistry or graphical approval. Partial public graph is not a full molecular object. No native execution; all scientific data local only."
+    },
+    "E_SAVED_FOREST_INTENT": {
+      "kind": "saved_forest_proposal_intent",
+      "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
+      "human_update": 60,
+      "reference": "docs/topostitch-periodic.md#w60--preserve-selected-link-and-anchor-intent-in-saved-proposals",
+      "result": "9 new regressions; focused71,full1576 plus229subtests,installed/relocated370,6helps. Both public alternatives reproduce exact prior observations while retaining graph-link/anchor choice; installed forest and legacy commands pass. JS intent display/interactions checked with doubles.",
+      "limitation": "Proposal intent is not human approval; no GUI editing, automatic cut, coordinate writer, chemical seam or native execution. Browser visual review open. Old direct-image packets unchanged; new kind requires compatible reader. Scientific artifacts local only."
     }
   },
   "benchmarks": [
@@ -992,8 +1002,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 59,
-    "next": 60,
+    "current": 60,
+    "next": 61,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1155,6 +1165,12 @@
       {
         "number": 59,
         "title": "Calculate representatives along explicitly chosen graph links",
+        "state": "RECORDED",
+        "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410"
+      },
+      {
+        "number": 60,
+        "title": "Retain chosen graph links and anchors in saved proposals",
         "state": "RECORDED",
         "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410"
       }

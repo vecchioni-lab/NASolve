@@ -26,15 +26,31 @@ def _prepare(model,discovery,registration,proposal):
     paths={name:Path(path) for name,path in zip(_FILES,(model,discovery,registration,proposal))}
     snapshots={name:path.read_bytes() for name,path in paths.items()}
     request=_json(snapshots['proposal'])
-    _keys(request,{'schema_version','kind','registered_graph_sha256','node_images','extra_edges',
-                   'coincidence_tolerance_angstrom','max_atom_tests'})
-    if (type(request['schema_version']) is not int or request['schema_version']!=1
-            or request['kind']!='topostitch-representative-proposal'):
+    if (not isinstance(request,dict) or type(request.get('schema_version')) is not int
+            or request['schema_version']!=1 or request.get('kind') not in
+            ('topostitch-representative-proposal','topostitch-forest-proposal')):
         raise ValueError('Unsupported representative proposal kind/schema')
+    common={'schema_version','kind','registered_graph_sha256','extra_edges',
+            'coincidence_tolerance_angstrom','max_atom_tests'}
+    forest_request=request['kind']=='topostitch-forest-proposal'
+    _keys(request,common|({'selected_edge_ids','anchor_node_ids'} if forest_request else {'node_images'}))
     if not isinstance(request['registered_graph_sha256'],str) or not re.fullmatch(r'[0-9a-f]{64}',request['registered_graph_sha256']):
         raise ValueError('Require the exact registered graph SHA-256')
+    selection=None
+    if forest_request:
+        from .topostitch_graph import build_registered_periodic_graph,propose_forest_representatives
+        bound=build_registered_periodic_graph(paths['source'],paths['discovery'],paths['registration'],extra_edges=request['extra_edges'])
+        if bound['report_sha256']!=request['registered_graph_sha256']:
+            raise ValueError('Registered graph checksum mismatch for the selected forest')
+        graph=bound['periodic_graph']
+        derived=propose_forest_representatives(graph,selected_edge_ids=request['selected_edge_ids'],
+            anchor_node_ids=request['anchor_node_ids'],expected_graph_sha256=graph['graph_sha256'])
+        images=derived['node_images']
+        selection=dict(selected_edge_ids=derived['selected_edge_ids'],anchor_node_ids=derived['anchor_node_ids'],
+            source_graph_sha256=graph['graph_sha256'],graph_proposal_sha256=derived['proposal_sha256'])
+    else:images=request['node_images']
     observation=preview_registered_relabel(paths['source'],paths['discovery'],paths['registration'],
-        node_images=request['node_images'],extra_edges=request['extra_edges'],
+        node_images=images,extra_edges=request['extra_edges'],
         expected_registered_graph_sha256=request['registered_graph_sha256'],
         coincidence_tolerance_angstrom=request['coincidence_tolerance_angstrom'],
         max_atom_tests=request['max_atom_tests'])
@@ -51,6 +67,7 @@ def _prepare(model,discovery,registration,proposal):
                      'No replacement model, editable chemistry registry, native restraint or checkpoint selection',
                      'Exact preview replay requires compatible algorithm and Gemmi runtime; no silent migration',
                      'Scattering observation is separate and must bind this exact source/preview; complete invariance remains open'])
+    if selection is not None:receipt['forest_selection']=selection
     return snapshots,receipt
 
 

@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W59 — Calculate representatives along explicitly chosen graph links.** Next: W60.
+**Current update: W60 — Retain chosen graph links and anchors in saved proposals.** Next: W61.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W50 | Observe all present model atom orbits | RECORDED |
 | W51 | Record native stopping limits and shared periodic chemistry intent | RECORDED |
 | W52 | Bind representative previews to registered source atoms | RECORDED |
 | W53 | Measure precision at retained failed-trial points | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W57 | Inspect periodic representative proposals in the shared viewer | RECORDED |
 | W58 | Qualify viewer packaging and Cedar composition | RECORDED |
 | W59 | Calculate representatives along explicitly chosen graph links | RECORDED |
+| W60 | Retain chosen graph links and anchors in saved proposals | RECORDED |
 
 ## Finish lines
 
@@ -274,16 +274,16 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.
 
 **Closure audit:**
 
 - Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
-**Next action:** Retain selected-edge/anchor edit intent in source-bound saved proposals, then qualify actual graphical choices and persistent review. Keep partial topology/physical identity and chemical seams behind their existing gates.
-**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest).
-**Last audit:** 2026-11-14, Linden, [W59](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410); Explicit graph-image proposal only; P02 remains partial with saved forest intent and actual graphical choice/review open.
+**Next action:** Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent).
+**Last audit:** 2026-11-14, Linden, [W60](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410); Saved proposal intent only; P02 graphical choice/review, P03/P04 and chemistry remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -653,6 +653,13 @@ Missing-asset regression fails before fix; focused41,full1545 plus229subtests,in
 [Evidence contract](topostitch-periodic.md#w59--calculate-representatives-along-explicitly-chosen-links) at [W59](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410).
 21forest cases plus typed replay regression; focused78,full1567 plus229subtests,installed/relocated361,6helps. P43/R3/P21/unwrapped/reversed/disconnected/winding and source packet/view controls. Two predeclared public anchors move282/286 atoms and preserve sampled scattering within stated raw differences.
 **Limit:** No inferred partner/tree/cut, saved forest edit intent, model, chemistry or graphical approval. Partial public graph is not a full molecular object. No native execution; all scientific data local only.
+
+<a id="e_saved_forest_intent"></a>
+### E_SAVED_FOREST_INTENT — saved_forest_proposal_intent
+
+[Evidence contract](topostitch-periodic.md#w60--preserve-selected-link-and-anchor-intent-in-saved-proposals) at [W60](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410).
+9 new regressions; focused71,full1576 plus229subtests,installed/relocated370,6helps. Both public alternatives reproduce exact prior observations while retaining graph-link/anchor choice; installed forest and legacy commands pass. JS intent display/interactions checked with doubles.
+**Limit:** Proposal intent is not human approval; no GUI editing, automatic cut, coordinate writer, chemical seam or native execution. Browser visual review open. Old direct-image packets unchanged; new kind requires compatible reader. Scientific artifacts local only.
 
 ## Deferred extensions, not hidden blockers
 
