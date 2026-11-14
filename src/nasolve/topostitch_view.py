@@ -11,6 +11,7 @@ from hashlib import sha256
 from importlib.resources import files
 import json
 import math
+import re
 from pathlib import Path
 import sys
 
@@ -261,14 +262,68 @@ def representative_comparison(directories, *, native_receipt=None, cedar_source=
     return result
 
 
-def _html(scene):
-    data=json.dumps(scene,separators=(',',':'),allow_nan=False,ensure_ascii=True)
+def _read_cut_preference(comparison, path):
+    """Bind caller-supplied preference text to a freshly replayed comparison."""
+    from .topostitch_inspect import _keys
+    path = Path(path)
+    if path.stat().st_size > 16_384:
+        raise ValueError('Cut preference exceeds the 16384-byte size limit')
+    data = path.read_bytes()
+    if len(data) > 16_384:
+        raise ValueError('Cut preference exceeds the 16384-byte size limit')
+    request = _json(data)
+    fields = {'schema_version', 'kind', 'comparison_sha256', 'source_model_sha256',
+              'registered_graph_sha256', 'decision', 'preferred_preview_receipt_sha256', 'comment'}
+    if not isinstance(request, dict):
+        raise ValueError('Cut preference must be an object')
+    _keys(request, fields)
+    if (type(request['schema_version']) is not int or request['schema_version'] != 1
+            or request['kind'] != 'topostitch-cut-preference'):
+        raise ValueError('Unsupported cut preference kind/schema')
+    if any(request[key] != comparison[key] for key in
+           ('comparison_sha256', 'source_model_sha256', 'registered_graph_sha256')):
+        raise ValueError('Preference does not match this exact source-bound comparison')
+    decision = request['decision']
+    preferred = request['preferred_preview_receipt_sha256']
+    if decision not in ('prefer_cut', 'keep_original', 'needs_revision'):
+        raise ValueError('Unsupported cut preference decision')
+    hashes = [row['scene']['preview_receipt_sha256'] for row in comparison['alternatives']]
+    if ((decision == 'prefer_cut' and preferred not in hashes)
+            or (decision != 'prefer_cut' and preferred is not None)):
+        raise ValueError('Preference must identify exactly one displayed cut or no cut')
+    if not isinstance(request['comment'], str) or len(request['comment']) > 2000:
+        raise ValueError('Preference comment must contain at most 2000 characters')
+    if path.read_bytes() != data:
+        raise ValueError('Cut preference changed during validation')
+    return {**request, 'kind': 'topostitch-bound-cut-preference',
+            'preference_file_sha256': sha256(data).hexdigest(),
+            'reviewer_authenticated': False, 'scientific_acceptance': False,
+            'checkpoint_selection_applied': False, 'runtime_authority': False}
+
+
+def validate_cut_preference(directories, preference_path, *, native_receipt=None, cedar_source=None):
+    """Reopen an exact comparison before accepting a preference as review input.
+
+    This records neither authenticated human approval nor a checkpoint selection.
+    Callers supply explicit packet paths; a checksum never becomes a file locator.
+    """
+    comparison = representative_comparison(directories, native_receipt=native_receipt, cedar_source=cedar_source)
+    return _read_cut_preference(comparison, preference_path)
+
+
+def _script_json(value):
+    data=json.dumps(value,separators=(',',':'),allow_nan=False,ensure_ascii=True)
     data=data.replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
+    return data
+
+
+def _html(scene,preference=None):
     template=files('nasolve').joinpath('data/topostitch-view.html').read_text(encoding='utf-8')
-    return template.replace('__SCENE_JSON__',data)
+    payloads={'__SCENE_JSON__':_script_json(scene),'__PREFERENCE_JSON__':_script_json(preference)}
+    return re.sub('__SCENE_JSON__|__PREFERENCE_JSON__',lambda match:payloads[match.group()],template)
 
 
-def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),**options):
+def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,**options):
     if cedar_source is not None and native_receipt is None:
         raise ValueError('A trusted Cedar source requires an explicit native receipt')
     root=Path(directory).resolve();out=Path(output_path).absolute()
@@ -289,7 +344,10 @@ def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=
     else:
         if native_receipt is not None:raise ValueError('Native seam observation requires a representative preview')
         scene=preview_scene(root,**options)
-    html=_html(scene)  # Validate the installed asset before creating any output.
+    if preference_path is not None and scene['kind']!='topostitch-representative-comparison-view':
+        raise ValueError('A cut preference requires an explicit comparison')
+    preference=None if preference_path is None else _read_cut_preference(scene,preference_path)
+    html=_html(scene,preference)  # Validate the installed asset before creating any output.
     with out.open('x',encoding='utf-8') as stream:stream.write(html)
     return scene
 
@@ -299,6 +357,7 @@ def main(argv=None):
     parser.add_argument('preview',type=Path)
     parser.add_argument('--out',type=Path,required=True,help='New standalone HTML file outside the frozen preview')
     parser.add_argument('--compare',type=Path,action='append',default=[],help='Additional explicit cut packet from the same source/graph (repeat up to seven times)')
+    parser.add_argument('--preference',type=Path,help='Reopen a saved preference bound to this exact comparison; never selects a model')
     parser.add_argument('--candidate',type=int,help='Explicit candidate index in the original model search')
     parser.add_argument('--radius',type=float,help='Exact source search radius when choosing a candidate')
     parser.add_argument('--periodic',action='store_true',help='Show the exact chosen symmetry mate (requires topology extra)')
@@ -308,7 +367,7 @@ def main(argv=None):
     parser.add_argument('--cedar-source',type=Path,help='Explicit trusted developer Cedar source; default uses installed owners')
     args=parser.parse_args(argv)
     try:scene=write_preview_view(args.preview,args.out,candidate_index=args.candidate,radius_angstrom=args.radius,
-        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare)
+        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare,preference_path=args.preference)
     except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
     detail=(str(len(scene['alternatives']))+' explicit cuts; none selected' if 'alternatives' in scene
             else str(len(scene['atoms']))+' displayed atom instances; proposal remains unreviewed')

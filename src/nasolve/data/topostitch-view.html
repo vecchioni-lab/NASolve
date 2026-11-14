@@ -22,6 +22,7 @@
 </section>
 <aside aria-label="Connection and geometry details">
 <section class="section"><h2 id="proposal-heading">Proposed connection</h2><p id="connection"></p><p class="footnote" id="comparison-summary" hidden></p><p class="statusline" id="workflow-label">Candidate built · Refinement not run<br>Human review not recorded</p><div id="warnings"></div><p class="footnote" id="view-scope">This view shows the actual saved candidate. Viewing it does not select or approve a model.</p></section>
+<section class="section" id="preference-section" hidden><h2>Save a preference</h2><p class="footnote" id="saved-preference"></p><label for="preference-choice">Your choice</label><select id="preference-choice"><option value="">Choose after inspecting</option><option value="prefer_cut">Prefer the displayed cut</option><option value="keep_original">Keep the original representation</option><option value="needs_revision">Needs revision</option></select><p><label for="preference-comment">Note (optional)</label><textarea id="preference-comment" maxlength="2000" rows="3" style="width:100%;font:inherit"></textarea></p><button id="save-preference" disabled>Download preference</button><p class="footnote" id="preference-status" role="status">This saves a note for later review. It does not change the model or approve chemistry.</p></section>
 <section class="section"><h2>What changed</h2><div class="metrics"><div class="metric"><strong id="moved-count"></strong><span id="moved-label">moved atoms in view</span></div><div class="metric"><strong id="max-move"></strong><span id="shift-label">largest move / Å</span></div><div class="metric"><strong id="bond-change"></strong><span id="third-metric-label">largest link change / Å</span></div><div class="metric"><strong id="angle-change"></strong><span id="fourth-metric-label">largest angle change / °</span></div></div><p id="torsion" class="tiny muted"></p><p class="footnote" id="metric-note">Changes are relative to the original. They are not an ideal-geometry verdict.</p></section>
 <section class="section" id="periodic-section" hidden><h2>Declared graph edges</h2><label for="edge-picker">Inspect an edge</label><select id="edge-picker"><option value="">Choose an edge</option></select><p><button id="focus-edge" disabled>Focus edge</button></p><div class="selection" id="edge-detail">Choose an edge to see its exact partner image.</div><p class="footnote">Solid: declared backbone. Dashed: pairing. Dotted: stacking. Purple dashed: symmetry correspondence. Endpoints are O3′ anchors; lines do not create bonds.</p></section>
 <section class="section"><h2>Inspect a point</h2><div class="selection" id="selection"><p class="muted tiny">Click a backbone point, or turn on All atoms for atomic detail.</p></div></section>
@@ -31,6 +32,7 @@
 <details><summary>Symmetry, scope and provenance</summary><pre id="provenance"></pre></details>
 </aside></main>
 <script id="scene" type="application/json">__SCENE_JSON__</script>
+<script id="preference" type="application/json">__PREFERENCE_JSON__</script>
 <script>
 (()=>{'use strict';
 const payload=JSON.parse(document.getElementById('scene').textContent);
@@ -114,7 +116,14 @@ const updateSummary=()=>text('comparison-summary','Viewing Cut '+picker.value+' 
 picker.addEventListener('change',()=>{const choice=choices.find(c=>String(c.cut_id)===picker.value);if(!choice)return;
 scene=choice.scene;atoms=scene.atoms;edges=scene.periodic_edges;activeEdge=null;selected=null;drag=null;tooltip.style.display='none';
 text('selection','Click a backbone point, or turn on All atoms for atomic detail.');text('edge-detail','Choose an edge to see its exact partner image.');document.getElementById('focus-edge').disabled=true;
-populate();populateEdges();updateSummary();draw();});}
+populate();populateEdges();updateSummary();document.getElementById('preference-choice').value='';document.getElementById('save-preference').disabled=true;draw();});}
+
+if(comparison){document.getElementById('preference-section').hidden=false;const decision=document.getElementById('preference-choice'),save=document.getElementById('save-preference'),note=document.getElementById('preference-comment');
+const previous=JSON.parse(document.getElementById('preference').textContent||'null');
+if(previous){const chosen=choices.find(c=>c.scene.preview_receipt_sha256===previous.preferred_preview_receipt_sha256);text('saved-preference','Saved preference: '+(previous.decision==='prefer_cut'?'Prefer Cut '+chosen.cut_id:previous.decision==='keep_original'?'Keep original':'Needs revision')+(previous.comment?' — '+previous.comment:'')+'. No model selected or scientific approval recorded.');}
+decision.addEventListener('change',()=>{save.disabled=!['prefer_cut','keep_original','needs_revision'].includes(decision.value);});
+save.addEventListener('click',()=>{if(save.disabled)return;const request={schema_version:1,kind:'topostitch-cut-preference',comparison_sha256:payload.comparison_sha256,source_model_sha256:payload.source_model_sha256,registered_graph_sha256:payload.registered_graph_sha256,decision:decision.value,preferred_preview_receipt_sha256:decision.value==='prefer_cut'?scene.preview_receipt_sha256:null,comment:note.value};
+const blob=new Blob([JSON.stringify(request,null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='topostitch-cut-preference.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);text('preference-status','Preference download requested. The model and current selection are unchanged.');});}
 
 canvas.addEventListener('keydown',e=>{let handled=true;if(e.key==='ArrowLeft')yaw-=.12;else if(e.key==='ArrowRight')yaw+=.12;else if(e.key==='ArrowUp')pitch-=.12;else if(e.key==='ArrowDown')pitch+=.12;else if(e.key==='+'||e.key==='=')zoomBy(1.2);else if(e.key==='-')zoomBy(1/1.2);else if(e.key==='Home')reset();else handled=false;if(handled){e.preventDefault();draw();}});
 for(const button of document.querySelectorAll('[data-mode]'))button.addEventListener('click',()=>{mode=button.dataset.mode;for(const b of document.querySelectorAll('[data-mode]'))b.setAttribute('aria-pressed',String(b===button));draw();});

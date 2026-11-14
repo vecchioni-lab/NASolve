@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W64 — Compare explicit cuts through a shared-camera preview.** Next: W65.
+**Current update: W65 — Save and reopen source-bound cut preferences.** Next: W66.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
 | W56 | Save and replay explicit representative proposals | RECORDED |
 | W57 | Inspect periodic representative proposals in the shared viewer | RECORDED |
 | W58 | Qualify viewer packaging and Cedar composition | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
 | W63 | Expose existing source bonds at proposed representation seams | RECORDED |
 | W64 | Compare explicit cuts through a shared-camera preview | RECORDED |
+| W65 | Save and reopen source-bound cut preferences | IN_PROGRESS |
 
 ## Finish lines
 
@@ -274,16 +274,16 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge. W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection. W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI. W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W64 compares 2–8 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed. W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.
 
 **Closure audit:**
 
 - Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
-**Next action:** Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.
-**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison).
-**Last audit:** 2026-11-14, Linden, [W64](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e); Explicit comparison and interaction controls only; P02 remains partial without rendered/user review or persistent choice.
+**Next action:** Qualify actual browser rendering, preference downloads and human review; then wire the source-bound choice into existing Pine/Campaign owners. Keep physical identity, model materialization and seam chemistry gated.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison), [E_CUT_PREFERENCE](#e_cut_preference).
+**Last audit:** 2026-11-14, Linden, [W65](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e); Saved caller preference and exact backend readback only; real graphical/human review and execution remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -688,6 +688,13 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 [Evidence contract](topostitch-periodic.md#w64--compare-explicit-cuts-in-one-shared-view) at [W64](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e).
 12 regressions; focused42,full1615 plus229subtests. Public explicit alternatives preserve exact W63 scenes and relocate with source paths blocked. Actual JavaScript checks shared camera, repeated cut switching, refreshed seam details, stale selection clearing and legacy controls. Installed/relocated409,six helps,lean/3.10 and exact installed comparison/legacy replay pass.
 **Limit:** No automatic alternatives, saved human choice/approval, model or chemistry action. Browser rendering/user review still open. Stale installed-wheel refusal retained; scientific artifacts local only.
+
+<a id="e_cut_preference"></a>
+### E_CUT_PREFERENCE — source_bound_cut_preference
+
+[Evidence contract](topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference) at [W65](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e).
+15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass.
+**Limit:** Preference is caller-supplied evidence, not authenticated human or scientific approval; no model/checkpoint action or separate campaign history. Real browser/download/human review remains open. Scientific artifacts local only.
 
 ## Deferred extensions, not hidden blockers
 

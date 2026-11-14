@@ -613,6 +613,30 @@
       "coordinates_materialized": false,
       "chemical_connectivity_changed": false,
       "runtime_authority": false
+    },
+    "representative_cut_preference": {
+      "module": "nasolve.topostitch_view",
+      "api": "validate_cut_preference",
+      "cli": "nasolve-topostitch-view --compare ... --preference FILE",
+      "request_kind": "topostitch-cut-preference",
+      "readback_kind": "topostitch-bound-cut-preference",
+      "schema_version": 1,
+      "decisions": [
+        "prefer_cut",
+        "keep_original",
+        "needs_revision"
+      ],
+      "binding": "Fresh replay of explicit ordered packet paths; exact source/graph/comparison/selected packet and request bytes",
+      "limits": {
+        "max_request_bytes": 16384,
+        "max_comment_characters": 2000
+      },
+      "persistence": "User-requested standalone JSON download, reopened through backend validation; no separate campaign/checkpoint history",
+      "reviewer_authenticated": false,
+      "scientific_acceptance": false,
+      "checkpoint_selection_applied": false,
+      "runtime_authority": false,
+      "browser_download_validated": false
     }
   },
   "geometry_development": {

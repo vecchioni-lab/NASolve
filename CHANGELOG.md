@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W65 — Save and reopen source-bound cut preferences
+
+- Add a preference download and `--preference` readback to the comparison view;
+  validate the exact source, graph, ordered comparison and preferred packet.
+- Keep preference evidence separate from authenticated review, model selection
+  and scientific approval. Preserve literal template/script text safely in notes.
+
 ### W64 — Compare explicit ASU cuts in the existing viewer
 
 - Add repeatable `--compare` for source/graph-bound representative packets and a

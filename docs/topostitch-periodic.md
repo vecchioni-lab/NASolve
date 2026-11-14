@@ -1601,3 +1601,81 @@ pass. The installed `--compare` command produces the exact native-context compar
 scene; legacy bundle, forest, orbit, single-view and source-native replay also pass.
 W63's scoped C302 owner-composition qualification remains the compatibility baseline;
 W64 adds no Cedar owner interface or package metadata change.
+
+
+## W65 — Save and reopen a source-bound cut preference
+
+The comparison view offers **Prefer the displayed cut**, **Keep the original
+representation**, and **Needs revision**, with an optional note. Downloading a
+preference requests a local JSON file; it does not modify a packet/model or select
+a checkpoint. Changing the displayed cut clears the pending choice, retains the
+note text and requires a fresh explicit choice before another download.
+
+Reopen that note against the same explicit ordered comparison:
+
+```bash
+nasolve-topostitch-view /path/to/cut-a --compare /path/to/cut-b --preference /path/to/topostitch-cut-preference.json --out /path/to/new-noted-view.html
+```
+
+If the original comparison included a native capture, supply the same validated
+`--native-receipt` context (and optional trusted developer `--cedar-source`) again.
+The Python API is `nasolve.topostitch_view.validate_cut_preference(directories,
+preference_path, native_receipt=..., cedar_source=...)`. It recomputes the comparison
+from explicit packet paths before accepting the preference. Hashes identify inputs;
+they are never used to locate files. Reordering cuts, changing the source/graph/
+optional native evidence or selecting an undisplayed packet requires fresh review.
+
+The request is schema 1 `topostitch-cut-preference`, with exactly these fields:
+`schema_version`, `kind`, `comparison_sha256`, `source_model_sha256`,
+`registered_graph_sha256`, `decision`, `preferred_preview_receipt_sha256`, `comment`.
+Decisions are `prefer_cut`, `keep_original`, `needs_revision`. Only `prefer_cut`
+may name a preferred packet hash; the other two require null. Comments are strings
+up to 2000 characters and the input file is bounded to 16384 bytes. Unknown fields,
+duplicate keys, bool schema versions, stale hashes and unsupported actions refuse.
+
+The validator returns schema-1 `topostitch-bound-cut-preference`, retaining that
+choice/comment plus the exact request-file hash. It explicitly sets
+`reviewer_authenticated`, `scientific_acceptance`, `checkpoint_selection_applied`
+and `runtime_authority` false. This is **caller-supplied preference evidence**,
+not proof of who clicked, visual correctness or scientific approval. The verified
+note appears separately from the unchanged scene in the HTML. It is not a NASolve
+run, checkpoint or parallel campaign history. Existing checkpoint selection and
+campaign record owners remain responsible for their later real operations.
+
+Single-pass JSON template insertion preserves literal template markers and script
+text in notes without substitution or execution. Fifteen regressions cover all
+choices, stale/foreign/authority-bearing requests, duplicate keys, size/comment
+bounds, relocation, reordered comparisons, non-comparison refusal and safe text.
+The initial missing-feature and placeholder-substitution failures are retained.
+Focused **57**, full Willow **1,630 plus 229 subtests** pass:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_topostitch_cut_preference.py tests/test_topostitch_cut_comparison.py tests/test_topostitch_native_seams.py tests/test_topostitch_view.py tests/test_topostitch_recut_view.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider
+python -m pip wheel --no-deps --no-build-isolation --wheel-dir /path/to/local/wheels .
+```
+
+The host used Python 3.12.14 and the full topology dependencies/Gemmi 0.7.5.
+Final wheel SHA-256:
+`a7ade94f7676f9168646b4b91ff0945cccd9e560555ac6e8a863a284e3b71b78`;
+its module/HTML bytes match the final source. Actual packaged JavaScript exercises
+all three exports, choice reset, retained note and reopened preference display
+through DOM/canvas/Blob doubles. Those exact exported requests validate against
+relocated public packets/native capture with original paths blocked. The original
+comparison and all legacy scenes remain exact. **Actual browser rendering, download
+behavior and human review are still unqualified**, not supplied by these doubles.
+No Phenix/Coot execution, chemistry, model/selection action or Cedar change occurs.
+Scientific data, local preferences/views and validation stay outside Git. Both new
+request/readback kinds are additive; old packets and scenes need no migration.
+
+
+Installed/relocated **424** tests, six entry-point helps, lean imports and Python
+3.10 syntax pass. The installed `--preference` command reproduces the exact verified
+note while preserving the original comparison JSON; legacy packet/forest/orbit/
+native-link/single-view and comparison commands also pass. The complete source
+suite used `PYTHONDONTWRITEBYTECODE=1` and
+`PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages`
+with the host NASolve `.venv/bin/python -m pytest -q -p no:cacheprovider` from the
+Willow checkout. These local environment paths are validation provenance, not
+operational artifact locators; a normal installed topology environment uses the
+portable commands above.

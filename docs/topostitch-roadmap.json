@@ -445,13 +445,14 @@
         "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection.",
         "W60 persists explicit chosen edges/anchors in the existing source-bound packet and recomputes derivation on load; viewer exposes that proposal intent. Old direct-image packets/scenes retain exact behavior; no human acceptance or editing UI.",
         "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
-        "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed."
+        "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
+        "W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
         "Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported."
       ],
-      "next_action": "Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.",
+      "next_action": "Qualify actual browser rendering, preference downloads and human review; then wire the source-bound choice into existing Pine/Campaign owners. Keep physical identity, model materialization and seam chemistry gated.",
       "evidence": [
         "E_VIEW",
         "E_REPRESENTATIVE_VIEW",
@@ -459,14 +460,15 @@
         "E_EXPLICIT_FOREST",
         "E_SAVED_FOREST_INTENT",
         "E_NATIVE_REPRESENTATION_SEAMS",
-        "E_CUT_COMPARISON"
+        "E_CUT_COMPARISON",
+        "E_CUT_PREFERENCE"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
         "reviewer": "Linden",
-        "human_update": 64,
-        "scope": "Explicit comparison and interaction controls only; P02 remains partial without rendered/user review or persistent choice"
+        "human_update": 65,
+        "scope": "Saved caller preference and exact backend readback only; real graphical/human review and execution remain open"
       }
     },
     {
@@ -933,6 +935,14 @@
       "reference": "docs/topostitch-periodic.md#w64--compare-explicit-cuts-in-one-shared-view",
       "result": "12 regressions; focused42,full1615 plus229subtests. Public explicit alternatives preserve exact W63 scenes and relocate with source paths blocked. Actual JavaScript checks shared camera, repeated cut switching, refreshed seam details, stale selection clearing and legacy controls. Installed/relocated409,six helps,lean/3.10 and exact installed comparison/legacy replay pass.",
       "limitation": "No automatic alternatives, saved human choice/approval, model or chemistry action. Browser rendering/user review still open. Stale installed-wheel refusal retained; scientific artifacts local only."
+    },
+    "E_CUT_PREFERENCE": {
+      "kind": "source_bound_cut_preference",
+      "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
+      "human_update": 65,
+      "reference": "docs/topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference",
+      "result": "15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass.",
+      "limitation": "Preference is caller-supplied evidence, not authenticated human or scientific approval; no model/checkpoint action or separate campaign history. Real browser/download/human review remains open. Scientific artifacts local only."
     }
   },
   "benchmarks": [
@@ -1048,8 +1058,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 64,
-    "next": 65,
+    "current": 65,
+    "next": 66,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1243,6 +1253,12 @@
         "title": "Compare explicit cuts through a shared-camera preview",
         "state": "RECORDED",
         "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e"
+      },
+      {
+        "number": 65,
+        "title": "Save and reopen source-bound cut preferences",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

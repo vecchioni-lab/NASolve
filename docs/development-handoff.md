@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W64; next W65.** Human W-numbers and exact code provenance live
+**Willow update W65; next W66.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,615 plus 229 subtests**; focused42;
-installed/relocated409, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,630 plus 229 subtests**; focused57;
+installed/relocated424, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -184,7 +184,15 @@ seams/provenance and clears old atom/edge inspection. No packet changes or saved
 human decision; legacy scenes are exact. Public replay and actual JavaScript
 interaction controls pass, but rendered/browser review is still open.
 
-**Next bounded work:** actual graphical cut choice and persistent human review
+W65 adds saved preferences (prefer cut / keep original / needs revision) and
+`--preference` readback bound to the exact ordered comparison. Backend validation
+replays explicit packet paths; no model/checkpoint selection or authenticated
+approval is implied. The old comparison/scene stays exact. Actual JavaScript
+exports validate after relocation; browser downloads/human review remain open.
+Existing Pine/Campaign record and checkpoint owners will consume this evidence;
+no parallel history or model writer was added.
+
+**Next bounded work:** actual browser cut inspection, preference download and human review
 still need qualification. W61 completed the two read-only W54 failed-point reviews
 under one common complete recipe: selected/core pair and scalar geometry improve,
 but individual packing/torsion/plane regressions remain visible. Original FAILED

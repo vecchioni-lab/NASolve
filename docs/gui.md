@@ -769,9 +769,12 @@ An initial [offline source/candidate view](topostitch-preview.md#offline-origina
 is implemented as a verified scene adapter and packaged standalone canvas. It
 shows actual frozen coordinates and an explicitly chosen mate, allows rotation
 and point inspection, and keeps execution/refinement/review states separate.
-It has no state-changing controls; browser visual validation is pending. This
-component does not choose the future GUI shell or implement Pine cut choices,
-materialization, campaign integration or persistent review. The
+The same component now inspects explicit ASU cuts with a shared camera and can
+save/reopen a source-bound preference (prefer cut, keep original, needs revision).
+These are review inputs, not authenticated approval or model/checkpoint selection.
+See the [periodic guide](topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference).
+Actual browser rendering/download validation is pending. The component does not
+choose the future GUI shell or implement materialization/campaign integration. The
 [periodic inspector](topostitch-periodic.md) supplies exact mate operators and
 observed transformed end frames for preview, plus image-distinctness/capacity
 warnings. These are proposal observations, never completed repairs. The GUI
