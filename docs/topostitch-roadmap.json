@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
+  "audited_code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -463,7 +463,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
+        "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
         "reviewer": "Linden",
         "human_update": 64,
         "scope": "Explicit comparison and interaction controls only; P02 remains partial without rendered/user review or persistent choice"
@@ -928,7 +928,7 @@
     },
     "E_CUT_COMPARISON": {
       "kind": "explicit_cut_comparison_view",
-      "code_commit": "23939692f20f16ffaecc0352d4e3060e47f6ed20",
+      "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
       "human_update": 64,
       "reference": "docs/topostitch-periodic.md#w64--compare-explicit-cuts-in-one-shared-view",
       "result": "12 regressions; focused42,full1615 plus229subtests. Public explicit alternatives preserve exact W63 scenes and relocate with source paths blocked. Actual JavaScript checks shared camera, repeated cut switching, refreshed seam details, stale selection clearing and legacy controls. Installed/relocated409,six helps,lean/3.10 and exact installed comparison/legacy replay pass.",
@@ -1241,8 +1241,8 @@
       {
         "number": 64,
         "title": "Compare explicit cuts through a shared-camera preview",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e"
       }
     ]
   }

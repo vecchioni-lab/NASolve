@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
 | W63 | Expose existing source bonds at proposed representation seams | RECORDED |
-| W64 | Compare explicit cuts through a shared-camera preview | IN_PROGRESS |
+| W64 | Compare explicit cuts through a shared-camera preview | RECORDED |
 
 ## Finish lines
 
@@ -283,7 +283,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.
 **Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison).
-**Last audit:** 2026-11-14, Linden, [W64](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20); Explicit comparison and interaction controls only; P02 remains partial without rendered/user review or persistent choice.
+**Last audit:** 2026-11-14, Linden, [W64](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e); Explicit comparison and interaction controls only; P02 remains partial without rendered/user review or persistent choice.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -685,7 +685,7 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 <a id="e_cut_comparison"></a>
 ### E_CUT_COMPARISON — explicit_cut_comparison_view
 
-[Evidence contract](topostitch-periodic.md#w64--compare-explicit-cuts-in-one-shared-view) at [W64](https://github.com/vecchioni-lab/NASolve/commit/23939692f20f16ffaecc0352d4e3060e47f6ed20).
+[Evidence contract](topostitch-periodic.md#w64--compare-explicit-cuts-in-one-shared-view) at [W64](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e).
 12 regressions; focused42,full1615 plus229subtests. Public explicit alternatives preserve exact W63 scenes and relocate with source paths blocked. Actual JavaScript checks shared camera, repeated cut switching, refreshed seam details, stale selection clearing and legacy controls. Installed/relocated409,six helps,lean/3.10 and exact installed comparison/legacy replay pass.
 **Limit:** No automatic alternatives, saved human choice/approval, model or chemistry action. Browser rendering/user review still open. Stale installed-wheel refusal retained; scientific artifacts local only.
 
