@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
 | W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | RECORDED |
 | W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
-| W48 | Preserve declared periodic routes and exact image loops | IN_PROGRESS |
+| W48 | Preserve declared periodic routes and exact image loops | RECORDED |
 
 ## Finish lines
 
@@ -258,16 +258,16 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 
 Represent the observed periodic object independently of a tile hypothesis or PDB chain cut.
 
-**Delivered:** Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not.
+**Delivered:** Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not. W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding.
 
 **Closure audit:**
 
 - Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.
 - Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle.
 
-**Next action:** Build the minimum graph required for one declared recut; retain broader emergent topology as explicit unsupported scope.
-**Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
+**Next action:** Qualify explicit image relabeling algebra for one declared cut; then close missing physical/chemical/whole-ASU scope before materialization. P02 still requires graphical review.
+**Evidence:** [E_REGISTRATION](#e_registration), [E_SOFTWARE](#e_software), [E_DECLARED_GRAPH](#e_declared_graph).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a542ea8dc375faeab85cc6196cf5e400603bccc8); Read-only graph prototype; P01 remains PARTIAL and upstream F02 physical gates remain open..
 
 <a id="p02"></a>
 ### P02 — Offer cut choices in a required graphical preview
@@ -567,6 +567,13 @@ Maintained Cedar kernels match original live proxies and complete native family 
 [Evidence contract](topostitch-preview.md#w47--one-periodic-edge-and-its-reciprocal-partners) at [W47](https://github.com/vecchioni-lab/NASolve/commit/c887c65ea966b3a7107a1220289fde646587e875).
 Shared exact reciprocal incidence retains lattice translations for selected source/transformed audits. P1/P2/C2/P43 controls distinguish one versus two self-image partners; ambiguity stays under review. Periodic fitter consumes scoped capacity. Full Willow 1424 plus 229 subtests; focused/installed-relocated 68. Public 8D93 numerical report exactly reproduces apart from added capacity metadata and algorithm v5, including after relocation with old paths blocked.
 **Limit:** One declared edge under present selected-coordinate/tolerance assumptions; full molecular identity, special-position equivalence, global scheme, sequence/orientation, geometry and connection acceptance remain unqualified. No native Phenix/Coot execution, chemical link, recut, Cedar edits or adoption. Generated evidence stays local.
+
+<a id="e_declared_graph"></a>
+### E_DECLARED_GRAPH — declared_periodic_graph_and_registered_scope
+
+[Evidence contract](topostitch-periodic.md#w48--declared-periodic-graph-for-pine) at [W48](https://github.com/vecchioni-lab/NASolve/commit/a542ea8dc375faeab85cc6196cf5e400603bccc8).
+20 new graph regressions pass and fail on the pre-patch checkout. Full Willow: 1444 plus 229 subtests. Installed/relocated graph and owner tests: 113. Public 8D93 registered graph reproduces exactly with original paths blocked and original temporary checkout absent; all input bytes preserved. Five installed entrypoint helps, lean import and Python 3.10 syntax checks pass.
+**Limit:** Declared one-copy scope only; other copies, unrepresented coordinates, unknown boundaries and missing sites remain explicit. No physical orbit quotient, complete molecular graph, covalent seam creation, coordinate materialization, scattering invariance, Phenix/Coot run or Cedar changes. Scientific artifacts stay local.
 
 ## Deferred extensions, not hidden blockers
 

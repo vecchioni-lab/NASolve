@@ -405,6 +405,22 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-14
 
+**W48 checkpoint:** declared graph tests pass (20); complete Willow passes
+1,444 tests plus 229 subtests. Installed/relocated graph and shared-owner tests
+pass (113), and the existing public graph reproduces exactly with original paths
+blocked and the original temporary checkout absent. Five installed command helps,
+lean import and Python 3.10 syntax checks pass. The wheel SHA-256 is
+`60c6520dbf266ab81782cf2084b6659bd6a192d2b70a3d7c884a514fc5ede66e`.
+Source validation used `PYTHONDONTWRITEBYTECODE=1`,
+`PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages`,
+and `/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python`
+with `-m pytest -q -p no:cacheprovider` (complete suite) and the same command
+with `tests/test_topostitch_graph.py` (focused). Installed checks use that site's
+package without source `PYTHONPATH`, on a renamed temporary checkout. These
+paths record local validation provenance; no operational graph input depends on
+them. The source failure before W48 is the absent graph module. No Phenix/Coot
+run or native-runtime behavior change applies to this patch.
+
 **W47 checkpoint:** selected source/transformed image audits now bind exact
 reciprocal partner incidence without reducing lattice shifts. Capacity is scoped
 to the present selected-coordinate evidence; global/molecular identity is open.

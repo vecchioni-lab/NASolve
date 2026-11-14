@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "c887c65ea966b3a7107a1220289fde646587e875",
+  "audited_code_commit": "a542ea8dc375faeab85cc6196cf5e400603bccc8",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -391,22 +391,24 @@
       ],
       "goal": "Represent the observed periodic object independently of a tile hypothesis or PDB chain cut.",
       "delivered": [
-        "Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not."
+        "Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not.",
+        "W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding."
       ],
       "acceptance": [
         "Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.",
         "Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle."
       ],
-      "next_action": "Build the minimum graph required for one declared recut; retain broader emergent topology as explicit unsupported scope.",
+      "next_action": "Qualify explicit image relabeling algebra for one declared cut; then close missing physical/chemical/whole-ASU scope before materialization. P02 still requires graphical review.",
       "evidence": [
         "E_REGISTRATION",
-        "E_SOFTWARE"
+        "E_SOFTWARE",
+        "E_DECLARED_GRAPH"
       ],
       "last_audit": {
-        "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "date": "2026-11-14",
+        "code_commit": "a542ea8dc375faeab85cc6196cf5e400603bccc8",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "scope": "Read-only graph prototype; P01 remains PARTIAL and upstream F02 physical gates remain open."
       }
     },
     {
@@ -749,6 +751,14 @@
       "reference": "docs/topostitch-preview.md#w47--one-periodic-edge-and-its-reciprocal-partners",
       "result": "Shared exact reciprocal incidence retains lattice translations for selected source/transformed audits. P1/P2/C2/P43 controls distinguish one versus two self-image partners; ambiguity stays under review. Periodic fitter consumes scoped capacity. Full Willow 1424 plus 229 subtests; focused/installed-relocated 68. Public 8D93 numerical report exactly reproduces apart from added capacity metadata and algorithm v5, including after relocation with old paths blocked.",
       "limitation": "One declared edge under present selected-coordinate/tolerance assumptions; full molecular identity, special-position equivalence, global scheme, sequence/orientation, geometry and connection acceptance remain unqualified. No native Phenix/Coot execution, chemical link, recut, Cedar edits or adoption. Generated evidence stays local."
+    },
+    "E_DECLARED_GRAPH": {
+      "kind": "declared_periodic_graph_and_registered_scope",
+      "code_commit": "a542ea8dc375faeab85cc6196cf5e400603bccc8",
+      "human_update": 48,
+      "reference": "docs/topostitch-periodic.md#w48--declared-periodic-graph-for-pine",
+      "result": "20 new graph regressions pass and fail on the pre-patch checkout. Full Willow: 1444 plus 229 subtests. Installed/relocated graph and owner tests: 113. Public 8D93 registered graph reproduces exactly with original paths blocked and original temporary checkout absent; all input bytes preserved. Five installed entrypoint helps, lean import and Python 3.10 syntax checks pass.",
+      "limitation": "Declared one-copy scope only; other copies, unrepresented coordinates, unknown boundaries and missing sites remain explicit. No physical orbit quotient, complete molecular graph, covalent seam creation, coordinate materialization, scattering invariance, Phenix/Coot run or Cedar changes. Scientific artifacts stay local."
     }
   },
   "benchmarks": [
@@ -957,8 +967,8 @@
       {
         "number": 48,
         "title": "Preserve declared periodic routes and exact image loops",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "a542ea8dc375faeab85cc6196cf5e400603bccc8"
       }
     ]
   }
