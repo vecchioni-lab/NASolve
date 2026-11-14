@@ -775,6 +775,117 @@ would change model content. A periodic network can retain unavoidable seams;
 recutting cannot be assumed to make every contact local at once. Keep this route
 in the existing Pine track rather than making a new cut engine inside TopoStitch.
 
+### W37 — Complete canonical pair recipe backend
+
+The previous complete-recipe checks used local diagnostic scripts. The reusable
+backend now freezes and evaluates **caller-declared canonical DNA AT/GC pairs**
+at exact symmetry images, with no structure IDs, dataset names or fitted
+benchmark constants in its algorithm. This closes one arithmetic/binding gap
+in S05; it does not close native repair or refinement integration.
+
+In a Python environment with NASolve's topology dependencies and NARestraints:
+
+```python
+from nasolve.topostitch_coordinates import ResidueSite
+from nasolve.topostitch_recipe import PairImage, prepare_pair_recipe, recipe_digest
+
+packet = prepare_pair_recipe(
+    model_path,
+    [PairImage("interface", ResidueSite("A", 12), ResidueSite("B", 4),
+               target_operator_xyz="x,y,z", purpose="selected")],
+    expected_sha256=verified_model_sha256,
+)
+digest = recipe_digest(packet)
+```
+
+These site numbers/operator are placeholders: the caller supplies verified
+topology and exact source bytes. Existing duplex pairs can be listed with
+`purpose="core"`; no partner, capacity or topology inference is performed.
+Save the returned JSON with the canonical `recipe_digest`, which differs from
+the hash of pretty-printed file bytes. Consumption requires an explicit model
+path plus the packet digest; there is no basename search or hidden path fallback.
+
+Schema 1, kind `topostitch-canonical-image-recipe`, binds the source hash, exact
+PDB atom order/identities, cell/group, full lattice shifts, selected/core roles,
+effective NARestraints role maps, emitted PHIL, term counts and hashes. It rejects
+missing plane-only atoms, ambiguous/partial-occupancy selected residues,
+noncanonical selected chemistry, unsupported cell/operator conventions and
+duplicate/reciprocal requested edges. Different lattice images remain distinct;
+their simultaneous physical partner capacity is **not** thereby approved.
+
+The emitted PHIL uses virtual **L/R, residue 1** labels solely for selection
+binding. **Do not pass that PHIL directly to `phenix.refine` on the original
+model.** No virtual atom is added to the scattering model. Atom-order checks
+explicitly disable IOTBX's default sorting; a changed order is an error rather
+than a silently misbound restraint. The packet and existing preview schemas are
+separate; schema-1/2 preview replay and ordinary workflow interfaces are unchanged.
+
+Inside the qualified native interpreter, `NativePairRecipe(packet, model_bytes,
+expected_recipe_sha256=digest, correction=trusted_cedar_module)` compiles native
+Cartesian proxies. `evaluate(points, atom_identities=exact_ordered_ledger)` returns
+four component energies and ASU gradients; `compute_gradients=False` requests
+energy only. `native_atom_identities(hierarchy)` supplies the native ledger, and
+`binding_report()` returns detached terms/transforms and correction provenance.
+The trusted Cedar correction module is explicitly supplied executable code,
+never loaded from a captured recipe. Imports remain optional until construction.
+
+The policy is **unnormalized additive pair energy**. Shared ASU atoms accumulate
+all image contributions. Bond-like contact terms do not edit native bond tables,
+exclusions or covalent links. There is no stacking term, movement mask, native
+manager callback, optimizer, density target or scientific approval. An eventual
+full objective must declare those semantics and use Cedar's qualified owners;
+this API must not be mistaken for a standalone geometry optimizer.
+
+The committed developer probe is read-only and refuses an existing output:
+
+```bash
+phenix.python scripts/probe_topostitch_pair_recipe.py   --model /explicit/source.pdb --recipe /explicit/recipe.json   --recipe-sha256 CANONICAL_JSON_SHA256   --cedar-source /explicit/trusted/cedar/src --out /explicit/new-probe.json
+```
+
+It checks every referenced ASU coordinate at 1e-4 and 1e-5 Å, within an explicit
+coordinate budget (default 1,200, maximum 10,000). Both maximum absolute errors
+must be ≤1e-4 for `DERIVATIVES_PASS`; exit 2 means `DERIVATIVE_REVIEW`. It also
+rejects stale source/recipe hashes, changed atom order/count, nonfinite points,
+negative sigma, partial planes and unsupported PHIL fields. Energy-only parity,
+zero unreferenced gradients, detached caller data and unchanged inputs/numerical
+sources are checked. This is a developer qualification gate, not an acceptance
+threshold for chemical geometry.
+
+Complete energy/derivative executions used **Phenix 2.2.1-6174**, actual
+NARestraints 1.1.3 recipes, and frozen Cedar `cd744e2`'s existing both-first-planes
+correction. No refinement or optimization was run:
+
+| Frozen control | ASU coordinates | Maximum error at 1e-4 / 1e-5 Å | Outcome |
+| --- | ---: | --- | --- |
+| 8D93 candidate, 2 interface + 12 core pairs | 798 | 3.35e-6 / 4.20e-8 | PASS |
+| Independent 7R96, one AT and one GC | 114 | 3.02e-6 / 6.38e-8 | PASS |
+| Independent 5W6W, one AT and one GC | 114 | 3.09e-4 / 3.18e-6 | REVIEW |
+| Synthetic P43, shared ASU atoms in two images | 57 | 8.31e-6 / 1.55e-6 | PASS |
+| Synthetic skew P21, shared ASU atoms in two images | 57 | 4.56e-6 / 2.74e-6 | PASS |
+| Synthetic skew P1, deliberately strained coordinates | 57 | 3.38e-3 / 3.30e-5 | REVIEW |
+
+All eight rejection controls pass in these executions. Independent structure
+fixtures use the first canonical AT/GC pairs in NARestraints' sorted guessed
+list, with identity images and no score-driven selection; the guesser is used
+only to prepare these local fixtures, not integrated into the product.
+
+The 5W6W and strained-P1 failures remain REVIEW under the declared rule. At each
+flagged coordinate, additional step-size diagnostics show approximately quadratic
+finite-difference truncation followed by floating-point limits; the changing
+component is principally the angle term. The 5W6W selected angle reaches 175.96°;
+the artificial P1 fixture reaches 0.78°/179.22°. This supports a numerical
+step-size explanation at those coordinates, not blanket derivative qualification
+or a reason to loosen the gate. A future general derivative audit should declare
+its convergence/error policy before using it to qualify optimization.
+
+The complete 8D93 energy (564.9181277186) matches the preceding independent local
+selected/core composition to roundoff. Isolated installed-wheel native execution
+reproduces it with identical components. All scientific inputs, packets, native
+logs and receipts remain local and excluded from Git. Cedar C274's active AutoSol
+publication work has no source overlap with this component; no combined branch
+build is claimed. Complete native movement/normalization/lifecycle policy,
+packing and matched damaged-model refinement remain the next S05/S06 gates.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

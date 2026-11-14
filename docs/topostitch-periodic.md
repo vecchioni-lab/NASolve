@@ -405,7 +405,38 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W35 checkpoint (closed 2026-11-14):** the new final-PDB RMSD regression fails
+**W37 checkpoint (2026-11-14):** complete canonical recipes add 17 regression
+cases, including the observed partial-plane omission and exact image/identity
+binding. Focused recipe/periodic/contact/transport: **88 passed** (1.99 s).
+Full source: **1,312 passed + 229 subtests** (72.24 s), run because the existing
+CRYST1/SCALE reader was shared without changing its validation behavior.
+Rebuilt installed wheel: **438 focused tests + 18 subtests** (25.19 s).
+Both optional modules import from the lean isolated installation; construction
+still needs the declared dependencies. An isolated wheel under Phenix reproduces
+the complete 14-pair native energy and components from exact installed bytes.
+
+Exact source commands (with installed topology/test dependencies):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest \
+  tests/test_topostitch_recipe.py tests/test_topostitch_periodic.py \
+  tests/test_topostitch_contacts.py tests/test_topostitch_transport.py -q -p no:cacheprovider
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider
+python -m pip wheel --no-deps --no-build-isolation . --wheel-dir /explicit/wheels
+```
+
+This machine additionally appended its explicit temporary optional-dependency
+site-packages directory to `PYTHONPATH`; no shared environment was modified.
+After renaming a copied checkout so its original path was absent, the four
+focused files plus `test_topostitch_roadmap.py` passed **96 tests** (1.80 s).
+The explicit-model-path recipe regression also reproduces the identical packet
+after moving the source directory. This qualifies those operations, not a
+resumable native run. The W37 wheel SHA256 is
+`d7aa5235518f64a0a31b94aed46a2d00eaf50224fcbbf8eeed5acd16809dec73`.
+Native Phenix 2.2.1-6174 complete derivative executions and retained review
+outcomes are recorded in [W37](topostitch-preview.md#w37--complete-canonical-pair-recipe-backend).
+
+**Prior W35 checkpoint (closed 2026-11-14):** the new final-PDB RMSD regression fails
 before the fallback and passes afterward. Three new tests (plus three subtests)
 cover native output, log precedence and incomplete/unrecognized summaries.
 Focused source AutoRefine/Doctor/roadmap checks: **53 tests + 16 subtests**

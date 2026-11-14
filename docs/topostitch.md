@@ -194,6 +194,15 @@ rotating frames; benchmark distributions rather than adopting this number as
 a target or cutoff. Frozen objective terms, initialization, candidate order,
 solver tolerances, library versions and any random seed must be recorded.
 
+The product is a general, input-driven duplex placement/reshaping tool. Public
+8D93, the supplied hexagonal dataset and the other named structures are
+replaceable benchmarks, not special cases in the algorithm. Keep structure IDs,
+example transforms, model coordinates and benchmark-specific thresholds out of
+production decisions. Behavior follows explicit sequence/identity mappings,
+crystal symmetry, connection evidence, editable boundaries and qualified
+geometry/data policies. Broader claims require independent structures and
+forward/reverse/change-direction controls within the declared chemistry scope.
+
 The first smooth taper is an initialization, not a physical claim that bending
 is uniformly distributed or that both strands must move equally. A later
 qualified local relaxation may redistribute roll/tilt/twist unevenly, or move
@@ -213,6 +222,19 @@ in [real-space refinement](https://phenix-online.org/documentation/reference/rea
 its [map interpretation notes](https://phenix-online.org/phenixwebsite_static/mainsite/files/presentations/latest/pavel_maps.pdf)
 distinguish coordinate and electron-count explanations for difference features.
 Those capabilities require native qualification before integration here.
+
+Schedule the first density feature as a **read-only S06 diagnostic**, then expose
+its evidence in S07/campaign review; direct density-guided motion follows later.
+Look for sustained negative difference-density patches along sugar-phosphate
+paths, retaining patch extent, peak/integrated signal, affected atoms and
+consecutive residues, nearby positive support and ordinary map fit. A single red
+voxel or universal sigma cutoff is insufficient. Calibrate the interpretation
+with the scientist against healthy/noisy and deliberately displaced controls,
+accounting for resolution, map processing, spatial correlation, repeated tests
+across the model and occupancy/ADP alternatives. Freeze calibration separately
+from later evaluation; do not use held-out Rfree to tune detection thresholds.
+Initially flag for review only, with no automatic deletion or displacement.
+
 
 Junctions are hard boundaries for automatic extension and topology changes.
 Initially hold junction coordinates fixed. A later explicit hinge capability

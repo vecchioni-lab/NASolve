@@ -231,21 +231,8 @@ def _frame_observations(coordinate, periodic, cell, gemmi):
     return observations
 
 
-def inspect_periodic_end_assignments(
-    model_path: Path, assignments, *, expected_sha256: str,
-    max_distance_angstrom: float, max_pairs: int = 100_000,
-    max_image_tests: int = 100_000,
-) -> dict:
-    """Combine the coordinate adapter with crystal context from exact PDB bytes.
-
-    CRYST1 is required. Nonstandard/incomplete SCALE transforms are rejected,
-    not silently interpreted in Gemmi's conventional orthogonal frame.
-    """
-    coordinate = inspect_end_assignments(model_path,assignments,expected_sha256=expected_sha256,
-        max_distance_angstrom=max_distance_angstrom,max_pairs=max_pairs)
-    data = Path(model_path).read_bytes()
-    if sha256(data).hexdigest() != expected_sha256:
-        raise ValueError("Source model checksum changed during periodic assessment")
+def crystal_from_pdb_bytes(data):
+    """Read the explicit conventional crystal frame; never infer a default."""
     lines = data.decode("ascii").splitlines()
     headers = [line for line in lines if line[:6] == "CRYST1"]
     if len(headers) != 1:
@@ -270,6 +257,26 @@ def inspect_periodic_end_assignments(
                     raise ValueError("Nonstandard SCALE")
         except (ValueError, IndexError) as exc:
             raise ValueError("SCALE must match the conventional cell fractionalization with zero offset") from exc
+    return gemmi, cell, group_name
+
+
+def inspect_periodic_end_assignments(
+    model_path: Path, assignments, *, expected_sha256: str,
+    max_distance_angstrom: float, max_pairs: int = 100_000,
+    max_image_tests: int = 100_000,
+) -> dict:
+    """Combine the coordinate adapter with crystal context from exact PDB bytes.
+
+    CRYST1 is required. Nonstandard/incomplete SCALE transforms are rejected,
+    not silently interpreted in Gemmi's conventional orthogonal frame.
+    """
+    coordinate = inspect_end_assignments(model_path,assignments,expected_sha256=expected_sha256,
+        max_distance_angstrom=max_distance_angstrom,max_pairs=max_pairs)
+    data = Path(model_path).read_bytes()
+    if sha256(data).hexdigest() != expected_sha256:
+        raise ValueError("Source model checksum changed during periodic assessment")
+    gemmi, cell, group_name = crystal_from_pdb_bytes(data)
+    params = cell.parameters
     ends = [DuplexEnd(e["end_id"],e["sequence"],e["polarity"],tuple(e["frame"]["origin"]),e["state"])
             for e in coordinate["ends"] if e["assessment"] == "FRAME_AVAILABLE"]
     periodic = propose_periodic_connections(ends,cell_parameters=params,space_group=group_name,

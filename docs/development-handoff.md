@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W36; next W37.** W33 introduced human update numbers without
+**Willow update W37; next W38.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,24 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** W35's three parser regressions reproduce the missing native
+**Current W37 checks:** reusable explicit canonical image recipes and a native
+pair-energy compiler replace local-only binding code. Complete source suite:
+1,312 tests + 229 subtests; focused source: 88; installed: 438 + 18 subtests;
+relocated copied checkout with its original absent: 96. Isolated installed native
+execution matches the 14-pair energy/components. Phenix 2.2.1-6174 complete
+derivative probes pass 8D93, 7R96, P43 and P21 controls; 5W6W and strained P1 keep
+REVIEW at the larger difference step. Per-coordinate convergence diagnostics are
+retained, not used to relabel those outcomes. See W37 in the preview guide for
+API, exact scopes and native evidence; the inspector guide owns validation commands.
+The new packet/binding/probe schemas are additive; existing previews and entry
+points remain unchanged. Virtual L/R recipe labels must never be treated as
+ordinary refinement selections on the source model. No optimizer, manager hook,
+native exclusion edit or checkpoint is introduced. Scientific artifacts remain
+local. Generality is explicit: benchmark IDs/transforms belong in fixture inputs,
+not algorithm rules. Calibrated read-only negative-backbone-density detection is
+queued in S06, then review, then later density-guided motion.
+
+**Prior W35 checks:** W35's three parser regressions reproduce the missing native
 bond/angle RMSDs and preserve log precedence/incomplete-output behavior. Focused
 source: 53 tests + 16 subtests; full source: 1,295 tests + 229 subtests; rebuilt
 installed wheel: 421 focused tests + 18 subtests. The isolated installed parser
@@ -231,8 +248,7 @@ See the current inspector/preview guides for exact commands, versions, policies 
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
 Frozen Cedar through `f2345a8` was tested for native readback; current Cedar
-C273 owns its native audit, selected AutoSol references
-and storage work; the consumed registration/model/context/package interfaces
+C274 is developing AutoSol publication recovery, following C273 native-audit reuse; the consumed registration/model/context/package interfaces
 remain unchanged against the Pine base. Rowan confirms Cedar C273 is pushed and changes numerical-proof reuse only and does not edit
 the AutoRefine statistics parser. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the

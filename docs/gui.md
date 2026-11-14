@@ -818,6 +818,13 @@ it. “Use candidate” and “Reject pairing” have different meanings: one ch
 an actual model; the other changes intended connection decisions in a new
 record, not a failed geometry trial's history.
 
+The later backbone-density diagnostic should identify the affected segment and
+show negative-patch extent, nearby positive support and ordinary map fit against
+the exact inspected model/map. Distinguish “not measured,” “review suggested” and
+calibrated evidence; a red patch alone is not a failed backbone or a repair order.
+Surface occupancy/ADP and map-processing uncertainty. Detection thresholds need
+scientist calibration before campaign automation; do not invent a GUI threshold.
+
 Enable actions only when supported by backend capabilities and exact receipts.
 The first adapter has no Apply/Refine/Approve API; do not simulate those actions
 in frontend state. Future actions must bind the proposal hash, source checkpoint

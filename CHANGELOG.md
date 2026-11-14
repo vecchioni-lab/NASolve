@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W37 — Complete canonical image recipes
+
+- Freeze explicit canonical AT/GC pairs, full NARestraints atom roles/planes,
+  exact model identities and symmetry images in an additive schema-1 packet.
+- Evaluate native pair energies and ASU gradients through shared image transport
+  and Cedar's existing plane correction; reject partial recipes and atom reorder.
+- Add a bounded read-only native derivative probe. No optimizer, native callback,
+  bond/exclusion edit, automatic partner inference or checkpoint is introduced.
+- Record independent structure/symmetry controls, including retained derivative
+  review outcomes. Queue calibrated backbone difference-density detection and
+  explicitly require a general input-driven method rather than benchmark fitting.
+
 ### W36 — Native refinement integration decision
 
 - Record a bounded native image-term callback probe, including lost callbacks

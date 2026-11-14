@@ -407,6 +407,40 @@
       "current_route_basis": "chain labels and consecutive integer residue numbers",
       "selected_output_is_complete_topology": false,
       "logical_mapping_and_periodic_recheck_required": true
+    },
+    "backbone_difference_density_detection": {
+      "implemented": false,
+      "first_stage": "S06 read-only diagnostic after model/map provenance and matched-refinement baselines",
+      "scope": "sustained negative patches along sugar-phosphate paths, not isolated negative voxels",
+      "calibration_owner": "scientist and developer together before operational thresholds",
+      "calibration_controls": [
+        "healthy and noisy backbones",
+        "known displaced segments",
+        "resolution and map processing",
+        "occupancy and ADP alternatives",
+        "spatial correlation and repeated testing across a model"
+      ],
+      "evidence": [
+        "patch extent and integrated/peak signed density",
+        "affected atoms and consecutive residues",
+        "nearby positive support",
+        "ordinary map fit",
+        "exact model/map/data provenance"
+      ],
+      "initial_action": "review flag only; no automatic displacement or deletion",
+      "later_action": "bounded nonuniform or strand-specific proposals followed by matched refinement and human review"
+    },
+    "generality_contract": {
+      "goal": "General sequence-, identity-, symmetry- and data-aware duplex placement and reshaping; benchmark-specific success is experimental evidence, not the product definition.",
+      "benchmark_role": "8D93 and supplied hex_data are replaceable acceptance cases; no identifiers, coordinates, target transforms or dataset-specific thresholds belong in production logic.",
+      "inputs_drive_behavior": [
+        "model atom identities and sequence/registration",
+        "unit cell and space group",
+        "declared or qualified inferred connections",
+        "editable windows and protected junctions",
+        "explicit restraint and later map/data policies"
+      ],
+      "qualification": "Declare supported chemistry/representation scope; test independent structures, symmetry settings and forward/reverse/change-direction cases before broader claims."
     }
   },
   "planned_diffraction_benchmark": {

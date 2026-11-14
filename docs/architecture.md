@@ -921,6 +921,15 @@ bounded rational image identity, retaining multiplicity and collateral changes.
 Its developer wrapper authenticates captures through Cedar; no second native
 worker, neighbor finder, optimizer or approval lifecycle is introduced.
 
+`topostitch_recipe` freezes complete canonical NARestraints selections for explicit
+atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order
+and evaluates unnormalized additive pair energies/ASU gradients. The new schema-1
+packet contains hashes and identities, not a model path or runtime authority.
+Virtual L/R labels are internal selection scaffolding, not ordinary refinement
+PHIL for the source model. Cedar still owns native correction/policy machinery;
+this component neither attaches callbacks nor supplies a complete masked native
+objective. See W37 in the preview guide for the developer API and evidence.
+
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are
 not numbered NASolve checkpoints, do not change registration or chemistry, and
