@@ -500,8 +500,14 @@ failure and C299's incorrect outer preflight-PDB assertion remain preserved.
 The latter happened after a successful CLI refinement; separate readback completed
 without rerunning it. None of these observations diagnoses the collaborator's PDU.
 
-**Next:** carry the explicit choice through existing campaign and Refine Doctor
-owners; then complete achieved-chemistry/PDU/held-out controls. Unknown native
+C300 carries the explicit choice through schema-2 campaign recipes and Doctor
+API/CLI. One native Doctor ML-fixed-scattering trial retains all 58 parameters,
+passes its Free-R audit and relocated inspection, with current model unchanged.
+Whole-campaign native forwarding is the next integration control.
+
+**Next:** inspect achieved chemistry and run a fresh PDU:A control on the existing
+declared test scaffold through the checked campaign. This does not resolve the
+original PDU:PDU symmetry-linked B:1 case. Complete related held-out controls. Unknown native
 implementations and symmetry planes remain unsupported. No SDK edits, default
 activation, broad platform qualification or complete scientific acceptance.
 

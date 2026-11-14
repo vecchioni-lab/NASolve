@@ -180,8 +180,10 @@ keeping those files separate. Later refinement from that result—including afte
 a manual edit—must explicitly retain the correction. Saved checkpoints can be
 checked after relocation without running their frozen code. Unknown native
 implementations or unsupported symmetry refuse; defaults remain unchanged.
-Campaign and Refine Doctor forwarding are next. A helper completing refinement
-is not structure approval; achieved chemistry and PDU survival remain Q06.
+Campaign recipes and Refine Doctor now carry the same explicit choice through
+their existing refinement paths. A native Doctor trial preserves Free-R and the
+current model. A helper completing refinement is not structure approval; achieved
+chemistry and PDU survival remain Q06.
 
 ## Catalogue scope and progression
 

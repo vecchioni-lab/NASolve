@@ -701,3 +701,20 @@ stage:
 - specific metal-base-pair candidate providers.
 
 These are extension points, not blockers for the first campaign slice.
+
+## Explicit checked plane forces
+
+A schema-2 preset can opt into the qualified native plane-force route:
+
+```toml
+[autorefine]
+checked_plane_forces = true
+```
+
+The existing five-cycle recipe stays fixed. Planning freezes the boolean choice;
+both first refinement and any Refine Doctor trials receive it with the configured
+Phenix Python. Absence preserves older policy identity and defaults. Unknown
+native implementations refuse rather than silently dropping the correction.
+Doctor keeps current selection unchanged; full-auto recommendation selection
+still follows its separately declared workflow policy. This is execution
+compatibility, not chemical or structural acceptance.

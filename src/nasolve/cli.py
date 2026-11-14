@@ -243,6 +243,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--max-trials", type=int, default=5,
         help="maximum eligible Doctor trials, 1-10 (default: 5)",
     )
+    doctor.add_argument(
+        "--checked-plane-forces", action="store_true",
+        help="retain explicit checked plane forces in every trial (qualified Phenix build required)",
+    )
     cif_doctor = subparsers.add_parser(
         "cif-doctor", help="assess component restraints or create explicit review candidates",
     )
@@ -1263,6 +1267,13 @@ def _refine_doctor(args: argparse.Namespace) -> int:
                 + f"; full output: {log_path}"
             )
 
+        runtime_options = {}
+        if args.checked_plane_forces:
+            python_executable = phenix.executables.get("phenix.python")
+            if python_executable is None:
+                raise RefineDoctorError("Checked plane forces require the configured phenix.python")
+            runtime_options = dict(correct_native_parallelity=True,
+                                   phenix_python_executable=python_executable)
         result = execute_refine_doctor(
             run,
             phenix.executables["phenix.refine"],
@@ -1273,6 +1284,7 @@ def _refine_doctor(args: argparse.Namespace) -> int:
             macro_cycles=args.cycles,
             max_trials=args.max_trials,
             progress=progress,
+            **runtime_options,
         )
     except (RefineDoctorError, ConfigError, PhenixDiscoveryError) as exc:
         print(f"Refine Doctor error: {exc}", file=sys.stderr)

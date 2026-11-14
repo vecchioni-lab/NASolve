@@ -96675,5 +96675,142 @@
       "Qualify achieved chemistry, PDU/held-out survival and wider native profiles separately."
     ],
     "artifacts": "Only code/tests/compact evidence committed. Native models/data/logs/runners excluded. Source cloned copy-on-write; logical storage is not unique physical disk use."
+  },
+  "campaign_doctor_checked_plane_forces_2026_11_14": {
+    "milestone": "C300",
+    "status": "EXPLICIT_CAMPAIGN_AND_DOCTOR_CHOICES_CONNECTED",
+    "base_commit": "b4739c76",
+    "behavior": {
+      "before": "Campaign recipes and Doctor could not forward the checked-force choice; a corrected source was safely refused by AutoRefine.",
+      "after": "Schema-2 autorefine.checked_plane_forces is frozen and validated by preset/planning/cold read/stage owners. Both AutoRefine and Doctor receive configured native Python. Doctor CLI/API preserve the choice in every sibling trial and keep current selection."
+    },
+    "source_sha256": {
+      "src/nasolve/autorefine.py": "2a77a5870e3e12f234333982055866be93059b18a8460dc7a51a9cb5534e5454",
+      "src/nasolve/refinement_parallelity.py": "9ea0cb0437c12c6d91054f7befa71d999e7212578307d4af317ac2dbc0e74d2b",
+      "src/nasolve/campaign_policy.py": "6888f186cb0f37f0584038e3c42686be2f6aecc66a85db235208bb39ba60a65d",
+      "src/nasolve/campaigns.py": "7f19f123a85447122c0f54f166e87c39aad85e92387e3e73ae0117458ba5c56e",
+      "src/nasolve/campaign_stages.py": "cff6b877e894d244c3285533e7c59a0f5fd0d7bf7a8bcf55e5aaae7cf94a2daf",
+      "src/nasolve/presets.py": "e80d7180808869f7005fdbbb537c94f7244eec5f515c828e5a4c65c11c5aef0d",
+      "src/nasolve/refine_doctor.py": "9e30a7a0bf1fda58c2d26c998acd9051c8f616f41e092a39ece5610e6ac9d815",
+      "src/nasolve/cli.py": "2bd7f3ab6aa735bd95b0a65fd1faabf0fc11b51c389f82092fe72e5a32cc814b"
+    },
+    "tests": {
+      "before": "12 new cases failed against C299 in 1.89 s; accidental imported CLI test collection removed before final validation.",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_workflow_plane_forces.py tests/test_cli_parallelity.py tests/test_refinement_parallelity.py tests/test_presets.py tests/test_campaigns.py tests/test_campaign_stages.py tests/test_refine_doctor.py tests/test_cli.py",
+      "result": "233 passed +61 subtests in 14.70 s; no full suite",
+      "coverage": "Typed/versioned frozen policy, relocated cold plan with original absent, resigned malformed choice refusal, both stage handoffs, real fake-tool Doctor sibling checkpoint/current preservation, refusal before audit/work allocation, CLI configured Python forwarding."
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "300_Cedar_doctor-plane-forces-ncuo_h42",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "summary": {
+        "status": "EXPLICIT_DOCTOR_NATIVE_TRIAL_COMPLETE",
+        "checkpoint": "refine-004",
+        "parent": "refine-003",
+        "selected": "refine-003",
+        "recipe": "RefineDoctor/ML-fixed-scattering",
+        "doctor_status": "REFINE_DOCTOR_GOOD_ENOUGH",
+        "doctor_exit_code": 0,
+        "trial_exit_code": 0,
+        "native_version": "2.2.1",
+        "native_build": "phenix-2.2.1-6174",
+        "native_macro_cycles": 1,
+        "preflight_macro_cycles": 0,
+        "free_r_audit_status": "NOISY",
+        "free_r_audit_valid": true,
+        "free_r_details": {
+          "array_anomalous": false,
+          "array_labels": "FreeR_flag",
+          "free_fraction": 0.0550061804697157,
+          "free_independent_groups": 178,
+          "inconsistent_friedel_flag_groups": 0,
+          "independent_friedel_groups": 3236,
+          "matching_method": "exact-hkl-fallback",
+          "paired_friedel_groups": 0,
+          "resolution_shells": [
+            {
+              "free_groups": 21,
+              "groups": 324
+            },
+            {
+              "free_groups": 17,
+              "groups": 324
+            },
+            {
+              "free_groups": 15,
+              "groups": 323
+            },
+            {
+              "free_groups": 16,
+              "groups": 324
+            },
+            {
+              "free_groups": 16,
+              "groups": 323
+            },
+            {
+              "free_groups": 20,
+              "groups": 324
+            },
+            {
+              "free_groups": 13,
+              "groups": 324
+            },
+            {
+              "free_groups": 20,
+              "groups": 323
+            },
+            {
+              "free_groups": 26,
+              "groups": 324
+            },
+            {
+              "free_groups": 14,
+              "groups": 323
+            }
+          ],
+          "stored_observations": 3236,
+          "test_flag_value": 0
+        },
+        "parallelity_count": 58,
+        "complete_parameters_unchanged": true,
+        "phase_returncodes": [
+          0,
+          0
+        ],
+        "native_process_observations": 18,
+        "original_files_unchanged": 524,
+        "old_round_files_unchanged": 129,
+        "relocated_files_unchanged": 576,
+        "original_copy_absent": true,
+        "relocated_cold_read": true,
+        "runtime_evidence_bytes": 2170133,
+        "logical_retained_bytes": 95646102,
+        "elapsed_seconds": 257.5800527500105,
+        "copy_method": "macOS cp -cRp clone-on-write; logical bytes are not unique physical storage",
+        "scope": "One explicitly requested existing Doctor ML-fixed-scattering recipe, without experimental phases as declared by that recipe; original observations/Free-R and current selection preserved. No whole-campaign native, PDU survival or full-suite claim.",
+        "reported_final_statistics": {
+          "r_work": 0.1917,
+          "r_free": 0.2107,
+          "clashscore": 36.9
+        }
+      },
+      "records": {
+        "summary.json": "5feb97da0e9fe8600c3a991a1e779673747efcccb27af166f98b6a37b0ebf4ba",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4"
+      }
+    },
+    "compatibility": "Absent choice preserves prior schema-1/schema-2 preset serialization and behavior. Explicit bool requires schema 2; unknown keys/types/recipes refuse. Optional checked_plane_forces=true in Doctor report records request, while each child checkpoint retains execution proof. No checkpoint schema or frozen C297 helper change.",
+    "remaining": [
+      "Full native campaign with explicit checked-force policy and achieved chemistry.",
+      "Original PDU:PDU remains separate and blocked by unresolved symmetry topology enforcement; no dephosphorylation or OP3 guess.",
+      "Wider native profiles/default activation/full regression remain open."
+    ],
+    "artifacts": "Code/tests/compact evidence only. All models/data/logs and runners remain local; source clone-on-write and prior rounds preserved."
   }
 }

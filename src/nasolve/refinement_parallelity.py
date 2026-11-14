@@ -125,6 +125,21 @@ def _preflight_arguments(request):
     return [*arguments,'refinement.dry_run=True']
 
 
+def validate_runtime_choice(enabled, python_executable):
+    """Validate the explicit choice before either owner allocates work."""
+    if type(enabled) is not bool:
+        raise ValueError('Native parallelity correction must be explicitly enabled or disabled')
+    if enabled and (python_executable is None or not Path(python_executable).is_file()):
+        raise ValueError('Explicit plane-force correction requires the configured phenix.python')
+
+
+def require_runtime_continuation(registry, selected, enabled):
+    if not enabled and requires_checked_plane_forces(registry, selected):
+        raise ValueError(
+            'This checkpoint descends from checked plane-force refinement; '
+            'continue explicitly with --checked-plane-forces. No new round was started.')
+
+
 def requires_checked_plane_forces(registry, selected):
     """Reuse established ancestry validation; manual edits retain their history."""
     items=registry.get('checkpoints',[])

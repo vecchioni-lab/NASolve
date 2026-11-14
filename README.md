@@ -1054,8 +1054,10 @@ alone is insufficient. Unknown implementations refuse and the default stays off.
 Native zero-cycle model setup runs before refinement and keeps its own outputs.
 Once a checkpoint uses this route, later refinement from it or its manual
 descendants must explicitly keep `--checked-plane-forces`. Inspection never
-executes the frozen code. Campaign and Refine Doctor forwarding remain pending;
-this mechanism is not complete chemical or structural approval.
+executes the frozen code. Refine Doctor accepts the same explicit flag for every
+trial; schema-2 campaign presets use `[autorefine] checked_plane_forces = true`.
+Absent choices keep defaults unchanged. This mechanism is not complete chemical
+or structural approval.
 
 Reflection-array binding is version-gated. Phenix 1.20.x receives explicit
 observation, Free-R, and optional experimental-phase file/label command

@@ -22,8 +22,10 @@ The explicit `autorefine --checked-plane-forces` route freezes qualified helper
 code and ordered inputs under the existing refinement round. Native model setup
 has isolated outputs; cold readers validate anchored evidence without execution.
 Corrected ancestry cannot silently lose that choice through manual edits. The
-exact native profile and complete parameters are checked; default activation,
-campaign/Doctor forwarding and achieved-chemistry qualification remain separate.
+exact native profile and complete parameters are checked. Schema-2 campaign
+policies and Doctor API/CLI now forward the explicit choice through that owner;
+shared prerequisite/ancestry validation refuses silent loss before new work.
+Default activation and achieved-chemistry qualification remain separate.
 
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition

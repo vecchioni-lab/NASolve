@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry checked plane forces through campaigns and Refine Doctor (C300)
+
+- Schema-2 campaign presets may explicitly set `autorefine.checked_plane_forces`;
+  preserve the frozen choice through planning, relocation and both refinement
+  stages. Absent choices keep existing defaults and serialized policy identity.
+- `refine-doctor --checked-plane-forces` and its API pass the same configured
+  native Python to every trial. Reuse AutoRefine's ancestry/prerequisite checks
+  before work allocation; preserve current selection and exact child evidence.
+- Record the request in Doctor reports. Unsupported native implementations still
+  refuse through the qualified runtime; no SDK or chemistry/default changes.
+
 ### Preserve checked plane forces through explicit CLI continuation (C299)
 
 - `autorefine --checked-plane-forces` uses the configured Phenix Python and the

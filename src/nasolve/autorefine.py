@@ -1547,10 +1547,11 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
-    if type(correct_native_parallelity) is not bool:
-        raise AutoRefineError('Native parallelity correction must be explicitly enabled or disabled')
-    if correct_native_parallelity and (phenix_python_executable is None or not Path(phenix_python_executable).is_file()):
-        raise AutoRefineError('Explicit plane-force correction requires the configured phenix.python')
+    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation
+    try:
+        validate_runtime_choice(correct_native_parallelity, phenix_python_executable)
+    except ValueError as exc:
+        raise AutoRefineError(str(exc)) from exc
     xyz_wxc_scale = (
         0.1
         if recipe == "AutoRefine/geometry-conservative"
@@ -1570,16 +1571,10 @@ def execute_autorefine(
         parent = resolve_checkpoint(registry, from_checkpoint)
         if parent.get("usable") is not True:
             raise AutoRefineError(f"Checkpoint {parent.get('id')} is not reusable")
-        if not correct_native_parallelity:
-            from .refinement_parallelity import requires_checked_plane_forces
-            try:
-                requires_correction = requires_checked_plane_forces(registry, parent)
-            except ValueError as exc:
-                raise AutoRefineError(str(exc)) from exc
-            if requires_correction:
-                raise AutoRefineError(
-                    'This checkpoint descends from checked plane-force refinement; '
-                    'continue explicitly with --checked-plane-forces. No new round was started.')
+        try:
+            require_runtime_continuation(registry, parent, correct_native_parallelity)
+        except ValueError as exc:
+            raise AutoRefineError(str(exc)) from exc
         inherited = (
             _inherited_paths_for_autorefine(parent, run)
             if use_experimental_phases

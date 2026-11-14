@@ -28,7 +28,7 @@ from .phaser import execute_phaser
 from .postmr import prepare_postmr
 from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
-from .campaign_policy import (autosol_policy, workflow_policy, postmr_policy, continuation_warning,
+from .campaign_policy import (autosol_policy, autorefine_policy, workflow_policy, postmr_policy, continuation_warning,
     select_provisional_recommendation, record_runtime_policy)
 from .anomalous_expectations import iodine_refinement_audit
 
@@ -388,6 +388,12 @@ def execute_stage(
             phase_policy = autosol_policy(policy)
         except ValueError as exc:
             raise CampaignStageError(str(exc)) from exc
+    refine_policy = None
+    if stage in {"autorefine", "refine-doctor"}:
+        try:
+            refine_policy = autorefine_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
     config = load_config()
     report = _read_report(run / "report.json") if run is not None else None
     if report is not None and report.get("workflow") != "automr":
@@ -456,6 +462,10 @@ def execute_stage(
             # Native AutoRefine may use anomalous observations without importing
             # unaccepted phases. It still requires usable observations and Free-R.
     phenix = discover_phenix(config, explicit=phenix_root)
+    runtime_options = {}
+    if refine_policy is not None and refine_policy.get("checked_plane_forces", False):
+        runtime_options = dict(correct_native_parallelity=True,
+                               phenix_python_executable=_program(phenix, "phenix.python"))
     versions = {"phenix": phenix.version}
     extra: dict[str, Any] = {}
     if stage == "preflight":
@@ -544,15 +554,13 @@ def execute_stage(
             required.extend([result.heavy_atom_model, result.refinement_data])
         extra["matched_distance"] = result.matched_distance
     elif stage == "autorefine":
-        refine_policy = _object(policy.get("autorefine"), "AutoRefine policy")
-        if refine_policy != {"recipe": "AutoRefine/default", "cycles": 5}:
-            raise CampaignStageError("Unsupported campaign AutoRefine recipe")
         expected_registry = _require_first_refinement(run, report)
         result = execute_autorefine(
             run, _program(phenix, "phenix.refine"), _program(phenix, "phenix.mtz.dump"),
             phenix_version=phenix.version, environment=phenix.environment,
             from_checkpoint="postmr", recipe=refine_policy["recipe"],
             macro_cycles=refine_policy["cycles"],
+            **runtime_options,
             **({"expected_registry_sha256": expected_registry} if expected_registry is not None else {}),
             **({"use_experimental_phases": False} if phase_policy["policy"] == "disabled" else {}),
         )
@@ -590,6 +598,7 @@ def execute_stage(
             from_checkpoint=source_checkpoint,
             macro_cycles=3,
             max_trials=5,
+            **runtime_options,
         )
         if result.current_checkpoint_preserved is not True:
             raise CampaignStageError("Refine Doctor changed the current checkpoint")

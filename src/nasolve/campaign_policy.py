@@ -83,6 +83,22 @@ def postmr_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
     return dict(supplied)
 
 
+def autorefine_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
+    """Preserve fixed recipes and an optional schema-2 native compatibility choice."""
+    supplied = policy.get("autorefine")
+    if (not isinstance(supplied, dict)
+            or set(supplied) - {"recipe", "cycles", "checked_plane_forces"}
+            or supplied.get("recipe") != "AutoRefine/default"
+            or type(supplied.get("cycles")) is not int or supplied["cycles"] != 5):
+        raise ValueError("Unsupported campaign AutoRefine recipe")
+    if "checked_plane_forces" in supplied:
+        if type(policy.get("schema_version")) is not int or policy["schema_version"] != 2:
+            raise ValueError("autorefine.checked_plane_forces requires preset schema_version = 2")
+        if type(supplied["checked_plane_forces"]) is not bool:
+            raise ValueError("autorefine.checked_plane_forces must be bool")
+    return dict(supplied)
+
+
 def autosol_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
     """Validate the frozen phase policy without changing anomalous evidence."""
     supplied = policy.get("autosol")

@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C299**. Active **cedar** in NASolve-c96. Remote last verified
-**C298 `85a45a0f`**, including C295–C297.
+Updated **2026-11-14, C300**. Active **cedar** in NASolve-c96. Remote last verified
+**C299 `b4739c76`**, including C295–C298.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
@@ -42,7 +42,7 @@ remain Q16. Last full suite: **C220/583d30df, 9,178 tests +276 subtests**.
 
 ## Q06 — real refinement preserves the intended chemistry
 
-**C299 complete, being committed:** `autorefine --checked-plane-forces` uses the
+**C299 committed/pushed `b4739c76`:** `autorefine --checked-plane-forces` uses the
 configured Phenix Python, isolates zero-cycle native setup outputs, and requires
 explicit continuation through corrected ancestry (including manual edits).
 99 focused tests +33 subtests pass. Native CLI one-cycle continuation produced
@@ -66,11 +66,23 @@ Free-R, NAR membership, observations and native targets. No SDK edits. Native
 version is Phenix 2.2.1-6174 / dispatcher 2.2.1, local Darwin/arm64 exact profile;
 version labels alone are not broader capability or pristine-distribution proof.
 
-**Next bounded step:** carry the explicit choice through campaign and Refine
-Doctor owners without a new executor or default activation. Then achieved chemical
-geometry, PDU/held-out survival and broader platform/capacity scope. Do not duplicate
-Linden's endpoint observer or topology owners. C299 is a command/continuation
-qualification, not complete chemistry or PDU acceptance.
+**C300 complete, being committed:** explicit schema-2 campaign choice and Refine
+Doctor API/CLI reuse the same runtime checks and immutable round owner. Focused
+validation: 233 tests +61 subtests pass, no full suite. Native control
+`300_Cedar_doctor-plane-forces-ncuo_h42` passes one existing ML-fixed-scattering
+trial at refine-004 from refine-003, keeping refine-003 current. The recipe
+deliberately excludes experimental phases; original observations and Free-R stay
+fixed (audit valid/NOISY). All 58 parameters retained; relocated cold read passes.
+524 original files, 129 prior-round files and 576 readback files unchanged.
+Driver rc0, known stopped, source pins unchanged. Runtime evidence 2.17 MB;
+clone-on-write logical total is not unique physical storage.
+
+**Next:** use existing source-selected geometry readers to inspect actual outcomes.
+Run a fresh PDU:A campaign control from C270's declared chemical test scaffold,
+with explicit checked preparation/plane forces and no experimental phases. This
+is a mechanical substitution control with retained observations, not donor
+chemistry or a solved structure; it does not unblock original PDU:PDU/B:1. Keep
+the original source and all failed work. No native jobs currently active.
 
 ## PDU control remains separate
 
