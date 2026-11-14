@@ -385,7 +385,22 @@
       "initial_and_endpoint_derivative_gates": true,
       "scientific_acceptance": false,
       "campaign_integration": false,
-      "runtime_authority": false
+      "runtime_authority": false,
+      "endpoint_observation": {
+        "explicit_points_and_checksum": true,
+        "coordinate_cases": [
+          "source",
+          "full_precision",
+          "rounded"
+        ],
+        "coordinate_semantics": "SOURCE_PLUS_BINARY_DISPLACEMENTS",
+        "origin": "FIXED_MANAGER_EVALUATION_NOT_REINTERPRETATION",
+        "native_pair_capture_owner": "Cedar capture_asu_pairs",
+        "review_owner": "Cedar environment/arithmetic review plus existing TopoStitch packing comparison",
+        "new_optimization": false,
+        "new_derivative_qualification": false,
+        "scientific_acceptance": false
+      }
     }
   },
   "geometry_development": {

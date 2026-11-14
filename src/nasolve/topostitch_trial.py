@@ -105,3 +105,52 @@ def run_native_masked_trial(objective, *, max_iterations, max_calls):
         result['optimizer_log']=log.getvalue()
         result['objective_evaluation_calls']=objective._calls
     return result
+
+
+def observe_masked_coordinates(objective, cases, *, capture_pairs):
+    """Observe actual native directed pairs at three explicitly bound coordinates.
+
+    Fresh manager construction/context authentication belongs to the caller.
+    Raw native gradients serve capture replay; the masked objective separately
+    retains Cedar's corrected gradients. No optimization or derivative audit.
+    """
+    if list(cases)!=['source','full_precision','rounded']:
+        raise ValueError('Require source, full-precision and rounded coordinate cases')
+    binding=objective.binding_report()
+    if binding['max_evaluations']-objective._calls<9:
+        raise ValueError('Mask budget cannot cover three repeated endpoint observations')
+    deltas={name:objective._mask.displacements(points) for name,points in cases.items()}
+    result=dict(schema_version=1,kind='topostitch-native-coordinate-observations',status='FAILED',
+        origin='FIXED_MANAGER_EVALUATION_NOT_REINTERPRETATION',normalization=False,
+        coordinate_evaluation='SOURCE_PLUS_BINARY_DISPLACEMENTS',
+        optimization=False,derivative_qualification='NOT_RUN',scientific_acceptance=False,
+        automatic_adoption=False,cases=[])
+    initial_calls=objective._calls
+    try:
+        for name,points in cases.items():
+            evaluation=objective.evaluate(deltas[name])
+            row=dict(name=name,points=[list(p) for p in evaluation['points']],evaluation=evaluation)
+            result['cases'].append(row)
+            if row['points']!=points:raise ValueError('Evaluated points differ from explicit coordinate case')
+            repeat=objective.evaluate(deltas[name])
+            inventory=capture_pairs([list(p) for p in points])
+            row['nonbonded_inventory']=inventory
+            final=objective.evaluate(deltas[name])
+            for value in (repeat,final):
+                if any(evaluation[k]!=value[k] for k in evaluation if k!='evaluation_calls'):
+                    raise ValueError('Endpoint objective changed around directed pair capture')
+            snapshots=[]
+            for raw in inventory['snapshots']:
+                if (not math.isclose(raw['target'],evaluation['native_target'],abs_tol=1e-8,rel_tol=1e-10)
+                        or raw['proxy_counts']!=evaluation['native_proxy_counts']):
+                    raise ValueError('Directed capture and composed native evaluation differ')
+                snapshots.append(dict(target=raw['target'],gradient=raw['gradient'],
+                    gradient_norm=math.hypot(*raw['gradient']),terms=evaluation['native_components'],
+                    proxy_counts=raw['proxy_counts']))
+            if len(snapshots)!=2:raise ValueError('Require two actual native snapshots')
+            row.update(native_energy_snapshots=snapshots,exact_repeat=True)
+        result['status']='COORDINATE_OBSERVATIONS_REVIEW'
+    except (ValueError,RuntimeError,OverflowError,KeyError,TypeError) as exc:
+        result['error']=type(exc).__name__+': '+str(exc)
+    result['objective_evaluation_calls']=objective._calls-initial_calls
+    return result

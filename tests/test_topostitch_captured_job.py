@@ -16,7 +16,8 @@ def test_public_api_rejects_invalid_controls_before_loading_owners(monkeypatch):
     def forbidden(*a,**kw):raise AssertionError('Native owners should not be loaded')
     monkeypatch.setattr(job,'_cedar',forbidden)
     for control in (dict(include_pairs=1),dict(trial_iterations=True),dict(trial_calls=9),
-                    dict(timeout_seconds=True),dict(timeout_seconds=float('nan')),dict(_process_runner=5)):
+                    dict(timeout_seconds=True),dict(timeout_seconds=float('nan')),dict(_process_runner=5),dict(endpoint_points='points'),dict(endpoint_sha256='a'*64),
+                    dict(endpoint_points='points',endpoint_sha256='a'*64,trial_iterations=1)):
         with pytest.raises(ValueError):
             job.run_captured_objective('a','b','c','d','out',recipe_sha256='a'*64,
                 mask_sha256='b'*64,phenix='native',**control)
@@ -26,7 +27,7 @@ def test_developer_owners_are_isolated_and_removed_on_every_exit(tmp_path):
     package=tmp_path/'nasolve';package.mkdir()
     names=('cif_attachment_native','cif_native_validation','cif_candidate_usability',
            'cif_native_nonbonded','cif_native_monomers','cif_fixed_geometry','phenix_runtime',
-           'cif_captured_mixed_gradients','campaign_process')
+           'cif_captured_mixed_gradients','campaign_process','cif_selected_environment')
     for name in names:(package/(name+'.py')).write_text('token = object()\n')
     first=None
     for fail in (False,True):

@@ -98,3 +98,52 @@ def test_explicit_coordinate_only_policy_preserves_tensors_without_claiming_adp_
 
 def test_unknown_tensor_policy_cannot_silently_default():
     with pytest.raises(ValueError,match='ANISOU policy'):audit(anisou_policy='guess')
+
+
+def test_coordinate_observation_cases_keep_exact_fixed_atoms_and_round_only_selection():
+    from nasolve.topostitch_endpoint import endpoint_coordinate_cases
+    value=endpoint_coordinate_cases(source(),[[1.0014,2,3],[4,5,6]],movable_indices=[0],max_displacement_angstrom=.01)
+    assert list(value)==['source','full_precision','rounded']
+    assert value['source']==[[1.,2.,3.],[4.,5.,6.]]
+    assert value['full_precision'][0]==[1.0014,2.,3.]
+    assert value['rounded'][0]==[1.001,2.,3.]
+    assert all(points[1]==[4.,5.,6.] for points in value.values())
+
+
+@pytest.mark.parametrize('points,bound',[([[1.001,2,3],[4.00001,5,6]],.01),
+    ([[1.0006,2,3],[4,5,6]],.0007),([[float('nan'),2,3],[4,5,6]],.01)])
+def test_observation_preflight_refuses_fixed_motion_outward_rounding_and_nonfinite(points,bound):
+    from nasolve.topostitch_endpoint import endpoint_coordinate_cases
+    with pytest.raises(ValueError):endpoint_coordinate_cases(source(),points,movable_indices=[0],max_displacement_angstrom=bound)
+
+
+def test_observation_projection_is_detached_and_coordinate_bound():
+    from copy import deepcopy
+    from nasolve.topostitch_endpoint import project_coordinate_observation
+    native=dict(atom_count=2,atoms=[dict(xyz=[1,2,3]),dict(xyz=[4,5,6])],geometry=dict(sites_cart_exact=[[1,2,3],[4,5,6]],proxy_details={'frozen':True}),energy_inventory={'snapshots':['source']},nonbonded_inventory={'source':True})
+    points=[[1.001,2.,3.],[4.,5.,6.]]
+    observation=dict(points=points,native_energy_snapshots=[{'actual':1},{'actual':2}],nonbonded_inventory={'actual_pairs':[]},exact_repeat=True)
+    before=deepcopy((native,observation));value=project_coordinate_observation(native,observation,expected_points=points)
+    assert (native,observation)==before
+    assert value['atoms'][0]['xyz']==points[0]
+    assert value['geometry']['proxy_details']==native['geometry']['proxy_details']
+    value['nonbonded_inventory']['actual_pairs'].append('changed')
+    assert observation['nonbonded_inventory']['actual_pairs']==[]
+    with pytest.raises(ValueError,match='bound request'):
+        project_coordinate_observation(native,observation,expected_points=[[1.,2.,3.],[4.,5.,6.]])
+    observation['native_energy_snapshots'].pop()
+    with pytest.raises(ValueError,match='complete repeated'):
+        project_coordinate_observation(native,observation,expected_points=points)
+
+
+def test_rounded_observation_uses_actual_binary_displacement_coordinates():
+    from nasolve.topostitch_endpoint import endpoint_coordinate_cases
+    from nasolve.topostitch_transport import CoordinateMask
+    data=(pdb_record('ATOM',1,'P','DA','A',1,x=1,y=2,z=.047)
+          +pdb_record('ATOM',2,'P','DT','B',2,x=4,y=5,z=6)).encode()
+    cases=endpoint_coordinate_cases(data,[[1,2,.0144],[4,5,6]],movable_indices=[0],max_displacement_angstrom=.1)
+    mask=CoordinateMask(((1,2,.047),(4,5,6)),(0,),.1)
+    actual=mask.expand(mask.displacements([[1,2,.014],[4,5,6]]))
+    assert cases['rounded']==[list(p) for p in actual]
+    assert cases['rounded'][0][2]!=.014
+    assert format(cases['rounded'][0][2],'.3f')=='0.014'

@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W43 — Observe full-precision and rounded native endpoint packing
+
+- Add an explicit read-only endpoint mode to the existing captured-job API/CLI.
+  Bind coordinate JSON by checksum and the original movement mask before launch.
+- Capture actual native directed ASU pairs at source, full precision and rounded
+  coordinates; reuse Cedar scalar/environment/arithmetic review and the existing
+  packing comparator. Keep this distinct from ordinary model reinterpretation.
+- Preserve the actual binary displacement roundtrip, failed observations and
+  precision-dependent contact changes. No coordinates, restraints or checkpoints
+  are changed and no convergence or scientific acceptance is granted.
+
 ### W42 — Reuse the captured native job from the installed package
 
 - Move the existing developer orchestration into `run_captured_objective`, keeping

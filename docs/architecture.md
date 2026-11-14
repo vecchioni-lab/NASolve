@@ -947,6 +947,10 @@ explicit trusted source loading is a developer compatibility route. An injected
 owned runner is passed through unchanged. Uncertain ownership errors escape after
 evidence is retained. No campaign state, checkpoint selection or acceptance owner
 is added. Source and endpoint scientific qualification remain separate gates.
+An explicit checksum-bound endpoint mode composes source/full-precision/rounded
+native ASU observations with Cedar's existing pure environment reviewers and the
+packing comparator. It labels fixed-manager evaluation separately from ordinary
+model reinterpretation and retains actual binary displacement coordinates.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are

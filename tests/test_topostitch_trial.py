@@ -62,3 +62,63 @@ def test_pair_control_requires_boolean_before_loading_native_sdk():
         NativeMaskedObjective(None,None,b'',None,movable_indices=[],expected_native_signature='',
             correction=None,native_audit=None,tether_sigma_angstrom=1,max_displacement_angstrom=1,
             max_evaluations=100,include_pairs='yes')
+
+
+class ObservationObjective:
+    def __init__(self,budget=100):
+        self._mask=CoordinateMask(((1.,2.,3.),(4.,5.,6.)),(0,),.1)
+        self._calls=0;self.budget=budget;self.changed=False
+    def binding_report(self):return dict(max_evaluations=self.budget)
+    def evaluate(self,delta):
+        self._calls+=1;points=self._mask.expand(delta)
+        target=sum(v*v for p in points for v in p)+int(self.changed)
+        return dict(points=points,target=target,native_target=target,gradient=[2*v for v in points[0]],
+            native_components={'bond_residual_sum':target},native_proxy_counts={'n_bond_proxies':1},evaluation_calls=self._calls)
+
+
+def observation_cases():
+    return dict(source=[[1.,2.,3.],[4.,5.,6.]],full_precision=[[1.0014,2.,3.],[4.,5.,6.]],rounded=[[1.001,2.,3.],[4.,5.,6.]])
+
+
+def observed_pairs(points):
+    from copy import deepcopy
+    row=dict(target=sum(v*v for p in points for v in p),gradient=[2*v for p in points for v in p],proxy_counts={'n_bond_proxies':1})
+    return dict(snapshots=[row,deepcopy(row)])
+
+
+def test_endpoint_observer_retains_actual_snapshots_and_never_optimizes():
+    from nasolve.topostitch_trial import observe_masked_coordinates
+    objective=ObservationObjective();calls=[]
+    def pairs(points):calls.append(points);return observed_pairs(points)
+    result=observe_masked_coordinates(objective,observation_cases(),capture_pairs=pairs)
+    assert result['status']=='COORDINATE_OBSERVATIONS_REVIEW'
+    assert result['objective_evaluation_calls']==9 and len(calls)==3
+    assert result['derivative_qualification']=='NOT_RUN' and not result['optimization']
+    assert not result['automatic_adoption'] and not result['scientific_acceptance']
+    assert [r['points'] for r in result['cases']]==calls
+    assert all(len(r['native_energy_snapshots'])==2 and r['exact_repeat'] for r in result['cases'])
+
+
+@pytest.mark.parametrize('failure',['target','counts','state','snapshots'])
+def test_inconsistent_endpoint_capture_retains_partial_failed_evidence(failure):
+    from nasolve.topostitch_trial import observe_masked_coordinates
+    objective=ObservationObjective()
+    def pairs(points):
+        value=observed_pairs(points)
+        if failure=='target':value['snapshots'][0]['target']+=1
+        elif failure=='counts':value['snapshots'][0]['proxy_counts']={}
+        elif failure=='snapshots':value['snapshots'].pop()
+        else:objective.changed=True
+        return value
+    result=observe_masked_coordinates(objective,observation_cases(),capture_pairs=pairs)
+    assert result['status']=='FAILED' and result['error']
+    assert len(result['cases'])==1 and 'nonbonded_inventory' in result['cases'][0]
+    assert not result['automatic_adoption']
+
+
+def test_endpoint_observer_admits_complete_cases_and_budget_before_evaluation():
+    from nasolve.topostitch_trial import observe_masked_coordinates
+    objective=ObservationObjective(budget=8)
+    with pytest.raises(ValueError,match='budget'):observe_masked_coordinates(objective,observation_cases(),capture_pairs=observed_pairs)
+    assert objective._calls==0
+    with pytest.raises(ValueError,match='Require source'):observe_masked_coordinates(objective,{},capture_pairs=observed_pairs)

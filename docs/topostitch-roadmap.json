@@ -253,13 +253,14 @@
         "W39 reuses Cedar capture authentication and trusted native reconstruction, matching all initial observed inventories/ASU pairs before masked evaluation; three native controls reproduce W38 and no optimizer or complete exclusion-policy proof is claimed.",
         "W40 binds full-precision points and exact serialized PDB bytes to the explicit mask, then reuses Cedar native mechanics/selected-environment and existing packing review. Explicit Cartesian ANISOU preservation and local collateral regressions remain visible; no optimization or scientific acceptance.",
         "W41 composes a bounded native optimizer with complete initial/full-precision/serialized derivative gates and a matched cleanup control. Five native trials and fresh rounded readback pass the declared numerical checks; all remain iteration-capped with individual packing regressions and no acceptance.",
-        "W42 extracts one installed captured-job API, preserving the CLI/native results and reusing Cedar observation/process owners. Installed/relocated and temporary same-package compatibility checks pass; uncertain process ownership escapes with retained evidence. No branch merge or scientific acceptance."
+        "W42 extracts one installed captured-job API, preserving the CLI/native results and reusing Cedar observation/process owners. Installed/relocated and temporary same-package compatibility checks pass; uncertain process ownership escapes with retained evidence. No branch merge or scientific acceptance.",
+        "W43 adds explicit full-precision/rounded fixed-manager ASU endpoint observations through existing Cedar capture/review owners. Five controls agree with independent rounded native target/gradient readback; changed neighbor entries contribute zero in these cases. Binary displacement rounding, per-contact changes and failed evidence remain explicit; no physical acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Qualify full-precision as well as serialized endpoint packing and affected chemistry through existing Cedar owners, retaining numerical, convergence and scientific verdicts separately. Then close the explicit connection and matched-refinement gates; do not treat the package API as campaign/adoption authority.",
+      "next_action": "Attribute complete intended/core pair contributions so aggregate improvement cannot hide a damaged pair, alongside full-precision/serialized geometry and packing. Then run a declared bend/cleanup comparison and close affected chemistry before matched refinement. Keep fixed-manager observations separate from ordinary reinterpretation and scientific acceptance.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -281,7 +282,7 @@
         "date": "2026-11-14",
         "reviewer": "Linden",
         "code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416",
-        "scope": "Reusable package orchestration, exact W41 native parity, installed/relocated and temporary combined compatibility; scientific S05 remains partial"
+        "scope": "Read-only full-precision/rounded ASU endpoint observations, independent rounded native parity, exact installed/relocated review; no scientific acceptance"
       }
     },
     {
@@ -808,8 +809,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 42,
-    "next": 43,
+    "current": 43,
+    "next": 44,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -871,6 +872,12 @@
         "title": "Expose the captured native job through one reusable package boundary",
         "state": "RECORDED",
         "code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416"
+      },
+      {
+        "number": 43,
+        "title": "Review full-precision native endpoint packing beside serialized coordinates",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

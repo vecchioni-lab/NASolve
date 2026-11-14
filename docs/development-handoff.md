@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W42; next W43.** W33 introduced human update numbers without
+**Willow update W43; next W44.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,20 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W42 edge:** the installed `run_captured_objective` API owns the existing
+**Current W43 edge:** the same package/CLI can read an explicit masked endpoint
+and compare source/full-precision/rounded native ASU packing through Cedar owners.
+Five complete Phenix 2.2.1-6174 controls pass; independently reinterpreted rounded
+PDBs agree in full native target/gradient and matched pair residuals. Differing
+neighbor rows contribute zero in these controls. Precision-dependent contact
+changes remain visible; the original trials are still capped and unselected.
+Full Willow: 1,384 tests + 229 subtests; installed/relocated focused: 127 and a
+byte-identical complete endpoint review with original paths blocked. Native core
+interfaces are unchanged through Cedar af9aee87; no merge or Cedar edits.
+Next attribute individual intended/core pair contributions before a declared
+bend/cleanup comparison. Broader chemistry and S06 diffraction remain open;
+density-aware placement stays in its existing later queue.
+
+**Prior W42 edge:** the installed `run_captured_objective` API owns the existing
 capture/trial orchestration; the developer CLI remains compatible. Cedar owns
 capture, observation layering and process execution; uncertain cleanup errors
 escape after saving evidence. Source native results reproduce W41 exactly.

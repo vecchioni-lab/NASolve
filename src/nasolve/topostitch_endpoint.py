@@ -71,3 +71,46 @@ def audit_masked_endpoint(source, candidate, points, *, movable_indices, max_dis
         adp_refinement=False,thermal_model_qualified=False,
         full_precision_displacements_sha256=recipe_digest(delta),
         runtime_authority=False,geometry_accepted=False,scientific_acceptance=False)
+
+
+def endpoint_coordinate_cases(source, points, *, movable_indices, max_displacement_angstrom):
+    """Bind explicit points and three-decimal rounding to exact source anchors.
+
+    These are coordinate observations, not an emitted PDB or permission to move.
+    Candidate-byte and tensor policy checks remain audit_masked_endpoint's job.
+    """
+    model_atom_rows(source)
+    reference=tuple(tuple(float(line[a:b]) for a,b in ((30,38),(38,46),(46,54)))
+        for line in source.splitlines() if line[:6] in (b'ATOM  ',b'HETATM'))
+    mask=CoordinateMask(reference,movable_indices,max_displacement_angstrom)
+    full=mask.expand(mask.displacements(points));rounded=list(reference)
+    for i in mask.indices:
+        fields=''.join(f'{v:8.3f}' for v in full[i])
+        if len(fields)!=24:raise ValueError('Endpoint coordinate exceeds PDB field width')
+        rounded[i]=tuple(float(fields[a:b]) for a,b in ((0,8),(8,16),(16,24)))
+    # Match the actual displacement evaluator, including binary roundoff near
+    # zero. These observations do not claim literal PDB decimal coordinates.
+    rounded=mask.expand(mask.displacements(rounded))
+    return {name:[list(p) for p in values] for name,values in
+        [('source',reference),('full_precision',full),('rounded',rounded)]}
+
+
+def project_coordinate_observation(native, observation, *, expected_points):
+    """Build a transient reviewer input, never an authenticated model capture.
+
+    The caller binds source/capture/mask/artifact bytes. Cedar must then replay
+    native energy/ASU arithmetic and review geometry. Projection alone is no PASS.
+    """
+    from copy import deepcopy
+    if recipe_digest(observation['points'])!=recipe_digest(expected_points):
+        raise ValueError('Observed endpoint coordinates differ from the bound request')
+    count=native['atom_count'];points=expected_points
+    if (len(points)!=count or any(len(p)!=3 or any(type(x) not in (int,float) or not math.isfinite(x) for x in p) for p in points)
+            or len(observation['native_energy_snapshots'])!=2 or observation['exact_repeat'] is not True):
+        raise ValueError('Require complete repeated fixed-manager coordinate observations')
+    result=deepcopy(native)
+    result['geometry']['sites_cart_exact']=deepcopy(points)
+    for atom,point in zip(result['atoms'],points):atom['xyz']=deepcopy(point)
+    result['energy_inventory']['snapshots']=deepcopy(observation['native_energy_snapshots'])
+    result['nonbonded_inventory']=deepcopy(observation['nonbonded_inventory'])
+    return result

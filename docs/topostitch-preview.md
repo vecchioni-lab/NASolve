@@ -1213,6 +1213,74 @@ remain local. S05 remains partial: next review full-precision as well as seriali
 packing and affected chemistry, then use matched diffraction rather than lower
 geometry energy alone to establish repair benefit.
 
+### W43 — Full-precision endpoint observations
+
+The existing captured-job command accepts one explicit read-only endpoint:
+
+```sh
+# Add these to the W39 explicit model/recipe/mask/capture arguments:
+--endpoint-points full-precision.json --endpoint-sha256 FILE_SHA256
+```
+
+The installed API uses `endpoint_points` and `endpoint_sha256`. Both are required
+together and cannot be combined with `trial_iterations`. The file is an ordered
+JSON array of Cartesian `[x, y, z]` points for every original atom. Before native
+launch, its file hash, atom count, finite values, exact fixed coordinates and
+full-precision/rounded motion bounds must match the source-bound mask. This
+mode does not write a PDB, optimize, refine or infer a connection.
+
+One freshly reconstructed, authenticated source manager evaluates the source,
+full-precision endpoint and three-decimal endpoint. The rounded observation
+includes the same binary displacement expansion as the actual masked evaluator;
+it is not claimed to be a literal PDB reparse. Each case retains repeated composed
+native/pair/tether evidence and two **actual native directed-ASU snapshots**, using
+Cedar `capture_asu_pairs`. Cedar's native energy/gradient and pair-kernel replay,
+selected/boundary/fixed environment reviewer, and the existing packing comparator
+then assess the observations. Raw native gradients used for capture replay remain
+distinct from the corrected composed mask gradient. No derivative qualification
+is inferred merely from an endpoint observation; W41 owns those earlier checks.
+
+The schema-1 `topostitch-native-coordinate-observations` payload and
+`topostitch-native-endpoint-review` artifact explicitly carry
+`FIXED_MANAGER_EVALUATION_NOT_REINTERPRETATION`. A transient coordinate projection
+is only an input to the existing pure reviewers; it is never saved as an ordinary
+native model capture. The outer receipt binds the review through its existing
+relative artifact inventory. Fixed-manager observations do not establish universal
+neighbor/exclusion behavior or chemical acceptance.
+
+Five complete **Phenix 2.2.1-6174** controls use the W41 endpoints unchanged:
+
+| Endpoint | Full-precision repulsion | Rounded repulsion | Worsened directed contacts, full / rounded |
+| --- | ---: | ---: | ---: |
+| Fixed-base paired | 1066.1577 | 1066.0108 | 54 / 55 |
+| Fixed-base cleanup | 1066.1577 | 1066.0108 | 54 / 55 |
+| Whole-window paired | 1002.1383 | 1002.2450 | 110 / 110 |
+| Whole-window cleanup | 1000.3205 | 1000.3669 | 109 / 108 |
+| Independent 7R96 paired | 572.1503 | 572.2094 | 51 / 51 |
+
+These are descriptive directed rows, not unique clashes or an acceptance cutoff.
+All five rounded fixed-manager observations agree with the independently
+interpreted W41 PDB captures in full native target/gradient and matched pair
+residuals. Fresh interpretation changes some neighbor-list entries, but all added
+or removed entries have exactly zero residual and nonpositive overlap in these
+controls. That finite observation is not an independent proof of neighbor
+completeness. The underlying W41 trials remain capped and unselected.
+
+The initial whole-window observation refused a 3.5×10⁻¹⁸ Å decimal/displacement
+roundtrip difference near zero. The failed result remains; the explicit binary
+expansion now matches the actual evaluator, with a regression. No acceptance
+threshold or scientific target was relaxed. Installed/relocated review reproduces
+the complete endpoint artifact byte-for-byte with original paths blocked; wrong
+endpoint hashes and fixed-atom movement refuse before creating a native job.
+The [validation receipt](topostitch-periodic.md#current-validation-receipt--2026-11-13)
+records exact scope. All scientific inputs and outputs stay local.
+
+S05 remains partial. Next expose individual intended/core-pair contributions so
+an improving aggregate cannot hide a damaged pair, alongside the existing
+geometry/packing evidence; then use a declared bend/cleanup comparison. Broader
+sugar/torsion/plane qualification and matched diffraction remain open. Density
+calibration stays in S06 and no campaign acceptance path is enabled.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

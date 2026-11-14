@@ -19,7 +19,7 @@ from uuid import uuid4
 
 WILLOW_MODULES = ('topostitch', 'topostitch_coordinates', 'topostitch_periodic',
                   'topostitch_transport', 'topostitch_recipe',
-                  'topostitch_native_recipe', 'topostitch_capture', 'topostitch_trial')
+                  'topostitch_native_recipe', 'topostitch_capture', 'topostitch_trial', 'topostitch_endpoint')
 
 # Only maintained source builds this worker. Captured worker text is evidence,
 # never an executable input. The bootstrap keeps its native manager in memory.
@@ -56,7 +56,16 @@ try:
         movable_indices=request['movable_indices'],expected_native_signature=signature,
         correction=correction,native_audit=audit,include_pairs=spec['include_pairs'],
         **{k:request[k] for k in ('tether_sigma_angstrom','max_displacement_angstrom','max_evaluations')})
-    if 'trial' in spec:
+    if 'endpoint_sha256' in spec:
+        from nasolve.topostitch_endpoint import endpoint_coordinate_cases
+        from nasolve.topostitch_trial import observe_masked_coordinates
+        cases=endpoint_coordinate_cases(model,json.loads((root/'endpoint.json').read_bytes()),
+            movable_indices=request['movable_indices'],max_displacement_angstrom=request['max_displacement_angstrom'])
+        observations=observe_masked_coordinates(objective,cases,
+            capture_pairs=lambda points:ns['capture_asu_pairs'](geo,points))
+        result.update(status='ENDPOINT_OBSERVATIONS_REVIEW' if observations['status']=='COORDINATE_OBSERVATIONS_REVIEW' else 'ENDPOINT_OBSERVATIONS_FAILED',
+            context=context,binding=objective.binding_report(),observations=observations)
+    elif 'trial' in spec:
         from nasolve.topostitch_trial import run_native_masked_trial
         trial=run_native_masked_trial(objective,**spec['trial'])
         result.update(status='BOUNDED_TRIAL_REVIEW' if trial['status']=='ENDPOINT_DERIVATIVES_PASS' else 'TRIAL_REVIEW_REQUIRED',
@@ -74,7 +83,7 @@ try:
 except Exception as exc:
     result['error']=type(exc).__name__+': '+str(exc);traceback.print_exc()
 (root/'evaluation.json').write_text(json.dumps(result,sort_keys=True,allow_nan=False)+'\n')
-sys.exit(0 if result['status'] in ('INITIAL_CONTEXT_AND_EVALUATIONS_MATCH','BOUNDED_TRIAL_REVIEW') else 2)
+sys.exit(0 if result['status'] in ('INITIAL_CONTEXT_AND_EVALUATIONS_MATCH','BOUNDED_TRIAL_REVIEW','ENDPOINT_OBSERVATIONS_REVIEW') else 2)
 '''
 
 
@@ -96,7 +105,7 @@ def _cedar(source=None):
     try:
         names=('cif_attachment_native','cif_native_validation','cif_candidate_usability',
                'cif_native_nonbonded','cif_native_monomers','cif_fixed_geometry','phenix_runtime',
-               'cif_captured_mixed_gradients','campaign_process')
+               'cif_captured_mixed_gradients','campaign_process','cif_selected_environment')
         modules={n:importlib.import_module(name+'.'+n) for n in names}
         if any(not Path(m.__file__).resolve().is_relative_to(package_root) for m in modules.values()):
             raise ValueError('Cedar owner resolved outside the selected package')
@@ -116,7 +125,8 @@ def _unchanged(*records):
 
 def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *,
         recipe_sha256, mask_sha256, phenix, cedar_source=None, trial_iterations=0,
-        trial_calls=2000, include_pairs=True, timeout_seconds=600, _process_runner=None):
+        trial_calls=2000, include_pairs=True, timeout_seconds=600, _process_runner=None,
+        endpoint_points=None, endpoint_sha256=None):
     """Return ``(new_directory, report)`` for one immutable diagnostic job.
 
     ``phenix`` is an existing discovered installation or an explicit installation
@@ -126,6 +136,9 @@ def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *
     Uncertain process cleanup escapes to that owner after retaining evidence.
     Defaults perform no optimization. No candidate/checkpoint is published.
     """
+    if ((endpoint_points is None)!=(endpoint_sha256 is None)
+            or endpoint_points is not None and trial_iterations!=0):
+        raise ValueError('Endpoint observation needs points plus checksum and cannot optimize')
     if type(include_pairs) is not bool:
         raise ValueError('Pair inclusion must be an explicit boolean')
     if (type(trial_iterations) is not int or not 0<=trial_iterations<=500
@@ -138,7 +151,8 @@ def run_captured_objective(model, recipe, mask, native_receipt, output_parent, *
     args=types.SimpleNamespace(**{k:Path(v) for k,v in dict(model=model,recipe=recipe,
         mask=mask,native_receipt=native_receipt,output_parent=output_parent).items()},
         recipe_sha256=recipe_sha256,mask_sha256=mask_sha256,trial_iterations=trial_iterations,
-        trial_calls=trial_calls,without_pairs=not include_pairs,timeout_seconds=timeout_seconds)
+        trial_calls=trial_calls,without_pairs=not include_pairs,timeout_seconds=timeout_seconds,
+        endpoint_points=None if endpoint_points is None else Path(endpoint_points),endpoint_sha256=endpoint_sha256)
     with _cedar(cedar_source) as cedar:
         return _run(args,cedar,phenix,_process_runner)
 
@@ -159,9 +173,10 @@ def _worker(spec, capture, cedar):
 
 
 def _run(args, cedar, phenix, process_runner):
-    from nasolve import topostitch_capture
+    from nasolve import topostitch_capture, topostitch_endpoint
     from nasolve.topostitch_recipe import recipe_digest
     paths={k:getattr(args,k).resolve(strict=True) for k in ('model','recipe','mask','native_receipt')}
+    if args.endpoint_points is not None:paths['endpoint_points']=args.endpoint_points.resolve(strict=True)
     originals={p:p.read_bytes() for p in paths.values()}
     receipt,native,snapshots=cedar['cif_attachment_native']._capture(paths['native_receipt'],originals[paths['model']])
     if receipt['status']!='REVIEW' or not cedar['cif_fixed_geometry']._fixed_policy(native):
@@ -182,6 +197,11 @@ def _run(args, cedar, phenix, process_runner):
             or mask['kind']!='topostitch-native-mask-request'
             or mask['source_model_sha256']!=sha256(originals[paths['model']]).hexdigest()):
         raise ValueError('Unsupported or stale movement request')
+    if args.endpoint_points is not None:
+        data=originals[paths['endpoint_points']]
+        if sha256(data).hexdigest()!=args.endpoint_sha256:raise ValueError('Endpoint point checksum mismatch')
+        endpoint_cases=topostitch_endpoint.endpoint_coordinate_cases(originals[paths['model']],json.loads(data),
+            movable_indices=mask['movable_indices'],max_displacement_angstrom=mask['max_displacement_angstrom'])
     installation=(cedar['phenix_runtime'].installation_from_candidate(Path(phenix))
                   if isinstance(phenix,(str,os.PathLike)) else phenix)
     executable=installation.executables['phenix.python']
@@ -205,6 +225,7 @@ def _run(args, cedar, phenix, process_runner):
     (root/'bootstrap/native_worker.py').write_text(worker)
     for key,name in [('model','model.pdb'),('recipe','recipe.json'),('mask','mask.json')]:
         (root/name).write_bytes(originals[paths[key]])
+    if args.endpoint_points is not None:(root/'endpoint.json').write_bytes(originals[paths['endpoint_points']])
     runtime=root/'runtime';(runtime/'nasolve').mkdir(parents=True)
     (runtime/'nasolve/__init__.py').write_text('')
     sources={executable:executable.read_bytes()}
@@ -221,6 +242,7 @@ def _run(args, cedar, phenix, process_runner):
         if name.startswith(owner_namespace+'.') and getattr(module,'__file__',None):
             p=Path(module.__file__).resolve();sources[p]=p.read_bytes()
     request=dict(schema_version=1,recipe_sha256=args.recipe_sha256,mask_sha256=args.mask_sha256,include_pairs=not args.without_pairs)
+    if args.endpoint_points is not None:request['endpoint_sha256']=args.endpoint_sha256
     if args.trial_iterations:request['trial']=dict(max_iterations=args.trial_iterations,max_calls=args.trial_calls)
     _save(root/'request.json',request)
     (root/'evaluate.py').write_text(WORKER)
@@ -249,6 +271,29 @@ def _run(args, cedar, phenix, process_runner):
         cedar['cif_native_monomers'].review_full_monomers(rebuilt)
         cedar['cif_native_nonbonded'].review_native_nonbonded(rebuilt)
         report['context']=topostitch_capture.compare_reconstructed_context(native,rebuilt)
+        if args.endpoint_points is not None:
+            from nasolve.topostitch_packing import compare_native_packing
+            observations=evaluation['observations']
+            if (observations['status']!='COORDINATE_OBSERVATIONS_REVIEW'
+                    or observations['origin']!='FIXED_MANAGER_EVALUATION_NOT_REINTERPRETATION'
+                    or observations['normalization'] is not False
+                    or observations['optimization'] is not False
+                    or [v['name'] for v in observations['cases']]!=list(endpoint_cases)):
+                raise ValueError('Incomplete fixed-manager endpoint observation')
+            projected={row['name']:topostitch_endpoint.project_coordinate_observation(native,row,
+                expected_points=endpoint_cases[row['name']]) for row in observations['cases']}
+            pair_review=cedar['cif_native_nonbonded'].review_native_nonbonded
+            review=dict(schema_version=1,kind='topostitch-native-endpoint-review',
+                origin=observations['origin'],endpoint_points_sha256=args.endpoint_sha256,
+                environments={name:cedar['cif_selected_environment'].review_selected_environment(value,mask['movable_indices'])
+                    for name,value in projected.items()},
+                packing_from_source={name:compare_native_packing(projected['source'],projected[name],reviewer=pair_review)
+                    for name in ('full_precision','rounded')},
+                rounding_packing=compare_native_packing(projected['full_precision'],projected['rounded'],reviewer=pair_review),
+                source_reconstruction_packing=compare_native_packing(native,projected['source'],reviewer=pair_review),
+                runtime_authority=False,scientific_acceptance=False,automatic_adoption=False,
+                derivatives='NOT_RUN_BY_ENDPOINT_OBSERVER',chemistry_qualification='NOT_ESTABLISHED')
+            _save(root/'endpoint-review.json',review)
         report['status']=evaluation['status']
     except subprocess.TimeoutExpired as exc:
         report['execution'].update(status='TIMED_OUT',returncode=getattr(exc,'returncode',None))
@@ -265,5 +310,7 @@ def _run(args, cedar, phenix, process_runner):
         report['files']=[dict(anchor='probe_directory',path=p.relative_to(root).as_posix(),
             sha256=sha256(p.read_bytes()).hexdigest(),size=p.stat().st_size)
             for p in sorted(root.rglob('*')) if p.is_file()]
+        if (root/'endpoint-review.json').is_file():
+            report['endpoint_review']=next(row for row in report['files'] if row['path']=='endpoint-review.json')
         _save(root/'receipt.json',report)
     return root,report

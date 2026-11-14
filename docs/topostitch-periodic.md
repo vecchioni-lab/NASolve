@@ -405,7 +405,31 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W42 checkpoint (2026-11-14):** eight orchestration regressions cover early
+**W43 checkpoint (2026-11-14):** twelve new regression cases cover exact source/
+full-precision/rounded masking, forbidden fixed motion, rounding limits, finite
+points, detached coordinate projections, actual pair snapshots, mismatched capture
+and retained partial failures, budget admission and the observed binary roundtrip.
+Focused source: **67 passed** (0.41 s). Final full Willow: **1,384 passed + 229
+subtests** (73.83 s), using the W39 full-suite command below. Installed/relocated
+focused: **127 passed** (1.69 s), using the W41 installed command pattern with
+captured-job, trial, capture, mask, recipe, transport, endpoint and packing tests.
+All five installed entrypoints, lean imports and Python 3.10 syntax pass.
+Wheel SHA256: `2443d91e6ebca9e956f575e5a0854416a50cc7908c3c9aa77f56442507b70657`.
+
+Five complete native endpoint observations use **Phenix 2.2.1-6174**; independent
+W41 rounded captures confirm native target/full-gradient and pair-residual parity.
+Installed/relocated whole-window review is byte-identical with the original copied
+checkout absent and source/scientific paths blocked. Wrong endpoint hash and
+fixed-coordinate negatives reject before job creation. The initial exact-decimal
+roundtrip refusal is retained and explicitly handled through the evaluator's
+binary displacement expansion. Default read-only native results still match W41.
+[W43](topostitch-preview.md#w43--full-precision-endpoint-observations) documents
+additional flags, report kinds, measured tradeoffs and limitations. No complete
+combined/Cedar suite, checkpoint migration, model edit or adoption is claimed;
+scientific artifacts remain local. Cedar's consumed capture/numerical/process
+interfaces are unchanged from the W42 compatibility control through af9aee87.
+
+**Prior W42 checkpoint (2026-11-14):** eight orchestration regressions cover early
 control rejection, repeat/developer namespace isolation, Cedar observation-layer
 ordering, owned runner forwarding, uncertain cleanup propagation, verified timeout,
 removed inputs/dispatcher and changed-dispatcher refusal. Focused source: **29
