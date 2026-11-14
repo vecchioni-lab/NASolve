@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
+  "audited_code_commit": "3993bb3abce5ef64157e08a07658d7698fc4b652",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -465,7 +465,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
+        "code_commit": "3993bb3abce5ef64157e08a07658d7698fc4b652",
         "reviewer": "Linden",
         "human_update": 65,
         "scope": "Saved caller preference and exact backend readback only; real graphical/human review and execution remain open"
@@ -938,7 +938,7 @@
     },
     "E_CUT_PREFERENCE": {
       "kind": "source_bound_cut_preference",
-      "code_commit": "9375440e401ae04ecfa1b5dcb3611eba7e39013e",
+      "code_commit": "3993bb3abce5ef64157e08a07658d7698fc4b652",
       "human_update": 65,
       "reference": "docs/topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference",
       "result": "15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass.",
@@ -1257,8 +1257,8 @@
       {
         "number": 65,
         "title": "Save and reopen source-bound cut preferences",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "3993bb3abce5ef64157e08a07658d7698fc4b652"
       }
     ]
   }

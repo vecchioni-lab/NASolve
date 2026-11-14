@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
 | W63 | Expose existing source bonds at proposed representation seams | RECORDED |
 | W64 | Compare explicit cuts through a shared-camera preview | RECORDED |
-| W65 | Save and reopen source-bound cut preferences | IN_PROGRESS |
+| W65 | Save and reopen source-bound cut preferences | RECORDED |
 
 ## Finish lines
 
@@ -283,7 +283,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Qualify actual browser rendering, preference downloads and human review; then wire the source-bound choice into existing Pine/Campaign owners. Keep physical identity, model materialization and seam chemistry gated.
 **Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_CUT_COMPARISON](#e_cut_comparison), [E_CUT_PREFERENCE](#e_cut_preference).
-**Last audit:** 2026-11-14, Linden, [W65](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e); Saved caller preference and exact backend readback only; real graphical/human review and execution remain open.
+**Last audit:** 2026-11-14, Linden, [W65](https://github.com/vecchioni-lab/NASolve/commit/3993bb3abce5ef64157e08a07658d7698fc4b652); Saved caller preference and exact backend readback only; real graphical/human review and execution remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -692,7 +692,7 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 <a id="e_cut_preference"></a>
 ### E_CUT_PREFERENCE — source_bound_cut_preference
 
-[Evidence contract](topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference) at [W65](https://github.com/vecchioni-lab/NASolve/commit/9375440e401ae04ecfa1b5dcb3611eba7e39013e).
+[Evidence contract](topostitch-periodic.md#w65--save-and-reopen-a-source-bound-cut-preference) at [W65](https://github.com/vecchioni-lab/NASolve/commit/3993bb3abce5ef64157e08a07658d7698fc4b652).
 15 regressions; focused57,full1630 plus229subtests. Actual JavaScript exports all three choices; backend validates those requests after public packet/capture relocation with old paths blocked. Reopened note and legacy interactions pass doubles; old comparison remains exact. Installed/relocated424,six helps,lean/3.10 and exact installed preference/comparison/legacy readback pass.
 **Limit:** Preference is caller-supplied evidence, not authenticated human or scientific approval; no model/checkpoint action or separate campaign history. Real browser/download/human review remains open. Scientific artifacts local only.
 
