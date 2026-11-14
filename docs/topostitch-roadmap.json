@@ -256,13 +256,14 @@
         "W42 extracts one installed captured-job API, preserving the CLI/native results and reusing Cedar observation/process owners. Installed/relocated and temporary same-package compatibility checks pass; uncertain process ownership escapes with retained evidence. No branch merge or scientific acceptance.",
         "W43 adds explicit full-precision/rounded fixed-manager ASU endpoint observations through existing Cedar capture/review owners. Five controls agree with independent rounded native target/gradient readback; changed neighbor entries contribute zero in these cases. Binary displacement rounding, per-contact changes and failed evidence remain explicit; no physical acceptance.",
         "W44 attributes every native pair term, verifies complete container sums and retains selected/core changes for all five endpoints. Cleanup exposes individually worsening pairs; compact JSON preserves old review tables. No objective or acceptance change.",
-        "W45 uses existing APIs for a matched core-only control against the paired trial. Complete derivative/endpoint/fresh-readback checks pass; intended-contact benefit is separated from core preservation, with capped outcomes and packing regressions retained."
+        "W45 uses existing APIs for a matched core-only control against the paired trial. Complete derivative/endpoint/fresh-readback checks pass; intended-contact benefit is separated from core preservation, with capped outcomes and packing regressions retained.",
+        "W46 composes Cedar native torsion/plane kernels into endpoint observations with explicit live-policy, single-proxy and full-family target/gradient checks. Six controls retain individual regressions and unchanged fixed terms; no chemical acceptance or ordinary refinement route is added."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Compose maintained Cedar native torsion/plane kernels into full-precision and rounded endpoint observations, checking complete live proxy policy and native sums without inventing missing symmetry. Then qualify affected chemistry and ordinary native enforcement before a declared damaged-model bend/cleanup and matched refinement comparison.",
+      "next_action": "Qualify affected chemistry and ordinary native enforcement before a declared damaged-model bend/cleanup and matched refinement comparison. Preserve the reported C289 ordinary force discrepancy as a consumer limitation. Shared F02/S03 explicit-connection capacity is the next independent gate; do not infer global or special-position identity from centers.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -838,8 +839,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 45,
-    "next": 46,
+    "current": 46,
+    "next": 47,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -919,6 +920,12 @@
         "title": "Isolate intended contacts with a matched retained-core control",
         "state": "RECORDED",
         "code_commit": "a8531f5958a9d3c8857ed4e2f224b1a8a4f3c108"
+      },
+      {
+        "number": 46,
+        "title": "Observe native torsion and monomer-plane endpoint terms through Cedar kernels",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

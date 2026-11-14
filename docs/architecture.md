@@ -956,6 +956,11 @@ and residuals, checked against their complete containers. Source/endpoint report
 retain selected/core pair changes even when cleanup disables their objective
 weight. Compact endpoint JSON preserves the complete existing review tables;
 this adds diagnostic fields only, without a second chemistry or acceptance owner.
+`topostitch_native_terms` likewise composes maintained Cedar torsion/plane kernels
+for live identity-only proxies. It verifies otherwise uncaptured policy fields,
+original single-proxy and full-container target/gradient agreement, then reports
+individual endpoint changes by coordinate dependence. Unsupported categories stay
+explicitly deferred; it adds neither a chemical acceptance nor a new optimizer.
 
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are

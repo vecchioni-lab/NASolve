@@ -405,6 +405,15 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-14
 
+**W46 checkpoint:** individual live torsion/plane observations compose Cedar
+kernels with original-proxy and full-family target/gradient checks. Six native
+endpoint controls pass while retaining local regressions and deferred chemistry.
+Full Willow **1,416 + 229 subtests**; focused **40**; installed/relocated **159**
+plus byte-identical complete native endpoint review. Live policy negatives refuse.
+See [W46](topostitch-preview.md#w46--native-torsion-and-monomer-plane-observations)
+for exact commands, schema additions and limitations.
+
+
 **W44 checkpoint:** individual native pair terms reproduce complete container
 scores for all five prior endpoints. Selected/core attribution exposes worsening
 pairs hidden by aggregate scores; no acceptance policy changes. Full Willow:

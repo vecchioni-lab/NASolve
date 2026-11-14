@@ -1385,6 +1385,70 @@ for complete endpoint observations, checking live proxy policy and container sum
 rather than reconstructing missing symmetry. Ordinary refinement enforcement,
 sugar-pucker/chemical acceptance and matched diffraction remain open.
 
+### W46 — Native torsion and monomer-plane observations
+
+`NativeTermObserver` composes Cedar `native_plane_evaluator`, `native_evaluator`
+and `dihedral_geometry` into the existing endpoint job. It checks complete live
+proxy definitions, explicit identity symmetry, and torsion limit/top-out/slack
+before calling local kernels. Missing properties and unsupported semantics refuse.
+Each original live proxy must agree in target/gradient with two repeated Cedar
+single/container evaluations. Scattered gradients and residuals must reproduce
+the full native family container; residuals also match the composed native target.
+This is fixed-point observation, not a derivative or chemical qualification.
+
+The schema-1 raw coordinate observation adds `native_terms`; the endpoint review
+adds `native_terms_from_source`. Complete per-proxy measurements and changes retain
+selected-only, boundary and fixed-only dependence. All old review dictionaries
+remain identical after removing this one new field. Other native families,
+including `const_dihedral`, remain explicitly deferred by this observer; no
+sugar-pucker assignment, Gaussian torsion score or acceptance threshold is added.
+
+Six complete **Phenix 2.2.1-6174** endpoint controls pass: five W41 endpoints plus
+the W45 core-only control. Each 8D93 coordinate case checks 442 active torsions
+and 42 planes through 2,422 kernel interfaces; 7R96 checks 440 and 42 through
+2,412. No near-collinear torsions occur under Cedar's recorded descriptive screen.
+All fixed-only terms stay unchanged. The whole-window paired trial reduces the
+overall plane residual from 118.787933 to 117.809119, yet five individual planes
+increase. Fixed-base cleanup raises the A103 plane RMS from 0.013112 to 0.019482 Å
+because its C1′ moves while base atoms stay fixed. Counts/changes are descriptive;
+they do not establish new chemical outliers or a successfully repaired model.
+
+Validation commands (complete native execution, not dry-run):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_topostitch_native_terms.py tests/test_topostitch_captured_job.py tests/test_topostitch_trial.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider
+python3 /private/tmp/willow-w46-native-terms/run-controls.py
+python3 /private/tmp/willow-w46-native-terms/installed-check.py
+python3 /private/tmp/willow-w46-native-terms/summarize.py
+```
+
+Focused: **40 passed**. Full Willow: **1,416 + 229 subtests**. An initial sandbox
+run refused five existing process-group tests with `PermissionError`; its log is
+retained, and the permitted complete rerun passed. Actual native proxy controls
+accept defaults and reject slack, top-out, nondefault limit and nonidentity images.
+Installed/relocated: **159 passed**, plus a byte-identical native endpoint report
+with original source/input paths blocked and hash/fixed-coordinate negatives.
+Five installed entry points, dependency-light module imports and Python 3.10
+syntax pass. Wheel SHA256:
+`0719d7f4d594cd9e5c92ab99e40e118d218259b3a61f93dccafd1528c0e97571`.
+
+A temporary installed Cedar **7e843af7 (C289)** plus explicit Willow adapter
+modules also reproduces the entire endpoint report byte for byte through the
+same-package owners and injected owned runner, with original paths blocked.
+Its focused adapter tests pass **159**; one initial missing-wrapper fixture error
+is retained and corrected. This is compatibility evidence, not a branch merge or
+complete combined-suite qualification.
+
+The reused numerical function sources match frozen Cedar f2345a8 and the inspected
+Cedar cbece417 checkout exactly. No Cedar files changed. Scientific data/captures,
+local harnesses and generated reports stay outside Git; recorded temporary paths
+are provenance, not operational references in a committed run. No checkpoint
+schema migration is needed. S05 remains partial: chemical acceptance, physical
+connection capacity and ordinary refinement enforcement are still open. Rowan's
+reported C289 ordinary full-objective force discrepancy remains separate consumer
+evidence; Willow does not install a corrected ordinary refinement route.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

@@ -406,6 +406,17 @@
           "selected_and_core_changes": true,
           "raw_scores_when_pair_weight_zero": true,
           "acceptance_thresholds": false
+        },
+        "native_term_observation": {
+          "module": "nasolve.topostitch_native_terms",
+          "kernel_owner": "Cedar native_plane_evaluator, native_evaluator and dihedral_geometry",
+          "families": [
+            "dihedral",
+            "planarity"
+          ],
+          "live_policy_checked": true,
+          "complete_family_target_and_gradient_checked": true,
+          "chemical_qualification": false
         }
       }
     }

@@ -7,6 +7,7 @@ from __future__ import annotations
 from contextlib import contextmanager
 from hashlib import sha256
 import importlib
+import inspect
 import json
 import math
 import os
@@ -19,7 +20,7 @@ from uuid import uuid4
 
 WILLOW_MODULES = ('topostitch', 'topostitch_coordinates', 'topostitch_periodic',
                   'topostitch_transport', 'topostitch_recipe',
-                  'topostitch_native_recipe', 'topostitch_capture', 'topostitch_trial', 'topostitch_endpoint')
+                  'topostitch_native_recipe', 'topostitch_capture', 'topostitch_trial', 'topostitch_endpoint', 'topostitch_native_terms')
 
 # Only maintained source builds this worker. Captured worker text is evidence,
 # never an executable input. The bootstrap keeps its native manager in memory.
@@ -61,9 +62,16 @@ try:
         from nasolve.topostitch_trial import observe_masked_coordinates
         cases=endpoint_coordinate_cases(model,json.loads((root/'endpoint.json').read_bytes()),
             movable_indices=request['movable_indices'],max_displacement_angstrom=request['max_displacement_angstrom'])
+        from nasolve.topostitch_native_terms import NativeTermObserver
+        from native_term_kernels import native_plane_evaluator, native_evaluator, dihedral_geometry
+        term_observer=NativeTermObserver(geo,ns['report'],request['movable_indices'],
+            gr=objective._gr,flex=objective._flex,
+            torsion_evaluate=native_evaluator(objective._gr,objective._flex),
+            plane_evaluate=native_plane_evaluator(objective._gr,objective._flex),torsion_geometry=dihedral_geometry)
         observations=observe_masked_coordinates(objective,cases,
             capture_pairs=lambda points:ns['capture_asu_pairs'](geo,points),
-            describe_pairs=lambda points:pairs.describe_terms(points,atom_identities=objective._identities))
+            describe_pairs=lambda points:pairs.describe_terms(points,atom_identities=objective._identities),
+            describe_native=term_observer.observe)
         result.update(status='ENDPOINT_OBSERVATIONS_REVIEW' if observations['status']=='COORDINATE_OBSERVATIONS_REVIEW' else 'ENDPOINT_OBSERVATIONS_FAILED',
             context=context,binding=objective.binding_report(),observations=observations)
     elif 'trial' in spec:
@@ -240,6 +248,15 @@ def _run(args, cedar, phenix, process_runner):
         (runtime/name).write_bytes(sources[p])
     sources[Path(__file__).resolve()]=Path(__file__).read_bytes()
     owner_namespace=cedar['cif_attachment_native'].__package__
+    if args.endpoint_points is not None:
+        # Stage maintained Cedar numerical functions only; their complete source
+        # modules and imports are pinned by the existing owner loop below.
+        planes=importlib.import_module(owner_namespace+'.cif_plane_energy')
+        torsions=importlib.import_module(owner_namespace+'.cif_dihedral_conditioning')
+        kernels='import math\nNEAR_LINEAR_SINE='+repr(torsions.NEAR_LINEAR_SINE)+'\n'
+        kernels+='\n'.join(inspect.getsource(f) for f in
+            (planes.native_plane_evaluator,torsions.native_evaluator,torsions._norm,torsions.dihedral_geometry))
+        (runtime/'native_term_kernels.py').write_text(kernels)
     for name,module in list(sys.modules.items()):
         if name.startswith(owner_namespace+'.') and getattr(module,'__file__',None):
             p=Path(module.__file__).resolve();sources[p]=p.read_bytes()
@@ -276,6 +293,7 @@ def _run(args, cedar, phenix, process_runner):
         if args.endpoint_points is not None:
             from nasolve.topostitch_packing import compare_native_packing
             from nasolve.topostitch_native_recipe import compare_pair_attribution
+            from nasolve.topostitch_native_terms import compare_native_term_observations
             observations=evaluation['observations']
             if (observations['status']!='COORDINATE_OBSERVATIONS_REVIEW'
                     or observations['origin']!='FIXED_MANAGER_EVALUATION_NOT_REINTERPRETATION'
@@ -286,9 +304,12 @@ def _run(args, cedar, phenix, process_runner):
             projected={row['name']:topostitch_endpoint.project_coordinate_observation(native,row,
                 expected_points=endpoint_cases[row['name']]) for row in observations['cases']}
             attributions={row['name']:row['pair_attribution'] for row in observations['cases']}
+            native_terms={row['name']:row['native_terms'] for row in observations['cases']}
             pair_review=cedar['cif_native_nonbonded'].review_native_nonbonded
             review=dict(schema_version=1,kind='topostitch-native-endpoint-review',
                 origin=observations['origin'],endpoint_points_sha256=args.endpoint_sha256,
+                native_terms_from_source={name:compare_native_term_observations(native_terms['source'],native_terms[name])
+                    for name in ('full_precision','rounded')},
                 pair_attribution_from_source={name:compare_pair_attribution(attributions['source'],attributions[name])
                     for name in ('full_precision','rounded')},
                 environments={name:cedar['cif_selected_environment'].review_selected_environment(value,mask['movable_indices'])

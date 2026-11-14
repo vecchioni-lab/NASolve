@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W46 — Observe individual native torsions and monomer planes
+
+- Compose Cedar's maintained native torsion/plane kernels into endpoint review,
+  checking live proxy semantics, original-proxy values/gradients and complete
+  family sums before reporting source/full-precision/rounded changes.
+- Retain atom identities, measurements, conditioning, selected/boundary/fixed
+  dependence and deferred families. Reject missing/nonidentity or unsupported
+  torsion policy rather than silently reconstructing it.
+- Add diagnostic fields only; existing objective, CLI, candidate/checkpoint and
+  acceptance behavior stay compatible. No geometry approval or Cedar edits.
+
 ### W45 — Isolate contact terms from core-pair preservation
 
 - Record a predeclared native control retaining the same core pairs as the paired

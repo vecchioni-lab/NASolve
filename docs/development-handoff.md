@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W45; next W46.** W33 introduced human update numbers without
+**Willow update W46; next W47.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,19 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W45 edge:** one matched native control retains the same 12 core pairs
+**Current W46 edge:** endpoint review now composes maintained Cedar torsion/plane
+kernels with checked live proxy semantics and complete family target/gradient
+parity. Six native controls pass; individual regressions remain visible even when
+aggregate scores improve. Full Willow: 1,416 + 229 subtests; installed/relocated:
+159 and byte-identical native review. Temporary installed Cedar C289 composition
+also passes 159 focused tests and exact native review through its owned runner.
+No branch merge, Cedar changes or chemical acceptance.
+S05 still needs qualified chemistry and an ordinary refinement consumer; Rowan's
+C289 reported full-objective native-force discrepancy is not a supported corrected
+runtime. Next address shared explicit-connection physical capacity (F02/S03),
+keeping global inference and special-position equivalences under review.
+
+**Prior W45 edge:** one matched native control retains the same 12 core pairs
 as the paired trial and toggles only the intended contacts. Existing APIs suffice;
 no runtime changes. All source/endpoint derivatives and fresh rounded native
 readback pass, but both arms remain capped with packing regressions. Core-only
