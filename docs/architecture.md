@@ -930,6 +930,13 @@ PHIL for the source model. Cedar still owns native correction/policy machinery;
 this component neither attaches callbacks nor supplies a complete masked native
 objective. See W37 in the preview guide for the developer API and evidence.
 
+`CoordinateMask` supplies explicit reduced-coordinate arithmetic with exact
+fixed anchors. `NativeMaskedObjective` composes Cedar's existing native evaluator,
+the complete pair binding and an explicit tether under bounded displacement and
+evaluation budgets. Native construction/authentication stays with its caller;
+static-definition checks are not a complete nonbonded-policy or lifecycle proof.
+This direct evaluator installs no callback and runs no optimizer or refinement.
+
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are
 not numbered NASolve checkpoints, do not change registration or chemistry, and

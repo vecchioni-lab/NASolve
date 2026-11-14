@@ -247,3 +247,131 @@ class NativePairRecipe:
         if any(not math.isfinite(v) for v in (*values.values(),total)):
             raise ValueError('Nonfinite native recipe energy')
         return {'target':total,'components':values,'gradients':pulled,'normalization':POLICY['normalization']}
+
+
+class NativeMaskedObjective:
+    """Direct, bounded composition of native geometry, pair energy and a tether.
+
+    This does not own native interpretation, capture authentication, optimization
+    or refinement. The caller supplies the trusted Cedar audit/correction owners
+    and a manager constructed from the exact source model. Static-definition
+    checks do not freeze native nonbonded neighbours or prove capture provenance.
+    """
+    def __init__(self, geometry, native_hierarchy, model_bytes, pair_binding, *,
+                 movable_indices, expected_native_signature, correction, native_audit,
+                 tether_sigma_angstrom, max_displacement_angstrom, max_evaluations):
+        from iotbx import pdb
+        from cctbx import geometry_restraints as gr
+        from cctbx.geometry_restraints import flags
+        from scitbx.array_family import flex
+        from .topostitch_transport import CoordinateMask
+        if not isinstance(pair_binding, NativePairRecipe):
+            raise ValueError('Require a compiled complete pair recipe')
+        if type(max_evaluations) is not int or not 1 <= max_evaluations <= 100000:
+            raise ValueError('Require an evaluation budget from 1 to 100000')
+        sigma = _positive(tether_sigma_angstrom)
+        try:
+            weight = 1/(sigma*sigma)
+        except (OverflowError,ZeroDivisionError) as exc:
+            raise ValueError('Tether weight exceeds finite range') from exc
+        if not math.isfinite(weight) or weight <= 0:
+            raise ValueError('Tether weight exceeds finite range')
+        binding = pair_binding.binding_report()
+        if sha256(model_bytes).hexdigest() != binding['source_model_sha256']:
+            raise ValueError('Masked objective source differs from pair binding')
+        inp = pdb.input(source_info=None, lines=model_bytes.decode('ascii'))
+        source = inp.construct_hierarchy(sort_atoms=False)
+        identities = model_atom_rows(model_bytes)
+        if native_atom_identities(native_hierarchy) != identities:
+            raise ValueError('Native hierarchy order/identity differs from source model')
+        points = tuple(source.atoms().extract_xyz())
+        native_points = tuple(native_hierarchy.atoms().extract_xyz())
+        roundoff = max(abs(a-b) for p,q in zip(points,native_points) for a,b in zip(p,q))
+        if roundoff > 1e-10:
+            raise ValueError('Native starting coordinates differ from source beyond roundoff')
+        self._hierarchy_reference = native_points
+        self._mask = CoordinateMask(points,movable_indices,max_displacement_angstrom)
+        if (correction.ORDER_CORRECTION_ID != CORRECTION_ID
+                or sha256(Path(correction.__file__).read_bytes()).hexdigest() != binding['correction_source_sha256']):
+            raise ValueError('Native and pair corrections must use the same trusted source')
+        self._geometry, self._hierarchy = geometry, native_hierarchy
+        self._correction, self._audit = correction, native_audit
+        self._gr, self._flex, self._flags = gr, flex, flags
+        self._pairs, self._identities = pair_binding, identities
+        self._signature = expected_native_signature
+        self._crystal = inp.crystal_symmetry()
+        self._tether_weight, self._max_calls, self._calls = weight,max_evaluations,0
+        self._check_native(points)
+        self._report = {'schema_version':1,'kind':'topostitch-masked-native-objective',
+            'source_model_sha256':binding['source_model_sha256'],
+            'pair_recipe_sha256':binding['recipe_sha256'],
+            'native_static_definition_sha256':expected_native_signature,
+            'correction_policy':CORRECTION_ID,
+            'correction_source_sha256':binding['correction_source_sha256'],
+            'native_audit_source_sha256':sha256(Path(native_audit.__file__).read_bytes()).hexdigest(),
+            'movable_indices':list(self._mask.indices),
+            'movable_atom_identities':[identities[i] for i in self._mask.indices],
+            'native_starting_roundoff_angstrom':roundoff,
+            'atom_count':len(points),'fixed_atom_count':len(points)-len(self._mask.indices),
+            'tether_sigma_angstrom':sigma,'max_displacement_angstrom':self._mask.max_displacement_angstrom,
+            'max_evaluations':max_evaluations,'normalization':'UNNORMALIZED_SUM',
+            'component_weights':{'native':1.,'pair':1.,'tether':1.},
+            'native_flags':'all ordinary geometry flags enabled',
+            'native_bonded_tables_changed':False,'native_exclusions_changed':False,
+            'native_callback_attached':False,'optimization':False,'scientific_acceptance':False,'runtime_authority':False,
+            'limitations':['Caller owns trusted native construction and capture authentication',
+                'Static-definition signature does not freeze nonbonded neighbours or qualify packing',
+                'Explicit mask is not permission to move atoms or proof of complete chemistry',
+                'No optimizer, manager rebuild, refinement or campaign lifecycle is qualified']}
+
+    def _check_native(self, points):
+        geo = self._geometry
+        if native_atom_identities(self._hierarchy) != self._identities:
+            raise ValueError('Native atom ordering changed after binding')
+        if tuple(self._hierarchy.atoms().extract_xyz()) != self._hierarchy_reference:
+            raise ValueError('Native reference hierarchy coordinates changed after binding')
+        if geo.external_energy_function is not None:
+            raise ValueError('An existing native external callback is unsupported')
+        for name in ('reference_dihedral_manager','ncs_dihedral_manager','den_manager','ramachandran_manager'):
+            if getattr(geo,name,None) is not None:
+                raise ValueError('Unsupported auxiliary native geometry manager: '+name)
+        if geo.reference_coordinate_proxies is not None and len(geo.reference_coordinate_proxies):
+            raise ValueError('Native reference-coordinate proxies are unsupported')
+        crystal = geo.crystal_symmetry
+        if (crystal is None or crystal.space_group() != self._crystal.space_group()
+                or any(abs(a-b)>1e-10 for a,b in zip(crystal.unit_cell().parameters(),self._crystal.unit_cell().parameters()))):
+            raise ValueError('Native manager crystal differs from source model')
+        table = geo.site_symmetry_table
+        if (table is None or table.indices().size() != len(self._mask.reference)
+                or len(table.special_position_indices())):
+            raise ValueError('Require complete native identity without special-position constraints')
+        if self._audit.fixed_signature(geo,self._flex.vec3_double(points)) != self._signature:
+            raise ValueError('Native static definitions changed or differ from expected capture')
+
+    def binding_report(self):
+        return json.loads(json.dumps(self._report,allow_nan=False))
+
+    def evaluate(self, displacements):
+        """Evaluate only explicit displacement variables; every other atom stays fixed."""
+        values = tuple(displacements)
+        points = self._mask.expand(values)
+        if self._calls >= self._max_calls:
+            raise ValueError('Masked objective evaluation budget exhausted')
+        self._calls += 1
+        self._check_native(points)
+        native = self._correction.evaluate_fixed_native(self._geometry,points,
+            self._flags.flags(default=True),self._gr,self._flex,plane_order_safe=True)
+        pair = self._pairs.evaluate(points,atom_identities=self._identities)
+        full = tuple(tuple(native['gradient'][3*i+k]+pair['gradients'][i][k] for k in range(3))
+                     for i in range(len(points)))
+        tether = math.fsum(v*v*self._tether_weight for v in values)
+        gradient = tuple(g+2*v*self._tether_weight for g,v in zip(self._mask.project(full),values))
+        target = math.fsum((native['target'],pair['target'],tether))
+        if not math.isfinite(target) or any(not math.isfinite(v) for v in gradient):
+            raise ValueError('Nonfinite masked objective value or gradient')
+        self._check_native(points)
+        return {'target':target,'gradient':gradient,'points':points,
+            'native_target':native['target'],'pair_target':pair['target'],'tether_target':tether,
+            'native_components':native['terms'],'pair_components':pair['components'],
+            'native_proxy_counts':native['proxy_counts'],'evaluation_calls':self._calls,
+            'normalization':'UNNORMALIZED_SUM','fixed_coordinates_preserved':True}

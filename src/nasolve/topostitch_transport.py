@@ -129,3 +129,57 @@ def accumulate_image_gradients(atom_count, references, image_gradients):
         return tuple(_vector(tuple(math.fsum(axis) for axis in atom)) for atom in terms)
     except (OverflowError,ValueError) as exc:
         raise ValueError('Accumulated image gradient exceeds finite range') from exc
+
+
+@dataclass(frozen=True)
+class CoordinateMask:
+    """Explicit ASU displacement variables with exact fixed-coordinate anchors.
+
+    This is arithmetic, not permission to move the selected atoms. Identity,
+    chemistry, native objective and mask provenance belong to the caller.
+    """
+    reference: tuple
+    indices: tuple
+    max_displacement_angstrom: float
+
+    def __post_init__(self):
+        points = tuple(_vector(p) for p in self.reference)
+        indices = tuple(self.indices)
+        if (not points or not indices or len(set(indices)) != len(indices)
+                or any(type(i) is not int or not 0 <= i < len(points) for i in indices)):
+            raise ValueError('Require distinct explicit movable atom indices')
+        bound = self.max_displacement_angstrom
+        if type(bound) not in (int,float) or not math.isfinite(bound) or bound <= 0:
+            raise ValueError('Require a finite positive displacement bound')
+        object.__setattr__(self,'reference',points)
+        object.__setattr__(self,'indices',indices)
+        object.__setattr__(self,'max_displacement_angstrom',float(bound))
+
+    def expand(self, displacements):
+        values = tuple(displacements)
+        if len(values) != 3*len(self.indices):
+            raise ValueError('Movable displacement count changed')
+        points = list(self.reference)
+        for j,index in enumerate(self.indices):
+            delta = _vector(values[3*j:3*j+3])
+            if math.hypot(*delta) > self.max_displacement_angstrom:
+                raise ValueError('Movable atom displacement exceeds declared bound')
+            points[index] = _vector(tuple(a+b for a,b in zip(self.reference[index],delta)))
+        return tuple(points)
+
+    def displacements(self, points):
+        points = tuple(_vector(p) for p in points)
+        if len(points) != len(self.reference):
+            raise ValueError('ASU coordinate count changed')
+        selected = set(self.indices)
+        if any(p != self.reference[i] for i,p in enumerate(points) if i not in selected):
+            raise ValueError('Fixed ASU coordinates changed')
+        delta = tuple(a-b for i in self.indices for a,b in zip(points[i],self.reference[i]))
+        self.expand(delta)  # Same finite-motion policy in both directions.
+        return delta
+
+    def project(self, gradients):
+        gradients = tuple(_vector(g) for g in gradients)
+        if len(gradients) != len(self.reference):
+            raise ValueError('Full ASU gradient count changed')
+        return tuple(v for i in self.indices for v in gradients[i])

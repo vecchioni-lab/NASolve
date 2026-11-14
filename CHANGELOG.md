@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W38 — Explicit native movement masks
+
+- Add bounded displacement expansion and gradient projection that keep every
+  unselected ASU coordinate fixed, preserving interactions with fixed atoms.
+- Compose Cedar native geometry, complete pair recipes and an explicit tether
+  directly, with identity/definition checks and finite evaluation budgets.
+- Add a read-only full-coordinate native probe. No optimizer, manager callback,
+  native policy authentication, refinement or automatic model adoption is added.
+
 ### W37 — Complete canonical image recipes
 
 - Freeze explicit canonical AT/GC pairs, full NARestraints atom roles/planes,

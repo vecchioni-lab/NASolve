@@ -886,6 +886,99 @@ publication work has no source overlap with this component; no combined branch
 build is claimed. Complete native movement/normalization/lifecycle policy,
 packing and matched damaged-model refinement remain the next S05/S06 gates.
 
+### W38 — Explicit movable coordinates and direct native composition
+
+`CoordinateMask` in `topostitch_transport` maps a caller-ordered, bounded
+displacement vector to the full ASU. Unlisted coordinates remain exactly equal
+to the frozen source. Gradient projection retains the full objective's
+interactions with those fixed atoms; it does not remove their restraints.
+Inverse mapping rejects changed fixed coordinates. The mask owns arithmetic,
+not permission to move a residue, junction or chemical group.
+
+`NativeMaskedObjective` in `topostitch_native_recipe` now composes Cedar's
+`evaluate_fixed_native(..., plane_order_safe=True)`, a W37 `NativePairRecipe`,
+and an explicit isotropic Cartesian tether. Its variables are displacements
+from exact PDB source coordinates, in the requested index order. The target is
+the **unnormalized sum**, with native and pair weights one and tether
+`sum(delta² / sigma²)`; all ordinary native geometry flags are enabled.
+No geometry manager callback or bond/exclusion edit is installed.
+
+The constructor takes the caller's geometry manager, interpreted hierarchy,
+exact model bytes, compiled pair binding, explicit movable indices, expected
+Cedar static-definition signature, trusted correction/audit modules, tether
+sigma, atom-displacement bound and evaluation-call budget. `evaluate(delta)`
+returns the target, reduced gradient, full points and separate native/pair/tether
+components. `binding_report()` records the source/recipe/definition hashes,
+mask identities/order, correction and audit source hashes, and declared limits.
+Schema 1 kind `topostitch-masked-native-objective` is additive; old preview and
+recipe packets remain unchanged. This is an in-memory evaluator, not a run or
+checkpoint reader/writer.
+
+Identity, crystal, special-position and fixed-definition checks run before
+evaluation; the definition and native-reference checks repeat afterward.
+Unexpected callbacks, auxiliary managers, reference-coordinate proxies,
+changed identities/source coordinates, invalid masks, nonfinite/excess motion,
+nonrepresentable tether weights and exhausted budgets are refused. Native
+interpretation's measured roundoff (7.11e-15 Å in the reference control) is
+allowed up to 1e-10 Å at initial binding; the original PDB coordinates remain
+the exact fixed reference, and later native hierarchy changes are rejected.
+
+The caller still owns native construction, trusted input/CIF/PHIL context and
+capture authentication. Cedar's static-definition signature is reused as-is:
+it does **not** authenticate the complete nonbonded/exclusion policy or freeze
+neighbour membership. Consequently this component does not qualify a production
+masked optimizer, manager rebuild/continuation, packing, refinement or campaign
+adoption. It does not select the mask or infer topology. That boundary is a
+required next integration step, not an implicit approval in this report.
+
+The developer command `scripts/probe_topostitch_masked_objective.py`, run with
+`phenix.python`, accepts `--model`, `--recipe`, `--recipe-sha256`, `--mask`,
+`--mask-sha256`, `--cedar-source` and a new `--out` JSON file. The mask checksum
+is the **file-byte SHA256**; the recipe checksum remains canonical JSON.
+The mask request has schema 1, kind `topostitch-native-mask-request`, source
+model SHA256, `movable_indices`, `tether_sigma_angstrom`,
+`max_displacement_angstrom` and `max_evaluations`. Unknown fields are refused.
+The probe interprets through installed monomers with NCS restraint building
+disabled and retains effective PHIL/logs; it is not authenticated Cedar capture
+replay and has no custom dictionary input in this first diagnostic scope.
+
+Complete **Phenix 2.2.1-6174** energy/derivative executions use every masked
+coordinate at the source and at a frozen, input-independent sinusoidal
+perturbation of amplitude 0.002 Å. The 1e-3 absolute derivative bound at steps
+1e-4/1e-5 Å was declared from the earlier full-native diagnostic policy before
+execution; W37's separate stricter pair-only review outcomes are unchanged.
+There is no optimization, refinement or new scientific candidate:
+
+| Explicit control / coordinates | Variables | Maximum absolute errors, 1e-4 / 1e-5 Å | Outcome |
+| --- | ---: | --- | --- |
+| fixed-base, zero | 321 | 9.95e-05 / 1.05e-06 | DERIVATIVES_PASS |
+| fixed-base, nonuniform | 321 | 9.92e-05 / 1.06e-06 | DERIVATIVES_PASS |
+| whole-window, zero | 612 | 0.000266 / 2.68e-06 | DERIVATIVES_PASS |
+| whole-window, nonuniform | 612 | 0.000266 / 2.68e-06 | DERIVATIVES_PASS |
+| 7r96, zero | 246 | 0.000194 / 1.93e-06 | DERIVATIVES_PASS |
+| 7r96, nonuniform | 246 | 0.000194 / 1.99e-06 | DERIVATIVES_PASS |
+
+The 8D93 controls reuse the prior exact-source-bound 107-atom sugar/phosphate
+mask, then all 204 atoms of those same explicitly movable residue sites. They
+leave 748 and 651 atoms fixed respectively. The independent 7R96 control moves
+all 82 atoms in the two canonical pairs selected by the earlier frozen fixture
+rule, leaving 773 atoms fixed. These native controls cover canonical movable
+residues; broader chemical movement policies remain unqualified. Mask selection
+is fixture input, not structure-specific logic in the evaluator. Both source and perturbed
+targets also match separate direct native/pair/tether calculations.
+Ten negative controls reject changed signature, duplicate indices, nonfinite
+variables, excessive displacement, underflowing sigma, budget exhaustion,
+unexpected callback, altered native coordinates/identity and changed native
+angle weight. Deliberate in-memory negative-control mutations are restored;
+input files and numerical sources remain unchanged.
+
+The isolated installed wheel reproduces the fixed-base source and perturbed
+targets from exact installed module bytes. Native packets/logs/models and the
+mask receipts are local only. Source regression, installed and relocation
+counts are in the current inspector receipt. S05 stays partial pending complete
+native policy/capture qualification, endpoint geometry/packing and a bounded
+trial; no end-to-end stitching or diffraction benefit is claimed.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

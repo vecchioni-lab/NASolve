@@ -405,7 +405,34 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W37 checkpoint (2026-11-14):** complete canonical recipes add 17 regression
+**W38 checkpoint (2026-11-14):** the new 11 mask regressions verify exact fixed
+coordinates, explicit variable ordering, motion limits and independent numerical
+derivatives that include interactions with fixed atoms. Focused mask/transport/
+recipe tests: **45 passed** (1.26 s). Full source: **1,323 passed + 229 subtests**
+(68.70 s). The first sandboxed full run had five `/bin/ps` permission failures in
+existing campaign process tests; the complete rerun with process-inspection
+access passed. No process-management code changed.
+
+Installed-wheel validation from a separate copied test tree: **410 tests + 18
+subtests** (24.82 s), covering all `test_topostitch_*.py` plus construct registration,
+run context, AutoRefine and Refine Doctor. This is a declared focused set, not
+the full installed suite. The test runner was supplied by the normal test
+environment with only the installed wheel's site-packages prepended to
+`PYTHONPATH`; import origins were checked. The lean installation imports the
+optional native module and executes numerical masks without native dependencies.
+Isolated Phenix execution from the extracted wheel reproduces source/perturbed
+masked targets. Wheel SHA256:
+`9ea8fc9912d16f756cebc1acaf18337f79d6b159d658f73383c2123821870cee`.
+
+Original-copied-path-absent relocation passes **107 tests** (2.01 s): mask,
+recipe, periodic, contacts, transport and roadmap. This qualifies those source
+operations, not resumable native-run portability. Python 3.10 syntax passes.
+Commands use the same source environment/full-suite/wheel invocation below,
+with `tests/test_topostitch_mask.py` added to the focused selection. Native
+commands, exact Phenix version, masks and complete diagnostic outcomes are in
+[W38](topostitch-preview.md#w38--explicit-movable-coordinates-and-direct-native-composition).
+
+**Prior W37 checkpoint (2026-11-14):** complete canonical recipes add 17 regression
 cases, including the observed partial-plane omission and exact image/identity
 binding. Focused recipe/periodic/contact/transport: **88 passed** (1.99 s).
 Full source: **1,312 passed + 229 subtests** (72.24 s), run because the existing
