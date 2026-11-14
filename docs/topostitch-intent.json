@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-intent",
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "status": "BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
@@ -441,6 +441,29 @@
         "explicit restraint and later map/data policies"
       ],
       "qualification": "Declare supported chemistry/representation scope; test independent structures, symmetry settings and forward/reverse/change-direction cases before broader claims."
+    },
+    "curvature_location_search": {
+      "implemented": false,
+      "stage": "S04 proposal parameterization after S06 density evidence is qualified; S07 displays alternatives",
+      "variables": [
+        "bend magnitude and direction",
+        "bend center and width",
+        "localized versus distributed curvature",
+        "distal relocation or staged propagation of curvature",
+        "strand-specific accommodation when paired geometry permits"
+      ],
+      "evidence_policy": "Assess density support before seeding and after each matched refinement; protect well-supported coordinates and retain uncertainty at weak regions. A sharp density-supported bend can be preferable to smoother geometry.",
+      "search_policy": "Bound and predeclare candidate/iteration budgets; preserve all attempts and parent lineage. Use working-set evidence for proposal/ranking; frozen Rfree is reserved for limited declared validation comparisons, not repeated tuning.",
+      "benchmark": {
+        "construct_name": "4T28",
+        "pdb_id": "8SJW",
+        "reference": "https://www.rcsb.org/structure/8SJW",
+        "resolution_angstrom": 7.64,
+        "user_reported_region": "chain B around residue 11",
+        "entry_identity_verified": true,
+        "coordinate_mapping_and_density_claim_verified": false,
+        "role": "localized versus redistributed curvature acceptance case, never a preferred algorithmic answer"
+      }
     }
   },
   "planned_diffraction_benchmark": {

@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W39 — Reconstruct the observed native starting context
+
+- Authenticate a Cedar capture, rebuild its manager from freshly generated trusted
+  code and compare complete observed initial inventories before masked evaluation.
+- Preserve exact initial symmetry-pair/energy evidence and frozen inputs; reject
+  stale requests and altered captured workers. This is a developer probe, without
+  optimization, candidate publication or complete exclusion-policy qualification.
+- Queue density-supported bend location/width and bounded curvature alternatives,
+  including the user-proposed 4T28/8SJW control, for later calibrated work.
+
 ### W38 — Explicit native movement masks
 
 - Add bounded displacement expansion and gradient projection that keep every

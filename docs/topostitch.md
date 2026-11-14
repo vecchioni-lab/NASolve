@@ -235,6 +235,26 @@ across the model and occupancy/ADP alternatives. Freeze calibration separately
 from later evaluation; do not use held-out Rfree to tune detection thresholds.
 Initially flag for review only, with no automatic deletion or displacement.
 
+The later search must vary **where curvature sits**, not only the end transform:
+seed a bend using local density support, then consider bounded localized,
+distributed, distally shifted or staged curvature profiles. A sharper bend may
+be the data-supported answer; smoothness is a regularizer, not ground truth.
+Assess support before seeding and after matched refinement, protect supported
+regions, preserve weak-support uncertainty and keep junction/routing boundaries
+explicit. Reuse existing windows and exact masks rather than starting another
+backbone editor. Freeze candidate/iteration budgets, retain all attempted
+variants and use working-set evidence for search. Reserve the unchanged Free-R
+set for a small declared validation comparison to limit selection bias.
+
+A proposed control is construct **4T28**, whose PDB entry is
+[8SJW](https://www.rcsb.org/structure/8SJW) (7.64 Å). Simon reports a localized
+bend around chain B residue 11 that was chosen from density. Entry identity and
+resolution are verified; the exact residue/frame mapping and that density
+interpretation still need inspection. Compare localized and redistributed
+curvature without treating the deposited shape or greater smoothness as an
+automatic winner. The detector, density-driven bend placement and this benchmark
+remain planned work, not implemented features.
+
 
 Junctions are hard boundaries for automatic extension and topology changes.
 Initially hold junction coordinates fixed. A later explicit hinge capability

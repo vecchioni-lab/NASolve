@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W38; next W39.** W33 introduced human update numbers without
+**Willow update W39; next W40.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,20 +173,29 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W38 edge:** exact movable-coordinate expansion/projection and direct
-native/pair/tether composition now reuse Cedar evaluation and static-signature
-owners. Full Willow source: 1,323 tests + 229 subtests (process tests needed `/bin/ps`
-access); installed focused: 410 + 18; relocated: 107. Source/perturbed complete
-masked derivatives and ten negative controls run through Phenix 2.2.1-6174;
-the preview guide owns exact control outcomes. Isolated installed native targets
-match. Source and unselected atoms remain fixed; there is no optimizer, callback,
-refinement or adoption. Additive mask/objective/probe schema-1 records introduce
-no migration to existing previews or ordinary workflow entry points.
-These are the full Pine-derived Willow tests, not Cedar or a combined build.
-Next close the caller-owned native construction/capture and nonbonded-policy
-boundary before declaring a supported masked trial; then audit local geometry,
-packing and matched refinement. Do not confuse Cedar's static-definition hash
-with complete policy authentication. Scientific files stay local.
+**Current W39 edge:** a developer-only reconstruction probe reuses Cedar capture,
+worker builders, native process ownership and inventory replay. Fresh native
+contexts match the authenticated initial full-monomer/geometry/energy/ASU-pair
+observations for both prior 8D93 masks and independent 7R96; repeated masked
+energies exactly reproduce W38. Tampered workers and wrong request hashes fail.
+Full Willow: 1,338 tests + 229 subtests; installed and relocated focused: 60 each.
+Installed and relocated native reconstruction also pass (Phenix 2.2.1-6174).
+The guide retains initial environment/harness failures and exact validation scope.
+No optimizer, candidate, refinement, adoption or complete exclusion-policy proof
+is added. This is full Pine-derived Willow coverage, not Cedar or a combined build.
+Next qualify one bounded trial's native lifecycle and endpoint geometry/packing;
+matching initial observations alone does not freeze future neighbors or prove
+physical acceptance. Avoid native/additive pair double counting. Preserve the
+separate Pine recut route and consumer-specific PHIL handling (Cedar C278 finding).
+Scientific files stay local. Density-supported bend-center/width alternatives
+and construct 4T28/PDB 8SJW are queued, not implemented; exact B:11 interpretation
+remains unverified.
+
+**Prior W38 edge:** bounded coordinate masks and direct native/pair/tether
+composition pass all-coordinate derivative checks for both movement scopes and
+7R96, including ten negative controls. Full Willow: 1,323 + 229 subtests;
+installed focused: 410 + 18; relocated: 107. No optimizer or ordinary refinement
+adapter was added. Its static-definition hash is not complete policy authentication.
 
 **Prior W37 checks:** reusable explicit canonical image recipes and a native
 pair-energy compiler replace local-only binding code. Complete source suite:

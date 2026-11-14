@@ -818,6 +818,12 @@ it. “Use candidate” and “Reject pairing” have different meanings: one ch
 an actual model; the other changes intended connection decisions in a new
 record, not a failed geometry trial's history.
 
+For later curvature alternatives, show bend location/width and the regions held
+fixed by density support, alongside source, proposed and post-refinement shapes.
+Keep localized, distributed and distally shifted variants in one bounded trial
+lineage with their map provenance and matched statistics; viewing a variant does
+not select it. Report the number of attempted variants with the Rfree comparison.
+
 The later backbone-density diagnostic should identify the affected segment and
 show negative-patch extent, nearby positive support and ordinary map fit against
 the exact inspected model/map. Distinguish “not measured,” “review suggested” and

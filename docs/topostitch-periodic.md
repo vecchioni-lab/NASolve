@@ -405,7 +405,35 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W38 checkpoint (2026-11-14):** the new 11 mask regressions verify exact fixed
+**W39 checkpoint (2026-11-14):** 15 new reconstruction regressions pass.
+Full Willow source: **1,338 passed + 229 subtests** (65.90 s), with the declared
+topology dependencies. The initial run omitted Gemmi and had 15 dependency
+failures/77 skips; its log is retained, and the corrected complete run is green.
+Installed and relocated focused sets each pass **60 tests** (1.08 s): capture,
+mask, recipe and transport. The first installed collection omitted the test
+package/fixture helpers; the corrected copied test package passes.
+The original temporary checkout path is absent during relocation; a fresh native
+reconstruction also succeeds from the relocated capture and source. This is a
+reconstruction check, not resumable native-run portability. The installed wheel
+supplies the exact staged backend bytes for a second successful native check.
+Wheel SHA256: `983a923e5b3b3f16d153abc6184d9022bb1679c99e25dd6160bbfac96adb7ed4`.
+
+Exact full-suite command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/path/to/topology/site-packages \
+  /path/to/test/python -m pytest -q -p no:cacheprovider
+```
+
+Focused installed tests use only the installed wheel's site-packages on
+`PYTHONPATH` from a separate copied test tree. The wheel is built with
+`python -m pip wheel --no-deps --no-build-isolation --wheel-dir /local/wheels .`
+and installed with `python -m pip install --no-deps --force-reinstall WHEEL`.
+[W39](topostitch-preview.md#w39--reconstruct-the-observed-native-starting-context)
+owns the native command, scopes and limits. No workflow/schema migration or
+Cedar merge is included; all scientific artifacts remain local.
+
+**Prior W38 checkpoint (2026-11-14):** the new 11 mask regressions verify exact fixed
 coordinates, explicit variable ordering, motion limits and independent numerical
 derivatives that include interactions with fixed atoms. Focused mask/transport/
 recipe tests: **45 passed** (1.26 s). Full Willow source: **1,323 passed + 229 subtests**

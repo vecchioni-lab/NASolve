@@ -249,13 +249,14 @@
         "A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar.",
         "Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed.",
         "W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible.",
-        "W38 adds explicit bounded coordinate masks and a direct native/pair/tether evaluator using Cedar owners; source and perturbed full-coordinate checks pass for two movement scopes and an independent 7R96 mask, with no optimization or scientific acceptance."
+        "W38 adds explicit bounded coordinate masks and a direct native/pair/tether evaluator using Cedar owners; source and perturbed full-coordinate checks pass for two movement scopes and an independent 7R96 mask, with no optimization or scientific acceptance.",
+        "W39 reuses Cedar capture authentication and trusted native reconstruction, matching all initial observed inventories/ASU pairs before masked evaluation; three native controls reproduce W38 and no optimizer or complete exclusion-policy proof is claimed."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Bind direct masked composition to authenticated native construction/context and the complete nonbonded/exclusion policy using Cedar owners; a static-definition hash alone is insufficient. Then qualify one bounded unselected trial, endpoint geometry/packing and lifecycle before matched refinement. Preserve existing derivative-review outcomes and the separate Pine recut route.",
+      "next_action": "Qualify one bounded unselected trial with controlled native lifecycle, no native/additive pair duplication, and endpoint full-precision/serialized geometry and periodic packing. W39 authenticates source and initial observed reconstruction only; future neighbors and complete exclusions still require qualification. Preserve W37 derivative-review controls and the separate Pine recut route.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -724,7 +725,7 @@
         "S04",
         "S06"
       ],
-      "remaining": "After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction."
+      "remaining": "After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction. Also qualify bend center/width and localized, distributed or distal curvature variants using support before and after refinement. Construct 4T28/PDB 8SJW at 7.64 A is a user-proposed localized B:11 bend control; entry identity verified, residue/density interpretation pending. Predeclare search budgets and retain all attempts; avoid repeated Rfree-guided tuning."
     }
   ],
   "deferred": [
@@ -769,8 +770,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 38,
-    "next": 39,
+    "current": 39,
+    "next": 40,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -808,6 +809,12 @@
         "title": "Compose bounded native geometry with an explicit movable mask",
         "state": "RECORDED",
         "code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2"
+      },
+      {
+        "number": 39,
+        "title": "Reconstruct captured native context for masked evaluation",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

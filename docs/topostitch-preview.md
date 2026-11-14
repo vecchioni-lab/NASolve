@@ -979,6 +979,60 @@ counts are in the current inspector receipt. S05 stays partial pending complete
 native policy/capture qualification, endpoint geometry/packing and a bounded
 trial; no end-to-end stitching or diffraction benefit is claimed.
 
+### W39 — Reconstruct the observed native starting context
+
+W38 accepted a caller-constructed manager. The developer probe now authenticates
+an explicit Cedar capture through its existing owner, freezes its inputs, builds
+**fresh trusted worker code**, and keeps the reconstructed manager for masked
+evaluation. Captured worker text is authenticated evidence and is never executed.
+Cedar also owns native discovery, process timeout/cleanup, monomer review and ASU
+pair replay. No Cedar code or shared environment is changed.
+
+```bash
+python scripts/probe_topostitch_captured_objective.py \
+  --model SOURCE.pdb --native-receipt CAPTURE/native_receipt.json \
+  --recipe COMPLETE.json --recipe-sha256 CANONICAL_JSON_SHA256 \
+  --mask MASK.json --mask-sha256 MASK_FILE_SHA256 \
+  --cedar-source /trusted/cedar/src --phenix-root /installed/phenix \
+  --output-parent /local/new-probes
+```
+
+Run this in ordinary Python with Cedar's host dependencies; the owned child uses
+that installation's `phenix.python`. Require a linked, policy/energy/full-monomer
+capture with explicit `cif-native-nonbonded-asu-attribution-v1` inventory and fixed
+native NA policy. Mapping/gradient capture extensions are outside this probe.
+The bare NCS-building PHIL setting belongs to native interpretation here; it is
+**not** emitted as ordinary `phenix.refine` input. Rowan's separate consumer-specific
+PHIL adaptation work remains Cedar-owned.
+
+The new optional `topostitch_capture.compare_reconstructed_context` compares every
+observed report field, including full monomer definitions, native geometry,
+initial energy/gradient and directed symmetry-pair inventories. Only exact
+`module`/SHA256 source records may differ in their historical path. Changed
+fields, missing inventory, normalization, competing secondary structure and
+unexpected claims fail. This function consumes authenticated/reviewed records;
+it does not replace Cedar's capture reader.
+
+Each immutable local probe has relative staged inputs/runtime sources, the old
+capture for review, a newly built bootstrap, repeated source/nonuniform masked
+evaluations, checksums and a schema-1 receipt. Its matching status is diagnostic,
+not scientific approval or a resumable NASolve checkpoint. No model is written.
+The complete exclusion/neighbor-generation policy is **not** authenticated merely
+by matching its initial observed contacts; future movement still needs qualification.
+
+Complete **Phenix 2.2.1-6174** controls reproduce all initial observations and match
+W38's source/nonuniform native, pair and tether energies exactly for the 107-atom
+fixed-base mask, 204-atom whole window and independent 82-atom 7R96 mask. Wrong
+recipe/mask hashes and a tampered captured worker with recomputed file hashes are
+rejected before execution. The relocated checkout/capture and installed-wheel
+backend independently reproduce the fixed-base check. These are complete energy
+and reconstruction executions, not dry-runs or new derivative qualification.
+Scientific models, captures, generated workers and reports stay local.
+
+S05 remains partial. Next qualify a bounded trial's full native lifecycle and
+individual geometry/packing at full precision and serialized coordinates; preserve
+existing W37 derivative-review outcomes and avoid native/additive pair double counting.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the
