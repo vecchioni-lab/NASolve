@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W42 — Reuse the captured native job from the installed package
+
+- Move the existing developer orchestration into `run_captured_objective`, keeping
+  the explicit-path CLI, worker arithmetic and diagnostic report format.
+- Consume installed Cedar owners by default, retaining the explicit trusted-source
+  developer route. Reuse Cedar observation layering and its owned process runner.
+- Preserve failed receipts while propagating uncertain process ownership to the
+  caller. Pin dispatcher bytes through execution and allow repeated isolated jobs.
+- Validate a temporary combined package without merging branches. No campaign
+  registration, scientific acceptance or new refinement route is enabled.
+
 ### W41 — Bounded native trials with endpoint derivative checks
 
 - Reuse the captured native context for explicit, bounded scitbx trials, checking

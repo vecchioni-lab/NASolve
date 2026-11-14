@@ -1159,6 +1159,60 @@ failed checks stay local. The next integration step is one installed captured-jo
 boundary reusing Cedar process/anchor owners; geometry qualification and matched
 refinement remain explicit S05/S06 gates. No checkpoint schema is migrated.
 
+### W42 — One installed captured-job boundary
+
+The developer capture/trial command now calls
+`nasolve.topostitch_captured_job.run_captured_objective`. The installed API accepts
+explicit `model`, `recipe`, `mask`, `native_receipt`, `output_parent`, canonical
+`recipe_sha256`, file `mask_sha256`, and `phenix` (a discovered installation or
+explicit installation root). It returns `(new_directory, report)`. Optional
+`trial_iterations=0`, `trial_calls=2000`, `include_pairs=True` and
+`timeout_seconds=600` retain the W41 defaults and bounds. No new end-user CLI,
+checkpoint schema, implicit source discovery or input-by-basename search is added.
+
+Default `cedar_source=None` consumes the Cedar owners in the same installed
+NASolve package. Willow alone still needs an explicit trusted Cedar source for
+execution until integration is qualified; importing the API remains dependency
+light. The existing `--cedar-source` CLI option continues to work. Its temporary
+module namespace is isolated and released after each call, including errors, so
+one process can run successive jobs without reusing a prior developer namespace.
+The CLI still prints the new directory/status and preserves its exit meanings.
+
+The adapter reuses Cedar capture authentication, exact ordered snapshots and
+`_native_context_worker` observation layering. Cedar's general captured-gradient
+`_inputs` scope excludes ASU nonbonded inventory, so it is not broadened or bypassed
+as a purported full optimizer qualification. The explicit ASU capture checks stay
+in the existing TopoStitch boundary. Exact native dispatcher bytes are checked
+before and after execution. Discovery may report `2.2.1` while a capture records
+`2.2.1-6174`; both labels remain provenance, with dispatcher/native-source bytes
+providing the identity binding.
+
+`_process_runner` accepts the existing Cedar owned-runner protocol and is forwarded
+to its `_run_native_command`; no executor or process group implementation is
+added. Verified timeouts retain a failed receipt. `CampaignProcessError`, including
+uncertain cleanup or expired-before-launch allowance, escapes to the owner after
+the diagnostic receipt is saved. Deleted input/dispatcher bytes are recorded as
+preservation failures without losing the receipt. These are execution outcomes,
+not chemical verdicts. A future campaign caller must still own resource admission,
+checkpoint lineage, review and adoption; this API does not register itself there.
+
+Complete **Phenix 2.2.1-6174** source read-only and one-iteration trial executions
+reproduce W41 evaluation content exactly, including fresh bootstrap worker bytes.
+Installed Willow and a temporary combined Cedar/Willow package also complete
+read-only native evaluation from relocated inputs with original paths blocked;
+the combined path uses same-package owners and the injected runner exactly once.
+The temporary package uses Cedar commit `948a7860` plus nine explicit Willow
+modules. This is tested adapter compatibility, **not a branch merge or complete
+combined-suite qualification**. Three actual Cedar-runner failure controls launch
+no native process: verified timeout, unverified cleanup and prelaunch expiry all
+retain the appropriate receipt/exception behavior.
+
+See the [validation receipt](topostitch-periodic.md#current-validation-receipt--2026-11-13)
+for counts, wheel hashes and retained initial setup failures. Scientific files
+remain local. S05 remains partial: next review full-precision as well as serialized
+packing and affected chemistry, then use matched diffraction rather than lower
+geometry energy alone to establish repair benefit.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

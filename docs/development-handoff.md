@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W41; next W42.** W33 introduced human update numbers without
+**Willow update W42; next W43.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,18 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W41 edge:** the existing capture probe can explicitly run a bounded
+**Current W42 edge:** the installed `run_captured_objective` API owns the existing
+capture/trial orchestration; the developer CLI remains compatible. Cedar owns
+capture, observation layering and process execution; uncertain cleanup errors
+escape after saving evidence. Source native results reproduce W41 exactly.
+Installed/relocated Willow and a temporary Cedar 948a7860 overlay pass native
+read-only execution, including the injected owned runner. Full Willow: 1,372
+tests + 229 subtests; installed focused: 74; temporary combined focused: 244 + 19
+subtests. No branch merge, complete combined suite or campaign adoption is claimed.
+Next close full-precision/serialized packing and affected chemistry before S06
+matched refinement. Density-supported curvature remains in its later queue.
+
+**Prior W41 edge:** the existing capture probe can explicitly run a bounded
 native trial with complete source/full-precision/rounded derivative audits and
 a matched cleanup switch. Five Phenix 2.2.1-6174 trials pass derivatives and fresh
 rounded native target readback but reach the 200-iteration limit. Whole-window

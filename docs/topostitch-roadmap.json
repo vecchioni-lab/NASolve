@@ -252,13 +252,14 @@
         "W38 adds explicit bounded coordinate masks and a direct native/pair/tether evaluator using Cedar owners; source and perturbed full-coordinate checks pass for two movement scopes and an independent 7R96 mask, with no optimization or scientific acceptance.",
         "W39 reuses Cedar capture authentication and trusted native reconstruction, matching all initial observed inventories/ASU pairs before masked evaluation; three native controls reproduce W38 and no optimizer or complete exclusion-policy proof is claimed.",
         "W40 binds full-precision points and exact serialized PDB bytes to the explicit mask, then reuses Cedar native mechanics/selected-environment and existing packing review. Explicit Cartesian ANISOU preservation and local collateral regressions remain visible; no optimization or scientific acceptance.",
-        "W41 composes a bounded native optimizer with complete initial/full-precision/serialized derivative gates and a matched cleanup control. Five native trials and fresh rounded readback pass the declared numerical checks; all remain iteration-capped with individual packing regressions and no acceptance."
+        "W41 composes a bounded native optimizer with complete initial/full-precision/serialized derivative gates and a matched cleanup control. Five native trials and fresh rounded readback pass the declared numerical checks; all remain iteration-capped with individual packing regressions and no acceptance.",
+        "W42 extracts one installed captured-job API, preserving the CLI/native results and reusing Cedar observation/process owners. Installed/relocated and temporary same-package compatibility checks pass; uncertain process ownership escapes with retained evidence. No branch merge or scientific acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Extract one installed captured-job boundary using existing Cedar anchored capture/replay, observation ordering and process ownership. Then close affected chemistry and full-precision/serialized packing gates before matched refinement. Preserve capped/failed controls and W37 derivative reviews; no universal exclusion-policy or physical acceptance claim.",
+      "next_action": "Qualify full-precision as well as serialized endpoint packing and affected chemistry through existing Cedar owners, retaining numerical, convergence and scientific verdicts separately. Then close the explicit connection and matched-refinement gates; do not treat the package API as campaign/adoption authority.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -279,7 +280,7 @@
         "date": "2026-11-14",
         "reviewer": "Linden",
         "code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5",
-        "scope": "Bounded native trial derivatives and fresh serialized endpoint review; all controls remain capped and scientifically unselected"
+        "scope": "Reusable package orchestration, exact W41 native parity, installed/relocated and temporary combined compatibility; scientific S05 remains partial"
       }
     },
     {
@@ -798,8 +799,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 41,
-    "next": 42,
+    "current": 42,
+    "next": 43,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -855,6 +856,12 @@
         "title": "Run bounded native trials with initial and endpoint derivative gates",
         "state": "RECORDED",
         "code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5"
+      },
+      {
+        "number": 42,
+        "title": "Expose the captured native job through one reusable package boundary",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

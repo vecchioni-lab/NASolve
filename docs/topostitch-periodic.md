@@ -405,7 +405,36 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W41 checkpoint (2026-11-14):** six new regressions cover complete derivative
+**W42 checkpoint (2026-11-14):** eight orchestration regressions cover early
+control rejection, repeat/developer namespace isolation, Cedar observation-layer
+ordering, owned runner forwarding, uncertain cleanup propagation, verified timeout,
+removed inputs/dispatcher and changed-dispatcher refusal. Focused source: **29
+passed**; final full Willow: **1,372 passed + 229 subtests** (70.04 s), using the
+W39 full-suite command below. Installed/relocated focused: **74 passed** (1.97 s):
+captured job, trial, capture, mask, recipe and transport, using the W41 installed
+command pattern. Entry-point help, lean imports and Python 3.10 syntax pass.
+Willow wheel SHA256:
+`44f95e05e2e4317cee0b0a19ebc8b7cf6889b557ee697e14af54cd6db099a7b9`.
+
+A temporary installed package from Cedar `948a7860` plus the nine native TopoStitch
+modules passes **244 focused tests + 19 subtests** (28.42 s): those six Willow files
+plus Cedar campaign process, Phenix runtime, native validation, attachment native
+and captured mixed gradients. The initial copied test tree omitted two imported
+fixture modules; the corrected declared set passes and the collection failure is
+retained. This is neither a merge nor the full combined/Cedar suite. Combined
+wheel SHA256: `755b246462542e225b51889f6225ab111c41bec3ce80de929ed6e31f33206a09`.
+
+Complete native source/installed/relocated controls and owned-runner negatives
+are described in [W42](topostitch-preview.md#w42--one-installed-captured-job-boundary).
+The first extra version-label equality check refused the same dispatcher because
+native discovery returns a shorter release label; that unintended compatibility
+change was removed before validation. Exact byte fingerprints remain binding.
+Original copied checkout paths are absent and old source/scientific reads are
+blocked during installed native checks. Evidence relocation is not resumable
+campaign-run portability. Generated captures, trial results, combined checkout
+and wheels stay local; only source, regressions and documentation are committed.
+
+**Prior W41 checkpoint (2026-11-14):** six new regressions cover complete derivative
 sampling/repeatability, wrong/nonfinite derivatives, matched pair contributions
 and strict control types. Focused source: **107 passed** (1.06 s). Full Willow:
 **1,364 passed + 229 subtests** (73.89 s), using the W39 full-suite command below.

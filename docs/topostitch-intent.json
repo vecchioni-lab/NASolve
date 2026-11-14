@@ -373,6 +373,19 @@
       "runtime_authority": false,
       "geometry_accepted": false,
       "campaign_integration": false
+    },
+    "captured_native_job": {
+      "module": "nasolve.topostitch_captured_job",
+      "api": "run_captured_objective",
+      "developer_command": "scripts/probe_topostitch_captured_objective.py",
+      "contract": "docs/topostitch-preview.md#w42--one-installed-captured-job-boundary",
+      "capture_and_process_owner": "Existing Cedar authentication, observation layers and owned runner",
+      "default_optimization": false,
+      "explicit_bounded_diagnostic_trial": true,
+      "initial_and_endpoint_derivative_gates": true,
+      "scientific_acceptance": false,
+      "campaign_integration": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

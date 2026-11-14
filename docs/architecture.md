@@ -937,6 +937,17 @@ evaluation budgets. Native construction/authentication stays with its caller;
 static-definition checks are not a complete nonbonded-policy or lifecycle proof.
 This direct evaluator installs no callback and runs no optimizer or refinement.
 
+`topostitch_trial` reuses installed scitbx for explicit bounded diagnostic trials,
+with complete initial/full-precision/rounded derivative gates and retained capped
+outcomes. `topostitch_captured_job.run_captured_objective` owns their package-level
+orchestration; the developer CLI is a thin caller. Cedar still authenticates the
+captured model/dictionaries/ordered PHIL, composes native observation layers and
+owns process execution/cleanup. Default package calls use installed Cedar owners;
+explicit trusted source loading is a developer compatibility route. An injected
+owned runner is passed through unchanged. Uncertain ownership errors escape after
+evidence is retained. No campaign state, checkpoint selection or acceptance owner
+is added. Source and endpoint scientific qualification remain separate gates.
+
 Preview folders freeze exact inputs and source/candidate PDBs under checksummed
 run-relative references; replay verifies the result after relocation. They are
 not numbered NASolve checkpoints, do not change registration or chemistry, and
