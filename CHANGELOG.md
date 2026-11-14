@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry source-preserving dictionary input through ordinary callers (C276)
+
+- Ordinary PostMR, CIF Doctor prepare-run and schema-2 campaign recipes can now
+  request `dictionary_input_policy = "source-preserving-v1"`. Previously the
+  successful source-adapter controls needed lower-level Python options.
+- Map that explicit choice to the existing source-reader preparation and declared
+  neutral-purine representation policies. The same owner freezes/revalidates both;
+  original chemistry remains authoritative. No new chemical inference or executor.
+- Require checked preparation for ordinary PostMR/campaigns. Preserve absent
+  fields/defaults and old plan identities; older readers reject the new optional
+  campaign key. Continuation uses the frozen request, with no recipe override.
+
 ### Reuse a sealed result from the ordinary AutoSol command (C275)
 
 - `nasolve autosol RUN` now checks for C274's sealed result before native-tool

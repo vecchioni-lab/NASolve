@@ -43,6 +43,7 @@ from .refine_doctor import RefineDoctorError, execute_refine_doctor
 
 
 def build_parser() -> argparse.ArgumentParser:
+    from .cif_generation_input import ORDINARY_INPUT_POLICY
     parser = argparse.ArgumentParser(prog="nasolve", description="Guarded nucleic-acid structure solution")
     parser.add_argument("--phenix-root", help="one-run Phenix root, phenix_env.sh, or executable override")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -158,6 +159,8 @@ def build_parser() -> argparse.ArgumentParser:
     postmr.add_argument("--coot", help="one-run Coot executable override")
     postmr.add_argument("--checked-preparation", action="store_true",
                         help="check/repair dictionaries and save the exact model/restraints as a review checkpoint; retain independently checked fallbacks")
+    postmr.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY,),
+                        help="prepare source-preserving input for Phenix dictionary generation; original chemistry remains authoritative")
     postmr.add_argument("--automatic-plane-support", action="store_true",
                         help="request bounded source-checked support for missing planes; requires --checked-preparation")
     postmr.add_argument("--restraint-scope", choices=("all",),
@@ -248,6 +251,8 @@ def build_parser() -> argparse.ArgumentParser:
     checked.add_argument("--modified-pairs-only", action="store_true", help="restrain only pairs containing a modified nucleotide")
     checked.add_argument("--restraint-scope", choices=("all",), help="restrain all model-derived pairs and chain-order stacks")
     checked.add_argument("--allow-unreviewed-backbone", action="store_true", help="allow the declared experimental backbone passthrough")
+    checked.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY,),
+                        help="prepare source-preserving input for Phenix dictionary generation; original chemistry remains authoritative")
     checked.add_argument("--automatic-plane-support", action="store_true",
         help="obtain missing source-supported plane evidence through owned generation; repair/ReadySet qualification still applies")
     continued = cif_sub.add_parser("continue-preparation", help="start one fresh attempt from saved preparation after earlier work has stopped")
@@ -872,6 +877,8 @@ def _postmr(args: argparse.Namespace) -> int:
     try:
         if getattr(args, "automatic_plane_support", False) and not getattr(args, "checked_preparation", False):
             raise PostMRPreparationError("--automatic-plane-support requires --checked-preparation")
+        if getattr(args, "dictionary_input_policy", None) is not None and not getattr(args, "checked_preparation", False):
+            raise PostMRPreparationError("--dictionary-input-policy requires --checked-preparation")
         config = load_config()
         run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
@@ -898,6 +905,8 @@ def _postmr(args: argparse.Namespace) -> int:
             allow_unreviewed_backbone=args.allow_unreviewed_backbone,
             checked_preparation=getattr(args, "checked_preparation", False),
             **({"automatic_plane_support": True} if getattr(args, "automatic_plane_support", False) else {}),
+            **({"dictionary_input_policy": args.dictionary_input_policy}
+               if getattr(args, "dictionary_input_policy", None) is not None else {}),
         )
     except (
         ConfigError,
@@ -1717,12 +1726,15 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
                 except CootDiscoveryError:
                     if args.coot:
                         raise
+                from .cif_generation_input import ordinary_generation_options
+                generation_options = ordinary_generation_options(args.dictionary_input_policy)
                 result = prepare_checked_postmr(run, phenix, store_root=args.store,
                     coot_executable=coot.executable if coot else None,
                     allow_mr_review=args.allow_mr_review, restraint_scope=args.restraint_scope,
                     modified_pairs_only=args.modified_pairs_only,
                     allow_unreviewed_backbone=args.allow_unreviewed_backbone,
-                    **({"automatic_plane_support":True} if args.automatic_plane_support else {}))
+                    **({"automatic_plane_support":True} if args.automatic_plane_support else {}),
+                    **({"generation_options":generation_options} if generation_options else {}))
     except (OSError, ValueError, ConfigError, CootDiscoveryError, PhenixDiscoveryError,
             PostMRPreparationError, CampaignProcessError, TimeoutError) as exc:
         print(f"Preparation could not complete: {exc}", file=sys.stderr)

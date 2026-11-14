@@ -1,10 +1,44 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14**, C275 ordinary-command recovery. Active **cedar**,
-NASolve-c96; base before this patch is C274 `6403407`.
-Simon authorized **12:36–14:36 Europe/London, 14 November**. Focused checks only;
+Updated **2026-11-14**, C276 normal campaign source-recipe integration. Active **cedar**,
+NASolve-c96; base before this patch is C275 `d2381fc`.
+Simon originally authorized **12:36–14:36 Europe/London, 14 November**. Linden
+relayed Simon’s extension to **16:00**, with a later wind-down message expected.
+Focused checks only;
 no full suite, new branch or merge. Finish Q04/Q05 before Q06. The
 [queue](cif-doctor-completion-queue.md) owns ordering.
+
+## Completed — source-preserving adapters reach normal preparation
+
+C276 exposes `--dictionary-input-policy source-preserving-v1` through ordinary
+checked PostMR and CIF Doctor prepare-run, and the corresponding optional schema-2
+campaign key. One mapping selects the existing C263/C264 policies; the existing
+owner freezes their exact options and chemistry checks remain unchanged. Absent
+fields/defaults stay unchanged; no continuation override or historical migration.
+
+231 focused tests + 47 subtests pass in 14.37 s, including caller publication and
+frozen-plan relocation. A full native normal campaign reaches checked PostMR with
+the declared C270-derived A:5IU/free-end/protected-D1 fixture, ordinary deadlines,
+local isolated config/store, and actual Phaser/Coot/NAR/Phenix generation/repair/
+ReadySet. Saved campaign receipts and selected view pass after moving the campaign
+with old/source/cache/SDK reads and native launches forbidden except OS process
+observations. Exact versions/counts/source pins are in
+`ordinary_source_recipe_callers_2026_11_14`. Raw science stays local in
+`276_Cedar_source-recipe-campaign-pk37b79m`. No diffraction refinement claim.
+
+**Downstream reminder:** Simon reports an earlier beautiful PDU distorted after
+collaborator refinement. Q06 now explicitly requires before/ReadySet/after-native
+geometry and effective-restraint comparison, generalized beyond PDU names. Exact
+collaborator files/version are not identified; no diagnosed cause or success claim.
+This does not change the current first-refinement handoff task.
+
+**Next concrete fix:** campaign first refinement rejects any AutoRefine folder,
+including the registry saved by checked preparation. New uncommitted regression
+`tests/test_cif_campaign_first_refinement.py` reproduces it. Admission must allow
+only the initial checked registry, preserve partial/prior/unknown work, and pin
+that registry through the existing refinement reader so newer choices survive.
+Do not duplicate full preparation validation. Q04/Q05 remain open until this
+caller defect and explicit scope reconciliation are complete.
 
 ## Completed — the ordinary command returns the exact saved result
 

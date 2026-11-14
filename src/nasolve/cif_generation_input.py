@@ -9,6 +9,22 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 POLICY_ID = 'cif-source-reader-preparation-v1'
+ORDINARY_INPUT_POLICY = 'source-preserving-v1'
+
+
+def ordinary_generation_options(policy):
+    """Resolve the explicit caller recipe into existing frozen generation options.
+
+    This mapping is versioned independently of future adapters. It grants no
+    chemical authority or fallback: original-source and native checks still own
+    qualification. Absence leaves old requests and defaults unchanged.
+    """
+    if policy is None:
+        return {}
+    if type(policy) is not str or policy != ORDINARY_INPUT_POLICY:
+        raise ValueError('Unsupported dictionary_input_policy')
+    return dict(source_input_policy='cif-source-reader-preparation-v1',
+                bond_representation_policy='cif-source-declared-neutral-purine-aromatic-v1')
 
 
 def validate_source_input_policy(policy):

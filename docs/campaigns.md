@@ -451,6 +451,25 @@ requires:
 An interrupted stage is inspected before retry. A campaign must not infer
 success from an output filename alone.
 
+## Explicit checked dictionary input
+
+Schema-2 campaigns can use the same checked preparation as ordinary PostMR:
+
+```toml
+[postmr]
+checked_preparation = true
+automatic_plane_support = true
+dictionary_input_policy = "source-preserving-v1"
+```
+
+The last choice prepares source-preserving input for Phenix using the existing
+source-format and narrowly qualified bond-representation adapters. It does not
+supply new chemistry or relax qualification. The frozen plan carries the choice;
+continuation cannot silently change it. These options remain explicit, and older
+readers reject unsupported keys. C276 validates a native campaign through PostMR,
+including relocated saved-result reading; complete-restraint refinement remains
+a separate acceptance step.
+
 ## Scheduling and scale
 
 The first executor is local and sequential because current Phenix stages may

@@ -93846,5 +93846,115 @@
     "scope": "Fresh pending completion is C274 native evidence plus C275 synthetic regression. This change adds no native execution, API/campaign recovery, pre-seal recovery or diffraction refinement.",
     "artifacts": "Only source/tests/docs committed. Read-only C274 native inputs retained locally; new read summary in /private/tmp, no scientific copy.",
     "full_suite": "Not run per Simon. Last full C220/583d30df: 9178 tests + 276 subtests."
+  },
+  "ordinary_source_recipe_callers_2026_11_14": {
+    "checkpoint": "C276",
+    "base_commit": "d2381fca278606c2fb5c7a52b46426ad69553e4f",
+    "status": "FOCUSED_FROZEN_PLAN_AND_ACTUAL_CAMPAIGN_PREPARATION_PASS",
+    "before": "C270 successful native preparation used low-level Python generation_options; ordinary PostMR/prepare-run and frozen campaign policy could not request these existing adapters.",
+    "after": "One explicit versioned source-preserving-v1 profile maps to existing source-input and neutral-purine representation policies. Ordinary/campaign callers freeze the same options and use the same owners/validators. Absence preserves previous defaults.",
+    "files": [
+      "src/nasolve/cif_generation_input.py",
+      "src/nasolve/postmr.py",
+      "src/nasolve/cli.py",
+      "src/nasolve/campaign_policy.py",
+      "src/nasolve/campaign_stages.py",
+      "src/nasolve/presets.py",
+      "tests/test_cif_dictionary_input_callers.py"
+    ],
+    "schema": "Optional postmr.dictionary_input_policy string in schema-2 campaign policy; requires checked_preparation. Existing request/generation schemas and native code unchanged. Older campaign readers reject the new key.",
+    "mapping": {
+      "source-preserving-v1": {
+        "source_input_policy": "cif-source-reader-preparation-v1",
+        "bond_representation_policy": "cif-source-declared-neutral-purine-aromatic-v1"
+      }
+    },
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_dictionary_input_callers.py -x",
+        "result": "Before implementation: 1 failed in 1.03s, missing ordinary API keyword. After: 15 passed in 1.16s."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_dictionary_input_callers.py tests/test_postmr_runtime.py tests/test_presets.py tests/test_campaigns.py tests/test_campaign_stages.py tests/test_cif_ordinary_cli.py tests/test_cif_generation_input.py -x",
+        "result": "231 passed, 47 subtests passed in 14.37s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c276_campaign.py",
+        "result": {
+          "status": "FRESH_NATIVE_CAMPAIGN_SOURCE_RECIPE_AND_RELOCATION_PASS",
+          "preparation_status": "POSTMR_READY",
+          "readyset_status": "COMPLETED",
+          "preparation_mode": "checked",
+          "tool_versions": {
+            "coot": "1.3.3",
+            "phenix": "2.2.1"
+          },
+          "stage_artifact_count": 207,
+          "completed_stage_processes_stopped": [
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/phaser/process.json",
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/postmr/process.json",
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/preflight/process.json"
+          ],
+          "unchanged_campaign_files": 257,
+          "original_files_unchanged": 5,
+          "frozen_plan_policy": {
+            "automatic_plane_support": true,
+            "checked_preparation": true,
+            "dictionary_input_policy": "source-preserving-v1",
+            "modified_pairs_only": false
+          },
+          "whole_request": {
+            "files": 168,
+            "logical_bytes": 35128115,
+            "allocated_bytes": 35540992
+          },
+          "whole_control": {
+            "files": 273,
+            "logical_bytes": 44883952,
+            "allocated_bytes": 45568000
+          },
+          "followthrough_seconds": 57.624534875008976,
+          "maximum_python_resident_bytes": 633683968,
+          "scope": "Actual standard campaign coordinator and stage worker run preflight, Phaser, Coot/NAR, generation/repair/ReadySet, publication and retirement. Explicit copied chemical fixture with protected D1, not donor chemistry. No AutoSol/refinement. Cold moved campaign/reference/view reads forbid old/source/cache/SDK and native launches except OS identity probes.",
+          "harness_correction": "Original native control completed and moved root before its status assertion used datasets rather than execution.datasets. Original traceback preserved. No scientific rerun. New read-only followthrough snapshots moved bytes/mtimes; no claim that an unsaved original pre-move timestamp snapshot survived. Campaign receipts verify saved artifact hashes after relocation."
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /private/tmp/c276_followthrough.py",
+        "result": "Read-only followthrough passed in 57.62s after correcting harness status lookup to execution.datasets; original native run and traceback preserved, no native rerun. All 257 moved campaign files retain bytes/mtimes during this followthrough; all 5 original inputs unchanged. Three stage processes/groups stopped. Source pins unchanged."
+      }
+    ],
+    "negative_controls": "Wrong types/unknown profile, schema 1 or unchecked route refuse. Default omits field; frozen plan keeps recipe after source preset removal and root relocation. Continue-preparation cannot accept a replacement policy. Exact one-owner publication retains genuine fallback outcome.",
+    "native": {
+      "root": {
+        "anchor": "live_tests_directory",
+        "path": "276_Cedar_source-recipe-campaign-pk37b79m"
+      },
+      "start_sha256": "1dbff1df8d09e6b6f7ae85828a68c4e3444e22882e1afc0163f191b388ef3d7f",
+      "summary_sha256": "deba1be435a8ff6231dfa12cf7d557c2e87194e0c8fbd77895ee4dc33bfc1e5b",
+      "mode": "Complete execution through campaign PostMR; not dry-run; no AutoSol or diffraction refinement.",
+      "installed_tools": {
+        "phenix": "2.2.1-6174 (installation; stage reports 2.2.1)",
+        "coot": "1.3.3"
+      },
+      "followthrough_source_sha256": "67d85e58927907f192e786a6571320244a6385bc776e063d7c2976c7026924e4"
+    },
+    "resource_scope": "Normal campaign datasets execute sequentially. Summary Python RSS belongs to the coordinator/cold reader, not total concurrent native process memory. Retained request includes failed/shared components; no hard native scratch-disk quota or 100-dataset execution claim.",
+    "artifacts": "Only source/tests/docs committed. New scientific campaign, isolated config/store, source pins and worker logs stay local. Original fixture inputs remain unchanged.",
+    "remaining": "First campaign refinement incorrectly rejects checked preparation registry directory; reproduced separately and queued for the next patch. Pre-seal/unowned AutoSol work remains preserved; no fabricated campaign receipts or in-place native retry. Default checked-route rollout and broad resource/chemistry/refinement qualification stay explicit.",
+    "full_suite": "Not run per Simon. Last full C220/583d30df: 9178 tests + 276 subtests."
+  },
+  "pdu_post_refinement_survival_request_2026_11_14": {
+    "status": "QUEUED_Q06_REUSE_Q07",
+    "source": "Simon direct request 2026-11-14",
+    "observation": "Earlier Cedar PDU reportedly looked well formed before collaborator refinement but did not retain geometry afterward. Exact files/revision/tool/settings not yet identified; cause unestablished.",
+    "acceptance": "Actual supported Phenix refinement, full selected bundle; built/ReadySet/final coordinates and effective native restraints compared. Ring/C5 trigonal/ring-propyne planarity, internal propyne, glycosidic orientation, sugar hand/phosphate intent/pair-stack membership and Free-R authority. General source-graph rules and held-out related substituent.",
+    "not_proof": [
+      "well formed builder coordinates",
+      "CIF plane membership alone",
+      "ReadySet acceptance alone",
+      "corrected isolated diagnostic evaluator"
+    ],
+    "next": "Finish current Q04/Q05 caller handoff; explicit downstream Q06 entry owns work. Obtain exact collaborator artifacts when investigating historical failure; no unrelated-data search."
   }
 }

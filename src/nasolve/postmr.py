@@ -1894,6 +1894,7 @@ def prepare_postmr(
     phenix_installation: PhenixInstallation | None = None,
     checked_preparation: bool = False,
     automatic_plane_support: bool = False,
+    dictionary_input_policy: str | None = None,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
@@ -1916,6 +1917,13 @@ def prepare_postmr(
         raise PostMRPreparationError('automatic_plane_support must be a boolean')
     if automatic_plane_support and not checked_preparation:
         raise PostMRPreparationError('automatic_plane_support requires checked_preparation')
+    from .cif_generation_input import ordinary_generation_options
+    try:
+        generation_options = ordinary_generation_options(dictionary_input_policy)
+    except ValueError as exc:
+        raise PostMRPreparationError(str(exc)) from exc
+    if generation_options and not checked_preparation:
+        raise PostMRPreparationError('dictionary_input_policy requires checked_preparation')
     options = dict(coot_executable=coot_executable, allow_mr_review=allow_mr_review,
         modified_pairs_only=modified_pairs_only, restraint_scope=restraint_scope,
         allow_unreviewed_backbone=allow_unreviewed_backbone, data_root=data_root,
@@ -1929,7 +1937,8 @@ def prepare_postmr(
         from .checkpoints import CheckpointError
         try:
             return prepare_published_postmr(run_directory, phenix_installation,
-                **({"automatic_plane_support": True} if automatic_plane_support else {}), **options)
+                **({"automatic_plane_support": True} if automatic_plane_support else {}),
+                **({"generation_options": generation_options} if generation_options else {}), **options)
         except (OSError, ValueError, CampaignError, CheckpointError) as exc:
             raise PostMRPreparationError(f'Checked preparation could not complete: {exc}') from exc
     return _prepare_postmr(run_directory, ready_set_executable,

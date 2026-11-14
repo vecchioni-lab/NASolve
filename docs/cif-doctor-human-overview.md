@@ -64,7 +64,10 @@ remains the authority, and a fresh 1AP control passes the existing isolated chec
 An explicit generation recipe now carries that prepared input through the normal
 attempt and cache machinery while retaining the original chemical authority.
 Original 1AP and 5IU acquisitions pass isolated checks and read correctly after
-relocation without their original files or Phenix. Ordinary command defaults and
+relocation without their original files or Phenix. Ordinary checked preparation
+and frozen campaigns can now explicitly request those source-preserving input
+adapters. A fresh campaign reaches checked ReadySet preparation through that route;
+the original chemical source still decides what molecule is intended. Ordinary command defaults and
 broader whole-model chemistry coverage remain separate; this does not certify a structure.
 
 The PDU investigation illustrates the distinction: correct connectivity and a

@@ -151,7 +151,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 
 | Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
-| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Checked preparation and cache-miss recovery have an explicit PostMR/campaign route (C219–C225); C251 adds explicit later alternatives. Default enablement, alternative-aware phasing and real refinement qualification remain separate. |
+| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Checked preparation and cache-miss recovery have an explicit PostMR/campaign route (C219–C225); C251 adds explicit later alternatives. C270–C272 qualify chosen-model phasing and inspection; default enablement and real refinement qualification remain separate. |
 | Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
@@ -167,7 +167,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Absent native parallelity | C154 qualifies all eight derivative families in an authenticated zero-parallelity context and composes source-bound repaired selection/publication. The original PDU/5PC control passes 1,359 evaluations with no custom requests. | Plane-order evidence is explicitly not applicable. This does not qualify zero-context geometry, ordinary refinement or a missing requested restraint. |
 | Cache-first complete dictionary engine | C155–C174 compose frozen ordinary source selection, exact-source cache/retained reuse or owned generation, independent qualification, site preparation, graph repair and immutable diagnostic publication. One to sixteen selected types share durable parent/child ownership and bounded attempts. No-repair originals and classified optional-native failures use independent original proof. Real singleton and multi-component controls replay cold. C175/C176 derive model/PHIL proofs; C186 extends exact intake to required NAR planes; C187 binds original literal pair/stack input and compiler/native provenance; C197 adds source-bound literal translation through the same compiler without a prior capture, preserving explicit intent and requiring later native qualification; C188 alternatively retains the existing source-bound C80 artifact without requiring a prior capture; C177 joins them to ordinary source selection and the existing request, with fresh/hit/stale/repair/failure controls; C189 also consumes an already frozen selection without rediscovery. C204 assembles literal source graphs through that frozen selection and ordinary precedence, sharing the existing compiler. C184 includes selected ReadySet/native continuation under that same request and recovery owner; C242 freezes explicit completed plane support and carries its repaired result through that continuation. | The checked route remains opt-in. C223–C225 connect initial checkpoint publication, ordinary PostMR and explicit campaigns; C231 validates compact request publication. C244 adds explicit automatic plane-support acquisition by that same owner; C245 connects prepared/ordinary intake and prepare-run. C246 adds direct PostMR/campaign forwarding; C247 adds publication/status notes; C249 reports scoped explicit selected-CIF coverage; C251 adds explicit later alternatives; C252 validates native two-attempt publication and relocated downstream inputs. C253 connects selected-model site validation and checked phase/map reading; C270 completes actual preparation/AutoSol; C271 and saved-result readback preserve exact view identity after later selection and relocation. C272 loads the final model/dictionary/map in native Coot. Current native evidence must qualify each source/site/consumer context. C240/C243 distinguish owned execution failure and fully replayed source-chemical rejection without admitting those outputs; other incomplete builds still refuse. This is not universal chemistry support or ordinary refinement qualification. |
 | Native symmetry pair attribution | C202 explicitly captures and replays complete simple and directed ASU pairs, including self-images, with compact receipts and bounded native work. The connected PDU control and old/new cold replay pass. | Diagnostic arithmetic only. C203 freezes this mode in fresh owned continuation; old absent settings keep C127. No chemical, covalent-symmetry optimizer or refinement approval. |
-| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; default activation and remaining phasing/native acceptance stay open. No actual refinement claim. |
+| Selected-runtime ReadySet continuation | C181 carries qualified original or repaired model/CIF/PHIL selections through the existing observer, exact native comparison and public publisher. Original and C140-restored repaired positive controls pass; failed/missing/timeout endpoints retain the selected parent. | Explicit diagnostic API, with full parent proof. C182 supplies current configuration; C183 owns one complete continuation execution with bounded C140 scheduling. C184 binds that child to the existing complete request with fresh recovery and bounded evidence partitions. C203 qualifies the connected crystal through the frozen ASU mode. C223–C225 connect explicit initial checkpoint adoption and ordinary/campaign entry; C231 checks compact request handoff. C251 adds explicit later alternatives; C270–C272 qualify the selected-model phasing/inspection control. Default activation and broader native/refinement acceptance remain open. No actual refinement claim. |
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and broader native/refinement coverage stay open; C270–C272 qualify the chosen-model phasing/inspection control. |
 | Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Default activation and real refinement remain open; C270–C272 qualify the chosen-model phasing/inspection control. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
 | Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. C260 connects new ordinary/campaign preparation. Campaign-scale resource acceptance remains Q04; historical unarchived campaigns are not migrated and old readers refuse new storage receipts. |
@@ -909,6 +909,46 @@ all saved bytes/timestamps are unchanged. No new Coot edit,
 MTZ interpretation or diffraction refinement is claimed; observation/map paths are
 synthetic fixtures. Full results: `native_preparation_alternatives_2026_11_13`.
 
+
+### Source-preserving dictionary input in ordinary commands (C276)
+
+The successful C270 control passed C263/C264 source-input options directly to the
+Python preparation API. C276 makes that exact combination available to the normal
+callers through the explicit versioned choice `source-preserving-v1`:
+
+```sh
+nasolve postmr RUN --checked-preparation --automatic-plane-support --dictionary-input-policy source-preserving-v1
+nasolve cif-doctor prepare-run RUN --dictionary-input-policy source-preserving-v1
+```
+
+A schema-2 campaign can freeze it without adding commands or paths:
+
+```toml
+[postmr]
+checked_preparation = true
+automatic_plane_support = true
+dictionary_input_policy = "source-preserving-v1"
+```
+
+The existing generation-input module maps this choice to
+`cif-source-reader-preparation-v1` and
+`cif-source-declared-neutral-purine-aromatic-v1`. The existing owner freezes their
+complete source/recipe/producer identity, including cache identity and optional
+plane support. This does not choose protonation, change the original source or
+expand the neutral-purine whitelist. Independent chemistry/native checks remain.
+Old defaults and absent policy bytes stay unchanged. Older campaign readers reject
+the additional optional key; new request schemas are unchanged. A saved request
+continues with its frozen options, never a replacement command-line recipe.
+
+A fresh native campaign using the normal coordinator/stage worker now exercises
+preflight, Phaser, Coot/NAR, generation/repair/ReadySet, publication and automatic
+working-file retirement on the declared C270-derived A:5IU/free-end fixture with
+protected D:1 phosphate. It uses ordinary execution limits, an isolated local
+configuration/store and real copied observations. Cold moved campaign receipts
+and the selected view remain valid without old/source/cache/SDK reads or new native
+work. This is preparation acceptance, not donor-chemistry or diffraction-refinement
+acceptance. Exact counts, commands and versions:
+`ordinary_source_recipe_callers_2026_11_14` in the evidence ledger.
 
 ### Finish a sealed AutoSol result save (C274)
 

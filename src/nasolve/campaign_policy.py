@@ -56,7 +56,7 @@ def postmr_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
     """
     supplied = policy.get("postmr")
     if (not isinstance(supplied, dict)
-            or set(supplied) - {"modified_pairs_only", "checked_preparation", "automatic_plane_support"}
+            or set(supplied) - {"modified_pairs_only", "checked_preparation", "automatic_plane_support", "dictionary_input_policy"}
             or type(supplied.get("modified_pairs_only")) is not bool):
         raise ValueError("Unsupported campaign PostMR policy")
     if "checked_preparation" in supplied:
@@ -71,6 +71,15 @@ def postmr_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
             raise ValueError("postmr.automatic_plane_support must be bool")
         if supplied["automatic_plane_support"] and not supplied.get("checked_preparation", False):
             raise ValueError("postmr.automatic_plane_support requires checked_preparation")
+    if "dictionary_input_policy" in supplied:
+        from .cif_generation_input import ordinary_generation_options
+        if type(policy.get("schema_version")) is not int or policy["schema_version"] != 2:
+            raise ValueError("postmr.dictionary_input_policy requires preset schema_version = 2")
+        if supplied.get("checked_preparation") is not True:
+            raise ValueError("postmr.dictionary_input_policy requires checked_preparation")
+        if supplied["dictionary_input_policy"] is None:
+            raise ValueError("postmr.dictionary_input_policy requires an explicit recipe")
+        ordinary_generation_options(supplied["dictionary_input_policy"])
     return dict(supplied)
 
 

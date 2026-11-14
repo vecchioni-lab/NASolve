@@ -470,6 +470,8 @@ def execute_stage(
                if "checked_preparation" in preparation_policy else {}),
             **({"automatic_plane_support": preparation_policy["automatic_plane_support"]}
                if "automatic_plane_support" in preparation_policy else {}),
+            **({"dictionary_input_policy": preparation_policy["dictionary_input_policy"]}
+               if "dictionary_input_policy" in preparation_policy else {}),
             allow_mr_review=mr_trial,
         )
         stage_directory = result.postmr_directory
