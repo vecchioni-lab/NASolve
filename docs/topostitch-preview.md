@@ -1613,3 +1613,35 @@ native-receipt arguments with `--trial-iterations 500 --trial-calls 2000
 W50's 1,468-test + 229-subtest full suite and 155 installed/relocated checks still
 apply to unchanged runtime code. Generated native jobs, inputs and traces stay
 local; they are neither committed nor resumable NASolve checkpoints.
+
+
+### W53 — Measure precision at the last accepted failed-trial points
+
+Two complete read-only probes in **Phenix 2.2.1-6174** rebuild the authenticated
+W51 contexts and reproduce each last accepted point's target components and
+projected gradient norm exactly. A fresh, locally frozen diagnostic worker then
+runs the unchanged complete 612-variable derivative check at 10⁻⁴ and 10⁻⁵ Å.
+Both pass the existing absolute 10⁻³ bound: maximum errors are about 2.562×10⁻⁴
+at the larger step and 2.554×10⁻⁶ / 2.608×10⁻⁶ at the smaller step (paired / core-only).
+No optimizer runs in these probes, and the original failed trials stay failed.
+
+The predeclared directional observations use the negative gradient, the three
+largest gradient coordinates, and four fixed Rademacher directions (seed 5301),
+each at 10⁻² through 10⁻¹⁰ Å. Raw plus/minus scores and actual coordinate changes
+are retained. The scalar score ULP is 9.095×10⁻¹³ in both contexts. Measured local
+steepest-direction curvatures at 10⁻⁴ Å are about 109,401 and 205,435; a local
+quadratic estimate gives potential decreases of 6.60×10⁻¹³ and 7.31×10⁻¹³,
+respectively, below one score ULP. The smallest perturbations visibly quantize.
+This supports a numerical-resolution explanation for the line-search problem;
+it is not proof of native convergence or acceptable geometry. Other directions,
+other algorithms and ordinary refinement have not been qualified by this estimate.
+
+Baseline evaluations repeat exactly after all observations. No weights, stopping
+criteria, native SDK or Cedar source were changed. The local diagnostic injection
+was authored afresh into frozen trusted project source; captured worker text was
+never executed. Exact commands, injected-source fingerprints, raw observations and
+failed-trial bindings remain in local receipts. W52's full and installation checks
+still apply to unchanged product code; roadmap and documentation checks cover
+this evidence update. The next small software task is to retain and audit the
+identified last accepted point after an optimizer exception, while preserving
+FAILED status, the original error and no candidate/adoption authority.

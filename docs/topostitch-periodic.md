@@ -414,6 +414,15 @@ follow W48 below, using `tests/test_topostitch_recut.py` for the focused suite.
 Wheel SHA-256: `2113d2951694ea27b3a18815318551574cb0afd19097e57689fcaf148b90d9c6`.
 No Phenix/Coot execution, native enforcement or coordinate writing is introduced.
 
+A subsequent temporary installed compatibility check combines pinned Cedar C295
+`c74149196e1d40722f2bb20f6b00303ba7da9c74` with the 23 Willow TopoStitch modules:
+264 focused shared-owner/API tests pass and the complete public registered preview
+reproduces exactly after relocation. Commands use the same Python/pytest settings
+above against the installed temporary package and copied focused test files;
+exact arguments and module fingerprints are retained locally. This is not a
+branch merge, full combined-suite qualification or combined CLI/dependency-metadata
+claim. Cedar's package metadata was preserved unchanged.
+
 **W50 checkpoint:** 76 focused graph/image tests; complete Willow 1,468 plus
 229 subtests; installed/relocated shared-owner tests 155. The ten new tests fail
 against W49. Both public-derived orbit reports reproduce exactly with original

@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W53 — Observe failed-trial numerical precision
+
+- Reproduce both W51 last accepted points in fresh native contexts and pass the
+  unchanged full derivative diagnostic; retain predeclared directional precision
+  observations supporting a numerical-resolution limit.
+- Preserve original failed status and stopping policy. No optimizer, candidate,
+  scientific acceptance or runtime change follows from these read-only probes.
+
 ### W52 — Bind representative previews to registered atom ownership
 
 - Compose the existing graph, exact relabeling, all-present orbit and Cartesian

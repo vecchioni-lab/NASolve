@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W52; next W53.** W33 introduced human update numbers without
+**Willow update W53; next W54.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -181,9 +181,14 @@ coordinate writer, ANISOU transport, native link or graphical approval is added.
 Next supply the persistent Pine intent/preview boundary and genuine graphical
 review before P03 materialization, while retaining F02/P01 incomplete scope.
 
-W51's matched500-iteration native controls remain failed rounding line searches;
-there is no post-exception endpoint qualification or tolerance relaxation. The
-near-stationary precision/stopping question remains queued under S05.
+W53 reproduces both W51 last accepted points exactly in fresh native contexts.
+All 612 derivatives pass unchanged bounds; predeclared directional probes show
+score quantization and local quadratic improvement estimates below one score ULP.
+This supports numerical-resolution limits, not convergence or geometry approval.
+W51 stays FAILED. Next retain/audit identified accepted points on optimizer failure
+without emitting candidates or relaxing stopping policy. The installed temporary
+Cedar C295/Willow compatibility check passes 264 focused tests and exact public
+preview replay; no merge or complete combined-suite claim.
 
 **Shared Pine/Cedar boundary:** Pine retains editable periodic connectivity and
 user choices across reslicing; TopoStitch exposes them, Cedar reports enforcement.

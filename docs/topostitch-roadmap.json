@@ -265,13 +265,14 @@
         "W44 attributes every native pair term, verifies complete container sums and retains selected/core changes for all five endpoints. Cleanup exposes individually worsening pairs; compact JSON preserves old review tables. No objective or acceptance change.",
         "W45 uses existing APIs for a matched core-only control against the paired trial. Complete derivative/endpoint/fresh-readback checks pass; intended-contact benefit is separated from core preservation, with capped outcomes and packing regressions retained.",
         "W46 composes Cedar native torsion/plane kernels into endpoint observations with explicit live-policy, single-proxy and full-family target/gradient checks. Six controls retain individual regressions and unchanged fixed terms; no chemical acceptance or ordinary refinement route is added.",
-        "W51 predeclared500-iteration paired/core-only controls reproduce the old200-iteration traces, then retain native rounding line-search failures; no candidate or endpoint qualification follows."
+        "W51 predeclared500-iteration paired/core-only controls reproduce the old200-iteration traces, then retain native rounding line-search failures; no candidate or endpoint qualification follows.",
+        "W53 fresh native contexts reproduce both W51 last accepted points exactly and pass unchanged complete612-variable derivatives. Predeclared directional probes show score quantization and local steepest-direction quadratic decreases below one score ULP; this supports a precision limit, not convergence or acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Quantify near-stationary objective/gradient precision before revising any stopping policy; retain capped/failed outcomes. Qualify affected chemistry and complete ordinary native enforcement separately; Cedar corrected-force prototypes are not a supported production route.",
+      "next_action": "Retain and audit the identified last accepted point after optimizer failure while preserving FAILED/original error and no candidate adoption. Qualify affected chemistry and complete ordinary native enforcement separately; do not relax stopping policy based solely on precision observations.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -292,13 +293,14 @@
         "E_PAIR_ATTRIBUTION",
         "E_CORE_CONTROL",
         "E_NATIVE_TERMS",
-        "E_NATIVE_STOPPING_LIMIT"
+        "E_NATIVE_STOPPING_LIMIT",
+        "E_NATIVE_PRECISION"
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec",
+        "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24",
         "reviewer": "Linden",
-        "scope": "Two retained native rounding failures, not qualified endpoints; S05 remains PARTIAL."
+        "scope": "Read-only native precision observations; original optimizer failure and all chemical/ordinary-refinement gates remain"
       }
     },
     {
@@ -800,8 +802,16 @@
       "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24",
       "human_update": 52,
       "reference": "docs/topostitch-periodic.md#w52--bind-an-image-preview-to-registered-source-atoms",
-      "result": "Nine regressions pass; the prior package fails to import the absent module. Full Willow 1477 plus 229 subtests; installed/relocated shared-owner tests178. Public source:36 atoms in2 requested residues,819 exact fixed atoms,38 edge arithmetic checks; legacy graph/relabel/orbit reports reproduce exactly. Installed preview is identical after relocation with original paths blocked. Five command helps, lean import and Python3.10 syntax pass.",
+      "result": "Nine regressions pass; the prior package fails to import the absent module. Full Willow 1477 plus 229 subtests; installed/relocated shared-owner tests178. Public source:36 atoms in2 requested residues,819 exact fixed atoms,38 edge arithmetic checks; legacy graph/relabel/orbit reports reproduce exactly. Installed preview is identical after relocation with original paths blocked. Five command helps, lean import and Python3.10 syntax pass. Subsequent temporary installed Cedar C295 c7414919 plus23 Willow modules passes264 focused owner/API tests and exact public preview replay; no merge, full combined-suite or combined CLI metadata claim.",
       "limitation": "In-memory whole-residue representative preview only. Missing/ambiguous requested coordinates refuse; other scope/occupancy uncertainty remains. No coordinate serialization, ANISOU transport, native seam restraints, graphical approval, physical/scattering acceptance or Cedar changes. Scientific outputs stay local."
+    },
+    "E_NATIVE_PRECISION": {
+      "kind": "predeclared_failed_trial_precision_observation",
+      "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24",
+      "human_update": 53,
+      "reference": "docs/topostitch-preview.md#w53--measure-precision-at-the-last-accepted-failed-trial-points",
+      "result": "Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target components and gradient norms exactly. Both complete612-variable derivative checks pass unchanged1e-3 bounds at1e-4/1e-5 Angstrom. Eight fixed directions at nine scales retain score quantization; local quadratic decrease estimates6.60e-13/7.31e-13 are below9.095e-13 score ULP. Baselines repeat exactly.",
+      "limitation": "Numerical diagnostic only, not native convergence, geometry acceptance or a new stopping policy. No optimizer/candidate emission/SDK or Cedar edits. Product code unchanged from W52; prior full/installed tests apply. Generated inputs and observations remain local."
     }
   },
   "benchmarks": [
@@ -917,8 +927,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 52,
-    "next": 53,
+    "current": 53,
+    "next": 54,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1038,6 +1048,12 @@
       {
         "number": 52,
         "title": "Bind representative previews to registered source atoms",
+        "state": "RECORDED",
+        "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24"
+      },
+      {
+        "number": 53,
+        "title": "Measure precision at retained failed-trial points",
         "state": "RECORDED",
         "code_commit": "9deb105da5c0cf769cdba7046175b6e330f3cf24"
       }
