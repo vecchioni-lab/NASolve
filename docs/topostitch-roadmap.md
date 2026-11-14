@@ -283,7 +283,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Qualify actual graphical cut choices and persistent human review using the saved proposal owner. Keep partial physical identity, model materialization and seam chemistry behind existing gates.
 **Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary), [E_EXPLICIT_FOREST](#e_explicit_forest), [E_SAVED_FOREST_INTENT](#e_saved_forest_intent).
-**Last audit:** 2026-11-14, Linden, [W60](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410); Saved proposal intent only; P02 graphical choice/review, P03/P04 and chemistry remain open.
+**Last audit:** 2026-11-14, Linden, [W60](https://github.com/vecchioni-lab/NASolve/commit/f4d27cc06cad0c7d3f1f228a3815b61a72a341fd); Saved proposal intent only; P02 graphical choice/review, P03/P04 and chemistry remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -657,7 +657,7 @@ Missing-asset regression fails before fix; focused41,full1545 plus229subtests,in
 <a id="e_saved_forest_intent"></a>
 ### E_SAVED_FOREST_INTENT — saved_forest_proposal_intent
 
-[Evidence contract](topostitch-periodic.md#w60--preserve-selected-link-and-anchor-intent-in-saved-proposals) at [W60](https://github.com/vecchioni-lab/NASolve/commit/1b4d79134331f8777c2a7f3ba53efed5f8cca410).
+[Evidence contract](topostitch-periodic.md#w60--preserve-selected-link-and-anchor-intent-in-saved-proposals) at [W60](https://github.com/vecchioni-lab/NASolve/commit/f4d27cc06cad0c7d3f1f228a3815b61a72a341fd).
 9 new regressions; focused71,full1576 plus229subtests,installed/relocated370,6helps. Both public alternatives reproduce exact prior observations while retaining graph-link/anchor choice; installed forest and legacy commands pass. JS intent display/interactions checked with doubles.
 **Limit:** Proposal intent is not human approval; no GUI editing, automatic cut, coordinate writer, chemical seam or native execution. Browser visual review open. Old direct-image packets unchanged; new kind requires compatible reader. Scientific artifacts local only.
 

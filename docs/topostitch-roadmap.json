@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
+  "audited_code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -456,7 +456,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
+        "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
         "reviewer": "Linden",
         "human_update": 60,
         "scope": "Saved proposal intent only; P02 graphical choice/review, P03/P04 and chemistry remain open"
@@ -882,7 +882,7 @@
     },
     "E_SAVED_FOREST_INTENT": {
       "kind": "saved_forest_proposal_intent",
-      "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410",
+      "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
       "human_update": 60,
       "reference": "docs/topostitch-periodic.md#w60--preserve-selected-link-and-anchor-intent-in-saved-proposals",
       "result": "9 new regressions; focused71,full1576 plus229subtests,installed/relocated370,6helps. Both public alternatives reproduce exact prior observations while retaining graph-link/anchor choice; installed forest and legacy commands pass. JS intent display/interactions checked with doubles.",
@@ -1172,7 +1172,7 @@
         "number": 60,
         "title": "Retain chosen graph links and anchors in saved proposals",
         "state": "RECORDED",
-        "code_commit": "1b4d79134331f8777c2a7f3ba53efed5f8cca410"
+        "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd"
       }
     ]
   }
