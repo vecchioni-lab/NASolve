@@ -1645,3 +1645,57 @@ still apply to unchanged product code; roadmap and documentation checks cover
 this evidence update. The next small software task is to retain and audit the
 identified last accepted point after an optimizer exception, while preserving
 FAILED status, the original error and no candidate/adoption authority.
+
+
+### W54 — Audit last accepted points without recovering failed trials
+
+`run_native_masked_trial` now retains a separate `failure_endpoint` diagnostic
+when the optimizer raises a caught error. Its coordinate origin is the last
+callback-confirmed accepted trace step. A lower-scoring rejected trial, the
+optimizer's restored working vector, and the initial source are not substitutes.
+Callbacks must match the last evaluated coordinates before an accepted step can
+be recorded. If no accepted step exists, report `NO_ACCEPTED_STEP` without an
+invented endpoint or new evaluations.
+
+The diagnostic checks pinned optimizer sources and remaining evaluation budget,
+reproduces the accepted target components/projected gradient norm exactly, and
+uses the existing full-coordinate derivative gates at full precision and after
+three-decimal coordinate rounding. Fixed atoms remain fixed. The nested status
+can be `DERIVATIVES_PASS`, `DERIVATIVE_REVIEW`, `FAILED`, `NO_ACCEPTED_STEP` or
+`INSUFFICIENT_BUDGET`; partial observations and their own errors are retained.
+The original optimizer error and outer **FAILED** status remain unchanged.
+Passing derivatives cannot supply convergence, chemistry approval or a candidate.
+Ordinary successful/capped trial fields and all optimizer parameters stay unchanged.
+
+The captured-job receipt exposes additive `failure_endpoint_status` metadata;
+its execution status, nonzero return and failed-trial state remain authoritative.
+No schema migration, CLI option, retry, tolerance relaxation, checkpoint writer or
+Cedar change is introduced. This is diagnostic use of a failed trajectory, not
+optimizer recovery. Scientific inputs, native reports and frozen sources remain
+local and are not committed as NASolve runs.
+
+Twelve new tests include accepted-versus-best-rejected points, absent callbacks,
+source loss/change, insufficient budget, changed objective/gradient, partial
+rounded failure, derivative review and unchanged successful/capped behavior.
+Eleven new failure-capability checks fail against the preceding runtime; all
+33 focused trial/job checks now pass. Complete Willow: 1,489 tests plus 229
+subtests. Installed/relocated shared-owner checks: 276, with exact legacy public
+preview replay and original paths unavailable. Five command helps, lean imports
+and Python 3.10 syntax pass. Commands follow the current periodic validation
+receipt, with focused arguments `tests/test_topostitch_trial.py
+ tests/test_topostitch_captured_job.py`; the full run used the same environment
+and `-m pytest -q -p no:cacheprovider`. The wheel SHA-256 is
+`2d474f2c6698de1452562900b43e076cbddf00c51d1eaa717bac0d420eb65841`.
+
+Two complete native reproductions in **Phenix 2.2.1-6174**, using frozen Cedar
+`f2345a8` and unchanged W51 requests, preserve every optimizer evaluation, accepted
+step and original error exactly. Both jobs still return 2 and remain FAILED.
+The new diagnostics audit accepted trace indices 369 and 364 (paired/core-only),
+not the subsequent rejected line-search trials. All 612 full and rounded
+coordinate derivatives pass unchanged bounds; full-precision samples exactly
+match the independent W53 observations. Each diagnostic uses 4,900 objective
+calls within the original mask budget. Inputs and consumed sources are unchanged.
+No native model file, candidate selection or stopping-policy change follows.
+Exact predeclared commands and failed-job receipts remain local; they use the
+same W51 CLI arguments (`--trial-iterations 500 --trial-calls 2000
+--timeout-seconds 1200`) through frozen W54 source.

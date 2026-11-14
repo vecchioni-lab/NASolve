@@ -134,3 +134,160 @@ def test_endpoint_pair_attribution_must_match_raw_unweighted_score():
         describe_pairs=lambda points:dict(target=4.))
     assert result['status']=='FAILED' and 'raw pair target' in result['error']
     assert not result['scientific_acceptance']
+
+
+@pytest.fixture
+def fake_optimizer(tmp_path, monkeypatch):
+    """A line search can restore its best trial even when that trial was rejected."""
+    import sys
+    lbfgs=SimpleNamespace(__file__=str(tmp_path/'lbfgs.py'))
+    extension=SimpleNamespace(__file__=str(tmp_path/'extension.py'))
+    for module in (lbfgs,extension):
+        from pathlib import Path
+        Path(module.__file__).write_text('# pinned synthetic optimizer\n')
+    lbfgs.termination_parameters=lambda **kw:kw
+    lbfgs.exception_handling_parameters=lambda **kw:kw
+    lbfgs.traditional_convergence_test=lambda *a:lambda *a:False
+    flex=SimpleNamespace(double=lambda x,value=None: [value]*x if isinstance(x,int) else list(x))
+    monkeypatch.setitem(sys.modules,'scitbx',SimpleNamespace(lbfgs=lbfgs))
+    monkeypatch.setitem(sys.modules,'scitbx.lbfgs',lbfgs)
+    monkeypatch.setitem(sys.modules,'scitbx_lbfgs_ext',extension)
+    monkeypatch.setitem(sys.modules,'scitbx.array_family',SimpleNamespace(flex=flex))
+    return lbfgs
+
+
+class TrialObjective:
+    def __init__(self):
+        self._mask=CoordinateMask(((1.,2.,3.),(4.,5.,6.)),(0,),1.)
+        self._calls=0;self.budget=100;self.shift=0.;self.bad_gradient=False;self.visited=[]
+    def binding_report(self):return dict(movable_indices=[0],max_evaluations=self.budget)
+    def evaluate(self,x):
+        self._calls+=1;self.visited.append(tuple(x))
+        if self._calls>self.budget:raise ValueError('objective budget exhausted')
+        target=(x[0]-.3)**2+x[1]**2+x[2]**2+self.shift
+        gradient=[2*(x[0]-.3),2*x[1],2*x[2]]
+        if self.bad_gradient:gradient[0]+=1.
+        return dict(target=target,native_target=target,pair_target=0.,unweighted_pair_target=0.,
+            tether_target=0.,gradient=gradient,points=self._mask.expand(x))
+
+
+def failed_optimizer(lbfgs, objective, *, accepted=True, mode=None):
+    def run(*,target_evaluator,exception_handling_params,**kwargs):
+        assert exception_handling_params['ignore_line_search_failed_rounding_errors'] is False
+        target_evaluator.x[:]=[.2004,0.,0.]
+        target_evaluator.compute_functional_and_gradients()
+        if accepted:
+            target_evaluator.callback_after_step(SimpleNamespace(iter=lambda:1,nfun=lambda:1))
+        # A lower-energy trial exists, but the optimizer has not accepted it.
+        target_evaluator.x[:]=[.3,0.,0.]
+        target_evaluator.compute_functional_and_gradients()
+        if mode=='drift':objective.shift=1.
+        elif mode=='gradient':objective.bad_gradient=True
+        elif mode=='budget':objective._calls=objective.budget-1
+        elif mode=='missing_source':
+            from pathlib import Path
+            Path(lbfgs.__file__).unlink()
+        elif mode=='source':
+            from pathlib import Path
+            Path(lbfgs.__file__).write_text('# source changed\n')
+        raise RuntimeError('original line-search failure')
+    lbfgs.run=run
+
+
+def test_failed_trial_audits_accepted_step_not_best_rejected_trial(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();failed_optimizer(fake_optimizer,objective)
+    report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
+    assert report['status']=='FAILED' and report['error']=='RuntimeError: original line-search failure'
+    assert report['trace'][1]['target']<report['trace'][0]['target']
+    diagnostic=report['failure_endpoint']
+    assert diagnostic['status']=='DERIVATIVES_PASS' and diagnostic['exact_trace_replay']
+    assert diagnostic['accepted_step']==dict(iteration=1,calls=1,trace_index=0)
+    assert diagnostic['coordinate_origin']=='LAST_ACCEPTED_OPTIMIZER_STEP'
+    assert diagnostic['full_precision_derivatives']['baseline']['points'][0][0]==pytest.approx(1.2004)
+    assert diagnostic['serialized_derivatives']['baseline']['points'][0][0]==pytest.approx(1.200)
+    assert diagnostic['evaluation_calls']==28
+    assert 'full_precision_derivatives' not in report and 'stopping' not in report
+    assert not report['scientific_acceptance'] and not report['automatic_adoption']
+    assert objective._calls==44
+
+
+def test_failure_before_accepted_step_has_no_invented_endpoint(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();failed_optimizer(fake_optimizer,objective,accepted=False)
+    report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
+    assert report['failure_endpoint']['status']=='NO_ACCEPTED_STEP'
+    assert report['failure_endpoint']['evaluation_calls']==0 and objective._calls==16
+    assert report['status']=='FAILED'
+
+
+@pytest.mark.parametrize('mode,status',[('drift','FAILED'),('gradient','FAILED'),('budget','INSUFFICIENT_BUDGET'),('source','FAILED'),('missing_source','FAILED')])
+def test_failure_diagnostics_never_replace_original_error(fake_optimizer,mode,status):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();failed_optimizer(fake_optimizer,objective,mode=mode)
+    report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
+    assert report['error']=='RuntimeError: original line-search failure' and report['status']=='FAILED'
+    diagnostic=report['failure_endpoint'];assert diagnostic['status']==status
+    if mode in ('drift','gradient'):assert 'replay' in diagnostic['error']
+    if mode in ('budget','source','missing_source'):assert diagnostic['evaluation_calls']==0
+    assert not report['automatic_adoption']
+
+
+def test_trial_failure_endpoint_derivative_review_stays_failed(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();original=objective.evaluate
+    def evaluate(x):
+        value=original(x)
+        # Same baseline and gradient norm, but incorrect derivatives nearby.
+        if objective._calls>17 and tuple(x)!=(.2004,0.,0.):value['target']+=x[1]
+        return value
+    objective.evaluate=evaluate;failed_optimizer(fake_optimizer,objective)
+    report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
+    assert report['status']=='FAILED'
+    assert report['failure_endpoint']['status']=='DERIVATIVE_REVIEW'
+    assert report['error']=='RuntimeError: original line-search failure'
+
+
+def test_successful_trial_retains_existing_endpoint_and_stopping_fields(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective()
+    def run(*,target_evaluator,log,**kw):
+        target_evaluator.x[:]=[.2004,0.,0.];target_evaluator.compute_functional_and_gradients()
+        optimizer=SimpleNamespace(iter=lambda:2,nfun=lambda:1,error=None)
+        target_evaluator.callback_after_step(optimizer)
+        log.write('lbfgs minimizer stop: max_iterations\n')
+        return optimizer
+    fake_optimizer.run=run
+    report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
+    assert report['status']=='ENDPOINT_DERIVATIVES_PASS'
+    assert report['stopping']['reason']=='max_iterations'
+    assert 'failure_endpoint' not in report
+
+
+def test_unmatched_callback_cannot_mislabel_an_evaluated_trial_as_accepted(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective()
+    def run(*,target_evaluator,**kw):
+        target_evaluator.compute_functional_and_gradients()
+        target_evaluator.x[0]=.2
+        target_evaluator.callback_after_step(SimpleNamespace(iter=lambda:1,nfun=lambda:1))
+        raise AssertionError('Mismatched callback should have refused')
+    fake_optimizer.run=run
+    report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
+    assert report['status']=='FAILED' and 'accepted' in report['error']
+    assert report['accepted_steps']==[] and report['failure_endpoint']['status']=='NO_ACCEPTED_STEP'
+
+
+def test_failure_during_rounded_audit_retains_full_precision_and_original_error(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective=TrialObjective();original=objective.evaluate
+    def evaluate(x):
+        if objective._calls>=30:raise RuntimeError('rounded observation unavailable')
+        return original(x)
+    objective.evaluate=evaluate;failed_optimizer(fake_optimizer,objective)
+    report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
+    assert report['status']=='FAILED' and report['error']=='RuntimeError: original line-search failure'
+    diagnostic=report['failure_endpoint']
+    assert diagnostic['status']=='FAILED' and 'rounded observation unavailable' in diagnostic['error']
+    assert diagnostic['full_precision_derivatives']['status']=='DERIVATIVES_PASS'
+    assert 'serialized_derivatives' not in diagnostic

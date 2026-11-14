@@ -266,13 +266,14 @@
         "W45 uses existing APIs for a matched core-only control against the paired trial. Complete derivative/endpoint/fresh-readback checks pass; intended-contact benefit is separated from core preservation, with capped outcomes and packing regressions retained.",
         "W46 composes Cedar native torsion/plane kernels into endpoint observations with explicit live-policy, single-proxy and full-family target/gradient checks. Six controls retain individual regressions and unchanged fixed terms; no chemical acceptance or ordinary refinement route is added.",
         "W51 predeclared500-iteration paired/core-only controls reproduce the old200-iteration traces, then retain native rounding line-search failures; no candidate or endpoint qualification follows.",
-        "W53 fresh native contexts reproduce both W51 last accepted points exactly and pass unchanged complete612-variable derivatives. Predeclared directional probes show score quantization and local steepest-direction quadratic decreases below one score ULP; this supports a precision limit, not convergence or acceptance."
+        "W53 fresh native contexts reproduce both W51 last accepted points exactly and pass unchanged complete612-variable derivatives. Predeclared directional probes show score quantization and local steepest-direction quadratic decreases below one score ULP; this supports a precision limit, not convergence or acceptance.",
+        "W54 separately audits only callback-confirmed last accepted points after optimizer errors. Both native W51 trajectories/errors reproduce exactly; full/rounded612-variable diagnostics pass and original FAILED/no-adoption status remains. Source drift, absent accepted steps, budget shortage and partial diagnostic failure remain explicit."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Retain and audit the identified last accepted point after optimizer failure while preserving FAILED/original error and no candidate adoption. Qualify affected chemistry and complete ordinary native enforcement separately; do not relax stopping policy based solely on precision observations.",
+      "next_action": "Qualify affected chemistry and complete ordinary native enforcement through Cedar before a supported repair/refinement route. Preserve failed/capped outcomes; passing accepted-point derivatives do not justify tolerance relaxation or adoption. Continue shared physical identity and Pine preview/scattering gates without treating recutting as repair.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -294,13 +295,14 @@
         "E_CORE_CONTROL",
         "E_NATIVE_TERMS",
         "E_NATIVE_STOPPING_LIMIT",
-        "E_NATIVE_PRECISION"
+        "E_NATIVE_PRECISION",
+        "E_FAILED_ENDPOINT_DIAGNOSTIC"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
         "reviewer": "Linden",
-        "scope": "Read-only native precision observations; original optimizer failure and all chemical/ordinary-refinement gates remain"
+        "scope": "Failure-path diagnostics and two complete native reproductions; no optimizer recovery, chemistry acceptance or ordinary-refinement support"
       }
     },
     {
@@ -812,6 +814,14 @@
       "reference": "docs/topostitch-preview.md#w53--measure-precision-at-the-last-accepted-failed-trial-points",
       "result": "Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target components and gradient norms exactly. Both complete612-variable derivative checks pass unchanged1e-3 bounds at1e-4/1e-5 Angstrom. Eight fixed directions at nine scales retain score quantization; local quadratic decrease estimates6.60e-13/7.31e-13 are below9.095e-13 score ULP. Baselines repeat exactly.",
       "limitation": "Numerical diagnostic only, not native convergence, geometry acceptance or a new stopping policy. No optimizer/candidate emission/SDK or Cedar edits. Product code unchanged from W52; prior full/installed tests apply. Generated inputs and observations remain local."
+    },
+    "E_FAILED_ENDPOINT_DIAGNOSTIC": {
+      "kind": "last_accepted_failed_trial_observation",
+      "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444",
+      "human_update": 54,
+      "reference": "docs/topostitch-preview.md#w54--audit-last-accepted-points-without-recovering-failed-trials",
+      "result": "11 new capability regressions fail against preceding runtime; all33 focused trial/job tests pass. Full Willow1489 plus229 subtests; installed/relocated276,5helps,lean import and3.10syntax. Both complete Phenix2.2.1-6174 controls reproduce W51 traces,accepted history and errors exactly. Nested full/rounded612-variable checks pass; full samples match independentW53. Failed jobs return2, sources remain unchanged.",
+      "limitation": "Additive diagnostic metadata only. Original FAILED/error preserved; no rejected-trial fallback, candidate emission, tolerance change or scientific acceptance. Native observations remain local; no Cedar/runtime SDK change, schema migration or full combined-branch qualification."
     }
   },
   "benchmarks": [
@@ -927,8 +937,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 53,
-    "next": 54,
+    "current": 54,
+    "next": 55,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1054,6 +1064,12 @@
       {
         "number": 53,
         "title": "Measure precision at retained failed-trial points",
+        "state": "RECORDED",
+        "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444"
+      },
+      {
+        "number": 54,
+        "title": "Audit accepted points while preserving optimizer failures",
         "state": "RECORDED",
         "code_commit": "5cecbb513264c2f534db759a5822fa8d36eea444"
       }

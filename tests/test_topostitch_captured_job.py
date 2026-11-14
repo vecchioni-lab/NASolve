@@ -153,3 +153,19 @@ def test_dispatcher_mismatch_rejects_before_any_output_or_launch(context):
     with pytest.raises(ValueError,match='dispatcher'):
         job.run_captured_objective(**context.args)
     assert not context.args['output_parent'].exists() and context.seen==[]
+
+
+def test_failed_trial_receipt_keeps_diagnostic_pass_separate_from_job_status(context):
+    def runner(command,*,cwd,log_path,**kw):
+        (cwd/'evaluation.json').write_text(json.dumps(dict(status='TRIAL_REVIEW_REQUIRED',optimization=True,
+            trial=dict(status='FAILED',error='RuntimeError: original line-search failure',
+                failure_endpoint=dict(status='DERIVATIVES_PASS')))))
+        log_path.write_text('synthetic failed optimizer with passing diagnostic')
+        return 2
+    root,report=job.run_captured_objective(**context.args,trial_iterations=500,_process_runner=runner)
+    assert report['status']==report['trial_status']=='FAILED'
+    assert report['failure_endpoint_status']=='DERIVATIVES_PASS'
+    assert report['execution']['returncode']==2 and not report['scientific_acceptance']
+    assert report['inputs_and_sources_preserved']
+    assert 'stopping_classification' not in report
+    assert json.loads((root/'evaluation.json').read_text())['trial']['error']=='RuntimeError: original line-search failure'

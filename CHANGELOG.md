@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W54 — Retain accepted-point diagnostics after optimizer failure
+
+- Audit only the callback-confirmed last accepted step after an optimizer error,
+  preserving the original FAILED status and error even if its derivatives pass.
+- Keep absent endpoints, insufficient budget, source drift and partial diagnostic
+  failures explicit. Never substitute a rejected/best trial or emit a candidate.
+- Add nested trial observations and receipt metadata; existing successful trial
+  behavior, native stopping parameters and CLI remain unchanged.
+
 ### W53 — Observe failed-trial numerical precision
 
 - Reproduce both W51 last accepted points in fresh native contexts and pass the

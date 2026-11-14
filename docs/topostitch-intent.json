@@ -418,6 +418,15 @@
           "complete_family_target_and_gradient_checked": true,
           "chemical_qualification": false
         }
+      },
+      "failure_endpoint_observation": {
+        "coordinate_origin": "LAST_ACCEPTED_OPTIMIZER_STEP",
+        "exact_trace_scalar_and_gradient_norm_replay": true,
+        "full_and_rounded_derivative_diagnostics": true,
+        "rejected_trial_is_endpoint": false,
+        "original_optimizer_failure_preserved": true,
+        "candidate_emission": false,
+        "stopping_policy_changed": false
       }
     },
     "single_edge_capacity": {

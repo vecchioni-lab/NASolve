@@ -283,6 +283,8 @@ def _run(args, cedar, phenix, process_runner):
         report['optimization']=evaluation.get('optimization',False)
         if 'trial' in evaluation:
             report['trial_status']=evaluation['trial']['status']
+            if 'failure_endpoint' in evaluation['trial']:
+                report['failure_endpoint_status']=evaluation['trial']['failure_endpoint']['status']
             if 'stopping' in evaluation['trial']:
                 report['stopping_classification']=cedar['cif_fixed_geometry'].classify_stopping(evaluation['trial']['stopping'])
         if code!=0:raise ValueError('Native probe/trial remains under review; inspect retained evaluation.json/native.log')

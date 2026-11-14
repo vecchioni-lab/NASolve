@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W53; next W54.** W33 introduced human update numbers without
+**Willow update W54; next W55.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -185,8 +185,12 @@ W53 reproduces both W51 last accepted points exactly in fresh native contexts.
 All 612 derivatives pass unchanged bounds; predeclared directional probes show
 score quantization and local quadratic improvement estimates below one score ULP.
 This supports numerical-resolution limits, not convergence or geometry approval.
-W51 stays FAILED. Next retain/audit identified accepted points on optimizer failure
-without emitting candidates or relaxing stopping policy. The installed temporary
+W51 stays FAILED. W54 now retains a separately audited last accepted point after
+optimizer errors. Both native histories/errors reproduce exactly and new full/rounded
+derivative diagnostics pass, while jobs stay FAILED and emit no candidate.
+Full Willow: 1,489 plus 229 subtests; installed/relocated: 276. Next close the
+shared physical/chemistry gates and ordinary-refinement integration, not tolerance
+relaxation or automatic adoption. The installed temporary
 Cedar C295/Willow compatibility check passes 264 focused tests and exact public
 preview replay; no merge or complete combined-suite claim.
 

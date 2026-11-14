@@ -43,6 +43,51 @@ def check_masked_derivatives(evaluate, displacements):
         exact_repeat=True,evaluation_calls=2+4*len(values))
 
 
+
+def _observe_failed_last_accepted(objective, result, sources, pinned):
+    """Audit an accepted trace point, never a rejected/best/restored trial.
+
+    This nested observation cannot replace the original optimizer failure or
+    populate the successful trial's endpoint fields. It uses the existing mask,
+    derivative policy and remaining evaluation budget; no candidate is emitted.
+    """
+    report=dict(status='NO_ACCEPTED_STEP',coordinate_origin='LAST_ACCEPTED_OPTIMIZER_STEP',
+        optimizer_failure_preserved=True,scientific_acceptance=False,evaluation_calls=0)
+    start_calls=objective._calls
+    try:
+        if sources()!=pinned:raise ValueError('Native optimizer sources changed')
+        if not result['accepted_steps']:return report
+        step=result['accepted_steps'][-1]
+        saved=result['trace'][step['trace_index']]
+        values=saved['displacements']
+        report['accepted_step']=dict(step)
+        if objective.binding_report()['max_evaluations']-objective._calls<2*(4*len(values)+2):
+            report['status']='INSUFFICIENT_BUDGET';return report
+        def evaluate(delta):
+            value=objective.evaluate(delta)
+            if objective._calls==start_calls+1:
+                if (any(value[k]!=saved[k] for k in ('target','native_target','pair_target',
+                        'unweighted_pair_target','tether_target'))
+                        or math.hypot(*value['gradient'])!=saved['gradient_norm']):
+                    raise ValueError('Last accepted trace scalar/gradient-norm replay differs')
+                report['exact_trace_replay']=True
+            return value
+        full=check_masked_derivatives(evaluate,values)
+        report['full_precision_derivatives']=full
+        points=list(full['baseline']['points'])
+        for i in objective.binding_report()['movable_indices']:
+            points[i]=tuple(float(f'{v:.3f}') for v in points[i])
+        rounded=check_masked_derivatives(objective.evaluate,objective._mask.displacements(points))
+        report['serialized_derivatives']=rounded
+        if sources()!=pinned:raise ValueError('Native optimizer sources changed')
+        report['status']='DERIVATIVES_PASS' if full['status']==rounded['status']=='DERIVATIVES_PASS' else 'DERIVATIVE_REVIEW'
+    except (ValueError,RuntimeError,OverflowError,OSError) as exc:
+        report.update(status='FAILED',error=type(exc).__name__+': '+str(exc))
+    finally:
+        report['evaluation_calls']=objective._calls-start_calls
+    return report
+
+
 def run_native_masked_trial(objective, *, max_iterations, max_calls):
     """Use the installed scitbx optimizer with hard motion/evaluation bounds.
 
@@ -80,13 +125,20 @@ def run_native_masked_trial(objective, *, max_iterations, max_calls):
                     gradient_norm=math.hypot(*self.current['gradient'])))
                 return self.current['target'],flex.double(self.current['gradient'])
             def callback_after_step(self,minimizer):
+                if not result['trace'] or list(self.x)!=result['trace'][-1]['displacements']:
+                    raise ValueError('Optimizer accepted point differs from the last evaluated trace')
                 result['accepted_steps'].append(dict(iteration=int(minimizer.iter()),calls=int(minimizer.nfun()),trace_index=len(result['trace'])-1))
                 return False
         evaluator=Evaluator();result['optimization_started']=True
-        optimizer=lbfgs.run(target_evaluator=evaluator,
-            termination_params=lbfgs.termination_parameters(max_iterations=max_iterations,max_calls=max_calls,
-                traditional_convergence_test=True,traditional_convergence_test_eps=1e-5),
-            exception_handling_params=lbfgs.exception_handling_parameters(ignore_line_search_failed_rounding_errors=False),log=log)
+        try:
+            optimizer=lbfgs.run(target_evaluator=evaluator,
+                termination_params=lbfgs.termination_parameters(max_iterations=max_iterations,max_calls=max_calls,
+                    traditional_convergence_test=True,traditional_convergence_test_eps=1e-5),
+                exception_handling_params=lbfgs.exception_handling_parameters(ignore_line_search_failed_rounding_errors=False),log=log)
+        except (ValueError,RuntimeError,OverflowError) as exc:
+            result['error']=type(exc).__name__+': '+str(exc)
+            result['failure_endpoint']=_observe_failed_last_accepted(objective,result,sources,pinned)
+            return result
         full=check_masked_derivatives(objective.evaluate,list(evaluator.x));result['full_precision_derivatives']=full
         points=list(initial['baseline']['points'])
         for i in binding['movable_indices']:
