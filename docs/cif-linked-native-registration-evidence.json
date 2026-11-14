@@ -95361,7 +95361,7 @@
     },
     "native_scope": "Complete ordinary Coot/NAR construction; checked intake refused before dictionary request/ReadySet/refinement",
     "refusal": "Phosphate B:1: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review",
-    "pending_decision": "B:1 free hydroxyl, complete terminal phosphate or explicitly supported incoming symmetry linkage; do not infer intent",
+    "decision_update": "Resolved intent by Simon on 2026-11-14: B:1 retains P/OP1/OP2 without OP3, intended incoming covalent symmetry continuation; supersedes earlier free-OH reply. Exact partner/enforcement unresolved; see symmetry_continuation_intent_2026_11_14.",
     "chi_comparison": {
       "A:12": {
         "parent_chi_degrees": -150.1258952939991,
@@ -96136,19 +96136,154 @@
       "scope": "Arithmetic replay of saved diagnostic JSON only; does not independently authenticate native producers or establish whole-refinement portability. Negative raw and stopped C293 outcomes retain their meaning."
     },
     "compatibility": "Explicit callable only; keyword Cartesian interface, no unit-cell/symmetry planes, no defaults/ordinary command/SDK/chemistry/normalization changes. Historical correction/workers unchanged.",
-    "artifacts": "Only compact code/tests/evidence in Git; native science/logs/runners excluded. Failed C293 retained. Remote publication permission pending after C290 rejection.",
+    "artifacts": "Only compact code/tests/evidence in Git; native science/logs/runners excluded. Failed C293 retained. Simon explicitly authorized compact-evidence publication after C290 rejection; raw science remains excluded.",
     "limits": [
       "Phenix 2.2.1-6174 / dispatcher 2.2.1 on this Mac; exact hashes identify consumed sources, version is not pristine-distribution attestation.",
       "Original five-cycle recipe/Free-R retained; these are software observations, not structure approval or PDU survival.",
       "Fork workers observed; other process/platform modes not qualified. Counters are per process.",
       "Cold report replay verifies arithmetic, not producer authenticity or whole-run portability.",
       "Historical static signature omits optional fields; complete capability/parameter binding remains an ordinary runtime gate.",
-      "PDU B:1 intent and compact-evidence publication permission pending."
+      "B:1 symmetry-continuation intent now declared and compact-evidence publication authorized; exact partner/native enforcement remain unresolved."
     ],
     "remaining": [
       "Qualify an explicit ordinary NASolve execution route using existing attempt/checkpoint owners and complete native parameter/symmetry/process scope.",
       "PDU/held-out chemical survival and Q07 mixed controls.",
       "Full suite/integration/defaults remain Q16; no full suite here."
     ]
+  },
+  "symmetry_continuation_intent_2026_11_14": {
+    "milestone": "C295",
+    "status": "DECLARED_INTENT_RECORDED_COORDINATES_OBSERVED_NO_ENFORCEMENT",
+    "authority": "Simon, 2026-11-14; corrected symmetry-continuation statement supersedes earlier free-OH reply",
+    "intent": {
+      "site": "B:1",
+      "state": "incoming_symmetry_covalent_continuation",
+      "retain": [
+        "P",
+        "OP1",
+        "OP2"
+      ],
+      "exclude": [
+        "OP3"
+      ],
+      "exact_partner_status": "unconfirmed",
+      "separate_terminal_site": "D:1 remains governed by its existing complete-terminal-phosphate declaration"
+    },
+    "shared_contract": {
+      "intent_owner": "Pine",
+      "front_end": "TopoStitch",
+      "chemistry_and_consumer_check": "Cedar",
+      "status": "planned integration",
+      "editing": "Preserve previous choices; remap exact atom endpoints/operators/lattice shifts on edit or reslicing, flag unresolved mappings; never infer free-OH from missing Cartesian neighbors."
+    },
+    "prior_work": [
+      "C111 sticky_end_symmetry_audit_2026_10_28: bond PHIL symmetry support, low-level angle/plane energies agree under two operations; force mapping/manager/exclusions unqualified",
+      "C188/C189/C270 raw-W refusal; free-end fixture is not authority for this scientific scaffold",
+      "Linden W48/W49/W50 graph/image/orbit owners; no duplicate topology authority"
+    ],
+    "observation": {
+      "status": "READ_ONLY_SYMMETRY_DISTANCE_OBSERVATION",
+      "source_anchor": "local_live_tests",
+      "source_directory": "290_Cedar_PDU-pair-current-k3sdohpc",
+      "models": {
+        "mr": {
+          "path": "dataset/AutoMR/run_001/Phaser/mr_solution.pdb",
+          "sha256": "6fbe480c3ee0d4068ac525adbf9c479f80e63343d85d947b158c370efdc37991",
+          "observation": {
+            "target": {
+              "model": "",
+              "chain": "B",
+              "residue": "1",
+              "icode": "",
+              "altloc": "",
+              "component": "DC",
+              "atom": "P"
+            },
+            "cell": [
+              106.218,
+              106.218,
+              91.636,
+              90.0,
+              90.0,
+              120.00000000000001
+            ],
+            "space_group": "R 3 :H",
+            "o3_atoms_examined": 42,
+            "scope": "One nearest image per O3 atom from native cctbx; not all image multiplicities, bond assignment, or restraint enforcement.",
+            "nearest_image": {
+              "partner": {
+                "model": "",
+                "chain": "B",
+                "residue": "7",
+                "icode": "",
+                "altloc": "",
+                "component": "DA",
+                "atom": "O3'"
+              },
+              "operator": "-x+y,-x,z",
+              "angstrom": 3.340190544346246,
+              "literal_angstrom": 21.894870677855124
+            }
+          }
+        },
+        "prepared": {
+          "path": "dataset/AutoMR/run_001/PostMR/Model/prepared_model.pdb",
+          "sha256": "baaaa8ca63d5aa5457ca0c85f59dc788c67611f75fd5b0dba793b894e288c338",
+          "observation": {
+            "target": {
+              "model": "",
+              "chain": "B",
+              "residue": "1",
+              "icode": "",
+              "altloc": "",
+              "component": "DC",
+              "atom": "P"
+            },
+            "cell": [
+              106.218,
+              106.218,
+              91.636,
+              90.0,
+              90.0,
+              120.00000000000001
+            ],
+            "space_group": "R 3 :H",
+            "o3_atoms_examined": 42,
+            "scope": "One nearest image per O3 atom from native cctbx; not all image multiplicities, bond assignment, or restraint enforcement.",
+            "nearest_image": {
+              "partner": {
+                "model": "",
+                "chain": "B",
+                "residue": "7",
+                "icode": "",
+                "altloc": "",
+                "component": "DA",
+                "atom": "O3'"
+              },
+              "operator": "-x+y,-x,z",
+              "angstrom": 3.340190544346246,
+              "literal_angstrom": 21.894870677855124
+            }
+          }
+        }
+      },
+      "attempt_files_unchanged": 72,
+      "original_inputs_unchanged": 19,
+      "native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "native_scope": "Read-only cctbx coordinate calculation; no refinement or chemical interpretation",
+      "runner_sha256": "38eb2bd30e113e22e3caa81a512788009fb6baebdacb5c8c24306bc068928b32"
+    },
+    "limits": [
+      "Nearest image per O3 atom is coordinate evidence only, not all image multiplicities or chemical bond assignment.",
+      "No model/dictionary/recipe changes, no refinement, no restraint or symmetry-angle implementation.",
+      "Current distance 3.34019 A exceeds existing local incoming-link maximum 2.1 A; declared intent must survive this mismatch.",
+      "Do not activate an isolated symmetry bond while the surrounding phosphate angles and nonbonded exclusions remain unqualified; angle-policy research is deferred."
+    ],
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHON -B branch-artifacts/cedar/runners/c295_symmetry_observation.py",
+      "result": "exit 0; native cctbx image distance independently checked against transformed Cartesian distance; all 19 inputs and 72 attempt files unchanged",
+      "scope": "Read-only coordinate observation, not a test-suite or native refinement pass"
+    },
+    "publication": "Simon authorized compact evidence; models/data/logs/local runners excluded"
   }
 }

@@ -1,22 +1,27 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C294**. Active **cedar** in NASolve-c96. Remote last verified
-**C289 `7e843af7`**; C290 is committed locally as **`c911bdc5`**. C291–C294 code,
-tests and native evidence are complete and being committed locally. Simon's
+Updated **2026-11-14, C295**. Active **cedar** in NASolve-c96. Remote last verified
+**C289 `7e843af7`**; C290 is local **`c911bdc5`**, C291–C294 **`dac3b18c`**.
+C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
 
-## Pending decisions and publication
+## Corrected intent and publication
 
-- **B:1 intent:** C290's original PDU-pair model has P/OP1/OP2 but no OP3 or verified
-  incoming O3′–P link; only D:1 is declared terminal phosphate. Simon was asked
-  whether B:1 is free hydroxyl, a complete terminal phosphate or an incoming
-  symmetry linkage. No answer yet. Preserve the stopped attempt; do not alter
-  phosphate or infer a link to force the control through.
-- **GitHub publication:** automatic approval review rejected C290's push because
-  compact PDU measurements/provenance may be unpublished science. Simon was asked
-  explicitly to authorize compact-evidence publication; no answer yet. Keep new
-  commits local and do not retry the push. Raw science/logs/runners stay local.
+- **B:1 intent:** Simon explicitly superseded his earlier free-OH reply: preserve
+  P/OP1/OP2, no OP3, with intended incoming covalent continuation to a symmetry
+  copy. C295's read-only native calculation finds B:7 O3′ under `-x+y,-x,z`
+  nearest at 3.34019 Å in both original MR and prepared coordinates. This is a
+  candidate image, not a confirmed partner or formed bond. All 19 original inputs
+  and 72 C290 files remain unchanged. D:1's separately declared complete terminal
+  phosphate is distinct; no new blanket OP3 policy or atom edits.
+- **Shared ownership:** Pine carries editable declared topology; TopoStitch
+  previews it; Cedar distinguishes intent, coordinate evidence and actual native
+  enforcement. Reslicing must map identities/images or flag unresolved mappings,
+  retaining previous choices. No absent Cartesian neighbor implies free OH.
+- **GitHub publication:** after the initial automatic rejection Simon explicitly
+  authorized pushing compact evidence. Code/tests/compact notes may be pushed;
+  raw science, models, diffraction data, logs and runners remain local.
 
 ## Accepted foundations
 

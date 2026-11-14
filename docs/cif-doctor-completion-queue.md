@@ -511,9 +511,29 @@ automatic deployment, PDU survival or universal Phenix support. No SDK edits.
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's
 old construction flip. It stops before dictionary repair at the previously known
-raw-W B:1 incomplete-phosphate ambiguity. Explicit B:1 chemical intent is pending;
-no atom deletion/addition or symmetry-link inference is authorized by this control.
-All originals remain fixed. This is not a PDU refinement-survival result.
+raw-W B:1 incomplete-phosphate ambiguity. C295 records Simon's correction:
+B:1 is intended to continue covalently through symmetry, retaining P/OP1/OP2
+without OP3; his earlier free-OH answer is superseded. The nearest observed
+candidate is B:7 O3′ under `-x+y,-x,z`, 3.34019 Å in original/prepared models.
+Neither chemical partner identity nor a formed bond follows from proximity alone.
+No atom edits, native link enforcement or PDU refinement-survival claim.
+
+**Pine/Cedar convergence (Simon and Linden, 2026-11-14):** Pine owns editable
+declared topology beyond the asymmetric unit: atom identities, exact operators
+and lattice shifts, continuation versus terminus/nick, uncertainty and edits.
+TopoStitch is the front-end preview; Cedar reports whether effective dictionaries
+and native restraints enforce that intent. Carry declared intent, coordinate
+support and consumer capability separately. Changes/reslicing retain prior choices
+and map both endpoints/images explicitly, flagging unresolved mappings instead of
+silently dephosphorylating, adding OP3 or guessing a new partner. D:1's existing
+complete terminal-phosphate authority remains separate. Reuse W48/W49/W50 owners;
+do not create a second Cedar topology registry. This is a planned shared contract,
+not implemented symmetry-link support. C111 already demonstrated low-level angle/
+plane energy agreement for two image operations, but PHIL exposure, force mapping,
+manager integration and nonbonded exclusions remain unqualified. Do not activate
+a lone symmetry bond without those surrounding terms. Finish the bounded
+native-consumer work; track this integration dependency without silently bypassing
+the B:1 guard or reopening the whole symmetry-restraint project.
 
 
 **Open; can start independently, required before ordinary-refinement claims.**
