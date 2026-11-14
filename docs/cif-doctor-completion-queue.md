@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure at C274
+## Near-term closure at C275
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -44,7 +44,10 @@ times within one read. Every file/owner/source check remains; historical worker
 bytes are unchanged. The two fresh-process reads return exactly the same view and
 leave all 389 run files unchanged. This single pair is not a general speed claim.
 C274 now completes an exact sealed AutoSol save explicitly after verified producer
-and group stop, including a fresh native interruption/relocation control. Reconcile
+and group stop, including a fresh native interruption/relocation control. C275
+connects that exact operation to the ordinary explicitly requested AutoSol command
+before SDK discovery; invalid saved evidence never falls through to native work.
+The execution API and campaign caller stay unchanged. Reconcile
 the remaining pre-seal, standalone-group and campaign-receipt limits below. Do not reopen completed preparation/storage
 systems or weaken their validation to make status or inspection faster.
 A newly exposed defect may require a bounded patch; a numerical patch estimate

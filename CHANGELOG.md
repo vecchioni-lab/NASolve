@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reuse a sealed result from the ordinary AutoSol command (C275)
+
+- `nasolve autosol RUN` now checks for C274's sealed result before native-tool
+  discovery. It completes or rereads that exact result through the same checks,
+  stating that Phenix was not rerun. Explicit completion-only mode stays available.
+- Missing receipts retain the previous fresh-launch/refusal behavior. Invalid,
+  active or conflicting saved evidence stops the command; it never falls through
+  to a native retry. Selection, scientific checks and immutable output stay intact.
+- The execution API and campaign-stage caller are unchanged. No new schema,
+  migration, native parameters or default checked-preparation activation.
+
 ### Finish a saved AutoSol result after interruption (C274)
 
 - New checked AutoSol launches record their existing producer/process group and

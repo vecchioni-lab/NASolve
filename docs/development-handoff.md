@@ -1,10 +1,24 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14**, C274 completed-result recovery. Active **cedar**,
-NASolve-c96; base before this patch is C273 `0526eae`.
+Updated **2026-11-14**, C275 ordinary-command recovery. Active **cedar**,
+NASolve-c96; base before this patch is C274 `6403407`.
 Simon authorized **12:36–14:36 Europe/London, 14 November**. Focused checks only;
 no full suite, new branch or merge. Finish Q04/Q05 before Q06. The
 [queue](cif-doctor-completion-queue.md) owns ordering.
+
+## Completed — the ordinary command returns the exact saved result
+
+C275 checks for C274's receipt before Phenix discovery when the user requests
+`nasolve autosol RUN`. It uses the same completion/validation owner, reports no
+native rerun, and never falls through after invalid/active/conflicting evidence.
+Absent receipts retain prior fresh-launch/refusal behavior. Completion-only mode
+still requires a receipt. Execution API and campaign-stage caller are unchanged.
+
+Validation: 145 focused tests + 16 subtests in 28.79 s. Before the change the new
+ordinary-command regression failed on SDK discovery. The final CLI reads real
+relocated C274 without SDK/old/source access or subprocess calls: 57.41 s, all 392
+files unchanged. Source pins and exact commands are in evidence-ledger entry
+`autosol_cli_completion_2026_11_14`. No schema, migration or new native execution.
 
 ## Completed — finish saving phasing work after interruption
 
@@ -68,8 +82,8 @@ sealing, unfinished native work, shared/foreign/unknown groups and missing outer
 campaign receipts stay preserved/unadopted. Direct AutoSol still lacks standalone
 isolated child ownership. Campaign inherited supervision is unchanged; do not
 move native work outside its tracked group. No guessed stop or native retry in place.
-Check normal caller guidance and explicitly reconcile these limits with the
-supported opt-in route before Q06; avoid building a parallel recovery stack.
+Normal CLI reuse is now connected. Explicitly reconcile the remaining limits
+with the supported opt-in route before Q06; avoid a parallel recovery stack.
 
 Single successful/failing requests are measured. Repeated-failure/100-dataset
 bounds, historical campaign migration and default activation remain explicit

@@ -39,7 +39,8 @@ phosphate. The saved comparison still opens after choosing a different model and
 moving the run. Coot also loads its final dictionary, models and density map.
 If Phenix finishes but saving NASolve's result is interrupted, an explicit
 completion command can now finish the exact sealed save after the original work
-has stopped. A fresh Phenix control survives that interruption and relocation,
+has stopped. Asking `nasolve autosol RUN` again uses those same checks before
+looking for Phenix, and says when it is returning the saved result. A fresh Phenix control survives that interruption and relocation,
 keeping the earlier comparison model and a later selected model distinct. No
 phasing is repeated. Missing receipts or uncertain processes remain preserved;
 this is not permission to retry unfinished native work in place.

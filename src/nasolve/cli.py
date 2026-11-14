@@ -988,9 +988,12 @@ def _autosol(args: argparse.Namespace) -> int:
     try:
         config = load_config()
         run = _workspace_run(args.run, config)
-        if getattr(args, "complete_publication", False):
-            from .autosol_publication import complete_autosol_publication
-            result = complete_autosol_publication(run)
+        from .autosol_publication import complete_autosol_publication
+        result = complete_autosol_publication(
+            run, if_present=not getattr(args, "complete_publication", False),
+        )
+        if result is not None:
+            print("Saved AutoSol result verified; no Phenix rerun.")
         else:
             phenix = discover_phenix(config, explicit=args.phenix_root)
             if args.phenix_root is None:

@@ -93798,5 +93798,53 @@
     "source": "Linden local message, W37",
     "reported": "Complete canonical NAR recipes frozen with exact PDB atom identities, role maps, per-atom symmetry images, full planes and checksums. Optional NativePairRecipe uses unchanged correct_parallelity_gradient(plane_order_safe=True), with no manager/callback mutation or exclusions changes. 8D93 14-pair recipe passes all 798 ASU-coordinate derivatives; synthetic P43/P21 pass; strained near-linear P1 remains REVIEW. Selection-only iotbx parsing disables default atom sorting.",
     "scope": "Future Q06 context only. No Cedar/Willow combined-build acceptance, merge or changes to native mathematical workers."
+  },
+  "autosol_cli_completion_2026_11_14": {
+    "checkpoint": "C275",
+    "base_commit": "6403407ce5039c0573755d485ccaa149fe907516",
+    "status": "FOCUSED_AND_SAVED_NATIVE_CLI_PASS",
+    "before": "Ordinary autosol command discovered Phenix and then refused an existing run even when C274 could safely complete/revalidate its sealed result.",
+    "after": "Ordinary explicitly requested autosol invokes C274 before discovery. Return None only for absent receipt; invalid or active evidence never authorizes native fallback. Report saved result/no Phenix rerun.",
+    "changed_source_files": [
+      "src/nasolve/autosol_publication.py",
+      "src/nasolve/cli.py"
+    ],
+    "compatibility": "No schemas, migration or native argument changes. Explicit completion-only still requires a receipt. Fresh/legacy launch behavior retained. execute_autosol API and campaign-stage behavior unchanged.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py -k ordinary_autosol -x",
+        "result": "Before change: 1 failed, 26 deselected in 1.28s on forbidden SDK discovery."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py tests/test_autosol_selected_reference.py tests/test_autosol.py tests/test_cli.py tests/test_campaign_stages.py -x",
+        "result": "145 passed, 16 subtests passed in 28.79s"
+      },
+      {
+        "command": "Inline Python control invokes cli.main([autosol, RUN/report.json]) with SDK discovery, subprocesses and old/source/SDK file reads forbidden; snapshots every run file before/after.",
+        "result": {
+          "status": "SAVED_NATIVE_NORMAL_AUTOSOL_CLI_READ_PASS",
+          "exit_code": 0,
+          "elapsed_seconds": 57.40993458402227,
+          "unchanged_run_files": 392,
+          "source_sha256": {
+            "src/nasolve/autosol.py": "34bdea9204261a6df29f6d6099e614a0368b494a3cd7ff138b1a97e9378d5285",
+            "src/nasolve/autosol_publication.py": "cdcba567e6a608bd5baa92d0cbd787609fed0d141de5afa1069c2ebc1e55e37b",
+            "src/nasolve/cli.py": "18363623626cd91b634e12203ecc9c0a5354a059d24e40662682f2a600efcbeb"
+          },
+          "old_source_sdk_reads_forbidden": true,
+          "native_calls": 0,
+          "scope": "Ordinary command on the exact already-published C274 result after relocation; fresh pending completion is separately covered by C274 native and C275 synthetic checks. No new native work."
+        },
+        "local_summary_sha256": "7478febdb4bee136bc10a9ed94d07a90bd7fb75eabb7ed22bc0287905e5a4b81",
+        "run": {
+          "anchor": "live_tests_directory",
+          "path": "274_Cedar_autosol-publication-tc0cilcn/relocated/DiU/AutoMR/run_001"
+        }
+      }
+    ],
+    "negative_controls": "Active/unknown groups, malformed receipt, missing result, newer report refuse without discovery/native call or changes. Missing receipt probe is read-only; explicit completion refuses. Dangling receipt is rejected rather than treated as absent. Current choice and repeat idempotency retained; report.json CLI path supported.",
+    "scope": "Fresh pending completion is C274 native evidence plus C275 synthetic regression. This change adds no native execution, API/campaign recovery, pre-seal recovery or diffraction refinement.",
+    "artifacts": "Only source/tests/docs committed. Read-only C274 native inputs retained locally; new read summary in /private/tmp, no scientific copy.",
+    "full_suite": "Not run per Simon. Last full C220/583d30df: 9178 tests + 276 subtests."
   }
 }

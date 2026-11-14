@@ -220,3 +220,56 @@ def test_completed_report_rollback_during_validation_cannot_report_success(selec
     with pytest.raises(AutoSolPreparationError,match='changed during'):
         publication.complete_autosol_publication(run)
     assert (run/'report.json').read_bytes()==previous
+
+
+def test_ordinary_autosol_command_finishes_saved_result_without_sdk(interrupted,monkeypatch,capsys):
+    from nasolve import checkpoints
+    from tests.test_cif_postmr_publication import snapshot
+    run,*_=interrupted;checkpoints.select_checkpoint(run,'postmr');stop(monkeypatch)
+    monkeypatch.setattr(cli,'load_config',lambda:object())
+    monkeypatch.setattr(cli,'_workspace_run',lambda requested,config:requested)
+    monkeypatch.setattr(cli,'discover_phenix',lambda *a,**k:pytest.fail('Saved completion needs no SDK discovery'))
+    assert cli.main(['autosol',str(run)])==0
+    assert 'Saved AutoSol result' in capsys.readouterr().out
+    assert checkpoints.read_registry(run)[1]['current']=='postmr'
+    after=snapshot(run)
+    assert cli.main(['autosol',str(run/'report.json')])==0
+    assert snapshot(run)==after
+
+
+@pytest.mark.parametrize('defect',['active','unknown','malformed','missing-result','newer-report'])
+def test_ordinary_saved_completion_never_falls_back_to_native_on_failure(interrupted,monkeypatch,defect):
+    from tests.test_cif_postmr_publication import snapshot
+    run,*_=interrupted;publication=stop(monkeypatch)
+    if defect in {'active','unknown'}:
+        monkeypatch.setattr(publication,'process_alive',lambda identity:True if defect=='active' else None)
+    elif defect=='malformed':(run/'AutoSol/publication.json').write_text('{}')
+    elif defect=='missing-result':(run/'AutoSol/report.json').unlink()
+    else:
+        path=run/'report.json';value=json.loads(path.read_text());value['newer_work']='preserve';path.write_text(json.dumps(value))
+    before=snapshot(run)
+    monkeypatch.setattr(cli,'load_config',lambda:object())
+    monkeypatch.setattr(cli,'_workspace_run',lambda *a:run)
+    monkeypatch.setattr(cli,'discover_phenix',lambda *a,**k:pytest.fail('Failed saved completion must not discover native tools'))
+    monkeypatch.setattr(cli,'execute_autosol',lambda *a,**k:pytest.fail('Failed saved completion must not relaunch'))
+    assert cli.main(['autosol',str(run)])==2
+    assert snapshot(run)==before
+
+
+def test_absent_receipt_probe_is_read_only_and_explicit_completion_still_refuses(tmp_path):
+    from nasolve.autosol_publication import complete_autosol_publication
+    from nasolve.autosol import AutoSolPreparationError
+    run=tmp_path/'run';run.mkdir()
+    assert complete_autosol_publication(run,if_present=True) is None
+    assert list(run.iterdir())==[]
+    with pytest.raises(AutoSolPreparationError):complete_autosol_publication(run)
+    assert list(run.iterdir())==[]
+
+
+def test_dangling_saved_receipt_is_not_treated_as_a_fresh_launch(tmp_path):
+    from nasolve.autosol_publication import complete_autosol_publication
+    from nasolve.autosol import AutoSolPreparationError
+    run=tmp_path/'run';(run/'AutoSol').mkdir(parents=True)
+    (run/'AutoSol/publication.json').symlink_to(tmp_path/'missing')
+    with pytest.raises(AutoSolPreparationError,match='symbolic link'):
+        complete_autosol_publication(run,if_present=True)

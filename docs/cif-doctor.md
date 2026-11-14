@@ -912,6 +912,17 @@ synthetic fixtures. Full results: `native_preparation_alternatives_2026_11_13`.
 
 ### Finish a sealed AutoSol result save (C274)
 
+C275 connects the same operation to an explicitly requested ordinary
+`nasolve autosol RUN`: inspect for the new receipt before Phenix discovery, then
+complete/revalidate it through C274. State that no native work was repeated. Only
+an absent receipt returns to the former launch/refusal path; invalid saved evidence
+never does. The execution API and campaign stage remain unchanged, and the explicit
+completion-only option still requires a receipt. No new schema or migration.
+145 focused tests + 16 subtests pass. The ordinary CLI reads the moved real C274
+result with SDK/old/source access and subprocesses forbidden, in 57.41 s; all 392
+files retain bytes/timestamps. No new native run or pending-native control is
+claimed for this small caller change. Exact evidence: `autosol_cli_completion_2026_11_14`.
+
 `nasolve autosol RUN --complete-publication` finishes an exact completed stage
 save without native discovery, execution or checkpoint reselection. New checked
 launches first write `AutoSol/execution.json` with policy

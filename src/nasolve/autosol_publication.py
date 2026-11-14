@@ -161,12 +161,14 @@ def _result(run, state):
         matched_distance=(result.get('site_validation') or {}).get('best_distance'))
 
 
-def complete_autosol_publication(run_directory):
+def complete_autosol_publication(run_directory, *, if_present=False):
     """Finish a sealed result save after verified stop; never run, retry or select.
 
     Missing old receipts are not retrofitted. An already exact completed result
     revalidates without rewriting anything, even if its producer still exists.
-    Pending completion never creates a campaign-stage success receipt.
+    Pending completion never creates a campaign-stage success receipt. With
+    if_present, return None only when no publication receipt exists; invalid
+    existing evidence still raises rather than authorizing native work.
     """
     from .autosol import AutoSolPreparationError
     from .checkpoints import _validate_preparation, _required_observations
@@ -174,6 +176,8 @@ def complete_autosol_publication(run_directory):
     try:
         run = Path(run_directory).expanduser().resolve()
         if run.name == 'report.json': run = run.parent
+        if if_present and not path_in(run,PUBLICATION_PATH).exists():
+            return None
         initial = _load(run)
         if not initial['published']: _stopped(initial)
         def checked():
