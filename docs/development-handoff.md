@@ -248,7 +248,7 @@ See the current inspector/preview guides for exact commands, versions, policies 
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
 Frozen Cedar through `f2345a8` was tested for native readback; current Cedar
-C274 is developing AutoSol publication recovery, following C273 native-audit reuse; the consumed registration/model/context/package interfaces
+C274/C275 have added sealed AutoSol publication recovery and CLI reuse, following C273 native-audit reuse; the consumed registration/model/context/package interfaces
 remain unchanged against the Pine base. Rowan confirms Cedar C273 is pushed and changes numerical-proof reuse only and does not edit
 the AutoRefine statistics parser. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the

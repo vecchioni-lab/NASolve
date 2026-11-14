@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "cc845a5800f725a1c2947de6daa38213102e6511",
+  "audited_code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -49,7 +49,8 @@
     "Before a new helper or subsystem, check existing Pine, NARestraints, Cedar and campaign owners. Missing shared interfaces are a coordination task, not a reason to fork their machinery.",
     "Do not advance sideways into deferred chemistry, providers or elaborate UI polish to avoid a failed physical gate. Keep failed/ambiguous/no-op outcomes legitimate.",
     "Validate focused behavior and installation during development; complete integration/full regression, native/platform/relocation and human checks before a supported release or merge. Pushing experimental work does not authorize merging.",
-    "Keep scientific inputs/results local unless explicitly authorized for publication. Runtime artifacts use declared anchors and checksums; this roadmap grants no runtime permission."
+    "Keep scientific inputs/results local unless explicitly authorized for publication. Runtime artifacts use declared anchors and checksums; this roadmap grants no runtime permission.",
+    "Build an input-driven general method, not a fit to named benchmark structures or datasets. Keep fixture-specific identifiers/transforms in requests, and require independent structure/symmetry and forward/reverse controls before widening supported claims."
   ],
   "milestones": [
     {
@@ -246,13 +247,14 @@
         "Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW.",
         "Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted.",
         "A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar.",
-        "Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed."
+        "Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed.",
+        "W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Choose and qualify a captured masked native policy with complete recipes, explicit additive-versus-native-edit exclusions, fixed atoms and weights. Prove callback persistence/identity across relevant manager lifecycle events or use a separately qualified Pine recut; then audit individual geometry and surrounding images with Cedar owners.",
+      "next_action": "Qualify a captured masked native objective that consumes the complete explicit recipe, preserves fixed atoms and declares normalization/exclusions. Resolve derivative step convergence under a declared general policy; prove lifecycle/identity through intended execution or qualify a Pine recut. Then audit individual geometry and surrounding images with Cedar owners.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -262,14 +264,15 @@
         "E_TRANSPORT",
         "E_MASKED_NATIVE",
         "E_PACKING",
-        "E_NATIVE_CALLBACK"
+        "E_NATIVE_CALLBACK",
+        "E_PAIR_RECIPE"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "a890fffacc12e62046b7ecac96b60a2cf101c23b",
-        "human_update": 36,
-        "scope": "Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support"
+        "code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be",
+        "human_update": 37,
+        "scope": "Complete recipe binding/arithmetic; independent controls and failures retained; no geometry or refinement acceptance"
       }
     },
     {
@@ -510,12 +513,12 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "cc845a5800f725a1c2947de6daa38213102e6511",
+      "code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "W35 reads final-PDB bond/angle RMSDs when the combined log summary is absent; three new regressions (plus three subtests) cover the demonstrated omission, precedence and incomplete summaries. Focused source: 53 tests + 16 subtests. Full source: 1,295 tests + 229 subtests. Rebuilt installed wheel: 421 focused tests + 18 subtests; isolated installed parser exactly reproduces all three complete Phenix 2.2.1-6174 reference outputs. Prior W33 relocated suite: 376 tests + 2 subtests; relocation was not repeated for this non-path-changing parser patch. Prior native reader evidence remains valid; rendered browser validation is pending.",
+      "result": "W37 freezes complete canonical pair recipes and evaluates exact atom images. Focused source: 88 tests; full source: 1,312 tests + 229 subtests. Installed wheel: 438 focused tests + 18 subtests. Relocated copied checkout with original absent: 96 tests. Isolated installed native compiler reproduces complete 14-pair energy/components. Python 3.10 syntax and lean optional imports pass. Existing preview schemas/entry points remain unchanged.",
       "limitation": "Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.",
-      "wheel_sha256": "f3eabac1645159b971170e848a1afa009806fe3674caa86e955e36db67258720",
-      "human_update": 35
+      "wheel_sha256": "d7aa5235518f64a0a31b94aed46a2d00eaf50224fcbbf8eeed5acd16809dec73",
+      "human_update": 37
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -637,6 +640,14 @@
       "reference": "docs/topostitch-preview.md#w36--native-restraint-callback-useful-arithmetic-incomplete-lifecycle",
       "result": "Complete Phenix 2.2.1-6174 read-only energy/derivative/lifecycle probe: added two-atom image-term derivative error <5.4e-10, wrapper and energy-only calls pass; all-atom selection and symmetry discard drop the callback, normalized target count is unchanged, ordinary geometry flags do not disable it. Original 855 atoms and native definitions unchanged.",
       "limitation": "Artificial term, no full DNA recipe, optimizer/refinement or production callback integration. No generic normal-CLI callback loader demonstrated; captures remain local. Existing raw plane-gradient failures and bond-edit exclusion semantics still apply."
+    },
+    "E_PAIR_RECIPE": {
+      "kind": "complete_native_pair_recipe_binding",
+      "code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be",
+      "human_update": 37,
+      "reference": "docs/topostitch-preview.md#w37--complete-canonical-pair-recipe-backend",
+      "result": "Complete Phenix 2.2.1-6174 energy/derivative probes bind actual NARestraints full planes/contacts using Cedar correction and shared exact image transport. 8D93 14-pair/798-coordinate, independent 7R96/114-coordinate, synthetic P43 and P21 controls pass. Independent 5W6W and strained P1 retain DERIVATIVE_REVIEW at larger step; per-coordinate step convergence is recorded. Eight negative controls pass throughout; native atom sorting is explicitly disabled after an independent fixture exposed changed order.",
+      "limitation": "Unnormalized additive pair energies only, no native exclusions/bond edits, movement mask, optimization, callback/lifecycle integration, density or scientific acceptance. General input-driven backend; fixture identities never enter algorithm rules. Scientific inputs and receipts stay local."
     }
   },
   "benchmarks": [
@@ -703,7 +714,7 @@
         "S04",
         "S06"
       ],
-      "remaining": "First qualify geometric placement plus ordinary matched refinement; later freeze map provenance and distinguish coordinate, occupancy and ADP explanations."
+      "remaining": "After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction."
     }
   ],
   "deferred": [
@@ -718,6 +729,10 @@
     {
       "scope": "AlphaFold provider integration",
       "trigger": "Separate input-provider work; existing predicted coordinates can be benchmark inputs without an AI runtime dependency."
+    },
+    {
+      "scope": "Calibrated negative backbone difference-density detection",
+      "trigger": "S06 after exact map/model/data binding and matched-refinement baselines; read-only patch evidence and scientist-calibrated false-positive controls first, S07/campaign review next, direct coordinate fitting later. Retain nearby positive support, ordinary map fit, spatial correlation, occupancy/ADP and processing uncertainty."
     },
     {
       "scope": "Direct density-guided fitting",
@@ -744,8 +759,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 36,
-    "next": 37,
+    "current": 37,
+    "next": 38,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -771,6 +786,12 @@
         "title": "Audit native periodic-restraint callback lifecycle",
         "state": "RECORDED",
         "code_commit": "a890fffacc12e62046b7ecac96b60a2cf101c23b"
+      },
+      {
+        "number": 37,
+        "title": "Bind complete canonical recipes to exact atom images",
+        "state": "RECORDED",
+        "code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be"
       }
     ]
   }

@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W36 — Audit native periodic-restraint callback lifecycle.** Next: W37.
+**Current update: W37 — Bind complete canonical recipes to exact atom images.** Next: W38.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -22,6 +22,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W34 | Matched 8D93 reference refinement control | RECORDED |
 | W35 | Read final Phenix bond and angle RMSDs | RECORDED |
 | W36 | Audit native periodic-restraint callback lifecycle | RECORDED |
+| W37 | Bind complete canonical recipes to exact atom images | RECORDED |
 
 ## Finish lines
 
@@ -49,6 +50,7 @@ Audit at every substantial checkpoint, not only at the end of a session:
 6. Do not advance sideways into deferred chemistry, providers or elaborate UI polish to avoid a failed physical gate. Keep failed/ambiguous/no-op outcomes legitimate.
 7. Validate focused behavior and installation during development; complete integration/full regression, native/platform/relocation and human checks before a supported release or merge. Pushing experimental work does not authorize merging.
 8. Keep scientific inputs/results local unless explicitly authorized for publication. Runtime artifacts use declared anchors and checksums; this roadmap grants no runtime permission.
+9. Build an input-driven general method, not a fit to named benchmark structures or datasets. Keep fixture-specific identifiers/transforms in requests, and require independent structure/symmetry and forward/reverse controls before widening supported claims.
 
 **Status meanings:** SCOPED_COMPLETE closes only its stated supported scope;
 PARTIAL records delivered work with open acceptance; OPEN has not met its gate;
@@ -176,16 +178,16 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 Turn a plausible placement into a chemically usable candidate before refinement is trusted.
 
-**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls. Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW. Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted. A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar. Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed.
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls. Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW. Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted. A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar. Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed. W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible.
 
 **Closure audit:**
 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Choose and qualify a captured masked native policy with complete recipes, explicit additive-versus-native-edit exclusions, fixed atoms and weights. Prove callback persistence/identity across relevant manager lifecycle events or use a separately qualified Pine recut; then audit individual geometry and surrounding images with Cedar owners.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback).
-**Last audit:** 2026-11-14, Linden, [W36](https://github.com/vecchioni-lab/NASolve/commit/a890fffacc12e62046b7ecac96b60a2cf101c23b); Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support.
+**Next action:** Qualify a captured masked native objective that consumes the complete explicit recipe, preserves fixed atoms and declares normalization/exclusions. Resolve derivative step convergence under a declared general policy; prove lifecycle/identity through intended execution or qualify a Pine recut. Then audit individual geometry and surrounding images with Cedar owners.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe).
+**Last audit:** 2026-11-14, Linden, [W37](https://github.com/vecchioni-lab/NASolve/commit/8653b96f6b79bb1c66b12afb59261ceb4b6ef9be); Complete recipe binding/arithmetic; independent controls and failures retained; no geometry or refinement acceptance.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -354,15 +356,15 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 | B03 — Bent 8CS1 / 7R96 into suitable DOHU / DT straight-frame data | BASIC_DATASET_MR_CONTROLS_COMPLETE | S04, S06 | Straight reference and both bent public models placed into one basic dataset. Resolve sequence/ASU-cut comparability, then qualify unbending or changed-direction trials and matched refinement. |
 | B04 — Blind 8D93-to-3GBI-style ASU cut | PLANNED | P03, P04, P06 | Withhold reference coordinates during surgery; use same-crystal before/after scattering invariance and independent later topology/cut comparison. |
 | B05 — Healthy, wrong/ambiguous, impossible and representation controls | PARTIAL_SYNTHETIC | F02, S02, S03, S04, P01, P06 | Extend current synthetic controls to physically qualified and held-out structures; include special positions, partial copies and winding. |
-| B06 — Density-guided and nonuniform/strand-specific relaxation | PLANNED_EXTENSION | S04, S06 | First qualify geometric placement plus ordinary matched refinement; later freeze map provenance and distinguish coordinate, occupancy and ADP explanations. |
+| B06 — Density-guided and nonuniform/strand-specific relaxation | PLANNED_EXTENSION | S04, S06 | After qualified geometric placement and matched refinement, add a read-only model/map-bound detector of sustained negative difference-density patches along sugar-phosphate backbones. Calibrate with Simon against healthy/noisy and displaced controls across resolution, occupancy/ADP and map-processing conditions before proposing motion. Then consider nonuniform/strand-specific density-guided fitting; a red voxel or universal sigma cutoff is not a displacement instruction. |
 
 ## Evidence and limits
 
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at [W35](https://github.com/vecchioni-lab/NASolve/commit/cc845a5800f725a1c2947de6daa38213102e6511).
-W35 reads final-PDB bond/angle RMSDs when the combined log summary is absent; three new regressions (plus three subtests) cover the demonstrated omission, precedence and incomplete summaries. Focused source: 53 tests + 16 subtests. Full source: 1,295 tests + 229 subtests. Rebuilt installed wheel: 421 focused tests + 18 subtests; isolated installed parser exactly reproduces all three complete Phenix 2.2.1-6174 reference outputs. Prior W33 relocated suite: 376 tests + 2 subtests; relocation was not repeated for this non-path-changing parser patch. Prior native reader evidence remains valid; rendered browser validation is pending.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at [W37](https://github.com/vecchioni-lab/NASolve/commit/8653b96f6b79bb1c66b12afb59261ceb4b6ef9be).
+W37 freezes complete canonical pair recipes and evaluates exact atom images. Focused source: 88 tests; full source: 1,312 tests + 229 subtests. Installed wheel: 438 focused tests + 18 subtests. Relocated copied checkout with original absent: 96 tests. Isolated installed native compiler reproduces complete 14-pair energy/components. Python 3.10 syntax and lean optional imports pass. Existing preview schemas/entry points remain unchanged.
 **Limit:** Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.
 
 <a id="e_registration"></a>
@@ -484,11 +486,19 @@ Three complete Phenix 2.2.1-6174 coordinate-only runs preserve the same 3,333 ob
 Complete Phenix 2.2.1-6174 read-only energy/derivative/lifecycle probe: added two-atom image-term derivative error <5.4e-10, wrapper and energy-only calls pass; all-atom selection and symmetry discard drop the callback, normalized target count is unchanged, ordinary geometry flags do not disable it. Original 855 atoms and native definitions unchanged.
 **Limit:** Artificial term, no full DNA recipe, optimizer/refinement or production callback integration. No generic normal-CLI callback loader demonstrated; captures remain local. Existing raw plane-gradient failures and bond-edit exclusion semantics still apply.
 
+<a id="e_pair_recipe"></a>
+### E_PAIR_RECIPE — complete_native_pair_recipe_binding
+
+[Evidence contract](topostitch-preview.md#w37--complete-canonical-pair-recipe-backend) at [W37](https://github.com/vecchioni-lab/NASolve/commit/8653b96f6b79bb1c66b12afb59261ceb4b6ef9be).
+Complete Phenix 2.2.1-6174 energy/derivative probes bind actual NARestraints full planes/contacts using Cedar correction and shared exact image transport. 8D93 14-pair/798-coordinate, independent 7R96/114-coordinate, synthetic P43 and P21 controls pass. Independent 5W6W and strained P1 retain DERIVATIVE_REVIEW at larger step; per-coordinate step convergence is recorded. Eight negative controls pass throughout; native atom sorting is explicitly disabled after an independent fixture exposed changed order.
+**Limit:** Unnormalized additive pair energies only, no native exclusions/bond edits, movement mask, optimization, callback/lifecycle integration, density or scientific acceptance. General input-driven backend; fixture identities never enter algorithm rules. Scientific inputs and receipts stay local.
+
 ## Deferred extensions, not hidden blockers
 
 - **Canonical rebuilding / missing-residue generation:** Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry.
 - **Junction hinges and broader modified/RNA/backbone chemistry:** Explicit capability and native tests; fixed junctions and canonical DNA remain the first supported scope.
 - **AlphaFold provider integration:** Separate input-provider work; existing predicted coordinates can be benchmark inputs without an AI runtime dependency.
+- **Calibrated negative backbone difference-density detection:** S06 after exact map/model/data binding and matched-refinement baselines; read-only patch evidence and scientist-calibrated false-positive controls first, S07/campaign review next, direct coordinate fitting later. Retain nearby positive support, ordinary map fit, spatial correlation, occupancy/ADP and processing uncertainty.
 - **Direct density-guided fitting:** After frozen map/data identity and matched-refinement baselines exist; ordinary data validation is already required in S06.
 - **Broad emergent topology and global reusable recipe promotion:** After bounded explicit cut/repair workflows and independent held-out evidence; do not make these hidden initial release blockers.
 
