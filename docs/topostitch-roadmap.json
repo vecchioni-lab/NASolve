@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "a2382bcad6043cdd3441ccd6c4f2f5231ef9a110",
+  "audited_code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -272,12 +272,13 @@
         "E_PAIR_RECIPE",
         "E_MASKED_COMPOSITION",
         "E_CAPTURED_COMPOSITION",
-        "E_ENDPOINT_REVIEW"
+        "E_ENDPOINT_REVIEW",
+        "E_BOUNDED_TRIAL"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "a2382bcad6043cdd3441ccd6c4f2f5231ef9a110",
+        "code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5",
         "scope": "Bounded native trial derivatives and fresh serialized endpoint review; all controls remain capped and scientifically unselected"
       }
     },
@@ -678,6 +679,14 @@
       "reference": "docs/topostitch-preview.md#w40--bind-endpoint-review-to-movement-and-serialized-bytes",
       "result": "Exact source/full-precision/mask/PDB binding and Cedar-owned mechanics/environment review pass three complete Phenix 2.2.1-6174 endpoint captures. Default ANISOU rejection is retained before explicit Cartesian preservation. Lower aggregate repulsion coexists with 38 worsened directed contacts in one control. Legacy packing content is unchanged; wrong request hashes reject. Installed audits match; relocated review is byte-identical with original reads blocked. Full Willow 1358 tests plus 229 subtests.",
       "limitation": "Nonuniform perturbation controls, not optimized repairs. Full-precision native energies/packing and endpoint derivatives are not evaluated by the read-only reviewer. Native scalar deferrals, pucker/absolute stereochemistry, ADP and diffraction qualification remain open. No adoption or combined Cedar build; scientific files remain local."
+    },
+    "E_BOUNDED_TRIAL": {
+      "kind": "bounded_native_trial_and_endpoint_derivatives",
+      "code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5",
+      "human_update": 41,
+      "reference": "docs/topostitch-preview.md#w41--bounded-native-trials-and-matched-cleanup-controls",
+      "result": "Five complete Phenix 2.2.1-6174 trials pass all source/full-precision/serialized derivative checks and fresh rounded native target readback. Paired/cleanup controls expose constant fixed-base pair terms and whole-window geometry/packing tradeoffs. Budget and authenticated preexisting-edit negatives reject. Full Willow 1364 tests plus 229 subtests; 107 installed/relocated focused tests and a complete installed/relocated native trial plus default read-only compatibility pass.",
+      "limitation": "Every 200-iteration control remains NOT_CONVERGED_LIMIT with individual packing regressions. No complete chemistry, full-precision fresh packing, diffraction, repair or adoption qualification. Diagnostic reports only, not resumable campaign runs; scientific files remain local. No Cedar edits/merge."
     }
   },
   "benchmarks": [
@@ -844,8 +853,8 @@
       {
         "number": 41,
         "title": "Run bounded native trials with initial and endpoint derivative gates",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5"
       }
     ]
   }

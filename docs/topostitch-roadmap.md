@@ -26,7 +26,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W38 | Compose bounded native geometry with an explicit movable mask | RECORDED |
 | W39 | Reconstruct captured native context for masked evaluation | RECORDED |
 | W40 | Bind native endpoint review to exact movement and serialized bytes | RECORDED |
-| W41 | Run bounded native trials with initial and endpoint derivative gates | IN_PROGRESS |
+| W41 | Run bounded native trials with initial and endpoint derivative gates | RECORDED |
 
 ## Finish lines
 
@@ -190,8 +190,8 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
 **Next action:** Extract one installed captured-job boundary using existing Cedar anchored capture/replay, observation ordering and process ownership. Then close affected chemistry and full-precision/serialized packing gates before matched refinement. Preserve capped/failed controls and W37 derivative reviews; no universal exclusion-policy or physical acceptance claim.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/a2382bcad6043cdd3441ccd6c4f2f5231ef9a110); Bounded native trial derivatives and fresh serialized endpoint review; all controls remain capped and scientifically unselected.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5); Bounded native trial derivatives and fresh serialized endpoint review; all controls remain capped and scientifically unselected.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -517,6 +517,13 @@ Cedar-authenticated captures rebuild through fresh trusted workers and exactly m
 [Evidence contract](topostitch-preview.md#w40--bind-endpoint-review-to-movement-and-serialized-bytes) at [W40](https://github.com/vecchioni-lab/NASolve/commit/a2382bcad6043cdd3441ccd6c4f2f5231ef9a110).
 Exact source/full-precision/mask/PDB binding and Cedar-owned mechanics/environment review pass three complete Phenix 2.2.1-6174 endpoint captures. Default ANISOU rejection is retained before explicit Cartesian preservation. Lower aggregate repulsion coexists with 38 worsened directed contacts in one control. Legacy packing content is unchanged; wrong request hashes reject. Installed audits match; relocated review is byte-identical with original reads blocked. Full Willow 1358 tests plus 229 subtests.
 **Limit:** Nonuniform perturbation controls, not optimized repairs. Full-precision native energies/packing and endpoint derivatives are not evaluated by the read-only reviewer. Native scalar deferrals, pucker/absolute stereochemistry, ADP and diffraction qualification remain open. No adoption or combined Cedar build; scientific files remain local.
+
+<a id="e_bounded_trial"></a>
+### E_BOUNDED_TRIAL — bounded_native_trial_and_endpoint_derivatives
+
+[Evidence contract](topostitch-preview.md#w41--bounded-native-trials-and-matched-cleanup-controls) at [W41](https://github.com/vecchioni-lab/NASolve/commit/84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5).
+Five complete Phenix 2.2.1-6174 trials pass all source/full-precision/serialized derivative checks and fresh rounded native target readback. Paired/cleanup controls expose constant fixed-base pair terms and whole-window geometry/packing tradeoffs. Budget and authenticated preexisting-edit negatives reject. Full Willow 1364 tests plus 229 subtests; 107 installed/relocated focused tests and a complete installed/relocated native trial plus default read-only compatibility pass.
+**Limit:** Every 200-iteration control remains NOT_CONVERGED_LIMIT with individual packing regressions. No complete chemistry, full-precision fresh packing, diffraction, repair or adoption qualification. Diagnostic reports only, not resumable campaign runs; scientific files remain local. No Cedar edits/merge.
 
 ## Deferred extensions, not hidden blockers
 
