@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
+  "audited_code_commit": "fa170e21e33bd6740790072e83524545601fd606",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -452,7 +452,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
+        "code_commit": "fa170e21e33bd6740790072e83524545601fd606",
         "reviewer": "Linden",
         "human_update": 58,
         "scope": "Installed failure-path and explicit C299 package union only; P02 visual/cut-choice gates remain open"
@@ -862,7 +862,7 @@
     },
     "E_VIEW_PACKAGE_BOUNDARY": {
       "kind": "installed_package_compatibility",
-      "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
+      "code_commit": "fa170e21e33bd6740790072e83524545601fd606",
       "human_update": 58,
       "reference": "docs/topostitch-periodic.md#w58--qualify-the-installed-viewer-boundary-with-cedar",
       "result": "Missing-asset regression fails before fix; focused41,full1545 plus229subtests,installed/relocated339,6helps. Temporary package union with C299 passes339Willow and162Cedar plus19subtests and exact public replay after original source removal.",
@@ -1140,7 +1140,7 @@
         "number": 58,
         "title": "Qualify viewer packaging and Cedar composition",
         "state": "RECORDED",
-        "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee"
+        "code_commit": "fa170e21e33bd6740790072e83524545601fd606"
       }
     ]
   }

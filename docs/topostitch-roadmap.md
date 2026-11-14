@@ -283,7 +283,7 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 **Next action:** Perform genuine graphical/user validation, then add bounded intent-compatible cut alternatives and persistent review choices through the saved Pine-bound proposal owner. Keep materialization and chemical seams behind P03/P04.
 **Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary).
-**Last audit:** 2026-11-14, Linden, [W58](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee); Installed failure-path and explicit C299 package union only; P02 visual/cut-choice gates remain open.
+**Last audit:** 2026-11-14, Linden, [W58](https://github.com/vecchioni-lab/NASolve/commit/fa170e21e33bd6740790072e83524545601fd606); Installed failure-path and explicit C299 package union only; P02 visual/cut-choice gates remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -643,7 +643,7 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 <a id="e_view_package_boundary"></a>
 ### E_VIEW_PACKAGE_BOUNDARY — installed_package_compatibility
 
-[Evidence contract](topostitch-periodic.md#w58--qualify-the-installed-viewer-boundary-with-cedar) at [W58](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee).
+[Evidence contract](topostitch-periodic.md#w58--qualify-the-installed-viewer-boundary-with-cedar) at [W58](https://github.com/vecchioni-lab/NASolve/commit/fa170e21e33bd6740790072e83524545601fd606).
 Missing-asset regression fails before fix; focused41,full1545 plus229subtests,installed/relocated339,6helps. Temporary package union with C299 passes339Willow and162Cedar plus19subtests and exact public replay after original source removal.
 **Limit:** Initial unchanged-Cedar metadata omitted the HTML asset:335passed/3failed retained. No merge, combined human-doc/full-suite/native qualification or rendered visual review. Scientific evidence local. Zero-parallelity W34 recipes were not rerun.
 
