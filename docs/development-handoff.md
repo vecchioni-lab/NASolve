@@ -1,146 +1,92 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14**, C277 first campaign refinement handoff. Active **cedar**,
-NASolve-c96; base before this patch is C276 `d5f505a`.
-Simon originally authorized **12:36–14:36 Europe/London, 14 November**. Linden
-relayed Simon’s extension to **16:00**, with a later wind-down message expected.
-Focused checks only;
-no full suite, new branch or merge. Finish Q04/Q05 before Q06. The
-[queue](cif-doctor-completion-queue.md) owns ordering.
+Updated **2026-11-14, C278**. Active **cedar**, NASolve-c96; base before this
+patch **C277 `16494c4`**. Simon originally authorized12:36–14:36 Europe/London;
+Linden relayed Simon's extension to16:00 with wind-down signal expected. Focused
+checks only: **no full suite, new branch or merge**. The
+[completion queue](cif-doctor-completion-queue.md) owns unfinished work.
 
-## Completed — source-preserving adapters reach normal preparation
+## Latest result — the prepared bundle reaches real refinement
 
-C276 exposes `--dictionary-input-policy source-preserving-v1` through ordinary
-checked PostMR and CIF Doctor prepare-run, and the corresponding optional schema-2
-campaign key. One mapping selects the existing C263/C264 policies; the existing
-owner freezes their exact options and chemistry checks remain unchanged. Absent
-fields/defaults stay unchanged; no continuation override or historical migration.
+C277 allows only the initial checked preparation registry into first campaign
+refinement, preserving prior/partial/unknown work and newer choices. Its first
+actual campaign control C278 completed AutoSol but refinement dry-run rejected
+C138's bare full-model interpretation policy. The failed run is preserved.
 
-231 focused tests + 47 subtests pass in 14.37 s, including caller publication and
-frozen-plan relocation. A full native normal campaign reaches checked PostMR with
-the declared C270-derived A:5IU/free-end/protected-D1 fixture, ordinary deadlines,
-local isolated config/store, and actual Phaser/Coot/NAR/Phenix generation/repair/
-ReadySet. Saved campaign receipts and selected view pass after moving the campaign
-with old/source/cache/SDK reads and native launches forbidden except OS process
-observations. Exact versions/counts/source pins are in
-`ordinary_source_recipe_callers_2026_11_14`. Raw science stays local in
-`276_Cedar_source-recipe-campaign-pk37b79m`. No diffraction refinement claim.
+C278 now creates an exact round-local `refinement` wrapper for only that known
+policy, preserving its False value and argument position. Original preparation,
+historical worker bytes and inherited restraints stay unchanged. The small
+schema-1 `refinement_inputs.json` receipt binds source/copy hashes, sizes and order;
+AutoRefine and checkpoint readers rederive it. Unknown input is not rewritten.
+Old readers do not verify the optional evidence; old refinement code still rejects
+the bare policy, so old-version continuation is not qualified.
 
-**Downstream reminder:** Simon reports an earlier beautiful PDU distorted after
-collaborator refinement. Q06 now explicitly requires before/ReadySet/after-native
-geometry and effective-restraint comparison, generalized beyond PDU names. Exact
-collaborator files/version are not identified; no diagnosed cause or success claim.
-This does not change the current first-refinement handoff task.
+Fresh control `279_Cedar_refinement-policy-2cfxjsvp` uses a distinct pristine C276
+copy and the ordinary campaign coordinator/stage worker. Phenix2.2.1-6174 completed
+AutoSol and all five refinement cycles: AUTOREFINE_READY, Rwork0.1971/Rfree0.2222.
+Seven original PHIL/CIF inputs, explicit D:1 phosphate protection and original
+FreeR_flag/test0/generateFalse remain. Effective native parameters retain the
+full-model flag False. This is a software control, not a solved-structure claim.
 
-## Completed — prepared checkpoints can enter first campaign refinement
+All native stage groups stopped. All257 original source files and206 PostMR files
+retain bytes/timestamps. After relocation, exact refine-001 inspection works with
+old/source/SDK reads and native launches forbidden; all462 campaign files remain
+unchanged. Cold read57.75s,606.7MB Python peak. Whole control70.1MB; the new policy
+copy/receipt add841bytes. Raw science and logs stay local, excluded from Git.
 
-C277 fixes the blanket AutoRefine-folder refusal. Admit only the initial checked
-registry (plus optional lock), reject any prior/partial/unknown work or report
-history, and pass its digest through the existing full read-only AutoRefine reader.
-A newer choice before that read refuses; later saves keep the existing concurrent
-update guard. No extra expensive proof reader, migration, retry or schema change.
+Validation:198 focused tests+19subtests in19.51s; final size guard15tests in2.81s;
+relocated temporary checkout15tests in4.15s after original path disappears. Code
+copies removed, small validation records retained. Exact commands/hashes and
+negative controls: `refinement_policy_namespace_2026_11_14` in the
+[evidence ledger](cif-linked-native-registration-evidence.json). Failed native
+preflight: `campaign_first_refinement_native_2026_11_14`. No full regression.
 
-190 focused tests + 26 subtests pass in 28.67 s. Final one-reader assertion and
-wording: 11 tests in 1.47 s. The pre-fix regression failed on the old folder gate.
-Tests run actual campaign/AutoRefine code with stub executables: exact ordered
-PHIL/CIF inputs, unchanged PostMR, parent lineage and eight refusal cases plus
-selection race/missing-registry guards. They are not native refinement proof.
+## Reuse completed work
 
-**Next:** audit Q04/Q05 acceptance against existing owners/evidence and run the
-normal campaign continuation using the fresh C276 prepared result, if bounded
-native time permits. Preserve the original control by using a distinct local
-validation copy. Do not rebuild preparation or enable defaults. Keep unowned,
-pre-seal and missing campaign-receipt limits explicit. Real refinement geometry
-and Simon's PDU survival control remain Q06, with no premature closure claim.
+- C274 `6403407` / C275 `d2381fc`: exact sealed AutoSol save completion, verified
+  producer/group stop, ordinary-command reuse before discovery, real interruption
+  and relocated readback. Pre-seal/unowned/unknown work stays preserved.
+- C276 `d5f505a`: explicit source-preserving-v1 profile reaches normal checked
+  PostMR/prepare-run/frozen campaigns. Real preflight/Phaser/Coot/NAR/ReadySet/
+  retirement and cold relocated reading pass.231tests+47subtests.
+- C277 `16494c4`: first-refinement folder gate and newer-choice guard.
+  190tests+26subtests, final focused11. No second scientific reader.
+- C252 later alternatives, C258/C260 interrupted retirement, C270–C272 selected
+  phasing/Coot, C273 inspection-local numerical reuse remain their existing owners.
+  Do not rebuild transport, readers, recovery, publication or a compiler.
 
-## Completed — the ordinary command returns the exact saved result
+## Next — finish scope reconciliation without hiding limitations
 
-C275 checks for C274's receipt before Phenix discovery when the user requests
-`nasolve autosol RUN`. It uses the same completion/validation owner, reports no
-native rerun, and never falls through after invalid/active/conflicting evidence.
-Absent receipts retain prior fresh-launch/refusal behavior. Completion-only mode
-still requires a receipt. Execution API and campaign-stage caller are unchanged.
+Q04/Q05 core preparation and chosen-input handoff now have an actual normal
+campaign control through refinement. Overall closure is not claimed: reconcile
+serial/repeated-failure capacity and explicit opt-in/recovery scope in the queue.
+Keep one heavy reader and sequential campaign work. Measured single controls are
+not a hard native scratch-disk quota or a100-dataset capacity test. Failed work
+is retained; no new allowance or cleanup policy was introduced.
 
-Validation: 145 focused tests + 16 subtests in 28.79 s. Before the change the new
-ordinary-command regression failed on SDK discovery. The final CLI reads real
-relocated C274 without SDK/old/source access or subprocess calls: 57.41 s, all 392
-files unchanged. Source pins and exact commands are in evidence-ledger entry
-`autosol_cli_completion_2026_11_14`. No schema, migration or new native execution.
+Unsealed AutoSol results, uncertain/shared/foreign groups, absent outer campaign
+receipts and historical unarchived campaigns are not automatically adopted.
+Standalone AutoSol still lacks isolated child ownership; do not invent a parallel
+owner or retrofit old evidence. Default checked-route activation remains explicit.
 
-## Completed — finish saving phasing work after interruption
+**Simon’s downstream PDU requirement is saved:** an earlier beautiful PDU reportedly
+distorted after collaborator refinement. Exact files/revision/tool/settings are
+not yet identified; no cause is diagnosed. Q06 must compare built/ReadySet/refined
+geometry and effective native restraints: ring, trigonal C5, propyne coplanarity,
+internal propyne and chi/base orientation, plus sugar/phosphate/pair/Free-R intent.
+Use generalized source-graph checks and a related held-out substituent. Do not
+interrupt the current task or equate ReadySet acceptance with refinement survival.
 
-C274 adds `nasolve autosol RUN --complete-publication`. New checked AutoSol runs
-record their existing producer/inherited group before launch, then seal the exact
-completed result and previous/intended run report. Completion reuses preparation,
-site/phase checks and the existing lock/guarded writer. Both producer and entire
-group must be known stopped before a pending save; already exact completion is
-read-only. Later checkpoint selections survive. No native discovery or rerun.
+C279’s5IU descriptive C5 elevation reaches1.33degrees; its native ring plane includes
+I5 at0.020A deviation/sigma0.020A. Final GEO prints42covalent planes,3user planes,
+58user parallelities. These are useful observations, not complete membership,
+derivative or scientific qualification; PDU remains untested here. Q06 must retain
+the known ordinary-native parallelity-gradient boundary and Linden’s distinction
+between bond edits/exclusions and additive contact energy. WillowW38/W39 findings
+are reported context, not combined Cedar-build validation.
 
-Two additive small records: `AutoSol/execution.json` and `publication.json`;
-policies `autosol-inherited-process-observation-v1` and
-`autosol-result-publication-v1`. Native commands, group ownership, scientific
-thresholds and old result meanings stay unchanged. Old partial runs are not
-retrofitted. No new campaign-stage receipt is fabricated.
-
-A fresh complete Phenix 2.2.1-6174 AutoSol control deliberately interrupts after
-sealing: AUTOSOL_READY, 1.449 Å, HLAM/HLBM/HLCM/HLDM. After verified worker/group
-stop and moving the copy, completion passes without old/source/SDK reads or native
-launches. Saved comparison remains manual-001; later current stays postmr. Only
-report.json changes, persistent publication lock appears, 390 other existing files
-retain bytes/timestamps. Repeat is read-only. All 394 original source files remain
-unchanged. Both workers stopped and code stayed pinned. Coot was not run.
-
-Control `274_Cedar_autosol-publication-tc0cilcn` in live-tests holds 61.6 MB / 413
-files. It copies/revalidates C270 preparation and resets only its own old AutoSol
-state before a fresh launch: derived test fixture, not production migration or
-in-place retry. No new MR/ReadySet or diffraction refinement. Scientific files and
-runner remain local, excluded from Git.
-
-Validation: 136 focused tests + 16 subtests in 26.28 s. Final concurrent-report
-rollback guard: 26 tests in 8.81 s and 26 in 9.00 s from a relocated checkout
-after its old path is gone. Native control precedes that two-line read guard;
-no native behavior changed or rerun is claimed. Before implementation,
-CLI regression failed on the missing option. Exact commands, changed files,
-compatibility, negative controls and local source/result hashes:
-`autosol_saved_publication_2026_11_14` in the evidence ledger.
-
-## Reuse completed evidence; do not rebuild its machinery
-
-C270 native Phaser/Coot/NAR/plane repair/ReadySet/AutoSol passes for the explicit
-A:5IU/free-end fixture, seven restraints, protected OP3 at D:1. This uses real DiU
-observations but is not donor-chemistry or diffraction-refinement acceptance.
-C271 fills the saved AutoSol view/checkpoint identity. C272 native Coot 1.3.3
-loads the final dictionary, comparison/HA models and FWT/PHWT map. Cold relocated
-inspection preserves all 389 files and later choice. Original diagnostic failures
-remain preserved; details and exact claims are in their evidence-ledger entries.
-
-C273 bounds reuse of identical pure numerical calculations within one inspection.
-Every artifact/source/owner/qualification check remains; no persistent trust cache
-or historical worker-byte change. One saved-native comparison falls from 103.72 s
-/ fourteen calculations to 59.04 s / two, with identical view and unchanged files.
-Python peaks 716.6/635.8 MB; single-pair measurement, not a general speed guarantee.
-Keep one expensive reader at a time. Earlier C258/C260 retirement and C251/C252
-alternative-publication machinery remain the owners of those completed jobs.
-
-## Next — reconcile the remaining recovery and rollout boundary
-
-Q04/Q05 are not declared closed. C274 completes sealed saves only. Crashes before
-sealing, unfinished native work, shared/foreign/unknown groups and missing outer
-campaign receipts stay preserved/unadopted. Direct AutoSol still lacks standalone
-isolated child ownership. Campaign inherited supervision is unchanged; do not
-move native work outside its tracked group. No guessed stop or native retry in place.
-Normal CLI reuse is now connected. Explicitly reconcile the remaining limits
-with the supported opt-in route before Q06; avoid a parallel recovery stack.
-
-Single successful/failing requests are measured. Repeated-failure/100-dataset
-bounds, historical campaign migration and default activation remain explicit
-scope/release limits. Q06 actual full-restraint refinement follows reconciliation.
-Q07 mixed/held-out chemistry and Q08–Q14 retained chemistry learning stay queued;
-charged 1AP leaving-port authority is Q13. Q15 reports and Q16 AutoPhase naming,
-full integration validation and reviewed merge remain later. No automatic merge.
-
-Last full suite: **C220/583d30df, 9,178 tests + 276 subtests**; not a current pass.
-Linden works Willow/Pine, separately qualifying TopoStitch periodic-policy behavior;
-reported Willow findings are not combined-build validation. Ordinary bond edits
-and additive contact energy stay distinct. Everyday NASolve/pine and protected
-local science remain untouched. Signed inter-agent handoffs: **— Rowan**.
+Q07 mixed/held-out controls and Q08–Q14 chemistry learning remain; Q15 reporting
+and Q16 AutoPhase compatibility, integration checks and reviewed merge are later.
+Last full suite: **C220/583d30df,9,178tests+276subtests**, not a current pass.
+Linden owns Pine/Willow; everyday NASolve/pine code remains untouched. Signed
+cross-agent handoffs: **— Rowan**.

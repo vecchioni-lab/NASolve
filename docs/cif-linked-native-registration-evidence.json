@@ -93996,5 +93996,193 @@
     "artifacts": "Only source/tests/docs committed; temporary test outputs excluded. C276 native control unchanged.",
     "remaining": "Native whole-campaign continuation, explicit opt-in/resource/recovery scope reconciliation; Q06 effective restraints and actual geometry survival including reported PDU problem.",
     "full_suite": "Not run per Simon; last full C220/583d30df 9178 tests + 276 subtests."
+  },
+  "campaign_first_refinement_native_2026_11_14": {
+    "checkpoint": "C278",
+    "base_commit": "16494c4",
+    "status": "NATIVE_AUTOSOL_PASS_REFINEMENT_PREFLIGHT_REJECTED",
+    "summary": {
+      "status": "NATIVE_CONTINUATION_RETURNED",
+      "campaign": {
+        "attempts": [
+          {
+            "created_utc": "2026-11-14T13:25:07.861993+00:00",
+            "number": 1,
+            "reason": "initial execution",
+            "run": "DiU/AutoMR/run_001"
+          }
+        ],
+        "checkpoint": "refine-001",
+        "diagnostic": "Phenix refinement preflight failed with exit status 1",
+        "id": "DiU",
+        "inspection_required": true,
+        "live_process": false,
+        "next_stage": null,
+        "numerical_success": false,
+        "preparation_notes": [
+          "These preparation checks do not establish diffraction-refinement success.",
+          "Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.",
+          "5IU: generated source-checked support for screened centres C5.",
+          "Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.",
+          "5IU: selected dictionary has explicit planes for screened centres C2, C4, C5; this is scoped coverage, not refinement qualification.",
+          "Successful preparation working copies were archived; public models and restraints remain in place."
+        ],
+        "provisional": false,
+        "provisional_selection": null,
+        "run": "DiU/AutoMR/run_001",
+        "scientific_warnings": [],
+        "status": "BLOCKED"
+      },
+      "stage_status": "AUTOREFINE_FAILED",
+      "stage_message": "Phenix refinement preflight failed with exit status 1",
+      "tool_versions": {
+        "phenix": "2.2.1"
+      },
+      "autorefine": "Full exact local report retained; not duplicated here",
+      "all_stage_processes_stopped": [
+        "NASolveCampaign/execution/datasets/DiU/attempt_001/autorefine/process.json",
+        "NASolveCampaign/execution/datasets/DiU/attempt_001/autosol/process.json",
+        "NASolveCampaign/execution/datasets/DiU/attempt_001/phaser/process.json",
+        "NASolveCampaign/execution/datasets/DiU/attempt_001/postmr/process.json",
+        "NASolveCampaign/execution/datasets/DiU/attempt_001/preflight/process.json"
+      ],
+      "original_files_unchanged": 257,
+      "prepared_files_unchanged": 206,
+      "whole_control": {
+        "files": 456,
+        "logical_bytes": 63514262,
+        "allocated_bytes": 64987136
+      },
+      "elapsed_seconds": 136.60036400001263,
+      "maximum_coordinator_resident_bytes": 57556992,
+      "scope": "Native normal campaign AutoSol/first refinement from a copied already-qualified C276 preparation. Complete selected restraints unchanged. Scientific geometry and refinement success require result inspection; no PDU claim."
+    },
+    "control": {
+      "anchor": "live_tests_directory",
+      "path": "278_Cedar_first-campaign-refinement-s8qirpvx"
+    },
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c278_campaign_refinement.py",
+    "runner_sha256": "af12a98f7f012274d59299415a691848fa01c1fb050724bf1aa5b9ed2f0b5e61",
+    "summary_sha256": "783376d3cfd6ab25305dc79c06c7d03a7410fd6a69e957fc8702480261b0bcba",
+    "tool": "Phenix 2.2.1-6174; complete AutoSol execution, refinement --dry_run rejected before cycles. Coot not rerun.",
+    "cause": "Unrecognized PHIL pdb_interpretation.use_ncs_to_build_restraints in final 004.phil. Existing FULL_MODEL_PHIL intentionally targets native interpreter and lacks refinement root.",
+    "next": "Preserve historical input/worker bytes. Narrow order-preserving refinement consumer wrapper, portable source/copy proof, then fresh validation. No in-place retry, silent omission or PDU claim."
+  },
+  "refinement_policy_namespace_2026_11_14": {
+    "checkpoint": "C278",
+    "base_commit": "16494c4",
+    "status": "FOCUSED_RELOCATION_COMPLETE_NATIVE_REFINEMENT_PASS",
+    "prior_work": [
+      "C05 native refinement-root-to-interpreter-v1 preserves definitions/tokens while removing only outer refinement scope.",
+      "C138 FULL_MODEL_PHIL exact bytes and historical native worker unchanged; generated complete-monomer guard remains False."
+    ],
+    "before": "C278 actual normal campaign AutoSol passes but refinement dry-run rejects bare pdb_interpretation.use_ncs_to_build_restraints from final selected 004.phil. No cycles run.",
+    "after": "Wrap only the exact known generated full-model policy for refinement in a fresh round-local copy, preserving ordered argument position/value, all original files and checkpoint restraints. Unknown inputs remain native preflight responsibilities.",
+    "files": [
+      "src/nasolve/refinement_inputs.py",
+      "src/nasolve/autorefine.py",
+      "src/nasolve/checkpoints.py",
+      "tests/test_refinement_inputs.py"
+    ],
+    "schema": "Additive schema-1 refinement_inputs.json, policy refinement-full-model-namespace-v1, linked through existing checkpoint outputs reference. Optional report inputs.execution_restraints shows actual arguments. Source/copy hashes/sizes/order/content and exact round ownership validated before/after execution and read_registry. No new checkpoint schema.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_inputs.py -x",
+        "result": "Before: 1 failed in 0.90s on bare policy passed to refinement. Initial implementation 1 passed1.52s; expanded13 passed2.72s; final metadata-size/preflight guards15 passed2.81s."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_refinement_inputs.py tests/test_autorefine.py tests/test_checkpoints.py tests/test_cif_campaign_first_refinement.py tests/test_campaign_stages.py tests/test_cif_postmr_publication.py -x",
+        "result": "198 passed,19 subtests passed in19.51s before final size guard (final focused file15 passes)."
+      },
+      {
+        "command": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /private/tmp/c278_relocated_checkout.py",
+        "result": {
+          "command": [
+            "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "tests/test_refinement_inputs.py",
+            "-x"
+          ],
+          "cwd": "/private/tmp/c278-relocated-checkout-e097vbjp/relocated",
+          "original_path_absent": true,
+          "result": "...............                                                          [100%]\n15 passed in 4.15s\n",
+          "returncode": 0,
+          "seconds": 4.305469583021477,
+          "temporary_checkout_removed": true
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c279_campaign_refinement.py",
+        "result": {
+          "stage_status": "AUTOREFINE_READY",
+          "all_stage_processes_stopped": [
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/autorefine/process.json",
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/autosol/process.json",
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/phaser/process.json",
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/postmr/process.json",
+            "NASolveCampaign/execution/datasets/DiU/attempt_001/preflight/process.json"
+          ],
+          "original_files_unchanged": 257,
+          "prepared_files_unchanged": 206,
+          "whole_control": {
+            "files": 469,
+            "logical_bytes": 70099150,
+            "allocated_bytes": 71413760
+          },
+          "elapsed_seconds": 180.5530592080031
+        },
+        "scope": "Complete real Phenix2.2.1-6174 AutoSol and five-cycle refinement through normal campaign coordinator/stage worker, using distinct pristine C276 copy. No Coot/ReadySet rerun."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /private/tmp/c279_followthrough.py",
+        "result": {
+          "status": "RELOCATED_NATIVE_REFINEMENT_HANDOFF_PASS",
+          "elapsed_seconds": 57.74637562499265,
+          "maximum_reader_resident_bytes": 606683136,
+          "unchanged_campaign_files": 462,
+          "source_files_unchanged": 257,
+          "checkpoint": "refine-001",
+          "current": "refine-001",
+          "r_work": 0.1971,
+          "r_free": 0.2222,
+          "clashscore": 32.38,
+          "macro_cycles": 5,
+          "native_effective_full_model_policy": false,
+          "original_restraints": 7,
+          "additional_terminal_protection": true,
+          "free_r": {
+            "source": "unchanged authoritative input observations",
+            "label": "FreeR_flag",
+            "test_flag_value": 0,
+            "generate": false
+          },
+          "scope": "Actual five-cycle Phenix refinement complete, original inputs preserved, exact selected endpoint and portable source/copy proof read after relocation with old/source/SDK access and native launches forbidden."
+        }
+      }
+    ],
+    "negative_controls": "Changed source/copy, rehashed wrong value, wrong index/source/size, symlinked copy, broken receipt, altered copy during preflight or execution all refuse. Old/unknown/already wrapped input unchanged. Original PostMR and inherited order preserved; moved dataset reads without old path/native work.",
+    "compatibility": "Historical generator/worker/request bytes unchanged. No migration. Older readers ignore optional execution evidence; older refinement implementation still rejects bare policy, so old-version continuation is not qualified. Native thresholds, science, Free-R, phosphate and process owners unchanged.",
+    "artifacts": "Source/tests/docs only. Failed C278 control remains local and unchanged; fresh C279 native validation separately copies pristine C276. Temporary relocated code copy removed, small validation JSON retained.",
+    "remaining": "Normal prepared-result handoff now reaches actual refinement and relocated endpoint reading for this explicit5IU control. Q04 serial/repeated-failure resource and supported rollout boundaries remain explicit; Q06 effective full membership/derivatives/achieved geometry and queued PDU survival remain open. No default activation or full-suite/merge claim.",
+    "full_suite": "Not run per Simon; last fullC220/583d30df 9178+276 subtests.",
+    "native": {
+      "control": {
+        "anchor": "live_tests_directory",
+        "path": "279_Cedar_refinement-policy-2cfxjsvp"
+      },
+      "start_sha256": "409ba6ec1861d2ccb81223e49c59be0ff6b4310c75159b27eec5cf320400dbce",
+      "runner_sha256": "8387868bee25d22794409148a7bbb273e146e6fec258111c0f99b19dbd264b37",
+      "summary_sha256": "5c99d9d9701c2b6f78343923492c8c9fc5322be1cbb7d173345479b5d3f0af21",
+      "followthrough_sha256": "3bb7e8c6ccb30c4c10203b77f47529c7881274a87fbc1aa2b5568f6da67270b2",
+      "followthrough_source_sha256": "65677075f60c442783dc0280bb9dc8a363d32f28c26201b5dc324722612eef64",
+      "science": "AUTOREFINE_READY; five actual cycles, Rwork0.1971/Rfree0.2222, visual inspection still required. Numerical acceptance does not certify the test structure. Original FreeR_flag/test0/generateFalse retained; only declared D1 OP3 retained and terminal geometry review false.",
+      "effective_setting": "refined_001.eff contains exactly one use_ncs_to_build_restraints=False. Actual 004.phil derivative is76bytes plus765byte receipt; all other inputs retain ordered positions.",
+      "geometry_evidence": "Existing graph-selected descriptive reader: 5IU B4 C5 local maximum elevation changes0.0023 to1.3303degrees, with angle sum359.9838degrees after refinement. Final GEO prints42 covalent planes,3 user planes and58 user parallelities; its 5IU ring plane includesI5, delta0.020A at sigma0.020A. Counts/descriptive geometry are not complete membership, derivative or scientific qualification. Built MR file contains no5IU measurement; prepared/final models do. No PDU claim.",
+      "resources": "Whole diagnostic control70,099,150B/469files at summary snapshot. No native concurrent-memory or100dataset bound inferred. Cold reader606,683,136B peak; one reader at a time."
+    }
   }
 }

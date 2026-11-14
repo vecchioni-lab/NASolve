@@ -44,6 +44,15 @@ looking for Phenix, and says when it is returning the saved result. A fresh Phen
 keeping the earlier comparison model and a later selected model distinct. No
 phasing is repeated. Missing receipts or uncertain processes remain preserved;
 this is not permission to retry unfinished native work in place.
+Checked preparation can now enter the first campaign refinement without its
+checkpoint folder being mistaken for earlier work. The retained full-model
+interpretation setting also needs refinement's own outer heading: NASolve creates
+and checks a small equivalent input copy while preserving the original setting,
+restraint order and all preparation evidence. A fresh normal campaign now completes five real refinement cycles and reopens
+its exact refined checkpoint after relocation with the old paths and Phenix
+unavailable. It preserves the original Free-R source and protected terminal
+phosphate. Broader native geometry acceptance, including PDU surviving refinement,
+remains separate from this single-control numerical success.
 Q04/Q05 still need remaining recovery and serial-resource/rollout scope reconciled
 before complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that

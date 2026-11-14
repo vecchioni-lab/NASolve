@@ -910,6 +910,43 @@ MTZ interpretation or diffraction refinement is claimed; observation/map paths a
 synthetic fixtures. Full results: `native_preparation_alternatives_2026_11_13`.
 
 
+### Full-model interpretation policy at the refinement consumer (C278)
+
+C138's generated `pdb_interpretation.use_ncs_to_build_restraints=False` guard
+retains complete monomer identities. The geometry interpreter reads that bare
+namespace; `phenix.refine` rejected it in C278's real campaign dry-run. C05 already
+supports stripping a refinement wrapper for native interpretation. Changing the
+historical generator or dropping its guard would invalidate or alter the evidence.
+
+AutoRefine therefore wraps only the exact known generated policy in a fresh
+round-local `refinement { ... }` file, at the same ordered argument position.
+All other input files pass through unchanged. Original preparation/worker bytes,
+checkpoint restraint lineage and scientific settings remain unchanged. This is an
+input-language conversion, not chemical repair or a general PHIL normalizer.
+
+`AutoRefine/round_NNN/refinement_inputs.json` is an additive schema-1 receipt with
+policy `refinement-full-model-namespace-v1`. Its source/copy references, byte sizes,
+checksums, ordered positions, numbered-round location and exact derived content
+are checked before/after execution and by ordinary checkpoint reads. The existing
+checkpoint output-reference map stores its hash; the optional report input list
+states which execution copies Phenix received. Reads are run-relative and do not
+launch tools. Unknown/changed/rehash-tampered evidence refuses; partial output stays.
+No historical migration or new checkpoint schema is required. Older readers do
+not verify this optional evidence, and older refinement code still cannot consume
+the bare policy; do not advertise old-version continuation compatibility.
+
+The native C278 failure occurred during `--dry_run`, before refinement cycles.
+The final adapter passes a fresh normal campaign through complete AutoSol and
+five real refinement cycles (Phenix 2.2.1-6174), then exact selected-endpoint reads
+after relocation without old/source/SDK access or native launches. Original seven
+inputs, the protected D:1 phosphate and original Free-R authority survive. The
+effective refinement parameters retain the full-model flag as False. The one
+76-byte copy and 765-byte receipt avoid another dictionary/preparation copy.
+Focused tests and relocated-checkout checks cover the integrity boundaries;
+exact commands, measurements and remaining scientific limits are in
+`refinement_policy_namespace_2026_11_14` in the evidence ledger. The later PDU
+post-refinement geometry control remains Q06, independently of language acceptance.
+
 ### First campaign refinement after checked preparation (C277)
 
 Checked publication creates `AutoRefine/checkpoints.json` before any refinement.

@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve full-model interpretation policy in refinement (C278)
+
+- Phenix refinement rejected the interpreter-only spelling of Cedar's retained
+  full-model restraint policy. Write an exact, round-local `refinement` wrapper
+  for that known generated input, preserving its value and ordered position.
+- Keep all original preparation files, historical worker bytes and checkpoint
+  restraints unchanged. Record the source/copy hashes and sizes in a small
+  portable receipt; rederive it before/after native execution and on checkpoint
+  reads. Changed evidence refuses adoption; partial output remains preserved.
+- Unknown PHIL stays unchanged for normal preflight to diagnose. No chemistry,
+  restraint target, numerical setting, executor or installed Phenix code changes.
+
 ### Admit checked preparation to its first campaign refinement (C277)
 
 - A checked preparation's initial checkpoint registry no longer counts as a prior

@@ -1764,11 +1764,27 @@ def execute_autorefine(
         xyz_wxc_scale=xyz_wxc_scale,
         anomalous_groups=anomalous_groups,
     )
+    from .refinement_inputs import prepare_refinement_inputs, validate_refinement_inputs
+    execution_restraint_records = [*parent_restraint_records,
+        *[_file_reference(path, run) for path in resolved_extra_restraints]]
+    try:
+        execution_restraints, refinement_input_reference = prepare_refinement_inputs(
+            run, execution_restraint_records, checkpoint=checkpoint_id)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise AutoRefineError(f"Refinement input preparation failed: {exc}") from exc
+
+    def require_refinement_inputs_unchanged() -> None:
+        if refinement_input_reference is not None:
+            try:
+                validate_refinement_inputs(run, execution_restraint_records,
+                    refinement_input_reference, checkpoint=checkpoint_id)
+            except (OSError, ValueError, RuntimeError) as exc:
+                raise AutoRefineError(f"Refinement input evidence changed: {exc}") from exc
     command = build_refine_command(
         refine_executable,
         model,
         observations,
-        restraints,
+        execution_restraints,
         parameters,
         plan,
     )
@@ -1808,6 +1824,7 @@ def execute_autorefine(
             completed_returncode = preflight.returncode
             preflight_failed = True
         else:
+            require_refinement_inputs_unchanged()
             try:
                 with log_path.open("w", encoding="utf-8") as log_handle:
                     completed = subprocess.run(
@@ -1826,6 +1843,7 @@ def execute_autorefine(
                 completed_returncode = 127
             else:
                 completed_returncode = completed.returncode
+    require_refinement_inputs_unchanged()
     log_text = log_path.read_text(encoding="utf-8", errors="replace")
     output_model = _discover_output(round_directory, "refined_*.pdb")
     model_cif = _discover_filtered_output(
@@ -1909,6 +1927,7 @@ def execute_autorefine(
         terminal_protection_record = None
 
     output_references = {
+        **({"refinement_inputs": refinement_input_reference} if refinement_input_reference is not None else {}),
         "model_cif": file_reference(model_cif) if model_cif else None,
         "reflection_cif": file_reference(reflection_cif) if reflection_cif else None,
         "map_coefficients": (
@@ -2080,6 +2099,8 @@ def execute_autorefine(
             "phase_file": str(phase_file) if phase_file else None,
             "phase_labels": list(plan.phase_labels),
             "restraints": [str(path) for path in restraints],
+            **({"execution_restraints": [str(path) for path in execution_restraints]}
+               if refinement_input_reference is not None else {}),
             "extra_restraints": [
                 str(path) for path in resolved_extra_restraints
             ],
@@ -2125,6 +2146,8 @@ def execute_autorefine(
             "metrics_tsv": str(round_directory / "metrics.tsv"),
             "log": str(log_path),
             "preflight_log": str(preflight_log),
+            **({"refinement_inputs": str(round_directory / "refinement_inputs.json")}
+               if refinement_input_reference is not None else {}),
         },
         "compatibility": compatibility,
         "phenix_exit_code": completed_returncode,
