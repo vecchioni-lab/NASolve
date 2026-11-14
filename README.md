@@ -81,7 +81,9 @@ For the explicit Cedar checked-preparation workflow, see
 This route can save an initial review checkpoint with matching model/restraints;
 later attempts can be saved explicitly with `publish-preparation --as-alternative`,
 leaving the current selection unchanged. Chosen-model anomalous-site phasing now has native and relocated acceptance
-for an explicit control; complete-restraint refinement remains unfinished. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
+for an explicit control; a normal campaign also completes five real refinement
+cycles with the full selected input set. Effective chemical behavior, including PDU
+surviving refinement, remains Q06. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
 explains the remaining work.
 
 ## Quick start

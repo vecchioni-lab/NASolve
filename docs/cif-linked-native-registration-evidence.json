@@ -94741,5 +94741,47 @@
     "compatibility": "No stored schema, native worker, chemistry, threshold, selection or installed SDK changes. Existing exact-result nested scopes still share one read; unrelated reads never share verdicts. Exceptions are not cached. At most 16 verdicts of 64 KiB each; all existing pure helper limits retained.",
     "artifacts": "Only compact metadata committed; saved C282 evidence is read in place with every file unchanged. No scientific copies or new native runs. Temporary archive views are removed by the existing reader; local receipts retained.",
     "limits": "Single saved native Phenix 2.2.1-6174 two-attempt control; no new Phenix/Coot execution, universal performance/peak-memory claim, concurrency or native-100-dataset qualification. Q06 chemical survival remains open."
+  },
+  "q04_q05_supported_scope_2026_11_14": {
+    "checkpoint": "C285 documentation/scope reconciliation",
+    "code_commit": "aee2fbd7",
+    "status": "Q04_Q05_ACCEPTED_FOR_EXPLICIT_SUPPORTED_ROUTE_Q06_NEXT",
+    "supersedes_current_queue_status": "q04_q05_closure_audit_2026_11_14; historical entries remain unchanged",
+    "evidence_keys": [
+      "ordinary_campaign_retention_2026_11_13",
+      "ordinary_source_recipe_callers_2026_11_14",
+      "refinement_policy_namespace_2026_11_14",
+      "repeated_failure_resource_acceptance_2026_11_14",
+      "serial_campaign_resource_acceptance_2026_11_14",
+      "retained_first_attempt_native_continuation_2026_11_14",
+      "campaign_stage_integrity_scope_2026_11_14",
+      "owner_inspection_numerical_reuse_2026_11_14"
+    ],
+    "acceptance": "Explicit checked preparation, independently qualified fallback, owned fresh attempts, exact selected/alternative publication, stopped interrupted-save recovery, successful-working retirement and chosen-input ordinary phasing/refinement handoff. Recorded native single/two-attempt success/failure outcomes and synthetic 100-dataset serial coordinator acceptance. Not universal chemistry or release qualification.",
+    "recovery_exclusions": [
+      "unfinished/pre-seal AutoSol is preserved and not adopted",
+      "unknown/shared/foreign groups cannot grant completion or retry",
+      "missing outer campaign receipt is not fabricated",
+      "historical unarchived campaign references need separate reviewed migration",
+      "standalone AutoSol still lacks isolated child ownership"
+    ],
+    "resource_scope": {
+      "recommendation": "Serial campaign execution; one expensive scientific reader at a time; account for full preserved failures, raw data, other stages and native scratch before deployment.",
+      "observed_whole_requests_bytes": {
+        "one_archived_success": 35128115,
+        "two_archived_successes": 65658597,
+        "two_native_failures": 70706491,
+        "historical_two_attempt_pdu_unretired": 315299065
+      },
+      "physical_replay_expansion_bound_bytes": 134217728,
+      "native_100_dataset_experiment": false,
+      "hard_native_scratch_or_memory_bound": false,
+      "campaign_wide_fixed_retry_or_byte_cap": false,
+      "explicit_retry": "New numbered run/request with fresh per-request allowance; old runs retained. No implicit retries."
+    },
+    "rollout": "Existing checked route stays explicit; no default activation, old-run migration, native SDK edit, merge or release authorization. Q16 retains platform/combined-source/full-regression and capacity review.",
+    "documentation_cleanup": "One current acceptance table and stable contracts replace completed Q04 acceptance chronology; shortened docs index and corrected README/architecture/human overview. Historical evidence retained in Git/ledger; no raw scientific artifacts removed.",
+    "next": "Q06 effective native plane/parallelity membership, ordinary consumer derivatives and achieved geometry; PDU post-refinement survival plus held-out related substituent. Reuse existing owners and saved C279 before launching duplicate refinement.",
+    "tests": "Documentation-only; git diff --check. Retain C283 focused/relocation/synthetic results and C284 170 focused tests plus exact saved-native comparisons. No new or full suite. Last completely green full source C220/583d30df (9178 tests +276 subtests)."
   }
 }

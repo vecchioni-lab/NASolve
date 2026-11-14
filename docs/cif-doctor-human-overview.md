@@ -53,8 +53,13 @@ its exact refined checkpoint after relocation with the old paths and Phenix
 unavailable. It preserves the original Free-R source and protected terminal
 phosphate. Broader native geometry acceptance, including PDU surviving refinement,
 remains separate from this single-control numerical success.
-Q04/Q05 still need remaining recovery and serial-resource/rollout scope reconciled
-before complete-restraint refinement and mixed/held-out controls.
+Q04/Q05 now have supported-route acceptance for explicit preparation, interrupted
+work and delivery of the chosen files. Repeated native failures stay preserved; a
+second preparation after archiving the first remains usable and does not change
+the current choice. Keep work serial and one expensive reader at a time. Native
+100-dataset disk/RAM capacity, automatic defaults and old-run migration are not
+qualified. Q06 now asks whether actual refinement preserves the intended chemistry;
+mixed and held-out controls follow.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 

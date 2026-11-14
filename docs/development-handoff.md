@@ -1,143 +1,81 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C284**. Active **cedar**, NASolve-c96. C283 campaign
-verification change is committed and pushed as `af9aee87`.
-Simon directly authorized a new Q04/Q05 pass beginning 16:04 Europe/London,
-then extended its cutoff to **23:00 on 2026-11-14**, with connectivity interruptions
-expected. Focused checks only: **no full suite, new branch or merge**.
-Current bounded work: audit existing complete-request retention and recovery
-evidence, quantify repeated-failure/campaign resource use, and implement only
-newly demonstrated gaps. Preserve existing controls and avoid duplicate native work. The
-[completion queue](cif-doctor-completion-queue.md) owns unfinished work.
+Updated **2026-11-14, C285**. Active **cedar** in NASolve-c96; latest pushed
+code **C284 `aee2fbd7`**, preceded by C283 `af9aee87`. C285 is documentation/scope
+reconciliation. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
+connectivity interruptions expected. Focused checks only: **no full suite, new
+branch or merge**. Linden owns Pine/Willow; everyday NASolve code stays untouched.
 
-## Active acceptance pass — C280, 16:04–23:00 London
+## Where we are
 
-C280 copied the stopped C266 failure and executed its second ordinary native
-attempt with unchanged frozen context/allowance. Both outcomes remain unqualified;
-all processes stopped. A third attempt refuses EXHAUSTED; publication and retirement
-refuse; both failures read after relocation without original/source/SDK access.
-Whole request: 70,706,491 B / 741 files; 471 original files and 307 first-attempt
-files unchanged. Exact command and scope: ledger
-`repeated_failure_resource_acceptance_2026_11_14`. No product code change.
+**Q04/Q05 are accepted for the explicit supported route and recorded controls.**
+The [completion queue](cif-doctor-completion-queue.md) is the sole work order and
+owns the exclusions. This means prepare/check/repair, preserve attempts, recover
+known-stopped work and deliver exactly the chosen model/restraints. It does not
+approve every chemistry, enable defaults or qualify a native 100-dataset workload.
 
-Read-only footprint audit: current successful request 35.1 MB; historical
-unretired PDU two-attempt request 315.3 MB. Failed/shared/native working evidence
-must be included; neither figure is a hard capacity bound. C281 passed 100 synthetic campaign datasets (50 failures, 50 prepared), 306 stages
-including two explicit fresh-run retries, and unchanged relocated status. Synthetic
-fixtures were removed; no native chemistry is implied. It observed 651,504 file-hash
-reads in the initial pass; investigate redundant work after the current bounded
-control, without weakening integrity checks.
+- C276–C279 join the normal campaign through actual Phaser/Coot/NAR/ReadySet,
+  AutoSol and five refinement cycles, then read the exact endpoint after relocation.
+  Preserve original Free-R, ordered restraints and D:1 terminal phosphate. C279's
+  R-work 0.1971 / R-free 0.2222 is a software control, not structural approval.
+- C280 executes repeated native failure under the original allowance: both results
+  remain unqualified, third attempt/publication/retirement refuse, moved reads pass.
+- C282 executes a second native preparation after the first was archived, publishes
+  prepare-002 unselected and retires only eligible new working duplicates. All 207
+  earlier campaign references and the current postmr choice remain intact.
+- C281/C283 run 100 synthetic datasets (50 failures/50 prepared) and two explicit
+  fresh retries. C283 reduces initial file-hash reads 651,504 → 13,104 by checking
+  active science at stage boundaries, retaining full entry/exit/status audits.
+- C284 scopes existing pure numerical reuse to status/archive-eligibility reads.
+  170 focused tests pass; four saved-native C282 reads return identical complete
+  results and unchanged 327 files. Replay falls 28 → 2; observed status 219 → 107 s,
+  archive eligibility 206 → 97 s. All source/owner/archive checks remain fresh.
 
-**C282 completed and stopped:** a second native preparation after an archived first
-passes ReadySet, publishes prepare-002 without selecting it, and retires only its
-eligible working duplicates. All 207 earlier campaign references remain valid;
-257 original source files and 327 relocated cold-read files remain unchanged.
-Whole request falls from 191.9 MB to 65.7 MB. Native build 2.2.1-6174; no phasing or
-refinement rerun. Exact compact record:
-`retained_first_attempt_native_continuation_2026_11_14` in the evidence ledger.
+Whole requests retain 35.1 MB for one success, 65.7 MB for two archived successes,
+and 70.7 MB for two native failures. Historical unretired PDU retains 315.3 MB.
+Keep work serial and one expensive reader at a time; these figures are not hard
+scratch/RAM quotas. Explicit campaign retry creates a new run/request allowance.
+All failed/unknown science stays preserved. C283's task-owned 8.7 MB temporary
+source copy was removed after relocation validation; compact receipts remain.
 
-**C283:** reuse the existing campaign validator/reconciler for active-dataset stage
-checks, retaining whole-plan structure/shared-resource checks and full entry/exit/
-status audits. The same synthetic capacity control falls from 651,504 to 13,104
-initial hash reads with identical outcomes. Actual focused run: 271 tests + 92
-subtests; five sandbox-blocked process tests separately pass with ps access.
-Relocated temporary checkout: 16 pass. No full suite or new native chemistry.
-Exact scope and commands: `campaign_stage_integrity_scope_2026_11_14`.
+Exact commands, hashes, outcomes and limitations are in the existing evidence
+ledger under C280–C285 keys, ending `q04_q05_supported_scope_2026_11_14`.
+C283 focused: 271 tests +92 subtests, plus 5 sandbox-blocked process tests passing
+with ps access; relocated temporary source: 16 pass. C284: 170 pass in 485.09 s.
+All native and read-only validation groups have stopped; **no active job**.
+No raw science/logs/runners are committed. Last full suite remains
+**C220/583d30df, 9,178 tests +276 subtests**, not a current-source pass.
 
-**C284 completed:** the existing shared read-only inspection now enters C273's
-bounded numerical reuse scope. 170 focused tests pass; four fresh-process status/
-archive-eligibility reads of saved C282 return identical complete result hashes,
-with all 327 source files unchanged and numerical replay 28 → 2 per read. All
-read driver groups stopped with unchanged product source. No Phenix rerun.
-Exact commands/timings and limits: `owner_inspection_numerical_reuse_2026_11_14`.
-C283's task-owned temporary source copy (8.7 MB) was removed after verifying its
-committed modules and relocated checks; small receipts retained, no science removed.
+## Next bounded work — Q06: what refinement actually does
 
-**Next:** reconcile the supported Q04/Q05 scope once in the maintained queue;
-then Q06 inspects actual refinement behavior, preserving the distinction between
-file delivery and effective restraints/chemical survival. No active jobs remain.
+Start from saved C279's successful ordinary refinement and its exact chosen
+bundle. Reuse existing native inventory, source-selected trigonal measurements
+and derivative owners. Compare effective plane/parallelity membership and target/
+weight meaning with actual refinement outputs, then inspect achieved geometry.
+Do not rerun preparation/phasing merely to make a new diagnostic folder.
 
-## Latest result — the prepared bundle reaches real refinement
+Prior work checked: C23/C24 reproduce installed parallelity accumulation failure;
+C25/C26 and maintained numerical owners correct it only in explicit diagnostic
+evaluators. C215 validates plane-completion energy accounting with zero parallelity;
+C216 measures general source-selected trigonal geometry. These do not qualify
+ordinary phenix.refine derivatives. Installed local source still has the earlier
+accumulation loop; source inspection alone is not a new ordinary-consumer test.
+The existing Phenix GeoParser can read printed .geo observations; printed values
+have limited precision and must not be promoted to exact native source authority.
 
-C277 allows only the initial checked preparation registry into first campaign
-refinement, preserving prior/partial/unknown work and newer choices. Its first
-actual campaign control C278 completed AutoSol but refinement dry-run rejected
-C138's bare full-model interpretation policy. The failed run is preserved.
+Simon's reported PDU distortion after collaborator refinement is explicitly Q06,
+then reused in Q07. Exact collaborator files/revision/settings remain unidentified;
+no cause is diagnosed. Compare built/ReadySet/refined ring, trigonal C5, propyne
+coplanarity/internal geometry and chi, preserving sugar/phosphate/pair/Free-R intent.
+Use source connectivity and a held-out substituent; no PDU-name repair switch.
+A 5IU input or numerical R-factor pass does not establish PDU survival.
 
-C278 now creates an exact round-local `refinement` wrapper for only that known
-policy, preserving its False value and argument position. Original preparation,
-historical worker bytes and inherited restraints stay unchanged. The small
-schema-1 `refinement_inputs.json` receipt binds source/copy hashes, sizes and order;
-AutoRefine and checkpoint readers rederive it. Unknown input is not rewritten.
-Old readers do not verify the optional evidence; old refinement code still rejects
-the bare policy, so old-version continuation is not qualified.
+Linden reports W43 fixed-manager full-precision/rounded ASU observations agree
+with its independent rounded PDB capture on target/full gradient and common pairs;
+extra neighbors have zero residual. That is adjacent evidence, not a Cedar merge,
+ordinary-refinement result or general neighbor-generation proof. Keep NAR pair/
+stack intent separate from intramolecular plane repair and additive contact energy.
 
-Fresh control `279_Cedar_refinement-policy-2cfxjsvp` uses a distinct pristine C276
-copy and the ordinary campaign coordinator/stage worker. Phenix 2.2.1-6174 completed
-AutoSol and all five refinement cycles: AUTOREFINE_READY, R-work 0.1971 / R-free 0.2222.
-Seven original PHIL/CIF inputs, explicit D:1 phosphate protection and original
-FreeR_flag / test value 0 / generate=False remain. Effective native parameters retain the
-full-model flag False. This is a software control, not a solved-structure claim.
-
-All native stage groups stopped. All 257 original source files and 206 PostMR files
-retain bytes/timestamps. After relocation, exact refine-001 inspection works with
-old/source/SDK reads and native launches forbidden; all 462 campaign files remain
-unchanged. Cold read 57.75 s, 606.7 MB Python peak. Whole control 70.1 MB; the new policy
-copy/receipt add 841 bytes. Raw science and logs stay local, excluded from Git.
-
-Validation: 198 focused tests + 19 subtests in 19.51 s; final size guard: 15 tests in 2.81 s;
-relocated temporary checkout: 15 tests in 4.15 s after original path disappears. Code
-copies removed, small validation records retained. Exact commands/hashes and
-negative controls: `refinement_policy_namespace_2026_11_14` in the
-[evidence ledger](cif-linked-native-registration-evidence.json). Failed native
-preflight: `campaign_first_refinement_native_2026_11_14`. No full regression.
-
-## Reuse completed work
-
-- C274 `6403407` / C275 `d2381fc`: exact sealed AutoSol save completion, verified
-  producer/group stop, ordinary-command reuse before discovery, real interruption
-  and relocated readback. Pre-seal/unowned/unknown work stays preserved.
-- C276 `d5f505a`: explicit source-preserving-v1 profile reaches normal checked
-  PostMR/prepare-run/frozen campaigns. Real preflight/Phaser/Coot/NAR/ReadySet/
-  retirement and cold relocated reading pass. 231 tests + 47 subtests.
-- C277 `16494c4`: first-refinement folder gate and newer-choice guard.
-  190 tests + 26 subtests, final focused 11. No second scientific reader.
-- C252 later alternatives, C258/C260 interrupted retirement, C270–C272 selected
-  phasing/Coot, C273 inspection-local numerical reuse remain their existing owners.
-  Do not rebuild transport, readers, recovery, publication or a compiler.
-
-## Next — finish scope reconciliation without hiding limitations
-
-Q04/Q05 core preparation and chosen-input handoff now have an actual normal
-campaign control through refinement. Overall closure is not claimed: reconcile
-serial/repeated-failure capacity and explicit opt-in/recovery scope in the queue.
-Keep one heavy reader and sequential campaign work. Measured single controls are
-not a hard native scratch-disk quota or a 100-dataset capacity test. Failed work
-is retained; no new allowance or cleanup policy was introduced.
-
-Unsealed AutoSol results, uncertain/shared/foreign groups, absent outer campaign
-receipts and historical unarchived campaigns are not automatically adopted.
-Standalone AutoSol still lacks isolated child ownership; do not invent a parallel
-owner or retrofit old evidence. Default checked-route activation remains explicit.
-
-**Simon’s downstream PDU requirement is saved:** an earlier beautiful PDU reportedly
-distorted after collaborator refinement. Exact files/revision/tool/settings are
-not yet identified; no cause is diagnosed. Q06 must compare built/ReadySet/refined
-geometry and effective native restraints: ring, trigonal C5, propyne coplanarity,
-internal propyne and chi/base orientation, plus sugar/phosphate/pair/Free-R intent.
-Use generalized source-graph checks and a related held-out substituent. Do not
-interrupt the current task or equate ReadySet acceptance with refinement survival.
-
-C279’s 5IU descriptive C5 elevation reaches 1.33 degrees; its native ring plane includes
-I5 at 0.020 Å deviation / sigma 0.020 Å. Final GEO prints 42 covalent planes, 3 user planes,
-58 user parallelities. These are useful observations, not complete membership,
-derivative or scientific qualification; PDU remains untested here. Q06 must retain
-the known ordinary-native parallelity-gradient boundary and Linden’s distinction
-between bond edits/exclusions and additive contact energy. Willow W38/W39 findings
-are reported context, not combined Cedar-build validation.
-
-Q07 mixed/held-out controls and Q08–Q14 chemistry learning remain; Q15 reporting
-and Q16 AutoPhase compatibility, integration checks and reviewed merge are later.
-Last full suite: **C220/583d30df, 9,178 tests + 276 subtests**, not a current pass.
-Linden owns Pine/Willow; everyday NASolve/pine code remains untouched. Signed
-cross-agent handoffs: **— Rowan**.
+Q07 mixed/held-out controls and Q08–Q14 retained chemistry learning follow. Q15
+reporting and Q16 AutoPhase compatibility, deployment/integration/full regression
+and reviewed merge remain later. Signed cross-agent handoffs: **— Rowan**.

@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-13**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-14**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -8,35 +8,18 @@ milestone statements preserve their original scope; they are not a second queue.
 ## What's current?
 
 - **CIF Doctor:** start with the [scientific work map](cif-doctor-completion-queue.md#pipeline-position).
-  The checked preparation can use ordinary Coot/NARestraints inputs and complete
-  dictionary repair plus ReadySet. [Truthful preparation reporting/recovery](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
-  is now available through `postmr --checked-preparation`; it saves the checked
-  result as the initial review checkpoint. Schema-2 campaigns can explicitly choose
-  the same route. New checked requests save compact, exact evidence; explicit
-  retirement of successful working duplicates now preserves stable public paths
-  and recovers interrupted cleanup. C260 connects new ordinary/campaign callers; broader campaign-scale
-  resource acceptance and historical-campaign migration remain separate. Complete requests can
-  reuse exact completed plane support or explicitly opt into graph-selected support
-  generation. `cif-doctor prepare-run --automatic-plane-support` now exposes that
-  choice with exact-result notes. Checked PostMR and schema-2 campaigns also forward
-  this explicit choice. Publication and campaign status show verified generation
-  notes without changing old receipts. C249 separately reports explicit planes in
-  the exact selected dictionaries; native modifications, alternative restraints
-  and achieved geometry remain unassessed by that screen. C251 adds explicit later
-  preparation alternatives with unchanged root/current choice and exact Coot/
-  refinement inputs. C253 binds chosen-model AutoSol site validation while preserving
-  original-MR phasing; C270/C271 pass native AutoSol, later-selection preservation
-  and relocated inspection. C272 loads the final display inputs in native Coot. C263 binds an explicit
-  prepared-input recipe to original chemical authority; isolated 1AP/5IU acquisition
-  and relocated cold reads pass without changing ordinary defaults. C266 carries
-  explicitly protected background terminal phosphates through native checking,
-  preserving their full native definitions. Charged 1AP leaving-port authority
-  remains unresolved under Q13. C252 validates real two-attempt publication, relocated Coot/
-  refinement inputs and preservation of a later manual choice. Practical inspection cost, recovery/rollout scope,
-  real refinement and broader chemical controls remain open. Read the
-  [short handoff](development-handoff.md) for validation and the next action,
-  the [human overview](cif-doctor-human-overview.md) for the explanation, and the
-  [capability table](cif-doctor.md#current-capability-boundary) for support limits.
+  The explicit checked route uses ordinary Coot/NARestraints construction, owned
+  dictionary repair/ReadySet, independently checked fallback and immutable review
+  checkpoints. Later alternatives preserve the selected choice. Q04/Q05 now have
+  supported-route recovery, successful-working retention, repeated-failure and
+  serial coordinator acceptance. One normal campaign reaches actual refinement
+  and cold relocated inspection. Q06 still owns effective restraints/derivatives
+  and chemical survival, including PDU; one 5IU control does not qualify the whole
+  catalogue. Native 100-dataset capacity, default activation, historical migration
+  and combined-source integration remain unqualified release limits. Use the
+  [short handoff](development-handoff.md) for the active task,
+  [human overview](cif-doctor-human-overview.md) for the explanation, and
+  [capability table](cif-doctor.md#current-capability-boundary) for exact support.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry

@@ -13,55 +13,73 @@ restraints that agree. Routine users should not have to edit CIFs. ReadySet and
 NARestraints remain the tools that supply chemistry/numerical parameters and the
 intended base-pair/stacking restraints; Doctor checks and connects their results.
 
-Q01–Q03 are complete within their recorded diagnostic scope. Q04 is the immediate
-work; Q05 carries its result into normal use. Q06 must pass before we claim that
+Q01–Q03 are complete within their recorded diagnostic scope. Q04/Q05 have
+completed the supported explicit-route preparation, recovery and chosen-input
+handoff acceptance through C284. Q06 is next and must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure at C278
+## Q04/Q05 acceptance and supported boundary at C285
 
-The normal route now has a complete native example: C276 runs campaign preflight,
-Phaser, Coot/NAR and checked ReadySet preparation with an explicit frozen source
-recipe. C277 fixes first-refinement admission. C278 preserves the full-model
-interpretation setting in refinement's own namespace; its fresh C279 control runs
-AutoSol and all five native refinement cycles, then reads the selected endpoint
-after relocation without old/source/SDK access or native launches. Seven original
-restraint inputs, D:1 phosphate protection and the original Free-R source survive.
-This is one explicit 5IU control, not whole-catalogue or solved-structure approval.
+**Complete for the explicit checked route and recorded controls.** This closes
+preparation/recovery and delivery of the chosen model/restraints; it does not
+approve every modified chemistry, enable defaults or authorize a merge. C276's
+normal campaign runs preflight, Phaser, Coot/NAR and checked ReadySet. C277/C278
+close first-refinement admission and the full-model interpretation setting;
+C279 completes AutoSol and five actual refinement cycles, then reads its chosen
+endpoint after relocation. Its original Free-R source, seven restraint inputs
+and explicit D:1 terminal-phosphate protection remain intact.
 
-| Work | Current evidence and remaining gate |
+| Acceptance | Evidence |
 | --- | --- |
-| Q04: build, check, repair and preserve attempts | The existing complete-request owner supplies bounded fresh attempts, source-preserving repair, independently checked fallback and unknown-process refusal. C244/C248 cover owned plane support and mixed child outcomes; C252 supplies native failed-optional/successful continuation. Do not rebuild these owners. |
-| Q04: retain evidence without redundant working copies | C258/C260 qualify retirement, deliberate interruption/recovery and stable public/campaign references. C276 independently runs automatic retention in an ordinary native campaign. **Still open:** whole repeated-failure/campaign capacity acceptance. Single-run measurements and bounded attempt counts are not a hard native scratch-disk quota. |
-| Q05: give each consumer the chosen model and restraints | C251/C252 qualify alternatives and later manual choices; C270–C272 qualify selected-model phasing, relocated readback and Coot. C273 reduces repeated numerical work. C276–C278 close the exposed source-recipe, first-refinement and consumer-namespace gaps; the normal campaign now reaches real refinement. Broader chemical mechanics remain Q06. |
-| Q04/Q05: supported recovery and rollout scope | C274/C275 finish a sealed AutoSol result save after verified stop, including the normal command. **Still explicit:** pre-seal/unfinished work, shared/foreign/unknown groups, missing outer campaign receipts, old unarchived campaigns, and standalone isolated child ownership. Decide supported release scope without silently adopting these cases or enabling defaults. |
+| Preserve the intended molecule and independent fallback | Existing C184/C219 complete owner; C244 owned source-supported plane acquisition; C248 mixed child outcomes and uncertain-process refusal; C252 native optional failure followed by fresh success. |
+| Recover without overwriting earlier work | C258/C260 interrupted retirement; C274/C275 exact sealed AutoSol save after verified process/group stop; old attempts and newer choices remain intact. |
+| Account for repeated failures | C280 executes the second native attempt under unchanged frozen allowance; both unqualified results stay preserved, a third refuses exhausted allowance, and publication/retirement refuse. Moved cold reads retain every original and failed file. |
+| Continue after successful working files were archived | C282 executes a second preparation after an archived first, publishes it unselected and retires only eligible new duplicates. All 207 earlier campaign references remain valid; current choice stays postmr. |
+| Deliver exactly the chosen result | C251/C252 alternatives; C270–C272 selected-model anomalous comparison/Coot; C276–C279 ordinary preparation through actual first refinement and relocated endpoint inspection. Broader chemistry is Q06. |
+| Keep serial campaign bookkeeping practical | C281/C283 run 100 synthetic datasets, preserve 50 failures, prepare 50, and allocate two explicit fresh retries without changing earlier runs. Stage-scoped checks reduce initial hash reads from 651,504 to 13,104. C273/C284 reuse only identical pure calculations within one read. |
 
-The next bounded work is **resource/recovery acceptance and scope reconciliation**,
-using existing owners and recorded controls. It is not another plane compiler,
-checkpoint implementation or native-input repair. Q04/Q05 remain open overall;
-keep the unfinished gates visible rather than repeatedly reopening completed ones.
-The old numerical patch estimates are superseded by these observable gates.
+**Supported recovery scope.** Use explicit checked PostMR/prepare-run/schema-2
+campaign policy, frozen requests and exact numbered results. New attempts require
+known-stopped previous ownership and remaining frozen allowance. A qualified
+fallback may continue useful work; an unqualified result blocks its dependent
+stage, not unrelated campaign datasets. Sealed AutoSol save completion is supported
+only after the recorded producer and group are known stopped. No default-route
+activation or historical migration follows from these controls.
 
-Practical resource evidence:
+Pre-seal/unfinished AutoSol work, unknown/shared/foreign groups, missing outer
+campaign receipts and old unarchived campaign references are preserved and not
+automatically adopted. Standalone AutoSol has no isolated child owner; campaign
+supervision remains the supported owned path. These explicit limits remain in
+Q16's release decision; do not silently retrofit receipts, retry in place or add a
+second process/chemistry owner. Future broader recovery is a separately reviewed
+extension, not an excuse to repeat this completed integration.
 
-- C260's copied successful request retains 33,661,526 B / 98 files; interrupted
-  retirement preserves all 97 campaign references after relocation.
-- C264/C265 each retain 18,921,275 B inside a stopped failed request; C266 retains
-  37,543,881 B. Failed work was not deleted.
-- C276's fresh ordinary whole request retains 35,128,115 B / 168 files; its whole
-  diagnostic control is 44,883,952 B. C279 adds complete phasing/refinement in a
-  separate copy: 70,099,150 B / 469 files at the summary snapshot.
-- C279's cold moved endpoint read takes 57.75 s, peaks at 606.7 MB Python memory,
-  and leaves all 462 campaign files unchanged. Keep campaign work sequential and
-  one expensive reader at a time. This is not a concurrent/native-memory or
-  100-dataset capacity test. Retain the existing 128 MiB physical expansion bound;
-  no new allowance, automatic failed-output cleanup or historical migration.
+**Laptop operating envelope.** Keep campaign execution serial and use one expensive
+scientific reader at a time. Current whole requests measure 35.1 MB for one archived
+success, 65.7 MB for two archived successes, and 70.7 MB for two preserved native
+failures. A historical unretired PDU two-attempt request retains 315.3 MB. Shared
+acquisitions, failures and continuation are included. C282's request falls from
+191.9 MB to 65.7 MB; all original/failed science remains local and preserved.
 
-Exact commands, source pins, retained failures and scope:
-`ordinary_campaign_retention_2026_11_13`,
-`ordinary_source_recipe_callers_2026_11_14`,
-`refinement_policy_namespace_2026_11_14`, and
-`q04_q05_closure_audit_2026_11_14` in the evidence ledger.
+For scale only, 100 copies of the measured one-success or two-failure requests
+would be about 3.5 GB or 7.1 GB. These are arithmetic estimates, excluding raw
+inputs, other stages and peak native scratch—not a 100-native-dataset experiment
+or guaranteed capacity. C281/C283's 100-dataset test uses tiny synthetic stage
+outputs. C282's sampled descendant RSS peaks around 635 MB; sampled/shared-page
+counts are not an upper memory bound. Retain existing 128 MiB physical replay
+expansion limits. No automatic failed-output deletion or new storage allowance.
+Explicit campaign retry deliberately creates a new run/request allowance; there
+is no fixed campaign-wide retry or byte cap. Deployment capacity remains Q16.
+
+Exact controls and commands live in the existing evidence ledger:
+`repeated_failure_resource_acceptance_2026_11_14`,
+`retained_first_attempt_native_continuation_2026_11_14`,
+`serial_campaign_resource_acceptance_2026_11_14`,
+`campaign_stage_integrity_scope_2026_11_14`,
+`owner_inspection_numerical_reuse_2026_11_14`, and
+`q04_q05_supported_scope_2026_11_14`. Last full suite remains C220/583d30df;
+current checks are focused, and final integration still needs full regression.
 
 Q06 still owns effective native membership, known parallelity-gradient behavior,
 scientific targets and achieved geometry. Simon's reported PDU distortion after
@@ -77,8 +95,8 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
-| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Preparation, owned repair/fallback, fresh-attempt recovery and successful-working retirement have their recorded controls. Finish repeated-failure/campaign resource acceptance and the explicit supported recovery scope; preserve unknown/failed work. |
-| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Alternatives, selected-model phasing, cold inspection and the normal five-cycle refinement handoff are demonstrated through C278. Finish the coupled Q04 recovery/resource/rollout boundary; no default activation or historical migration is implied. |
+| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
 | **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | C278 supplies one actual 5IU refinement control. Still qualify effective plane/parallelity membership and derivatives, targets and achieved geometry; include PDU surviving refinement and a related held-out substituent. Numerical acceptance or a readable dictionary alone is insufficient. |
 | **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
@@ -93,19 +111,16 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
 ### The next small steps
 
-1. **Finish Q04/Q05 acceptance:** quantify complete retained outcomes across
-   repeated failures/campaigns and reconcile the explicit supported recovery and
-   rollout limits. Use the existing owner, bounds and retained controls; keep
-   failed/unknown science intact and do not invent another queue or executor.
-2. **Preserve the completed handoff:** source recipe, plane support, selected
-   preparation, phasing, first refinement and relocated inspection are connected
-   for the recorded controls. Add a regression only for a newly exposed gap.
-3. **Qualify the actual chemistry after refinement:** use Q06's full effective
-   restraints/derivative/geometry checks, including Simon's PDU survival case.
-   Then run Q07's combined and unfamiliar-ligand controls, retaining Q08–Q14 learning.
-4. **Refresh reporting and review integration:** Q15 and Q16 retain the user PDF,
-   AutoPhase compatibility rename, full regression and reviewed release scope.
-   A limited pilot must state its limits; no automatic merge is authorized.
+1. **Qualify actual refinement chemistry (Q06):** inspect the full effective
+   restraint set, native derivatives and achieved geometry, including Simon's
+   PDU survival case. Reuse recorded construction, selected bundles and numerical
+   owners; do not rebuild completed Q04/Q05 machinery.
+2. **Prove transfer and combinations (Q07–Q14):** combined and unfamiliar-ligand
+   controls, retained sugar/backbone learning, catalogue/state coverage and false
+   alarm checks remain explicit. A 5IU control does not qualify PDU or L-FANA.
+3. **Explain and integrate (Q15/Q16):** update the user PDF and ordinary report,
+   then AutoPhase compatibility, combined-source full/native/platform checks,
+   operating-scope review and reviewed cleanup. No automatic merge.
 
 C219 already executed the ordinary Coot/NAR-derived request through generation,
 repair and ReadySet, and reread the selected result with the original paths and
@@ -116,8 +131,8 @@ the plane checks into ordinary repair now works for explicitly supplied owned
 support, including the complete request/ReadySet at C242. C244 adds explicit
 automatic acquisition; C245 adds prepare-run and result notes; C246 adds explicit
 checked PostMR/campaign forwarding; C247 carries publication/status notes. C249 selected-plane reporting, C248 sibling recovery and C258/C260 working-file
-retirement/caller integration are complete within their recorded scopes. Remaining
-acceptance and rollout limits are listed above. DP's ambiguous correspondence,
+retirement/caller integration are complete within their recorded scopes. The
+supported recovery and rollout limits are listed above. DP's ambiguous correspondence,
 source-H questions and PDU numerical targets remain visible limits.
 
 These are work packages, not a prediction of session or commit count. Preserve
@@ -198,12 +213,12 @@ ordinary adoption is Q05 and the actual refinement consumer is Q06.
 
 ### Q04 — Bounded automatic recovery and durable attempts
 
-**Core implementation demonstrated for the explicit supported route; overall
-acceptance remains open.** C220–C225 provide preparation, publication and ordinary
-entry; C244–C249 connect owned plane support/reporting; C258/C260 retain successful
-working evidence; C274–C278 complete the exposed recovery/caller gaps. Remaining
-work is the resource and supported-scope gate above. Default activation has not
-been authorized and is not silently implied by a native control.
+**Accepted for the explicit supported route through C284.** C220–C225 provide
+preparation, publication and ordinary entry; C244–C249 connect owned plane support;
+C258/C260 retain successful evidence; C274–C278 close the exposed caller/recovery
+gaps. C280–C284 supply repeated-failure, archived-first continuation and serial
+resource controls. The supported boundary above is authoritative. Default
+activation has not been authorized and is not silently implied by a native control.
 In lab terms: preserve the intended molecule, get a checked model/restraint set,
 and resume interrupted preparation without rebuilding or damaging earlier work.
 
@@ -234,89 +249,29 @@ Already implemented and to be reused:
   It reuses the same reader once, preserves ordered model/CIF/PHIL inputs, and
   checks the expected prior attempt number under the existing lock.
 
-Remaining acceptance:
+Acceptance evidence is summarized once above. The durable contracts remain:
 
-1. Reuse C223–C225's initial checkpoint, explicit ordinary PostMR and frozen
-   campaign entry. A checked fallback uses its genuine preparation receipt,
-   without a fictitious ReadySet-success label or log. C251/C252 supply later
-   alternatives and native handoff; C270–C272 close the selected anomalous-site
-   control. C276–C278 demonstrate the normal campaign through actual refinement.
-   These connections are complete within their recorded scope; default-route
-   enablement remains an explicit decision.
-2. C234–C239 join C226/C227 to the existing prepared repair request, with explicit
-   owned support, real success/stopped-native fallback and compact exact proof.
-   C242 freezes supplied completed support in the complete request and carries its
-   repaired result through actual ReadySet and cold readback. C244 obtains missing
-   support through the complete request's existing generation owner when explicitly
-   enabled, with durable child identity, shared deadlines and unchanged storage
-   limits. C245 adds prepared/ordinary intake, prepare-run and generation notes.
-   C246 adds explicit checked PostMR/campaign forwarding; C247 exposes publication/status
-   notes; C249 separately reports scoped explicit selected-CIF coverage. Complete remaining recovery/storage acceptance. C240
-   verifies a launched stopped negative generation without admitting partial output;
-   C241 preserves its optional recipe flag through existing acquisition identity.
-   Reuse these and the existing graph screen/narrow candidate. Do not add another
-   executor. C243 adds fully replayed completed chemical rejection; its proof
-   permits neither fallback nor retry alone. Earlier capability/prelaunch failures,
-   incomplete native handoffs and caught builder exceptions remain outside it.
-   C244 consumes those known outcomes with independent qualification; never infer
-   permission from arbitrary errors. Its screen requires exact source/dictionary
-   correspondence; broader allowed representations need explicit assessment.
-   New generated support belongs to exact owned child attempts, not edits to the
-   complete request's frozen inputs. Keep the explicit C242 reuse mode intact.
-   Preserve existing ring-plane groups; add only source-supported missing members
-   with owned generator/native/energy evidence. Do not substitute an entire
-   multiple-plane generated CIF. Keep non-PDU controls and ambiguous/tetrahedral
-   negatives; restraint membership alone does not establish achieved geometry.
-3. Reuse the existing ordinary-intake/complete-request tests for dictionary reuse,
-   missing/changed inputs, repair, independent fallback and interruption, plus
-   C252's native failed-optional/successful continuation and C276's normal campaign.
-   Extend only for an uncovered outcome; do not repeat the complete matrix after
-   every unrelated patch. Never add a competing legacy phosphate/modifier owner.
-4. Preserve old request meanings and exact replay, even when a later policy fixes
-   an earlier limitation. No in-place retries, automatic source rediscovery,
-   renewed attempt allowance or latest-file selection.
+- Reuse initial/later checkpoint publication and ordinary/schema-2 campaign entry;
+  a checked fallback carries its genuine preparation receipt, without fabricated
+  ReadySet success. Preserve old request meanings and exact replay.
+- Source-supported plane completion reuses the existing generation and repair
+  owners, exact child identity and shared allowance. Completed chemical rejection,
+  stopped optional failure and uncertain ownership remain distinct. Corrupt or
+  unknown evidence never authorizes fallback. Do not infer new chemical authority
+  from a native exit code or a prettier model.
+- Retire only eligible, independently qualified successful working duplicates
+  after exact reread and durable archive/intent. Keep public models, ordered CIF/
+  PHIL inputs, shared acquisitions and every failed/active/unknown attempt.
+  Historical campaign references to working files require separate migration.
+- Reconstruct archived evidence within the existing 128 MiB physical expansion
+  and nesting/file limits. Revalidate all history on reads; scope numerical reuse
+  to identical input bytes within that read. No persistent scientific trust cache.
+- Preserve fresh immutable attempts, frozen allowance and known-stopped ownership.
+  C280 refuses a third request attempt; explicit campaign retry instead creates
+  a new numbered run with its own request, preserving the old run completely.
 
-5. **Storage implementation is complete through C260; finish representative
-   resource acceptance.** Reuse C228–C239 compact proofs, C254 bounded expansion,
-   C256 partitioned archives, C257 exact ordinary reads, C258 interrupted retirement
-   and C260 new ordinary/campaign integration. Do not rebuild transport, recovery,
-   archive formats or checkpoint publication. Their intermediate C228–C256 limits
-   and experiments remain historical evidence in the methods and evidence ledger.
-
-   The actual C244 copy falls from **181,566,343 B / 698 files to 33,661,526 B /
-   98 files**. Retirement removes 604 successful working duplicates; public models,
-   five PHILs, two CIFs and 51 public references remain stable. The C260 control
-   interrupts after 17 removals, reads the exact result, captures 97 campaign
-   references, relocates, completes retirement and verifies all 97 references.
-   Every original file/checksum/timestamp is unchanged. Exact commands and evidence:
-   ledger `ordinary_campaign_retention_2026_11_13`.
-
-   C270 additionally measures a successful **whole request**, 35,122,742 B / 168
-   files, including shared acquisition and continuation, after automatic retention.
-   Its whole relocated diagnostic control is about 62.3 MB. Cold inspection leaves
-   389 run files unchanged; profiled Python peak is 630.7 MB. This complements the
-   failed controls below, but does not establish a repeated-failure campaign bound.
-   Remaining acceptance must account for the **whole request**, including shared
-   acquisitions, unsuccessful attempts, continuation and publication. Preserve
-   active/failed/unknown work. New ordinary cleanup is optional only after exact
-   scientific reread; a cleanup problem must not hide a chemistry failure. Historical
-   unarchived campaign references to working files need a separate reviewed
-   migration; inspection and old publication never clean them automatically.
-
-   Keep the shared **128 MiB physical expansion** bound and existing nesting/file
-   limits. C260 replay peaks at 87,440,990 B temporary expansion and 756,350,976 B
-   Python resident memory. Archive size does not bound process memory or justify
-   concurrent readers. One hundred identical retained requests would occupy
-   3,366,152,600 B by arithmetic only: no 100-dataset execution or concurrency claim.
-   Record representative differing outcomes and a practical concurrency/resource
-   recommendation before claiming laptop-scale campaign acceptance. No new byte
-   allowance or silent deletion is authorized by this queue.
-   C266's read-only audit adds actual stopped-failure sizes: C264/C265 each retain
-   18,921,275 B inside the request, and C266 retains 37,543,881 B. Their whole
-   diagnostic controls (including observation copies) retain 29.25/29.25/47.09 MB.
-   No failed work is retired. These are distinct outcomes, not proof of a bounded
-   repeated-failure campaign; exact file/allocated-byte counts are in the C266
-   ledger. Prefer one expensive proof reader at a time until concurrency is measured.
+Earlier C228–C278 acceptance chronology and measurements remain in Git history,
+the methods and exact ledger records; they are not new unfinished tasks.
 
 **Chemical-plane holdover — implementation connected; consumer acceptance is Q06.**
 C208–C216's checked plane-completion machinery now has C226 maintained numerical
@@ -331,7 +286,7 @@ C245 freezes/forwards the option through prepared/ordinary intake and prepare-ru
 C246 connects explicit checked PostMR/campaign entry; C247 carries generation notes
 through publication and campaign status. C249 reports scoped explicit selected-CIF
 planes without claiming effective native adoption; absent intent keeps its meaning.
-Finish remaining recovery/storage acceptance before Q04 closure.
+Recovery/storage acceptance is recorded above; native consumer chemistry remains Q06.
 C248 adds mixed sibling controls: support/rejection in either component, a stopped
 interruption retried in a fresh outer attempt, and an unknown partial reservation
 that blocks retry while preserving the successful sibling. These pass through
@@ -390,9 +345,8 @@ called it the next step.
 
 ### Q05 — Ordinary PostMR continuation and immutable adoption
 
-**Normal-route integration demonstrated; overall closure remains coupled to the
-Q04 resource/recovery scope gate.** C221 checks the complete restraint set before
-inspection; C222 opens an exact checked preparation without adoption. C223 now
+**Accepted for the explicit route and recorded controls through C284.** C221 checks
+the complete restraint set before inspection; C222 opens an exact checked preparation without adoption. C223 now
 publishes that exact choice as the initial REVIEW checkpoint, including a verified
 fallback. Ordinary inspection, refinement and AutoSol readers validate the saved
 producer/compiler/result binding. New manual/refined models preserve its ordered
@@ -445,7 +399,7 @@ without changing the initial preparation or later selections. Focused controls
 cover alternatives, manual choice, relocation, native failure and conflicting
 publication. No automatic campaign continuation or native refinement claim follows.
 
-**Remaining acceptance:** C270–C272 complete selected-model native AutoSol,
+**Native acceptance:** C270–C272 complete selected-model native AutoSol,
 later-selection/relocated inspection and final native Coot loading for the explicit
 A:5IU fixture. C273 reduces duplicate numerical work within exact inspection.
 C274 closes **explicit completion of a sealed phasing result save**: new checked
@@ -459,9 +413,9 @@ receipt, unfinished native work, a shared/foreign/unknown group and a missing ou
 campaign-stage receipt are not automatically adopted. Direct AutoSol still lacks
 standalone isolated child ownership; inherited campaign supervision is unchanged.
 Old unowned partial directories remain visible and unadopted. No guessed process
-death, in-place native retry or fabricated campaign success. Decide the supported
-caller/rollout boundary explicitly and reconcile serial resource acceptance before
-Q04/Q05 closure; reuse these owners rather than starting another recovery stack.
+death, in-place native retry or fabricated campaign success. These are the explicit
+supported-route exclusions above and Q16 release limits; reuse these owners rather
+than starting another recovery stack.
 C255 has separately reconciled Alder's exact HL phase-label fix into Cedar, with
 unchanged native arguments and a real read of the documented DiU MTZ. This closes
 the known phase-label correctness discrepancy on Cedar; C270 now supplies native
@@ -804,7 +758,12 @@ on Python 3.12.14, including a relocated checkout; actual Python 3.10 execution
 and full platform qualification remain part of the release gate below.
 
 
-**Open; release gate.** State whether the proposed checkpoint ships bounded
+**Open; release gate.** Q04/Q05 acceptance is for the explicit serial route, not
+default activation or arbitrary native campaign capacity. Review available disk
+against whole retained requests, raw inputs, other stages and native scratch;
+representative 100-dataset native deployment has not been run. Keep unknown/failed
+work, pre-seal AutoSol exclusions, standalone ownership and historical migration
+limits visible. State whether the proposed checkpoint ships bounded
 explicit tools or the automatic engine, then review the actual Cedar→pine→main
 diff and interactions with the other NARestraints/metal work. Run the unfiltered
 full suite on the final combined source, relevant ordinary/native controls and
