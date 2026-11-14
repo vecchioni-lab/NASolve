@@ -739,6 +739,7 @@ def inspect_dictionary_request(directory):
     return _inspect_dictionary_request(directory)
 
 
+@numerical_replay_scope()
 def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
     children,bindings = _children(root,attempt,intent,request['configuration'])
     if any(r['state'] not in {'STOPPED','NOT_CREATED'} for r in children.values()):
@@ -903,7 +904,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
                 selected_attempts={c['code']:c['attempt_number'] for c in components},preparation=dict(anchor='attempt_directory',path='preparation'),
                 repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed,
                 **continuation_fields,**_outer_provenance_fields(config),**plane_fields))
-            children,bindings = _children(root,attempt,intent,config); _result(root,attempt,intent,config,children,bindings)
+            # Sealing owns the complete child/result validation and final deadline.
+            # Repeating that same validation here consumes the frozen allowance.
             remaining(); _seal(root,attempt,intent,request,'RETURNED',remaining=remaining)
         except BaseException as exc:
             try: _seal(root,attempt,intent,request,'RAISED',type(exc).__name__)

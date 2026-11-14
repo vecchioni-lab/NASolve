@@ -109,6 +109,15 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF after the behavior is integrated. |
 | **Q16 — finish the branch cleanly** | Finish with the AutoPhase naming/compatibility change, then check Cedar as part of NASolve and review integration into pine/main. | Preserve Phenix AutoSol calls and old runs; follow the [machine-readable rename audit](autophase-rename-plan.json), then full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
 
+**Current PDU gate (C303):** the fresh v3 request gets through source-supported
+repair, ReadySet and native continuation, but redundant final validation exhausts
+its frozen allowance before publication. It remains a preserved failed attempt,
+with no refinement. Remove the duplicate work through the existing sealing and
+bounded pure-math owners; keep the same deadline and scientific checks. A fresh
+PDU campaign must then demonstrate actual refinement and staged geometry before
+moving to the related G:5PC control. Original symmetry-linked PDU:PDU/B:1 remains
+separate. This is a measured execution cost exposed by Q06, not a new Q04 design.
+
 ### The next small steps
 
 1. **Qualify actual refinement chemistry (Q06):** inspect the full effective
@@ -631,7 +640,8 @@ a failed case is useful evidence, not authority to alter a ligand or weaken a
 guard. Inspect geometry/clashes without equating builder success to refinement
 or experimental validation. Catalogue/source selection and the compatible
 host/segment recipe are preparation gates; Q09–Q13 retain family/state ownership.
-**Queued for closure, not the next test; finish active Q04 work first.**
+**Queued for closure, not the next test. Q04/Q05 supported-route acceptance is now
+recorded above; finish the active Q06 chemical-survival control first.**
 
 ### Q08 — Explain persistent mixed-pair geometry
 

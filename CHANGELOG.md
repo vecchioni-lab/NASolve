@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Avoid duplicate final preparation validation (C303)
+
+- Let the existing final sealing operation perform complete child/result validation
+  once, then check the unchanged frozen deadline and artifact bounds before success.
+- Reuse identical pure numerical calculations only within that seal, using the
+  existing bounded inspection scope. Changed inputs still recalculate; file,
+  ownership and checksum checks remain fresh. Failed attempts remain preserved.
+- No schema, timeout allowance, chemistry or default-route changes. Fresh native
+  PDU execution on this fix remains required before claiming refinement survival.
+
 ### Bound complete preparation by its actual child owners (C302)
 
 - Fresh checked requests use artifact policy v3 to count the owned repair attempt

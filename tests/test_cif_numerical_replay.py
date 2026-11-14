@@ -122,3 +122,34 @@ def test_owner_inspection_reuses_calculation_only_within_one_read(case, entry):
         read()
         assert len(calculations) == 2
     assert inventory(root) == before
+
+
+@pytest.mark.parametrize('changed', [False, True])
+def test_final_seal_reuses_identical_math_but_still_refuses_changed_proof(case, monkeypatch, changed):
+    from nasolve.campaign_records import read_record
+    complete,args,root,sdk,store,generations,calls=case
+    complete.initialize_dictionary_request(output=root,**args)
+    original=complete._result;calculations=[]
+    proof,expected=mixed_initial_result()
+    def counted(*values):
+        calculations.append(1)
+        return _validate_result(*values)
+    def observed(*a,**kw):
+        exact=original(*a,**kw)
+        validate_mixed_result(counted,proof,expected,[0])
+        second=deepcopy(proof)
+        if changed:
+            second['gradient_audit']['cases']['initial']['families']['all']['directions'][0]['samples'][0]['plus_target']+=1.
+        validate_mixed_result(counted,second,expected,[0])
+        return exact
+    monkeypatch.setattr(complete,'_result',observed)
+    if changed:
+        with pytest.raises(ValueError):
+            complete.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+        assert len(calculations)==2
+    else:
+        complete.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+        assert len(calculations)==1
+    finished=read_record(root/'attempts/attempt-0001/finished.json')
+    assert finished['outcome']==('RAISED' if changed else 'RETURNED')
+    assert len(calls)==1

@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C302**. Active **cedar** in NASolve-c96. Remote last verified
-**C301 `bea76681`**, including C295–C300.
+Updated **2026-11-14, C303**. Active **cedar** in NASolve-c96. Native C303
+pins published C302 `d32825e9`; this change fixes its measured final-validation cost.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
@@ -42,66 +42,32 @@ remain Q16. Last full suite: **C220/583d30df, 9,178 tests +276 subtests**.
 
 ## Q06 — real refinement preserves the intended chemistry
 
-**C299 committed/pushed `b4739c76`:** `autorefine --checked-plane-forces` uses the
-configured Phenix Python, isolates zero-cycle native setup outputs, and requires
-explicit continuation through corrected ancestry (including manual edits).
-99 focused tests +33 subtests pass. Native CLI one-cycle continuation produced
-refine-003 from C298 refine-002, kept all 58 complete plane parameter rows, and
-passed cold relocation with both request formats. Omission refuses before native
-work/new round; an uncorrected sibling keeps legacy behavior.
+**Established C291–C300 foundation:** complete plane parameters, corrected native
+forces across five cycles/forks/replacement managers, frozen helper code, isolated
+zero-cycle setup, ordinary AutoRefine/checkpoint readback and explicit CLI,
+schema-2 campaign and Doctor forwarding. Corrected ancestry cannot silently lose
+the choice; defaults remain unchanged. C299 `b4739c76` and C300 `d9f3bbb8` native
+controls retain all 58 parameters and cold relocation. C299's outer driver failure
+(wrong zero-cycle PDB expectation) stays preserved separately from its successful
+CLI refinement. C300's Doctor trial leaves the earlier checkpoint current.
+The existing ledger owns exact commands/counts/limits; do not repeat those controls
+without a new reason. Preserve Free-R, NAR membership, observations and targets.
+No SDK edits: qualification binds exact local Phenix 2.2.1-6174 / dispatcher 2.2.1,
+Darwin/arm64 source; a version label alone does not qualify another installation.
 
-Local control `299_Cedar_cli-continuation-n0qa9yxh`: actual CLI returned zero and
-selected its new checkpoint in the isolated clone. Outer driver rc1 is preserved:
-it incorrectly expected a PDB from zero-cycle setup, which writes EFF/GEO/log/MTZ.
-Separate readback finished relocation/inspection without another refinement.
-All native jobs stopped; source pins unchanged. Exact files/counts/storage and
-commands are in `explicit_cli_plane_force_continuation_2026_11_14` in the ledger.
+**PDU control intent:** C301–C303 use C270's declared mechanics scaffold with
+A:12 DA / B:4 PDU and D:1 terminal phosphate, no experimental phases. Original
+observations/Free-R are retained; this is not PDU crystal data or a solved structure,
+and does not unblock original PDU:PDU/B:1.
 
-Prior qualified foundations: C296 `1d455fdd` validates complete plane parameters;
-C297 `fe7e9fd7` freezes the exact local native implementation and restores bindings;
-C298 `85a45a0f` joins ordinary AutoRefine/checkpoint readers and passes five cycles
-plus cold relocation. Its argument-only preflight failure remains stopped/readable.
-C291–C294 qualify five-cycle/fork/replacement-manager forces. Preserve original
-Free-R, NAR membership, observations and native targets. No SDK edits. Native
-version is Phenix 2.2.1-6174 / dispatcher 2.2.1, local Darwin/arm64 exact profile;
-version labels alone are not broader capability or pristine-distribution proof.
+**C301 `bea76681`:** mixed canonical/modified Coot serial authority now includes
+the declared A:12 DC→DA mutation, bound to actual identities. C80 covered related
+curated sites; the missing canonical scope had prevented B:4 graph restoration
+and correctly triggered the outgoing phosphate guard. The fix passes 237 tests
++10 subtests and read-only replay of all 31 unchanged failed-run files. Scope is
+serial-only; graph/OP3/phosphate rules, old policy and rollback remain intact.
 
-**C300 committed/pushed `d9f3bbb8`:** explicit schema-2 campaign choice and Refine
-Doctor API/CLI reuse the same runtime checks and immutable round owner. Focused
-validation: 233 tests +61 subtests pass, no full suite. Native control
-`300_Cedar_doctor-plane-forces-ncuo_h42` passes one existing ML-fixed-scattering
-trial at refine-004 from refine-003, keeping refine-003 current. The recipe
-deliberately excludes experimental phases; original observations and Free-R stay
-fixed (audit valid/NOISY). All 58 parameters retained; relocated cold read passes.
-524 original files, 129 prior-round files and 576 readback files unchanged.
-Driver rc0, known stopped, source pins unchanged. Runtime evidence 2.17 MB;
-clone-on-write logical total is not unique physical storage.
-
-**Next:** use existing source-selected geometry readers to inspect actual outcomes.
-Run a fresh PDU:A campaign control from C270's declared chemical test scaffold,
-with explicit checked preparation/plane forces and no experimental phases. This
-is a mechanical substitution control with retained observations, not donor
-chemistry or a solved structure; it does not unblock original PDU:PDU/B:1. Keep
-the original source and all failed work.
-
-**C301 committed/pushed `bea76681`:** fresh declared A:PDU control
-`301_Cedar_PDU-campaign-idfuqpan` passed preflight/Phaser/Coot, then the phosphate
-guard stopped B:4 outgoing O3′–P displacement. No ReadySet/refinement ran. All
-jobs stopped, source pins and five original inputs unchanged. Mixed Coot context
-omitted the also-declared canonical A:12 DC→DA mutation from serial authority;
-raw OP3 then prevented graph restoration. C80 covered related curated sites.
-The generalized explicit canonical serial-only scope now passes 237 focused tests
-+10 subtests and read-only replay of actual C301 output. All 31 failed-run files
-unchanged; full phosphate validation passes with no further atom removal. No
-new phosphate/graph authority, no SDK changes. Historical policy is preserved;
-failed final proof retains attempted scope and established rollback behavior.
-
-**Next:** fresh A:PDU campaign on this fixed source, then inspect source-selected
-ring/C5/propyne/chi through ReadySet and actual refinement. Record staged geometry,
-not just tool completion. The prior failed run and original PDU:PDU/B:1 stay
-untouched. Q06 remains open.
-
-**C302 fixed, being committed:** `302_Cedar_PDU-campaign-fig6ru2e` passes
+**C302 committed/pushed `d32825e9`:** `302_Cedar_PDU-campaign-fig6ru2e` passes
 construction, PDU generation/repair and ReadySet, then refuses v2 outer completion
 before checkpoint/refinement: parent bucket 143.7 MB also counted the owned repair
 child. All processes stopped; source pins and five original inputs unchanged.
@@ -112,10 +78,45 @@ Old archive/retention and relocated new-format tests pass; exact frozen policy
 is bound on read. No migration or retirement of failed C302. Native retries need
 a fresh request/run. Full validation commands/results are in the existing ledger.
 
-**Next:** fresh PDU campaign on the committed fix, then source-selected staged
-chemistry, cold readback and actual consumer membership. Local c303 runners are
-prepared; c304 G:5PC is deferred until PDU succeeds. No active native jobs, no
-full suite. Original PDU:PDU/B:1 stays separate and untouched. Q06 remains open.
+**C303 stopped, not successful:** fresh PDU campaign on `d32825e9`,
+`303_Cedar_PDU-campaign-btuh5sop`, passes the new storage partition and completes
+repair/ReadySet/native continuation, but final outer validation exhausts the frozen
+900-second allowance. Outer receipt is RAISED/TimeoutError; no checkpoint or
+refinement. Driver rc0 only reports a returned BLOCKED campaign. All owned jobs
+stopped, source pins/five original inputs/dictionary unchanged. Preserve the whole
+failed attempt. No in-place completion, policy rewrite or increased allowance.
+
+**C303 fix:** C184's coordinator called `_children`/`_result` immediately before
+`_seal` repeated both. Sealing now owns that full validation once and uses C284's
+existing bounded pure numerical scope. File/ownership/checksum checks, final
+frozen deadline and artifact headroom remain unchanged; no new cache/schema or
+allowance. The exact saved artifacts produce identical result/inventory hashes:
+profiled unscoped replay 301.31 s versus scoped 144.35 s; numerical evaluations
+14→2, all 852 request files unchanged. These are instrumented local timings, not
+a production benchmark or proof that the next native attempt fits. New reader
+still reports C303 STOPPED/RAISED/TimeoutError; all 963 run files unchanged.
+
+Focused validation: **196 passed in 371.67 s** across complete-request,
+continuation and numerical-replay tests. New deadline and identical-proof cases
+fail before the fix; changed numerical evidence still refuses. No full suite.
+Exact commands, fingerprints and limitations are in the existing ledger.
+
+Read-only preparation geometry (Phenix 2.2.1-6174 native chi evaluator, no
+optimization): B:4 chi differs from the parent by 0.0061° after construction and
+ReadySet; C5 attachment elevation 0.9428°, triple flanks 176.401°/176.885°, bond
+1.18943 Å. Terminal methyl is 0.11239 Å from the descriptive existing plane fit.
+ReadySet preserves these measured coordinates; no actual refinement survival is
+claimed. Compact values and local geometry receipt are in the same ledger.
+
+**Next:** after committing this fix, use the existing explicit continuation owner
+on C303 (`continue-preparation RUN --after-attempt 1`) for one fresh numbered
+attempt, if its frozen ownership/allowance/source checks still permit it. C220–C224
+already define this route; preserve attempt 1 and do not repeat Coot/NAR or edit
+its outcome. Publish only the new exact successful attempt, then run explicit
+checked-plane-force refinement and inspect staged geometry/native membership.
+The prior campaign's BLOCKED stage remains historical evidence; this explicit
+recovery is not an automatic campaign-resume claim. G:5PC stays deferred until
+PDU actually refines. Q06 and original symmetry-linked PDU:PDU/B:1 remain open.
 
 ## PDU control remains separate
 

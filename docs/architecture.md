@@ -43,6 +43,14 @@ Archive and owner use one boundary function; retention binds the frozen version.
 V1/V2/absent policies keep historical meanings. Failed oversized old attempts are
 not rewritten or retired; a fresh request carries the new policy.
 
+Complete-request final sealing owns the complete child/result validation. The
+coordinator does not repeat that same validation immediately beforehand. Sealing
+uses the existing bounded, inspection-local pure numerical reuse: exact complete
+inputs and validator identity must match, files are still read/authenticated,
+changed evidence recalculates, and the scope is discarded even after failure.
+The final cooperative deadline and artifact headroom checks remain before atomic
+success publication. No failed result is adopted or re-sealed by this optimization.
+
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not

@@ -96973,5 +96973,192 @@
       "Related G:5PC control remains queued after PDU; original PDU:PDU/B:1 unchanged.",
       "Real successful PDU retirement/capacity and100-dataset cost remain unqualified; no full-suite or universal-chemistry claim."
     ]
+  },
+  "complete_final_validation_reuse_2026_11_14": {
+    "milestone": "C303",
+    "status": "FINAL_VALIDATION_REDUNDANCY_FIXED_FRESH_NATIVE_PENDING",
+    "base_commit": "d32825e9",
+    "behavior": {
+      "before": "Fresh PDU v3 request completed source-qualified repair and ReadySet/native continuation, then exhausted its frozen 900-second allowance in final validation. Coordinator called children/result validation immediately before sealing repeated both; sealing lacked the existing pure numerical reuse scope.",
+      "after": "Existing sealing owns full child/result validation once and uses the existing bounded numerical_replay_scope. Preserve fresh file/ownership/checksum reads, exact input/validator matching, changed-proof refusal, final deadline/headroom and atomic publication. No new cache or owner."
+    },
+    "prior_work": "C184 introduced duplicate coordinator/seal validation; C284 already supplied bounded pure numerical reuse for inspection. Reuse those owners rather than change chemistry or time limits.",
+    "source_sha256": {
+      "src/nasolve/cif_complete_request.py": "17b70d5081601e08048216f29fe20a1884787ab167aa5746b9455ffd50599548"
+    },
+    "validation": {
+      "before_deadline": "1 failed in 4.46 s at final remaining() with the original code.",
+      "before_reuse": "1 failed, 1 passed in 8.37 s: identical proof recalculated four times; changed numerical evidence already refused.",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_numerical_replay.py tests/test_cif_complete_request.py tests/test_cif_complete_continuation.py --tb=short",
+      "python": "NASolve/.venv/bin/python",
+      "result": "196 passed in 371.67 s",
+      "coverage": "Deadline after final inventory still refuses; changed numerical proof refuses; success/failure ownership, interruption, bounds, source changes, continuation and bounded scope behavior preserved.",
+      "full_suite": "NOT_RUN"
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "303_Cedar_PDU-campaign-btuh5sop",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "status": "BLOCKED",
+      "diagnostic": "PostMRPreparationError: Checked preparation could not complete: Complete dictionary request allowance exhausted; preserve partial output",
+      "elapsed_seconds": 935.002035707992,
+      "retained_logical_bytes": 206450860,
+      "original_inputs_unchanged": 5,
+      "dictionary_unchanged": true,
+      "tool_build": "phenix-2.2.1-6174",
+      "coot_version": "1.3.3 revision-count 0",
+      "completed": "Actual preflight/Phaser/Coot, PDU generation/repair, ReadySet and native continuation; outer RAISED/TimeoutError, no checkpoint or diffraction refinement.",
+      "sampled_peak_rss_kib": 732240,
+      "memory_scope": "Once-per-second ps RSS sum for the observed worker and live descendants across process groups. Sampling lower bound, not a memory cap or guaranteed peak; shared pages may be counted more than once. Monitor does not control or signal jobs.",
+      "records": {
+        "summary.json": "da2188f1539112ba1c3f611fabd04c9e984ac540add732087162d3cb43409191",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "declared-test-intent.json": "13e4ea5f600ddb79048d8512d72a7ac41dbc5ae9b5b850f7a325f5cb62268c7f",
+        "dictionary-source.json": "f2b2ed64041cd011adf60e5e2a80088da5a6f2968a90a63c836e91b091a959cf"
+      }
+    },
+    "read_only_profile": {
+      "status": "READ_ONLY_IDENTICAL_RESULT",
+      "measurements": [
+        {
+          "scoped": false,
+          "elapsed_seconds": 301.3132575839991,
+          "result_sha256": "089c924d1ff7b26a357c3a9e9a9775fbfe225fb279ca5ae0dbda48db698e12d0",
+          "files_sha256": "8618314a7c270ceb0d170aa56b56b0a2523547337e98b8fb17ef2814caf4a346"
+        },
+        {
+          "scoped": true,
+          "elapsed_seconds": 144.3510374580219,
+          "result_sha256": "089c924d1ff7b26a357c3a9e9a9775fbfe225fb279ca5ae0dbda48db698e12d0",
+          "files_sha256": "8618314a7c270ceb0d170aa56b56b0a2523547337e98b8fb17ef2814caf4a346"
+        }
+      ],
+      "unchanged_files": 852,
+      "failed_outer_outcome": "RAISED/TimeoutError; unchanged; not recovered",
+      "native_execution": false,
+      "scope": "Actual C303 saved child/result/inventory replay, subprocess launch prohibited. Existing code loaded at C302; explicit scope comparison exercises the same existing cache used by the fix. No sealing, writes to the attempt, recovery, native execution or adoption.",
+      "numerical_evaluations_before": 14,
+      "numerical_evaluations_after": 2,
+      "limitations": "cProfile overhead and local concurrent focused test activity; single paired diagnostic, not a production benchmark, capacity guarantee or evidence of end-to-end success.",
+      "records_anchor": "ignored_cedar_runners",
+      "records_directory": "c303_read_records",
+      "records": {
+        "summary.json": "5336dd821f9cf998b5d5cb0f4555015002fa1cfbc1bdb99428646c56c6cab66e",
+        "measurements.json": "f01b396c5cfe3c76d3b2ef0124404169c9bcde7e6f15a63ff1f0a06c912ee6bc",
+        "unscoped.txt": "fc4e0c13ad36ef2fcb9301f280b81e779bc257ad4676dd7f5d9e376e569f4b8f",
+        "scoped.txt": "c3bf19d1171386d321c36de4a69a565d87ba82c1a3567312fc1a01d1aa0ed428"
+      }
+    },
+    "failed_owner_read": {
+      "status": "FAILED_ATTEMPT_REMAINS_FAILED",
+      "owner_state": "RECORDED",
+      "availability": "AVAILABLE",
+      "attempt_state": "STOPPED",
+      "outcome": "RAISED",
+      "error_type": "TimeoutError",
+      "unchanged_run_files": 963,
+      "elapsed_seconds": 4.839172292005969,
+      "no_native_execution": true
+    },
+    "compatibility": "No request/archive/checkpoint schema or migration change. Same frozen limits, chemical thresholds, numerical validators and SDK. Previously failed attempts remain failed; explicit fresh numbered continuation uses existing ownership and allowance checks.",
+    "artifacts": "Code/tests/compact evidence only. Models, diffraction data, native logs, profile text and local runners stay local. All failed outputs preserved; no files retired or deleted.",
+    "remaining": [
+      "Run supported explicit continuation from C303 after-attempt 1 as a fresh numbered attempt if still eligible; publish only its exact successful result, then actual checked refinement and staged geometry/native consumer membership.",
+      "Do not rewrite the prior BLOCKED campaign stage or describe explicit continuation as automatic campaign recovery.",
+      "Related G:5PC and Q07 mixed/held-out challenges remain after actual PDU survival; original symmetry-linked PDU:PDU/B:1 remains separate.",
+      "Successful large-PDU retention/capacity, full regression and broader chemistry/platform/default/integration acceptance remain unqualified."
+    ],
+    "preparation_geometry": {
+      "scope": "Descriptive construction/ReadySet geometry from a preserved failed outer attempt. No refinement, checkpoint publication, adoption or scientific approval. Native chi evaluator only; no model changes.",
+      "selected": "readyset_checked_model",
+      "unchanged_run_files": 963,
+      "elapsed_seconds": 45.9814044580271,
+      "record_sha256": "ed8a5676f753df9377443aec08a40ef3a1281efe944414cc0098e6fe7ab86fdd",
+      "models": {
+        "raw": {
+          "chi_degrees": -109.0229283152647,
+          "parent_chi_difference_degrees": 0.02675366217781061
+        },
+        "parent": {
+          "chi_degrees": -109.04968197744252,
+          "parent_chi_difference_degrees": 0.0
+        },
+        "readyset": {
+          "chi_degrees": -109.04357012327162,
+          "parent_chi_difference_degrees": 0.006111854170910647,
+          "C5_neighbor_angles_degrees": [
+            117.66231997375282,
+            121.88403203817171,
+            120.44502176182192
+          ],
+          "C5_attachment_elevation_degrees": 0.9428001277861741,
+          "source_selected_triples": [
+            {
+              "atoms": [
+                "C5A",
+                "C5B"
+              ],
+              "distance_angstrom": 1.189432637857226,
+              "linear_angles": [
+                {
+                  "atoms": [
+                    "C5",
+                    "C5A",
+                    "C5B"
+                  ],
+                  "degrees": 176.40104309719146
+                },
+                {
+                  "atoms": [
+                    "C5M",
+                    "C5B",
+                    "C5A"
+                  ],
+                  "degrees": 176.88499926052626
+                }
+              ]
+            }
+          ],
+          "existing_dictionary_plane_observations": [
+            {
+              "dictionary_plane": "plan-1",
+              "fit_members": [
+                "C1'",
+                "C2",
+                "C4",
+                "C5",
+                "C5A",
+                "C6",
+                "N1",
+                "N3",
+                "O2",
+                "O4"
+              ],
+              "fit": "UNWEIGHTED_CARTESIAN_DESCRIPTIVE_ONLY",
+              "distances_angstrom": {
+                "C1'": 0.00876905563034236,
+                "C2": 0.00043760473729280436,
+                "C4": 0.0018995591478185025,
+                "C5": 0.008416119916260206,
+                "C5A": 0.0057384443196279444,
+                "C5B": 0.02360364949746535,
+                "C5M": 0.1123944032965487,
+                "C6": 0.005834458866856922,
+                "N1": 0.003299836346257856,
+                "N3": 0.0015381807034910277,
+                "O2": 0.0021313878196851377,
+                "O4": 0.005098076706138599
+              },
+              "max_member_distance_angstrom": 0.00876905563034236
+            }
+          ]
+        }
+      },
+      "after_coot_prepared_readyset_geometry_equal": true
+    }
   }
 }

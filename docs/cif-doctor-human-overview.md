@@ -65,9 +65,15 @@ can disagree with its own score, despite having the correct restraint groups.
 An explicit local adapter now carries the established correction through five
 real refinement cycles, including worker processes, while retaining the original
 restraints and Free-R. A copied manager preserves the unscaled mechanics; changed
-contact counts explain its different normalization. This is not yet connected as
-a supported ordinary NASolve refinement option. This is distinct from a missing CIF plane
-and does not establish the cause of the reported PDU distortion.
+contact counts explain its different normalization. The checked correction is
+now an explicit ordinary AutoRefine, campaign and Refine Doctor option, qualified
+for the recorded native source/platform. Defaults remain unchanged. This fixes a
+force-calculation problem separately from missing CIF planes; it does not establish
+the cause of the reported PDU distortion. The fresh PDU control now reaches repair
+and ReadySet, but exhausted its allowance during redundant final validation before
+refinement. Final sealing now owns that validation once and reuses identical pure
+calculations within the same check. The same deadline and chemical checks remain;
+a fresh native run must still show the PDU geometry surviving refinement.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 

@@ -292,6 +292,22 @@ def test_changing_original_while_freezing_cannot_publish_complete_request(case,m
 
 
 
+def test_final_scientific_validation_fits_frozen_allowance_without_duplicate_work(case,monkeypatch):
+    m,args,root,sdk,store,generations,calls=case
+    m.initialize_dictionary_request(output=root,**args)
+    tick=[0.];validate=m._result
+    monkeypatch.setattr(m,'monotonic',lambda:tick[0])
+    def costly(*a,**kw):
+        result=validate(*a,**kw)
+        tick[0]+=35.  # One complete validation fits the frozen 60-second request.
+        return result
+    monkeypatch.setattr(m,'_result',costly)
+    result=m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    finished=read_record(root/'attempts/attempt-0001/finished.json')
+    assert finished['outcome']=='RETURNED' and len(calls)==1
+    assert result['result']['automatic_adoption'] is False
+
+
 def test_expiry_during_final_seal_withholds_outer_success(case,monkeypatch):
     m,args,root,sdk,store,generations,calls=case;m.initialize_dictionary_request(output=root,**args)
     tick=[0.];capture=m._attempt_files
