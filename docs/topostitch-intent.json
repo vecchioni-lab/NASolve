@@ -453,6 +453,18 @@
         "scattering_invariance_validated": false,
         "runtime_authority": false
       }
+    },
+    "present_model_orbit_observation": {
+      "module": "nasolve.topostitch_images",
+      "api": "inspect_model_orbit_identity",
+      "schema_version": 1,
+      "scope": "all present ATOM/HETATM records in source order",
+      "shared_bounded_orbit_engine": true,
+      "uncertainty_retained": true,
+      "identities_merged": false,
+      "physical_identity_validated": false,
+      "asu_cut_validated": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

@@ -279,3 +279,73 @@ def inspect_periodic_image_identity(model_path, assignments, *, expected_sha256,
         max_distance_angstrom=max_distance_angstrom,max_pairs=max_pairs,max_image_tests=max_image_tests)
     return _attach_image_audit(model_path,assignments,report,candidate_index=candidate_index,
         coincidence_tolerance_angstrom=coincidence_tolerance_angstrom,max_atom_tests=max_atom_tests)
+
+
+def inspect_model_orbit_identity(model_path, *, expected_sha256,
+                                 coincidence_tolerance_angstrom=.01, max_atom_tests=2_000_000):
+    """Observe all present PDB atom orbits in exact source record order.
+
+    Includes unregistered polymers, ligands, ions, waters and alternate records;
+    none are silently dropped or merged. Coincidences and occupancy/identity
+    ambiguity remain review findings, not a molecular or ASU-cut qualification.
+    """
+    from .topostitch_recipe import model_atom_rows
+    from .topostitch_coordinates import ResidueSite
+    from .topostitch_periodic import crystal_from_pdb_bytes
+    from .topostitch_registration import _fingerprint
+    budget = _validate_options(coincidence_tolerance_angstrom, max_atom_tests)
+    data = Path(model_path).read_bytes()
+    digest = sha256(data).hexdigest()
+    if digest != expected_sha256:
+        raise ValueError('Source model checksum mismatch')
+    identities = model_atom_rows(data)
+    residues = _read_atoms(data)
+    gemmi, cell, name = crystal_from_pdb_bytes(data)
+    group = gemmi.find_spacegroup_by_name(name)
+    lines = [line for line in data.decode('ascii').splitlines() if line[:6] in ('ATOM  ', 'HETATM')]
+    atoms, issues = [], []
+    for index, (identity, line) in enumerate(zip(identities, lines)):
+        site = ResidueSite(identity['chain'], identity['residue_number'], identity['insertion_code'])
+        xyz = [float(line[a:b]) for a, b in ((30,38), (38,46), (46,54))]
+        try:
+            occupancy = float(line[54:60])
+        except ValueError:
+            occupancy = None
+        codes = []
+        if occupancy is None or not math.isfinite(occupancy) or not 0 < occupancy <= 1:
+            codes.append('UNUSABLE_OCCUPANCY')
+        elif occupancy < 1:
+            codes.append('PARTIAL_OCCUPANCY')
+        if identity['altloc']:
+            codes.append('ALTERNATE_CONFORMER')
+        groups = residues[site]
+        if len(groups) != 1 or len({row[1] for group_rows in groups.values() for row in group_rows}) != 1:
+            codes.append('AMBIGUOUS_COORDINATE_SITE')
+        issues.extend({'source_atom_index': index, 'code': code} for code in codes)
+        atoms.append({'source_atom_index': index, 'identity': identity,
+                      'record_type': line[:6].strip(), 'position_angstrom': xyz,
+                      'occupancy': occupancy if occupancy is not None and math.isfinite(occupancy) else None})
+    contacts = _orbit_contacts([a['position_angstrom'] for a in atoms], cell, group, gemmi,
+                               coincidence_tolerance_angstrom, budget)
+    inputs = {'source_model_sha256': digest, 'cell_parameters': list(cell.parameters),
+              'space_group': group.xhm(), 'coincidence_tolerance_angstrom': float(coincidence_tolerance_angstrom),
+              'numerical_padding_angstrom': _PADDING, 'max_atom_tests': max_atom_tests,
+              'max_coincidence_records': _MAX_COINCIDENCES}
+    report = {'schema_version': 1, 'kind': 'topostitch-present-model-orbit-observation',
+              'algorithm': 'present-model-atom-orbits-v1', 'gemmi_version': gemmi.__version__,
+              'source_model_sha256': digest, 'source_bytes_verified': True,
+              'inputs': inputs, 'input_sha256': _fingerprint(inputs), 'atoms': atoms,
+              'atom_scope': 'Every present ATOM/HETATM record, in source order; no selection or chemistry filter',
+              'orbit_contacts': contacts, 'issues': issues, 'atom_tests': budget.used,
+              'assessment': 'MODEL_ORBIT_REVIEW' if contacts or issues else 'PRESENT_MODEL_COORDINATES_DISTINCT',
+              'physical_identity_validated': False, 'identities_merged': False,
+              'chemical_connectivity_validated': False, 'asu_cut_validated': False,
+              'runtime_authority': False, 'changes': [],
+              'limitations': ['Coordinate coincidences depend on the recorded tolerance and numerical padding',
+                              'No omitted atoms, chemical identity, occupancy interpretation or molecular graph is inferred',
+                              'Special positions and coincident source labels remain distinct review findings',
+                              'No scattering, ADP, packing, geometry, recut or connection acceptance']}
+    report['report_sha256'] = _fingerprint(report)
+    if Path(model_path).read_bytes() != data:
+        raise ValueError('Source model changed during orbit observation')
+    return report

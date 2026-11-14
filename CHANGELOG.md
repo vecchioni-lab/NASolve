@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W50 — Observe all present model atom orbits
+
+- Extend the existing bounded orbit engine to every ATOM/HETATM record in source
+  order, including unregistered residues, waters, ions and alternate records.
+- Retain exact source binding, special-position/duplicate-label observations and
+  occupancy/identity uncertainty without merging or filtering atom identities.
+- Add a read-only API/report; existing selected-end audits and fitting behavior
+  are unchanged. Whole-molecule identity, ASU cuts and scattering remain unqualified.
+
 ### W49 — Preview exact periodic image relabeling
 
 - Replay and verify a declared graph before applying explicit node-image labels.

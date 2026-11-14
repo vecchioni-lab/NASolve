@@ -251,3 +251,102 @@ def test_public_image_audit_binds_capacity_without_connection_approval(tmp_path)
     assert report['source_model_sha256']==audit['source_model_sha256']
     assert report['target_image']==audit['inputs']['target_image']
     assert not report['connection_accepted'] and not report['runtime_authority']
+
+
+def model_orbits(path, **kwargs):
+    from nasolve.topostitch_images import inspect_model_orbit_identity
+    return inspect_model_orbit_identity(path, expected_sha256=hashlib.sha256(path.read_bytes()).hexdigest(), **kwargs)
+
+
+def model_orbit_fixture(tmp_path, *, occupancy=1., alternate=False, group='P 1'):
+    from .helpers import pdb_record
+    from .test_topostitch_periodic import cryst1
+    rows = [pdb_record('ATOM', 17, "O3'", 'DA', 'A', 1, x=1, y=2, z=3),
+            pdb_record('HETATM', 5, 'O', 'HOH', 'W', 9, x=11, y=2, z=3, occupancy=occupancy)]
+    if alternate:
+        rows[1] = rows[1][:16]+'A'+rows[1][17:]
+    path=tmp_path/'model.pdb';path.write_text(cryst1(CELL, group)+''.join(rows)+'END\n')
+    return path
+
+
+def test_complete_model_orbits_include_water_and_preserve_source_record_order(tmp_path):
+    pytest.importorskip('gemmi')
+    path=model_orbit_fixture(tmp_path);before=path.read_bytes()
+    report=model_orbits(path)
+    assert [a['identity']['atom_name'] for a in report['atoms']] == ["O3'", 'O']
+    assert [a['source_atom_index'] for a in report['atoms']] == [0, 1]
+    assert report['atoms'][1]['record_type'] == 'HETATM'
+    contact,=report['orbit_contacts']
+    assert contact['target_image']['operator_xyz'] == 'x-1,y,z'
+    assert contact['source_atom_index'] == 0 and contact['target_atom_index'] == 1
+    assert report['assessment'] == 'MODEL_ORBIT_REVIEW'
+    assert not report['identities_merged'] and not report['physical_identity_validated']
+    assert not report['asu_cut_validated'] and report['changes'] == []
+    assert path.read_bytes() == before
+    assert str(tmp_path) not in json.dumps(report)
+
+
+@pytest.mark.parametrize('occupancy,alternate,codes', [
+    (.5, False, {'PARTIAL_OCCUPANCY'}), (0., False, {'UNUSABLE_OCCUPANCY'}),
+    (float('nan'), False, {'UNUSABLE_OCCUPANCY'}), (1., True, {'ALTERNATE_CONFORMER'}),
+])
+def test_model_orbits_observe_coordinates_but_never_hide_occupancy_or_altloc_uncertainty(tmp_path, occupancy, alternate, codes):
+    pytest.importorskip('gemmi')
+    report=model_orbits(model_orbit_fixture(tmp_path, occupancy=occupancy, alternate=alternate))
+    assert {r['code'] for r in report['issues']} == codes
+    assert report['orbit_contacts'] and report['assessment'] == 'MODEL_ORBIT_REVIEW'
+    assert len(report['atoms']) == 2
+    json.dumps(report, allow_nan=False)
+
+
+def test_model_orbits_distinguish_special_position_from_distinct_source_alias(tmp_path):
+    pytest.importorskip('gemmi')
+    from .helpers import pdb_record
+    from .test_topostitch_periodic import cryst1
+    path=tmp_path/'special.pdb';path.write_text(cryst1(CELL, 'P 2')+
+        pdb_record('HETATM', 1, 'MG', 'MG', 'M', 1, x=0, y=2, z=0, element='MG'))
+    report=model_orbits(path);contact,=report['orbit_contacts']
+    assert contact['relation'] == 'SELF_STABILIZER_OBSERVATION'
+    assert contact['source_atom_index'] == contact['target_atom_index'] == 0
+    assert report['assessment'] == 'MODEL_ORBIT_REVIEW'
+
+
+def test_complete_model_orbit_report_is_relocatable_and_keeps_absent_old_path(tmp_path):
+    pytest.importorskip('gemmi')
+    source=tmp_path/'original';source.mkdir();path=model_orbit_fixture(source)
+    # Remove the translated coincidence while retaining both atom records.
+    path.write_text(path.read_text().replace('  11.000','  12.000'))
+    before=model_orbits(path);assert before['assessment']=='PRESENT_MODEL_COORDINATES_DISTINCT'
+    moved=tmp_path/'moved';source.rename(moved);assert not source.exists()
+    assert model_orbits(moved/'model.pdb') == before
+
+
+def test_model_orbit_budget_and_source_hash_fail_without_partial_report(tmp_path):
+    pytest.importorskip('gemmi')
+    from nasolve.topostitch_images import inspect_model_orbit_identity
+    path=model_orbit_fixture(tmp_path)
+    with pytest.raises(ValueError, match='budget'):model_orbits(path,max_atom_tests=1)
+    with pytest.raises(ValueError, match='checksum'):
+        inspect_model_orbit_identity(path,expected_sha256='a'*64)
+
+
+def test_model_orbits_preserve_ambiguous_ter_split_site_as_review(tmp_path):
+    pytest.importorskip('gemmi')
+    from .helpers import pdb_record
+    from .test_topostitch_periodic import cryst1
+    path=tmp_path/'split.pdb';path.write_text(cryst1(CELL)+
+        pdb_record('ATOM',1,"C3'",'DA','A',1,x=1,y=2,z=3)+'TER\n'+
+        pdb_record('ATOM',2,"O3'",'DA','A',1,x=2,y=3,z=4))
+    report=model_orbits(path)
+    assert [r['code'] for r in report['issues']] == ['AMBIGUOUS_COORDINATE_SITE']*2
+    assert report['assessment']=='MODEL_ORBIT_REVIEW'
+
+
+def test_model_orbits_recheck_source_bytes_before_returning(tmp_path, monkeypatch):
+    pytest.importorskip('gemmi')
+    import nasolve.topostitch_images as module
+    path=model_orbit_fixture(tmp_path);original=module._orbit_contacts
+    def change(*args):
+        result=original(*args);path.write_bytes(path.read_bytes()+b'REMARK drift\n');return result
+    monkeypatch.setattr(module,'_orbit_contacts',change)
+    with pytest.raises(ValueError, match='changed during'):model_orbits(path)

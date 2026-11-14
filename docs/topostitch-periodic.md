@@ -875,3 +875,34 @@ passes its 20 existing graph tests and fails all 14 new capability tests. On the
 public declared graph, moving the two explicit target-side representatives makes
 the selected pairing edges identity-image edges; all loop checks and the inverse
 round trip pass without changing any source bytes or claiming geometry repair.
+
+## W50 — Observe all present model atom orbits
+
+`nasolve.topostitch_images.inspect_model_orbit_identity(model_path,
+expected_sha256=..., coincidence_tolerance_angstrom=.01,
+max_atom_tests=2_000_000)` reuses the same bounded metric-aware orbit engine for
+all present ATOM/HETATM records. Explicit larger work budgets are accepted;
+the two public-source controls used 10,000,000. No basename input search,
+chemistry filter, registration selection or PDB serial-number indexing occurs.
+Coordinates and source-order atom identities come from the existing PDB owners.
+The source is hashed before observation and its bytes are checked again before
+returning the report.
+
+The schema-1 `topostitch-present-model-orbit-observation` report retains all atom
+identities, coordinates, record types and occupancies, exact coincidence operators,
+work counts, issues and numerical policy. Unknown/invalid/partial occupancy,
+alternate conformers and ambiguous residue groups remain explicit review findings.
+Their finite coordinates are still observed; missing chemical meaning is never
+filled in. Duplicate exact atom identities are rejected by the existing parser.
+`PRESENT_MODEL_COORDINATES_DISTINCT` means no coincidences or listed input issues
+in that present-coordinate scope. Otherwise the result is `MODEL_ORBIT_REVIEW`.
+Neither result merges identities or validates molecular topology, packing, ADPs,
+scattering or an ASU cut. Missing atoms and omitted structure content remain unknown.
+
+Ten new tests cover waters outside the chosen polymer, source-order indices,
+lattice aliases, special positions, occupancy/alternate uncertainty, TER ambiguity,
+source drift, bounded refusal and relocation. The retained 8D93 and independent
+7R96-derived source snapshots each have 855 present atoms and no observed orbit
+coincidences at the explicit tolerance. These statements concern the exact input
+snapshots, not completeness of their deposited entries. All scientific inputs and
+reports remain local. No Phenix/Coot execution or Cedar changes are involved.

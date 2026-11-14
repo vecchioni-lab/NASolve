@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W49 — Preview exact periodic graph representative relabeling.** Next: W50.
+**Current update: W50 — Observe all present model atom orbits.** Next: W51.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W40 | Bind native endpoint review to exact movement and serialized bytes | RECORDED |
 | W41 | Run bounded native trials with initial and endpoint derivative gates | RECORDED |
 | W42 | Expose the captured native job through one reusable package boundary | RECORDED |
 | W43 | Review full-precision native endpoint packing beside serialized coordinates | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
 | W48 | Preserve declared periodic routes and exact image loops | RECORDED |
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
+| W50 | Observe all present model atom orbits | IN_PROGRESS |
 
 ## Finish lines
 

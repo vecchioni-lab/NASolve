@@ -880,8 +880,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 49,
-    "next": 50,
+    "current": 50,
+    "next": 51,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -985,6 +985,12 @@
         "title": "Preview exact periodic graph representative relabeling",
         "state": "RECORDED",
         "code_commit": "a46c15008f790e86c0194f2ef6d734f6df55f420"
+      },
+      {
+        "number": 50,
+        "title": "Observe all present model atom orbits",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

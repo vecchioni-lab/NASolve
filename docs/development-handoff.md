@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W49; next W50.** W33 introduced human update numbers without
+**Willow update W50; next W51.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,13 +173,15 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W49 edge:** exact graph image relabeling replays the complete W48
-source graph, preserves typed edges, verifies loop conjugacy and recovers the
-original by inverse relabeling. Missing/chemical/representation boundary intent
-stays with the registered owner; this low-level algebra adds no coordinate writer
-or scientific authority. Next bind one explicit cut preview to the registered
-source/atom ownership before graphical P02 work; retain F02/P01/P03 physical
-and chemistry gates. See the [API](topostitch-periodic.md#w49--preview-a-change-of-graph-representatives).
+**Current W50 edge:** the shared orbit observer now covers all present source
+ATOM/HETATM records, retaining waters/ions/unregistered content, source-order
+identities, occupancy uncertainty, special positions and coincident labels.
+Two public-derived source snapshots pass the present-coordinate observation;
+physical molecular identity and cut/scattering qualification remain open.
+W48/W49 already provide a registered declared graph and exact relabeling algebra.
+Next bind those pieces for one explicit source-aware cut preview without writing
+coordinates or overriding boundary chemistry. See the
+[model-wide API](topostitch-periodic.md#w50--observe-all-present-model-atom-orbits).
 
 **Prior W47 edge:** periodic fitting now consumes exact reciprocal incidence
 bound to selected source/transformed atom audits. Source and moved fixtures each
