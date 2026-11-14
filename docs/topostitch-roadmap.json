@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416",
+  "audited_code_commit": "ab48c235e463bfbc3d97ec0f55a8025be106ebcb",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -276,12 +276,13 @@
         "E_CAPTURED_COMPOSITION",
         "E_ENDPOINT_REVIEW",
         "E_BOUNDED_TRIAL",
-        "E_CAPTURED_JOB_API"
+        "E_CAPTURED_JOB_API",
+        "E_ENDPOINT_OBSERVATIONS"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416",
+        "code_commit": "ab48c235e463bfbc3d97ec0f55a8025be106ebcb",
         "scope": "Read-only full-precision/rounded ASU endpoint observations, independent rounded native parity, exact installed/relocated review; no scientific acceptance"
       }
     },
@@ -698,6 +699,14 @@
       "reference": "docs/topostitch-preview.md#w42--one-installed-captured-job-boundary",
       "result": "Installed API and thin compatible CLI reuse Cedar capture, observation layering and owned execution. Complete Phenix 2.2.1-6174 source readonly/trial content matches W41 exactly. Installed/relocated Willow and temporary Cedar 948a7860 plus explicit Willow modules complete native evaluation, including injected runner. Three actual-owner failure controls preserve receipts and exception semantics without native launch. Full Willow 1372 tests plus 229 subtests; installed focused 74; temporary combined focused 244 plus 19 subtests.",
       "limitation": "Temporary adapter compatibility only, not a branch merge or full combined suite. Willow alone retains explicit trusted Cedar source requirement for execution. No new chemistry/packing qualification, diffraction, campaign registration, checkpoint or adoption authority. Scientific captures and combined artifacts stay local."
+    },
+    "E_ENDPOINT_OBSERVATIONS": {
+      "kind": "full_precision_and_rounded_native_endpoint_observations",
+      "code_commit": "ab48c235e463bfbc3d97ec0f55a8025be106ebcb",
+      "human_update": 43,
+      "reference": "docs/topostitch-preview.md#w43--full-precision-endpoint-observations",
+      "result": "Five complete Phenix 2.2.1-6174 source/full-precision/rounded observations replay through Cedar ASU and selected-environment owners. Rounded observations agree with independent W41 PDB captures in full native energy/gradient and matched pair residuals; changed neighbor rows contribute zero in these controls. Binary displacement roundtrip failure is retained and covered explicitly. Full Willow 1384 tests plus 229 subtests; installed/relocated focused 127 and byte-identical complete endpoint review. Wrong hashes and fixed motion reject before launch; default native behavior reproduces W41.",
+      "limitation": "Fixed-manager coordinate observations, not ordinary full-precision model reinterpretation or universal exclusion/neighbor completeness. Capped trials and per-contact regressions remain; no broader chemistry, diffraction, physical repair or adoption qualification. Scientific files stay local; no Cedar edits/merge."
     }
   },
   "benchmarks": [
@@ -876,8 +885,8 @@
       {
         "number": 43,
         "title": "Review full-precision native endpoint packing beside serialized coordinates",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "ab48c235e463bfbc3d97ec0f55a8025be106ebcb"
       }
     ]
   }

@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W40 | Bind native endpoint review to exact movement and serialized bytes | RECORDED |
 | W41 | Run bounded native trials with initial and endpoint derivative gates | RECORDED |
 | W42 | Expose the captured native job through one reusable package boundary | RECORDED |
-| W43 | Review full-precision native endpoint packing beside serialized coordinates | IN_PROGRESS |
+| W43 | Review full-precision native endpoint packing beside serialized coordinates | RECORDED |
 
 ## Finish lines
 
@@ -191,8 +191,8 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
 **Next action:** Attribute complete intended/core pair contributions so aggregate improvement cannot hide a damaged pair, alongside full-precision/serialized geometry and packing. Then run a declared bend/cleanup comparison and close affected chemistry before matched refinement. Keep fixed-manager observations separate from ordinary reinterpretation and scientific acceptance.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/25ca9d6ac76f72e1f670096a76a6dcee87b7f416); Read-only full-precision/rounded ASU endpoint observations, independent rounded native parity, exact installed/relocated review; no scientific acceptance.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ab48c235e463bfbc3d97ec0f55a8025be106ebcb); Read-only full-precision/rounded ASU endpoint observations, independent rounded native parity, exact installed/relocated review; no scientific acceptance.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -532,6 +532,13 @@ Five complete Phenix 2.2.1-6174 trials pass all source/full-precision/serialized
 [Evidence contract](topostitch-preview.md#w42--one-installed-captured-job-boundary) at [W42](https://github.com/vecchioni-lab/NASolve/commit/25ca9d6ac76f72e1f670096a76a6dcee87b7f416).
 Installed API and thin compatible CLI reuse Cedar capture, observation layering and owned execution. Complete Phenix 2.2.1-6174 source readonly/trial content matches W41 exactly. Installed/relocated Willow and temporary Cedar 948a7860 plus explicit Willow modules complete native evaluation, including injected runner. Three actual-owner failure controls preserve receipts and exception semantics without native launch. Full Willow 1372 tests plus 229 subtests; installed focused 74; temporary combined focused 244 plus 19 subtests.
 **Limit:** Temporary adapter compatibility only, not a branch merge or full combined suite. Willow alone retains explicit trusted Cedar source requirement for execution. No new chemistry/packing qualification, diffraction, campaign registration, checkpoint or adoption authority. Scientific captures and combined artifacts stay local.
+
+<a id="e_endpoint_observations"></a>
+### E_ENDPOINT_OBSERVATIONS — full_precision_and_rounded_native_endpoint_observations
+
+[Evidence contract](topostitch-preview.md#w43--full-precision-endpoint-observations) at [W43](https://github.com/vecchioni-lab/NASolve/commit/ab48c235e463bfbc3d97ec0f55a8025be106ebcb).
+Five complete Phenix 2.2.1-6174 source/full-precision/rounded observations replay through Cedar ASU and selected-environment owners. Rounded observations agree with independent W41 PDB captures in full native energy/gradient and matched pair residuals; changed neighbor rows contribute zero in these controls. Binary displacement roundtrip failure is retained and covered explicitly. Full Willow 1384 tests plus 229 subtests; installed/relocated focused 127 and byte-identical complete endpoint review. Wrong hashes and fixed motion reject before launch; default native behavior reproduces W41.
+**Limit:** Fixed-manager coordinate observations, not ordinary full-precision model reinterpretation or universal exclusion/neighbor completeness. Capped trials and per-contact regressions remain; no broader chemistry, diffraction, physical repair or adoption qualification. Scientific files stay local; no Cedar edits/merge.
 
 ## Deferred extensions, not hidden blockers
 
