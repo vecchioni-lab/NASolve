@@ -86,7 +86,7 @@ refinement. Driver rc0 only reports a returned BLOCKED campaign. All owned jobs
 stopped, source pins/five original inputs/dictionary unchanged. Preserve the whole
 failed attempt. No in-place completion, policy rewrite or increased allowance.
 
-**C303 fix:** C184's coordinator called `_children`/`_result` immediately before
+**C303 fix committed/pushed `c9736e39`:** C184's coordinator called `_children`/`_result` immediately before
 `_seal` repeated both. Sealing now owns that full validation once and uses C284's
 existing bounded pure numerical scope. File/ownership/checksum checks, final
 frozen deadline and artifact headroom remain unchanged; no new cache/schema or
@@ -106,9 +106,12 @@ optimization): B:4 chi differs from the parent by 0.0061° after construction an
 ReadySet; C5 attachment elevation 0.9428°, triple flanks 176.401°/176.885°, bond
 1.18943 Å. Terminal methyl is 0.11239 Å from the descriptive existing plane fit.
 ReadySet preserves these measured coordinates; no actual refinement survival is
-claimed. Compact values and local geometry receipt are in the same ledger.
+claimed. The selected dictionary's triple targets pass the existing screen
+(180° ±3° angles; 1.174 ±0.02 Å bond), while its separate seed coordinates remain
+REVIEW (174.83°/170.95°). Do not confuse those seed values with the built model,
+or target correctness with achieved geometry. Compact values and local geometry receipt are in the same ledger.
 
-**Next:** after committing this fix, use the existing explicit continuation owner
+**Next:** use the existing explicit continuation owner
 on C303 (`continue-preparation RUN --after-attempt 1`) for one fresh numbered
 attempt, if its frozen ownership/allowance/source checks still permit it. C220–C224
 already define this route; preserve attempt 1 and do not repeat Coot/NAR or edit

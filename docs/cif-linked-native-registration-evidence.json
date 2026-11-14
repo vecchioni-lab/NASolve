@@ -97158,7 +97158,28 @@
           ]
         }
       },
-      "after_coot_prepared_readyset_geometry_equal": true
+      "after_coot_prepared_readyset_geometry_equal": true,
+      "dictionary_screen": {
+        "status": "REVIEW",
+        "target_screen": "PASS",
+        "coordinate_screen": "REVIEW",
+        "dictionary_sha256": "1f7be9dbcaa38b8c3e4fb83b1081f45e0b2ab6a8b1708de6bc801cdd2fca1892",
+        "triple_distance_target_angstrom": 1.174,
+        "triple_distance_esd_angstrom": 0.02,
+        "angle_targets_degrees": [
+          180.0,
+          180.0
+        ],
+        "angle_esds_degrees": [
+          3.0,
+          3.0
+        ],
+        "dictionary_seed_angles_degrees": [
+          174.8275523158106,
+          170.9494652999555
+        ],
+        "scope": "Selected CIF numerical targets pass the existing triple-bond screen; its own seed coordinates remain bent and REVIEW. These seed coordinates differ from the constructed/ReadySet model measurements above; neither substitutes for achieved refinement geometry."
+      }
     }
   }
 }
