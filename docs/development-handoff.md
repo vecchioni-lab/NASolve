@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W40; next W41.** W33 introduced human update numbers without
+**Willow update W41; next W42.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,20 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W40 edge:** exact full-precision/mask/PDB-byte binding is available
+**Current W41 edge:** the existing capture probe can explicitly run a bounded
+native trial with complete source/full-precision/rounded derivative audits and
+a matched cleanup switch. Five Phenix 2.2.1-6174 trials pass derivatives and fresh
+rounded native target readback but reach the 200-iteration limit. Whole-window
+pairing improves its score at a different geometry/packing tradeoff from cleanup;
+fixed-base pair terms are constant. No repair, refinement or adoption is claimed.
+Full Willow: 1,364 tests + 229 subtests. Source and installed validation, retained
+failures and compatibility are in the [validation receipt](topostitch-periodic.md#current-validation-receipt--2026-11-13).
+Next extract one installed captured-job boundary using Cedar's anchored inputs,
+observation ordering and process runner; no Cedar merge/edit or second executor.
+S05 still needs broader chemistry/packing closure; S06 needs matched diffraction.
+Density-supported bend location remains in the later audited queue.
+
+**Prior W40 edge:** exact full-precision/mask/PDB-byte binding is available
 through an optional extension of the existing packing reader. Cedar owns native
 mechanics and selected/boundary/fixed environment review; unchanged legacy packing
 content is tested. Three complete Phenix 2.2.1-6174 endpoint captures pass mechanics

@@ -26,7 +26,7 @@ def _module(name,path):
 
 def probe(model,recipe,recipe_sha256,mask_path,mask_sha256,cedar_source):
     sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
-    from nasolve import topostitch_native_recipe as compiled, topostitch_transport
+    from nasolve import topostitch_native_recipe as compiled, topostitch_transport, topostitch_trial
     from iotbx import phil
     from mmtbx.command_line import pdb_interpretation as command
     from mmtbx.monomer_library import server,pdb_interpretation
@@ -45,7 +45,7 @@ def probe(model,recipe,recipe_sha256,mask_path,mask_sha256,cedar_source):
         raise ValueError('Unsupported or stale mask request')
     correction=_module('trusted_cedar_correction',cedar_source/'nasolve/cif_parallelity_correction.py')
     audit=_module('trusted_cedar_audit',cedar_source/'nasolve/cif_gradient_audit.py')
-    modules=[compiled,topostitch_transport,correction,audit]+[importlib.import_module(n) for n in (
+    modules=[compiled,topostitch_transport,topostitch_trial,correction,audit]+[importlib.import_module(n) for n in (
         'cctbx.geometry_restraints.manager','cctbx.geometry_restraints.energies','cctbx_geometry_restraints_ext')]
     sources={Path(m.__file__).resolve():Path(m.__file__).resolve().read_bytes() for m in modules}
     pairs=compiled.NativePairRecipe(packet,original[model],expected_recipe_sha256=recipe_sha256,correction=correction)
@@ -80,14 +80,7 @@ def probe(model,recipe,recipe_sha256,mask_path,mask_sha256,cedar_source):
         manual=native['target']+pair['target']+math.fsum(v*v/request['tether_sigma_angstrom']**2 for v in delta)
         if abs(start['target']-manual)>1e-8:
             raise ValueError('Composed target differs from independent direct components')
-        for step in (1e-4,1e-5):
-            maximum=0.;worst=None
-            for i in range(count):
-                plus=delta.copy();minus=delta.copy();plus[i]+=step;minus[i]-=step
-                numeric=(objective.evaluate(plus)['target']-objective.evaluate(minus)['target'])/(2*step)
-                error=abs(numeric-start['gradient'][i])
-                if error>maximum:maximum,worst=error,i
-            checks.append({'step_angstrom':step,'coordinate_count':count,'max_absolute_error':maximum,'worst_variable':worst})
+        checks=topostitch_trial.check_masked_derivatives(objective.evaluate,delta)['derivatives']
         repeat=objective.evaluate(delta)
         if repeat['target']!=start['target'] or repeat['gradient']!=start['gradient']:
             raise ValueError('Repeated masked objective changed')

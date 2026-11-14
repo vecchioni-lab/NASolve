@@ -1090,6 +1090,75 @@ perturbed models and reports stay local. S05 still needs a bounded optimization
 and full-precision/serialized derivative, geometry and packing qualification;
 this review does not close those gates.
 
+### W41 — Bounded native trials and matched cleanup controls
+
+`nasolve.topostitch_trial` supplies one shared all-variable derivative checker
+and a bounded installed-scitbx trial. W38's diagnostic and the W39 captured
+probe reuse it. Initial, full-precision and PDB-rounded endpoints each require
+both predeclared finite-difference steps (10⁻⁴ and 10⁻⁵ Å), maximum absolute error
+≤10⁻³ and exact repeated target/gradient. Raw plus/minus samples remain available.
+The mask, native definitions, fixed atoms and existing source checks still apply.
+
+To explicitly extend the W39 command into a diagnostic trial, add:
+
+```sh
+--trial-iterations 200 --trial-calls 2000
+# Matched cleanup: identical inputs/mask/tether/limits, zero additive pair weight:
+--trial-iterations 200 --trial-calls 2000 --without-pairs
+```
+
+The default remains read-only. The existing explicit mask must budget all three
+full derivative audits plus optimizer calls. Trial iterations are limited to
+1–500 and optimizer evaluations to 10–5000. Existing motion limits are hard
+rejection bounds, **not a box-constrained optimizer**; crossing one is a failed
+trial, not proof that the connection is impossible. Native geometry edits are
+outside this first trial scope; existing native secondary-structure terms also
+remain excluded. This conservative gate avoids unqualified native/additive pair
+duplication. Cleanup still reports unweighted pair scores but uses zero pair
+energy/gradient. Native geometry and tether remain identical policies.
+
+Five complete **Phenix 2.2.1-6174** controls used 200 iterations, 2000 optimizer
+calls, a 0.1 Å tether sigma and 0.5 Å maximum selected-atom motion: 8D93 fixed-base
+paired/cleanup, whole-window paired/cleanup, and independent 7R96 paired. All
+source/full-precision/rounded derivative checks pass; the largest error is below
+0.000266. All five stop at the iteration limit with the native convergence
+criterion false. `ENDPOINT_DERIVATIVES_PASS` and `BOUNDED_TRIAL_REVIEW` describe
+numerical evidence, **not convergence, physical acceptance or adoption**.
+
+Fresh ordinary native captures of all five rounded endpoints reproduce their
+trial native target (absolute tolerance 10⁻⁸, relative 10⁻¹⁰). The existing W40
+reader verifies exact fixed/noncoordinate bytes, explicit Cartesian ANISOU
+preservation and Cedar-owned mechanics/selected-environment evidence. The
+whole-window paired control clears three affected scalar angle deviations ≥5
+nominal sigma while fixed-only source outliers remain. This scalar review still
+defers other chemistry; it is not complete DNA validation.
+
+| Rounded 8D93 endpoint | Unweighted pair target | Native repulsion | Worsened existing directed contacts |
+| --- | ---: | ---: | ---: |
+| Source | 564.9181 | 1077.7216 | — |
+| Fixed-base paired or cleanup | 564.9181 | 1066.0108 | 55 |
+| Whole-window paired | 435.8030 | 1002.2450 | 110 |
+| Whole-window cleanup | 575.3480 | 1000.3669 | 108 |
+
+Pair atoms are fixed in the first mask, so pair terms are constant and cannot
+pull the bases; paired/cleanup serialized models are identical. Whole-window
+pair terms improve their intended score while cleanup favors a different
+geometry/packing tradeoff. The independent 7R96 pair score falls 466.2860 →
+225.8504, with 51 worsened directed contacts. Counts are captured directed rows,
+not unique physical clashes or MolProbity statistics. New overlaps and changed
+neighbor membership remain separately reported. No threshold was tuned and no
+candidate was selected. Full-precision endpoint native targets/derivatives are
+checked; fresh native packing review is currently for serialized endpoints only.
+
+An insufficient evaluation budget rejects before optimization. The native
+manual-edit negative and installation/relocation checks are recorded in the
+[current validation receipt](topostitch-periodic.md#current-validation-receipt--2026-11-13).
+No Phenix refinement, diffraction comparison, Coot run, campaign adoption or
+Cedar edit is included. Source inputs, all trial traces, endpoint captures and
+failed checks stay local. The next integration step is one installed captured-job
+boundary reusing Cedar process/anchor owners; geometry qualification and matched
+refinement remain explicit S05/S06 gates. No checkpoint schema is migrated.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

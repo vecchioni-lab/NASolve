@@ -251,13 +251,14 @@
         "W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible.",
         "W38 adds explicit bounded coordinate masks and a direct native/pair/tether evaluator using Cedar owners; source and perturbed full-coordinate checks pass for two movement scopes and an independent 7R96 mask, with no optimization or scientific acceptance.",
         "W39 reuses Cedar capture authentication and trusted native reconstruction, matching all initial observed inventories/ASU pairs before masked evaluation; three native controls reproduce W38 and no optimizer or complete exclusion-policy proof is claimed.",
-        "W40 binds full-precision points and exact serialized PDB bytes to the explicit mask, then reuses Cedar native mechanics/selected-environment and existing packing review. Explicit Cartesian ANISOU preservation and local collateral regressions remain visible; no optimization or scientific acceptance."
+        "W40 binds full-precision points and exact serialized PDB bytes to the explicit mask, then reuses Cedar native mechanics/selected-environment and existing packing review. Explicit Cartesian ANISOU preservation and local collateral regressions remain visible; no optimization or scientific acceptance.",
+        "W41 composes a bounded native optimizer with complete initial/full-precision/serialized derivative gates and a matched cleanup control. Five native trials and fresh rounded readback pass the declared numerical checks; all remain iteration-capped with individual packing regressions and no acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Connect one bounded unselected optimization trial to the qualified initial-context and exact endpoint boundaries, retaining capped/failed outcomes. Check full-precision and serialized derivatives, individual geometry and periodic packing; avoid native/additive pair duplication. W39/W40 do not prove universal neighbor/exclusion behavior or physical acceptance. Preserve W37 review outcomes and the Pine recut route.",
+      "next_action": "Extract one installed captured-job boundary using existing Cedar anchored capture/replay, observation ordering and process ownership. Then close affected chemistry and full-precision/serialized packing gates before matched refinement. Preserve capped/failed controls and W37 derivative reviews; no universal exclusion-policy or physical acceptance claim.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -277,7 +278,7 @@
         "date": "2026-11-14",
         "reviewer": "Linden",
         "code_commit": "a2382bcad6043cdd3441ccd6c4f2f5231ef9a110",
-        "scope": "Exact movement/serialization and authenticated native endpoint review; no optimization, endpoint derivative or scientific acceptance"
+        "scope": "Bounded native trial derivatives and fresh serialized endpoint review; all controls remain capped and scientifically unselected"
       }
     },
     {
@@ -788,8 +789,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 40,
-    "next": 41,
+    "current": 41,
+    "next": 42,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -839,6 +840,12 @@
         "title": "Bind native endpoint review to exact movement and serialized bytes",
         "state": "RECORDED",
         "code_commit": "a2382bcad6043cdd3441ccd6c4f2f5231ef9a110"
+      },
+      {
+        "number": 41,
+        "title": "Run bounded native trials with initial and endpoint derivative gates",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

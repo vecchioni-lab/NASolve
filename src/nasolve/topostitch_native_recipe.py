@@ -259,7 +259,9 @@ class NativeMaskedObjective:
     """
     def __init__(self, geometry, native_hierarchy, model_bytes, pair_binding, *,
                  movable_indices, expected_native_signature, correction, native_audit,
-                 tether_sigma_angstrom, max_displacement_angstrom, max_evaluations):
+                 tether_sigma_angstrom, max_displacement_angstrom, max_evaluations, include_pairs=True):
+        if type(include_pairs) is not bool:
+            raise ValueError('Pair inclusion must be an explicit boolean')
         from iotbx import pdb
         from cctbx import geometry_restraints as gr
         from cctbx.geometry_restraints import flags
@@ -298,6 +300,7 @@ class NativeMaskedObjective:
         self._correction, self._audit = correction, native_audit
         self._gr, self._flex, self._flags = gr, flex, flags
         self._pairs, self._identities = pair_binding, identities
+        self._pair_weight = 1. if include_pairs else 0.
         self._signature = expected_native_signature
         self._crystal = inp.crystal_symmetry()
         self._tether_weight, self._max_calls, self._calls = weight,max_evaluations,0
@@ -315,7 +318,7 @@ class NativeMaskedObjective:
             'atom_count':len(points),'fixed_atom_count':len(points)-len(self._mask.indices),
             'tether_sigma_angstrom':sigma,'max_displacement_angstrom':self._mask.max_displacement_angstrom,
             'max_evaluations':max_evaluations,'normalization':'UNNORMALIZED_SUM',
-            'component_weights':{'native':1.,'pair':1.,'tether':1.},
+            'component_weights':{'native':1.,'pair':self._pair_weight,'tether':1.},
             'native_flags':'all ordinary geometry flags enabled',
             'native_bonded_tables_changed':False,'native_exclusions_changed':False,
             'native_callback_attached':False,'optimization':False,'scientific_acceptance':False,'runtime_authority':False,
@@ -362,16 +365,18 @@ class NativeMaskedObjective:
         native = self._correction.evaluate_fixed_native(self._geometry,points,
             self._flags.flags(default=True),self._gr,self._flex,plane_order_safe=True)
         pair = self._pairs.evaluate(points,atom_identities=self._identities)
-        full = tuple(tuple(native['gradient'][3*i+k]+pair['gradients'][i][k] for k in range(3))
+        full = tuple(tuple(native['gradient'][3*i+k]+self._pair_weight*pair['gradients'][i][k] for k in range(3))
                      for i in range(len(points)))
         tether = math.fsum(v*v*self._tether_weight for v in values)
         gradient = tuple(g+2*v*self._tether_weight for g,v in zip(self._mask.project(full),values))
-        target = math.fsum((native['target'],pair['target'],tether))
+        target = math.fsum((native['target'],self._pair_weight*pair['target'],tether))
         if not math.isfinite(target) or any(not math.isfinite(v) for v in gradient):
             raise ValueError('Nonfinite masked objective value or gradient')
         self._check_native(points)
         return {'target':target,'gradient':gradient,'points':points,
-            'native_target':native['target'],'pair_target':pair['target'],'tether_target':tether,
-            'native_components':native['terms'],'pair_components':pair['components'],
+            'native_target':native['target'],'pair_target':self._pair_weight*pair['target'],'tether_target':tether,
+            'unweighted_pair_target':pair['target'],
+            'native_components':native['terms'],'pair_components':{k:self._pair_weight*v for k,v in pair['components'].items()},
+            'unweighted_pair_components':pair['components'],
             'native_proxy_counts':native['proxy_counts'],'evaluation_calls':self._calls,
             'normalization':'UNNORMALIZED_SUM','fixed_coordinates_preserved':True}

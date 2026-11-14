@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W41 — Bounded native trials with endpoint derivative checks
+
+- Reuse the captured native context for explicit, bounded scitbx trials, checking
+  every movable derivative before optimization and at full-precision and rounded
+  endpoints. Retain raw samples, stopping limits, evaluation history and failures.
+- Add a matched cleanup control that removes only additive pair contributions
+  while retaining their raw score. Reject preexisting native geometry edits in
+  the initial trial scope to prevent unqualified pair duplication.
+- Keep default probes read-only and all results unselected. Native checks expose
+  geometry/packing tradeoffs; they do not establish refinement or repair success.
+
 ### W40 — Bind endpoint review to the explicit movement mask
 
 - Audit full-precision motion and exact PDB rounding while preserving fixed atoms,

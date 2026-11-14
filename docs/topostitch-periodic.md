@@ -405,7 +405,37 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W40 checkpoint (2026-11-14):** 20 endpoint regressions cover exact protected
+**W41 checkpoint (2026-11-14):** six new regressions cover complete derivative
+sampling/repeatability, wrong/nonfinite derivatives, matched pair contributions
+and strict control types. Focused source: **107 passed** (1.06 s). Full Willow:
+**1,364 passed + 229 subtests** (73.89 s), using the W39 full-suite command below.
+This is the Pine-derived Willow suite, not Cedar or a merged integration build.
+Installed/relocated focused: **107 passed** (96 + 11), covering trial, transport,
+mask, recipe, capture, endpoint and packing. One initial harness collection named
+a nonexistent test file; the corrected run and original failure are retained.
+
+The wheel's native code completes a one-iteration 7R96 trial and the default
+read-only probe from relocated copied inputs, with the original temporary
+checkout absent and original scientific/source paths blocked. The capped trial
+passes all three derivative audits; no resumable campaign portability is claimed.
+All five installed entrypoints, lean optional imports and Python 3.10 syntax pass.
+Wheel SHA256: `fcf874a3517a859478bac98535bd27890607b859abeede047500742d3f04d681`.
+Build/install commands remain the W39 commands below. The installed focused
+command is `python -m pytest -q -p no:cacheprovider` with the seven named
+`tests/test_topostitch_*.py` files from a separate copied test tree, with
+`PYTHONDONTWRITEBYTECODE=1` and only the wheel site-packages on `PYTHONPATH`.
+
+Five complete native trials and fresh endpoint captures use **Phenix 2.2.1-6174**;
+see [W41](topostitch-preview.md#w41--bounded-native-trials-and-matched-cleanup-controls)
+for exact additional CLI options, bounds, numerical outcomes and remaining gates.
+An insufficient budget rejects before optimization. An independently captured
+manual angle replacement rejects before trial creation; the initial add-mode
+fixture was refused by native interpretation as a duplicate restraint and remains
+recorded. No native engine/Cedar source, old checkpoint or artifact schema is
+changed. New developer trial reports are schema 1 and grant no runtime authority.
+Generated scientific artifacts and failed checks are deliberately excluded from Git.
+
+**Prior W40 checkpoint (2026-11-14):** 20 endpoint regressions cover exact protected
 bytes, fixed motion below serialization precision, outward rounding, unsupported
 movable chemistry and explicit ANISOU preservation. Full Willow source: **1,358
 passed + 229 subtests** (85.60 s), using the W39 command with topology dependencies.
