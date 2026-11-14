@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-13",
+  "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b",
+  "audited_code_commit": "cc845a5800f725a1c2947de6daa38213102e6511",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -506,12 +506,12 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b",
+      "code_commit": "cc845a5800f725a1c2947de6daa38213102e6511",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "W33 numbering adds eight regressions and rejects duplicate/skipped/inconsistent numbers. Full source: 1,292 tests + 226 subtests. Focused installed and relocated: 376 tests + 2 subtests each. Package numerical code and installed wheel are unchanged by the documentation/audit-script patch. Prior native reader/relocation evidence remains valid; rendered browser validation is pending.",
+      "result": "W35 reads final-PDB bond/angle RMSDs when the combined log summary is absent; three new regressions (plus three subtests) cover the demonstrated omission, precedence and incomplete summaries. Focused source: 53 tests + 16 subtests. Full source: 1,295 tests + 229 subtests. Rebuilt installed wheel: 421 focused tests + 18 subtests; isolated installed parser exactly reproduces all three complete Phenix 2.2.1-6174 reference outputs. Prior W33 relocated suite: 376 tests + 2 subtests; relocation was not repeated for this non-path-changing parser patch. Prior native reader evidence remains valid; rendered browser validation is pending.",
       "limitation": "Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.",
-      "wheel_sha256": "88a57c23dffef4ce68313ed5119d2f092fb1c8db6dc7520d68372161801108b1",
-      "human_update": 33
+      "wheel_sha256": "f3eabac1645159b971170e848a1afa009806fe3674caa86e955e36db67258720",
+      "human_update": 35
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -732,8 +732,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 34,
-    "next": 35,
+    "current": 35,
+    "next": 36,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -747,6 +747,12 @@
         "title": "Matched 8D93 reference refinement control",
         "state": "RECORDED",
         "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b"
+      },
+      {
+        "number": 35,
+        "title": "Read final Phenix bond and angle RMSDs",
+        "state": "RECORDED",
+        "code_commit": "cc845a5800f725a1c2947de6daa38213102e6511"
       }
     ]
   }

@@ -679,6 +679,11 @@ overall isotropic scaling of ADPs is disabled. Each run finished within its
 | Source backbone cleanup | 0.1779 | 0.2274 | 0.011 | 2.668 | 30.03 |
 | Broader bend + backbone cleanup | 0.1772 | 0.2276 | 0.013 | 2.842 | 27.03 |
 
+W35 now reads these bond/angle RMSDs through the ordinary statistics parser when
+the log lacks a combined geometry line. It recognizes the named final-PDB RMSD
+summary and preserves existing log precedence; it does not infer missing values
+from maxima or RMSZ. The installed wheel reproduces all three printed pairs.
+
 These are printed native values at the reported precision, not an estimate of
 statistical superiority. Relative to cleanup alone, bending lowers Rwork but
 Rfree is 0.0002 higher and bond/angle RMSDs worsen. A small Rfree difference from

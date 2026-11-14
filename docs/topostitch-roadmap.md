@@ -1,6 +1,6 @@
 # TopoStitch and Pine completion roadmap
 
-**Current audited work queue: 2026-11-13.** Generated from
+**Current audited work queue: 2026-11-14.** Generated from
 [the machine-readable ledger](topostitch-roadmap.json); edit that ledger and run
 `python scripts/audit_topostitch_roadmap.py --write`, then `--check`.
 This is one queue with two linked tracks, not two competing implementations.
@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W34 — Matched 8D93 reference refinement control.** Next: W35.
+**Current update: W35 — Read final Phenix bond and angle RMSDs.** Next: W36.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -20,6 +20,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | --- | --- | --- |
 | W33 | Human-readable Willow update numbers | RECORDED |
 | W34 | Matched 8D93 reference refinement control | RECORDED |
+| W35 | Read final Phenix bond and angle RMSDs | RECORDED |
 
 ## Finish lines
 
@@ -359,8 +360,8 @@ operational paths or proof that an arbitrary model/dataset combination is solvab
 <a id="e_software"></a>
 ### E_SOFTWARE — software_validation
 
-[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at [W33](https://github.com/vecchioni-lab/NASolve/commit/50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b).
-W33 numbering adds eight regressions and rejects duplicate/skipped/inconsistent numbers. Full source: 1,292 tests + 226 subtests. Focused installed and relocated: 376 tests + 2 subtests each. Package numerical code and installed wheel are unchanged by the documentation/audit-script patch. Prior native reader/relocation evidence remains valid; rendered browser validation is pending.
+[Evidence contract](topostitch-periodic.md#current-validation-receipt--2026-11-13) at [W35](https://github.com/vecchioni-lab/NASolve/commit/cc845a5800f725a1c2947de6daa38213102e6511).
+W35 reads final-PDB bond/angle RMSDs when the combined log summary is absent; three new regressions (plus three subtests) cover the demonstrated omission, precedence and incomplete summaries. Focused source: 53 tests + 16 subtests. Full source: 1,295 tests + 229 subtests. Rebuilt installed wheel: 421 focused tests + 18 subtests; isolated installed parser exactly reproduces all three complete Phenix 2.2.1-6174 reference outputs. Prior W33 relocated suite: 376 tests + 2 subtests; relocation was not repeated for this non-path-changing parser patch. Prior native reader evidence remains valid; rendered browser validation is pending.
 **Limit:** Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.
 
 <a id="e_registration"></a>

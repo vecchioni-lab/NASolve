@@ -405,14 +405,23 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-13
 
-**W33 checkpoint:** 21 packing and eight human-numbering regressions pass from
-source. All **376 focused tests + 2 subtests** pass against the installed wheel
-(12.50 s), and after source/test/docs relocation with the original copied path
-absent (12.12 s). The full source suite passes **1,292 tests + 226 subtests**
-(79.28 s). The numbering patch changes only contributor documentation/audit code;
-the previously verified package wheel remains byte-identical. The initial new-module regression fails against the preceding wheel.
-The new developer reader also rejects changed model bytes, overwrite, and repeated
-path reads with changed snapshots. Python 3.10 syntax checks pass.
+**W35 checkpoint (closed 2026-11-14):** the new final-PDB RMSD regression fails
+before the fallback and passes afterward. Three new tests (plus three subtests)
+cover native output, log precedence and incomplete/unrecognized summaries.
+Focused source AutoRefine/Doctor/roadmap checks: **53 tests + 16 subtests**
+(10.21 s). The full source suite passes **1,295 tests + 229 subtests** (70.83 s).
+The rebuilt installed wheel passes **421 focused tests + 18 subtests** (26.36 s),
+including the existing TopoStitch/registration/context suite and AutoRefine/Doctor.
+An isolated installed parser matches current source bytes and all three actual
+Phenix 2.2.1-6174 final PDB/log readbacks. These are rereads of completed W34
+refinements, not new refinement executions. Existing statistic keys, R-factor
+parsing and checkpoint selection remain unchanged.
+
+The prior W33 original-copied-path-absent relocation passed **376 tests + 2
+subtests** (12.12 s); it was not repeated for this parser-only patch, which changes
+no operational paths. The comparator's preceding new-module regression failed
+against its prior wheel; its reader rejects changed model bytes, overwrite and
+repeated path reads with changed snapshots. Python 3.10 syntax checks pass.
 
 Actual Phenix 2.2.1-6174 captures replay through Cedar's maintained directed
 nonbonded reviewer. The comparison is byte-identical after copied
@@ -422,7 +431,7 @@ reads of original live evidence/source blocked. Both frozen Cedar `cd744e2` and
 narrow read-only compatibility, not a combined branch/runtime qualification.
 Installed comparison/image arithmetic needs no Cedar/Gemmi/Phenix; the developer
 capture-reader wrapper explicitly requires a trusted Cedar source and dependencies.
-Wheel SHA256: `88a57c23dffef4ce68313ed5119d2f092fb1c8db6dc7520d68372161801108b1`.
+Wheel SHA256: `f3eabac1645159b971170e848a1afa009806fe3674caa86e955e36db67258720`.
 
 The preceding installed 8D93 viewer retains source/candidate hashes, selected
 operator and display coordinates to <1e-10 Å. Corrected native plane controls
@@ -463,18 +472,23 @@ from pathlib import Path
 sys.path.append('/private/tmp/willow-periodic-install/lib/python3.12/site-packages')
 import pytest
 paths = sorted(str(p) for p in Path('tests').glob('test_topostitch*.py'))
-raise SystemExit(pytest.main(paths + ['tests/test_construct_registration.py', 'tests/test_run_context.py', '-q', '-p', 'no:cacheprovider']))
+raise SystemExit(pytest.main(paths + ['tests/test_construct_registration.py', 'tests/test_run_context.py', 'tests/test_autorefine.py', 'tests/test_refine_doctor.py', '-q', '-p', 'no:cacheprovider']))
 PYTEST
 ```
 
-The equivalent explicit paths were used for the receipt above. Installed tests
+The equivalent explicit paths were used for the installed receipt above.
+The narrower source regression command was `python -m pytest
+tests/test_autorefine.py tests/test_refine_doctor.py tests/test_topostitch_roadmap.py
+-q -p no:cacheprovider`, with the same source environment. Installed tests
 ran from `/private/tmp`, using the same test interpreter, absolute test paths,
 `--import-mode=importlib` and
 `PYTHONPATH=/private/tmp/willow-periodic-install/lib/python3.12/site-packages`.
 A wheel was built with `pip wheel --no-deps --no-build-isolation` and installed
 into that disposable environment with its declared dependencies. Subsequent
 patches rebuilt/reinstalled the wheel without changing the shared NASolve/Cedar
-environments. Isolated `python -I` imports matched current source bytes.
+environments. Isolated `python -BI` imports matched current source bytes. The dependency-free
+lean environment imports comparison/transport only; AutoRefine correctly requires
+its existing declared dependencies (including Biopython). No dependency was added.
 
 Actual installed CLI checks cover periodic/contact/pairing composition, logical
 registration, discovery/windows and the separate [bend-preview writer and fitter](topostitch-preview.md). A scoped public

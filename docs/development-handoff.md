@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W34; next W35.** W33 introduced human update numbers without
+**Willow update W35; next W36.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,9 +173,16 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current checks:** 21 packing and eight numbering regressions, all 376 focused installed tests +
-2 subtests, the same focused suite after original-copied-path-absent relocation,
-and the full source suite (1,292 tests + 226 subtests) pass. Actual native packing
+**Current checks:** W35's three parser regressions reproduce the missing native
+bond/angle RMSDs and preserve log precedence/incomplete-output behavior. Focused
+source: 53 tests + 16 subtests; full source: 1,295 tests + 229 subtests; rebuilt
+installed wheel: 421 focused tests + 18 subtests. The isolated installed parser
+matches all three final Phenix 2.2.1-6174 PDB/log outputs. No refinement was rerun
+for this readback fix. Existing statistics keys and checkpoint behavior are
+unchanged; model/log summaries outside the recognized formats remain unmeasured.
+Earlier W33 relocation: 376 focused tests + 2 subtests with the original copied
+path absent; this parser-only patch does not change paths or artifact schemas.
+Actual native packing
 comparison output is byte-identical after copied source/models/captures relocate,
 with Python reads of original live evidence blocked. Both frozen Cedar `cd744e2`
 and `f2345a8` authenticate/replay the same measurements. The comparator preserves
@@ -219,7 +226,8 @@ See the current inspector/preview guides for exact commands, versions, policies 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
 Cedar through `f2345a8` owns its native audit, selected AutoSol references
 and storage work; the consumed registration/model/context/package interfaces
-remain unchanged against the Pine base. Willow consumes no new Cedar production interfaces and edits
+remain unchanged against the Pine base. Rowan confirms Cedar C273 changes numerical-proof reuse only and does not edit
+the AutoRefine statistics parser. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the
 existing diagnostic helper only; see the preview guide for exact options.
 Rowan confirms no qualified selective-coordinate adapter exists: Cedar's current
