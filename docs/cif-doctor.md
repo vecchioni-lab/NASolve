@@ -1054,6 +1054,30 @@ incomplete native work, a shared/foreign/unknown active group, or a missing camp
 stage receipt. Existing campaign supervision remains unchanged. No default
 checked-preparation activation or standalone native-attempt isolation is added.
 
+### Current ordinary PDU-pair construction observation (C290)
+
+The current builder preserves parent conformation in the original accepted-MR
+PDU A:12/B:4 control: chi differs by 0.027° and 0.006° from its canonical parent,
+whereas the old construction had both near +53°. The C5 substituent elevations
+are 1.114°/1.016° before dictionary repair; source CCD plane coverage is still
+missing. These are descriptive coordinates, not refined geometry or target approval.
+
+**Methods.** Copy only the declared original MR/data inputs to a fresh local fork,
+retain the exact MR/model/reflection hashes and PDU/D:1-terminal intent, and call
+the current ordinary checked preparation with source-preserving input and automatic
+plane support. Coot 1.3.3 revision-count 0 completes construction and NAR generation.
+Intake then refuses B:1's P/OP1/OP2 without OP3 or a verified incoming O3′–P link.
+C188/C189/C270 already document this raw-W ambiguity; their explicitly free-end
+software fixture does not authorize changing this scientific control's intent.
+NAR reports no T:T recipe and does not invent PDU:PDU hydrogen bonds.
+
+The stopped attempt preserves all partial outputs. No dictionary repair, ReadySet,
+checkpoint publication or refinement is claimed. Readback authenticates construction
+lineage, uses the maintained trigonal selector and Phenix 2.2.1-6174 native torsion
+kernel as an angle reader, and leaves all 19 source inputs and 72 attempt files
+unchanged. Terminal intent must be supplied before a fresh dependent attempt.
+Evidence: `current_pdu_pair_construction_2026_11_14` in the existing ledger.
+
 ### Probe the complete ordinary refinement objective (C289)
 
 `cif_objective_probe.probe_objective(evaluate, points, selected_indices)` samples

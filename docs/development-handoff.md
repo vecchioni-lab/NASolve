@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C289**. Active **cedar** in NASolve-c96; latest pushed
-code **C287 `cbece417`**, C288 observations pushed as `5441a199`; C289 tested, being published. Scoped Q04/Q05 reconciliation is C285 `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
+Updated **2026-11-14, C290**. Active **cedar** in NASolve-c96; latest pushed
+code **C287 `cbece417`**, C288 observations `5441a199`; C289 code/tests/native evidence pushed as `7e843af7`. Scoped Q04/Q05 reconciliation is C285 `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
 connectivity interruptions expected. Focused checks only: **no full suite, new
 branch or merge**. Linden owns Pine/Willow; everyday NASolve code stays untouched.
 
@@ -70,6 +70,24 @@ command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cac
 both native reports passes with no native process and 44 original files unchanged.
 Native output `289_Cedar_whole-objective-8zz96zko` (local live-tests anchor) is
 ~5.7 MB; compact read receipt under ignored runners `c289_read_records/`.
+
+**C290 stopped at a known chemical-intent guard.** Fresh ordinary PDU A:12/B:4
+construction from Linden's original accepted MR preserves parent chi: deviations
+0.027°/0.006° (old construction both ~+53°). Current C5 substituent elevations are
+1.114°/1.016°; source CCD plane coverage remains missing before repair. No chemical
+PASS follows. All 19 original inputs and 72 attempt files unchanged on readback.
+Checked intake then refuses B:1 P/OP1/OP2 without OP3 or a verified incoming link;
+only D:1 is declared terminal phosphate. Same raw-W ambiguity is documented in
+C188/C189/C270. **Simon was asked for B:1 intent; answer pending.** Do not delete
+phosphate, add OP3 or infer a symmetry connection to force the test through.
+NAR has no T:T pair recipe, so this PDU:PDU no-metal control does not invent one.
+No dictionary repair, ReadySet, checkpoint publication or refinement ran. Owned
+output `290_Cedar_PDU-pair-current-k3sdohpc` is stopped (rc 1, code unchanged).
+Local read receipt `c290_read_records/geometry.json`; evidence ledger key
+`current_pdu_pair_construction_2026_11_14`. C252's A:9 synthetic observations remain
+a different control. Native-only measurement launch initially used an unavailable
+path, then lacked openpyxl; final read separates normal Python ownership/geometry
+from the existing native torsion-angle kernel and completes with no installations.
 
 **Next:** native consumer limitation is now demonstrated, not merely suspected
 from C23–C26/source inspection. Choose and qualify a supported compatible remedy

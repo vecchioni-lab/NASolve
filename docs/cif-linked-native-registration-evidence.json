@@ -95330,5 +95330,324 @@
     "compatibility": "No installed SDK edit, old worker/core change, native correction activation, restraint deletion or default behavior change.",
     "artifacts": "Only code/tests/compact docs committed; all native science, inputs, logs and runners excluded. Failed C288 attempts preserved. Two exact disposable relocated replay copies removed after readback; originals unchanged.",
     "remaining": "Qualify a supported ordinary correction route; PDU and held-out achieved chemistry remain separate. No full refinement-cycle or scientific approval."
+  },
+  "current_pdu_pair_construction_2026_11_14": {
+    "status": "CONSTRUCTION_OBSERVED_CHECKED_INTAKE_REFUSED",
+    "milestone": "C290",
+    "base_commit": "7e843af7",
+    "prior_work": [
+      "C206 PDU construction/plane failure and diagnostic repair",
+      "C207/C210 source-graph parent-chi construction",
+      "C188/C189/C270 raw-W B:1 absent OP3 refusal; explicit free-end fixture is separate authority",
+      "C252 PDU A:9 synthetic observations not a pair/data control",
+      "C289 actual startup consumer parallelity derivative defect; not PDU causation"
+    ],
+    "native_anchor": "local_live_tests",
+    "native_directory": "290_Cedar_PDU-pair-current-k3sdohpc",
+    "source_anchor": "everyday_repository",
+    "source_path": "examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10",
+    "mr_model_sha256": "6fbe480c3ee0d4068ac525adbf9c479f80e63343d85d947b158c370efdc37991",
+    "reflections_sha256": "12e384b148c823ac19d37efb2c7dad3e4d2eb69c07b10c5fdb9ea0c6a52a8691",
+    "source_ccd_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+    "driver": {
+      "returncode": 1,
+      "stopped_verified": true,
+      "code_unchanged": true
+    },
+    "elapsed_seconds": 7.035024874989176,
+    "tools": {
+      "phenix": "2.2.1-6174 / dispatcher 2.2.1",
+      "coot": "1.3.3 revision-count 0"
+    },
+    "native_scope": "Complete ordinary Coot/NAR construction; checked intake refused before dictionary request/ReadySet/refinement",
+    "refusal": "Phosphate B:1: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review",
+    "pending_decision": "B:1 free hydroxyl, complete terminal phosphate or explicitly supported incoming symmetry linkage; do not infer intent",
+    "chi_comparison": {
+      "A:12": {
+        "parent_chi_degrees": -150.1258952939991,
+        "current_prepared_chi_degrees": -150.1531449496559,
+        "circular_difference_degrees": 0.02724965565681714,
+        "old_raw_chi_degrees": 52.99119777541638
+      },
+      "B:4": {
+        "parent_chi_degrees": -108.95297904136129,
+        "current_prepared_chi_degrees": -108.94685401310589,
+        "circular_difference_degrees": 0.006125028255382858,
+        "old_raw_chi_degrees": 53.0092507018044
+      }
+    },
+    "prepared_measurements": {
+      "path": "dataset/AutoMR/run_001/PostMR/Model/prepared_model.pdb",
+      "sha256": "baaaa8ca63d5aa5457ca0c85f59dc788c67611f75fd5b0dba793b894e288c338",
+      "sites": {
+        "A:12": {
+          "chi_atoms": [
+            "O4'",
+            "C1'",
+            "N1",
+            "C2"
+          ],
+          "linear_angles": [
+            {
+              "atoms": [
+                "C5",
+                "C5A",
+                "C5B"
+              ],
+              "degrees": 176.26376507184762
+            },
+            {
+              "atoms": [
+                "C5A",
+                "C5B",
+                "C5M"
+              ],
+              "degrees": 176.9613598704443
+            }
+          ],
+          "bonds": [
+            {
+              "atoms": [
+                "C5",
+                "C5A"
+              ],
+              "angstrom": 1.432330269176771
+            },
+            {
+              "atoms": [
+                "C5A",
+                "C5B"
+              ],
+              "angstrom": 1.1897583788316022
+            },
+            {
+              "atoms": [
+                "C5B",
+                "C5M"
+              ],
+              "angstrom": 1.4575338761071723
+            }
+          ],
+          "chi_degrees": -150.1531449496559
+        },
+        "B:4": {
+          "chi_atoms": [
+            "O4'",
+            "C1'",
+            "N1",
+            "C2"
+          ],
+          "linear_angles": [
+            {
+              "atoms": [
+                "C5",
+                "C5A",
+                "C5B"
+              ],
+              "degrees": 176.4462437034918
+            },
+            {
+              "atoms": [
+                "C5A",
+                "C5B",
+                "C5M"
+              ],
+              "degrees": 176.8536953263013
+            }
+          ],
+          "bonds": [
+            {
+              "atoms": [
+                "C5",
+                "C5A"
+              ],
+              "angstrom": 1.4313476167584196
+            },
+            {
+              "atoms": [
+                "C5A",
+                "C5B"
+              ],
+              "angstrom": 1.189791158144989
+            },
+            {
+              "atoms": [
+                "C5B",
+                "C5M"
+              ],
+              "angstrom": 1.4580154320170973
+            }
+          ],
+          "chi_degrees": -108.94685401310589
+        }
+      }
+    },
+    "c5_measurements": [
+      {
+        "site": "A:12",
+        "centre": "C5",
+        "neighbors": [
+          "C4",
+          "C5A",
+          "C6"
+        ],
+        "coverage": "EXPLICIT_PLANE_MISSING",
+        "covering_planes": [],
+        "partial_planes": [],
+        "geometry": {
+          "status": "DESCRIPTIVE",
+          "absolute_normalized_volume": 0.016491560591338272,
+          "neighbor_angles": [
+            {
+              "atoms": [
+                "C4",
+                "C5",
+                "C5A"
+              ],
+              "degrees": 117.65435165035454
+            },
+            {
+              "atoms": [
+                "C4",
+                "C5",
+                "C6"
+              ],
+              "degrees": 121.99995723534087
+            },
+            {
+              "atoms": [
+                "C5A",
+                "C5",
+                "C6"
+              ],
+              "degrees": 120.33367134801613
+            }
+          ],
+          "angle_sum_degrees": 359.98798023371154,
+          "bond_elevations": [
+            {
+              "atom": "C4",
+              "reference_neighbors": [
+                "C5A",
+                "C6"
+              ],
+              "absolute_out_of_plane_degrees": 1.0948389825968767,
+              "reference_normal_length": 0.8630989028128543
+            },
+            {
+              "atom": "C5A",
+              "reference_neighbors": [
+                "C4",
+                "C6"
+              ],
+              "absolute_out_of_plane_degrees": 1.1142716406797561,
+              "reference_normal_length": 0.8480484916795057
+            },
+            {
+              "atom": "C6",
+              "reference_neighbors": [
+                "C4",
+                "C5A"
+              ],
+              "absolute_out_of_plane_degrees": 1.0668211270101116,
+              "reference_normal_length": 0.8857636908773792
+            }
+          ]
+        }
+      },
+      {
+        "site": "B:4",
+        "centre": "C5",
+        "neighbors": [
+          "C4",
+          "C5A",
+          "C6"
+        ],
+        "coverage": "EXPLICIT_PLANE_MISSING",
+        "covering_planes": [],
+        "partial_planes": [],
+        "geometry": {
+          "status": "DESCRIPTIVE",
+          "absolute_normalized_volume": 0.015051029985915077,
+          "neighbor_angles": [
+            {
+              "atoms": [
+                "C4",
+                "C5",
+                "C5A"
+              ],
+              "degrees": 117.57343161006679
+            },
+            {
+              "atoms": [
+                "C4",
+                "C5",
+                "C6"
+              ],
+              "degrees": 121.93122567600793
+            },
+            {
+              "atoms": [
+                "C5A",
+                "C5",
+                "C6"
+              ],
+              "degrees": 120.48533072167294
+            }
+          ],
+          "angle_sum_degrees": 359.9899880077477,
+          "bond_elevations": [
+            {
+              "atom": "C4",
+              "reference_neighbors": [
+                "C5A",
+                "C6"
+              ],
+              "absolute_out_of_plane_degrees": 1.0007487806386255,
+              "reference_normal_length": 0.8617590758290944
+            },
+            {
+              "atom": "C5A",
+              "reference_neighbors": [
+                "C4",
+                "C6"
+              ],
+              "absolute_out_of_plane_degrees": 1.0161687336769518,
+              "reference_normal_length": 0.8486835675035476
+            },
+            {
+              "atom": "C6",
+              "reference_neighbors": [
+                "C4",
+                "C5A"
+              ],
+              "absolute_out_of_plane_degrees": 0.9729062697867623,
+              "reference_normal_length": 0.8864183170426401
+            }
+          ]
+        }
+      }
+    ],
+    "construction_record_sha256": "b7a0067ce79fdf56e65add27faca85b6cef2d3c48bfb8a4d22f7fdece057efb3",
+    "original_inputs_unchanged": 19,
+    "attempt_files_unchanged": 72,
+    "retained_files": 72,
+    "retained_bytes": 9218467,
+    "read_receipt": {
+      "anchor": "ignored_cedar_runners",
+      "path": "c290_read_records/geometry.json",
+      "sha256": "d167fe3605a3d451e2a7761d77a0af74b7c2cb03e9d095b793277c8a0dc2cf21"
+    },
+    "read_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CEDAR/src PYTHON branch-artifacts/cedar/runners/c290_read_geometry.py",
+    "validation": "Read-only lineage, exact 19 input hashes/mtimes, all 72 attempt files, native torsion angle measurement and source-selected trigonal geometry; no code or full-suite change",
+    "compatibility": "No runtime/schema/default or chemical policy change",
+    "artifacts": "Only compact evidence/documentation committed; native models/data/logs/runners remain local",
+    "remaining": [
+      "Confirm B:1 intent before a fresh preparation attempt",
+      "PDU:PDU has no T:T pair recipe; preserve no-metal control meaning",
+      "ReadySet and actual refinement survival remain untested for this current pair",
+      "Exact collaborator before/after files/settings still unidentified",
+      "Ordinary native parallelity remedy remains separate Q06 work"
+    ]
   }
 }

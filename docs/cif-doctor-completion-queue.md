@@ -499,6 +499,13 @@ failed attempts stay preserved; no runtime correction or SDK change. Next choose
 and qualify a supported remedy separately from PDU chemical survival; do not
 attribute PDU distortion to this defect without its exact evidence.
 
+C290 separately checks the current ordinary PDU A:12/B:4 construction against the
+original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's
+old construction flip. It stops before dictionary repair at the previously known
+raw-W B:1 incomplete-phosphate ambiguity. Explicit B:1 chemical intent is pending;
+no atom deletion/addition or symmetry-link inference is authorized by this control.
+All originals remain fixed. This is not a PDU refinement-survival result.
+
 
 **Open; can start independently, required before ordinary-refinement claims.**
 C206 adds an explicit achieved-geometry requirement: check parent-to-mutant
