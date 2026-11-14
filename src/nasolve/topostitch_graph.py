@@ -52,6 +52,18 @@ def _inverse(op, identity):
     return inverse
 
 
+def _operator(xyz, gemmi, members):
+    if not isinstance(xyz, str) or not xyz.strip() or len(xyz) > 128:
+        raise ValueError('Require a bounded explicit image operator')
+    try:
+        op = _bounded(gemmi.Op(xyz))
+    except RuntimeError as exc:
+        raise ValueError('Invalid periodic edge image') from exc
+    if _op_key(gemmi.Op(op.triplet()).wrap()) not in members:
+        raise ValueError('Periodic edge image does not belong to the declared space group')
+    return op
+
+
 def describe_periodic_graph(node_ids, edges, *, cell_parameters, space_group):
     """Describe a bounded typed multigraph and its fundamental image loops.
 
@@ -83,15 +95,7 @@ def describe_periodic_graph(node_ids, edges, *, cell_parameters, space_group):
             raise ValueError('Periodic edge references an unknown node')
         if edge['kind'] not in EDGE_KINDS:
             raise ValueError('Unknown periodic edge kind')
-        xyz = edge['target_operator_xyz']
-        if not isinstance(xyz, str) or not xyz.strip() or len(xyz) > 128:
-            raise ValueError('Require a bounded explicit image operator')
-        try:
-            op = _bounded(gemmi.Op(xyz))
-        except RuntimeError as exc:
-            raise ValueError('Invalid periodic edge image') from exc
-        if _op_key(gemmi.Op(op.triplet()).wrap()) not in members:
-            raise ValueError('Periodic edge image does not belong to the declared space group')
+        op = _operator(edge['target_operator_xyz'], gemmi, members)
         reverse = _inverse(op, identity)
         seen.add(number)
         operators[number] = op
@@ -255,3 +259,75 @@ def build_registered_periodic_graph(model, discovery_path, registration_path, *,
               'source_bytes_verified': True, 'runtime_authority': False, 'changes': []}
     report['report_sha256'] = _fingerprint(report)
     return report
+
+
+def relabel_periodic_graph(report, node_images, *, expected_graph_sha256):
+    """Preview y_v = h_v(x_v) by exact g' = h_u g h_v^-1 edge relabeling.
+
+    Recompute and compare the complete source report before using it. Unlisted
+    nodes retain their identity representative. Verify every fundamental loop
+    by root-image conjugacy and recover the original graph by inverse relabeling.
+    These checks establish algebra only, not molecular/scattering equivalence.
+    """
+    if not isinstance(report, dict) or report.get('graph_sha256') != expected_graph_sha256:
+        raise ValueError('Periodic graph checksum mismatch')
+    try:
+        crystal = report['crystal']
+        edges = [{k: e[k] for k in ('edge_id', 'kind', 'source', 'target', 'target_operator_xyz')}
+                 for e in report['edges']]
+        before = describe_periodic_graph(report['node_ids'], edges, **crystal)
+    except (KeyError, TypeError) as exc:
+        raise ValueError('Malformed periodic graph report') from exc
+    if before != report:
+        raise ValueError('Stale or inconsistent periodic graph; recompute from declared inputs')
+    if not isinstance(node_images, (list, tuple)) or len(node_images) > len(before['node_ids']):
+        raise ValueError('Require at most one explicit image per graph node')
+    gemmi, _, group = _crystal(crystal['cell_parameters'], crystal['space_group'])
+    members = {_op_key(op) for op in group.operations()}
+    identity = gemmi.Op('x,y,z')
+    images = {n: identity for n in before['node_ids']}
+    seen = set()
+    for row in node_images:
+        if not isinstance(row, dict) or set(row) != {'node_id', 'operator_xyz'}:
+            raise ValueError('Malformed graph node image assignment')
+        node = row['node_id']
+        if type(node) is not int or node not in images or node in seen:
+            raise ValueError('Node image requires a unique known node identifier')
+        seen.add(node)
+        images[node] = _operator(row['operator_xyz'], gemmi, members)
+    inverses = {n: _inverse(op, identity) for n, op in images.items()}
+
+    def transformed(source_edges, forward, reverse):
+        return [{**e, 'target_operator_xyz': _compose(
+            _compose(forward[e['source']], gemmi.Op(e['target_operator_xyz'])),
+            reverse[e['target']]).triplet()} for e in source_edges]
+
+    after_edges = transformed(edges, images, inverses)
+    after = describe_periodic_graph(before['node_ids'], after_edges, **crystal)
+    loop_checks = []
+    for old_component, new_component in zip(before['components'], after['components']):
+        root = old_component['root_node_id']
+        if new_component['root_node_id'] != root or len(old_component['cycles']) != len(new_component['cycles']):
+            raise ValueError('Relabeling changed the declared graph cycle basis')
+        for old, new in zip(old_component['cycles'], new_component['cycles']):
+            expected = _compose(_compose(images[root], gemmi.Op(old['root_image']['operator_xyz'])), inverses[root])
+            if old['edge_id'] != new['edge_id'] or _op_key(expected) != _op_key(gemmi.Op(new['root_image']['operator_xyz'])):
+                raise ValueError('Periodic loop did not transform by root conjugacy')
+            loop_checks.append({'root_node_id': root, 'edge_id': old['edge_id'],
+                                'expected_root_image': _image_record(expected, gemmi), 'exact_match': True})
+    restored = describe_periodic_graph(before['node_ids'], transformed(after_edges, inverses, images), **crystal)
+    if restored != before:
+        raise ValueError('Inverse image relabeling failed exact graph round trip')
+    proposed = [{'node_id': n, 'image': _image_record(images[n], gemmi)} for n in sorted(seen)]
+    result = {'schema_version': 1, 'kind': 'topostitch-periodic-image-relabel-preview',
+              'source_graph_sha256': before['graph_sha256'], 'proposed_node_images': proposed,
+              'changed_node_ids': [n for n in sorted(seen) if _op_key(images[n]) != _op_key(identity)],
+              'periodic_graph': after, 'cycle_conjugacy_checks': loop_checks,
+              'exact_inverse_graph_round_trip': True, 'coordinates_materialized': False,
+              'physical_orbit_identity_validated': False, 'scattering_invariance_validated': False,
+              'runtime_authority': False, 'changes': [],
+              'limitations': ['Graph image labels only; no coordinate or chemistry edits',
+                              'Node orbit identity and full source binding need the registered physical audit',
+                              'Not an approved ASU cut, persistent choice or graphical review']}
+    result['preview_sha256'] = _fingerprint(result)
+    return result

@@ -442,7 +442,17 @@
       "physical_orbit_identity_validated": false,
       "covalent_seam_creation": false,
       "cut_materialization": false,
-      "runtime_authority": false
+      "runtime_authority": false,
+      "representative_relabeling": {
+        "api": "relabel_periodic_graph",
+        "schema_version": 1,
+        "replays_complete_source_graph": true,
+        "exact_cycle_conjugacy": true,
+        "exact_inverse_graph_round_trip": true,
+        "coordinate_materialization": false,
+        "scattering_invariance_validated": false,
+        "runtime_authority": false
+      }
     }
   },
   "geometry_development": {

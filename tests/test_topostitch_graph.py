@@ -158,3 +158,79 @@ def test_unassigned_routes_are_explicit_and_source_drift_is_refused(tmp_path):
     model.write_text(model.read_text()+'REMARK changed\n')
     with pytest.raises(ValueError, match='checksum'):
         build_registered_periodic_graph(model, discovery, reg)
+
+
+def relabel(report, images):
+    from nasolve.topostitch_graph import relabel_periodic_graph
+    return relabel_periodic_graph(report, images, expected_graph_sha256=report['graph_sha256'])
+
+
+def test_relabeling_conjugates_screw_loops_and_changes_incident_edge_images():
+    original = graph([1, 2], [edge(1, 1, 2, 'x,y,z'), edge(2, 1, 2, 'y,-x,z+1/4')], 'P 43')
+    frozen = copy.deepcopy(original)
+    result = relabel(original, [{'node_id': 1, 'operator_xyz': 'x+1,y,z'},
+                                {'node_id': 2, 'operator_xyz': 'y,-x,z+1/4'}])
+    assert original == frozen
+    after = result['periodic_graph']
+    assert after['edges'][0]['target_operator_xyz'] == '-y+1,x,z-1/4'
+    assert after['edges'][1]['target_operator_xyz'] == 'x+1,y,z'
+    assert cycles(after)[0]['root_image']['operator_xyz'] == 'y+1,-x+1,z+1/4'
+    assert all(c['exact_match'] for c in result['cycle_conjugacy_checks'])
+    assert result['exact_inverse_graph_round_trip']
+    assert result['changed_node_ids'] == [1, 2]
+    assert not result['coordinates_materialized'] and not result['scattering_invariance_validated']
+    assert not result['runtime_authority'] and result['changes'] == []
+
+
+def test_nonroot_relabeling_preserves_root_loop_and_inverse_recovers_source():
+    import gemmi
+    original = graph([1, 2, 3], [edge(1, 1, 2), edge(2, 2, 3), edge(3, 3, 1, 'x+2,y,z')])
+    assignments = [{'node_id': 2, 'operator_xyz': 'x+3,y-2,z'}, {'node_id': 3, 'operator_xyz': 'x-2,y,z+1'}]
+    result = relabel(original, assignments)
+    assert cycles(result['periodic_graph']) == cycles(original)
+    back = relabel(result['periodic_graph'], [{'node_id': r['node_id'], 'operator_xyz': gemmi.Op(r['operator_xyz']).inverse().triplet()} for r in assignments])
+    assert back['periodic_graph'] == original
+
+
+def test_relabeling_isolated_nodes_and_noop_preserve_topology():
+    original = graph([1, 2], [])
+    no_op = relabel(original, [])
+    assert no_op['periodic_graph'] == original and no_op['changed_node_ids'] == []
+    changed = relabel(original, [{'node_id': 2, 'operator_xyz': 'x+1,y,z'}])
+    assert changed['periodic_graph'] == original
+    assert changed['changed_node_ids'] == [2] and changed['cycle_conjugacy_checks'] == []
+
+
+@pytest.mark.parametrize('mutation', [
+    lambda r: r['components'][0]['tree'][0].update(parent_node_id=999),
+    lambda r: r.update(runtime_authority=True),
+    lambda r: r.update(cycle_count=999),
+    lambda r: r['edges'][0]['target_image'].update(lattice_translation=[99,0,0]),
+])
+def test_relabeling_replays_complete_report_instead_of_trusting_summary_or_hash(mutation):
+    original = graph([1, 2], [edge(1, 1, 2)])
+    mutation(original)
+    # Rehashing a malformed derived report cannot turn it into a trusted graph.
+    original['graph_sha256'] = _fingerprint({k:v for k,v in original.items() if k != 'graph_sha256'})
+    with pytest.raises(ValueError, match='inconsistent'):
+        relabel(original, [])
+
+
+@pytest.mark.parametrize('images,match', [
+    ([{'node_id': 99, 'operator_xyz': 'x,y,z'}], 'known node'),
+    ([{'node_id': True, 'operator_xyz': 'x,y,z'}], 'known node'),
+    ([{'node_id': 1, 'operator_xyz': 'x,y,z'}, {'node_id': 1, 'operator_xyz': 'x,y,z'}], 'known node'),
+    ([{'node_id': 1, 'operator_xyz': 'y,-x,z'}], 'space group'),
+    ([{'node_id': 1, 'operator_xyz': 'x+50000,y,z'}], 'arithmetic budget'),
+    ([{'node_id': 1, 'operator_xyz': 'x,y,z', 'apply': True}], 'Malformed'),
+])
+def test_invalid_relabel_assignment_is_refused(images, match):
+    with pytest.raises(ValueError, match=match):
+        relabel(graph([1, 2], [edge(1, 1, 2)]), images)
+
+
+def test_relabel_requires_expected_source_graph_digest():
+    from nasolve.topostitch_graph import relabel_periodic_graph
+    original = graph([1], [])
+    with pytest.raises(ValueError, match='checksum'):
+        relabel_periodic_graph(original, [], expected_graph_sha256='a'*64)

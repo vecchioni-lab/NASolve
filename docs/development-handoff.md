@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W48; next W49.** W33 introduced human update numbers without
+**Willow update W49; next W50.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,13 +173,13 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W48 edge:** a read-only periodic graph reuses Pine registration and
-TopoStitch declared routes. It keeps typed edges, source bindings, missing sites,
-boundary meanings and excluded scope; exact loop operators retain screw and
-translation winding. No coordinate/materialization or native-runtime changes.
-Next qualify explicit image relabeling algebra for one declared cut, retaining
-P01/F02 physical gates and P02 graphical review as incomplete. See the
-[API and scope](topostitch-periodic.md#w48--declared-periodic-graph-for-pine).
+**Current W49 edge:** exact graph image relabeling replays the complete W48
+source graph, preserves typed edges, verifies loop conjugacy and recovers the
+original by inverse relabeling. Missing/chemical/representation boundary intent
+stays with the registered owner; this low-level algebra adds no coordinate writer
+or scientific authority. Next bind one explicit cut preview to the registered
+source/atom ownership before graphical P02 work; retain F02/P01/P03 physical
+and chemistry gates. See the [API](topostitch-periodic.md#w49--preview-a-change-of-graph-representatives).
 
 **Prior W47 edge:** periodic fitting now consumes exact reciprocal incidence
 bound to selected source/transformed atom audits. Source and moved fixtures each

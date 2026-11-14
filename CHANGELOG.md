@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W49 — Preview exact periodic image relabeling
+
+- Replay and verify a declared graph before applying explicit node-image labels.
+  Preserve edge kinds and verify root-loop conjugacy plus an exact inverse round trip.
+- Retain identity/no-op and disconnected cases; reject stale reports, duplicate
+  assignments, wrong-group images and arithmetic-budget overflow.
+- Add a read-only preview report only. No ASU coordinate writer, chemistry change,
+  graphical approval, scattering claim or existing CLI/schema migration is added.
+
 ### W48 — Preserve declared periodic routes and exact image loops
 
 - Add a read-only typed periodic multigraph and a checksum-bound Pine registration

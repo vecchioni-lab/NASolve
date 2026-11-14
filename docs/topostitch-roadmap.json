@@ -870,8 +870,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 48,
-    "next": 49,
+    "current": 49,
+    "next": 50,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -969,6 +969,12 @@
         "title": "Preserve declared periodic routes and exact image loops",
         "state": "RECORDED",
         "code_commit": "a542ea8dc375faeab85cc6196cf5e400603bccc8"
+      },
+      {
+        "number": 49,
+        "title": "Preview exact periodic graph representative relabeling",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

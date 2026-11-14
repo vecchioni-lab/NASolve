@@ -833,3 +833,35 @@ its existing declared artifact references and preserves all source bytes. Full
 Willow and installed/relocated results are recorded in the audited roadmap.
 No Phenix/Coot execution is needed for this read-only graph addition. Scientific
 fixtures and generated reports remain local and are not included in Git.
+
+## W49 — Preview a change of graph representatives
+
+`relabel_periodic_graph(graph, node_images, expected_graph_sha256=...)` in the same
+installed module accepts the nested W48 graph and explicit assignments such as
+`[{"node_id": 2, "operator_xyz": "x+1,y,z"}]`. Unlisted nodes keep their identity
+representative. The complete source graph is replayed and compared; a modified
+summary with a newly computed hash is still rejected if it disagrees with its
+inputs. This API binds graph identity only. A physical cut must separately retain
+the registered outer report and coordinate source identity.
+
+For `y_v = h_v(x_v)`, each edge changes by `g' = h_u g h_v^-1`. This preserves
+noncommuting operation order. Every fundamental loop is checked against
+conjugation by its root image; applying inverse node images must reproduce the
+entire original graph exactly. Isolated nodes may change representatives while
+their edge-free graph remains unchanged, so proposed node images are retained
+separately. These are algebra checks, not physical orbit or scattering tests.
+
+The schema-1 `topostitch-periodic-image-relabel-preview` report retains the source
+graph hash, proposed/changed node images, transformed graph, loop checks, inverse
+round-trip result and explicit false coordinate/scattering/runtime authority.
+It writes no model and does not modify the source report. True boundary meanings,
+missing-site coverage and protected intent remain in the registered owner; this
+low-level API cannot override them or authorize a chemical seam. P01 stays
+partial, P02 still requires a genuine graphical cut preview, and P03 remains open.
+
+Fourteen new regressions cover screw/translation conjugacy, inverse recovery,
+no-op/isolated nodes and invalid/stale inputs. The prior installed W48 package
+passes its 20 existing graph tests and fails all 14 new capability tests. On the
+public declared graph, moving the two explicit target-side representatives makes
+the selected pairing edges identity-image edges; all loop checks and the inverse
+round trip pass without changing any source bytes or claiming geometry repair.
