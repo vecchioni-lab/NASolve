@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be",
+  "audited_code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -248,13 +248,14 @@
         "Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted.",
         "A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar.",
         "Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed.",
-        "W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible."
+        "W37 provides a reusable complete canonical pair recipe packet and native additive evaluator, with exact atom/image binding and explicit Cedar correction; independent derivative review outcomes remain visible.",
+        "W38 adds explicit bounded coordinate masks and a direct native/pair/tether evaluator using Cedar owners; source and perturbed full-coordinate checks pass for two movement scopes and an independent 7R96 mask, with no optimization or scientific acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Qualify a captured masked native objective that consumes the complete explicit recipe, preserves fixed atoms and declares normalization/exclusions. Resolve derivative step convergence under a declared general policy; prove lifecycle/identity through intended execution or qualify a Pine recut. Then audit individual geometry and surrounding images with Cedar owners.",
+      "next_action": "Bind direct masked composition to authenticated native construction/context and the complete nonbonded/exclusion policy using Cedar owners; a static-definition hash alone is insufficient. Then qualify one bounded unselected trial, endpoint geometry/packing and lifecycle before matched refinement. Preserve existing derivative-review outcomes and the separate Pine recut route.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -265,14 +266,15 @@
         "E_MASKED_NATIVE",
         "E_PACKING",
         "E_NATIVE_CALLBACK",
-        "E_PAIR_RECIPE"
+        "E_PAIR_RECIPE",
+        "E_MASKED_COMPOSITION"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be",
-        "human_update": 37,
-        "scope": "Complete recipe binding/arithmetic; independent controls and failures retained; no geometry or refinement acceptance"
+        "code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2",
+        "human_update": 38,
+        "scope": "Direct masked composition and all-variable derivative/negative controls; native policy authentication and scientific gates remain open"
       }
     },
     {
@@ -513,12 +515,12 @@
   "evidence": {
     "E_SOFTWARE": {
       "kind": "software_validation",
-      "code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be",
+      "code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2",
       "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
-      "result": "W37 freezes complete canonical pair recipes and evaluates exact atom images. Focused source: 88 tests; full source: 1,312 tests + 229 subtests. Installed wheel: 438 focused tests + 18 subtests. Relocated copied checkout with original absent: 96 tests. Isolated installed native compiler reproduces complete 14-pair energy/components. Python 3.10 syntax and lean optional imports pass. Existing preview schemas/entry points remain unchanged.",
+      "result": "W38 explicit mask/direct native composition: 45 focused source tests; full Willow checkout 1,323 tests + 229 subtests. Five sandbox-only /bin/ps failures in campaign process tests clear in the full rerun with required access. Installed wheel from separate test tree: 410 tests + 18 subtests (all TopoStitch plus construct-registration/run-context/AutoRefine/Doctor); relocated original-copied-path-absent selection: 107. Lean imports/mask arithmetic and isolated installed native source/perturbed targets pass. This is the Pine-derived Willow suite, not Cedar or a combined integration.",
       "limitation": "Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.",
-      "wheel_sha256": "d7aa5235518f64a0a31b94aed46a2d00eaf50224fcbbf8eeed5acd16809dec73",
-      "human_update": 37
+      "wheel_sha256": "9ea8fc9912d16f756cebc1acaf18337f79d6b159d658f73383c2123821870cee",
+      "human_update": 38
     },
     "E_REGISTRATION": {
       "kind": "existing_backend",
@@ -648,6 +650,14 @@
       "reference": "docs/topostitch-preview.md#w37--complete-canonical-pair-recipe-backend",
       "result": "Complete Phenix 2.2.1-6174 energy/derivative probes bind actual NARestraints full planes/contacts using Cedar correction and shared exact image transport. 8D93 14-pair/798-coordinate, independent 7R96/114-coordinate, synthetic P43 and P21 controls pass. Independent 5W6W and strained P1 retain DERIVATIVE_REVIEW at larger step; per-coordinate step convergence is recorded. Eight negative controls pass throughout; native atom sorting is explicitly disabled after an independent fixture exposed changed order.",
       "limitation": "Unnormalized additive pair energies only, no native exclusions/bond edits, movement mask, optimization, callback/lifecycle integration, density or scientific acceptance. General input-driven backend; fixture identities never enter algorithm rules. Scientific inputs and receipts stay local."
+    },
+    "E_MASKED_COMPOSITION": {
+      "kind": "direct_masked_native_composition",
+      "code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2",
+      "human_update": 38,
+      "reference": "docs/topostitch-preview.md#w38--explicit-movable-coordinates-and-direct-native-composition",
+      "result": "Complete Phenix 2.2.1-6174 checks of all 321 fixed-base and 612 whole-window variables on the prior exact-source-bound control, plus all 246 variables of an independent 7R96 canonical-pair mask, pass at source and declared nonuniform perturbations. Ten negative controls reject identity/reference/definition/callback changes, invalid masks, motion/weight failures and budget exhaustion. Exact fixed coordinates and native/pair/tether component sums reproduce; installed native targets match.",
+      "limitation": "Direct unnormalized evaluator only. Native construction/context and complete nonbonded/exclusion-policy authentication remain caller-owned; Cedar fixed_signature does not cover that entire policy. No optimizer, manager rebuild/continuation, refinement, packing acceptance or model promotion. Artifacts stay local."
     }
   },
   "benchmarks": [
@@ -759,8 +769,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 37,
-    "next": 38,
+    "current": 38,
+    "next": 39,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -792,6 +802,12 @@
         "title": "Bind complete canonical recipes to exact atom images",
         "state": "RECORDED",
         "code_commit": "8653b96f6b79bb1c66b12afb59261ceb4b6ef9be"
+      },
+      {
+        "number": 38,
+        "title": "Compose bounded native geometry with an explicit movable mask",
+        "state": "RECORDED",
+        "code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2"
       }
     ]
   }

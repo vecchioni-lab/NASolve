@@ -175,13 +175,14 @@ unimplemented.
 
 **Current W38 edge:** exact movable-coordinate expansion/projection and direct
 native/pair/tether composition now reuse Cedar evaluation and static-signature
-owners. Full source: 1,323 tests + 229 subtests (process tests needed `/bin/ps`
+owners. Full Willow source: 1,323 tests + 229 subtests (process tests needed `/bin/ps`
 access); installed focused: 410 + 18; relocated: 107. Source/perturbed complete
 masked derivatives and ten negative controls run through Phenix 2.2.1-6174;
 the preview guide owns exact control outcomes. Isolated installed native targets
 match. Source and unselected atoms remain fixed; there is no optimizer, callback,
 refinement or adoption. Additive mask/objective/probe schema-1 records introduce
 no migration to existing previews or ordinary workflow entry points.
+These are the full Pine-derived Willow tests, not Cedar or a combined build.
 Next close the caller-owned native construction/capture and nonbonded-policy
 boundary before declaring a supported masked trial; then audit local geometry,
 packing and matched refinement. Do not confuse Cedar's static-definition hash

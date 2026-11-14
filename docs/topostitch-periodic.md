@@ -408,7 +408,7 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 **W38 checkpoint (2026-11-14):** the new 11 mask regressions verify exact fixed
 coordinates, explicit variable ordering, motion limits and independent numerical
 derivatives that include interactions with fixed atoms. Focused mask/transport/
-recipe tests: **45 passed** (1.26 s). Full source: **1,323 passed + 229 subtests**
+recipe tests: **45 passed** (1.26 s). Full Willow source: **1,323 passed + 229 subtests**
 (68.70 s). The first sandboxed full run had five `/bin/ps` permission failures in
 existing campaign process tests; the complete rerun with process-inspection
 access passed. No process-management code changed.
