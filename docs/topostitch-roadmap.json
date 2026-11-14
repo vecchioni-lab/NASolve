@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "a46c15008f790e86c0194f2ef6d734f6df55f420",
+  "audited_code_commit": "19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -92,7 +92,8 @@
         "Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated.",
         "Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope.",
         "Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices.",
-        "W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open."
+        "W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open.",
+        "W50 extends the same bounded orbit engine to all present ATOM/HETATM records, retaining unregistered content and occupancy/identity ambiguity. Two exact public-derived sources have no coordinate-orbit coincidences; physical molecular identity remains open."
       ],
       "acceptance": [
         "Qualify selected atom/site orbits and coincident/special-position cases; do not infer identity from endpoint centers or duplicate labels.",
@@ -103,13 +104,14 @@
         "E_SOFTWARE",
         "E_IMAGE_AUDIT",
         "E_POST_IMAGE",
-        "E_SINGLE_EDGE_CAPACITY"
+        "E_SINGLE_EDGE_CAPACITY",
+        "E_PRESENT_MODEL_ORBITS"
       ],
       "last_audit": {
         "date": "2026-11-14",
+        "code_commit": "19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9",
         "reviewer": "Linden",
-        "code_commit": "c887c65ea966b3a7107a1220289fde646587e875",
-        "scope": "Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval"
+        "scope": "All-present-coordinate observation only; F02 remains PARTIAL, special-position identity and molecular graph equivalence remain open."
       }
     },
     {
@@ -769,6 +771,14 @@
       "reference": "docs/topostitch-periodic.md#w49--preview-a-change-of-graph-representatives",
       "result": "34 graph tests pass, including 14 new regressions that fail against installed W48. Full Willow: 1458 plus 229 subtests. Installed/relocated shared-owner tests: 127. Complete public registered graph and relabel preview reproduce exactly with original paths blocked; selected pairing edges become identity-image edges, loop conjugacy and inverse graph recovery pass. Five entrypoint helps, lean import and Python 3.10 syntax pass.",
       "limitation": "Exact graph algebra only; no physical orbit or scattering proof, coordinate materialization, chemistry authorization, persistent cut choice or graphical review. Low-level graph binding does not replace the registered source/atom ownership audit. No Phenix/Coot runs or Cedar changes; scientific artifacts stay local."
+    },
+    "E_PRESENT_MODEL_ORBITS": {
+      "kind": "all_present_atom_orbit_observation",
+      "code_commit": "19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9",
+      "human_update": 50,
+      "reference": "docs/topostitch-periodic.md#w50--observe-all-present-model-atom-orbits",
+      "result": "10 new regressions fail against W49 and pass now; focused graph/image tests 76. Full Willow 1468 plus 229 subtests. Installed/relocated shared-owner tests 155; two public-derived 855-atom source reports reproduce exactly with old paths blocked and the original temporary checkout absent. Both show no present-coordinate orbit coincidences at the recorded tolerance. Five command helps, lean import and Python 3.10 syntax pass.",
+      "limitation": "Present-coordinate observations only, not chemical identity, molecular multiplicity, complete deposited-entry inventory, ASU-cut or scattering qualification. Occupancy/alternate/TER ambiguity stays visible. No filtering or identity merging, native execution or Cedar changes. All scientific inputs/results stay local."
     }
   },
   "benchmarks": [
@@ -989,8 +999,8 @@
       {
         "number": 50,
         "title": "Observe all present model atom orbits",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9"
       }
     ]
   }

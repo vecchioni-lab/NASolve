@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
 | W48 | Preserve declared periodic routes and exact image loops | RECORDED |
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
-| W50 | Observe all present model atom orbits | IN_PROGRESS |
+| W50 | Observe all present model atom orbits | RECORDED |
 
 ## Finish lines
 
@@ -90,7 +90,7 @@ Keep logical sites, coordinate copies, chemistry intent and immutable source ide
 
 Give both tools exact atom/site image identity, including stabilizers, reciprocal operators and lattice translations.
 
-**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated. Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope. Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices. W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open.
+**Delivered:** Metric-bounded periodic enumeration and exact reciprocal image records exist; physical orbit distinctness is still explicitly unvalidated. Optional selected present-atom orbit/overlap audit reports stabilizer observations, coincident source labels and uncertainty without merging identities; public 8D93 selected coordinates are distinct within that scope. Improving serialized fits repeat the exact selected-image coincidence audit; ambiguous moved candidates are withheld without re-searching partner indices. W47 binds exact forward/reciprocal incidence to fresh selected source/transformed atom audits. Periodic fitting requires one partner in that scope; screw/centering/translation and ambiguity controls pass. Complete molecular/global identity remains open. W50 extends the same bounded orbit engine to all present ATOM/HETATM records, retaining unregistered content and occupancy/identity ambiguity. Two exact public-derived sources have no coordinate-orbit coincidences; physical molecular identity remains open.
 
 **Closure audit:**
 
@@ -98,8 +98,8 @@ Give both tools exact atom/site image identity, including stabilizers, reciproca
 - Check nonorthogonal cells, screw/centering operations, self images, coordinates outside the cell and bounded failure; preserve uncertainty instead of merging ambiguous sites.
 
 **Next action:** Qualify physical partner capacity and complete molecular/image equivalences; the selected-source coordinate precondition is now consumed by periodic fitting.
-**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_POST_IMAGE](#e_post_image), [E_SINGLE_EDGE_CAPACITY](#e_single_edge_capacity).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/c887c65ea966b3a7107a1220289fde646587e875); Exact one-edge incidence conditional on selected present-atom coordinate audit; no global/molecular identity or connection approval.
+**Evidence:** [E_SOFTWARE](#e_software), [E_IMAGE_AUDIT](#e_image_audit), [E_POST_IMAGE](#e_post_image), [E_SINGLE_EDGE_CAPACITY](#e_single_edge_capacity), [E_PRESENT_MODEL_ORBITS](#e_present_model_orbits).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9); All-present-coordinate observation only; F02 remains PARTIAL, special-position identity and molecular graph equivalence remain open..
 
 ## Roadmap A — working sticky-end repair
 
@@ -581,6 +581,13 @@ Shared exact reciprocal incidence retains lattice translations for selected sour
 [Evidence contract](topostitch-periodic.md#w49--preview-a-change-of-graph-representatives) at [W49](https://github.com/vecchioni-lab/NASolve/commit/a46c15008f790e86c0194f2ef6d734f6df55f420).
 34 graph tests pass, including 14 new regressions that fail against installed W48. Full Willow: 1458 plus 229 subtests. Installed/relocated shared-owner tests: 127. Complete public registered graph and relabel preview reproduce exactly with original paths blocked; selected pairing edges become identity-image edges, loop conjugacy and inverse graph recovery pass. Five entrypoint helps, lean import and Python 3.10 syntax pass.
 **Limit:** Exact graph algebra only; no physical orbit or scattering proof, coordinate materialization, chemistry authorization, persistent cut choice or graphical review. Low-level graph binding does not replace the registered source/atom ownership audit. No Phenix/Coot runs or Cedar changes; scientific artifacts stay local.
+
+<a id="e_present_model_orbits"></a>
+### E_PRESENT_MODEL_ORBITS — all_present_atom_orbit_observation
+
+[Evidence contract](topostitch-periodic.md#w50--observe-all-present-model-atom-orbits) at [W50](https://github.com/vecchioni-lab/NASolve/commit/19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9).
+10 new regressions fail against W49 and pass now; focused graph/image tests 76. Full Willow 1468 plus 229 subtests. Installed/relocated shared-owner tests 155; two public-derived 855-atom source reports reproduce exactly with old paths blocked and the original temporary checkout absent. Both show no present-coordinate orbit coincidences at the recorded tolerance. Five command helps, lean import and Python 3.10 syntax pass.
+**Limit:** Present-coordinate observations only, not chemical identity, molecular multiplicity, complete deposited-entry inventory, ASU-cut or scattering qualification. Occupancy/alternate/TER ambiguity stays visible. No filtering or identity merging, native execution or Cedar changes. All scientific inputs/results stay local.
 
 ## Deferred extensions, not hidden blockers
 
