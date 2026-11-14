@@ -278,7 +278,7 @@ def relabel_periodic_graph(report, node_images, *, expected_graph_sha256):
         before = describe_periodic_graph(report['node_ids'], edges, **crystal)
     except (KeyError, TypeError) as exc:
         raise ValueError('Malformed periodic graph report') from exc
-    if before != report:
+    if _fingerprint(before) != _fingerprint(report):
         raise ValueError('Stale or inconsistent periodic graph; recompute from declared inputs')
     if not isinstance(node_images, (list, tuple)) or len(node_images) > len(before['node_ids']):
         raise ValueError('Require at most one explicit image per graph node')
@@ -330,4 +330,64 @@ def relabel_periodic_graph(report, node_images, *, expected_graph_sha256):
                               'Node orbit identity and full source binding need the registered physical audit',
                               'Not an approved ASU cut, persistent choice or graphical review']}
     result['preview_sha256'] = _fingerprint(result)
+    return result
+
+
+def propose_forest_representatives(report, *, selected_edge_ids, anchor_node_ids,
+                                   expected_graph_sha256):
+    """Calculate images along an explicitly selected forest of declared edges.
+
+    Each selected component requires exactly one caller-chosen node whose
+    representative stays fixed. Selected edges then have identity partner images;
+    unselected edges retain any necessary periodic winding. This is an algebraic
+    display/cut proposal, not a search, chemical connection or approved ASU.
+    """
+    initial=relabel_periodic_graph(report,[],expected_graph_sha256=expected_graph_sha256)
+    graph=initial['periodic_graph'];by_edge={e['edge_id']:e for e in graph['edges']}
+    for values,known,name in ((selected_edge_ids,by_edge,'selected edge'),
+                               (anchor_node_ids,set(graph['node_ids']),'anchor node')):
+        if (not isinstance(values,(list,tuple)) or len(values)>len(known)
+                or any(type(v) is not int or v not in known for v in values)
+                or len(set(values))!=len(values)):
+            raise ValueError(f'Require distinct known integer {name} identifiers')
+    selected=sorted(selected_edge_ids);anchors=sorted(anchor_node_ids)
+    active=sorted({by_edge[e][k] for e in selected for k in ('source','target')})
+    if not set(anchors)<=set(active):raise ValueError('Anchor nodes must belong to the selected forest')
+    images=[];components=[]
+    if selected:
+        rows=[{k:by_edge[e][k] for k in ('edge_id','kind','source','target','target_operator_xyz')} for e in selected]
+        forest=describe_periodic_graph(active,rows,**graph['crystal'])
+        if forest['cycle_count']:raise ValueError('Selected edges must form a forest; choose which cycle edges to leave periodic')
+        by_node={r['node_id']:i for i,c in enumerate(forest['components']) for r in c['tree']}
+        chosen={i:[] for i in range(len(forest['components']))}
+        edge_ids={i:[] for i in chosen}
+        for n in anchors:chosen[by_node[n]].append(n)
+        if any(len(v)!=1 for v in chosen.values()):raise ValueError('Require exactly one anchor node per selected forest component')
+        for e in selected:edge_ids[by_node[by_edge[e]['source']]].append(e)
+        gemmi,_,_=_crystal(graph['crystal']['cell_parameters'],graph['crystal']['space_group']);identity=gemmi.Op('x,y,z')
+        for i,component in enumerate(forest['components']):
+            anchor=chosen[i][0]
+            frames={r['node_id']:gemmi.Op(r['root_image']['operator_xyz']) for r in component['tree']}
+            inverse_anchor=_inverse(frames[anchor],identity)
+            for n in sorted(frames):
+                images.append(dict(node_id=n,operator_xyz=_compose(inverse_anchor,frames[n]).triplet()))
+            components.append(dict(anchor_node_id=anchor,node_ids=sorted(frames),selected_edge_ids=edge_ids[i]))
+    images.sort(key=lambda row:row['node_id'])
+    preview=relabel_periodic_graph(graph,images,expected_graph_sha256=expected_graph_sha256)
+    after=preview['periodic_graph'];selected_set=set(selected)
+    if any(e['target_operator_xyz']!='x,y,z' for e in after['edges'] if e['edge_id'] in selected_set):
+        raise ValueError('Selected forest edges did not reach identity partner images')
+    if any(row['operator_xyz']!='x,y,z' for row in images if row['node_id'] in anchors):
+        raise ValueError('A selected anchor representative changed')
+    result=dict(schema_version=1,kind='topostitch-explicit-forest-representatives',status='PROPOSED_REVIEW_REQUIRED',
+        source_graph_sha256=graph['graph_sha256'],selected_edge_ids=selected,anchor_node_ids=anchors,
+        components=components,node_images=images,unselected_node_ids=sorted(set(graph['node_ids'])-set(active)),
+        remaining_periodic_edge_ids=[e['edge_id'] for e in after['edges'] if e['target_operator_xyz']!='x,y,z'],
+        selected_edges_identity_verified=True,relabel_preview=preview,coordinates_materialized=False,
+        chemical_connectivity_changed=False,graphical_review_recorded=False,runtime_authority=False,
+        limitations=['Explicit declared forest only; no partner, tree, cut or anchor inferred',
+                     'Identity edge images do not prove short distances, chemical closure or physical orbit identity',
+                     'Unselected periodic edges are representation boundaries, not newly declared chemical nicks',
+                     'Use the registered source-bound preview owner before atom-level inspection; no model or persistent choice written'])
+    result['proposal_sha256']=_fingerprint(result)
     return result

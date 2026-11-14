@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W59 — Calculate explicit connected representative choices
+
+- Reuse exact periodic graph algebra to assign images along caller-selected
+  acyclic links with one fixed anchor per component; preserve residual winding.
+- Reject ambiguous selectors and type-edited graph reports. Existing valid
+  reports, saved packets and commands retain their behavior.
+- Add a read-only proposal API; no automatic partner/cut choice, chemical link,
+  model materialization, native refinement or graphical approval.
+
 ### W58 — Validate viewer assets before creating output
 
 - Missing installed templates now fail before creating an empty HTML file.

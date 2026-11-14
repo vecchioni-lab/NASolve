@@ -539,6 +539,22 @@
       "coordinates_materialized": false,
       "runtime_authority": false,
       "validates_asset_before_output": true
+    },
+    "explicit_forest_representatives": {
+      "module": "nasolve.topostitch_graph",
+      "api": "propose_forest_representatives",
+      "schema_version": 1,
+      "kind": "topostitch-explicit-forest-representatives",
+      "explicit_edges_and_anchors": true,
+      "selected_forest_only": true,
+      "exact_path_order_and_root_rebasing": true,
+      "full_graph_winding_preserved": true,
+      "unselected_vertices_unchanged": true,
+      "automatic_cut_selection": false,
+      "persistent_forest_intent": false,
+      "coordinates_materialized": false,
+      "chemical_connectivity_changed": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

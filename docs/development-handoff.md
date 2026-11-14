@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W58; next W59.** Human W-numbers and exact code provenance live
+**Willow update W59; next W60.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,14 +152,20 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,545 plus 229 subtests**; focused41;
-installed/relocated339, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,567 plus 229 subtests**; focused78;
+installed/relocated361, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
-**Next bounded work:** qualify the graphical preview, then supply bounded explicit
-cut alternatives and persistent review choices using Pine identity and the saved
-proposal owner. P01 and P02 remain partial. Do not materialize an ASU before the
+**W59 addition:** the existing graph owner now calculates representative images
+along an explicitly chosen acyclic set of links, with one fixed anchor per component.
+It preserves exact path order and full graph winding; no partner/tree/cut is inferred.
+Two predeclared public alternatives pass packet/view/scattering observations but
+remain unselected. Their partial topology is not a complete ASU or chemistry proof.
+
+**Next bounded work:** retain selected-edge/anchor intent in the existing saved
+proposal boundary, then qualify actual graphical cut choice and persistent review.
+Manual node-image lists alone lose why a representative was chosen. P01 and P02 remain partial. Do not materialize an ASU before the
 P03 identity/scattering and P04 seam-chemistry gates. W55 supplies an independent
 sampled complex-Fcalc/ANISOU transport diagnostic, not complete invariance proof.
 

@@ -409,7 +409,7 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 installed/relocated shared-owner tests178. The prior package lacks the new module.
 The complete public preview and its earlier graph/relabel/orbit observations
 reproduce after relocation with original paths blocked and the old checkout absent.
-Five command helps, lean import and Python3.10 syntax pass. Commands/environments
+Five command helps, lean import and Python 3.10 syntax pass. Commands/environments
 follow W48 below, using `tests/test_topostitch_recut.py` for the focused suite.
 Wheel SHA-256: `2113d2951694ea27b3a18815318551574cb0afd19097e57689fcaf148b90d9c6`.
 No Phenix/Coot execution, native enforcement or coordinate writing is introduced.
@@ -1241,3 +1241,68 @@ recipes would not exercise C299's parallelity correction, so no new native trial
 was launched. This is a scope decision, not a new scientific result. Existing
 failed/capped trials and chemistry limitations stand. All temporary composition,
 failure and scientific evidence remains local and is excluded from Git.
+
+
+## W59 — Calculate representatives along explicitly chosen links
+
+`propose_forest_representatives` in the existing graph owner accepts an exact
+source graph/hash, explicit selected edge IDs and one fixed anchor node per
+selected connected component. The chosen edges must form a forest: no cycles,
+self loops or parallel-edge cycles. The caller chooses the omitted edges and
+anchors; the function does not search for partners or rank cuts.
+
+```python
+from nasolve.topostitch_graph import propose_forest_representatives
+choice = propose_forest_representatives(
+    bound["periodic_graph"],
+    selected_edge_ids=chosen_edges,
+    anchor_node_ids=fixed_representatives,
+    expected_graph_sha256=bound["periodic_graph"]["graph_sha256"],
+)
+# Copy choice["node_images"] into a W56 explicit representative proposal;
+# its outer registered_graph_sha256 must still bind the same source/registration.
+```
+
+The existing exact graph/tree owner supplies path-ordered images. For a selected
+anchor a, each node receives `h_v = G_a^-1 G_v`; selected edge images become
+identity under `g' = h_u g h_v^-1`. The anchor stays in its current representative.
+Unselected vertices stay unchanged. The complete graph, edge kinds, cycle
+conjugacy and inverse recovery are checked by the existing relabel owner.
+Unselected edges retain whatever image is necessary, including nonzero lattice
+winding. An identity image does not imply a short distance or a chemical bond.
+An omitted edge is not a declared nick. Existing exact arithmetic limits apply.
+
+The additive schema-1 `topostitch-explicit-forest-representatives` report retains
+selected edges, anchors/components, generated node images, unchanged vertices,
+remaining nonidentity edges, full relabel proof and a proposal hash. It is
+PROPOSED_REVIEW_REQUIRED with no runtime/model/chemistry/review authority.
+Empty selections are a deliberate no-op; duplicate/unknown/boolean IDs, missing
+or extra anchors, selected cycles, stale graphs and arithmetic overflow refuse.
+Source graph replay now compares canonical fingerprints, closing a demonstrated
+Python-equality hole where an integer could impersonate a boolean report field.
+Valid historical reports remain unchanged; malformed type-edited reports now refuse.
+
+Twenty-one new forest cases plus that replay regression cover reversed and
+noncommuting paths, disconnected anchors, centered R3, P43, oblique P21, unwrapped
+translations, winding, failures and composition with the saved registered packet
+and viewer. An initial helper-call mismatch was corrected before qualification.
+Focused graph/forest/bundle checks pass **78**; full Willow **1,567 plus 229 subtests**;
+installed/relocated **361**, six helps, lean import and Python 3.10 syntax pass.
+Validation uses the W58 commands, adding `tests/test_topostitch_forest.py` and
+`tests/test_topostitch_graph.py`. Wheel SHA-256:
+`812a5afee6596cc5d7e1c06f371e3d30eaac078d36bb3f4b5ae45ba4f519ec1e`.
+
+A predeclared public control chooses 27 existing edges and separately anchors
+node 1 or node 21. The two alternatives assign new images to 282 or 286 atoms; both
+keep their anchors fixed, replay after original inputs are removed, and produce
+valid existing viewer packets. Their 343-index Gemmi scattering observations have
+maximum complex differences 1.51e-6 and 1.71e-6, relative L2 4.57e-11 and 5.94e-11.
+Neither alternative is selected. This partial declared graph happens to leave
+no nonidentity edge after either relabeling; that does not establish a complete
+ASU, full molecular connectivity or a finite whole crystal. Missing route scope
+and P01/P03/P04 gates remain. No native refinement, chemistry or rendered-browser
+approval occurs. Scientific inputs, reports and views remain local, outside Git.
+
+Next retain the chosen-edge/anchor meaning in the source-bound saved request
+before exposing persistent GUI cut choices; manual image lists alone lose that
+edit intent. Continue to reuse the same packet/replay/graph owners.

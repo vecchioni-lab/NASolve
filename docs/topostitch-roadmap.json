@@ -438,24 +438,26 @@
       "goal": "Let the scientist decide where to slice the ASU while seeing the same physical periodic object.",
       "delivered": [
         "W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation.",
-        "W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge."
+        "W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge.",
+        "W59 computes node images from an explicit selected forest and fixed anchors using existing path/relabel owners; full winding and unselected vertices remain. Two public alternatives compose with existing packets/view/scattering. No automatic alternatives or human selection."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
         "Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported."
       ],
-      "next_action": "Perform genuine graphical/user validation, then add bounded intent-compatible cut alternatives and persistent review choices through the saved Pine-bound proposal owner. Keep materialization and chemical seams behind P03/P04.",
+      "next_action": "Retain selected-edge/anchor edit intent in source-bound saved proposals, then qualify actual graphical choices and persistent review. Keep partial topology/physical identity and chemical seams behind their existing gates.",
       "evidence": [
         "E_VIEW",
         "E_REPRESENTATIVE_VIEW",
-        "E_VIEW_PACKAGE_BOUNDARY"
+        "E_VIEW_PACKAGE_BOUNDARY",
+        "E_EXPLICIT_FOREST"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "code_commit": "fa170e21e33bd6740790072e83524545601fd606",
         "reviewer": "Linden",
-        "human_update": 58,
-        "scope": "Installed failure-path and explicit C299 package union only; P02 visual/cut-choice gates remain open"
+        "human_update": 59,
+        "scope": "Explicit graph-image proposal only; P02 remains partial with saved forest intent and actual graphical choice/review open"
       }
     },
     {
@@ -867,6 +869,14 @@
       "reference": "docs/topostitch-periodic.md#w58--qualify-the-installed-viewer-boundary-with-cedar",
       "result": "Missing-asset regression fails before fix; focused41,full1545 plus229subtests,installed/relocated339,6helps. Temporary package union with C299 passes339Willow and162Cedar plus19subtests and exact public replay after original source removal.",
       "limitation": "Initial unchanged-Cedar metadata omitted the HTML asset:335passed/3failed retained. No merge, combined human-doc/full-suite/native qualification or rendered visual review. Scientific evidence local. Zero-parallelity W34 recipes were not rerun."
+    },
+    "E_EXPLICIT_FOREST": {
+      "kind": "explicit_forest_image_proposal",
+      "code_commit": "fa170e21e33bd6740790072e83524545601fd606",
+      "human_update": 59,
+      "reference": "docs/topostitch-periodic.md#w59--calculate-representatives-along-explicitly-chosen-links",
+      "result": "21forest cases plus typed replay regression; focused78,full1567 plus229subtests,installed/relocated361,6helps. P43/R3/P21/unwrapped/reversed/disconnected/winding and source packet/view controls. Two predeclared public anchors move282/286 atoms and preserve sampled scattering within stated raw differences.",
+      "limitation": "No inferred partner/tree/cut, saved forest edit intent, model, chemistry or graphical approval. Partial public graph is not a full molecular object. No native execution; all scientific data local only."
     }
   },
   "benchmarks": [
@@ -982,8 +992,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 58,
-    "next": 59,
+    "current": 59,
+    "next": 60,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1139,6 +1149,12 @@
       {
         "number": 58,
         "title": "Qualify viewer packaging and Cedar composition",
+        "state": "RECORDED",
+        "code_commit": "fa170e21e33bd6740790072e83524545601fd606"
+      },
+      {
+        "number": 59,
+        "title": "Calculate representatives along explicitly chosen graph links",
         "state": "RECORDED",
         "code_commit": "fa170e21e33bd6740790072e83524545601fd606"
       }

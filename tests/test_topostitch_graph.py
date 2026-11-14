@@ -234,3 +234,10 @@ def test_relabel_requires_expected_source_graph_digest():
     original = graph([1], [])
     with pytest.raises(ValueError, match='checksum'):
         relabel_periodic_graph(original, [], expected_graph_sha256='a'*64)
+
+
+def test_relabel_rejects_type_changed_report_even_when_python_values_compare_equal():
+    report=graph([1],[]);changed=copy.deepcopy(report);changed['runtime_authority']=0
+    assert changed==report  # Python equality alone loses this schema distinction.
+    with pytest.raises(ValueError,match='inconsistent'):
+        relabel(changed,[])
