@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "19a58a2ee08cb0ed33b18b821b0bab02d61f1ed9",
+  "audited_code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -263,13 +263,14 @@
         "W43 adds explicit full-precision/rounded fixed-manager ASU endpoint observations through existing Cedar capture/review owners. Five controls agree with independent rounded native target/gradient readback; changed neighbor entries contribute zero in these cases. Binary displacement rounding, per-contact changes and failed evidence remain explicit; no physical acceptance.",
         "W44 attributes every native pair term, verifies complete container sums and retains selected/core changes for all five endpoints. Cleanup exposes individually worsening pairs; compact JSON preserves old review tables. No objective or acceptance change.",
         "W45 uses existing APIs for a matched core-only control against the paired trial. Complete derivative/endpoint/fresh-readback checks pass; intended-contact benefit is separated from core preservation, with capped outcomes and packing regressions retained.",
-        "W46 composes Cedar native torsion/plane kernels into endpoint observations with explicit live-policy, single-proxy and full-family target/gradient checks. Six controls retain individual regressions and unchanged fixed terms; no chemical acceptance or ordinary refinement route is added."
+        "W46 composes Cedar native torsion/plane kernels into endpoint observations with explicit live-policy, single-proxy and full-family target/gradient checks. Six controls retain individual regressions and unchanged fixed terms; no chemical acceptance or ordinary refinement route is added.",
+        "W51 predeclared500-iteration paired/core-only controls reproduce the old200-iteration traces, then retain native rounding line-search failures; no candidate or endpoint qualification follows."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Qualify affected chemistry and ordinary native enforcement before a declared damaged-model bend/cleanup and matched refinement comparison. Preserve the reported C289 ordinary force discrepancy as a consumer limitation. Shared F02/S03 explicit-connection capacity is the next independent gate; do not infer global or special-position identity from centers.",
+      "next_action": "Quantify near-stationary objective/gradient precision before revising any stopping policy; retain capped/failed outcomes. Qualify affected chemistry and complete ordinary native enforcement separately; Cedar corrected-force prototypes are not a supported production route.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -289,13 +290,14 @@
         "E_ENDPOINT_OBSERVATIONS",
         "E_PAIR_ATTRIBUTION",
         "E_CORE_CONTROL",
-        "E_NATIVE_TERMS"
+        "E_NATIVE_TERMS",
+        "E_NATIVE_STOPPING_LIMIT"
       ],
       "last_audit": {
         "date": "2026-11-14",
+        "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec",
         "reviewer": "Linden",
-        "code_commit": "17d0efe6df451f22535db9253c1588dd4e248896",
-        "scope": "Six complete native torsion/plane endpoint observations; installed relocation and temporary same-package Cedar C289 compatibility; no chemical acceptance"
+        "scope": "Two retained native rounding failures, not qualified endpoints; S05 remains PARTIAL."
       }
     },
     {
@@ -781,6 +783,14 @@
       "reference": "docs/topostitch-periodic.md#w50--observe-all-present-model-atom-orbits",
       "result": "10 new regressions fail against W49 and pass now; focused graph/image tests 76. Full Willow 1468 plus 229 subtests. Installed/relocated shared-owner tests 155; two public-derived 855-atom source reports reproduce exactly with old paths blocked and the original temporary checkout absent. Both show no present-coordinate orbit coincidences at the recorded tolerance. Five command helps, lean import and Python 3.10 syntax pass.",
       "limitation": "Present-coordinate observations only, not chemical identity, molecular multiplicity, complete deposited-entry inventory, ASU-cut or scattering qualification. Occupancy/alternate/TER ambiguity stays visible. No filtering or identity merging, native execution or Cedar changes. All scientific inputs/results stay local."
+    },
+    "E_NATIVE_STOPPING_LIMIT": {
+      "kind": "predeclared_500_iteration_native_controls",
+      "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec",
+      "human_update": 51,
+      "reference": "docs/topostitch-preview.md#w51--native-convergence-ceiling-control",
+      "result": "Two complete Phenix 2.2.1-6174 executions retain FAILED line-search rounding outcomes at358/351 accepted steps. Initial derivative gates pass and both old200-iteration traces reproduce exactly. Source/input bytes preserved. Last accepted coordinate changes beyond200 are below0.000105 \u00c5, but no post-exception endpoint derivative gate or candidate emission occurs.",
+      "limitation": "Negative evidence only; no convergence, scientific acceptance, stopping tolerance relaxation, ordinary refinement or Cedar change. Runtime code remains W50, whose full/installed validation applies; roadmap/doc checks pass. Generated runs/traces stay local."
     }
   },
   "benchmarks": [
@@ -1011,8 +1021,8 @@
       {
         "number": 51,
         "title": "Record native stopping limits and shared periodic chemistry intent",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "6ff9eb874bc3f07cd64231f52cf21e3485f657ec"
       }
     ]
   }
