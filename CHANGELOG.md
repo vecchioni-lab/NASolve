@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W62 — Verify complete labelled image permutations
+
+- Add a source-bound read-only orbit observer that checks exact symmetry-copy
+  permutations, inverse lattice shifts, complete atom ownership and coordinates.
+- Retain special-position multiplicity without inferring physical uniqueness;
+  old packets/views/scattering reports remain unchanged. No model or chemistry edit.
+
 ### W61 — Audit chemistry at failed optimizer endpoints
 
 - Record two read-only native observations with common pair policy and explicit

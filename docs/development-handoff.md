@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W61; next W62.** Human W-numbers and exact code provenance live
+**Willow update W62; next W63.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,576 plus 229 subtests**; focused71;
-installed/relocated370, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,592 plus 229 subtests**; focused47;
+installed/relocated386, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -173,7 +173,10 @@ still need qualification. W61 completed the two read-only W54 failed-point revie
 under one common complete recipe: selected/core pair and scalar geometry improve,
 but individual packing/torsion/plane regressions remain visible. Original FAILED
 outcomes persist; no optimizer rerun, candidate or acceptance. See the W61 preview
-guide audit. Continue exact orbit/representation checks and complete Cedar native
+guide audit. W62 now proves exact labelled group-image permutations/inverse lattice
+shifts and complete atom ownership for explicit proposals, with independent point
+binding. Special-position weights, ADP serialization and physical unique-atom
+identity remain separate. Continue P02 choices/review and complete Cedar native
 enforcement without treating recutting as geometry repair. P01 and P02 remain partial. Do not materialize an ASU before the
 P03 identity/scattering and P04 seam-chemistry gates. W55 supplies an independent
 sampled complex-Fcalc/ANISOU transport diagnostic, not complete invariance proof.
@@ -216,15 +219,12 @@ Virtual L/R recipe labels are not ordinary source-model refinement selections.
 Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
 movement masks require their own qualified consumer policy.
 
-**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. A
-temporary installed composition with published Cedar C299 `b4739c76` passes339
-Willow tests,162 Cedar tests plus19 subtests, six helps and exact public replay.
-It explicitly unions topology extras, five TopoStitch entry points and the HTML
-package-data path. The prior Python-only overlay passed335 but failed three HTML
-tests because unchanged Cedar metadata excluded the asset; that failure is retained.
-W58 also makes missing-template failure leave no empty output. No branches were
-merged; combined human docs, complete suite and native integration remain open.
-Rowan's C300 campaign/Doctor changes are separate and not part of this qualification.
+**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W62's
+temporary installed composition with published Cedar C301 `bea76681` passes 386
+Willow + 182 Cedar tests and 19 subtests, six helps and exact old/new packet/orbit/
+view/scattering replay. Metadata union is explicit (extras, entry points, exact
+viewer asset); runtime overlays have source hashes. This is scoped compatibility,
+not a merge, full combined suite, combined human-guide review or native execution.
 
 Do not edit Cedar or its installation. Preserve immutable runs, unpublished inputs,
 maps, Free-R and all negative evidence. Scientific artifacts stay local; evidence

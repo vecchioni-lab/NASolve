@@ -559,6 +559,23 @@
       "chemical_connectivity_changed": false,
       "runtime_authority": false,
       "saved_proposal_owner": "nasolve.topostitch_recut_bundle"
+    },
+    "representative_orbit_permutations": {
+      "module": "nasolve.topostitch_recut",
+      "api": "observe_registered_relabel_orbits",
+      "schema_version": 1,
+      "kind": "topostitch-registered-orbit-permutation-observation",
+      "exact_group_bijection": true,
+      "integer_lattice_shifts_retained": true,
+      "inverse_mapping_checked": true,
+      "source_atom_ownership": "Every present source atom exactly once; unchanged context included",
+      "labelled_multiplicity": "Full space-group expansion without special-position deduplication",
+      "coordinate_binding": "Independent Gemmi cell transform within arithmetic bound",
+      "special_position_weights_qualified": false,
+      "physical_identity_validated": false,
+      "scattering_invariance_validated": false,
+      "coordinates_materialized": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

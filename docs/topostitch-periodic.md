@@ -1360,3 +1360,84 @@ The actual viewer JavaScript displays both selections and retains all tested
 interactions through DOM/canvas doubles; browser rendering/user review is still
 unqualified. No new scattering calculation, Phenix/Coot execution or Cedar change
 was needed. All scientific packets/views and local validation remain outside Git.
+
+
+## W62 — Exact labelled orbit permutations for a proposed cut
+
+`nasolve.topostitch_recut.observe_registered_relabel_orbits` takes the same
+explicit model/discovery/registration, graph checksum, node-image list and
+optional extra edges as `preview_registered_relabel`. It reuses that verified
+preview and the existing bounded exact operator algebra. The additive result is
+schema 1 `topostitch-registered-orbit-permutation-observation`; no old packet,
+preview, scene or sampled-scattering report is changed.
+
+For each chosen representative operator **h**, every space-group representative
+**g** has an exact correspondence
+
+```text
+g * h = T_n * g_mapped
+(atom, g, lattice_m) -> (same_atom, g_mapped, lattice_m + n)
+```
+
+Here `T_n` is translation by an **integer** cell vector. Group indices are
+zero-based and translations act **after** the group operation. The complete
+forward table is a bijection, and right multiplication by `h.inverse()` returns
+the original group index with the negated shift. This covers all lattice cells,
+not just a sampled neighbor box. Noncommuting operator order and unwrapped shifts
+are retained. Each unique image shares one table; atom indices must cover every
+source atom exactly once, including unchanged/unregistered context. A separate
+Gemmi cell transform checks that proposed coordinates actually match the chosen
+images within the existing numerical arithmetic bound. Rehashed altered points
+or duplicated/missing ownership refuse.
+
+The default `max_permutation_rows=200000` bounds the combined forward/inverse
+rows; callers may choose an explicit positive integer up to 2000000. Validation
+occurs before building those tables. The result binds source bytes, graph,
+preview and proposed points, and reports the maximum coordinate arithmetic error.
+Input drift refuses; no global runtime/scattering settings are modified.
+
+**Exact labelled multiplicity is not physical unique-atom multiplicity.** A
+special-position atom may still appear several times in this labelled expansion.
+The observer neither merges those images nor approves their weights/occupancies.
+It does not prove molecular identity, missing content, ANISOU transport, coordinate
+serialization, scattering acceptance, chemical continuity or a native restraint.
+Use W55's independent tensor/scattering observation alongside it. No ASU writer,
+GUI choice/approval or checkpoint action is added; P03 remains partial.
+
+Sixteen regressions cover exact rational arithmetic independently of the production
+composition helper across all 65 Sohncke reference groups, screw/centered/oblique/
+noncommuting examples, lattice shifts, no-op and special-position multiplicity,
+invalid budgets, changed coordinates/ownership, source drift and relocation.
+Focused 47 and full Willow **1,592 plus 229 subtests** pass. Exact commands:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_topostitch_orbit_permutations.py tests/test_topostitch_recut.py tests/test_topostitch_scattering.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider
+python -m pip wheel --no-deps --no-build-isolation --wheel-dir /path/to/local/wheels .
+```
+
+The host validation Python was 3.12.14 with Gemmi 0.7.5; the declared full topology
+environment supplies the dependencies. Installed/relocated 386 tests, six command
+helps, lean imports and Python 3.10 syntax pass. Original temporary inputs are gone
+before replay and source paths are blocked. Old graph/preview/packet/scattering/
+scene results remain exact; both new public orbit reports replay exactly from the
+installed wheel. Wheel SHA-256:
+`526aca524cbd58648536e9ce76fea134690f22e4489a19d480e9154b0ff16dc7`.
+
+Both predeclared W60 public forest alternatives retain 855 labelled source atoms
+and 9 group operations (7695 labelled image incidences, **not 7695 distinct atoms**).
+Each uses 36 table rows. Largest Cartesian binding errors are 1.42e-14/7.11e-15 Å.
+The first assigns 282 atoms to its nonidentity image; the second 286; neither is
+selected. Scientific packets, requests, reports, wheels and local validation stay
+outside Git. No Phenix/Coot execution was needed for this patch. Compatibility is
+additive; callers must explicitly request the new observation, with no migration.
+
+
+A temporary installed composition with published Cedar C301 `bea76681` passes
+**386 Willow + 182 Cedar tests and 19 subtests**, six entry-point helps and exact
+public old/new packet, orbit, view and scattering replay after its temporary
+source path is removed. Only explicit topology extras, TopoStitch entry points,
+viewer asset and TopoStitch modules are added to the archived Cedar base; metadata
+union and every overlaid source hash are recorded. Cedar's dirty working files
+are excluded. This is a scoped package/owner compatibility check, not a merge,
+complete combined suite, combined human-documentation review or native execution.

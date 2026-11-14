@@ -139,3 +139,120 @@ def preview_registered_relabel(model, discovery, registration, *, node_images,
     if any(p.read_bytes() != data for p, data in originals.items()):
         raise ValueError('Registered preview source inputs changed during observation')
     return report
+
+
+def _orbit_permutation(op, operations, gemmi):
+    """Right multiplication permutes group cosets; keep left lattice shifts."""
+    from .topostitch_graph import _compose, _inverse
+    from .topostitch_periodic import _op_key
+    members = {_op_key(member): i for i, member in enumerate(operations)}
+    if len(members) != len(operations):
+        raise ValueError('Space-group representative inventory is not unique')
+    def rows(image):
+        result = []
+        for i, member in enumerate(operations):
+            product = _compose(member, image)
+            wrapped = gemmi.Op(product.triplet()).wrap()
+            j = members.get(_op_key(wrapped))
+            if j is None:
+                raise ValueError('Representative image does not permute the crystal group')
+            delta = [a-b for a, b in zip(product.tran, operations[j].tran)]
+            if product.rot != operations[j].rot or any(v % product.DEN for v in delta):
+                raise ValueError('Orbit correspondence has a noninteger lattice shift')
+            result.append(dict(input_group_index=i, mapped_group_index=j,
+                               lattice_translation=[v//product.DEN for v in delta]))
+        if sorted(row['mapped_group_index'] for row in result) != list(range(len(operations))):
+            raise ValueError('Orbit correspondence is not a bijection')
+        return result
+    forward = rows(op)
+    inverse = rows(_inverse(op, gemmi.Op('x,y,z')))
+    for row in forward:
+        back = inverse[row['mapped_group_index']]
+        if (back['mapped_group_index'] != row['input_group_index']
+                or back['lattice_translation'] != [-v for v in row['lattice_translation']]):
+            raise ValueError('Orbit correspondence does not invert with exact lattice shifts')
+    return forward, inverse
+
+
+def observe_registered_relabel_orbits(model, discovery, registration, *, node_images,
+        expected_registered_graph_sha256, extra_edges=(),
+        coincidence_tolerance_angstrom=.01, max_atom_tests=2_000_000,
+        max_permutation_rows=200_000):
+    """Certify labelled position-orbit reassignment, without physical acceptance.
+
+    For each selected image h and group representative g, record the exact
+    permutation and integer n with g*h = T_n*g_permuted. This preserves every
+    labelled atom/image over all lattice cells, including repeated images at
+    special positions. It does not establish correct occupancies, tensors,
+    chemical connectivity, a serialized model or complete scattering invariance.
+    """
+    from .topostitch_graph import _operator
+    from .topostitch_periodic import _crystal, _op_key
+    if type(max_permutation_rows) is not int or not 1 <= max_permutation_rows <= 2_000_000:
+        raise ValueError('Require a bounded positive orbit permutation row budget')
+    paths = [Path(p) for p in (model, discovery, registration)]
+    originals = {p: p.read_bytes() for p in paths}
+    preview = preview_registered_relabel(*paths, node_images=node_images,
+        expected_registered_graph_sha256=expected_registered_graph_sha256, extra_edges=extra_edges,
+        coincidence_tolerance_angstrom=coincidence_tolerance_angstrom, max_atom_tests=max_atom_tests)
+    if _fingerprint({k:v for k,v in preview.items() if k != 'preview_sha256'}) != preview['preview_sha256']:
+        raise ValueError('Registered preview checksum differs')
+    crystal = preview['registered_graph']['periodic_graph']['crystal']
+    gemmi, cell, group = _crystal(crystal['cell_parameters'], crystal['space_group'])
+    operations = sorted(group.operations(), key=_op_key)
+    members = {_op_key(op) for op in operations}
+    atoms = preview['source_orbit_observation']['atoms']
+    points = preview['proposed_points_angstrom']
+    if len(points) != len(atoms):
+        raise ValueError('Orbit correspondence atom inventory differs')
+    assignments = {}
+    def assign(xyz, indices):
+        op = _operator(xyz, gemmi, members)
+        assignments.setdefault(op.triplet(), []).extend(indices)
+    if preview['fixed_atom_indices']:
+        assign('x,y,z', preview['fixed_atom_indices'])
+    for row in preview['atom_image_groups']:
+        assign(row['operator_xyz'], row['atom_indices'])
+    indices = [i for values in assignments.values() for i in values]
+    if any(type(i) is not int for i in indices) or sorted(indices) != list(range(len(atoms))):
+        raise ValueError('Orbit correspondence must own every source atom exactly once')
+    rows = 2*len(operations)*len(assignments)
+    if rows > max_permutation_rows:
+        raise ValueError('Orbit permutation row budget exceeded')
+    tables = []; max_error = 0.; fixed = set(preview['fixed_atom_indices'])
+    for xyz, indices in sorted(assignments.items()):
+        op = _operator(xyz, gemmi, members)
+        forward, inverse = _orbit_permutation(op, operations, gemmi)
+        transform = cell.op_as_transform(op)
+        for i in indices:
+            before = atoms[i]['position_angstrom']; after = points[i]
+            if len(after) != 3 or any(type(v) not in (int, float) or not math.isfinite(v) for v in after):
+                raise ValueError('Orbit correspondence requires finite Cartesian points')
+            expected = list(transform.apply(gemmi.Position(*before)))
+            error = max(abs(a-b) for a,b in zip(after, expected))
+            if (error > _arithmetic_bound(before, after, expected)
+                    or i in fixed and before != after):
+                raise ValueError('Orbit correspondence does not bind the proposed coordinates')
+            max_error = max(max_error, error)
+        tables.append(dict(operator_xyz=xyz, atom_indices=sorted(indices), forward=forward, inverse=inverse))
+    report = dict(schema_version=1, kind='topostitch-registered-orbit-permutation-observation',
+        status='EXACT_LABELLED_ORBIT_PERMUTATIONS', source_model_sha256=preview['source_model_sha256'],
+        registered_graph_sha256=expected_registered_graph_sha256, preview_sha256=preview['preview_sha256'],
+        proposed_points_sha256=_fingerprint(points), crystal=crystal,
+        space_group_operations=[op.triplet() for op in operations], image_assignments=tables,
+        atom_count=len(atoms), labelled_cell_image_count=len(atoms)*len(operations),
+        permutation_rows=rows, max_permutation_rows=max_permutation_rows,
+        maximum_coordinate_binding_error_angstrom=max_error,
+        source_orbit_status=preview['source_orbit_observation']['assessment'],
+        correspondence='g*h = T_n*g_mapped; (atom,g,lattice_m) maps to (same_atom,g_mapped,lattice_m+n)',
+        lattice_action='Translations act after the group operation; group indices are zero-based',
+        source_bytes_verified=True, labelled_position_multiplicity_preserved=True,
+        special_position_weights_qualified=False, physical_identity_validated=False,
+        scattering_invariance_validated=False, coordinates_materialized=False, runtime_authority=False,
+        limitations=['Labelled position images only; no deduplication, special-position occupancy correction or molecule identity inference',
+                     'Exact group algebra plus floating coordinate binding; no ANISOU transport or serialized-coordinate proof',
+                     'No chemical seam, native restraint, refinement, GUI review or checkpoint authority'])
+    if any(p.read_bytes() != value for p,value in originals.items()):
+        raise ValueError('Orbit source inputs changed during observation')
+    report['report_sha256'] = _fingerprint(report)
+    return report

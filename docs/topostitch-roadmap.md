@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W61 — Inspect chemistry and packing at failed last accepted points.** Next: W62.
+**Current update: W62 — Verify exact labelled crystal-image permutations.** Next: W63.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W52 | Bind representative previews to registered source atoms | RECORDED |
 | W53 | Measure precision at retained failed-trial points | RECORDED |
 | W54 | Audit accepted points while preserving optimizer failures | RECORDED |
 | W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W59 | Calculate representatives along explicitly chosen graph links | RECORDED |
 | W60 | Retain chosen graph links and anchors in saved proposals | RECORDED |
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
+| W62 | Verify exact labelled crystal-image permutations | RECORDED |
 
 ## Finish lines
 
@@ -290,16 +290,16 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.
 
-**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification.
+**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification. W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer.
 
 **Closure audit:**
 
 - Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
-**Next action:** Persist the explicit registered proposal/source boundary and complete P02 graphical review before writing a recut. Retain sampled scattering/ADP observations as an independent diagnostic, then qualify complete atom-orbit inventory, serialization precision and native seam chemistry.
-**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70); Read-only sampled scattering prototype only; P02 remains open, no materialized cut, complete invariance or chemistry qualification.
+**Next action:** Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.
+**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations).
+**Last audit:** 2026-11-14, Linden, [W62](https://github.com/vecchioni-lab/NASolve/commit/27878592c8d06975fa9c8a6dc11272ff5d7ef3c2); Exact labelled position orbit correspondence and floating coordinate binding; P03 remains partial without model writing, tensor serialization, physical identity or chemistry approval.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -667,6 +667,13 @@ Missing-asset regression fails before fix; focused41,full1545 plus229subtests,in
 [Evidence contract](topostitch-preview.md#w61--read-only-chemistry-at-failed-last-accepted-points) at [W61](https://github.com/vecchioni-lab/NASolve/commit/27878592c8d06975fa9c8a6dc11272ff5d7ef3c2).
 Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8. Exact source equality/input preservation and all receipt inventories verified. Both selected/core target effects, scalar geometry, ordinary torsions/planes and8316 native contacts reviewed at full/rounded precision.
 **Limit:** Original FAILED outcomes retained. No candidate model, fresh candidate reinterpretation, geometry threshold, optimization, ordinary refinement or scientific acceptance. Zero-weight constant inventory is not a missing positive force. Runtime unchanged; W60 tests/install remain applicable. Scientific data local only.
+
+<a id="e_orbit_permutations"></a>
+### E_ORBIT_PERMUTATIONS — exact_labelled_orbit_permutations
+
+[Evidence contract](topostitch-periodic.md#w62--exact-labelled-orbit-permutations-for-a-proposed-cut) at [W62](https://github.com/vecchioni-lab/NASolve/commit/27878592c8d06975fa9c8a6dc11272ff5d7ef3c2).
+16 regressions; independent rational checks across65 Sohncke groups; focused47,full1592 plus229subtests,installed/relocated386,6helps,lean/3.10. Both public proposals preserve855 labelled atoms and7695 cell-image incidences; exact replay and old outputs preserved.
+**Limit:** No special-position weighting, unique physical atom/molecule identity, tensor serialization, model writer, chemical connection, native execution or graphical approval. Source data and scientific outputs stay local; schema additive.
 
 ## Deferred extensions, not hidden blockers
 

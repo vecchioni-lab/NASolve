@@ -475,21 +475,24 @@
       ],
       "goal": "Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.",
       "delivered": [
-        "W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification."
+        "W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification.",
+        "W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Persist the explicit registered proposal/source boundary and complete P02 graphical review before writing a recut. Retain sampled scattering/ADP observations as an independent diagnostic, then qualify complete atom-orbit inventory, serialization precision and native seam chemistry.",
+      "next_action": "Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.",
       "evidence": [
-        "E_REPRESENTATIVE_SCATTERING"
+        "E_REPRESENTATIVE_SCATTERING",
+        "E_ORBIT_PERMUTATIONS"
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
+        "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
         "reviewer": "Linden",
-        "scope": "Read-only sampled scattering prototype only; P02 remains open, no materialized cut, complete invariance or chemistry qualification"
+        "human_update": 62,
+        "scope": "Exact labelled position orbit correspondence and floating coordinate binding; P03 remains partial without model writing, tensor serialization, physical identity or chemistry approval"
       }
     },
     {
@@ -898,6 +901,14 @@
       "reference": "docs/topostitch-preview.md#w61--read-only-chemistry-at-failed-last-accepted-points",
       "result": "Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8. Exact source equality/input preservation and all receipt inventories verified. Both selected/core target effects, scalar geometry, ordinary torsions/planes and8316 native contacts reviewed at full/rounded precision.",
       "limitation": "Original FAILED outcomes retained. No candidate model, fresh candidate reinterpretation, geometry threshold, optimization, ordinary refinement or scientific acceptance. Zero-weight constant inventory is not a missing positive force. Runtime unchanged; W60 tests/install remain applicable. Scientific data local only."
+    },
+    "E_ORBIT_PERMUTATIONS": {
+      "kind": "exact_labelled_orbit_permutations",
+      "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
+      "human_update": 62,
+      "reference": "docs/topostitch-periodic.md#w62--exact-labelled-orbit-permutations-for-a-proposed-cut",
+      "result": "16 regressions; independent rational checks across65 Sohncke groups; focused47,full1592 plus229subtests,installed/relocated386,6helps,lean/3.10. Both public proposals preserve855 labelled atoms and7695 cell-image incidences; exact replay and old outputs preserved.",
+      "limitation": "No special-position weighting, unique physical atom/molecule identity, tensor serialization, model writer, chemical connection, native execution or graphical approval. Source data and scientific outputs stay local; schema additive."
     }
   },
   "benchmarks": [
@@ -1013,8 +1024,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 61,
-    "next": 62,
+    "current": 62,
+    "next": 63,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1188,6 +1199,12 @@
       {
         "number": 61,
         "title": "Inspect chemistry and packing at failed last accepted points",
+        "state": "RECORDED",
+        "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2"
+      },
+      {
+        "number": 62,
+        "title": "Verify exact labelled crystal-image permutations",
         "state": "RECORDED",
         "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2"
       }
