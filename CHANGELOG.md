@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Finish a saved AutoSol result after interruption (C274)
+
+- New checked AutoSol launches record their existing producer/process group and
+  seal the completed result before saving the run report. Native commands and
+  campaign process ownership remain unchanged.
+- `nasolve autosol RUN --complete-publication` verifies that exact result and its
+  original model/inputs, then finishes the save only after the recorded producer
+  and entire group are known stopped. Preserve later checkpoint choices and newer
+  run reports; repeating an already completed save is read-only.
+- Reuse existing preparation, site/phase checks, locks and guarded publication.
+  Completion needs no Phenix installation or native rerun. Two small versioned
+  receipts are additive; old runs stay readable and are never retrofitted.
+- Shared, foreign or uncertain live groups, incomplete native results and missing
+  receipts remain preserved for diagnosis. This does not add standalone process
+  isolation, automatic retry or campaign-stage receipt repair.
+
 ### Reuse identical numerical calculations within one inspection (C273)
 
 - Exact complete-request reading can now reuse an identical captured derivative

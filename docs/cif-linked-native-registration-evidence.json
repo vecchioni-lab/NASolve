@@ -93640,5 +93640,163 @@
     "remaining": "AutoSol writes immutable stage output before guarded run-report publication, but has no explicit resume operation for an interrupted result save. Its direct subprocess.run does not provide standalone durable child ownership; campaign outer-worker ownership is a separate context. Do not infer a dead process from a report file or attach an untracked child session outside its campaign owner.",
     "next": "Design the smallest existing-owner integration and exact-result completion path for future owned AutoSol runs; distinguish preserving a completed result from launching a fresh attempt. Old unowned partial directories stay explicit/unadopted; no retrofit by guessing. Retain stable selection, original-MR phasing and unchanged scientific checks. This is a queued boundary, not implementation or permission to change defaults.",
     "resource_scope": "Representative single successful/failing requests are measured; one expensive reader at a time. Repeated-failure/100-dataset bounds, historical campaign migration and default activation remain explicit integration/release limits. No Q04/Q05 full closure or Q06 start claimed."
+  },
+  "autosol_saved_publication_2026_11_14": {
+    "checkpoint": "C274",
+    "base_commit": "0526eae61af80c3c2957e81a35ad2837807fdbe0",
+    "status": "FOCUSED_RELOCATED_CHECKOUT_FRESH_NATIVE_RECOVERY_PASS",
+    "prior_work": "C223 guarded report publication; C253 exact frozen chosen-model/site result; C271 view identity; existing campaign process observation/lock. No new executor or scientific validator.",
+    "before": "Completed checked AutoSol stage output could remain unadopted after interrupted run-report publication, with no explicit completion operation.",
+    "after": "New launch observes inherited producer/group and seals exact result plus before/after report hashes. Explicit completion revalidates evidence and saves only after known stop; later selections and newer reports survive. Already-complete read is idempotent.",
+    "changed_source_files": [
+      "src/nasolve/autosol_publication.py",
+      "src/nasolve/autosol.py",
+      "src/nasolve/cli.py"
+    ],
+    "new_records": {
+      "AutoSol/execution.json": "autosol-inherited-process-observation-v1",
+      "AutoSol/publication.json": "autosol-result-publication-v1"
+    },
+    "compatibility": "Additive records, unchanged existing schema/native command/scientific thresholds. Old results remain readable; old partial work not retrofitted. macOS/Linux process checks reused. No campaign process-group changes.",
+    "validation": [
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py -x",
+        "result": "Before implementation: 1 failed in 1.70s, CLI did not recognize explicit completion."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py tests/test_autosol_selected_reference.py tests/test_autosol.py tests/test_cli.py tests/test_campaign_stages.py -x",
+        "result": "136 passed, 16 subtests passed in 26.28s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py",
+        "cwd": "relocated temporary checkout, original temporary path absent",
+        "result": "25 passed in 11.29s",
+        "local_record": "/private/tmp/c274-relocated-checkout-ebws8hiq/validation.json"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c274_control.py",
+        "result": {
+          "status": "FRESH_NATIVE_INTERRUPTED_PUBLICATION_AND_RELOCATION_PASS",
+          "native": {
+            "status": "AUTOSOL_READY",
+            "matched_distance": 1.449,
+            "phase_labels": [
+              "HLAM",
+              "HLBM",
+              "HLCM",
+              "HLDM"
+            ],
+            "execution_sha256": "e9da997153222e80b581e19b8c7d8234e9bd669f98a93ff715887494b04dea70",
+            "publication_sha256": "a8cf71453d2ef42c6a3802006e74324353fdc07aee5ddb0bdd3f0ce8107dd0fe",
+            "result_sha256": "d6412545b07eb5c5f6b56732e4a0e7defba9f7c6262ac80cf8a2267efa670b5f",
+            "elapsed_seconds": 69.82694479098427,
+            "scope": "Fresh complete Phenix AutoSol; deliberate post-native save interruption. Existing checked preparation is copied and revalidated, not regenerated."
+          },
+          "completion": {
+            "status": "RELOCATED_NATIVE_AUTOSOL_COMPLETION_PASS",
+            "native_status": "AUTOSOL_READY",
+            "matched_distance": 1.449,
+            "comparison_checkpoint": "manual-001",
+            "current_checkpoint": "postmr",
+            "unchanged_existing_files": 390,
+            "changed_files": [
+              "report.json"
+            ],
+            "new_files": [
+              "AutoSol/.publication.lock"
+            ],
+            "completion_seconds": 56.31634762501926,
+            "elapsed_seconds": 223.98847770900466,
+            "idempotent": true,
+            "old_source_sdk_reads_forbidden": true,
+            "native_relaunches": 0,
+            "allowed_process_observations": [
+              [
+                "/usr/sbin/sysctl",
+                "-n",
+                "kern.boottime"
+              ],
+              [
+                "/usr/sbin/sysctl",
+                "-n",
+                "kern.boottime"
+              ],
+              [
+                "/usr/sbin/sysctl",
+                "-n",
+                "kern.boottime"
+              ],
+              [
+                "/usr/sbin/sysctl",
+                "-n",
+                "kern.boottime"
+              ],
+              [
+                "/usr/sbin/sysctl",
+                "-n",
+                "kern.boottime"
+              ],
+              [
+                "/usr/sbin/sysctl",
+                "-n",
+                "kern.boottime"
+              ]
+            ],
+            "scope": "Exact saved result after verified producer/group stop; no Phenix/Coot discovery or relaunch, no reselection, no campaign-stage receipt fabricated."
+          },
+          "versions": {
+            "phenix_installation": "phenix-2.2.1-6174",
+            "phenix_dispatcher": "2.2.1",
+            "coot": "NOT_RUN"
+          },
+          "original_source_files_unchanged": 394,
+          "whole_control": {
+            "files": 413,
+            "bytes": 61578280
+          },
+          "scope": "One fresh AutoSol on copied/revalidated prior preparation; no new MR/Coot/ReadySet, no diffraction refinement, no source changes. All old outputs and this deliberate interruption are retained locally."
+        }
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py -k rollback -x",
+        "result": "Before final hardening: 1 failed, 25 deselected in 1.45s. A concurrent exact rollback during completed read was incorrectly reported successful."
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py -x",
+        "result": "Final code: 26 passed in 8.81s"
+      },
+      {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_autosol_publication.py",
+        "cwd": "relocated temporary checkout; old temporary path absent",
+        "result": "Final code: 26 passed in 9.00s",
+        "local_record": "/private/tmp/c274-relocated-checkout-ebws8hiq/final-validation.json"
+      }
+    ],
+    "regression_scope": "Active/unknown groups, changed/missing/symlinked evidence, newer report during proof, interrupted completion, later choice, idempotency, warning/no phase promotion, rehashed contradictions, old receipt-less completed runs, no SDK discovery.",
+    "test_setup_corrections": "Initial completion passed the hypothetical target into the existing file-equality preparation guard; corrected to validate actual on-disk report, leaving the guard intact. Relocated mock paths updated in the synthetic fixture only.",
+    "native_control": {
+      "anchor": "live_tests_directory",
+      "path": "274_Cedar_autosol-publication-tc0cilcn",
+      "start_sha256": "d6ed5724c6d2c77f54fe5b754530ea1db69269979d09affde3858d93a564ebe8",
+      "summary_sha256": "c8f3500dc7efbfc7d67fb03e694c0b45780e32f8bcaeec18f66b1c2d4915736e",
+      "both_owned_workers_stopped_verified": true,
+      "source_unchanged_during_workers": true
+    },
+    "fixture": "Fresh copy of prior C270 preparation, with copied AutoSol subtree excluded and only copied report/registry reset explicitly. This derived software fixture is not a production migration or in-place native retry.",
+    "limits": [
+      "Sealed save completion only; crash before publication receipt remains unadopted.",
+      "No standalone isolated native owner or native retry; shared/foreign/unknown groups refuse pending completion.",
+      "No campaign-stage receipt fabrication or campaign automatic recovery.",
+      "No new MR/Coot/ReadySet or diffraction refinement; earlier preparation copied and revalidated."
+    ],
+    "artifacts": "Only source/tests/docs committed. 61,578,280-byte / 413-file native control, raw scientific inputs, runners and partial interruption remain local. No deleted original inputs.",
+    "full_suite": "Not run per Simon. Last full C220/583d30df: 9178 tests + 276 subtests.",
+    "native_revision_note": "Native run/completion pinned the version before a final two-line check rejecting exact root-report rollback during an already-completed read. Final focused/relocated tests validate that guard; no native rerun was needed or claimed."
+  },
+  "willow_periodic_recipe_context_2026_11_14": {
+    "status": "LINDEN_REPORTED_NOT_CEDAR_VALIDATED",
+    "source": "Linden local message, W37",
+    "reported": "Complete canonical NAR recipes frozen with exact PDB atom identities, role maps, per-atom symmetry images, full planes and checksums. Optional NativePairRecipe uses unchanged correct_parallelity_gradient(plane_order_safe=True), with no manager/callback mutation or exclusions changes. 8D93 14-pair recipe passes all 798 ASU-coordinate derivatives; synthetic P43/P21 pass; strained near-linear P1 remains REVIEW. Selection-only iotbx parsing disables default atom sorting.",
+    "scope": "Future Q06 context only. No Cedar/Willow combined-build acceptance, merge or changes to native mathematical workers."
   }
 }

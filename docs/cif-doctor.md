@@ -910,6 +910,45 @@ MTZ interpretation or diffraction refinement is claimed; observation/map paths a
 synthetic fixtures. Full results: `native_preparation_alternatives_2026_11_13`.
 
 
+### Finish a sealed AutoSol result save (C274)
+
+`nasolve autosol RUN --complete-publication` finishes an exact completed stage
+save without native discovery, execution or checkpoint reselection. New checked
+launches first write `AutoSol/execution.json` with policy
+`autosol-inherited-process-observation-v1`: launch UUID, existing coordinator and
+inherited process group, frozen site-reference and historical command. This
+observes the existing group; it creates no child owner and never sends signals.
+After writing the immutable result, `AutoSol/publication.json` with policy
+`autosol-result-publication-v1` binds that launch, run-anchored/checksummed execution
+and result, and exact previous/intended run-report hashes. No models are copied.
+
+Pending completion requires both coordinator and complete recorded group known
+stopped on this host. Existing preparation, observation, model/site and phase/map
+checks qualify the saved result. The existing kernel lock and guarded report
+writer preserve competing/newer work. Only the run report changes; later choices
+and bookmarks remain intact. Already exact publication revalidates read-only.
+Old receipt-less runs remain readable; no historical identity is invented.
+
+A fresh complete Phenix 2.2.1-6174 AutoSol run on a copied/revalidated C270 fixture
+reaches AUTOSOL_READY, 1.449 Å and HLAM/HLBM/HLCM/HLDM. A deliberate exception after
+sealing preserves the completed native result. After its owned group stops and
+the copy moves, completion succeeds without old/source/SDK reads or native
+launches. Saved comparison is manual-001; later current choice stays postmr.
+390 existing files retain bytes/timestamps; only report.json changes and the
+persistent publication lock appears. Repetition is read-only. All 394 original
+source files remain unchanged. No new MR/Coot/ReadySet or diffraction refinement.
+
+The copied fixture explicitly resets only its own old AutoSol state before the
+fresh native control; this is not production migration or in-place retry. The
+61.6 MB complete local control remains excluded from Git. Exact commands, hashes,
+negative tests and moved-checkout validation are in
+`autosol_saved_publication_2026_11_14` in the evidence ledger.
+
+Limits remain explicit: this completes sealed saves, not a crash before sealing,
+incomplete native work, a shared/foreign/unknown active group, or a missing campaign
+stage receipt. Existing campaign supervision remains unchanged. No default
+checked-preparation activation or standalone native-attempt isolation is added.
+
 ### Avoid repeated numerical work during exact inspection (C273)
 
 The exact complete-request reader now owns one short-lived numerical reuse scope.

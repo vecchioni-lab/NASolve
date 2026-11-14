@@ -18,7 +18,7 @@ work; Q05 carries its result into normal use. Q06 must pass before we claim that
 the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
 learned along the way; they are not a reason to keep rebuilding Q04.
 
-## Near-term closure at C273
+## Near-term closure at C274
 
 The C244 estimate was **6–9 focused patches plus integration validation**. Since
 then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
@@ -43,8 +43,9 @@ limits explicitly. C273 reduces the saved native inspection from 103.72 s to
 times within one read. Every file/owner/source check remains; historical worker
 bytes are unchanged. The two fresh-process reads return exactly the same view and
 leave all 389 run files unchanged. This single pair is not a general speed claim.
-Next resolve the interrupted AutoSol result-save boundary below, reusing existing
-ownership and publication machinery. Do not reopen completed preparation/storage
+C274 now completes an exact sealed AutoSol save explicitly after verified producer
+and group stop, including a fresh native interruption/relocation control. Reconcile
+the remaining pre-seal, standalone-group and campaign-receipt limits below. Do not reopen completed preparation/storage
 systems or weaken their validation to make status or inspection faster.
 A newly exposed defect may require a bounded patch; a numerical patch estimate
 is not a finish line.
@@ -453,17 +454,20 @@ publication. No automatic campaign continuation or native refinement claim follo
 **Remaining acceptance:** C270–C272 complete selected-model native AutoSol,
 later-selection/relocated inspection and final native Coot loading for the explicit
 A:5IU fixture. C273 reduces duplicate numerical work within exact inspection.
-The concrete remaining recovery boundary is **finish saving already completed
-phasing work after an interruption**. `_record_result` writes the immutable stage
-result before guarded run-report publication; no explicit completion operation
-currently rejoins that split. Direct AutoSol also lacks standalone durable child
-ownership. Campaign outer-worker ownership is a separate context: do not move a
-child into an untracked independent process group. First design existing-owner
-integration for future runs, then exact-result completion with known-stopped work,
-unchanged inputs and preserved newer selections. Old unowned partial directories
-remain visible and unadopted; no guessed process death or native retry in place.
-Keep this separate from completed preparation-publication recovery. Reconcile
-serial resource/rollout scope before declaring Q04/Q05 closed.
+C274 closes **explicit completion of a sealed phasing result save**: new checked
+launches observe their existing producer/group, bind the completed result and
+intended report, and finish only after both are known stopped. A fresh complete
+Phenix run, deliberate save interruption, relocation and repeat completion pass;
+later selection survives. No new executor, child group or scientific validator.
+
+Remaining recovery scope must stay visible: an interruption before the publication
+receipt, unfinished native work, a shared/foreign/unknown group and a missing outer
+campaign-stage receipt are not automatically adopted. Direct AutoSol still lacks
+standalone isolated child ownership; inherited campaign supervision is unchanged.
+Old unowned partial directories remain visible and unadopted. No guessed process
+death, in-place native retry or fabricated campaign success. Decide the supported
+caller/rollout boundary explicitly and reconcile serial resource acceptance before
+Q04/Q05 closure; reuse these owners rather than starting another recovery stack.
 C255 has separately reconciled Alder's exact HL phase-label fix into Cedar, with
 unchanged native arguments and a real read of the documented DiU MTZ. This closes
 the known phase-label correctness discrepancy on Cedar; C270 now supplies native

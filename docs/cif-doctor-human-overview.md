@@ -37,7 +37,13 @@ not demonstrate a Coot edit or diffraction refinement. A separate iodine-bearing
 control now completes preparation and AutoSol, retaining its protected terminal
 phosphate. The saved comparison still opens after choosing a different model and
 moving the run. Coot also loads its final dictionary, models and density map.
-Q04/Q05 still need practical inspection-cost and recovery/rollout reconciliation
+If Phenix finishes but saving NASolve's result is interrupted, an explicit
+completion command can now finish the exact sealed save after the original work
+has stopped. A fresh Phenix control survives that interruption and relocation,
+keeping the earlier comparison model and a later selected model distinct. No
+phasing is repeated. Missing receipts or uncertain processes remain preserved;
+this is not permission to retry unfinished native work in place.
+Q04/Q05 still need remaining recovery and serial-resource/rollout scope reconciled
 before complete-restraint refinement and mixed/held-out controls.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.

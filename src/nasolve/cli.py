@@ -192,6 +192,10 @@ def build_parser() -> argparse.ArgumentParser:
         "run", nargs="?", type=Path,
         help="completed POSTMR_READY run directory (default: active workspace run)",
     )
+    autosol.add_argument(
+        "--complete-publication", action="store_true",
+        help="finish a sealed checked AutoSol result save after the original process group stops; do not rerun Phenix",
+    )
     autorefine = subparsers.add_parser(
         "autorefine", help="run one quiet, checkpointed Phenix refinement round"
     )
@@ -984,26 +988,30 @@ def _autosol(args: argparse.Namespace) -> int:
     try:
         config = load_config()
         run = _workspace_run(args.run, config)
-        phenix = discover_phenix(config, explicit=args.phenix_root)
-        if args.phenix_root is None:
-            remember_phenix(config, phenix)
-            save_config(config)
-        autosol_executable = phenix.executables.get("phenix.autosol")
-        mtz_dump_executable = phenix.executables.get("phenix.mtz.dump")
-        if autosol_executable is None:
-            raise AutoSolPreparationError(
-                "The discovered Phenix installation has no phenix.autosol executable"
+        if getattr(args, "complete_publication", False):
+            from .autosol_publication import complete_autosol_publication
+            result = complete_autosol_publication(run)
+        else:
+            phenix = discover_phenix(config, explicit=args.phenix_root)
+            if args.phenix_root is None:
+                remember_phenix(config, phenix)
+                save_config(config)
+            autosol_executable = phenix.executables.get("phenix.autosol")
+            mtz_dump_executable = phenix.executables.get("phenix.mtz.dump")
+            if autosol_executable is None:
+                raise AutoSolPreparationError(
+                    "The discovered Phenix installation has no phenix.autosol executable"
+                )
+            if mtz_dump_executable is None:
+                raise AutoSolPreparationError(
+                    "AutoSol validation requires phenix.mtz.dump"
+                )
+            result = execute_autosol(
+                run,
+                autosol_executable,
+                mtz_dump_executable,
+                environment=phenix.environment,
             )
-        if mtz_dump_executable is None:
-            raise AutoSolPreparationError(
-                "AutoSol validation requires phenix.mtz.dump"
-            )
-        result = execute_autosol(
-            run,
-            autosol_executable,
-            mtz_dump_executable,
-            environment=phenix.environment,
-        )
     except (
         AutoSolPreparationError,
         ConfigError,

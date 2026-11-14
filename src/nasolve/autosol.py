@@ -682,6 +682,8 @@ def _record_result(
     report["updated_utc"] = payload["created_utc"]
     report["autosol"] = payload
     if previous_sha256 is not None:
+        from .autosol_publication import seal_publication
+        seal_publication(run, previous_sha256, report)
         _publish_run_report(run / "report.json", previous_sha256, report)
     else:
         _write_json(run / "report.json", report)
@@ -831,6 +833,9 @@ def execute_autosol(
         "autosol.model_building.phase_improve_and_build=False",
         f"autosol.general.nproc={nproc}",
     ]
+    if site_reference is not None:
+        from .autosol_publication import observe_execution
+        observe_execution(run, site_reference, command)
     try:
         completed = subprocess.run(
             command,
