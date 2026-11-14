@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
+  "audited_code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -302,7 +302,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
+        "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
         "reviewer": "Linden",
         "human_update": 61,
         "scope": "Two complete read-only native observations of authenticated failed points; diagnostic improvement does not close chemistry, enforcement or convergence"
@@ -893,7 +893,7 @@
     },
     "E_FAILED_ENDPOINT_CHEMISTRY": {
       "kind": "failed_endpoint_chemistry_observations",
-      "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd",
+      "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2",
       "human_update": 61,
       "reference": "docs/topostitch-preview.md#w61--read-only-chemistry-at-failed-last-accepted-points",
       "result": "Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8. Exact source equality/input preservation and all receipt inventories verified. Both selected/core target effects, scalar geometry, ordinary torsions/planes and8316 native contacts reviewed at full/rounded precision.",
@@ -1189,7 +1189,7 @@
         "number": 61,
         "title": "Inspect chemistry and packing at failed last accepted points",
         "state": "RECORDED",
-        "code_commit": "f4d27cc06cad0c7d3f1f228a3815b61a72a341fd"
+        "code_commit": "27878592c8d06975fa9c8a6dc11272ff5d7ef3c2"
       }
     ]
   }

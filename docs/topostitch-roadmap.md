@@ -192,7 +192,7 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 
 **Next action:** Qualify affected chemistry and complete ordinary native enforcement through Cedar before a supported repair/refinement route. Preserve failed/capped outcomes; passing accepted-point derivatives do not justify tolerance relaxation or adoption. Continue shared physical identity and Pine preview/scattering gates without treating recutting as repair.
 **Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api), [E_ENDPOINT_OBSERVATIONS](#e_endpoint_observations), [E_PAIR_ATTRIBUTION](#e_pair_attribution), [E_CORE_CONTROL](#e_core_control), [E_NATIVE_TERMS](#e_native_terms), [E_NATIVE_STOPPING_LIMIT](#e_native_stopping_limit), [E_NATIVE_PRECISION](#e_native_precision), [E_FAILED_ENDPOINT_DIAGNOSTIC](#e_failed_endpoint_diagnostic), [E_FAILED_ENDPOINT_CHEMISTRY](#e_failed_endpoint_chemistry).
-**Last audit:** 2026-11-14, Linden, [W61](https://github.com/vecchioni-lab/NASolve/commit/f4d27cc06cad0c7d3f1f228a3815b61a72a341fd); Two complete read-only native observations of authenticated failed points; diagnostic improvement does not close chemistry, enforcement or convergence.
+**Last audit:** 2026-11-14, Linden, [W61](https://github.com/vecchioni-lab/NASolve/commit/27878592c8d06975fa9c8a6dc11272ff5d7ef3c2); Two complete read-only native observations of authenticated failed points; diagnostic improvement does not close chemistry, enforcement or convergence.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -664,7 +664,7 @@ Missing-asset regression fails before fix; focused41,full1545 plus229subtests,in
 <a id="e_failed_endpoint_chemistry"></a>
 ### E_FAILED_ENDPOINT_CHEMISTRY — failed_endpoint_chemistry_observations
 
-[Evidence contract](topostitch-preview.md#w61--read-only-chemistry-at-failed-last-accepted-points) at [W61](https://github.com/vecchioni-lab/NASolve/commit/f4d27cc06cad0c7d3f1f228a3815b61a72a341fd).
+[Evidence contract](topostitch-preview.md#w61--read-only-chemistry-at-failed-last-accepted-points) at [W61](https://github.com/vecchioni-lab/NASolve/commit/27878592c8d06975fa9c8a6dc11272ff5d7ef3c2).
 Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8. Exact source equality/input preservation and all receipt inventories verified. Both selected/core target effects, scalar geometry, ordinary torsions/planes and8316 native contacts reviewed at full/rounded precision.
 **Limit:** Original FAILED outcomes retained. No candidate model, fresh candidate reinterpretation, geometry threshold, optimization, ordinary refinement or scientific acceptance. Zero-weight constant inventory is not a missing positive force. Runtime unchanged; W60 tests/install remain applicable. Scientific data local only.
 
