@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-14
 
-**Willow update W57; next W58.** Human W-numbers and exact code provenance live
+**Willow update W58; next W59.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,544 plus 229 subtests**; focused40;
-installed/relocated338, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,545 plus 229 subtests**; focused41;
+installed/relocated339, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -201,16 +201,20 @@ Virtual L/R recipe labels are not ordinary source-model refinement selections.
 Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
 movement masks require their own qualified consumer policy.
 
-**Compatibility:** Willow is isolated from the dirty Pine/Cedar checkouts. Latest
-completed installed owner/API composition used Cedar C297 `fe7e9fd7`:298 focused
-checks and exact public preview/scattering replay; no merge, combined CLI/package
-metadata or full combined-suite qualification. Rowan reports C298 `85a45a0f`
-ordinary opt-in AutoRefine integration with native and relocation controls; C299
-CLI/ancestry work is separate and is not yet Willow qualification. Do not edit
-Cedar or its installation. Reconcile shared guides/changelog only at explicit
-integration. Preserve immutable runs, unpublished inputs, maps, Free-R and all
-negative evidence. Scientific artifacts stay local; evidence archives are forensic
-records, not resumable portable runs.
+**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. A
+temporary installed composition with published Cedar C299 `b4739c76` passes339
+Willow tests,162 Cedar tests plus19 subtests, six helps and exact public replay.
+It explicitly unions topology extras, five TopoStitch entry points and the HTML
+package-data path. The prior Python-only overlay passed335 but failed three HTML
+tests because unchanged Cedar metadata excluded the asset; that failure is retained.
+W58 also makes missing-template failure leave no empty output. No branches were
+merged; combined human docs, complete suite and native integration remain open.
+Rowan's C300 campaign/Doctor changes are separate and not part of this qualification.
+
+Do not edit Cedar or its installation. Preserve immutable runs, unpublished inputs,
+maps, Free-R and all negative evidence. Scientific artifacts stay local; evidence
+archives are forensic records, not resumable portable runs. Retained W34 controls
+have no parallelity proxies, so they were not rerun merely to test C299's correction.
 
 ## Work discipline and doc ownership
 

@@ -212,7 +212,8 @@ def write_preview_view(directory,output_path,**options):
             raise ValueError('Representative preview already declares its images; bend-search options do not apply')
         scene=representative_scene(root)
     else:scene=preview_scene(root,**options)
-    with out.open('x',encoding='utf-8') as stream:stream.write(_html(scene))
+    html=_html(scene)  # Validate the installed asset before creating any output.
+    with out.open('x',encoding='utf-8') as stream:stream.write(html)
     return scene
 
 

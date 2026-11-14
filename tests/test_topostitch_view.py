@@ -105,3 +105,14 @@ def test_view_preserves_window_with_unmapped_unrelated_route(tmp_path):
     scene=preview_scene(preview)
     assert scene['traces'] and scene['atoms']
     assert all(a['site']['chain'] in {'A','B'} for a in scene['atoms'])
+
+
+def test_missing_packaged_template_leaves_no_empty_output(tmp_path,monkeypatch):
+    import nasolve.topostitch_view as module
+    paths=setup_preview(tmp_path);preview=tmp_path/'preview';build(paths,preview)
+    before={p.name:p.read_bytes() for p in preview.iterdir()}
+    monkeypatch.setattr(module,'files',lambda package:tmp_path/'missing-installed-package')
+    out=tmp_path/'view.html'
+    with pytest.raises(FileNotFoundError):write_preview_view(preview,out)
+    assert not out.exists()
+    assert {p.name:p.read_bytes() for p in preview.iterdir()}==before

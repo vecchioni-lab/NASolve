@@ -1206,3 +1206,38 @@ coordinates. O3* spelling also passes. This is interaction-logic evidence only,
 not browser rendering, layout or accessibility qualification. No Phenix/Coot
 execution or Cedar changes were required. Scientific snapshots, generated HTML,
 local harnesses and receipts remain excluded from Git.
+
+
+## W58 — Qualify the installed viewer boundary with Cedar
+
+The viewer now loads/renders its packaged asset before creating the requested
+output. Previously an absent template left an empty HTML file; the regression
+reproduces that failure and now confirms no output or frozen-input mutation.
+No scene, packet, chemistry, command or checkpoint schema changes.
+
+The initial temporary C299 `b4739c76` composition deliberately kept Cedar package
+metadata unchanged. It passed 335 owner tests and exact public replay, but three
+HTML tests failed because the template was not packaged. Preserve that failure:
+copying Python modules alone is not an installable branch integration.
+A separate temporary wheel adds exactly Willow's two topology extras, five
+TopoStitch entry points and `data/topostitch-view.html` package-data path to the
+Cedar metadata, with a parsed exact-union check. Original source is then moved
+away. That installed composition passes **339 Willow tests**, **162 Cedar tests
+plus 19 subtests**, six command helps and exact public graph/bundle/scattering/
+scene replay. Cedar owns AutoRefine, checkpoint and qualified plane-force code;
+Willow contributes its existing modules and asset. No live worktree was edited,
+branch merged, complete combined suite run or native refinement executed.
+The combined README/docs still need explicit reconciliation at integration.
+
+Willow alone passes focused **41**, full **1,545 plus 229 subtests**, installed/
+relocated **339**, six helps, lean import and Python 3.10 syntax. Commands and
+relocation guards follow W57; the added target is the missing-template regression
+in `tests/test_topostitch_view.py`. Final wheel SHA-256:
+`38fa81b7226ee13dd11af2537a9920a268617c8fc0b42b327666c6f62f9b4194`.
+
+Authenticated retained W34 inventories have zero parallelity proxies and 42
+planarity proxies in each reference/cleanup/bend result. Rerunning those unchanged
+recipes would not exercise C299's parallelity correction, so no new native trial
+was launched. This is a scope decision, not a new scientific result. Existing
+failed/capped trials and chemistry limitations stand. All temporary composition,
+failure and scientific evidence remains local and is excluded from Git.

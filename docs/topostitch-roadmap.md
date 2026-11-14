@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W57 — Inspect periodic representative proposals in the shared viewer.** Next: W58.
+**Current update: W58 — Qualify viewer packaging and Cedar composition.** Next: W59.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W48 | Preserve declared periodic routes and exact image loops | RECORDED |
 | W49 | Preview exact periodic graph representative relabeling | RECORDED |
 | W50 | Observe all present model atom orbits | RECORDED |
 | W51 | Record native stopping limits and shared periodic chemistry intent | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
 | W56 | Save and replay explicit representative proposals | RECORDED |
 | W57 | Inspect periodic representative proposals in the shared viewer | RECORDED |
+| W58 | Qualify viewer packaging and Cedar composition | RECORDED |
 
 ## Finish lines
 
@@ -274,7 +274,7 @@ Represent the observed periodic object independently of a tile hypothesis or PDB
 
 Let the scientist decide where to slice the ASU while seeing the same physical periodic object.
 
-**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation.
+**Delivered:** W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation. W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge.
 
 **Closure audit:**
 
@@ -282,8 +282,8 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 - Provide an actual selectable graphical before/after preview with explicit ambiguity and unchanged-source identity. No fake Apply action before materialization is supported.
 
 **Next action:** Perform genuine graphical/user validation, then add bounded intent-compatible cut alternatives and persistent review choices through the saved Pine-bound proposal owner. Keep materialization and chemical seams behind P03/P04.
-**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view).
-**Last audit:** 2026-11-14, Linden, [W57](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee); Read-only explicit-proposal inspection prototype; P02 partial, rendered browser/user review and cut-choice semantics remain open.
+**Evidence:** [E_VIEW](#e_view), [E_REPRESENTATIVE_VIEW](#e_representative_view), [E_VIEW_PACKAGE_BOUNDARY](#e_view_package_boundary).
+**Last audit:** 2026-11-14, Linden, [W58](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee); Installed failure-path and explicit C299 package union only; P02 visual/cut-choice gates remain open.
 
 <a id="p03"></a>
 ### P03 — Materialize a cut without changing the crystal
@@ -639,6 +639,13 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 [Evidence contract](topostitch-periodic.md#w57--inspect-periodic-representative-proposals-in-the-shared-viewer) at [W57](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee).
 11 new regressions; focused40,full1544 plus229subtests,installed/relocated338,6helps,lean import,3.10syntax. Public855 atoms/42nodes/38edges and legacy replay exact. Actual packaged JS runs with DOM/canvas doubles through edge selection/focus, atom inspection, modes, cell and missing anchors.
 **Limit:** No rendered-browser or human visual approval, bounded cut alternatives, persistent review, materialized ASU or chemical link. Existing schemas/commands remain compatible. Scientific artifacts local only; no Cedar or native-tool changes.
+
+<a id="e_view_package_boundary"></a>
+### E_VIEW_PACKAGE_BOUNDARY — installed_package_compatibility
+
+[Evidence contract](topostitch-periodic.md#w58--qualify-the-installed-viewer-boundary-with-cedar) at [W58](https://github.com/vecchioni-lab/NASolve/commit/295482ad78e0959f415a2397a3a384012a29ebee).
+Missing-asset regression fails before fix; focused41,full1545 plus229subtests,installed/relocated339,6helps. Temporary package union with C299 passes339Willow and162Cedar plus19subtests and exact public replay after original source removal.
+**Limit:** Initial unchanged-Cedar metadata omitted the HTML asset:335passed/3failed retained. No merge, combined human-doc/full-suite/native qualification or rendered visual review. Scientific evidence local. Zero-parallelity W34 recipes were not rerun.
 
 ## Deferred extensions, not hidden blockers
 

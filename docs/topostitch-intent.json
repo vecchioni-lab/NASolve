@@ -537,7 +537,8 @@
       "cut_alternative_selection": false,
       "persistent_review": false,
       "coordinates_materialized": false,
-      "runtime_authority": false
+      "runtime_authority": false,
+      "validates_asset_before_output": true
     }
   },
   "geometry_development": {

@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W58 — Validate viewer assets before creating output
+
+- Missing installed templates now fail before creating an empty HTML file.
+- Qualify a temporary installed Willow/C299 composition with the explicit union
+  of package assets, topology extras and entry points; retain the earlier missing-
+  asset failure. No branch merge, native refinement or chemistry change.
+
 ### W57 — Inspect exact periodic representatives and graph edges
 
 - Extend the existing offline viewer to replay saved representative packets and

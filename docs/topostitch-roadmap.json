@@ -437,7 +437,8 @@
       ],
       "goal": "Let the scientist decide where to slice the ASU while seeing the same physical periodic object.",
       "delivered": [
-        "W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation."
+        "W57 reuses the offline renderer for a verified explicit representative proposal: all present atoms, exact typed edge-image endpoints, logical ownership, declared boundaries, missing scope, unit cell and atom/edge inspection. It does not enumerate cut alternatives, record human choices, write a model or claim rendered-browser validation.",
+        "W58 fails before output creation on missing assets and qualifies an explicit temporary installed C299 package/owner composition; no rendered visual review or branch merge."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
@@ -446,14 +447,15 @@
       "next_action": "Perform genuine graphical/user validation, then add bounded intent-compatible cut alternatives and persistent review choices through the saved Pine-bound proposal owner. Keep materialization and chemical seams behind P03/P04.",
       "evidence": [
         "E_VIEW",
-        "E_REPRESENTATIVE_VIEW"
+        "E_REPRESENTATIVE_VIEW",
+        "E_VIEW_PACKAGE_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
         "reviewer": "Linden",
-        "human_update": 57,
-        "scope": "Read-only explicit-proposal inspection prototype; P02 partial, rendered browser/user review and cut-choice semantics remain open"
+        "human_update": 58,
+        "scope": "Installed failure-path and explicit C299 package union only; P02 visual/cut-choice gates remain open"
       }
     },
     {
@@ -857,6 +859,14 @@
       "reference": "docs/topostitch-periodic.md#w57--inspect-periodic-representative-proposals-in-the-shared-viewer",
       "result": "11 new regressions; focused40,full1544 plus229subtests,installed/relocated338,6helps,lean import,3.10syntax. Public855 atoms/42nodes/38edges and legacy replay exact. Actual packaged JS runs with DOM/canvas doubles through edge selection/focus, atom inspection, modes, cell and missing anchors.",
       "limitation": "No rendered-browser or human visual approval, bounded cut alternatives, persistent review, materialized ASU or chemical link. Existing schemas/commands remain compatible. Scientific artifacts local only; no Cedar or native-tool changes."
+    },
+    "E_VIEW_PACKAGE_BOUNDARY": {
+      "kind": "installed_package_compatibility",
+      "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee",
+      "human_update": 58,
+      "reference": "docs/topostitch-periodic.md#w58--qualify-the-installed-viewer-boundary-with-cedar",
+      "result": "Missing-asset regression fails before fix; focused41,full1545 plus229subtests,installed/relocated339,6helps. Temporary package union with C299 passes339Willow and162Cedar plus19subtests and exact public replay after original source removal.",
+      "limitation": "Initial unchanged-Cedar metadata omitted the HTML asset:335passed/3failed retained. No merge, combined human-doc/full-suite/native qualification or rendered visual review. Scientific evidence local. Zero-parallelity W34 recipes were not rerun."
     }
   },
   "benchmarks": [
@@ -972,8 +982,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 57,
-    "next": 58,
+    "current": 58,
+    "next": 59,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1123,6 +1133,12 @@
       {
         "number": 57,
         "title": "Inspect periodic representative proposals in the shared viewer",
+        "state": "RECORDED",
+        "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee"
+      },
+      {
+        "number": 58,
+        "title": "Qualify viewer packaging and Cedar composition",
         "state": "RECORDED",
         "code_commit": "295482ad78e0959f415a2397a3a384012a29ebee"
       }
