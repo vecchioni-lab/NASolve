@@ -47,6 +47,63 @@ def default_endpoint(policy: Mapping[str, Any]) -> str:
     return "refine-doctor" if workflow_policy(policy)["run_doctor"] else "autorefine"
 
 
+def postmr_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate the frozen preparation choice without upgrading older recipes.
+
+    Absence preserves the legacy path and serialized policy identity. An explicit
+    checked choice belongs to schema 2; it does not authorize unchecked fallback
+    or rebuilding partial preparation in place.
+    """
+    supplied = policy.get("postmr")
+    if (not isinstance(supplied, dict)
+            or set(supplied) - {"modified_pairs_only", "checked_preparation", "automatic_plane_support", "dictionary_input_policy"}
+            or type(supplied.get("modified_pairs_only")) is not bool):
+        raise ValueError("Unsupported campaign PostMR policy")
+    if "checked_preparation" in supplied:
+        if type(policy.get("schema_version")) is not int or policy["schema_version"] != 2:
+            raise ValueError("postmr.checked_preparation requires preset schema_version = 2")
+        if type(supplied["checked_preparation"]) is not bool:
+            raise ValueError("postmr.checked_preparation must be bool")
+    if "automatic_plane_support" in supplied:
+        if type(policy.get("schema_version")) is not int or policy["schema_version"] != 2:
+            raise ValueError("postmr.automatic_plane_support requires preset schema_version = 2")
+        if type(supplied["automatic_plane_support"]) is not bool:
+            raise ValueError("postmr.automatic_plane_support must be bool")
+        if supplied["automatic_plane_support"] and not supplied.get("checked_preparation", False):
+            raise ValueError("postmr.automatic_plane_support requires checked_preparation")
+    if "dictionary_input_policy" in supplied:
+        from .cif_generation_input import ordinary_generation_options
+        if type(policy.get("schema_version")) is not int or policy["schema_version"] != 2:
+            raise ValueError("postmr.dictionary_input_policy requires preset schema_version = 2")
+        if supplied.get("checked_preparation") is not True:
+            raise ValueError("postmr.dictionary_input_policy requires checked_preparation")
+        if supplied["dictionary_input_policy"] is None:
+            raise ValueError("postmr.dictionary_input_policy requires an explicit recipe")
+        ordinary_generation_options(supplied["dictionary_input_policy"])
+    return dict(supplied)
+
+
+def autosol_policy(policy: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate the frozen phase policy without changing anomalous evidence."""
+    supplied = policy.get("autosol")
+    if not isinstance(supplied, dict):
+        raise ValueError("autosol must be an object")
+    if supplied.get("policy") == "disabled":
+        if policy.get("schema_version", 1) != 2:
+            raise ValueError("autosol.policy = disabled requires preset schema_version = 2")
+        reason = supplied.get("reason")
+        if (set(supplied) != {"policy", "reason"}
+                or type(reason) is not str or not reason.strip()):
+            raise ValueError("Disabled AutoSol requires only policy and a nonempty reason")
+        return dict(supplied)
+    allowed = [{"policy": "when-anomalous", "on_unaccepted": "inspect"}]
+    if workflow_policy(policy)["mode"] == "full-auto":
+        allowed.append({"policy": "when-anomalous", "on_unaccepted": "continue-without-phases"})
+    if supplied not in allowed:
+        raise ValueError("Unsupported campaign AutoSol policy")
+    return dict(supplied)
+
+
 def continuation_warning(policy: Mapping[str, Any], stage: str,
                          receipt: Mapping[str, Any]) -> str | None:
     """Authorize a bounded trial without relabelling the upstream evidence.

@@ -1,11 +1,15 @@
 import json
 import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from nasolve.automr import prepare_automr
-from nasolve.phaser import PhaserExecutionError, execute_phaser, parse_best_tfz
+from nasolve.phaser import (
+    PhaserExecutionError, execute_phaser, parse_best_tfz, parse_selected_solution_scores,
+)
 
 from .helpers import make_dataset, make_mtz_dump, make_phaser, model_text, w_model_text
 
@@ -164,6 +168,115 @@ class PhaserExecutionTests(unittest.TestCase):
             "SOLU SET RFZ=8.0 TFZ==8.6 LLG=125.5",
         ])
         self.assertEqual(parse_best_tfz(text), (8.6, 125.5))
+
+    def test_native_annotation_histories_use_final_model_scores(self):
+        # Sanitized Phaser 2.9/Phenix 2.2.1 annotation-only evidence: no models,
+        # coordinates, observations, machine paths or project identifiers.
+        histories = [
+            ("RFZ=11.1 TFZ=7.4 PAK=0 LLG=371 TFZ==9.9 LLG=692 TFZ==14.5 PAK=0 LLG=692 TFZ==14.5", 14.5, 692),
+            ("RFZ=8.2 TFZ=5.1 PAK=1 LLG=304 TFZ==10.8 LLG=353 TFZ==12.2 PAK=0 LLG=353 TFZ==12.2", 12.2, 353),
+            ("RFZ=7.2 TFZ=7.8 PAK=0 LLG=202 TFZ==7.6 LLG=227 TFZ==7.7 PAK=0 LLG=226 TFZ==7.7", 7.7, 226),
+            ("RFZ=5.5 TFZ=6.2 PAK=1 LLG=172 TFZ==7.9 LLG=176 TFZ==8.0 PAK=1 LLG=176 TFZ==8.0", 8.0, 176),
+            ("RFZ=6.1 TFZ=9.9 PAK=0 LLG=225 TFZ==11.1 LLG=299 TFZ==13.8 PAK=0 LLG=299 TFZ==13.8", 13.8, 299),
+            ("RFZ=13.6 TFZ=* PAK=0 LLG=323 TFZ==15.2 LLG=368 TFZ==16.9 PAK=0 LLG=367 TFZ==16.9", 16.9, 367),
+            ("RFZ=13.1 TFZ=* PAK=1 LLG=396 TFZ==15.2 LLG=417 TFZ==15.3 PAK=1 LLG=417 TFZ==15.3", 15.3, 417),
+            ("RFZ=10.6 TFZ=6.1 PAK=0 LLG=384 TFZ==8.8 LLG=414 TFZ==9.8 PAK=0 LLG=414 TFZ==9.8", 9.8, 414),
+        ]
+        for history, tfz, llg in histories:
+            with self.subTest(history=history):
+                result = parse_selected_solution_scores("REMARK  " + history + "\nEND\n")
+                self.assertEqual((result["tfz"], result["llg"]), (tfz, llg))
+                self.assertEqual(result["score_kind"], "tfz-equivalent")
+                self.assertEqual(parse_best_tfz("SOLU SET " + history), (tfz, llg))
+
+    def _selected_fixture(self, root, files, text):
+        preflight = self._preflight(root)
+        executable = make_phaser(root)
+
+        def external(command, **kwargs):
+            for name, contents in files.items():
+                (kwargs["cwd"] / name).write_text(contents)
+            return subprocess.CompletedProcess(command, 0, text)
+
+        with patch("nasolve.phaser.subprocess.run", side_effect=external):
+            return execute_phaser(preflight.report_path, executable, phenix_version="2.2.1")
+
+    def test_execution_uses_selected_pdb_final_score_not_other_solution_or_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            header = "REMARK RFZ=7 TFZ=5.1 LLG=30 TFZ==12.2 LLG=45 TFZ==7.7 LLG=44\n"
+            result = self._selected_fixture(Path(directory), {
+                "PHASER.1.pdb": header + "END\n", "PHASER.1.mtz": "first",
+                "PHASER.2.pdb": "REMARK TFZ==18.0 LLG=120\nEND\n", "PHASER.2.mtz": "second",
+            }, "SOLU SET TFZ==18 LLG=120\nSOLU SET TFZ=99 LLG=999\n")
+            self.assertEqual((result.status, result.tfz, result.llg), ("MR_REVIEW", 7.7, 44.0))
+            self.assertEqual(result.solution_mtz.read_text(), "first")
+            record = json.loads(result.report_path.read_text())["execution"]["phaser"]
+            evidence = record["score_evidence"]
+            self.assertEqual(evidence["method"], "selected-pdb-remark")
+            self.assertEqual(evidence["score_kind"], "tfz-equivalent")
+            self.assertEqual(evidence["raw_annotations"], [header.strip()])
+            self.assertEqual(evidence["source"]["anchor"], "run")
+            self.assertEqual(evidence["source"]["relative_path"], "Phaser/PHASER.1.pdb")
+            self.assertRegex(evidence["source"]["sha256"], r"^[0-9a-f]{64}$")
+            self.assertEqual(record["solution_pdb_sha256"], evidence["source"]["sha256"])
+
+    def test_invalid_selected_annotation_never_falls_back_to_high_log_score(self):
+        for invalid in ("*", "nan", "1e999", "12.2oops"):
+            with self.subTest(invalid=invalid), tempfile.TemporaryDirectory() as directory:
+                result = self._selected_fixture(Path(directory), {
+                    "PHASER.1.pdb": f"REMARK TFZ=5.1 LLG=10 TFZ=={invalid} LLG=20\nEND\n",
+                    "PHASER.1.mtz": "map",
+                }, "SOLU SET TFZ=99 LLG=999\n")
+                self.assertEqual(result.status, "MR_FAILED")
+                self.assertIsNone(result.tfz)
+                evidence = json.loads(result.report_path.read_text())["execution"]["phaser"]["score_evidence"]
+                self.assertEqual(evidence["status"], "INVALID")
+
+    def test_conflicting_selected_annotation_fails_without_log_promotion(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = self._selected_fixture(Path(directory), {
+                "PHASER.1.pdb": "REMARK TFZ==8.2 LLG=100\nREMARK TFZ==6.2 LLG=90\nEND\n",
+                "PHASER.1.mtz": "map",
+            }, "SOLU SET TFZ=99 LLG=999\n")
+            self.assertEqual(result.status, "MR_FAILED")
+            self.assertIsNone(result.tfz)
+
+    def test_selected_pdb_cannot_borrow_another_numbered_mtz(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = self._selected_fixture(Path(directory), {
+                "PHASER.1.pdb": "REMARK TFZ==12.2 LLG=353\nEND\n",
+                "PHASER.2.mtz": "wrong map",
+            }, "SOLU SET TFZ==12.2 LLG=353\n")
+            self.assertEqual(result.status, "MR_FAILED")
+            self.assertIsNone(result.solution_mtz)
+            self.assertFalse((result.phaser_directory / "mr_solution.mtz").exists())
+            self.assertIn("same selected solution", result.message)
+
+    def test_unannotated_single_output_retains_unambiguous_log_compatibility(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = self._selected_fixture(Path(directory), {
+                "PHASER.1.pdb": "MODEL\nEND\n", "PHASER.1.mtz": "map",
+            }, "SOLU SET TFZ=5.1 LLG=304 TFZ==12.2 LLG=353\n")
+            self.assertEqual((result.status, result.tfz, result.llg), ("MR_SUCCESS", 12.2, 353.0))
+            evidence = json.loads(result.report_path.read_text())["execution"]["phaser"]["score_evidence"]
+            self.assertEqual(evidence["method"], "single-output-single-annotation-log-compatibility")
+
+    def test_unannotated_output_cannot_choose_between_log_solutions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = self._selected_fixture(Path(directory), {
+                "PHASER.1.pdb": "MODEL\nEND\n", "PHASER.1.mtz": "map",
+            }, "SOLU SET TFZ==6.2 LLG=50\nSOLU SET TFZ==12.2 LLG=100\n")
+            self.assertEqual(result.status, "MR_FAILED")
+            self.assertIsNone(result.tfz)
+
+    def test_no_selected_model_keeps_candidate_log_scores_nonauthoritative(self):
+        with tempfile.TemporaryDirectory() as directory:
+            result = self._selected_fixture(Path(directory), {}, "intermediate TFZ=2.9\nNo solution\n")
+            self.assertEqual(result.status, "MR_FAILED")
+            self.assertIsNone(result.tfz)
+            self.assertIsNone(result.llg)
+            evidence = json.loads(result.report_path.read_text())["execution"]["phaser"]["score_evidence"]
+            self.assertEqual(evidence["status"], "NO_SELECTED_MODEL")
 
 
 if __name__ == "__main__":

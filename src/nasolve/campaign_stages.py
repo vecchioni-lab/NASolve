@@ -28,7 +28,7 @@ from .phaser import execute_phaser
 from .postmr import prepare_postmr
 from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
-from .campaign_policy import (workflow_policy, continuation_warning,
+from .campaign_policy import (autosol_policy, workflow_policy, postmr_policy, continuation_warning,
     select_provisional_recommendation, record_runtime_policy)
 from .anomalous_expectations import iodine_refinement_audit
 
@@ -229,6 +229,7 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         dataset=files, mode=mode, frame=frame,
         pair_text=effective.get("pair"), pair=pair,
         force_text=force_text, force_pair=force_pair,
+        restraint_scope=effective.get("restraint_scope"),
         model=model, model_source=effective["model_source"],
         model_pair=model_pair,
         exact_pair_model=exact_pair_model,
@@ -300,6 +301,38 @@ def _tree_files(root: Path, directory: Path) -> list[str]:
     return paths
 
 
+def _require_first_refinement(run: Path, report: dict[str, Any]) -> str | None:
+    """Admit the checked preparation registry, never an earlier refinement.
+
+    This is a small directory/history admission check, not scientific validation.
+    AutoRefine's existing reader still validates the complete saved registry,
+    preparation and selected inputs before any native work; do not replay it here.
+    """
+    from .campaign_records import read_record
+    try:
+        directory = path_in(run, "AutoRefine")
+        if "autorefine" in report or "autorefine_history" in report:
+            raise ValueError("prior refinement history is present")
+        if not directory.exists():
+            return None
+        names = {path.name for path in directory.iterdir()}
+        postmr = report.get("postmr")
+        if (not isinstance(postmr, dict) or "checked_preparation" not in postmr
+                or "checkpoints.json" not in names
+                or names - {"checkpoints.json", "checkpoints.lock"}
+                or any(not path_in(run, "AutoRefine/" + name).is_file() for name in names)):
+            raise ValueError("existing refinement work or unknown directory contents")
+        registry = read_record(directory / "checkpoints.json")
+        entries = registry.get("checkpoints")
+        if (registry.get("current") != "postmr" or not isinstance(entries, list)
+                or len(entries) != 1 or not isinstance(entries[0], dict)
+                or entries[0].get("id") != "postmr"):
+            raise ValueError("existing checkpoint choices beyond the initial preparation")
+        return registry["record_sha256"]
+    except (OSError, ValueError, CampaignError) as exc:
+        raise CampaignStageError("Campaign first refinement refuses existing AutoRefine work: " + str(exc)) from exc
+
+
 def _snapshot_report(root: Path, attempt: Path, run: Path) -> str:
     snapshot = attempt / "run-report.json"
     with snapshot.open("xb") as handle:
@@ -343,11 +376,60 @@ def execute_stage(
         if run.parent != root / name / "AutoMR" or not re.fullmatch(r"run_\d{3,}", run.name):
             raise CampaignStageError("Campaign run must be one numbered AutoMR directory")
     workflow = workflow_policy(policy)
+    preparation_policy = None
+    if stage == "postmr":
+        try:
+            preparation_policy = postmr_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
+    phase_policy = None
+    if stage in {"autosol", "autorefine"}:
+        try:
+            phase_policy = autosol_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
     config = load_config()
     report = _read_report(run / "report.json") if run is not None else None
     if report is not None and report.get("workflow") != "automr":
         raise CampaignStageError("Campaign stage requires an AutoMR run")
-    if stage == "autosol" and not _autosol_required(report):
+    if stage in {"autosol", "autorefine"}:
+        anomalous_required = _autosol_required(report)
+    disabled = None
+    if phase_policy is not None and phase_policy["policy"] == "disabled":
+        disabled = {
+            "status": "SKIPPED", "policy": "disabled",
+            "reason": phase_policy["reason"], "use_for_refinement": False,
+            "nucleotide_candidates_present": anomalous_required,
+        }
+    if stage == "autosol" and phase_policy["policy"] == "disabled":
+        # Preserve candidate classification and observation bytes. This is an
+        # explicit phase-stage opt-out, not a claim that anomalous atoms vanished.
+        if ((run / "AutoSol").exists()
+                or (report.get("autosol") is not None and report["autosol"] != disabled)):
+            raise CampaignStageError("Disabled AutoSol refuses an existing AutoSol execution/report")
+        report["autosol"] = disabled
+        path = run / "report.json"
+        temporary = path.with_name("campaign-autosol-disabled.tmp")
+        with temporary.open("x", encoding="utf-8") as handle:
+            json.dump(report, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+        temporary.replace(path)
+        warnings = list((_postmr_report(report).get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
+        outcome = {
+            "status": "SKIPPED",
+            "message": f"AutoSol disabled by frozen recipe: {phase_policy['reason']}; refinement uses no experimental phases",
+            "autosol_policy": phase_policy, "use_for_refinement": False,
+            "nucleotide_candidates_present": anomalous_required,
+            "scientific_warnings": warnings,
+        }
+        automation = record_runtime_policy(run, policy, stage, outcome)
+        snapshot = _snapshot_report(root, attempt, run)
+        return {**outcome,
+            "run": run.relative_to(root).as_posix(), "artifacts": [snapshot],
+            "run_report_snapshot": snapshot, "tool_versions": {},
+            **({"automation_policy": workflow} if automation is not None else {}),
+        }
+    if stage == "autosol" and not anomalous_required:
         warnings = list((_postmr_report(report).get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
         outcome = {"status": "SKIPPED", "message": (
             "No detected nucleotide anomalous candidate; inspect iodine warnings"
@@ -360,7 +442,11 @@ def execute_stage(
             "run_report_snapshot": snapshot, "tool_versions": {},
             **({"automation_policy": workflow} if automation is not None else {}),
         }
-    if stage == "autorefine" and _autosol_required(report):
+    if stage == "autorefine" and disabled is not None:
+        if (report.get("autosol") != disabled or (run / "AutoSol").exists()):
+            raise CampaignStageError("Phase-disabled refinement requires the frozen AutoSol skip and no AutoSol execution")
+    if (stage == "autorefine" and phase_policy["policy"] != "disabled"
+            and anomalous_required):
         autosol = _object(report.get("autosol"), "Accepted AutoSol report")
         if (autosol.get("status") != "AUTOSOL_READY"
                 or autosol.get("use_for_refinement") is not True):
@@ -406,25 +492,36 @@ def execute_stage(
             pass  # The engine requires Coot only if its mutation plan needs it.
         if coot is not None:
             versions["coot"] = coot.version
-        postmr_policy = _object(policy.get("postmr"), "PostMR policy")
-        if set(postmr_policy) != {"modified_pairs_only"} or type(postmr_policy["modified_pairs_only"]) is not bool:
-            raise CampaignStageError("Unsupported campaign PostMR policy")
         result = prepare_postmr(
             run, _program(phenix, "phenix.ready_set"),
+            phenix_installation=phenix,
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
-            modified_pairs_only=postmr_policy["modified_pairs_only"],
+            modified_pairs_only=preparation_policy["modified_pairs_only"],
+            **({"checked_preparation": preparation_policy["checked_preparation"]}
+               if "checked_preparation" in preparation_policy else {}),
+            **({"automatic_plane_support": preparation_policy["automatic_plane_support"]}
+               if "automatic_plane_support" in preparation_policy else {}),
+            **({"dictionary_input_policy": preparation_policy["dictionary_input_policy"]}
+               if "dictionary_input_policy" in preparation_policy else {}),
             allow_mr_review=mr_trial,
         )
         stage_directory = result.postmr_directory
-        required = [result.model_path, result.readyset_log, *result.restraint_paths]
+        required = [result.model_path, *result.restraint_paths]
+        if preparation_policy.get("checked_preparation", False):
+            # The publisher has verified the exact bundle. Its real immutable
+            # report and request closure are collected below; no invented log or
+            # second expensive proof replay is needed here.
+            extra.update(preparation_mode="checked", readyset_status=result.readyset_status)
+            if getattr(result, "preparation_notes", ()):
+                extra["preparation_notes"] = list(result.preparation_notes)
+            if result.readyset_log is not None:
+                required.append(result.readyset_log)
+        else:
+            if result.readyset_log is None:
+                raise CampaignStageError("Legacy campaign PostMR requires its ReadySet log")
+            required.append(result.readyset_log)
     elif stage == "autosol":
-        autosol_policy = _object(policy.get("autosol"), "AutoSol policy")
-        allowed_autosol = [{"policy": "when-anomalous", "on_unaccepted": "inspect"}]
-        if workflow["mode"] == "full-auto":
-            allowed_autosol.append({"policy": "when-anomalous", "on_unaccepted": "continue-without-phases"})
-        if autosol_policy not in allowed_autosol:
-            raise CampaignStageError("Unsupported campaign AutoSol policy")
         result = execute_autosol(
             run, _program(phenix, "phenix.autosol"), _program(phenix, "phenix.mtz.dump"),
             environment=phenix.environment,
@@ -450,13 +547,14 @@ def execute_stage(
         refine_policy = _object(policy.get("autorefine"), "AutoRefine policy")
         if refine_policy != {"recipe": "AutoRefine/default", "cycles": 5}:
             raise CampaignStageError("Unsupported campaign AutoRefine recipe")
-        if (run / "AutoRefine").exists():
-            raise CampaignStageError("Campaign first refinement refuses an existing AutoRefine directory")
+        expected_registry = _require_first_refinement(run, report)
         result = execute_autorefine(
             run, _program(phenix, "phenix.refine"), _program(phenix, "phenix.mtz.dump"),
             phenix_version=phenix.version, environment=phenix.environment,
             from_checkpoint="postmr", recipe=refine_policy["recipe"],
             macro_cycles=refine_policy["cycles"],
+            **({"expected_registry_sha256": expected_registry} if expected_registry is not None else {}),
+            **({"use_experimental_phases": False} if phase_policy["policy"] == "disabled" else {}),
         )
         stage_directory = result.round_directory
         required = [result.log_path]
@@ -544,6 +642,16 @@ def execute_stage(
     # for the coordinator rather than treating the live report as immutable.
     snapshot = _snapshot_report(root, attempt, run)
     artifacts = _tree_files(root, stage_directory)
+    if stage == "postmr" and preparation_policy.get("checked_preparation", False):
+        from .cif_attempt_retention import archived_working_paths
+        # The normal caller already qualified this result. Reuse archive transport
+        # checks, not another scientific replay. Partial cleanup can finish later
+        # without deleting a file on which this campaign receipt depends.
+        duplicates = archived_working_paths(
+            run / "PostMR/DictionaryEngine/request",
+            postmr_result["checked_preparation"]["attempt_number"],
+        )
+        artifacts = [name for name in artifacts if root/name not in duplicates]
     artifacts.extend(extra.pop("artifacts", []))
     artifacts.extend(_relative_file(root, path) for path in required if path != run / "report.json")
     artifacts.append(snapshot)

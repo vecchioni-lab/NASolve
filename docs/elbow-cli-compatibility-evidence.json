@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "kind": "nasolve-elbow-cli-compatibility-evidence",
+  "updated_date": "2026-10-11",
+  "scientific_scope": "Installed eLBOW command-line compatibility failure before candidate generation; not an optimization, numerical-quality or chemical-state result.",
+  "previous_evidence": "docs/igu-readyset-generation-evidence.json",
+  "evidence": {
+    "archive": {
+      "name": "cif_generation_review.zip",
+      "sha256": "dc6d798b74cece7518c831200d42e8f6a94813d746362f6f1394fb7b106bb129"
+    },
+    "manifest": {
+      "relative_path": "manifest.json",
+      "sha256": "c573d1a01aa797f6a7da85883e0b6730dcbbd44a9a02c968f8f4143fc5b58909",
+      "entry_count": 18,
+      "all_entries_sha256_verified": true
+    },
+    "files": {
+      "candidates/cif-generation-9_t3qtnl/elbow.log": {
+        "sha256": "c2b0d8d9a79fec1985da28617473dd7fdae002a6fa39a59a9bbcf3b4998c305c",
+        "bytes": 87
+      },
+      "candidates/cif-generation-9_t3qtnl/generation_receipt.json": {
+        "sha256": "ffdddb643b24b58612d4a1368a05be2c5f90b6dedf59281c9353a034c3b9614a",
+        "bytes": 74283
+      },
+      "candidates/cif-generation-9_t3qtnl/source.cif": {
+        "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+        "bytes": 8191
+      },
+      "candidates/cif-generation-9_t3qtnl/source_ideal.pdb": {
+        "sha256": "6c8df07a3dffafc445845f019568813dfe4ccf37dd0f0f0530fe9ad734aae068",
+        "bytes": 3073
+      },
+      "component_inspections.json": {
+        "sha256": "20dbc16d48c55af18ba5f649516e80dbe9351c6f56520c76da379ba3dd8d5b0e",
+        "bytes": 9265740
+      },
+      "failed_readyset_assessment.json": {
+        "sha256": "4597700571b1226ee2763e9e5c7d5e8522c6380eb8f210575f191d4a1639d6c5",
+        "bytes": 878679
+      },
+      "inputs/failed_readyset.cif": {
+        "sha256": "1533ec9cf52fabc212f9ea59163f5a0db289311e38de0ef149762dc07db5da2e",
+        "bytes": 90493
+      },
+      "inputs/source_audit.json": {
+        "sha256": "31ff002a4794a011c4470b6dd294a4cfea5f29bdc5f280742eb20cbfa71b6fb1",
+        "bytes": 1370223
+      },
+      "inputs/sources/0_1AP.cif": {
+        "sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "bytes": 11138
+      },
+      "inputs/sources/1_5CM.cif": {
+        "sha256": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "bytes": 16108
+      },
+      "inputs/sources/2_CGY.cif": {
+        "sha256": "14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d",
+        "bytes": 8772
+      },
+      "inputs/sources/3_DF.cif": {
+        "sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "bytes": 8941
+      },
+      "inputs/sources/4_DP.cif": {
+        "sha256": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "bytes": 10766
+      },
+      "inputs/sources/5_DX.cif": {
+        "sha256": "6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0",
+        "bytes": 7597
+      },
+      "inputs/sources/6_DZ.cif": {
+        "sha256": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "bytes": 10620
+      },
+      "inputs/sources/7_IGU.cif": {
+        "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+        "bytes": 8191
+      },
+      "inputs/sources/8_IMC.cif": {
+        "sha256": "c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c",
+        "bytes": 8049
+      },
+      "probe_receipt.json": {
+        "sha256": "befba28bb60ede76e7c71799e43244756c999a4fe7bed08b64acd6ef18f6d89c",
+        "bytes": 104152
+      }
+    },
+    "private_input_and_seed_payloads_committed": false,
+    "analysis_native_tools_run": false
+  },
+  "historical_anchors": {
+    "live": "User NASolve-live-tests directory",
+    "probe": {
+      "anchor": "live",
+      "relative_path": "cif-generation-probe-fp4afs_7"
+    },
+    "candidate_directory": {
+      "anchor": "probe",
+      "relative_path": "candidates/cif-generation-9_t3qtnl"
+    },
+    "original_session": {
+      "anchor": "live",
+      "relative_path": "synthetic-dna-mechanics-om4jv7qq"
+    },
+    "original_campaign": {
+      "anchor": "original_session",
+      "relative_path": "synthetic-dna-combined-2n4kszi5"
+    },
+    "original_run": {
+      "anchor": "original_campaign",
+      "relative_path": "dataset/AutoMR/run_001"
+    },
+    "operational_configuration": false
+  },
+  "runtime": {
+    "nasolve_source_commit": "a741e557b192919dec2718194867130687d5e98c",
+    "narestraints_source_commit": "a1fdaa8561f0889834283174d42bdcbbfd2fc5db",
+    "runtime_archive_sha256": "3a5b72ff00709ac34c3a9ab437d48a5aa13b6ea602729dbc7a783bddf5335584",
+    "candidate_policy_id": "cif-independent-elbow-candidate-v1",
+    "phenix_reported_version": "2.2.1",
+    "phenix_installation_version": "2.2.1-6174",
+    "installation_version_evidence": "Installed eLBOW executable path in the returned generation receipt",
+    "executable": {
+      "installation_relative_path": "bin/phenix.elbow",
+      "operational_host_path_committed": false
+    }
+  },
+  "probe_selection": {
+    "generic_components_inspected": [
+      "CGY",
+      "DX",
+      "IGU",
+      "IMC"
+    ],
+    "regeneration_queue": [
+      "IGU"
+    ],
+    "selection_scope": "Eligible generic components with observed numerical defects; retained exact source graph and supplied numeric precedence.",
+    "selection_is_hardcoded_igu_fix": false
+  },
+  "preservation": {
+    "probe_reported_preserved_inputs": "UNCHANGED",
+    "selected_original_source_preserved": true,
+    "frozen_source_preserved": true,
+    "original_failed_run_mutated": false,
+    "whole_original_run_rehashed_by_this_analysis": false,
+    "automatic_adoption": false,
+    "readyset_retry": "NOT_RUN"
+  },
+  "source_and_seed": {
+    "component_id": "IGU",
+    "source_artifact": {
+      "anchor": "probe",
+      "relative_path": "inputs/sources/7_IGU.cif",
+      "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f"
+    },
+    "frozen_source_artifact": {
+      "anchor": "candidate_directory",
+      "relative_path": "source.cif",
+      "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f"
+    },
+    "atom_count": 37,
+    "bond_count": 39,
+    "source_formal_charge_sum": 0,
+    "seed_artifact": {
+      "anchor": "candidate_directory",
+      "relative_path": "source_ideal.pdb",
+      "sha256": "6c8df07a3dffafc445845f019568813dfe4ccf37dd0f0f0530fe9ad734aae068"
+    },
+    "seed_atom_count": 37,
+    "seed_formal_charge_sum": 0,
+    "seed_origin": "source_dictionary_ideal_coordinates",
+    "coordinate_rounding_decimals": 3,
+    "experimental_model_used": false,
+    "seed_is_qualified_candidate": false
+  },
+  "native_attempt": {
+    "command": {
+      "executable_anchor": "phenix_installation",
+      "executable_relative_path": "bin/phenix.elbow",
+      "working_directory_anchor": "candidate_directory",
+      "arguments": [
+        "source.cif",
+        "--id=IGU",
+        "--output=candidate",
+        "--template=source_ideal.pdb",
+        "--initial-geometry=source_ideal.pdb",
+        "--add-hydrogens=False",
+        "--chiral=retain",
+        "--opt"
+      ]
+    },
+    "generation_receipt_status": "FAILED",
+    "native_execution_status": "FAILED",
+    "returncode": 2,
+    "elapsed_seconds": 2.071012,
+    "started_at": "2026-10-11T22:09:28.745311+00:00",
+    "finished_at": "2026-10-11T22:09:30.818240+00:00",
+    "timeout_seconds": 600,
+    "failure_layer": "command-line-option-parsing",
+    "rejected_option": "--initial-geometry",
+    "native_error": "no such option: --initial-geometry",
+    "log": {
+      "anchor": "candidate_directory",
+      "relative_path": "elbow.log",
+      "sha256": "c2b0d8d9a79fec1985da28617473dd7fdae002a6fa39a59a9bbcf3b4998c305c"
+    },
+    "candidate_artifact": {
+      "anchor": "candidate_directory",
+      "relative_path": "candidate.cif",
+      "present_in_returned_outputs": false
+    },
+    "optimization": "NOT_REACHED",
+    "generated_numerical_assessment": "NOT_RUN",
+    "new_candidate_chemical_comparison": "NOT_RUN",
+    "native_proxy_validation": "NOT_RUN",
+    "linked_site_validation": "NOT_RUN"
+  },
+  "summary_discrepancy": {
+    "top_level_probe_receipt_status": "CANDIDATES_AWAITING_REVIEW",
+    "candidate_generation_receipt_status": "FAILED",
+    "correct_interpretation": "GENERATION_FAILED_NO_CANDIDATE",
+    "classification": "aggregate-status-reporting-bug",
+    "candidate_exists_to_review": false,
+    "old_receipts_rewritten": false,
+    "required_correction": "Aggregate status and process result must propagate actual generation failure, timeout, rejection or incomplete output instead of announcing candidate review."
+  },
+  "general_compatibility_correction": {
+    "module": "src/nasolve/cif_generation.py",
+    "installed_capability_source": "Output of exact installed phenix.elbow --help",
+    "required_semantics": [
+      "exact source naming template",
+      "independent supplier-ideal initial geometry",
+      "explicit hydrogen policy",
+      "retained chirality request",
+      "optimized whole-component generation"
+    ],
+    "alias_rule": "Select only advertised known aliases preserving these required semantics; do not guess support from general documentation or a version string.",
+    "unknown_alias_rule": "Refuse unsupported required semantics rather than dropping the seed or optimization request.",
+    "capability_provenance": "Retain exact installed help output/hash, selected aliases, executable/version provenance and the exact assembled command.",
+    "installed_help_returned": false,
+    "new_native_attempt_status": "PENDING",
+    "candidate_adoption": false,
+    "automatic_linkage_approval": false
+  },
+  "interpretation_limits": [
+    "No successful optimization or new numerical candidate was returned.",
+    "The source/seed retain the neutral 37-atom input; they are not a new optimized phosphate-state verdict.",
+    "This CLI failure does not relieve or supersede the earlier ReadySet C2-N3 zero target and coincident generated coordinates.",
+    "No conclusion about IGU chemistry follows from rejection of an unsupported wrapper option.",
+    "A future successful candidate remains separate from chemical review, native consumer mapping, site-specific linkage and full campaign continuation."
+  ],
+  "human_documents": [
+    "docs/synthetic-dna-mechanics-test.md",
+    "docs/native-modified-pair-live-validation.md",
+    "docs/cif-doctor-human-overview.md"
+  ]
+}

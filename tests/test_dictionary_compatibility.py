@@ -288,3 +288,67 @@ def test_legacy_profile_scope_does_not_expand_when_dz_is_added(tmp_path, monkeyp
     new["postmr"]["linked_phosphate_profile"]["inventory"] = {}
     with pytest.raises(profiles.PhosphateError):
         profiles.validate_model_phosphate_policy(model, new)
+
+
+def _filter_fixture(tmp_path, *, first_parameterized=True, group='DNA', block_name='comp_list'):
+    from nasolve.ligand_profiles import combine_dictionary_inputs
+    from tests.test_linked_phosphate_profile import LIBRARY
+    paths=[]
+    for code in ('X1','X2'):
+        path=tmp_path/(code+'.cif');path.write_text(LIBRARY.read_text().replace('1AP',code))
+        blocks=_blocks(path);metadata=blocks[0].values
+        metadata['_chem_comp.name']=['Source O3\' with a "quoted" label\nSecond line']
+        metadata['_chem_comp.group']=[group]
+        definition=blocks[1].text
+        if code=='X1' and not first_parameterized:
+            definition=definition.replace('_chem_comp_bond.value_dist\n','_chem_comp_bond.unused_dist\n')
+        path.write_text(_emit(metadata)+'\n'+definition);paths.append(path)
+    combined=tmp_path/'combined.cif';combine_dictionary_inputs(paths,combined)
+    if block_name!='comp_list':combined.write_text(combined.read_text().replace('data_comp_list','data_'+block_name,1))
+    return paths,combined
+
+
+@pytest.mark.parametrize('direction',['generated','input'])
+@pytest.mark.parametrize('group',['DNA','RNA','?'])
+def test_partial_component_filter_keeps_native_metadata_and_selected_values(tmp_path,direction,group):
+    paths,mixed=_filter_fixture(tmp_path,first_parameterized=direction=='generated',group=group)
+    generated=tmp_path/'generated.cif'
+    generated.write_text(paths[0].read_text().replace('_chem_comp_bond.unused_dist\n','_chem_comp_bond.value_dist\n'))
+    before={p:(p.read_bytes(),p.stat().st_mtime_ns) for p in [*paths,mixed,generated]}
+    out=tmp_path/'effective';out.mkdir()
+    source,raw=([paths[0]],mixed) if direction=='generated' else ([mixed],generated)
+    effective,views=effective_restraints(source,raw,out,normalize_effective=False,prefer_parameterized_inputs=True)
+    assert sorted(code for p in views for code in dictionary_component_codes(p))==['X1','X2']
+    selected=next(p for p in views if p.parent==out and dictionary_component_codes(p)=={'X2'})
+    blocks=_blocks(selected);metadata=blocks[0]
+    assert '\nloop_\n_chem_comp.' in metadata.text
+    assert metadata.values==_blocks(paths[1])[0].values
+    assert [b.values for b in blocks[1:]]==[b.values for b in _blocks(paths[1])[1:]]
+    assert all((p.read_bytes(),p.stat().st_mtime_ns)==v for p,v in before.items())
+
+
+@pytest.mark.parametrize('block_name',['comp_list','provider_catalog'])
+def test_partial_list_filter_keeps_declared_block_identity(tmp_path,block_name):
+    from nasolve.ligand_profiles import _exclude_components
+    _,mixed=_filter_fixture(tmp_path,block_name=block_name)
+    output=tmp_path/'filtered.cif';path,codes=_exclude_components(mixed,{'X1'},output)
+    metadata=_blocks(path)[0]
+    assert codes=={'X2'} and metadata.values['data_']==block_name
+    assert '\nloop_\n_chem_comp.' in metadata.text
+
+
+def test_partial_filter_does_not_invent_missing_group(tmp_path):
+    from nasolve.ligand_profiles import _exclude_components
+    _,mixed=_filter_fixture(tmp_path);blocks=_blocks(mixed);metadata=blocks[0].values
+    metadata.pop('_chem_comp.group');mixed.write_text(_emit(metadata)+'\n'+'\n'.join(b.text for b in blocks[1:]))
+    path,_=_exclude_components(mixed,{'X1'},tmp_path/'filtered.cif')
+    assert '_chem_comp.group' not in _blocks(path)[0].values
+
+
+def test_unfiltered_list_and_complete_exclusion_preserve_existing_contract(tmp_path):
+    from nasolve.ligand_profiles import _exclude_components
+    _,mixed=_filter_fixture(tmp_path);before=mixed.read_bytes()
+    path,codes=_exclude_components(mixed,{'ABS'},tmp_path/'unchanged.cif')
+    assert codes=={'X1','X2'} and [b.text.rstrip('\n') for b in _blocks(path)]==[b.text.rstrip('\n') for b in _blocks(mixed)]
+    path,codes=_exclude_components(mixed,{'X1','X2'},tmp_path/'empty.cif')
+    assert path is None and codes==set() and not (tmp_path/'empty.cif').exists() and mixed.read_bytes()==before

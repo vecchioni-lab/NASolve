@@ -2,6 +2,8 @@ import json
 import shutil
 import tempfile
 import unittest
+
+import pytest
 from functools import partial
 from pathlib import Path
 from types import SimpleNamespace
@@ -98,6 +100,18 @@ class CampaignStageTests(unittest.TestCase):
         result = self.stage("preflight")
         report = json.loads((self.root / result["run"] / "report.json").read_text())
         self.assertEqual(report["post_mr_plan"]["allow_op3_sites"], ["A:1"])
+        self.assertEqual(campaign_status(self.root)["integrity"], "OK")
+
+    def test_full_model_scope_survives_campaign_preflight_freezing(self):
+        dataset = make_dataset(self.root / "dataset", include_model=False)
+        (dataset / "nasolve.txt").write_text("[automr]\npair = C:G\nrestraint_scope = all\n")
+        plan = plan_campaign(self.root, frames_directory=self.frames.parent)
+        self.dataset = plan["datasets"][0]
+        self.policy = plan["preset"]["policy"]
+        self.assertEqual(self.dataset["effective_config"]["restraint_scope"], "all")
+        result = self.stage("preflight")
+        report = json.loads((self.root / result["run"] / "report.json").read_text())
+        self.assertEqual(report["post_mr_plan"]["restraint_scope"], "all")
         self.assertEqual(campaign_status(self.root)["integrity"], "OK")
 
     def test_forced_restraint_geometry_survives_campaign_preflight_freezing(self):
@@ -528,6 +542,53 @@ class CampaignStageTests(unittest.TestCase):
             execute_stage(self.root, self.dataset, self.policy, "autosol",
                           self.attempt("bad-eligibility"), run)
 
+    def test_explicit_disabled_autosol_preserves_candidates_and_needs_no_runtime(self):
+        run = make_refine_run(self.root, autosol=False)
+        self.set_run(run)
+        self.policy.update(schema_version=2, autosol={"policy": "disabled", "reason": "Synthetic donor test"})
+        before = json.loads((run / "report.json").read_text())["postmr"]["anomalous"]
+        observations = (self.root / "dataset/staraniso.mtz").read_bytes()
+        with patch("nasolve.campaign_stages.discover_phenix", side_effect=AssertionError("No runtime")), \
+                patch("nasolve.campaign_stages.execute_autosol", side_effect=AssertionError("AutoSol is disabled")):
+            result = self.stage("autosol", run)
+        self.assertEqual(result["status"], "SKIPPED")
+        self.assertIn("Synthetic donor test", result["message"])
+        self.assertTrue(result["nucleotide_candidates_present"])
+        report = json.loads((run / "report.json").read_text())
+        self.assertEqual(report["postmr"]["anomalous"], before)
+        self.assertEqual(report["autosol"]["reason"], "Synthetic donor test")
+        self.assertFalse(report["autosol"]["use_for_refinement"])
+        self.assertEqual((self.root / "dataset/staraniso.mtz").read_bytes(), observations)
+        self.assertFalse((run / "AutoSol").exists())
+
+    def test_disabled_campaign_refinement_has_no_phase_inputs_or_checkpoint(self):
+        run = make_refine_run(self.root, autosol=False)
+        self.set_run(run)
+        self.policy.update(schema_version=2, autosol={"policy": "disabled", "reason": "Synthetic donor test"})
+        self.stage("autosol", run)
+        self.phenix.executables.update({"phenix.refine": make_refine(self.tools),
+                                      "phenix.mtz.dump": refine_dump(self.tools)})
+        result = self.stage("autorefine", run)
+        self.assertEqual(result["status"], "AUTOREFINE_READY")
+        refinement = json.loads((run / "AutoRefine/round_001/report.json").read_text())
+        self.assertFalse(refinement["refinement"]["use_experimental_phases"])
+        self.assertIsNone(refinement["inputs"].get("phase_file"))
+        registry = json.loads((run / "AutoRefine/checkpoints.json").read_text())
+        self.assertTrue(all(item.get("phases") is None for item in registry["checkpoints"]))
+
+    def test_disabled_autosol_refuses_existing_accepted_phase_execution(self):
+        run = make_refine_run(self.root)
+        self.set_run(run)
+        self.policy.update(schema_version=2, autosol={"policy": "disabled", "reason": "Synthetic donor test"})
+        before = (run / "report.json").read_bytes()
+        phases = (run / "AutoSol/overall_best_refine_data.mtz").read_bytes()
+        with self.assertRaisesRegex(CampaignStageError, "existing AutoSol"):
+            self.stage("autosol", run)
+        with self.assertRaisesRegex(CampaignStageError, "frozen AutoSol skip"):
+            self.stage("autorefine", run)
+        self.assertEqual((run / "report.json").read_bytes(), before)
+        self.assertEqual((run / "AutoSol/overall_best_refine_data.mtz").read_bytes(), phases)
+
     def test_postmr_keeps_existing_curated_dictionary_and_readyset_outputs_in_receipt(self):
         source = self.base / "source.pdb"
         source.write_text(postmr_model_text())
@@ -542,9 +603,10 @@ class CampaignStageTests(unittest.TestCase):
 
         stage_engine = partial(prepare_postmr, data_root=make_data_root(self.base),
                                narestraints_builder=builder)
-        with patch("nasolve.campaign_stages.prepare_postmr", side_effect=stage_engine), \
+        with patch("nasolve.campaign_stages.prepare_postmr", side_effect=stage_engine) as postmr, \
                 patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")):
             result = self.stage("postmr", run)
+        self.assertIs(postmr.call_args.kwargs["phenix_installation"], self.phenix)
         self.assertEqual(result["status"], "POSTMR_READY")
         for suffix in ("Model/readyset_model.pdb", "Restraints/DE.cif",
                        "Restraints/curated_ligands.cif", "ReadySet/prepared_model.ligands.cif"):
@@ -732,3 +794,129 @@ class CampaignStageTests(unittest.TestCase):
             with self.assertRaisesRegex(CampaignStageError, "AUTOSOL_READY"):
                 self.stage("autorefine", run)
             refine.assert_not_called()
+
+
+# Reuse the ordinary-publication fixture: actual caller, publisher and artifact
+# collector, with controlled construction/execution and native-proof seams.
+
+
+@pytest.mark.parametrize("choice", ["verified_parent_runtime", "readyset_checked_model"])
+@pytest.mark.parametrize("mode", ["guarded", "full-auto"])
+@pytest.mark.parametrize("automatic", [None, False, True])
+def test_campaign_checked_postmr_keeps_exact_review_and_real_receipt(tmp_path, monkeypatch, choice, mode, automatic):
+    from tests.test_postmr_runtime import checked_case
+    from nasolve.checkpoints import read_registry, inherited_paths
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch, choice)
+    policy = load_preset().to_dict()
+    policy.update(schema_version=2, workflow={"mode": mode})
+    policy["postmr"]["checked_preparation"] = True
+    if automatic is not None:
+        policy["postmr"]["automatic_plane_support"] = automatic
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"
+    attempt.mkdir(parents=True)
+    with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
+            patch("nasolve.campaign_stages.discover_phenix", return_value=sdk), \
+            patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")), \
+            patch("nasolve.postmr._prepare_postmr", side_effect=AssertionError("No legacy second preparation")):
+        result = execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+    assert result["status"] == "POSTMR_READY"
+    assert result["readyset_status"] == ("FAILED" if choice == "verified_parent_runtime" else "COMPLETED")
+    assert result["preparation_mode"] == "checked"
+    assert calls[0][0] == "construct" and calls[1][0] == "execute" and len(calls) == 2
+    assert calls[0][1].get("automatic_plane_support", False) is bool(automatic)
+    assert reads == [1]  # Publication replays the proof once, no collector replay.
+    assert (run / "PostMR/report.json").relative_to(tmp_path).as_posix() in result["artifacts"]
+    assert (run / "PostMR/DictionaryEngine/request/attempts/attempt-0001/result.json").relative_to(tmp_path).as_posix() in result["artifacts"]
+    _, registry = read_registry(run)
+    root = registry["checkpoints"][0]
+    assert root["status"] == "REVIEW" and registry["current"] == "postmr"
+    assert inherited_paths(root, run)["restraints"] == exact["runtime"]["phils"] + exact["runtime"]["dictionaries"]
+
+
+def test_campaign_unqualified_checked_postmr_preserves_attempt_without_legacy_retry(tmp_path, monkeypatch):
+    from tests.test_postmr_runtime import checked_case
+    from nasolve.postmr import PostMRPreparationError
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    exact["runtime"] = None
+    before = (run / "report.json").read_bytes()
+    policy = load_preset().to_dict(); policy["schema_version"] = 2
+    policy["postmr"]["checked_preparation"] = True
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
+    with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
+            patch("nasolve.campaign_stages.discover_phenix", return_value=sdk), \
+            patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")), \
+            patch("nasolve.postmr._prepare_postmr", side_effect=AssertionError("No unchecked retry")):
+        with pytest.raises(PostMRPreparationError, match="no independently checked"):
+            execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+    assert (run / "report.json").read_bytes() == before
+    assert (run / "PostMR/DictionaryEngine/request/attempts/attempt-0001/result.json").is_file()
+    assert not (run / "PostMR/report.json").exists()
+    assert len(calls) == 2 and reads == [1]
+
+
+@pytest.mark.parametrize("defect", ["schema", "type", "unknown", "plane_schema", "plane_type", "plane_unchecked", "plane_missing_checked"])
+def test_campaign_rejects_invalid_preparation_choice_before_discovery(tmp_path, monkeypatch, defect):
+    from tests.test_cif_postmr_publication import setup
+    run, _, _ = setup(tmp_path, monkeypatch)
+    policy = load_preset().to_dict(); policy["schema_version"] = 2
+    policy["postmr"]["checked_preparation"] = True
+    if defect == "schema": policy["schema_version"] = 1
+    if defect == "type": policy["postmr"]["checked_preparation"] = "true"
+    if defect == "unknown": policy["postmr"]["retry_in_place"] = True
+    if defect.startswith("plane_"):
+        policy["postmr"]["automatic_plane_support"] = True
+    if defect == "plane_schema": policy["schema_version"] = 1
+    if defect == "plane_type": policy["postmr"]["automatic_plane_support"] = 1
+    if defect == "plane_unchecked": policy["postmr"]["checked_preparation"] = False
+    if defect == "plane_missing_checked": del policy["postmr"]["checked_preparation"]
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
+    with patch("nasolve.campaign_stages.discover_phenix", side_effect=AssertionError("Invalid intent must not reach tools")):
+        with pytest.raises(CampaignStageError):
+            execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+
+
+@pytest.mark.parametrize("automatic", [False, True])
+def test_campaign_checked_publication_interrupt_keeps_exact_attempt_for_existing_recovery(tmp_path, monkeypatch, automatic):
+    from tests.test_postmr_runtime import checked_case
+    from tests.test_cif_postmr_publication import snapshot
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    from nasolve.postmr import PostMRPreparationError
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    policy = load_preset().to_dict(); policy["schema_version"] = 2
+    policy["postmr"]["checked_preparation"] = True
+    policy["postmr"]["automatic_plane_support"] = automatic
+    attempt = tmp_path / "NASolveCampaign/jobs/postmr"; attempt.mkdir(parents=True)
+    before = (run / "report.json").read_bytes()
+    with patch("nasolve.campaign_stages.load_config", return_value=AppConfig()), \
+            patch("nasolve.campaign_stages.discover_phenix", return_value=sdk), \
+            patch("nasolve.campaign_stages.discover_coot", side_effect=CootDiscoveryError("unused")), \
+            patch("nasolve.cif_postmr_publication._publish_run_report", side_effect=OSError("interrupted save")):
+        with pytest.raises(PostMRPreparationError, match="interrupted save"):
+            execute_stage(tmp_path, {"id": "dataset", "relative_path": "dataset"}, policy, "postmr", attempt, run)
+    assert (run / "report.json").read_bytes() == before
+    sealed = snapshot(run / "PostMR")
+    assert "report.json" in sealed
+    with patch("subprocess.Popen", side_effect=AssertionError("Recovery cannot rerun preparation")):
+        publish_checked_preparation(run, attempt_number=1)
+    assert snapshot(run / "PostMR") == sealed
+    assert len(calls) == 2
+    assert calls[0][1].get("automatic_plane_support", False) is automatic
+    assert not (attempt / "run-report.json").exists()  # No completed campaign receipt.
+
+
+
+def test_campaign_records_preparation_notes_without_replaying_or_changing_gate(tmp_path, monkeypatch):
+    from tests.test_postmr_runtime import checked_case
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    exact['result']['plane_generation'] = dict(components={'PDU': dict(
+        status='KNOWN_GENERATION_FAILURE', missing_centres=['C5'], proof=dict(failure_kind='TIMED_OUT'))})
+    policy = load_preset().to_dict(); policy['schema_version'] = 2
+    policy['postmr'].update(checked_preparation=True, automatic_plane_support=True)
+    attempt = tmp_path/'NASolveCampaign/jobs/postmr'; attempt.mkdir(parents=True)
+    with patch('nasolve.campaign_stages.load_config', return_value=AppConfig()), patch('nasolve.campaign_stages.discover_phenix', return_value=sdk), patch('nasolve.campaign_stages.discover_coot', side_effect=CootDiscoveryError('absent')):
+        result = execute_stage(tmp_path, {'id':'dataset', 'relative_path':'dataset'}, policy, 'postmr', attempt, run)
+    notes = '\n'.join(result['preparation_notes'])
+    assert 'optional plane generation timed out' in notes
+    assert 'does not establish final plane adoption' in notes
+    assert result['status'] == 'POSTMR_READY' and result['readyset_status'] == 'FAILED'
+    assert reads == [1] and len(calls) == 2

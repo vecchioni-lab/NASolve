@@ -1,155 +1,146 @@
 # NASolve development handoff — current state
 
-Updated **2026-10-08**. **Working branch: `pine`.** Finish the bounded
-Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-into `main`, then the **blind AlphaFold geometry baseline**, then
-**operational Scout**. No GUI/Topo Net implementation is a prerequisite.
-This is the compact active handoff, not a chronology. The complete previous
-handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.md).
+Updated **2026-11-14**, C277 first campaign refinement handoff. Active **cedar**,
+NASolve-c96; base before this patch is C276 `d5f505a`.
+Simon originally authorized **12:36–14:36 Europe/London, 14 November**. Linden
+relayed Simon’s extension to **16:00**, with a later wind-down message expected.
+Focused checks only;
+no full suite, new branch or merge. Finish Q04/Q05 before Q06. The
+[queue](cif-doctor-completion-queue.md) owns ordering.
 
-## Executive state
+## Completed — source-preserving adapters reach normal preparation
 
-| Workstream | Verified result | Remaining gate |
-| --- | --- | --- |
-| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
-| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
-| Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
-| P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
-| Campaigns / full auto | Ordinary guarded MR→PostMR→conditional AutoSol→refinement and immutable checkpoints work. Separate EA/DiU/Q5cm/QiC full-auto campaign reached numerical SOLVED for all four, preserving EA MR_REVIEW and QiC provisional (not user-approved) selection. | Bounded evidence review and user-veto/resume where still missing; do not rerun passed cohorts merely to refresh docs. |
-| Prepared nonstandard P5 | Explicit per-dataset PDB/sequence and mixed schema-2 campaigns implemented and fixture-tested. | Small **3–5-member real geometry-diverse** native smoke check; W-only successes cannot substitute. |
-| Scout / registration / Topo / GUI | Registration/Scout shadow primitives and earlier scoped checks are recorded. | Operational Scout, symmetry surgery, Topo and GUI remain separate future work, **not** claimed complete. |
+C276 exposes `--dictionary-input-policy source-preserving-v1` through ordinary
+checked PostMR and CIF Doctor prepare-run, and the corresponding optional schema-2
+campaign key. One mapping selects the existing C263/C264 policies; the existing
+owner freezes their exact options and chemistry checks remain unchanged. Absent
+fields/defaults stay unchanged; no continuation override or historical migration.
 
-**Integrated code regression:** the last pre-merge PR #24 head contained
-PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
-combined head returned **967 tests + 226 subtests PASS** before squash
-merge. The post-merge Pine checkout has not been rerun on the user's terminal.
-One earlier first-pass mixed fixture with S6G instead of Benner IMC correctly
-failed closed as B:G; the reviewed IMC replacement passed. Neither unit
-tests nor numerical `SOLVED` establish experimental chemistry or deposition
-approval.
+231 focused tests + 47 subtests pass in 14.37 s, including caller publication and
+frozen-plan relocation. A full native normal campaign reaches checked PostMR with
+the declared C270-derived A:5IU/free-end/protected-D1 fixture, ordinary deadlines,
+local isolated config/store, and actual Phaser/Coot/NAR/Phenix generation/repair/
+ReadySet. Saved campaign receipts and selected view pass after moving the campaign
+with old/source/cache/SDK reads and native launches forbidden except OS process
+observations. Exact versions/counts/source pins are in
+`ordinary_source_recipe_callers_2026_11_14`. Raw science stays local in
+`276_Cedar_source-recipe-campaign-pk37b79m`. No diffraction refinement claim.
 
-## Immediate next scientific work — one bounded sequence
+**Downstream reminder:** Simon reports an earlier beautiful PDU distorted after
+collaborator refinement. Q06 now explicitly requires before/ReadySet/after-native
+geometry and effective-restraint comparison, generalized beyond PDU names. Exact
+collaborator files/version are not identified; no diagnosed cause or success claim.
+This does not change the current first-refinement handoff task.
 
-1. **Next engineering slice — library-first generic monomer resolver.**
-   With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-   merged, the combined-family workbook regression is green, but four
-   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve.
-   NASolve currently requires a local `CODE.cif` before Coot parent-overlap,
-   whereas ReadySet normally runs *after* that placement. Resolve existing
-   validated Phenix/CCD monomers before asking for curated overrides, and
-   where supported produce an **audited, frozen derivative**, never
-   fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
-   Keep exceptional local recipes only for demonstrated broken cases.
-   Review prospective HelixWeld/HelixMeld implementations before making
-   them providers; no verified integration yet. Pin/run against released
-   NARestraints v1.1.3 with exact import verification; don't edit the
-   user's dirty workbook or historical native models.
-2. **Attempt one simultaneous four-family W model first**, as explicitly
-   requested by the user on 2026-10-08. Use distinct original W paired sites:
-   **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/IMC),
-   **Z:P at A:12/B:4** (DZ/DP, existing `pair=Z:P` route), and
-   **K:X at A:20/D:3** (CGY/DX). Keep the prior off-pair A:7/C:9
-   **5CM:G** and A:19/D:4 **DF:A** simultaneously. These sites align
-   their source A:T/G:C/C:G templates with reviewed NARestraints roles,
-   but are still **proposed design intent**, not frozen/validated.
-   The Saenger overlay should retain **12 original Saenger blocks and
-   replace 5 with explicit pairs**; the central Z:P stays in Std_padd.
-   **Before any native run**, locate source-verified `IGU`, `IMC`, `CGY`, `DX`
-   monomer dictionaries (absent from committed NASolve resources) and
-   audit the actual W model/42-site sequence targets, restraint interfaces,
-   atom names and phosphate policy. Do not invent CIFs, force chemistry
-   to G:C, or silently downgrade to the old five-independent-matrix plan.
-   One *new* frozen single-member campaign, one stage boundary at a time,
-   with preserved failures and human Coot/.geo checks; independent A:T,
-   D:T, B:S, Z:P, K:X datasets remain a **diagnostic fallback**, not
-   today's required first trial. **D:A is unsupported**; D:T is the
-   reviewed three-hydrogen-bond D-family recipe, while `DA` means
-   ordinary DNA adenine.
-3. **Close the independent P2 source-native gate** (`1W5→DZ`,
-   `1WA→DP`) with actual source components and verified dictionaries,
-   source-to-target atom mapping, raw preservation and native refinement.
-   This is not the same as already successful Z:P synthetic-target model.
-4. **Finish the bounded Pine close-out:** retain existing GZ11 and multi-member
-   saved receipts; resolve remaining exact effective-dictionary evidence (P1),
-   saved normal-GZ11 evidence (P3), and limited campaign human-veto/current-
-   pointer evidence (P4), plus **P5** geometry-diverse real smoke check.
-   Then final integrated tests/review **P6**, followed by [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-   merge/ancestry verification **P7**. Do not clean, reset or prune original
-   scientific artifacts to retire branches.
+## Completed — prepared checkpoints can enter first campaign refinement
 
-The exact **combined-first site layout**, candidate chain sequences,
-dictionary sourcing gate, optional independent controls, immutable Z:P
-attempt history and human-verdict limits live in the
-[native modified-pair ledger](native-modified-pair-live-validation.md).
-The [modified-component contract](modified-component-preparation.md) owns
-1W5/1WA mapping and source-preservation rules. [Campaign execution](campaign-execution.md)
-owns CLI semantics; [full-auto checkpoint](full-auto-patch-handoff.md) retains
-the completed four-member validation.
+C277 fixes the blanket AutoRefine-folder refusal. Admit only the initial checked
+registry (plus optional lock), reject any prior/partial/unknown work or report
+history, and pass its digest through the existing full read-only AutoRefine reader.
+A newer choice before that read refuses; later saves keep the existing concurrent
+update guard. No extra expensive proof reader, migration, retry or schema change.
 
-## Preserved W native evidence and user review
+190 focused tests + 26 subtests pass in 28.67 s. Final one-reader assertion and
+wording: 11 tests in 1.47 s. The pre-fix regression failed on the old folder gate.
+Tests run actual campaign/AutoRefine code with stub executables: exact ordered
+PHIL/CIF inputs, unchanged PostMR, parent lineage and eight refusal cases plus
+selection race/missing-registry guards. They are not native refinement proof.
 
-The original frozen synthetic-target dataset is
-`~/NASolve-live-tests/zp-paired-native-oiipj_t2`. It uses **real GZ11
-diffraction observations** but altered target chemistry; it is **not**
-evidence the experimental crystal contained the tested modifications.
+**Next:** audit Q04/Q05 acceptance against existing owners/evidence and run the
+normal campaign continuation using the fresh C276 prepared result, if bounded
+native time permits. Preserve the original control by using a distinct local
+validation copy. Do not rebuild preparation or enable defaults. Keep unowned,
+pre-seal and missing campaign-receipt limits explicit. Real refinement geometry
+and Simon's PDU survival control remain Q06, with no premature closure claim.
 
-- **`run_001`:** retained Z:P PostMR **BLOCKED** by the former reversed
-  role mapping (Z lacked G-like N2). Native Phaser TFZ **12.9**, LLG **210**.
-- **`run_002`:** corrected NARestraints Z:P PostMR **PASS**: expected
-  `P.N2/Z.O2`, `P.N1/Z.N3`, `P.O6/Z.N4` contacts, all 42 target
-  identities checked, no `force` override. First AutoRefine **BLOCKED**
-  before refinement by old W Saenger classes at modified 5CM:G and DF:A.
-- **`run_003`:** PR #24 candidate; frozen integrity **OK**, 17 template
-  pairs → **15 unchanged Saenger + 2 explicit modified** (5CM:G GC/3 bonds;
-  DF:A AT/2). D:1 phosphate protection retained, sequence-family
-  mismatches empty, AutoSol correctly skipped; native AutoRefine returned
-  **`SOLVED`, `refine-001`**. User's Coot inspection reported **good bonds
-  and planes**, tolerable nonideal planarity: **INSPECTED_PASS for overall
-  visual software integration**, not site-resolved density or experimental
-  chemistry. Exact Rwork/Rfree, `.geo` and per-site map/clash metrics are
-  still to be recorded if needed.
-- **`./nasolve show`:** after PR #25 integration the user selected
-  `run_003` as their active workspace and confirmed bare `show` launched
-  the expected model in Coot. **Live usability gate passed**.
+## Completed — the ordinary command returns the exact saved result
 
-**Separately parked geometry question:** user noticed tilted/directional
-hydrogen-bond contacts in the displayed modified pair (named N1/N3 and
-O4/N6 sites). First verify the exact donor–H–acceptor assignment, atom
-definitions, existing restraint angular terms and achieved geometry before
-deciding whether directional terms are appropriate. **Do not simply fix a
-heavy-atom angle at 180°, enforce flat base planes, or edit `run_003`.**
-Not a blocker for `show` or for the successful native integration.
+C275 checks for C274's receipt before Phenix discovery when the user requests
+`nasolve autosol RUN`. It uses the same completion/validation owner, reports no
+native rerun, and never falls through after invalid/active/conflicting evidence.
+Absent receipts retain prior fresh-launch/refusal behavior. Completion-only mode
+still requires a receipt. Execution API and campaign-stage caller are unchanged.
 
-## After Pine: blind AlphaFold baseline, then operational Scout
+Validation: 145 focused tests + 16 subtests in 28.79 s. Before the change the new
+ordinary-command regression failed on SDK discovery. The final CLI reads real
+relocated C274 without SDK/old/source access or subprocess calls: 57.41 s, all 392
+files unchanged. Source pins and exact commands are in evidence-ledger entry
+`autosol_cli_completion_2026_11_14`. No schema, migration or new native execution.
 
-The user requested this order on 2026-10-07. Use the existing prepared-
-nonstandard path with **frozen** supplied predictions, complete chain-labelled
-sequences and untouched diffraction/Free-R; audit chain/residue correspondence,
-coordinate/ASU completeness, model confidence/B factors and input metadata.
-Predicted coordinates are *unseen candidate models*, not solved truth.
-Do not consult outcome structures during blind candidate selection. Preserve
-every success and failure; later hypotheses get new attempts.
+## Completed — finish saving phasing work after interruption
 
-Then promote Scout along the
-[registration contract](construct-registration.md) and
-[human live-check queue](construct-registration-live-checks.md); keep guided
-ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
-[metal restraint builder](metal-restraint-builder.md) are separate later scopes.
+C274 adds `nasolve autosol RUN --complete-publication`. New checked AutoSol runs
+record their existing producer/inherited group before launch, then seal the exact
+completed result and previous/intended run report. Completion reuses preparation,
+site/phase checks and the existing lock/guarded writer. Both producer and entire
+group must be known stopped before a pending save; already exact completion is
+read-only. Later checkpoint selections survive. No native discovery or rerun.
 
-## Work discipline and doc ownership
+Two additive small records: `AutoSol/execution.json` and `publication.json`;
+policies `autosol-inherited-process-observation-v1` and
+`autosol-result-publication-v1`. Native commands, group ownership, scientific
+thresholds and old result meanings stay unchanged. Old partial runs are not
+retrofitted. No new campaign-stage receipt is fabricated.
 
-- **One terminal action per user turn** for live NASolve debugging, then
-  inspect the output before proceeding. Prefer isolated Git worktrees
-  for candidates. Preserve the user's dirty `../NARestraints` tree (including
-  unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
-  untracked files/patches, all immutable numbered runs, maps and Free-R.
-- Do not represent an unrun test as passing. Keep native-tool receipt,
-  chemical identity, numerical statistics and human Coot verdict as
-  separate fields. Confirm environment imports instead of assuming the
-  v1.1.3 metadata pin upgraded a preexisting `.venv`.
-- **This file** owns current priorities/results; the
-  [documentation map](README.md) routes to active subsystem contracts;
-  the [native ledger](native-modified-pair-live-validation.md) owns exact
-  pair-matrix evidence and per-member status. Earlier full chronology
-  is preserved [in history](history/development-handoff-2026-10-08-pre-consolidation.md)
-  and Git. Do not re-append old session logs here.
+A fresh complete Phenix 2.2.1-6174 AutoSol control deliberately interrupts after
+sealing: AUTOSOL_READY, 1.449 Å, HLAM/HLBM/HLCM/HLDM. After verified worker/group
+stop and moving the copy, completion passes without old/source/SDK reads or native
+launches. Saved comparison remains manual-001; later current stays postmr. Only
+report.json changes, persistent publication lock appears, 390 other existing files
+retain bytes/timestamps. Repeat is read-only. All 394 original source files remain
+unchanged. Both workers stopped and code stayed pinned. Coot was not run.
+
+Control `274_Cedar_autosol-publication-tc0cilcn` in live-tests holds 61.6 MB / 413
+files. It copies/revalidates C270 preparation and resets only its own old AutoSol
+state before a fresh launch: derived test fixture, not production migration or
+in-place retry. No new MR/ReadySet or diffraction refinement. Scientific files and
+runner remain local, excluded from Git.
+
+Validation: 136 focused tests + 16 subtests in 26.28 s. Final concurrent-report
+rollback guard: 26 tests in 8.81 s and 26 in 9.00 s from a relocated checkout
+after its old path is gone. Native control precedes that two-line read guard;
+no native behavior changed or rerun is claimed. Before implementation,
+CLI regression failed on the missing option. Exact commands, changed files,
+compatibility, negative controls and local source/result hashes:
+`autosol_saved_publication_2026_11_14` in the evidence ledger.
+
+## Reuse completed evidence; do not rebuild its machinery
+
+C270 native Phaser/Coot/NAR/plane repair/ReadySet/AutoSol passes for the explicit
+A:5IU/free-end fixture, seven restraints, protected OP3 at D:1. This uses real DiU
+observations but is not donor-chemistry or diffraction-refinement acceptance.
+C271 fills the saved AutoSol view/checkpoint identity. C272 native Coot 1.3.3
+loads the final dictionary, comparison/HA models and FWT/PHWT map. Cold relocated
+inspection preserves all 389 files and later choice. Original diagnostic failures
+remain preserved; details and exact claims are in their evidence-ledger entries.
+
+C273 bounds reuse of identical pure numerical calculations within one inspection.
+Every artifact/source/owner/qualification check remains; no persistent trust cache
+or historical worker-byte change. One saved-native comparison falls from 103.72 s
+/ fourteen calculations to 59.04 s / two, with identical view and unchanged files.
+Python peaks 716.6/635.8 MB; single-pair measurement, not a general speed guarantee.
+Keep one expensive reader at a time. Earlier C258/C260 retirement and C251/C252
+alternative-publication machinery remain the owners of those completed jobs.
+
+## Next — reconcile the remaining recovery and rollout boundary
+
+Q04/Q05 are not declared closed. C274 completes sealed saves only. Crashes before
+sealing, unfinished native work, shared/foreign/unknown groups and missing outer
+campaign receipts stay preserved/unadopted. Direct AutoSol still lacks standalone
+isolated child ownership. Campaign inherited supervision is unchanged; do not
+move native work outside its tracked group. No guessed stop or native retry in place.
+Normal CLI reuse is now connected. Explicitly reconcile the remaining limits
+with the supported opt-in route before Q06; avoid a parallel recovery stack.
+
+Single successful/failing requests are measured. Repeated-failure/100-dataset
+bounds, historical campaign migration and default activation remain explicit
+scope/release limits. Q06 actual full-restraint refinement follows reconciliation.
+Q07 mixed/held-out chemistry and Q08–Q14 retained chemistry learning stay queued;
+charged 1AP leaving-port authority is Q13. Q15 reports and Q16 AutoPhase naming,
+full integration validation and reviewed merge remain later. No automatic merge.
+
+Last full suite: **C220/583d30df, 9,178 tests + 276 subtests**; not a current pass.
+Linden works Willow/Pine, separately qualifying TopoStitch periodic-policy behavior;
+reported Willow findings are not combined-build validation. Ordinary bond edits
+and additive contact energy stay distinct. Everyday NASolve/pine and protected
+local science remain untouched. Signed inter-agent handoffs: **— Rowan**.

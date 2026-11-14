@@ -1,0 +1,915 @@
+# CIF Doctor completion queue
+
+**Current work order, 2026-11-14.** This is the one unfinished-work queue. The
+[capability table](cif-doctor.md#current-capability-boundary) records demonstrated
+support; the [handoff](development-handoff.md) says where work stopped. Old notes
+record what was known then. They do not create a second set of instructions.
+
+## Finish line and ordering
+
+CIF Doctor should work quietly behind NASolve: preserve the intended chemistry,
+catch bad dictionaries, repair what can be repaired, and give Phenix a model and
+restraints that agree. Routine users should not have to edit CIFs. ReadySet and
+NARestraints remain the tools that supply chemistry/numerical parameters and the
+intended base-pair/stacking restraints; Doctor checks and connects their results.
+
+Q01–Q03 are complete within their recorded diagnostic scope. Q04 is the immediate
+work; Q05 carries its result into normal use. Q06 must pass before we claim that
+the combined chemical examples refine correctly. Q08–Q14 retain the chemistry
+learned along the way; they are not a reason to keep rebuilding Q04.
+
+## Near-term closure at C277
+
+The C244 estimate was **6–9 focused patches plus integration validation**. Since
+then C245–C249 connected and reported plane recovery, C248 exercised mixed outcomes,
+C250 protected concurrent checkpoint saves, and C251 implemented later alternatives.
+Those are completed implementation steps, not a reason to repeat their machinery.
+C252 adds actual two-attempt native preparation, relocated Coot/refinement-input
+reads and manual-choice/repeat-publication acceptance. These are complete for the
+frozen PDU construction, without a diffraction-refinement claim. Q04/Q05 remain
+open; the remaining work is now more specific:
+
+| Remaining work | Observable finish |
+| --- | --- |
+| Q05: qualify the chosen-model anomalous-site connection | C253 preserves original-MR phasing and freezes the chosen comparison model. C270 now passes actual Phaser/Coot/NAR/plane repair/ReadySet and AutoSol on the explicit A:5IU control, including the protected D:1 phosphate. C269 reuses observed native atom names; C271 fills the previously omitted checkpoint identity in AutoSol view/launch metadata. Later-selection and guarded relocated inspection now pass: current postmr does not replace the saved manual-001 comparison. C272 native Coot loads the final dictionary, both models and FWT/PHWT map; all 389 run files remain unchanged. Charged 1AP linking remains Q13. CLI defaults remain unchanged. |
+| Q04: retain the evidence without accumulating redundant files | C258 implements explicit known-stopped retirement with exact replay, stable public paths, failure preservation and real interruption recovery. C260 connects new ordinary/campaign results, rechecks usability on optional storage failure, and preserves campaign artifact references across partial cleanup. Complete representative resource acceptance and retain the explicit historical-campaign migration boundary. |
+| Q05: permit the first campaign refinement after checked preparation | C277 admits only the initial checked preparation registry and pins it through the existing AutoRefine reader. Focused real-engine/stub-native regression preserves exact ordered restraints and refuses prior/unknown/changed work. Native whole-campaign continuation is the next integration check; no diffraction-refinement qualification yet. |
+| Q04/Q05: reconcile acceptance and rollout | Close or explicitly retain each caller/recovery limitation; distinguish the supported opt-in route from any later decision to enable it by default. Then perform the integration-validation checkpoint. |
+
+No further implementation is currently identified for the chosen-model binding
+after C271; C270/C272 close its selected-model native and relocated acceptance for
+the explicit A:5IU control. Reconcile Q04/Q05 resource, recovery and opt-in rollout
+limits explicitly. C273 reduces the saved native inspection from 103.72 s to
+59.04 s by calculating identical numerical evidence twice rather than fourteen
+times within one read. Every file/owner/source check remains; historical worker
+bytes are unchanged. The two fresh-process reads return exactly the same view and
+leave all 389 run files unchanged. This single pair is not a general speed claim.
+C274 now completes an exact sealed AutoSol save explicitly after verified producer
+and group stop, including a fresh native interruption/relocation control. C275
+connects that exact operation to the ordinary explicitly requested AutoSol command
+before SDK discovery; invalid saved evidence never falls through to native work.
+The AutoSol execution API and campaign caller stay unchanged. C276 closes a
+separate recipe-forwarding gap: ordinary PostMR/prepare-run and frozen campaigns
+can request C263/C264 source adapters through one explicit profile. Its actual
+normal campaign preparation passes with ordinary limits and cold relocation.
+C277 closes the first-refinement directory gate in focused checks, including a
+newer-choice race without an extra scientific reader. Reconcile
+the remaining pre-seal, standalone-group and campaign-receipt limits below. Do not reopen completed preparation/storage
+systems or weaken their validation to make status or inspection faster.
+A newly exposed defect may require a bounded patch; a numerical patch estimate
+is not a finish line.
+C270's whole automatically retained request is 35,122,742 B / 168 files. Its native
+run succeeded; the first driver used the wrong checkpoint attribute after native
+completion, and the first saved-result check exposed the missing view ID fixed by
+C271. Both stopped diagnostic failures remain preserved and separately explained.
+
+Reuse C223–C225 publication and ordinary/campaign entry, C228–C239 compact exact
+proof, C244 ownership, C249 selected-CIF coverage and C251 alternative publication.
+C257 connects archived attempts to ordinary history/result reads with persistent
+public paths; its copied native request falls from 181.6 MB to 33.7 MB after manual
+test-copy duplicate removal. C258 now passes product retirement, deliberate interruption, partial read and
+resumed completion on that copied native request. C260 connects fresh ordinary/campaign callers; finish representative resource acceptance
+and retain the historical-campaign migration boundary. Do not repeat transport, reader or retirement machinery. Historical workstation archiving is separate from runtime retention.
+Effective native planes, alternative-restraint adequacy and achieved geometry are
+Q06 checks; explicit CIF plane membership alone cannot close them.
+
+Q06 must also keep ordinary bond edits distinct from additive contact energy over
+an unchanged native manager: Linden's Willow `2f95a09` reports changed nonbonded
+exclusions when symmetry distance edits are installed. This is reported evidence,
+not a Cedar-validated equivalence or permission to create phosphodiester links;
+see ledger `willow_bond_edit_nonbonded_distinction_2026_11_13`.
+
+Q06 proves actual complete-restraint refinement; Q07 tests combined and held-out
+models. Q08–Q14 retain the catalogue/chemistry programme without reopening completed
+orchestration. Q15 reporting and Q16 integration/release follow the explicitly
+reviewed support scope. Neither this estimate nor Q05 authorizes a merge.
+
+## Pipeline position
+
+| Job | In laboratory terms | What still closes it |
+| --- | --- | --- |
+| **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | C220 supplies explicit truthful result/continuation commands; connect their result to default PostMR/campaigns through Q05. C234–C237 connect explicit owned plane support inside repair; C242 carries supplied support through the complete request and ReadySet; C244 adds explicit automatic support acquisition; C245 connects prepare-run and result notes; C246 connects explicit checked PostMR/campaign forwarding. C247 carries notes through publication/status. C249 reports scoped explicit selected-CIF coverage. Finish remaining recovery and storage acceptance. |
+| **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must open the same model, CIFs and base-pair restraints. | C223 saves an explicit initial review checkpoint, including a checked fallback, and recovers interrupted publication. C224 connects ordinary PostMR; C225 adds explicit frozen campaign entry. C251 adds explicit later alternatives from frozen construction, with immutable receipts, guarded saves and exact Coot/refinement inputs. C252 validates native alternatives, relocated Coot/refinement inputs and manual-choice preservation. C270/C271/C272 qualify chosen-model phasing, later-selection preservation, relocated readback and final native Coot loading. Finish practical read-cost and explicit recovery/rollout scope reconciliation. |
+| **Q06 — show that real refinement reads all the restraints correctly** | Run Phenix with the complete NARestraints input, protected phosphates and correct Free-R flags. | Demonstrate actual refinement, including planes/parallelity. A successful dictionary-reading or energy check is insufficient. |
+| **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
+| **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
+| **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
+| **Q10 — handle PNA as PNA** | Respect its backbone and attachments instead of pretending it has a DNA phosphate. | Validate connected construction, native restraints and numerical behavior. |
+| **Q11 — transfer the locked-sugar fixes** | Check another alpha-L-LNA example beyond ATL. | Complete linked 10C/held-out validation while rejecting an incompatible scaffold. |
+| **Q12 — know the catalogue's actual coverage** | Account for every NARestraints ligand entry. | Turn the 599-code/618-row census into supported, repairable or specifically unresolved cases. A family example does not prove every member. |
+| **Q13 — preserve chemical identity** | Keep hydrogens, charge, phosphates and attachment changes chemically justified. | Resolve ambiguous source states explicitly; a prettier geometry cannot authorize different chemistry. |
+| **Q14 — make sure Doctor catches real errors** | Test broken examples and sound examples that should be left alone. | Retain reproducible challenge inputs and false-alarm controls, with unavailable historical inputs stated honestly. |
+| **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF after the behavior is integrated. |
+| **Q16 — finish the branch cleanly** | Finish with the AutoPhase naming/compatibility change, then check Cedar as part of NASolve and review integration into pine/main. | Preserve Phenix AutoSol calls and old runs; follow the [machine-readable rename audit](autophase-rename-plan.json), then full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
+
+### The next small steps
+
+1. **Preparation handoff — complete through explicit commands at C220:** show the checked ReadySet model or the
+   independently checked starting model, with an honest explanation. Read an
+   exact completed attempt without launching anything; continue an interrupted
+   request only through the existing owner and a fresh numbered attempt.
+2. **Use that exact result throughout normal preparation:** C223 closes explicit
+   initial checkpoint publication and normal reads; C224 connects explicit ordinary
+   PostMR; C225 freezes explicit campaign entry. C251 adds explicit later
+   preparation alternatives.
+   Finish Q04/Q05 before Q06. Keep latest and selected distinct.
+3. **Finish general plane repair:** C234–C237 run explicitly supplied owned support
+   through the existing repair request, including real success and stopped-native
+   fallback. C242 carries supplied support through the complete request/ReadySet.
+   C244 obtains missing support through the existing outer owner when explicitly
+   enabled, with shared deadlines and unchanged storage bounds. C245 connects
+   prepare-run and per-component generation notes; C246 connects explicit checked
+   PostMR/campaign forwarding; C247 carries publication/status notes. C249 closes
+   scoped selected-CIF reporting and C248 covers mixed sibling recovery. Finish
+   the remaining native/caller and storage acceptance. Preserve existing ring planes;
+   PDU and 5PC are controls, not name-based switches.
+4. **Run real refinement, then the combined and unfamiliar-ligand tests.** Use the
+   results to close the relevant chemistry jobs, rather than adding a new queue.
+5. **Refresh user reporting and review the release.** A smaller provisional
+   integration may expose explicitly limited tools before all catalogue entries
+   work; it must not advertise an unfinished automatic engine.
+
+C219 already executed the ordinary Coot/NAR-derived request through generation,
+repair and ReadySet, and reread the selected result with the original paths and
+SDK unavailable. Reuse that evidence. Its PDU C5 still lacks an explicit complete
+plane: near-planar coordinates alone do not prove the restraint is adequate.
+C207–C216 supply the general mutation/plane checks and PDU/5PC controls; combining
+the plane checks into ordinary repair now works for explicitly supplied owned
+support, including the complete request/ReadySet at C242. C244 adds explicit
+automatic acquisition; C245 adds prepare-run and result notes; C246 adds explicit
+checked PostMR/campaign forwarding; C247 carries publication/status notes. C249 selected-plane reporting, C248 sibling recovery and C258/C260 working-file
+retirement/caller integration are complete within their recorded scopes. Remaining
+acceptance and rollout limits are listed above. DP's ambiguous correspondence,
+source-H questions and PDU numerical targets remain visible limits.
+
+These are work packages, not a prediction of session or commit count. Preserve
+numbered attempts and all partial outputs; new attempts require proof that old
+processes stopped. Preserve scientific acceptance thresholds, terminal-phosphate
+intent, Free-R handling and NARestraints ownership. Run focused checks during
+work, with the complete suite at cross-cutting changes and integration.
+
+The detailed acceptance criteria below remain authoritative. The original
+C00–C150 audit is retained at `a943386dd3a8e27dabeae316d37039d92e1cb9fc`;
+its local index covered 71 documents and 286 milestone records. Raw science stays
+outside Git. Older C206–C219 planning prose is retained in Git history.
+
+## Integration packages
+
+### Q01 — Compose full native capture and numerical attribution
+
+**Complete at C151: native identity/capture compatibility. Dependencies: none.**
+C133–C141 require complete full-model monomer identities for source-qualified
+selection. C147–C150 initially rejected this richer capture. C151 validates the
+existing full-monomer request/worker/proof, retains it in fresh derivative and
+geometry jobs, and requires it in endpoint readback. Maintained attribution now
+consumes the same full capture without stripping metadata. Three fresh native
+stages preserve all 42 residue identities/865 atoms and C150 numerical inventories;
+six-proxy attribution, derivatives and bounded geometry mechanics pass. Legacy,
+copied-chain, rehashed tamper and cold-relocation controls pass. No independent
+source-chemical approval or automatic selection is claimed; that remains Q03.
+See the [C151 contract](cif-doctor.md#full-native-capture-bridge-c151).
+Relevant seams: [captured gradients](../src/nasolve/cif_captured_mixed_gradients.py),
+[maintained attribution](../src/nasolve/cif_captured_linear_attribution.py) and
+[component runtime](../src/nasolve/cif_component_runtime.py).
+
+Acceptance retained: one exact full-model bundle passes captured source/site identity and maintained
+repair-attribution replay together, including unchanged sites, ordered CIF/PHIL
+inputs and native source pins. Test legacy captures, extra/contradictory monomer
+data, copied-chain identities, tampering and cold relocation. Old capture schemas
+must retain their existing meaning; no fabricated missing evidence.
+
+### Q02 — Read curated CIF loops independently of line wrapping
+
+**Complete at C161.** C145 exposed a valid projected-DZ dictionary that the
+physical-line bond reader rejected. Both curated bond and ideal-coordinate
+readers now reuse existing CIF1 block/token parsing, preserve exact identifiers
+and coordinate preference, and refuse incomplete/ambiguous/conflicting tables.
+All ten curated resources retain topology under token-per-line and mixed-width
+layouts; ordinary PostMR fixture preparation accepts wrapped DZ. The exact C145
+input now validates all 35 bonds and its C-glycosidic distance, without changing
+parent bytes/timestamps. 42 new cases and affected/focused workflow checks pass;
+no native run or full regression is claimed. See the
+[C161 contract](cif-doctor.md#curated-cif-loop-parsing-c161).
+
+### Q03 — Qualify repaired dictionaries and select a usable bundle
+
+**Complete at C153: diagnostic source/repair selection and publication.**
+C152 implements the read-only source/preparation → repair-attribution → derivative
+decision. C153 supplies a positive matching native chain and freezes its complete
+proof under a distinct public runtime policy. Exact-source saved PDU/5PC candidates
+retain phosphate H/charge and sugar configuration. Two complete separated monomers
+(77 atoms, one explicit NAR numerical parallelity request) pass source/site/full
+native gates, twelve declared-linear torsion omissions, exact attribution and fresh
+derivatives. Public API/CLI rederive the repaired choice after relocation without
+original inputs, cache, SDK or execution. A separately qualified original remains
+the fallback; absent or malformed proof never grants usability.
+
+The demonstrated control is not the 42-residue mixed scaffold, a physical pair,
+ordinary refinement or a new experimental phosphate-state choice. The retained C98
+source and C151 numerical bases still differ in HOP2/HOP3 and OP2/OP3 charge; Q13
+owns explicit authority for that state transition and Q07 its ordinary integration.
+No old evidence is upgraded. See the
+[C153 contract](cif-doctor.md#source-faithful-repaired-runtime-publication-c153).
+
+Acceptance met for this package: source-qualified repaired dictionaries can be
+selected and immutably published with exact source/native/derivative proof,
+without adopting an unconverged coordinate trial. Cold native replay, synthetic
+fallback/refusal controls, rehashed tampering, altered order/resources, missing
+proof and concurrent-source changes are tested. Automatic acquisition is Q04;
+ordinary adoption is Q05 and the actual refinement consumer is Q06.
+
+### Q04 — Bounded automatic recovery and durable attempts
+
+**Open overall. C220 supplies the explicit preparation handoff; C223–C224 carry
+it into an initial checkpoint and opt-in ordinary PostMR; C225 adds frozen campaign
+entry. C244 adds explicit automatic support acquisition in the complete API.
+C245 connects prepared/ordinary intake and prepare-run; C246 adds explicit checked
+PostMR/campaign forwarding; C247 adds publication/status notes. C249 adds scoped selected-CIF coverage. Remaining recovery/storage acceptance and
+default-route enablement remain unfinished.**
+In lab terms: preserve the intended molecule, get a checked model/restraint set,
+and resume interrupted preparation without rebuilding or damaging earlier work.
+
+Already implemented and to be reused:
+
+- Coot construction preserves the recorded source and requested sites. The
+  prepared model and chemical intent travel together into the request
+  ([construction record](cif-doctor.md#ordinary-construction-lineage-and-request-binding-c196)).
+  C218 shares this normal construction/NAR route instead of repeating it in a
+  diagnostic script. C217 preserves the selected Phenix installation.
+- The existing request handles local dictionary reuse, generation when needed,
+  native checks, repair and ReadySet. It freezes the source/recipe/tool evidence,
+  uses one bounded allowance and preserves every partial output. A fresh attempt
+  requires all earlier processes to be known stopped. Unknown ownership blocks
+  further work; it is not a chemical verdict.
+- The supplied NARestraints relationships, exact selected atoms, weights and input
+  order are retained. Source-bound literal intake and an existing compiled policy
+  are alternatives through the same compiler/owner, not permission to invent
+  another compiler or infer missing pair relationships. Unsupported inputs refuse.
+- Optional failure can retain a starting model only after independent checks of
+  that model and its matching restraints. Corrupt evidence, initial qualification
+  failure or uncertain cleanup never becomes permission to use it.
+- C219 executes C218's ordinary PDU request through fresh generation, connected
+  repair and ReadySet, and rereads the exact result after relocation without the
+  original paths/SDK. This is complete preparation evidence, not diffraction
+  refinement. C220 exposes [plain-language commands](cif-doctor.md#checked-preparation-and-honest-recovery-c220)
+  for fresh preparation, status, exact result and fresh-attempt continuation.
+  It reuses the same reader once, preserves ordered model/CIF/PHIL inputs, and
+  checks the expected prior attempt number under the existing lock.
+
+Remaining acceptance:
+
+1. Reuse C223–C225's initial checkpoint, explicit ordinary PostMR and frozen
+   campaign entry. A checked fallback uses its genuine preparation receipt,
+   without a fictitious ReadySet-success label or log. C251/C252 supply later
+   alternatives and native handoff; finish the selected anomalous-site reference
+   through Q05. Default-route enablement remains an explicit decision.
+2. C234–C239 join C226/C227 to the existing prepared repair request, with explicit
+   owned support, real success/stopped-native fallback and compact exact proof.
+   C242 freezes supplied completed support in the complete request and carries its
+   repaired result through actual ReadySet and cold readback. C244 obtains missing
+   support through the complete request's existing generation owner when explicitly
+   enabled, with durable child identity, shared deadlines and unchanged storage
+   limits. C245 adds prepared/ordinary intake, prepare-run and generation notes.
+   C246 adds explicit checked PostMR/campaign forwarding; C247 exposes publication/status
+   notes; C249 separately reports scoped explicit selected-CIF coverage. Complete remaining recovery/storage acceptance. C240
+   verifies a launched stopped negative generation without admitting partial output;
+   C241 preserves its optional recipe flag through existing acquisition identity.
+   Reuse these and the existing graph screen/narrow candidate. Do not add another
+   executor. C243 adds fully replayed completed chemical rejection; its proof
+   permits neither fallback nor retry alone. Earlier capability/prelaunch failures,
+   incomplete native handoffs and caught builder exceptions remain outside it.
+   C244 consumes those known outcomes with independent qualification; never infer
+   permission from arbitrary errors. Its screen requires exact source/dictionary
+   correspondence; broader allowed representations need explicit assessment.
+   New generated support belongs to exact owned child attempts, not edits to the
+   complete request's frozen inputs. Keep the explicit C242 reuse mode intact.
+   Preserve existing ring-plane groups; add only source-supported missing members
+   with owned generator/native/energy evidence. Do not substitute an entire
+   multiple-plane generated CIF. Keep non-PDU controls and ambiguous/tetrahedral
+   negatives; restraint membership alone does not establish achieved geometry.
+3. Exercise ordinary dictionary reuse, missing/stale entries, successful repair,
+   usable fallback, unqualified failure and interruption through those real callers.
+   Never run legacy phosphate/site modifiers alongside the same owner’s modifiers.
+4. Preserve old request meanings and exact replay, even when a later policy fixes
+   an earlier limitation. No in-place retries, automatic source rediscovery,
+   renewed attempt allowance or latest-file selection.
+
+5. **Storage implementation is complete through C260; finish representative
+   resource acceptance.** Reuse C228–C239 compact proofs, C254 bounded expansion,
+   C256 partitioned archives, C257 exact ordinary reads, C258 interrupted retirement
+   and C260 new ordinary/campaign integration. Do not rebuild transport, recovery,
+   archive formats or checkpoint publication. Their intermediate C228–C256 limits
+   and experiments remain historical evidence in the methods and evidence ledger.
+
+   The actual C244 copy falls from **181,566,343 B / 698 files to 33,661,526 B /
+   98 files**. Retirement removes 604 successful working duplicates; public models,
+   five PHILs, two CIFs and 51 public references remain stable. The C260 control
+   interrupts after 17 removals, reads the exact result, captures 97 campaign
+   references, relocates, completes retirement and verifies all 97 references.
+   Every original file/checksum/timestamp is unchanged. Exact commands and evidence:
+   ledger `ordinary_campaign_retention_2026_11_13`.
+
+   C270 additionally measures a successful **whole request**, 35,122,742 B / 168
+   files, including shared acquisition and continuation, after automatic retention.
+   Its whole relocated diagnostic control is about 62.3 MB. Cold inspection leaves
+   389 run files unchanged; profiled Python peak is 630.7 MB. This complements the
+   failed controls below, but does not establish a repeated-failure campaign bound.
+   Remaining acceptance must account for the **whole request**, including shared
+   acquisitions, unsuccessful attempts, continuation and publication. Preserve
+   active/failed/unknown work. New ordinary cleanup is optional only after exact
+   scientific reread; a cleanup problem must not hide a chemistry failure. Historical
+   unarchived campaign references to working files need a separate reviewed
+   migration; inspection and old publication never clean them automatically.
+
+   Keep the shared **128 MiB physical expansion** bound and existing nesting/file
+   limits. C260 replay peaks at 87,440,990 B temporary expansion and 756,350,976 B
+   Python resident memory. Archive size does not bound process memory or justify
+   concurrent readers. One hundred identical retained requests would occupy
+   3,366,152,600 B by arithmetic only: no 100-dataset execution or concurrency claim.
+   Record representative differing outcomes and a practical concurrency/resource
+   recommendation before claiming laptop-scale campaign acceptance. No new byte
+   allowance or silent deletion is authorized by this queue.
+   C266's read-only audit adds actual stopped-failure sizes: C264/C265 each retain
+   18,921,275 B inside the request, and C266 retains 37,543,881 B. Their whole
+   diagnostic controls (including observation copies) retain 29.25/29.25/47.09 MB.
+   No failed work is retired. These are distinct outcomes, not proof of a bounded
+   repeated-failure campaign; exact file/allocated-byte counts are in the C266
+   ledger. Prefer one expensive proof reader at a time until concurrency is measured.
+
+**Q04 holdover — finish chemical-plane repair before claiming closure.**
+C208–C216's checked plane-completion machinery now has C226 maintained numerical
+execution and C227 source-bound composition. C234–C239 now invoke these through
+explicit owned support in the same immutable repair request. C242 freezes supplied
+completed support in the outer request and passes actual ReadySet/cold readback.
+C244 adds explicit automatic acquisition inside the outer request: exact
+source/recipe/child identity, one numbered generation attempt per needed type,
+shared time/attempt allowances and separately qualified handling of classified
+optional failure. Unknown/malformed ownership cannot authorize that fallback.
+C245 freezes/forwards the option through prepared/ordinary intake and prepare-run.
+C246 connects explicit checked PostMR/campaign entry; C247 carries generation notes
+through publication and campaign status. C249 reports scoped explicit selected-CIF
+planes without claiming effective native adoption; absent intent keeps its meaning.
+Finish remaining recovery/storage acceptance before Q04 closure.
+C248 adds mixed sibling controls: support/rejection in either component, a stopped
+interruption retried in a fresh outer attempt, and an unknown partial reservation
+that blocks retry while preserving the successful sibling. These pass through
+existing production ownership; the generation/repair transport is synthetic.
+They do not establish native mixed-chemistry or diffraction-refinement support.
+C232 already permits an actual parent grant below the frozen generation maximum.
+C240 proves exact launched negative generation; C241 removes the acquisition
+recipe-identity mismatch; C243 proves completed source-chemical rejection through
+full replay. These readers classify outcomes; C244 invokes the existing owner
+and consumes their proofs, which still do not authorize fallback by themselves.
+Use that existing owner; do not raise bounds or alter historical requests.
+Then demonstrate the resulting restraints in Q06; a flat
+starting PDU substituent does not prove that refinement will keep it flat.
+
+**NARestraints stacking and Cedar chemical planes have different jobs.** The
+installed NARestraints v1.1.3 (`a9264f9eb4ec6071a4b4cd5356bec2b8b58b5691`),
+`restraints/stacking.py` and `restraints/phenix.py`, uses reviewed base-role atom
+sets resolved through workbook mappings for modified-base stacking parallelity.
+These sets include some mapped exocyclic atoms, not just ring atoms. Canonical
+neighbors use Phenix's ordinary stacking path. Keep those reviewed selections;
+Cedar's plane completion must not automatically enlarge the stacking selections.
+
+Cedar repairs intramolecular dictionary planes: preserve each existing ring plane
+and add only chemically supported missing members, with supplied restraint weights
+and the existing source/native/numerical checks. The current rule covers explicit
+neutral three-heavy-neighbor carbon with one double and two single bonds; it is
+not a universal aromaticity or appendage-flattening rule. Do not flatten flexible
+or tetrahedral groups, merge distinct planes, or infer chemical authority from
+coordinates alone. The native inventory check must preserve NAR parallelity and
+all unrelated restraints while allowing only the declared component-plane change.
+See [coverage](../src/nasolve/cif_plane_coverage.py),
+[candidate construction](../src/nasolve/cif_plane_candidate.py) and
+[native comparison](../src/nasolve/cif_plane_native.py).
+
+An unfamiliar base still needs correctly mapped, present, non-collinear atoms
+that represent its intended base plane. NAR's selector requires at least three
+mapped names; that count alone does not prove model presence or geometric rank.
+Its warning plus generic stacking fallback is not proof of a working modified-base
+stack. Retain those checks in Q06/Q07/Q12 rather than making plane repair a second
+stacking generator. Existing reviewed atom sets need no automatic expansion just
+because Cedar repairs a substituent's chemical restraints.
+
+Known scientific limits stay in the existing jobs: DP correspondence is ambiguous;
+nonstandard backbone/site adapters and H/charge/attachment authority need their
+own evidence. PDU C5 plane completeness, its numerical target and 5PC source-H
+questions are distinct. The full-model controls use different frozen pair/stack
+intent and cannot substitute for one another. C191's isolated eight-DA refusal is
+not a blanket Phenix/DA verdict; C198/C203/C219 establish other exact contexts.
+
+Detailed C155–C219 evidence and resolved intermediate refusals remain in the
+[methods](cif-doctor.md#complete-frozen-dictionary-requests-c171),
+[ledger](cif-linked-native-registration-evidence.json) and
+[prior queue at its exact commit](https://github.com/vecchioni-lab/NASolve/blob/654328105f193f25011fe927dc1db860cb82bca0/docs/cif-doctor-completion-queue.md#q04--bounded-automatic-recovery-and-durable-attempts).
+Do not reopen completed intake/compiler/process work merely because an old note
+called it the next step.
+
+### Q05 — Ordinary PostMR continuation and immutable adoption
+
+**Open. Depends on Q03/Q04.** C221 checks the complete restraint set before
+inspection; C222 opens an exact checked preparation without adoption. C223 now
+publishes that exact choice as the initial REVIEW checkpoint, including a verified
+fallback. Ordinary inspection, refinement and AutoSol readers validate the saved
+producer/compiler/result binding. New manual/refined models preserve its ordered
+restraints and checked phosphate connectivity. Malformed entries cannot silently
+disappear; movement cannot silently sever a recorded phosphate connection.
+
+Interrupted publication resumes under the existing request lock using the same
+sealed receipt and exact attempt; no native rerun, newer-file guess or reselection
+occurs. Initial schema-3 adoption is explicit, not an automatic campaign behavior
+or a claim of real refinement success. Legacy registries are not converted.
+
+**C224:** `postmr --checked-preparation` now composes construction, one existing
+owned attempt and exact publication, with honest fallback reporting and one proof
+read at publication. Default preparation and campaigns remain unchanged.
+
+**C225:** schema-2 campaigns can freeze `postmr.checked_preparation = true`.
+The stage reuses ordinary checked preparation and records its actual ReadySet
+outcome and genuine evidence. Campaign retry still starts a fresh run; standalone
+recovery does not manufacture an interrupted campaign stage receipt.
+
+C231 verifies that a real new compact request can use the same initial checkpoint
+publisher and ordinary inspection/refinement-input readers after relocation.
+Synthetic observation/map path fixtures test this handoff, not native MTZ reading
+or diffraction refinement. Reuse that result rather than repeating construction.
+
+C250 first protects checked-registry writes against stale snapshots: compare the
+sealed registry identity under the existing kernel lock, preserve newer work on
+conflict and refresh the live identity after success. This fixes an observed
+lost-update risk and supplies the guarded save used by C251 alternatives.
+
+C251 implements explicit later alternatives from the same frozen construction,
+with schema-4 receipts and exact Coot/refinement readers. These are not claimed
+coordinate descendants of a selected refined model. Interrupted saves preserve
+intervening bookmarks/selection, and the sealed observation anchor now survives
+dataset renaming. A single history replay supplies all published choices.
+C252 executes actual stopped optional generation followed by a fresh successful
+attempt, then publishes both choices without replacing the initial one. Relocated
+Coot and AutoRefine input reads retain the exact selected model, five PHIL files
+and two CIFs. Manual import/explicit selection and repeat publication preserve
+the subsequent choice and all preparation files. A second relocation after manual
+import also resolves the current child with its historical source path absent.
+No native Coot edit or diffraction refinement is claimed; observation/map paths
+are synthetic fixtures.
+C253 retains the original Phaser model as phasing input and binds anomalous-site
+validation to the chosen model's candidates/unit cell. Schema 5 and an immutable
+site-reference/result let ordinary phase/map consumers verify that comparison
+without changing the initial preparation or later selections. Focused controls
+cover alternatives, manual choice, relocation, native failure and conflicting
+publication. No automatic campaign continuation or native refinement claim follows.
+
+**Remaining acceptance:** C270–C272 complete selected-model native AutoSol,
+later-selection/relocated inspection and final native Coot loading for the explicit
+A:5IU fixture. C273 reduces duplicate numerical work within exact inspection.
+C274 closes **explicit completion of a sealed phasing result save**: new checked
+launches observe their existing producer/group, bind the completed result and
+intended report, and finish only after both are known stopped. A fresh complete
+Phenix run, deliberate save interruption, relocation and repeat completion pass;
+later selection survives. No new executor, child group or scientific validator.
+
+Remaining recovery scope must stay visible: an interruption before the publication
+receipt, unfinished native work, a shared/foreign/unknown group and a missing outer
+campaign-stage receipt are not automatically adopted. Direct AutoSol still lacks
+standalone isolated child ownership; inherited campaign supervision is unchanged.
+Old unowned partial directories remain visible and unadopted. No guessed process
+death, in-place native retry or fabricated campaign success. Decide the supported
+caller/rollout boundary explicitly and reconcile serial resource acceptance before
+Q04/Q05 closure; reuse these owners rather than starting another recovery stack.
+C255 has separately reconciled Alder's exact HL phase-label fix into Cedar, with
+unchanged native arguments and a real read of the documented DiU MTZ. This closes
+the known phase-label correctness discrepancy on Cedar; C270 now supplies native
+selected-model acceptance. The final AutoPhase naming task remains Q16.
+For the anomalous-site connection, preserve these distinctions:
+
+- The original Phaser model remains the phasing input; changing it to the
+  modified preparation would alter the scientific protocol.
+- Candidate heavy-atom coordinates and unit-cell context must come from the exact
+  chosen model. Replacing only the model path would leave the old coordinate list.
+- Save the chosen checkpoint/model identity and checksums through declared anchors;
+  verify them when phases/maps are later consumed. A newly written field that no
+  reader checks is not provenance. Preserve legacy meanings and refuse unsupported
+  authority rather than silently ignoring it.
+- Keep acceptance/review distances, source chemistry and Free-R rules unchanged.
+  A later manual/refined descendant needs its own exact-model validation; do not
+  relabel it as a fresh preparation from frozen construction.
+
+Reuse the existing request owner and publication path;
+do not build another recovery or chemistry framework. Preserve normalization and
+anomalous metadata where actually available, without inventing ReadySet success.
+Exercise cache reuse, missing/stale entries, repair, usable fallback, unqualified
+failure and interruption through the real callers. C225 tests establish campaign
+handoff/frozen intent, not fresh native execution of every chemistry outcome.
+Reuse the existing constructor/continuation/publisher without rerunning Coot on
+partial work. No default activation or broader chemical eligibility follows.
+
+Optional failure should preserve a trustworthy model/restraint set and allow
+useful work to continue. If no safe set remains, block only its dependent scientific
+step while retaining reporting and recovery. Actual complete-restraint refinement
+remains Q06; initial publication does not close that job.
+
+
+The combined metadata writer now shares C09's native loop policy (C179), with
+strict fresh endpoint acceptance and preserved legacy outcomes. C180 extends the
+same writer to both partial-filter precedence directions, with actual native
+before/after isolation and cold replay. C181 closes the explicit **selected
+original/repaired runtime → ReadySet → exact native → public bundle** bridge.
+Actual original and C140-restored repaired controls pass. Raw display-padding
+mismatch, explicit-H change, missing evidence and timeout retain the exact selected
+parent; a pre-repair baseline cannot authorize an endpoint. All historical choices
+remain unchanged after relocation.
+
+C182 derives current-installation settings without borrowing old test configuration.
+C183 owns one immutable continuation execution and schedules at most one existing
+lossless C140 correction, qualified by a fresh native endpoint. All five live controls
+and complete cold replays pass. C184 binds it to the existing complete-request owner,
+including interrupted/unknown child recovery, shared elapsed allowance and immutable
+previous outputs; actual fresh recovery and optional repaired fallback pass. Next
+integrate the ordinary caller and checkpoint publication.
+Preserve pre-construction source/producer lineage and exact NAR intent. No second
+recovery owner or unqualified pre-repair fallback should be introduced.
+
+Done when recipes/models containing modified components reach final ReadySet
+consumption and exact native qualification through ordinary entry points, then
+publish one internally consistent selected model/CIF/PHIL/checkpoint. Cover newly
+mutated and already-present residues, partial failure, valid fallback, latest
+versus selected inspection and replay without historical host paths. Do not mix
+an older model with newer dictionaries, rewrite a prior checkpoint, or promote
+report-only findings into unreviewed universal gates.
+
+### Q06 — Qualify the actual refinement consumer
+
+**Open; can start independently, required before ordinary-refinement claims.**
+C206 adds an explicit achieved-geometry requirement: check parent-to-mutant
+orientation, local trigonal geometry, retained ring planes and exocyclic coverage,
+alongside triple-axis terms. Keep native membership, numerical consistency,
+chemical target plausibility and achieved geometry distinct. Its successful
+fixed-backbone diagnostic does not close this package.
+C23–C26 identified and bounded a parallelity-gradient accumulation defect.
+C147–C150 reuse a NASolve-local corrected evaluator. That proves those diagnostic
+jobs; it does not qualify an unmodified ordinary Phenix refinement process.
+
+Record exact installed capabilities/source/version and test the actual supported
+refinement path with complete NAR pair/stack restraints. Decide an explicit,
+reviewed compatible route or report an unsupported consumer; never silently patch
+an installed SDK or drop restraints. Done when the selected repaired bundle is
+consumed by ordinary refinement with preserved observations and Free-R authority,
+source hands, terminal intent and exact custom membership. A bounded mechanics
+success need not solve the test structure, but must establish the advertised
+consumer behavior. Document unavailable formal-charge APIs honestly.
+
+**Explicit post-refinement survival check (Simon, 2026-11-14):** Simon reports
+that an earlier Cedar-built PDU sent to a collaborator looked well formed before
+refinement but distorted afterward. The exact files, Cedar revision, native
+version, settings and before/after coordinates are not yet identified; this is a
+reported downstream failure, not a diagnosed mechanism. Keep it in Q06, then
+reuse the control in Q07; it does not interrupt the current Q04/Q05 handoff work.
+
+Run the actual supported Phenix refinement with the selected complete bundle.
+Compare the built model, ReadySet output and final refined model: ring geometry,
+C5 trigonal geometry, the ring–C5–propyne plane, propyne internal geometry and
+intended glycosidic/base orientation; retain sugar stereochemistry, phosphate
+intent, base-pair/stacking membership and Free-R authority. Inspect effective
+native proxies/targets/weights as well as final coordinates, so a beautiful input
+or a CIF plane listing cannot masquerade as successful restraint application.
+Distinguish wrong/missing/dropped restraints, atom-name remapping, weighting,
+native-consumer defects and ordinary data-driven movement. Use source connectivity
+and geometry rules, with PDU and a held-out related substituent as controls—not a
+PDU-name repair switch. Ordinary Phenix survival remains unproven until this passes;
+local corrected diagnostic evaluators do not establish that result. Retrieve the
+collaborator's exact pair of files when needed; do not reconstruct its provenance
+from memory or search unrelated datasets.
+
+### Q07 — One mixed-scaffold ordinary acceptance run
+
+**Open. Depends on Q02–Q06.** Retain all eight original pairs on one scaffold: K:X, D:T, Z:P, B:S, PDU:A,
+5PC:G, 5CM:Q and DF:A, with **ATL alongside the existing pairs**, not PDU paired
+to ATL.
+Use explicit recorded identities (DF is the laboratory alias for A1AAZ), broken
+PDU and source-changing DF inputs, and the same generalized recovery rules.
+C146–C150 establish connected ATL, exact 201 custom restraints, repaired PDU/5PC
+numerics and endpoint mechanics; they do not close ordinary adoption/refinement.
+
+Done when an ordinary invocation acquires or repairs the necessary dictionaries,
+qualifies the selected state and produces inspectable refinement artifacts with
+all intended pair/stack membership, source centres, phosphate/H state and unaffected
+sites checked. Include cache reuse and one changed-source rejection. Report
+nonconvergence, residual strain and scientific uncertainty separately. A one-off
+runner that chooses its repair from an ATL/PDU name does not satisfy this package.
+
+**Queued closure challenge — held-out mixed modifications (Simon, 2026-11-03):**
+After the current Q04 checkpoint, add a separate builder generalization control
+before the proposed Cedar integration with main. Mutate **eight residues** into
+Watson–Crick pairs spanning different base and sugar modifications, including an
+LNA:RNA combination and a source-supported PNA combination where its declared
+backbone context is compatible. Prefer catalogue ligands not explicitly repaired
+in earlier Cedar pushes. Choose exact codes, sequence/sites and existing source
+hashes when preparing the experiment; family names alone do not define chemistry.
+Use the existing ligand definitions unchanged: this is a builder transfer test,
+not a new dictionary-patching exercise or replacement for the original Q07 matrix.
+
+Include a phosphorothioate case if its exact substitution, linkage, source charge
+and phosphorus stereochemical intent (or explicitly declared mixture) can be
+represented faithfully. Do not infer that state from an ordinary phosphate or
+force PNA into a phosphodiester-link contract. Unsupported input/attachment routes
+remain recorded coverage gaps and go into their owning queue package.
+
+Acceptance: preserved input/source bytes, intended mutation and unaffected sites,
+base/sugar/declared phosphorus stereochemistry, native atom/link/junction coverage,
+and exact NAR Watson–Crick pair membership. Separate construction success,
+unsupported chemistry, builder defect and dictionary/native-consumer defect;
+a failed case is useful evidence, not authority to alter a ligand or weaken a
+guard. Inspect geometry/clashes without equating builder success to refinement
+or experimental validation. Catalogue/source selection and the compatible
+host/segment recipe are preparation gates; Q09–Q13 retain family/state ownership.
+**Queued for closure, not the next test; finish active Q04 work first.**
+
+### Q08 — Explain persistent mixed-pair geometry
+
+**Open; depends on exact source/NAR evidence, not more iteration budget.**
+CGY–DX strain recurs from C27/C28 through the C149 endpoint. Compare intended
+chemical state and NAR atom roles/targets, actual proxies, dictionary target
+compatibility, initial placement and achieved geometry under a fixed objective.
+Preserve valid source and negative controls; separate dictionary, construction
+and optimizer causes. Do not infer a target error from high residual alone.
+
+Done when the residual has a documented causal boundary and either a generalized,
+source-authorized correction or an explicit scientifically usable/unusable
+selection outcome. No restraint deletion, arbitrary softening, hand inversion or
+longer run counts as the explanation. This is tool diagnosis, not an obligation
+to solve this particular crystal structure before all software can ship.
+
+## Chemistry transfer and coverage packages
+
+### Q09 — Complete L-DNA and fluorinated-sugar workflow transfer
+
+**Open. Depends on Q01/Q03/Q05/Q06 for ordinary completion.** C110's L-3GBI
+whole-model recipe and ordinary membership pass are real. C133 later qualifies
+source-projected L-DNA flank/terminal definitions. Return to the L-FANA geometry
+case with those qualified flanks; the older C130 trial was never thereby rerun.
+Then exercise the same graph/element/stereochemistry rules on a genuinely linked
+ribo-fluoro/L-FDNA control and additional L-FANA bases as source evidence permits.
+
+Done when all declared centres, base identity, both links and full junction-angle
+coverage survive construction, ReadySet, final native qualification and bounded
+ordinary refinement. Preserve the all-sequence recipe, explicit enantiomer-source
+identity and collision-safe local NAR mapping. Synthetic renamed controls are
+transfer regressions, not live L-FDNA support. Resolve the recorded DG native
+hydrogen-name mismatch through verified mappings. Do not make “L-FANA” or an atom
+spelling the permission to flip a centre, remove OP3 or change phosphate charge.
+
+### Q10 — Finish connected PNA parameterization
+
+**Open. Source network work is complete; native linked state is not.**
+C114 supports explicit neutral amide source operations; C117/C118 qualify selected
+whole-purine candidates; C119 freezes connected source networks. Implement a
+reversible, source-bound native adapter for the final connected reaction state
+and qualify actual linked numerics and construction. Pruning isolated monomer
+terms is not sufficient evidence of an amide parameterization.
+
+Done when a neutral connected PNA control and a held-out graph traverse exact
+reaction/atom ownership, native inventory, derivatives, construction and selected
+ordinary use (Q05/Q06), with no phosphate assumptions. Preserve the four unresolved
+charged reacting-amine cases for Q13; do not silently neutralize them or claim
+that isolated C/A/G controls qualify a PNA polymer.
+
+### Q11 — Held-out linked alpha-L-LNA transfer
+
+**Open. Depends on the existing C143–C150 gates and Q01/Q03.**
+10C has a source/native isolated and two-copy numerical control; the separated
+copies are not a connected polymer or physical stacking proof. Construct a linked
+10C control through graph-derived ports, source-preserving placement, both native
+junctions, exact NAR membership and fresh derivative/geometry checks. Consider
+9V9 only after checking its actual source, not from a guessed name/family label.
+
+Done when the held-out code uses the same maintained rules as ATL, including
+negative stereochemical and incompatible-host controls, with no code-specific
+script branch. Route qualified results through Q05/Q06 before advertising ordinary
+support. Preserve the known correct refusal to force incompatible sugar hands
+onto a canonical host.
+
+### Q12 — Resolve catalogue mappings and maintain support coverage
+
+**Open; C105 census is complete, catalogue support is not.** The pinned workbook
+has 618 rows / 599 codes: 580 unique rows, eight equivalent alias groups and eleven
+conflicting groups. Selected CCD graphs exist for 596 codes; DB/DE/DF are absent
+from that source, which does not prove global unavailability. Preserve the reviewed
+A1AAZ→DF bridge. Missing mapped names (1DP, 8YN, A1AAZ, DX, US3) and missing base
+roles (2PR, 5PY, MTU) require explicit source/NAR decisions. A deaza carbon replacing
+a requested nitrogen is not just a spelling alias. Missing marker or blank
+phosphate cells are not chemical instructions.
+
+Done when every code/row has pinned source availability, unambiguous operational
+identity, role mapping, chemistry/linked/native/workflow status and a next action
+for each gap. Validate collision-safe local codes against actual resources; a new
+fake label cannot repair chemistry. Keep NAR ownership of pair/stack policy.
+Attempt all families with actionable evidence and reviewed exceptions where
+necessary; do not close the programme by labeling entire difficult families
+unsupported. Name the workbook hash/version rather than assuming the installed
+NAR package version identifies that workbook.
+
+### Q13 — Close chemical-state and attachment-policy gaps
+
+**C265 concrete holdover:** curated 1AP has singly bonded terminal OP3 with charge
+−1 and no H. The explicit native backbone rule supports a neutral hydroxyl leaving
+group, so it refuses this internal link. General support must identify the source
+port by graph/state, preserve nonreacting OP1/OP2 and every retained charge/H,
+record the exact leaving-group and total-charge change, and qualify the linked
+native dictionary. Do not neutralize the source, bypass the explicit representation
+rule or add a 1AP-only exception. C58's earlier unqualified/legacy pathway does not
+establish this newer source-bound operation. Keep the refusal until that authority
+and native evidence exist. Original acquisition itself passed.
+
+
+**Open; incremental prerequisite for affected Q04/Q07/Q09/Q10/Q12 cases.**
+C152 reconfirms the specific Q03 phosphate-state boundary: retained PDU/5PC
+sources and numerical base dictionaries differ in HOP2/HOP3 and OP2/OP3 charge.
+Account for the intended state and each source/site operation explicitly; the
+linear-torsion omission neither repairs nor authorizes that state transition.
+C153 closes Q03 diagnostic composition using exact-source saved candidates in a
+separate complete-monomer control. It leaves this mixed-scaffold transition open.
+Finish explicit source-preserving H/charge/protonation, atom aliases and attachment
+ownership where current DNA/L-DNA or neutral amide contracts do not apply.
+Include aliased terminal operations, charged reactive PNA states and a real
+3′-phosphate/nonstandard-backbone example before claiming that support.
+
+C191 adds a separate actual consumer failure: its declared neutral-purine DA
+candidate is retained, then both isolated seeds assert `HOP2!="HOP3"`. C121
+recorded the mapper assertion for DG. Preserve the exact C191 source, policy and
+consumer evidence under `full_model_source_owner_2026_11_10`; this is not proof
+that the source protonation is wrong, nor the same evidence as C152's source/
+candidate state difference. C194's fresh diagnostics isolate a missing HOP2
+translation entry, but adding that identity mapping alone exposes a second
+failure: loaded DA and effective native Ad differ, leaving HOP2 unexpected and
+without an energy type. Phenix's existing explicit per-residue CIF selection then
+refuses an O3′–HO3′ terminal bond conflict at both seeds. Preserve strict conflicts
+and both negative controls; neither is a qualified workaround. C166 5PC and C172
+PDU retain both phosphate H atoms, all 21 conditional checks and exact saved proxy
+signatures in the same experiment. Every experimental worker is rejected by
+ordinary authentication; no new qualification/runtime is published.
+
+The next native compatibility gate must join exact source-component consumption,
+terminal-modifier ownership and observed effective state before versioned worker/
+consumer/cache integration. Include mapper source and native-extension pins,
+legacy cold replay, both coordinate seeds, current linked sites, unaffected and
+held-out controls. Reuse the existing source-state/projection and process owner;
+do not create another hydrogen-name classifier or retry scheduler. Standard-name
+parser controls are not the Q07 modified-residue challenge. Do not delete or
+rename source hydrogens, force an energy type or relax conflict checks merely to
+bypass these failures. See the [C194 controls](cif-doctor.md#native-hydrogen-mapping-and-component-ownership-diagnostic-c194).
+
+Done per operation when exact allowed changes have source authority, independent
+native effective-state evidence, unaffected-site checks and a held-out graph.
+Protect intended terminal phosphate; unwanted internal OP3 is governed by declared
+link context, never a blanket add/delete rule. Keep source-relative stereochemistry
+and experimental protonation separate from unavailable absolute CIP/charge APIs.
+Use reviewed graph/hash/version-scoped exceptions if a native consumer errs;
+never let a whitelist waive unrelated chemistry checks. Ask for scientific intent
+only after available evidence and proven usable fallbacks cannot settle it.
+
+### Q14 — Recover missing challenges and calibrate scientific findings
+
+**Open; separate tasks with explicit evidence availability.** The original
+8RO/DE and failed 1AP artifacts remain unclosed historical-source questions.
+Use their exact hashes/graphs if available; do not equate public 8RO with lab DE
+or search unrelated unpublished datasets by basename. Public controls cannot
+retrospectively establish the cause of an unavailable failed input.
+
+Also qualify finite-width plane/angle decisions and valid alternative torsions/
+puckers against legitimate canonical, exterior-planar, unequal-sigma, metal and
+improper controls. Preserve the reviewed 5CM correction's exact scope. Done when
+repair-triggering classifications have documented false-positive controls and
+calibration, while descriptive findings stay descriptive. Missing historical
+fixtures may remain explicitly unresolved and limit the corresponding claim;
+they should not block unrelated demonstrated chemistry forever.
+
+## Delivery and explicitly separate work
+
+### Q15 — One plain-language result and refreshed user explanation
+
+**Open. Depends on Q05 and the chosen supported scope.** Join recovery, selected
+fallback, remaining scientific questions and exact inspection commands into
+ordinary reports and the solution PDF. Update the existing user-oriented CIF
+Doctor explanation/PDF lineage and [human overview](cif-doctor-human-overview.md)
+when the integration actually ships; keep the editable figure consistent.
+
+Done when a student can see what was repaired, what will refine, what remains
+uncertain and which exact checkpoint to inspect without reading CIF tables.
+Keep selected versus latest explicit and do not call an isolated numerical pass
+complete support. A developer review receipt is not mandatory student approval.
+
+Consolidate the growing handoff/guide/overview chronologies into stable public
+methods plus clearly archived evidence, preserving existing anchors, original
+verdicts and receipt hashes. Distill durable product architecture before moving
+internal deliberation to the private notes repository. Do not copy live-run data
+or chat transcripts into the public project. This is the documentation cleanup
+already noted after C133, not permission to delete historical evidence.
+
+### Q16 — Final integration, portability and retained-artifact closure
+
+The specific C171 diagnostic-masking follow-up is resolved in
+[C185](cif-doctor.md#preserve-primary-failures-during-diagnostic-reporting-c185):
+all existing exception-note paths share best-effort handling, and a failed
+prepared-repair progress write preserves the original error/timeout. Tests cover
+missing/disabled/broken note support and unchanged ownership refusal. These run
+on Python 3.12.14, including a relocated checkout; actual Python 3.10 execution
+and full platform qualification remain part of the release gate below.
+
+
+**Open; release gate.** State whether the proposed checkpoint ships bounded
+explicit tools or the automatic engine, then review the actual Cedar→pine→main
+diff and interactions with the other NARestraints/metal work. Run the unfiltered
+full suite on the final combined source, relevant ordinary/native controls and
+relocation with original paths unavailable. Exercise macOS/Linux process/path
+assumptions for supported environments; record any untested platform explicitly.
+
+C220 now passes the full suite: **9,178 tests + 276 subtests**. The exact
+source/test/script hashes and command are retained in the C220 evidence record;
+no source changed during that run. This replaces C160 as the current full baseline.
+C222's full run passed 9,210 tests + 273 subtests and exposed one new optional-view
+argument omission in Refine Doctor (three tests + three subtests). That one-line
+compatibility fix passes 124 affected tests + 40 subtests; no full rerun, so C220
+remains the last completely green full baseline. Subsequent bounded Cedar passes
+use focused tests until a meaningful integration checkpoint.
+C169's interrupted run remains historical non-pass evidence. Final combined
+Cedar/pine/main source still needs its own integration regression and native checks.
+C220 also retires 89 audited old source-build copies and archives 1,353 older
+validation scripts outside the product checkout, with byte verification before
+removing redundant originals. Preserve published evidence and archive owned
+runners under the [branch-artifact policy](collaboration.md#branch-artifact-archive-and-merge-cleanup)
+before retiring branches/worktrees. Inventory first; do not clean unrelated runs,
+old environments or user material. Keep older readers/receipts and documented
+migration behavior. This queue does not authorize a merge.
+
+#### Final implementation task — call the NASolve workflow AutoPhase
+
+**Queued, not implemented; 2026-11-13.** After the agreed Cedar chemistry,
+consumer and reporting work, rename the public NASolve workflow **AutoPhase**,
+explicitly described as using **Phenix AutoSol**. This is the last implementation
+task in Q16, followed by final combined-source validation and merge review;
+it does not interrupt Q04/Q05 or authorize a merge.
+
+The [machine-readable compatibility audit and plan](autophase-rename-plan.json)
+pins the four audited branch heads, source boundaries, synthetic check and
+acceptance criteria. Add public aliases through the existing implementation;
+retain `nasolve autosol`, `phenix.autosol`, native `autosol.*` settings and existing
+saved run/campaign identities. No bulk replacement or historical-run migration.
+Preserve both Alder's exact HL phase-label fix and Cedar's checked-preparation
+validation; recheck branches before implementation and reconcile correctness
+separately from naming. An on-disk/schema rename is optional later work.
+
+### Deferred extensions — retained, not hidden release requirements
+
+- **ChemDraw references and restraint bundles:** future input support through an
+  explicitly mapped chemical interchange (for example stereochemical SMILES or
+  Mol/SDF after actual compatibility research), with graph/source provenance and
+  numerical qualification. Drawing-to-model building is a separate workflow.
+- **Sticky-end stitching / symmetry geometry:** user-deferred. C111 found distinct
+  GC versus AT geometry/plane outcomes. Symmetry-image soft-bond exclusions,
+  planes/parallelity gradients and large helix motion need their own design and
+  native validation. Never turn complementary overhangs into an undeclared
+  covalent pseudolink. Not a CIF Doctor release blocker.
+- **Metal-pair GUI and unusual coordination:** coordinate through the existing
+  metal-builder/NAR contracts and preserve the other branch's work. Do not infer
+  metal valence or repurpose ordinary organic repair rules without authority.
+- **Broader Doctor orchestration / guided human decisions:** retain data, Free-R,
+  geometry and campaign evidence boundaries. A human decision needs exact inspected
+  evidence and selected action before a future automated Doctor can propose it.
+
+## History reconciliation and orphan-work audit
+
+The [native ledger](cif-linked-native-registration-evidence.json),
+[implementation map](cif-restraint-doctor-implementation.json),
+[runtime contract](cif-doctor.md) and [methods blueprint](cif-restraint-audit-methods.md)
+retain original outcomes. A historical “pending” is not reopened if a later record
+closes it. Conversely, a later successful isolated control does not close an
+unrelated linked or ordinary-workflow gate.
+
+| Delivery range | Reconciled outcome | Current disposition |
+| --- | --- | --- |
+| Original blueprint / C00–C04 | Initial assessor, bad generated-bond quarantine, installed eLBOW option/source-state retention and reproducible IGU candidate. | Keep original design/failed-input evidence; automatic orchestration is Q04/Q05, missing challenge provenance Q14. |
+| C05–C14 | Native modifier registration, singleton component metadata, terminal/outgoing state controls and Phenix CLI compatibility. | Later readbacks supersede early native-pending notes. Source state and unsupported charge readback remain scoped under Q13/Q06. |
+| C15–C20 | Endpoint inventory, whole-fragment construction and source-retaining DF; saved-endpoint reload/serialization. | Reuse C18 DF evidence (C98); do not regenerate solely because it is old. Cutoff-created proxies remain distinct from deleted intended restraints. |
+| C21–C29 | Exact NAR membership, parallelity derivative diagnosis/correction, bounded geometry and source-state review. | Numerical defect has a bounded diagnostic remedy; ordinary-consumer applicability Q06 and persistent pair strain Q08 remain open. |
+| C30–C37 | Source dialect, bond-token, charge/stereo preservation diagnosis and controlled native translation. | Historical “run C33/C37” instructions are superseded, not current queue entries. Their source/chemistry findings remain evidence. |
+| C38–C46 | PDU/5PC declared-linear terms, source/ReadySet ownership and exact effective changes. | General repair/attribution now C142/C149/C150; compose source-qualified selection in Q01/Q03. |
+| C47–C58 | Generator constructor/stereo/order failures resolved into explicit source-preserving candidates and linked controls. | Temporary native stereo conventions do not permit molecular inversion; final-state extensions Q10/Q13 remain. |
+| C59–C70 | Whole-model selection, portable bundle, Coot whole-base transport, frozen dictionary store and source alias route. | Bounded reuse exists; later policy/consumer cases still need Q04/Q05. |
+| C71–C79 | Ordinary cache acquisition, truthful ReadySet trace/consumption, bounded transport and per-component ordinary arguments. | Implemented, not orphaned. Do not recreate these mechanisms in a new orchestrator. |
+| C80–C95 | Mixed scaffold, source/link recovery, derivative/geometry/torsion work, portable endpoint and public runtime. | Old Mac-pending snapshots are resolved by later return/replay records. Public mechanics do not settle source-DF or final acceptance. |
+| C96–C104 | Consolidated readbacks, source DF recovery, PDU derivative/precision diagnosis and exact omission inventory. | Reused by C142/C149/C150; ordinary mixed acceptance Q07 remains. |
+| C105–C119 | Catalogue census, graph ports, reciprocal/native links, whole-model L-DNA, symmetry audit, name/H binding and connected PNA source networks. | G1 complete; Q09/Q10/Q12/Q13 retain family/native gaps. Sticky ends explicitly deferred. |
+| C120–C133 | FANA source/stereo policies, explicit L-FANA identity, binding/placement, topology/derivatives, bounded geometry and repaired flank definitions. | Return to the actual geometry/workflow with repaired flanks (Q09); no blanket L-FDNA support. |
+| C134–C141 | Focused-test policy, ordinary reuse checks, explicit policy storage, full native monomers, ReadySet bundle/serialization and public selected evidence. | Implemented components; missing ordinary composition is Q01/Q03–Q05. |
+| C142–C150 | ATL source/native construction, generalized furanose placement, held-out isolated 10C, captured numerics/geometry and maintained linear repair attribution. | Mechanics now pass for the repaired mixed manager; no automatic or scientific adoption. Q01/Q03/Q07/Q08/Q11 remain. |
+
+This audit also corrects stale top-level ledger pointers (C115 “current”, C37
+“next”) while preserving their exact old values as historical metadata. The
+2026-10-11 methods introduction now distinguishes implemented native diagnostics
+from pending ordinary integration. The G1–G6 handoff table remains the programme
+summary and maps to this queue; it is not another ordering authority.
+
+Audit by Rowan · Codex desktop. Future contributors should record completion
+against the job ID with exact code/evidence and remove only the open status, not
+the historical scientific caveat it resolved.

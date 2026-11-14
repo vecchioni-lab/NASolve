@@ -377,3 +377,54 @@ def test_read_only_audit_never_creates_or_rewrites_files(tmp_path):
     before = {p.name: p.read_bytes() for p in tmp_path.iterdir()}
     audit_phosphates(source, inspect_sites=('A:12',))
     assert before == {p.name: p.read_bytes() for p in tmp_path.iterdir()}
+
+
+@pytest.mark.parametrize('count', [1, 2])
+@pytest.mark.parametrize('name', ['Simple DNA', 'Source O3\' with a "quoted" label', 'First line\nSecond line'])
+def test_combined_metadata_preserves_native_loop_and_every_value(tmp_path, count, name):
+    from nasolve.ligand_profiles import _emit
+    sources=[];expected=[];definitions=[]
+    for i in range(count):
+        code='X'+str(i);blocks=_blocks(LIBRARY)
+        metadata={k:([code] if k in {'_chem_comp.id','_chem_comp.three_letter_code'} else [name] if k=='_chem_comp.name' else v)
+                  for k,v in blocks[0].values.items()}
+        definition=blocks[1].text.replace('1AP',code)
+        source=tmp_path/(code+'.cif');source.write_text(_emit(metadata)+'\n'+definition)
+        sources.append(source);expected.append(metadata);definitions.append(definition)
+    before=[(p.read_bytes(),p.stat().st_mtime_ns) for p in sources]
+    output=tmp_path/'combined.cif';combine_dictionary_inputs(sources,output);actual=_blocks(output)
+    assert '\nloop_\n_chem_comp.' in actual[0].text
+    for key in expected[0]:
+        if key!='data_':assert actual[0].values[key]==[r[key][0] for r in expected]
+    assert [b.text.rstrip("\n") for b in actual[1:]]==[text.rstrip("\n") for text in definitions]
+    assert [(p.read_bytes(),p.stat().st_mtime_ns) for p in sources]==before
+
+
+def test_combination_keeps_explicit_legacy_scalar_replay(tmp_path):
+    from nasolve.ligand_profiles import _emit
+    old=tmp_path/'old.cif';combine_dictionary_inputs([LIBRARY],old,component_list_policy=None)
+    blocks=_blocks(LIBRARY)
+    assert old.read_text()==_emit(blocks[0].values)+'\n'+blocks[1].text
+    assert '\nloop_\n_chem_comp.id' not in _blocks(old)[0].text
+    new=tmp_path/'new.cif';combine_dictionary_inputs([LIBRARY],new)
+    assert [_b.values for _b in _blocks(new)]==[_b.values for _b in _blocks(old)]
+
+
+@pytest.mark.parametrize('policy', ['', 'guessed-group', False, 1, {}])
+def test_combination_refuses_unknown_metadata_policy_before_output(tmp_path,policy):
+    target=tmp_path/'out.cif'
+    with pytest.raises((ValueError,TypeError),match='policy'):
+        combine_dictionary_inputs([LIBRARY],target,component_list_policy=policy)
+    assert not target.exists()
+
+
+def test_multi_component_serialization_and_missing_columns_keep_legacy_bytes(tmp_path):
+    from nasolve.ligand_profiles import _emit
+    blocks=_blocks(LIBRARY);values=dict(blocks[0].values);values.pop('_chem_comp.group')
+    values['_chem_comp.id']=['XYZ'];values['_chem_comp.three_letter_code']=['XYZ']
+    other=tmp_path/'other.cif';other.write_text(_emit(values)+'\n'+blocks[1].text.replace('1AP','XYZ'))
+    old=tmp_path/'old.cif';new=tmp_path/'new.cif'
+    combine_dictionary_inputs([LIBRARY,other],old,component_list_policy=None)
+    combine_dictionary_inputs([LIBRARY,other],new)
+    assert old.read_bytes()==new.read_bytes()
+    assert _blocks(new)[0].values['_chem_comp.group']==['DNA','?']
