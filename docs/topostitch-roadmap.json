@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
+  "audited_code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -471,7 +471,7 @@
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
+        "code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
         "reviewer": "Linden",
         "scope": "Read-only sampled scattering prototype only; P02 remains open, no materialized cut, complete invariance or chemistry qualification"
       }
@@ -829,10 +829,10 @@
     },
     "E_REPRESENTATIVE_SCATTERING": {
       "kind": "sampled_complex_scattering_observation",
-      "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
+      "code_commit": "52fb6d471df249546518f70bdb2021794336fa70",
       "human_update": 55,
       "reference": "docs/topostitch-periodic.md#w55--observe-sampled-scattering-before-and-after-representative-relabeling",
-      "result": "22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved.",
+      "result": "22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved. Temporary installed Cedar C297 fe7e9fd73988fc2ffb5501c3740fd9e06da0b45d plus24 Willow modules passes298 focused owner/API checks and exact public preview/scattering replay; no merge or full combined-suite/CLI metadata claim.",
       "limitation": "Finite sampled observation only; no acceptance threshold, coordinate serialization, whole-object/multiplicity/scattering proof or chemistry/refinement approval. NCS and unsupported scattering inputs refuse. Initial unsupported centering-absence native output and failed launch evidence retained locally. No SDK/Cedar changes or scientific data committed."
     }
   },
@@ -1089,7 +1089,7 @@
         "number": 55,
         "title": "Observe sampled scattering and anisotropic representative transport",
         "state": "RECORDED",
-        "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992"
+        "code_commit": "52fb6d471df249546518f70bdb2021794336fa70"
       }
     ]
   }

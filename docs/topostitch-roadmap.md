@@ -299,7 +299,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 **Next action:** Persist the explicit registered proposal/source boundary and complete P02 graphical review before writing a recut. Retain sampled scattering/ADP observations as an independent diagnostic, then qualify complete atom-orbit inventory, serialization precision and native seam chemistry.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/6bdc16884bbd9a5c47450d67f3f08743c56e7992); Read-only sampled scattering prototype only; P02 remains open, no materialized cut, complete invariance or chemistry qualification.
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70); Read-only sampled scattering prototype only; P02 remains open, no materialized cut, complete invariance or chemistry qualification.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -622,8 +622,8 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 <a id="e_representative_scattering"></a>
 ### E_REPRESENTATIVE_SCATTERING — sampled_complex_scattering_observation
 
-[Evidence contract](topostitch-periodic.md#w55--observe-sampled-scattering-before-and-after-representative-relabeling) at [W55](https://github.com/vecchioni-lab/NASolve/commit/6bdc16884bbd9a5c47450d67f3f08743c56e7992).
-22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved.
+[Evidence contract](topostitch-periodic.md#w55--observe-sampled-scattering-before-and-after-representative-relabeling) at [W55](https://github.com/vecchioni-lab/NASolve/commit/52fb6d471df249546518f70bdb2021794336fa70).
+22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved. Temporary installed Cedar C297 fe7e9fd73988fc2ffb5501c3740fd9e06da0b45d plus24 Willow modules passes298 focused owner/API checks and exact public preview/scattering replay; no merge or full combined-suite/CLI metadata claim.
 **Limit:** Finite sampled observation only; no acceptance threshold, coordinate serialization, whole-object/multiplicity/scattering proof or chemistry/refinement approval. NCS and unsupported scattering inputs refuse. Initial unsupported centering-absence native output and failed launch evidence retained locally. No SDK/Cedar changes or scientific data committed.
 
 ## Deferred extensions, not hidden blockers

@@ -1066,3 +1066,9 @@ retained; a separately recorded follow-up uses the native
 source fingerprints and all local failures/observations are retained. Neither
 execution is refinement or a dry-run. No native installation or Cedar source was
 changed; scientific inputs/results are deliberately excluded from Git.
+
+A temporary installed package combining Cedar C297 `fe7e9fd73988fc2ffb5501c3740fd9e06da0b45d`
+with the 24 Willow TopoStitch modules passes the same 298 focused owner/API
+checks and exactly reproduces the public preview/scattering observations.
+The original temporary source directory is absent. This checks those interfaces,
+not a branch merge, full combined suite or merged CLI/dependency metadata.
