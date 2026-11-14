@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "a542ea8dc375faeab85cc6196cf5e400603bccc8",
+  "audited_code_commit": "a46c15008f790e86c0194f2ef6d734f6df55f420",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -392,23 +392,25 @@
       "goal": "Represent the observed periodic object independently of a tile hypothesis or PDB chain cut.",
       "delivered": [
         "Logical registration and typed end/image observations exist; a complete recut-ready periodic molecular graph does not.",
-        "W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding."
+        "W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding.",
+        "W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery."
       ],
       "acceptance": [
         "Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.",
         "Handle complete/partial copies, tile versus ASU multiplicity and repeat-phase/winding without forcing the design stoichiometry or zero translation around every cycle."
       ],
-      "next_action": "Qualify explicit image relabeling algebra for one declared cut; then close missing physical/chemical/whole-ASU scope before materialization. P02 still requires graphical review.",
+      "next_action": "Bind one explicit cut preview to registered source/atom ownership before graphical P02 work; retain incomplete physical, seam-chemistry and whole-ASU gates.",
       "evidence": [
         "E_REGISTRATION",
         "E_SOFTWARE",
-        "E_DECLARED_GRAPH"
+        "E_DECLARED_GRAPH",
+        "E_GRAPH_RELABEL"
       ],
       "last_audit": {
         "date": "2026-11-14",
-        "code_commit": "a542ea8dc375faeab85cc6196cf5e400603bccc8",
+        "code_commit": "a46c15008f790e86c0194f2ef6d734f6df55f420",
         "reviewer": "Linden",
-        "scope": "Read-only graph prototype; P01 remains PARTIAL and upstream F02 physical gates remain open."
+        "scope": "Exact image algebra only; P01 remains PARTIAL, P02/P03 remain OPEN and F02 is not bypassed."
       }
     },
     {
@@ -759,6 +761,14 @@
       "reference": "docs/topostitch-periodic.md#w48--declared-periodic-graph-for-pine",
       "result": "20 new graph regressions pass and fail on the pre-patch checkout. Full Willow: 1444 plus 229 subtests. Installed/relocated graph and owner tests: 113. Public 8D93 registered graph reproduces exactly with original paths blocked and original temporary checkout absent; all input bytes preserved. Five installed entrypoint helps, lean import and Python 3.10 syntax checks pass.",
       "limitation": "Declared one-copy scope only; other copies, unrepresented coordinates, unknown boundaries and missing sites remain explicit. No physical orbit quotient, complete molecular graph, covalent seam creation, coordinate materialization, scattering invariance, Phenix/Coot run or Cedar changes. Scientific artifacts stay local."
+    },
+    "E_GRAPH_RELABEL": {
+      "kind": "exact_periodic_graph_representative_relabeling",
+      "code_commit": "a46c15008f790e86c0194f2ef6d734f6df55f420",
+      "human_update": 49,
+      "reference": "docs/topostitch-periodic.md#w49--preview-a-change-of-graph-representatives",
+      "result": "34 graph tests pass, including 14 new regressions that fail against installed W48. Full Willow: 1458 plus 229 subtests. Installed/relocated shared-owner tests: 127. Complete public registered graph and relabel preview reproduce exactly with original paths blocked; selected pairing edges become identity-image edges, loop conjugacy and inverse graph recovery pass. Five entrypoint helps, lean import and Python 3.10 syntax pass.",
+      "limitation": "Exact graph algebra only; no physical orbit or scattering proof, coordinate materialization, chemistry authorization, persistent cut choice or graphical review. Low-level graph binding does not replace the registered source/atom ownership audit. No Phenix/Coot runs or Cedar changes; scientific artifacts stay local."
     }
   },
   "benchmarks": [
@@ -973,8 +983,8 @@
       {
         "number": 49,
         "title": "Preview exact periodic graph representative relabeling",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "a46c15008f790e86c0194f2ef6d734f6df55f420"
       }
     ]
   }

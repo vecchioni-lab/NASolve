@@ -405,6 +405,16 @@ The audited roadmap owns the remaining image, capacity and geometry gates.
 
 ## Current validation receipt — 2026-11-14
 
+**W49 checkpoint:** 34 graph tests pass; installed W48 fails the 14 new tests and
+passes the 20 existing tests. Complete Willow passes 1,458 plus 229 subtests;
+installed/relocated graph and shared-owner checks pass 127, with byte-identical
+public registered graph and relabel preview after the old checkout is absent
+and original source paths are blocked. The commands/environments are the same
+as W48 below, using the W49 source and wheel. Five entrypoint helps, lean import
+and Python 3.10 syntax pass. Wheel SHA-256:
+`db67f84b3f452b301cd30483628e1d4d8d1a0e11e24753d8510c004722ca4768`.
+No coordinate or native-runtime behavior changes; no Phenix/Coot execution.
+
 **W48 checkpoint:** declared graph tests pass (20); complete Willow passes
 1,444 tests plus 229 subtests. Installed/relocated graph and shared-owner tests
 pass (113), and the existing public graph reproduces exactly with original paths
