@@ -989,3 +989,80 @@ relocation. The retained public-source example relabels two whole residues
 (36 atoms), keeps 819 fixed, and verifies all 38 declared edge observations.
 Old graph/relabel/orbit reports reproduce exactly; all source bytes are preserved.
 Scientific fixtures and observations remain local. No Phenix/Coot run is needed.
+
+
+## W55 — Observe sampled scattering before and after representative relabeling
+
+`nasolve.topostitch_scattering.observe_registered_relabel_scattering` takes the
+same explicit model/discovery/registration paths, `node_images`, outer registered
+graph hash and optional `extra_edges` as W52, plus an explicit list of `hkls`.
+It rebuilds the registered preview and uses all present source atoms in Gemmi's
+crystal-image direct sum. Cartesian anisotropic U tensors are rotated in memory
+with Gemmi's cell-operator transform; source occupancy, element, charge and
+isotropic B are preserved. No PDB or other coordinate file is written.
+
+```python
+from nasolve.topostitch_scattering import observe_registered_relabel_scattering
+observation = observe_registered_relabel_scattering(
+    model, discovery, registration,
+    node_images=chosen_images,
+    expected_registered_graph_sha256=bound["report_sha256"],
+    hkls=[[0, 0, 0], [1, 2, 3], [-1, 3, 2]],
+)
+```
+
+The schema-1 `topostitch-registered-relabel-scattering-observation` retains
+complex before/after values, individual and aggregate differences, exact source
+and preview hashes, observed atom/ADP/image counts, transported tensors, numerical
+scope, Gemmi version/kernel fingerprint and the actual element coefficients.
+Its status is always `OBSERVED_REVIEW_REQUIRED`; there is no acceptance threshold
+or claim that a finite reflection sample proves complete scattering invariance.
+A sampled match cannot resolve missing atoms, special-position multiplicity,
+occupancy ambiguity, molecular identity, chemical seams or native restraints.
+
+Requests contain 1–4096 unique integer Miller triples, components at most 10,000,
+and at least one allowed nonzero reflection. F000/systematic absences alone are
+insufficient. The default work budget is 5,000,000 atom/image/reflection terms
+(counting before and after); an explicit positive budget up to 100,000,000 is
+accepted. Existing orbit budgets still apply. Unknown/unparameterized elements,
+missing/invalid occupancy or B, zero/negative-eigenvalue ANISOU, mismatched/orphan/
+duplicate ANISOU, nonstandard SCALE and NCS expansion refuse. The observer reads
+and checks the process-global neutral IT92 policy without modifying it.
+
+[Gemmi's documented direct-sum calculator](https://gemmi.readthedocs.io/en/stable/scattering.html#direct-summation)
+uses nonzero anisotropic U in preference to isotropic B. Its
+[cell image list](https://gemmi.readthedocs.io/en/stable/cell.html#unit-cell)
+contains the crystallographic images. This observer excludes NCS and verifies
+the image count against the declared space group. Atom ANISOU values are stored
+as float32 by Gemmi; tensor readback allows the documented diagnostic's bounded
+float32 scaling error, and raw scattering differences remain visible.
+
+Twenty-two synthetic regressions cover P43, centered hexagonal R3 and oblique
+P21 images; isotropic/no-op/translation cases; wrong tensor transport and distorted
+coordinates; unsupported input/budget/global-policy cases; and exact relocation.
+The previous installed package lacks this module. Focused graph/recut/image/
+scattering checks pass 107; complete Willow passes 1,511 plus 229 subtests.
+Installed/relocated owner checks pass 298, including exact public scattering and
+legacy preview replay with original paths blocked and the old checkout absent.
+Five command helps, lean import and Python 3.10 syntax pass. Validation commands
+follow the W52 receipt above, adding `tests/test_topostitch_scattering.py`.
+Wheel SHA-256: `3b1c1ab0a46a7a00dfa0638a93de460f392283e61b5094f6ec0f54cfc627bad2`.
+
+The retained public source has 855 ANISOU-bearing atoms; the preview changes 36
+representatives. Across the predeclared 343-index grid, Gemmi's maximum complex
+difference is 8.24×10⁻⁷ and relative L2 difference 2.91×10⁻¹¹. The control that
+omits tensor rotation differs by up to 106.36. An independent complete direct
+calculation in **Phenix 2.2.1-6174** transforms fractional coordinates and Ustar
+using cctbx and gives a maximum difference of 3.05×10⁻¹² across 115 allowed
+indices, with the same large negative control. Libraries are not bitwise equal:
+source Fcalc differs by up to 5.44×10⁻⁴, with different parameter precision.
+This qualifies the stated mathematical observations, not a written ASU.
+
+The initial manually supplied cctbx grid included centering-forbidden indices.
+Its direct kernel multiplies by centering multiplicity rather than independently
+summing those translations, so that raw output is not an absence oracle. It is
+retained; a separately recorded follow-up uses the native
+`miller.set.remove_systematic_absences` owner before calculation. Exact commands,
+source fingerprints and all local failures/observations are retained. Neither
+execution is refinement or a dry-run. No native installation or Cedar source was
+changed; scientific inputs/results are deliberately excluded from Git.

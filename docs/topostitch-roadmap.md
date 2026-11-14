@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W54 — Audit accepted points while preserving optimizer failures.** Next: W55.
+**Current update: W55 — Observe sampled scattering and anisotropic representative transport.** Next: W56.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W45 | Isolate intended contacts with a matched retained-core control | RECORDED |
 | W46 | Observe native torsion and monomer-plane endpoint terms through Cedar kernels | RECORDED |
 | W47 | Bind one periodic edge to exact reciprocal partner incidence | RECORDED |
 | W48 | Preserve declared periodic routes and exact image loops | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W52 | Bind representative previews to registered source atoms | RECORDED |
 | W53 | Measure precision at retained failed-trial points | RECORDED |
 | W54 | Audit accepted points while preserving optimizer failures | RECORDED |
+| W55 | Observe sampled scattering and anisotropic representative transport | RECORDED |
 
 ## Finish lines
 
@@ -248,7 +248,7 @@ Avoid repetitive prompts while keeping inferred/borrowed connections tentative a
 | --- | --- | --- | --- |
 | [P01](#p01) | Build the periodic molecular graph and declared scope | PARTIAL | F01, F02 |
 | [P02](#p02) | Offer cut choices in a required graphical preview | OPEN | P01 |
-| [P03](#p03) | Materialize a cut without changing the crystal | OPEN | P02 |
+| [P03](#p03) | Materialize a cut without changing the crystal | PARTIAL | P02 |
 | [P04](#p04) | Qualify seam chemistry and native interpretation | OPEN | P03 |
 | [P05](#p05) | Complete the persistent Pine surgery/refine GUI loop | OPEN | P04 |
 | [P06](#p06) | Pass blind, multiplicity and ordinary-workflow controls | OPEN | P05 |
@@ -290,16 +290,16 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.
 
-**Delivered:** No implemented capability is claimed.
+**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification.
 
 **Closure audit:**
 
 - Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
-**Next action:** Start with an explicit small cut and an independent scattering/inventory oracle before general cut optimization.
-**Evidence:** None yet.
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69); Backend implementation and documented evidence; no new scientific approval.
+**Next action:** Persist the explicit registered proposal/source boundary and complete P02 graphical review before writing a recut. Retain sampled scattering/ADP observations as an independent diagnostic, then qualify complete atom-orbit inventory, serialization precision and native seam chemistry.
+**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/6bdc16884bbd9a5c47450d67f3f08743c56e7992); Read-only sampled scattering prototype only; P02 remains open, no materialized cut, complete invariance or chemistry qualification.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -618,6 +618,13 @@ Two complete Phenix2.2.1-6174 read-only probes reproduce last accepted target co
 [Evidence contract](topostitch-preview.md#w54--audit-last-accepted-points-without-recovering-failed-trials) at [W54](https://github.com/vecchioni-lab/NASolve/commit/6bdc16884bbd9a5c47450d67f3f08743c56e7992).
 11 new capability regressions fail against preceding runtime; all33 focused trial/job tests pass. Full Willow1489 plus229 subtests; installed/relocated276,5helps,lean import and3.10syntax. Both complete Phenix2.2.1-6174 controls reproduce W51 traces,accepted history and errors exactly. Nested full/rounded612-variable checks pass; full samples match independentW53. Failed jobs return2, sources remain unchanged.
 **Limit:** Additive diagnostic metadata only. Original FAILED/error preserved; no rejected-trial fallback, candidate emission, tolerance change or scientific acceptance. Native observations remain local; no Cedar/runtime SDK change, schema migration or full combined-branch qualification.
+
+<a id="e_representative_scattering"></a>
+### E_REPRESENTATIVE_SCATTERING — sampled_complex_scattering_observation
+
+[Evidence contract](topostitch-periodic.md#w55--observe-sampled-scattering-before-and-after-representative-relabeling) at [W55](https://github.com/vecchioni-lab/NASolve/commit/6bdc16884bbd9a5c47450d67f3f08743c56e7992).
+22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved.
+**Limit:** Finite sampled observation only; no acceptance threshold, coordinate serialization, whole-object/multiplicity/scattering proof or chemistry/refinement approval. NCS and unsupported scattering inputs refuse. Initial unsupported centering-absence native output and failed launch evidence retained locally. No SDK/Cedar changes or scientific data committed.
 
 ## Deferred extensions, not hidden blockers
 

@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W55 — Observe representative-change scattering and ADP transport
+
+- Add a bounded read-only complex Fcalc observer over explicit reflections,
+  using all present atoms and in-memory anisotropic tensor transport.
+- Retain raw differences, source/preview/kernel/coefficient bindings and scope;
+  reject unsupported inputs without changing caller-owned scattering settings.
+- Add synthetic controls and independent native observations. No coordinate
+  writer, acceptance threshold, restraint, refinement or existing CLI change.
+
 ### W54 — Retain accepted-point diagnostics after optimizer failure
 
 - Audit only the callback-confirmed last accepted step after an optimizer error,

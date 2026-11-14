@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W54; next W55.** W33 introduced human update numbers without
+**Willow update W55; next W56.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -173,7 +173,17 @@ campaign integration are still open. Unassisted coordinate
 topology discovery, reconstruction, refinement and campaign adoption remain
 unimplemented.
 
-**Current W52 edge:** `preview_registered_relabel` now binds exact outer
+**Current W55 edge:** a source-bound in-memory scattering observer now accompanies
+registered representative previews. It retains complex Fcalc differences on an
+explicit reflection sample and rotates ANISOU without writing a model. Synthetic
+wrong-ADP/coordinate controls are detected; the public sampled result agrees with
+an independent native cctbx before/after check on allowed indices. No threshold,
+complete scattering proof or materialized cut is claimed. Full Willow: 1,511 plus
+229 subtests; installed/relocated: 298. Next persist the explicit proposal/source
+binding for genuine graphical review before materialization. P01 remains partial;
+P02 is open and P03 has only a diagnostic prototype.
+
+**Prior W52 edge:** `preview_registered_relabel` now binds exact outer
 registration/source identity to whole-residue atom images, fixed context and
 edge-image arithmetic. It reuses W48–W50 reports without changing their content.
 Missing requested coordinates refuse; other uncertainty remains visible. No

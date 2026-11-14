@@ -489,6 +489,20 @@
       "native_symmetry_bond_generation": false,
       "graphical_review_recorded": false,
       "runtime_authority": false
+    },
+    "representative_scattering_observation": {
+      "module": "nasolve.topostitch_scattering",
+      "api": "observe_registered_relabel_scattering",
+      "schema_version": 1,
+      "source_bound_registered_preview": true,
+      "explicit_reflection_sample": true,
+      "all_present_atoms": true,
+      "anisotropic_transport": "Gemmi Cartesian U rotation in memory; float32 Atom storage",
+      "complex_values_and_raw_differences": true,
+      "numerical_acceptance_threshold": null,
+      "coordinate_materialization": false,
+      "scattering_invariance_validated": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

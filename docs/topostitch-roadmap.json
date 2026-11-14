@@ -453,23 +453,27 @@
       "id": "P03",
       "track": "pine",
       "title": "Materialize a cut without changing the crystal",
-      "status": "OPEN",
+      "status": "PARTIAL",
       "depends_on": [
         "P02"
       ],
       "goal": "Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.",
-      "delivered": [],
+      "delivered": [
+        "W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification."
+      ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Start with an explicit small cut and an independent scattering/inventory oracle before general cut optimization.",
-      "evidence": [],
+      "next_action": "Persist the explicit registered proposal/source boundary and complete P02 graphical review before writing a recut. Retain sampled scattering/ADP observations as an independent diagnostic, then qualify complete atom-orbit inventory, serialization precision and native seam chemistry.",
+      "evidence": [
+        "E_REPRESENTATIVE_SCATTERING"
+      ],
       "last_audit": {
-        "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "date": "2026-11-14",
+        "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "scope": "Read-only sampled scattering prototype only; P02 remains open, no materialized cut, complete invariance or chemistry qualification"
       }
     },
     {
@@ -822,6 +826,14 @@
       "reference": "docs/topostitch-preview.md#w54--audit-last-accepted-points-without-recovering-failed-trials",
       "result": "11 new capability regressions fail against preceding runtime; all33 focused trial/job tests pass. Full Willow1489 plus229 subtests; installed/relocated276,5helps,lean import and3.10syntax. Both complete Phenix2.2.1-6174 controls reproduce W51 traces,accepted history and errors exactly. Nested full/rounded612-variable checks pass; full samples match independentW53. Failed jobs return2, sources remain unchanged.",
       "limitation": "Additive diagnostic metadata only. Original FAILED/error preserved; no rejected-trial fallback, candidate emission, tolerance change or scientific acceptance. Native observations remain local; no Cedar/runtime SDK change, schema migration or full combined-branch qualification."
+    },
+    "E_REPRESENTATIVE_SCATTERING": {
+      "kind": "sampled_complex_scattering_observation",
+      "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992",
+      "human_update": 55,
+      "reference": "docs/topostitch-periodic.md#w55--observe-sampled-scattering-before-and-after-representative-relabeling",
+      "result": "22 synthetic tests; focused107, full1511 plus229 subtests, installed/relocated298,5helps,lean import,3.10syntax and exact public/legacy replay. Public855 atoms,36 transported tensors,343 reflections: Gemmi maximum difference8.24e-7; coordinate-only negative106.36. Independent complete Phenix2.2.1-6174/cctbx direct calculation on115 allowed indices gives3.05e-12 with the same negative control. Source bytes preserved.",
+      "limitation": "Finite sampled observation only; no acceptance threshold, coordinate serialization, whole-object/multiplicity/scattering proof or chemistry/refinement approval. NCS and unsupported scattering inputs refuse. Initial unsupported centering-absence native output and failed launch evidence retained locally. No SDK/Cedar changes or scientific data committed."
     }
   },
   "benchmarks": [
@@ -937,8 +949,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 54,
-    "next": 55,
+    "current": 55,
+    "next": 56,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1070,6 +1082,12 @@
       {
         "number": 54,
         "title": "Audit accepted points while preserving optimizer failures",
+        "state": "RECORDED",
+        "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992"
+      },
+      {
+        "number": 55,
+        "title": "Observe sampled scattering and anisotropic representative transport",
         "state": "RECORDED",
         "code_commit": "6bdc16884bbd9a5c47450d67f3f08743c56e7992"
       }
