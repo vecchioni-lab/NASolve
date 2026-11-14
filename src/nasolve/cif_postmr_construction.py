@@ -205,7 +205,21 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
     raw, context = _pdb_inventory(raw_model), _pdb_inventory(context_model)
     raw_lines, raw_other = _records(raw_model)
     context_lines, context_other = _records(context_model)
-    selected = {a.site: a for a in actions}
+    selected = {a.site: a for a in actions if a.method == "coot-parent-overlap"}
+    # Canonical mutations may join serial authority only through their new,
+    # explicit input/output binding. They never join graph or OP3 authority.
+    from .postmr_context import canonical_serial_scope
+    canonical_declaration = context_receipt.get("canonical_serial_scope")
+    if canonical_declaration is not None:
+        expected = canonical_serial_scope(actions, raw, _pdb_inventory(initial_model),
+            context_receipt.get("passthrough_sites", ()))
+        if (canonical_declaration != expected or not expected["mutations"]
+                or status != "CONTEXT_PREPARED" or not context_receipt.get("serial_repairs")):
+            raise ValueError("Canonical serial scope differs from declared input/output authority")
+        selected.update({a.site: a for a in actions if a.method == "coot-mutate-base"})
+    elif (status == "CONTEXT_PREPARED" and context_receipt.get("serial_repairs")
+            and any(a.method == "coot-mutate-base" for a in actions)):
+        raise ValueError("Canonical serial repair lacks its explicit mutation scope")
     removed = raw.keys() - context.keys()
     # Curated chemistry authorizes its existing placement rule, not a phosphate
     # edit. Bind the new, separate context scope to the actual source graph and
@@ -265,6 +279,8 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
         if _site(key) not in selected or _canonical(key[-1]) != "OP3" or raw[key]["element"] != "O":
             raise ValueError("Construction context removed an atom other than selected OP3")
         action = selected[_site(key)]
+        if action.method != "coot-parent-overlap":
+            raise ValueError("Canonical serial scope cannot authorize OP3 deletion")
         graph = source_graph_fragment(dictionary_paths[action.after], action.after)
         if _canonical(key[-1]) not in graph["phosphate_atoms"]:
             raise ValueError("Removed oxygen is not a declared terminal phosphate atom")
@@ -307,10 +323,11 @@ def audit_construction_context(initial_model: Path, raw_model: Path, context_mod
     if identity_serials:
         _audit_identity_serial_context(initial_model, raw_model, raw_lines, shadow_lines,
                                        selected, authority)
-    graphs = {a.site: source_graph_fragment(dictionary_paths[a.after], a.after) for a in actions}
+    graphs = {a.site: source_graph_fragment(dictionary_paths[a.after], a.after)
+              for a in actions if a.method == "coot-parent-overlap"}
     parents = {site: _atoms(_pdb_inventory(path), site) for site, path in parent_models.items()}
     parent_shadow_sites = set()
-    for site in selected:
+    for site in graphs:
         raw_atoms, shadow_atoms = _atoms(raw, site), _atoms(shadow, site)
         common = set(graphs[site]["scaffold_atoms"]) & raw_atoms.keys() & parents.get(site, {}).keys()
         if all(shadow_atoms[name]["xyz"] == parents[site][name]["xyz"] for name in common):

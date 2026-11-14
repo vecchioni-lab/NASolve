@@ -481,7 +481,7 @@ report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
 
-**Current consumer route through C299:** `autorefine --checked-plane-forces`
+**Current consumer route through C301:** `autorefine --checked-plane-forces`
 explicitly uses the qualified local Phenix implementation, complete ordered plane
 parameters and the existing immutable AutoRefine/checkpoint owners. Actual
 zero-cycle model setup precedes refinement and has separate outputs. Corrected
@@ -503,7 +503,11 @@ without rerunning it. None of these observations diagnoses the collaborator's PD
 C300 carries the explicit choice through schema-2 campaign recipes and Doctor
 API/CLI. One native Doctor ML-fixed-scattering trial retains all 58 parameters,
 passes its Free-R audit and relocated inspection, with current model unchanged.
-Whole-campaign native forwarding is the next integration control.
+The first fresh A:PDU campaign (C301) stopped correctly at outgoing phosphate
+validation: global Coot renumbering exposed an omitted declared canonical mutation
+in serial authority. The generalized serial-only fix passes 237 tests +10 subtests
+and read-only replay of the actual failure with all original run files unchanged.
+A fresh native campaign, then achieved-chemistry inspection, remains next.
 
 **Next:** inspect achieved chemistry and run a fresh PDU:A control on the existing
 declared test scaffold through the checked campaign. This does not resolve the

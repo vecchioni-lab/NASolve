@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Restore mixed canonical/modified construction after Coot renumbering (C301)
+
+- Include declared normal-base mutations in explicitly bound serial-only repair
+  when Coot renumbers a mixed batch. Validate actual input/output identities;
+  retain historical context behavior without the new policy.
+- Keep graph transport, internal OP3 removal and final phosphate validation under
+  their existing rules. Audit the separate serial scope; retain failed attempts
+  and mark discarded scope as attempted after final-proof rollback.
+
 ### Carry checked plane forces through campaigns and Refine Doctor (C300)
 
 - Schema-2 campaign presets may explicitly set `autorefine.checked_plane_forces`;

@@ -96812,5 +96812,80 @@
       "Wider native profiles/default activation/full regression remain open."
     ],
     "artifacts": "Code/tests/compact evidence only. All models/data/logs and runners remain local; source clone-on-write and prior rounds preserved."
+  },
+  "mixed_canonical_construction_serial_scope_2026_11_14": {
+    "milestone": "C301",
+    "status": "MIXED_CANONICAL_SERIAL_SCOPE_FIXED_AND_REPLAYED",
+    "base_commit": "d9f3bbb8",
+    "behavior": {
+      "before": "Global Coot renumbering plus a declared canonical mutation beside a modified component falsely failed unchanged-unselected identity. Raw OP3 prevented graph restoration; the outgoing-phosphate guard stopped the fresh A:PDU campaign.",
+      "after": "Ordinary construction passes every declared Coot action. Explicit canonical serial-only scope binds unique declared site/before/after to actual input/output identities and existing canonical target vocabulary. Independent serial/shadow audit rejects forged scope or coordinates. No new graph or OP3 authority; final-proof rollback marks the scope attempted."
+    },
+    "source_sha256": {
+      "src/nasolve/postmr.py": "bd481b4615982bb6c34b50e48bbac98f5135f8cdd9d24a4096545ba2d5760de1",
+      "src/nasolve/postmr_context.py": "accb65e0b82bf1f37ad8e92cdc3a46b8c2d29d6d33ede2f47c73469f5cae0817",
+      "src/nasolve/cif_postmr_construction.py": "005e26ecf6168aec1dc13378112eb6df02968c97f2b84c87bb8e81cabfba1606"
+    },
+    "tests": {
+      "before": "17 new cases failed against C300 in 0.52 s, including ordinary mocked-Coot RAW_CONTEXT_RETAINED versus expected CONTEXT_PREPARED; new-policy unit cases lacked the proposed API.",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_postmr_canonical_serials.py tests/test_postmr_identity_serials.py tests/test_postmr_context.py tests/test_postmr_context_mixed.py tests/test_cif_postmr_construction.py tests/test_postmr.py tests/test_postmr_restoration.py tests/test_postmr_phosphate.py tests/test_postmr_conformation.py tests/test_phosphate.py tests/test_cif_construction_provenance.py tests/test_cif_ordinary_postmr.py",
+      "result": "237 passed +10 subtests in 4.48 s; no full suite",
+      "coverage": "Neutral ZZZ graph with declared canonical mutation, exact raw nonserial preservation, unchanged terminal/passthrough policy, false declarations/unselected damage/forged scope and shadow refusal, whole rollback, independent audit, relocation after original anchor removal."
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "301_Cedar_PDU-campaign-idfuqpan",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "status": "BLOCKED",
+      "elapsed_seconds": 11.893556000024546,
+      "retained_logical_bytes": 8865923,
+      "versions": {
+        "phenix": "phenix-2.2.1-6174",
+        "coot": "1.3.3 revision-count 0"
+      },
+      "scope": "Actual preflight/Phaser/Coot, then stopped by phosphate validation. No ReadySet/refinement. New declared A:PDU mechanical substitution control, not donor chemistry or original PDU:PDU/B:1.",
+      "original_files_unchanged": 5,
+      "source_dictionary_unchanged": true,
+      "records": {
+        "summary.json": "6d79336162dabb3c4573cf81ef271d8aa6b5832674f5cdac268e355bb70a748f",
+        "driver-result.json": "ef67615b5e5c68a9b7953b7989ae9d7b2b29702e98dcd90c79c637d60e8f48e4",
+        "declared-test-intent.json": "13e4ea5f600ddb79048d8512d72a7ac41dbc5ae9b5b850f7a325f5cb62268c7f",
+        "dictionary-source.json": "f2b2ed64041cd011adf60e5e2a80088da5a6f2968a90a63c836e91b091a959cf"
+      }
+    },
+    "replay": {
+      "native_execution": false,
+      "status": "READ_ONLY_REPLAY_PASS",
+      "original_run_files_unchanged": 31,
+      "context_status": "CONTEXT_PREPARED",
+      "scope": {
+        "policy_id": "postmr-declared-canonical-serial-context-v1",
+        "scope": "SERIAL_FIELDS_ONLY",
+        "mutations": [
+          {
+            "site": "A:12",
+            "before": "DC",
+            "after": "DA"
+          }
+        ]
+      },
+      "restoration_status": "GRAPH_FRAGMENT_RESTORED",
+      "context_audit": "CONSTRUCTION_CONTEXT_DELTA_PASS",
+      "final_phosphate_atoms_removed": [],
+      "raw_sha256": "0c472c10e11fe835f79e9f0c9db5edf313b72b0d13935fd8311b56b5c10955e4",
+      "reference_sha256": "0f1cf7b3a00982e5fa20c6dab07ddf76f1f3266510711b5034f308027351aaba",
+      "summary_sha256": "cb98cad3a296af28e4b58ec6a21684d5b732bd9c600796d0c0bfde4b23aa9cfa"
+    },
+    "compatibility": "Additive explicit canonical_serial_scope receipt (attempted_canonical_serial_scope after rollback). Calls omitting the new context policy retain historical behavior. Old identity policy and frozen native runtime are unchanged. No checkpoint schema migration, dictionary/SDK edits, phosphate threshold change or default plane-force activation.",
+    "remaining": [
+      "Fresh native campaign on this fixed source, then inspect achieved PDU chemistry through ReadySet and actual refinement.",
+      "Original symmetry-linked PDU:PDU/B:1 remains separate; no topology/OP3 guess.",
+      "Q06 remains open; no broader scientific qualification or full-suite claim."
+    ],
+    "artifacts": "Code/tests/compact evidence only. Models/data/logs/runners stay local; failed C301 and source files preserved."
   }
 }

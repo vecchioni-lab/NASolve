@@ -1,7 +1,7 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C300**. Active **cedar** in NASolve-c96. Remote last verified
-**C299 `b4739c76`**, including C295–C298.
+Updated **2026-11-14, C301**. Active **cedar** in NASolve-c96. Remote last verified
+**C300 `d9f3bbb8`**, including C295–C299.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
 cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
@@ -66,7 +66,7 @@ Free-R, NAR membership, observations and native targets. No SDK edits. Native
 version is Phenix 2.2.1-6174 / dispatcher 2.2.1, local Darwin/arm64 exact profile;
 version labels alone are not broader capability or pristine-distribution proof.
 
-**C300 complete, being committed:** explicit schema-2 campaign choice and Refine
+**C300 committed/pushed `d9f3bbb8`:** explicit schema-2 campaign choice and Refine
 Doctor API/CLI reuse the same runtime checks and immutable round owner. Focused
 validation: 233 tests +61 subtests pass, no full suite. Native control
 `300_Cedar_doctor-plane-forces-ncuo_h42` passes one existing ML-fixed-scattering
@@ -82,7 +82,24 @@ Run a fresh PDU:A campaign control from C270's declared chemical test scaffold,
 with explicit checked preparation/plane forces and no experimental phases. This
 is a mechanical substitution control with retained observations, not donor
 chemistry or a solved structure; it does not unblock original PDU:PDU/B:1. Keep
-the original source and all failed work. No native jobs currently active.
+the original source and all failed work.
+
+**C301 complete, being committed:** fresh declared A:PDU control
+`301_Cedar_PDU-campaign-idfuqpan` passed preflight/Phaser/Coot, then the phosphate
+guard stopped B:4 outgoing O3′–P displacement. No ReadySet/refinement ran. All
+jobs stopped, source pins and five original inputs unchanged. Mixed Coot context
+omitted the also-declared canonical A:12 DC→DA mutation from serial authority;
+raw OP3 then prevented graph restoration. C80 covered related curated sites.
+The generalized explicit canonical serial-only scope now passes 237 focused tests
++10 subtests and read-only replay of actual C301 output. All 31 failed-run files
+unchanged; full phosphate validation passes with no further atom removal. No
+new phosphate/graph authority, no SDK changes. Historical policy is preserved;
+failed final proof retains attempted scope and established rollback behavior.
+
+**Next:** fresh A:PDU campaign on this fixed source, then inspect source-selected
+ring/C5/propyne/chi through ReadySet and actual refinement. Record staged geometry,
+not just tool completion. The prior failed run and original PDU:PDU/B:1 stay
+untouched. No native jobs currently active. Q06 remains open.
 
 ## PDU control remains separate
 

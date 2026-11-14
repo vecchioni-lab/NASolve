@@ -1781,11 +1781,13 @@ def construct_postmr_model(
     _, coot_log = _run_coot(input_model, raw_model, coot_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
         **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}))
-    from .postmr_context import IDENTITY_SERIAL_POLICY_ID, prepare_construction_context
-    context = prepare_construction_context(raw_model, reference_model, overlap_actions,
+    from .postmr_context import (IDENTITY_SERIAL_POLICY_ID, CANONICAL_SERIAL_POLICY_ID,
+                                 prepare_construction_context)
+    context = prepare_construction_context(raw_model, reference_model, coot_actions,
         dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
         allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
-        serial_identity_policy=IDENTITY_SERIAL_POLICY_ID)
+        serial_identity_policy=IDENTITY_SERIAL_POLICY_ID,
+        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID)
     restoration_input = context["model"]
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
@@ -1849,6 +1851,8 @@ def construct_postmr_model(
                 restoration_input_sha256=file_sha256(raw_model),
                 attempted_geometry_sha256=file_sha256(attempted_geometry),
                 notes=["The new context changes were discarded after final phosphate revalidation failed; established ordinary restoration was retained."])
+            if "canonical_serial_scope" in context["receipt"]:
+                context["receipt"]["attempted_canonical_serial_scope"] = context["receipt"].pop("canonical_serial_scope")
         else:
             context["receipt"]["final_sanitizer_recheck"] = final_check
     return {"model": output_model, "raw_model": raw_model, "geometry_model": geometry_model,

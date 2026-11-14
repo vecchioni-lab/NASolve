@@ -20,6 +20,7 @@ from .postmr_restoration import canonical_name, restore_graph_site, source_graph
 POLICY_ID = 'postmr-source-graph-internal-phosphate-context-v1'
 CURATED_CONTEXT_POLICY_ID = 'postmr-source-graph-curated-phosphate-context-v1'
 IDENTITY_SERIAL_POLICY_ID = 'postmr-input-identity-serial-context-v1'
+CANONICAL_SERIAL_POLICY_ID = 'postmr-declared-canonical-serial-context-v1'
 _COORDINATE = {'ATOM  ', 'HETATM'}
 _ASSOCIATED = {'ANISOU', 'SIGATM', 'SIGUIJ'}
 
@@ -170,9 +171,39 @@ def _serial_context(raw_lines, reference_lines, raw_inventory, reference_invento
         'all_endpoints_unselected_and_unchanged': True}
 
 
+def canonical_serial_scope(actions, raw_inventory, reference_inventory, passthrough_sites):
+    """Bind ordinary Coot mutations to input/output identity, for serials only.
+
+    This declares no graph, coordinate transport or phosphate-removal authority.
+    Reuse the builder's canonical target vocabulary; never infer a mutation from
+    a residue name or a changed model alone.
+    """
+    from .postmr import _COOT_BASES
+
+    if len({a.site for a in actions}) != len(actions):
+        raise ValueError('Canonical serial scope requires unique declared mutation sites')
+    mutations = []
+    for action in actions:
+        if action.method != 'coot-mutate-base':
+            continue
+        if (action.site in passthrough_sites or action.after not in _COOT_BASES
+                or action.before == action.after):
+            raise ValueError('Canonical serial scope lacks an eligible declared mutation')
+        before = {row['code'] for key,row in reference_inventory.items()
+                  if key[0]+':'+key[1]+key[2] == action.site}
+        after = {row['code'] for key,row in raw_inventory.items()
+                 if key[0]+':'+key[1]+key[2] == action.site}
+        if before != {action.before} or after != {action.after}:
+            raise ValueError('Canonical serial scope differs from actual input/output component identity')
+        mutations.append({'site': action.site, 'before': action.before, 'after': action.after})
+    return {'policy_id': CANONICAL_SERIAL_POLICY_ID, 'scope': 'SERIAL_FIELDS_ONLY',
+            'mutations': sorted(mutations, key=lambda row: row['site'])}
+
+
 def prepare_construction_context(raw_model, reference_model, actions, dictionary_paths,
                                  parent_models, output_model, *, allow_op3_sites=(),
-                                 passthrough_sites=(), serial_identity_policy=None):
+                                 passthrough_sites=(), serial_identity_policy=None,
+                                 canonical_serial_policy=None):
     """Prepare a separate context input or retain the entire immutable raw model.
 
     Source-graph and proper-transport preflight must succeed before any proposed
@@ -185,6 +216,8 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
     """
     if serial_identity_policy not in (None, IDENTITY_SERIAL_POLICY_ID):
         raise ValueError('Unknown construction serial identity policy')
+    if canonical_serial_policy not in (None, CANONICAL_SERIAL_POLICY_ID):
+        raise ValueError('Unknown construction canonical serial policy')
     raw_model,reference_model,output_model = map(Path,(raw_model,reference_model,output_model))
     allow_op3_sites = validate_op3_sites(allow_op3_sites)
     passthrough_sites = validate_op3_sites(passthrough_sites)
@@ -264,7 +297,13 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
                        if action.method == 'coot-parent-overlap' and action.site not in passthrough_sites
                        and (ligand := CURATED_LIGANDS.get(action.after)) is not None
                        and (ligand.atom_substitutions or ligand.ring_substituents)}
-            selected = set(graphs) | curated
+            canonical_scope = None
+            canonical = set()
+            if canonical_serial_policy == CANONICAL_SERIAL_POLICY_ID:
+                canonical_scope = canonical_serial_scope(actions, raw_inventory,
+                    reference_inventory, passthrough_sites)
+                canonical = {row['site'] for row in canonical_scope['mutations']}
+            selected = set(graphs) | curated | canonical
             normalized,repairs,authority = _serial_context(raw_lines,_rows(reference_model),raw_inventory,reference_inventory,selected,serial_identity_policy)
             # The shadow receives only exact eligible scaffold parent coordinates.
             # Its base geometry is intentionally ignored and never propagated.
@@ -302,6 +341,8 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
                 shadow_sha256=sha256(shadow.read_bytes()).hexdigest(),
                 sanitized_shadow_sha256=sha256(sanitized.read_bytes()).hexdigest(),
                 notes=['Internal OP3 removal was proved with the existing phosphate policy; original raw base coordinates were retained for rigid transport.'])
+            if canonical and repairs:
+                report['canonical_serial_scope'] = canonical_scope
             if curated - set(graphs) and repairs:
                 report['serial_scope_extension'] = {
                     'sites': sorted(curated - set(graphs)),

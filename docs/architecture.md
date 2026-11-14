@@ -27,6 +27,14 @@ policies and Doctor API/CLI now forward the explicit choice through that owner;
 shared prerequisite/ancestry validation refuses silent loss before new work.
 Default activation and achieved-chemistry qualification remain separate.
 
+Ordinary mixed Coot construction includes declared canonical mutations in an
+explicit serial-only scope bound to actual input/output component identities.
+That scope grants neither graph transport nor phosphate deletion. Source-graph
+preflight, discarded shadow proof and final phosphate validation retain their
+existing authority. Independent context audit checks the exact scope and deltas;
+a failed final proof preserves the attempted scope while rolling back its effects.
+Historical context calls without the new policy retain their old behavior.
+
 C234–C237 join explicit owned plane support to the existing repair request and
 selector. C244 lets the complete-request API opt into graph-selected acquisition
 through that same generation owner. Support belongs to exact child attempts, not
