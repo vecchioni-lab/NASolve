@@ -4,7 +4,7 @@
   "updated": "2026-11-14",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5",
+  "audited_code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -274,12 +274,13 @@
         "E_MASKED_COMPOSITION",
         "E_CAPTURED_COMPOSITION",
         "E_ENDPOINT_REVIEW",
-        "E_BOUNDED_TRIAL"
+        "E_BOUNDED_TRIAL",
+        "E_CAPTURED_JOB_API"
       ],
       "last_audit": {
         "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5",
+        "code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416",
         "scope": "Reusable package orchestration, exact W41 native parity, installed/relocated and temporary combined compatibility; scientific S05 remains partial"
       }
     },
@@ -688,6 +689,14 @@
       "reference": "docs/topostitch-preview.md#w41--bounded-native-trials-and-matched-cleanup-controls",
       "result": "Five complete Phenix 2.2.1-6174 trials pass all source/full-precision/serialized derivative checks and fresh rounded native target readback. Paired/cleanup controls expose constant fixed-base pair terms and whole-window geometry/packing tradeoffs. Budget and authenticated preexisting-edit negatives reject. Full Willow 1364 tests plus 229 subtests; 107 installed/relocated focused tests and a complete installed/relocated native trial plus default read-only compatibility pass.",
       "limitation": "Every 200-iteration control remains NOT_CONVERGED_LIMIT with individual packing regressions. No complete chemistry, full-precision fresh packing, diffraction, repair or adoption qualification. Diagnostic reports only, not resumable campaign runs; scientific files remain local. No Cedar edits/merge."
+    },
+    "E_CAPTURED_JOB_API": {
+      "kind": "installed_captured_native_job_boundary",
+      "code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416",
+      "human_update": 42,
+      "reference": "docs/topostitch-preview.md#w42--one-installed-captured-job-boundary",
+      "result": "Installed API and thin compatible CLI reuse Cedar capture, observation layering and owned execution. Complete Phenix 2.2.1-6174 source readonly/trial content matches W41 exactly. Installed/relocated Willow and temporary Cedar 948a7860 plus explicit Willow modules complete native evaluation, including injected runner. Three actual-owner failure controls preserve receipts and exception semantics without native launch. Full Willow 1372 tests plus 229 subtests; installed focused 74; temporary combined focused 244 plus 19 subtests.",
+      "limitation": "Temporary adapter compatibility only, not a branch merge or full combined suite. Willow alone retains explicit trusted Cedar source requirement for execution. No new chemistry/packing qualification, diffraction, campaign registration, checkpoint or adoption authority. Scientific captures and combined artifacts stay local."
     }
   },
   "benchmarks": [
@@ -860,8 +869,8 @@
       {
         "number": 42,
         "title": "Expose the captured native job through one reusable package boundary",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "25ca9d6ac76f72e1f670096a76a6dcee87b7f416"
       }
     ]
   }

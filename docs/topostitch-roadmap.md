@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W39 | Reconstruct captured native context for masked evaluation | RECORDED |
 | W40 | Bind native endpoint review to exact movement and serialized bytes | RECORDED |
 | W41 | Run bounded native trials with initial and endpoint derivative gates | RECORDED |
-| W42 | Expose the captured native job through one reusable package boundary | IN_PROGRESS |
+| W42 | Expose the captured native job through one reusable package boundary | RECORDED |
 
 ## Finish lines
 
@@ -191,8 +191,8 @@ Turn a plausible placement into a chemically usable candidate before refinement 
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
 **Next action:** Qualify full-precision as well as serialized endpoint packing and affected chemistry through existing Cedar owners, retaining numerical, convergence and scientific verdicts separately. Then close the explicit connection and matched-refinement gates; do not treat the package API as campaign/adoption authority.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial).
-**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5); Reusable package orchestration, exact W41 native parity, installed/relocated and temporary combined compatibility; scientific S05 remains partial.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback), [E_PAIR_RECIPE](#e_pair_recipe), [E_MASKED_COMPOSITION](#e_masked_composition), [E_CAPTURED_COMPOSITION](#e_captured_composition), [E_ENDPOINT_REVIEW](#e_endpoint_review), [E_BOUNDED_TRIAL](#e_bounded_trial), [E_CAPTURED_JOB_API](#e_captured_job_api).
+**Last audit:** 2026-11-14, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/25ca9d6ac76f72e1f670096a76a6dcee87b7f416); Reusable package orchestration, exact W41 native parity, installed/relocated and temporary combined compatibility; scientific S05 remains partial.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -525,6 +525,13 @@ Exact source/full-precision/mask/PDB binding and Cedar-owned mechanics/environme
 [Evidence contract](topostitch-preview.md#w41--bounded-native-trials-and-matched-cleanup-controls) at [W41](https://github.com/vecchioni-lab/NASolve/commit/84e1c3092e4c4bc7a36a6cd0a77ab8ff3a028bc5).
 Five complete Phenix 2.2.1-6174 trials pass all source/full-precision/serialized derivative checks and fresh rounded native target readback. Paired/cleanup controls expose constant fixed-base pair terms and whole-window geometry/packing tradeoffs. Budget and authenticated preexisting-edit negatives reject. Full Willow 1364 tests plus 229 subtests; 107 installed/relocated focused tests and a complete installed/relocated native trial plus default read-only compatibility pass.
 **Limit:** Every 200-iteration control remains NOT_CONVERGED_LIMIT with individual packing regressions. No complete chemistry, full-precision fresh packing, diffraction, repair or adoption qualification. Diagnostic reports only, not resumable campaign runs; scientific files remain local. No Cedar edits/merge.
+
+<a id="e_captured_job_api"></a>
+### E_CAPTURED_JOB_API — installed_captured_native_job_boundary
+
+[Evidence contract](topostitch-preview.md#w42--one-installed-captured-job-boundary) at [W42](https://github.com/vecchioni-lab/NASolve/commit/25ca9d6ac76f72e1f670096a76a6dcee87b7f416).
+Installed API and thin compatible CLI reuse Cedar capture, observation layering and owned execution. Complete Phenix 2.2.1-6174 source readonly/trial content matches W41 exactly. Installed/relocated Willow and temporary Cedar 948a7860 plus explicit Willow modules complete native evaluation, including injected runner. Three actual-owner failure controls preserve receipts and exception semantics without native launch. Full Willow 1372 tests plus 229 subtests; installed focused 74; temporary combined focused 244 plus 19 subtests.
+**Limit:** Temporary adapter compatibility only, not a branch merge or full combined suite. Willow alone retains explicit trusted Cedar source requirement for execution. No new chemistry/packing qualification, diffraction, campaign registration, checkpoint or adoption authority. Scientific captures and combined artifacts stay local.
 
 ## Deferred extensions, not hidden blockers
 
