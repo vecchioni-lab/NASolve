@@ -715,6 +715,66 @@ Native output-label warnings are retained; reflection readback passes. Final
 model/map/density inspection in Coot and a damaged-model repair benchmark remain
 open. Inputs, models, maps, native captures, scripts and receipts are local only.
 
+### W36 — Native restraint callback: useful arithmetic, incomplete lifecycle
+
+A complete **Phenix 2.2.1-6174 energy/derivative/lifecycle probe** evaluates a
+small artificial harmonic distance on original 8D93, using the selected exact
+image and the shared Cartesian transport. This is a diagnostic term, **not a
+DNA recipe**, optimizer run, refinement or production adapter. All 855 source
+atoms and native definitions remain unchanged. Its local script, source hashes,
+effective parameters, interpretation log and result are preserved with the local
+reference evidence; no generated models/data are committed.
+
+The installed native source exposes
+`cctbx.geometry_restraints.manager.set_external_energy_function`. Its callback
+receives `sites_cart` and `gradient_array`, adds gradients into that existing
+array, and returns an additional residual. The probe confirms both gradient and
+energy-only calls and the `mmtbx.restraints.manager` wrapper. Six ASU derivatives
+at two step sizes agree to **<5.4e-10** after subtracting the unchanged native
+baseline. This verifies only the added term; it does not rehabilitate the raw
+native plane derivatives that failed earlier controls.
+
+Three lifecycle details matter before using this in a refinement:
+
+- Even selecting **all atoms** with `geometry.select(...)` returns a manager
+  without the callback. `discard_symmetry(...)` also drops it. Source inspection
+  shows the same omission in `new_including_isolated_sites(...)`; that last path
+  was inspected, not executed in this probe. A trial must prove binding after
+  every relevant rebuild/selection and on continuation, or stop visibly.
+- The extra residual changes the numerator but not `number_of_restraints`:
+  the probe stays at **11,378** native restraints. Normalized geometry therefore
+  divides the added term by the existing count. Its sigma/weight and the final
+  diffraction-versus-geometry scale must be an explicit frozen policy, not an
+  assumed one-to-one translation of the standalone objective.
+- Turning all ordinary geometry flags off still evaluates the callback. The
+  standard native energy summary also has no dedicated external-term row in
+  this version's source. Enablement, component reporting and effective recipe
+  fingerprints therefore need their own checked integration; ordinary printed
+  bond/angle RMSDs do not prove that the extra terms were active.
+
+No generic callable loader was found in the inspected normal refinement PHIL
+and driver paths. An in-process API exists; a portable `phenix.refine` parameter
+file carrying this policy has **not** been demonstrated. The earlier bond-edit
+exclusion/LINK changes also remain relevant: an additive callback does not
+implicitly reproduce those chemical semantics.
+
+**Next decision, before more bending trials:** keep two bounded routes explicit.
+The first is a version-qualified native integration that reuses Cedar's validated
+energy/correction owners and Willow's image transport, and captures a complete
+recipe, mask, exclusion policy, normalization and callback lifecycle. Test an
+unselected no-op control and one declared distorted duplex with full derivative,
+geometry/packing and matched diffraction checks before exposing it to campaigns.
+A successful call into the native API alone is not that integration.
+
+The alternative is a Pine cut that places the chosen interface inside one
+represented model, allowing ordinary complete NARestraints selections there.
+This is a hypothesis for a selected seam, not a shortcut already implemented:
+prove atom-orbit/scattering equivalence, preserve the moved boundary's chemistry,
+and track every displaced periodic connection. Simply adding symmetry copies
+would change model content. A periodic network can retain unavoidable seams;
+recutting cannot be assumed to make every contact local at once. Keep this route
+in the existing Pine track rather than making a new cut engine inside TopoStitch.
+
 ### Shared image-coordinate transport
 
 `nasolve.topostitch_transport` owns the rigid Cartesian operation used by the

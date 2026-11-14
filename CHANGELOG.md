@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W36 — Native refinement integration decision
+
+- Record a bounded native image-term callback probe, including lost callbacks
+  after selection, normalization and reporting limits; no production native
+  adapter or refinement behavior is changed.
+- Keep supported periodic restraint integration and a qualified Pine recut as
+  explicit alternative routes before further repair/refinement trials.
+
 ### W35 — Final Phenix geometry statistics
 
 - Read bond/angle RMSDs from the final PDB's named Phenix geometry summary when

@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-13
 
-**Willow update W35; next W36.** W33 introduced human update numbers without
+**Willow update W36; next W37.** W33 introduced human update numbers without
 renumbering old history. Use these labels in conversation; the roadmap JSON
 retains exact code provenance.
 
@@ -221,12 +221,19 @@ observations and 176 free reflections. Bending retains better selected contacts,
 but Rfree (.2276) is essentially tied with cleanup alone (.2274), while bond/angle
 RMSDs worsen. No extra bending benefit or candidate adoption is established.
 This is a reference pilot; the private MR repair and density-inspection gates stay open.
+W36's read-only native callback probe passes added-term derivatives but confirms
+that all-atom selection and symmetry discard drop the callback; normalization
+and enablement also require explicit policy. Before further bending/refinement,
+qualify a complete periodic recipe through the intended manager lifecycle or a
+separately qualified Pine recut. No production adapter or extra refinement was
+added. The existing guide records both routes and their acceptance gates.
 See the current inspector/preview guides for exact commands, versions, policies and limits.
 
 **Compatibility:** Pine registration/model-assessment interfaces remain unchanged.
-Cedar through `f2345a8` owns its native audit, selected AutoSol references
+Frozen Cedar through `f2345a8` was tested for native readback; current Cedar
+C273 owns its native audit, selected AutoSol references
 and storage work; the consumed registration/model/context/package interfaces
-remain unchanged against the Pine base. Rowan confirms Cedar C273 changes numerical-proof reuse only and does not edit
+remain unchanged against the Pine base. Rowan confirms Cedar C273 is pushed and changes numerical-proof reuse only and does not edit
 the AutoRefine statistics parser. Willow consumes no new Cedar production interfaces and edits
 no Cedar code or shared environment. The separate native comparison reused the
 existing diagnostic helper only; see the preview guide for exact options.

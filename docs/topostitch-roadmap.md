@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W35 — Read final Phenix bond and angle RMSDs.** Next: W36.
+**Current update: W36 — Audit native periodic-restraint callback lifecycle.** Next: W37.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -21,6 +21,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W33 | Human-readable Willow update numbers | RECORDED |
 | W34 | Matched 8D93 reference refinement control | RECORDED |
 | W35 | Read final Phenix bond and angle RMSDs | RECORDED |
+| W36 | Audit native periodic-restraint callback lifecycle | RECORDED |
 
 ## Finish lines
 
@@ -175,16 +176,16 @@ Move a usable duplex toward the chosen connection while preserving local residue
 
 Turn a plausible placement into a chemically usable candidate before refinement is trusted.
 
-**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls. Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW. Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted. A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar.
+**Delivered:** Three public 8D93 native interpretations preserve atom/proxy membership. The fitted candidate still adds one severe captured angle deviation. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. Local native exact-image bond/angle values and gradients qualified for the declared diagnostic; matched fixed-base backbone relaxations pass endpoint/capture checks and resolve three source angle outliers, with iteration-limit caveats. Synthetic and public probes identify unsupported raw native plane gradients; Cartesian image pullback with Cedar existing parallelity correction passes the declared derivative controls. A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls. Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW. Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted. A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar. Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed.
 
 **Closure audit:**
 
 - Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.
 - Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.
 
-**Next action:** Define a supported captured masked policy with explicit additive-versus-native-edit exclusion intent, complete recipes and exact fixed atoms. Qualify individual geometry and every affected surrounding image, not only intended contacts or total energy; reuse Cedar capture/correction owners before matched refinement.
-**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing).
-**Last audit:** 2026-11-13, Linden, [earlier work](https://github.com/vecchioni-lab/NASolve/commit/7f4d334713479b26eee26fb6e2208ad42d9c3f50); Native recipes, exclusion semantics and adverse packing evidence; authenticated read-only comparison tested. No production optimizer, refinement or adoption..
+**Next action:** Choose and qualify a captured masked native policy with complete recipes, explicit additive-versus-native-edit exclusions, fixed atoms and weights. Prove callback persistence/identity across relevant manager lifecycle events or use a separately qualified Pine recut; then audit individual geometry and surrounding images with Cedar owners.
+**Evidence:** [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_NATIVE_TRANSPORT_RELAX](#e_native_transport_relax), [E_NATIVE_PLANES](#e_native_planes), [E_TRANSPORT](#e_transport), [E_MASKED_NATIVE](#e_masked_native), [E_PACKING](#e_packing), [E_NATIVE_CALLBACK](#e_native_callback).
+**Last audit:** 2026-11-14, Linden, [W36](https://github.com/vecchioni-lab/NASolve/commit/a890fffacc12e62046b7ecac96b60a2cf101c23b); Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support.
 
 <a id="s06"></a>
 ### S06 — Demonstrate improvement against diffraction data
@@ -198,9 +199,9 @@ Compare repaired and unmodified models fairly, then determine where data support
 - Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.
 - Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors.
 
-**Next action:** Qualify one deliberately damaged or mismatched duplex with a frozen native pair/exclusion policy, then matched refinement; retain the unmodified reference and cleanup-only controls. Resolve supplied-data copy/composition before calling a private-data repair successful.
-**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference).
-**Last audit:** 2026-11-13, Linden, [W34](https://github.com/vecchioni-lab/NASolve/commit/50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b); Complete public-reference pilot with preserved data/flags, not S05 closure, damaged-MR repair or acceptance.
+**Next action:** First prove that a complete periodic pair policy survives the intended refinement path and is reported with its actual normalization/exclusion semantics. Then compare a frozen damaged/mismatched duplex with unmodified and cleanup controls; keep the healthy reference pilot and resolve supplied-data copy/composition before claiming private-data repair.
+**Evidence:** [E_MR_LOCAL](#e_mr_local), [E_PUBLIC_REFERENCE](#e_public_reference), [E_NATIVE_CALLBACK](#e_native_callback).
+**Last audit:** 2026-11-14, Linden, [W36](https://github.com/vecchioni-lab/NASolve/commit/a890fffacc12e62046b7ecac96b60a2cf101c23b); Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support.
 
 <a id="s07"></a>
 ### S07 — Expose one ordinary, inspectable repair trial
@@ -475,6 +476,13 @@ Thin comparison reuses Cedar capture/authentication and directed pair replay. Ex
 [Evidence contract](topostitch-preview.md#w34--matched-public-reference-diffraction-control) at [W34](https://github.com/vecchioni-lab/NASolve/commit/50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b).
 Three complete Phenix 2.2.1-6174 coordinate-only runs preserve the same 3,333 observations and 176 free reflections. Final Rwork/Rfree: original .1776/.2284; cleanup .1779/.2274; bend+cleanup .1772/.2276. Selected contacts remain better with bending, but no meaningful additional held-out benefit is established. Native geometry/packing tradeoffs and exact readbacks are retained.
 **Limit:** One already-refined public reference, no artificial MR damage or broader scientific acceptance. No added pair restraints, density inspection, weight tuning, campaign publication or adoption. S05 remains partial; generated artifacts stay local.
+
+<a id="e_native_callback"></a>
+### E_NATIVE_CALLBACK — native_api_diagnostic
+
+[Evidence contract](topostitch-preview.md#w36--native-restraint-callback-useful-arithmetic-incomplete-lifecycle) at [W36](https://github.com/vecchioni-lab/NASolve/commit/a890fffacc12e62046b7ecac96b60a2cf101c23b).
+Complete Phenix 2.2.1-6174 read-only energy/derivative/lifecycle probe: added two-atom image-term derivative error <5.4e-10, wrapper and energy-only calls pass; all-atom selection and symmetry discard drop the callback, normalized target count is unchanged, ordinary geometry flags do not disable it. Original 855 atoms and native definitions unchanged.
+**Limit:** Artificial term, no full DNA recipe, optimizer/refinement or production callback integration. No generic normal-CLI callback loader demonstrated; captures remain local. Existing raw plane-gradient failures and bond-edit exclusion semantics still apply.
 
 ## Deferred extensions, not hidden blockers
 

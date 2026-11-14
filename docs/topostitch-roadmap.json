@@ -245,13 +245,14 @@
         "A shared checked Cartesian image/gradient core now drives the viewer and native probe, retaining repeated ASU contributions and failed raw native controls.",
         "Local masked native controls bind explicit movement scopes, check every movable Cartesian derivative and compare cleanup versus chosen contacts, with and without existing core-pair terms; native readback remains REVIEW.",
         "Complete emitted NARestraints recipes pass local masked derivative/readback checks. Native bond edits demonstrably change exclusions/LINK bookkeeping. Broader bend plus fixed-base cleanup removes its added scalar outlier but worsens other periodic contacts; no candidate is promoted.",
-        "A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar."
+        "A thin read-only packing comparator now authenticates/replays Cedar directed native captures, matches relative symmetry transforms and retains per-contact regressions/multiplicity; native capture lifecycle remains owned by Cedar.",
+        "Native added-term arithmetic passes a bounded probe, but selection/rebuild drops the callback and normalization/enablement need explicit policy; no supported production adapter is claimed."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification."
       ],
-      "next_action": "Define a supported captured masked policy with explicit additive-versus-native-edit exclusion intent, complete recipes and exact fixed atoms. Qualify individual geometry and every affected surrounding image, not only intended contacts or total energy; reuse Cedar capture/correction owners before matched refinement.",
+      "next_action": "Choose and qualify a captured masked native policy with complete recipes, explicit additive-versus-native-edit exclusions, fixed atoms and weights. Prove callback persistence/identity across relevant manager lifecycle events or use a separately qualified Pine recut; then audit individual geometry and surrounding images with Cedar owners.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -260,13 +261,15 @@
         "E_NATIVE_PLANES",
         "E_TRANSPORT",
         "E_MASKED_NATIVE",
-        "E_PACKING"
+        "E_PACKING",
+        "E_NATIVE_CALLBACK"
       ],
       "last_audit": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "7f4d334713479b26eee26fb6e2208ad42d9c3f50",
-        "scope": "Native recipes, exclusion semantics and adverse packing evidence; authenticated read-only comparison tested. No production optimizer, refinement or adoption."
+        "code_commit": "a890fffacc12e62046b7ecac96b60a2cf101c23b",
+        "human_update": 36,
+        "scope": "Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support"
       }
     },
     {
@@ -286,17 +289,18 @@
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
         "Run compatible forward and reverse shape benchmarks plus healthy/wrong-connection controls. Freeze trial policies before Rfree; density interpretation must distinguish displacement from occupancy/ADP/model errors."
       ],
-      "next_action": "Qualify one deliberately damaged or mismatched duplex with a frozen native pair/exclusion policy, then matched refinement; retain the unmodified reference and cleanup-only controls. Resolve supplied-data copy/composition before calling a private-data repair successful.",
+      "next_action": "First prove that a complete periodic pair policy survives the intended refinement path and is reported with its actual normalization/exclusion semantics. Then compare a frozen damaged/mismatched duplex with unmodified and cleanup controls; keep the healthy reference pilot and resolve supplied-data copy/composition before claiming private-data repair.",
       "evidence": [
         "E_MR_LOCAL",
-        "E_PUBLIC_REFERENCE"
+        "E_PUBLIC_REFERENCE",
+        "E_NATIVE_CALLBACK"
       ],
       "last_audit": {
-        "date": "2026-11-13",
+        "date": "2026-11-14",
         "reviewer": "Linden",
-        "code_commit": "50e82386b0b8d8e91d3c3c4f93bc1a4fdf8b2c6b",
-        "scope": "Complete public-reference pilot with preserved data/flags, not S05 closure, damaged-MR repair or acceptance",
-        "human_update": 34
+        "code_commit": "a890fffacc12e62046b7ecac96b60a2cf101c23b",
+        "human_update": 36,
+        "scope": "Read-only native callback lifecycle diagnosis; no change to partial status, scientific acceptance or ordinary refinement support"
       }
     },
     {
@@ -625,6 +629,14 @@
       "reference": "docs/topostitch-preview.md#w34--matched-public-reference-diffraction-control",
       "result": "Three complete Phenix 2.2.1-6174 coordinate-only runs preserve the same 3,333 observations and 176 free reflections. Final Rwork/Rfree: original .1776/.2284; cleanup .1779/.2274; bend+cleanup .1772/.2276. Selected contacts remain better with bending, but no meaningful additional held-out benefit is established. Native geometry/packing tradeoffs and exact readbacks are retained.",
       "limitation": "One already-refined public reference, no artificial MR damage or broader scientific acceptance. No added pair restraints, density inspection, weight tuning, campaign publication or adoption. S05 remains partial; generated artifacts stay local."
+    },
+    "E_NATIVE_CALLBACK": {
+      "kind": "native_api_diagnostic",
+      "code_commit": "a890fffacc12e62046b7ecac96b60a2cf101c23b",
+      "human_update": 36,
+      "reference": "docs/topostitch-preview.md#w36--native-restraint-callback-useful-arithmetic-incomplete-lifecycle",
+      "result": "Complete Phenix 2.2.1-6174 read-only energy/derivative/lifecycle probe: added two-atom image-term derivative error <5.4e-10, wrapper and energy-only calls pass; all-atom selection and symmetry discard drop the callback, normalized target count is unchanged, ordinary geometry flags do not disable it. Original 855 atoms and native definitions unchanged.",
+      "limitation": "Artificial term, no full DNA recipe, optimizer/refinement or production callback integration. No generic normal-CLI callback loader demonstrated; captures remain local. Existing raw plane-gradient failures and bond-edit exclusion semantics still apply."
     }
   },
   "benchmarks": [
@@ -732,8 +744,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 35,
-    "next": 36,
+    "current": 36,
+    "next": 37,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -753,6 +765,12 @@
         "title": "Read final Phenix bond and angle RMSDs",
         "state": "RECORDED",
         "code_commit": "cc845a5800f725a1c2947de6daa38213102e6511"
+      },
+      {
+        "number": 36,
+        "title": "Audit native periodic-restraint callback lifecycle",
+        "state": "RECORDED",
+        "code_commit": "a890fffacc12e62046b7ecac96b60a2cf101c23b"
       }
     ]
   }
