@@ -499,6 +499,15 @@ failed attempts stay preserved; no runtime correction or SDK change. Next choose
 and qualify a supported remedy separately from PDU chemical survival; do not
 attribute PDU distortion to this defect without its exact evidence.
 
+C291–C294 add an explicit kernel callable that installs no hook. Actual five-cycle
+Phenix controls retain original NAR/Free-R/recipe, pass endpoint force probes and
+exercise fork workers. Replacement-manager mechanics agree after recording each
+normalization/contact count; no optimization scale changes. C293's failed exact-
+score assertion remains preserved. **Next: qualify an explicit ordinary NASolve
+execution route** using existing ownership/checkpoint readers, complete native
+parameter/capability evidence and supported symmetry/process scope. This is not
+automatic deployment, PDU survival or universal Phenix support. No SDK edits.
+
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's
 old construction flip. It stops before dictionary repair at the previously known

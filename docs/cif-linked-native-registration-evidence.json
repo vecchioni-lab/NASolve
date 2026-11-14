@@ -95648,6 +95648,507 @@
       "ReadySet and actual refinement survival remain untested for this current pair",
       "Exact collaborator before/after files/settings still unidentified",
       "Ordinary native parallelity remedy remains separate Q06 work"
+    ],
+    "source_comparison": {
+      "old_source_anchor": "everyday_repository",
+      "old_source_path": "examples/TestSets/Metals/PP_Hg/Linden_PDU_no_Hg_2026-11-10/Resources/ligands/PDU.cif",
+      "reference_authority": "Literal external dictionary path declared in original saved Coot script",
+      "old_source_sha256": "5603d45206ecd844928995ab4253bee3216c4af8e78fe7483294bf9439f35967",
+      "current_source_sha256": "cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292",
+      "parsed_atom_bond_graph_equal": true,
+      "atoms": 38,
+      "bonds": 39,
+      "limitation": "Different literal dictionaries; bond-length improvements cannot be attributed to one repair or conformation patch. Current parent-chi preservation is measured directly against current parent coordinates."
+    }
+  },
+  "explicit_parallelity_kernel_compatibility_2026_11_14": {
+    "status": "EXPLICIT_CALLABLE_AND_BOUNDED_NATIVE_MECHANISM_PASS",
+    "milestones": "C291-C294",
+    "base_commit": "c911bdc5",
+    "before": "C289 ordinary parallelity accumulation disagrees with its own complete score; correction exists only in separate diagnostics.",
+    "after": "Explicit callable composes the unchanged correction with additive gradient buffers. Actual five cycles, fork workers and replacement-manager mechanics observed; no automatic binding or ordinary runtime option.",
+    "prior_work": [
+      "C23-C26 native parallelity accumulation and plane-order diagnosis",
+      "C147-C150 qualified local corrected evaluator",
+      "C288 contact/normalization diagnostic side effect",
+      "C289 whole ordinary objective without flag switching",
+      "Linden W36 replacement-manager risk; W46 reuses Cedar endpoint kernels"
+    ],
+    "source_sha256": {
+      "src/nasolve/cif_parallelity_kernel.py": "1e03b431f6aaf1ceddca1e4de37d61d771c38a60d3b23b79b32b3c14d0b68230",
+      "tests/test_cif_parallelity_kernel.py": "68fb5e3aed2f049ef66475904c9256d354bd1c67347a1c3aee3a1820142b7c27"
+    },
+    "policy_id": "native-parallelity-kernel-adapter-v1",
+    "schema": "No persisted runtime/checkpoint schema change; process-local statistics only.",
+    "regression_before": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider /private/tmp/c293_kernel_tests.py",
+      "result": "19 failed in 0.09s: API absent"
+    },
+    "focused": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_parallelity_kernel.py tests/test_cif_parallelity_correction.py tests/test_cif_objective_probe.py",
+      "result": "62 passed in 3.17s"
+    },
+    "relocated_source": {
+      "status": "RELOCATED_SOURCE_TESTS_PASS",
+      "temporary_original_absent": true,
+      "command": [
+        "PYTHON",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_cif_parallelity_kernel.py"
+      ],
+      "result": "...................                                                      [100%]\n19 passed in 0.04s\n",
+      "source_sha256": {
+        "src/nasolve/__init__.py": "5afb9c38a05b636fe0c490c05c14911eaf46a65522eea3b6621b06402029d379",
+        "src/nasolve/cif_parallelity_kernel.py": "1e03b431f6aaf1ceddca1e4de37d61d771c38a60d3b23b79b32b3c14d0b68230",
+        "src/nasolve/cif_parallelity_correction.py": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f",
+        "tests/__init__.py": "51a53de9c86baa39f91effb20b826b1aa94af06aaee83a70cf475048ecc8824c",
+        "tests/test_cif_parallelity_kernel.py": "68fb5e3aed2f049ef66475904c9256d354bd1c67347a1c3aee3a1820142b7c27",
+        "tests/test_cif_parallelity_correction.py": "abf61e54f80684d563374c8a304da86d73c12579123e683f5f2f1cc828818fb6"
+      },
+      "original_source_files_unchanged": 6,
+      "scope": "Minimal copied source/tests only, no original path on PYTHONPATH, no SDK/data inputs or artifacts; explicit adapter utility has no path-owning runtime integration."
+    },
+    "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=CEDAR/src PYTHON ignored_cedar_runners/cNNN_start.py",
+    "native_runs": [
+      {
+        "milestone": 291,
+        "anchor": "local_live_tests",
+        "directory": "291_Cedar_kernel-compatibility-33uhgsdp",
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "files": 46,
+        "bytes": 5752355,
+        "runner_anchor": "ignored_cedar_runners",
+        "runner_path": "c291_start.py",
+        "runner_sha256": "a8184141d690cdc05c47edfb2c6ac8268cf51a267bb7ecfafa8ec2fd5fde3098",
+        "native": {
+          "status": "WHOLE_ORDINARY_OBJECTIVE_OBSERVATION_COMPLETE",
+          "results": {
+            "ordinary_raw": {
+              "evaluation_calls": 162,
+              "sampled_gradients_consistent": false,
+              "baseline_repeat_consistent": true,
+              "context_observation": "UNCHANGED",
+              "review_directions": 17,
+              "directions": 20,
+              "target": 1.1401030244830264,
+              "baseline_context": {
+                "normalization_factor": 8.862105636299185e-05,
+                "number_of_restraints": 11284,
+                "nonbonded_proxies": 8004,
+                "pair_list_updates": 1
+              },
+              "repeat_context": {
+                "normalization_factor": 8.862105636299185e-05,
+                "number_of_restraints": 11284,
+                "nonbonded_proxies": 8004,
+                "pair_list_updates": 1
+              }
+            },
+            "kernel_adapted": {
+              "evaluation_calls": 162,
+              "sampled_gradients_consistent": true,
+              "baseline_repeat_consistent": true,
+              "context_observation": "UNCHANGED",
+              "review_directions": 0,
+              "directions": 20,
+              "target": 1.1401030244830264,
+              "baseline_context": {
+                "normalization_factor": 8.862105636299185e-05,
+                "number_of_restraints": 11284,
+                "nonbonded_proxies": 8004,
+                "pair_list_updates": 1
+              },
+              "repeat_context": {
+                "normalization_factor": 8.862105636299185e-05,
+                "number_of_restraints": 11284,
+                "nonbonded_proxies": 8004,
+                "pair_list_updates": 1
+              }
+            }
+          },
+          "raw_corrected_baseline_targets_identical": true,
+          "static_signature_before_and_after": "b07155c3eab5e611893c0698bdd2596e1c2ec1ca9aa2b0eacd6e272832da3485",
+          "original_coordinates_restored": true,
+          "installed_sources_unchanged": true,
+          "seconds": 13.920132207975257,
+          "scope": "Installed ordinary phenix.refine program with explicit dry_run=True, zero macro-cycles. Probe its complete normalized model energy method without passing/switching family flags. Explicit process-local prototype adapts only the native parallelity accumulation entry during this diagnostic; native energies, all families and normalization stay intact. Binding restored afterward; no installed-file edits, product route or scientific approval."
+        },
+        "kernel": {
+          "calls": 163,
+          "gradient_calls": 162,
+          "energy_only_calls": 1,
+          "max_proxy_count": 58,
+          "module_binding_restored": true
+        },
+        "integrity": {
+          "original_files_unchanged": 410,
+          "capture_files_unchanged": 64,
+          "elapsed_seconds": 72.0064371250046
+        },
+        "sampled_peak_process_rss_kib": 806992
+      },
+      {
+        "milestone": 292,
+        "anchor": "local_live_tests",
+        "directory": "292_Cedar_ordinary-cycle-k4cfrddj",
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "files": 74,
+        "bytes": 16302858,
+        "runner_anchor": "ignored_cedar_runners",
+        "runner_path": "c292_start.py",
+        "runner_sha256": "d4fd4701af4fdda0deb4167a8760523c53b42d748b5317834cf60b21d01d4a3e",
+        "native": {
+          "ordinary_raw": {
+            "status": "ONE_MACROCYCLE_COMPLETE",
+            "macro_cycles_executed": 1,
+            "atoms": 853,
+            "r_work": 0.21567558492544914,
+            "r_free": 0.23868579442649243,
+            "free_r_observation_count": 4530,
+            "free_r_test_count": 250,
+            "free_r_indexed_values_sha256": "70938cc387cd9a8a898471d1dc63083bda04d5780ddc21eafb37b5fcf5d5c4f8",
+            "plane_count": 45,
+            "parallelity_count": 58,
+            "plane_membership_matches_prepared": true,
+            "static_signature": "b07155c3eab5e611893c0698bdd2596e1c2ec1ca9aa2b0eacd6e272832da3485",
+            "endpoint_review": {
+              "sampled_gradients_consistent": false,
+              "baseline_repeat_consistent": true,
+              "context_observation": "UNCHANGED",
+              "review_directions": 18,
+              "directions": 20,
+              "evaluation_calls": 162,
+              "target": 0.8732803650667902
+            },
+            "kernel_parent_statistics": null,
+            "kernel_process_receipts": 0,
+            "seconds": 12.598812749987701,
+            "scope": "Actual ordinary Phenix program, all original strategies/weights/nproc and restraint inputs, macrocycles explicitly bounded from five to one; optional process-local kernel prototype only. No adoption, scientific approval, PDU control or product runtime option."
+          },
+          "kernel_adapted": {
+            "status": "ONE_MACROCYCLE_COMPLETE",
+            "macro_cycles_executed": 1,
+            "atoms": 853,
+            "r_work": 0.2151704638968681,
+            "r_free": 0.237285654840509,
+            "free_r_observation_count": 4530,
+            "free_r_test_count": 250,
+            "free_r_indexed_values_sha256": "70938cc387cd9a8a898471d1dc63083bda04d5780ddc21eafb37b5fcf5d5c4f8",
+            "plane_count": 45,
+            "parallelity_count": 58,
+            "plane_membership_matches_prepared": true,
+            "static_signature": "b07155c3eab5e611893c0698bdd2596e1c2ec1ca9aa2b0eacd6e272832da3485",
+            "endpoint_review": {
+              "sampled_gradients_consistent": true,
+              "baseline_repeat_consistent": true,
+              "context_observation": "UNCHANGED",
+              "review_directions": 0,
+              "directions": 20,
+              "evaluation_calls": 162,
+              "target": 0.8843516571043699
+            },
+            "kernel_parent_statistics": {
+              "calls": 281,
+              "gradient_calls": 263,
+              "energy_only_calls": 18,
+              "max_proxy_count": 58
+            },
+            "kernel_process_receipts": 1,
+            "seconds": 28.370411583018722,
+            "scope": "Actual ordinary Phenix program, all original strategies/weights/nproc and restraint inputs, macrocycles explicitly bounded from five to one; optional process-local kernel prototype only. No adoption, scientific approval, PDU control or product runtime option."
+          }
+        },
+        "integrity": {
+          "original_files_unchanged": 410,
+          "capture_files_unchanged": 64,
+          "elapsed_seconds": 97.11118524998892
+        },
+        "sampled_peak_process_rss_kib": 955664
+      },
+      {
+        "milestone": 293,
+        "anchor": "local_live_tests",
+        "directory": "293_Cedar_kernel-five-cycles-jjxia03q",
+        "driver": {
+          "returncode": 1,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "files": 76,
+        "bytes": 9804478,
+        "runner_anchor": "ignored_cedar_runners",
+        "runner_path": "c293_start.py",
+        "runner_sha256": "2814247157e1749e5626b4eedd2e126bbb05b33296131f382d0ef17df6d86202",
+        "native": {
+          "kernel_adapted": {
+            "status": "FIVE_MACROCYCLES_COMPLETE",
+            "macro_cycles_executed": 5,
+            "atoms": 853,
+            "r_work": 0.21941176316835678,
+            "r_free": 0.23177548764738745,
+            "free_r_observation_count": 4530,
+            "free_r_test_count": 250,
+            "free_r_indexed_values_sha256": "70938cc387cd9a8a898471d1dc63083bda04d5780ddc21eafb37b5fcf5d5c4f8",
+            "plane_count": 45,
+            "parallelity_count": 58,
+            "plane_membership_matches_prepared": true,
+            "static_signature": "b07155c3eab5e611893c0698bdd2596e1c2ec1ca9aa2b0eacd6e272832da3485",
+            "endpoint_review": {
+              "sampled_gradients_consistent": true,
+              "baseline_repeat_consistent": true,
+              "context_observation": "UNCHANGED",
+              "review_directions": 0,
+              "directions": 20,
+              "evaluation_calls": 162,
+              "target": 0.27333774170594044
+            },
+            "kernel_parent_statistics": {
+              "policy_id": "native-parallelity-kernel-adapter-v1",
+              "successful_calls": 694,
+              "gradient_calls": 628,
+              "energy_only_calls": 66,
+              "maximum_proxy_count": 58
+            },
+            "kernel_process_receipts": 25,
+            "seconds": 87.93979470798513,
+            "scope": "Actual ordinary Phenix program, all original strategies/weights/nproc and restraint inputs, all original five macrocycles; explicit process-local maintained kernel callable only. No adoption, scientific approval, PDU control or product runtime option."
+          }
+        },
+        "post_refinement_failure": "Exact normalized target equality after model.select(all atoms); C294 records changed contacts/normalization with identical unnormalized mechanics. Completed refinement and whole-driver rc1 remain preserved.",
+        "sampled_peak_process_rss_kib": 3276880
+      },
+      {
+        "milestone": 294,
+        "anchor": "local_live_tests",
+        "directory": "294_Cedar_manager-copy-kzcnunvi",
+        "driver": {
+          "returncode": 0,
+          "stopped_verified": true,
+          "code_unchanged": true
+        },
+        "files": 79,
+        "bytes": 10282682,
+        "runner_anchor": "ignored_cedar_runners",
+        "runner_path": "c294_start.py",
+        "runner_sha256": "2017201ad372fa8aff3f61407040f7ead77b6248baddd15cbd2cb62d50a6ed6a",
+        "native": {
+          "kernel_adapted": {
+            "status": "FIVE_MACROCYCLES_COMPLETE",
+            "macro_cycles_executed": 5,
+            "atoms": 853,
+            "r_work": 0.21941176316835678,
+            "r_free": 0.23177548764738745,
+            "free_r_observation_count": 4530,
+            "free_r_test_count": 250,
+            "free_r_indexed_values_sha256": "70938cc387cd9a8a898471d1dc63083bda04d5780ddc21eafb37b5fcf5d5c4f8",
+            "plane_count": 45,
+            "parallelity_count": 58,
+            "plane_membership_matches_prepared": true,
+            "static_signature": "b07155c3eab5e611893c0698bdd2596e1c2ec1ca9aa2b0eacd6e272832da3485",
+            "endpoint_review": {
+              "sampled_gradients_consistent": true,
+              "baseline_repeat_consistent": true,
+              "context_observation": "UNCHANGED",
+              "review_directions": 0,
+              "directions": 20,
+              "evaluation_calls": 162,
+              "target": 0.27333774170594044
+            },
+            "kernel_parent_statistics": {
+              "policy_id": "native-parallelity-kernel-adapter-v1",
+              "successful_calls": 694,
+              "gradient_calls": 628,
+              "energy_only_calls": 66,
+              "maximum_proxy_count": 58
+            },
+            "kernel_process_receipts": 25,
+            "seconds": 85.89757895801449,
+            "scope": "Actual ordinary Phenix program, all original strategies/weights/nproc and restraint inputs, all original five macrocycles; explicit process-local maintained kernel callable only. No adoption, scientific approval, PDU control or product runtime option."
+          }
+        },
+        "integrity": {
+          "original_files_unchanged": 410,
+          "capture_files_unchanged": 64,
+          "elapsed_seconds": 151.33876483299537
+        },
+        "sampled_peak_process_rss_kib": 3858256
+      }
+    ],
+    "replacement_manager": {
+      "status": "UNNORMALIZED_TARGET_AND_FORCES_MATCH",
+      "normalized_target_difference": -0.00045797328857255515,
+      "old_context": {
+        "normalization_factor": 8.833141948591114e-05,
+        "number_of_restraints": 11321,
+        "nonbonded_proxies": 8041
+      },
+      "new_context": {
+        "normalization_factor": 8.818342151675486e-05,
+        "number_of_restraints": 11340,
+        "nonbonded_proxies": 8060
+      },
+      "unnormalized_target_difference": 0.0,
+      "maximum_unnormalized_gradient_difference": 5.684341886080802e-14,
+      "all_atoms_retained": true,
+      "new_model_and_manager": true,
+      "static_signature": "b07155c3eab5e611893c0698bdd2596e1c2ec1ca9aa2b0eacd6e272832da3485",
+      "selected_manager_force_probe_pass": true,
+      "scope": "Compare each actual normalized model first; removing its recorded normalization here is diagnostic arithmetic only, never an optimization policy. Do not assume equal normalized scores after rebuilding contact lists."
+    },
+    "installed_source_fingerprints": [
+      {
+        "module": "phenix.programs.phenix_refine",
+        "sha256": "86a2bfe8ca994aec6f3a97a70d7609b0ea53ea4c21f4e9c9a9940e313d95a088"
+      },
+      {
+        "module": "phenix.refinement.driver",
+        "sha256": "efd97e5cc7f9b38c7bc6904dcaacd3c04c50cfa58b13d5747403469f1328a5aa"
+      },
+      {
+        "module": "phenix.refinement.macro_cycle",
+        "sha256": "d1803d0256e09de48c5f7069af680625db35cfe11ddb7d6e19b3fad09590c868"
+      },
+      {
+        "module": "mmtbx.model.model",
+        "sha256": "e35c7cdffa57ee3a6dac73c0dbdc46f382faf69780ba7a71c16aa6d58aa359ee"
+      },
+      {
+        "module": "mmtbx.restraints",
+        "sha256": "6da98bb07effda0952773e825cb2d07214dbe5ba2e7b2b64d6760c72dca5d167"
+      },
+      {
+        "module": "mmtbx.refinement.minimization",
+        "sha256": "3f96adc487ae6c238fc925725b09363f428e40a68cc942e9130ae05e644c069e"
+      },
+      {
+        "module": "cctbx.geometry_restraints.manager",
+        "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39"
+      },
+      {
+        "module": "cctbx.geometry_restraints.energies",
+        "sha256": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f"
+      },
+      {
+        "module": "cctbx_geometry_restraints_ext",
+        "sha256": "496677a82712ef7e8488ef675b98d0bb4f06741c12489f8a3d5fc15058b7612c"
+      },
+      {
+        "module": "nasolve.cif_parallelity_correction",
+        "sha256": "701af4a752e79aecedfa74627819d72d44dcfa6ef86fb20bcd73f9cba25d792f"
+      },
+      {
+        "module": "nasolve.cif_objective_probe",
+        "sha256": "5ce8edfb90986f81a8029a156484d11a68b7d25b5958e9237ed5fd100c126fff"
+      },
+      {
+        "module": "nasolve.cif_parallelity_kernel",
+        "sha256": "1e03b431f6aaf1ceddca1e4de37d61d771c38a60d3b23b79b32b3c14d0b68230"
+      },
+      {
+        "module": "phenix.refinement.xyz_reciprocal_space",
+        "sha256": "1407159a3f392466e92537048fc9cd5ea2c43f6a93c63a7c5a277837b18d7f17"
+      },
+      {
+        "module": "libtbx.easy_mp",
+        "sha256": "bcdbbe705a2a1d9f73edc9c7878c4f139675b3f824e341688bc5305e13e2ca73"
+      }
+    ],
+    "cold_replay": {
+      "status": "SEVEN_RELOCATED_REPORT_REPLAYS_PASS",
+      "temporary_original_absent": true,
+      "native_calls": 0,
+      "reports": [
+        {
+          "milestone": 291,
+          "path": "ordinary_raw.json",
+          "sha256": "a17ac8a02f1225dd8d9cbaf743881f3840173ca14b17d8dd1e8e5857449ecb87",
+          "sampled_gradients_consistent": false,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED"
+        },
+        {
+          "milestone": 291,
+          "path": "kernel_adapted.json",
+          "sha256": "20a8359b4d557e4a62e83e31fc1e80c857b6d1f31ad73eefcb8fe9fd2a63df47",
+          "sampled_gradients_consistent": true,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED"
+        },
+        {
+          "milestone": 292,
+          "path": "ordinary_raw/endpoint-probe.json",
+          "sha256": "56c3fce27e995bbcef41bedfd4511007495bdf2fc31aba15a71d03b0d352ba95",
+          "sampled_gradients_consistent": false,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED"
+        },
+        {
+          "milestone": 292,
+          "path": "kernel_adapted/endpoint-probe.json",
+          "sha256": "cbce84a214e53ea043e614bd0810cd5a9406974f0178e0e123e6b010ff47b527",
+          "sampled_gradients_consistent": true,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED"
+        },
+        {
+          "milestone": 293,
+          "path": "kernel_adapted/endpoint-probe.json",
+          "sha256": "f4250db194b3f2895ef8307293e587318adde66ee613108578b2903495305547",
+          "sampled_gradients_consistent": true,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED"
+        },
+        {
+          "milestone": 294,
+          "path": "kernel_adapted/endpoint-probe.json",
+          "sha256": "f4250db194b3f2895ef8307293e587318adde66ee613108578b2903495305547",
+          "sampled_gradients_consistent": true,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED"
+        },
+        {
+          "milestone": 294,
+          "path": "kernel_adapted/selected-manager-probe.json",
+          "sha256": "d7e234eeab1aa42fe9f4dda4c209d5119c8a02c1cd2dd5e690749984349480d8",
+          "sampled_gradients_consistent": true,
+          "baseline_repeat_consistent": true,
+          "context_observation": "UNCHANGED"
+        }
+      ],
+      "unchanged_files": {
+        "291": 46,
+        "292": 74,
+        "293": 76,
+        "294": 79
+      },
+      "scope": "Arithmetic replay of saved diagnostic JSON only; does not independently authenticate native producers or establish whole-refinement portability. Negative raw and stopped C293 outcomes retain their meaning."
+    },
+    "compatibility": "Explicit callable only; keyword Cartesian interface, no unit-cell/symmetry planes, no defaults/ordinary command/SDK/chemistry/normalization changes. Historical correction/workers unchanged.",
+    "artifacts": "Only compact code/tests/evidence in Git; native science/logs/runners excluded. Failed C293 retained. Remote publication permission pending after C290 rejection.",
+    "limits": [
+      "Phenix 2.2.1-6174 / dispatcher 2.2.1 on this Mac; exact hashes identify consumed sources, version is not pristine-distribution attestation.",
+      "Original five-cycle recipe/Free-R retained; these are software observations, not structure approval or PDU survival.",
+      "Fork workers observed; other process/platform modes not qualified. Counters are per process.",
+      "Cold report replay verifies arithmetic, not producer authenticity or whole-run portability.",
+      "Historical static signature omits optional fields; complete capability/parameter binding remains an ordinary runtime gate.",
+      "PDU B:1 intent and compact-evidence publication permission pending."
+    ],
+    "remaining": [
+      "Qualify an explicit ordinary NASolve execution route using existing attempt/checkpoint owners and complete native parameter/symmetry/process scope.",
+      "PDU/held-out chemical survival and Q07 mixed controls.",
+      "Full suite/integration/defaults remain Q16; no full suite here."
     ]
   }
 }

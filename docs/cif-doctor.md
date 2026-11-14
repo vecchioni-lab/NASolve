@@ -1054,11 +1054,61 @@ incomplete native work, a shared/foreign/unknown active group, or a missing camp
 stage receipt. Existing campaign supervision remains unchanged. No default
 checked-preparation activation or standalone native-attempt isolation is added.
 
+### Explicit native plane-force composition (C291–C294)
+
+`cif_parallelity_kernel.ParallelityKernel(gr, flex)` is an explicitly invoked
+callable for the native keyword Cartesian interface. It does not install itself
+or add an ordinary refinement option. A caller must own the native process,
+authenticate its capabilities/sources and restore any temporary function binding.
+
+**Methods.** Capture the original native kernel before any caller binding, evaluate
+its unchanged score into a private force array, and reuse the established
+`native-parallelity-both-first-planes-v1` correction. Add the checked result to the
+caller's existing forces only after all checks pass. This preserves earlier
+bond/angle contributions and native normalization. It refuses aliased coordinate/
+force storage, incomplete/nonfinite buffers and unsupported unit-cell/symmetry
+planes. Energy-only calls retain the score; empty plane sets are no-ops.
+Process-local counters describe successful calls, not process ownership.
+Historical correction and native worker bytes stay unchanged.
+
+C291's process-local prototype passes all 20 ordinary startup force probes with
+unchanged target/contacts/normalization; raw fails 17. C292 runs the actual ordinary
+Phenix program for one cycle in each arm: adapted endpoint passes 20/20, raw fails
+18/20. C293/C294 use the maintained callable for the original five-cycle recipe,
+including original strategies/weights/nproc and all 45 planes/58 parallelities.
+The endpoint passes 20/20; 25 process receipts include native fork workers.
+Indexed Free-R values remain identical (4,530 observations, 250 test). These use
+**Phenix 2.2.1-6174 / dispatcher 2.2.1**, exact consumed-source fingerprints and no
+installed-file edits. They are native refinement controls, not structure approval.
+
+C293 preserves a failed post-refinement diagnostic: exact normalized target
+comparison after `model.select(all atoms)` was invalid. C294 records why: rebuilding
+the manager changes contacts 8,041 → 8,060 and total terms 11,321 → 11,340. Before
+normalization, scores are identical and maximum force difference is 5.7×10⁻¹⁴.
+Each manager's own normalized force probe passes; no optimization scale changes.
+C294 completes/stops successfully. C293's completed refinement and later failed
+assertion remain separate, preserved outcomes.
+
+Nineteen regressions fail before the API; 62 focused tests pass. Nineteen also pass
+from a relocated minimal source copy with its temporary original absent. Seven
+saved native reports replay without native execution and with 275 local files
+unchanged. This is report arithmetic, not whole-run portability. Original 410 run
+files and 64 earlier capture files stay fixed. No science/logs/runners are committed.
+
+**Pipeline boundary.** This qualifies a bounded mechanism, not automatic ordinary
+NASolve execution, every native build/platform, or PDU chemical survival. Ordinary
+execution must bind the capability/policy through existing immutable attempts and
+checkpoints before it is advertised as supported. Include complete consumed native
+parameters and symmetry/process scope: the historical static signature alone does
+not cover every optional field. Evidence: `explicit_parallelity_kernel_compatibility_2026_11_14`.
+
 ### Current ordinary PDU-pair construction observation (C290)
 
 The current builder preserves parent conformation in the original accepted-MR
 PDU A:12/B:4 control: chi differs by 0.027° and 0.006° from its canonical parent,
-whereas the old construction had both near +53°. The C5 substituent elevations
+whereas the old construction had both near +53°. The old and current literal
+dictionaries differ (their parsed atom/bond graph agrees); changes in bond lengths
+are therefore not a controlled attribution to one repair. The C5 substituent elevations
 are 1.114°/1.016° before dictionary repair; source CCD plane coverage is still
 missing. These are descriptive coordinates, not refined geometry or target approval.
 

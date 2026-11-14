@@ -62,8 +62,11 @@ qualified. Q06 now asks whether actual refinement preserves the intended chemist
 mixed and held-out controls follow. A direct check of the ordinary
 Phenix startup model now shows why this matters: its installed parallelity forces
 can disagree with its own score, despite having the correct restraint groups.
-The existing local diagnostic correction passes the same check, but is not a
-qualified ordinary-refinement remedy. This is distinct from a missing CIF plane
+An explicit local adapter now carries the established correction through five
+real refinement cycles, including worker processes, while retaining the original
+restraints and Free-R. A copied manager preserves the unscaled mechanics; changed
+contact counts explain its different normalization. This is not yet connected as
+a supported ordinary NASolve refinement option. This is distinct from a missing CIF plane
 and does not establish the cause of the reported PDU distortion.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.

@@ -1,119 +1,102 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C290**. Active **cedar** in NASolve-c96; latest pushed
-code **C287 `cbece417`**, C288 observations `5441a199`; C289 code/tests/native evidence pushed as `7e843af7`. Scoped Q04/Q05 reconciliation is C285 `d5996bc4`. Simon's active cutoff is **23:00 Europe/London, 2026-11-14**;
-connectivity interruptions expected. Focused checks only: **no full suite, new
-branch or merge**. Linden owns Pine/Willow; everyday NASolve code stays untouched.
+Updated **2026-11-14, C294**. Active **cedar** in NASolve-c96. Remote last verified
+**C289 `7e843af7`**; C290 is committed locally as **`c911bdc5`**. C291–C294 code,
+tests and native evidence are complete and being committed locally. Simon's
+cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
+only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
 
-## Where we are
+## Pending decisions and publication
 
-**Q04/Q05 are accepted for the explicit supported route and recorded controls.**
-The [completion queue](cif-doctor-completion-queue.md) is the sole work order and
-owns the exclusions. This means prepare/check/repair, preserve attempts, recover
-known-stopped work and deliver exactly the chosen model/restraints. It does not
-approve every chemistry, enable defaults or qualify a native 100-dataset workload.
+- **B:1 intent:** C290's original PDU-pair model has P/OP1/OP2 but no OP3 or verified
+  incoming O3′–P link; only D:1 is declared terminal phosphate. Simon was asked
+  whether B:1 is free hydroxyl, a complete terminal phosphate or an incoming
+  symmetry linkage. No answer yet. Preserve the stopped attempt; do not alter
+  phosphate or infer a link to force the control through.
+- **GitHub publication:** automatic approval review rejected C290's push because
+  compact PDU measurements/provenance may be unpublished science. Simon was asked
+  explicitly to authorize compact-evidence publication; no answer yet. Keep new
+  commits local and do not retry the push. Raw science/logs/runners stay local.
 
-- C276–C279 join the normal campaign through actual Phaser/Coot/NAR/ReadySet,
-  AutoSol and five refinement cycles, then read the exact endpoint after relocation.
-  Preserve original Free-R, ordered restraints and D:1 terminal phosphate. C279's
-  R-work 0.1971 / R-free 0.2222 is a software control, not structural approval.
-- C280 executes repeated native failure under the original allowance: both results
-  remain unqualified, third attempt/publication/retirement refuse, moved reads pass.
-- C282 executes a second native preparation after the first was archived, publishes
-  prepare-002 unselected and retires only eligible new working duplicates. All 207
-  earlier campaign references and the current postmr choice remain intact.
-- C281/C283 run 100 synthetic datasets (50 failures/50 prepared) and two explicit
-  fresh retries. C283 reduces initial file-hash reads 651,504 → 13,104 by checking
-  active science at stage boundaries, retaining full entry/exit/status audits.
-- C284 scopes existing pure numerical reuse to status/archive-eligibility reads.
-  170 focused tests pass; four saved-native C282 reads return identical complete
-  results and unchanged 327 files. Replay falls 28 → 2; observed status 219 → 107 s,
-  archive eligibility 206 → 97 s. All source/owner/archive checks remain fresh.
+## Accepted foundations
 
-Whole requests retain 35.1 MB for one success, 65.7 MB for two archived successes,
-and 70.7 MB for two native failures. Historical unretired PDU retains 315.3 MB.
-Keep work serial and one expensive reader at a time; these figures are not hard
-scratch/RAM quotas. Explicit campaign retry creates a new run/request allowance.
-All failed/unknown science stays preserved. C283's task-owned 8.7 MB temporary
-source copy was removed after relocation validation; compact receipts remain.
+**Q04/Q05 are accepted for the explicit supported route and recorded controls**
+at C285 `d5996bc4`. The [completion queue](cif-doctor-completion-queue.md) is the
+sole work order. Prepare/check/repair, retain alternatives and failed attempts,
+recover known-stopped work, and deliver exactly the chosen model/restraints.
+C276–C279 join actual preparation, phasing and five-cycle refinement; C280 preserves
+native exhaustion; C282 retains earlier archived alternatives and current choice.
+C283's 100 synthetic datasets reduce hash reads 651,504 → 13,104. C284 reuses pure
+math within a read; source/ownership checks stay fresh. Do not rebuild these owners.
 
-Exact commands, hashes, outcomes and limitations are in the existing evidence
-ledger under C280–C285 keys, ending `q04_q05_supported_scope_2026_11_14`.
-C283 focused: 271 tests +92 subtests, plus 5 sandbox-blocked process tests passing
-with ps access; relocated temporary source: 16 pass. C284: 170 pass in 485.09 s.
-C280–C287 validation groups stopped; no active jobs remain.
-No raw science/logs/runners are committed. Last full suite remains
-**C220/583d30df, 9,178 tests +276 subtests**, not a current-source pass.
+Recorded whole-request retention: one success 35.1 MB, two archived successes
+65.7 MB, two native failures 70.7 MB. These are not native 100-dataset disk/RAM
+capacity or hard quotas. Keep work serial, one expensive reader at a time.
+Defaults, old-run migration, broader capacity/platform checks and full integration
+remain Q16. Last full suite: **C220/583d30df, 9,178 tests +276 subtests**.
 
-## Next bounded work — Q06: what refinement actually does
+## Q06 — real refinement preserves the intended chemistry
 
-- C286/C287: exact prepared/final inventories and GEO agree on 45 planes and
-  58 ordered parallelities (54 unequal groups). Checked reader fixes only GEO
-  observation; no native restraint reconstruction or inferred exact weights.
-- C288: ordinary startup's family-isolation diagnostic changes its contact cache
-  and normalization. Four failed/refused attempts remain preserved (23.34 MB).
-  Fixed-scale raw/corrected scores agree; corrected sampled derivatives pass.
-- **C289: whole-objective check passes its software/native-control contract.**
-  Actual Phenix 2.2.1-6174 ordinary dry-run, zero cycles. No family switching:
-  8004 contacts, 11284 terms, normalization 1/11284, pair-list updates=1 and exact
-  static restraints remain unchanged. Raw forces fail 17/20 sampled directions;
-  existing diagnostic correction passes 20/20 at identical target 1.1401030244830264.
-  Each arm 162 calls; all 410 original run and 64 C286 files unchanged. Driver/native
-  return zero; all processes stopped; source and installed files unchanged.
+C286/C287 establish the C279 prepared/final GEO memberships (45 planes,
+58 parallelities); the checked reader avoids the installed parser's truncation.
+C288 exposes a diagnostic contact/normalization change when switching families.
+C289 keeps all terms active and demonstrates an actual ordinary startup force
+error: raw fails 17/20 sampled directions, diagnostic correction passes 20/20 at
+identical score. Do not attribute PDU distortion to this independently found defect.
 
-New `cif_objective_probe` reuses the existing finite-difference tolerances without
-editing pinned workers/cores. Pure replay distinguishes absent/changed context
-from numerical agreement; it does not authenticate native execution. Focused
-command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider
- tests/test_cif_objective_probe.py tests/test_cif_gradient_audit.py` → 30 pass,
-1.58 s. Eighteen new cases fail before the API exists. Moved-copy cold replay of
-both native reports passes with no native process and 44 original files unchanged.
-Native output `289_Cedar_whole-objective-8zz96zko` (local live-tests anchor) is
-~5.7 MB; compact read receipt under ignored runners `c289_read_records/`.
+**C291–C294 now qualify an explicit kernel-composition mechanism.** New
+`cif_parallelity_kernel.ParallelityKernel` reuses the unchanged both-first-planes
+correction, preserves the native score and adds checked forces atomically to the
+caller's existing array. It installs no hook and adds no ordinary runtime option.
+Unit-cell/symmetry planes remain unsupported; counters are process-local evidence.
 
-**C290 stopped at a known chemical-intent guard.** Fresh ordinary PDU A:12/B:4
-construction from Linden's original accepted MR preserves parent chi: deviations
-0.027°/0.006° (old construction both ~+53°). Current C5 substituent elevations are
-1.114°/1.016°; source CCD plane coverage remains missing before repair. No chemical
-PASS follows. All 19 original inputs and 72 attempt files unchanged on readback.
-Checked intake then refuses B:1 P/OP1/OP2 without OP3 or a verified incoming link;
-only D:1 is declared terminal phosphate. Same raw-W ambiguity is documented in
-C188/C189/C270. **Simon was asked for B:1 intent; answer pending.** Do not delete
-phosphate, add OP3 or infer a symmetry connection to force the test through.
-NAR has no T:T pair recipe, so this PDU:PDU no-metal control does not invent one.
-No dictionary repair, ReadySet, checkpoint publication or refinement ran. Owned
-output `290_Cedar_PDU-pair-current-k3sdohpc` is stopped (rc 1, code unchanged).
-Local read receipt `c290_read_records/geometry.json`; evidence ledger key
-`current_pdu_pair_construction_2026_11_14`. C252's A:9 synthetic observations remain
-a different control. Native-only measurement launch initially used an unavailable
-path, then lacked openpyxl; final read separates normal Python ownership/geometry
-from the existing native torsion-angle kernel and completes with no installations.
+- C291 startup: adapted 20/20, raw fails 17/20; identical score/contacts/normalization.
+- C292 actual one-cycle programs: adapted endpoint 20/20, raw fails 18/20.
+- C293/C294 actual original five-cycle recipe: endpoint 20/20, same static
+  restraints and indexed Free-R (4530/250 test), 25 process receipts including
+  fork workers. Phenix 2.2.1-6174 / dispatcher 2.2.1; exact source hashes recorded.
+- C293 completes refinement but a later exact normalized-score assertion after
+  model.select(all atoms) fails; preserve its rc1. C294 records contacts 8041→8060,
+  total terms 11321→11340. Unnormalized targets are identical, maximum force
+  difference 5.7e-14; the selected manager's own normalized force probe passes.
+  This diagnostic division never changes optimizer normalization.
+- All drivers/native jobs are stopped. C294 driver returns zero; source/SDK files,
+  original 410 run files and 64 earlier capture files stay unchanged. Local roots
+  `291_Cedar_kernel-compatibility-33uhgsdp`, `292_Cedar_ordinary-cycle-k4cfrddj`,
+  `293_Cedar_kernel-five-cycles-jjxia03q`, `294_Cedar_manager-copy-kzcnunvi`.
 
-**Next:** native consumer limitation is now demonstrated, not merely suspected
-from C23–C26/source inspection. Choose and qualify a supported compatible remedy
-before claiming ordinary corrected refinement. No installed SDK patch, dropped
-restraint, altered chemical target or default runtime change. Current upstream
-public parallelity.h still contains the accumulation loop (blob
-`25d3a75f20d3611dcb32d919a893bc0beb18e6a0`); no upgrade remedy is established.
-Separately inspect PDU chemical survival using existing exact source/control
-artifacts, not another preparation/phasing rerun or a PDU-name repair switch.
-Linden's W46 now reuses Cedar's native plane/torsion kernels for endpoint
-attribution; do not duplicate that observer. These scalar/derivative findings do
-not approve sugar pucker, chemistry or a refined structure.
+Focused command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q
+-p no:cacheprovider tests/test_cif_parallelity_kernel.py
+tests/test_cif_parallelity_correction.py tests/test_cif_objective_probe.py`
+→ **62 pass, 3.17 s**. Nineteen regressions fail before the API; 19 pass from a
+relocated minimal source copy with its temporary original absent. Seven saved
+reports replay without native execution and with 275 files unchanged; this is
+arithmetic replay, not whole-run portability. Exact evidence:
+`explicit_parallelity_kernel_compatibility_2026_11_14` in the existing ledger.
 
-Simon's reported PDU distortion after collaborator refinement is explicitly Q06,
-then reused in Q07. Exact collaborator files/revision/settings remain unidentified;
-no cause is diagnosed. Compare built/ReadySet/refined ring, trigonal C5, propyne
-coplanarity/internal geometry and chi, preserving sugar/phosphate/pair/Free-R intent.
-Use source connectivity and a held-out substituent; no PDU-name repair switch.
-A 5IU input or numerical R-factor pass does not establish PDU survival.
+**Next bounded gap:** qualify an explicit ordinary NASolve execution route for the
+adapter, binding native capabilities/full consumed parameters and policy through
+existing immutable attempt/checkpoint owners. Keep default behavior unchanged.
+Historical static signatures omit some optional fields; source/version labels
+alone are not universal capability proof. Other platforms/process modes, complete
+chemical acceptance and PDU survival remain open. Do not patch installed Phenix,
+drop NAR terms, retune chemistry or duplicate Linden's W46 endpoint observer.
 
-Linden reports W43 fixed-manager full-precision/rounded ASU observations agree
-with its independent rounded PDB capture on target/full gradient and common pairs;
-extra neighbors have zero residual. That is adjacent evidence, not a Cedar merge,
-ordinary-refinement result or general neighbor-generation proof. Keep NAR pair/
-stack intent separate from intramolecular plane repair and additive contact energy.
+## PDU control remains separate
 
-Q07 mixed/held-out controls and Q08–Q14 retained chemistry learning follow. Q15
-reporting and Q16 AutoPhase compatibility, deployment/integration/full regression
-and reviewed merge remain later. Signed cross-agent handoffs: **— Rowan**.
+C290 current ordinary PDU A:12/B:4 construction preserves parent chi (0.027°/0.006°
+deviation; old construction both ~+53°). Current C5 elevations are 1.114°/1.016°
+before repair. Old/current literal dictionaries differ despite equal parsed
+atom/bond graphs; bond-length changes are not a one-patch causal comparison.
+The known raw-W B:1 guard (C188/C189/C270) then stops intake. No repair, ReadySet,
+publication or refinement ran. NAR has no T:T pair recipe and does not invent one.
+All 19 original inputs and 72 attempt files stay fixed. Output:
+`290_Cedar_PDU-pair-current-k3sdohpc`; read receipt `c290_read_records/geometry.json`
+under ignored runners. C252's A:9/synthetic observations are a different control.
+
+Simon's collaborator before/after files, native version and settings remain
+unidentified. Compare built/ReadySet/refined ring, trigonal C5, propyne geometry
+and chi while retaining sugar/phosphate/pair/Free-R intent. PDU and a held-out
+substituent must demonstrate graph-based transfer. Q07 mixed/held-out scaffold,
+Q08–Q14 retained chemistry learning, Q15 reporting and Q16 AutoPhase/integration
+follow. Signed cross-agent notes: **— Rowan**.

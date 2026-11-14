@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Explicitly compose corrected native plane forces (C291–C294)
+
+- Add an opt-in callable preserving the native parallelity score and adding
+  complete checked plane forces to the caller's existing force array. Reuse the
+  established both-first-planes correction; failed checks leave earlier forces
+  untouched. Energy-only calls and empty plane sets remain supported.
+- The utility installs no hook and enables no ordinary refinement option. Native
+  startup, one/five-cycle and replacement-manager controls qualify this bounded
+  mechanism, including observed fork workers. Broader deployment and chemical
+  survival remain separate. No installed SDK or historical worker changes.
+
 ### Probe complete native objectives without switching restraints (C289)
 
 - Add a bounded diagnostic for one complete score/force callback. Keep actual
