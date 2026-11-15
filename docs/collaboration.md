@@ -95,6 +95,16 @@ prefer relocating a newly owned validation result to duplicating large trees.
 Changes to retention must preserve immutable run lineage and known-stopped recovery.
 Do not delete old scientific outputs or partial work as an incidental code cleanup.
 
+## Independent native development jobs
+
+Separate Phenix CLI jobs may run concurrently with isolated working/output
+folders and independent process records. Keep their authoritative inputs and
+selected installation unchanged; never share a writable job directory or stop
+another agent's process. Coordinate CPU/RAM, disk and deadlines, and prefer one
+expensive evidence reader at a time. A globally exclusive Phenix lock is not
+required. This development practice does not change the serial campaign contract
+or permit retry while an earlier owner is still alive or uncertain.
+
 ## Continual handoff during active work
 
 At the start of a substantive push, record the current scope, ordered acceptance

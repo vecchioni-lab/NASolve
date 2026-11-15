@@ -101,8 +101,11 @@ coordinates preserved. Successful working files can be archived by the existing
 retention procedure and the result reopened after moving it. An initial control
 also exposed excessive combined working evidence; a new explicit accounting
 policy separates native captures from their analysis while retaining the shared
-archive-expansion limit. The failed first request stays preserved. Ordinary entry,
-automatic choice and actual corrected-CIF refinement remain the next boundaries.
+archive-expansion limit. The failed first request stays preserved. Normal model
+preparation can now pass an explicitly chosen correction into that same checked
+route through its Python entry point. This connects the existing tools; it does
+not yet decide automatically which bonds need correction. Actual corrected-CIF
+refinement and whole-substituent survival remain the next scientific boundary.
 Matched refinement trials now show that changing only the terminal bond target
 brings both PDU and 5PC to sensible lengths near 1.48 Å, while retaining the
 original restraint strengths, observations and Free-R flags. The previous selected

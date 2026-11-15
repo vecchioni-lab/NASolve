@@ -10,6 +10,7 @@ from pathlib import Path
 from .cif_acquisition_sources import freeze_acquisition_sources
 from .cif_phenix_configuration import configure_dictionary_engine
 from .cif_postmr_request import initialize_postmr_dictionary_request, prepare_postmr_literal_inputs
+from .cif_prepared_repair_execution import _bond_target_declarations
 from .phenix_runtime import PhenixInstallation
 
 
@@ -30,7 +31,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         expected_dialect, coot_executable=None, data_root=None, allow_mr_review=False,
         modified_pairs_only=False, restraint_scope=None, allow_unreviewed_backbone=False,
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
-        continuation_options=None, automatic_plane_support=False, **execution_limits) -> PreparedPostMRRequest:
+        continuation_options=None, automatic_plane_support=False, bond_targets=None, **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
     Configuration/chemical permissions remain explicit. Existing constructors,
@@ -39,9 +40,11 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     or request execution runs on this route. Failure retains all partial outputs;
     an existing PostMR directory cannot be prepared again in place. The explicit
     automatic_plane_support choice is frozen by the complete owner; continuation
-    reads that saved choice rather than accepting a new override.
+    reads that saved choice rather than accepting a new override. Optional explicit
+    bond_targets follows the same owner; it never guesses which targets need repair.
     """
     from .postmr import _prepare_postmr
+    bond_targets = _bond_target_declarations(bond_targets)
     if type(automatic_plane_support) is not bool:
         raise ValueError('automatic_plane_support must be a boolean')
     if generation_options is not None and not isinstance(generation_options,dict):
@@ -67,7 +70,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
             continuation_options=continuation_options,
-            **({'automatic_plane_support':True} if automatic_plane_support else {}),**execution_limits)
+            **({'automatic_plane_support':True} if automatic_plane_support else {}),
+            **({'bond_targets':bond_targets} if bond_targets is not None else {}),**execution_limits)
         return PreparedPostMRRequest(inputs.run_directory,request,record,
             {code:dict(configured.generation) for code in inputs.components})
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,

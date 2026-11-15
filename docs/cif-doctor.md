@@ -203,7 +203,7 @@ retain exact v1 bytes. The existing bundle selector still owns source identity,
 whole-model native identity, final derivatives and independently verified fallback.
 Public runtime/ReadySet-parent reads carry that same choice after relocation.
 C326 adds explicit prepared executor/request delivery below; automatic selection
-and complete-request/default integration remain separate.
+and automatic/default integration remain separate; C327/C328 extend delivery below.
 
 Native selected-library binding and both real PDU/5PC bond-only chain reads pass
 after moving code/evidence with originals/SDK blocked. Multi-stage public selection
@@ -257,6 +257,28 @@ failed request remains unchanged. These checks establish complete explicit engin
 delivery, not ordinary entry/default activation or refinement survival. Exact
 commands, source pins, retained sizes and native stopping evidence are in the ledger.
 
+### Explicit choices at normal preparation entry (C328)
+
+The Python `prepare_postmr(..., checked_preparation=True, bond_targets=...)` route
+and both ordinary request initializers now accept the existing bounded mapping
+from component codes to source-neighborhood atom pairs. The same declaration
+validator snapshots/canonicalizes pairs before tool setup. Prepared entry also
+refuses undeclared components before freezing sources. Full source connectivity
+is still checked by the complete request; syntactic validity is not chemical
+approval, and callers cannot provide numerical lengths through this option.
+
+A fresh request with explicit pairs uses C327's v4 capture accounting. Omitting
+the option retains v3 and the prior configuration shape. Existing continuation
+reads the frozen choice and accepts no replacement; changed intent requires a
+fresh run/request. No new executor, recovery path, CLI flag or campaign schema.
+
+Focused controls cover normal construction forwarding, public publication,
+fresh/frozen source equivalence, malformed/unsupported choices, source-free moved
+readback and the existing immutable continuation/retirement checks. The transport
+fixtures are synthetic, not native chemical validation. C327's actual archived
+request configuration also rereads unchanged with the extracted validator.
+C328 does not rerun Coot/Phenix or claim corrected-CIF refinement survival.
+
 ### Replayable bond-target evidence (C322)
 
 `audit_captured_bond_attribution` now freezes the exact source, supplied numerical
@@ -276,8 +298,8 @@ embedding an additional copy of each complete inventory inside job specification
 
 C323/C324 add selected-library reference authority and ordered repair-chain
 composition. C326 supplies explicit prepared execution and its complete derivative
-proof; C327 adds complete-request/ReadySet delivery. Ordinary entry/defaults and
-chemical survival remain separate. No
+proof; C327 adds complete-request/ReadySet delivery and C328 adds ordinary Python
+entry. Automatic/default activation and chemical survival remain separate. No
 automatic target adoption follows from this proof.
 
 ### Native energy of corrected bond targets (C321)

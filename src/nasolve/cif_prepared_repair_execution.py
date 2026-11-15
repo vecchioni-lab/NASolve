@@ -96,11 +96,10 @@ def _bond_target_choices(bundle, declarations):
     return _source_bond_target_choices(sources,declarations)
 
 
-def _source_bond_target_choices(sources, declarations):
-    """Freeze explicit source-neighborhood choices without approving a target."""
+def _bond_target_declarations(declarations):
+    """Snapshot bounded explicit pairs; source eligibility is checked separately."""
     if declarations is None: return None
     _need(isinstance(declarations,dict) and 1 <= len(declarations) <= 16
-          and declarations.keys() <= sources.keys()
           and all(isinstance(code,str) and _safe(code) and '/' not in code for code in declarations),
           'Bond targets require one to sixteen source-owned components')
     choices={}
@@ -109,10 +108,21 @@ def _source_bond_target_choices(sources, declarations):
         _need(isinstance(selected,(list,tuple)) and 1 <= len(selected) <= 64,
               'Require bounded explicit bond selections')
         pairs=[_pair(row) for row in selected]
-        query=linear_bond_query(sources[code],code)
-        _need(len(set(pairs))==len(pairs) and set(pairs)<={tuple(row) for row in query['selected_bonds']},
-              'Target selection is duplicated or outside the source linear neighborhood')
+        _need(len(set(pairs))==len(pairs), 'Target selection is duplicated')
         choices[code]=[list(pair) for pair in sorted(pairs)]
+    return choices
+
+
+def _source_bond_target_choices(sources, declarations):
+    """Freeze explicit source-neighborhood choices without approving a target."""
+    choices=_bond_target_declarations(declarations)
+    if choices is None: return None
+    _need(choices.keys() <= sources.keys(),
+          'Bond targets require one to sixteen source-owned components')
+    for code,pairs in choices.items():
+        query=linear_bond_query(sources[code],code)
+        _need({tuple(pair) for pair in pairs}<={tuple(row) for row in query['selected_bonds']},
+              'Target selection is outside the source linear neighborhood')
     return dict(policy_id=BOND_TARGET_POLICY,choices=choices)
 
 

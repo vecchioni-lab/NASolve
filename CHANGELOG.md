@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Deliver explicit bond choices from normal preparation (C328)
+
+- Accept explicit source-neighborhood atom pairs through the checked PostMR Python
+  entry and ordinary request constructors. Reuse the existing reference, repair,
+  fallback and immutable request owners; selected lengths still come from the
+  checked native library. Malformed choices fail before tool setup/source writes.
+- These fresh requests use C327's v4 capture partition. Omitting the option keeps
+  v3/default behavior; no CLI/campaign option, automatic target selection or
+  historical migration. Recovery retains the saved choices.
+
 ### Carry explicit bond choices through complete preparation (C327)
 
 - Freeze and revalidate the existing source-bound bond choices in complete

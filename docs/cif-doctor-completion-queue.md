@@ -56,7 +56,10 @@ second process/chemistry owner. Future broader recovery is a separately reviewed
 extension, not an excuse to repeat this completed integration.
 
 **Laptop operating envelope.** Keep campaign execution serial and use one expensive
-scientific reader at a time. Current whole requests measure 35.1 MB for one archived
+scientific reader at a time. Independent developer Phenix CLI jobs may overlap
+when inputs, working/output folders and process records are isolated; coordinate
+CPU/RAM and deadlines across agents. This does not enable concurrent campaigns.
+Current whole requests measure 35.1 MB for one archived
 success, 65.7 MB for two archived successes, and 70.7 MB for two preserved native
 failures. A historical unretired PDU two-attempt request retains 315.3 MB. Shared
 acquisitions, failures and continuation are included. C282's request falls from
@@ -247,9 +250,11 @@ request/runtime/ReadySet-parent reads pass. The final lookup-failure policy guar
 passes focused negative controls. C327 completes explicit complete-request/ReadySet delivery and existing retirement,
 then reads the archived result after relocation. Its first v3 storage failure is
 preserved; fresh explicit v4 separates native captures from derived evidence with
-unchanged per-part/shared expansion bounds. **Next: ordinary preparation entry
-with a frozen graph-selected target choice, then actual corrected-CIF refinement
-and whole-substituent survival.** Changed intent needs a fresh request/run; never
+unchanged per-part/shared expansion bounds. C328 connects the explicit choice at
+ordinary preparation/checked PostMR Python entry, using the same frozen owner;
+focused transport/continuation and saved-native-configuration checks pass. No
+native ordinary-entry control or automatic-selection claim is added.
+**Next: actual corrected-CIF refinement and whole-substituent survival.** Changed intent needs a fresh request/run; never
 bypass lineage by manufacturing a checkpoint or rewriting the original request.
 No automatic target discovery/defaults or residue-name special cases. Reuse existing
 owners rather than promote a diagnostic script or add recovery/storage machinery.
@@ -263,8 +268,8 @@ still preferred and all checks unchanged. Both routes pass from a built/installe
 relocated wheel after the temporary source checkout is removed; changed packaged
 bytes refuse. No ordinary MR catalogue activation. Linden's original W81 four-fail
 combined result remains recorded; two other failures were Git/source-path fixture
-assumptions. Targeted followups do not become a new full-suite pass. C326/C327 now pass explicit prepared and complete delivery. Keep the ordinary-entry
-and refinement-survival steps above as the next work, not another owner rewrite.
+assumptions. Targeted followups do not become a new full-suite pass. C326–C328 connect explicit prepared, complete and ordinary Python entry. Keep
+refinement survival above as the next work, not another owner rewrite.
 
 ### The next small steps
 

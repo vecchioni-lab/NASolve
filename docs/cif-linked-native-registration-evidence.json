@@ -100992,5 +100992,76 @@
     ],
     "next": "Integrate frozen graph-selected target choices at ordinary preparation entry, preserving immutable request/run identity, then validate corrected-CIF refinement survival.",
     "author": "Rowan"
+  },
+  "ordinary_reference_target_entry_2026_11_15": {
+    "milestone": "C328",
+    "status": "ORDINARY_EXPLICIT_TARGET_ENTRY_FOCUSED_PASS",
+    "source_base_commit": "a766d2a3",
+    "behavior_before": "Explicit bond choices stop at the complete/prepared API; ordinary request entry rejects the keyword or forwards it as an unsupported limit, and public PostMR has no such argument.",
+    "behavior_after": "Shared bounded pair validation precedes tool setup; ordinary constructors and checked Python PostMR forward normalized explicit pairs to the existing complete owner using C327 v4 accounting. Source graph, numerical authority, qualification and fallback gates remain.",
+    "prior_work": "C234-C237 ordinary plane entry; C326 source-bound pair declaration; C327 full native ReadySet/retirement control and immutable request delivery reused. No second parser, executor, repair selector or storage owner.",
+    "files": [
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "src/nasolve/cif_postmr_request.py",
+      "src/nasolve/cif_ordinary_postmr.py",
+      "src/nasolve/postmr.py",
+      "tests/test_cif_postmr_bond_targets.py",
+      "tests/test_cif_ordinary_postmr.py"
+    ],
+    "schemas": "No new schema. Existing optional cif-prepared-source-bond-targets-v1 and cif-complete-request-partitioned-artifacts-v4 only for fresh explicit-choice requests; no CLI or campaign schema change.",
+    "validation": {
+      "environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src; cwd NASolve-c96",
+      "interpreter": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "before_command": "-m pytest -q -p no:cacheprovider tests/test_cif_postmr_bond_targets.py tests/test_cif_ordinary_postmr.py -k 'choices or entry_still or ordinary_input_preparation' --tb=short",
+      "before_result": "30 failed, 9 passed, 6 deselected in 4.46 s",
+      "focused_command": "-m pytest -q -p no:cacheprovider tests/test_cif_postmr_bond_targets.py tests/test_cif_ordinary_postmr.py tests/test_postmr_runtime.py tests/test_cif_prepared_bond_repair.py tests/test_cif_postmr_request.py --tb=short",
+      "focused_result": "191 passed in 74.83 s",
+      "owner_command": "-m pytest -q -p no:cacheprovider tests/test_cif_complete_bond_targets.py --tb=short",
+      "owner_result": "17 passed in 45.21 s",
+      "other": "git diff --check; AST parse all changed Python; JSON parse existing ledger",
+      "full_suite": "NOT_RUN; last Cedar full C220/583d30df, 9178 tests +276 subtests",
+      "native_execution": "NOT_RUN. Synthetic ordinary-tool/source-query fixtures establish transport, not chemistry. Prior complete actual Phenix 2.2.1-6174 / dispatcher 2.2.1 Darwin arm64 execution remains C327 evidence.",
+      "source_sha256": {
+        "src/nasolve/cif_prepared_repair_execution.py": "ea6c602b6cb3585f7efced421a65c00a1d39c345098db65d4a8d1666498dc28a",
+        "src/nasolve/cif_postmr_request.py": "797bc66d35fc1618e4f05b7685a077a07d2d1e555863f9af694a3b1995faecff",
+        "src/nasolve/cif_ordinary_postmr.py": "ac7b1bd6e5c552ce50e6632003930dcc207ff4a26116cdb9c7837b78badbfb19",
+        "src/nasolve/postmr.py": "0bee33bab99e70de98d7e283f3feeb1532b006fa757f4bc8889c8191847ee17b",
+        "tests/test_cif_postmr_bond_targets.py": "bd4255ae0979a200fe551898ad34112a7b5690c82279c2c35d8d8280313e56f0",
+        "tests/test_cif_ordinary_postmr.py": "d30a9e0f43c5c4ed3b49fa9bbce9cf06ba765f36a38e348e43cb10fb358af5c1"
+      }
+    },
+    "saved_native_configuration": {
+      "anchor": "NASolve-live-tests",
+      "path": "327_Cedar_complete-bond-capture-policy-b1fuaz79/relocated/request",
+      "method": "cif_complete_request._request(Path(root)); subprocess.Popen forbidden; before/after inventories include every file size, mtime_ns and SHA256. Request configuration is rederived from frozen inputs by current code.",
+      "result": {
+        "status": "C327_FROZEN_CONFIG_COMPATIBLE",
+        "seconds": 1.2656207079999149,
+        "unchanged_files": 141,
+        "choices": {
+          "choices": {
+            "PDU": [
+              [
+                "C5B",
+                "C5M"
+              ]
+            ]
+          },
+          "policy_id": "cif-prepared-source-bond-targets-v1"
+        },
+        "artifact_policy": "cif-complete-request-partitioned-artifacts-v4"
+      },
+      "scope": "Configuration compatibility only, not a repeated full native proof read. No input, result or archived evidence changed."
+    },
+    "compatibility": "Omitted option keeps prior request shape/v3 default. Explicit pairs require checked_preparation in public PostMR. Fresh choices are copied/canonicalized; actual frozen sources decide eligibility. Recovery uses saved choices and accepts no override; no migration of old requests.",
+    "included": "Code, regressions and compact documentation only.",
+    "excluded": "Models, CIFs, MTZs, native logs/inventories, local runner and SDK files. All earlier failed and successful native evidence preserved.",
+    "limitations": [
+      "Automatic target discovery is not implemented by this entry wiring.",
+      "No real Coot/Phenix ordinary-entry rerun or corrected-CIF diffraction refinement in C328.",
+      "Full regression deferred per Simon; no merge or default activation."
+    ],
+    "next": "Actual corrected-CIF refinement survival under unchanged observations/Free-R/terminal intent; preserve source request identity and selected checkpoints.",
+    "author": "Rowan"
   }
 }

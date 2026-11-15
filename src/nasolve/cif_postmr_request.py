@@ -8,18 +8,19 @@ from copy import deepcopy
 from pathlib import Path
 
 from .cif_acquisition_sources import _codes, freeze_acquisition_sources, read_acquisition_sources
-from .cif_complete_request import _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
+from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
 from .cif_dictionary_sites import _consumer, _need, _read
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_acquisition_attempt import _generation_binding
 from .cif_model_context import derive_prepared_model_context
 from .cif_native_context import prepared_native_context
+from .cif_prepared_repair_execution import _bond_target_declarations
 from .cif_repair_attempt import _root
 from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -56,7 +57,11 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     the same owner; initialization never runs it. Optional automatic_plane_support
     freezes C244's source-selected support generation in that same request. It
     does not generate during intake or change absent/default request meaning.
+    Optional bond_targets freezes explicit source-graph pairs, using the existing
+    capture-partitioned v4 policy for that fresh request. It supplies no numerical
+    targets and does not bypass native reference/qualification or fallback gates.
     """
+    bond_targets = _bond_target_declarations(bond_targets)
     _need(type(automatic_plane_support) is bool, 'automatic_plane_support must be a boolean')
     _need(isinstance(components, (list, tuple)) and components,
           'Require explicit PostMR component generation settings')
@@ -69,6 +74,8 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         generation_dictionary_options(item['generation'])
         _generation_binding(item['generation'])
     codes = _codes([item['code'] for item in components])
+    _need(bond_targets is None or bond_targets.keys() <= set(codes),
+          'Bond targets must belong to the prepared components')
     _consumer(consumer)
     bounds = {**_LIMITS, 'max_attempts': 5}
     _need(set(execution_limits) <= set(bounds)
@@ -139,6 +146,8 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
         continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy, construction_inputs=construction_inputs,
         **({'automatic_plane_support':True} if automatic_plane_support else {}),
+        **({'bond_targets':bond_targets, 'artifact_policy':CAPTURE_ARTIFACT_POLICY}
+           if bond_targets is not None else {}),
         **execution_limits)
 
 def prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources, output, *,
