@@ -2506,3 +2506,10 @@ W75 changes documentation/evidence only; runtime and full/install/composition
 validation remain W73. Exact commands, scripts, effective parameters, initial
 failures, stock outputs and matched comparisons remain local. No scientific
 payload or standalone diagnostic subsystem is added to the repository.
+
+
+Local `W75-evidence.tar.gz` in the same declared evidence root retains all 85
+payloads, read-back verified against its manifest. Archive SHA-256:
+`9b68353c8d8f72001b1b5445bdf825ad886ac9ba1b5192ce64df1babafd32d7c`.
+The original W75 probe directories remain available for Cedar coordination.
+This archive has the same forensic-only, non-publication limitations as W71–W74.

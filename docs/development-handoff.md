@@ -226,7 +226,8 @@ Copies, pair tables, `.geo` and mmCIF links need explicit frame semantics. Match
 unprofiled/caller-aware controls give identical saved coordinates/tensors/cell and
 `.geo` bytes. The five-module Python trace is a lower bound, not recut qualification.
 ADP-weight/NCS-update entry points can be inactive; bind state rather than rejecting
-names alone. Two setup failures remain local.
+names alone. Two setup failures remain local. W75's 85-payload local archive is
+verified; its checksum and exact control scope are in the periodic guide.
 
 **Next P04 work:** freeze source/native/frame identity after ordinary construction;
 qualify a complete geometry owner across copying, neighbor tables, reporting and
