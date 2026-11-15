@@ -183,3 +183,83 @@ class CoordinateMask:
         if len(gradients) != len(self.reference):
             raise ValueError('Full ASU gradient count changed')
         return tuple(v for i in self.indices for v in gradients[i])
+
+
+@dataclass(frozen=True)
+class ReferenceFrame:
+    """Complete one-to-one coordinate images bound to a caller-owned context.
+
+    Source labels/images stay in the native source order. `order` maps the
+    current representative order to that source order; reindexing must retain
+    every atom exactly once. This is arithmetic plus binding, not a native
+    manager, crystal-membership proof, atom selector or chemistry policy.
+
+    The caller must authenticate the source and recompute its context digest
+    (including cell/group and effective model/restraint identity) before use.
+    Explicit matrices remain trusted numerical inputs, like CartesianImage;
+    use crystallographic_image when compiling a checked crystal operation.
+    """
+    source_labels: tuple
+    images: tuple
+    context_sha256: str
+    order: tuple | None = None
+
+    def __post_init__(self):
+        labels, images = tuple(self.source_labels), tuple(self.images)
+        if (not labels or len(labels) > 100000 or len(images) != len(labels)
+                or any(not isinstance(s,str) or not s or len(s)>512 for s in labels)
+                or len(set(labels)) != len(labels)
+                or any(not isinstance(image,CartesianImage) for image in images)):
+            raise ValueError('Require complete distinct source labels and one image per atom')
+        digest = self.context_sha256
+        if (not isinstance(digest,str) or len(digest)!=64
+                or any(c not in '0123456789abcdef' for c in digest)):
+            raise ValueError('Require an explicit source context SHA-256')
+        order = tuple(range(len(labels))) if self.order is None else tuple(self.order)
+        self._permutation(order, len(labels))
+        object.__setattr__(self,'source_labels',labels)
+        object.__setattr__(self,'images',images)
+        object.__setattr__(self,'order',order)
+
+    @staticmethod
+    def _permutation(order, count):
+        if (len(order)!=count or any(type(i) is not int for i in order)
+                or set(order)!=set(range(count))):
+            raise ValueError('Reference-frame reindexing requires a complete permutation; partial selection is unsupported')
+
+    @property
+    def atom_labels(self):
+        return tuple(self.source_labels[i] for i in self.order)
+
+    def reindex(self, order):
+        """Reorder this complete view explicitly; never delegate/drop its mapping."""
+        order=tuple(order);self._permutation(order,len(self.order))
+        return ReferenceFrame(self.source_labels,self.images,self.context_sha256,
+                              tuple(self.order[i] for i in order))
+
+    def _check(self, values, labels, expected_labels, context_sha256):
+        if context_sha256 != self.context_sha256:
+            raise ValueError('Reference-frame source context changed')
+        if tuple(labels) != expected_labels:
+            raise ValueError('Reference-frame atom order or identity changed')
+        values=tuple(_vector(v) for v in values)
+        if len(values)!=len(self.source_labels):
+            raise ValueError('Reference-frame coordinates/gradients must cover the complete source')
+        return values
+
+    def to_source(self, points, *, atom_labels, context_sha256):
+        points=self._check(points,atom_labels,self.atom_labels,context_sha256)
+        source=[None]*len(points)
+        for point,index in zip(points,self.order):
+            source[index]=self.images[index].inverse().apply(point)
+        return tuple(source)
+
+    def to_representatives(self, points, *, source_labels, context_sha256):
+        points=self._check(points,source_labels,self.source_labels,context_sha256)
+        return tuple(self.images[i].apply(points[i]) for i in self.order)
+
+    def gradients_to_representatives(self, gradients, *, source_labels, context_sha256):
+        gradients=self._check(gradients,source_labels,self.source_labels,context_sha256)
+        # x_source = image^-1(x_rep); its transpose Jacobian maps source forces.
+        # Translations never act on gradients.
+        return tuple(self.images[i].inverse().pullback(gradients[i]) for i in self.order)

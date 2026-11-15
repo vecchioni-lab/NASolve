@@ -2264,3 +2264,48 @@ coordinates/tensors, gradient-buffer semantics at all consumers, normalization,
 and diffraction/geometry frame agreement. A standalone recut PDB does not carry
 this runtime context and is not thereby safe for stock Phenix. P02/P03 and human
 review still precede any supported ASU materialization.
+
+
+## W73 — Retain complete frame bindings through explicit reindexing
+
+`topostitch_transport.ReferenceFrame` is a small immutable numerical binding over
+existing `CartesianImage` arithmetic. It stores complete distinct source labels,
+one image per source atom, a caller-owned context SHA256, and a complete permutation
+from current representative order to source order. `to_source`,
+`to_representatives` and `gradients_to_representatives` require explicit matching
+labels/context. `reindex` composes a full permutation without discarding any atom
+or its image. Partial/duplicate/out-of-range selections refuse. Translations act
+on positions, never gradients; no two source atoms are merged.
+
+This adds no artifact schema, command, native manager, selection hook or approval
+policy. Explicit matrices are trusted numerical inputs, as for `CartesianImage`;
+the caller must authenticate the source, verify crystal membership when compiling
+images and recompute a context that binds cell/group and effective model/restraints.
+Passing an unchanged digest without checking the actual context proves nothing
+about a changed manager. The class never assumes that native selection preserved
+its mapping. Copy and trusted local pickle contain plain Python data only.
+
+Twelve added software cases all fail before implementation and pass afterward,
+covering independent finite differences, full round trips, composed permutations,
+identity/context drift, partial selections and detachment/serialization. Focused
+checks pass **113**, full Willow **1,727 + 229 subtests**, installed/relocated
+**521**, six helps, lean import and Python 3.10 syntax. Original packet/graph replay
+remains exact after relocation with source paths blocked. Validation uses the
+same declared W71 Python/topology environments and owned-process permissions.
+
+A fresh **Phenix 2.2.1-6174** diagnostic consumes the actual new class through the
+local W72 geometry-energy facade. Identity, reversed and cyclic complete orders
+pass across both cuts, normalization on/off, gradients on/off and preseeded
+buffers: **36 cases**, with maximum gradient error **1.16e-9**. The original
+source manager stays intact. Partial/duplicate selection and a changed actual
+unit cell refuse before native evaluation. Installed plain frame records reopen
+and retain reversed correspondence in a fresh native interpreter after their
+original directory is gone. The local facade is still **not installed**; these
+are complete energy-entry diagnostics, not ordinary refinement.
+
+The current safe boundary is explicit **complete-model reindexing**. Native subset
+selection, model reconstruction, callbacks, NCS, ADPs and materialization remain
+unqualified. Future Cedar integration must deliberately consume/rebind this
+mapping, preserve complete source identity and refuse unsupported lifecycle paths.
+Existing runtime behavior and schemas remain unchanged; generated science stays
+local and outside Git.

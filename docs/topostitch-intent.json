@@ -357,7 +357,15 @@
       "optional_checked_factory": "cell, Sohncke group and exact operator membership with Gemmi",
       "core_external_dependencies": false,
       "production_native_optimizer": false,
-      "scientific_qualification": false
+      "scientific_qualification": false,
+      "complete_reference_frame": {
+        "class": "ReferenceFrame",
+        "scope": "immutable complete-model numerical frame binding and explicit full permutation",
+        "caller_authenticates_context_and_crystal": true,
+        "partial_selection_supported": false,
+        "native_selection_hook": false,
+        "runtime_authority": false
+      }
     },
     "native_packing_comparison": {
       "module": "nasolve.topostitch_packing",

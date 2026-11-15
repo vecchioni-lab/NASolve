@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W73 — Keep complete coordinate-frame bindings through explicit reindexing
+
+- Add an immutable complete-model `ReferenceFrame` to the existing transport core.
+  Preserve source order, atom identities, proper image transforms and caller-owned
+  context binding through explicit full permutations.
+- Reject partial/ambiguous selections, changed context and mismatched labels.
+  Native selection/refinement integration remains experimental and disabled.
+
 ### W72 — Audit complete geometry in a retained reference frame
 
 - Record native whole-objective/image-gradient equivalence, directed-neighbor

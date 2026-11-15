@@ -83,3 +83,57 @@ def test_transport_detaches_caller_owned_matrices():
     assert image.apply((1.,1.,1.))==(2.,3.,4.)
     with pytest.raises(ValueError):image.apply((0.,float('nan'),0.))
     with pytest.raises(ValueError):accumulate_image_gradients(True,[],[])
+
+
+def bound_frame():
+    from nasolve.topostitch_transport import ReferenceFrame
+    return ReferenceFrame(('A','B'), (IDENTITY_IMAGE, CartesianImage(((0.,-1.,0.),(1.,0.,0.),(0.,0.,1.)),(10.,20.,30.))), 'a'*64)
+
+
+def test_complete_reference_frame_roundtrip_and_explicit_reordering():
+    frame=bound_frame();source=((1.,2.,3.),(4.,5.,6.));labels=('A','B')
+    represented=frame.to_representatives(source,source_labels=labels,context_sha256='a'*64)
+    assert represented==((1.,2.,3.),(5.,24.,36.))
+    assert frame.to_source(represented,atom_labels=labels,context_sha256='a'*64)==source
+    reordered=frame.reindex([1,0]);assert reordered.atom_labels==('B','A')
+    assert reordered.to_representatives(source,source_labels=labels,context_sha256='a'*64)==represented[::-1]
+    assert reordered.to_source(represented[::-1],atom_labels=('B','A'),context_sha256='a'*64)==source
+    assert reordered.reindex([1,0])==frame
+
+
+def test_reference_frame_force_transport_excludes_translation_and_matches_derivatives():
+    frame=bound_frame().reindex([1,0]);source=((1.,2.,3.),(4.,5.,6.))
+    points=frame.to_representatives(source,source_labels=('A','B'),context_sha256='a'*64)
+    gradient=frame.gradients_to_representatives(source,source_labels=('A','B'),context_sha256='a'*64)
+    assert gradient==((-5.,4.,6.),(1.,2.,3.))
+    def energy(p):
+        x=frame.to_source(p,atom_labels=frame.atom_labels,context_sha256='a'*64)
+        return sum(v*v/2 for point in x for v in point)
+    for i in range(2):
+        for j in range(3):
+            a=[list(p) for p in points];b=[list(p) for p in points];a[i][j]+=1e-5;b[i][j]-=1e-5
+            assert (energy(a)-energy(b))/2e-5==pytest.approx(gradient[i][j],abs=1e-8)
+
+
+@pytest.mark.parametrize('order', [[],[0],[0,0],[0,2],[False,1],[1,0,2]])
+def test_reference_frame_refuses_partial_or_ambiguous_selection(order):
+    with pytest.raises(ValueError,match='complete permutation'):bound_frame().reindex(order)
+
+
+@pytest.mark.parametrize('method,keyword', [('to_source','atom_labels'),('to_representatives','source_labels'),('gradients_to_representatives','source_labels')])
+def test_reference_frame_checks_context_and_order_in_both_directions(method,keyword):
+    function=getattr(bound_frame(),method);points=[(1.,2.,3.),(4.,5.,6.)]
+    with pytest.raises(ValueError,match='context'):function(points,**{keyword:('A','B')},context_sha256='b'*64)
+    with pytest.raises(ValueError,match='order'):function(points,**{keyword:('B','A')},context_sha256='a'*64)
+    with pytest.raises(ValueError):function(points[:1],**{keyword:('A','B')},context_sha256='a'*64)
+
+
+def test_reference_frame_plain_copy_pickle_and_input_detachment():
+    import copy,pickle
+    from nasolve.topostitch_transport import ReferenceFrame
+    labels=['A','B'];images=[IDENTITY_IMAGE,IDENTITY_IMAGE]
+    frame=ReferenceFrame(labels,images,'a'*64);labels.reverse();images.pop()
+    assert frame.source_labels==('A','B') and len(frame.images)==2
+    assert copy.deepcopy(frame)==frame and pickle.loads(pickle.dumps(frame))==frame
+    with pytest.raises(ValueError):ReferenceFrame(('A','A'),(IDENTITY_IMAGE,IDENTITY_IMAGE),'a'*64)
+    with pytest.raises(ValueError):ReferenceFrame(('A',),(IDENTITY_IMAGE,),'unbound')

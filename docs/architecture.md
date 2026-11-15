@@ -932,6 +932,11 @@ component for later Pine/Campaign desk integration, not a second state store.
 `topostitch_transport` shares proper Cartesian image transforms and accumulated
 ASU gradient pullback with the native diagnostic. It supplies numerical plumbing;
 Cedar's policies, chemistry and native trial lifecycle are separate owners.
+Its immutable `ReferenceFrame` binds a complete one-to-one source/image inventory,
+transports points and gradients, and preserves that correspondence through explicit
+full permutations. Partial selection refuses. The caller authenticates the context
+and crystal operations; the arithmetic core does not own native manager selection,
+reconstruction, chemistry or activation.
 `topostitch_packing` compares Cedar-reviewed directed native neighbors by exact
 bounded rational image identity, retaining multiplicity and collateral changes.
 Its developer wrapper authenticates captures through Cedar; no second native
