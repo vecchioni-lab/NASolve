@@ -2024,6 +2024,10 @@ wheel stay in the local evidence archive; no generated artifacts are uploaded.
 Before any real merge, reconcile the seven human/agent contracts with their owners
 and perform release-level combined validation in the chosen final tree.
 
+Local `W69-evidence.tar.gz` in the declared archive root has SHA-256
+`6dad0e97905bf8144ff5c2f022de65acfb4a7dd54cc7fac4727fd73ee31f9634`;
+its indexed payloads were read back and verified.
+
 
 ## W70 — Describe the registered graph before choosing a cut
 
@@ -2109,3 +2113,11 @@ with original paths blocked. Cedar's runtime bytes/package metadata are unchange
 from tested `a2e73603`. No new native execution or full combined-suite claim.
 Virtual tree `ff0935d44624430498eeb86674d8c97d80371267` retains seven documentation
 conflicts and no source conflicts; no branch, index or worktree is merged.
+
+
+Local `W70-evidence.tar.gz` in the same archive root has SHA-256
+`14e20204056e7601da11afab21be873e3a9c99c93671b662b617d100c1028236`.
+All indexed payloads were read back and verified, including the initial denied
+full-suite attempt. The local session index records verified disposable source/
+installation/test-copy cleanup; scientific outputs and negative evidence remain.
+The convenient `W70-graph-description.json` is a read-only report, not a proposal.
