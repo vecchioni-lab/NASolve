@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W80 — Bind complete Cartesian tensors to coordinate frames.** Next: W81.
+**Current update: W82 — Bind numerical frames to immutable saved previews.** Next: W83.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,8 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W71 | Preserve angle images through explicit diagnostic reconstruction | RECORDED |
-| W72 | Audit complete reference-frame geometry and native entry boundaries | RECORDED |
 | W73 | Keep complete source-frame bindings through explicit reindexing | RECORDED |
 | W74 | Check joint diffraction geometry and actual model-copy boundaries | RECORDED |
 | W75 | Observe native copy weighting and report consumers | RECORDED |
@@ -28,6 +26,8 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W78 | Audit native source copies and current Cedar composition | RECORDED |
 | W79 | Keep native outlier queries bound to the energy frame | RECORDED |
 | W80 | Bind complete Cartesian tensors to coordinate frames | RECORDED |
+| W81 | Audit combined installation and choose computational view boundary | RECORDED |
+| W82 | Bind numerical frames to immutable saved previews | RECORDED |
 
 ## Finish lines
 
@@ -290,16 +290,16 @@ Let the scientist decide where to slice the ASU while seeing the same physical p
 
 Write a new ASU representative while preserving the physical scattering object exactly within validated numerical tolerance.
 
-**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification. W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer. W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified. W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates.
+**Delivered:** W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification. W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer. W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified. W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates. W82 replays an exactly pinned saved preview into the existing complete numerical ReferenceFrame, preserving source identity/order and unchanged context atoms; no model writer or child rebinding.
 
 **Closure audit:**
 
 - Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
-**Next action:** Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.
-**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport).
-**Last audit:** 2026-11-15, Linden, [W80](https://github.com/vecchioni-lab/NASolve/commit/cc9fe96d456f9c3fbbf819e9afe7541f03aec361); Bound tensor implementation, full/installed checks and native Fcalc; no materializer or ordinary refinement qualification.
+**Next action:** First evaluate one computational native frame with explicitly bound derived views at workflow boundaries. Qualify P02 graphical review and full physical inventory/tensor serialization before any model writer. Bind each refined child afresh through verified checkpoint lineage; never silently rebase old preferences. Standalone exports and inverse-mapped edits remain separate qualification gates.
+**Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport), [E_SAVED_FRAME_BINDING](#e_saved_frame_binding).
+**Last audit:** 2026-11-15, Linden, [W82](https://github.com/vecchioni-lab/NASolve/commit/e570d15f308ec46a0b2bc6f62c43c3346e17abb5); Saved-preview frame binding, full Willow and installed/relocated validation; no materializer or scientific closure.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -314,9 +314,9 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 - Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.
 - Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
-**Next action:** With Cedar, authenticate complete live source policy after construction, including nonbonded parameter/exclusion tables and all restraint fields. Do not use generic native deepcopy/pickle or infer independent policy from successful identity selection. Then qualify one geometry owner across copies, pair tables, statistics, source-bound weights and exports; require fresh-process source/representative controls before runtime activation and preserve P02/P03. Bind coordinate-taking methods on returned energy/results too, including outlier queries; keep source-order indices and source/representative report operators explicit.
-**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle), [E_ANGLE_SNAPSHOT](#e_angle_snapshot), [E_REFERENCE_FRAME_GEOMETRY](#e_reference_frame_geometry), [E_REFERENCE_FRAME_BINDING](#e_reference_frame_binding), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_NATIVE_CONSUMER_PROTOCOL](#e_native_consumer_protocol), [E_REPRESENTATIVE_PACKING](#e_representative_packing), [E_PREVIEW_PACKING_BINDING](#e_preview_packing_binding), [E_NATIVE_SOURCE_COPY](#e_native_source_copy), [E_NATIVE_REPORT_FRAMES](#e_native_report_frames).
-**Last audit:** 2026-11-15, Linden, [W79](https://github.com/vecchioni-lab/NASolve/commit/78ecdc54c28775364e1e9cf3641bdd208f2ffe3c); Native reporting callbacks/source-frame geo diagnostic; no runtime or ordinary refinement activation.
+**Next action:** With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle), [E_ANGLE_SNAPSHOT](#e_angle_snapshot), [E_REFERENCE_FRAME_GEOMETRY](#e_reference_frame_geometry), [E_REFERENCE_FRAME_BINDING](#e_reference_frame_binding), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_NATIVE_CONSUMER_PROTOCOL](#e_native_consumer_protocol), [E_REPRESENTATIVE_PACKING](#e_representative_packing), [E_PREVIEW_PACKING_BINDING](#e_preview_packing_binding), [E_NATIVE_SOURCE_COPY](#e_native_source_copy), [E_NATIVE_REPORT_FRAMES](#e_native_report_frames), [E_COMBINED_FULL_AUDIT](#e_combined_full_audit).
+**Last audit:** 2026-11-15, Linden, [W82](https://github.com/vecchioni-lab/NASolve/commit/e570d15f308ec46a0b2bc6f62c43c3346e17abb5); Whole-process boundary candidate agreed; combined full audit pending, no native workflow or seam qualification.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -800,6 +800,20 @@ Actual Phenix2.2.1-6174 statistics retain scalar geometry but lose/substitute to
 [Evidence contract](topostitch-periodic.md#w80--bind-cartesian-displacement-tensors-to-the-coordinate-frame) at [W80](https://github.com/vecchioni-lab/NASolve/commit/cc9fe96d456f9c3fbbf819e9afe7541f03aec361).
 Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts×3orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.
 **Limit:** Arithmetic and complete in-memory diagnostic only; caller owns fractional conversion, ADP presence/flags and physical validation. No new writer/schema, ADP optimization, experimental data, model materialization or ordinary recut refinement. Scientific evidence local; P03/P04 remain partial.
+
+<a id="e_combined_full_audit"></a>
+### E_COMBINED_FULL_AUDIT — installed_combined_audit_in_progress
+
+[Evidence contract](topostitch-periodic.md#w81--audit-the-combined-installation-and-narrow-the-pine-boundary) at [W81](https://github.com/vecchioni-lab/NASolve/commit/cc9fe96d456f9c3fbbf819e9afe7541f03aec361).
+Frozen Willow2a76967c + Cedar dc82aee1 virtual tree6414a2c8 builds/installs and main pytest imports isolated wheel after original build relocation. Full unfiltered suite is still running; no pass claimed. Whole-process computational-frame/derived-view candidate agreed with Cedar.
+**Limit:** Full/replay/CLI results pending; C323 excluded. Seven documentation conflicts, no real merge. No native workflow activation, physical repair or standalone recut-refinement qualification.
+
+<a id="e_saved_frame_binding"></a>
+### E_SAVED_FRAME_BINDING — replayed_preview_to_complete_numerical_reference_frame
+
+[Evidence contract](topostitch-periodic.md#w82--bind-numerical-frames-to-immutable-saved-previews) at [W82](https://github.com/vecchioni-lab/NASolve/commit/e570d15f308ec46a0b2bc6f62c43c3346e17abb5).
+Exactly pinned immutable preview compiles complete identity/image frame including unchanged context.12 fail-before regressions; focused99; full1781 +229; installed/relocated680; six helps/lean imports/Python3.10 syntax. Both855-atom old/new packets reproduce exactly in three orders with original paths blocked.
+**Limit:** Receipt context is preview identity, not native policy/checkpoint lineage. No writer, changed-child rebind, edit import, chemistry/refinement activation or new packet schema. Physical/scattering and P02/P03/P04 gates remain. W81 combined full build predates this runtime and is separately pending.
 
 ## Deferred extensions, not hidden blockers
 

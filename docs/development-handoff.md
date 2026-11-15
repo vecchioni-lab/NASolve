@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W80 recorded; next W81.** Latest runtime implementation is W80 `cc9fe96d` on isolated
+**W82 recorded; next W83.** Latest runtime implementation is W82 `e570d15f` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -271,15 +271,33 @@ installed/relocated 668 pass. Installed native checks preserve all 855 tensors a
 omitted rotation fails strongly. ADP flags/physical validity, fractional conversion
 and serialization remain caller-owned; no new ASU export or refinement support.
 
-**Next P04 work:** freeze source/native/frame identity after ordinary construction;
-qualify a complete geometry owner across copying, neighbor tables, reporting and
-weight regularization. First use explicit source-bound fixed weights or correctly
-transported weighting; equal random seeds alone do not produce equal atomwise
-shakes in different frames. Preserve private gradient accumulation/normalization
-and reject unsupported active branches, partial selections or context changes.
+**W81 validation remains active:** the unfiltered full installed virtual build
+pins Willow2a76967c + Cedar dc82aee1; zero source/seven documentation conflicts,
+no real merge. Build/import/relocation pass, full/replay/CLI results pending.
+C323 and W82 are outside that pin. Do not claim a complete combined pass yet.
+
+**W82 saved-frame boundary:** exact receipt pinning and ordinary immutable preview
+replay now produce the existing complete numerical ReferenceFrame. All source
+identity/context atoms are retained; compiled positions must reproduce the packet.
+Twelve fail-before controls, focused99, full1,781 +229 and installed680 pass; both
+855-atom saved cuts reproduce exactly in three orders after relocation. No schema,
+CLI, writer, native hook or changed-child/import authority is added.
+
+**Next Pine integration candidate (agreed with Cedar):** for pure representative
+recuts, keep the whole native process in one computational/source frame and derive
+views at explicit boundaries. Bind exact atom/operator/tensor correspondence and
+immutable checkpoint lineage; scientific statistics remain attached to the
+computational model. A refined child needs a fresh source binding, never silent
+rebasing of an old preference. Coot edits or re-entered exports need a checked
+inverse mapping; additions/deletions/renames or changed intent require fresh
+qualification. No runtime implementation or standalone recut refinement is claimed.
+
+Cedar still owns the complete live source-policy guard, including nonbonded and
+exclusion tables. If a concrete requirement needs an in-engine facade, retain the
+copy, pair-table, outlier/report and source-bound weighting qualification contract;
+equal random seeds alone are not equal atomwise shakes in different frames.
 See the [bounded integration contract](topostitch-periodic.md#next-implementation-contract).
-Whole-objective evaluation is promising; neither its local facade nor W71's angle
-observer qualifies ordinary recut refinement. Preserve P02/P03 and no-bond-alone gates.
+Physical closure, missing links and P02/P03/P04 remain separate gates.
 Cedar's `cif_refinement_runtime` wraps/audits the
 parallelity kernel; it does not restore missing metadata, and its kernel rejects
 symmetry-bearing proxies. `refinement_parallelity` owns reusable frozen helpers,

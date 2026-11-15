@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361",
+  "audited_code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -492,25 +492,27 @@
         "W55 adds a source-bound read-only sampled complex Fcalc observer with in-memory Cartesian ANISOU transport and explicit scope. Synthetic P43/R3/P21, wrong-tensor/coordinate controls and independent native allowed-reflection observations exist; no coordinate materializer or full scattering qualification.",
         "W62 proves exact labelled group-image permutations and inverse integer lattice shifts for each explicit representative, covers every source atom once and independently binds proposed coordinates. Special-position images remain a labelled multiset, not a unique physical-atom or occupancy proof; no materializer.",
         "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.",
-        "W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates."
+        "W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates.",
+        "W82 replays an exactly pinned saved preview into the existing complete numerical ReferenceFrame, preserving source identity/order and unchanged context atoms; no model writer or child rebinding."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Qualify P02 graphical choice/review and full physical inventory/tensor serialization before a model writer. Reuse W62 exact labelled image correspondence alongside W55 independent sampled scattering; keep special-position weights, missing content and seam chemistry explicit.",
+      "next_action": "First evaluate one computational native frame with explicitly bound derived views at workflow boundaries. Qualify P02 graphical review and full physical inventory/tensor serialization before any model writer. Bind each refined child afresh through verified checkpoint lineage; never silently rebase old preferences. Standalone exports and inverse-mapped edits remain separate qualification gates.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
         "E_JOINT_FRAME_TARGET",
-        "E_BOUND_TENSOR_TRANSPORT"
+        "E_BOUND_TENSOR_TRANSPORT",
+        "E_SAVED_FRAME_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
         "reviewer": "Linden",
-        "human_update": 80,
-        "scope": "Bound tensor implementation, full/installed checks and native Fcalc; no materializer or ordinary refinement qualification"
+        "human_update": 82,
+        "scope": "Saved-preview frame binding, full Willow and installed/relocated validation; no materializer or scientific closure"
       }
     },
     {
@@ -542,7 +544,7 @@
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "With Cedar, authenticate complete live source policy after construction, including nonbonded parameter/exclusion tables and all restraint fields. Do not use generic native deepcopy/pickle or infer independent policy from successful identity selection. Then qualify one geometry owner across copies, pair tables, statistics, source-bound weights and exports; require fresh-process source/representative controls before runtime activation and preserve P02/P03. Bind coordinate-taking methods on returned energy/results too, including outlier queries; keep source-order indices and source/representative report operators explicit.",
+      "next_action": "With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -557,14 +559,15 @@
         "E_REPRESENTATIVE_PACKING",
         "E_PREVIEW_PACKING_BINDING",
         "E_NATIVE_SOURCE_COPY",
-        "E_NATIVE_REPORT_FRAMES"
+        "E_NATIVE_REPORT_FRAMES",
+        "E_COMBINED_FULL_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
         "reviewer": "Linden",
-        "human_update": 79,
-        "scope": "Native reporting callbacks/source-frame geo diagnostic; no runtime or ordinary refinement activation"
+        "human_update": 82,
+        "scope": "Whole-process boundary candidate agreed; combined full audit pending, no native workflow or seam qualification"
       }
     },
     {
@@ -1099,6 +1102,22 @@
       "reference": "docs/topostitch-periodic.md#w80--bind-cartesian-displacement-tensors-to-the-coordinate-frame",
       "result": "Shared Cartesian R U R^T and complete ReferenceFrame forward/inverse tensor transport retain labels/context/full permutation; existing preview ANISOU writer reuses rotation.13 fail-before regressions; focused184; full1769 +229; installed/relocated668. Installed Phenix2.2.1-6174:855 tensors,2cuts\u00d73orders,1008 Fcalc values maxerror4.43e-11; independent native fractional tensor comparison and omitted-rotation negative control pass.",
       "limitation": "Arithmetic and complete in-memory diagnostic only; caller owns fractional conversion, ADP presence/flags and physical validation. No new writer/schema, ADP optimization, experimental data, model materialization or ordinary recut refinement. Scientific evidence local; P03/P04 remain partial."
+    },
+    "E_COMBINED_FULL_AUDIT": {
+      "kind": "installed_combined_audit_in_progress",
+      "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361",
+      "human_update": 81,
+      "reference": "docs/topostitch-periodic.md#w81--audit-the-combined-installation-and-narrow-the-pine-boundary",
+      "result": "Frozen Willow2a76967c + Cedar dc82aee1 virtual tree6414a2c8 builds/installs and main pytest imports isolated wheel after original build relocation. Full unfiltered suite is still running; no pass claimed. Whole-process computational-frame/derived-view candidate agreed with Cedar.",
+      "limitation": "Full/replay/CLI results pending; C323 excluded. Seven documentation conflicts, no real merge. No native workflow activation, physical repair or standalone recut-refinement qualification."
+    },
+    "E_SAVED_FRAME_BINDING": {
+      "kind": "replayed_preview_to_complete_numerical_reference_frame",
+      "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
+      "human_update": 82,
+      "reference": "docs/topostitch-periodic.md#w82--bind-numerical-frames-to-immutable-saved-previews",
+      "result": "Exactly pinned immutable preview compiles complete identity/image frame including unchanged context.12 fail-before regressions; focused99; full1781 +229; installed/relocated680; six helps/lean imports/Python3.10 syntax. Both855-atom old/new packets reproduce exactly in three orders with original paths blocked.",
+      "limitation": "Receipt context is preview identity, not native policy/checkpoint lineage. No writer, changed-child rebind, edit import, chemistry/refinement activation or new packet schema. Physical/scattering and P02/P03/P04 gates remain. W81 combined full build predates this runtime and is separately pending."
     }
   },
   "benchmarks": [
@@ -1214,8 +1233,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 80,
-    "next": 81,
+    "current": 82,
+    "next": 83,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1505,6 +1524,18 @@
         "title": "Bind complete Cartesian tensors to coordinate frames",
         "state": "RECORDED",
         "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361"
+      },
+      {
+        "number": 81,
+        "title": "Audit combined installation and choose computational view boundary",
+        "state": "RECORDED",
+        "code_commit": "cc9fe96d456f9c3fbbf819e9afe7541f03aec361"
+      },
+      {
+        "number": 82,
+        "title": "Bind numerical frames to immutable saved previews",
+        "state": "RECORDED",
+        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
       }
     ]
   }

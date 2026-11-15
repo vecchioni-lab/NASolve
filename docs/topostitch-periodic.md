@@ -2469,7 +2469,28 @@ the old test-flag PHIL namespace. The successful input explicitly uses
 
 ### Next implementation contract
 
-The following is a bounded design gate, **not an installed runtime protocol**:
+For **pure representative recuts**, first evaluate a whole-process boundary:
+keep native refinement, its copies, weights, neighbor tables and reports in one
+computational/source frame, and derive the chosen displayed representatives at
+explicit workflow boundaries. This is the next integration candidate agreed with
+Cedar after W78/W79, **not an installed runtime protocol**. It avoids requiring
+an in-engine facade merely to display another equivalent cut.
+
+Bind every derived view to exact source atom identities, image operators,
+displacement tensors and immutable checkpoint lineage. Scientific statistics
+belong to the computational model. A changed computational child needs a fresh
+source binding; an old cut preference must never be silently rebased. Re-entered
+exports or Coot edits require an explicit checked inverse mapping. Additions,
+deletions, renames or changed topology/chemistry intent require fresh qualification,
+not reuse of an old frame. Neither a view nor an exported recut is automatically
+an independent Phenix input.
+
+This route does not repair missing links, winding seams or physical gaps, qualify
+special-position inventory, or close P02/P03/P04. Keep those gates and Cedar's
+live source-policy/lineage requirements. Only pursue an in-engine facade if a
+concrete supported workflow still needs one; in that case the following bounded
+contract remains necessary:
+
 
 1. **Freeze after native construction.** Bind the complete ordered source,
    crystal, effective live restraint parameters and image frame after ordinary
@@ -2801,3 +2822,76 @@ W79's 44-payload forensic archive is also read-back verified, SHA-256
 The W76–W78 duplicate build/test/install trees were removed only after matching
 all their files to the verified archives. Native probes and pinned source needed
 for Cedar coordination remain available; no scientific source was deleted.
+
+
+## W81 — Audit the combined installation and narrow the Pine boundary
+
+The first **unfiltered combined full suite is still running** as of this audit.
+Its frozen inputs are Willow `2a76967c0182d3a4719f4aab29e6fe7ab5b43b8e`
+and Cedar C322 `dc82aee125dbe4e2341a3af7be8dd6477d8fb7e7`, virtual tree
+`6414a2c8a3071c8f4ed91d8a6b15f147e365f04b`. The virtual tree has zero source
+conflicts and seven documentation conflicts; no branch merge or reference move
+was performed. A fresh wheel installs and the main test process imports it after
+the original build directory is renamed. Full-suite, subsequent replay and CLI
+results are **pending**, not a compatibility pass. C323 is not part of this pin.
+
+The command is `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=<isolated-site>:<topology-deps>
+<host-python> -m pytest -q -p no:cacheprovider` from the relocated virtual checkout;
+exact paths, pins, commands and logs are local in the W81 evidence directory.
+Test subprocesses may deliberately exercise their own source fixtures. This is
+an installed main-process audit, not a claim that every child imports the wheel.
+
+W78/W79 motivate the agreed next integration candidate: retain one computational
+native frame and derive explicitly bound views at workflow boundaries. The
+[implementation contract](#next-implementation-contract) now records this as the
+first route for pure recuts, including fresh child binding and checked inverse
+mapping for external edits. No runtime workflow changes or physical repair are
+claimed; P02/P03/P04 and Cedar's source-policy gates stay open.
+
+W80's local forensic archive contains505 verified payloads, SHA-256
+`0729af914ded3f113a8ea5ede042e3a699e390876eb4b7e8e2806e862ceebc71`.
+Every payload size/hash was read back before removing owned duplicate build trees.
+It is retained evidence, not a resumable portable campaign; no science was uploaded.
+
+## W82 — Bind numerical frames to immutable saved previews
+
+`load_relabel_reference_frame(directory, *, expected_receipt_sha256)` in the
+existing `topostitch_recut_bundle` owner replays an exactly pinned preview and
+returns the existing immutable `ReferenceFrame`. Previously callers had to
+assemble atom/image correspondence themselves. Now every source atom has a
+canonical JSON identity label and an explicit image, including unchanged context
+atoms. The complete numerical result must reproduce the saved preview, and
+source/receipt drift during compilation refuses.
+
+The context is the exact `preview.json` byte digest, **not** a native policy or
+checkpoint identity. This component permits coordinate, gradient and Cartesian
+tensor arithmetic through the existing core. It does not infer chemistry, adopt
+a cut, bind a refined child, accept Coot edits or write a model. Old packet schemas,
+CLI defaults and saved observations remain unchanged; no migration is required.
+Physical inventory, ADP presence/flags, scattering and external-edit qualification
+remain separate. The planned whole-process boundary itself is not implemented.
+
+Validation of runtime `e570d15f308ec46a0b2bc6f62c43c3346e17abb5`:
+
+- Twelve new boundary regressions fail against the pre-change installed package;
+  final focused bundle/transport/recut tests pass99. They cover exact receipt
+  pinning, reverse/inverse/tensor mapping, source and mid-load drift, bad transform
+  detection, relocation, and unregistered water with alternate/insertion identity.
+- Complete Willow suite: **1,781 tests +229 subtests**,94.83s, using
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<topology-deps> <host-python>
+  -m pytest -q -p no:cacheprovider`.
+- Fresh isolated wheel, relocated tests: **680 passed**,32.24s; six CLI helps,
+  Python3.10 syntax and lean imports pass. The original source/build paths are
+  absent or explicitly blocked for replay. Both old/new855-atom packets reproduce
+  exactly in identity/reverse/cyclic order; maximum preview-coordinate error0.
+- Wheel SHA-256
+  `351cf56a1033487ac3b5a431120eb8be3aa443bcac8f60accf6dc9a936775cf1`.
+  Build used pinned base plus the recorded runtime patch; a separate receipt
+  verifies installed source and regression bytes against the final code commit.
+
+Exact build/install/test commands, before-failure logs, receipts and relocated
+replay remain local under W82 evidence. No new native execution was required for
+this packet-to-existing-arithmetic boundary; W81's older combined build remains a
+separate pending audit. Generated payloads are excluded from Git. Next qualify the
+workflow boundary and human review; do not silently reuse this context for a
+changed computational child or turn a preview into a Phenix input.

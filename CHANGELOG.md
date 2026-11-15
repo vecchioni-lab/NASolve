@@ -26,6 +26,14 @@ entries are reconstructed from repository history.
   adds no packet schema, model writer, checkpoint adoption or external-edit import.
 
 
+### W81 — Record combined validation and a narrower Pine integration candidate
+
+- Pin a fresh combined Willow/Cedar installation for an unfiltered full audit;
+  the full result is pending and does not yet qualify compatibility.
+- Prefer evaluating one native computational frame with explicitly bound derived
+  views before an in-engine adapter. Changed children and external edits need
+  fresh checked binding; no runtime workflow or repair is enabled.
+
 ### W80 — Bind Cartesian tensors to the same frame as coordinates
 
 - Add finite symmetric-tensor rotation and complete label/context-bound tensor

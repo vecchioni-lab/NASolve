@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-intent",
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "status": "BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
@@ -962,5 +962,37 @@
       }
     },
     "contract": "docs/construct-registration.md#shared-periodic-connectivity-intent-pine-topostitch-and-cedar"
+  },
+  "pure_representative_workflow_candidate": {
+    "state": "PLANNED_NOT_IMPLEMENTED",
+    "agreed_owners": [
+      "Pine/TopoStitch",
+      "Cedar"
+    ],
+    "native_computational_frame": "one source frame for the entire native process",
+    "derived_views": "explicit boundaries with complete atom/operator/tensor identity and immutable checkpoint lineage",
+    "scientific_statistics_owner": "computational model",
+    "refined_child_requires_fresh_binding": true,
+    "silent_preference_rebase": false,
+    "external_edits_require_checked_inverse_mapping": true,
+    "changed_inventory_names_or_intent_require_fresh_qualification": true,
+    "in_engine_facade": "defer unless a concrete supported workflow requires one",
+    "standalone_recut_refinement_qualified": false,
+    "physical_gaps_or_missing_links_repaired": false,
+    "runtime_authority": false,
+    "contract": "docs/topostitch-periodic.md#next-implementation-contract",
+    "saved_preview_frame_binding": {
+      "implemented": true,
+      "api": "nasolve.topostitch_recut_bundle.load_relabel_reference_frame",
+      "expected_receipt_digest_required": true,
+      "context": "exact preview receipt bytes; not native-policy/checkpoint identity",
+      "all_present_source_atoms_included": true,
+      "labels": "canonical JSON atom-identity objects in source record order",
+      "unchanged_context_images": "identity",
+      "compiled_coordinates_checked_against_replayed_preview": true,
+      "changed_child_rebinding": false,
+      "external_edit_import": false,
+      "runtime_authority": false
+    }
   }
 }
