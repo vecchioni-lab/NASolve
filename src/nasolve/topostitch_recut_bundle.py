@@ -22,10 +22,8 @@ _FILES={'source':'source.pdb','discovery':'discovery.json',
         'registration':'registration.json','proposal':'proposal.json'}
 
 
-def _prepare(model,discovery,registration,proposal):
-    paths={name:Path(path) for name,path in zip(_FILES,(model,discovery,registration,proposal))}
-    snapshots={name:path.read_bytes() for name,path in paths.items()}
-    request=_json(snapshots['proposal'])
+def _proposal_request(data):
+    request=_json(data)
     if (not isinstance(request,dict) or type(request.get('schema_version')) is not int
             or request['schema_version'] not in (1,2) or request.get('kind') not in
             ('topostitch-representative-proposal','topostitch-forest-proposal')):
@@ -38,6 +36,48 @@ def _prepare(model,discovery,registration,proposal):
     _keys(request,common|({'selected_edge_ids','anchor_node_ids'} if forest_request else {'node_images'}))
     if not isinstance(request['registered_graph_sha256'],str) or not re.fullmatch(r'[0-9a-f]{64}',request['registered_graph_sha256']):
         raise ValueError('Require the exact registered graph SHA-256')
+    return request
+
+
+def describe_relabel_graph(model, discovery, *, registration_path, proposal_path=None):
+    """Describe verified graph IDs/binding without deriving or validating a cut.
+
+    An optional existing request supplies extra edges and explicit continuations.
+    Its graph checksum may be stale: report that fact, never rewrite it or weaken
+    the separate preview builder's exact-binding requirement.
+    """
+    from .topostitch_graph import build_registered_periodic_graph
+    paths=dict(source=Path(model), discovery=Path(discovery), registration=Path(registration_path))
+    if proposal_path is not None:
+        paths['proposal']=Path(proposal_path)
+    snapshots={name:path.read_bytes() for name,path in paths.items()}
+    request=None if proposal_path is None else _proposal_request(snapshots['proposal'])
+    options={} if request is None else {'extra_edges':request['extra_edges']}
+    if request is not None and request['schema_version']==2:
+        options['backbone_continuations']=request['backbone_continuations']
+    bound=build_registered_periodic_graph(paths['source'],paths['discovery'],paths['registration'],**options)
+    if any(path.read_bytes()!=snapshots[name] for name,path in paths.items()):
+        raise ValueError('Graph description inputs changed during observation')
+    binding=None
+    if request is not None:
+        expected=request['registered_graph_sha256'];actual=bound['report_sha256']
+        binding=dict(status='MATCH' if expected==actual else 'MISMATCH',kind=request['kind'],
+                     schema_version=request['schema_version'],proposal_sha256=sha256(snapshots['proposal']).hexdigest(),
+                     requested_graph_sha256=expected,actual_graph_sha256=actual)
+    result=dict(schema_version=1,kind='topostitch-registered-graph-description',status='GRAPH_DESCRIPTION_ONLY',
+                registered_graph=bound,proposal_binding=binding,cut_selection_validated=False,
+                runtime_authority=False,changes=[],
+                limitations=['Graph and declared-edge inspection only; chosen images, forest, geometry and scientific suitability are not validated',
+                             'A matching graph checksum does not approve a cut; preview building still requires exact binding and full validation'])
+    result['report_sha256']=_fingerprint(result)
+    return result
+
+
+def _prepare(model,discovery,registration,proposal):
+    paths={name:Path(path) for name,path in zip(_FILES,(model,discovery,registration,proposal))}
+    snapshots={name:path.read_bytes() for name,path in paths.items()}
+    request=_proposal_request(snapshots['proposal'])
+    forest_request=request['kind']=='topostitch-forest-proposal'
     continuation_options = ({'backbone_continuations': request['backbone_continuations']}
                             if request['schema_version'] == 2 else {})
     selection=None
@@ -358,10 +398,19 @@ def main(argv=None):
     parser.add_argument('model',type=Path)
     parser.add_argument('--discovery',type=Path,required=True)
     parser.add_argument('--registration',type=Path,required=True)
-    parser.add_argument('--proposal',type=Path,required=True)
-    parser.add_argument('--out',type=Path,required=True,help='New immutable preview directory')
+    parser.add_argument('--proposal',type=Path,help='Exact proposal JSON; required when building a preview')
+    parser.add_argument('--out',type=Path,help='New immutable preview directory; required when building')
+    parser.add_argument('--describe-graph',action='store_true',help='Print verified graph IDs/checksum and optional proposal binding; does not validate or build a cut')
     args=parser.parse_args(argv)
+    if args.describe_graph and args.out is not None:
+        parser.error('--describe-graph cannot be combined with --out')
+    if not args.describe_graph and (args.proposal is None or args.out is None):
+        parser.error('Building a preview requires --proposal and --out')
     try:
+        if args.describe_graph:
+            print(json.dumps(describe_relabel_graph(args.model,args.discovery,registration_path=args.registration,
+                  proposal_path=args.proposal),indent=2,allow_nan=False))
+            return 0
         result=build_relabel_preview(args.model,args.discovery,registration_path=args.registration,
             proposal_path=args.proposal,output_directory=args.out)
     except (OSError,ValueError,RuntimeError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')

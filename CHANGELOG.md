@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W70 — Describe a registered graph before choosing a cut
+
+- Add read-only `--describe-graph` to the existing cut-preview command, exposing
+  verified node/link IDs, exact graph identity and optional proposal MATCH/MISMATCH.
+- Reuse the strict proposal/graph owners; never rewrite a stale hash or treat a
+  matching graph as cut validation. Existing build requests and packets stay exact.
+
 ### W69 — Audit the virtual Willow/Cedar integration
 
 - Verify the automatically combined statistics parser and Cedar refinement lifecycle

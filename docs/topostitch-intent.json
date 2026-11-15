@@ -684,6 +684,19 @@
       "native_enforcement_enabled": false,
       "phosphate_atoms_changed": false,
       "runtime_authority": false
+    },
+    "registered_graph_description": {
+      "module": "nasolve.topostitch_recut_bundle",
+      "api": "describe_relabel_graph",
+      "cli": "nasolve-topostitch-cut-preview --describe-graph",
+      "kind": "topostitch-registered-graph-description",
+      "schema_version": 1,
+      "output": "stdout JSON only; --out rejected",
+      "proposal_policy": "Optional existing schema-1/2 request supplies graph declarations; strict envelope validation; graph MATCH/MISMATCH is observed without rewriting the request",
+      "cut_selection_validated": false,
+      "input_bytes_preserved": true,
+      "runtime_authority": false,
+      "new_topology_registry": false
     }
   },
   "geometry_development": {

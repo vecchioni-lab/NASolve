@@ -2023,3 +2023,76 @@ The exact command vectors, source pins, test/build logs, conflict inventory and
 wheel stay in the local evidence archive; no generated artifacts are uploaded.
 Before any real merge, reconcile the seven human/agent contracts with their owners
 and perform release-level combined validation in the chosen final tree.
+
+
+## W70 — Describe the registered graph before choosing a cut
+
+Use the existing cut-preview command to see the graph's logical sites, numbered
+nodes/links, exact symmetry operators, declared boundaries and graph checksum
+before authoring a cut. This mode prints JSON and creates no directory or model:
+
+```bash
+nasolve-topostitch-cut-preview model.pdb \
+  --discovery discovery.json --registration registration.json --describe-graph
+```
+
+The optional existing proposal supplies its noncovalent extra edges and W67
+explicit backbone continuations:
+
+```bash
+nasolve-topostitch-cut-preview model.pdb \
+  --discovery discovery.json --registration registration.json \
+  --proposal proposal.json --describe-graph
+```
+
+The schema-1 `topostitch-registered-graph-description` contains the unchanged
+registered-graph report under `registered_graph`. Its `report_sha256` is the graph
+identity to which a cut request binds. `proposal_binding` is null without a
+proposal; otherwise it retains the request byte hash, kind/version, requested and
+actual graph hashes, and **MATCH or MISMATCH**. The outer description has its own
+report hash; do not substitute that for the nested graph hash.
+
+A successful description means the graph was inspected, **not that the cut is
+valid**. `status` is `GRAPH_DESCRIPTION_ONLY`, `cut_selection_validated` is false,
+and no runtime authority is granted. Chosen node images, forest selection, cut
+budgets/geometry and scientific suitability are not validated by this mode. A
+bad forest choice can therefore have a matching graph binding and still fail the
+ordinary preview builder. Review a mismatching graph/source/declaration before
+intentionally creating a revised proposal; the tool never silently rebinds it.
+
+The optional request uses the same strict version/field/duplicate-key parser as
+normal preview creation, and graph declarations use the same endpoint, operator,
+capacity and boundary checks. Input drift refuses before any report is emitted.
+`--describe-graph` rejects `--out`. Normal mode still requires both `--proposal`
+and `--out`, validates the entire cut and refuses a stale graph checksum. Existing
+request and packet schemas need no migration; old packets replay exactly.
+The API is `describe_relabel_graph(model, discovery, registration_path=...,
+proposal_path=None)` in the existing packet module; no new registry or CLI is added.
+
+Fourteen added cases cover no-proposal inspection, schema-2 continuations, exact
+CLI/API agreement, request shape, explicit mismatch, invalid cut versus matching
+graph, input drift, mode refusal, unchanged bytes and relocation with the old path
+unavailable. Focused packet/continuation/view suite: **115 passed**. Complete Willow:
+**1,688 + 229 subtests** (83.49 s). Installed/relocated owners: **482 passed**
+(23.73 s); six helps, lean import and Python 3.10 syntax pass. Installed old/new
+public packet replay and graph output are exact, with original source paths blocked.
+
+The first full-suite attempt ran within the process sandbox: **1,683 passed,
+5 failed + 229 subtests**, with process-group signalling and `/bin/ps` denied.
+No test-owned workers remained at inspection. The unfiltered suite then passed
+with permissions for its owned process tests. Both logs are preserved; the initial
+failure is not reported as a pass or patched around in production code.
+No Phenix/Coot execution or scientific activation was added by W70.
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider \
+  tests/test_topostitch_recut_bundle.py tests/test_topostitch_continuations.py \
+  tests/test_topostitch_forest_bundle.py tests/test_topostitch_backbone_intent.py \
+  tests/test_topostitch_recut_view.py tests/test_topostitch_cut_preference.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider
+python -m pip wheel --no-deps --no-build-isolation --wheel-dir /path/to/wheels .
+```
+
+The host used its NASolve Python 3.12.14 `.venv`, adding the isolated installed
+Gemmi site to `PYTHONPATH`; the exact vectors are retained locally. Wheel SHA-256:
+`9298b86b4b2c57c31aa1c0ab2b041ce6c6eac606053cefca2e2cc6a731992f12`.

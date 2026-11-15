@@ -149,3 +149,95 @@ def test_artifact_drift_after_recomputation_is_detected_before_return(tmp_path,m
         value=original(*a,**kw);(out/'source.pdb').write_bytes((out/'source.pdb').read_bytes()+b'REMARK late drift\n');return value
     monkeypatch.setattr(module,'_prepare',changed)
     with pytest.raises(ValueError,match='changed during replay'):load_relabel_preview(out)
+
+
+def test_describe_graph_without_proposal_is_read_only_and_has_cli_parity(tmp_path,capsys,monkeypatch):
+    from nasolve import topostitch_recut_bundle as module
+    args,_=setup(tmp_path);args.pop('proposal_path');before={p:p.read_bytes() for p in tmp_path.iterdir()};names=set(tmp_path.iterdir())
+    monkeypatch.setattr(module,'preview_registered_relabel',lambda *a,**k:pytest.fail('Graph description must not build a cut'))
+    report=module.describe_relabel_graph(**args)
+    assert report['kind']=='topostitch-registered-graph-description' and report['status']=='GRAPH_DESCRIPTION_ONLY'
+    assert report['registered_graph']==build_registered_periodic_graph(args['model'],args['discovery'],args['registration_path'])
+    assert report['proposal_binding'] is None and not report['cut_selection_validated'] and not report['runtime_authority']
+    assert main([str(args['model']),'--discovery',str(args['discovery']),'--registration',str(args['registration_path']),'--describe-graph'])==0
+    assert json.loads(capsys.readouterr().out)==report
+    assert set(tmp_path.iterdir())==names and all(p.read_bytes()==data for p,data in before.items())
+
+
+@pytest.mark.parametrize('binding',['MATCH','MISMATCH'])
+def test_graph_description_reports_requested_hash_without_rewriting_it(tmp_path,binding):
+    from nasolve.topostitch_recut_bundle import describe_relabel_graph
+    args,request=setup(tmp_path)
+    if binding=='MISMATCH':request['registered_graph_sha256']='0'*64;args['proposal_path'].write_text(json.dumps(request))
+    original=args['proposal_path'].read_bytes();report=describe_relabel_graph(**args)
+    check=report['proposal_binding']
+    assert check==dict(status=binding,kind=request['kind'],schema_version=1,proposal_sha256=sha256(original).hexdigest(),requested_graph_sha256=request['registered_graph_sha256'],actual_graph_sha256=report['registered_graph']['report_sha256'])
+    assert args['proposal_path'].read_bytes()==original and not report['cut_selection_validated']
+    if binding=='MISMATCH':
+        with pytest.raises(ValueError,match='checksum'):build_relabel_preview(**args,output_directory=tmp_path/'bad')
+        assert not (tmp_path/'bad').exists()
+
+
+def test_graph_description_uses_explicit_boundary_declarations(tmp_path):
+    from tests.test_topostitch_continuations import setup as connected,request as proposal
+    from nasolve.topostitch_recut_bundle import describe_relabel_graph
+    paths,links=connected(tmp_path);args,bound,_=proposal(paths,links,forest=True)
+    report=describe_relabel_graph(**args)
+    assert report['registered_graph']==bound and report['proposal_binding']['status']=='MATCH'
+    assert report['registered_graph']['declared_continuations'][0]['source_site']=='A:4'
+    request=json.loads(args['proposal_path'].read_text());request['backbone_continuations'][0]['source_site']='A:2';args['proposal_path'].write_text(json.dumps(request))
+    with pytest.raises(ValueError,match='3-prime'):describe_relabel_graph(**args)
+
+
+@pytest.mark.parametrize('change',['unknown_field','schema_bool','duplicate_key'])
+def test_describe_graph_reuses_strict_request_envelope(tmp_path,change):
+    from nasolve.topostitch_recut_bundle import describe_relabel_graph
+    args,request=setup(tmp_path)
+    if change=='unknown_field':request['surprise']=True
+    if change=='schema_bool':request['schema_version']=True
+    text=json.dumps(request)
+    if change=='duplicate_key':text=text[:-1]+',"schema_version":1}'
+    args['proposal_path'].write_text(text)
+    with pytest.raises(ValueError):describe_relabel_graph(**args)
+
+
+def test_matching_graph_does_not_validate_a_bad_forest_selection(tmp_path):
+    from tests.test_topostitch_forest_bundle import setup as forest
+    from nasolve.topostitch_recut_bundle import describe_relabel_graph
+    args,request,_=forest(tmp_path);request['selected_edge_ids']=['not-an-edge'];args['proposal_path'].write_text(json.dumps(request))
+    report=describe_relabel_graph(**args)
+    assert report['proposal_binding']['status']=='MATCH' and report['cut_selection_validated'] is False
+    with pytest.raises(ValueError):build_relabel_preview(**args,output_directory=tmp_path/'bad')
+    assert not (tmp_path/'bad').exists()
+
+
+@pytest.mark.parametrize('field',['discovery','proposal_path'])
+def test_graph_description_rejects_input_drift(tmp_path,monkeypatch,field):
+    from nasolve import topostitch_graph as graph,topostitch_recut_bundle as module
+    args,_=setup(tmp_path);original=graph.build_registered_periodic_graph
+    def changed(*a,**kw):
+        result=original(*a,**kw);args[field].write_bytes(args[field].read_bytes()+b'\n');return result
+    monkeypatch.setattr(graph,'build_registered_periodic_graph',changed)
+    with pytest.raises(ValueError,match='changed during'):module.describe_relabel_graph(**args)
+
+
+@pytest.mark.parametrize('mode',['describe_with_out','preview_without_out','preview_without_proposal'])
+def test_graph_cli_modes_cannot_silently_write_or_build(tmp_path,mode):
+    args,_=setup(tmp_path);out=tmp_path/'must-not-exist';argv=[str(args['model']),'--discovery',str(args['discovery']),'--registration',str(args['registration_path'])]
+    if mode=='describe_with_out':argv+=['--describe-graph','--out',str(out)]
+    elif mode=='preview_without_out':argv+=['--proposal',str(args['proposal_path'])]
+    else:argv+=['--out',str(out)]
+    with pytest.raises(SystemExit) as exc:main(argv)
+    assert exc.value.code==2 and not out.exists()
+
+
+def test_graph_description_relocates_without_source_path_lookup(tmp_path,monkeypatch):
+    from pathlib import Path
+    from nasolve.topostitch_recut_bundle import describe_relabel_graph
+    original=tmp_path/'original';original.mkdir();args,_=setup(original);expected=describe_relabel_graph(**args)
+    moved=tmp_path/'moved';shutil.move(original,moved);new={k:moved/p.name for k,p in args.items()};opener=Path.open
+    def guarded(self,*a,**kw):
+        if self.resolve().is_relative_to(original):raise AssertionError('Original path lookup')
+        return opener(self,*a,**kw)
+    monkeypatch.setattr(Path,'open',guarded)
+    assert describe_relabel_graph(**new)==expected

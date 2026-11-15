@@ -918,7 +918,9 @@ serialized preview audit. It writes no models and has no density/R-factor target
 forest proposals through the existing graph owner. Schema-2 requests can resolve
 explicitly declared representation-boundary partners; chemical/unknown boundaries,
 competing partners and do-not-connect sites refuse. This writes a review packet,
-not a replacement ASU or native restraint.
+not a replacement ASU or native restraint. Its read-only `--describe-graph` mode
+exposes node/link IDs and optional request MATCH/MISMATCH through those same
+owners; graph identity is not cut validation, and no stale request is rewritten.
 
 `nasolve-topostitch-view` verifies/replays frozen bend and representative previews
 and writes one standalone HTML view. Representative comparisons share one camera,
