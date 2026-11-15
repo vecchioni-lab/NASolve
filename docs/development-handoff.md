@@ -1,15 +1,35 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C329 corrected-CIF refinement delivery — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Current delivery **C329**; published
+Updated **2026-11-15, C330 live-policy contract — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Current delivery **C330**; published
 code **11fd6ee6 (C328)**, **a766d2a3 (C327)**, **818edda7 (C326)**.
 Focused checks only; no Rowan full suite, branch, default activation or merge.
 Linden owns Pine/Willow and does not edit Cedar.
 
 ## Current work and interruption recovery
 
+**C330 contract complete; production guard pending:** audited the existing native
+ASU/cache, bonded signature and context owners before adding scope. None binds
+all unused live nonbonded parameter tables. Actual synthetic Phenix 2.2.1-6174
+controls observe copy loss of all four maps, exact rational symmetry/multiplicity,
+special-position projections and unchanged energy/gradients after cache reset and
+rebuild. A coordinate-driven rebuild changes three pairs to one with unchanged
+parameter tables; reset clears the automatic-cutoff marker but keeps its resolved
+cutoff. Working fields must not masquerade as immutable chemistry. Existing
+adjacent tests: **122 passes (7.71 s)**; no full suite or production guard test.
+The [maintained contract](architecture.md#live-nonbonded-policy-boundary-c330-planned)
+and existing ledger's `live_nonbonded_policy_contract_2026_11_15` carry field lists,
+source hashes, commands and pending negative controls. No helper/consumer, stable
+policy ID, default activation or Q06 chemical acceptance. Linden's optional
+consumer is gated on implementing and qualifying this owner, using the same actual
+evaluation flags. The prospective 40-case test draft was never a product test:
+all errored because the proposed module was absent; it is preserved only in ignored
+local diagnostics, not shipped as a failing suite. No half-implemented source files.
+All C330 inputs are synthetic; runner/evidence remain under the everyday checkout's
+ignored `branch-artifacts/cedar/`. No PDU rerun, SDK or Willow change.
+
 **Window: 16:25–23:00 London**, extended by Simon at the evening check-in.
-All Rowan driver/native/cold owners through C329 are stopped. Independent Phenix
+All Rowan driver/native/cold owners through C330 are stopped. Independent Phenix
 CLI jobs may overlap with isolated working/output folders and process records;
 coordinate CPU/RAM and deadlines with Linden. Campaign execution stays serial.
 
@@ -152,7 +172,8 @@ commands, hashes, anchor-relative evidence and limitations. New entries:
 `prepared_reference_bond_execution_2026_11_15` and
 `complete_reference_target_delivery_2026_11_15` and
 `ordinary_reference_target_entry_2026_11_15` and
-`corrected_cif_refinement_survival_2026_11_15`. The packaged public PDB
+`corrected_cif_refinement_survival_2026_11_15` and
+`live_nonbonded_policy_contract_2026_11_15`. The packaged public PDB
 retains its original fixed-column padding and exact hash. C325 whitespace checking
 excludes only that byte-pinned PDB (`git diff HEAD^ HEAD --check -- .
 ':(exclude)src/nasolve/data/replay/5W6W_noPO4.pdb'`); all code/docs pass. Reuse the earlier C307–C322 entries

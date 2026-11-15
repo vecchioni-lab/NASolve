@@ -91,17 +91,21 @@ successful ReadySet result is insufficient. Keep ordinary bond edits distinct
 from additive contact energy over an unchanged native manager: Linden's reported
 Willow evidence shows changed exclusions from symmetry distance edits. Willow
 W38/W39 are context, not a combined Cedar validation or a phosphodiester-link grant.
-**Queued shared native-policy check (Linden W78, 2026-11-15):** his controlled
-copy experiment reports that generic Python `deepcopy`/pickle of native
-nonbonded parameters drops radius, ionic-radius and donor/acceptor tables while
-retaining scalar settings and captured contacts. Native/model identity selection
-retains the tested energy/gradient behavior. Before installing a geometry-copy
-adapter, Cedar must authenticate the complete live nonbonded policy and copy
-semantics using the existing native-interpretation owner. Retain W78's exact
-evidence in Willow; this is a reported integration requirement, not a Cedar
-validation or permission to change SDK files. Do not interrupt target repair to
-build a second contact engine. Current output synchronization preserves the same
-native geometry object, and Python copies of JSON reports are unaffected.
+**Shared live-policy guard, contract ready / implementation pending (C330):**
+Linden W78 identified native-copy table loss; C330 directly observes loss of all
+four populated maps in this pinned SDK and inventories complete live parameters,
+assignments, exclusion shells and exact symmetry inputs. Current contacts alone
+cannot bind future contact rules. Normal native rebuilds legitimately change
+adjusted cutoff/buffer/count/automatic marker; they must not be treated as chemical
+policy changes. See [the maintained contract](architecture.md#live-nonbonded-policy-boundary-c330-planned)
+and `live_nonbonded_policy_contract_2026_11_15` in the evidence ledger.
+No production helper, schema/POLICY_ID or Willow consumer is qualified yet.
+Next: implement the bounded read-only owner, pass all contract negative controls
+and actual native rebuild controls, then qualify Linden's optional before/after
+consumer with identical evaluation flags. Preserve existing source/ASU/bonded
+owners and defaults. No pickle/deepcopy, SDK edits, new evaluator, geometry-copy
+permission or Q06 chemistry approval. Current output synchronization retains the
+same native geometry; copies of primitive JSON reports are unaffected.
 
 **Queued representative-boundary alternative (Linden W79/W80):** W79 reports
 that outlier callbacks can mix source and displayed coordinate frames even when

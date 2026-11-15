@@ -101287,5 +101287,231 @@
     ],
     "next": "Reuse exact prior force diagnosis; integrate source-aware target selection and scoped achieved-geometry reporting while retaining whole-substituent REVIEW.",
     "author": "Rowan"
+  },
+  "live_nonbonded_policy_contract_2026_11_15": {
+    "milestone": "C330",
+    "status": "PINNED_API_INVENTORY_AND_NEGATIVE_CONTROL_CONTRACT_COMPLETE",
+    "implementation_status": "PLANNED_NO_PRODUCTION_HELPER_OR_CONSUMER",
+    "source_base_commit": "09425ef3",
+    "author": "Rowan",
+    "behavior_before_after": "Documentation and synthetic evidence only. Product behavior, artifact schemas, workers and defaults unchanged; no migration.",
+    "reused_owners": [
+      "cif_native_validation.inspect_native_bundle",
+      "cif_native_asu.capture_asu_pairs",
+      "cif_native_nonbonded.review_native_nonbonded",
+      "cif_nonbonded_cache_audit",
+      "cif_gradient_audit.fixed_signature",
+      "cif_native_context"
+    ],
+    "contract": "docs/architecture.md#live-nonbonded-policy-boundary-c330-planned",
+    "qualification": {
+      "native_version": "Phenix 2.2.1-6174 / dispatcher 2.2.1",
+      "platform": "Darwin arm64",
+      "mode": "Complete tiny synthetic native energy/gradient, coordinate-driven rebuild, explicit reset/rebuild and automatic-cutoff reset execution; not diffraction refinement or only dry-run.",
+      "result": "All diagnostic assertions pass; driver exits 0; source parameter tables preserved.",
+      "source_profile": {
+        "cctbx.geometry_restraints.manager": {
+          "size": 88947,
+          "sha256": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39"
+        },
+        "cctbx.geometry_restraints": {
+          "size": 98560,
+          "sha256": "49b1a2f97978b74e416f763417d6a76f2ce6e00c1496afb7b24fe51072120950"
+        },
+        "cctbx.geometry_restraints.flags": {
+          "size": 2037,
+          "sha256": "81038310190507529bef66a3073db6f347a794a7f01a66ac047e8bd613d8603e"
+        },
+        "cctbx_geometry_restraints_ext": {
+          "size": 5853552,
+          "sha256": "496677a82712ef7e8488ef675b98d0bb4f06741c12489f8a3d5fc15058b7612c"
+        },
+        "cctbx_crystal_ext": {
+          "size": 2321232,
+          "sha256": "42bb2f9ad0a7d7cb201d4b63dca33897727e5c89ee38f8e17a689799d779d529"
+        },
+        "cctbx_sgtbx_ext": {
+          "size": 3173296,
+          "sha256": "8253f45a02549c31eb7b57369963ef149a1f9b68ff6caf7bbeea870f9283ffc4"
+        },
+        "cctbx_uctbx_ext": {
+          "size": 640512,
+          "sha256": "dd515c7a74d2f56451f6c8d67724c71f593b04582c072e1c12c9caa4cf7dfe5d"
+        },
+        "scitbx_stl_map_ext": {
+          "size": 732496,
+          "sha256": "4572b8dc2d7049e3f56dfe65c0be39d82e945d3de0f6b2861b107ee2b26b15a2"
+        },
+        "scitbx_array_family_flex_ext": {
+          "size": 12933584,
+          "sha256": "66d98dc54e059bbb0964471070942e3ba88619429c0f40f47cb934a92960e10e"
+        }
+      },
+      "inspected_header_hashes": {
+        "cctbx/geometry_restraints/nonbonded.h": "3c8d39e25f072a25bbae359e83bfe8ee9c304e2149659ed0caf0985286a7d061",
+        "cctbx/geometry_restraints/nonbonded_bpl.cpp": "b4c3f4d0da6d5211dce0340bcade4d41e36dcce7722f186a3f4a6aa47aaa8949",
+        "cctbx/geometry_restraints/nonbonded_sorted.h": "111312ed7b3300f1c64defcb075644962424b064d5d8de1e1bdf2d2e65771675",
+        "cctbx/geometry_restraints/nonbonded_sorted_bpl.cpp": "59b145335dafe5092392348e42be00f4c03e4bec64cf14b41c954ce979ef8bc8"
+      }
+    },
+    "fixed_fields": {
+      "nonbonded_params_tables": [
+        "distance_table (nested, including empty rows)",
+        "radius_table",
+        "ionic_radius_table",
+        "donor_acceptor_table"
+      ],
+      "nonbonded_params_scalars": [
+        "factor_1_4_interactions",
+        "const_shrink_1_4_interactions",
+        "default_distance",
+        "minimum_distance",
+        "const_shrink_donor_acceptor"
+      ],
+      "assignments": [
+        "model_indices",
+        "conformer_indices",
+        "sym_excl_indices",
+        "donor_acceptor_excl_groups",
+        "nonbonded_types",
+        "nonbonded_charges"
+      ],
+      "exclusions": "shell_sym_tables: all shells/rows/partner indices and ordered exact rational operations, preserving direction/multiplicity/empty rows",
+      "symmetry": [
+        "crystal_symmetry.unit_cell().parameters()",
+        "crystal_symmetry.space_group() complete operations",
+        "site_symmetry_table.indices()",
+        "site_symmetry_table.table(): matrices(), special_op(), multiplicity()"
+      ],
+      "prolsq_function": [
+        "c_rep",
+        "k_rep",
+        "irexp",
+        "rexp"
+      ],
+      "search": [
+        "nonbonded_distance_cutoff (already resolved)",
+        "nonbonded_buffer",
+        "min_cubicle_edge",
+        "plain_pairs_radius",
+        "max_reasonable_bond_distance"
+      ],
+      "flags": [
+        "bond",
+        "nonbonded",
+        "angle",
+        "dihedral",
+        "reference_coordinate",
+        "reference_dihedral",
+        "ncs_dihedral",
+        "den_restraints",
+        "chirality",
+        "planarity",
+        "parallelity",
+        "bond_similarity",
+        "ramachandran_restraints"
+      ],
+      "invocation": "Same resolved flags and normalization actually used; explicitly qualify compute_gradients, gradient-buffer and disable_asu_cache settings before consuming. Reject custom nonbonded function, manager/call external energy and extension objects. Ordinary energies_sites default pair-proxy tolerance route only."
+    },
+    "cache_observations_not_fixed_policy": [
+      "adjusted_nonbonded_distance_cutoff",
+      "effective_nonbonded_buffer",
+      "n_updates_pair_proxies",
+      "nonbonded_distance_cutoff_was_determined_automatically"
+    ],
+    "actual_native_observations": {
+      "copy": {
+        "all_four_populated_maps_empty_after_deepcopy": true,
+        "five_scalar_values_preserved": true,
+        "original_maps_unchanged": true
+      },
+      "cache_before": {
+        "nonbonded_distance_cutoff": 5.0,
+        "adjusted_nonbonded_distance_cutoff": 5.0,
+        "effective_nonbonded_buffer": 1,
+        "nonbonded_distance_cutoff_was_determined_automatically": false,
+        "n_updates_pair_proxies": 0
+      },
+      "cache_after_native_build": {
+        "nonbonded_distance_cutoff": 5.0,
+        "adjusted_nonbonded_distance_cutoff": 3.4,
+        "effective_nonbonded_buffer": 2.6,
+        "nonbonded_distance_cutoff_was_determined_automatically": false,
+        "n_updates_pair_proxies": 1
+      },
+      "cache_after_explicit_reset": {
+        "nonbonded_distance_cutoff": 5.0,
+        "adjusted_nonbonded_distance_cutoff": 5.0,
+        "effective_nonbonded_buffer": 1,
+        "nonbonded_distance_cutoff_was_determined_automatically": false,
+        "n_updates_pair_proxies": 0
+      },
+      "energy_and_gradients_exact_after_rebuild": true,
+      "rational_operation": "Native rotation/translation numerator and denominator APIs verified for -x,y+1/2,-z; two duplicate directed shell operations survive direct readback.",
+      "special_position": "P 1 2 1 indices [1,0]; nontrivial stabilizer and singular special-position projection exposed. Do not require projection determinant +/-1.",
+      "donor_acceptor_exclusion": "Input exists, but its conditional is commented out in this pinned nonbonded_sorted.h; preserve input without claiming active exclusion.",
+      "coordinate_driven_rebuild": {
+        "updates_before": 1,
+        "updates_after": 2,
+        "pairs_before": 3,
+        "pairs_after": 1
+      },
+      "automatic_built": {
+        "nonbonded_distance_cutoff": 3.4,
+        "adjusted_nonbonded_distance_cutoff": 3.4,
+        "effective_nonbonded_buffer": 1.0000000000000004,
+        "nonbonded_distance_cutoff_was_determined_automatically": true,
+        "n_updates_pair_proxies": 1
+      },
+      "automatic_reset": {
+        "nonbonded_distance_cutoff": 3.4,
+        "adjusted_nonbonded_distance_cutoff": 3.4,
+        "effective_nonbonded_buffer": 1,
+        "nonbonded_distance_cutoff_was_determined_automatically": false,
+        "n_updates_pair_proxies": 0
+      }
+    },
+    "pending_acceptance_controls": [
+      "Each unused entry in all four maps; empty nested row added/removed; every scalar mutation.",
+      "Ordered assignments, absent versus empty, incorrect lengths/types, atom-order binding through context.",
+      "All shell rows/indices/operations; duplicate and reverse direction; 1-2,1-3,1-4 and later shells.",
+      "Unit-cell/group changes, site indices/stabilizers/projection/multiplicity; exact rational representation.",
+      "Prolsq parameters and supported type; unsupported/custom/external/extension refusals.",
+      "Fixed search controls, unresolved cutoff refusal without evaluation, actual flags/normalization/invocation options.",
+      "Native ordinary coordinate-driven rebuild and explicit reset/rebuild accepted without approving tampered pair caches.",
+      "Bounded finite detached primitives; JSON roundtrip/digest; malformed/unknown schema/oversize refusal.",
+      "Exact supported build/type/source ownership; unsupported API/build refusal; no read-side mutation.",
+      "Optional consumer before/after checks with same actual flags, frozen baseline and unchanged default report/behavior."
+    ],
+    "validation": {
+      "command": "\"$PHENIX_ROOT/bin/phenix.python\" -B branch-artifacts/cedar/runners/c330_native_inventory.py (cwd everyday NASolve; PHENIX_ROOT selected installation above)",
+      "local_anchor": "everyday NASolve checkout",
+      "runner": {
+        "path": "branch-artifacts/cedar/runners/c330_native_inventory.py",
+        "sha256": "0e62972bdce398a7f1866ccf3092523c327fa82c9912587e0a006d7f062e013c",
+        "bytes": 7107
+      },
+      "output": {
+        "path": "branch-artifacts/cedar/c330-native-policy/native-inventory-final.json",
+        "sha256": "63d8759f0da72644ff8edb6e4e24cfcd0b1242903d90eff405ee0ed79e171519",
+        "bytes": 7028
+      },
+      "prospective_tests": "40 fixture import errors in 0.12 s because proposed module is absent; draft removed from test discovery and retained locally. Not a fail-before/pass-after regression claim.",
+      "full_suite": "NOT_RUN per Simon; no runtime code changes.",
+      "focused_tests": {
+        "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_native_nonbonded.py tests/test_cif_nonbonded_cache_audit.py tests/test_cif_native_validation.py tests/test_cif_gradient_audit.py --tb=short",
+        "cwd_anchor": "Cedar checkout",
+        "result": "122 passed in 7.71 s; existing adjacent behavior only, not qualification of an absent helper."
+      },
+      "document_checks": "git diff --check passes; ledger JSON parses; all older evidence entries unchanged; documentation paths/anchor resolve; no src/tests/config changes."
+    },
+    "limitations": [
+      "No production helper, policy ID/schema commitment or Willow consumer.",
+      "No native-copy permission, cache-integrity/completeness proof or full-objective/chemical approval.",
+      "No Linux/other-SDK qualification, continuous module-file authentication or relocated artifact claim.",
+      "No PDU rerun, additional crystallographic files, SDK source or raw logs committed.",
+      "Q06 remains REVIEW from C329; scientific target/achieved-geometry closure is distinct."
+    ],
+    "next": "Implement the bounded read-only live-policy owner and qualify pending native/synthetic controls, then Linden can bind the optional consumer. Reuse existing process/source/ASU/bonded owners."
   }
 }
