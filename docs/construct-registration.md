@@ -1137,6 +1137,13 @@ wrong orientation or clashes. Creative angle-policy work is deferred until it
 can be qualified as a complete local geometry/native policy; no new enforcement
 or atom editing is authorized by recording the intent.
 
+The implemented W66 read-only projection now exposes these distinctions from a
+verified representative packet through `observe_relabel_backbone_intent` and
+`nasolve-topostitch-view --backbone-intent`. It preserves directed route images,
+unresolved representation boundaries and existing phosphate inventory; separate
+terminal-phosphate consent remains unknown. It adds no persistent topology owner,
+chemical edge or native enforcement. See the [observation contract](topostitch-periodic.md#w66--observe-declared-backbone-intent-across-a-cut).
+
 ### Materialization, Coot repair and Phenix enforcement
 
 Topo Net itself should remain preview/intent logic. Applying a reviewed surgery

@@ -126,13 +126,15 @@ def preview_scene(directory, *, candidate_index=None, radius_angstrom=None,
             'periodic':periodic,'max_pairs':max_pairs,'max_image_tests':max_image_tests}}
 
 
-def representative_scene(directory, *, native_receipt=None, cedar_source=None):
+def representative_scene(directory, *, native_receipt=None, cedar_source=None, backbone_intent=False):
     """Inspect a frozen representative proposal, including exact edge images.
 
     Points are display coordinates, never a new chemical bond or materialized
     model. Missing anchors remain explicit rather than acquiring guessed points.
     """
-    from .topostitch_recut_bundle import load_relabel_preview, observe_relabel_native_links
+    from .topostitch_recut_bundle import load_relabel_preview, observe_relabel_native_links, observe_relabel_backbone_intent
+    if type(backbone_intent) is not bool:
+        raise ValueError('backbone_intent must be a boolean')
     if cedar_source is not None and native_receipt is None:
         raise ValueError('A trusted Cedar source requires an explicit native receipt')
     from .topostitch_registration import _fingerprint
@@ -203,13 +205,18 @@ def representative_scene(directory, *, native_receipt=None, cedar_source=None):
             scene['warnings'].append(f'{native_links["proposed_seam_count"]} existing source interresidue bonds cross this proposed ASU boundary; symmetry-bond enforcement remains disabled.')
         if native_links['source_symmetry_links_unqualified']:
             scene['warnings'].append('Source symmetry-bond entries are retained but are outside this identity-link observation.')
+    if backbone_intent:
+        intent = observe_relabel_backbone_intent(root)
+        if intent['preview_receipt_sha256'] != sha256(receipt_bytes).hexdigest():
+            raise ValueError('Backbone intent belongs to a different representative preview')
+        scene['backbone_intent'] = intent
     return scene
 
 
 _MAX_COMPARISON_POINTS = 50_000
 
 
-def representative_comparison(directories, *, native_receipt=None, cedar_source=None):
+def representative_comparison(directories, *, native_receipt=None, cedar_source=None, backbone_intent=False):
     """Compare 2–8 explicit cuts of one frozen source/graph without selecting one.
 
     Each alternative is the existing verified scene, not a new model or recipe.
@@ -236,7 +243,7 @@ def representative_comparison(directories, *, native_receipt=None, cedar_source=
         for name in _FILES.values():
             path = root / name
             frozen[path] = path.read_bytes()
-    scenes = [representative_scene(root, native_receipt=native_receipt, cedar_source=cedar_source)
+    scenes = [representative_scene(root, native_receipt=native_receipt, cedar_source=cedar_source, backbone_intent=backbone_intent)
               for root in roots]
     first = scenes[0]
     if any(scene[key] != first[key] for scene in scenes
@@ -301,13 +308,13 @@ def _read_cut_preference(comparison, path):
             'checkpoint_selection_applied': False, 'runtime_authority': False}
 
 
-def validate_cut_preference(directories, preference_path, *, native_receipt=None, cedar_source=None):
+def validate_cut_preference(directories, preference_path, *, native_receipt=None, cedar_source=None, backbone_intent=False):
     """Reopen an exact comparison before accepting a preference as review input.
 
     This records neither authenticated human approval nor a checkpoint selection.
     Callers supply explicit packet paths; a checksum never becomes a file locator.
     """
-    comparison = representative_comparison(directories, native_receipt=native_receipt, cedar_source=cedar_source)
+    comparison = representative_comparison(directories, native_receipt=native_receipt, cedar_source=cedar_source, backbone_intent=backbone_intent)
     return _read_cut_preference(comparison, preference_path)
 
 
@@ -323,9 +330,11 @@ def _html(scene,preference=None):
     return re.sub('__SCENE_JSON__|__PREFERENCE_JSON__',lambda match:payloads[match.group()],template)
 
 
-def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,**options):
+def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,backbone_intent=False,**options):
     if cedar_source is not None and native_receipt is None:
         raise ValueError('A trusted Cedar source requires an explicit native receipt')
+    if type(backbone_intent) is not bool:
+        raise ValueError('backbone_intent must be a boolean')
     root=Path(directory).resolve();out=Path(output_path).absolute()
     if out.exists():raise FileExistsError(out)
     if not isinstance(comparison_directories,(list,tuple)) or len(comparison_directories)>7:
@@ -339,9 +348,10 @@ def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=
         defaults=dict(candidate_index=None,radius_angstrom=None,periodic=False,max_pairs=100_000,max_image_tests=100_000)
         if any(k not in defaults or type(v) is not type(defaults[k]) or v!=defaults[k] for k,v in options.items()):
             raise ValueError('Representative preview already declares its images; bend-search options do not apply')
-        scene=(representative_comparison(roots,native_receipt=native_receipt,cedar_source=cedar_source) if comparison_directories
-               else representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source))
+        scene=(representative_comparison(roots,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent) if comparison_directories
+               else representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent))
     else:
+        if backbone_intent:raise ValueError('Backbone intent observation requires a representative preview')
         if native_receipt is not None:raise ValueError('Native seam observation requires a representative preview')
         scene=preview_scene(root,**options)
     if preference_path is not None and scene['kind']!='topostitch-representative-comparison-view':
@@ -363,11 +373,12 @@ def main(argv=None):
     parser.add_argument('--periodic',action='store_true',help='Show the exact chosen symmetry mate (requires topology extra)')
     parser.add_argument('--max-pairs',type=int,default=100_000)
     parser.add_argument('--max-image-tests',type=int,default=100_000)
+    parser.add_argument('--backbone-intent',action='store_true',help='Show declared backbone continuation and phosphate inventory without changing chemistry')
     parser.add_argument('--native-receipt',type=Path,help='Optional authenticated source capture for existing-link seam observations')
     parser.add_argument('--cedar-source',type=Path,help='Explicit trusted developer Cedar source; default uses installed owners')
     args=parser.parse_args(argv)
     try:scene=write_preview_view(args.preview,args.out,candidate_index=args.candidate,radius_angstrom=args.radius,
-        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare,preference_path=args.preference)
+        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare,preference_path=args.preference,backbone_intent=args.backbone_intent)
     except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
     detail=(str(len(scene['alternatives']))+' explicit cuts; none selected' if 'alternatives' in scene
             else str(len(scene['atoms']))+' displayed atom instances; proposal remains unreviewed')

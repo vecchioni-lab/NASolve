@@ -1690,3 +1690,93 @@ published source and an explicit metadata/module/HTML union were used, with the
 original temporary source path removed before replay. This is scoped compatibility,
 not a branch merge, full combined suite, browser qualification or native execution.
 The W65 code remains unchanged by that check.
+
+
+## W66 — Observe declared backbone intent across a cut
+
+Use the existing verified representative packet to inspect continuation and
+phosphate inventory, independently of native bond evidence:
+
+```bash
+nasolve-topostitch-view /path/to/cut-a --compare /path/to/cut-b --backbone-intent --out /path/to/new-intent-view.html
+```
+
+The Python API is
+`nasolve.topostitch_recut_bundle.observe_relabel_backbone_intent(directory)`.
+It replays the existing packet, binds the exact source/graph/preview/receipt hashes,
+and refuses input drift. Its additive schema-1
+`topostitch-representative-backbone-intent` report is an observation, not a new
+editable topology registry or chemistry instruction passed to native tools.
+
+Each logical site's incoming state is `DECLARED_CONTINUATION`,
+`DECLARED_CHEMICAL_BOUNDARY`, `UNKNOWN_BOUNDARY`, or `OUTSIDE_DECLARED_ROUTES`.
+Declared 5′→3′ route order determines the incoming O3′→P partner; numerical residue
+order, nearest images and source-native bonds never fill gaps in that declaration.
+A representation boundary retains continuation with an unresolved partner. A known
+logical partner can separately lack unambiguous atom endpoints. Missing mapping,
+missing atoms, alternate records and protected/do-not-connect annotations remain
+visible. Outgoing boundary declarations are retained as well.
+
+Resolved route partners carry exact original and proposed target operators,
+logical/copy/node identities and source atom indices. Where both atomic endpoints
+are unambiguous, the observer checks the transported O3′–P image distance against
+the original; a large direct ASU separation does not invalidate the logical link
+or establish chemical geometry. This is exact representative transport with a
+floating arithmetic check, not physical deformation or a new covalent proxy.
+
+The inventory retains exact atom names and indices, including legacy O1P/O2P/O3P
+aliases and duplicate-role ambiguity. A declared continuation records preservation
+of **existing P/OP1/OP2**, even with an unresolved partner; missing atoms are reported,
+not generated. Existing OP3 conflicts only with explicitly declared continuation.
+A chemical boundary leaves terminal-phosphate authorization **unknown**: an
+independently declared complete terminal phosphate, such as W D:1, is neither
+forbidden nor granted by this observer. No OP3 is added/deleted, no phosphate is
+removed, and no bond/angle/native restraint is enabled.
+
+`--backbone-intent` works with the optional authenticated `--native-receipt` view.
+It deliberately keeps intended topology and observed source-native links separate.
+The two retained public proposals each have 24 declared incoming continuations,
+two chemical and two unknown boundaries, and 14 logical sites outside the declared
+routes. They have no declared route seams; the independent native observer still
+reports two cut-crossing source bonds outside those routes. The incomplete graph
+is not silently repaired or promoted into complete chemical intent.
+
+The optional report changes comparison identity. Reopening a preference exported
+from this view requires the same `--backbone-intent` and optional native context.
+Without the flag, old scenes/comparisons/preferences remain exact. Existing packet
+schemas need no migration. The viewer refreshes the current intent details on cut
+switches; JavaScript interaction checks use DOM/canvas doubles only. The real
+browser/download/user review gate remains open: a new local-file attempt was
+refused by the browser URL policy, and no workaround was used.
+
+Validation uses Python 3.12.14, Gemmi 0.7.5 and unchanged native interfaces.
+Eighteen new regressions cover screw-image direction, unresolved and absent partners,
+missing atoms, alias collisions, OP3 scope, drift/tampering, relocation and optional
+view/preference binding. Full Willow: **1,648 tests plus 229 subtests**. The complete
+suite was run under the current session's collaboration requirement; no global
+pipeline behavior changed. Exact commands and installed/compatibility results are
+recorded in the audited roadmap. No Phenix/Coot execution was added by W66; the
+existing authenticated source capture is read-only evidence. Scientific inputs,
+views, preferences and local validation artifacts remain outside Git.
+
+W66 installed/relocated validation passes **442** focused owner/API tests, six
+entry-point helps, lean imports and Python 3.10 syntax. The installed command
+reproduces the public intent-enriched view exactly after relocation with original
+paths blocked; the old comparison and three preference requests exported by the
+actual JavaScript also replay exactly. Wheel SHA-256:
+`b7022e296f6d25e46a87e7b826ee8333b62abc3e0697cd1fc6e7bfd4052d84a9`.
+The initial build environments lacked setuptools; the final build used the same
+isolated packaging interpreter as W65. Those failures and the stale-wheel import
+refusal are retained locally, not treated as passing checks.
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/test_topostitch_backbone_intent.py tests/test_topostitch_cut_preference.py tests/test_topostitch_cut_comparison.py tests/test_topostitch_native_seams.py tests/test_topostitch_view.py tests/test_topostitch_recut_view.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider
+python -m pip wheel --no-deps --no-build-isolation --wheel-dir /path/to/local/wheels .
+```
+
+The host full-suite command used `PYTHONPATH=src:/private/tmp/willow-periodic-install/lib/python3.12/site-packages`
+and the host NASolve `.venv/bin/python`; the packaging interpreter was
+`/private/tmp/topotrace-rename-env/bin/python`. These paths are validation
+provenance only. Installed replay used the wheel's site-packages, copied tests
+and explicit relocated packet paths; it did not import the original checkout.

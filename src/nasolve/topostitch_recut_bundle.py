@@ -129,6 +129,126 @@ def load_relabel_preview(directory):
 
 
 
+def _backbone_intent_observation(packet, receipt_sha256):
+    """Project verified route intent without inventing a partner or chemistry."""
+    import math
+    from .topostitch_transport import crystallographic_image
+    from .topostitch_recut import _arithmetic_bound
+
+    preview = packet['observation']
+    bound = preview['registered_graph']
+    graph = bound['periodic_graph']
+    atoms = preview['source_orbit_observation']['atoms']
+    points = preview['proposed_points_angstrom']
+    nodes = {node['logical_site']: node for node in bound['nodes']}
+    incoming = {edge['target']: edge for edge in graph['edges'] if edge['kind'] == 'covalent_backbone'}
+    after_edges = {edge['edge_id']: edge for edge in preview['graph_relabeling']['periodic_graph']['edges']}
+    images = {row['node_id']: row['operator_xyz'] for row in preview['atom_image_groups']}
+    routes = {site: (route, i) for route in bound['declared_routes'] for i, site in enumerate(route['sites'])}
+    aliases = {'P': ('P',), 'OP1': ('OP1', 'O1P'), 'OP2': ('OP2', 'O2P'), 'OP3': ('OP3', 'O3P')}
+    transforms = {}
+
+    def transform(xyz, point):
+        if xyz not in transforms:
+            transforms[xyz] = crystallographic_image(**graph['crystal'], operator_xyz=xyz)
+        return list(transforms[xyz].apply(point))
+
+    def indices(node, names):
+        return [i for i in node['atom_indices'] if atoms[i]['identity']['atom_name'] in names]
+
+    rows = []
+    for site, node in nodes.items():
+        route, offset = routes.get(site, (None, None))
+        boundary = None if route is None or offset else route['five_prime_boundary']
+        continued = route is not None and (offset > 0 or boundary == 'representation')
+        state = ('DECLARED_CONTINUATION' if continued else
+                 'DECLARED_CHEMICAL_BOUNDARY' if boundary == 'chemical' else
+                 'UNKNOWN_BOUNDARY' if route is not None else 'OUTSIDE_DECLARED_ROUTES')
+        inventory = {role: [dict(source_atom_index=i, atom_name=atoms[i]['identity']['atom_name'],
+                                  altloc=atoms[i]['identity']['altloc'], occupancy=atoms[i]['occupancy'])
+                           for i in indices(node, names)] for role, names in aliases.items()}
+        issues = []
+        if continued:
+            issues.extend('MISSING_' + role for role in ('P', 'OP1', 'OP2') if not inventory[role])
+            if inventory['OP3']:
+                issues.append('EXISTING_OP3_CONFLICTS_WITH_DECLARED_CONTINUATION')
+        issues.extend('AMBIGUOUS_' + role for role, values in inventory.items() if len(values) > 1)
+        partner = None
+        if route is not None and offset > 0:
+            donor = nodes[route['sites'][offset-1]]
+            edge = incoming.get(node['node_id'])
+            if edge is None or edge['source'] != donor['node_id']:
+                raise ValueError('Declared incoming backbone route differs from the verified graph')
+            after = after_edges[edge['edge_id']]
+            donor_indices = indices(donor, ("O3'", 'O3*'))
+            phosphate_indices = indices(node, ('P',))
+            resolved = not node['issues'] and not donor['issues'] and len(donor_indices) == len(phosphate_indices) == 1
+            partner = dict(copy_id=donor['copy_id'], logical_site=donor['logical_site'], node_id=donor['node_id'],
+                           source_atom_name="O3'", target_atom_name='P', edge_id=edge['edge_id'],
+                           source_atom_indices=donor_indices, target_atom_indices=phosphate_indices,
+                           source_mapping_issues=donor['issues'],
+                           before_target_operator_xyz=edge['target_operator_xyz'],
+                           after_target_operator_xyz=after['target_operator_xyz'],
+                           proposed_representation_seam=after['target_operator_xyz'] != 'x,y,z',
+                           coordinate_endpoints_resolved=resolved, geometry=None)
+            if resolved:
+                i, j = donor_indices[0], phosphate_indices[0]
+                before = [atoms[i]['position_angstrom'], transform(edge['target_operator_xyz'], atoms[j]['position_angstrom'])]
+                proposed = [points[i], transform(after['target_operator_xyz'], points[j])]
+                expected = [transform(images.get(donor['node_id'], 'x,y,z'), p) for p in before]
+                error = max(abs(a-b) for p, q in zip(expected, proposed) for a, b in zip(p, q))
+                tolerance = _arithmetic_bound(*before, *proposed, *expected)
+                if error > tolerance or abs(math.dist(*before)-math.dist(*proposed)) > 4*tolerance:
+                    raise ValueError('Declared backbone image geometry changed beyond arithmetic tolerance')
+                partner['geometry'] = dict(before_points=before, after_image_points=proposed,
+                    before_distance_angstrom=math.dist(*before), after_image_distance_angstrom=math.dist(*proposed),
+                    after_direct_distance_angstrom=math.dist(points[i], points[j]),
+                    maximum_coordinate_error_angstrom=error, chemical_geometry_validated=False)
+        rows.append(dict(node_id=node['node_id'], copy_id=node['copy_id'], logical_site=site,
+                         coordinate_mapping=node['mapping'], mapping_issues=node['issues'],
+                         strand_id=None if route is None else route['strand_id'],
+                         protected=node['protected'], do_not_connect=node['do_not_connect'],
+                         incoming_state=state, five_prime_boundary=boundary,
+                         three_prime_boundary=(route['three_prime_boundary'] if route is not None and offset == len(route['sites'])-1 else None),
+                         partner_resolution=('LOGICAL_PARTNER_RESOLVED' if partner else 'UNRESOLVED' if continued else 'NOT_DECLARED'),
+                         incoming_partner=partner, phosphate_inventory=inventory,
+                         preserve_existing_atoms=['P', 'OP1', 'OP2'] if continued else [],
+                         terminal_phosphate_authorized=None, issues=issues))
+    result = dict(schema_version=1, kind='topostitch-representative-backbone-intent',
+                  source_model_sha256=packet['source_model_sha256'], preview_receipt_sha256=receipt_sha256,
+                  registered_graph_sha256=packet['registered_graph_sha256'], preview_sha256=preview['preview_sha256'],
+                  crystal=graph['crystal'], sites=rows,
+                  unresolved_continuation_count=sum(row['partner_resolution'] == 'UNRESOLVED' for row in rows),
+                  proposed_route_seam_count=sum(bool(row['incoming_partner'] and row['incoming_partner']['proposed_representation_seam']) for row in rows),
+                  outside_declared_scope=bound['scope'],
+                  bond_enforcement_enabled=False, phosphate_atoms_changed=False, chemical_connectivity_changed=False,
+                  scientific_acceptance=False, runtime_authority=False,
+                  limitations=['Declared routes and boundaries only; no inferred partner, additional edge or chemical validation',
+                               'Preserve existing P/OP1/OP2 at a declared continuation even if its partner or atoms are unresolved',
+                               'Chemical boundaries do not authorize or forbid terminal phosphate; separate explicit chemistry is required',
+                               'No OP3 addition/deletion, dephosphorylation, coordinate writing or native restraint enforcement'])
+    result['report_sha256'] = _fingerprint(result)
+    return result
+
+
+def observe_relabel_backbone_intent(directory):
+    """Read declared continuation and exact directed images from a replayed packet.
+
+    No source coordinates or topology are modified. A representation boundary
+    without a declared partner remains unresolved, never a free terminus.
+    """
+    root = Path(directory)
+    paths = [root/'preview.json', *(root/name for name in _FILES.values())]
+    frozen = {path: path.read_bytes() for path in paths}
+    packet = load_relabel_preview(root)
+    if _fingerprint(_json(frozen[root/'preview.json'])) != _fingerprint(packet):
+        raise ValueError('Representative preview changed during backbone intent observation')
+    result = _backbone_intent_observation(packet, sha256(frozen[root/'preview.json']).hexdigest())
+    if any(path.read_bytes() != data for path, data in frozen.items()):
+        raise ValueError('Representative packet changed during backbone intent observation')
+    return result
+
+
 def observe_relabel_native_links(directory, native_receipt, *, cedar_source=None):
     """Expose existing source bonds that a proposed representation cuts.
 

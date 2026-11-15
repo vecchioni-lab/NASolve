@@ -637,6 +637,22 @@
       "checkpoint_selection_applied": false,
       "runtime_authority": false,
       "browser_download_validated": false
+    },
+    "representative_backbone_intent": {
+      "module": "nasolve.topostitch_recut_bundle",
+      "api": "observe_relabel_backbone_intent",
+      "cli": "nasolve-topostitch-view --backbone-intent",
+      "kind": "topostitch-representative-backbone-intent",
+      "schema_version": 1,
+      "authority": "Read-only projection of verified registered routes and boundaries, not a second topology registry",
+      "partner_policy": "Declared directed O3-prime to P route only; representation-boundary partners remain unresolved without an explicit connection",
+      "phosphate_policy": "Preserve existing P/OP1/OP2 for declared continuation; report missing/ambiguous atoms and existing conflicting OP3; terminal phosphate authorization remains unknown",
+      "geometry": "Exact directed target-image transport with separately reported coordinate availability; no chemical validity assertion",
+      "legacy_views_unchanged_without_flag": true,
+      "preference_context_binds_optional_observation": true,
+      "bond_enforcement_enabled": false,
+      "phosphate_atoms_changed": false,
+      "runtime_authority": false
     }
   },
   "geometry_development": {

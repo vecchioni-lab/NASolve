@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W66 — Retain declared backbone continuation at proposed cuts
+
+- Add a replay-bound observation of directed route links, representation/chemical/
+  unknown boundaries and existing phosphate atoms, with optional `--backbone-intent`
+  details in the existing viewer and saved-preference context.
+- Keep unresolved continuation and P/OP1/OP2 intent distinct from partner coordinates
+  and native enforcement. Report missing/ambiguous atoms and OP3 conflicts only at
+  declared continuations; infer no terminal phosphate, new bond or atom edit.
+- Preserve old packets, scenes and preferences when the optional observation is off.
+
 ### W65 — Save and reopen source-bound cut preferences
 
 - Add a preference download and `--preference` readback to the comparison view;
