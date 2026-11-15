@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "98302b2b901318db9d81f1bc683d7474ac5c716b",
+  "audited_code_commit": "6cfe42e967fb7680e5596a112d126d69c8622689",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -979,6 +979,14 @@
       "reference": "docs/topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence",
       "result": "Complete Phenix2.2.1-6174 reconstruction matches the authenticated855-atom context. All1467 live source angle sym_ops/slack inspected. Each cut has8crossing terms/12atoms; energy, rotated gradient and native energies path agree. Finite-difference maxima3.08e-7/3.35e-7. Selection retains operators; native angle/shared-array pickle loses them, changing residual20.3688 to5631.8498 and11.6365 to5458.7742. Frozen inputs and dispatcher match. Follow-up subset/reindexing preserves operators, but an isolated native angular manager omits unit-cell context and returns the same wrong residuals before pickle; generic deepcopy also loses image metadata.",
       "limitation": "Experimental local scaffold and three setup failures preserved; no public API, optimization, refinement, native activation or Cedar/cctbx patch. Does not establish ordinary refinement uses pickle. Complete terms/exclusions and supported lifecycle remain unqualified; code validation remains W67."
+    },
+    "E_VIRTUAL_CEDAR_INTEGRATION": {
+      "kind": "installed_virtual_merge_compatibility",
+      "code_commit": "6cfe42e967fb7680e5596a112d126d69c8622689",
+      "human_update": 69,
+      "reference": "docs/topostitch-periodic.md#w69--audit-the-virtual-willowcedar-integration",
+      "result": "Virtual Willow6cfe42e9/Cedar a2e73603 tree has0source conflicts and7documentation conflicts. Runtime equals W67 composition except the existing11-line autorefine final-PDB RMSD fallback. Installed relocated combined autorefine/refinement runtime/parallelity controls pass76 tests plus16 subtests; six helps pass.",
+      "limitation": "No actual merge/ref change or conflict resolution; no full combined-suite, native execution or scientific qualification. Shared parser gap audited only. All generated evidence local."
     }
   },
   "benchmarks": [
@@ -1094,8 +1102,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 68,
-    "next": 69,
+    "current": 69,
+    "next": 70,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1313,6 +1321,12 @@
         "title": "Inspect source seam angles and proxy persistence",
         "state": "RECORDED",
         "code_commit": "98302b2b901318db9d81f1bc683d7474ac5c716b"
+      },
+      {
+        "number": 69,
+        "title": "Audit installed virtual Willow/Cedar integration",
+        "state": "RECORDED",
+        "code_commit": "6cfe42e967fb7680e5596a112d126d69c8622689"
       }
     ]
   }

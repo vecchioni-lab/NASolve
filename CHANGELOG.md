@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W69 — Audit the virtual Willow/Cedar integration
+
+- Verify the automatically combined statistics parser and Cedar refinement lifecycle
+  in an installed virtual-tree package; retain seven unresolved documentation conflicts.
+- No branch merge, runtime change, native execution or full combined-suite claim.
+
 ### W68 — Identify seam-angle persistence limits
 
 - Record a read-only source-native angle transport and lifecycle audit: exact image

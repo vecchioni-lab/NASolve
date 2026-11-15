@@ -1981,3 +1981,45 @@ These names/hashes locate forensic evidence, not an operational resume contract:
 W68 attempt 3 is the first complete kernel/pickle observation; attempt 5 adds the
 manager, subset/reindex and deepcopy controls. Attempts 1, 2 and 4 retain setup
 failures. No generated scientific artifact is committed or uploaded.
+
+
+## W69 — Audit the virtual Willow/Cedar integration
+
+A read-only integration preview compares Willow `6cfe42e9` with published Cedar
+`a2e73603` at common base `d7913ddd`. `git merge-tree --write-tree --name-only`
+creates a temporary Git tree, without changing a branch, index or working tree.
+The result has **no source conflicts** and seven documentation/contract conflicts:
+`AGENTS.md`, `CHANGELOG.md`, `docs/architecture.md`, `docs/campaign-full-auto.md`,
+`docs/collaboration.md`, `docs/construct-registration.md` and
+`docs/development-handoff.md`. Those remain unresolved; this is not a merge-ready
+or scientifically qualified combined branch.
+
+The virtual tree's package metadata matches W67's explicit composition exactly.
+Its only runtime difference from that tested composition is Willow's older
+11-line `autorefine.py` final-PDB RMSD fallback. This addition combines automatically
+with Cedar's current refinement code. The actual virtual tree's source and combined
+tests were archived into a disposable checkout, built into a wheel, installed in an
+isolated target, and the original checkout path removed by relocation.
+
+Installed **76 tests + 16 subtests** pass (19.37 s), covering the combined
+`test_autorefine.py`, `test_cif_refinement_runtime.py` and
+`test_refinement_parallelity.py`. Six entry-point helps pass. Native runtime and
+entry-point interfaces are unchanged; no Phenix/Coot run was added. This closes the
+previous composition's shared-parser coverage gap, not a full combined-suite or
+human-document review gate. W67's 468 Willow / 221 Cedar owner controls remain
+separate evidence. No code, schema or scientific data was changed by W69.
+
+```bash
+# In the isolated, relocated test checkout, with only installed package paths:
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/path/to/virtual/site:/path/to/topology/dependencies \
+  python -m pytest -q -p no:cacheprovider \
+  tests/test_autorefine.py tests/test_cif_refinement_runtime.py \
+  tests/test_refinement_parallelity.py
+```
+
+Virtual tree: `ea3eac058f034cbe26b980a457420056e64b34cc`.
+Wheel SHA-256: `7ae3d170c8360d2ba531c3ecc2b8af2168a3bda7b11dc9da83992d47cd0466a6`.
+The exact command vectors, source pins, test/build logs, conflict inventory and
+wheel stay in the local evidence archive; no generated artifacts are uploaded.
+Before any real merge, reconcile the seven human/agent contracts with their owners
+and perform release-level combined validation in the chosen final tree.

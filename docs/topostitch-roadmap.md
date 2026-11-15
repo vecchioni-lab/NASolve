@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W68 — Inspect source seam angles and proxy persistence.** Next: W69.
+**Current update: W69 — Audit installed virtual Willow/Cedar integration.** Next: W70.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W59 | Calculate representatives along explicitly chosen graph links | RECORDED |
 | W60 | Retain chosen graph links and anchors in saved proposals | RECORDED |
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
 | W62 | Verify exact labelled crystal-image permutations | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W66 | Retain declared backbone continuation across representative cuts | RECORDED |
 | W67 | Resolve explicit representation-boundary partners | RECORDED |
 | W68 | Inspect source seam angles and proxy persistence | RECORDED |
+| W69 | Audit installed virtual Willow/Cedar integration | RECORDED |
 
 ## Finish lines
 
@@ -716,6 +716,13 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 [Evidence contract](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence) at [W68](https://github.com/vecchioni-lab/NASolve/commit/98302b2b901318db9d81f1bc683d7474ac5c716b).
 Complete Phenix2.2.1-6174 reconstruction matches the authenticated855-atom context. All1467 live source angle sym_ops/slack inspected. Each cut has8crossing terms/12atoms; energy, rotated gradient and native energies path agree. Finite-difference maxima3.08e-7/3.35e-7. Selection retains operators; native angle/shared-array pickle loses them, changing residual20.3688 to5631.8498 and11.6365 to5458.7742. Frozen inputs and dispatcher match. Follow-up subset/reindexing preserves operators, but an isolated native angular manager omits unit-cell context and returns the same wrong residuals before pickle; generic deepcopy also loses image metadata.
 **Limit:** Experimental local scaffold and three setup failures preserved; no public API, optimization, refinement, native activation or Cedar/cctbx patch. Does not establish ordinary refinement uses pickle. Complete terms/exclusions and supported lifecycle remain unqualified; code validation remains W67.
+
+<a id="e_virtual_cedar_integration"></a>
+### E_VIRTUAL_CEDAR_INTEGRATION — installed_virtual_merge_compatibility
+
+[Evidence contract](topostitch-periodic.md#w69--audit-the-virtual-willowcedar-integration) at [W69](https://github.com/vecchioni-lab/NASolve/commit/6cfe42e967fb7680e5596a112d126d69c8622689).
+Virtual Willow6cfe42e9/Cedar a2e73603 tree has0source conflicts and7documentation conflicts. Runtime equals W67 composition except the existing11-line autorefine final-PDB RMSD fallback. Installed relocated combined autorefine/refinement runtime/parallelity controls pass76 tests plus16 subtests; six helps pass.
+**Limit:** No actual merge/ref change or conflict resolution; no full combined-suite, native execution or scientific qualification. Shared parser gap audited only. All generated evidence local.
 
 ## Deferred extensions, not hidden blockers
 

@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W68 recorded; next W69.** Runtime implementation is W67 `baac9850` on isolated
+**W69 recorded; next W70.** Runtime implementation is W67 `baac9850` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -170,6 +170,14 @@ with published Cedar `a2e73603` passes **468 Willow + 221 Cedar / 6 subtests**, 
 helps and exact default-owner replay. Cedar coverage is complete-request,
 child-bounds, attachment-native and checkpoints; package metadata union and runtime
 hashes are explicit. This is not a branch merge or full combined-suite qualification.
+
+W69 additionally audits the actual virtual Willow/Cedar source combination: no
+source conflicts, seven unresolved human/agent documentation conflicts. The only
+runtime difference from the prior composition is Willow's older final-PDB RMSD
+fallback in `autorefine.py`. Installed combined parser/refinement-lifecycle tests
+pass **76 + 16 subtests**, plus six helps. No branch/index/worktree change; reconcile
+contracts and run release-level combined validation before any real merge. See
+[virtual integration](topostitch-periodic.md#w69--audit-the-virtual-willowcedar-integration).
 
 **W68 native finding:** complete fresh Phenix **2.2.1-6174** reconstruction matches
 the authenticated source. Eight crossing source-native angle terms per cut preserve
