@@ -1,10 +1,37 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-14, C303**. Active **cedar** in NASolve-c96. Native C303
-pins published C302 `d32825e9`; this change fixes its measured final-validation cost.
+Updated **2026-11-15, C304 starting**. Active **cedar** in NASolve-c96. C304 native recovery
+pinned published C303 `9489077a` and has now completed five refinement cycles.
 C295 records corrected phosphate intent and a read-only symmetry observation. Simon's
-cutoff is **23:00 Europe/London, 2026-11-14**; interruptions expected. Focused tests
+current window is **08:20–10:20 Europe/London, 2026-11-15**; interruptions expected. Focused tests
 only: **no full suite, new branch or merge**. Linden owns Pine/Willow.
+
+**Active scope:** C304 explicitly recovered C303 with fresh attempt 2 under the
+unchanged 900-second allowance, then published that exact result and completed
+five ordinary checked-plane-force refinement cycles. All owned processes stopped;
+source pins, 904 prior run files (apart from legitimately updated report.json),
+30 campaign bookkeeping files and the frozen request remained unchanged.
+Original campaign BLOCKED and failed attempt 1 stay preserved. Output:
+`304_Cedar_PDU-recovery-1f37ak8q`; scientific run remains in C303's campaign for
+now. Native Phenix 2.2.1-6174, no Coot/NAR repeat; all 58 parameter records retained.
+Next: cold relocation, staged PDU geometry and native effective membership.
+
+C302 also dropped the `ARTIFACT_POLICY` re-export used by ordinary cleanup.
+Direct reproduction raises ImportError; existing preparation-retention tests give
+6 failed / 5 passed in 9.58 s. Four new current/legacy policy cases fail at the same
+import (0.90 s). Restored the existing export after C304 stopped; current-only
+automatic cleanup, legacy reads and scientific validation stay unchanged.
+Focused checks: **147 passed in 170.03 s**, no full suite. Exact command:
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_preparation_retention.py tests/test_cif_attempt_retention.py tests/test_cif_complete_attempt_archive.py tests/test_cif_complete_child_bounds.py tests/test_cif_ordinary_postmr.py tests/test_cif_postmr_publication.py --tb=short`.
+PYTHON is the everyday NASolve `.venv/bin/python`; cwd is Cedar. Includes actual
+archive retirement, interrupted cleanup and relocated reads with the old path gone.
+Changed source: only `cif_attempt_retention.py`; tests and changelog accompany it.
+No schema/migration changes; raw science and runners remain excluded from Git.
+Local ignored runners: `c304_recovery_*`, `c304_readback.py`, `c304_consumer_*`.
+The unexecuted related 5PC control is now `c305_*`; do not use older c304 5PC drafts.
+
+Linden's W65 composition tested published C303 separately; it is not Cedar native
+chemistry acceptance. Linden owns today's isolated Willow browser/viewer work.
 
 ## Corrected intent and publication
 

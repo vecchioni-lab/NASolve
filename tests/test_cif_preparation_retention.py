@@ -165,3 +165,26 @@ def test_campaign_records_archive_not_disposable_working_paths(tmp_path, monkeyp
     assert archive.relative_to(tmp_path).as_posix() in result['artifacts']
     assert exact['runtime']['model'].relative_to(tmp_path).as_posix() in result['artifacts']
     assert 'storage note' in result['preparation_notes'] and reads == [1]
+
+
+@pytest.mark.parametrize('policy', [
+    None,
+    'cif-complete-request-partitioned-artifacts-v1',
+    'cif-complete-request-partitioned-artifacts-v2',
+    'cif-complete-request-partitioned-artifacts-v3',
+])
+def test_new_publication_only_automatically_retires_current_storage_layout(tmp_path, monkeypatch, policy):
+    from nasolve.cif_complete_attempt_archive import ARTIFACT_POLICY
+    from nasolve.cif_ordinary_postmr import _retire_new_preparation
+    from nasolve.campaign_records import write_record
+    from tests.test_cif_postmr_publication import snapshot
+    root = tmp_path/'request'; root.mkdir()
+    configuration = {} if policy is None else {'artifact_policy': policy}
+    write_record(root/'request.json', {'configuration': configuration})
+    before = snapshot(root); calls = []
+    monkeypatch.setattr('nasolve.cif_attempt_retention.retire_attempt_working_files',
+                        lambda directory, number: calls.append((directory, number)))
+    note = _retire_new_preparation(root, 2)
+    assert calls == ([(root, 2)] if policy == ARTIFACT_POLICY else [])
+    assert (note is not None) is (policy == ARTIFACT_POLICY)
+    assert snapshot(root) == before

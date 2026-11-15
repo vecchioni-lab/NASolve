@@ -15,7 +15,7 @@ from .campaign_records import read_record, write_record, _sync_directory
 from .campaign_process import exclusive_lock
 from .cif_dictionary_sites import _need, _read
 from .cif_complete_attempt_archive import (
-    SUPPORTED_ARTIFACT_POLICIES, REPAIR_RUNTIME, CONTINUATION_RUNTIME,
+    ARTIFACT_POLICY, SUPPORTED_ARTIFACT_POLICIES, REPAIR_RUNTIME, CONTINUATION_RUNTIME,
     pack_complete_attempt_evidence, expanded_complete_attempt_evidence,
 )
 

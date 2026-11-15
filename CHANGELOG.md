@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep successful preparation cleanup connected to its storage policy (C304)
+
+- Restore the existing storage-policy export used by ordinary post-publication
+  cleanup, avoiding an import failure after a checked model has been saved.
+- Keep automatic cleanup limited to the current layout. Historical layouts,
+  explicit archive readers, exact-result validation and failure preservation
+  retain their existing behavior; no chemistry, schema or allowance changes.
+
 ### Avoid duplicate final preparation validation (C303)
 
 - Let the existing final sealing operation perform complete child/result validation
