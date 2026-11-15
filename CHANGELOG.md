@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W89 — Record the numerical-resolution audit and atomic handoff boundary
+
+- Preserve failed coarse trials while measuring their local step/score resolution.
+- Define an explicit diagnostic-start role for subsequent atomic trials, without
+  changing source/tether, stopping rules or scientific acceptance. Evidence only.
+
 ### W88 — Bind reusable motions to saved bend previews
 
 - Compile atom-order masks, registered pair weights and pivots from an exactly

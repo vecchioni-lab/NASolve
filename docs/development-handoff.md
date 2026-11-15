@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W88 recorded; W89 in progress.** Latest audited runtime is W88 `109ee1f8` on isolated
+**W89 recorded; W90 in progress.** Latest audited runtime is W88 `109ee1f8` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -345,10 +345,16 @@ its optional exact model digest. Nineteen fail-before /111 focused /1,821 full
 replay with original paths blocked. No schema, CLI, optimizer, writer or tensor
 change; other parameter vectors still need fresh backbone/packing review.
 
-**Next W89:** diagnose W87 six-variable stopping resolution without modifying
-those failures, before choosing coarse-placement/local-cleanup integration.
-Nonuniform curvature and matched refinement remain open gates. Density stays in
-S06 after exact map/model/data binding. Do not relax errors to obtain a pass.
+**W89 resolution audit:** two complete read-only 240-call native probes exactly
+replay W87. Stable local Hessians imply only8.05e-9/2.70e-8 Angstrom further
+motion and score changes near roundoff; actual samples quantize. This supports a
+resolution explanation, not convergence or atomic/scientific acceptance.
+
+**Next W90:** add an explicit diagnostic start to the existing atomic trial,
+keeping original source/tether, displacement bounds and stopping policy. Failed
+coarse provenance remains FAILED; atomic cleanup receives an experimental start
+and its own qualification, compared against a cold control. Nonuniform curvature,
+matched refinement and density-aware S06 remain open.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive

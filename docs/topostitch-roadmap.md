@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W89 — Diagnose coarse-step resolution before choosing cleanup integration.** Next: W90.
+**Current update: W90 — Allow explicit diagnostic starts in the existing atomic trial.** Next: W91.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W80 | Bind complete Cartesian tensors to coordinate frames | RECORDED |
 | W81 | Audit combined installation and choose computational view boundary | RECORDED |
 | W82 | Bind numerical frames to immutable saved previews | RECORDED |
 | W83 | Preserve labelled scattering at special positions | RECORDED |
@@ -27,7 +26,8 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W86 | Expose bounded tapered motion through the existing native objective | RECORDED |
 | W87 | Compare bounded paired and retained-core coarse placements | RECORDED |
 | W88 | Bind reusable motion to verified saved bend previews | RECORDED |
-| W89 | Diagnose coarse-step resolution before choosing cleanup integration | IN_PROGRESS |
+| W89 | Diagnose coarse-step resolution before choosing cleanup integration | RECORDED |
+| W90 | Allow explicit diagnostic starts in the existing atomic trial | IN_PROGRESS |
 
 ## Finish lines
 
@@ -167,16 +167,16 @@ Identify which duplex ends should meet and in which image/register, with a no-co
 
 Move a usable duplex toward the chosen connection while preserving local residue geometry and fixed boundaries.
 
-**Delivered:** Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance. W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled. W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance. W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.
+**Delivered:** Explicit tapered previews and one-window six-parameter fitting work; ANISOU, anchors, source bytes, budgets and rounded-output limits are tested. Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed. Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy. W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance. W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled. W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance. W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred. W89 directly observes a numerical-resolution limitation at the W87 coarse points; retains FAILED and distinguishes six-variable stationarity from substantial remaining atomic gradients.
 
 **Closure audit:**
 
 - Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.
 - Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.
 
-**Next action:** Diagnose W87 six-variable stopping resolution without changing failed trial policy, then choose a justified coarse-placement/local-cleanup integration. Preserve individual chemistry/packing review, nonuniform-curvature goals and matched diffraction gate; coordinate full native live policy with Cedar.
-**Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion).
-**Last audit:** 2026-11-15, Linden, [W88](https://github.com/vecchioni-lab/NASolve/commit/109ee1f8e6a61f466b1c4d2659ed0c80f2c25e5f); Read-only motion/source binding; unchanged physical-search/native-policy acceptance gates.
+**Next action:** Add an explicit diagnostic-start option to the existing atomic trial without rebasing source/tether or changing stopping policy, then compare cold and coarse-seeded atomic controls. Preserve original coarse failure provenance; individual chemistry, nonuniform curvature, live policy and diffraction gates remain open.
+**Evidence:** [E_SOFTWARE](#e_software), [E_NATIVE_8D93](#e_native_8d93), [E_TIGHTER_NATIVE](#e_tighter_native), [E_EXTENDED_BACKBONE](#e_extended_backbone), [E_COARSE_NATIVE_DERIVATIVES](#e_coarse_native_derivatives), [E_BOUNDED_NATIVE_MOTION](#e_bounded_native_motion), [E_MATCHED_COARSE_TRIALS](#e_matched_coarse_trials), [E_SAVED_BEND_MOTION](#e_saved_bend_motion), [E_COARSE_RESOLUTION](#e_coarse_resolution).
+**Last audit:** 2026-11-15, Linden, [W89](https://github.com/vecchioni-lab/NASolve/commit/109ee1f8e6a61f466b1c4d2659ed0c80f2c25e5f); Read-only resolution observation using frozenW86/C325, not current-combined scientific qualification.
 
 <a id="s05"></a>
 ### S05 — Close and qualify the local atomic geometry
@@ -856,6 +856,13 @@ Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepte
 [Evidence contract](topostitch-periodic.md#w88--compile-source-bound-motions-from-saved-bend-previews) at [W88](https://github.com/vecchioni-lab/NASolve/commit/109ee1f8e6a61f466b1c4d2659ed0c80f2c25e5f).
 Pinned preview replay compiles exact source-order mask, registered pair weights and pivot; full-precision bound/exact coordinate fields/input snapshots checked. Native view rejects changed source bytes.19 fail-before,111 focused,1821 full+229 subtests,731 installed/relocated,6 helps,lean imports,Python3.10 syntax and public saved motion/frame replay pass.
 **Limit:** No schema migration, optimizer, writer, tensor transport or native policy change. Existing numerical callers remain supported. Conservatively rejects unrounded bound or exact-serialization mismatch; other parameters need fresh audits. No native rerun or actual branch merge; W87 remains FAILED.
+
+<a id="e_coarse_resolution"></a>
+### E_COARSE_RESOLUTION — native_read_only_coarse_resolution_observation
+
+[Evidence contract](topostitch-periodic.md#w89--separate-coarse-step-resolution-from-atomic-cleanup) at [W89](https://github.com/vecchioni-lab/NASolve/commit/82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782).
+Two240-call Phenix2.2.1-6174 probes exactly replay W87 points/gradients and rebuilt contexts. Stable positive local six-variable Hessians; estimated additional motions8.05e-9/2.70e-8 Angstrom and decreases .52/3.80 scoreULPs. Actual sampled scores rise4/6ULPs while coarse gradients drop~1e-10.
+**Limit:** OriginalW86/C325 pins, no optimizer/restart/relaxed tolerance/new candidate/current-combined qualification. Supports numerical-resolution explanation, not convergence or atomic geometry. W87 remains FAILED; no new source tests for evidence-only update.
 
 ## Deferred extensions, not hidden blockers
 

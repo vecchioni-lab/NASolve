@@ -3292,3 +3292,51 @@ W87's 166-file local forensic archive was verified, SHA256
 `8199617fc46c9e22bae915be7cced4802bfab926f2218f0647c48ee7e350fbe3`.
 No scientific payload is committed or uploaded; archives are forensic evidence,
 not autonomous portable campaign runs.
+
+
+## W89 — Separate coarse-step resolution from atomic cleanup
+
+Two complete, read-only **Phenix 2.2.1-6174** probes use exactly W87's installed
+W86/C325 owners and inputs, rather than silently changing to current branches.
+Each callback-confirmed failed point reproduces its target, all Cartesian
+coordinates/gradients and coarse gradient norm exactly, including forced neighbor
+rebuilds before and after the observations. Each probe uses 240 objective calls;
+no optimizer, restart, tolerance edit, model writer or refinement runs.
+
+The predeclared six-variable Hessians use gradient differences at dimensionless
+steps 0.01/0.001/0.0001. Symmetrized eigenvalues are positive and stable (paired
+about 188–602, core-only 184–597). At 0.001, the local Newton estimates predict
+only 8.05e-9 /2.70e-8 Angstrom additional maximum atom motion and decreases
+4.70e-13 /3.46e-12: **0.52 /3.80 score ULPs**. Actual sampled scores instead rise
+4 /6 ULPs while the six-variable gradients fall to about 4.45e-11 /7.38e-11.
+Eleven fixed directions at nine steps retain the raw quantization observations.
+This supports a numerical-resolution explanation; a local positive Hessian is
+not proof of convergence, global optimality or good atomic geometry. W87 remains
+FAILED, and its Cartesian gradient norm remains around 6,660.
+
+The next useful integration is an **explicit diagnostic start for the existing
+atomic trial**, with the original source/tether/mask/policy unchanged. A failed
+coarse point can be an explicitly identified experimental input, never a successful
+coarse endpoint or an implicitly selected model. The atomic stage needs its own
+initial/endpoint derivative checks, bounds, stopping status, chemistry/packing
+observations and eventual matched diffraction review. Compare it against a cold
+start before claiming benefit; do not repair the error label or loosen tolerance.
+
+Exact local execution, separately for `paired` and `core-only`:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/willow-w86-motion/site:/private/tmp/willow-periodic-install/lib/python3.12/site-packages /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /private/tmp/willow-w89-coarse-resolution/<control>/run-owned.py
+```
+
+The historical paths above identify this local diagnostic, not portable runtime
+references. Per-control execution receipts pin actual inputs and report return0
+and unchanged inputs. W89 is evidence-only; no source suite was repeated. W88's
+full and installed results remain the current software audit. No scientific data
+were committed/uploaded, and S04/S05/Q06 remain open.
+
+W88's verified 495-file local archive has SHA256
+`56ac64029a415fe4e177c366bd9bd189e78f27cb19ae0422020ebd8df7fa4e1c`.
+Only W86/W88 duplicate build/test trees (588 files, 11,374,761 bytes total) were
+removed after exact comparison against verified archives. Installed runtimes,
+raw native/failed evidence and immutable runs remain; archives are forensic,
+not independently resumable campaign runs.

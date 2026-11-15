@@ -219,13 +219,14 @@
         "W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance.",
         "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled.",
         "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance.",
-        "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred."
+        "W88 compiles numerical motion from an exactly pinned/replayed saved preview and its registration, with complete atom order, fixed context and source-byte guard. Full and installed/relocated software checks pass; no physical-search acceptance is inferred.",
+        "W89 directly observes a numerical-resolution limitation at the W87 coarse points; retains FAILED and distinguishes six-variable stationarity from substantial remaining atomic gradients."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "Diagnose W87 six-variable stopping resolution without changing failed trial policy, then choose a justified coarse-placement/local-cleanup integration. Preserve individual chemistry/packing review, nonuniform-curvature goals and matched diffraction gate; coordinate full native live policy with Cedar.",
+      "next_action": "Add an explicit diagnostic-start option to the existing atomic trial without rebasing source/tether or changing stopping policy, then compare cold and coarse-seeded atomic controls. Preserve original coarse failure provenance; individual chemistry, nonuniform curvature, live policy and diffraction gates remain open.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -234,14 +235,15 @@
         "E_COARSE_NATIVE_DERIVATIVES",
         "E_BOUNDED_NATIVE_MOTION",
         "E_MATCHED_COARSE_TRIALS",
-        "E_SAVED_BEND_MOTION"
+        "E_SAVED_BEND_MOTION",
+        "E_COARSE_RESOLUTION"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "109ee1f8e6a61f466b1c4d2659ed0c80f2c25e5f",
         "reviewer": "Linden",
-        "human_update": 88,
-        "scope": "Read-only motion/source binding; unchanged physical-search/native-policy acceptance gates"
+        "human_update": 89,
+        "scope": "Read-only resolution observation using frozenW86/C325, not current-combined scientific qualification"
       }
     },
     {
@@ -1186,6 +1188,14 @@
       "reference": "docs/topostitch-periodic.md#w88--compile-source-bound-motions-from-saved-bend-previews",
       "result": "Pinned preview replay compiles exact source-order mask, registered pair weights and pivot; full-precision bound/exact coordinate fields/input snapshots checked. Native view rejects changed source bytes.19 fail-before,111 focused,1821 full+229 subtests,731 installed/relocated,6 helps,lean imports,Python3.10 syntax and public saved motion/frame replay pass.",
       "limitation": "No schema migration, optimizer, writer, tensor transport or native policy change. Existing numerical callers remain supported. Conservatively rejects unrounded bound or exact-serialization mismatch; other parameters need fresh audits. No native rerun or actual branch merge; W87 remains FAILED."
+    },
+    "E_COARSE_RESOLUTION": {
+      "kind": "native_read_only_coarse_resolution_observation",
+      "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782",
+      "human_update": 89,
+      "reference": "docs/topostitch-periodic.md#w89--separate-coarse-step-resolution-from-atomic-cleanup",
+      "result": "Two240-call Phenix2.2.1-6174 probes exactly replay W87 points/gradients and rebuilt contexts. Stable positive local six-variable Hessians; estimated additional motions8.05e-9/2.70e-8 Angstrom and decreases .52/3.80 scoreULPs. Actual sampled scores rise4/6ULPs while coarse gradients drop~1e-10.",
+      "limitation": "OriginalW86/C325 pins, no optimizer/restart/relaxed tolerance/new candidate/current-combined qualification. Supports numerical-resolution explanation, not convergence or atomic geometry. W87 remains FAILED; no new source tests for evidence-only update."
     }
   },
   "benchmarks": [
@@ -1301,8 +1311,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 89,
-    "next": 90,
+    "current": 90,
+    "next": 91,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1644,6 +1654,12 @@
       {
         "number": 89,
         "title": "Diagnose coarse-step resolution before choosing cleanup integration",
+        "state": "RECORDED",
+        "code_commit": "109ee1f8e6a61f466b1c4d2659ed0c80f2c25e5f"
+      },
+      {
+        "number": 90,
+        "title": "Allow explicit diagnostic starts in the existing atomic trial",
         "state": "IN_PROGRESS",
         "code_commit": null
       }
