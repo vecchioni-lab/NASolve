@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Compare and isolate linear-neighborhood bond targets (C307)
+
+- Add an explicit, coordinate-free comparison of source-declared triple bonds
+  and their adjoining heavy-atom single bonds with supplied MMFF94s references
+  or exact source-compatible energy-library rows. Missing/wildcard library
+  matches remain unsupported; no atom type is silently assigned to the dictionary.
+  Report target differences without assigning a new acceptance threshold.
+- Prepare separate diagnostic candidates changing only explicitly selected
+  equilibrium lengths. Preserve all existing ESDs, chemical declarations,
+  coordinates and other restraints; reject changed source graphs, incomplete
+  reference coverage and ambiguous edits. References are not authenticated or
+  scientifically approved by this comparison, and ordinary repair is unchanged.
+
 ### Keep successful preparation cleanup connected to its storage policy (C304)
 
 - Restore the existing storage-policy export used by ordinary post-publication

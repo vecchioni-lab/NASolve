@@ -98214,5 +98214,346 @@
         "request_sha256": "d4b950e873172f052d7cfd9043e8d27da943cd9a5afcc8242fc503a0f2c9fb20"
       }
     ]
+  },
+  "linear_neighborhood_reference_candidates_2026_11_15": {
+    "milestone": "C307",
+    "status": "EXPLICIT_REFERENCE_COMPARISON_AND_SEPARATE_CANDIDATES;_ENERGY_TARGET_REFINEMENT_PENDING",
+    "source_base_commit": "dca8ee82",
+    "behavior_before": "Historical triple v1 checks triple distance/linearity but does not compare adjoining single-bond targets. Ordinary generation can supply an implausible flanking target without that scoped screen detecting it.",
+    "behavior_after": "Additive diagnostic selects every explicit triple and adjoining heavy-atom single bond from source declarations, compares supplied numerical references without coordinates or acceptance thresholds, and writes only explicitly selected distance changes to fresh candidates. Existing ESDs and all other parsed fields remain exact. Ordinary generation/repair/selection and historical policies are unchanged.",
+    "changed_files": [
+      "src/nasolve/cif_linear_bond_reference.py",
+      "tests/test_cif_linear_bond_reference.py",
+      "CHANGELOG.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-linked-native-registration-evidence.json"
+    ],
+    "schemas": [
+      "cif-source-linear-bond-query-v1",
+      "cif-mmff-linear-bond-reference-v1",
+      "cif-energy-library-linear-bond-reference-v1",
+      "cif-linear-bond-reference-comparison-v1",
+      "cif-linear-bond-reference-candidate-v1"
+    ],
+    "compatibility": "Additive explicit Python diagnostic only; no dependency, CLI, default-route, historical request or checkpoint migration. Supplied references are not authenticated by the comparison or candidate writer and never imply automatic adoption.",
+    "native_provider": {
+      "tool_build": "phenix-2.2.1-6174",
+      "tool_version": "2.2.1",
+      "rdkit_version": "2026.03.1",
+      "model": "MMFF94s",
+      "mode": "Complete bounded parameter lookup without coordinates, implicit hydrogen addition, radicals, optimization or dictionary generation",
+      "shared_and_module_sources": 48,
+      "source_inventory_sha256": "d6667533968d0fca2a6bc042699eb8338efe1cf1319283dbc96ad4c275eada8d",
+      "simple_propyne_equilibrium_angstrom": 1.459,
+      "literature_api": "https://www.rdkit.org/docs/source/rdkit.ForceField.rdForceField.html"
+    },
+    "energy_library": {
+      "resource": {
+        "anchor": "phenix_installation",
+        "path": "lib/python3.11/site-packages/chem_data/geostd/ener_lib.cif",
+        "sha256": "33c526d188364c7ae34bd3cb4d7b1d683548bf911a6e16a07f52e2120676e091"
+      },
+      "scope": "Exact neutral source sp-carbon/sp3-carbon single-bond type matches with explicit valence, agreeing dictionary types and unique matching library carbon/valency/hybridization definitions. No wildcard/synonym fallback. Unsupported neighbors stay explicit. Native interpretation is not claimed to use these library bond rows automatically."
+    },
+    "components": {
+      "PDU": {
+        "mmff_comparison": [
+          {
+            "atoms": [
+              "C5",
+              "C5A"
+            ],
+            "dictionary_target_angstrom": 1.431,
+            "reference_equilibrium_angstrom": 1.415,
+            "dictionary_esd_angstrom": 0.02
+          },
+          {
+            "atoms": [
+              "C5A",
+              "C5B"
+            ],
+            "dictionary_target_angstrom": 1.174,
+            "reference_equilibrium_angstrom": 1.2,
+            "dictionary_esd_angstrom": 0.02
+          },
+          {
+            "atoms": [
+              "C5B",
+              "C5M"
+            ],
+            "dictionary_target_angstrom": 1.607,
+            "reference_equilibrium_angstrom": 1.459,
+            "dictionary_esd_angstrom": 0.02
+          }
+        ],
+        "energy_candidate_changes": [
+          {
+            "atoms": [
+              "C5B",
+              "C5M"
+            ],
+            "declared_order": "SINGLE",
+            "target_angstrom": 1.607,
+            "reference_status": "SUPPORTED",
+            "reference_esd_angstrom": 0.02,
+            "dictionary_esd_angstrom": 0.02,
+            "reference_equilibrium_angstrom": 1.47,
+            "target_minus_reference_angstrom": 0.137,
+            "difference_over_dictionary_esd": 6.8500000000000005,
+            "reference_force_constant": 405.0
+          }
+        ],
+        "energy_neighbor_status": [
+          {
+            "atoms": [
+              "C5",
+              "C5A"
+            ],
+            "reference_status": "UNSUPPORTED",
+            "reason": "OUTSIDE_NEUTRAL_SP_SP3_SINGLE_BOND_SCOPE"
+          },
+          {
+            "atoms": [
+              "C5A",
+              "C5B"
+            ],
+            "reference_status": "UNSUPPORTED",
+            "reason": "OUTSIDE_NEUTRAL_SP_SP3_SINGLE_BOND_SCOPE"
+          },
+          {
+            "atoms": [
+              "C5B",
+              "C5M"
+            ],
+            "reference_status": "SUPPORTED",
+            "reason": null
+          }
+        ],
+        "mmff_candidate_native": {
+          "status": "EXACT_SELECTED_BOND_TARGET_DELTA_ONLY",
+          "changes": [
+            {
+              "atoms": [
+                "C5B",
+                "C5M"
+              ],
+              "before": {
+                "atoms": [
+                  "pdb=\" C5B PDU B   4 \"",
+                  "pdb=\" C5M PDU B   4 \""
+                ],
+                "distance_ideal": 1.607,
+                "i_seqs": [
+                  506,
+                  507
+                ],
+                "origin_id": 0,
+                "symmetry_operation": null,
+                "weight": 2500.0
+              },
+              "after": {
+                "atoms": [
+                  "pdb=\" C5B PDU B   4 \"",
+                  "pdb=\" C5M PDU B   4 \""
+                ],
+                "distance_ideal": 1.459,
+                "i_seqs": [
+                  506,
+                  507
+                ],
+                "origin_id": 0,
+                "symmetry_operation": null,
+                "weight": 2500.0
+              }
+            }
+          ],
+          "all_other_proxy_categories_unchanged": true,
+          "atoms_and_coordinates_unchanged": true,
+          "input_files_unchanged": 10,
+          "native_processes_stopped": 1
+        },
+        "limits": "MMFF candidate target is 1.459 Å; the separately prepared energy-library candidate is 1.470 Å. Library ESD is .020 Å; candidate retains the existing original ESD. Neither candidate is automatically adopted or scientifically approved."
+      },
+      "5PC": {
+        "mmff_comparison": [
+          {
+            "atoms": [
+              "C5",
+              "C7"
+            ],
+            "dictionary_target_angstrom": 1.419,
+            "reference_equilibrium_angstrom": 1.415,
+            "dictionary_esd_angstrom": 0.03
+          },
+          {
+            "atoms": [
+              "C7",
+              "C8"
+            ],
+            "dictionary_target_angstrom": 1.199,
+            "reference_equilibrium_angstrom": 1.2,
+            "dictionary_esd_angstrom": 0.02
+          },
+          {
+            "atoms": [
+              "C8",
+              "C9"
+            ],
+            "dictionary_target_angstrom": 1.364,
+            "reference_equilibrium_angstrom": 1.459,
+            "dictionary_esd_angstrom": 0.027
+          }
+        ],
+        "energy_candidate_changes": [
+          {
+            "atoms": [
+              "C8",
+              "C9"
+            ],
+            "declared_order": "SINGLE",
+            "target_angstrom": 1.364,
+            "reference_status": "SUPPORTED",
+            "reference_esd_angstrom": 0.02,
+            "dictionary_esd_angstrom": 0.027,
+            "reference_equilibrium_angstrom": 1.47,
+            "target_minus_reference_angstrom": -0.10599999999999987,
+            "difference_over_dictionary_esd": -3.925925925925921,
+            "reference_force_constant": 405.0
+          }
+        ],
+        "energy_neighbor_status": [
+          {
+            "atoms": [
+              "C5",
+              "C7"
+            ],
+            "reference_status": "UNSUPPORTED",
+            "reason": "OUTSIDE_NEUTRAL_SP_SP3_SINGLE_BOND_SCOPE"
+          },
+          {
+            "atoms": [
+              "C7",
+              "C8"
+            ],
+            "reference_status": "UNSUPPORTED",
+            "reason": "OUTSIDE_NEUTRAL_SP_SP3_SINGLE_BOND_SCOPE"
+          },
+          {
+            "atoms": [
+              "C8",
+              "C9"
+            ],
+            "reference_status": "SUPPORTED",
+            "reason": null
+          }
+        ],
+        "mmff_candidate_native": {
+          "status": "EXACT_SELECTED_BOND_TARGET_DELTA_ONLY",
+          "changes": [
+            {
+              "atoms": [
+                "C8",
+                "C9"
+              ],
+              "before": {
+                "atoms": [
+                  "pdb=\" C8  5PC B   4 \"",
+                  "pdb=\" C9  5PC B   4 \""
+                ],
+                "distance_ideal": 1.364,
+                "i_seqs": [
+                  507,
+                  508
+                ],
+                "origin_id": 0,
+                "symmetry_operation": null,
+                "weight": 1371.7421124828534
+              },
+              "after": {
+                "atoms": [
+                  "pdb=\" C8  5PC B   4 \"",
+                  "pdb=\" C9  5PC B   4 \""
+                ],
+                "distance_ideal": 1.459,
+                "i_seqs": [
+                  507,
+                  508
+                ],
+                "origin_id": 0,
+                "symmetry_operation": null,
+                "weight": 1371.7421124828534
+              }
+            }
+          ],
+          "all_other_proxy_categories_unchanged": true,
+          "atoms_and_coordinates_unchanged": true,
+          "input_files_unchanged": 10,
+          "native_processes_stopped": 1
+        },
+        "limits": "MMFF candidate target is 1.459 Å; the separately prepared energy-library candidate is 1.470 Å. Library ESD is .020 Å; candidate retains the existing original ESD. Neither candidate is automatically adopted or scientifically approved."
+      }
+    },
+    "local_root": {
+      "anchor": "local_live_tests",
+      "path": "307_Cedar_linear-parameter-82pj2ra2"
+    },
+    "validation": {
+      "before": "New API regressions fail to import before implementation; ten additional energy-library cases fail before that reader exists. Separate regression preserves the historical triple PASS while demonstrating a neighboring 1.607 Å discrepancy.",
+      "focused_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_linear_bond_reference.py tests/test_cif_triple_bond_audit.py tests/test_cif_linear_torsion_candidate.py tests/test_cif_plane_candidate.py --tb=short",
+      "focused_result": "161 passed in 2.36 s, including 43 new cases",
+      "profile_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src NASolve/.venv/bin/python scripts/run_tests.py chemistry",
+      "profile_result": "Sandboxed: 1735 passed, 10 subtests passed, 11 failed in 284.90 s. Failures concern sandbox-denied signaling or inspection of owned test process groups; do not describe this invocation as green.",
+      "affected_rerun_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src NASolve/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_cif_candidate_qualification.py tests/test_cif_candidate_qualification_execution.py tests/test_cif_plane_generation.py tests/test_cif_repair_process.py --tb=short",
+      "affected_rerun_result": "192 passed in 54.91 s outside the sandbox process restriction, covering all eleven failed nodes. No process/recovery code changed.",
+      "full_suite": "NOT_RUN; last full remains C220/583d30df",
+      "native_checks": "MMFF lookup processes and both native dictionary interpretation processes completed and stopped; source input hashes/mtimes and source pins unchanged within their invocations. Native interpretation is complete execution, not dry-run; no refinement yet."
+    },
+    "preserved_negative": "First native-check attempt refused output nested inside an input directory before launching native interpretation. Stopped receipts and partial directory remain; successful checks used fresh native-check-0002.",
+    "artifacts": "Only source/tests/docs/compact numerical evidence committed. Models/data, logs, native captures, SDK files and local runners remain local. No scientific source or installed SDK edited.",
+    "next": "Authenticate the energy-library candidates in native context, then test their target-only effect in separate immutable refinement rounds with existing uncertainties, exact parent models/NAR/Free-R and corrected plane forces. Do not change ordinary defaults or claim Q06 closure from reference agreement.",
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/summary.json",
+        "sha256": "21db67e62c0b1bb8de668777095adca6b44c737661ec0bebfb09e94c8929d816"
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/energy-reference-summary.json",
+        "sha256": "e7c3f7d0e121031e266af25c9c86bc66dfd9317f5b9cdbedacb114393872f3f4"
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/native-check-0002/native-driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7"
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/native-check-0002/native-summary.json",
+        "sha256": "72fbaa6c24a3e6549e277d1e436d0f2e4ab8ab74c26f66387b14a3d44b983e2b"
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/PDU/reference.json",
+        "sha256": "e7209fcfaf806e76395039242cd8bdee8a3883da12e56de68e5971d2b6e79b3a"
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/5PC/reference.json",
+        "sha256": "7b9fca643866efe373b0b477e5ecaf0855a6beedb08519492e0e77f57d056cb5"
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/PDU/energy-reference/reference.json",
+        "sha256": "fe2545fa4a54492719bd79f07fcb12a299674a0cf00019e7559455268224543c"
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "307_Cedar_linear-parameter-82pj2ra2/5PC/energy-reference/reference.json",
+        "sha256": "238186a981586da148b794983d8a2307805d16b41d29c31095e7f3bb4a9a818b"
+      }
+    ]
   }
 }

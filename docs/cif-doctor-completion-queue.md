@@ -135,10 +135,21 @@ ideal coordinates and an independent simple-propyne benchmark motivate review,
 not automatic replacement targets. Current installed-component lookups find
 neither component. No numerical parameter, threshold or scientific output changed.
 
-**Next bounded diagnosis (Q06/Q08):** qualify independent numerical authority for
-the complete linear neighborhood, then reuse dictionary repair/selection and
-native verification. Preserve historical triple-screen meaning; any broader
-calibration needs separately versioned evidence. Keep parameter errors distinct
+**C307 reference comparison:** the additive diagnostic now compares every
+source-declared triple and its heavy-atom single neighbors without coordinates or
+residue-name rules. Supplied MMFF94s predicts 1.459 Å for both terminal bonds;
+the exact bundled CSP–CH3 single-bond row supplies 1.470 Å / .020 Å. The source
+graph and dictionary types must agree; wildcards, missing or conflicting rows
+remain unsupported. Separate candidates preserve existing ESDs and every other
+parsed field. Native interpretation of both MMFF candidates changes exactly one
+bond target, with all other proxies and coordinates unchanged. This is not an
+automatic repair, parameter calibration or refinement-survival result.
+
+**Next bounded diagnosis (Q06/Q08):** qualify the separately preserved library
+candidates in native context and matched refinement before deciding the scope of
+ordinary integration. Keep the complete neighborhood visible, including unresolved
+reference rows, and reuse dictionary repair/selection/native owners. Preserve
+historical triple-screen meaning; broader calibration has separate evidence. Keep parameter errors distinct
 from packing/data forces, and retain the saved endpoints. Do not repeat Coot,
 rebuild recovery owners, tune against Free-R, copy weights or flatten the entire
 substituent by assumption. Ledger: `triple_neighbor_numerical_target_review_2026_11_15`.

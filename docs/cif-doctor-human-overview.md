@@ -85,8 +85,12 @@ length targets beside the triple bond in both PDU and 5PC; Phenix follows those
 targets, driving one long and the other short. The current triple-bond screen does
 not test those adjoining targets. Doctor therefore still needs independent
 numerical checks for the whole connected group before either ligand is approved.
-This finding belongs to the existing numerical-calibration work, with no new
-residue-specific repair or change to historical acceptance rules.
+An explicit comparison now selects the triple bond and adjoining heavy-atom
+single bonds from source connectivity, without using coordinates or residue-name
+rules. It can prepare a separate candidate changing only selected bond lengths,
+while preserving all other parameters. The comparison does not authenticate a
+supplied reference or set an acceptance threshold: independent parameter quality,
+native survival and ordinary automatic adoption remain separate work.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 

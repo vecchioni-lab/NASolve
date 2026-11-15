@@ -1,9 +1,34 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C306 numerical-target review complete**. Worktree NASolve-c96, branch
-**cedar**, source fix **a2e73603**, C304/C305 compact native evidence **91591126**. Simon's window is **08:20–10:20 London**;
+Updated **2026-11-15, C307 numerical-parameter investigation active**. Worktree NASolve-c96, branch
+**cedar**, source fix **a2e73603**, C304/C305 compact native evidence **91591126**. Simon's new window is **11:54–14:54 London**;
 interruptions expected. Focused checks only; no full suite, new branch or merge.
 Linden owns Pine/Willow; no Cedar edits from that work.
+
+## Active bounded checkpoint
+
+C307 adds `cif_linear_bond_reference.py`: source-graph queries, explicit numerical
+comparisons and separate candidates changing only selected distances. No model
+coordinates, invented targets, ESD changes, implicit adoption or legacy-policy
+changes. Exact energy-library rows additionally require source valence, matching
+dictionary types and unique library type definitions; unsupported neighbors remain
+visible. MMFF and library references are diagnostic evidence, not automatic truth.
+
+Validation: **161 focused passes**, including 43 new cases. Broader chemistry:
+1735 passes +10 subtests, with 11 sandbox-denied process-signal/inspection failures.
+All four affected files subsequently pass outside that restriction: **192 passed**.
+Do not call the original sandboxed profile green. No full suite or process-code edit.
+
+Local live tests: `307_Cedar_linear-parameter-82pj2ra2`. Both owned MMFF queries
+and `native-check-0002` have stopped successfully. Its native interpretation
+changes exactly the chosen terminal-bond target to 1.459 Å, retaining every other
+proxy and coordinate. Initial output-layout refusal is preserved, not retried
+in place. The exact installed CSP–CH3 library row independently supplies
+**1.470 Å / .020 Å**. Separate library candidates retain the original ESDs; their
+native/refinement tests are next. No source lock or native work currently active.
+Compact methods, commands and fingerprints: ledger
+`linear_neighborhood_reference_candidates_2026_11_15`. Continue under existing
+round ownership, preserve selected endpoints, and do not reopen Q04/Q05.
 
 ## Current stopping state and next work
 
@@ -54,40 +79,20 @@ Exact anchored inputs, SDK hashes, local runner hashes and scope are in ledger
 `triple_neighbor_numerical_target_review_2026_11_15`. Existing C304/C305 entries
 remain unchanged. Native captures and every scientific output remain local.
 
-## C305 related control
+## Retained native controls for the next comparison
 
-The predeclared **G:5PC** ordinary campaign completed preparation, automatic archive
-and five real checked-plane-force refinement cycles, with no experimental phases.
-It retains the five C270 inputs/Free-R and D:1 terminal-phosphate intent; only the
-new recipe pair changed A:5IU→G:5PC (A:12 DG / B:4 5PC). It is a mechanical
-substitution control, **not data from a 5PC crystal** or a solved structure.
-
-Owned result: `305_Cedar_5PC-campaign-nu1t7jyw/relocated/DiU/AutoMR/run_001`
-under local live tests. Old campaign anchor absent; 349 campaign files unchanged
-on cold read. Registry current refine-001 parent postmr; terminal audit PASS.
-All 45 plane groups and 58 parallelity groups/weights agree between prepared and
-refined native captures and actual printed refinement geometry. Consumer read
-preserves all 297 run files. Native runtime reports five cycles and 42 observed
-process/parameter combinations. No installed SDK changes.
-
-5PC chi -108.45°→-108.64°; C5 attachment elevation 5.04°→1.05°; propyne angles
-172.37°/176.97°→177.38°/178.14°; triple length 1.20212→1.19514 Å. Existing-plane
-terminal methyl distance 0.664→0.141 Å. Linked native targets pass; coordinate
-screen REVIEW→PASS. All three recorded sugar chirality signs survive in both
-PDU and 5PC. The 5PC dictionary's seed-coordinate review is a different observation.
-Both bases, partners and numerical parameters differ between the controls: this
-is not a one-variable causal comparison or universal ligand acceptance.
-
-Automatic storage retires 694 authenticated working duplicates (174.3 MB logical)
-into a 16.65 MB archive, leaving the whole request **39.74 MB**. Exact archive-backed
-reads survive relocation. Full delivery at native completion 58.68 MB; optional
-native-consumer diagnostics add 20.52 MB. These are persistent logical bytes, not
-physical peak disk/RAM or native 100-dataset capacity. The session had a wall-clock
-discontinuity; recorded worker monotonic duration (~908 s) is not elapsed wall time.
-
-Local ignored runners are `c305_start.py`, `c305_worker.py`, `c305_readback.py`,
-`c305_consumer_*`, `c305_native_linked_geometry_review.py`. Older unexecuted c304
-5PC drafts are not active. Ledger key: `related_5pc_ordinary_refinement_2026_11_15`.
+C305 G:5PC run: `305_Cedar_5PC-campaign-nu1t7jyw/relocated/DiU/AutoMR/run_001`
+under local live tests. C304 A:PDU run:
+`303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001`;
+its comparison records are `304_Cedar_PDU-recovery-1f37ak8q`. Both have postmr
+parents and selected refine-001 children after five actual checked-plane cycles.
+They preserve original scaffold observations/Free-R and D:1 terminal phosphate;
+these are substitution mechanics controls, not data from PDU/5PC crystals or
+structure approval. No chi flips; all three recorded sugar signs and native
+45-plane/58-parallelity inventories survive. PDU triple geometry is REVIEW,
+5PC scoped triple geometry PASS; neither has whole-neighborhood target approval.
+Old campaign anchors are absent and cold archive-backed reads passed. Full native,
+relocation and geometry evidence is in the existing C304/C305 ledger entries.
 
 ## Where the pipeline stands
 
@@ -110,53 +115,16 @@ separates the actual repair owner in storage v3 while retaining old layouts.
 C303 c9736e39 removes duplicate final validation through the existing bounded
 pure-math scope. Their full evidence remains in the existing ledger, not this diary.
 
-## C304 result and remaining chemical question
+## Recovery and storage state to preserve
 
-Native code pinned **9489077a**. Existing explicit continuation created attempt 2
-in C303's frozen request, completing within the same 900 s allowance. It published
-that exact result and completed five ordinary refinement cycles, four processors.
-All jobs stopped and source pins unchanged. 904 earlier run files remained exact;
-report.json changed only through legitimate publication/refinement updates. 30 campaign
-bookkeeping files and failed attempt 1 remain unchanged. Historical BLOCKED is
-not rewritten. No Coot/NAR repeat or automatic campaign-resume claim.
-
-The owned C303 campaign was moved, not copied, to
-`303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304` under local live tests.
-Its old campaign path is absent. Cold read preserves all 1787 files, campaign
-integrity OK, current refine-001 parent postmr, terminal audit PASS. Native
-readback retains all **45 planarity /58 parallelity** groups and weights;
-prepared/refined inventories agree with actual printed refinement geometry.
-C304 compact/local records: `304_Cedar_PDU-recovery-1f37ak8q`.
-
-PDU B:4 chi changes from -109.04° to -111.17°: no flip. C5 attachment elevation
-changes 0.94°→2.48°; propyne angles 176.40°/176.88°→174.65°/173.45°;
-triple distance 1.18943→1.19765 Å. Existing-plane descriptive terminal methyl
-distance grows 0.112→0.261 Å. Authenticated linked-site native target screen
-passes; coordinate screen goes PASS→REVIEW under the existing 5° rule. **Q06 is
-not closed.** Printed targets remain 180° ±3°; no dropped-restraint explanation.
-C206 already left the 1.607 Å terminal propyne bond target unqualified. Distinguish
-target calibration, packing and the data/restraint compromise; do not invent
-replacement targets or tighten thresholds to obtain a pass.
-
-The first local triple diagnostic used the unlinked component and reported its
-extra OP3. Final audit reuses the verified linked-site projection: no inventory
-mismatch, only the two bending findings. Both diagnostics are preserved locally.
-This is a separate A:PDU mechanics scaffold, not the original PDU:PDU case.
-
-After all observations, the existing retention owner archived successful attempt 2
-only. Request size falls **388.38→231.02 MB**; all 744 failed-attempt files and all
-998 other prior files stay unchanged. Public model/restraint paths and current
-refine-001 remain; archive-backed read verifies all 1057 remaining run files.
-No failed output was deleted. C304 successful archive/read took 242.76 s locally.
-
-C304 also restores the storage-policy export removed at C302; ordinary cleanup
-otherwise raises ImportError after publication. Published fix **a2e73603** changes
-one import, adds current/legacy policy regression and changelog. Before: six
-existing failures, four new failures. After: **147 passed in 170.03 s** across
-preparation retention, attempt retention/archive/bounds, ordinary PostMR and
-publication; includes interrupted cleanup and moved reads. No schema, chemistry,
-allowance or default changes. Exact commands, hashes and native measurements:
-`pdu_recovery_refinement_survival_2026_11_15` in the existing evidence ledger.
+C304's fresh attempt 2 completed under the frozen request's existing 900 s
+allowance; attempt 1 and historical BLOCKED campaign bookkeeping remain intact.
+No retry in place, Coot repeat or automatic campaign-resume claim. Successful
+retirement reduced the PDU request 388.38→231.02 MB while preserving all failed
+work; C305's archived successful request is 39.74 MB. Neither is a native
+100-dataset capacity guarantee. Raw science and optional captures stay local.
+C304's cleanup-policy export fix a2e73603 passed 147 focused checks. C307 changes
+none of those owners. Exact commands and limits remain in the evidence ledger.
 
 ## Scientific and collaboration boundaries
 
