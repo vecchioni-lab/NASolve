@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W76 recorded; next W77.** Latest runtime implementation is W76 `4ef71008` on isolated
+**W77 recorded; next W78.** Latest runtime implementation is W77 `78ecdc54` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -173,8 +173,8 @@ source energy/rotated gradients and predeclared directional checks agree. This i
 read-only and must not be added to an objective already containing those angles.
 No source manager, native installation, chemistry or refinement is changed.
 
-**Code validation:** full Willow **1,727 + 229 subtests**; installed/relocated
-**521**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
+**Code validation:** full Willow **1,756 + 229 subtests**; installed/relocated
+**571**, six helps, lean import and Python 3.10 syntax. Old/new packets and graph
 replay stay exact with original paths blocked. Initial missing-Gemmi and native
 Python/NumPy ABI environment failures are retained; correctly isolated checks pass.
 
@@ -233,11 +233,17 @@ verified; its checksum and exact control scope are in the periodic guide.
 with exact `g_i h g_j^-1` operations, retaining directed rows, weights and source
 proxy kinds. Complete labels/images/source digest and actual distances bind the
 report. Both saved native controls preserve all 8,305 rows; max distance error
-1.69e-14 Å. Focused 118 and installed/relocated 564 pass. Full 1,748 +229 passed
-before a final finite-output guard; its regression and installed checks pass, and
-the final full-suite recheck is queued until Cedar's native window clears. No
-native table, exclusion, neighbor search or runtime hook changes. Next, bind this
-report through the existing representative-packet owner without changing defaults.
+1.69e-14 Å. Focused 118 and installed/relocated 564 pass; W77's final full suite
+also covers the finite-output guard. No native table, exclusion, neighbor search
+or runtime hook changes.
+
+**W77 preview binding:** the saved-preview API reuses the immutable native-link
+context to verify complete native atom order, cell, source/proposed coordinates
+and unchanged receipt bytes. Seven new regressions and 167 focused checks pass;
+full 1,756 +229 and installed/relocated 571 pass. Both saved cuts exactly reproduce
+W76 reports. Existing link observations, CLI/view defaults and packet schemas are
+unchanged. Next, qualify native source-manager copy/reconstruction and live policy
+binding; a contact report alone cannot stand in for native pair tables.
 
 **Next P04 work:** freeze source/native/frame identity after ordinary construction;
 qualify a complete geometry owner across copying, neighbor tables, reporting and

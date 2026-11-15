@@ -2601,3 +2601,11 @@ per cut. Source-coordinate discrepancy is at most 7.11e-15 Å; proposed-coordina
 discrepancy is at most 1.43e-14 Å. This replays authenticated Phenix 2.2.1-6174
 captures on the host; it performs no fresh native execution. Scientific outputs
 remain local, and P04 integration remains open.
+
+
+W77 final validation: **1,756 tests + 229 subtests** in the complete Willow suite,
+**571 installed/relocated tests**, all six helps, lean import, Python 3.10 syntax,
+exact old/new packet/graph replay with original paths blocked. This includes W76's
+final finite-distance guard. Wheel SHA-256:
+`861b2e50289baa6174a6fe2c3c3dd70abb2857f9b98bf967c38a6896ea7aa7f2`.
+No combined-Cedar full-suite result or native manager activation is implied.

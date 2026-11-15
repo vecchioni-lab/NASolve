@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "4ef71008f1a654816bde10ff24f334ab8bb720f2",
+  "audited_code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -530,7 +530,8 @@
         "W73 adds a complete immutable source/image binding and explicit full reindexing.36 local mmtbx entry controls preserve geometry through identity/reverse/cyclic orders; partial selection and changed cell refuse. This is a numerical backend component, not an installed native selection hook.",
         "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.",
         "W75 observes the stock source-only dry-run and coordinate-cycle consumer path; geometry, weight regularization and reports bypass a model-energy-only hook. Matched profiling controls agree; complete frame-aware native integration remains open.",
-        "W76 adds source-bound representative native contact reports preserving exact image operations, directed membership and native multiplicity; native pair-table/report consumers remain unqualified."
+        "W76 adds source-bound representative native contact reports preserving exact image operations, directed membership and native multiplicity; native pair-table/report consumers remain unqualified.",
+        "W77 binds representative contact reports through the immutable native-preview context, preserving old link/view defaults and proving source/cell/proposed-coordinate correspondence; native copy/refinement integration remains open."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
@@ -549,14 +550,15 @@
         "E_REFERENCE_FRAME_BINDING",
         "E_JOINT_FRAME_TARGET",
         "E_NATIVE_CONSUMER_PROTOCOL",
-        "E_REPRESENTATIVE_PACKING"
+        "E_REPRESENTATIVE_PACKING",
+        "E_PREVIEW_PACKING_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "4ef71008f1a654816bde10ff24f334ab8bb720f2",
+        "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c",
         "reviewer": "Linden",
-        "human_update": 76,
-        "scope": "Read-only contact representation, focused/installed checks and authenticated native-capture replay; no native table or ordinary recut-refinement closure"
+        "human_update": 77,
+        "scope": "Source/preview/native binding with full and installed checks; no native copy/ordinary recut-refinement closure"
       }
     },
     {
@@ -1058,7 +1060,15 @@
       "human_update": 76,
       "reference": "docs/topostitch-periodic.md#w76--represent-captured-native-contacts-in-chosen-crystal-images",
       "result": "Exact g_i h g_j^-1 contact operations preserve source directed rows, weights/multiplicity and distances. Focused118 and installed/relocated564 pass; 22 new packing controls. Authenticated saved Phenix2.2.1-6174 replay preserves8305 directed rows in each cut, max distance error1.69e-14 Angstrom.",
-      "limitation": "Read-only captured-coordinate report, not native pair-table reconstruction, new neighbors/exclusions, physical identity or refinement support. Full1748 +229 passed before the final finite-output guard; final full-suite recheck is queued after Cedar native work. Generated reports remain local; caller authenticates source through Cedar."
+      "limitation": "Read-only captured-coordinate report, not native pair-table reconstruction, new neighbors/exclusions, physical identity or refinement support. W77 final full1756 +229 includes the finite-output guard; generated reports stay local and Cedar owns authentication."
+    },
+    "E_PREVIEW_PACKING_BINDING": {
+      "kind": "saved_preview_authenticated_native_contact_binding",
+      "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c",
+      "human_update": 77,
+      "reference": "docs/topostitch-periodic.md#w77--bind-contact-reports-to-immutable-saved-previews",
+      "result": "Shared immutable native-preview context preserves old link observations and binds complete native order, cell, source/proposed points and receipt bytes to W76 packing.7 new regressions; focused167; full1756 +229; installed/relocated571. Both saved cuts exactly reproduce W76 packing reports, preserving8305 rows each; proposed-coordinate error<=1.43e-14 Angstrom.",
+      "limitation": "Read-only saved evidence, not fresh native execution, native table reconstruction, model copying, live neighbor policy, output serialization or refinement. Existing CLI/view defaults and packet formats unchanged; source/capture APIs remain Cedar-owned; science local."
     }
   },
   "benchmarks": [
@@ -1174,8 +1184,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 76,
-    "next": 77,
+    "current": 77,
+    "next": 78,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1441,6 +1451,12 @@
         "title": "Represent captured native contacts in chosen crystal images",
         "state": "RECORDED",
         "code_commit": "4ef71008f1a654816bde10ff24f334ab8bb720f2"
+      },
+      {
+        "number": 77,
+        "title": "Bind native contact reports to immutable saved previews",
+        "state": "RECORDED",
+        "code_commit": "78ecdc54c28775364e1e9cf3641bdd208f2ffe3c"
       }
     ]
   }
