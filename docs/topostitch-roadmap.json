@@ -1265,8 +1265,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 85,
-    "next": 86,
+    "current": 86,
+    "next": 87,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1586,6 +1586,12 @@
         "title": "Check coarse-motion derivatives and forced native neighbor rebuilds",
         "state": "RECORDED",
         "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5"
+      },
+      {
+        "number": 86,
+        "title": "Expose bounded tapered motion through the existing native objective",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   }

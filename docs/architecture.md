@@ -980,6 +980,20 @@ evaluation budgets. Native construction/authentication stays with its caller;
 static-definition checks are not a complete nonbonded-policy or lifecycle proof.
 This direct evaluator installs no callback and runs no optimizer or refinement.
 
+`TaperedMotion` adds an immutable six-parameter numerical map over that exact
+`CoordinateMask`: rotation-vector degrees and translation Angstrom, an explicit
+pivot, and one frozen weight per source atom. Positive weights must match the
+movable mask exactly; every displacement and gradient query enforces its bound.
+Zero motion preserves exact source coordinates. Preview and fitting retain the
+same shared rotation kernel and existing output behavior.
+`NativeMaskedObjective.evaluate_motion` calls the unchanged Cartesian evaluator
+once, retains its Cartesian gradient and components, and returns the analytical
+six-parameter gradient. It refuses a different reference, mask order or bound.
+This is not the existing 3N optimizer protocol; it adds no optimizer, native
+policy, model writer or tensor/diffraction handling. Callers own residue/pair
+weights and provenance. Chemical, live-neighbor-policy and endpoint qualification
+remain separate requirements.
+
 `topostitch_trial` reuses installed scitbx for explicit bounded diagnostic trials,
 with complete initial/full-precision/rounded derivative gates and retained capped
 outcomes. `topostitch_captured_job.run_captured_objective` owns their package-level

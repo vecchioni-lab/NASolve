@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W86 — Add a bounded numerical motion view of the native objective
+
+- Reuse the existing preview rotation kernel for an immutable, mask-bound
+  tapered motion with analytical rotation/translation gradients.
+- Expose that motion through the existing native/pair/tether evaluator while
+  retaining Cartesian gradients, components and budgets. Existing previews,
+  CLI defaults and saved schemas are unchanged; no optimizer or writer is added.
+
 ### W85 — Audit coarse bending against native gradients and rebuilt contacts
 
 - Record local finite-difference checks of the existing tapered motion coupled

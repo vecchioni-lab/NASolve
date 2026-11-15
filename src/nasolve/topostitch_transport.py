@@ -153,6 +153,22 @@ def accumulate_image_gradients(atom_count, references, image_gradients):
         raise ValueError('Accumulated image gradient exceeds finite range') from exc
 
 
+def _rotation(vector, weight):
+    angle = math.radians(math.hypot(*vector))*weight
+    if angle == 0:
+        return ((1.,0.,0.),(0.,1.,0.),(0.,0.,1.))
+    length = math.hypot(*vector)
+    x,y,z = (v/length for v in vector)
+    c,s,d = math.cos(angle),math.sin(angle),1-math.cos(angle)
+    return ((c+x*x*d,x*y*d-z*s,x*z*d+y*s),
+            (y*x*d+z*s,c+y*y*d,y*z*d-x*s),
+            (z*x*d-y*s,z*y*d+x*s,c+z*z*d))
+
+
+def _apply(matrix, vector):
+    return tuple(sum(a*b for a,b in zip(row,vector)) for row in matrix)
+
+
 @dataclass(frozen=True)
 class CoordinateMask:
     """Explicit ASU displacement variables with exact fixed-coordinate anchors.
@@ -205,6 +221,99 @@ class CoordinateMask:
         if len(gradients) != len(self.reference):
             raise ValueError('Full ASU gradient count changed')
         return tuple(v for i in self.indices for v in gradients[i])
+
+
+@dataclass(frozen=True)
+class TaperedMotion:
+    """Six physical parameters over one explicit bounded coordinate mask.
+
+    Parameters are (rotation-vector x/y/z in degrees, translation x/y/z in
+    Angstrom). Each atom's fixed weight scales both angle and translation about
+    the caller's explicit pivot. Shared residue/pair weights are caller-owned;
+    this arithmetic does not infer a duplex, topology, curvature or permission.
+    The complete weights and mask reference/order are detached and immutable.
+    """
+    mask: CoordinateMask
+    origin: tuple
+    weights: tuple
+
+    def __post_init__(self):
+        if not isinstance(self.mask, CoordinateMask):
+            raise ValueError('Require an explicit bounded coordinate mask')
+        origin = _vector(self.origin)
+        if not isinstance(self.weights, (list, tuple)) or len(self.weights) != len(self.mask.reference):
+            raise ValueError('Require one taper weight per source atom')
+        if any(type(w) not in (int, float) or not math.isfinite(w) or not 0 <= w <= 1 for w in self.weights):
+            raise ValueError('Require finite taper weights between zero and one')
+        weights = tuple(float(w) for w in self.weights)
+        if {i for i,w in enumerate(weights) if w > 0} != set(self.mask.indices):
+            raise ValueError('Positive taper weights must match the complete movable mask')
+        object.__setattr__(self, 'origin', origin)
+        object.__setattr__(self, 'weights', weights)
+
+    @staticmethod
+    def parameters(values):
+        if not isinstance(values, (tuple, list)) or len(values) != 6:
+            raise ValueError('Require three rotation and three translation parameters')
+        return _vector(values[:3]) + _vector(values[3:])
+
+    def _rotated(self, index, rotation):
+        local = _vector(tuple(p-o for p,o in zip(self.mask.reference[index], self.origin)))
+        return _vector(_apply(_rotation(rotation, self.weights[index]), local))
+
+    def displacements(self, parameters):
+        """Return the existing mask's 3N vector, retaining its explicit order."""
+        parameters = self.parameters(parameters)
+        # Avoid pivot subtraction/readdition at the exact unmodified model.
+        if not any(parameters):
+            return (0.,) * (3*len(self.mask.indices))
+        result = []
+        for index in self.mask.indices:
+            rotated = self._rotated(index, parameters[:3])
+            point = _vector(tuple(x+o+self.weights[index]*t
+                                  for x,o,t in zip(rotated, self.origin, parameters[3:])))
+            result.extend(x-p for x,p in zip(point, self.mask.reference[index]))
+        result = tuple(result)
+        self.mask.expand(result)  # Reuse the same displacement and finite-value policy.
+        return result
+
+    def pullback(self, parameters, masked_gradient):
+        """Pull a complete 3N Cartesian gradient into degrees/Angstrom units.
+
+        The SO(3) left Jacobian accounts for changing the rotation axis as well
+        as its angle; a simple torque is correct only at zero rotation. Tether
+        and all other energy contributions must already be in masked_gradient.
+        """
+        parameters = self.parameters(parameters)
+        self.displacements(parameters)  # Gradients cannot bypass the motion bound.
+        gradients = tuple(masked_gradient)
+        if len(gradients) != 3*len(self.mask.indices):
+            raise ValueError('Require the complete masked Cartesian gradient')
+        gradients = tuple(_vector(gradients[i:i+3]) for i in range(0,len(gradients),3))
+        def cross(a,b):
+            return (a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0])
+        rows = []
+        for index,gradient in zip(self.mask.indices, gradients):
+            weight = self.weights[index]
+            rotated = self._rotated(index, parameters[:3])
+            a = tuple(weight*math.radians(v) for v in parameters[:3])
+            theta = math.hypot(*a); square = theta*theta
+            if theta < 1e-4:
+                first = .5-square/24+square*square/720
+                second = 1/6-square/120+square*square/5040
+            else:
+                first = (1-math.cos(theta))/square
+                second = (theta-math.sin(theta))/(square*theta)
+            torque = cross(rotated, gradient)
+            once = cross(a, torque); twice = cross(a, once)
+            angular = _vector(tuple(weight*math.pi/180*(t-first*u+second*v)
+                                    for t,u,v in zip(torque, once, twice)))
+            rows.append(angular + _vector(tuple(weight*g for g in gradient)))
+        try:
+            result = tuple(math.fsum(row[i] for row in rows) for i in range(6))
+        except (ValueError, OverflowError) as exc:
+            raise ValueError('Accumulated motion gradient exceeds finite range') from exc
+        return self.parameters(result)
 
 
 @dataclass(frozen=True)

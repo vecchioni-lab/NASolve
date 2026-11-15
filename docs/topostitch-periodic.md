@@ -3097,3 +3097,38 @@ committed or uploaded.
 
 W84's verified local forensic archive contains 2295 files, SHA256
 `5a65007c6b7afe76cd8e3489e9bc467140b43c30e280268d403fda9744c1cf97`.
+
+
+## W86 — Expose bounded tapered motion through the existing native objective
+
+Previously, the preview/fitter could propose a six-parameter tapered motion,
+while the native objective accepted only independent Cartesian displacements.
+`topostitch_transport.TaperedMotion(mask, origin, weights)` now maps explicit
+rotation-vector degrees and translation Angstrom into the existing bounded mask,
+and pulls a complete Cartesian gradient back through the analytical rotation
+Jacobian. Preview/fitting use the identical rotation kernel moved into that
+numerical module; their imports and output behavior are preserved.
+
+Weights cover the complete source order; positive weights must match exactly the
+movable mask. Inputs are detached, fixed coordinates are exact, zero motion is
+exact, and gradient queries cannot bypass displacement bounds. The caller assigns
+shared residue/pair weights and the pivot; the component does not infer topology
+or an appropriate curvature profile. `NativeMaskedObjective.evaluate_motion`
+requires the exact native mask/reference/order/bound, calls the unchanged energy
+owner once, retains Cartesian gradients/components, and returns six derivatives
+in the declared physical units. Existing 3N optimizer calls remain unchanged.
+No model/ADP writer, native callback, force-field change, packet schema migration,
+CLI change, optimizer or scientific acceptance is introduced.
+
+Software validation uses the standard source command
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<existing dependencies> <project Python> -m pytest -q -p no:cacheprovider`.
+The local W86 logs/installation receipt preserve exact expanded commands:
+21 new controls fail before the patch; focused156 pass; full1,802 tests and229
+subtests pass; a fresh relocated installation passes712 selected tests, six CLI
+helps, lean imports, Python3.10 parsing and exact saved-preview/frame replay.
+The first full run retained five process-lifecycle failures caused by sandbox
+refusal of `/bin/ps`; a complete rerun with process-list access passes, without
+changing tests or cleanup behavior. Wheel SHA256:
+`6774cb3046d7b62ff2638a6764b21f60941b14323132103d875d225d356aa44b`.
+Installed native replay of the five W85 controls is prepared but not yet run.
+S04/S05 remain partial; Cedar owns the full live source-policy guard.

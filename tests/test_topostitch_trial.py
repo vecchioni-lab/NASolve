@@ -291,3 +291,36 @@ def test_failure_during_rounded_audit_retains_full_precision_and_original_error(
     assert diagnostic['status']=='FAILED' and 'rounded observation unavailable' in diagnostic['error']
     assert diagnostic['full_precision_derivatives']['status']=='DERIVATIVES_PASS'
     assert 'serialized_derivatives' not in diagnostic
+
+
+
+def test_native_motion_view_retains_cartesian_evaluation_and_complete_chain_rule():
+    from nasolve.topostitch_transport import TaperedMotion
+    objective=object.__new__(NativeMaskedObjective)
+    objective._mask=CoordinateMask(((2.,1.,3.),(4.,2.,-1.),(8.,9.,10.)),(1,0),2.)
+    calls=[]
+    def evaluate(delta):
+        calls.append(delta);points=objective._mask.expand(delta)
+        # An independent coupled target includes a fixed-context atom and a
+        # displacement tether. The motion view must keep every contribution.
+        a,b,c=points;v=tuple(x-y for x,y in zip(a,c));u=tuple(x-y for x,y in zip(b,a))
+        full=(tuple(2*x-6*y for x,y in zip(v,u)),tuple(6*x for x in u),tuple(-2*x for x in v))
+        return dict(target=sum(x*x for x in v)+3*sum(x*x for x in u)+.5*sum(x*x for x in delta),
+            gradient=tuple(g+x for g,x in zip(objective._mask.project(full),delta)),points=points,
+            native_target=123.,pair_target=456.,tether_target=.5*sum(x*x for x in delta),evaluation_calls=len(calls))
+    objective.evaluate=evaluate;motion=TaperedMotion(objective._mask,(1.,2.,0.),(.5,1.,0.));q=(.2,-.15,.1,.03,-.02,.01)
+    actual=objective.evaluate_motion(motion,q);assert len(calls)==1
+    direct=evaluate(motion.displacements(q))
+    for key in direct:
+        if key not in ('gradient','evaluation_calls'):assert actual[key]==direct[key]
+    assert actual['cartesian_gradient']==direct['gradient'] and len(actual['gradient'])==6
+    assert actual['parameters']==q and actual['parameterization']=='tapered-rotation-degrees-translation-angstrom-v1'
+    for k in range(6):
+        plus=list(q);minus=list(q);plus[k]+=1e-4;minus[k]-=1e-4
+        fd=(objective.evaluate_motion(motion,plus)['target']-objective.evaluate_motion(motion,minus)['target'])/2e-4
+        assert actual['gradient'][k]==pytest.approx(fd,abs=1e-7)
+    before=len(calls)
+    bad=TaperedMotion(CoordinateMask(objective._mask.reference,(0,1),2.),motion.origin,motion.weights)
+    with pytest.raises(ValueError,match='mask'):objective.evaluate_motion(bad,q)
+    with pytest.raises(ValueError):objective.evaluate_motion(motion,(float('inf'),)*6)
+    assert len(calls)==before

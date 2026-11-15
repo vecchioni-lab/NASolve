@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W85 — Check coarse-motion derivatives and forced native neighbor rebuilds.** Next: W86.
+**Current update: W86 — Expose bounded tapered motion through the existing native objective.** Next: W87.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W76 | Represent captured native contacts in chosen crystal images | RECORDED |
 | W77 | Bind native contact reports to immutable saved previews | RECORDED |
 | W78 | Audit native source copies and current Cedar composition | RECORDED |
 | W79 | Keep native outlier queries bound to the energy frame | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W83 | Preserve labelled scattering at special positions | RECORDED |
 | W84 | Verify repaired historical readers in installed Willow/Cedar composition | RECORDED |
 | W85 | Check coarse-motion derivatives and forced native neighbor rebuilds | RECORDED |
+| W86 | Expose bounded tapered motion through the existing native objective | IN_PROGRESS |
 
 ## Finish lines
 

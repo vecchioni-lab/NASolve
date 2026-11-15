@@ -19,7 +19,7 @@ from .topostitch_coordinates import ResidueSite, _read_atoms, _residue, _plane, 
 from .topostitch_discovery import plan_editable_windows
 from .topostitch_inspect import _keys, _unique_object, load_registered_end_assignments
 from .topostitch_registration import _coordinate_site
-from .topostitch_transport import CartesianImage
+from .topostitch_transport import CartesianImage, _rotation, _apply
 
 
 class TrialLimitError(ValueError):
@@ -48,22 +48,6 @@ def _vector(value, name):
     if not isinstance(value, list) or len(value) != 3:
         raise ValueError(f'{name} must contain three numbers')
     return tuple(_number(x, name) for x in value)
-
-
-def _rotation(vector, weight):
-    angle = math.radians(math.hypot(*vector))*weight
-    if angle == 0:
-        return ((1.,0.,0.),(0.,1.,0.),(0.,0.,1.))
-    length = math.hypot(*vector)
-    x,y,z = (v/length for v in vector)
-    c,s,d = math.cos(angle),math.sin(angle),1-math.cos(angle)
-    return ((c+x*x*d,x*y*d-z*s,x*z*d+y*s),
-            (y*x*d+z*s,c+y*y*d,y*z*d-x*s),
-            (z*x*d-y*s,z*y*d+x*s,c+z*z*d))
-
-
-def _apply(matrix, vector):
-    return tuple(sum(a*b for a,b in zip(row,vector)) for row in matrix)
 
 
 def _site(line):

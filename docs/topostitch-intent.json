@@ -365,6 +365,29 @@
         "partial_selection_supported": false,
         "native_selection_hook": false,
         "runtime_authority": false
+      },
+      "tapered_motion": {
+        "class": "TaperedMotion",
+        "mask_owner": "CoordinateMask",
+        "parameter_units": [
+          "degree",
+          "degree",
+          "degree",
+          "angstrom",
+          "angstrom",
+          "angstrom"
+        ],
+        "weights": "Complete immutable source-order weights in [0,1]; positive indices exactly match the movable mask",
+        "native_api": "NativeMaskedObjective.evaluate_motion",
+        "native_objective_changed": false,
+        "retains_cartesian_gradient": true,
+        "fixed_coordinates_exact": true,
+        "existing_preview_kernel_shared": true,
+        "optimizer_protocol": "Existing 3N trial runner is not a six-parameter consumer",
+        "model_writer": false,
+        "tensor_or_diffraction_handling": false,
+        "runtime_authority": false,
+        "full_live_policy_qualification": false
       }
     },
     "native_packing_comparison": {

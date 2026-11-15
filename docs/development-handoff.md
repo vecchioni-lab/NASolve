@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W85 recorded; next W86.** Latest runtime implementation is W82 `e570d15f` on isolated
+**W86 in progress; next W87.** Last fully audited runtime is W82 `e570d15f` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -314,13 +314,22 @@ contact rows have zero residual. One tilt lowers total repulsion but worsens 48
 directed overlaps. No optimizer, candidate, density or refinement; S04/S05 stay
 partial, and the full live policy guard remains Cedar Q06.
 
-**Next physical-stitch step:** a minimal checked coarse-motion adapter should reuse
-the existing preview and masked-objective owners after shared policy coordination.
-The Cartesian optimizer assumes 3N variables and cannot consume six parameters
-unchanged. Predeclare matched bounded placement/cleanup controls, protect anchors,
-and retain individual packing and stopping failures. A fixed taper is initialization,
-not measured curvature. Density-aware placement stays in S06 after exact
-map/model/data binding and matched refinement.
+**W86 software slice:** immutable `TaperedMotion` shares the existing preview
+rotation kernel and enforces complete weights, exact mask order and displacement
+bounds. `NativeMaskedObjective.evaluate_motion` retains the original energy,
+components, Cartesian gradient and call budget, adding a six-parameter chain-rule
+view. Twenty-one fail-before controls, focused156, full1,802 +229 subtests and
+installed/relocated712 pass; six helps, lean imports, Python3.10 syntax and exact
+old/new preview replay pass. The initial full run hit five sandbox-denied `/bin/ps`
+checks; that log is retained and the complete run with process access passed.
+Installed native replay is prepared and waiting for Cedar's execution window.
+
+**Next physical-stitch step:** finish W86 native replay, then predeclare matched
+bounded coarse-placement/cleanup diagnostics. The existing Cartesian optimizer
+assumes3N variables and cannot consume six parameters unchanged. Preserve anchors,
+individual packing and stopping failures; the full live policy guard remains
+Cedar Q06. A fixed taper is initialization, not measured curvature. Density-aware
+placement stays in S06 after exact map/model/data binding and matched refinement.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive

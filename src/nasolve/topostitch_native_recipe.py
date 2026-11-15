@@ -477,3 +477,23 @@ class NativeMaskedObjective:
             'unweighted_pair_components':pair['components'],
             'native_proxy_counts':native['proxy_counts'],'evaluation_calls':self._calls,
             'normalization':'UNNORMALIZED_SUM','fixed_coordinates_preserved':True}
+
+
+    def evaluate_motion(self, motion, parameters):
+        """Evaluate an explicit coarse motion through the unchanged native owner.
+
+        This optional six-parameter view is not the 3N Cartesian optimizer
+        protocol. It changes neither the objective nor its native policy, call
+        budget, neighbor lifecycle or scientific acceptance. The caller owns
+        motion provenance and must qualify the native context as usual.
+        """
+        from .topostitch_transport import TaperedMotion
+        if not isinstance(motion, TaperedMotion) or motion.mask != self._mask:
+            raise ValueError('Motion must bind the exact native coordinate mask and order')
+        parameters = motion.parameters(parameters)
+        evaluation = self.evaluate(motion.displacements(parameters))
+        cartesian = evaluation['gradient']
+        return {**evaluation, 'cartesian_gradient': cartesian,
+                'gradient': motion.pullback(parameters, cartesian),
+                'parameters': parameters,
+                'parameterization': 'tapered-rotation-degrees-translation-angstrom-v1'}
