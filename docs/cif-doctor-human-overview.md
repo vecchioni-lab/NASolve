@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-14.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-15.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix can read
 the resulting restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
@@ -69,11 +69,14 @@ contact counts explain its different normalization. The checked correction is
 now an explicit ordinary AutoRefine, campaign and Refine Doctor option, qualified
 for the recorded native source/platform. Defaults remain unchanged. This fixes a
 force-calculation problem separately from missing CIF planes; it does not establish
-the cause of the reported PDU distortion. The fresh PDU control now reaches repair
-and ReadySet, but exhausted its allowance during redundant final validation before
-refinement. Final sealing now owns that validation once and reuses identical pure
-calculations within the same check. The same deadline and chemical checks remain;
-a fresh native run must still show the PDU geometry surviving refinement.
+the cause of the reported PDU distortion. The fresh PDU control now completes
+explicit recovery and five real refinement cycles, preserving its intended
+orientation and native plane/parallelity membership. Its propyne nevertheless
+bends beyond the existing review screen. Correct dictionary targets and successful
+execution therefore remain distinct from acceptable achieved geometry; target
+calibration and the balance of packing, data and restraints need further work.
+The failed attempt stays preserved and the successful result reopens after moving
+the run. No acceptance threshold or numerical target was changed to call it a pass.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 

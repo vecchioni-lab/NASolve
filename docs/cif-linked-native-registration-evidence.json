@@ -97181,5 +97181,413 @@
         "scope": "Selected CIF numerical targets pass the existing triple-bond screen; its own seed coordinates remain bent and REVIEW. These seed coordinates differ from the constructed/ReadySet model measurements above; neither substitutes for achieved refinement geometry."
       }
     }
+  },
+  "pdu_recovery_refinement_survival_2026_11_15": {
+    "milestone": "C304",
+    "status": "RECOVERY_REFINEMENT_AND_READBACK_COMPLETE_PDU_GEOMETRY_REVIEW",
+    "native_source_commit": "9489077a",
+    "cleanup_fix_commit": "a2e73603",
+    "prior_work": "C220–C224 explicit continuation/publication; C284 bounded numerical replay; C302 owner storage partitions; C303 final-validation fix; C206 explicitly left the 1.607 A terminal propyne target unqualified. No new owner or PDU-name rule.",
+    "behavior": {
+      "before": "C303 request attempt 1 timed out after successful repair/ReadySet, without checkpoint/refinement. C302 also accidentally removed a storage-policy export used by ordinary cleanup.",
+      "after": "Existing continuation creates successful attempt 2 under the same frozen allowance, publishes the exact result and runs five ordinary corrected-plane-force refinement cycles. Restore the existing storage export without changing current-only automatic cleanup. Native chemical survival remains REVIEW."
+    },
+    "native": {
+      "anchor": "local_live_tests",
+      "directory": "304_Cedar_PDU-recovery-1f37ak8q",
+      "run": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "code_unchanged": true
+      },
+      "execution": {
+        "status": "EXPLICIT_PDU_RECOVERY_AND_REFINEMENT_COMPLETE",
+        "run_anchor": "local_live_tests",
+        "run": "303_Cedar_PDU-campaign-btuh5sop/campaign/DiU/AutoMR/run_001",
+        "attempt": 2,
+        "checkpoint": "refine-001",
+        "refinement_status": "AUTOREFINE_READY",
+        "refinement_exit_code": 0,
+        "prior_run_files_unchanged": 904,
+        "changed_prior_files": [
+          "report.json through existing publication/refinement owner"
+        ],
+        "prior_campaign_files_unchanged": 30,
+        "frozen_request_unchanged": true,
+        "native_version": "2.2.1",
+        "native_build": "phenix-2.2.1-6174",
+        "macro_cycles": 5,
+        "processors": 4,
+        "parallelity_count": 58,
+        "native_process_observations": 47,
+        "runtime_evidence_bytes": 2522000,
+        "elapsed_seconds": 981.0852246250142,
+        "retained_run_logical_bytes": 399391709,
+        "scope": "Fresh owned attempt after preserved failure; actual ordinary refinement. Chemical survival, exact cold read and effective membership require following inspection; no structure approval or automatic campaign recovery."
+      },
+      "readback": {
+        "status": "EXPLICIT_PDU_RECOVERY_COLD_READ_AND_STAGED_GEOMETRY_COMPLETE",
+        "checkpoint": "refine-001",
+        "parent": "postmr",
+        "selected": "refine-001",
+        "run_anchor": "local_live_tests",
+        "run": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001",
+        "relocated_files_unchanged": 1787,
+        "old_campaign_anchor_absent": true,
+        "plan_integrity": "OK",
+        "historical_campaign_status": null,
+        "native_macro_cycles": 5,
+        "parallelity_count": 58,
+        "native_process_observations": 47,
+        "phase_returncodes": [
+          0,
+          0
+        ],
+        "statistics": {
+          "r_work": 0.2125,
+          "r_free": 0.2267,
+          "clashscore": 29.26
+        },
+        "terminal_geometry_audit": "PASS",
+        "runtime_evidence_bytes": 2522000,
+        "elapsed_seconds": 68.7625086659682,
+        "scope": "Explicit recovery after failed preparation, exact publication and ordinary five-cycle refinement, followed by read-only relocated validation and descriptive staged chemistry. No structure acceptance or original symmetry-linked PDU:PDU/B:1 resolution."
+      },
+      "consumer": {
+        "status": "NATIVE_REFINEMENT_INPUT_OBSERVATION_COMPLETE",
+        "comparison": {
+          "planarity_printed_membership_and_rounded_weights_match": true,
+          "parallelity_printed_ordered_membership_match": true,
+          "planarity_native_count": 45,
+          "planarity_printed_count": 45,
+          "parallelity_native_count": 58,
+          "parallelity_printed_count": 58,
+          "planarity_prepared_vs_refined_inventory_same": true,
+          "parallelity_prepared_vs_refined_inventory_same": true
+        },
+        "tool_version": "2.2.1",
+        "tool_build": "phenix-2.2.1-6174",
+        "unchanged_source_files": 1751,
+        "stopped_native_processes": 3,
+        "source_checkpoint": "refine-001",
+        "captures": {
+          "prepared": "prepared/cif-native-kxj6t1f_/native_receipt.json",
+          "refined": "refined/cif-native-1i4h0y76/native_receipt.json"
+        },
+        "retained_bytes": 20840690,
+        "retained_files": 61,
+        "elapsed_seconds": 72.11986608302686,
+        "maximum_python_resident_bytes": 542490624,
+        "scope": "Fresh interpretation of exact prepared/final models with validated ordered refinement inputs, plus existing native parser of actual saved GEO. No Coot, ReadySet, phasing or diffraction refinement repeated. A reconstructed manager and rounded GEO observations do not establish the original refinement process gradient or scientific acceptance. No inputs, SDK or selected checkpoint edited."
+      },
+      "models": {
+        "raw": {
+          "chi_degrees": -109.0229283152647,
+          "parent_chi_difference_degrees": 0.02675366217781061,
+          "sha256": "0c472c10e11fe835f79e9f0c9db5edf313b72b0d13935fd8311b56b5c10955e4"
+        },
+        "after_coot": {
+          "chi_degrees": -109.04357012327162,
+          "parent_chi_difference_degrees": 0.006111854170910647,
+          "sha256": "f2c07a22136934709c855ce904f1d923c08d7214967b7c460d9cf2bcf6037117"
+        },
+        "prepared": {
+          "chi_degrees": -109.04357012327162,
+          "parent_chi_difference_degrees": 0.006111854170910647,
+          "sha256": "f2c07a22136934709c855ce904f1d923c08d7214967b7c460d9cf2bcf6037117"
+        },
+        "parent": {
+          "chi_degrees": -109.04968197744252,
+          "parent_chi_difference_degrees": 0.0,
+          "sha256": "0b117071ae5b0b4443736a9569ea391ae09063d221235d951b5667edd3e26618"
+        },
+        "readyset": {
+          "chi_degrees": -109.04357012327162,
+          "parent_chi_difference_degrees": 0.006111854170910647,
+          "sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+          "C5_angle_sum_degrees": 359.99137377374643,
+          "C5_neighbor_angles_degrees": [
+            117.66231997375282,
+            121.88403203817171,
+            120.44502176182192
+          ],
+          "C5_attachment_elevation_degrees": 0.9428001277861741,
+          "triples": [
+            {
+              "atoms": [
+                "C5A",
+                "C5B"
+              ],
+              "distance_angstrom": 1.189432637857226,
+              "linear_angles": [
+                {
+                  "atoms": [
+                    "C5",
+                    "C5A",
+                    "C5B"
+                  ],
+                  "degrees": 176.40104309719146
+                },
+                {
+                  "atoms": [
+                    "C5M",
+                    "C5B",
+                    "C5A"
+                  ],
+                  "degrees": 176.88499926052626
+                }
+              ]
+            }
+          ],
+          "existing_plane_fit": [
+            {
+              "dictionary_plane": "plan-1",
+              "fit_members": [
+                "C1'",
+                "C2",
+                "C4",
+                "C5",
+                "C5A",
+                "C6",
+                "N1",
+                "N3",
+                "O2",
+                "O4"
+              ],
+              "fit": "UNWEIGHTED_CARTESIAN_DESCRIPTIVE_ONLY",
+              "distances_angstrom": {
+                "C1'": 0.00876905563034236,
+                "C2": 0.00043760473729280436,
+                "C4": 0.0018995591478185025,
+                "C5": 0.008416119916260206,
+                "C5A": 0.0057384443196279444,
+                "C5B": 0.02360364949746535,
+                "C5M": 0.1123944032965487,
+                "C6": 0.005834458866856922,
+                "N1": 0.003299836346257856,
+                "N3": 0.0015381807034910277,
+                "O2": 0.0021313878196851377,
+                "O4": 0.005098076706138599
+              },
+              "max_member_distance_angstrom": 0.00876905563034236
+            }
+          ]
+        },
+        "refined": {
+          "chi_degrees": -111.17008106982118,
+          "parent_chi_difference_degrees": 2.1203990923786478,
+          "sha256": "8e75a1d8a6cc46afb29d92bc073326ac5099234df27432d13b14a91a43c6e66b",
+          "C5_angle_sum_degrees": 359.9307799697482,
+          "C5_neighbor_angles_degrees": [
+            126.51865822356837,
+            114.91400733415588,
+            118.49811441202397
+          ],
+          "C5_attachment_elevation_degrees": 2.484846324733648,
+          "triples": [
+            {
+              "atoms": [
+                "C5A",
+                "C5B"
+              ],
+              "distance_angstrom": 1.1976501993487094,
+              "linear_angles": [
+                {
+                  "atoms": [
+                    "C5",
+                    "C5A",
+                    "C5B"
+                  ],
+                  "degrees": 174.65397119442468
+                },
+                {
+                  "atoms": [
+                    "C5M",
+                    "C5B",
+                    "C5A"
+                  ],
+                  "degrees": 173.44910210519802
+                }
+              ]
+            }
+          ],
+          "existing_plane_fit": [
+            {
+              "dictionary_plane": "plan-1",
+              "fit_members": [
+                "C1'",
+                "C2",
+                "C4",
+                "C5",
+                "C5A",
+                "C6",
+                "N1",
+                "N3",
+                "O2",
+                "O4"
+              ],
+              "fit": "UNWEIGHTED_CARTESIAN_DESCRIPTIVE_ONLY",
+              "distances_angstrom": {
+                "C1'": 0.009786693415088199,
+                "C2": 0.0005465396698715597,
+                "C4": 0.009294128725009843,
+                "C5": 0.017320052489821547,
+                "C5A": 0.002965343619058314,
+                "C5B": 0.09332755935693027,
+                "C5M": 0.26098403401180503,
+                "C6": 0.0017309067688563926,
+                "N1": 0.02238658162639451,
+                "N3": 0.00014871629611691063,
+                "O2": 0.005222957286559637,
+                "O4": 0.003352001581860664
+              },
+              "max_member_distance_angstrom": 0.02238658162639451
+            }
+          ]
+        }
+      },
+      "linked_native_triples": {
+        "prepared": {
+          "target_screen": "PASS",
+          "coordinate_screen": "PASS",
+          "findings": [],
+          "triple_bonds": [
+            {
+              "atoms": [
+                "C5A",
+                "C5B"
+              ],
+              "declared_order": "TRIPLE",
+              "distance": {
+                "target": 1.174,
+                "esd": 0.02,
+                "observed": 1.1894326378572284,
+                "membership_count": 1
+              },
+              "angles": [
+                {
+                  "atoms": [
+                    "C5",
+                    "C5A",
+                    "C5B"
+                  ],
+                  "target": 180.0,
+                  "esd": 3.0,
+                  "observed": 176.40104309719186,
+                  "membership_count": 1
+                },
+                {
+                  "atoms": [
+                    "C5M",
+                    "C5B",
+                    "C5A"
+                  ],
+                  "target": 180.0,
+                  "esd": 3.0,
+                  "observed": 176.88499926052592,
+                  "membership_count": 1
+                }
+              ]
+            }
+          ],
+          "reference_scope": "DECLARED_HEAVY_ATOM_PROJECTION_AT_EXPLICIT_SITE"
+        },
+        "refined": {
+          "target_screen": "PASS",
+          "coordinate_screen": "REVIEW",
+          "findings": [
+            {
+              "rule": "linear-coordinate-bending",
+              "atoms": [
+                "C5",
+                "C5A",
+                "C5B"
+              ],
+              "observed": 174.65397119442483
+            },
+            {
+              "rule": "linear-coordinate-bending",
+              "atoms": [
+                "C5M",
+                "C5B",
+                "C5A"
+              ],
+              "observed": 173.44910210519797
+            }
+          ],
+          "triple_bonds": [
+            {
+              "atoms": [
+                "C5A",
+                "C5B"
+              ],
+              "declared_order": "TRIPLE",
+              "distance": {
+                "target": 1.174,
+                "esd": 0.02,
+                "observed": 1.197650199348709,
+                "membership_count": 1
+              },
+              "angles": [
+                {
+                  "atoms": [
+                    "C5",
+                    "C5A",
+                    "C5B"
+                  ],
+                  "target": 180.0,
+                  "esd": 3.0,
+                  "observed": 174.65397119442483,
+                  "membership_count": 1
+                },
+                {
+                  "atoms": [
+                    "C5M",
+                    "C5B",
+                    "C5A"
+                  ],
+                  "target": 180.0,
+                  "esd": 3.0,
+                  "observed": 173.44910210519797,
+                  "membership_count": 1
+                }
+              ]
+            }
+          ],
+          "reference_scope": "DECLARED_HEAVY_ATOM_PROJECTION_AT_EXPLICIT_SITE"
+        }
+      }
+    },
+    "validation": {
+      "before_existing": "6 failed, 5 passed in 9.58 s",
+      "before_new": "4 failed, 11 deselected in 0.90 s; missing policy import",
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PYTHON -m pytest -q -p no:cacheprovider tests/test_cif_preparation_retention.py tests/test_cif_attempt_retention.py tests/test_cif_complete_attempt_archive.py tests/test_cif_complete_child_bounds.py tests/test_cif_ordinary_postmr.py tests/test_cif_postmr_publication.py --tb=short",
+      "python": "NASolve/.venv/bin/python",
+      "result": "147 passed in 170.03 s",
+      "coverage": "Current-only automatic storage; legacy skip; real archive/interrupted retirement/relocated read; exact result and publication order.",
+      "full_suite": "NOT_RUN"
+    },
+    "compatibility": "No schema, chemistry, target, allowance or default changes. Old campaign BLOCKED and failed attempt 1 remain historical; this is explicit recovery, not automatic campaign-resume proof.",
+    "artifacts": "Code/tests/compact evidence only. Models, observations, logs and runners remain local. No source-run files deleted; owned campaign moved, not copied.",
+    "limitations": [
+      "Mechanics scaffold with original observations and Free-R, not a PDU crystal or structure acceptance.",
+      "Correct targets and native membership do not imply achieved geometry. PDU refined propyne angles cross existing five-degree review screen; no thresholds or weights changed.",
+      "Original symmetry-linked PDU:PDU/B:1 remains separate. D:1 complete terminal phosphate remains protected.",
+      "Printed geometry comparison uses rounded output; reconstructed native manager does not establish original refinement gradients by itself. Existing frozen corrected-runtime receipt supplies that separate execution evidence.",
+      "First local triple diagnostic used the unlinked component and correctly found extra OP3; retained. Final comparison uses existing authenticated B:4 linked projection and has no atom-inventory mismatch.",
+      "Retained 1.607 A C5B–C5M target remains unqualified, as recorded at C206. No new value inferred from coordinates."
+    ],
+    "remaining": [
+      "Related G:5PC whole-campaign control C305 in progress; do not label PDU or Q06 closed.",
+      "Separate remaining target calibration, packing and data/restraint compromise before changing numerical parameters.",
+      "Q07 combined/held-out scaffold, Q08–Q14 chemistry, Q15 user report, Q16 AutoPhase/full integration remain."
+    ],
+    "local_records": {
+      "summary.json": "bec6726c0427cdfa0dbbb98d5d5684c93092218ccf6797d62a13e05efa57fa2a",
+      "readback/geometry.json": "1671a002f2c18bdd5e5190f210666a7ce6a40c50774df3051ef5db6f50faef3c",
+      "native-geometry-linked-review.json": "ee3a884fd2d04bb5d9c04b4c2001f19d795e8e40d2b31ecdc6fa7eac956b1b91",
+      "consumer/comparison.json": "dc5df573585d841b831e5455f2eea3f2601def3b6d85488d560661750fcceeb7"
+    }
   }
 }

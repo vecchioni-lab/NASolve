@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-14.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-15.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -109,14 +109,18 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 | **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF after the behavior is integrated. |
 | **Q16 — finish the branch cleanly** | Finish with the AutoPhase naming/compatibility change, then check Cedar as part of NASolve and review integration into pine/main. | Preserve Phenix AutoSol calls and old runs; follow the [machine-readable rename audit](autophase-rename-plan.json), then full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
 
-**Current PDU gate (C303):** the fresh v3 request gets through source-supported
-repair, ReadySet and native continuation, but redundant final validation exhausts
-its frozen allowance before publication. It remains a preserved failed attempt,
-with no refinement. Remove the duplicate work through the existing sealing and
-bounded pure-math owners; keep the same deadline and scientific checks. A fresh
-PDU campaign must then demonstrate actual refinement and staged geometry before
-moving to the related G:5PC control. Original symmetry-linked PDU:PDU/B:1 remains
-separate. This is a measured execution cost exposed by Q06, not a new Q04 design.
+**Current PDU gate (C304):** explicit fresh attempt 2 now completes under the
+unchanged allowance, publishes and finishes five ordinary refinement cycles.
+Moved cold readback passes; all 45 planes and 58 parallelity groups retain native
+membership/weights. No chi flip occurs. However, propyne angles become 174.65° and
+173.45° against 180° ±3° targets, crossing the existing 5° coordinate review
+screen; terminal methyl distance from the descriptive existing plane fit grows
+from 0.112 to 0.261 Å. Targets pass the current screen; achieved geometry remains
+REVIEW. C206's unqualified 1.607 Å terminal bond target remains an explicit gap.
+Do not claim Q06 closure, silently strengthen restraints or blame dropped planes.
+Related G:5PC is now a separate transfer/comparison control, not evidence that PDU
+passed. Original symmetry-linked PDU:PDU/B:1 remains separate. C304 also restores
+ordinary cleanup's policy export (147 focused tests); Q04/Q05 owners are unchanged.
 
 ### The next small steps
 
