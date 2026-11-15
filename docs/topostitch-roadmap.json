@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
+  "audited_code_commit": "98302b2b901318db9d81f1bc683d7474ac5c716b",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -519,26 +519,28 @@
       "delivered": [
         "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
         "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
-        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement."
+        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
+        "W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Use verified declared partners and source-native links to inspect required seam-angle/image semantics through Cedar owners. Keep native bond activation disabled pending complete angle/exclusion and persistence qualification.",
+      "next_action": "Coordinate with Cedar on the existing ordinary native reconstruction/refinement owner: explicitly rebuild and verify image-bearing terms at supported lifecycle boundaries, then qualify complete seam chemistry/exclusions. Existing synthetic and source-native angle kernels need not be rediscovered. Preserve the no-bond-alone rule and P02/P03 gates.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
         "E_BACKBONE_INTENT",
-        "E_EXPLICIT_CONTINUATIONS"
+        "E_EXPLICIT_CONTINUATIONS",
+        "E_SEAM_ANGLE_LIFECYCLE"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
+        "code_commit": "98302b2b901318db9d81f1bc683d7474ac5c716b",
         "reviewer": "Linden",
-        "human_update": 67,
-        "scope": "Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open"
+        "human_update": 68,
+        "scope": "Read-only source-native angle/image and pickle diagnostic; no runtime change or full seam/refinement qualification"
       }
     },
     {
@@ -969,6 +971,14 @@
       "reference": "docs/topostitch-periodic.md#w67--resolve-explicitly-declared-boundary-partners",
       "result": "26 new regressions; full1674 plus229subtests; installed/relocated468,six helps,lean/3.10. Exact old/new public and three JavaScript preference replay after relocation. Two public controls preserve855 proposed coordinates exactly; one of two source-native seams gains declared coverage, other stays outside routes. Temporary installed Cedar a2e73603 composition passes468 Willow/221 Cedar plus6subtests and exact default-owner replay.",
       "limitation": "No inferred topology, chemistry approval, native enforcement or model materialization. Schema2 requests required for new declarations; old readers refuse. Scientific outputs local only; real browser/download/human review remains open."
+    },
+    "E_SEAM_ANGLE_LIFECYCLE": {
+      "kind": "source_native_seam_angle_lifecycle_diagnostic",
+      "code_commit": "98302b2b901318db9d81f1bc683d7474ac5c716b",
+      "human_update": 68,
+      "reference": "docs/topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence",
+      "result": "Complete Phenix2.2.1-6174 reconstruction matches the authenticated855-atom context. All1467 live source angle sym_ops/slack inspected. Each cut has8crossing terms/12atoms; energy, rotated gradient and native energies path agree. Finite-difference maxima3.08e-7/3.35e-7. Selection retains operators; native angle/shared-array pickle loses them, changing residual20.3688 to5631.8498 and11.6365 to5458.7742. Frozen inputs and dispatcher match.",
+      "limitation": "Experimental local scaffold and two setup failures preserved; no public API, optimization, refinement, native activation or Cedar/cctbx patch. Does not establish ordinary refinement uses pickle. Complete terms/exclusions and supported lifecycle remain unqualified; code validation remains W67."
     }
   },
   "benchmarks": [
@@ -1065,7 +1075,7 @@
     },
     {
       "scope": "Symmetry-spanning phosphate angle enforcement",
-      "trigger": "Preserve declared continuation chemistry now; only investigate complete local angle/plane/nonbonded/native policy in explicit future controls. Do not activate a symmetry bond alone."
+      "trigger": "W68 narrows the gate: existing symmetry-angle kernels pass synthetic/source-native controls, but ordinary input/reconstruction and proxy persistence remain unqualified. Coordinate a complete image-bearing term lifecycle with Cedar, including exclusions and surrounding terms. Preserve P/OP1/OP2 intent; never activate a symmetry bond alone."
     }
   ],
   "history_reconciliation": [
@@ -1084,8 +1094,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 67,
-    "next": 68,
+    "current": 68,
+    "next": 69,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1297,6 +1307,12 @@
         "title": "Resolve explicit representation-boundary partners",
         "state": "RECORDED",
         "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa"
+      },
+      {
+        "number": 68,
+        "title": "Inspect source seam angles and proxy persistence",
+        "state": "RECORDED",
+        "code_commit": "98302b2b901318db9d81f1bc683d7474ac5c716b"
       }
     ]
   }

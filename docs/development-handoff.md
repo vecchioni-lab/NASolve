@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**Willow update W67; next W68.** Human W-numbers and exact code provenance live
+**Willow update W68; next W69.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -211,6 +211,16 @@ replay. The public development control explicitly declares one source-native lin
 all 855 proposed coordinates stay exact, one seam gains graph coverage and the
 other remains outside routes. Old schema-1 packets and default observations stay
 exact. No new bond/angle enforcement or phosphate/model edit.
+
+W68 is evidence-only: a fresh Phenix 2.2.1-6174 source reconstruction matches
+exactly; eight crossing native angle terms per cut preserve energies and rotated
+gradients. Native array selection keeps image operators, but pickle drops them
+and changes residuals drastically. This does not establish that ordinary refinement
+uses that serialization path. Existing synthetic angle support was already known;
+reuse it. The next P04 gate is complete term/exclusion and supported lifecycle
+qualification with Cedar, not another kernel proof or a bond-only writer. The
+[local diagnostic audit](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence)
+records scope, commands and failures. Runtime/package validation remains W67.
 
 **Next bounded work:** actual browser cut inspection, preference download and human review
 still need qualification. The new local-file attempt again hit the explicit browser

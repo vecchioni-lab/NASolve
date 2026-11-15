@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W67 — Resolve explicit representation-boundary partners.** Next: W68.
+**Current update: W68 — Inspect source seam angles and proxy persistence.** Next: W69.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W58 | Qualify viewer packaging and Cedar composition | RECORDED |
 | W59 | Calculate representatives along explicitly chosen graph links | RECORDED |
 | W60 | Retain chosen graph links and anchors in saved proposals | RECORDED |
 | W61 | Inspect chemistry and packing at failed last accepted points | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W65 | Save and reopen source-bound cut preferences | RECORDED |
 | W66 | Retain declared backbone continuation across representative cuts | RECORDED |
 | W67 | Resolve explicit representation-boundary partners | RECORDED |
+| W68 | Inspect source seam angles and proxy persistence | RECORDED |
 
 ## Finish lines
 
@@ -306,7 +306,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 Make a representation seam remain a continuous backbone where chemistry says it is continuous.
 
-**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.
+**Delivered:** W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change. W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement. W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement. W68 observes eight existing source-native crossing angles per explicit cut: exact image energies, rotated gradients and native energies path agree. Live source symmetry/slack are verified; native proxy pickle loses sym_ops. This narrows lifecycle qualification without enabling restraints.
 
 **Closure audit:**
 
@@ -314,9 +314,9 @@ Make a representation seam remain a continuous backbone where chemistry says it 
 - Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.
 - Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified.
 
-**Next action:** Use verified declared partners and source-native links to inspect required seam-angle/image semantics through Cedar owners. Keep native bond activation disabled pending complete angle/exclusion and persistence qualification.
-**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations).
-**Last audit:** 2026-11-15, Linden, [W67](https://github.com/vecchioni-lab/NASolve/commit/baac9850e2a8df086fd6cbe236c5ff31e00930aa); Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open.
+**Next action:** Coordinate with Cedar on the existing ordinary native reconstruction/refinement owner: explicitly rebuild and verify image-bearing terms at supported lifecycle boundaries, then qualify complete seam chemistry/exclusions. Existing synthetic and source-native angle kernels need not be rediscovered. Preserve the no-bond-alone rule and P02/P03 gates.
+**Evidence:** [E_PINE_TEST_BANK](#e_pine_test_bank), [E_NATIVE_REPRESENTATION_SEAMS](#e_native_representation_seams), [E_BACKBONE_INTENT](#e_backbone_intent), [E_EXPLICIT_CONTINUATIONS](#e_explicit_continuations), [E_SEAM_ANGLE_LIFECYCLE](#e_seam_angle_lifecycle).
+**Last audit:** 2026-11-15, Linden, [W68](https://github.com/vecchioni-lab/NASolve/commit/98302b2b901318db9d81f1bc683d7474ac5c716b); Read-only source-native angle/image and pickle diagnostic; no runtime change or full seam/refinement qualification.
 
 <a id="p05"></a>
 ### P05 — Complete the persistent Pine surgery/refine GUI loop
@@ -710,6 +710,13 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 26 new regressions; full1674 plus229subtests; installed/relocated468,six helps,lean/3.10. Exact old/new public and three JavaScript preference replay after relocation. Two public controls preserve855 proposed coordinates exactly; one of two source-native seams gains declared coverage, other stays outside routes. Temporary installed Cedar a2e73603 composition passes468 Willow/221 Cedar plus6subtests and exact default-owner replay.
 **Limit:** No inferred topology, chemistry approval, native enforcement or model materialization. Schema2 requests required for new declarations; old readers refuse. Scientific outputs local only; real browser/download/human review remains open.
 
+<a id="e_seam_angle_lifecycle"></a>
+### E_SEAM_ANGLE_LIFECYCLE — source_native_seam_angle_lifecycle_diagnostic
+
+[Evidence contract](topostitch-periodic.md#w68--inspect-source-seam-angles-and-proxy-persistence) at [W68](https://github.com/vecchioni-lab/NASolve/commit/98302b2b901318db9d81f1bc683d7474ac5c716b).
+Complete Phenix2.2.1-6174 reconstruction matches the authenticated855-atom context. All1467 live source angle sym_ops/slack inspected. Each cut has8crossing terms/12atoms; energy, rotated gradient and native energies path agree. Finite-difference maxima3.08e-7/3.35e-7. Selection retains operators; native angle/shared-array pickle loses them, changing residual20.3688 to5631.8498 and11.6365 to5458.7742. Frozen inputs and dispatcher match.
+**Limit:** Experimental local scaffold and two setup failures preserved; no public API, optimization, refinement, native activation or Cedar/cctbx patch. Does not establish ordinary refinement uses pickle. Complete terms/exclusions and supported lifecycle remain unqualified; code validation remains W67.
+
 ## Deferred extensions, not hidden blockers
 
 - **Canonical rebuilding / missing-residue generation:** Only after intact-duplex placement is qualified and an explicit rebuilding case requires it; preserve sequence and separately qualify chemistry.
@@ -718,7 +725,7 @@ Two complete Phenix2.2.1-6174 fixed-manager controls using frozen Cedar f2345a8.
 - **Calibrated negative backbone difference-density detection:** S06 after exact map/model/data binding and matched-refinement baselines; read-only patch evidence and scientist-calibrated false-positive controls first, S07/campaign review next, direct coordinate fitting later. Retain nearby positive support, ordinary map fit, spatial correlation, occupancy/ADP and processing uncertainty.
 - **Direct density-guided fitting:** After frozen map/data identity and matched-refinement baselines exist; ordinary data validation is already required in S06.
 - **Broad emergent topology and global reusable recipe promotion:** After bounded explicit cut/repair workflows and independent held-out evidence; do not make these hidden initial release blockers.
-- **Symmetry-spanning phosphate angle enforcement:** Preserve declared continuation chemistry now; only investigate complete local angle/plane/nonbonded/native policy in explicit future controls. Do not activate a symmetry bond alone.
+- **Symmetry-spanning phosphate angle enforcement:** W68 narrows the gate: existing symmetry-angle kernels pass synthetic/source-native controls, but ordinary input/reconstruction and proxy persistence remain unqualified. Coordinate a complete image-bearing term lifecycle with Cedar, including exclusions and surrounding terms. Preserve P/OP1/OP2 intent; never activate a symmetry bond alone.
 
 ## Reconciliation: reuse what is already delivered
 
