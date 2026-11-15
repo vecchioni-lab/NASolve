@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**Willow update W66; next W67.** Human W-numbers and exact code provenance live
+**Willow update W67; next W68.** Human W-numbers and exact code provenance live
 in the [audited roadmap](topostitch-roadmap.md); its JSON is the one status queue.
 The [intent record](topostitch-intent.json) lists implemented owners but grants no
 runtime authority. The [periodic guide](topostitch-periodic.md) and
@@ -152,8 +152,8 @@ source/discovery/registration and anchored replay. W57 displays them through the
 existing installed `nasolve-topostitch-view`: all atoms, logical ownership, exact
 edge-image endpoints, unit cell, declared boundaries and missing scope. Its
 before/after comparison is read-only; no replacement ASU, chemical bond, approval
-or checkpoint is written. Full Willow: **1,648 plus 229 subtests**; W66 adds18 regressions;
-installed/relocated442, six helps, lean import and 3.10 syntax. Public and legacy
+or checkpoint is written. Full Willow: **1,674 plus 229 subtests**; W67 adds26 regressions;
+installed/relocated468, six helps, lean import and 3.10 syntax. Public and legacy
 replay agree exactly. JavaScript DOM/canvas checks pass, but actual browser/user
 visual review remains open after the earlier local-file automation policy block.
 
@@ -203,11 +203,20 @@ The optional context binds saved preferences; old scenes remain exact. Full and
 installed validation passed; temporary installed C303 composition passes442 Willow
 and221 Cedar tests plus6 subtests, six helps and exact default-owner replay.
 
+W67 adds explicit directed representation-boundary partners through the existing
+graph and schema-2 representative/forest requests. Both boundaries must already
+be representation; chemical/unknown, interior, do-not-connect and competing
+partners refuse. Exact images, unresolved coordinates and periodic winding survive
+replay. The public development control explicitly declares one source-native link;
+all 855 proposed coordinates stay exact, one seam gains graph coverage and the
+other remains outside routes. Old schema-1 packets and default observations stay
+exact. No new bond/angle enforcement or phosphate/model edit.
+
 **Next bounded work:** actual browser cut inspection, preference download and human review
 still need qualification. The new local-file attempt again hit the explicit browser
-URL policy; no workaround was attempted. Continue source-bound explicit seam
-partner declarations through the existing graph/packet owners, preserving unknown
-scope and separate Cedar enforcement. W61 completed the two read-only W54 failed-point reviews
+URL policy; no workaround was attempted. Inspect source-native seam angle/image semantics through maintained Cedar owners,
+preserving unknown scope and separate enforcement. Explicit partner declarations
+are now implemented; do not repeat that plumbing. W61 completed the two read-only W54 failed-point reviews
 under one common complete recipe: selected/core pair and scalar geometry improve,
 but individual packing/torsion/plane regressions remain visible. Original FAILED
 outcomes persist; no optimizer rerun, candidate or acceptance. See the W61 preview
@@ -257,8 +266,8 @@ Virtual L/R recipe labels are not ordinary source-model refinement selections.
 Callback lifetime, normalization, native exclusions/LINK bookkeeping and exact
 movement masks require their own qualified consumer policy.
 
-**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W66's
-temporary installed composition with published Cedar C303 `c9736e39` passes 442
+**Compatibility:** Willow remains isolated from dirty Pine/Cedar checkouts. W67's
+temporary installed composition with published Cedar `a2e73603` passes 468
 Willow + 221 Cedar tests and 6 subtests, six helps and exact old/new packet/orbit/
 view/scattering/source-native/preference replay through default installed owners.
 Cedar checks cover complete-request, child-bounds, attachment-native and checkpoints.

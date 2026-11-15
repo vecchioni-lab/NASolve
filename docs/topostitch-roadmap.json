@@ -4,7 +4,7 @@
   "updated": "2026-11-15",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "d042f586e7ea2427cbfc7d34b3e079a2bafecfca",
+  "audited_code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07).",
@@ -407,7 +407,8 @@
         "W48 binds one declared discovery copy to a typed periodic graph, retaining missing/unknown/excluded scope and exact fundamental loop operators, including noncommuting screw/translation winding.",
         "W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery.",
         "W52 composes the fresh registered graph, all-present atom observations and exact image transport into a source-bound in-memory whole-residue preview, preserving fixed context and checking graph-edge geometry.",
-        "W56 freezes explicit image proposals with unchanged source/discovery/registration and anchored artifacts; full replay verifies derived observations after relocation. This is a durable review input, not editable chemical intent, a new ASU or graphical approval."
+        "W56 freezes explicit image proposals with unchanged source/discovery/registration and anchored artifacts; full replay verifies derived observations after relocation. This is a durable review input, not editable chemical intent, a new ASU or graphical approval.",
+        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement."
       ],
       "acceptance": [
         "Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.",
@@ -420,14 +421,15 @@
         "E_DECLARED_GRAPH",
         "E_GRAPH_RELABEL",
         "E_REGISTERED_RELABEL_PREVIEW",
-        "E_REPRESENTATIVE_BUNDLE"
+        "E_REPRESENTATIVE_BUNDLE",
+        "E_EXPLICIT_CONTINUATIONS"
       ],
       "last_audit": {
-        "date": "2026-11-14",
-        "code_commit": "73642f5fd1309c75b2986659c106f4a53db83d61",
+        "date": "2026-11-15",
+        "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
         "reviewer": "Linden",
-        "human_update": 56,
-        "scope": "Saved explicit proposal/replay only; P01 remains partial, P02 open, no coordinate or chemistry writer"
+        "human_update": 67,
+        "scope": "Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open"
       }
     },
     {
@@ -447,7 +449,8 @@
         "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
         "W64 compares 2\u20138 explicit same-source/graph packets in the existing viewer with a shared camera and local Cut numbers; switching refreshes seam/provenance details and clears stale inspection. Exact old scenes remain; no model selection/approval or rendered review claimed.",
         "W65 adds a source-bound preference download/readback for prefer-cut, keep-original or needs-revision. Fresh comparison replay rejects stale choices; scene remains unchanged and no authenticated approval/model selection is claimed. Browser/download validation still open.",
-        "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement."
+        "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
+        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement."
       ],
       "acceptance": [
         "Enumerate bounded, intent-compatible cut alternatives; show central ASU plus connected mates, ownership, real nicks, seams, exposed ends and affected logical sites.",
@@ -463,14 +466,15 @@
         "E_NATIVE_REPRESENTATION_SEAMS",
         "E_CUT_COMPARISON",
         "E_CUT_PREFERENCE",
-        "E_BACKBONE_INTENT"
+        "E_BACKBONE_INTENT",
+        "E_EXPLICIT_CONTINUATIONS"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "d042f586e7ea2427cbfc7d34b3e079a2bafecfca",
+        "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
         "reviewer": "Linden",
-        "human_update": 66,
-        "scope": "Declared continuation observation only; browser policy block retained, no topology editing, model materialization or native enforcement"
+        "human_update": 67,
+        "scope": "Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open"
       }
     },
     {
@@ -514,25 +518,27 @@
       "goal": "Make a representation seam remain a continuous backbone where chemistry says it is continuous.",
       "delivered": [
         "W63 reuses authenticated Cedar source-native links to expose existing bonds crossing the proposed ASU, exact image geometry, missing declared-graph coverage and source P/OP1/OP2. Optional viewer text is read-only; no chemistry or model change.",
-        "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement."
+        "W66 projects declared directed backbone continuation, representation/chemical/unknown boundaries and existing phosphate inventory from replayed packets. Unresolved partners retain P/OP1/OP2 intent; OP3 conflicts are scoped to continuation, with terminal phosphate consent separate. Exact route-image transport, optional view and preference context are read-only; no new edge or native enforcement.",
+        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Use the verified continuation observation at the Cedar boundary; add explicitly declared and source-bound seam partners through existing graph/packet owners, retaining contradictions and unresolved scope. Keep native bond enforcement disabled pending complete angle/exclusion qualification.",
+      "next_action": "Use verified declared partners and source-native links to inspect required seam-angle/image semantics through Cedar owners. Keep native bond activation disabled pending complete angle/exclusion and persistence qualification.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
-        "E_BACKBONE_INTENT"
+        "E_BACKBONE_INTENT",
+        "E_EXPLICIT_CONTINUATIONS"
       ],
       "last_audit": {
         "date": "2026-11-15",
-        "code_commit": "d042f586e7ea2427cbfc7d34b3e079a2bafecfca",
+        "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
         "reviewer": "Linden",
-        "human_update": 66,
-        "scope": "Declared continuation observation only; browser policy block retained, no topology editing, model materialization or native enforcement"
+        "human_update": 67,
+        "scope": "Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open"
       }
     },
     {
@@ -955,6 +961,14 @@
       "reference": "docs/topostitch-periodic.md#w66--observe-declared-backbone-intent-across-a-cut",
       "result": "18 new regressions; full1648 plus229subtests; installed/relocated442,six helps,lean import,3.10syntax. Exact public and old comparison replay; three JavaScript-exported preferences validate after relocation. Public partial graph has24 declared continuations and0 route seams while the independent native observer retains2 source-native out-of-route seams. Actual viewer logic passes DOM/canvas controls. Temporary installed C303 composition passes442 Willow and221 Cedar tests plus6 subtests, six helps and exact default-owner public/legacy/native/intent replay.",
       "limitation": "No inferred partner, chemistry change, atom edit, native enforcement or scientific acceptance. Browser URL policy again refused local-file opening; no bypass and no rendered/download/human review claim. Scientific artifacts local only. Scoped installed owner/package compatibility only; no merge or complete combined-suite qualification."
+    },
+    "E_EXPLICIT_CONTINUATIONS": {
+      "kind": "explicit_representation_boundary_partners",
+      "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
+      "human_update": 67,
+      "reference": "docs/topostitch-periodic.md#w67--resolve-explicitly-declared-boundary-partners",
+      "result": "26 new regressions; full1674 plus229subtests; installed/relocated468,six helps,lean/3.10. Exact old/new public and three JavaScript preference replay after relocation. Two public controls preserve855 proposed coordinates exactly; one of two source-native seams gains declared coverage, other stays outside routes. Temporary installed Cedar a2e73603 composition passes468 Willow/221 Cedar plus6subtests and exact default-owner replay.",
+      "limitation": "No inferred topology, chemistry approval, native enforcement or model materialization. Schema2 requests required for new declarations; old readers refuse. Scientific outputs local only; real browser/download/human review remains open."
     }
   },
   "benchmarks": [
@@ -1070,8 +1084,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 66,
-    "next": 67,
+    "current": 67,
+    "next": 68,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1277,6 +1291,12 @@
         "title": "Retain declared backbone continuation across representative cuts",
         "state": "RECORDED",
         "code_commit": "d042f586e7ea2427cbfc7d34b3e079a2bafecfca"
+      },
+      {
+        "number": 67,
+        "title": "Resolve explicit representation-boundary partners",
+        "state": "RECORDED",
+        "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa"
       }
     ]
   }
