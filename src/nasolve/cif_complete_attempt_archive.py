@@ -17,7 +17,8 @@ from .cif_dictionary_sites import _need, _read
 POLICY_ID = 'cif-complete-attempt-working-archive-v1'
 ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v3'
 SUPPORTED_ARTIFACT_POLICIES = frozenset({
-    'cif-complete-request-partitioned-artifacts-v2', ARTIFACT_POLICY})
+    'cif-complete-request-partitioned-artifacts-v2', ARTIFACT_POLICY,
+    'cif-complete-request-partitioned-artifacts-v4'})
 REPAIR_RUNTIME = 'repair/attempts/attempt-0001/execution/runtime/'
 CONTINUATION_RUNTIME = 'continuation/runtime/'
 

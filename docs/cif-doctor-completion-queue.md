@@ -244,8 +244,13 @@ reference authority and ordered-chain composition. C326 closes explicit prepared
 executor/request delivery: the real PDU control selects a corrected CIF after
 original/final complete derivative checks, with unchanged model/PHIL/ESD; moved
 request/runtime/ReadySet-parent reads pass. The final lookup-failure policy guard
-passes focused negative controls. **Next: existing complete-request propagation,
-ReadySet delivery and archive/retirement**, then actual whole-substituent survival.
+passes focused negative controls. C327 completes explicit complete-request/ReadySet delivery and existing retirement,
+then reads the archived result after relocation. Its first v3 storage failure is
+preserved; fresh explicit v4 separates native captures from derived evidence with
+unchanged per-part/shared expansion bounds. **Next: ordinary preparation entry
+with a frozen graph-selected target choice, then actual corrected-CIF refinement
+and whole-substituent survival.** Changed intent needs a fresh request/run; never
+bypass lineage by manufacturing a checkpoint or rewriting the original request.
 No automatic target discovery/defaults or residue-name special cases. Reuse existing
 owners rather than promote a diagnostic script or add recovery/storage machinery.
 Diagnostic PHIL edits alone do not establish corrected-CIF delivery. Keep neighboring
@@ -258,8 +263,8 @@ still preferred and all checks unchanged. Both routes pass from a built/installe
 relocated wheel after the temporary source checkout is removed; changed packaged
 bytes refuse. No ordinary MR catalogue activation. Linden's original W81 four-fail
 combined result remains recorded; two other failures were Git/source-path fixture
-assumptions. Targeted followups do not become a new full-suite pass. C326 now passes explicit prepared delivery; continue through the existing complete
-request owner and its retention route.
+assumptions. Targeted followups do not become a new full-suite pass. C326/C327 now pass explicit prepared and complete delivery. Keep the ordinary-entry
+and refinement-survival steps above as the next work, not another owner rewrite.
 
 ### The next small steps
 

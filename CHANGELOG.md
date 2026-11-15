@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Carry explicit bond choices through complete preparation (C327)
+
+- Freeze and revalidate the existing source-bound bond choices in complete
+  requests, bind the prepared child to that choice and preserve it through
+  continuation, archived readback and fresh attempts. Calls omitting the option
+  retain their previous shape and behavior; no CLI/default activation.
+- Add an explicit v4 artifact policy separating captured native states from
+  derived repair evidence. Per-group/file and shared archive expansion bounds
+  remain fixed; the permitted logical working footprint gains one bounded group.
+  V3 remains the default, and old failed requests are never reinterpreted.
+
 ### Try explicit bond targets through the existing prepared repair owner (C326)
 
 - Freeze explicit source-neighborhood bond choices in immutable prepared requests.

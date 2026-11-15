@@ -100749,5 +100749,248 @@
     ],
     "next": "Carry choices through existing complete request and continuation/retention, then prove corrected-CIF ReadySet/refinement delivery and whole-substituent survival.",
     "author": "Rowan"
+  },
+  "complete_reference_target_delivery_2026_11_15": {
+    "milestone": "C327",
+    "status": "COMPLETE_EXPLICIT_TARGET_READYSET_RETIREMENT_RELOCATION_PASS",
+    "source_base_commit": "818edda7",
+    "behavior_before": "No complete-request propagation of explicit graph-selected bond targets; combined v3 repair working evidence exceeds 128 MiB in the full PDU control.",
+    "behavior_after": "Freeze/rederive choices, bind prepared child and use existing ReadySet/retention. Explicit v4 separates exact raw-native capture subtree; no new process/storage/selection owner.",
+    "files": [
+      "src/nasolve/cif_complete_request.py",
+      "src/nasolve/cif_complete_attempt_archive.py",
+      "src/nasolve/cif_component_runtime.py",
+      "tests/test_cif_complete_bond_targets.py",
+      "tests/test_cif_complete_capture_bounds.py"
+    ],
+    "schemas": "Optional bond_targets configuration reuses C326 policy; explicit cif-complete-request-partitioned-artifacts-v4. Request/archive container schemas unchanged; v3 default and old meaning retained.",
+    "prior_work": "C234-C237 explicit plane/request integration, C302 owned-repair storage boundary, C200 continuation partitions, C254-C258/C282 archive/retirement and C323-C326 numerical target owners checked and reused.",
+    "validation": {
+      "environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src; cwd NASolve-c96",
+      "interpreter": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "initial_before": "17 failed in 3.79 s; complete request lacked bond_targets",
+      "initial_after": "17 passed in 32.83 s",
+      "focused_command": "-m pytest -q -p no:cacheprovider tests/test_cif_complete_request.py tests/test_cif_complete_continuation.py tests/test_cif_attempt_retention.py tests/test_cif_complete_bond_targets.py --tb=short",
+      "focused_result": "220 passed in 520.00 s",
+      "boundary_before": "22 failed, 3 passed in 1.41 s before v4",
+      "boundary_command": "-m pytest -q -p no:cacheprovider tests/test_cif_complete_capture_bounds.py tests/test_cif_complete_child_bounds.py tests/test_cif_complete_attempt_archive.py tests/test_cif_complete_bond_targets.py --tb=short",
+      "boundary_result": "74 passed, 1 fixture error in 54.02 s; case-sensitive directory creation assumption on macOS",
+      "corrected_command": "-m pytest -q -p no:cacheprovider tests/test_cif_complete_capture_bounds.py -k native_capture_boundary --tb=short",
+      "corrected_result": "4 passed, 21 deselected in 10.49 s after testing actual saved spelling through a temporary rename; no production fix needed",
+      "full_suite": "NOT_RUN",
+      "native_commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c327_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c327_capture_start.py"
+      ],
+      "native_platform": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64; complete native repair and ReadySet, not dry-run. No Coot/Phaser/refinement.",
+      "source_sha256": {
+        "src/nasolve/cif_complete_request.py": "2d6f892c5e16d3330128e8fe2d417c114228ae7a4dbf2ebc932a2ae897bc47d0",
+        "src/nasolve/cif_complete_attempt_archive.py": "1606aa20f3dc013e7737a3fd2ebf51cad748ed987113a2b8e180e3356a88b52d",
+        "src/nasolve/cif_component_runtime.py": "d5dcd9c4401419366fb27cf8f2d05f3187ee5cbc9717546a0f187c649ba1bdc9"
+      }
+    },
+    "preserved_failure": {
+      "anchor": "NASolve-live-tests",
+      "root": "327_Cedar_complete-bond-readyset-v0v9evls",
+      "driver": {
+        "returncode": 1,
+        "stopped_verified": true,
+        "source_unchanged": true
+      },
+      "scope": "Repair and ReadySet published qualified results; outer seal refused v3 storage bound. No successful complete result, adoption or retirement.",
+      "comparison": {
+        "status": "READ_ONLY_POLICY_COMPARISON_NOT_RECOVERY",
+        "unchanged_files": 766,
+        "old_policy": "cif-complete-request-partitioned-artifacts-v3",
+        "old_outcome": "REFUSES",
+        "new_policy": "cif-complete-request-partitioned-artifacts-v4",
+        "partitions": {
+          "repair/attempts/attempt-0001/execution/runtime/": [
+            10,
+            5379635
+          ],
+          "repair/attempts/attempt-0001/execution/native/": [
+            92,
+            52946921
+          ],
+          "repair/attempts/attempt-0001/": [
+            443,
+            122678897
+          ],
+          "continuation/runtime/": [
+            10,
+            6663352
+          ],
+          "continuation/": [
+            106,
+            37389308
+          ],
+          "": [
+            105,
+            5835563
+          ]
+        },
+        "unique_bytes": 102539331,
+        "limits": "128 MiB and 1024 files per part; 32 MiB member; shared archive physical expansion remains 128 MiB",
+        "historical_request": "Unchanged, unsealed and not eligible for retirement or adoption"
+      },
+      "records": [
+        {
+          "path": "driver-result.json",
+          "sha256": "3bac5b642abd24e11a25dc6198b24dabe0e1266a569d24823c20e9b003f3556d",
+          "size": 78
+        },
+        {
+          "path": "failure.json",
+          "sha256": "b52193b7bbcfac47a346ea56e164320088ed6aefce10a044acff5a6abd4aa889",
+          "size": 2438
+        },
+        {
+          "path": "input-origin.json",
+          "sha256": "62a576b8700d02320d76c5766d2d08d59c2a8b098433e6e6b5403fb226d77181",
+          "size": 1349
+        },
+        {
+          "path": "start.json",
+          "sha256": "6e028ae08fb65a73b2b807866c12a7c92a54b3a4e275b07f51303737df26e3b1",
+          "size": 27524
+        }
+      ]
+    },
+    "native": {
+      "failed_request_files_unchanged": 853,
+      "artifact_policy": "cif-complete-request-partitioned-artifacts-v4",
+      "status": "COMPLETE_EXPLICIT_TARGET_READYSET_RETIREMENT_RELOCATION_PASS",
+      "native": {
+        "native_build": "phenix-2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "selected": "readyset_checked_model",
+        "prepared_selected": "repaired_prepared_bundle",
+        "all_owners_stopped": true,
+        "repair_phases": [
+          "attribution",
+          "bond-attribution-000",
+          "energy-library",
+          "native-000",
+          "native-001",
+          "native-002",
+          "native-003",
+          "native-baseline",
+          "original-gradient",
+          "plane-attribution-000",
+          "repaired-gradient"
+        ],
+        "continuation_phases": [
+          "native-baseline",
+          "native-endpoint",
+          "readyset"
+        ],
+        "original_derivatives": {
+          "qualified": true,
+          "report": {
+            "anchor": "original_gradient_directory",
+            "path": "captured_mixed_gradients.json",
+            "sha256": "4c203400d5eff58d8cd1918c64b3bdac1f49eddbc8df51f6c8b2c22606be8c4e",
+            "size": 14541
+          },
+          "status": "CAPTURED_MIXED_DERIVATIVES_PASS"
+        },
+        "repaired_derivatives": {
+          "qualified": true,
+          "report": {
+            "anchor": "repaired_gradient_directory",
+            "path": "captured_mixed_gradients.json",
+            "sha256": "7169577cf5cad11844524c20677ffc61c196bdd15afa5b762ffee1a9805c11ee",
+            "size": 14541
+          },
+          "status": "CAPTURED_MIXED_DERIVATIVES_PASS"
+        },
+        "heavy_coordinates_unchanged": true,
+        "model_bytes_unchanged": false,
+        "ordered_phils_unchanged": true,
+        "selected_target": {
+          "atoms": [
+            "C5M",
+            "C5B"
+          ],
+          "comp_id": "PDU",
+          "type": "single",
+          "value_dist": "1.47",
+          "value_dist_esd": "0.020"
+        },
+        "model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+        "selected_dictionary_sha256": "e0a3342167cdc6a391cde5470de9b4b2cdb59acb89fa126cb8d2e14c5b32fe8b"
+      },
+      "cold": {
+        "status": "ARCHIVED_MOVED_COMPLETE_TARGET_READYSET_PASS",
+        "preserved_files": 141,
+        "physical_request_bytes": 40735983,
+        "selected": "readyset_checked_model",
+        "new_native_calls": 0,
+        "code_relocated": true,
+        "originals_sdk_store_blocked": true,
+        "elapsed_seconds": 87.152441040962
+      },
+      "original_input_files_unchanged": 79,
+      "before_retirement_bytes": 234017802,
+      "after_retirement_bytes": 40735983,
+      "temporary_relocated_code_removed": true,
+      "sampled_peak_root_bytes": 316817765,
+      "sampling_limit": "One-second root samples exclude transient owner scratch/RSS; not exact peak or campaign capacity",
+      "elapsed_seconds": 925.1400829579798,
+      "scope": "One complete request from retained exact inputs, actual ReadySet, no refinement/checkpoint adoption/default activation. PDU whole-substituent survival remains open."
+    },
+    "artifacts": {
+      "anchor": "NASolve-live-tests",
+      "root": "327_Cedar_complete-bond-capture-policy-b1fuaz79",
+      "records": [
+        {
+          "path": "summary.json",
+          "sha256": "89d4738fbfc2abbd8f7623937778ce82e2663e7ffadbb2000595b865f15fa9c4",
+          "size": 2862
+        },
+        {
+          "path": "driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "size": 78
+        },
+        {
+          "path": "input-origin.json",
+          "sha256": "6254fa4bb08368a17be01791fb4e64644d568a51d8b42389b4e2d047540dd5da",
+          "size": 1522
+        },
+        {
+          "path": "native-summary.json",
+          "sha256": "bdff0313e0b234a903e5a67b521569571beda7e0725b1062aaa4a27ded68184a",
+          "size": 1676
+        },
+        {
+          "path": "retirement.json",
+          "sha256": "878c2edb7bfb3b49bb2e891e0680e27e36e4e3e59da504f49951138e58a0ed18",
+          "size": 323
+        },
+        {
+          "path": "cold-summary.json",
+          "sha256": "39e208dea03902fd47e4c698262c17c7beb77e89817462c7c581e2f11a365e32",
+          "size": 295
+        },
+        {
+          "path": "start.json",
+          "sha256": "a95a9f3864a1530db4884a634d411b71dce916e7d7c93699f088ee3ecfbc7829",
+          "size": 27524
+        }
+      ],
+      "included": "Code/tests/compact evidence/docs only",
+      "excluded": "Models, CIFs, reflections, full native inventories/logs, SDK source/local runners; failed work retained locally."
+    },
+    "compatibility": "V3 remains default; v1/v2/v3/absent readers preserve historical meaning. New explicit v4 requires supporting reader, no in-place migration. Limits stay 128 MiB/1024 files per group, 32 MiB members, shared physical expansion 128 MiB; logical working envelope gains one group.",
+    "limitations": [
+      "No automatic target selection or ordinary entry/default activation.",
+      "No corrected-CIF diffraction refinement or whole-substituent survival claim; Q06 remains open.",
+      "Repeated native-evidence replay cost warrants measurement before changing checks.",
+      "One successful control is not a 100-dataset capacity guarantee; failed work remains unpacked."
+    ],
+    "next": "Integrate frozen graph-selected target choices at ordinary preparation entry, preserving immutable request/run identity, then validate corrected-CIF refinement survival.",
+    "author": "Rowan"
   }
 }

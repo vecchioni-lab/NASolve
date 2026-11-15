@@ -16,7 +16,7 @@ from .campaign_records import _sync_directory, now, path_in, read_record, write_
 from . import cif_acquisition_attempt as acquisition
 from . import cif_component_runtime as frozen_tree
 from . import cif_repair_attempt as repair
-from .cif_prepared_repair_execution import _source_plane_support_snapshot
+from .cif_prepared_repair_execution import _source_plane_support_snapshot, _source_bond_target_choices, BOND_TARGET_POLICY
 from .cif_acquisition_preparation import _capture, _freeze, _terminal, prepare_acquired_dictionary_bundle, read_acquired_dictionary_bundle
 from .cif_acquisition_sources import read_acquisition_sources
 from .cif_component_runtime import _tree
@@ -46,8 +46,10 @@ PLANE_GENERATION_POLICY = 'cif-complete-owned-plane-generation-v1'
 LEGACY_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
 NESTED_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
 ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v3'
+CAPTURE_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v4'
 _REPAIR_PREFIX = 'repair/attempts/attempt-0001/'
 _RUNTIME_PREFIX = 'repair/attempts/attempt-0001/execution/runtime/'
+_CAPTURE_PREFIX = 'repair/attempts/attempt-0001/execution/native/'
 _COMPILER_INPUTS = {'literal_na_inputs':'literal_na', 'explicit_na_policy':'explicit_na'}
 _LIMITS = dict(native_timeout_seconds=600, component_timeout_seconds=3600,
                attribution_timeout_seconds=300, derivative_timeout_seconds=600,
@@ -159,7 +161,7 @@ def _construction_input(directory, model, sources, model_context):
 
 
 def _artifact_fields(policy):
-    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY}),
+    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}),
           'Unsupported complete-request artifact policy')
     return {} if policy is None else dict(artifact_policy=policy)
 
@@ -169,18 +171,23 @@ def _artifact_partitions(policy, with_continuation):
 
     V3 separates the one owned repair attempt from the enclosing preparation.
     Its published runtime remains separately bounded as in V1/V2. Old policies
-    retain their exact historical partition meanings.
+    retain their exact historical partition meanings. Explicit V4 additionally
+    bounds raw native captures separately from derived repair evidence. Each
+    logical partition and the shared physical archive keep their prior caps.
+    V3 remains the default; no failed historical request is reinterpreted.
     """
     _artifact_fields(policy)
     _need(type(with_continuation) is bool, 'Invalid continuation partition choice')
     if policy is None:
         return ()
     prefixes = (_RUNTIME_PREFIX,)
-    if policy == ARTIFACT_POLICY:
+    if policy in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
         prefixes += (_REPAIR_PREFIX,)
+    if policy == CAPTURE_ARTIFACT_POLICY:
+        prefixes += (_CAPTURE_PREFIX,)
     if with_continuation:
         prefixes += ('continuation/',)
-        if policy in {NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY}:
+        if policy in {NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
             prefixes += ('continuation/runtime/',)
     return tuple(sorted(prefixes, key=len, reverse=True))
 
@@ -190,7 +197,7 @@ def _artifact_options(config):
                 **_artifact_fields(config.get('artifact_policy')))
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None):
     _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
           'Require a boolean automatic plane choice separate from supplied support')
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
@@ -203,6 +210,14 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     selected = read_acquisition_sources(inputs/'sources'); codes = selected['report']['components']
     _need(1 <= len(codes) <= 16 and isinstance(controls['sites'],dict) and set(controls['sites']) == set(codes),
           'Require complete selected component coverage')
+    _need(bond_targets is None or (isinstance(bond_targets,dict)
+          and set(bond_targets)=={'policy_id','choices'} and bond_targets['policy_id']==BOND_TARGET_POLICY
+          and isinstance(bond_targets['choices'],dict) and bool(bond_targets['choices'])),
+          'Invalid frozen complete bond target configuration')
+    expected_bonds=_source_bond_target_choices(
+        {code:row['source'] for code,row in selected['sources'].items()},
+        None if bond_targets is None else bond_targets['choices'])
+    _need(_same(expected_bonds,bond_targets),'Frozen complete bond targets changed')
     names = controls['supplementary_phils']
     _need(isinstance(names,list) and names == [f'phils/{i:03}.phil' for i in range(len(names))], 'Invalid shared PHIL order')
     allowed = {'model.pdb', *names, *('sources/'+n for n in _tree(inputs/'sources'))}
@@ -291,6 +306,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         **compiler_refs, **construction_ref, **_artifact_fields(artifact_policy),
         **repair.compact_evidence_fields(compact_evidence),
         **({'plane_support':plane_support} if plane_support is not None else {}),
+        **({'bond_targets':bond_targets} if bond_targets is not None else {}),
         **({'plane_generation_policy':PLANE_GENERATION_POLICY} if automatic_plane_support else {}),
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
         **_continuation_fields(continuation_options,limits))))
@@ -302,7 +318,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c)
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c,bond_targets=c.get('bond_targets'))
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -310,7 +326,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -351,6 +367,9 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     and one fresh owned support generation per needed type per outer attempt.
     Children share the outer allowance; classified optional failure still needs
     independent qualification. Defaults and historical requests remain unchanged.
+    Optional bond_targets freezes explicit source-neighborhood atom pairs through
+    the existing prepared repair owner, continuation and retention. It does not
+    authorize chemical identity changes, target discovery or numerical acceptance.
     """
     _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
           'Require a boolean automatic plane choice separate from supplied support')
@@ -364,6 +383,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     files = {'model.pdb':originals[Path(model)]}; sites = {}; directories = set()
     support_config = _source_plane_support_snapshot(
         {code:row['source'] for code,row in selected['sources'].items()},plane_support)[0]
+    bond_config=_source_bond_target_choices(
+        {code:row['source'] for code,row in selected['sources'].items()},bond_targets)
     if support_config is not None:
         trees.update({'plane-support/'+code:_root(row['request_directory']) for code,row in plane_support.items()})
     compiler_refs = {}
@@ -410,11 +431,14 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     def unchanged():
         _need(all(_capture(p) == captured[name] for name,p in trees.items())
               and all(_read(p) == b for p,b in originals.items()), 'Complete request source changed while freezing')
+        _need(_source_bond_target_choices(
+            {code:row['source'] for code,row in selected['sources'].items()},bond_targets)==bond_config,
+            'Complete bond target choices changed while freezing')
     if restraint_context is not None:
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,bond_targets=bond_config,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -563,7 +587,7 @@ def _children(root, attempt, intent, config, closed=None):
     state = repair.inspect_prepared_repair_request(attempt/'repair')
     if state['state'] == 'RECORDED':
         support = _plane_outcomes(root,attempt,config)[1] if 'plane_generation_policy' in config else config.get('plane_support')
-        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1,qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False),plane_support=support)
+        expected = repair._configuration(_tree(attempt/'preparation/bundle'),_repair_limits(config),1,qualify_no_repair=config.get('qualify_no_repair',False),optional_failure_policy=config.get('optional_failure_policy'),compact_evidence=config.get('compact_evidence',False),plane_support=support,bond_targets=config.get('bond_targets'))
         _need(_same(state['request']['configuration'],expected) and len(state['attempts']) <= 1,
               'Prepared repair differs from enclosing input or limits')
         if state['attempts']:
@@ -888,7 +912,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
                 **({'qualify_no_repair':True} if config.get('qualify_no_repair',False) else {}),
                 **repair.failure_policy_fields(config.get('optional_failure_policy')),
                 **repair.compact_evidence_fields(config.get('compact_evidence',False)),
-                **({'plane_support':support_declarations} if support_declarations is not None else {}))
+                **({'plane_support':support_declarations} if support_declarations is not None else {}),
+                **({'bond_targets':config['bond_targets']['choices']} if 'bond_targets' in config else {}))
             continuation_fields = {}
             if 'continuation' in config:
                 qualified = child['execution']['status'] == 'QUALIFIED_DIAGNOSTIC_RUNTIME'

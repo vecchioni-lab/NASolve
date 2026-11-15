@@ -229,10 +229,33 @@ Calls omitting the option retain prior behavior; no old request is migrated.
 The actual PDU prepared control selects the 1.470 Å target with unchanged model,
 ordered PHIL and 0.020 Å ESD. Original/final full derivatives and plane/bond
 attribution pass. Moved request/runtime/ReadySet-parent reads pass SDK-free with
-originals blocked. This qualifies preparation and publication, not refinement
-survival, automatic discovery or ordinary complete-request delivery. Retained
-standalone evidence is diagnostic; reuse existing complete-request archive and
-retirement when propagating this option rather than adding a storage policy.
+originals blocked. This qualifies preparation and publication, not refinement survival or automatic
+discovery. C327 carries the explicit choice through the complete request, actual
+ReadySet and existing archive/retirement; retained standalone evidence stays diagnostic.
+
+### Complete target delivery and bounded native capture storage (C327)
+
+`initialize_dictionary_request(..., bond_targets=...)` freezes the same
+source-graph choices used by prepared execution. Every read rederives them from
+the frozen sources; child configuration must match exactly. Continuation and
+retirement keep their existing owners. Missing/changed choices cannot silently
+become a different request, and a retry always uses a fresh immutable attempt.
+
+The first full PDU control passed repair/ReadySet but could not seal because v3
+counted raw native captures and derived repair evidence in one 128 MiB group.
+An explicit `cif-complete-request-partitioned-artifacts-v4` additionally bounds
+`repair/attempts/attempt-0001/execution/native/` separately, with exact directory
+matching. **V3 remains the default.** V4 adds one bounded logical working group;
+per-group 128 MiB/1,024-file limits, 32 MiB members and the shared 128 MiB physical
+archive-expansion limit stay fixed. Readers never reinterpret old failed requests.
+Large or numerous repairs can still exceed these bounds and must remain preserved.
+
+A fresh PDU request under v4 completes real ReadySet, retains the corrected 1.470 Å
+target with unchanged 0.020 Å uncertainty and named heavy coordinates, and passes
+existing successful-working retirement followed by moved cold readback. The first
+failed request remains unchanged. These checks establish complete explicit engine
+delivery, not ordinary entry/default activation or refinement survival. Exact
+commands, source pins, retained sizes and native stopping evidence are in the ledger.
 
 ### Replayable bond-target evidence (C322)
 
@@ -253,7 +276,8 @@ embedding an additional copy of each complete inventory inside job specification
 
 C323/C324 add selected-library reference authority and ordered repair-chain
 composition. C326 supplies explicit prepared execution and its complete derivative
-proof; complete-request delivery and chemical survival remain separate. No
+proof; C327 adds complete-request/ReadySet delivery. Ordinary entry/defaults and
+chemical survival remain separate. No
 automatic target adoption follows from this proof.
 
 ### Native energy of corrected bond targets (C321)

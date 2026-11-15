@@ -95,6 +95,14 @@ reference check records which numerical library Phenix actually opened and wheth
 its exact entries support the proposed correction. Explicit corrections can then
 join the existing source, derivative and verified-fallback checks. This still does
 not automatically choose a correction or establish that it survives refinement.
+The explicit engine route now carries a chosen correction through the whole
+preparation request and actual ReadySet, with the PDU target and named heavy-atom
+coordinates preserved. Successful working files can be archived by the existing
+retention procedure and the result reopened after moving it. An initial control
+also exposed excessive combined working evidence; a new explicit accounting
+policy separates native captures from their analysis while retaining the shared
+archive-expansion limit. The failed first request stays preserved. Ordinary entry,
+automatic choice and actual corrected-CIF refinement remain the next boundaries.
 Matched refinement trials now show that changing only the terminal bond target
 brings both PDU and 5PC to sensible lengths near 1.48 Å, while retaining the
 original restraint strengths, observations and Free-R flags. The previous selected

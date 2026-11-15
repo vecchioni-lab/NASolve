@@ -1,60 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C326 explicit prepared target execution validated — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Published **cad829a6 (C325)**; C323/C324 are **f9d90319**. Working C326
-extends the existing prepared execution/request/process owners.
+Updated **2026-11-15, C327 complete-request target delivery validated — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Current delivery **C327**; preceding commit **818edda7 (C326)**, C325
+**cad829a6**, C323/C324 **f9d90319**. This handoff is included in C327.
 Focused checks only; no Rowan full suite, branch, default activation or merge.
 Linden owns Pine/Willow and does not edit Cedar.
 
 ## Current work and interruption recovery
 
 **Window: 16:25–23:00 London**, extended by Simon at the evening check-in.
-All Rowan driver/native/cold owners through C326 are stopped, with unchanged source
+All Rowan driver/native/cold owners through C327 are stopped, with unchanged source
 pins. Native window released to Linden; coordinate before another expensive job.
 
-**C323 complete:** `323_Cedar_selected-energy-library-lznnh6qv` under the local
-`NASolve-live-tests` anchor. One actual Phenix resolver lookup authenticates the
-105,989-byte energy library and exact parsed tables. Both existing PDU/5PC bond
-proofs bind to that same complete consumer. Code and evidence relocation pass with
-original inputs/SDK blocked; 182 files remain unchanged. New library evidence is
-114,807 bytes; complete validation root 161,322 bytes. Whole driver: 7.03 s.
-Phenix **2.2.1-6174 / dispatcher 2.2.1, Darwin arm64**; complete read-only lookup,
-not optimization/refinement. The 25 dedicated contracts and affected reference/
-configuration selection pass **108 tests (3.86 s)**. The initial 21 contracts and
-later two binding negatives failed before implementation. No repeat is needed.
+**Completed foundations:** C323 authenticates the selected native numerical
+library and binds the PDU/5PC references to it. C324 composes those changes through
+the existing ordered source/native/derivative selector; omitted-option v1 evidence
+stays byte-identical. Native-library and real chain cold replay after relocation
+pass with originals/SDK blocked. C325 ships the exact public canonical replay
+frame as dedicated package data: both C62/C63 default replay routes pass from a
+moved installed wheel, while altered bytes refuse and explicit runtime inputs
+retain precedence. No ordinary MR catalogue or default repair activation.
 
-**C324 complete:** `324_Cedar_bound-repair-chain-jat790k2`. Optional explicit bond
-stages follow existing torsion/plane stages and share one library record. Exact
-context, ordered dictionary transitions, source ownership, native identities,
-derivatives and verified fallback remain with their existing owners. Historical
-calls retain byte-identical v1 output; bond chains use v2. Existing public runtime
-and ReadySet-parent relocation/fallback contracts pass. **155 focused tests pass
-(11.76 s)**; earlier combined library/chain selection passes 81 (10.49 s). Twenty
-initial contracts fail before implementation. A separate published-C322 comparison
-keeps all 28 synthetic v1 files byte-identical (1 test, 1.11 s).
-
-Both real PDU/5PC bond-only chains now replay after moving code and evidence, with
-originals/SDK blocked. No new native job or full derivative calculation. All 182
-original files remain unchanged; 190 temporary proof files stay unchanged during
-readback. Successful 61,068,731-byte duplicate proofs are removed; only 84,198 bytes
-of compact validation/reproduction records remain. Driver: 10.82 s. This does not
-qualify ordinary executor/request delivery, automatic choice or chemical survival.
-
-**C325 complete:** `325_Cedar_packaged-replay-33qnyo7v`. Linden's installed check
-exposed a genuine historical replay dependency on an unshipped checkout frame.
-Read C62/C63/C64 history and the explicit runtime-source contract before fixing it.
-The exact already-public scaffold now ships under `data/replay/`; explicit captured
-runtime bytes and all canonical hash/size checks remain unchanged. This does not
-activate a partial ordinary MR catalogue. Two regressions fail before the fix;
-**52 focused tests pass (6.77 s)** afterward.
-
-A fresh wheel builds with existing setuptools 84.2.1/wheel 0.48.0, installs into
-its own target, moves and replays both routes after the temporary source checkout
-is removed. Original source/SDK access and child execution are blocked. Both altered
-resource controls refuse; both explicit-runtime precedence controls pass. All 273
-installed/evidence files stay unchanged during normal reads. Successful temporary
-build/install/fixture copies are removed; whole driver 5.23 s, no native scientific
-job. All exact commands and compact references are in the existing evidence ledger.
+Exact commands, versions, hashes, negative controls, size measurements and removed
+successful temporary duplicates are retained in the ledger entries listed below.
+Do not repeat these controls solely because the working context was compacted.
 
 **C326 complete:** explicit source-graph bond selections reach the existing prepared
 executor/request/process owners. One selected-library lookup precedes target-only
@@ -82,10 +51,48 @@ SDK and child execution blocked: all **653 files unchanged**, 36.14 s. Runtime i
 complete request owner's existing archive/retirement route is the next integration;
 do not create a second storage owner or discard this standalone evidence ad hoc.
 
-**Current next step (C327):** propagate explicit bond choices through the existing
-complete request and continuation/retention contracts, then qualify corrected-CIF
-ReadySet/refinement delivery. No new attempts or process/recovery framework.
-Whole-substituent survival remains required: PDU still bends and Q06 stays open.
+**C327 complete:** complete requests freeze/revalidate the same explicit bond
+choice, bind the prepared child and retain it through ReadySet, archiving and
+moved cold replay. No new executor/recovery/retention owner. The 17 new controls
+fail before (3.79 s), then pass (32.83 s); **220 affected focused checks pass
+(520.00 s)**. Boundary follow-up: 74 pass with one case-insensitive-filesystem
+fixture error, then its four corrected path controls pass (10.49 s). No full suite.
+
+The first control, `327_Cedar_complete-bond-readyset-v0v9evls`, completed repair
+and ReadySet but exceeded v3's 128 MiB repair working allowance: 52.95 MB raw
+native captures plus 122.68 MB other repair evidence. All failed work is preserved;
+no successful outer seal or retirement. C302's versioned owner/storage history
+was checked before the fix. Explicit **v4** bounds the existing `execution/native/`
+subtree separately. V3 remains default; all old meanings stay fixed. The logical
+working envelope gains one 128 MiB group, while each group/file and the shared
+128 MiB archive expansion limit remain unchanged. Read-only old/new comparison
+preserves 766 files and does not recover the failed request retroactively.
+
+Fresh `327_Cedar_complete-bond-capture-policy-b1fuaz79` changes only that frozen
+policy relative to the first control's configuration. **Phenix 2.2.1-6174 /
+dispatcher 2.2.1, Darwin arm64**, complete repair and actual ReadySet execution,
+925.14 s total. Selected `readyset_checked_model` retains the
+**1.470 Å / 0.020 Å ESD** target, named heavy-atom coordinates and ordered PHIL.
+PDB bytes may differ through checked serialization; final output has its own hash.
+Original/final prepared derivatives and ReadySet native comparisons pass. All owners
+stop, source pins and all 853 earlier failed-request files remain unchanged.
+
+Existing successful-working retirement reduces the **whole new request** from
+234,017,802 to **40,735,983 bytes**. Moved code/request cold read preserves all
+141 retained files with original inputs/SDK/store blocked, in
+87.15 s. Temporary relocated code is removed. No model/CIF/MTZ/log
+uploads or default activation. Sampled root peak is recorded in the ledger and
+excludes transient scratch/RSS; this is not a 100-dataset capacity test. The earlier
+failed request stays unpacked. Native window is released to Linden.
+
+**Next:** connect the explicit graph-selected target choice at ordinary preparation
+entry, preserving frozen request identity (new intent needs a fresh request/run),
+then test actual corrected-CIF refinement survival. Automatic target discovery and
+release defaults remain separate. Do not fabricate a checkpoint to bypass existing
+request lineage or change the original C303 selection. PDU still bends in earlier
+trials; Q06 stays open. Record/profile the repeated evidence-read cost before any
+optimization; keep exact file/owner checks and reuse only existing bounded pure
+numerical replay mechanisms. No automatic global cache or weakened checks.
 
 Linden's fixed C322/Willow full installed check remains **4 failed, 11,109 passed
 +284 subtests (2671.02 s)**, not a pass. His W84 focused installed composition of
@@ -153,7 +160,8 @@ commands, hashes, anchor-relative evidence and limitations. New entries:
 `selected_native_energy_library_2026_11_15` and
 `reference_bound_ordered_bond_chain_2026_11_15`, plus
 `installed_historical_construction_resource_2026_11_15` and
-`prepared_reference_bond_execution_2026_11_15`. The packaged public PDB
+`prepared_reference_bond_execution_2026_11_15` and
+`complete_reference_target_delivery_2026_11_15`. The packaged public PDB
 retains its original fixed-column padding and exact hash. C325 whitespace checking
 excludes only that byte-pinned PDB (`git diff HEAD^ HEAD --check -- .
 ':(exclude)src/nasolve/data/replay/5W6W_noPO4.pdb'`); all code/docs pass. Reuse the earlier C307–C322 entries

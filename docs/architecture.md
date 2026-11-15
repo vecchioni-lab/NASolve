@@ -86,7 +86,12 @@ recorded inventory change. C322 shares the plane lifecycle for durable bond
 attribution. C323 captures the selected native library once; C324 composes explicit
 bond stages through the existing ordered chain and whole-bundle selector, retaining
 historical v1 chains and using v2 only for new bond stages. Neither adapter adds a
-process owner, changes defaults or grants chemical-survival approval.
+process owner, changes defaults or grants chemical-survival approval. C326/C327
+forward explicit graph-selected bond choices through the existing prepared and
+complete request owners, including ReadySet continuation and archive/retirement.
+The explicit v4 artifact policy adds one bounded native-capture group to v3;
+per-group/member and shared physical archive limits remain fixed. V3 stays default,
+and failed historical requests are not reinterpreted or resealed.
 
 ## Runtime precedence
 
