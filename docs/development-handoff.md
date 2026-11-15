@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W89 recorded; W90 in progress.** Latest audited runtime is W88 `109ee1f8` on isolated
+**W90 recorded; W91 in progress.** Latest audited runtime is W90 `5965d858` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -350,11 +350,20 @@ replay W87. Stable local Hessians imply only8.05e-9/2.70e-8 Angstrom further
 motion and score changes near roundoff; actual samples quantize. This supports a
 resolution explanation, not convergence or atomic/scientific acceptance.
 
-**Next W90:** add an explicit diagnostic start to the existing atomic trial,
-keeping original source/tether, displacement bounds and stopping policy. Failed
-coarse provenance remains FAILED; atomic cleanup receives an experimental start
-and its own qualification, compared against a cold control. Nonuniform curvature,
-matched refinement and density-aware S06 remain open.
+**W90 atomic interface:** optional `initial_displacements` starts the existing
+trial from a frozen diagnostic vector in its original mask/source/tether frame;
+only explicit starts add initialization metadata. No seed is an accepted step,
+and original stopping/error/audit policy remains. Remaining-budget preflight
+accounts for earlier calls. Fourteen fail-before /75 focused /1,835 full+229
+subtests /745 installed tests pass, with helps/lean imports/syntax/saved replay.
+
+**W91 running:** matched cold and W87 paired-point-seeded atomic trials use the
+same full14 recipe, .5 Angstrom bound, .1 Angstrom tether,500 iterations/2,000
+optimizer calls and10,000 total budget; isolated serial native owners have1,200s
+timeouts. The parent remains FAILED, and each atomic trial gets independent
+initial/full/rounded derivative and stopping records. No candidate or refinement.
+Compare common-recipe endpoint geometry/packing before claiming benefit.
+Nonuniform curvature, matched diffraction and density-aware S06 remain open.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive
