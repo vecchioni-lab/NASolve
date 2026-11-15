@@ -901,7 +901,7 @@ coordinate scope; nontrivial lattice translations, ambiguity and unresolved
 molecular/global identity remain explicit. Periodic fitting consumes this scoped
 precondition without selecting a connection or creating chemical bonds.
 
-TopoStitch currently has four additive entry points, outside the campaign/PostMR
+TopoStitch currently has five additive entry points, outside the campaign/PostMR
 CLI. `nasolve-topostitch-inspect` composes verified coordinate/periodic
 observations, NARestraints contacts, factorized pairing alternatives, existing
 Pine registration mapping and declared-topology end/window proposals. It writes
@@ -914,8 +914,16 @@ single-window least-squares search, with explicit pairing/image, scales, bounds
 and total residual-call budget. Continuous optimization is followed by the same
 serialized preview audit. It writes no models and has no density/R-factor target.
 
-`nasolve-topostitch-view` verifies/replays those frozen previews and writes one
-new standalone HTML comparison, optionally with an explicitly chosen exact mate.
+`nasolve-topostitch-cut-preview` freezes explicit representative-image or chosen-
+forest proposals through the existing graph owner. Schema-2 requests can resolve
+explicitly declared representation-boundary partners; chemical/unknown boundaries,
+competing partners and do-not-connect sites refuse. This writes a review packet,
+not a replacement ASU or native restraint.
+
+`nasolve-topostitch-view` verifies/replays frozen bend and representative previews
+and writes one standalone HTML view. Representative comparisons share one camera,
+expose optional source-native links/backbone intent, and save/reopen preferences
+bound to the exact ordered comparison. Bend views can show an explicit exact mate.
 Its schema-1 display scene has no scientific authority; it owns no checkpoint,
 model editing, refinement or approval. The canvas/scene adapter is a read-only
 component for later Pine/Campaign desk integration, not a second state store.

@@ -21,6 +21,8 @@ entries are reconstructed from repository history.
 
 - Verify the automatically combined statistics parser and Cedar refinement lifecycle
   in an installed virtual-tree package; retain seven unresolved documentation conflicts.
+- Refresh the existing human overview and architecture to describe all five current
+  commands and distinguish implemented inspection from unqualified repair.
 - No branch merge, runtime change, native execution or full combined-suite claim.
 
 ### W68 — Identify seam-angle persistence limits

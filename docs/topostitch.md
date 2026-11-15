@@ -1,21 +1,43 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Status: **BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED**, 2026-11-13. Branch:
-`willow`, based on Pine `d7913dd`. The full design below remains future work.
-The [first backend slice](topostitch-backend.md) screens explicitly supplied
-canonical DNA overhangs; the [coordinate adapter](topostitch-coordinates.md)
-verifies PDB bytes and derives sequences/descriptive end frames from explicit
-site assignments. The [periodic inspector](topostitch-periodic.md) now searches explicit end
-images and prints review-only reports; optional contact inspection measures
-canonical recipe distances/angles in those images. Logical end mapping and
-bounded discovery within declared strand/core-pair topology are available through
-the inspector. An [explicit bend preview](topostitch-preview.md) now writes a new
-checksum-bound candidate with fixed anchors and ANISOU preservation. Automatic
-partner/window selection, atomistic closure, reconstruction and refinement remain
-future work. A bounded single-window fitting command now proposes a terminal
-motion against an explicitly chosen canonical pairing; convergence is not
-scientific acceptance. [Machine-readable intent](topostitch-intent.json)
-is development metadata, not runtime authorization.
+Current scope, **2026-11-15**: explicit placement proposals and source-bound
+ASU-cut inspection are implemented on `willow`. Automatic sticky-end repair,
+new-ASU materialization and campaign integration remain future work. The
+[audited roadmap](topostitch-roadmap.md) owns milestones and evidence; the full
+design below is not a claim that those later operations are available.
+
+TopoStitch helps a crystallographer separate two problems: whether DNA needs to
+move to make an intended contact, and whether an already connected periodic object
+would be clearer in a different asymmetric-unit representation. Present tools use
+explicit model/construct assignments and chosen connections. They keep the original
+model and report missing information, competing choices and unsupported chemistry.
+
+| Installed command | Present behavior |
+| --- | --- |
+| `nasolve-topostitch-inspect` | Describe verified ends, periodic images, canonical contacts and declared-topology windows; print a review report. |
+| `nasolve-topostitch-fit` | Propose bounded motion for one explicitly chosen canonical pairing; convergence does not establish a successful repair. |
+| `nasolve-topostitch-preview` | Write a separate bend-preview candidate with fixed anchors, transformed ANISOU and serialized-backbone checks. |
+| `nasolve-topostitch-cut-preview` | Freeze an explicit symmetry-image or chosen-forest proposal with unchanged source coordinates; write no replacement ASU. |
+| `nasolve-topostitch-view` | Inspect replayed proposals in an offline HTML view, compare explicit cuts and save a source-bound preference. |
+
+A declared backbone continuation can now retain its directed partner and exact
+symmetry image across proposed cuts. Both endpoint boundaries must already be
+marked as representation boundaries; a chemical nick, unknown boundary or
+explicit do-not-connect choice is not overridden. Missing coordinates stay
+visible. P/OP1/OP2 intent, geometric partner resolution and native enforcement
+remain separate: a resolved connection does not activate a symmetry bond or
+qualify its surrounding angles.
+
+The [coordinate adapter](topostitch-coordinates.md), [periodic usage guide](topostitch-periodic.md)
+and [bend-preview guide](topostitch-preview.md) describe inputs, optional dependencies,
+commands and limits. Software, installed-package and viewer-logic checks exist;
+actual browser/download/human cut review remains open. Native scientific gates
+also remain open: the tested angle kernel can handle images, but the ordinary
+manager evaluation and proxy-persistence paths are not a qualified seam route.
+Saved preferences do not select a checkpoint or constitute scientific approval.
+
+[Machine-readable intent](topostitch-intent.json) is development metadata, not
+runtime authorization. Existing NASolve `full-auto` does not enable this work.
 
 ## Purpose and ownership
 
