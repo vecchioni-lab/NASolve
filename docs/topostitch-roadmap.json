@@ -217,27 +217,29 @@
         "Three predeclared tighter-backbone public controls retain exact native definitions/proxies and avoid the original added angle outlier while improving the pair target less; no successful closure claimed.",
         "Schema-2 fit/preview adds nonbridging phosphate angles and circular epsilon/zeta/alpha changes; schema-1 replay preserved. Native public 8D93 comparison adds no new severe captured scalar outliers under the explicit development policy.",
         "W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance.",
-        "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled."
+        "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled.",
+        "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation."
       ],
-      "next_action": "Run the predeclared W87 matched paired/core-only coarse placement diagnostics, preserving current displacement, failure and endpoint-review policies. Existing Cartesian optimizer assumptions must not be reused for six variables. Coordinate complete live policy with Cedar before a supported repair route; require individual chemistry/packing and matched diffraction before acceptance.",
+      "next_action": "Bind reusable motion to exact saved preview/source/registration inputs (W88). Separately qualify physical-search stopping/local cleanup, individual chemistry and packing, nonuniform curvature and matched diffraction; do not relax W87 failures into convergence. Coordinate native live policy with Cedar.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
         "E_EXTENDED_BACKBONE",
         "E_COARSE_NATIVE_DERIVATIVES",
-        "E_BOUNDED_NATIVE_MOTION"
+        "E_BOUNDED_NATIVE_MOTION",
+        "E_MATCHED_COARSE_TRIALS"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782",
         "reviewer": "Linden",
-        "human_update": 86,
-        "scope": "Installed motion/chain-rule component with five native small controls; physical repair and complete native policy remain unqualified"
+        "human_update": 87,
+        "scope": "Complete matched failed-trial diagnostic only; physical repair, stopping and live policy remain open"
       }
     },
     {
@@ -275,7 +277,8 @@
         "W54 separately audits only callback-confirmed last accepted points after optimizer errors. Both native W51 trajectories/errors reproduce exactly; full/rounded612-variable diagnostics pass and original FAILED/no-adoption status remains. Source drift, absent accepted steps, budget shortage and partial diagnostic failure remain explicit.",
         "W61 reuses existing read-only native endpoint observation for both W54 failed accepted points under a common complete recipe. Source/full/rounded cases reproduce; scalar and selected/core-pair improvements coexist with individual packing/torsion/plane regressions. Both original optimizer failures persist; no candidate, new threshold or acceptance.",
         "W85 local diagnostic pulls existing native/pair/tether gradients through the existing six-parameter tapered motion; finite differences and forced-rebuilt contact energy agree at five declared small controls. No optimizer, candidate or physical acceptance.",
-        "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled."
+        "W86 exposes immutable bounded TaperedMotion and an optional six-parameter view of the existing native objective; independent regressions, full/install checks and complete native derivative/cache replay pass. No optimizer, writer or scientific acceptance is enabled.",
+        "W87 matched installed six-variable trials both fail rounding; exact accepted-point derivative audits and common full-recipe observations are retained without promotion. Coarse pair preservation and modest aggregate improvements do not establish chemical or diffraction acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -307,14 +310,15 @@
         "E_FAILED_ENDPOINT_DIAGNOSTIC",
         "E_FAILED_ENDPOINT_CHEMISTRY",
         "E_COARSE_NATIVE_DERIVATIVES",
-        "E_BOUNDED_NATIVE_MOTION"
+        "E_BOUNDED_NATIVE_MOTION",
+        "E_MATCHED_COARSE_TRIALS"
       ],
       "last_audit": {
         "date": "2026-11-15",
         "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782",
         "reviewer": "Linden",
-        "human_update": 86,
-        "scope": "Installed motion/chain-rule component with five native small controls; physical repair and complete native policy remain unqualified"
+        "human_update": 87,
+        "scope": "Complete matched failed-trial diagnostic only; physical repair, stopping and live policy remain open"
       }
     },
     {
@@ -1162,6 +1166,14 @@
       "reference": "docs/topostitch-periodic.md#w86--expose-bounded-tapered-motion-through-the-existing-native-objective",
       "result": "Immutable TaperedMotion reuses preview rotation and exact CoordinateMask bounds/order; NativeMaskedObjective.evaluate_motion preserves native/pair/tether target and Cartesian gradient, adding six physical-unit derivatives.21 fail-before controls; focused156; full1802+229; installed/relocated712; six helps, lean imports, Python3.10 syntax and exact saved replay. Complete Phenix2.2.1-6174 installed replay: five controls,270 calls, two derivative steps and forced contact rebuilds pass; W85 targets/gradients reproduce within9.1e-13/5.8e-13.",
       "limitation": "No optimizer/CLI/packet schema/model writer/tensor/scattering changes or physical acceptance. Caller owns weight/pivot provenance; current 3N optimizer protocol is unchanged. Full live nonbonded/exclusion policy remains Cedar-owned. Sandbox process-list failures and a host reviewer import correction are retained; no native rerun, actual branch merge or full combined-suite claim."
+    },
+    "E_MATCHED_COARSE_TRIALS": {
+      "kind": "complete_native_matched_coarse_failure_observations",
+      "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782",
+      "human_update": 87,
+      "reference": "docs/topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures",
+      "result": "Phenix2.2.1-6174 paired/core-only trials both FAILED rounding after11/10 accepted steps; exact callback replay and full/rounded Cartesian derivative checks pass. Common14-recipe observers complete: selected-pair target -7.122/-5.318, nonbonded1077.722\u21921055.746/1059.585, retained pairs invariant, motions .0538/.0444 Angstrom. Individual packing/AT component regressions retained with severity, not count-based rejection.",
+      "limitation": "No success endpoint, candidate, refinement, scientific acceptance, runtime/schema changes or new full-suite run. Host/native arithmetic mismatch preserved and resolved through exact same-interpreter replay; full live policy remains CedarQ06. Geometry-only observations do not close S04/S05."
     }
   },
   "benchmarks": [
@@ -1277,8 +1289,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 87,
-    "next": 88,
+    "current": 88,
+    "next": 89,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -1608,6 +1620,12 @@
       {
         "number": 87,
         "title": "Compare bounded paired and retained-core coarse placements",
+        "state": "RECORDED",
+        "code_commit": "82ac2b3f695fe81bdb09b4347d2f6e6b0adfd782"
+      },
+      {
+        "number": 88,
+        "title": "Bind reusable motion to verified saved bend previews",
         "state": "IN_PROGRESS",
         "code_commit": null
       }

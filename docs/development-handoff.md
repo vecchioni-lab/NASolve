@@ -138,7 +138,7 @@ ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
 
 ## Separate Willow work — 2026-11-15
 
-**W86 recorded; W87 in progress.** Latest audited runtime is W86 `82ac2b3f` on isolated
+**W87 recorded; W88 is next.** Latest audited runtime is W86 `82ac2b3f` on isolated
 `willow`. The [audited roadmap](topostitch-roadmap.md) is generated from the one
 JSON status queue; the [intent record](topostitch-intent.json) lists owners without
 granting authority. Exact commands, native evidence and historical limits live in
@@ -326,15 +326,24 @@ Installed Phenix 2.2.1-6174 replay passes all five controls and 270 calls, inclu
 forced neighbor rebuilds and W85 reproduction within roundoff. The host reviewer
 needed explicit pinned C325 owners; its failed default import is retained.
 
-**W87 physical-stitch experiment:** paired/core-only six-variable trials are
-predeclared and running serially with 100 iterations/500 optimizer calls, the
-existing 0.5 Angstrom bound and complete Cartesian endpoint derivatives. The
-existing failed-last-accepted diagnostic remains separate from a successful
-endpoint; no failure or cap is promoted. The existing Cartesian optimizer
-assumes 3N variables and cannot consume six parameters unchanged. Preserve anchors,
-individual packing and stopping failures; the full live policy guard remains
-Cedar Q06. A fixed taper is initialization, not measured curvature. Density-aware
-placement stays in S06 after exact map/model/data binding and matched refinement.
+**W87 physical-stitch experiment:** both matched six-variable trials failed with
+native line-search rounding errors (11/10 accepted steps); their callback-confirmed
+points replay exactly and pass full/rounded Cartesian derivatives. Common full
+recipe observations show selected-pair changes -7.122/-5.318 and nonbonded
+1077.722→1055.746/1059.585, with maximum motion 0.0538/0.0444 Angstrom. Individual
+packing and some AT terms worsen slightly; counts are descriptive, not acceptance
+thresholds. Retained pairs are invariant under the pairwise rigid parameterization.
+No successful endpoint, candidate, refinement or scientific acceptance. The
+host/interpreter exact-arithmetic mismatch was resolved by replay in the original
+native interpreter and consuming its verified recorded displacements; original
+failures remain local. See the [W87 audit](topostitch-periodic.md#w87--compare-matched-six-variable-placements-without-promoting-failures).
+
+**Next W88:** compile motion from a pinned saved bend preview, reusing its source,
+registration, pair weights and pivot. Caller-constructed arrays are currently the
+provenance gap. Keep exact model binding and bounds; no new optimizer, packet,
+writer or Cedar policy. Physical-search/stopping, local cleanup, nonuniform
+curvature and matched refinement remain distinct open gates. Density stays in
+S06 after exact map/model/data binding. Do not relax errors to obtain a pass.
 
 **Next Pine integration candidate (agreed with Cedar):** for pure representative
 recuts, keep the whole native process in one computational/source frame and derive

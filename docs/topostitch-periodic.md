@@ -3149,3 +3149,94 @@ partial; Cedar owns the full live source-policy guard.
 
 W85's verified local forensic archive contains 58 files, SHA256
 `59b91b792ae52bb8586b1d33ea64e4a5f08b6d3011ceefda89f4daa7c8bfc80a`.
+
+
+## W87 — Compare matched six-variable placements without promoting failures
+
+The installed W86 motion API now has a complete matched native diagnostic,
+using **Phenix 2.2.1-6174**, the same W38 model/mask and authenticated W39
+reconstruction, and the exact W45 retained-core recipe. The paired control keeps
+all 14 pairs; the control keeps the identical 12 core pairs. Both use the same
+204 movable atoms, six motion variables, fixed residue-pair taper and pivot,
+0.5 Angstrom displacement bound and 0.1 Angstrom tether sigma. Dimensionless
+optimizer variables correspond to one degree or 0.1 Angstrom. The predeclared
+limits are 100 iterations, 500 optimizer calls and 900 seconds per process;
+rounding errors are not ignored. This is a complete native execution, **not a
+refinement or an experimental-data comparison**.
+
+Both trials **FAILED** with the native LBFGS line-search rounding error. The
+paired trial accepted 11 steps (33 attempted evaluations); core-only accepted
+10 (32). Their callback-confirmed last accepted points replay exactly and pass
+the existing full-precision and PDB-rounded 612-component Cartesian derivative
+audits. Total objective calls, including audits, were 7,409 and 7,408. Neither
+trial emitted a successful endpoint or candidate PDB. Small six-variable gradient
+norms (2.31e-5 / 6.22e-5) do not establish atomic relaxation: their Cartesian
+projected norms remain about 6,660. The error cause is not established by its
+message; no tolerance change or restart was used to manufacture convergence.
+
+The existing endpoint observer independently compared both saved diagnostic
+points under the **same full 14-pair recipe**, with full-precision and rounded
+packing, pair attribution, backbone, torsion and plane observations:
+
+| Full-precision observation | Paired | Core-only |
+| --- | ---: | ---: |
+| Maximum atom motion (Angstrom) | 0.053775 | 0.044405 |
+| Selected-pair target change | -7.121786 | -5.317748 |
+| Retained-core pair target change | roundoff only | roundoff only |
+| Native nonbonded target, from 1077.721614 | 1055.746200 | 1059.585469 |
+| Largest increase in an existing directed overlap (Angstrom) | 0.036717 | 0.028682 |
+| Largest newly positive existing overlap (Angstrom) | 0.011284 | 0.009778 |
+| Native dihedral target change | +0.222094 | +0.181314 |
+
+The retained-pair invariance is expected: each complete pair moves rigidly with
+one weight. Thus those terms cannot supply new internal pair relaxation in this
+parameterization. Both intended pair totals improve, but some individual AT
+bond/parallelity/planarity components worsen. Packing counts (74/77 worsening
+directed overlaps and two newly positive existing rows) are descriptive;
+reciprocal/directed rows are not independent physical clashes, and a positive
+change is not a calibrated rejection threshold. The worst increased overlap is
+0.110135→0.146852 / 0.138817 Angstrom. Native plane targets remain invariant to
+roundoff. Rounded observations remain separately retained. A better aggregate
+score is not chemical acceptance or evidence that the physical gap is closed.
+
+The initial host-side motion reconstruction asserted exact coordinates and
+stopped before native observation: host versus Phenix Python arithmetic differed
+by at most 7.11e-15 Angstrom. A separate replay in the original Phenix interpreter
+reproduced both motion/displacement records exactly; the host then consumed those
+hash-bound saved displacements through the unchanged mask. The original script,
+failure note and corrected observer are retained. An initial replay invocation
+also lacked the installed NASolve import path; explicit installed-path binding
+resolved that before execution. No numerical tolerance or native trial changed.
+
+Local evidence is under the declared W87 stage, with per-control `execution.json`
+freezing actual worker inputs; generators/preflight hashes preceded a final
+worker preparation edit and are not a substitute for those execution receipts.
+Expanded commands are retained in the local audit. The operations were:
+
+```text
+<host-python with W86 installed package> <control>/run-owned.py
+<Phenix 2.2.1-6174 python> verify-motion-native.py <control>
+<host-python with W86 installed package> observe-recorded.py <control>
+python3 summarize.py
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/audit_topostitch_roadmap.py --check
+```
+
+The two endpoint observers completed with `ENDPOINT_OBSERVATIONS_REVIEW`; they
+neither rerun derivative qualification nor reinterpret a rounded model as a fresh
+refinement. The original trial derivative receipts provide that separate audit.
+W87 changes documentation/evidence only, with no runtime, schema or migration
+change and no repeated full suite. W86's 1,802-test full source check and installed
+712-test check remain the latest software validation. All scientific payloads,
+including failures, remain local and unselected; no automatic adoption, Rfree
+claim, full live-policy qualification or supported repair route is introduced.
+
+**Next gate:** bind the reusable motion to verified source/registration/preview
+inputs before exposing it to workflow callers. Keep the physical-search question
+open: coarse initialization needs a justified stopping/cleanup route, individual
+chemistry/packing review, nonuniform curvature and matched diffraction evidence.
+Cedar owns full live policy (Q06); density enters S06 after exact map/model/data
+binding. Do not loosen failed trial policy while wiring the general interface.
+
+W86's verified local forensic archive contains 544 files, SHA256
+`392eb4fc602860fbe6a10694ffca5d6144e788dc1eda94bd62ff4eb18ab13e6d`.
+These archives are forensic records, not autonomous portable campaign runs.

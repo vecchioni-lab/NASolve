@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W87 — Preserve matched coarse-placement failures and endpoint evidence
+
+- Record paired/core-only native trials and exact failed-last-accepted diagnostics
+  under a common recipe, separating aggregate improvement from individual packing.
+- Keep both line-search failures, original interpreter/import checks and scientific
+  limits. Documentation only; no runtime, schema, migration or default changes.
+
 ### W86 — Add a bounded numerical motion view of the native objective
 
 - Reuse the existing preview rotation kernel for an immutable, mask-bound
