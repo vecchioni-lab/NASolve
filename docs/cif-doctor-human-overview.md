@@ -91,6 +91,22 @@ rules. It can prepare a separate candidate changing only selected bond lengths,
 while preserving all other parameters. The comparison does not authenticate a
 supplied reference or set an acceptance threshold: independent parameter quality,
 native survival and ordinary automatic adoption remain separate work.
+Matched refinement trials now show that changing only the terminal bond target
+brings both PDU and 5PC to sensible lengths near 1.48 Å, while retaining the
+original restraint strengths, observations and Free-R flags. The previous selected
+models remain selected. 5PC stays within the existing triple-geometry screen;
+PDU still bends. Its final geometry forces favor straightening, with no opposing
+contact or plane force in the two tested opening motions. Reconstructing the final
+diffraction calculation exposed another concrete issue: this native group-ADP
+route updates the B factors used for scattering but can export their older values
+in the model. A temporary use of Phenix’s own synchronization method makes PDB
+and mmCIF agree with its actual refined state, without moving atoms or changing
+restraints. That remedy still needs qualified integration into normal execution;
+historical models remain untouched. With the final scattering state reconstructed,
+data favors straightening one angle and opposes the other. This does not justify
+arbitrarily stronger restraints or establish the optimizer’s historical path.
+These are controlled diagnostic corrections, not yet automatic repaired-CIF
+delivery, and the test scaffold is not diffraction data from those modified crystals.
 The [scientific work map](cif-doctor-completion-queue.md#pipeline-position) owns that
 order; the [short handoff](development-handoff.md) records the current evidence.
 

@@ -145,14 +145,57 @@ parsed field. Native interpretation of both MMFF candidates changes exactly one
 bond target, with all other proxies and coordinates unchanged. This is not an
 automatic repair, parameter calibration or refinement-survival result.
 
-**Next bounded diagnosis (Q06/Q08):** qualify the separately preserved library
-candidates in native context and matched refinement before deciding the scope of
-ordinary integration. Keep the complete neighborhood visible, including unresolved
-reference rows, and reuse dictionary repair/selection/native owners. Preserve
-historical triple-screen meaning; broader calibration has separate evidence. Keep parameter errors distinct
-from packing/data forces, and retain the saved endpoints. Do not repeat Coot,
-rebuild recovery owners, tune against Free-R, copy weights or flatten the entire
-substituent by assumption. Ledger: `triple_neighbor_numerical_target_review_2026_11_15`.
+**C308 matched target-only refinement:** complete native interpretation of the
+1.470 Å library candidates differs only in the selected distance. Equivalent
+PHIL edits additionally carry Phenix's edit origin; their initial energies and
+gradients match. New unselected five-cycle refinements retain the original models,
+observations/Free-R, strengths and settings. PDU's terminal bond changes
+1.6242→1.4818 Å; 5PC's changes 1.3564→1.4864 Å. The exact matched controls use
+four and ten processors respectively. An earlier four-processor 5PC trial remains
+preserved, as do the diagnostic guard failures. All 45 planes/58 parallelities,
+three local sugar signs and terminal-phosphate protection survive. PDU's angles
+175.02°/173.94° still need review and its terminal plane offset remains 0.258 Å;
+5PC remains within the triple screen with a 0.035 Å terminal plane offset. No
+ordinary numerical-repair adoption or whole-ligand approval follows.
+
+**C309 remaining-force diagnosis:** the maintained corrected-gradient audit passes
+at the new PDU endpoint. In two source-selected rigid-arm opening directions,
+angle forces favor straightening, with zero opposing nonbonded/plane derivative.
+Every present source bond length is preserved; native covalent boundaries agree.
+This is a local geometry-force observation, not proof about finite moves,
+diffraction forces or the historical optimizer trajectory. No weight/plane change.
+
+**C310–C317 diffraction and output-state diagnosis:** C310's cold startup does
+not reproduce the final fit and its derivative checks fail. C311 reproduces saved
+scattering, but recalculation from the saved PDB changes Rwork 0.20624→0.25679;
+its numerically consistent derivatives are not historical-force evidence.
+C312 rules out changed startup ADPs/occupancies and a direct-versus-FFT explanation.
+C313's calculated-scattering comparison finds a −51.82 Å² offset, matching the
+independently recorded final scaling shift. Applying that logged shift only in
+C314's temporary calculation restores Rwork/Rfree 0.20624/0.23623; all six direct
+finite differences pass. Data favors one opening motion and opposes the other;
+geometry favors both. No guessed combined weight or optimizer-history claim.
+
+C315 keeps the current native scattering object and FCALC consistent, rejecting
+that initial ownership hypothesis. **C316 identifies the actual output boundary:**
+a native group-ADP scaling call updates scattering B factors but leaves hierarchy
+and serialized PDB B factors higher by 51.8198 Å². Coordinates are unchanged.
+**C317's isolated native synchronization** makes in-memory PDB and mmCIF agree
+with the exact current scattering object, retaining coordinates, FCALC and the
+geometry owner. This is a tested remedy at the native boundary, not an installed
+runtime fix or permission to subtract a guessed B shift from historical models.
+
+**Next bounded patch (Q06):** carry that exact-state output synchronization into
+a separately qualified/versioned helper through the existing refinement owner.
+Preserve the frozen v1 sources/readers and all old results; verify real final
+PDB/mmCIF/scattering agreement before claiming ordinary correction. Then qualify
+numerical-candidate delivery through existing repair/selection owners and inspect
+whole-substituent survival. Diagnostic PHIL edits alone do not prove corrected-CIF
+delivery. Keep neighboring targets, source hands and terminal intent visible.
+No repeated Coot, replacement recovery owner, blanket flattening or Free-R tuning.
+Ledger: `matched_linear_neighbor_refinement_2026_11_15`,
+`linear_arm_opening_force_review_2026_11_15` and
+`pdu_scattering_state_and_opening_forces_2026_11_15`.
 
 ### The next small steps
 
@@ -526,7 +569,7 @@ report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
 
-**Current consumer route through C302:** `autorefine --checked-plane-forces`
+**Current consumer route through C307:** `autorefine --checked-plane-forces`
 explicitly uses the qualified local Phenix implementation, complete ordered plane
 parameters and the existing immutable AutoRefine/checkpoint owners. Actual
 zero-cycle model setup precedes refinement and has separate outputs. Corrected
@@ -546,24 +589,32 @@ The latter happened after a successful CLI refinement; separate readback complet
 without rerunning it. None of these observations diagnoses the collaborator's PDU.
 
 C300 carries the explicit choice through schema-2 campaign recipes and Doctor
-API/CLI. One native Doctor ML-fixed-scattering trial retains all 58 parameters,
-passes its Free-R audit and relocated inspection, with current model unchanged.
-The first fresh A:PDU campaign (C301) stopped correctly at outgoing phosphate
-validation: global Coot renumbering exposed an omitted declared canonical mutation
-in serial authority. The generalized serial-only fix passes 237 tests +10 subtests
-and read-only replay of the actual failure with all original run files unchanged.
-C302 then passes construction, acquisition, repair and ReadySet, but outer v2
-completion hits combined parent/repair storage bounds before refinement. V3 now
-separates that exact owned child with unchanged per-part and physical archive
-caps; old formats and failed C302 remain intact. Focused archive/retention and
-relocation checks pass. The next fresh PDU campaign must demonstrate actual
-refinement; native return and dictionary readiness alone do not close Q06.
+API/CLI. C301 corrected canonical/modified serial authority; C302 separated owned
+repair storage; C303 removed repeated pure validation within a frozen allowance.
+C304 then completed A:PDU preparation and five-cycle refinement, and C305 completed
+the related G:5PC campaign. Both relocated cold reads pass. All 45 planes and 58
+parallelity groups survive with their recorded strengths and all three local sugar
+signs are retained. These are mechanics controls on substituted scaffold data, not
+modified-crystal structure solutions.
 
-**Next:** inspect achieved chemistry and run a fresh PDU:A control on the existing
-declared test scaffold through the checked campaign. This does not resolve the
-original PDU:PDU symmetry-linked B:1 case. Complete related held-out controls. Unknown native
-implementations and symmetry planes remain unsupported. No SDK edits, default
-activation, broad platform qualification or complete scientific acceptance.
+C304's PDU triple bends beyond the unchanged coordinate screen. C306 identifies
+wrong-looking adjacent single-bond targets in both controls, including 5PC despite
+its scoped triple PASS. C307 adds source-typed comparisons and isolated numerical
+candidates; the exact native interpretation of MMFF candidates changes only the
+selected distance. The detailed current numerical gap and next experiment are
+recorded once in **Pipeline position** above. Reuse those completed construction,
+recovery, delivery and force checks; do not start another identical campaign to
+rediscover them.
+
+**Next:** finish C317’s isolated output-state correction as an explicitly
+qualified runtime version, preserving old frozen-helper readers, then qualify
+ordinary numerical-candidate delivery and remaining bending where evidence
+supports it. A diagnostic PHIL override alone cannot establish that the repair engine delivers a corrected
+CIF. Keep source-based selection, the whole neighborhood and unresolved targets
+visible; preserve the original selected results. The original PDU:PDU symmetry-
+linked B:1 case remains separate. Unknown native implementations and symmetry
+planes remain unsupported. No SDK edits, default activation, broad platform
+qualification or complete scientific acceptance.
 
 C290 separately checks the current ordinary PDU A:12/B:4 construction against the
 original accepted MR. Parent-chi deviations are 0.027°/0.006°, closing this control's
@@ -593,15 +644,17 @@ native-consumer work; track this integration dependency without silently bypassi
 the B:1 guard or reopening the whole symmetry-restraint project.
 
 
-**Open; can start independently, required before ordinary-refinement claims.**
-C206 adds an explicit achieved-geometry requirement: check parent-to-mutant
+**Open chemical-survival gate; the explicit consumer mechanics above are already
+qualified for the recorded build.** C206 adds an explicit achieved-geometry
+requirement: check parent-to-mutant
 orientation, local trigonal geometry, retained ring planes and exocyclic coverage,
 alongside triple-axis terms. Keep native membership, numerical consistency,
 chemical target plausibility and achieved geometry distinct. Its successful
 fixed-backbone diagnostic does not close this package.
-C23–C26 identified and bounded a parallelity-gradient accumulation defect.
-C147–C150 reuse a NASolve-local corrected evaluator. That proves those diagnostic
-jobs; it does not qualify an unmodified ordinary Phenix refinement process.
+C23–C26 identified the parallelity-gradient accumulation defect; C147–C150
+proved diagnostic corrections, and C291–C300 subsequently qualified the explicit
+ordinary route described above. Unmodified/default Phenix is not covered by that
+qualified route.
 
 Record exact installed capabilities/source/version and test the actual supported
 refinement path with complete NAR pair/stack restraints. Decide an explicit,
@@ -629,8 +682,9 @@ or a CIF plane listing cannot masquerade as successful restraint application.
 Distinguish wrong/missing/dropped restraints, atom-name remapping, weighting,
 native-consumer defects and ordinary data-driven movement. Use source connectivity
 and geometry rules, with PDU and a held-out related substituent as controls—not a
-PDU-name repair switch. Ordinary Phenix survival remains unproven until this passes;
-local corrected diagnostic evaluators do not establish that result. Retrieve the
+PDU-name repair switch. Chemical survival across the advertised supported
+chemistry remains unproven until these checks pass; completed explicit consumer mechanics alone do not
+establish that result. Retrieve the
 collaborator's exact pair of files when needed; do not reconstruct its provenance
 from memory or search unrelated datasets.
 

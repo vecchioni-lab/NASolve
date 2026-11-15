@@ -98555,5 +98555,933 @@
         "sha256": "238186a981586da148b794983d8a2307805d16b41d29c31095e7f3bb4a9a818b"
       }
     ]
+  },
+  "matched_linear_neighbor_refinement_2026_11_15": {
+    "milestone": "C308",
+    "status": "NATIVE_TARGET_CORRECTION_SUPPORTED_PDU_BENDING_STILL_REVIEW",
+    "source_commit": "393aea60",
+    "behavior_before": "Source-faithful selected PDU and 5PC dictionaries carry questionable adjacent sp-carbon/methyl bond targets, followed by actual refinement.",
+    "behavior_after": "Explicit target-only candidates and diagnostic PHIL overrides improve both terminal bond lengths; PDU bending remains outside the unchanged screen. No ordinary repair change or scientific approval.",
+    "changed_files": [
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md"
+    ],
+    "schemas": "No product schema/API/default changes; additive compact evidence only.",
+    "compatibility": "Existing source, original selected checkpoints, earlier refinement files and checkpoint records preserved. Ordinary run report appends history and updates latest-result fields; previous report bytes reconstruct to the recorded hash.",
+    "native": {
+      "tool_build": "phenix-2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "mode": "Complete native interpretation and five-cycle refinement, not dry-run; separate zero-cycle preflight retained.",
+      "coot": "NOT_RUN",
+      "candidate_vs_override": "Every native proxy parameter and fixed-coordinate energy/gradient matches, except selected origin 0 (dictionary) versus 4 (PHIL edits). All other coordinates/proxies unchanged.",
+      "origin_limit": "A diagnostic PHIL edit is not ordinary candidate-CIF publication/adoption. Initial energy/gradient equality does not by itself prove every downstream origin-dependent report/decision is identical.",
+      "settings": "Original postmr model, diffraction observations, Free-R authority, recipe and per-restraint ESDs retained. Original automatic weight optimization remains enabled; realized data/geometry weighting need not match between trajectories.",
+      "inventory_scope": "Exact equality of recorded bonded/plane proxy_details; not equality of changing nonbonded contact lists."
+    },
+    "components": {
+      "PDU": {
+        "checkpoint": "refine-002",
+        "parent": "postmr",
+        "selected": "refine-001",
+        "run": {
+          "anchor": "local_live_tests",
+          "path": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001"
+        },
+        "processor_count": 4,
+        "macro_cycles": 5,
+        "target_angstrom": 1.47,
+        "existing_esd_angstrom": 0.02,
+        "models": {
+          "prepared": {
+            "model_sha256": "636223e4edb19caf32e6bf70799f20d008c8ae45a65cc83a727bf1a3d38203d3",
+            "chi_degrees": -109.04357012327162,
+            "terminal_single_bond_angstrom": 1.457986968391696,
+            "triple_bond_angstrom": 1.1894326378572284,
+            "linear_angles_degrees": [
+              176.40104309719186,
+              176.88499926052592
+            ],
+            "triple_coordinate_screen": "PASS",
+            "C5_attachment_elevation_degrees": 0.9428001277861741,
+            "terminal_carbon_plane_offsets_angstrom": [
+              0.11239440329655148
+            ],
+            "all_three_recorded_sugar_signs_preserved": true
+          },
+          "previous_refinement": {
+            "model_sha256": "8e75a1d8a6cc46afb29d92bc073326ac5099234df27432d13b14a91a43c6e66b",
+            "chi_degrees": -111.17008106982118,
+            "terminal_single_bond_angstrom": 1.6242496729259328,
+            "triple_bond_angstrom": 1.197650199348709,
+            "linear_angles_degrees": [
+              174.65397119442483,
+              173.44910210519797
+            ],
+            "triple_coordinate_screen": "REVIEW",
+            "C5_attachment_elevation_degrees": 2.484846324733648,
+            "terminal_carbon_plane_offsets_angstrom": [
+              0.26098403401180104
+            ],
+            "all_three_recorded_sugar_signs_preserved": true
+          },
+          "target_only_refinement": {
+            "model_sha256": "777654d4d283cf32ea9c107fbcc319a5c8b84e42b0ba1926716df639d464226a",
+            "chi_degrees": -113.13757732972843,
+            "terminal_single_bond_angstrom": 1.4818289374958247,
+            "triple_bond_angstrom": 1.1943320308858816,
+            "linear_angles_degrees": [
+              175.01932819180604,
+              173.9366437084452
+            ],
+            "triple_coordinate_screen": "REVIEW",
+            "C5_attachment_elevation_degrees": 3.0316362907398218,
+            "terminal_carbon_plane_offsets_angstrom": [
+              0.2580041459959006
+            ],
+            "all_three_recorded_sugar_signs_preserved": true
+          }
+        },
+        "native_inventory": {
+          "planarity_printed_match": true,
+          "parallelity_printed_match": true,
+          "plane_count": 45,
+          "parallelity_count": 58,
+          "all_prepared_vs_final_proxies_identical": true
+        },
+        "same_refinement_settings": {
+          "recipe": true,
+          "macro_cycles": true,
+          "processor_count": true,
+          "refinement": true
+        },
+        "same_reflection_selection": {
+          "observation_labels": true,
+          "free_r_label": true,
+          "free_r_test_value": true,
+          "phase_file": true,
+          "phase_labels": true
+        },
+        "authoritative_observation_reference_preserved": true,
+        "terminal_phosphate_audit": "PASS"
+      },
+      "5PC": {
+        "checkpoint": "refine-003",
+        "parent": "postmr",
+        "selected": "refine-001",
+        "run": {
+          "anchor": "local_live_tests",
+          "path": "305_Cedar_5PC-campaign-nu1t7jyw/relocated/DiU/AutoMR/run_001"
+        },
+        "processor_count": 10,
+        "macro_cycles": 5,
+        "target_angstrom": 1.47,
+        "existing_esd_angstrom": 0.027,
+        "models": {
+          "prepared": {
+            "model_sha256": "1dd1939928ecce4dfa0d9f1412f9312a9ae9daaf45e1aae3c53fd76171880f5e",
+            "chi_degrees": -108.44607697460253,
+            "terminal_single_bond_angstrom": 1.4551749035768877,
+            "triple_bond_angstrom": 1.2021202102951258,
+            "linear_angles_degrees": [
+              172.3722175799104,
+              176.96650882225683
+            ],
+            "triple_coordinate_screen": "REVIEW",
+            "C5_attachment_elevation_degrees": 5.036818208763401,
+            "terminal_carbon_plane_offsets_angstrom": [
+              0.6635881943838574
+            ],
+            "all_three_recorded_sugar_signs_preserved": true
+          },
+          "previous_refinement": {
+            "model_sha256": "83c40b5659cf20177e80aabdddc7d3c7e84bfbf2d1eabf6c364c9aa0c55b829e",
+            "chi_degrees": -108.64053810288499,
+            "terminal_single_bond_angstrom": 1.3564092302841355,
+            "triple_bond_angstrom": 1.1951372306141246,
+            "linear_angles_degrees": [
+              177.37506418642613,
+              178.13668507446343
+            ],
+            "triple_coordinate_screen": "PASS",
+            "C5_attachment_elevation_degrees": 1.0462402663686,
+            "terminal_carbon_plane_offsets_angstrom": [
+              0.14061802880484642
+            ],
+            "all_three_recorded_sugar_signs_preserved": true
+          },
+          "target_only_refinement": {
+            "model_sha256": "46ed306828094dc748e673824763f7e5ba37298dc196edee455661e048ecd737",
+            "chi_degrees": -108.59478720691443,
+            "terminal_single_bond_angstrom": 1.4863781483862093,
+            "triple_bond_angstrom": 1.210003305780608,
+            "linear_angles_degrees": [
+              176.26515733193733,
+              175.76340330522643
+            ],
+            "triple_coordinate_screen": "PASS",
+            "C5_attachment_elevation_degrees": 0.5670376310049021,
+            "terminal_carbon_plane_offsets_angstrom": [
+              0.03510978887945759
+            ],
+            "all_three_recorded_sugar_signs_preserved": true
+          }
+        },
+        "native_inventory": {
+          "planarity_printed_match": true,
+          "parallelity_printed_match": true,
+          "plane_count": 45,
+          "parallelity_count": 58,
+          "all_prepared_vs_final_proxies_identical": true
+        },
+        "same_refinement_settings": {
+          "recipe": true,
+          "macro_cycles": true,
+          "processor_count": true,
+          "refinement": true
+        },
+        "same_reflection_selection": {
+          "observation_labels": true,
+          "free_r_label": true,
+          "free_r_test_value": true,
+          "phase_file": true,
+          "phase_labels": true
+        },
+        "authoritative_observation_reference_preserved": true,
+        "terminal_phosphate_audit": "PASS"
+      }
+    },
+    "preserved_negatives": [
+      {
+        "root": "308_Cedar_target-only-1cklfge7",
+        "result": "Stopped before refinement: exact proxy comparison exposed selected origin 0 versus 4."
+      },
+      {
+        "root": "308_Cedar_target-only-25kntshu",
+        "result": "PDU refine-002 succeeded; diagnostic wrapper then refused ordinary mutable root report. Separate readback reproduces its previous hash and verifies all other original files/records. No PDU rerun."
+      },
+      {
+        "root": "308_Cedar_target-only-lt9o0nqd",
+        "result": "Successful unselected 5PC refine-002 used four processors versus original ten. Preserve it; matched refinement is fresh refine-003, not in-place retry."
+      },
+      {
+        "root": "308_Cedar_target-comparison-l3aou61r",
+        "result": "PDU readback completed; later 5PC settings check rejected processor mismatch. Final comparison reuses exact PDU evidence and freshly reads matched 5PC."
+      }
+    ],
+    "validation": {
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c308_start_002.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c308_start_003.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c308_matched_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c308_readback_start_003.py"
+      ],
+      "command_context": "Cedar cwd; Historical absolute invocation paths are provenance; exact executed workers/commands/source hashes are also in anchored local records.",
+      "results": "Both actual refinements and final authenticated readback complete. Original selections retained; exact settings match for chosen comparisons; printed GEO agrees with native 45 planes/58 parallelities; protected phosphate and three sugar signs retained.",
+      "pytest": "No source/test changes after C307; its focused results retained without redundant rerun. No full suite.",
+      "portable": "Run-relative extra PHIL and checkpoint references validate at existing relocated run anchors. No new move-after-execution experiment or broad portability claim."
+    },
+    "artifacts": {
+      "included": "Compact measurements, methods, hashes and anchored references only.",
+      "excluded": "Models, reflections, CIFs, PHIL, SDK files, full native inventories, logs and runners remain local. No new default storage cost or 100-dataset capacity claim."
+    },
+    "limits": [
+      "Substituted scaffold controls, not diffraction data from the modified molecules and not a structure solution.",
+      "No original PDU:PDU/B:1 symmetry-continuation resolution.",
+      "Q06 remains open; correct terminal length does not establish whole-substituent geometry or calibrate every parameter.",
+      "Current Q04/Q05 owners are retained; no alternative recovery/selection implementation."
+    ],
+    "next": "Separate remaining bending forces before changing any plane or weight; carry any qualified numerical correction through existing repair/selection owners before claiming ordinary adoption.",
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-rhj4xwif/sources.json",
+        "sha256": "9cacef9335280e466329e51bbaffe11f58f62596f59318ab5be7cfde790c0073",
+        "size": 159
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-rhj4xwif/readback-driver/result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-rhj4xwif/readback/summary.json",
+        "sha256": "64981b046b7fb5b7f836bbb0f10400e991ea71cda7ee416347d247820bea45aa",
+        "size": 169
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-rhj4xwif/readback-driver/c308_readback_003.py",
+        "sha256": "231a2e7ac01f427344cc947ccf72d85c88dc69be8108c4b2598620a1c9df1914",
+        "size": 13553
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-25kntshu/worker.py",
+        "sha256": "87a0c986159c2730ce62b17d496ab1cb7aa404897ce70148e34a928dd6abc93d",
+        "size": 7923
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-l3aou61r/readback/PDU/capture/cif-native-7r6697nb/native_receipt.json",
+        "sha256": "60de6c9446f6c5f4f6be0f078b934c0ccf0a28b3eb641cd69aed3a4e43966b25",
+        "size": 5043379
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-25kntshu/start.json",
+        "sha256": "96925aee78130799e453246898c5141d36942f3105e27c72285b369cf33b6d36",
+        "size": 26818
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-25kntshu/driver-result.json",
+        "sha256": "3bac5b642abd24e11a25dc6198b24dabe0e1266a569d24823c20e9b003f3556d",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-25kntshu/PDU/autorefine-result.json",
+        "sha256": "9bf4d8117b6253954588a25dff16723f7026f43ada92a86e1fdb61fae6505463",
+        "size": 8682
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-rhj4xwif/readback/PDU/comparison.json",
+        "sha256": "cf1f84dc4a756e7c4bc2204d4bea54bdf806d12116c39cf8777784b3001ac4aa",
+        "size": 67659
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001/AutoRefine/round_002/report.json",
+        "sha256": "b681dc0d4af7efe06c5af6bbb5a6bf911e3fa7bb3e155892450c2ab6cfe6e8b6",
+        "size": 24833
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-lwjckkug/worker.py",
+        "sha256": "2320b29d6081ff1b738b5994e67b79f4a9478fbc8bb8e4c457f27d8a206fdda8",
+        "size": 4411
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-rhj4xwif/readback/5PC/capture/cif-native-wb__o9vk/native_receipt.json",
+        "sha256": "12875b5d29fbadffa66fa2dafc679b7dceb45ea5c37f81a068d26fd362c237ca",
+        "size": 5053726
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-lwjckkug/start.json",
+        "sha256": "e457b588d1e821edd4cf3dd04486865d46e0b802825f6afec9a792dac27c2d65",
+        "size": 26818
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-lwjckkug/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-only-lwjckkug/5PC/autorefine-result.json",
+        "sha256": "67696ca81a5e17058cc4a0e11276f28cf6742f5a6d58fbfbe507b6c7815c5e27",
+        "size": 8381
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "308_Cedar_target-comparison-rhj4xwif/readback/5PC/comparison.json",
+        "sha256": "bd26dce135229fe0f4d8c7fe0996ee072d99aa0e68bbfb841c825015d9678176",
+        "size": 67056
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "305_Cedar_5PC-campaign-nu1t7jyw/relocated/DiU/AutoMR/run_001/AutoRefine/round_003/report.json",
+        "sha256": "fcca3fb5834bc287a4abc1eff53ace6852988500e99d784c84987e2af10179fe",
+        "size": 23932
+      }
+    ]
+  },
+  "linear_arm_opening_force_review_2026_11_15": {
+    "milestone": "C309",
+    "status": "SOURCE_SELECTED_OPENING_FORCE_PROJECTION_COMPLETE",
+    "source_commit": "393aea60",
+    "before": "Correct terminal length alone leaves PDU bending. Native geometry/data/packing explanations must remain separate.",
+    "after": "At the saved corrected-target PDU endpoint, source-selected rigid-arm opening derivatives are entirely angle-restraint contributions. Neither nonbonded nor plane families oppose these two local motions. This does not measure diffraction forces or finite relaxed moves.",
+    "changed_files": [
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md"
+    ],
+    "schemas": "No new product/API/schema/default; maintained numerical owner reused.",
+    "compatibility": "All scientific endpoints, source/SDK files, targets, weights and selections unchanged. No migration.",
+    "native": {
+      "tool_build": "phenix-2.2.1-6174",
+      "dispatcher_version": "2.2.1",
+      "mode": "Complete fixed-coordinate numerical execution, not dry-run; no optimization/refinement.",
+      "qualification": {
+        "automatic_adoption": false,
+        "checks": {
+          "captured_raw_snapshot": true,
+          "complete_both_order_plane_derivatives_and_controls": true,
+          "complete_initial_sampled_derivatives": true,
+          "unchanged_native_energy": true,
+          "unchanged_static_constraint_signature": true
+        },
+        "policy_id": "cif-mixed-initial-native-gradient-v1",
+        "sampled_derivatives_pass": true,
+        "scientific_qualification": "NOT_ASSESSED",
+        "status": "MIXED_INITIAL_DERIVATIVES_PASS"
+      },
+      "gradient_evaluations": 1367,
+      "plane_order_evaluation_pairs": 3328,
+      "new_native_calls": 1,
+      "stopped_verified": true
+    },
+    "observations": [
+      {
+        "angle_atoms": [
+          "C5",
+          "C5A",
+          "C5B"
+        ],
+        "angle_degrees": 175.01932819180604,
+        "moving_atoms": [
+          "C5B",
+          "C5M"
+        ],
+        "geometry_target_derivative_per_opening_degree": {
+          "all": -1.1068159573764198,
+          "angle": -1.106815957376419,
+          "bond": -1.8601965322712702e-16,
+          "chirality": 0.0,
+          "dihedral": 0.0,
+          "nonbonded": 0.0,
+          "parallelity": 0.0,
+          "planarity": 0.0
+        },
+        "opening_derivative_validation_steps_degrees": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_opening_derivative_error": 1.3107182894600555e-08
+      },
+      {
+        "angle_atoms": [
+          "C5M",
+          "C5B",
+          "C5A"
+        ],
+        "angle_degrees": 173.9366437084452,
+        "moving_atoms": [
+          "C5M"
+        ],
+        "geometry_target_derivative_per_opening_degree": {
+          "all": -1.3474125092344078,
+          "angle": -1.3474125092344087,
+          "bond": 9.804785888846487e-16,
+          "chirality": 0.0,
+          "dihedral": 0.0,
+          "nonbonded": 0.0,
+          "parallelity": 0.0,
+          "planarity": 0.0
+        },
+        "opening_derivative_validation_steps_degrees": [
+          0.001,
+          0.0001,
+          1e-05
+        ],
+        "max_opening_derivative_error": 8.843926480039954e-09
+      }
+    ],
+    "interpretation": "Negative derivative favors opening toward 180 degrees. Values are native geometry objective units per degree, not kcal/mol. The two total derivatives are approximately -1.10682 and -1.34741; other families are zero within rounding.",
+    "boundary": "Graph cuts select one small connected arm without residue-name dispatch. Every source-defined present bond length and every other coordinate is unchanged in ephemeral direction checks; separate readback confirms no extra native covalent edge crosses the selected boundary.",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c309_start.py /Users/svecchio/NASolve-live-tests/308_Cedar_target-comparison-rhj4xwif",
+      "cwd": "Cedar worktree",
+      "command_role": "Historical invocation; anchored source/output references below are the operational evidence links.",
+      "result": "CAPTURED_MIXED_DERIVATIVES_PASS; all five maintained checks pass, family gradients sum to the complete gradient, opening directions validate at three step sizes, all source inputs unchanged.",
+      "tests": "No new source/test changes or redundant suite run; no full suite."
+    },
+    "limitations": [
+      "Geometry objective only: no diffraction-gradient evaluation or proof of what determined the final refinement compromise.",
+      "An infinitesimal direction need not predict a finite or relaxed move; no optimized or adoptable model is produced.",
+      "No weights, targets, planes, thresholds, native SDK or scientific endpoints changed.",
+      "One PDU diagnostic at an explicit site; branch selection uses source connectivity and geometry, not PDU atom-name rules."
+    ],
+    "artifacts": {
+      "included": "Compact scalar observations, methods and hashes.",
+      "excluded": "Native inventories, gradients, scientific inputs, logs and runners stay local; no default artifact growth."
+    },
+    "next": "Use the original observations/Free-R authority for a bounded diffraction-target probe before attributing the remaining bend or changing chemical restraints.",
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/start.json",
+        "sha256": "3f5675f9cac7472bda160305f0cd0aa6f880f36e3bbfd98a8ad3f29ae2a05657",
+        "size": 26914
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/worker.py",
+        "sha256": "4b50cf2ab4b327058ca96d725aa8c8cba53e92b5b080b895e9d0c0c6997f3d6d",
+        "size": 7197
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/summary.json",
+        "sha256": "adc1f3eb691136f2a057e7ee4bd35216fdc480e6860e0337aab614afa993b699",
+        "size": 3584
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/gradient-summary.json",
+        "sha256": "eac9531ed8365a64b6c6a474f3079a9eb479423327aea35a8891a3dc3e6a1dc8",
+        "size": 178
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/boundary-readback.json",
+        "sha256": "8df2588b0ea958fd03a5a7f9825e4f33de611945fa117a20d2db278b303f6070",
+        "size": 964
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/gradient/qualification.json",
+        "sha256": "ea161b4338cb07e4543929573bcd22d63bd25094cc6a618700836392cd3651c1",
+        "size": 414
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "309_Cedar_opening-forces-kc610ury/gradient/captured_mixed_gradients.json",
+        "sha256": "4b1b22f8dd09f0e3e5de2dd2a5ef7b882d583981d939a6c26f517d25cf8ab175",
+        "size": 16550
+      }
+    ]
+  },
+  "pdu_scattering_state_and_opening_forces_2026_11_15": {
+    "milestones": "C310–C317",
+    "status": "SAVED_SCATTERING_RECOVERED_NATIVE_GROUP_ADP_OUTPUT_MISMATCH_AND_SYNC_QUALIFIED_IN_ISOLATION",
+    "source_commit": "393aea60",
+    "before": "PDU still bends after terminal-bond correction. Geometry opening derivatives alone cannot establish diffraction opposition or optimizer convergence.",
+    "after": "The exact final logged B shift restores saved scattering/fit; qualified local diffraction signs differ between the two opening motions. Native final scaling leaves scattering current but output-hierarchy B factors stale in this group-ADP control. Exact native state synchronization fixes in-memory PDB/mmCIF serialization without changing coordinates, scattering or the geometry owner. No historical model is modified or approved.",
+    "changed_files": [
+      "docs/cif-linked-native-registration-evidence.json",
+      "docs/cif-doctor-completion-queue.md",
+      "docs/cif-doctor-human-overview.md",
+      "docs/development-handoff.md"
+    ],
+    "schemas": "No product code, API, schema, default, native SDK or checkpoint change; compact evidence only.",
+    "compatibility": "Existing model, observations, Free-R authority, selected refine-001 and all 1,146 PDU run files retain hashes/timestamps. No new checkpoint or migration.",
+    "native_build": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64",
+    "execution": "Zero-cycle native setup, then complete bounded numerical/scaling calculations; not a full refinement or historical optimizer replay. No Coot repeat.",
+    "prior_work": "Searched maintained docs, source and tests for back-trace, saved FCALC mismatch, displacement export and B-factor shift. No earlier matching solution was found. Reused existing runtime/process/checkpoint owners and C309 source-selected opening directions.",
+    "negative_controls": {
+      "C310": "First attempt failed package import before native execution; fresh frozen-helper attempt completed but startup fit and all six tiny-step FFT derivative checks failed. Analytic signs are unqualified.",
+      "C311": {
+        "status": "SAVED_DATA_OPENING_DERIVATIVES_PASS",
+        "limit": "Finite differences pass for its direct numerical control, but recalculated Rwork differs substantially from saved fit. Its signs are not historical-force evidence and are superseded by C314 for the corrected-state comparison.",
+        "saved_fit": {
+          "reflection_count": 2267,
+          "original_flag_mapping_preserved": true,
+          "original_startup_count": 2272,
+          "r_work": 0.20623621479246534,
+          "r_free": 0.23619152216406372,
+          "fmodel_max_relative_error": 1.306952630383781e-07,
+          "saved_fmodel_sha256": "e8541920960e1a7ca97f15cbfc1fc4eccea1d87458909530d251a057c538342e"
+        },
+        "unshifted_direct_fit": {
+          "algorithm": "direct",
+          "cos_sin_table": false,
+          "recorded_algorithm": "fft",
+          "r_work": 0.25678801430784126,
+          "r_free": 0.23796079048063,
+          "scope": "Direct numerical control at serialized coordinates with saved nuisance arrays; not the historical FFT trajectory."
+        }
+      },
+      "C312": {
+        "input_state": {
+          "count": 855,
+          "max_u_iso_difference": 0.0,
+          "max_occupancy_difference": 0.0,
+          "raw_anisotropic": 0,
+          "startup_anisotropic": 0,
+          "scattering_types_match": true
+        },
+        "unshifted_fft_r_work": 0.25720737570872326,
+        "limit": "Same saved/startup ADPs and occupancies; both FFT/direct show the discrepancy. Not explained by startup B changes or the direct algorithm alone."
+      },
+      "C313": {
+        "fft_uniform_shift": {
+          "fitted_delta_b_angstrom_sq": -51.82079957095744,
+          "fitted_amplitude_multiplier": 0.9999691911530542,
+          "max_absolute_phase_difference_degrees": 1.172264680096402,
+          "median_absolute_phase_difference_degrees": 0.018646120136791275,
+          "ratio_relative_rms_after_uniform_shift": 0.0017238709357741844,
+          "comparison_reflections": 2267,
+          "scope": "Fit saved FCALC versus recalculated FCALC only; no observed-data fit, Free-R tuning, coordinate change or model adoption."
+        },
+        "limit": "Fits calculated scattering to saved calculated scattering only, not observed amplitudes. It suggests a B shift; independent log value is used in C314."
+      }
+    },
+    "recovered_state": {
+      "saved_reconstruction": {
+        "reflection_count": 2267,
+        "original_flag_mapping_preserved": true,
+        "original_startup_count": 2272,
+        "r_work": 0.20623621479246534,
+        "r_free": 0.23619152216406372,
+        "fmodel_max_relative_error": 1.306952630383781e-07,
+        "saved_fmodel_sha256": "e8541920960e1a7ca97f15cbfc1fc4eccea1d87458909530d251a057c538342e"
+      },
+      "logged_shift": {
+        "delta_b_angstrom_sq": -51.82,
+        "log_sha256": "a65d9b7b657a0990a8a06213aac1a274e6e4e83d1f581c8e39ac40806a50e5cd",
+        "r_work": 0.2062376085158884,
+        "r_free": 0.23623180244381037,
+        "fcalc_relative_rms_difference": 0.00017126172533633006,
+        "source": "Exact final overall B shift printed by native refinement; not fitted against observed amplitudes or Free-R."
+      },
+      "direct_control": {
+        "algorithm": "direct",
+        "cos_sin_table": false,
+        "recorded_algorithm": "fft",
+        "r_work": 0.20627145620098347,
+        "r_free": 0.2363268449626549,
+        "scope": "Direct numerical control at serialized coordinates with the final logged B shift and saved nuisance arrays; not the historical FFT trajectory."
+      },
+      "flags": "Exported Boolean flags checked HKL-by-HKL against original-observation authority; no regeneration or Free-R-driven tuning.",
+      "fixed_nuisance": "Saved mask, scales, alpha/beta, ADPs and occupancies held fixed for each derivative. Coordinates restored; no finite move adopted."
+    },
+    "opening_derivatives": [
+      {
+        "angle_atoms": [
+          "C5",
+          "C5A",
+          "C5B"
+        ],
+        "moving_atoms": [
+          "C5B",
+          "C5M"
+        ],
+        "data_work_derivative_per_degree": -7.134521284631943e-06,
+        "geometry_derivative_per_degree": -1.1068159573764198,
+        "finite_difference_steps_degrees": [
+          0.01,
+          0.001,
+          0.0001
+        ],
+        "maximum_absolute_derivative_error": 4.214430242759575e-11,
+        "all_three_steps_consistent": true
+      },
+      {
+        "angle_atoms": [
+          "C5M",
+          "C5B",
+          "C5A"
+        ],
+        "moving_atoms": [
+          "C5M"
+        ],
+        "data_work_derivative_per_degree": 4.867883347723005e-06,
+        "geometry_derivative_per_degree": -1.3474125092344078,
+        "finite_difference_steps_degrees": [
+          0.01,
+          0.001,
+          0.0001
+        ],
+        "maximum_absolute_derivative_error": 1.1464360209312123e-11,
+        "all_three_steps_consistent": true
+      }
+    ],
+    "interpretation": "Negative favors opening toward 180 degrees. Reconstructed data favors the first opening and opposes the second; geometry favors both. Objective units/normalization differ and no guessed combined weight is used. These local directions do not establish trajectory, convergence or the cause of the full remaining bend.",
+    "native_scaling_boundary": {
+      "status": "NATIVE_FINAL_SCALING_STATE_MEASURED",
+      "scope": "Native final-scaling/model-state boundary on a cold ephemeral model; no refinement or saved model mutation.",
+      "serialization_boundary": {
+        "hierarchy_minus_current_b_range": [
+          51.81983152791082,
+          51.81983152791088
+        ],
+        "serialized_pdb_minus_current_b_range": [
+          51.81983152791082,
+          51.81983152791088
+        ],
+        "hierarchy_b_equals_starting_model": true,
+        "coordinate_max_serialization_error": 2.1316282072803006e-14,
+        "model_as_pdb_read_in_memory": true,
+        "model_saved": false
+      },
+      "synchronization_control": {
+        "method": "Native model.set_xray_structure with the exact current refined scattering object before serialization; no inferred B shift.",
+        "formats": {
+          "pdb": {
+            "maximum_b_error": 0.00016847208922854406,
+            "coordinate_max_error": 2.1316282072803006e-14
+          },
+          "mmcif": {
+            "maximum_b_error": 1.5279109106813848e-06,
+            "coordinate_max_error": 2.1316282072803006e-14
+          }
+        },
+        "scattering_object_preserved": true,
+        "coordinates_unchanged": true,
+        "geometry_owner_unchanged": true,
+        "calculated_scattering_unchanged": true,
+        "models_written": false,
+        "ordinary_runtime_changed": false
+      },
+      "strategy": [
+        "individual_sites",
+        "individual_sites_real_space",
+        "group_adp",
+        "occupancies"
+      ],
+      "coordinate_max_difference": 0.0,
+      "after_scales_same_xray_object": true,
+      "after_return_same_xray_object": true,
+      "before_reflections": 2272,
+      "after_reflections": 2267,
+      "fmodel_minus_model_b_after_scales_range": [
+        0.0,
+        0.0
+      ],
+      "model_u_changed": true,
+      "fmodel_u_after_return_equals_model": true,
+      "scaling_r_work": 0.20618757497196852,
+      "returned_r_work": 0.20618757497196852,
+      "recomputed_r_work": 0.20618757497196852,
+      "scaling_r_free": 0.23634779093294325,
+      "returned_r_free": 0.23634779093294325,
+      "recomputed_r_free": 0.23634779093294325,
+      "fcalc_relative_rms_difference": 0.0,
+      "refinement_cycles": 0,
+      "model_adoption": false,
+      "raw_reflections_exported": false,
+      "parallelity_binding_native_during_scaling": true,
+      "source_modules": [
+        {
+          "module": "phenix.refinement.bulk_solvent_and_scaling",
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/phenix/refinement/bulk_solvent_and_scaling.py",
+          "sha256": "e63e733f561dc7f8796c71bb70f34c1921c3082c297a1a79556da5555fe10192"
+        },
+        {
+          "module": "phenix.refinement.adp",
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/phenix/refinement/adp.py",
+          "sha256": "e0d8bec772427f106763382f449b67786022c5b8e41c19f67a13ac00abe86799"
+        },
+        {
+          "module": "mmtbx.bulk_solvent.f_model_all_scales",
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/mmtbx/bulk_solvent/f_model_all_scales.py",
+          "sha256": "c71b8339918f11c14074288811299893cc8845059d0f692a51bb89da8b8ed1ee"
+        },
+        {
+          "module": "mmtbx.bulk_solvent.scaler",
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/mmtbx/bulk_solvent/scaler.py",
+          "sha256": "a3e8278e223f60b2a34353a8fe368f7dcae6307a6231cd1ee944de277c0fd283"
+        },
+        {
+          "module": "mmtbx.f_model.f_model",
+          "historical_path": "/Users/svecchio/Applications/phenix-2.2.1-6174/lib/python3.11/site-packages/mmtbx/f_model/f_model.py",
+          "sha256": "e0872bad140cd94d0c01651b3b9b97f0611e2e2cd2ce964cca50acb662a9810e"
+        }
+      ],
+      "limitations": [
+        "Complete native final-scaling function execution on a cold ephemeral model, not a replay of the earlier optimizer or a new refinement.",
+        "No source/SDK/checkpoint mutation. Method wrapper only observes immediately after scaling and is restored before return. Native parallelity binding is unchanged during this control.",
+        "A changed fit after recomputing FCALC from the returned model establishes state inconsistency within this invocation; no global Phenix version claim or production fix follows."
+      ]
+    },
+    "native_owner_counterexample": {
+      "milestone": "C315",
+      "model_and_fmodel_share_current_xray_object": true,
+      "recomputed_fcalc_relative_difference": 0.0,
+      "conclusion": "The copied-owner/xray-object hypothesis was not reproduced. C316 locates the mismatch in hierarchy/PDB serialization instead."
+    },
+    "limitations": [
+      "Saved nuisance arrays and independently logged final B shift are restored and validated. This diagnoses an output-state discrepancy; no saved model is corrected or approved. Direct calculation and PDB rounding still differ from the historical optimizer trajectory.",
+      "Only target_work derivatives are probed; test-set flags remain frozen, and no Free-R-driven choice or tuning occurs.",
+      "Mask, scaling, likelihood functor, occupancies and ADPs stay fixed during each displacement evaluation; no relaxation or finite-move model is adopted.",
+      "Native geometry/data target units and normalization differ. Signs are compared; no guessed weight or combined-objective claim.",
+      "The native group-ADP control reproduces stale hierarchy/output B factors after in-place final scaling. Historical call-by-call state was not recorded; this isolated control is not an exact replay of C308. C315 explicitly rejects an xray-object/Fcalc mismatch in that invocation.",
+      "No arbitrary B subtraction, automatic output repair, stronger angle restraint, relaxed screen or new chemical authority follows. These controls use substituted scaffold data, not diffraction from a PDU crystal."
+    ],
+    "validation": {
+      "commands": [
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c310_start_002.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c311_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c312_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c313_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c314_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c315_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c316_start.py",
+        "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/branch-artifacts/cedar/runners/c317_start.py"
+      ],
+      "cwd": "Cedar worktree; absolute commands are historical provenance. Operational evidence uses the local_live_tests anchor below.",
+      "results": "All eight completed drivers and native processes are known stopped; source unchanged. C310 remains REVIEW, C311 numerical PASS is explicitly limited, C314 six finite differences agree after independent logged-shift reconstruction, C315 keeps scattering internally consistent, C316 exposes stale output B factors, and C317 qualifies native synchronization for both in-memory formats.",
+      "tests": "No source changes after C307; focused tests retained, no redundant pytest or full-suite run."
+    },
+    "next": "Q06: carry the isolated native output synchronization through a separately qualified/versioned refinement helper, preserving all v1 frozen-code readers and historical endpoints; check actual PDB/mmCIF/scattering exports. Then ordinary numerical-candidate delivery and whole-substituent survival. Preserve historical results and every failed attempt.",
+    "artifacts": {
+      "included": "Compact measurements, method/source hashes and anchored evidence references only.",
+      "excluded": "Raw observations/models/CIFs/scattering arrays, gradients, native logs and runners remain local. No product/default artifact growth."
+    },
+    "local_records": [
+      {
+        "anchor": "local_live_tests",
+        "path": "310_Cedar_data-opening-ums4scje/result.json",
+        "sha256": "69cd4079de5347523f090e72e08d192553aa87eb7ec9dffb518a14fb1f4bd90a",
+        "size": 6213
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "310_Cedar_data-opening-ums4scje/native_worker.py",
+        "sha256": "53203d5a3b8f919aa99506746c61502ce2b8639413cdb88e0a40b4f33d75b805",
+        "size": 6698
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "310_Cedar_data-opening-ums4scje/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "311_Cedar_saved-data-opening-8dt8aocm/result.json",
+        "sha256": "02a9bd3f03d2dca8974db42b8d475366576d6e63d71ce68092b4a40b21e263d4",
+        "size": 7012
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "311_Cedar_saved-data-opening-8dt8aocm/native_worker.py",
+        "sha256": "846a0b2359fc945503885910abef0da9509416e7ef5aea5d85bcb5f4bf92d975",
+        "size": 9822
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "311_Cedar_saved-data-opening-8dt8aocm/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "312_Cedar_scattering-readback-p2d4lp_l/result.json",
+        "sha256": "5b2fea01aeda6d60858ac6f3c43d07cbd041b85155c2f90932e0d9b5ef8dd2e0",
+        "size": 2234
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "312_Cedar_scattering-readback-p2d4lp_l/native_worker.py",
+        "sha256": "6388851a57a0003df7a627a775eaef98c4c969a67d3e61e868d52ed375d2bf74",
+        "size": 6289
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "312_Cedar_scattering-readback-p2d4lp_l/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "313_Cedar_scattering-shift-vk8gqtc8/result.json",
+        "sha256": "2cabb245b17310a7a907078c0f68ec7d1fb917e37065bf0021d388fca433cf68",
+        "size": 4478
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "313_Cedar_scattering-shift-vk8gqtc8/native_worker.py",
+        "sha256": "39dadac90599e732affd2d67557b68297c6358a1f4bcabf618210bcba06362b4",
+        "size": 7219
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "313_Cedar_scattering-shift-vk8gqtc8/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "314_Cedar_logged-b-opening-ykoia4yb/result.json",
+        "sha256": "c52060910b2736e287190bb467811bc05f7c343bde91cfdf93435123ed129a04",
+        "size": 7549
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "314_Cedar_logged-b-opening-ykoia4yb/native_worker.py",
+        "sha256": "8f8117bd3551903c887aa4e572dacb3cccc80c49ab238e64e369b8e78ab7acea",
+        "size": 11057
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "314_Cedar_logged-b-opening-ykoia4yb/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "315_Cedar_native-scaling-state-spwwuasf/result.json",
+        "sha256": "0878c53183afb04a674b6dbb0c12f6e221a153badbe0400d42eb70874ecdd53a",
+        "size": 3022
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "315_Cedar_native-scaling-state-spwwuasf/native_worker.py",
+        "sha256": "4ef0299ba50af2638040770cb7bc73df28c99fc748f5b29443a7fda5c78c4659",
+        "size": 4933
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "315_Cedar_native-scaling-state-spwwuasf/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "316_Cedar_scaling-output-state-o2evixc8/result.json",
+        "sha256": "3132ee10755111bc9dc0f3d7c264d88653f366181491240ef9d71c91f87f4ae9",
+        "size": 3435
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "316_Cedar_scaling-output-state-o2evixc8/native_worker.py",
+        "sha256": "2cc0fc7260d0c0a31b6218f62cfaf4dc7a1ed7a269bffacd68ff622cd9bb87c5",
+        "size": 5982
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "316_Cedar_scaling-output-state-o2evixc8/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "317_Cedar_native-output-sync-i18n6frt/result.json",
+        "sha256": "d07e837daafc5f7085b025b1998a44fa156c29e193cf99cd118d69c1a42f1468",
+        "size": 4123
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "317_Cedar_native-output-sync-i18n6frt/native_worker.py",
+        "sha256": "624315357d76e26011b27b1877282c98cc86593e1dc507428989864ace5062bc",
+        "size": 7484
+      },
+      {
+        "anchor": "local_live_tests",
+        "path": "317_Cedar_native-output-sync-i18n6frt/driver-result.json",
+        "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+        "size": 78
+      }
+    ],
+    "preserved_import_failure": "310_Cedar_data-opening-1cvcxc1j"
   }
 }
