@@ -101063,5 +101063,229 @@
     ],
     "next": "Actual corrected-CIF refinement survival under unchanged observations/Free-R/terminal intent; preserve source request identity and selected checkpoints.",
     "author": "Rowan"
+  },
+  "corrected_cif_refinement_survival_2026_11_15": {
+    "milestone": "C329",
+    "status": "CORRECTED_CIF_FIVE_CYCLE_DELIVERY_AND_READBACK_COMPLETE",
+    "scientific_status": "REVIEW_WHOLE_SUBSTITUENT",
+    "source_base_commit": "11fd6ee6",
+    "prior_work": "C308 equivalent CIF/PHIL target and native-origin comparison; C309/C314 opening-force diagnosis; C318/C319 output synchronization and exact scattering readback; C327 complete corrected runtime; C328 entry forwarding. All reused without another owner or target/weight choice.",
+    "behavior": "Actual corrected-CIF diagnostic refinement and exact readback; no product-code change or checkpoint creation.",
+    "validation": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c329_start.py",
+      "platform": "Phenix 2.2.1-6174 / dispatcher 2.2.1, Darwin arm64",
+      "mode": "Six complete native jobs including isolated zero-cycle preflight, five real refinement cycles, native captures, printed GEO observation and independent output scattering readback; not only dry-run.",
+      "driver": {
+        "returncode": 0,
+        "stopped_verified": true,
+        "source_unchanged": true
+      },
+      "outer_timeout_seconds": 2100,
+      "refinement_timeout_seconds": 1200,
+      "elapsed_seconds": 294.892783208983,
+      "focused_tests": "No production changes; C328 191+17 focused passes remain current.",
+      "full_suite": "NOT_RUN; last Cedar full C220/583d30df",
+      "comparison_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src .venv/bin/python /private/tmp/c329_compare.py (interpreter in everyday NASolve checkout; cwd NASolve-c96)"
+    },
+    "inputs": {
+      "anchor": "NASolve-live-tests",
+      "root": "329_Cedar_corrected-CIF-refinement-3j49p8v8",
+      "request": "327_Cedar_complete-bond-capture-policy-b1fuaz79/relocated/request",
+      "attempt": 1,
+      "old_recipe": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001/AutoRefine/round_003/report.json",
+      "unchanged": [
+        "starting model bytes",
+        "ordered original PHIL",
+        "D:1 terminal phosphate protection",
+        "observation bytes, labels, original Free-R test value 0",
+        "five cycles/four processes/all refinement settings"
+      ],
+      "changed": [
+        "C327 corrected dictionary replaces old dictionary and separate target-only PHIL",
+        "declared paths rebased into isolated input copies"
+      ]
+    },
+    "result": {
+      "corrected_target_angstrom": 1.47,
+      "unchanged_esd_angstrom": 0.02,
+      "native_origin_id": 0,
+      "achieved_length_angstrom": 1.4818289374958247,
+      "triple_angles_degrees": [
+        175.01932819180604,
+        173.9366437084452
+      ],
+      "terminal_plane_offset_angstrom": 0.2580041459959006,
+      "printed_geometry": {
+        "planarity_printed_match": true,
+        "parallelity_printed_match": true,
+        "plane_count": 45,
+        "parallelity_count": 58,
+        "printed_bond": {
+          "i_seqs": [],
+          "atom_labels": [
+            "pdb=\" C5B PDU B   4 \"",
+            "pdb=\" C5M PDU B   4 \""
+          ],
+          "ideal": 1.47,
+          "model": 1.482,
+          "delta": -0.012,
+          "sigma": 0.02,
+          "weight": 2500.0,
+          "residual": 0.364,
+          "origin_id": 0
+        }
+      },
+      "full_prepared_final_proxy_equality": true,
+      "three_sugar_signs_preserved": true,
+      "written_model_readback": {
+        "status": "WRITTEN_MODELS_MATCH_SAVED_SCATTERING",
+        "scope": "Exact written PDB/mmCIF and saved-scattering readback; no optimization, log-derived correction or file mutation.",
+        "saved_scattering": {
+          "r_work": 0.20623621479246534,
+          "r_free": 0.23619152216406372,
+          "fmodel_relative_error": 1.306952630383781e-07,
+          "reflections": 2267,
+          "original_free_r_mapping_preserved": true
+        },
+        "models": {
+          "pdb": {
+            "atom_count": 855,
+            "r_work": 0.20623665452733356,
+            "r_free": 0.2362232004268678,
+            "relative_fcalc_rms_error": 0.0001718898475844582,
+            "absolute_r_work_error": 4.397348682128044e-07,
+            "absolute_r_free_error": 3.167826280409125e-05,
+            "explicit_b_correction": 0
+          },
+          "mmcif": {
+            "atom_count": 855,
+            "r_work": 0.20623735413602046,
+            "r_free": 0.23619505307945537,
+            "relative_fcalc_rms_error": 1.332994897773e-05,
+            "absolute_r_work_error": 1.1393435551121378e-06,
+            "absolute_r_free_error": 3.5309153916529556e-06,
+            "explicit_b_correction": 0
+          }
+        },
+        "format_comparison": {
+          "coordinate_max_difference": 0.0005000000000094929,
+          "maximum_b_difference": 0.004960000000039457
+        },
+        "refinement_cycles": 0,
+        "model_adoption": false,
+        "observations_modified": false,
+        "limitations": [
+          "Saved masks/scales retained; no new fit or target tuning. Small differences reflect serialized precision and native FFT calculation.",
+          "This is output-state consistency, not PDU chemical-survival acceptance or historical optimizer reconstruction."
+        ]
+      },
+      "historical_comparison": {
+        "status": "HISTORICAL_NUMERIC_ENDPOINT_REPRODUCED_WITH_COMPONENT_ORIGIN",
+        "older_capture": {
+          "anchor": "NASolve-live-tests",
+          "path": "308_Cedar_target-comparison-l3aou61r/readback/PDU/capture/cif-native-7r6697nb"
+        },
+        "full_proxy_multiset_equality_after_declared_origin_change": {
+          "angle": true,
+          "bond_asu": true,
+          "bond_simple": true,
+          "chirality": true,
+          "const_dihedral": true,
+          "dihedral": true,
+          "parallelity": true,
+          "planarity": true
+        },
+        "permitted_origin_change": {
+          "atoms": [
+            "C5B",
+            "C5M"
+          ],
+          "site": "B:4",
+          "old": 4,
+          "new": 0
+        },
+        "native_cartesian_sites_exact": true,
+        "C319_written_atom_records_exact": true,
+        "inventory_note": {
+          "isolated_dictionary_only_atoms": [
+            "OP3"
+          ],
+          "native_missing_non_hydrogens": {
+            "atom_ids": [],
+            "status": "RECORDED"
+          },
+          "native_unexpected": {
+            "atom_ids": [],
+            "status": "RECORDED"
+          },
+          "native_modification": {
+            "ids": [
+              "NASL82602b9013"
+            ],
+            "status": "RECORDED"
+          },
+          "scope": "The generic isolated-reference triple diagnostic reports inventory mismatch against linked B:4. Its source dictionary includes OP3; the existing declared site modifier removes it. Native linked membership is complete. Keep this distinct from actual bending; no new OP3 deletion or permission inferred."
+        },
+        "reuse": "C309/C314 force-direction findings remain relevant to this reproduced endpoint; no new force/optimizer-history claim.",
+        "author": "Rowan"
+      }
+    },
+    "retention": {
+      "whole_control_bytes": 30631278,
+      "old_run_files_unchanged": 1234,
+      "old_request_files_unchanged": 141,
+      "checkpoint_selection": "refine-001 unchanged; no new checkpoint",
+      "scope": "30.63 MB local diagnostic; no measured peak or campaign-capacity claim",
+      "receipts": [
+        {
+          "path": "start.json",
+          "sha256": "b08c7e5f1d3071b2ddbf6cde51267e18c91fc2c5f13084c6e9193217a11f9feb",
+          "size": 27596
+        },
+        {
+          "path": "driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "size": 78
+        },
+        {
+          "path": "input-origin.json",
+          "sha256": "1e78e5de21252a50779f61f58e1259aff97fbc2205c33d0e745f523cd80dcac7",
+          "size": 10376
+        },
+        {
+          "path": "summary.json",
+          "sha256": "1f2cc8ada449744e4476c77cc9cd8abe1e98c455292f68153fceb5f13a04684b",
+          "size": 23456
+        },
+        {
+          "path": "geometry.json",
+          "sha256": "4fd2a1657cc3a72ef192225cd706f454db171d962b63f82ce5958d87d8cf56d4",
+          "size": 37718
+        },
+        {
+          "path": "printed-geometry-comparison.json",
+          "sha256": "540dce6d58cfb17f6fea4af1f45de1d80eae184554dad317aff6d5dd09e33467",
+          "size": 402
+        },
+        {
+          "path": "historical-comparison.json",
+          "sha256": "08050caf946530444c7d07ba26ae6758decccd24e89483c60d97da8d07459a73",
+          "size": 1546
+        }
+      ],
+      "included": "Compact evidence/docs only",
+      "excluded": "All raw models/CIFs/MTZs/native captures/logs/SDK source/local runners"
+    },
+    "compatibility": "No schema, code, default, checkpoint or historical request migration.",
+    "limitations": [
+      "Substituted scaffold observations, not diffraction from modified crystals.",
+      "Exact corrected-CIF diagnostic execution, not a new ordinary AutoRefine checkpoint or automatic chemistry adoption.",
+      "No target, restraint-strength or Free-R tuning. Whole-substituent assessment stays separate from successful delivery.",
+      "No automatic source-target selection or broad chemical-survival approval.",
+      "The generic isolated-reference inventory warning is not evidence that linked B:4 needs OP3.",
+      "This trial uses a substituted scaffold, not data from a PDU-containing crystal."
+    ],
+    "next": "Reuse exact prior force diagnosis; integrate source-aware target selection and scoped achieved-geometry reporting while retaining whole-substituent REVIEW.",
+    "author": "Rowan"
   }
 }

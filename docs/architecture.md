@@ -96,6 +96,9 @@ explicit pairs from ordinary preparation and the checked PostMR Python API into
 that same owner, choosing v4 only for fresh requests with those pairs. Shared
 syntax validation precedes tool setup; actual frozen source connectivity still
 decides eligibility. No CLI/campaign policy or automatic target selection is added.
+C329 separately validates five-cycle corrected-CIF delivery and actual written
+model/scattering agreement. PDU's remaining bend is reproduced, so delivery does
+not imply achieved-chemistry approval or a new ordinary checkpoint.
 
 ## Runtime precedence
 

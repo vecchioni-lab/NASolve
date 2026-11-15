@@ -1,15 +1,15 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C328 ordinary explicit-target entry — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Current delivery **C328**; preceding
-published **a766d2a3 (C327)**, **818edda7 (C326)**, **cad829a6 (C325)**.
+Updated **2026-11-15, C329 corrected-CIF refinement delivery — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Current delivery **C329**; published
+code **11fd6ee6 (C328)**, **a766d2a3 (C327)**, **818edda7 (C326)**.
 Focused checks only; no Rowan full suite, branch, default activation or merge.
 Linden owns Pine/Willow and does not edit Cedar.
 
 ## Current work and interruption recovery
 
 **Window: 16:25–23:00 London**, extended by Simon at the evening check-in.
-All Rowan driver/native/cold owners through C328 are stopped. Independent Phenix
+All Rowan driver/native/cold owners through C329 are stopped. Independent Phenix
 CLI jobs may overlap with isolated working/output folders and process records;
 coordinate CPU/RAM and deadlines with Linden. Campaign execution stays serial.
 
@@ -51,12 +51,37 @@ choice/continuation tests add **17 passes (45.21 s)**. Exact commands are in the
 configuration rereads with all **141 files unchanged (1.27 s)**, without native
 execution. This is configuration compatibility, not a repeated full native replay.
 
-**Next:** test actual corrected-CIF refinement survival and the whole substituent.
-Changed intent needs a fresh request/run; do not manufacture a checkpoint or
-rewrite the original C303 selection. Automatic choice/release defaults remain
-separate. PDU still bends in prior trials; Q06 stays open. Profile repeated evidence
-reads before optimizing; preserve exact file/owner checks and reuse only existing
-bounded pure numerical replay mechanisms. No automatic global cache.
+**C329 complete:** exact C327 selected runtime → isolated zero-cycle preflight →
+five real refinement cycles through the existing frozen v2 helper. Same C319 model,
+ordered PHIL, observations/Free-R, four-process recipe and D:1 protection; corrected
+CIF replaces old dictionary plus extra target-edit PHIL. No new checkpoint or
+historical edits. Six native jobs and outer owner stop; source stays at C328.
+
+Actual final GEO retains **1.470 Å / 0.020 Å ESD, component origin 0**; achieved
+length **1.481829 Å**. All **45 planes/58 parallels** remain; complete prepared/final
+native restraint definitions agree. PDB/mmCIF reproduce saved scattering, original
+Free-R mapping intact, Rwork/Rfree **0.206236/0.236192**. Native build unchanged.
+All **1,234 C303 files +141 C327 files** stay unchanged. Local control
+`329_Cedar_corrected-CIF-refinement-3j49p8v8`: **30.63 MB**, 294.89 s total; no peak
+or campaign-capacity claim. No raw model/CIF/MTZ/log upload.
+
+**Q06 remains REVIEW:** PDU angles **175.019°/173.937°**, terminal plane offset
+**0.258 Å**. C319 written atom records reproduce exactly; C308 native coordinates
+and every restraint agree after accounting only for old edit-origin 4 versus
+component-origin 0. Reuse C309/C314 force work instead of repeating it. The generic
+isolated-reference triple diagnostic also sees OP3 absent at linked B:4; actual
+native missing/unexpected heavy lists are empty under the existing declared site
+modifier. This is a diagnostic reference-scope warning, distinct from bending;
+never use it to add OP3 or alter the protected D:1 terminal state.
+
+**Next:** source-aware automatic target discovery and faithful reporting of
+remaining achieved-geometry reviews, using the established owners. Do not re-run
+this same corrected-CIF delivery or strengthen restraints to force a pass. Any
+new finite-motion/parameter experiment needs a specific hypothesis using prior
+force/target evidence. Q06 still needs whole-substituent and related held-out
+survival; Q07 mixed challenges remain downstream. Changed intent needs a fresh
+request/run. Profile repeated evidence reads before optimizing and preserve exact
+file/owner checks. No default activation or merge.
 
 Linden's fixed C322/Willow full installed check remains **4 failed, 11,109 passed
 +284 subtests (2671.02 s)**, not a pass. His W84 focused installed composition of
@@ -126,7 +151,8 @@ commands, hashes, anchor-relative evidence and limitations. New entries:
 `installed_historical_construction_resource_2026_11_15` and
 `prepared_reference_bond_execution_2026_11_15` and
 `complete_reference_target_delivery_2026_11_15` and
-`ordinary_reference_target_entry_2026_11_15`. The packaged public PDB
+`ordinary_reference_target_entry_2026_11_15` and
+`corrected_cif_refinement_survival_2026_11_15`. The packaged public PDB
 retains its original fixed-column padding and exact hash. C325 whitespace checking
 excludes only that byte-pinned PDB (`git diff HEAD^ HEAD --check -- .
 ':(exclude)src/nasolve/data/replay/5W6W_noPO4.pdb'`); all code/docs pass. Reuse the earlier C307–C322 entries

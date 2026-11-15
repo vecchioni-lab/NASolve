@@ -279,6 +279,23 @@ fixtures are synthetic, not native chemical validation. C327's actual archived
 request configuration also rereads unchanged with the extracted validator.
 C328 does not rerun Coot/Phenix or claim corrected-CIF refinement survival.
 
+C329 separately executes five native refinement cycles from the exact C327
+runtime under the unchanged C319 recipe and observations/Free-R, replacing the
+old dictionary plus bond-edit PHIL with the corrected CIF. Actual printed targets,
+all 45 planes/58 parallels and prepared/final parameter inventories agree; final
+PDB/mmCIF reproduce saved scattering. The terminal bond reaches 1.481829 Å at
+normal component origin 0. PDU still bends to 175.019°/173.937° and its terminal
+carbon remains 0.258 Å from the descriptive base plane: achieved geometry stays
+REVIEW. No ordinary checkpoint, source mutation, default or strength change.
+
+The isolated-reference triple screen also reports an OP3 inventory difference
+against linked B:4. Its active native definition has no missing/unexpected heavy
+atoms and uses the pre-existing explicit site modifier. Preserve that reference-
+scope distinction; it does not authorize adding OP3 or changing terminal intent.
+The exact C319 written atom records and C308 native geometry are reproduced,
+apart from the recorded edit-versus-component restraint origin. Prior force work
+need not be repeated. Exact control and limitations are in the existing ledger.
+
 ### Replayable bond-target evidence (C322)
 
 `audit_captured_bond_attribution` now freezes the exact source, supplied numerical

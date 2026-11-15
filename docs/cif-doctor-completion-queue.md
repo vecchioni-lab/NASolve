@@ -254,7 +254,20 @@ unchanged per-part/shared expansion bounds. C328 connects the explicit choice at
 ordinary preparation/checked PostMR Python entry, using the same frozen owner;
 focused transport/continuation and saved-native-configuration checks pass. No
 native ordinary-entry control or automatic-selection claim is added.
-**Next: actual corrected-CIF refinement and whole-substituent survival.** Changed intent needs a fresh request/run; never
+C329 now completes five actual cycles from C327's corrected runtime, with no
+extra bond-edit PHIL. The final GEO retains the 1.470/0.020 target at normal
+component origin, all 45 planes/58 parallels survive, and written PDB/mmCIF
+reproduce saved scattering. C319 atom records reproduce exactly; full C308 native
+parameters differ only by declared origin. The terminal length is 1.481829 Å,
+but angles 175.019°/173.937° and plane offset 0.258 Å keep Q06 in REVIEW. This
+is an isolated diagnostic refinement, not a new ordinary checkpoint/default.
+Do not rerun the same delivery or the already-relevant C309/C314 force analysis.
+**Next: source-aware automatic numerical selection and useful achieved-geometry
+reporting; whole-substituent/held-out survival remains unqualified.** The generic
+triple diagnostic compares isolated OP3-bearing reference atoms against linked
+B:4: preserve that scope warning separately from actual native missing atoms
+(none). Q14 should use explicit site projections rather than suppressing membership
+checks or adding unwanted OP3. Changed intent needs a fresh request/run; never
 bypass lineage by manufacturing a checkpoint or rewriting the original request.
 No automatic target discovery/defaults or residue-name special cases. Reuse existing
 owners rather than promote a diagnostic script or add recovery/storage machinery.

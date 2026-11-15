@@ -105,7 +105,11 @@ archive-expansion limit. The failed first request stays preserved. Normal model
 preparation can now pass an explicitly chosen correction into that same checked
 route through its Python entry point. This connects the existing tools; it does
 not yet decide automatically which bonds need correction. Actual corrected-CIF
-refinement and whole-substituent survival remain the next scientific boundary.
+refinement has now been tested with the corrected CIF itself: the final printed
+restraints retain the intended target, and the written models reproduce Phenix's
+saved scattering. The corrected bond reaches 1.482 Å, but the same PDU bend
+remains. This closes the delivery question, not whole-substituent approval; the
+earlier force analysis remains relevant and no restraint strength was increased.
 Matched refinement trials now show that changing only the terminal bond target
 brings both PDU and 5PC to sensible lengths near 1.48 Å, while retaining the
 original restraint strengths, observations and Free-R flags. The previous selected
