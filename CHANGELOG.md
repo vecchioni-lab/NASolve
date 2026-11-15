@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Try explicit bond targets through the existing prepared repair owner (C326)
+
+- Freeze explicit source-neighborhood bond choices in immutable prepared requests.
+  Use one checked native library, target-only candidates, full native attribution
+  and final derivative checks before existing whole-bundle selection/publication.
+- Preserve exact inputs, bounded deadlines, stopped-process recovery, verified
+  fallback and compact runtime evidence. Existing calls omit the new option and
+  retain their previous behavior. No CLI/default activation or new process owner.
+
 ### Replay historical construction from an installed package (C325)
 
 - Ship the exact public canonical scaffold needed by C62/C63 construction replay

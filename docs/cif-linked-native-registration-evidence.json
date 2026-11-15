@@ -100555,5 +100555,199 @@
     ],
     "next": "Return to Q06 explicit bond-target delivery through the existing prepared executor/request and its derivative/fallback checks.",
     "author": "Rowan"
+  },
+  "prepared_reference_bond_execution_2026_11_15": {
+    "milestone": "C326",
+    "status": "NATIVE_PREPARED_REFERENCE_BOND_REPAIR_AND_COLD_PUBLICATION_PASS",
+    "source_base_commit": "cad829a6",
+    "behavior_before": "Explicit numerical target repairs existed as separate qualified reference/attribution/chain operations, without prepared execution/request delivery.",
+    "behavior_after": "Explicit source-selected target candidates run under existing prepared process/request ownership, with reference binding, unchanged ESD, native attribution, full derivatives, independent fallback and compact publication.",
+    "files": [
+      "src/nasolve/cif_energy_library.py",
+      "src/nasolve/cif_prepared_repair_execution.py",
+      "src/nasolve/cif_repair_attempt.py",
+      "src/nasolve/cif_repair_process.py",
+      "tests/test_cif_prepared_bond_repair.py"
+    ],
+    "schemas": "Optional bond_targets configuration with cif-prepared-source-bond-targets-v1; new prepared stage receipts and existing energy-library/bond-attribution phase ownership. Omitted option preserves old request shape; no migration/default/CLI activation.",
+    "prior_work": "Reuse C234-C237 plane integration, C322-C324 native attribution/reference/chain, existing request recovery and compact runtime publication. No second execution/storage/selection owner.",
+    "validation": {
+      "environment": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src; cwd NASolve-c96",
+      "interpreter": "/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python",
+      "initial_before": "35 failed in 1.20 s before implementation",
+      "focused_command": "-m pytest -q -p no:cacheprovider tests/test_cif_prepared_bond_repair.py tests/test_cif_prepared_repair_execution.py tests/test_cif_prepared_repair_budget.py tests/test_cif_repair_attempt.py tests/test_cif_repair_process.py tests/test_cif_energy_library.py --tb=short",
+      "focused_result": "287 passed in 29.04 s",
+      "final_guard_before": "2 failed, 40 deselected in 1.97 s; missing explicit failure policy did not refuse",
+      "final_command": "-m pytest -q -p no:cacheprovider tests/test_cif_prepared_bond_repair.py tests/test_cif_prepared_repair_failure.py tests/test_cif_repair_attempt.py --tb=short",
+      "final_result": "164 passed in 20.72 s; no full suite",
+      "native_command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve-c96/src /Users/svecchio/Documents/Amsterdam/_Wind/GitHub/NASolve/.venv/bin/python -B branch-artifacts/cedar/runners/c326_start.py",
+      "native_options": {
+        "native_timeout_seconds": 90,
+        "attribution_timeout_seconds": 90,
+        "derivative_timeout_seconds": 300,
+        "total_timeout_seconds": 900,
+        "max_attempts": 1,
+        "qualify_no_repair": true,
+        "optional_failure_policy": "cif-owned-native-failure-original-v1",
+        "compact_evidence": true,
+        "plane_support": {
+          "PDU": {
+            "attempt_number": 1,
+            "path": "inputs/plane-support/PDU"
+          }
+        },
+        "bond_targets": {
+          "PDU": [
+            [
+              "C5B",
+              "C5M"
+            ]
+          ]
+        }
+      },
+      "native": {
+        "status": "NATIVE_PREPARED_REFERENCE_BOND_REPAIR_AND_COLD_PUBLICATION_PASS",
+        "native_build": "phenix-2.2.1-6174",
+        "dispatcher_version": "2.2.1",
+        "new_native_jobs": 11,
+        "phases": [
+          "attribution",
+          "bond-attribution-000",
+          "energy-library",
+          "native-000",
+          "native-001",
+          "native-002",
+          "native-003",
+          "native-baseline",
+          "original-gradient",
+          "plane-attribution-000",
+          "repaired-gradient"
+        ],
+        "all_owners_stopped": true,
+        "source_archive_unchanged": true,
+        "selected": "repaired_prepared_bundle",
+        "selected_target": {
+          "atoms": [
+            "C5M",
+            "C5B"
+          ],
+          "comp_id": "PDU",
+          "type": "single",
+          "value_dist": "1.47",
+          "value_dist_esd": "0.020"
+        },
+        "native_capture_count": 5,
+        "original_derivative_status": {
+          "status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "qualified": true,
+          "report": {
+            "anchor": "original_gradient_directory",
+            "path": "captured_mixed_gradients.json",
+            "sha256": "564c6adbb84c432ed810dee9f56268b81503444462cc8a8897efa1dc0e794335",
+            "size": 14541
+          }
+        },
+        "repaired_derivative_status": {
+          "status": "CAPTURED_MIXED_DERIVATIVES_PASS",
+          "qualified": true,
+          "report": {
+            "anchor": "repaired_gradient_directory",
+            "path": "captured_mixed_gradients.json",
+            "sha256": "07a2f3ba8a2e71694a99a47ddd798a2d5d358f58200e8b8e272998024a08d8d5",
+            "size": 14541
+          }
+        },
+        "temporary_relocated_code_removed": true,
+        "storage": {
+          "sampled_peak_root_bytes": 314106884,
+          "sampling_seconds": 1,
+          "peak_limit": "Root sampling excludes transient owner scratch and RSS; not an exact peak or capacity claim"
+        },
+        "cold": {
+          "status": "MOVED_PREPARED_TARGET_REQUEST_RUNTIME_READYSET_PARENT_PASS",
+          "selected": "repaired_prepared_bundle",
+          "preserved_files": 653,
+          "physical_bytes": 187314468,
+          "runtime_bytes": 5379529,
+          "native_process_state": "STOPPED",
+          "new_native_calls": 0,
+          "code_relocated": true,
+          "elapsed_seconds": 36.141899749985896
+        },
+        "elapsed_seconds": 225.07392891601194
+      },
+      "native_platform": "Darwin arm64; complete native execution, not dry-run; no Coot/ReadySet execution/refinement",
+      "native_source_sha256": {
+        "src/nasolve/cif_energy_library.py": "d489eeacac699a512e25244e2059db3fb4e964bd477a9d0b9d871667d9a84176",
+        "src/nasolve/cif_prepared_repair_execution.py": "270df74308dafcbe1e7ab98166c720ffc152f3a02d493d79a51f89f9e317fc10",
+        "src/nasolve/cif_repair_attempt.py": "afb1df8893ca7fe10a1f2c330eb67c7f24ce3b834ba328190b57cb5d518027d1",
+        "src/nasolve/cif_repair_process.py": "1a3d9c3cca1bcec56695af76fc4961da43d145a3c84b06fe639b3180c80e4094"
+      },
+      "final_source_sha256": {
+        "src/nasolve/cif_energy_library.py": "d489eeacac699a512e25244e2059db3fb4e964bd477a9d0b9d871667d9a84176",
+        "src/nasolve/cif_prepared_repair_execution.py": "f5bafef1b0686014abcb7484c8bbf75a29022c8e828629f691fbcdb6b31df136",
+        "src/nasolve/cif_repair_attempt.py": "afb1df8893ca7fe10a1f2c330eb67c7f24ce3b834ba328190b57cb5d518027d1",
+        "src/nasolve/cif_repair_process.py": "1a3d9c3cca1bcec56695af76fc4961da43d145a3c84b06fe639b3180c80e4094"
+      },
+      "guard_timing": "Successful native route ran before final explicit lookup-failure guard and already passed that policy. Focused failure/request tests cover the final guard; successful native path not needlessly repeated."
+    },
+    "artifacts": {
+      "anchor": "NASolve-live-tests",
+      "root": "326_Cedar_prepared-bond-repair-j1iemjfx",
+      "input": {
+        "anchor": "NASolve-live-tests",
+        "archive": "303_Cedar_PDU-campaign-btuh5sop/relocated-after-c304/DiU/AutoMR/run_001/PostMR/DictionaryEngine/request/retention/attempt-0002/evidence.zip",
+        "sha256": "9367d1ed63b46d8bca53d56e1885454de7f094c4efbd29ebd713b4e52665bf33",
+        "prefixes": [
+          "repair/inputs/bundle/",
+          "repair/inputs/plane-support/"
+        ],
+        "logical_archive_bytes": 191591259,
+        "selected_inputs_bytes": 3150778
+      },
+      "records": [
+        {
+          "path": "summary.json",
+          "sha256": "e39a947f4941532a5b31cd568273454efa7acce7cfad5d4816a0d3dbc23a0f83",
+          "size": 12220
+        },
+        {
+          "path": "driver-result.json",
+          "sha256": "9848324961bd24e3461b6c8f736f6ce1ef449acc673a77616cfe6e780aa2f5e7",
+          "size": 78
+        },
+        {
+          "path": "cold-summary.json",
+          "sha256": "e070074bb56d94862f975d136b50737b4b15a823a52ef07803730396bc24567b",
+          "size": 333
+        },
+        {
+          "path": "input-origin.json",
+          "sha256": "a01990cbd1423c06e8d89cbb0f99599f94b1eae673fed09e3f4dcf416364394b",
+          "size": 432
+        },
+        {
+          "path": "selected-target.json",
+          "sha256": "143976a4be91444b225cbd2037da6878111764f52aad779529b2a46d9b9b64b3",
+          "size": 135
+        },
+        {
+          "path": "start.json",
+          "sha256": "c729fc34123e0eecb00a99b55a23c04af2553d2bcc475268eee61f03dc389dc6",
+          "size": 27524
+        }
+      ],
+      "included": "Code/tests/compact evidence/docs only.",
+      "excluded": "Raw models/CIFs/reflections/native inventories/logs/SDK source/local runners. Standalone working evidence retained; no ad hoc deletion."
+    },
+    "compatibility": "Existing omitted-option calls and saved requests remain readable. New explicit configuration/phases need this reader; no historical migration.",
+    "limitations": [
+      "Explicit prepared option only; complete-request/CLI/default propagation absent.",
+      "No automatic chemical target discovery or ESD approval.",
+      "No new refinement, checkpoint selection or whole-substituent survival claim.",
+      "Standalone 187.31 MB retention is diagnostic, not a new campaign storage policy or capacity claim."
+    ],
+    "next": "Carry choices through existing complete request and continuation/retention, then prove corrected-CIF ReadySet/refinement delivery and whole-substituent survival.",
+    "author": "Rowan"
   }
 }

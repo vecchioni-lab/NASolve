@@ -22,7 +22,6 @@ from .cif_linked_linear_torsion import _exact
 from .cif_linear_bond_reference import energy_library_linear_reference, _library_table
 from .cif_mixed_geometry import _ref
 from .cif_native_validation import _run_native_command
-from .cif_phenix_configuration import _pin
 from .cif_postmr_cache import verify_current_consumer
 from .ligand_profiles import _blocks
 
@@ -144,6 +143,7 @@ def capture_energy_library(phenix,consumer,output,*,timeout_seconds=60,_process_
     lookup stays REVIEW; uncertain cleanup escapes without sealing a receipt.
     No ligand or coordinates are needed, so the result can serve many references.
     """
+    from .cif_phenix_configuration import _pin
     _need(type(timeout_seconds) is int and 1<=timeout_seconds<=120,'Invalid energy-library timeout')
     selected=deepcopy(phenix);consumer=deepcopy(consumer);_consumer(consumer)
     root=Path(selected.root).resolve(strict=True);site=_library_anchor(consumer['api_sources'])

@@ -239,16 +239,18 @@ inventories, retaining the normal component origin, for both saved PDU and 5PC
 controls. C321 now accounts for their whole energy/force difference using actual
 native bond options and single/container evaluations. C322 now binds that proof
 through the shared owned attribution lifecycle and passes cold readback after
-relocation with original inputs/SDK blocked. Next qualify selected-library reference
-authority and connect it through existing repair-chain/selection owners before
-ordinary repair selection. C323/C324 close the selected-library and ordered-chain join: native lookup and
-real PDU/5PC cold readback pass, as do focused synthetic source/derivative/fallback
-contracts. No ordinary executor/request activation follows. The next boundary is the existing prepared repair executor and
-request protocol, not a second repair engine; do not promote the local diagnostic script to an owner. Reuse existing capture,
-numerical and repair-chain owners; diagnostic PHIL edits alone do not establish
-corrected-CIF delivery. Keep neighboring targets, source hands and terminal intent
-visible. No repeated Coot, replacement recovery owner, blanket flattening or
-Free-R tuning. Q07–Q16 remain as ordered below.
+relocation with original inputs/SDK blocked. C323/C324 close selected-library
+reference authority and ordered-chain composition. C326 closes explicit prepared
+executor/request delivery: the real PDU control selects a corrected CIF after
+original/final complete derivative checks, with unchanged model/PHIL/ESD; moved
+request/runtime/ReadySet-parent reads pass. The final lookup-failure policy guard
+passes focused negative controls. **Next: existing complete-request propagation,
+ReadySet delivery and archive/retirement**, then actual whole-substituent survival.
+No automatic target discovery/defaults or residue-name special cases. Reuse existing
+owners rather than promote a diagnostic script or add recovery/storage machinery.
+Diagnostic PHIL edits alone do not establish corrected-CIF delivery. Keep neighboring
+targets, source hands and terminal intent visible. No repeated Coot, blanket
+flattening or Free-R tuning. Q07–Q16 remain as ordered below.
 
 **Installed replay holdover closed by C325:** the exact public C62/C63 canonical
 frame is now a dedicated package resource, with explicit historical runtime inputs
@@ -256,8 +258,8 @@ still preferred and all checks unchanged. Both routes pass from a built/installe
 relocated wheel after the temporary source checkout is removed; changed packaged
 bytes refuse. No ordinary MR catalogue activation. Linden's original W81 four-fail
 combined result remains recorded; two other failures were Git/source-path fixture
-assumptions. Targeted followups do not become a new full-suite pass. Resume ordinary
-explicit bond-target integration through the existing prepared owner/request.
+assumptions. Targeted followups do not become a new full-suite pass. C326 now passes explicit prepared delivery; continue through the existing complete
+request owner and its retention route.
 
 ### The next small steps
 

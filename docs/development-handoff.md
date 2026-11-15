@@ -1,15 +1,15 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-15, C325 installed replay fixed; C323/C324 complete — Rowan**.
-Worktree **NASolve-c96**, branch **cedar**. Published **f9d90319 (C323/C324)**; working C325 is pinned in its build/readback
-start record.
+Updated **2026-11-15, C326 explicit prepared target execution validated — Rowan**.
+Worktree **NASolve-c96**, branch **cedar**. Published **cad829a6 (C325)**; C323/C324 are **f9d90319**. Working C326
+extends the existing prepared execution/request/process owners.
 Focused checks only; no Rowan full suite, branch, default activation or merge.
 Linden owns Pine/Willow and does not edit Cedar.
 
 ## Current work and interruption recovery
 
 **Window: 16:25–23:00 London**, extended by Simon at the evening check-in.
-All Rowan driver/native/cold owners through C325 are stopped, with unchanged source
+All Rowan driver/native/cold owners through C326 are stopped, with unchanged source
 pins. Native window released to Linden; coordinate before another expensive job.
 
 **C323 complete:** `323_Cedar_selected-energy-library-lznnh6qv` under the local
@@ -56,19 +56,44 @@ installed/evidence files stay unchanged during normal reads. Successful temporar
 build/install/fixture copies are removed; whole driver 5.23 s, no native scientific
 job. All exact commands and compact references are in the existing evidence ledger.
 
-**Current next step:** return to explicit bond-target integration through the
-existing prepared executor/request. Retain original derivative-qualified fallback,
-exact source/context and bounded owned attempts. C323/C324 do not themselves provide
-ordinary execution or full derivative proof. Whole-substituent survival remains
-required; PDU still bends and Q06 remains open.
+**C326 complete:** explicit source-graph bond selections reach the existing prepared
+executor/request/process owners. One selected-library lookup precedes target-only
+candidates, native attribution and complete final derivative checks. Unsupported
+or unchanged targets retain the independent verified route; operational lookup
+failure requires the existing explicit optional-failure policy. Corrupt evidence
+and uncertain ownership still refuse. No CLI/default/complete-request propagation.
+Initial 35 contracts fail before implementation; **287 focused tests pass (29.04 s)**.
+The later failure-policy negatives fail before the final guard (2 failures, 1.97 s);
+**164 target/failure/request checks pass afterward (20.72 s)**. No full suite.
+
+`326_Cedar_prepared-bond-repair-j1iemjfx` uses the exact archived C303/C304 prepared
+bundle and plane support. Phenix **2.2.1-6174 / dispatcher 2.2.1, Darwin arm64**,
+11 complete native jobs, 225.07 s driver. It selects the corrected **1.470 Å** PDU
+target, retaining **0.020 Å** ESD, exact model and ordered PHIL bytes. Plane and bond
+attribution plus original/final full derivative checks pass. All owners stop and
+source/archive bytes stay unchanged. The native control precedes the final
+lookup-failure guard and already supplies the explicit fallback policy; focused
+negative controls cover that final change without repeating the successful route.
+
+Moved code/evidence cold request/runtime/ReadySet-parent reads pass with originals,
+SDK and child execution blocked: all **653 files unchanged**, 36.14 s. Runtime is
+**5.38 MB**; retained standalone working evidence is **187.31 MB**. Sampled root peak
+314.11 MB excludes transient owner scratch/RSS and is not a capacity claim. The
+complete request owner's existing archive/retirement route is the next integration;
+do not create a second storage owner or discard this standalone evidence ad hoc.
+
+**Current next step (C327):** propagate explicit bond choices through the existing
+complete request and continuation/retention contracts, then qualify corrected-CIF
+ReadySet/refinement delivery. No new attempts or process/recovery framework.
+Whole-substituent survival remains required: PDU still bends and Q06 stays open.
 
 Linden's fixed C322/Willow full installed check remains **4 failed, 11,109 passed
-+284 subtests (2671.02 s)**, not a pass. Two tests assume Git/source paths; C325
-addresses the missing default replay resource underlying the other two. Linden's
-focused source-context rerun reports 90 passed +20 subtests and explicit installed
-runtime-source replay passes. He will check focused installed composition once C325
-is pinned; no full rerun requested. Original log:
-`/private/tmp/willow-w81-combined/tests.log`.
++284 subtests (2671.02 s)**, not a pass. His W84 focused installed composition of
+Willow 29723067 + Cedar cad829a6 passes **873 tests +16 subtests (72.44 s)**. It
+retains both TopoStitch HTML and Cedar replay PDB package data; eventual integration
+must keep that union. Seven documentation conflicts remain, no product merge.
+W85's small-displacement derivative/rebuilt-contact checks pass within Willow's
+scope; they do not qualify chemical improvement or Cedar Q06. Native window released.
 
 ## Scientific findings and preserved evidence
 
@@ -127,7 +152,11 @@ The existing `cif-linked-native-registration-evidence.json` ledger holds exact
 commands, hashes, anchor-relative evidence and limitations. New entries:
 `selected_native_energy_library_2026_11_15` and
 `reference_bound_ordered_bond_chain_2026_11_15`, plus
-`installed_historical_construction_resource_2026_11_15`. Reuse the earlier C307–C322 entries
+`installed_historical_construction_resource_2026_11_15` and
+`prepared_reference_bond_execution_2026_11_15`. The packaged public PDB
+retains its original fixed-column padding and exact hash. C325 whitespace checking
+excludes only that byte-pinned PDB (`git diff HEAD^ HEAD --check -- .
+':(exclude)src/nasolve/data/replay/5W6W_noPO4.pdb'`); all code/docs pass. Reuse the earlier C307–C322 entries
 for target, force, writer and native identity evidence rather than duplicating it.
 
 Original PDU:PDU **B:1 = incoming symmetry continuation P/OP1/OP2, no OP3**,

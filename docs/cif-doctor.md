@@ -202,13 +202,37 @@ Bond-containing chains use `cif-ordered-source-repair-chain-v2`; historical call
 retain exact v1 bytes. The existing bundle selector still owns source identity,
 whole-model native identity, final derivatives and independently verified fallback.
 Public runtime/ReadySet-parent reads carry that same choice after relocation.
-No prepared executor/request or automatic candidate-selection route is added yet.
+C326 adds explicit prepared executor/request delivery below; automatic selection
+and complete-request/default integration remain separate.
 
 Native selected-library binding and both real PDU/5PC bond-only chain reads pass
 after moving code/evidence with originals/SDK blocked. Multi-stage public selection
 and fallback use synthetic native fixtures. Successful duplicate proof copies are
 removed; compact results retain verifiable reproduction references. See the current
 handoff and evidence ledger for exact commands, source pins and limits.
+
+### Explicit prepared target execution (C326)
+
+The existing prepared executor and immutable request accept `bond_targets`, a
+bounded mapping from source-owned component codes to atom pairs in the existing
+linear-neighborhood query. This selects candidates, not chemical acceptance. One
+selected native library serves the request; target-only changes preserve ESDs and
+join the existing torsion/plane chain, attribution, complete derivative checks,
+whole-bundle selection and compact publication. No residue-name dispatch is used.
+
+Unsupported or matching targets retain the independently checked route. A stopped
+library lookup failure requires the existing explicit optional-failure policy;
+corrupt evidence, uncertain process ownership and interruptions are not chemistry
+fallbacks. Retry uses a new immutable attempt with unchanged frozen choices.
+Calls omitting the option retain prior behavior; no old request is migrated.
+
+The actual PDU prepared control selects the 1.470 Å target with unchanged model,
+ordered PHIL and 0.020 Å ESD. Original/final full derivatives and plane/bond
+attribution pass. Moved request/runtime/ReadySet-parent reads pass SDK-free with
+originals blocked. This qualifies preparation and publication, not refinement
+survival, automatic discovery or ordinary complete-request delivery. Retained
+standalone evidence is diagnostic; reuse existing complete-request archive and
+retirement when propagating this option rather than adding a storage policy.
 
 ### Replayable bond-target evidence (C322)
 
@@ -228,8 +252,9 @@ retention policy or a claim of 100-dataset capacity. Inventory references avoid
 embedding an additional copy of each complete inventory inside job specifications.
 
 C323/C324 add selected-library reference authority and ordered repair-chain
-composition. Ordinary executor/request integration, complete derivative proof and
-chemical-survival checks remain separate. No automatic target adoption follows from this proof.
+composition. C326 supplies explicit prepared execution and its complete derivative
+proof; complete-request delivery and chemical survival remain separate. No
+automatic target adoption follows from this proof.
 
 ### Native energy of corrected bond targets (C321)
 
